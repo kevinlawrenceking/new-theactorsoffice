@@ -14,8 +14,6 @@
     WHERE t.qry_type = 'del' AND t.isfetch = 0
 </cfquery>
 
- <!--- API Key Setup ---> 
-<cfset apiKey = "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">
 
 
 <!--- Loop through each function query result ---> 

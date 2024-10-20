@@ -1,7 +1,6 @@
 <cfsetting requestTimeout="9000">
 <cfset dsn="abod" />
 <cfset dbug = "N" />
-<cfset apiKey = "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">
 
 <!--- Step 1: Query the database for the file details to process --->
 <cfquery name="getQueryFiles" datasource="#dsn#">

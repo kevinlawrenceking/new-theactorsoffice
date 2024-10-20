@@ -16,8 +16,6 @@ SELECT t.id, f.id as function_id, f.function_name, f.component_id, f.qry_type,
     WHERE t.qry_type = 'ins' and (f.function_code is null or f.function_code = '')
 </cfquery>
 
-<!--- API Key Setup --->
-<cfset apiKey = "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">
 
 <!--- Loop through each function query result --->
 <cfloop query="getInsertFunctions">

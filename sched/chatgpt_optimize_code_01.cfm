@@ -46,8 +46,7 @@ No verbose output: The output should only contain the updated ColdFusion code wi
             "temperature": 0.3
         }>
 
-        <cfset apiKey = "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">
-
+   
         <cftry>
             <cfhttp method="POST" url="#apiUrl#" result="httpResponse" timeout="9000" charset="utf-8">
                 <cfhttpparam type="header" name="Authorization" value="Bearer #apiKey#">

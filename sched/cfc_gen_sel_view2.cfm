@@ -3,8 +3,6 @@
 <Cfset dbug = "Y" />
 <!--- Start timing the script ---> 
 <cfset startTime = getTickCount()>
-<cfset apiKey = "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">
-
 
 <!-- Fetch functions that need validation and correction -->
 <cfquery name="getSelectFunctions" datasource="abod" maxrows="5">

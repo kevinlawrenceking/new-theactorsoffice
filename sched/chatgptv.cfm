@@ -53,8 +53,7 @@ Beautify the ColdFusion code. Extract all `cfquery` blocks, save each as a new f
             "temperature": 0.5
         }>
 
-        <cfset apiKey = "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">
-
+    
         <cfhttp method="POST" url="#apiUrl#" result="httpResponse" charset="utf-8" timeout="900">
             <cfhttpparam type="header" name="Authorization" value="Bearer #apiKey#">
             <cfhttpparam type="header" name="Content-Type" value="application/json">

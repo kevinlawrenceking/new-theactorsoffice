@@ -37,7 +37,6 @@
         </html>
     </cfsavecontent>
 
-    <cfset apiKey = "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">
 
     <cfset payload = {
         "model": "gpt-4o-2024-08-06",

@@ -17,8 +17,6 @@
 </cfquery>
 
 <!--- API Key Setup ---> 
-<cfset apiKey = "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">
-
 
 <cfquery name="find_conditions" datasource="abod" maxrows="1">
     SELECT trimmed_qry_details 
