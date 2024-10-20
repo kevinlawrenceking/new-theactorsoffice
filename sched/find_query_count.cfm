@@ -1,0 +1,27 @@
+<!--- Get a list of files in the /include/qry directory --->
+<cfdirectory action="list" directory="C:/home/theactorsoffice.com/extracted/include/qry" name="fileList">
+
+<cfloop query="fileList">
+    <!--- Read the file content --->
+    <cfset fullFilePath = "C:/home/theactorsoffice.com/extracted/include/qry/#fileList.name#">
+    <cfif fileExists(fullFilePath)>
+        <cfset fileContent = fileRead(fullFilePath)>
+
+        <!--- Count the number of <cfquery> blocks --->
+        <cfset cfqueryCount = ListLen(fileContent, "<cfquery ")>
+
+        <!--- Output the file name and number of queries found --->
+        <cfoutput>
+            File: #fileList.name#<br>
+            Number of queries: #cfqueryCount#<br>
+        </cfoutput>
+
+        <!--- Update the number of queries in tao_files --->
+        <cfquery datasource="abod">
+            UPDATE tao_files
+            SET qry_no = <cfqueryparam value="#cfqueryCount#" cfsqltype="cf_sql_integer">
+            WHERE filename = <cfqueryparam value="#fileList.name#" cfsqltype="cf_sql_varchar">
+            AND path = '/include/qry'
+        </cfquery>
+    </cfif>
+</cfloop>
