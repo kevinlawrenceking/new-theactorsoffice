@@ -46,7 +46,7 @@
                   (host EQ "dev") ? "##8b0000" :
                   (host EQ "uat") ? "purple" :
                   (host EQ "chris") ? "green" :
-                  (host EQ "new") ? "b;acl" :
+                  (host EQ "new") ? "blue" :
                   (host EQ "kevin") ? "violet" : "" />
 
 <!--- Fetch the page links based on the page ID and version --->
