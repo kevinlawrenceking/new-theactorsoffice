@@ -1,28 +1,5 @@
  
 
-<cfscript>
-    // Set default parameter for URL regex
-    param name="url.regex" default="";
-
-    // Initialize MobileDetect from the correct path
-    detect = new sched.MobileDetect();
-
-    // Get the version of MobileDetect
-    version = detect.getVersion();
-
-    // Determine the device type
-    deviceType = detect.isMobile() ? (detect.isTablet() ? "tablet" : "phone") : "computer";
-    
-    // URL for the MobileDetect repository
-    repoUrl = "https://github.com/GiancarloGomez/ColdFusion-MobileDetect/";
-
-    // Set detection type based on URL parameter, default to "mobile"
-    if (structKeyExists(url, "dt")) {
-        detect.setDetectionType(url.dt);
-    } else {
-        detect.setDetectionType("mobile");
-    }
-</cfscript>
 
 
 
