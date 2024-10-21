@@ -1,7 +1,5 @@
 <!--- This ColdFusion page manages user dashboards and handles batch notifications, including modal confirmations and dynamic grid layouts. --->
 
-<cfset dashboardsService = new "services.DashboardsService"()>
-<cfset dashboards = dashboardsService.getDashboardsByUserId(userid)>
 
 <cfparam name="batchlist" default="0"/>
 <cfparam name="new_sitetypeid" default="0"/>
