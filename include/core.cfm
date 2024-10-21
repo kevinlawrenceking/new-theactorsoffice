@@ -8,11 +8,7 @@
     try {
         // Adjust the path to MobileDetect based on its location in the 'sched' directory
         detect = new sched.MobileDetect();
-    } catch (any e) {
-        // Log an error if the component cannot be found
-        log.error("Error initializing MobileDetect: " & e.message);
-        throw("MobileDetect component initialization failed.");
-    }
+    } 
 
     version = detect.getVersion();
     
