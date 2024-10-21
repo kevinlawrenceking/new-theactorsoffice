@@ -10,7 +10,7 @@
 <cfparam name="contactid" default="0" />
 <cfparam name="userid" default="#session.userid#" />
 <cfparam name="BROWSER_CONTACT_AVATAR_FILENAME" default="#session.userAvatarUrl#" />
-
+<cfoutput>userid: #userid#</cfoutput><cfaborT>
 <cfscript>
     currentURL = cgi.server_name;
     host = ListFirst(currentURL, ".");
@@ -39,7 +39,7 @@
 <Cfset cal_root_url = session.userCalendarURL />
 <Cfset cookie.userid = userid />
 
-<cfinclude template="/include/fetchUsers.cfm" /><Cfabort>
+<cfinclude template="/include/fetchUsers.cfm" />
 <cfinclude template="/include/fetchPageService.cfm" />
 
 <cfif pgFilename NEQ "">
