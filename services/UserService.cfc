@@ -7,8 +7,7 @@
     <cfset var validColumns = "userID,userFirstName,userLastName,userEmail,userRole">
     <cfset var queryResult = "">
 
-
-    <cftry>
+ 
         <cfloop collection="#arguments.filters#" item="key">
             <cfif listFindNoCase(validColumns, key)>
                 <cfset arrayAppend(whereClause, "#key# = ?")>
@@ -32,14 +31,9 @@
                 </cfif>
             </cfloop>
         </cfquery>
-
-    <cfcatch type="any">
-        <cflog file="application" text="Error in gettaousers: #cfcatch.message#. Detail: #cfcatch.detail#. SQL: #sql#">
-        <!--- Return an empty query with the correct structure on error --->
+ 
         <cfset queryResult = queryNew("userID,userFirstName,userLastName,userEmail,userRole","integer,varchar,varchar,varchar,varchar")>
-    </cfcatch>
-    </cftry>
-
+ 
     <cfreturn queryResult>
 </cffunction> 
 
@@ -109,8 +103,7 @@
     <cfset var setClauses = []>
     <cfset var validColumns = "userFirstName,userLastName,userEmail,userRole,recordname,nletter_link,avatarName,defCountry,defState,tzid,userstatus,recover,userPassword,add1,add2,city,regionid,zip,imdbid,countryid,access_token,refresh_token,datePrefID,IsDeleted,IsBetaTester,isAudition,isAuditionModule,isSetup,nletter_yn,passwordHash,passwordSalt,def_regionid,calStartTime,calEndTime,calSlotDuration">
     <cfset var result = false>
-
-    <cftry>
+ 
         <cfloop collection="#arguments.data#" item="key">
             <cfif listFindNoCase(validColumns, key)>
                 <cfset arrayAppend(setClauses, "#key# = ?")>
@@ -132,12 +125,7 @@
 
             <cfset result = true>
         </cfif>
-
-        <cfcatch>
-            <cflog text="Error updating taousers_tbl: #cfcatch.message# - #cfcatch.detail#" type="error">
-            <cflog text="SQL: #sql#" type="error">
-        </cfcatch>
-    </cftry>
+ 
 
     <cfreturn result>
 </cffunction> 
@@ -177,22 +165,14 @@
     <cfset sql = sql & (arrayLen(whereClause) ? " AND " & arrayToList(whereClause," AND ") : "") & orderByClause>
 
     <!--- Execute the query --->
-    <cftry>
+ 
         <cfquery name="result" datasource="yourDataSource">
             #sql#
             <cfloop array="#queryParams#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#" null="#param.null#">
             </cfloop>
         </cfquery>
-        <cfcatch>
-            <!--- Log error details --->
-            <cflog file="application" text="Error in getvm_taousers_tickets_shares_timezones: #cfcatch.message# - #cfcatch.detail#. SQL: #sql#">
-            
-            <!--- Return an empty query with correct schema on error --->
-            <cfset result = queryNew("userid,contactid,defRows,customerid,ticketid,shared_userid,recordname,userFirstName,userLastName,userEmail,userRole,defCountry,defState,avatarname,tzid,tzname,tickettype,teststatus,rejectnotes,IsBetaTester,calstarttime,calendtime", 
-                "integer,integer,integer,integer,int,int,varchar,varchar,varchar,varchar,varchar,varchar,varchar,varchar,varchar,varchar,varchar,varchar,int,time,time")>
-        </cfcatch>
-    </cftry>
+        
 
     <!--- Return the result query --->
     <cfreturn result>
