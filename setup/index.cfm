@@ -36,10 +36,10 @@ WHERE th.STATUS = 'Emailed' and th.uuid = '#uuid#'
         <meta content="The Actor's Office Application" name="description" />
         <meta content="Jodie Bentley" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <!-- App favicon -->
+        <!--- App favicon --->
         <link rel="shortcut icon" href="/media/shared/images/favicon.ico">
 
-		<!-- App css -->
+		<!--- App css --->
                                 <link href="/media/shared/images/favicon.ico"  rel="shortcut icon"
                  type="text/css"  />
                 
@@ -169,31 +169,31 @@ WHERE th.STATUS = 'Emailed' and th.uuid = '#uuid#'
 
 
                         
-                            </div> <!-- end card-body -->
+                            </div> <!--- end card-body --->
                         </div>
-                        <!-- end card -->
+                        <!--- end card --->
 
-                      <!-- end row -->
+                      <!--- end row --->
 
-                    </div> <!-- end col -->
+                    </div> <!--- end col --->
                 </div>
-                <!-- end row -->
+                <!--- end row --->
             </div>
-            <!-- end container -->
+            <!--- end container --->
         </div>
-        <!-- end page -->
+        <!--- end page --->
 
 
         <footer class="footer footer-alt text-white-50">
               &copy; 2021 The Actor's Office &trade; - All Right Reserved.
         </footer>
 
-        <!-- Vendor js -->
+        <!--- Vendor js --->
         <script src="/assets/js/vendor.min.js"></script>
 
         <script src="/assets/libs/parsleyjs/parsley.min.js"></script>
         
-        <!-- App js -->
+        <!--- App js --->
         <script src="/assets/js/app.min.js"></script>
  <script>      
  $(document).ready(function() {

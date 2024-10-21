@@ -15,14 +15,14 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     
 
-		<!-- App css -->
+		<!--- App css --->
 		<link href="/assets/css/bootstrap-modern.min.css" rel="stylesheet" type="text/css" id="bs-default-stylesheet" />
 		<link href="/assets/css/app-modern.min.css" rel="stylesheet" type="text/css" id="app-default-stylesheet" />
 
 		<link href="/assets/css/bootstrap-modern-dark.min.css" rel="stylesheet" type="text/css" id="bs-dark-stylesheet" />
 		<link href="/assets/css/app-modern-dark.min.css" rel="stylesheet" type="text/css" id="app-dark-stylesheet" />
 
-		<!-- icons -->
+		<!--- icons --->
 		<link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
 
     </head>
@@ -59,31 +59,31 @@
                                   <a href="">         <button class="btn btn-block" style="color: white;background-color: #406E8E;border-color:#406E8E;" type="submit" value="Log In"> Log In </button>
                                     </div>                      
                         </form>
-                            </div> <!-- end card-body -->
+                            </div> <!--- end card-body --->
                         </div>
-                        <!-- end card -->
+                        <!--- end card --->
 
-                      <!-- end row -->
+                      <!--- end row --->
 
-                    </div> <!-- end col -->
+                    </div> <!--- end col --->
                 </div>
-                <!-- end row -->
+                <!--- end row --->
             </div>
-            <!-- end container -->
+            <!--- end container --->
         </div>
-        <!-- end page -->
+        <!--- end page --->
 
 
         <footer class="footer footer-alt text-white-50">
               &copy; 2021 The Actor's Office &trade; - All Right Reserved.
         </footer>
 
-        <!-- Vendor js -->
+        <!--- Vendor js --->
         <script src="/assets/js/vendor.min.js"></script>
 
         <script src="/assets/libs/parsleyjs/parsley.min.js"></script>
         
-        <!-- App js -->
+        <!--- App js --->
         <script src="/assets/js/app.min.js"></script>
    
     </body>

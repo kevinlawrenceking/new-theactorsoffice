@@ -15,10 +15,10 @@
 
          <cfset image_location="#image_dir#\#z.siteicon#" />
 
-         <!-- check to see if #image_location# file is an image and exists.  -->
+         <!--- check to see if #image_location# file is an image and exists.  --->
 
          <cfif FileExists(image_location) AND IsImageFile(image_location)>
-             <!-- File exists and is an image, do nothing -->
+             <!--- File exists and is an image, do nothing --->
              <cfelse>
 
                  <cfquery  name="update">
@@ -50,7 +50,7 @@
          <p>id:<cfoutput>#id#</cfoutput>
          </p>
 
-         <!-- Add 'http' if missing -->
+         <!--- Add 'http' if missing --->
 
          <cfif NOT findNoCase("http", siteurl)>
 
@@ -58,7 +58,7 @@
 
          </cfif>
 
-         <!-- Extract the root URL -->
+         <!--- Extract the root URL --->
 
          <cfset protocol=listFirst(siteurl, "://" ) & "://" />
 
@@ -98,11 +98,11 @@
 
              <cfif icoResult.statusCode EQ "200 OK">
 
-                 <!-- Determine the file extension based on Content-Type -->
+                 <!--- Determine the file extension based on Content-Type --->
                  <cfset contentType=icoResult.responseHeader["Content-Type"]>
 
                      <cfset fileExtension=".ico">
-                         <!-- Default to .ico -->
+                         <!--- Default to .ico --->
                          <cfif contentType EQ "image/png">
                              <cfset fileExtension=".png">
                                  <cfelseif contentType EQ "image/jpeg">
@@ -129,14 +129,14 @@
                          <cfexecute name="C:\Program Files\ImageMagick-7.1.1-Q16-HDRI\magick.exe" arguments="convert #tempFile# #pngFile#" timeout="60">
                          </cfexecute>
 
-                         <!-- Filename -->
+                         <!--- Filename --->
 
                          <cfset fileName="custom_#id#.png">
 
                              <p>filename: <cfoutput>#filename#</cfoutput>
                              </p>
 
-                             <!-- Determine which environment we're in -->
+                             <!--- Determine which environment we're in --->
 
                              <cfif image_dir EQ image_dir_dev>
 
@@ -150,7 +150,7 @@
 
                              <cffile action="copy" source="#tempfile#" destination="#targetDir#" />
 
-                             <!-- Loop over the other two directories to copy the file -->
+                             <!--- Loop over the other two directories to copy the file --->
                              <cfif #isdefined('blah')#>
                                  <cfloop array="#otherDirs#" index="targetDir">
 
@@ -189,12 +189,12 @@
 
              <cfcatch type="any">
                  <cfoutput>
-                     <!-- Basic error information -->
+                     <!--- Basic error information --->
                      <p><strong>Error Type:</strong> #cfcatch.type#</p>
                      <p><strong>Error Message:</strong> #cfcatch.message#</p>
                      <p><strong>Error Detail:</strong> #cfcatch.detail#</p>
 
-                     <!-- Advanced error information -->
+                     <!--- Advanced error information --->
                      <p><strong>Extended Info:</strong> #cfcatch.ExtendedInfo#</p>
                      <p><strong>Error Code:</strong> #cfcatch.ErrorCode#</p>
 

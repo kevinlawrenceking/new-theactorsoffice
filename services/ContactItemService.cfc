@@ -51,7 +51,7 @@
             <cfqueryparam value="#arguments.data.itemDate#" cfsqltype="CF_SQL_DATE" null="#isNull(arguments.data.itemDate)#">
             <cfqueryparam value="#arguments.data.itemNotes#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.data.itemNotes)#">
             <cfqueryparam value="#arguments.data.itemStatus#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.data.itemStatus)#">
-            <!-- itemCreationDate is set to CURRENT_TIMESTAMP by default -->
+            <!--- itemCreationDate is set to CURRENT_TIMESTAMP by default --->
             <cfqueryparam value="#arguments.data.itemLastUpdated#" cfsqltype="CF_SQL_TIMESTAMP" null="#isNull(arguments.data.itemLastUpdated)#">
             <cfqueryparam value="#arguments.data.valueCountry#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.data.valueCountry)#">
             <cfqueryparam value="#arguments.data.valuePostalCode#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.data.valuePostalCode)#">
@@ -64,7 +64,7 @@
         <cfcatch>
             <cflog file="application" type="error"
                 text="Error inserting into contactitems_tbl: #cfcatch.message# Details: #cfcatch.detail# SQL: #sql#">
-            <!-- Return -1 or another appropriate error code -->
+            <!--- Return -1 or another appropriate error code --->
             <cfreturn -1>
         </cfcatch>
     </cftry>

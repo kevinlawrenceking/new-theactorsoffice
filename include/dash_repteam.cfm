@@ -54,5 +54,5 @@
             <a href="/app/myaccount/?t2=1"><i class="mdi mdi-square-edit-outline"></i></a>
         </p>
     </div>
-</div><!--end card -->
+</div><!--end card --->
 </div>

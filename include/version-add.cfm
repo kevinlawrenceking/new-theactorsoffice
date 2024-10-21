@@ -172,7 +172,7 @@
 
                 <div class="row mt-2">
                     <div class="col-6">
-                        <!-- Empty Column for Alignment -->
+                        <!--- Empty Column for Alignment --->
                     </div>
                     <div class="col-6 text-right">
                         <a href="javascript:history.go(-1)">

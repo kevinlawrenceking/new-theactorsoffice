@@ -210,9 +210,9 @@
 
             <cfif #pgFilename# is not "comingsoon.cfm">
                 <p>&nbsp;</p>
-                <!-- Footer Start -->
-                <!-- <cfinclude template="/include/footer_main.cfm" />
-                end Footer -->
+                <!--- Footer Start --->
+                <!--- <cfinclude template="/include/footer_main.cfm" />
+                end Footer --->
             </cfif>
         </div>
     </div>

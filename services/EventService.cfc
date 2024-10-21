@@ -42,7 +42,7 @@
             <cfqueryparam value="#arguments.eventData.IsDeleted#" cfsqltype="CF_SQL_BIT">
             <cfqueryparam value="#arguments.eventData.trackmileage#" cfsqltype="CF_SQL_BIT" null="#isNull(arguments.eventData.trackmileage)#">
             <cfqueryparam value="#arguments.eventData.workwithcoach#" cfsqltype="CF_SQL_BIT">
-            <!-- The following fields are nullable and have no default values -->
+            <!--- The following fields are nullable and have no default values --->
             <cfqueryparam value="#arguments.eventData.endRecur#" cfsqltype="CF_SQL_DATE" null="#isNull(arguments.eventData.endRecur)#">
             <cfqueryparam value="#arguments.eventData.parkingDetails#" cfsqltype="CF_SQL_LONGVARCHAR" null="#isNull(arguments.eventData.parkingDetails)#">
             <cfqueryparam value="#arguments.startTime#" cfsqltype="CF_SQL_TIME" null="#isNull(arguments.startTime)#"> 
@@ -273,48 +273,48 @@
     <cfset var sql = "SELECT `col1` FROM vm_events_tbl_eventcontactsxref WHERE 1=1">
     <cfset var whereClause = []>
     <cfset var validColumns = "col1">
-    <cfset var orderByColumn = "col1"> <!-- Default ORDER BY column -->
+    <cfset var orderByColumn = "col1"> <!--- Default ORDER BY column --->
     
-    <!-- Add dynamic conditions based on filters -->
+    <!--- Add dynamic conditions based on filters --->
     <cfloop collection="#arguments.filters#" item="key">
         <cfif listFindNoCase(validColumns, key)>
             <cfset arrayAppend(whereClause, "#key# = ?")>
         </cfif>
     </cfloop>
 
-    <!-- Add session-based conditions -->
+    <!--- Add session-based conditions --->
     <cfset arrayAppend(whereClause, "e.userid = ?")>
     <cfset arrayAppend(whereClause, "t.userid = ?")>
     <cfset arrayAppend(whereClause, "e.eventstart >= CURDATE()")>
 
-    <!-- Construct the final SQL query -->
+    <!--- Construct the final SQL query --->
     <cfif arrayLen(whereClause) gt 0>
         <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
     </cfif>
 
-    <!-- Add ORDER BY clause -->
+    <!--- Add ORDER BY clause --->
     <cfif listFindNoCase(validColumns, orderByColumn)>
         <cfset sql &= " ORDER BY #orderByColumn#">
     </cfif>
 
-    <!-- Execute the query within a try/catch block for error handling -->
+    <!--- Execute the query within a try/catch block for error handling --->
     <cftry>
         <cfquery name="queryResult" datasource="abod">
             #sql#
             <cfqueryparam value="#session.userid#" cfsqltype="CF_SQL_INTEGER">
             <cfqueryparam value="#session.userid#" cfsqltype="CF_SQL_INTEGER">
-            <!-- Additional cfqueryparam bindings for dynamic filters can be added here -->
+            <!--- Additional cfqueryparam bindings for dynamic filters can be added here --->
         </cfquery>
         <cfcatch>
-            <!-- Log the error details -->
+            <!--- Log the error details --->
             <cflog file="application" text="Error in getvm_events_tbl_eventcontactsxref: #cfcatch.message# - #cfcatch.detail# - SQL: #sql#">
 
-            <!-- Return an empty query with the correct schema on error -->
+            <!--- Return an empty query with the correct schema on error --->
             <cfset queryResult = queryNew("col1", "CF_SQL_LONGVARCHAR")>
         </cfcatch>
     </cftry>
 
-    <!-- Return the result set -->
+    <!--- Return the result set --->
     <cfreturn queryResult>
 </cffunction>
 <cffunction name="getvm_events_location_region_country" access="public" returntype="query">

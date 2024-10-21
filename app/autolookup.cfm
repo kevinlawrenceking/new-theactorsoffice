@@ -29,10 +29,10 @@
     AND LOWER(c.recordname) LIKE LOWER(<cfqueryparam value="%#searchTerm#%" cfsqltype="cf_sql_varchar">)
 </cfquery>
 
-<!-- Create suggestions array -->
+<!--- Create suggestions array --->
 <cfset suggestions = [] />
 
-<!-- Loop through tagData -->
+<!--- Loop through tagData --->
 <cfloop query="tagData">
     <cfset arrayAppend(suggestions, {
         "value": tagData.col1,
@@ -43,7 +43,7 @@
     })>
 </cfloop>
 
-<!-- Loop through contactData -->
+<!--- Loop through contactData --->
 <cfloop query="contactData">
     <cfset arrayAppend(suggestions, {
         "value": contactData.col1,
@@ -54,7 +54,7 @@
     })>
 </cfloop>
 
-<!-- Loop through appointmentData -->
+<!--- Loop through appointmentData --->
 <cfloop query="appointmentData">
     <cfset arrayAppend(suggestions, {
         "value": appointmentData.col1,
@@ -65,6 +65,6 @@
     })>
 </cfloop>
 
-<!-- Return JSON response -->
+<!--- Return JSON response --->
 <cfcontent type="application/json">
 <cfoutput>#serializeJSON({"suggestions": suggestions})#</cfoutput>

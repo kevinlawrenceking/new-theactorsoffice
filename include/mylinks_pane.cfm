@@ -170,9 +170,9 @@
                                         <a title="Remove #mylinks_user.sitename#" class="pl-1" style="color:red;" href="/include/excludelink.cfm?new_id=#mylinks_user.id#&target_id=#sitetypes.sitetypeid#"><i class="mdi mdi-trash-can-outline"></i></a>
                                     </h5>
                                 </cfoutput>
-                            </div><!-- end col-md-6 col-lg-4 -->
+                            </div><!--- end col-md-6 col-lg-4 --->
                         </cfloop>
-                    </div><!-- end row -->
+                    </div><!--- end row --->
 
                     <cfif #mylinks_user_del.recordcount# is not "0">
                         <form action="/include/linkinclude.cfm">
@@ -187,7 +187,7 @@
                             </h5>
                         </form>
                     </cfif>
-                </div><!-- end card-body -->
+                </div><!--- end card-body --->
             </div>
             <cfif #sitetypes.sitetypeid# is "#target_id#">
         </div>

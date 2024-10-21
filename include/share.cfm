@@ -36,6 +36,6 @@
             </div>
         </div>
     </div>
-</div> <!-- end row --> 
+</div> <!--- end row ---> 
 
-</div> <!-- container -->
+</div> <!--- container --->

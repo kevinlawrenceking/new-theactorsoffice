@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Completion Percentage</title>
-    <meta http-equiv="refresh" content="10"> <!-- Refresh the page every 30 seconds -->
+    <meta http-equiv="refresh" content="10"> <!--- Refresh the page every 30 seconds --->
     <style>
         /* CSS styles to center the percentage and make it large */
         body, html {
@@ -36,7 +36,7 @@
 </head>
 <body>
  
-    <!-- Query to get the total number of records -->
+    <!--- Query to get the total number of records --->
     <cfquery name="totalRecords" datasource="abod">
         SELECT COUNT(*) AS totalCount
    FROM  functions f
@@ -45,7 +45,7 @@
 
     </cfquery>
 
-    <!-- Query to get the number of completed records -->
+    <!--- Query to get the number of completed records --->
     <cfquery name="completedRecords" datasource="abod">
         SELECT COUNT(*) AS completedCount
    FROM  functions f
@@ -60,7 +60,7 @@
 
 
 <cfoutput>
-    <!-- Calculate the completion percentage -->
+    <!--- Calculate the completion percentage --->
     <cfset percentageComplete = 0>
     <cfif totalRecords.totalCount GT 0>
         <cfset percentageComplete = (completedRecords.completedCount / totalRecords.totalCount) * 100>

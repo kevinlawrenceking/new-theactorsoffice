@@ -233,28 +233,28 @@
     <cfset var sql = "SELECT notid, actionuser_id, systemid, actionid, suid, sustartdate, actionDaysNo, actiondaysrecurring, notstartdate, new_notstartdate FROM vm_fusystemusers_funotifications_actionusers WHERE 1=1">
     <cfset var whereClause = []>
     <cfset var validColumns = "notid,actionuser_id,systemid,actionid,suid,sustartdate,actionDaysNo,actiondaysrecurring,notstartdate,new_notstartdate">
-    <cfset var orderByColumn = "notid"> <!-- Default order by column -->
+    <cfset var orderByColumn = "notid"> <!--- Default order by column --->
     
     <cftry>
-        <!-- Build dynamic WHERE clause -->
+        <!--- Build dynamic WHERE clause --->
         <cfloop collection="#arguments.filters#" item="key">
             <cfif listFindNoCase(validColumns, key)>
                 <cfset arrayAppend(whereClause, "#key# = ?")>
             </cfif>
         </cfloop>
 
-        <!-- Append WHERE conditions if any -->
+        <!--- Append WHERE conditions if any --->
         <cfif arrayLen(whereClause) gt 0>
             <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
         </cfif>
 
-        <!-- Add ORDER BY clause -->
+        <!--- Add ORDER BY clause --->
         <cfif listFindNoCase(validColumns, arguments.filters.orderBy)>
             <cfset orderByColumn = arguments.filters.orderBy>
         </cfif>
         <cfset sql &= " ORDER BY #orderByColumn#">
 
-        <!-- Execute the query -->
+        <!--- Execute the query --->
         <cfquery name="queryResult" datasource="abod">
             #sql#
             <cfloop collection="#arguments.filters#" item="key">
@@ -264,14 +264,14 @@
             </cfloop>
         </cfquery>
 
-        <!-- Return the query result -->
+        <!--- Return the query result --->
         <cfreturn queryResult>
 
     <cfcatch type="any">
-        <!-- Log the error details -->
+        <!--- Log the error details --->
         <cflog file="application" text="Error in getvm_fusystemusers_funotifications_actionusers: #cfcatch.message#, Details: #cfcatch.detail#, SQL: #sql#">
 
-        <!-- Return an empty query with correct schema -->
+        <!--- Return an empty query with correct schema --->
         <cfreturn queryNew("notid,actionuser_id,systemid,actionid,suid,sustartdate,actionDaysNo,actiondaysrecurring,notstartdate,new_notstartdate", "integer,integer,integer,integer,integer,date,integer,integer,date,date")>
     </cfcatch>
     </cftry>

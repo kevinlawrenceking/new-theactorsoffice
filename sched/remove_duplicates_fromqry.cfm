@@ -9,25 +9,25 @@
 </cfquery>
 
 <cfloop query="getDuplicateQueries">
-    <!-- Get all files with the current qry_details -->
+    <!--- Get all files with the current qry_details --->
     <cfquery name="getFilesForQuery" datasource="abod">
         SELECT id, parents
         FROM tao_files
         WHERE qry_details = <cfqueryparam value="#getDuplicateQueries.qry_details#" cfsqltype="cf_sql_longvarchar">
     </cfquery>
 
-    <!-- Choose the first file to keep -->
+    <!--- Choose the first file to keep --->
     <cfset chosenFileId = getFilesForQuery.id[1]>
 
     <cfloop from="2" to="#getFilesForQuery.recordcount#" index="i">
-        <!-- Update the status of duplicate files to "deleted" -->
+        <!--- Update the status of duplicate files to "deleted" --->
         <cfquery datasource="abod">
             UPDATE tao_files
             SET status = 'deleted'
             WHERE id = <cfqueryparam value="#getFilesForQuery.id[i]#" cfsqltype="cf_sql_integer">
         </cfquery>
 
-        <!-- Find and update parent files to point to the chosen file -->
+        <!--- Find and update parent files to point to the chosen file --->
         <cfquery name="getParentFiles" datasource="abod">
             SELECT id, parents
             FROM tao_files
@@ -35,12 +35,12 @@
         </cfquery>
 
         <cfloop query="getParentFiles">
-            <!-- Check if the parent list contains the duplicate file ID -->
+            <!--- Check if the parent list contains the duplicate file ID --->
             <cfif ListFind(getParentFiles.parents, getFilesForQuery.id[i])>
-                <!-- Replace the duplicate file ID in the parents list with the chosen file ID -->
+                <!--- Replace the duplicate file ID in the parents list with the chosen file ID --->
                 <cfset newParents = ListReplace(getParentFiles.parents, getFilesForQuery.id[i], chosenFileId)>
 
-                <!-- Update the parent file's parents field -->
+                <!--- Update the parent file's parents field --->
                 <cfquery datasource="abod">
                     UPDATE tao_files
                     SET parents = <cfqueryparam value="#newParents#" cfsqltype="cf_sql_varchar">

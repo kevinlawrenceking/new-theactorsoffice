@@ -1,24 +1,24 @@
 <cfset qryDir = "C:/home/theactorsoffice.com/optimized/include/qry">
 <cfset fileList = directoryList(qryDir, false, "files")>
 
-<!-- Fetch the filenames from the database -->
+<!--- Fetch the filenames from the database --->
 <cfquery name="getDbFiles" datasource="abod">
     SELECT filename
     FROM tao_files
     WHERE path = '/include/qry'
 </cfquery>
 
-<!-- Convert the database result to an array -->
+<!--- Convert the database result to an array --->
 <cfset dbFilesArray = ValueList(getDbFiles.filename)>
 
-<!-- Find missing files (in directory but not in DB) -->
+<!--- Find missing files (in directory but not in DB) --->
 <cfset missingFiles = ArrayNew(1)>
 
 <cfloop array="#fileList#" index="dirFile">
-    <!-- Extract the filename from the directory path -->
+    <!--- Extract the filename from the directory path --->
     <cfset fileName = listLast(dirFile, "/")>
 
-    <!-- Check if the file from the directory is in the DB files array -->
+    <!--- Check if the file from the directory is in the DB files array --->
     <cfif NOT ListFindNoCase(dbFilesArray, fileName)>
         <cfset ArrayAppend(missingFiles, fileName)>
     </cfif>
@@ -26,7 +26,7 @@
 
  
 
-<!-- Insert missing files into the database -->
+<!--- Insert missing files into the database --->
 <cfloop array="#missingFiles#" index="file">
 
 

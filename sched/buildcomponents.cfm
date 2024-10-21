@@ -9,7 +9,7 @@ ORDER BY m.displayname;
 <cfloop query="getDistinctTables">
     <cfset componentName = getDistinctTables.displayname & "Service">
     
-    <!-- Insert into components table -->
+    <!--- Insert into components table --->
     <cfquery datasource="abod">
         INSERT INTO components (component_name, related_table, filename, displayname, hint)
         VALUES (

@@ -31,7 +31,7 @@
         <cfset queryFound = false />
 
         <cfloop condition="#found#">
-            <!-- Update to improved regex to handle attributes, line breaks, and spacing in cfquery -->
+            <!--- Update to improved regex to handle attributes, line breaks, and spacing in cfquery --->
             <cfset startQuery = REFindNoCase("(?i)<cfquery(\s+[^>]*)?>", fileContent, startPos) />
             <cfset endQuery = REFindNoCase("(?i)</cfquery>", fileContent, startPos) />
 

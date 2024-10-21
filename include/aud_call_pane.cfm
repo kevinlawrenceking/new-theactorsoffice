@@ -39,8 +39,8 @@
                                 <p class="card-text"><strong>Role: </strong>#results.col5#</p>
                                 <a href="/app/audition/?audprojectid=#audprojectid#&eventid=#results.recid#" class="btn btn-primary waves-effect waves-light">View</a>
                             </div>
-                        </div> <!-- end card -->
-                    </div> <!-- end col -->
+                        </div> <!--- end card --->
+                    </div> <!--- end col --->
 
                     <!--- Check if the counter 'i' equals 3 to create a new row --->
                     <cfif #i# is "3">
@@ -53,11 +53,11 @@
             </cfloop>
 
         </div>
-        <!-- end card body -->
-    </div> <!-- end card -->
+        <!--- end card body --->
+    </div> <!--- end card --->
 
 </div>
 
-<!-- Default bootstrap modal example -->
+<!--- Default bootstrap modal example --->
 
 <cfset script_name_include="/include/#ListLast(GetCurrentTemplatePath(), " \")#" />

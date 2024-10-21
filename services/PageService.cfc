@@ -104,29 +104,29 @@
             ORDER BY l.link_no ASC
         </cfquery>
 
-     <!-- Loop through the query and add links to the appropriate section -->
+     <!--- Loop through the query and add links to the appropriate section --->
         <cfloop query="qPageLinks">
             <cfif qPageLinks.linkloc_tb EQ "t">
-                <!-- Append to top_links -->
+                <!--- Append to top_links --->
                 <cfset links.top_links = links.top_links & qPageLinks.link_html>
             <cfelseif qPageLinks.linkloc_tb EQ "b">
-                <!-- Append to bottom_links -->
+                <!--- Append to bottom_links --->
                 <cfset links.bottom_links = links.bottom_links & qPageLinks.link_html>
             </cfif>
         </cfloop>
 
-        <!-- Return the struct containing top and bottom links -->
+        <!--- Return the struct containing top and bottom links --->
         <cfreturn links>
     </cffunction>
 
-     <!-- Function to get script_include links for a page -->
+     <!--- Function to get script_include links for a page --->
     <cffunction name="getIncludeLinks" access="public" returntype="array" output="false" hint="Fetch script_include links for the given page">
         <cfargument name="pgid" type="numeric" required="true" hint="Page ID to fetch include links for">
 
-        <!-- Initialize an empty array to store the include links -->
+        <!--- Initialize an empty array to store the include links --->
         <cfset var includeLinksArray = []>
 
-        <!-- Query to fetch the script_include links -->
+        <!--- Query to fetch the script_include links --->
         <cfquery name="includeLinks">
             SELECT DISTINCT l.linkurl
             FROM pgapplinks l
@@ -139,12 +139,12 @@
             ORDER BY l.link_no ASC
         </cfquery>
 
-        <!-- Loop through the query and populate the array -->
+        <!--- Loop through the query and populate the array --->
         <cfloop query="includeLinks">
             <cfset ArrayAppend(includeLinksArray, includeLinks.linkurl)>
         </cfloop>
 
-        <!-- Return the array of include links -->
+        <!--- Return the array of include links --->
         <cfreturn includeLinksArray>
     </cffunction>
 
@@ -214,7 +214,4 @@
     <cfreturn queryResult>
 </cffunction>
 
-<!--- Changes made:
-- Changed cfsqltype in cfqueryparam to CF_SQL_VARCHAR for simplicity and to avoid dynamic evaluation issues.
---->
 </cfcomponent>

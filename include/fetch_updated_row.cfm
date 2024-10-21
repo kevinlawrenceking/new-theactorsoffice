@@ -28,7 +28,7 @@
     </td>
     <td>
         <!--- Display category --->
-        #col3# <!-- Category should be correctly displayed here -->
+        #col3# <!--- Category should be correctly displayed here --->
     </td>
     <td>#col4#</td>
     <td>#col5#</td>

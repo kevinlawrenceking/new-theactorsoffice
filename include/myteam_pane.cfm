@@ -75,9 +75,9 @@
                                     <i class="fe-trash-2 font-10 text-muted"></i>
                                 </span>
                             </a>
-                        </div> <!-- end .padding -->
+                        </div> <!--- end .padding --->
                     </div> 
-                    <p>&nbsp;</p> <!-- end card-box-->
+                    <p>&nbsp;</p> <!--- end card-box-->
                 </div> 
                 <BR>
             </cfoutput>

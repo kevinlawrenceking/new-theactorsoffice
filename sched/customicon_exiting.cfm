@@ -149,7 +149,7 @@
 
 
  <cfcatch type="any">
-    <!-- Custom error message -->
+    <!--- Custom error message --->
     <cfdump var="#cfcatch#">
     <cfoutput>
       <p>An error occurred: #cfcatch.message#</p>

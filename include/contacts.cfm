@@ -1,5 +1,5 @@
 <!--- This ColdFusion page manages contact relationships, including viewing, adding, and modifying relationships through various modals and tabs. --->
-<!-- Consolidate cfparam -->
+<!--- Consolidate cfparam --->
 <cfparam name="contact_expand" default="true" />
 <cfparam name="maintenance_expand" default="false" />
 <cfparam name="target_expand" default="false" />
@@ -21,7 +21,7 @@
 <!--- Include last updates query --->
 <cfinclude template="/include/qry/lastupdates.cfm" />
 
-<!-- Responsive Tabs CSS -->
+<!--- Responsive Tabs CSS --->
 <style>
     .responsive-tabs {
         padding: 1rem;
@@ -51,7 +51,7 @@
     }
 </style>
 
-<!-- Remote Add Name Modal -->
+<!--- Remote Add Name Modal --->
 <div id="remoteAddName" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -72,7 +72,7 @@
     });
 </script>
 
-<!-- Bulk Action Handling -->
+<!--- Bulk Action Handling --->
 <cfif session.pgaction is "bulk">
     <cfset session.pgaction = "view" />
     <script>
@@ -90,7 +90,7 @@
         });
     </script>
 
-    <!-- Bulk Modal -->
+    <!--- Bulk Modal --->
     <div id="bulkModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -119,7 +119,7 @@
     </div>
 </cfif>
 
-<!-- Contact Tabs -->
+<!--- Contact Tabs --->
 <div class="row">
     <div class="col-lg-12">
         <div class="card">
@@ -156,7 +156,7 @@
                     </ul>
 
                     <div id="content" class="tab-content" role="tablist">
-                        <!-- All Relationships -->
+                        <!--- All Relationships --->
                         <div id="contacts" class="card tab-pane fade<cfif contact_expand is 'true'> show active</cfif>" role="tabpanel" aria-labelledby="tab-A">
                             <div class="card-header" role="tab" id="heading-A">
                                 <h5 class="mb-0">
@@ -170,7 +170,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Targeted List -->
+                        <!--- Targeted List --->
                         <div id="target" class="card tab-pane fade<cfif target_expand is 'true'> show active</cfif>" role="tabpanel" aria-labelledby="tab-B">
                             <div class="card-header" role="tab" id="heading-B">
                                 <h5 class="mb-0">
@@ -185,7 +185,7 @@
                             </div>
                         </div>
 
-                        <!-- Follow-Up List -->
+                        <!--- Follow-Up List --->
                         <div id="followup" class="card tab-pane fade<cfif followup_expand is 'true'> show active</cfif>" role="tabpanel" aria-labelledby="tab-C">
                             <div class="card-header" role="tab" id="heading-C">
                                 <h5 class="mb-0">
@@ -200,7 +200,7 @@
                             </div>
                         </div>
 
-                        <!-- Maintenance List -->
+                        <!--- Maintenance List --->
                         <div id="maintenance" class="card tab-pane fade<cfif maintenance_expand is 'true'> show active</cfif>" role="tabpanel" aria-labelledby="tab-D">
                             <div class="card-header" role="tab" id="heading-D">
                                 <h5 class="mb-0">
@@ -227,7 +227,7 @@
     </div>
 </div>
 
-<!-- Tag Selector Modal -->
+<!--- Tag Selector Modal --->
 <cfinclude template="/include/qry/tags_76_1.cfm" />
 
 <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
@@ -253,7 +253,7 @@
     </div>
 </div>
 
-<!-- Import History Modal -->
+<!--- Import History Modal --->
 <cfinclude template="/include/qry/imports.cfm" />
 
 <div class="modal fade" id="exampleModal22" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
@@ -280,7 +280,7 @@
     </div>
 </div>
 
-<!-- Export Contacts Modal -->
+<!--- Export Contacts Modal --->
 <div id="exampleModal5" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -315,7 +315,7 @@
     });
 </script>
 
-<!-- Delete Contacts Modal -->
+<!--- Delete Contacts Modal --->
 <div id="exampleModaldelete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -337,7 +337,7 @@
     </div>
 </div>
 
-<!-- Additional Modal for System Delete -->
+<!--- Additional Modal for System Delete --->
 <div id="exampleModal99" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -367,7 +367,7 @@
     </div>
 </div>
 
-<!-- Modal for System Selected Update -->
+<!--- Modal for System Selected Update --->
 <div id="exampleModal3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -416,7 +416,7 @@
     });
 </script>     
 
-<!-- Modal for Tag Selected Update -->
+<!--- Modal for Tag Selected Update --->
 <div id="exampleModal4" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">

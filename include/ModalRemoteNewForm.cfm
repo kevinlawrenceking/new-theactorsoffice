@@ -15,8 +15,8 @@
                 
             </div>
         </div>
-        <!-- /.modal-content -->
+        <!--- /.modal-content --->
     </div>
-    <!-- /.modal-dialog -->
+    <!--- /.modal-dialog --->
 </div>
 
