@@ -12,7 +12,6 @@
 <cfparam name="BROWSER_CONTACT_AVATAR_FILENAME" default="#session.userAvatarUrl#" />
 
 <cfscript>
-    <!--- Initialize variables for the current URL and directory information. --->
     currentURL = cgi.server_name;
     host = ListFirst(currentURL, ".");
     thisPath = ExpandPath("*.*");
