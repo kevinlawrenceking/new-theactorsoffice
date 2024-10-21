@@ -1,5 +1,5 @@
-here! <cfaborT> 
-<cfset userService = new "services.UserService"()>
+
+<cfset userService = new "services.UserService"()>here! <cfaborT> 
 <cfset userData = userService.getUserById(userid)>
  
 <cfif structIsEmpty(userData)>
