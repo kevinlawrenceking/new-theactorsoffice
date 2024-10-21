@@ -9,7 +9,7 @@
 
 <!DOCTYPE html>
 
-<cfinclude template="/include/pgload.cfm" /><cfabort>
+<cfinclude template="/include/pgload.cfm" />
 <cfinclude template="/include/qry/menuitems.cfm">
 
 <html lang="en">
