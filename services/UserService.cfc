@@ -37,9 +37,8 @@
 </cffunction> 
 
 
-<cfcomponent displayname="UserService" hint="Handles operations for User table" output="false"> 
-
-    <cffunction name="getUserByIds" access="public" returntype="query">
+  
+<cffunction name="getUserByIds" access="public" returntype="query">
         <cfargument name="userID" type="numeric" required="true">
         <cfset var queryResult = "">
 
@@ -55,12 +54,13 @@
             FROM taousers_tbl
             WHERE userID = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
- 
+
+        <!--- Output for debugging (remove this in production) --->
+        <Cfoutput>#queryResult.contactid#</Cfoutput>
+
+        <!--- Return the actual query result, without overwriting it --->
         <cfreturn queryResult>
     </cffunction>
-
-</cfcomponent>
-
 
     <cffunction name="getUser" access="remote" returntype="struct" httpmethod="GET" output="false">
         <cfargument name="userId" type="numeric" required="true">
@@ -151,4 +151,7 @@
     
  
     <cfreturn result>
-</cffunction></cfcomponent>
+</cffunction>
+
+
+</cfcomponent>
