@@ -11,23 +11,6 @@
         <cfreturn result>
     </cffunction>
 
-    <!-- API Method to Get User Details by ID -->
-    <cffunction name="getUser" access="remote" returntype="struct" httpmethod="GET" output="false">
-        <cfargument name="userId" type="numeric" required="true">
-
-        <cfset var user = variables.userService.getUserById(arguments.userId)>
-        <cfif structIsEmpty(user)>
-            <cfreturn {
-                "success": false,
-                "message": "User not found"
-            }>
-        <cfelse>
-            <cfreturn {
-                "success": true,
-                "data": user
-            }>
-        </cfif>
-    </cffunction>
 
     <!-- API Method to Update User Details -->
     <cffunction name="updateUser" access="remote" returntype="struct" httpmethod="PUT" output="false">
