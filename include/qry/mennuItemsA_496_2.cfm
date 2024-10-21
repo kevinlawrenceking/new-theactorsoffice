@@ -1,7 +1,7 @@
 
 <cftry>
     <cfset componentService = new "/services/ComponentService.cfc"()>
-    <cfset mennuItemsA = componentService.getpgcomps({
+    <cfset mennuItemsa = componentService.getpgcomps({
         menuYN: 'Y',
         compOwner: 'A',
         appid: 3
