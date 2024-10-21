@@ -1,7 +1,7 @@
 
 <cfset userService = new "services.UserService"()>
-<cfset userData = userService.getUserById(userid)>
- <Cfdump var="#userservice#">userid: <cfoutput>#userid#</cfoutput>
+<cfset userData = userService.getUserById(userID)>
+ <Cfdump var="#userservice#">userID: <cfoutput>#userID#</cfoutput>
 <Cfdump var="#userdata#"><cfaborT>
 
 
