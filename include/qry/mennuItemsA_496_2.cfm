@@ -4,9 +4,11 @@
     <cfset mennuItemsa = componentService.getpgcomps({
         menuYN: 'Y',
         compOwner: 'A',
-        appid:
-        
-        <Cfdump var="#mennuItemsa#" />
+        appid: 3
+    })>
+
+
+    <CFdump var="#mennuItemsa#">
     <cfcatch type="any">
         <cfset errorLog = "[Error in mennuItemsA_496_2.cfm]: " & cfcatch.message>
     </cfcatch>
