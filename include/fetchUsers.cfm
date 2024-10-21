@@ -1,6 +1,6 @@
 
-<cfset userService = new "services.UserService"()>here! <cfaborT> 
-<cfset userData = userService.getUserById(userid)>
+<cfset userService = new "services.UserService"()>
+<cfset userData = userService.getUserById(userid)>here! <cfaborT> 
  
 <cfif structIsEmpty(userData)>
     <cfoutput>Not found!</cfoutput>
