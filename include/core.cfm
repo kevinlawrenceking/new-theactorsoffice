@@ -1,7 +1,8 @@
 
 <cfinclude template="/include/qry/menuitems.cfm">
 <cfinclude template="/include/qry/mennuItemsa_496_2.cfm">
- 
+<cfinclude template="/include/qry/mennuItemsAud_496_3.cfm">
+
 <cfinclude template="/include/pgload.cfm" />
 
 <cfparam name="devicetype" default="Unknown" />
