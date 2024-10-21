@@ -56,7 +56,7 @@
     <cfset var queryResult = "">
 
     <!--- Query to fetch user data by userID --->
-    <cftry>
+ 
         <cfquery name="queryResult" >
             SELECT userID, contactid, defRows, customerid, viewtypeid, dateFormatID, 
             region_id,userFirstName, userLastName, userEmail, userRole, 
@@ -70,9 +70,7 @@
         </cfquery>
 
         <!--- Catch and log any errors --->
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getUserById: #cfcatch.message#. Details: #cfcatch.detail#.">
-           
+       
 
 
     <cfset queryResult = queryNew(
@@ -80,9 +78,7 @@
     "integer,   integer,    integer,    integer,    integer,    integer,        integer,    varchar,        varchar,        varchar,    varchar,    varchar,        varchar,    varchar,    varchar,    varchar,    varchar,    varchar, varchar,       varchar,    varchar,    varchar,    varchar,    varchar,    varchar,    varchar,    varchar,        varchar,        varchar,    bit,        bit,            bit,            bit,                varchar, varchar,       varchar,        varchar,        time,           time,         time,       time")>
 
 
-
-        </cfcatch>
-    </cftry>
+ 
 
     <!--- Return the query result --->
     <cfreturn queryResult>
