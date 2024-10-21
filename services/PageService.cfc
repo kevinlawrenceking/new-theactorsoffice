@@ -128,7 +128,7 @@
 
         <!-- Query to fetch the script_include links -->
         <cfquery name="includeLinks">
-            SELECT l.linkurl
+            SELECT DISTINCT l.linkurl
             FROM pgapplinks l
             INNER JOIN pgplugins p ON p.pluginName = l.pluginname
             INNER JOIN pgpagespluginsxref x ON x.pluginid = p.pluginid
