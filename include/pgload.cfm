@@ -38,8 +38,8 @@
 <Cfset Cal_root_dir = session.userCalendarPath />
 <Cfset cal_root_url = session.userCalendarURL />
 <Cfset cookie.userid = userid />
-<Cfabort>
-<cfinclude template="/include/fetchUsers.cfm" />
+
+<cfinclude template="/include/fetchUsers.cfm" /><Cfabort>
 <cfinclude template="/include/fetchPageService.cfm" />
 
 <cfif pgFilename NEQ "">
