@@ -3,13 +3,12 @@
 <cfscript>
     param name="url.regex" default="";
 
-    --- Create a new instance of MobileDetect ---
+ 
     detect = new MobileDetect();
     version = detect.getVersion();
     deviceType = detect.isMobile() ? (detect.isTablet() ? "tablet" : "phone") : "computer";
     repoUrl = "https://github.com/GiancarloGomez/ColdFusion-MobileDetect/";
-
-    --- Set the detection type based on the URL parameter ---
+ 
     detect.setDetectionType(url.dt ?: "mobile");
 </cfscript>
 
