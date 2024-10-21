@@ -1,4 +1,4 @@
-<!--- This ColdFusion page handles user settings and updates based on parameters passed in the URL. --->
+
 
 <cfparam name="TIMETITLE" default="" />
 <cfparam name="pgaction" default="view" />
@@ -38,7 +38,7 @@
 <Cfset Cal_root_dir = session.userCalendarPath />
 <Cfset cal_root_url = session.userCalendarURL />
 <Cfset cookie.userid = userid />
-
+<Cfabort>
 <cfinclude template="/include/fetchUsers.cfm" />
 <cfinclude template="/include/fetchPageService.cfm" />
 
