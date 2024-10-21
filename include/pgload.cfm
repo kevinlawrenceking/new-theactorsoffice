@@ -45,7 +45,6 @@
 <cfif pgFilename NEQ "">
     <!--- Include the specified page filename if it is not empty. --->
     <cfinclude template="/include/qry/#pgFilename#" />
-    include it!
 <cfelse>
     <!--- Output a message if no record is found. --->
     <cfoutput>No record! #trim(thispage)#</cfoutput>
