@@ -11,6 +11,7 @@
 <!--- Assuming the query returns only one record, you can fetch values from the first row (row 1) --->
 <cfset userId = userData.userID[1] />
 <cfset isDeleted = userData.isDeleted[1] />
+<cfset userFirstName = userData.userFirstName[1] />
 <cfset nletter_yn = userData.nletter_yn[1] />
 <cfset nletter_link = userData.nletter_link[1] />
 <cfset calSlotDuration = userData.calSlotDuration[1] />
