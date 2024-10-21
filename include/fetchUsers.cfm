@@ -1,7 +1,7 @@
 
 <cfset userService = new "services.UserService"()>
 <cfset userData = userService.getUserById(userid)>
- 
+ <Cfdump var="#userservice#">
 <Cfdump var="#userdata#"><cfaborT>
 
 
