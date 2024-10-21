@@ -13,6 +13,7 @@
 <cfset isDeleted = userData.isDeleted[1] />
 <cfset userFirstName = userData.userFirstName[1] />
 <cfset userLastName = userData.userLastName[1] />
+<cfset userRole = userData.userRole[1] />
 <cfset userEmail = userData.userEmail[1] />
 <cfset nletter_yn = userData.nletter_yn[1] />
 <cfset nletter_link = userData.nletter_link[1] />
