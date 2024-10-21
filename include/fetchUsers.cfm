@@ -1,4 +1,4 @@
- 
+here! <cfaborT> 
 <cfset userService = new "services.UserService"()>
 <cfset userData = userService.getUserById(userid)>
  
@@ -6,7 +6,7 @@
     <cfoutput>Not found!</cfoutput>
     <cfabort>
 </cfif>
-found! <cfaborT>
+
 <!--- Set user-related variables from the retrieved user data --->
 <cfset userId = UserData.user.userId />
 <cfset recordName = UserData.user.recordName />
