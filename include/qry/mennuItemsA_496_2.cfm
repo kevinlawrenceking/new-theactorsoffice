@@ -8,7 +8,7 @@
     })>
 
 
-    <CFdump var="#mennuItemsa#">
+    <CFdump var="#mennuItemsa#"><cfabort>
     <cfcatch type="any">
         <cfset errorLog = "[Error in mennuItemsA_496_2.cfm]: " & cfcatch.message>
     </cfcatch>
