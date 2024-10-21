@@ -1,92 +1,52 @@
 
 <cfset userService = new "services.UserService"()>
 <cfset userData = userService.getUserByIds(userID)>
- 
 
-<cfif structIsEmpty(userData)>
+<!--- Check if the query returned any rows --->
+<cfif userData.recordCount EQ 0>
     <cfoutput>Not found!</cfoutput>
     <cfabort>
 </cfif>
 
-<!--- Set user-related variables from the retrieved user data --->
-<cfset userId = UserData.user.userId />
-<cfset isDeleted = UserData.user.isDeleted />
-<cfset nletter_yn = UserData.user.nletter_yn />
-<cfset nletter_link = UserData.user.nletter_link />
-<cfset calSlotDuration = UserData.user.calSlotDuration />
-<cfset userStatus = UserData.user.userStatus />
-<cfset recover = UserData.user.recover />
-<cfset isAudition = UserData.user.isAudition />
-<cfset imdbId = UserData.user.imdbId />
-<cfset isSetup = UserData.user.isSetup />
-<cfset dateFormatID = UserData.user.dateFormatID />
-<cfset datePrefID = UserData.user.datePrefID />
-<cfset add1 = UserData.user.add1 />
-<cfset add2 = UserData.user.add2 />
-<cfset city = UserData.user.city />
-<cfset region_id = UserData.user.region_id />
-<cfset zip = UserData.user.zip />
-<cfset viewtypeid = UserData.user.viewtypeid />
-<cfset refresh_token = UserData.user.refresh_token />
-<cfset access_token = UserData.user.access_token />
-<cfset userContactid = UserData.user.userContactID />
-<cfset CalStarttime = UserData.user.calstarttime />
-<cfset Calendtime = UserData.user.calendtime />
-<cfset avatarname = UserData.user.avatarname />
-<cfset isBetaTester = UserData.user.isBetaTester />
-<cfset defRows = UserData.user.defRows />
-<cfset defcountry = UserData.country.countryid />
-<cfset defState = UserData.user.region_id />
-<cfset countryname = UserData.country.countryname />
-<cfset def_countryid = UserData.user.countryid />
-<cfset new_countryid = UserData.user.countryid />
-<cfset def_region_id = UserData.user.region_id />
-<cfset new_region_id = UserData.user.region_id />
-<cfset region = UserData.region.regionname />
-<cfset tzid = UserData.user.tzid />
-<cfset customerid = UserData.user.customerid />
-<cfset isauditionmodule = UserData.user.isauditionmodule />
-<cfset userFirstName = UserData.user.userfirstName />
-<cfset userLastName = UserData.user.userLastName />
-<cfset userEmail = UserData.user.useremail />
-<cfset userRole = UserData.user.userRole />
-<cfset formatexample = UserData.user.formatexample />
+<!--- Assuming the query returns only one record, you can fetch values from the first row (row 1) --->
+<cfset userId = userData.userID[1] />
+<cfset isDeleted = userData.isDeleted[1] />
+<cfset nletter_yn = userData.nletter_yn[1] />
+<cfset nletter_link = userData.nletter_link[1] />
+<cfset calSlotDuration = userData.calSlotDuration[1] />
+<cfset userStatus = userData.userstatus[1] />
+<cfset recover = userData.recover[1] />
+<cfset isAudition = userData.isAudition[1] />
+<cfset imdbId = userData.imdbid[1] />
+<cfset isSetup = userData.isSetup[1] />
+<cfset dateFormatID = userData.dateFormatID[1] />
+<cfset datePrefID = userData.datePrefID[1] />
+<cfset add1 = userData.add1[1] />
+<cfset add2 = userData.add2[1] />
+<cfset city = userData.city[1] />
+<cfset region_id = userData.region_id[1] />
+<cfset zip = userData.zip[1] />
+<cfset viewtypeid = userData.viewtypeid[1] />
+<cfset refresh_token = userData.refresh_token[1] />
+<cfset access_token = userData.access_token[1] />
+<cfset userContactid = userData.contactid[1] />
+<cfset CalStarttime = userData.calStartTime[1] />
+<cfset Calendtime = userData.calEndTime[1] />
+<cfset avatarname = userData.avatarName[1] />
+<cfset isBetaTester = userData.isBetaTester[1] />
+<cfset defRows = userData.defRows[1] />
 
-<!--- Set thrivecart-related variables from the retrieved user data --->
-<cfset planName = UserData.user.planName />
-<cfset BaseProductLabel = UserData.user.BaseProductLabel />
+<!--- Assuming you are fetching these values in the same query or have separate queries for them --->
+<!--- If these columns don’t exist in your original query, add them to the SQL or handle them separately --->
+<cfset defcountry = userData.countryid[1] />
+<cfset defState = userData.region_id[1] />
 
-<cfset tzname = UserData.timezone.tzname />
-<cfset tzgeneral = UserData.timezone.tzgeneral />
-
-<!--- Set thrivecart data variables --->
-<cfset id = userData.thrivecart.id />
-<cfset customerFirst = userData.thrivecart.customerFirst />
-<cfset customerLast = userData.thrivecart.customerLast />
-<cfset purchaseDate = userData.thrivecart.purchaseDate />
-<cfset customerFullName = userData.thrivecart.customerFullName />
-<cfset baseProductName = userData.thrivecart.baseProductName />
-<cfset customerEmail = userData.thrivecart.customerEmail />
-<cfset purchaseName = userData.thrivecart.purchaseName />
-<cfset billingAddress = userData.thrivecart.billingAddress />
-<cfset billingCity = userData.thrivecart.billingCity />
-<cfset billingZip = userData.thrivecart.billingZip />
-<cfset billingCountry = userData.thrivecart.billingCountry />
-<cfset billingState = userData.thrivecart.billingState />
-<cfset invoiceId = userData.thrivecart.invoiceId />
-<cfset customerId = userData.thrivecart.customerId />
-<cfset baseProductLabel = userData.thrivecart.baseProductLabel />
-<cfset baseProductId = userData.thrivecart.baseProductId />
-<cfset orderDate = userData.thrivecart.orderDate />
-<cfset trialDays = userData.thrivecart.trialDays />
-<cfset trialEndDate = userData.thrivecart.trialEndDate />
-<cfset purchaseAmountCents = userData.thrivecart.purchaseAmountCents />
-<cfset basePaymentPlanId = userData.thrivecart.basePaymentPlanId />
-<cfset status = userData.thrivecart.status />
-<cfset uuid = userData.thrivecart.uuid />
-<cfset isDemo = userData.thrivecart.isDemo />
-<cfset isDeleted = userData.thrivecart.isDeleted />
-<cfset cancelDate = userData.thrivecart.cancelDate />
-
-<cfset regionName = userData.region.regionName />
-<cfset countryName = userData.country.countryName />
+<!--- Set any additional variables as needed --->
+<cfoutput>
+    User ID: #userId#<br>
+    First Name: #userFirstName#<br>
+    Last Name: #userLastName#<br>
+    Email: #userEmail#<br>
+    Role: #userRole#<br>
+    <!--- Output other variables similarly --->
+</cfoutput>
