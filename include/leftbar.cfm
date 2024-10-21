@@ -44,8 +44,8 @@
                             <ul class="nav-second-level">
                                 <cfoutput query="mennuItemsa">
                                     <li>
-                                        <a href="/app/#mennuItemsA.compDir#/">
-                                            <span>#mennuItemsA.compName#</span>
+                                        <a href="/app/#mennuItemsa.compDir#/">
+                                            <span>#mennuItemsa.compName#</span>
                                         </a>
                                     </li>
                                 </cfoutput>
@@ -63,8 +63,8 @@
                             <ul class="nav-second-level">
                                 <cfoutput query="mennuItemsaud">
                                     <li>
-                                        <a href="/app/#mennuItemsAud.compDir#/">
-                                            <span>#mennuItemsAud.compName#</span>
+                                        <a href="/app/#mennuItemsaud.compDir#/">
+                                            <span>#mennuItemsaud.compName#</span>
                                         </a>
                                     </li>
                                 </cfoutput>

@@ -7,9 +7,8 @@
         appid: 3
     })>
 
-
-    <CFdump var="#mennuItemsa#"><cfabort>
+ 
     <cfcatch type="any">
-        <cfset errorLog = "[Error in mennuItemsA_496_2.cfm]: " & cfcatch.message>
+        <cfset errorLog = "[Error in mennuItemsa_496_2.cfm]: " & cfcatch.message>
     </cfcatch>
 </cftry>
