@@ -57,7 +57,7 @@
 
     <!--- Query to fetch user data by userID --->
     <cftry>
-        <cfquery name="queryResult" datasource="yourDataSource">
+        <cfquery name="queryResult" >
             SELECT userID, contactid, defRows, customerid, viewtypeid, dateFormatID, region_id,
                    userFirstName, userLastName, userEmail, userRole, recordname, nletter_link, avatarName,
                    defCountry, defState, tzid, userstatus, recover, userPassword, add1, add2, city, regionid,
