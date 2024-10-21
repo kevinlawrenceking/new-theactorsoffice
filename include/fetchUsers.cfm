@@ -1,7 +1,10 @@
 
 <cfset userService = new "services.UserService"()>
-<cfset userData = userService.getUserById(userid)>here! <cfaborT> 
+<cfset userData = userService.getUserById(userid)>
  
+<Cfdump var="#userdata#"><cfaborT>
+
+
 <cfif structIsEmpty(userData)>
     <cfoutput>Not found!</cfoutput>
     <cfabort>
