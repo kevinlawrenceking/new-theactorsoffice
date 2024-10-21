@@ -38,13 +38,13 @@
 
 
   
-<cffunction name="getUserByIdx" access="public" returntype="query">
+<cffunction name="getUserById" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     <cfset var queryResult = "">
 
  
  
-        <cfquery name="queryResult" >
+        <cfquery name="queryResult" datasource="abod" >
             SELECT userID, contactid, defRows, customerid, viewtypeid, dateFormatID, 
             region_id,userFirstName, userLastName, userEmail, userRole, 
             nletter_link, avatarName, defCountry, defState, tzid, userstatus, 
