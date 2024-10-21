@@ -5,10 +5,10 @@
     param name="url.regex" default="";
 
     // Initialize MobileDetect
-    try {
+     
         // Adjust the path to MobileDetect based on its location in the 'sched' directory
         detect = new sched.MobileDetect();
-    } 
+   
 
     version = detect.getVersion();
     
