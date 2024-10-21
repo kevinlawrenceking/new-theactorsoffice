@@ -41,19 +41,28 @@
     <cfreturn insertResult>
 </cffunction> 
 
-<!--- Changes made:
-- Added missing `<cfcatch>` closing tag.
---->
+
 
 <cffunction name="getpgpanels_user" access="public" returntype="query">
+    <!--- Arguments --->
     <cfargument name="filters" type="struct" required="false" default="#structNew()#">
     <cfargument name="orderBy" type="string" required="false" default="pnID">
-    
+
+    <!--- Variables --->
     <cfset var sql = "SELECT pnID, pnOrderNo, pnColXl, pnColMd, userid, pnTitle, pnFilename, pnDescription, IsVisible, IsDeleted FROM pgpanels_user_tbl WHERE 1=1">
     <cfset var whereClause = []>
     <cfset var queryParams = []>
     <cfset var validColumns = "pnID,pnOrderNo,pnColXl,pnColMd,userid,pnTitle,pnFilename,pnDescription,IsVisible,IsDeleted">
     <cfset var validOrderColumns = "pnID,pnOrderNo,pnColXl,pnColMd,userid">
+
+    <!--- Validate that filters is a struct --->
+    <cfif NOT isStruct(arguments.filters)>
+        <!--- Log the error --->
+        <cflog file="application" text="Invalid filters argument passed to getpgpanels_user. Expected a struct.">
+        
+        <!--- Return an empty query to avoid further errors --->
+        <cfreturn queryNew("pnID,pnOrderNo,pnColXl,pnColMd,userid,pnTitle,pnFilename,pnDescription,IsVisible,IsDeleted", "integer,integer,integer,integer,varchar,varchar,varchar,varchar,bit,bit")>
+    </cfif>
 
     <!--- Build WHERE clause dynamically based on provided filters --->
     <cfloop collection="#arguments.filters#" item="key">
@@ -86,14 +95,17 @@
         </cfquery>
         <cfreturn result>
 
+        <!--- Error handling --->
         <cfcatch type="any">
             <!--- Log the error details --->
             <cflog file="application" text="Error in getpgpanels_user: #cfcatch.message# - #cfcatch.detail#. SQL: #sql#">
+
             <!--- Return an empty query on error --->
             <cfreturn queryNew("pnID,pnOrderNo,pnColXl,pnColMd,userid,pnTitle,pnFilename,pnDescription,IsVisible,IsDeleted", "integer,integer,integer,integer,varchar,varchar,varchar,varchar,bit,bit")>
         </cfcatch>
     </cftry>
-</cffunction> 
+</cffunction>
+
 
 <!--- Changes made:
 - Corrected the use of the 'de' function to 'createObject' for proper dynamic SQL type determination.
