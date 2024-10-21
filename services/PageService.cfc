@@ -83,7 +83,7 @@
 
    
     <cfquery name="qPageLinks">
-            SELECT
+            SELECT distinct
                 CASE 
                     WHEN l.linktype = 'css' THEN 
                         CONCAT('<link href="', l.linkurl, '?ver=', <cfqueryparam value="#arguments.version#" cfsqltype="cf_sql_varchar">, '" ', 
