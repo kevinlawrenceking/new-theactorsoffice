@@ -2,7 +2,7 @@
 
 
   
-<cffunction name="getUserById" access="public" returntype="query">
+<cffunction name="getUserByIds" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     <cfset var queryResult = "">
 
