@@ -15,7 +15,6 @@
         </cfif>
     </cfloop>
 
-
     <cfif arrayLen(whereClause) gt 0>
         <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
     </cfif>
