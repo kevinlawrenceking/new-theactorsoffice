@@ -1,14 +1,17 @@
 <!--- This ColdFusion page detects the device type and includes various templates for rendering the page content. --->
 
 <cfscript>
+    // Set default parameter for URL regex
     param name="url.regex" default="";
 
- 
+    // Initialize MobileDetect
     detect = new MobileDetect();
     version = detect.getVersion();
+    // Determine device type
     deviceType = detect.isMobile() ? (detect.isTablet() ? "tablet" : "phone") : "computer";
     repoUrl = "https://github.com/GiancarloGomez/ColdFusion-MobileDetect/";
- 
+
+    // Set detection type based on URL parameter
     detect.setDetectionType(url.dt ?: "mobile");
 </cfscript>
 
