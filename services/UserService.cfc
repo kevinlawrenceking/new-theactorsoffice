@@ -46,6 +46,43 @@
 <!--- Changes made:
 - None. The provided function code contains no syntax errors.
 --->
+<cffunction name="getUserById" access="public" returntype="query">
+    <cfargument name="userID" type="numeric" required="true">
+    <cfset var queryResult = "">
+
+    <!--- Query to fetch user data by userID --->
+    <cftry>
+        <cfquery name="queryResult" datasource="yourDataSource">
+            SELECT userID, contactid, defRows, customerid, viewtypeid, dateFormatID, region_id,
+                   userFirstName, userLastName, userEmail, userRole, recordname, nletter_link, avatarName,
+                   defCountry, defState, tzid, userstatus, recover, userPassword, add1, add2, city, regionid,
+                   zip, imdbid, countryid, access_token, refresh_token, datePrefID, IsDeleted, IsBetaTester,
+                   isAudition, isAuditionModule, isSetup, nletter_yn, passwordHash, passwordSalt,
+                   def_regionid, calStartTime, calEndTime, calSlotDuration
+            FROM taousers_tbl
+            WHERE userID = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+
+        <!--- Catch and log any errors --->
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getUserById: #cfcatch.message#. Details: #cfcatch.detail#.">
+            <cfset queryResult = queryNew("userID, contactid, defRows, customerid, viewtypeid, dateFormatID, region_id,
+                                           userFirstName, userLastName, userEmail, userRole, recordname, nletter_link, avatarName,
+                                           defCountry, defState, tzid, userstatus, recover, userPassword, add1, add2, city, regionid,
+                                           zip, imdbid, countryid, access_token, refresh_token, datePrefID, IsDeleted, IsBetaTester,
+                                           isAudition, isAuditionModule, isSetup, nletter_yn, passwordHash, passwordSalt,
+                                           def_regionid, calStartTime, calEndTime, calSlotDuration", 
+                                           "integer,integer,integer,integer,integer,integer,integer,
+                                           varchar,varchar,varchar,varchar,varchar,varchar,varchar,
+                                           varchar,varchar,integer,varchar,varchar,varchar,varchar,varchar,varchar,
+                                           varchar,varchar,varchar,bit,bit,bit,bit,bit,varchar,varchar,time,time,time")>
+        </cfcatch>
+    </cftry>
+
+    <!--- Return the query result --->
+    <cfreturn queryResult>
+</cffunction>
+
 
     <cffunction name="getUser" access="remote" returntype="struct" httpmethod="GET" output="false">
         <cfargument name="userId" type="numeric" required="true">
