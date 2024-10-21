@@ -5,8 +5,17 @@
     param name="url.regex" default="";
 
     // Initialize MobileDetect
-    detect = new MobileDetect();
+    try {
+        // Adjust the path to MobileDetect based on its location in the 'sched' directory
+        detect = new sched.MobileDetect();
+    } catch (any e) {
+        // Log an error if the component cannot be found
+        log.error("Error initializing MobileDetect: " & e.message);
+        throw("MobileDetect component initialization failed.");
+    }
+
     version = detect.getVersion();
+    
     // Determine device type
     deviceType = detect.isMobile() ? (detect.isTablet() ? "tablet" : "phone") : "computer";
     repoUrl = "https://github.com/GiancarloGomez/ColdFusion-MobileDetect/";
@@ -14,6 +23,7 @@
     // Set detection type based on URL parameter
     detect.setDetectionType(url.dt ?: "mobile");
 </cfscript>
+
 
 <cfparam name="devicetype" default="Unknown" />
 
