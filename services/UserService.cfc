@@ -7,6 +7,7 @@
     <cfset var validColumns = "userID,userFirstName,userLastName,userEmail,userRole">
     <cfset var queryResult = "">
 
+
     <cftry>
         <cfloop collection="#arguments.filters#" item="key">
             <cfif listFindNoCase(validColumns, key)>
