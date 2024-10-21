@@ -55,4 +55,4 @@
 <!--- Fetch the include links for the page --->
 <cfset includeLinksArray = pageService.getIncludeLinks(pgid=FindPage.pgid)>
 
-<cfoutput>#hostcolor#</cfoutput>
+<cfoutput>#pgtitle#</cfoutput>
