@@ -6,7 +6,7 @@
     <cfoutput>Not found!</cfoutput>
     <cfabort>
 </cfif>
-
+found! <cfaborT>
 <!--- Set user-related variables from the retrieved user data --->
 <cfset userId = UserData.user.userId />
 <cfset recordName = UserData.user.recordName />
