@@ -38,6 +38,9 @@
 <cfset Calendtime = userData.calEndTime[1] />
 <cfset avatarname = userData.avatarName[1] />
 <cfset isBetaTester = userData.isBetaTester[1] />
-<cfset defR
+<cfset defRows = userData.defRows[1] />
+
+<!--- Assuming you are fetching these values in the same query or have separate queries for them 
 <cfset defcountry = userData.countryid[1] />
-<cfset defState = userData.region_id[1] />
+<cfset defState = userData.region_id[1] />  --->
+<!--- If these columns don’t exist in your original query, add them to the SQL or handle them separately --->
