@@ -1,2 +1,2 @@
-<cfinclude template="/include/qry/dashboards_458_1.cfm.cfm" />
+<cfinclude template="/include/qry/dashboards_458_1.cfm" />
 
