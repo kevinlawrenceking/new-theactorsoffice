@@ -8,7 +8,7 @@
     })>
 
  
-    <cfcatch type="any">
-        <cfset errorLog = "[Error in mennuItemsa_496_2.cfm]: " & cfcatch.message>
+    <cfcatch type="any"><cfoutput>
+ [Error in mennuItemsa_496_2.cfm]:  #cfcatch.message#</cfoutput>
     </cfcatch>
 </cftry>
