@@ -71,8 +71,8 @@
         <!--- Catch and log any errors --->
         <cfcatch type="any">
             <cflog file="application" text="Error in getUserById: #cfcatch.message#. Details: #cfcatch.detail#.">
-            <!--- Corrected queryNew() call to ensure matching column names and types --->
-    <cfset queryResult = queryNew(
+           
+<cfset queryResult = queryNew(
     "userID, contactid, defRows, customerid, viewtypeid, dateFormatID, region_id,
      userFirstName, userLastName, userEmail, userRole, nletter_link, avatarName,
      defCountry, defState, tzid, userstatus, recover, userPassword, add1, add2, city, regionid,
@@ -84,8 +84,9 @@
      varchar, varchar, varchar, varchar, varchar, varchar, 
      varchar, varchar, varchar, varchar, varchar, varchar,
      varchar, varchar, varchar, bit, bit, bit, bit, 
-     char, varchar, varchar, char, time, time, time"
+     varchar, varchar, varchar, varchar, time, time, time"
 )>
+
 
         </cfcatch>
     </cftry>
