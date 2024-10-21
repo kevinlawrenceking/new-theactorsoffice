@@ -1,7 +1,7 @@
  
 
 
-
+<cfset detect = "test" />
 
 <cfparam name="devicetype" default="Unknown" />
 
