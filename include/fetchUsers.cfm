@@ -1,9 +1,7 @@
-<!--- This ColdFusion page retrieves user and thrivecart data based on a user ID and sets various user-related variables. --->
-
+ 
 <cfset userService = new "services.UserService"()>
 <cfset userData = userService.getUserById(userid)>
-
-<!--- Check if user data is empty and handle the case accordingly --->
+ 
 <cfif structIsEmpty(userData)>
     <cfoutput>Not found!</cfoutput>
     <cfabort>

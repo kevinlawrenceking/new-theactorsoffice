@@ -17,8 +17,7 @@
         <cfif arrayLen(whereClause) gt 0>
             <cfset sql &= " AND " & arrayToList(whereClause," AND ")>
         </cfif>
-
-        <!--- Validate orderBy column --->
+ 
         <cfif listFindNoCase(validColumns, arguments.orderBy)>
             <cfset sql &= " ORDER BY #arguments.orderBy#">
         </cfif>
@@ -37,19 +36,13 @@
     <cfreturn queryResult>
 </cffunction> 
 
-<!--- Changes made:
-- None. The provided function code contains no syntax errors.
---->
 
-   
-
-
-    
+  
 <cffunction name="getUserById" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     <cfset var queryResult = "">
 
-    <!--- Query to fetch user data by userID --->
+ 
  
         <cfquery name="queryResult" >
             SELECT userID, contactid, defRows, customerid, viewtypeid, dateFormatID, 
@@ -63,18 +56,10 @@
             WHERE userID = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
-        <!--- Catch and log any errors --->
-       
-
-
     <cfset queryResult = queryNew(
     "userID,    contactid,  defRows,    customerid, viewtypeid, dateFormatID,   region_id,  userFirstName,  userLastName,   userEmail,  userRole,   nletter_link,   avatarName, defCountry, defState,   tzid,       userstatus, recover, userPassword,  add1,       add2,       city,       regionid,   zip,        imdbid,     countryid,  access_token,   refresh_token,  datePrefID, IsDeleted,  IsBetaTester,   isAudition,     isAuditionModule,   isSetup, nletter_yn,    passwordHash,   passwordSalt,   def_regionid,   calStartTime, calEndTime, calSlotDuration",
     "integer,   integer,    integer,    integer,    integer,    integer,        integer,    varchar,        varchar,        varchar,    varchar,    varchar,        varchar,    varchar,    varchar,    varchar,    varchar,    varchar, varchar,       varchar,    varchar,    varchar,    varchar,    varchar,    varchar,    varchar,    varchar,        varchar,        varchar,    bit,        bit,            bit,            bit,                varchar, varchar,       varchar,        varchar,        time,           time,         time,       time")>
-
-
  
-
-    <!--- Return the query result --->
     <cfreturn queryResult>
 </cffunction>
 
@@ -129,11 +114,7 @@
 
     <cfreturn result>
 </cffunction> 
-
-<!--- Changes made:
-- None. The code is syntactically correct.
---->
-
+ 
 <cffunction name="getvm_taousers_tickets_shares_timezones" access="public" returntype="query">
     <cfargument name="filters" type="struct" required="false" default="#structNew()#">
     <cfargument name="orderBy" type="string" required="false" default="">
@@ -146,7 +127,7 @@
     <cfset var orderByClause = "">
     <cfset var result = "">
 
-    <!--- Build WHERE clause dynamically --->
+ 
     <cfloop collection="#arguments.filters#" item="key">
         <cfif listFindNoCase(validColumns, key)>
             <cfset arrayAppend(whereClause, "#key# = ?")>
@@ -155,16 +136,13 @@
             )>
         </cfif>
     </cfloop>
-
-    <!--- Construct ORDER BY clause if valid --->
+ 
     <cfif len(trim(arguments.orderBy)) AND listFindNoCase(validColumns, arguments.orderBy)>
         <cfset orderByClause = " ORDER BY #arguments.orderBy# #arguments.orderDirection#">
     </cfif>
-
-    <!--- Combine SQL statement --->
+ 
     <cfset sql = sql & (arrayLen(whereClause) ? " AND " & arrayToList(whereClause," AND ") : "") & orderByClause>
-
-    <!--- Execute the query --->
+ 
  
         <cfquery name="result" datasource="yourDataSource">
             #sql#
@@ -172,8 +150,7 @@
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#" null="#param.null#">
             </cfloop>
         </cfquery>
-        
-
-    <!--- Return the result query --->
+    
+ 
     <cfreturn result>
 </cffunction></cfcomponent>
