@@ -1,7 +1,7 @@
 
 <cfset userService = new "services.UserService"()>
 <cfset userData = userService.getUserById(userid)>
- <Cfdump var="#userservice#">
+ <Cfdump var="#userservice#">userid: <cfoutput>#userid#</cfoutput>
 <Cfdump var="#userdata#"><cfaborT>
 
 
@@ -12,7 +12,6 @@
 
 <!--- Set user-related variables from the retrieved user data --->
 <cfset userId = UserData.user.userId />
-<cfset recordName = UserData.user.recordName />
 <cfset isDeleted = UserData.user.isDeleted />
 <cfset nletter_yn = UserData.user.nletter_yn />
 <cfset nletter_link = UserData.user.nletter_link />
