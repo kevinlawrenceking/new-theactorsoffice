@@ -7,14 +7,9 @@
 
 <cfparam name="devicetype" default="Unknown" />
 
-<!--- Determine the device type based on detection results --->
-<Cfif #detect.ismobile()# is "true">
-    <cfset devicetype="Mobile" />
-<cfelseif #detect.isTablet()# is "true">
-    <cfset devicetype="Tablet" />
-<cfelse>
+
     <cfset devicetype="Desktop" />
-</cfif>
+
 
 <!DOCTYPE html>
 
