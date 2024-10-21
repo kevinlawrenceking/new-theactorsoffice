@@ -56,6 +56,8 @@
             WHERE userID = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
+        <Cfoutput>#queryResult.recordcount#</cfoutput>
+
     <cfset queryResult = queryNew(
     "userID,    contactid",
     "integer,   integer")>
