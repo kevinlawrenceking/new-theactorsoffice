@@ -13,7 +13,7 @@
     <cfset var insertResult = 0>
     
     <cftry>
-        <cfquery name="insertQuery" datasource="#DSN#" result="result">
+        <cfquery name="insertQuery"  result="result">
             INSERT INTO pgpanels_user_tbl (
                 pnTitle, pnFilename, pnOrderNo, pnColXl, pnColMd, 
                 pnDescription, IsVisible, IsDeleted, userid
@@ -51,7 +51,7 @@
         <cfset var local = {}>
         
         <!--- Create the query --->
-        <cfquery name="local.qPanels" datasource="#DSN#">
+        <cfquery name="local.qPanels" >
             SELECT 
                 p.pnid, 
                 p.pntitle, 
@@ -99,7 +99,7 @@
         <cfset sql &= " " & arrayToList(setClauses, ", ") & " WHERE pnID = ?">
 
         <cftry>
-            <cfquery datasource="#DSN#">
+            <cfquery >
                 #sql#
                 <cfloop collection="#arguments.data#" item="key">
                     <cfqueryparam value="#arguments.data[key]#" cfsqltype="#evaluate('CF_SQL_' & uCase(listGetAt(validColumns, listFindNoCase(validColumns, key))))#" null="#isNull(arguments.data[key])#">
