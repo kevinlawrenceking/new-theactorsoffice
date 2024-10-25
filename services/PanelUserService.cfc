@@ -44,8 +44,6 @@
 
 
 <cffunction name="getpgpanels_user" access="public" returntype="query">
-
-    <cffunction name="getPanelsByUserId" access="public" returntype="query">
         <!--- Define the argument for userId --->
         <cfargument name="userId" type="numeric" required="true">
         
