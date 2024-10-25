@@ -53,7 +53,7 @@
         <cfset var local = {}>
         
         <!--- Create the query --->
-        <cfquery name="local.qPanels" datasource="yourDataSource">
+        <cfquery name="local.qPanels" datasource="#DSN#">
             SELECT 
                 p.pnid, 
                 p.pntitle, 
