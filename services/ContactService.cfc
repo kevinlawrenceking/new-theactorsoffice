@@ -189,56 +189,42 @@
 - No syntax errors found; the code is correct as provided.
 --->
 
-<cffunction name="getvm_contactdetails_updatelog_taousers" access="public" returntype="query">
-    <cfargument name="idlist" type="array" required="true">
-    <cfargument name="new_systemid" type="numeric" required="true">
-    
-    <cfset var queryResult = "">
-    <cfset var sql = "">
-    <cfset var whereClause = []>
-    <cfset var validColumns = "contactid,userid,contactfullname,contactStatus,recordname,updatetimestamp">
-    
-    <cftry>
-        <!--- Start building the SQL query --->
-        <cfset sql = "SELECT contactid, userid, contactfullname, contactStatus, recordname, updatetimestamp FROM vm_contactdetails_updatelog_taousers WHERE isdeleted = 0">
 
-        <!--- Add dynamic conditions based on provided arguments --->
-        <cfif arrayLen(arguments.idlist) gt 0>
-            <cfset arrayAppend(whereClause, "contactid IN (#arrayToList(arguments.idlist)#)")>
-        </cfif>
-
-        <cfif structKeyExists(arguments, "new_systemid")>
-            <cfset arrayAppend(whereClause, "systemid = ?")>
-        </cfif>
-
-        <!--- Append the WHERE clauses if any --->
-        <cfif arrayLen(whereClause) gt 0>
-            <cfset sql = sql & " AND " & arrayToList(whereClause, " AND ")>
-        </cfif>
-
-        <!--- Add ORDER BY clause for consistent sorting --->
-        <cfset sql = sql & " ORDER BY contactid">
-
-        <!--- Execute the query --->
-        <cfquery name="queryResult" datasource="abod">
-            #sql#
-            <cfif structKeyExists(arguments, "new_systemid")>
-                <cfqueryparam value="#arguments.new_systemid#" cfsqltype="CF_SQL_INTEGER">
-            </cfif>
+      <cffunction name="getActiveTeamContactsByUserId" access="public" returntype="query">
+        <!--- Define the argument for userId --->
+        <cfargument name="userId" type="numeric" required="true">
+        
+        <!--- Declare the local variable scope --->
+        <cfset var local = {}>
+        
+        <!--- Create the query --->
+        <cfquery name="local.qTeamContacts" datasource="yourDataSource">
+            SELECT 
+                d.contactid,
+                d.recordname AS contactname,
+                d.contactStatus
+            FROM 
+                contactdetails d
+            INNER JOIN 
+                taousers u ON u.userid = d.userid
+            WHERE 
+                u.userid = <cfqueryparam value="#arguments.userId#" cfsqltype="cf_sql_integer">
+                AND d.contactStatus = 'Active'
+                AND d.contactid IN (
+                    SELECT contactid 
+                    FROM contactitems 
+                    WHERE valuetext = 'My Team'
+                    AND valuecategory = 'Tag'
+                )
+            ORDER BY 
+                d.contactfullname
         </cfquery>
+        
+        <!--- Return the query result --->
+        <cfreturn local.qTeamContacts>
+    </cffunction>
 
-    <cfcatch type="any">
-        <!--- Log the error details --->
-        <cflog file="application" text="Error in getvm_contactdetails_updatelog_taousers: #cfcatch.message# - #cfcatch.detail# - SQL: #sql#">
 
-        <!--- Return an empty query with correct structure on error --->
-        <cfset queryResult = queryNew("contactid,userid,contactfullname,contactStatus,recordname,updatetimestamp", "integer,integer,varchar,varchar,varchar,timestamp")>
-    </cfcatch>
-    </cftry>
-
-    <!--- Return the result --->
-    <cfreturn queryResult>
-</cffunction>
 <cffunction name="getvm_contactdetails_audcontacts" access="public" returntype="query">
     <cfargument name="idlist" type="string" required="true">
     <cfargument name="new_systemid" type="numeric" required="true">

@@ -1,2 +1,6 @@
 
-<cfset myteam = createObject("component", "services.ContactService").getvm_contactdetails_updatelog_taousers(session.userid, "Active", "My Team", "Tag")>
+<!--- Fetch Page to Get Active Team Contacts --->
+<cfset contactService = createObject("component", "ContactService")>
+
+<cfset userId = session.userid>
+<cfset myTeam = contactService.getActiveTeamContactsByUserId(userId)>
