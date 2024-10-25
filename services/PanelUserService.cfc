@@ -44,66 +44,37 @@
 
 
 <cffunction name="getpgpanels_user" access="public" returntype="query">
-    <!--- Arguments --->
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="pnID">
 
-    <!--- Variables --->
-    <cfset var sql = "SELECT pnID, pnOrderNo, pnColXl, pnColMd, userid, pnTitle, pnFilename, pnDescription, IsVisible, IsDeleted FROM pgpanels_user_tbl WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var queryParams = []>
-    <cfset var validColumns = "pnID,pnOrderNo,pnColXl,pnColMd,userid,pnTitle,pnFilename,pnDescription,IsVisible,IsDeleted">
-    <cfset var validOrderColumns = "pnID,pnOrderNo,pnColXl,pnColMd,userid">
-
-    <!--- Validate that filters is a struct --->
-    <cfif NOT isStruct(arguments.filters)>
-        <!--- Log the error --->
-        <cflog file="application" text="Invalid filters argument passed to getpgpanels_user. Expected a struct.">
+    <cffunction name="getPanelsByUserId" access="public" returntype="query">
+        <!--- Define the argument for userId --->
+        <cfargument name="userId" type="numeric" required="true">
         
-        <!--- Return an empty query to avoid further errors --->
-        <cfreturn queryNew("pnID,pnOrderNo,pnColXl,pnColMd,userid,pnTitle,pnFilename,pnDescription,IsVisible,IsDeleted", "integer,integer,integer,integer,varchar,varchar,varchar,varchar,bit,bit")>
-    </cfif>
-
-    <!--- Build WHERE clause dynamically based on provided filters --->
-    <cfloop collection="#arguments.filters#" item="key">
-        <cfif listFindNoCase(validColumns, key)>
-            <cfset arrayAppend(whereClause, "#key# = ?")>
-            <cfset arrayAppend(queryParams, {value=arguments.filters[key], cfsqltype=de("CF_SQL_" & uCase(listGetAt(validColumns, listFindNoCase(validColumns, key))))})>
-        </cfif>
-    </cfloop>
-
-    <!--- Append WHERE clause to SQL if conditions exist --->
-    <cfif arrayLen(whereClause) gt 0>
-        <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
-    <cfelse>
-        <!--- Return an empty query if no filters are provided --->
-        <cfreturn queryNew("pnID,pnOrderNo,pnColXl,pnColMd,userid,pnTitle,pnFilename,pnDescription,IsVisible,IsDeleted", "integer,integer,integer,integer,varchar,varchar,varchar,varchar,bit,bit")>
-    </cfif>
-
-    <!--- Validate and append ORDER BY clause --->
-    <cfif listFindNoCase(validOrderColumns, arguments.orderBy)>
-        <cfset sql &= " ORDER BY #arguments.orderBy#">
-    </cfif>
-
-    <!--- Execute the query with error handling --->
-    <cftry>
-        <cfquery name="result" datasource="abod">
-            #sql#
-            <cfloop array="#queryParams#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#" null="#isNull(param.value)#">
-            </cfloop>
+        <!--- Declare the local variable scope --->
+        <cfset var local = {}>
+        
+        <!--- Create the query --->
+        <cfquery name="local.qPanels" datasource="yourDataSource">
+            SELECT 
+                p.pnid, 
+                p.pntitle, 
+                p.pnColXl, 
+                p.pnColMd, 
+                p.pnFilename, 
+                p.pnorderno AS new_pnorderno
+            FROM 
+                pgpanels_user p
+            WHERE 
+                p.userid = <cfqueryparam value="#arguments.userId#" cfsqltype="cf_sql_integer">
+                AND p.isvisible = 1
+            ORDER BY 
+                p.pnorderno
         </cfquery>
-        <cfreturn result>
+        
+        <!--- Return the query result --->
+        <cfreturn local.qPanels>
+    </cffunction>
 
-        <!--- Error handling --->
-        <cfcatch type="any">
-            <!--- Log the error details --->
-            <cflog file="application" text="Error in getpgpanels_user: #cfcatch.message# - #cfcatch.detail#. SQL: #sql#">
 
-            <!--- Return an empty query on error --->
-            <cfreturn queryNew("pnID,pnOrderNo,pnColXl,pnColMd,userid,pnTitle,pnFilename,pnDescription,IsVisible,IsDeleted", "integer,integer,integer,integer,varchar,varchar,varchar,varchar,bit,bit")>
-        </cfcatch>
-    </cftry>
 </cffunction>
 
 
