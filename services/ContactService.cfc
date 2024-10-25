@@ -198,7 +198,7 @@
         <cfset var local = {}>
         
         <!--- Create the query --->
-        <cfquery name="local.qTeamContacts" datasource="yourDataSource">
+        <cfquery name="local.qTeamContacts" >
             SELECT 
                 d.contactid,
                 d.recordname AS contactname,
