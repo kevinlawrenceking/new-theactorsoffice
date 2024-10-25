@@ -291,49 +291,30 @@
     <!--- Return the result query --->
     <cfreturn result>
 </cffunction>
-<cffunction name="getvm_contactitems_tags" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="contactid">
-    
-    <cfset var sql = "SELECT contactid, valuetext, valuecategory, itemstatus, recordname, tagname FROM vm_contactitems_tags WHERE 1=1">
-    <cfset var params = []>
-    <cfset var validColumns = "contactid,valuetext,valuecategory,itemstatus,recordname,tagname">
-    <cfset var validOrderColumns = listToArray(validColumns)>
-    <cfset var result = "">
-
-    <!--- Construct WHERE clause dynamically --->
-    <cfloop collection="#arguments.filters#" item="key">
-        <cfif listFindNoCase(validColumns, key)>
-            <cfset sql &= " AND #key# = ?">
-            <cfset arrayAppend(params, {value=arguments.filters[key], cfsqltype=determineSQLType(key)})>
-        </cfif>
-    </cfloop>
-
-    <!--- Validate and add ORDER BY clause --->
-    <cfif listFindNoCase(validColumns, arguments.orderBy)>
-        <cfset sql &= " ORDER BY #arguments.orderBy#">
-    </cfif>
-
-    <!--- Execute query with error handling --->
-    <cftry>
-        <cfquery name="result" datasource="abod">
-            #sql#
-            <cfloop array="#params#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#" null="#isNull(param.value)#">
-            </cfloop>
+ <cffunction name="findTeamTags" access="public" returntype="query">
+        <!--- Define the argument for contactId --->
+        <cfargument name="contactId" type="numeric" required="true">
+        
+        <!--- Declare the local variable scope --->
+        <cfset var local = {}>
+        
+        <!--- Create the query --->
+        <cfquery name="local.qTeamTags">
+            SELECT 
+                contactid, 
+                itemid, 
+                contactitems.valueText AS tag
+            FROM 
+                contactitems
+            WHERE 
+                contactid = <cfqueryparam value="#arguments.contactId#" cfsqltype="cf_sql_integer">
+                AND valuetext <> 'My Team'
+                AND valuecategory = 'Tag'
         </cfquery>
-        <cfcatch>
-            <!--- Log error details --->
-            <cflog file="application" text="Error in getvm_contactitems_tags: #cfcatch.message# - #cfcatch.detail# - SQL: #sql#">
-            <!--- Return an empty query with the correct schema on error --->
-            <cfset result = queryNew("contactid,valuetext,valuecategory,itemstatus,recordname,tagname", "integer,varchar,varchar,varchar,varchar,varchar")>
-        </cfcatch>
-    </cftry>
-
-    <!--- Return the result query --->
-    <cfreturn result>
-
-</cffunction>
+        
+        <!--- Return the query result --->
+        <cfreturn local.qTeamTags>
+    </cffunction>
 <cffunction name="getvm_contactitems_social_profile" access="public" returntype="query">
     <cfargument name="filters" type="struct" required="false" default="#structNew()#">
     <cfargument name="orderBy" type="string" required="false" default="contactID">
