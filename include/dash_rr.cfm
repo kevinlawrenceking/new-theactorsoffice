@@ -3,6 +3,8 @@
 
 <cfinclude template="/include/qry/reminders_511_1.cfm" />
 <cfinclude template="/include/qry/notsActive_511_2.cfm" />
+<cfinclude template="/include/qry/notsActives_461_1.cfm" />
+
   <cfif #notsactives.recordcount# is "0">
 
  <cfset nots_total = 0 />
