@@ -1,6 +1,17 @@
 <!--- This ColdFusion page displays a dashboard for reminders and allows users to complete or skip reminders based on their selection. --->
-<cfinclude template="/include/qry/notsactivedash.cfm" />
+<Cfset currentStartDate="#DateFormat(Now(),'yyyy-mm-dd')#" />  
 
+<cfinclude template="/include/qry/reminders_511_1.cfm" />
+<cfinclude template="/include/qry/notsActive_511_2.cfm" />
+  <cfif #notsactives.recordcount# is "0">
+
+ <cfset nots_total = 0 />
+
+ <cfelse>
+
+<cfset nots_total = notsActives.nots_total />
+
+</cfif>
 <style>
     .input-xs,
     select.input-xs {

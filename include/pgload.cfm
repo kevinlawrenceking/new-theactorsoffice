@@ -39,7 +39,7 @@
 <Cfset cal_root_url = session.userCalendarURL />
 <Cfset cookie.userid = userid />
 
-<cfinclude template="/include/fetchUsers.cfm" /><Cfabort>
+<cfinclude template="/include/fetchUsers.cfm" />
 <cfinclude template="/include/fetchPageService.cfm" />
 
 <cfif pgFilename NEQ "">
