@@ -1,7 +1,7 @@
 <cfset currentURL = cgi.server_name />
 <cfset host = ListFirst(currentURL, ".") />
 
-<!-- Determine the datasource and schema based on the host -->
+<!--- Determine the datasource and schema based on the host --->
 <cfif host is "app">
     <cfset dsn = "abo" />
     <cfset suffix = "_1.5" />
@@ -12,7 +12,7 @@
     <cfset information_schema = "new_development" />
 </cfif>
 
-<!-- Run a query to activate users based on some condition -->
+<!--- Run a query to activate users based on some condition --->
 <cfquery name="fix" datasource="#dsn#"> 
     SELECT u.userID  
     FROM taousers u
@@ -28,7 +28,7 @@
 </cfloop>
 
 
-<!-- Default parameters for the page -->
+<!--- Default parameters for the page --->
 <cfparam name="pgrecover" default="N" />
 <cfparam name="pwrong" default="N" />
 <cfparam name="u" default="" />
@@ -73,7 +73,7 @@
                                 <p class="text-muted mb-4 mt-3" style="font-size:14px;">Enter your email address and password.</p>
                             </div>
 
-                            <!-- Display success or error messages -->
+                            <!--- Display success or error messages --->
                             <cfoutput>
                                 <cfif pgrecover eq "Y">
                                     <center><p style="color:green;">Password Changed!</p></center>
@@ -91,7 +91,7 @@
                                 </cfif>
                             </cfoutput>
 
-                            <!-- Login form -->
+                            <!--- Login form --->
                             <form id="demo-form" action="/app/login2.cfm" method="post">
                                 <input type="hidden" name="pwrong" value="N" />
                                 <input type="hidden" name="pwpass" value="Y" />
@@ -132,12 +132,12 @@
                             <div class="text-center mt-3">
                                 <a href="auth-recoverpw.cfm" class="text-white-50">Forgot your password?</a>
                             </div>
-                        </div> <!-- end card-body -->
-                    </div> <!-- end card -->
-                </div> <!-- end col -->
-            </div> <!-- end row -->
-        </div> <!-- end container -->
-    </div> <!-- end page -->
+                        </div> <!--- end card-body --->
+                    </div> <!--- end card --->
+                </div> <!--- end col --->
+            </div> <!--- end row --->
+        </div> <!--- end container --->
+    </div> <!--- end page --->
 
     <footer class="footer footer-alt text-white-50">
         &reg; 2024 The Actor's Office &trade; - All Right Reserved.

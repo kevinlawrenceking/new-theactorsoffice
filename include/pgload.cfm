@@ -43,9 +43,11 @@
 <cfinclude template="/include/fetchPageService.cfm" />
 
 <cfif pgFilename NEQ "">
-    <!--- Include the specified page filename if it is not empty. --->
-    <cfinclude template="/include/qry/#pgFilename#" />
-<cfelse>
-    <!--- Output a message if no record is found. --->
-    <cfoutput>No record! #trim(thispage)#</cfoutput>
+    <!--- Define the full path of the file you want to check. --->
+    <cfset filePath = expandPath("/include/qry/#pgFilename#")>
+
+    <!--- Check if the file exists and only include if it does. --->
+    <cfif fileExists(filePath)>
+        <cfinclude template="/include/qry/#pgFilename#" />
+    </cfif>
 </cfif>

@@ -14,7 +14,7 @@
     <div class="container mt-5">
         <div class="row">
 
-            <!-- ColdFusion Query -->
+            <!--- ColdFusion Query --->
             <cfquery name="x" datasource="abo">
                 SELECT distinct
                 d.contactid,
@@ -31,15 +31,15 @@
                 ORDER BY d.contactfullname
             </cfquery>
 
-            <!-- Bootstrap Gallery -->
+            <!--- Bootstrap Gallery --->
             <cfoutput query="x">
-                <!-- Check the hash of the image against the default -->
+                <!--- Check the hash of the image against the default --->
                 <cfhttp url="https://app.theactorsoffice.com/media-app/users/#x.userid#/contacts/#x.contactid#/avatar.jpg" method="get" getasbinary="yes" result="contactImage">
                 <cfset contactHash = Hash(contactImage.FileContent, 'SHA-256')>
 
                 <cfif contactHash NEQ defaultHash>
                     <cfif x.currentRow MOD 5 EQ 1>
-                        <div class="w-100"></div> <!-- new row every 5 items -->
+                        <div class="w-100"></div> <!--- new row every 5 items --->
                     </cfif>
 
                     <div class="col">
@@ -57,7 +57,7 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS (optional) -->
+    <!--- Bootstrap JS (optional) --->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>

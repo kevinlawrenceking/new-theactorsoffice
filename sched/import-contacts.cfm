@@ -62,7 +62,7 @@ Select * from taousers where useremail = '#trim(x.userEmail)#'
         </cfquery>
         
     
-        <!-- Add tag -->
+        <!--- Add tag --->
     
         <CFIF #X.TAG# IS NOT "">
             
@@ -84,7 +84,7 @@ Select * from taousers where useremail = '#trim(x.userEmail)#'
         </CFIF>
 
 
-         <!-- Add Business Email -->
+         <!--- Add Business Email --->
     
         <CFIF #X.BUSINESS_EMAIL# IS NOT "">
             

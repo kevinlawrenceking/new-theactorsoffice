@@ -43,11 +43,11 @@
                     </tbody>
                 </table>
             </div>
-            <!-- end card body -->
+            <!--- end card body --->
         </div>
-        <!-- end card -->
+        <!--- end card --->
     </div>
-    <!-- end col -->
+    <!--- end col --->
 </div>
 
 <SCRIPT>
@@ -92,4 +92,4 @@
     });
 </SCRIPT>
 
-<!-- Default bootstrap modal example -->
+<!--- Default bootstrap modal example --->

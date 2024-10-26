@@ -1,6 +1,6 @@
 <!--- This ColdFusion page displays a dashboard card with team member information and avatars. --->
 
-<cfinclude template="/include/qry/myteam.cfm" />
+<cfinclude template="/include/qry/myteam_499_1.cfm" />
 
 <cfoutput>
     <div class="card grid-item loaded" data-id="#dashboards.pnid#">
@@ -54,5 +54,5 @@
             <a href="/app/myaccount/?t2=1"><i class="mdi mdi-square-edit-outline"></i></a>
         </p>
     </div>
-</div><!--end card -->
+</div><!--end card --->
 </div>

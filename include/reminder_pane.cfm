@@ -90,7 +90,7 @@
                                 <span class="badge badge-blue" style="margin-left:10px">x Skip</span>    
                             </a>               
                         </cfif>
-                    </div> <!-- end col-md-12 -->
+                    </div> <!--- end col-md-12 --->
                 </cfoutput>
             </cfloop>
         </cfif>
@@ -133,7 +133,7 @@
                                     <span class="badge badge-blue" style="margin-left:10px">x Skip</span>    
                                 </a>               
                             </cfif>
-                        </div> <!-- end col-md-12 -->
+                        </div> <!--- end col-md-12 --->
                     </cfoutput>
                 </cfloop>
             </cfif>

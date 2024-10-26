@@ -1,6 +1,6 @@
 <CFINCLUDE template="remote_load.cfm" />
 
-<!-- Default Parameters -->
+<!--- Default Parameters --->
 <cfparam name="u" default="434F6AD485112F73A9" />
 <cfparam name="pgaction" default="view" />
 <cfparam name="subdomain" default="app" />
@@ -9,7 +9,7 @@
 <cfset currentURL = cgi.server_name />
 <cfset host = ListFirst(currentURL, ".") />
 
-<!-- Debugging or Utility Outputs -->
+<!--- Debugging or Utility Outputs --->
 <cfoutput>
     <cfset thisPath = ExpandPath("*.*") />
     <cfset thisDirectory = "#GetDirectoryFromPath(thisPath)#" />
@@ -18,18 +18,18 @@
 <cfparam name="catArea_UCB" default="C" />
 <cfparam name="contactid" default="0" />
 
-<!-- Load the UserService -->
+<!--- Load the UserService --->
 <cfset userService = new "/services/UserService.cfc"() />
 
-<!-- Fetch the user data using the UserService -->
+<!--- Fetch the user data using the UserService --->
 <cfset userData = userService.getUserByHash(u) />
 
-<!-- Check if user data was found -->
+<!--- Check if user data was found --->
 <cfif structIsEmpty(userData)>
     <cfoutput>Not found!</cfoutput>
     <cfabort>
 <cfelse>
-    <!-- Map user data to local variables -->
+    <!--- Map user data to local variables --->
     <cfset userid = userData.userId />
     <cfset userContactid = userData.userContactID />
     <cfset userCalStarttime = userData.calstarttime />
@@ -51,7 +51,7 @@
     </cfif>
 </cfif>
 
-<!-- Fetch page data -->
+<!--- Fetch page data --->
 <cfquery name="FindPage">
     SELECT
         a.appname, a.appAuthor, c.compname, p.pgname,
@@ -70,7 +70,7 @@
 </cfquery>
 
 <cfif FindPage.RecordCount EQ 1>
-    <!-- Fetch related links and components -->
+    <!--- Fetch related links and components --->
     <cfquery name="FindLinksT">
         SELECT
             l.linkid, l.linkurl, l.linkname, l.linktype,
@@ -110,7 +110,7 @@
         ORDER BY l.link_no
     </cfquery>
 
-    <!-- Set application variables -->
+    <!--- Set application variables --->
     <cfset appName = FindPage.appName />
     <cfset appDescription = FindPage.appDescription />
     <cfset appAuthor = FindPage.appAuthor />
@@ -121,14 +121,14 @@
     <cfset mocktoday = FindPage.mocktoday />
     <cfset mock_yn = FindPage.mock_yn />
 
-    <!-- Set component variables -->
+    <!--- Set component variables --->
     <cfset compid = FindPage.compid />
     <cfset compname = FindPage.compname />
     <cfset compDir = FindPage.compDir />
     <cfset compTable = FindPage.compTable />
     <cfset compowner = FindPage.compowner />
 
-    <!-- Set page variables -->
+    <!--- Set page variables --->
     <cfset pgid = FindPage.pgid />
     <cfset cookie.pgid = FindPage.pgid />
     <cfset pgname = FindPage.pgname />

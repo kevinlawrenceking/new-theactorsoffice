@@ -1,5 +1,9 @@
- 
 
+<cfinclude template="/include/qry/menuitems.cfm">
+<cfinclude template="/include/qry/mennuItemsa_496_2.cfm">
+<cfinclude template="/include/qry/mennuItemsAud_496_3.cfm">
+
+<cfinclude template="/include/pgload.cfm" />
 
 <cfparam name="devicetype" default="Unknown" />
 
@@ -9,8 +13,6 @@
 
 <!DOCTYPE html>
 
-<cfinclude template="/include/pgload.cfm" /><cfabort>
-<cfinclude template="/include/qry/menuitems.cfm">
 
 <html lang="en">
 <head>
@@ -47,9 +49,9 @@
 
         <div class="content-page">
             <div class="content">
-                <!-- Start Content -->
+                <!--- Start Content --->
                 <div class="container-fluid">
-                    <!-- Start Page Title -->
+                    <!--- Start Page Title --->
                     <div class="row">
                         <cfif #pgid# is "17599999">
                             <cfinclude template="/include/core_title_175.cfm" />
@@ -119,7 +121,7 @@
         #pagelinks.bottom_links#
     </cfoutput>
 
-    <!-- Loop through the array of include links and include each file -->
+    <!--- Loop through the array of include links and include each file --->
     <cfloop array="#includeLinksArray#" index="includeFile">
         <cfinclude template="#includeFile#">
     </cfloop>

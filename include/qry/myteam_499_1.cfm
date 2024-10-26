@@ -1,7 +1,11 @@
+ 
 
-<cftry>
-    <cfset myteam = createObject("component", "/services/ContactService").getvm_contactdetails_updatelog_taousers(session.userid, "Active", "My Team", "Tag")>
-    <cfcatch type="any">
-        <cfset errorLog = "[Error in myteam_499_1.cfm]: " & cfcatch.message>
-    </cfcatch>
-</cftry>
+
+<!--- Fetch Page to Get Active Team Contacts --->
+<cfset contactService = new "services.ContactService"()>
+
+<!--- Set the userId variable from session --->
+<cfset userId = session.userid>
+
+<!--- Pass the userId to the function to fetch team contacts --->
+<cfset myTeam = contactService.getActiveTeamContactsByUserId(userId)>

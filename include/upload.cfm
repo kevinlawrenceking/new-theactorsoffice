@@ -164,7 +164,7 @@
         <cfloop query="addDaysNo">
             <cfinclude template="/include/qry/checkUnique_315_36.cfm" />
             <cfif #checkunique.recordcount# is "0">
-                <!-- for every action, calculate the start date based on the actionDaysNo field and the current date -->
+                <!--- for every action, calculate the start date based on the actionDaysNo field and the current date --->
                 <cfset notstartdate = dateAdd('d', actionDaysNo, currentstartdate) />
                 <cfif notstartdate lte currentstartdate>
                     <cfinclude template="/include/qry/addNotification_315_37.cfm" />

@@ -71,7 +71,7 @@
     
     <!--- Determine the file extension based on Content-Type --->
     <cfset contentType = icoResult.responseHeader["Content-Type"]>
-    <cfset fileExtension = ".ico"> <!-- Default to .ico -->
+    <cfset fileExtension = ".ico"> <!--- Default to .ico --->
     
     <cfif contentType EQ "image/png">
         <cfset fileExtension = ".png">

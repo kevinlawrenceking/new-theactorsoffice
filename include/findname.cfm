@@ -24,7 +24,7 @@
             Found Matches: #arrayLen(queryNameMatch)# for file: #filename#<br>
         </cfoutput>
 
-        <!-- If a match is found, extract and update the qry_name field -->
+        <!--- If a match is found, extract and update the qry_name field --->
         <cfif arrayLen(queryNameMatch) GT 0>
     
             <cfset extractedQueryName = queryNameMatch[1]>

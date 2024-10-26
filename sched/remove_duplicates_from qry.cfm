@@ -5,10 +5,10 @@
 </cfquery>
 
 <cfloop query="getFilesWithComments">
-    <!-- Use REReplace to remove the entire comment block, including the text inside it -->
+    <!--- Use REReplace to remove the entire comment block, including the text inside it --->
     <cfset cleanQryDetails = REReplace(getFilesWithComments.qry_details, "--- (.*?) ---", "", "ALL")>
 
-    <!-- Update the tao_files table with the cleaned qry_details -->
+    <!--- Update the tao_files table with the cleaned qry_details --->
     <cfquery datasource="abod">
         UPDATE tao_files
         SET qry_details = <cfqueryparam value="#TRIM(cleanQryDetails)#" cfsqltype="cf_sql_longvarchar">

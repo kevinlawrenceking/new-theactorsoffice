@@ -38,31 +38,29 @@
 
 
   
-<cffunction name="getUserById" access="public" returntype="query">
-    <cfargument name="userID" type="numeric" required="true">
-    <cfset var queryResult = "">
+<cffunction name="getUserByIds" access="public" returntype="query">
+        <cfargument name="userID" type="numeric" required="true">
+        <cfset var queryResult = "">
 
- 
- 
-        <cfquery name="queryResult" >
+        <!--- Perform the query to get the user data --->
+        <cfquery name="queryResult" datasource="abod">
             SELECT userID, contactid, defRows, customerid, viewtypeid, dateFormatID, 
-            region_id,userFirstName, userLastName, userEmail, userRole, 
-            nletter_link, avatarName, defCountry, defState, tzid, userstatus, 
-            recover, userPassword, add1, add2, city, regionid,
-            zip, imdbid, countryid, access_token, refresh_token, datePrefID, 
-            IsDeleted, IsBetaTester, isAudition, isAuditionModule, isSetup, nletter_yn, 
-            passwordHash, passwordSalt, def_regionid, calStartTime, calEndTime, calSlotDuration
+                   region_id, userFirstName, userLastName, userEmail, userRole, 
+                   nletter_link, avatarName, defCountry, defState, tzid, userstatus, 
+                   recover, userPassword, add1, add2, city, regionid,
+                   zip, imdbid, countryid, access_token, refresh_token, datePrefID, 
+                   IsDeleted, IsBetaTester, isAudition, isAuditionModule, isSetup, nletter_yn, 
+                   passwordHash, passwordSalt, def_regionid, calStartTime, calEndTime, calSlotDuration
             FROM taousers_tbl
             WHERE userID = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
-    <cfset queryResult = queryNew(
-    "userID,    contactid,  defRows,    customerid, viewtypeid, dateFormatID,   region_id,  userFirstName,  userLastName,   userEmail,  userRole,   nletter_link,   avatarName, defCountry, defState,   tzid,       userstatus, recover, userPassword,  add1,       add2,       city,       regionid,   zip,        imdbid,     countryid,  access_token,   refresh_token,  datePrefID, IsDeleted,  IsBetaTester,   isAudition,     isAuditionModule,   isSetup, nletter_yn,    passwordHash,   passwordSalt,   def_regionid,   calStartTime, calEndTime, calSlotDuration",
-    "integer,   integer,    integer,    integer,    integer,    integer,        integer,    varchar,        varchar,        varchar,    varchar,    varchar,        varchar,    varchar,    varchar,    varchar,    varchar,    varchar, varchar,       varchar,    varchar,    varchar,    varchar,    varchar,    varchar,    varchar,    varchar,        varchar,        varchar,    bit,        bit,            bit,            bit,                varchar, varchar,       varchar,        varchar,        time,           time,         time,       time")>
- 
-    <cfreturn queryResult>
-</cffunction>
+        <!--- Output for debugging (remove this in production) --->
+        <Cfoutput>#queryResult.contactid#</Cfoutput>
 
+        <!--- Return the actual query result, without overwriting it --->
+        <cfreturn queryResult>
+    </cffunction>
 
     <cffunction name="getUser" access="remote" returntype="struct" httpmethod="GET" output="false">
         <cfargument name="userId" type="numeric" required="true">
@@ -153,4 +151,7 @@
     
  
     <cfreturn result>
-</cffunction></cfcomponent>
+</cffunction>
+
+
+</cfcomponent>

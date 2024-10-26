@@ -25,7 +25,7 @@
                             <i class="fe-trash-2"></i>
                         </a>
                     </cfoutput>  
-                </h4><!--- end col-md-12 -->
+                </h4><!--- end col-md-12 --->
   
                 <div class="col-md-12 col-lg-6">                                
                       
@@ -43,7 +43,7 @@
                                 <i class="fe-plus-circle"></i>
                             </a>
                         </cfif>
-                    </div><!--- end form-check -->  
+                    </div><!--- end form-check --->  
 
                     <div class="form-check form-switch form-control-md form-check-inline">
                         <input class="form-check-input form-check-input-redirect" 
@@ -59,7 +59,7 @@
                                 <i class="fe-plus-circle"></i>
                             </a>
                         </cfif>
-                    </div><!--- end form-check -->            
+                    </div><!--- end form-check --->            
 
                     <div class="form-check form-switch form-control-md form-check-inline">
                         <input class="form-check-input form-check-input-pin"  
@@ -70,7 +70,7 @@
                                onchange="this.form.submit()"  
                                <cfif #rolecheck.ispin# is "1"> checked </cfif> />
                         <label class="form-check-label" for="new_ispin">Pin/avail </label>
-                    </div><!--- end form-check -->  
+                    </div><!--- end form-check --->  
 
                     <div class="form-check form-switch form-control-md form-check-inline">
                         <input class="form-check-input form-check-input-booked" 
@@ -86,13 +86,13 @@
                                 <i class="fe-plus-circle"></i>
                             </a>
                         </cfif>
-                    </div><!--- end form-check -->     
+                    </div><!--- end form-check --->     
 
-                </div><!--- end col-md-12 --> 
+                </div><!--- end col-md-12 ---> 
 
-            </div><!--- end row -->
+            </div><!--- end row --->
 
-        </div><!--- end container -->
+        </div><!--- end container --->
 
     </cfoutput>    
 

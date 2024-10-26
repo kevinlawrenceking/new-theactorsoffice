@@ -36,7 +36,7 @@
         this.errorTemplateNotFound = "404.cfm";
     </cfscript>
 
-    <!-- Set dsn variable globally for all pages -->
+    <!--- Set dsn variable globally for all pages --->
     <cffunction name="onApplicationStart" returntype="boolean" output="false">
         <cfset dsn = application.dsn />
         <cfreturn true />

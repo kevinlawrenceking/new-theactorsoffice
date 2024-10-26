@@ -12,7 +12,7 @@
     );
 </cfquery>
 
-<!-- Query to authenticate the user -->
+<!--- Query to authenticate the user --->
 <cfquery name="loginQuery" maxrows="1">
     SELECT 
         u.userid,
@@ -27,23 +27,23 @@
         u.userEmail = <cfqueryparam value="#j_username#" cfsqltype="cf_sql_varchar" />
 </cfquery>
 
-<!-- Check if the user exists -->
+<!--- Check if the user exists --->
 <cfif loginQuery.recordcount eq 1>
-    <!-- Hash the provided password with the stored salt -->
+    <!--- Hash the provided password with the stored salt --->
     <cfset userpassword2 = Hash(j_password & loginQuery.passwordSalt, "SHA-512") />
 
-    <!-- Validate the password -->
+    <!--- Validate the password --->
     <cfif loginQuery.passwordHash eq userpassword2>
-        <!-- Set the session variable -->
+        <!--- Set the session variable --->
         <cfset session.userid = loginQuery.userid />
         
-        <!-- Redirect to the user's status URL -->
+        <!--- Redirect to the user's status URL --->
         <cflocation url="#loginQuery.status_url#" addtoken="false" />
     <cfelse>
-        <!-- Invalid password, redirect to login with error message -->
+        <!--- Invalid password, redirect to login with error message --->
         <cflocation url="/loginform.cfm?pwrong=Y" addtoken="false" />
     </cfif>
 <cfelse>
-    <!-- No matching user found, redirect to login with error message -->
+    <!--- No matching user found, redirect to login with error message --->
     <cflocation url="/loginform.cfm?pwrong=Y" addtoken="false" />
 </cfif>

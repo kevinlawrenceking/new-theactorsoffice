@@ -6,7 +6,7 @@
 </cfquery>
 
 <cfloop query="getDeletedRecords">
-    <!-- Find the matching non-deleted record for this qry_details -->
+    <!--- Find the matching non-deleted record for this qry_details --->
     <cfquery name="getReplacementRecord" datasource="abod">
         SELECT id
         FROM tao_files
@@ -15,7 +15,7 @@
         LIMIT 1
     </cfquery>
 
-    <!-- If a matching non-deleted record is found, update the deleted record with replacement_id -->
+    <!--- If a matching non-deleted record is found, update the deleted record with replacement_id --->
     <cfif getReplacementRecord.recordcount GT 0>
         <cfquery datasource="abod">
             UPDATE tao_files

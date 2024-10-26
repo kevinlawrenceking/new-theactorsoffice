@@ -350,7 +350,7 @@
                                     <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##auditionadd_Callback" data-bs-placement="top" title="Add Callback appointment" data-bs-original-title="Add Callback"><i class="fe-plus-circle"></i></a>
                                 </cfif>
                             </cfif>
-                        </div><!-- end form-check -->
+                        </div><!--- end form-check --->
 
                         <div class="form-switch col-md-3 col-sm-6 col-xs-6">
                             <cfif #projectdetails.isdirect# is "0">

@@ -245,9 +245,9 @@
                                                 </div>
                                                 <div class="modal-body"></div>
                                             </div>
-                                            <!-- /.modal-content -->
+                                            <!--- /.modal-content --->
                                         </div>
-                                        <!-- /.modal-dialog -->
+                                        <!--- /.modal-dialog --->
                                     </div>
                                 </cfoutput>
                             </cfloop>
@@ -261,16 +261,16 @@
                                         </div>
                                         <div class="modal-body"></div>
                                     </div>
-                                    <!-- /.modal-content -->
+                                    <!--- /.modal-content --->
                                 </div>
-                                <!-- /.modal-dialog -->
+                                <!--- /.modal-dialog --->
                             </div>
                         </tbody>
                     </table>
                 </div>
-                <!-- end card body -->
-            </div> <!-- end card -->
-        </div><!-- end col -->
+                <!--- end card body --->
+            </div> <!--- end card --->
+        </div><!--- end col --->
     </div>
 </div>
 

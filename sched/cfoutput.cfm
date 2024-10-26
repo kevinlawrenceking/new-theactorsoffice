@@ -41,7 +41,7 @@
         <cfcatch>
             <cflog file="cfoutputErrors" text="Error reading file #fullFilePath#: #cfcatch.message#" type="error">
             <cfoutput>Error reading file #fullFilePath#: #cfcatch.message#<br></cfoutput>
-            <cfcontinue> <!-- Skip to the next file -->
+            <cfcontinue> <!--- Skip to the next file --->
         </cfcatch>
         </cftry>
         
@@ -67,7 +67,7 @@
         <cfcatch>
             <cflog file="cfoutputErrors" text="Error updating qry_no for file ID #getIncludeFiles.id#: #cfcatch.message#" type="error">
             <cfoutput>Error updating qry_no for file #getIncludeFiles.filename#: #cfcatch.message#<br></cfoutput>
-            <cfcontinue> <!-- Skip to the next file -->
+            <cfcontinue> <!--- Skip to the next file --->
         </cfcatch>
         </cftry>
         

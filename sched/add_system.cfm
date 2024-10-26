@@ -26,7 +26,7 @@ WHERE u.userid = #new_userid#
 
 </cfoutput>
 
-<!-- Add a fuSystemUsers record - attach a user to a system  -->
+<!--- Add a fuSystemUsers record - attach a user to a system  --->
 
 <cfquery  name="addSystem"    result="result">
 INSERT INTO fuSystemUsers (systemID,contactID,userID,suStartDate)
@@ -35,7 +35,7 @@ VALUES ('#systemID#',#contactID#,#new_userid#,'#suStartDate#')
 
     <cfset NewSUID = result.generatedkey>
         
-<!-- Select all of the actions of that system  -->
+<!--- Select all of the actions of that system  --->
         
 <cfquery  name="addDaysNo"   >
 SELECT
@@ -89,7 +89,7 @@ ORDER BY a.actionNo
         
         <cfif #checkunique.recordcount# is "0" >
  
-            <!-- for every action, calculate the start date based on the actionDaysNo field and the current date -->
+            <!--- for every action, calculate the start date based on the actionDaysNo field and the current date --->
             
             <cfset notstartdate = dateAdd('d', actionDaysNo, currentstartdate)   />
             

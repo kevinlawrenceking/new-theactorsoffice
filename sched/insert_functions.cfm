@@ -5,7 +5,7 @@
 </cfquery>
 
 <cfloop query="getUniqueFunctions">
-    <!-- Dynamically generate function names based on qry_type -->
+    <!--- Dynamically generate function names based on qry_type --->
     <cfset functionName = "">
     <cfif getUniqueFunctions.qry_type EQ 'SELECT'>
         <cfset functionName = "get" & REReplace(getUniqueFunctions.qry_table, "_tbl", "")>
@@ -17,7 +17,7 @@
         <cfset functionName = "delete" & REReplace(getUniqueFunctions.qry_table, "_tbl", "")>
     </cfif>
 
-    <!-- Insert the function record into the functions table -->
+    <!--- Insert the function record into the functions table --->
     <cfquery datasource="abod">
         INSERT INTO functions (component_id, displayname, qry_type, function_name)
         VALUES (

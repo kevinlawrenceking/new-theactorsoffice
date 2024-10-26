@@ -1,19 +1,19 @@
 <cfset includeDir = expandPath("/include")>
 <cfset qryDir = expandPath("/include/qry")>
 
-<!-- Get the list of files in the directory (include only files) -->
+<!--- Get the list of files in the directory (include only files) --->
 <cfset fileList = directoryList(includeDir, false, "files")>
   <cftry>
-<!-- Loop through the files in /include directory -->
+<!--- Loop through the files in /include directory --->
 <cfloop array="#fileList#" index="f">
-    <!-- Extract filename from the full file path -->
+    <!--- Extract filename from the full file path --->
 
     <cfoutput>#f#</cfoutput>
 
 
     <cfset fname = listLast(f, "/")>
 
-    <!-- Try to insert each file into the database -->
+    <!--- Try to insert each file into the database --->
     <cftry>
         <cfquery datasource="abod">
             INSERT INTO tao_files (`filename`, `status`, `path`, `updated_timestamp`)
@@ -25,13 +25,13 @@
             );
         </cfquery>
         <cfcatch type="any">
-            <!-- Catch any error but continue with next file -->
+            <!--- Catch any error but continue with next file --->
             <cfoutput>Error inserting #filename#: #cfcatch.message#</cfoutput>
         </cfcatch>
     </cftry>
 </cfloop>
 
-<!-- Now loop through the /include/qry directory -->
+<!--- Now loop through the /include/qry directory --->
 <cfset fileListQry = directoryList(qryDir, false, "files")>
 
 <cfloop array="#fileListQry#" index="f">

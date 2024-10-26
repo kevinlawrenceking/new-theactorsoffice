@@ -99,12 +99,12 @@
 
                                 <!--- Include the main page content --->
                                 <cfinclude template="/include/#pgFilename#" />
-                            </div> <!-- end card-body -->
-                        </div> <!-- end card -->
-                    </div> <!-- end col -->
-                </div> <!-- end row -->
-            </div> <!-- end container -->
-        </div> <!-- end page -->
+                            </div> <!--- end card-body --->
+                        </div> <!--- end card --->
+                    </div> <!--- end col --->
+                </div> <!--- end row --->
+            </div> <!--- end container --->
+        </div> <!--- end page --->
 
         <footer class="footer footer-alt text-white-50">
             &copy; 2021 The Actor's Office &trade; - All Right Reserved.

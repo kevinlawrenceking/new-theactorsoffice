@@ -116,11 +116,11 @@ FROM sharez where userid = #userid#
             <a href="/app/" class="logo logo-dark text-center">
                 <span class="logo-sm">
                     <img src="<cfoutput>#application.imagesUrl#</cfoutput>/logo-sm.png" alt="" height="30">
-                    <!-- <span class="logo-lg-text-light">UBold</span> -->
+                    <!--- <span class="logo-lg-text-light">UBold</span> --->
                 </span>
                 <span class="logo-lg">
                     <img src="<cfoutput>#application.imagesUrl#</cfoutput>/logo-sm.png" alt="" height="30">
-                    <!-- <span class="logo-lg-text-light">U</span> -->
+                    <!--- <span class="logo-lg-text-light">U</span> --->
                 </span>
             </a>
     

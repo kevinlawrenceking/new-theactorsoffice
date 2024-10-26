@@ -1,12 +1,9 @@
 
+
 <cftry>
-    <cfset componentService = new "/services/ComponentService.cfc"()>
-    <cfset mennuItemsA = componentService.getpgcomps({
-        menuYN: 'Y',
-        compOwner: 'A',
-        appid: 3
-    })>
-    <cfcatch type="any">
-        <cfset errorLog = "[Error in mennuItemsA_496_2.cfm]: " & cfcatch.message>
+    <cfset mennuItemsa = createObject("component", "/services/ComponentService").getpgcomps()>
+
+    <cfcatch type="any"><cfoutput>
+ [Error in mennuItemsa_496_2.cfm]:  #cfcatch.message#</cfoutput>
     </cfcatch>
 </cftry>
