@@ -2,8 +2,8 @@
 
     
 <!--- Fetch Page to Get Active Team Contacts --->
-<cfset NotificationService = new "services.NotificationService"()>
-
+<cfset NotificationService = new "/services/NotificationService.cfc"()>
+ 
 
 
 <!--- Pass the userId to the function to fetch team contacts --->
