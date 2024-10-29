@@ -1,142 +1,211 @@
-<cfcomponent displayname="EventTypesUserService" hint="Handles operations for EventTypesUser table" output="false" > 
-<cffunction name="inserteventtypes_user" access="public" returntype="numeric">
-    <cfargument name="eventTypeName" type="string" required="true">
-    <cfargument name="eventTypeDescription" type="string" required="false" default="">
-    <cfargument name="recordname" type="string" required="false" default="">
-    <cfargument name="IsDeleted" type="boolean" required="true">
-    <cfargument name="IsCustom" type="boolean" required="true">
-    <cfargument name="userid" type="numeric" required="true">
-    <cfargument name="eventtypecolor" type="string" required="false" default="">
+<cfcomponent displayname="EventTypesUserService" hint="Handles operations for EventTypesUser table" output="false"> 
+<cffunction name="getEventTypeById" access="public" returntype="query">
+    <cfargument name="id" type="numeric" required="true">
     
-    <cfset var insertResult = 0>
+    <cfset var result = "">
     
     <cftry>
-        <cfquery name="insertQuery" datasource="#DSN#" result="queryResult">
-            INSERT INTO eventtypes_user_tbl (
-                eventTypeName, 
-                eventTypeDescription, 
-                recordname, 
-                IsDeleted, 
-                IsCustom, 
-                userid, 
-                eventtypecolor
-            ) VALUES (
-                <cfqueryparam value="#arguments.eventTypeName#" cfsqltype="CF_SQL_VARCHAR">,
-                <cfqueryparam value="#arguments.eventTypeDescription#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.eventTypeDescription)#">,
-                <cfqueryparam value="#arguments.recordname#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.recordname)#">,
-                <cfqueryparam value="#arguments.IsDeleted#" cfsqltype="CF_SQL_BIT">,
-                <cfqueryparam value="#arguments.IsCustom#" cfsqltype="CF_SQL_BIT">,
-                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
-                <cfqueryparam value="#arguments.eventtypecolor#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.eventtypecolor)#">
-            )
+        <cfquery name="result" datasource="abod">
+            SELECT *
+            FROM eventtypes_user
+            WHERE id = <cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfset insertResult = queryResult.generatedKey>
-        
-        <cfcatch>
-            <cflog file="application" text="Error in inserteventtypes_user: #cfcatch.message# Details: #cfcatch.detail#">
-            <cflog file="application" text="SQL: INSERT INTO eventtypes_user_tbl ...">
-            <!--- Return 0 or handle as needed --->
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getEventTypeById: #cfcatch.message# Query: SELECT * FROM eventtypes_user WHERE id = #arguments.id#">
+            <cfreturn queryNew("")>
         </cfcatch>
     </cftry>
     
-    <cfreturn insertResult>
+    <cfreturn result>
 </cffunction>
+<cffunction name="updateEventTypeUser" access="public" returntype="void">
+    <cfargument name="id" type="numeric" required="true">
+    <cfargument name="new_eventtypecolor" type="string" required="true">
+    <cfargument name="deletelink" type="boolean" required="false" default=false>
+    <cfargument name="new_iscustom" type="boolean" required="false" default=false>
+    <cfargument name="new_eventtypename" type="string" required="false">
 
-<!--- Changes made:
-- None. The code is syntactically correct.
---->
-
-<cffunction name="geteventtypes_user" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="id">
-    <cfset var sql = "SELECT `id`, `userid`, `eventTypeName`, `eventTypeDescription`, `recordname`, `eventtypecolor`, `IsDeleted`, `IsCustom` FROM eventtypes_user_tbl WHERE 1=1">
-    <cfset var whereClause = []>
+    <cfset var sql = "">
     <cfset var params = []>
-    <cfset var validColumns = "id,userid,eventTypeName,eventTypeDescription,recordname,eventtypecolor,IsDeleted,IsCustom">
-    <cfset var validOrderColumns = "id,userid,eventTypeName">
 
-    <!--- Build dynamic WHERE clause --->
-    <cfloop collection="#arguments.filters#" item="key">
-        <cfif listFindNoCase(validColumns, key)>
-            <cfset arrayAppend(whereClause, "#key# = ?")>
-            <cfset arrayAppend(params, {value=arguments.filters[key], cfsqltype=getSQLType(key)})>
-        </cfif>
-    </cfloop>
-
-    <!--- Add WHERE conditions to SQL --->
-    <cfif arrayLen(whereClause) gt 0>
-        <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
-    <cfelse>
-        <!--- Return empty query if no filters are provided --->
-        <cfreturn queryNew("id,userid,eventTypeName,eventTypeDescription,recordname,eventtypecolor,IsDeleted,IsCustom", "integer,integer,varchar,varchar,varchar,varchar,bit,bit")>
-    </cfif>
-
-    <!--- Validate and apply ORDER BY clause --->
-    <cfif listFindNoCase(validOrderColumns, arguments.orderBy)>
-        <cfset sql &= " ORDER BY #arguments.orderBy#">
-    <cfelse>
-        <!--- Default to ordering by id if invalid column is provided --->
-        <cfset sql &= " ORDER BY id">
-    </cfif>
-
-    <!--- Execute the query --->
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfset sql = "UPDATE eventtypes_user SET eventtypecolor = ?">
+        <cfset arrayAppend(params, {value=arguments.new_eventtypecolor, cfsqltype="CF_SQL_VARCHAR"})>
+
+        <cfif arguments.deletelink>
+            <cfset sql &= ", isdeleted = 1">
+        </cfif>
+
+        <cfif arguments.new_iscustom>
+            <cfset sql &= ", eventtypename = ?">
+            <cfset arrayAppend(params, {value=arguments.new_eventtypename, cfsqltype="CF_SQL_VARCHAR"})>
+        </cfif>
+
+        <cfset sql &= " WHERE id = ?">
+        <cfset arrayAppend(params, {value=arguments.id, cfsqltype="CF_SQL_INTEGER"})>
+
+        <cfquery datasource="abod">
             #sql#
             <cfloop array="#params#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#" null="#isNull(param.value)#">
+                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
             </cfloop>
         </cfquery>
-        <cfreturn result>
-
-        <!--- Error handling --->
-        <cfcatch type="any">
-            <cflog file="application" text="Error in geteventtypes_user: #cfcatch.message# - #cfcatch.detail# - SQL: #sql#">
-            <!--- Return an empty query on error --->
-            <cfreturn queryNew("id,userid,eventTypeName,eventTypeDescription,recordname,eventtypecolor,IsDeleted,IsCustom", "integer,integer,varchar,varchar,varchar,varchar,bit,bit")>
-        </cfcatch>
+        
+    <cfcatch type="any">
+        <cflog file="application" text="Error in updateEventTypeUser: #cfcatch.message# Query: #sql# Parameters: #params#">
+        <cfthrow message="An error occurred while updating the event type user.">
+    </cfcatch>
     </cftry>
-</cffunction> 
-
-<!--- Changes made:
-- No changes were necessary as the code is syntactically correct.
---->
-
-<cffunction name="updateeventtypes_user" access="public" returntype="boolean">
-    <cfargument name="id" type="numeric" required="true">
-    <cfargument name="userid" type="numeric" required="true">
+</cffunction>
+<cffunction name="getEventTypesByUser" access="public" returntype="query">
     <cfargument name="eventTypeName" type="string" required="true">
-    <cfargument name="eventTypeDescription" type="string" required="false" default="">
-    <cfargument name="recordname" type="string" required="false" default="">
-    <cfargument name="eventtypecolor" type="string" required="false" default="">
-    <cfargument name="IsDeleted" type="boolean" required="true">
-    <cfargument name="IsCustom" type="boolean" required="true">
+    <cfargument name="userId" type="numeric" required="true">
 
-    <cfset var result = false>
-    <cfset var sql = "UPDATE eventtypes_user_tbl SET eventTypeName = ?, eventTypeDescription = ?, recordname = ?, eventtypecolor = ?, IsDeleted = ?, IsCustom = ? WHERE id = ? AND userid = ?">
+    <cfset var result = "">
     
     <cftry>
-        <cfquery datasource="#DSN#">
-            #sql#
-            <cfqueryparam value="#arguments.eventTypeName#" cfsqltype="CF_SQL_VARCHAR">
-            <cfqueryparam value="#arguments.eventTypeDescription#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.eventTypeDescription)#">
-            <cfqueryparam value="#arguments.recordname#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.recordname)#">
-            <cfqueryparam value="#arguments.eventtypecolor#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.eventtypecolor)#">
-            <cfqueryparam value="#arguments.IsDeleted#" cfsqltype="CF_SQL_BIT">
-            <cfqueryparam value="#arguments.IsCustom#" cfsqltype="CF_SQL_BIT">
-            <cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">
-            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT eventTypeName, eventtypedescription, eventtypecolor
+            FROM eventtypes_user
+            WHERE eventTypeName = <cfqueryparam value="#arguments.eventTypeName#" cfsqltype="CF_SQL_VARCHAR">
+            AND userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        <cfset result = true>
-        <cfcatch>
-            <cflog file="application" text="Error in updateeventtypes_user: #cfcatch.message# Details: #cfcatch.detail# SQL: #sql#">
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getEventTypesByUser: #cfcatch.message#">
+            <cfreturn queryNew("eventTypeName,eventtypedescription,eventtypecolor")>
         </cfcatch>
     </cftry>
 
     <cfreturn result>
-</cffunction> 
-<!--- Changes made:
-- None. The code is syntactically correct.
---->
-</cfcomponent>
+</cffunction>
+<cffunction name="insertEventTypeUser" access="public" returntype="void">
+    <cfargument name="eventTypeName" type="string" required="true">
+    <cfargument name="eventtypedescription" type="string" required="true">
+    <cfargument name="eventtypecolor" type="string" required="true">
+    <cfargument name="userid" type="numeric" required="true">
+
+    <cftry>
+        <cfquery datasource="abod">
+            INSERT INTO eventtypes_user 
+                (eventTypeName, eventtypedescription, eventtypecolor, userid) 
+            VALUES 
+                (
+                    <cfqueryparam value="#arguments.eventTypeName#" cfsqltype="CF_SQL_VARCHAR">,
+                    <cfqueryparam value="#arguments.eventtypedescription#" cfsqltype="CF_SQL_VARCHAR">,
+                    <cfqueryparam value="#arguments.eventtypecolor#" cfsqltype="CF_SQL_VARCHAR">,
+                    <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+                )
+        </cfquery>
+        <cfcatch type="any">
+            <cflog file="application" text="Error inserting into eventtypes_user: #cfcatch.message#">
+            <cfthrow>
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getEventTypesForUser" access="public" returntype="query">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="isAuditionModule" type="boolean" required="true">
+
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT eventtypename 
+            FROM eventtypes_user 
+            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER" />
+            <cfif arguments.isAuditionModule>
+                AND eventtypename <> 'Audition'
+            </cfif>
+            ORDER BY eventtypename
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getEventTypesForUser: #cfcatch.message# Query: SELECT eventtypename FROM eventtypes_user WHERE userid = #arguments.userid# AND isAuditionModule = #arguments.isAuditionModule#">
+            <cfset result = queryNew("eventtypename", "varchar")>
+        </cfcatch>
+    </cftry>
+
+    <cfreturn result>
+</cffunction>
+<cffunction name="getEventTypesByUser" access="public" returntype="query">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT eventtypename 
+            FROM eventtypes_user 
+            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+            ORDER BY eventtypename
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getEventTypesByUser: #cfcatch.message#">
+            <cfset result = queryNew("eventtypename")>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="getUserEventTypes" access="public" returntype="query">
+    <cfargument name="userId" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="abod">
+            SELECT 
+                id, 
+                eventtypename, 
+                eventtypedescription, 
+                recordname, 
+                iscustom, 
+                eventtypecolor 
+            FROM 
+                eventtypes_user 
+            WHERE 
+                userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 
+            ORDER BY 
+                eventtypename
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="errorLog" text="Error in getUserEventTypes: #cfcatch.message#">
+            <cfreturn queryNew("")>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="getUserEventTypes" access="public" returntype="query">
+    <cfargument name="userid" type="numeric" required="true">
+
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT 
+                id, 
+                eventtypename, 
+                eventtypedescription, 
+                recordname, 
+                iscustom, 
+                eventtypecolor 
+            FROM 
+                eventtypes_user 
+            WHERE 
+                userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+            ORDER BY 
+                eventtypename
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="errorLog" text="Error in getUserEventTypes: #cfcatch.message# Query: SELECT id, eventtypename, eventtypedescription, recordname, iscustom, eventtypecolor FROM eventtypes_user WHERE userid = ? ORDER BY eventtypename Parameters: #arguments.userid#">
+            <cfset result = queryNew("id,eventtypename,eventtypedescription,recordname,iscustom,eventtypecolor")>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction></cfcomponent>

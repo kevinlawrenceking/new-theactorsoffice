@@ -1,159 +1,137 @@
-<cfcomponent displayname="ReportRangeService" hint="Handles operations for ReportRange table" output="false" > 
-<cffunction name="getreportranges" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="rangeid">
-    
-    <cfset var validColumns = "rangeid,rangename,rangestart,rangeend">
-    <cfset var validOrderByColumns = "rangeid,rangename,rangestart,rangeend">
-    <cfset var sql = "SELECT rangeid, rangename, rangestart, rangeend FROM reportranges WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var queryResult = "">
-
+<cfcomponent displayname="ReportRangeService" hint="Handles operations for ReportRange table" output="false"> 
+<cffunction name="getReportRanges" access="public" returntype="query">
+    <cfargument name="excludedRangeIds" type="array" required="true">
+    <cfset var qryResult = "">
     <cftry>
-        <!--- Build dynamic WHERE clause --->
-        <cfloop collection="#arguments.filters#" item="key">
-            <cfif listFindNoCase(validColumns, key)>
-                <cfset arrayAppend(whereClause, "#key# = ?")>
-            </cfif>
-        </cfloop>
-
-        <!--- Append WHERE conditions if any --->
-        <cfif arrayLen(whereClause) gt 0>
-            <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
-        </cfif>
-
-        <!--- Validate and append ORDER BY clause --->
-        <cfif listFindNoCase(validOrderByColumns, arguments.orderBy)>
-            <cfset sql &= " ORDER BY #arguments.orderBy#">
-        </cfif>
-
-        <!--- Execute the query --->
-        <cfquery name="queryResult" datasource="abod">
-            #sql#
-            <cfloop collection="#arguments.filters#" item="key">
-                <cfif listFindNoCase(validColumns, key)>
-                    <cfqueryparam value="#arguments.filters[key]#" 
-                                  cfsqltype="#evaluate('CF_SQL_' & uCase(listGetAt(validColumns, listFindNoCase(validColumns, key))))#" 
-                                  null="#isNull(arguments.filters[key])#">
-                </cfif>
-            </cfloop>
+        <cfquery name="qryResult" datasource="abod">
+            SELECT rangeid, rangename, rangestart, rangeend
+            FROM reportranges
+            WHERE rangeid NOT IN (
+                <cfloop array="#arguments.excludedRangeIds#" index="rangeId">
+                    <cfqueryparam value="#rangeId#" cfsqltype="CF_SQL_INTEGER" />
+                    <cfif rangeId neq arrayLen(arguments.excludedRangeIds)>,</cfif>
+                </cfloop>
+            )
         </cfquery>
-
-        <!--- Return the result --->
-        <cfreturn queryResult>
-
-    <cfcatch type="any">
-        <!--- Log the error details --->
-        <cflog file="errorLog" text="Error in getreportranges: #cfcatch.message#, Details: #cfcatch.detail#, SQL: #sql#">
-
-        <!--- Return an empty query with the correct schema --->
-        <cfreturn queryNew("rangeid,rangename,rangestart,rangeend", "integer,varchar,date,date")>
-    </cfcatch>
-    </cftry>
-</cffunction>
-
-<!--- Changes made:
-- No changes were necessary as the provided code is syntactically correct.
---->
-
-<cffunction name="updatereportranges" access="public" returntype="boolean">
-    <cfargument name="rangeid" type="numeric" required="true">
-    <cfargument name="rangename" type="string" required="false" default="">
-    <cfargument name="rangestart" type="date" required="false" default="">
-    <cfargument name="rangeend" type="date" required="false" default="">
-    
-    <cfset var sql = "UPDATE reportranges SET">
-    <cfset var setClauses = []>
-    <cfset var result = false>
-    
-    <cfif len(arguments.rangename)>
-        <cfset arrayAppend(setClauses, "rangename = ?")>
-    </cfif>
-    
-    <cfif len(arguments.rangestart)>
-        <cfset arrayAppend(setClauses, "rangestart = ?")>
-    </cfif>
-    
-    <cfif len(arguments.rangeend)>
-        <cfset arrayAppend(setClauses, "rangeend = ?")>
-    </cfif>
-    
-    <!--- If no fields to update, return false --->
-    <cfif arrayLen(setClauses) eq 0>
-        <cfreturn false>
-    </cfif>
-
-    <!--- Build the SQL statement --->
-    <cfset sql &= " " & arrayToList(setClauses, ", ") & " WHERE rangeid = ?">
-
-    <!--- Execute the query within a try/catch block --->
-    <cftry>
-        <cfquery datasource="#DSN#">
-            #sql#
-            <cfif len(arguments.rangename)>
-                <cfqueryparam value="#arguments.rangename#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.rangename)#">
-            </cfif>
-            <cfif len(arguments.rangestart)>
-                <cfqueryparam value="#arguments.rangestart#" cfsqltype="CF_SQL_DATE" null="#isNull(arguments.rangestart)#">
-            </cfif>
-            <cfif len(arguments.rangeend)>
-                <cfqueryparam value="#arguments.rangeend#" cfsqltype="CF_SQL_DATE" null="#isNull(arguments.rangeend)#">
-            </cfif>
-            <cfqueryparam value="#arguments.rangeid#" cfsqltype="CF_SQL_INTEGER">
-        </cfquery>
-
-        <!--- If query is successful, set result to true --->
-        <cfset result = true>
-
-        <!--- Handle any errors that occur during the query execution --->
         <cfcatch type="any">
-            <cflog file="application" text="Error in updatereportranges: #cfcatch.message# Details: #cfcatch.detail# SQL: #sql#">
-            <!--- Optionally, handle the error further or rethrow --->
+            <cflog file="application" text="Error in getReportRanges: #cfcatch.message# Query: SELECT rangeid, rangename, rangestart, rangeend FROM reportranges WHERE rangeid NOT IN (1, 7)">
+            <cfreturn queryNew("rangeid,rangename,rangestart,rangeend", "integer,varchar,date,date")>
         </cfcatch>
     </cftry>
+    <cfreturn qryResult>
+</cffunction>
+<cffunction name="updateReportRanges" access="public" returntype="void">
+    <cfargument name="new_rangestart" type="date" required="true">
+    <cfargument name="new_rangeend" type="date" required="true">
+    <cfargument name="current_rangeid" type="numeric" required="true">
 
-    <!--- Return the result of the update operation --->
-    <cfreturn result>
-</cffunction> 
+    <cftry>
+        <cfquery datasource="abod">
+            UPDATE reportranges 
+            SET rangestart = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_rangestart#" />, 
+                rangeend = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_rangeend#" />
+            WHERE rangeid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.current_rangeid#" />
+        </cfquery>
+        <cfcatch type="any">
+            <cflog file="application" text="Error updating report ranges: #cfcatch.message# - Query: UPDATE reportranges SET rangestart, rangeend WHERE rangeid = #arguments.current_rangeid#" />
+            <cfthrow message="An error occurred while updating report ranges." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="updateReportRanges" access="public" returntype="void">
+    <cfargument name="customStart" type="date" required="true">
+    <cfargument name="customEnd" type="date" required="true">
 
-<!--- Changes made:
-- Added missing closing tag for cftry.
---->
-
-<cffunction name="getvm_reportranges_excluded" access="public" returntype="query">
-    <cfargument name="new_sitetypeid" type="numeric" required="true">
-    <cfargument name="orderBy" type="string" required="false" default="rangeid">
+    <cftry>
+        <cfquery datasource="abod">
+            UPDATE reportranges 
+            SET rangestart = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.customStart#" />, 
+                rangeend = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.customEnd#" />
+            WHERE rangename = 'Custom'
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error updating report ranges: #cfcatch.message# Query: UPDATE reportranges SET rangestart = ?, rangeend = ? WHERE rangename = 'Custom' Parameters: customStart=#arguments.customStart#, customEnd=#arguments.customEnd#">
+            <cfthrow message="An error occurred while updating report ranges." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getReportRange" access="public" returntype="query">
+    <cfargument name="new_rangeid" type="numeric" required="true">
     
     <cfset var result = "">
-    <cfset var sql = "SELECT rangeid, rangename, rangestart, rangeend FROM vm_reportranges_excluded WHERE 1=1">
-    <cfset var validOrderByColumns = "rangeid,rangename,rangestart,rangeend">
-
-    <!--- Append the condition for sitetypeid --->
-    <cfset sql &= " AND sitetypeid = ?">
-
-    <!--- Validate and append ORDER BY clause --->
-    <cfif listFindNoCase(validOrderByColumns, arguments.orderBy)>
-        <cfset sql &= " ORDER BY #arguments.orderBy#">
-    <cfelse>
-        <cfset sql &= " ORDER BY rangeid">
-    </cfif>
-
-    <!--- Execute the query within a try/catch block --->
+    
     <cftry>
-        <cfquery name="result" datasource="abod">
-            #sql#
-            <cfqueryparam value="#arguments.new_sitetypeid#" cfsqltype="CF_SQL_INTEGER">
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT rangeid, rangename, rangestart, rangeend
+            FROM reportranges
+            WHERE rangeid = <cfqueryparam value="#arguments.new_rangeid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-
+        
         <cfcatch type="any">
-            <!--- Log the error details --->
-            <cflog file="application" text="Error in getvm_reportranges_excluded: #cfcatch.message# - #cfcatch.detail# - SQL: #sql#">
-
-            <!--- Return an empty query with the correct schema --->
+            <cflog file="application" text="Error in getReportRange: #cfcatch.message#">
             <cfset result = queryNew("rangeid,rangename,rangestart,rangeend", "integer,varchar,date,date")>
         </cfcatch>
     </cftry>
-
-    <!--- Return the result --->
+    
     <cfreturn result>
-</cffunction></cfcomponent>
+</cffunction>
+<cfscript>
+function getReportRanges(required struct params) {
+    var result = queryNew("rangeid, rangename, rangestart, rangeend", "integer,varchar,timestamp,timestamp");
+    var sql = "SELECT rangeid, rangename, rangestart, rangeend FROM reportranges WHERE 1=1";
+    var conditions = [];
+    var paramValues = [];
+
+    // Define valid columns for WHERE clause
+    var validColumns = ["rangeid", "rangename", "rangestart", "rangeend"];
+
+    // Loop through params to build dynamic WHERE clause
+    for (var key in params) {
+        if (listFindNoCase(validColumns, key)) {
+            arrayAppend(conditions, "#key# = ?");
+            arrayAppend(paramValues, {value=params[key], type=getCFSQLType(key)});
+        }
+    }
+
+    // Append conditions to SQL if any
+    if (arrayLen(conditions) > 0) {
+        sql &= " AND " & arrayToList(conditions, " AND ");
+    } else {
+        // Return empty query if no valid conditions are provided
+        return result;
+    }
+
+    // Execute the query with error handling
+    try {
+        result = queryExecute(
+            sql,
+            paramValues,
+            {datasource="abod"}
+        );
+    } catch (any e) {
+        cflog(text="Error executing query: #e.message#", file="application.log");
+        return result;
+    }
+
+    return result;
+}
+
+// Function to map column names to CFSQL types
+function getCFSQLType(columnName) {
+    switch (columnName) {
+        case "rangeid":
+            return "CF_SQL_INTEGER";
+        case "rangename":
+            return "CF_SQL_VARCHAR";
+        case "rangestart":
+        case "rangeend":
+            return "CF_SQL_TIMESTAMP";
+        default:
+            return "CF_SQL_VARCHAR"; // Default type
+    }
+}
+</cfscript>
+
+
+This ColdFusion function `getReportRanges` dynamically constructs a SQL query based on input parameters. It uses `cfqueryparam` for secure parameterization and includes error handling with logging. The function ensures only valid columns are used in the `WHERE` clause and returns an empty query set if no valid conditions are provided.</cfcomponent>

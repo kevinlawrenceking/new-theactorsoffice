@@ -1,187 +1,193 @@
-<cfcomponent displayname="AuditionMediaTypeService" hint="Handles operations for AuditionMediaType table" output="false" > 
-<cffunction name="insertaudmediatypes" access="public" returntype="numeric">
-    <cfargument name="mediaTypeID" type="numeric" required="true">
-    <cfargument name="mediaType" type="string" required="true">
-    <cfargument name="isDeleted" type="boolean" required="true">
-    <cfargument name="recordname" type="string" required="false">
-    <cfargument name="isImage" type="boolean" required="false" default=false>
-    <cfargument name="IsMaterial" type="boolean" required="false" default=false>
-    <cfargument name="isShare" type="boolean" required="false" default=false>
-    <cfargument name="ismymaterial" type="boolean" required="false" default=false>
-
-    <cfset var insertResult = 0>
-
+<cfcomponent displayname="AuditionMediaTypeService" hint="Handles operations for AuditionMediaType table" output="false"> 
+<cffunction name="getMediaTypes" access="public" returntype="query">
+    <cfargument name="mediaTypeIds" type="array" required="true">
+    
+    <cfset var result = "">
+    
     <cftry>
-        <cfquery name="insertQuery" datasource="#DSN#" result="result">
-            INSERT INTO audmediatypes (
-                mediaTypeID, 
-                mediaType, 
-                isDeleted, 
-                recordname, 
-                isImage, 
-                IsMaterial, 
-                isShare, 
-                ismymaterial
-            ) VALUES (
-                <cfqueryparam value="#arguments.mediaTypeID#" cfsqltype="CF_SQL_INTEGER">,
-                <cfqueryparam value="#arguments.mediaType#" cfsqltype="CF_SQL_VARCHAR">,
-                <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">,
-                <cfqueryparam value="#arguments.recordname#" cfsqltype="CF_SQL_VARCHAR" null="#not structKeyExists(arguments, 'recordname')#">,
-                <cfqueryparam value="#arguments.isImage#" cfsqltype="CF_SQL_BIT">,
-                <cfqueryparam value="#arguments.IsMaterial#" cfsqltype="CF_SQL_BIT">,
-                <cfqueryparam value="#arguments.isShare#" cfsqltype="CF_SQL_BIT">,
-                <cfqueryparam value="#arguments.ismymaterial#" cfsqltype="CF_SQL_BIT">
+        <cfquery name="result" datasource="abod">
+            SELECT * 
+            FROM audmediatypes 
+            WHERE mediatypeid IN (
+                <cfloop array="#arguments.mediaTypeIds#" index="mediaTypeId">
+                    <cfqueryparam value="#mediaTypeId#" cfsqltype="CF_SQL_INTEGER" />
+                    <cfif arrayLen(arguments.mediaTypeIds) GT 1 AND mediaTypeId NE arrayLast(arguments.mediaTypeIds)>,</cfif>
+                </cfloop>
             )
         </cfquery>
-        <cfset insertResult = result.generatedKey>
-        <cfcatch>
-            <cflog file="application" text="Error inserting into audmediatypes: #cfcatch.message# - #cfcatch.detail#">
-            <cflog file="application" text="SQL: INSERT INTO audmediatypes (mediaTypeID, mediaType, isDeleted, recordname, isImage, IsMaterial, isShare, ismymaterial) VALUES (#arguments.mediaTypeID#, '#arguments.mediaType#', #arguments.isDeleted#, '#arguments.recordname#', #arguments.isImage#, #arguments.IsMaterial#, #arguments.isShare#, #arguments.ismymaterial#)">
-            <cfreturn 0>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getMediaTypes: #cfcatch.message# - Query: SELECT * FROM audmediatypes WHERE mediatypeid IN (#arguments.mediaTypeIds#)">
+            <cfthrow message="An error occurred while fetching media types." detail="#cfcatch.detail#">
         </cfcatch>
     </cftry>
 
-    <cfreturn insertResult>
+    <cfreturn result>
 </cffunction>
-
-<!--- Changes made:
-- Removed the default attribute from the 'isDeleted' argument as it was conflicting with the 'required' attribute.
---->
-
-<cffunction name="getaudmediatypes" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="mediaTypeID">
+<cffunction name="getMediaTypes" access="public" returntype="query">
+    <cfargument name="mediaTypeIds" type="array" required="true">
     
-    <cfset var validColumns = "mediaTypeID,mediaType,recordname,isDeleted,isImage,IsMaterial,isShare,ismymaterial">
-    <cfset var validOrderColumns = "mediaTypeID,mediaType,recordname">
-    <cfset var sql = "SELECT mediaTypeID, mediaType, recordname, isDeleted, isImage, IsMaterial, isShare, ismymaterial FROM audmediatypes WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var queryParams = []>
     <cfset var result = "">
-
-    <!--- Build dynamic WHERE clause based on filters --->
-    <cfloop collection="#arguments.filters#" item="key">
-        <cfif listFindNoCase(validColumns, key)>
-            <cfset arrayAppend(whereClause, "#key# = ?")>
-            <cfset arrayAppend(queryParams, {value=arguments.filters[key], cfsqltype=de("CF_SQL_" & ucase(replace(key,"is","bit")))})>
-        </cfif>
-    </cfloop>
-
-    <!--- Append WHERE clause if any conditions are present --->
-    <cfif arrayLen(whereClause) gt 0>
-        <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
-    </cfif>
-
-    <!--- Validate and append ORDER BY clause --->
-    <cfif listFindNoCase(validOrderColumns, arguments.orderBy)>
-        <cfset sql &= " ORDER BY #arguments.orderBy#">
-    </cfif>
-
-    <!--- Execute the query with error handling --->
+    
     <cftry>
         <cfquery name="result" datasource="yourDataSource">
-            #sql#
-            <cfloop array="#queryParams#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#" null="#isNull(param.value)#">
-            </cfloop>
+            SELECT mediatypeid, mediatype
+            FROM audmediatypes
+            WHERE mediatypeid IN (
+                <cfloop array="#arguments.mediaTypeIds#" index="id">
+                    <cfqueryparam value="#id#" cfsqltype="CF_SQL_INTEGER" />
+                    <cfif id neq arrayLast(arguments.mediaTypeIds)>,</cfif>
+                </cfloop>
+            )
         </cfquery>
+        
         <cfcatch type="any">
-            <!--- Log the error details --->
-            <cflog file="application" text="Error in getaudmediatypes: #cfcatch.message# - #cfcatch.detail# - SQL: #sql#">
-            <!--- Return an empty query with matching schema --->
-            <cfset result = queryNew("mediaTypeID,mediaType,recordname,isDeleted,isImage,IsMaterial,isShare,ismymaterial", "integer,varchar,varchar,bit,bit,bit,bit,bit")>
+            <cflog file="application" text="Error in getMediaTypes: #cfcatch.message# - Query: SELECT mediatypeid, mediatype FROM audmediatypes WHERE mediatypeid IN (#arguments.mediaTypeIds#)">
+            <cfset result = queryNew("mediatypeid,mediatype", "integer,varchar")>
         </cfcatch>
     </cftry>
 
-    <!--- Return the result query --->
     <cfreturn result>
-</cffunction> 
-
-<!--- Changes made:
-- Corrected the function to ensure proper execution by fixing the incorrect usage of 'de' function which does not exist. 
-  Replaced it with a valid approach to determine cfsqltype dynamically.
---->
-
-<cffunction name="updateaudmediatypes" access="public" returntype="boolean">
-    <cfargument name="mediaTypeID" type="numeric" required="true">
-    <cfargument name="data" type="struct" required="true">
-    <cfset var sql = "UPDATE audmediatypes SET">
-    <cfset var setClauses = []>
-    <cfset var validColumns = "mediaType,recordname,isDeleted,isImage,IsMaterial,isShare,ismymaterial">
-    <cfset var success = false>
-
-    <cfloop collection="#arguments.data#" item="key">
-        <cfif listFindNoCase(validColumns, key)>
-            <cfset arrayAppend(setClauses, "#key# = ?")>
-        </cfif>
-    </cfloop>
-
-    <cfif arrayLen(setClauses) gt 0>
-        <cfset sql &= " " & arrayToList(setClauses, ", ") & " WHERE mediaTypeID = ?">
-
-        <cftry>
-            <cfquery datasource="#DSN#">
-                #sql#
-                <cfloop collection="#arguments.data#" item="key">
-                    <cfqueryparam value="#arguments.data[key]#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.data[key])#"> <!--- Changed evaluate('CF_SQL_' & ucase(key)) to CF_SQL_VARCHAR --->
-                </cfloop>
-                <cfqueryparam value="#arguments.mediaTypeID#" cfsqltype="CF_SQL_INTEGER">
-            </cfquery>
-            <cfset success = true>
-            <cfcatch>
-                <cflog file="application" text="Error updating audmediatypes: #cfcatch.message# - #cfcatch.detail# - SQL: #sql#">
-            </cfcatch>
-        </cftry>
-    </cfif>
-
-    <cfreturn success>
 </cffunction>
+<cfscript>
+function getMediaTypes(required array mediaTypeIds) {
+    var result = queryNew("mediatypeid, mediatype", "integer,varchar");
+    if (arrayLen(arguments.mediaTypeIds) == 0) {
+        return result;
+    }
+    
+    try {
+        var sql = "
+            SELECT mediatypeid, mediatype 
+            FROM audmediatypes 
+            WHERE mediatypeid IN (#repeatString('?', arrayLen(arguments.mediaTypeIds), ',')#)
+        ";
+        
+        var queryParams = [];
+        for (var id in arguments.mediaTypeIds) {
+            arrayAppend(queryParams, {value=id, cfsqltype="CF_SQL_INTEGER"});
+        }
 
-<!--- Changes made:
-- Replaced evaluate('CF_SQL_' & ucase(key)) with CF_SQL_VARCHAR for cfsqltype in cfqueryparam as evaluate is not suitable for this context.
---->
+        result = queryExecute(
+            sql,
+            queryParams
+        );
+    } catch (any e) {
+        cflog(type="error", text="Error executing getMediaTypes: #e.message#");
+    }
+    
+    return result;
+}
+</cfscript>
 
-<cffunction name="getvm_audmediatypes_mediatypeid" access="public" returntype="query">
-    <cfargument name="mediatypeidList" type="array" required="false" default="#[]#">
-    <cfset var result = "">
-    <cfset var sql = "SELECT mediatypeid, mediatype FROM vm_audmediatypes_mediatypeid WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var validColumns = "mediatypeid,mediatype">
-    <cfset var orderByColumn = "mediatypeid">
+<cffunction name="getMediaTypes" access="public" returntype="query">
+    <cfargument name="src" type="string" required="false" default="">
+    
+    <cfset var queryResult = "">
+    <cfset var sqlQuery = "SELECT mediatypeid, mediatype FROM audmediatypes WHERE mediatype <> ? AND isdeleted = ?">
+    <cfset var params = [ { value="Headshot", cfsqltype="CF_SQL_VARCHAR" }, { value=0, cfsqltype="CF_SQL_BIT" } ]>
+    
+    <cfif arguments.src EQ "account">
+        <cfset sqlQuery &= " AND ismymaterial = ?">
+        <cfset arrayAppend(params, { value=1, cfsqltype="CF_SQL_BIT" })>
+    </cfif>
+    
+    <cfset sqlQuery &= " ORDER BY mediatype">
 
     <cftry>
-        <!--- Build dynamic WHERE clause based on provided arguments --->
-        <cfif arrayLen(arguments.mediatypeidList) gt 0>
-            <cfset arrayAppend(whereClause, "mediatypeid IN (#arrayToList(arguments.mediatypeidList)#)")>
+        <cfquery name="queryResult" datasource="yourDataSource">
+            #sqlQuery#
+            <cfloop array="#params#" index="param">
+                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+            </cfloop>
+        </cfquery>
+        
+        <cfreturn queryResult>
+
+        <cfcatch type="any">
+            <cflog file="errorLog" text="Error in getMediaTypes: #cfcatch.message# - Query: #sqlQuery# - Params: #serializeJSON(params)#">
+            <cfreturn queryNew("mediatypeid,mediatype", "integer,varchar")>
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getMediaTypes" access="public" returntype="query">
+    <cfargument name="src" type="string" required="true">
+    
+    <cfset var queryResult = "">
+    <cfset var sqlQuery = "">
+    <cfset var params = []>
+    
+    <cftry>
+        <cfset sqlQuery = "
+            SELECT 
+                mediatypeid, 
+                mediatype 
+            FROM 
+                audmediatypes 
+            WHERE 
+                mediatype <> ? 
+                AND isdeleted = ?">
+
+        <cfset arrayAppend(params, {value='Headshot', cfsqltype='CF_SQL_VARCHAR'})>
+        <cfset arrayAppend(params, {value=0, cfsqltype='CF_SQL_BIT'})>
+
+        <cfif arguments.src eq "account">
+            <cfset sqlQuery &= " AND ismymaterial = ?">
+            <cfset arrayAppend(params, {value=1, cfsqltype='CF_SQL_BIT'})>
         </cfif>
 
-        <!--- Append WHERE clause to SQL if conditions exist --->
-        <cfif arrayLen(whereClause) gt 0>
-            <cfset sql = sql & " AND " & arrayToList(whereClause, " AND ")>
-        </cfif>
-
-        <!--- Ensure ORDER BY column is valid --->
-        <cfif listFindNoCase(validColumns, orderByColumn)>
-            <cfset sql = sql & " ORDER BY " & orderByColumn>
-        </cfif>
-
-        <!--- Execute the query --->
-        <cfquery name="result" datasource="abod">
-            #sql#
-            <cfloop array="#arguments.mediatypeidList#" index="item">
-                <cfqueryparam value="#item#" cfsqltype="CF_SQL_INTEGER">
+        <cfquery name="queryResult" datasource="abod">
+            #sqlQuery#
+            <cfloop array="#params#" index="param">
+                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
             </cfloop>
         </cfquery>
 
-    <cfcatch type="any">
-        <!--- Log error details --->
-        <cflog file="application" text="Error in getvm_audmediatypes_mediatypeid: #cfcatch.message# Details: #cfcatch.detail# SQL: #sql#">
+        <cfreturn queryResult>
 
-        <!--- Return an empty query with correct schema on error --->
-        <cfset result = queryNew("mediatypeid, mediatype", "integer,varchar")>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="Error in getMediaTypes: #cfcatch.message# - Query: #sqlQuery# - Parameters: #params#">
+        <cfreturn queryNew("mediatypeid,mediatype", "integer,varchar")>
     </cfcatch>
     </cftry>
+</cffunction>
+<cffunction name="insertMediaType" access="public" returntype="void" output="false">
+    <cfargument name="new_mediaType" type="string" required="true">
+    <cfargument name="new_isDeleted" type="boolean" required="true">
 
-    <!--- Return the result query --->
-    <cfreturn result>
+    <cftry>
+        <cfquery datasource="abod">
+            INSERT INTO audmediatypes (mediaType, isDeleted)
+            VALUES (
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaType#" maxlength="100" null="#NOT len(trim(arguments.new_mediaType))#">,
+                <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+            )
+        </cfquery>
+        <cfcatch type="any">
+            <cflog file="application" text="Error in insertMediaType: #cfcatch.message#" />
+            <cflog file="application" text="Query: INSERT INTO audmediatypes (mediaType, isDeleted) VALUES (?, ?)" />
+            <cflog file="application" text="Parameters: #serializeJSON(arguments)#" />
+            <cfthrow message="Error inserting media type." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="updateMediaType" access="public" returntype="void">
+    <cfargument name="new_mediaType" type="string" required="true">
+    <cfargument name="new_isDeleted" type="boolean" required="true">
+    <cfargument name="new_mediaTypeID" type="numeric" required="true">
+
+    <cftry>
+        <cfquery datasource="abod">
+            UPDATE audmediatypes 
+            SET 
+                mediaType = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaType#" maxlength="100" null="#NOT len(trim(arguments.new_mediaType))#">,
+                isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+            WHERE 
+                mediaTypeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_mediaTypeID#">
+        </cfquery>
+        <cfcatch type="any">
+            <cflog file="application" text="Error updating media type: #cfcatch.message#">
+            <cfthrow message="An error occurred while updating the media type." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
 </cffunction></cfcomponent>

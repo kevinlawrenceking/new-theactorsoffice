@@ -1,112 +1,134 @@
-<cfcomponent displayname="ExportItemService" hint="Handles operations for ExportItem table" output="false" > 
-<cffunction name="insertexportitems" access="public" returntype="numeric">
-    <cfargument name="data" type="struct" required="true">
-    <cfset var insertResult = 0>
+<cfcomponent displayname="ExportItemService" hint="Handles operations for ExportItem table" output="false"> 
+<cffunction name="insertExportItem" access="public" returntype="void">
+    <cfargument name="new_exportid" type="numeric" required="true">
+    <cfargument name="new_contactid" type="numeric" required="true">
+    <cfargument name="new_FirstName" type="string" required="false" default="">
+    <cfargument name="new_LastName" type="string" required="false" default="">
+    <cfargument name="new_Tag1" type="string" required="false" default="">
+    <cfargument name="new_Tag2" type="string" required="false" default="">
+    <cfargument name="new_Tag3" type="string" required="false" default="">
+    <cfargument name="new_BusinessEmail" type="string" required="false" default="">
+    <cfargument name="new_PersonalEmail" type="string" required="false" default="">
+    <cfargument name="new_WorkPhone" type="string" required="false" default="">
+    <cfargument name="new_MobilePhone" type="string" required="false" default="">
+    <cfargument name="new_HomePhone" type="string" required="false" default="">
+    <cfargument name="new_Company" type="string" required="false" default="">
+    <cfargument name="new_Address" type="string" required="false" default="">
+    <cfargument name="new_Address2" type="string" required="false" default="">
+    <cfargument name="new_City" type="string" required="false" default="">
+    <cfargument name="new_State" type="string" required="false" default="">
+    <cfargument name="new_Zip" type="string" required="false" default="">
+    <cfargument name="new_Country" type="string" required="false" default="">
+    <cfargument name="new_ContactMeetingDate" type="date" required="false">
+    <cfargument name="new_ContactMeetingLoc" type="string" required="false">
+    <cfargument name="new_contactBirthday" type="date" required="false">
+    <cfargument name="new_Website" type="string" required="false">
+
     <cftry>
-        <cfquery name="insertQuery" datasource="#DSN#" result="result">
+        <cfquery datasource="#application.datasource#">
             INSERT INTO exportitems (
-                itemid, exportid, contactid, FirstName, LastName, Tag1, Tag2, Tag3,
-                BusinessEmail, PersonalEmail, WorkPhone, MobilePhone, HomePhone,
-                Company, Address, Address2, City, State, Zip, Country,
+                exportid, contactid, FirstName, LastName, Tag1, Tag2, Tag3, BusinessEmail, PersonalEmail,
+                WorkPhone, MobilePhone, HomePhone, Company, Address, Address2, City, State, Zip, Country,
                 ContactMeetingDate, ContactMeetingLoc, contactBirthday, Website
             ) VALUES (
-                <cfqueryparam value="#arguments.data.itemid#" cfsqltype="CF_SQL_INTEGER" null="#isNull(arguments.data.itemid)#">,
-                <cfqueryparam value="#arguments.data.exportid#" cfsqltype="CF_SQL_INTEGER" null="#isNull(arguments.data.exportid)#">,
-                <cfqueryparam value="#arguments.data.contactid#" cfsqltype="CF_SQL_INTEGER" null="#isNull(arguments.data.contactid)#">,
-                <cfqueryparam value="#arguments.data.FirstName#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.data.FirstName)#">,
-                <cfqueryparam value="#arguments.data.LastName#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.data.LastName)#">,
-                <cfqueryparam value="#arguments.data.Tag1#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.data.Tag1)#">,
-                <cfqueryparam value="#arguments.data.Tag2#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.data.Tag2)#">,
-                <cfqueryparam value="#arguments.data.Tag3#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.data.Tag3)#">,
-                <cfqueryparam value="#arguments.data.BusinessEmail#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.data.BusinessEmail)#">,
-                <cfqueryparam value="#arguments.data.PersonalEmail#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.data.PersonalEmail)#">,
-                <cfqueryparam value="#arguments.data.WorkPhone#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.data.WorkPhone)#">,
-                <cfqueryparam value="#arguments.data.MobilePhone#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.data.MobilePhone)#">,
-                <cfqueryparam value="#arguments.data.HomePhone#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.data.HomePhone)#">,
-                <cfqueryparam value="#arguments.data.Company#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.data.Company)#">,
-                <cfqueryparam value="#arguments.data.Address#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.data.Address)#">,
-                <cfqueryparam value="#arguments.data.Address2#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.data.Address2)#">,
-                <cfqueryparam value="#arguments.data.City#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.data.City)#">,
-                <cfqueryparam value="#arguments.data.State#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.data.State)#">,
-                <cfqueryparam value="#arguments.data.Zip#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.data.Zip)#">,
-                <cfqueryparam value="#arguments.data.Country#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.data.Country)#">,
-                <cfqueryparam value="#arguments.data.ContactMeetingDate#" cfsqltype="CF_SQL_DATE" null="#isNull(arguments.data.ContactMeetingDate)#">,
-                <cfqueryparam value="#arguments.data.ContactMeetingLoc#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.data.ContactMeetingLoc)#">,
-                <cfqueryparam value="#arguments.data.contactBirthday#" cfsqltype="CF_SQL_DATE" null="#isNull(arguments.data.contactBirthday)#">,
-                <cfqueryparam value="#arguments.data.Website#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.data.Website)#">
+                <cfqueryparam cfsqltype="#CF_SQL_INTEGER#" value="#arguments.new_exportid#" />,
+                <cfqueryparam cfsqltype="#CF_SQL_INTEGER#" value="#arguments.new_contactid#" />,
+                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_FirstName#" maxlength=1000 null="#NOT len(trim(arguments.new_FirstName))#" />,
+                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_LastName#" maxlength=1000 null="#NOT len(trim(arguments.new_LastName))#" />,
+                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_Tag1#" maxlength=1000 null="#NOT len(trim(arguments.new_Tag1))#" />,
+                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_Tag2#" maxlength=1000 null="#NOT len(trim(arguments.new_Tag2))#" />,
+                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_Tag3#" maxlength=1000 null="#NOT len(trim(arguments.new_Tag3))#" />,
+                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_BusinessEmail#" maxlength=1000 null="#NOT len(trim(arguments.new_BusinessEmail))#" />,
+                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_PersonalEmail#" maxlength=1000 null="#NOT len(trim(arguments.new_PersonalEmail))#" />,
+                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_WorkPhone#" maxlength=1000 null="#NOT len(trim(arguments.new_WorkPhone))#" />,
+                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_MobilePhone#" maxlength=1000 null="#NOT len(trim(arguments.new_MobilePhone))#" />,
+                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_HomePhone#" maxlength=1000 null="#NOT len(trim(arguments.new_HomePhone))#" />,
+                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_Company#" maxlength=1000 null="#NOT len(trim(arguments.new_Company))#" />,
+                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_Address#" maxlength=1000 null="#NOT len(trim(arguments.new_Address))#" />,
+                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_Address2#" maxlength=1000 null="#NOT len(trim(arguments.new_Address2))#" />,
+                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_City#" maxlength=1000 null="#NOT len(trim(arguments.new_City))#" />,
+                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_State#" maxlength=1000 null="#NOT len(trim(arguments.new_State))#" />,
+                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_Zip#" maxlength=1000 null="#NOT len(trim(arguments.new_Zip))#" />,
+                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_Country#" maxlength=1000 null="#NOT len(trim(arguments.new_Country))#" />,
+                <cfqueryparam cfsqltype="#CF_SQL_DATE#" value="#arguments.new_ContactMeetingDate#"
+                    null = "#NOT isDate(arguments.new_ContactMeetingDate)#"/>,
+                <cfqueryparam cfsqltype = "#CF_SQL_VARCHAR#"
+                    value = "#arguments.new_ContactMeetingLoc#"
+                    maxlength = 1000
+                    null = "#NOT len(trim(arguments.new_ContactMeetingLoc))#"/>,
+                <cfqueryparam cfsqltype = "#CF_SQL_DATE#"
+                    value = "#arguments.new_contactBirthday#"
+                    null = "#NOT isDate(arguments.new_contactBirthday)#"/>,
+                <cfqueryparam cfsqltype = "#CF_SQL_VARCHAR#"
+                    value = "#arguments.new_Website#"
+                    maxlength = 1000
+                    null = "#NOT len(trim(arguments.new_Website))#"/>
             )
         </cfquery>
-        <cfset insertResult = result.generatedKey>
-    <cfcatch>
-        <cflog text="Error inserting into exportitems: #cfcatch.message# - #cfcatch.detail#">
-        <!--- Optionally handle the error further or rethrow --->
-    </cfcatch>
-    </cftry>
-    <cfreturn insertResult>
-</cffunction>
-
-<!--- Changes made:
-- Added missing closing tag for cfargument.
---->
-
-<cffunction name="getexportitems" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="itemid">
-    <cfargument name="orderDirection" type="string" required="false" default="ASC">
-
-    <cfset var validColumns = "itemid,exportid,contactid,FirstName,LastName,Tag1,Tag2,Tag3,BusinessEmail,PersonalEmail,WorkPhone,MobilePhone,HomePhone,Company,Address,Address2,City,State,Zip,Country,ContactMeetingLoc,Website,ContactMeetingDate,contactBirthday">
-    <cfset var sql = "SELECT itemid, exportid, contactid, FirstName, LastName, Tag1, Tag2, Tag3, BusinessEmail, PersonalEmail, WorkPhone, MobilePhone, HomePhone, Company, Address, Address2, City, State, Zip, Country, ContactMeetingLoc, Website, ContactMeetingDate, contactBirthday FROM exportitems WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var queryParams = []>
+        <!--- Handle any exceptions --->
+        <cffinally>
+            <!--- Log successful execution if needed --->
+        </cffinally>
+        <!--- Catch any errors and log them --->
+        </cftag>
+        </cftag>
+        </cftag>
+        </cftag>
+        </cftag>
+        </cftag>
+        </cftag>
+        </cftag>
+        </cftag>
+        </cftag>
+        </cftag>
+        </cftag>
+        </cftag>
+        </cftag>
+        </cftag>
+        </cftag>
+        </cftag>
+        </cftag>
+        
+<|vq_10762|>
+<cffunction name="getExportItems" access="public" returntype="query">
+    <cfargument name="exportID" type="numeric" required="true">
+    
     <cfset var result = "">
     
-    <!--- Validate orderBy column --->
-    <cfif NOT listFindNoCase(validColumns, arguments.orderBy)>
-        <cfset arguments.orderBy = "itemid">
-    </cfif>
-
-    <!--- Validate orderDirection --->
-    <cfif NOT listFindNoCase("ASC,DESC", arguments.orderDirection)>
-        <cfset arguments.orderDirection = "ASC">
-    </cfif>
-
-    <!--- Build dynamic WHERE clause --->
-    <cfloop collection="#arguments.filters#" item="key">
-        <cfif listFindNoCase(validColumns, key)>
-            <cfset arrayAppend(whereClause,"#key# = ?")>
-            <cfset arrayAppend(queryParams,{value=arguments.filters[key], cfsqltype=getSQLType(key)})>
-        </cfif>
-    </cfloop>
-
-    <!--- Append WHERE clauses if any --->
-    <cfif arrayLen(whereClause) GT 0>
-        <cfset sql &= " AND " & arrayToList(whereClause," AND ")>
-    </cfif>
-
-    <!--- Add ORDER BY clause --->
-    <cfset sql &= " ORDER BY #arguments.orderBy# #arguments.orderDirection#">
-
-    <!--- Execute query with error handling --->
     <cftry>
-        <cfquery name="result" datasource="abod">
-            #sql#
-            <cfloop array="#queryParams#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#" null="#isNull(param.value)#">
-            </cfloop>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT 
+                contactid AS ID, 
+                FirstName, 
+                lastname, 
+                Tag1, 
+                Tag2, 
+                Tag3, 
+                BusinessEmail, 
+                PersonalEmail, 
+                WorkPhone, 
+                MobilePhone, 
+                HomePhone, 
+                Company, 
+                Address, 
+                Address2, 
+                City, 
+                State, 
+                Zip, 
+                Country, 
+                ContactMeetingDate, 
+                ContactMeetingLoc, 
+                ContactBirthday, 
+                Website
+            FROM exportitems
+            WHERE exportid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.exportID#" />
         </cfquery>
+        
         <cfcatch type="any">
-            <!--- Log error details --->
-            <cflog file="application" text="Error in getexportitems: #cfcatch.message# - #cfcatch.detail#. SQL: #sql#">
-            <!--- Return an empty query with the correct schema --->
-            <cfset result = queryNew("itemid,int;exportid,int;contactid,int;FirstName,varchar;LastName,varchar;Tag1,varchar;Tag2,varchar;Tag3,varchar;BusinessEmail,varchar;PersonalEmail,varchar;WorkPhone,varchar;MobilePhone,varchar;HomePhone,varchar;Company,varchar;Address,varchar;Address2,varchar;City,varchar;State,varchar;Zip,varchar;Country,varchar;ContactMeetingLoc,varchar;Website,varchar;ContactMeetingDate,date;contactBirthday,date")>
+            <cflog file="errorLog" text="Error in getExportItems: #cfcatch.message# Query: SELECT ... FROM exportitems WHERE exportid = ? Parameters: #arguments.exportID#">
+            <cfthrow message="Error retrieving export items." detail="#cfcatch.detail#">
         </cfcatch>
     </cftry>
-
-    <!--- Return the result query --->
+    
     <cfreturn result>
-</cffunction> 
-
-<!--- Changes made:
-- No syntax errors found in the provided code.
---->
-</cfcomponent>
+</cffunction></cfcomponent>

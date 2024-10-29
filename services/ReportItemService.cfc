@@ -1,163 +1,222 @@
-<cfcomponent displayname="ReportItemService" hint="Handles operations for ReportItem table" output="false" > 
-<cffunction name="deletereportitems" access="public" returntype="boolean">
-    <cfargument name="itemid" type="numeric" required="true">
-    <cfset var result = false>
-    <cftry>
-        <cfquery datasource="#DSN#">
-            DELETE FROM reportitems
-            WHERE itemid = <cfqueryparam value="#arguments.itemid#" cfsqltype="CF_SQL_INTEGER">
-        </cfquery>
-        <cfset result = true>
-        <cfcatch>
-            <cflog file="application" type="error" text="Error in deletereportitems: #cfcatch.message# Details: #cfcatch.detail#">
-        </cfcatch>
-    </cftry>
-    <cfreturn result>
-</cffunction>
+<cfcomponent displayname="ReportItemService" hint="Handles operations for ReportItem table" output="false"> 
+<cffunction name="insertReportItem" access="public" returntype="void">
+    <cfargument name="itemLabel" type="string" required="true">
+    <cfargument name="itemOrderNo" type="numeric" required="true">
+    <cfargument name="itemValueInt" type="numeric" required="true">
+    <cfargument name="ID" type="numeric" required="true">
+    <cfargument name="itemDataset" type="string" required="true">
+    <cfset var local = {}>
 
-<!--- Changes made:
-- No changes were necessary as the code is syntactically correct.
---->
-<cffunction name="insertreportitems" access="public" returntype="numeric">
-    <cfargument name="itemid" type="numeric" required="true">
-    <cfargument name="itemLabel" type="string" required="false" default="">
-    <cfargument name="itemOrderNo" type="numeric" required="false" default="">
-    <cfargument name="itemValueInt" type="numeric" required="false" default="">
-    <cfargument name="ID" type="numeric" required="false" default="">
-    <cfargument name="itemDataset" type="string" required="false" default="">
-    <cfargument name="userid" type="numeric" required="false" default="">
-    
-    <cfset var insertResult = 0>
-    
     <cftry>
-        <cfquery name="insertQuery" datasource="#DSN#" result="queryResult">
-            INSERT INTO reportitems (
-                itemid, itemLabel, itemOrderNo, itemValueInt, ID, itemDataset, userid
-            ) VALUES (
-                <cfqueryparam value="#arguments.itemid#" cfsqltype="CF_SQL_INTEGER">,
-                <cfqueryparam value="#arguments.itemLabel#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.itemLabel)#">,
-                <cfqueryparam value="#arguments.itemOrderNo#" cfsqltype="CF_SQL_INTEGER" null="#isNull(arguments.itemOrderNo)#">,
-                <cfqueryparam value="#arguments.itemValueInt#" cfsqltype="CF_SQL_INTEGER" null="#isNull(arguments.itemValueInt)#">,
-                <cfqueryparam value="#arguments.ID#" cfsqltype="CF_SQL_INTEGER" null="#isNull(arguments.ID)#">,
-                <cfqueryparam value="#arguments.itemDataset#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.itemDataset)#">,
-                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER" null="#isNull(arguments.userid)#">
+        <cfquery datasource="abod">
+            INSERT INTO reportitems 
+            (itemLabel, itemOrderNo, itemValueInt, ID, itemDataset, userid) 
+            VALUES 
+            (
+                <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.itemLabel#" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.itemOrderNo#" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.itemValueInt#" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.ID#" />,
+                <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.itemDataset#" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#session.userid#" />
             )
         </cfquery>
-        
-        <cfset insertResult = queryResult.generatedKey>
-        
         <cfcatch>
-            <cflog file="application" text="Error in insertreportitems: #cfcatch.message# - #cfcatch.detail#">
-            <cflog file="application" text="SQL: INSERT INTO reportitems (itemid, itemLabel, itemOrderNo, itemValueInt, ID, itemDataset, userid) VALUES (?, ?, ?, ?, ?, ?, ?)">
+            <cflog file="application" text="Error in insertReportItem: #cfcatch.message# - Query: INSERT INTO reportitems (itemLabel, itemOrderNo, itemValueInt, ID, itemDataset, userid) VALUES (#arguments.itemLabel#, #arguments.itemOrderNo#, #arguments.itemValueInt#, #arguments.ID#, #arguments.itemDataset#, #session.userid#)" type="error">
+            <cfthrow message="Error inserting report item." detail="#cfcatch.detail#">
         </cfcatch>
     </cftry>
-    
-    <cfreturn insertResult>
 </cffunction>
-
-<!--- Changes made:
-- None. The code is syntactically correct.
---->
-
-<cffunction name="getreportitems" access="public" returntype="query">
-    <cfargument name="newpnids" type="string" required="true">
-    <cfargument name="orderBy" type="string" required="false" default="">
+<cffunction name="getReportItems" access="public" returntype="query">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="reportid" type="numeric" required="true">
     
     <cfset var result = "">
-    <cfset var sql = "">
-    <cfset var whereClause = []>
-    <cfset var validOrderByColumns = "reportid,itemid,itemOrderNo,itemValueInt,userid,itemLabel,itemDataset">
-
+    
     <cftry>
-        <!--- Construct the SQL query --->
-        <cfset sql = "SELECT reportid, itemid, itemOrderNo, itemValueInt, userid, itemLabel, itemDataset FROM vm_reportitems_reports_user WHERE 1=1">
-
-        <!--- Add conditions to WHERE clause --->
-        <cfif len(arguments.newpnids)>
-            <cfset arrayAppend(whereClause, "reportid IN (#arguments.newpnids#)")>
-        </cfif>
-
-        <!--- Append dynamic WHERE clauses --->
-        <cfif arrayLen(whereClause)>
-            <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
-        </cfif>
-
-        <!--- Validate and append ORDER BY clause --->
-        <cfif len(arguments.orderBy) AND listFindNoCase(validOrderByColumns, arguments.orderBy)>
-            <cfset sql &= " ORDER BY #arguments.orderBy#">
-        </cfif>
-
-        <!--- Execute the query --->
-        <cfquery name="result" datasource="abod">
-            #sql#
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT 
+                r.reportid, 
+                i.itemid, 
+                i.itemLabel, 
+                i.itemOrderNo, 
+                i.itemValueInt, 
+                i.itemDataset, 
+                i.userid 
+            FROM 
+                reportitems i 
+            INNER JOIN 
+                reports_user r ON r.id = i.id 
+            WHERE 
+                i.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+            AND 
+                r.reportid = <cfqueryparam value="#arguments.reportid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-
-        <!--- Catch and log any errors --->
+        
         <cfcatch type="any">
-            <cflog file="application" text="Error in getreportitems: #cfcatch.message# Details: #cfcatch.detail# SQL: #sql#">
-            <!--- Return an empty query with the correct structure on error --->
-            <cfset result = queryNew("reportid,itemid,itemOrderNo,itemValueInt,userid,itemLabel,itemDataset", "integer,integer,integer,integer,integer,varchar,varchar")>
+            <cflog file="application" text="Error in getReportItems: #cfcatch.message# Query: #cfcatch.detail#">
+            <cfreturn queryNew("reportid,itemid,itemLabel,itemOrderNo,itemValueInt,itemDataset,userid")>
         </cfcatch>
     </cftry>
-
-    <!--- Return the result --->
+    
     <cfreturn result>
 </cffunction>
-
-<!--- Changes made:
-- Removed backticks around `#arguments.orderBy#` in the ORDER BY clause as they are not necessary in ColdFusion.
---->
-
-<cffunction name="updatereportitems" access="public" returntype="boolean">
-    <cfargument name="itemid" type="numeric" required="true">
-    <cfargument name="data" type="struct" required="true">
+<cffunction name="getDistinctItemDatasets" access="public" returntype="query">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="reportid" type="numeric" required="true">
     
-    <cfset var sql = "UPDATE reportitems SET">
-    <cfset var setClauses = []>
-    <cfset var validColumns = "itemLabel,itemOrderNo,itemValueInt,ID,userid,itemDataset">
-    <cfset var success = false>
-
+    <cfset var result = "">
+    
     <cftry>
-        <!--- Build SET clause dynamically based on provided data --->
-        <cfloop collection="#arguments.data#" item="key">
-            <cfif listFindNoCase(validColumns, key)>
-                <cfset arrayAppend(setClauses, "#key# = ?")>
-            </cfif>
-        </cfloop>
-
-        <!--- If there are no valid columns to update, return false --->
-        <cfif arrayLen(setClauses) EQ 0>
-            <cfreturn false>
-        </cfif>
-
-        <!--- Construct the final SQL statement --->
-        <cfset sql &= " " & arrayToList(setClauses, ", ") & " WHERE itemid = ?">
-
-        <!--- Execute the update query --->
-        <cfquery datasource="#DSN#">
-            #sql#
-            <cfloop collection="#arguments.data#" item="key">
-                <cfif listFindNoCase(validColumns, key)>
-                    <cfqueryparam value="#arguments.data[key]#" cfsqltype="#evaluate("CF_SQL_" & uCase(listLast(listGetAt(validColumns, listFindNoCase(validColumns, key), ","))) )#" null="#isNull(arguments.data[key])#">
-                </cfif>
-            </cfloop>
-            <cfqueryparam value="#arguments.itemid#" cfsqltype="CF_SQL_INTEGER">
+        <cfquery name="result" datasource="abod">
+            SELECT DISTINCT i.itemdataset
+            FROM reportitems i
+            INNER JOIN reports_user r ON r.id = i.id
+            WHERE i.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            AND r.reportid = <cfqueryparam value="#arguments.reportid#" cfsqltype="CF_SQL_INTEGER">
+            ORDER BY i.itemdataset
         </cfquery>
-
-        <!--- If no error occurs, set success to true --->
-        <cfset success = true>
-
-        <!--- Error handling and logging --->
+        
         <cfcatch type="any">
-            <cflog file="application" text="Error updating reportitems: #cfcatch.message# Details: #cfcatch.detail# SQL: #sql#">
+            <cflog file="application" text="Error in getDistinctItemDatasets: #cfcatch.message#; Query: SELECT DISTINCT i.itemdataset FROM reportitems i INNER JOIN reports_user r ON r.id = i.id WHERE i.userid = #arguments.userid# AND r.reportid = #arguments.reportid# ORDER BY i.itemdataset;">
+            <cfset result = queryNew("itemdataset")>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="getDistinctItemLabels" access="public" returntype="query">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="reportid" type="numeric" required="true">
+
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT DISTINCT i.itemlabel
+            FROM reportitems i
+            INNER JOIN reports_user r ON r.id = i.id
+            WHERE i.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            AND r.reportid = <cfqueryparam value="#arguments.reportid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getDistinctItemLabels: #cfcatch.message# Query: SELECT DISTINCT i.itemlabel FROM reportitems i INNER JOIN reports_user r ON r.id = i.id WHERE i.userid = ? AND r.reportid = ? Parameters: userid=#arguments.userid#, reportid=#arguments.reportid#">
+            <cfthrow>
         </cfcatch>
     </cftry>
 
-    <!--- Return the success status --->
-    <cfreturn success>
+    <cfreturn result>
 </cffunction>
+<cffunction name="getReportItems" access="public" returntype="query">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="reportid" type="numeric" required="true">
+    <cfargument name="itemdataset" type="string" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT DISTINCT 
+                i.itemlabel, 
+                i.itemValueInt 
+            FROM 
+                reportitems i 
+            INNER JOIN 
+                reports_user r ON r.id = i.id 
+            WHERE 
+                i.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+                AND r.reportid = <cfqueryparam value="#arguments.reportid#" cfsqltype="CF_SQL_INTEGER"> 
+                AND i.itemDataset = <cfqueryparam value="#arguments.itemdataset#" cfsqltype="CF_SQL_VARCHAR"> 
+            ORDER BY 
+                i.itemlabel
+        </cfquery>
+        
+        <cfreturn result>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getReportItems: #cfcatch.message# Query: #cfcatch.detail#">
+            <cfreturn queryNew("itemlabel,itemValueInt", "varchar,integer")>
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="deleteReportItems" access="public" returntype="void">
+    <cfargument name="userid" type="numeric" required="true">
+    
+    <cftry>
+        <cfquery datasource="abod">
+            DELETE FROM reportitems
+            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error deleting report items: #cfcatch.message# Query: DELETE FROM reportitems WHERE userid = #arguments.userid#">
+            <cfthrow>
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="insertReportItems" access="public" returntype="void">
+    <cfargument name="newLabel" type="string" required="true">
+    <cfargument name="itemOrderNo" type="numeric" required="true">
+    <cfargument name="newID" type="numeric" required="true">
+    <cfargument name="newItemDataSet" type="string" required="true">
+    <cfargument name="userID" type="numeric" required="true">
 
-<!--- Changes made:
-- Added missing closing tag for cftry.
---->
-</cfcomponent>
+    <cftry>
+        <cfquery datasource="abod">
+            INSERT INTO reportitems 
+            (itemLabel, itemOrderNo, itemValueInt, ID, itemDataset, userid) 
+            VALUES (
+                <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.newLabel#" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.itemOrderNo#" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="0" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.newID#" />,
+                <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.newItemDataSet#" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userID#" />
+            )
+        </cfquery>
+        <cfcatch>
+            <cflog file="application" text="Error inserting into reportitems: #cfcatch.message#">
+            <!--- Additional error handling logic can be added here --->
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="updateReportItems" access="public" returntype="void">
+    <cfargument name="new_itemvalueint" type="numeric" required="true">
+    <cfargument name="new_itemid" type="numeric" required="true">
+
+    <cftry>
+        <cfquery name="updateQuery" datasource="yourDataSource">
+            UPDATE reportitems 
+            SET itemValueInt = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_itemvalueint#" />
+            WHERE itemid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_itemid#" />
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error updating reportitems: #cfcatch.message#" />
+            <cflog file="application" text="Query: UPDATE reportitems SET itemValueInt = ?, WHERE itemid = ?" />
+            <cflog file="application" text="Parameters: new_itemvalueint=#arguments.new_itemvalueint#, new_itemid=#arguments.new_itemid#" />
+            <cfthrow message="Error updating reportitems." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getReportItems" access="public" returntype="query">
+    <cfargument name="userId" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="abod">
+            SELECT *
+            FROM reportitems
+            WHERE userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getReportItems: #cfcatch.message# Query: SELECT * FROM reportitems WHERE userid = #arguments.userId#">
+            <cfreturn queryNew("")>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction></cfcomponent>

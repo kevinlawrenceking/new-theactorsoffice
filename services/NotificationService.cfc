@@ -1,170 +1,198 @@
-<cfcomponent displayname="NotificationService" hint="Handles operations for Notification table" output="false" > 
-<cffunction name="insertnotifications" access="public" returntype="numeric">
+<cfcomponent displayname="NotificationService" hint="Handles operations for Notification table" output="false"> 
+<cffunction name="insertNotification" access="public" returntype="void">
+    <cfargument name="new_contactname" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
-    <cfargument name="notifUrl" type="string" required="false" default="">
-    <cfargument name="notifTitle" type="string" required="true">
-    <cfargument name="notifDescript" type="string" required="false" default="">
-    <cfargument name="read" type="boolean" required="false" default=false>
-    <cfargument name="trash" type="boolean" required="false" default=false>
-    <cfargument name="notifType" type="string" required="false" default="System Added">
-    <cfargument name="contactid" type="numeric" required="false" default=0>
-    <cfargument name="dateRead" type="date" required="false">
-    <cfargument name="senderID" type="numeric" required="true">
-    <cfargument name="isDeleted" type="boolean" required="true">
-    <cfargument name="subtitle" type="string" required="true">
+    <cfargument name="contactid" type="numeric" required="true">
 
-    <cfset var insertResult = 0>
-    
     <cftry>
-        <cfquery name="insertQuery" datasource="#DSN#" result="queryResult">
-            INSERT INTO notifications_tbl (
-                userid, notifTimestamp, notifUrl, notifTitle, notifDescript, 
-                read, trash, notifType, contactid, dateRead, senderID, isDeleted, subtitle
+        <cfquery datasource="abod">
+            INSERT INTO notifications (
+                subtitle, 
+                userid, 
+                notifUrl, 
+                notifTitle, 
+                notifType, 
+                contactid, 
+                read
             ) VALUES (
+                <cfqueryparam value="Maintenance system created for #arguments.new_contactname#" cfsqltype="CF_SQL_VARCHAR">,
                 <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
-                CURRENT_TIMESTAMP,
-                <cfqueryparam value="#arguments.notifUrl#" cfsqltype="CF_SQL_VARCHAR">,
-                <cfqueryparam value="#arguments.notifTitle#" cfsqltype="CF_SQL_VARCHAR">,
-                <cfqueryparam value="#arguments.notifDescript#" cfsqltype="CF_SQL_LONGVARCHAR">,
-                <cfqueryparam value="#arguments.read#" cfsqltype="CF_SQL_BIT">,
-                <cfqueryparam value="#arguments.trash#" cfsqltype="CF_SQL_BIT">,
-                <cfqueryparam value="#arguments.notifType#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="/app/contact/?contactid=#arguments.contactid#&t4=1" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="Maintenance System Created!" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="System Added" cfsqltype="CF_SQL_VARCHAR">,
                 <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">,
-                <cfqueryparam value="#arguments.dateRead#" cfsqltype="#iif(isNull(arguments.dateRead), 'CF_SQL_NULL', 'CF_SQL_TIMESTAMP')#">,
-                <cfqueryparam value="#arguments.senderID#" cfsqltype="CF_SQL_INTEGER">,
-                <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">,
-                <cfqueryparam value="#arguments.subtitle#" cfsqltype="CF_SQL_VARCHAR">
+                <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
             )
         </cfquery>
-
-        <!--- Return the generated ID of the inserted record --->
-        <cfset insertResult = queryResult.generatedKey>
-
-        <!--- Error handling --->
-        <cfcatch>
-            <!--- Log the error details --->
-            <cflog file="/logs/error.log"
-                   text="[insertnotifications] Error: #cfcatch.message# - Detail: #cfcatch.detail# - SQL: #insertQuery.sql#">
-            <!--- Return 0 or handle the error as needed --->
-            <cfset insertResult = 0>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in insertNotification: #cfcatch.message# Query: #cfcatch.detail#">
+            <cfthrow message="An error occurred while inserting notification." detail="#cfcatch.detail#">
         </cfcatch>
     </cftry>
-
-    <!--- Return the result --->
-    <cfreturn insertResult>
 </cffunction>
-
-<!--- Changes made:
-- None. The code was already correct.
---->
-
-<cffunction name="getnotifications" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfset var result = "">
-    <cfset var sql = "SELECT `ID`, `contactid`, `notiftitle`, `recordname`, `subtitle`, `notifurl`, `read`, `trash`, `notiftimestamp` FROM vm_notifications_contactdetails WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var params = []>
-    <cfset var validColumns = "ID,contactid,notiftitle,recordname,subtitle,notifurl,read,trash,notiftimestamp">
-    <cfset var orderByColumn = "notiftimestamp">
-
-    <!--- Build dynamic WHERE clause --->
-    <cfloop collection="#arguments.filters#" item="key">
-        <cfif listFindNoCase(validColumns, key)>
-            <cfset arrayAppend(whereClause, "#key# = ?")>
-            <cfset arrayAppend(params, {value=arguments.filters[key], cfsqltype=getSQLTypeFromSchema(key)})>
-        </cfif>
-    </cfloop>
-
-    <!--- Add fixed conditions --->
-    <cfset arrayAppend(whereClause, "userid = ?")>
-    <cfset arrayAppend(params, {value=session.userid, cfsqltype="CF_SQL_INTEGER"})>
+<cffunction name="insertNotification" access="public" returntype="void">
+    <cfargument name="new_contactname" type="string" required="true">
+    <cfargument name="contactid" type="numeric" required="true">
     
-    <cfset arrayAppend(whereClause, "read = 0")>
-    <cfset arrayAppend(whereClause, "trash = 0")>
+    <cftry>
+        <cfquery datasource="abod">
+            INSERT INTO notifications (
+                subtitle, 
+                userid, 
+                notifUrl, 
+                notifTitle, 
+                notifType, 
+                contactid, 
+                read
+            ) VALUES (
+                <cfqueryparam value="Maintenance system created for #arguments.new_contactname#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#session.userid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="/app/contact/?contactid=#arguments.contactid#&t4=1" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="Maintenance System Created!" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="System Added" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
+            )
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error inserting notification: #cfcatch.message#">
+            <cfrethrow>
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="insertNotification" access="public" returntype="void">
+    <cfargument name="new_contactname" type="string" required="true">
+    <cfargument name="new_userid" type="numeric" required="true">
+    <cfargument name="new_contactid" type="numeric" required="true">
+    <cfargument name="sunotes" type="string" required="true">
 
-    <!--- Combine SQL query --->
-    <cfif arrayLen(whereClause) gt 0>
-        <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
-    </cfif>
-
-    <!--- Add ORDER BY clause --->
-    <cfif listFindNoCase(validColumns, orderByColumn)>
-        <cfset sql &= " ORDER BY #orderByColumn# DESC">
-    </cfif>
-
-    <!--- Execute query with error handling --->
+    <cftry>
+        <cfquery datasource="abod">
+            INSERT INTO notifications (
+                subtitle,
+                userid,
+                notifUrl,
+                notifTitle,
+                notifType,
+                contactid,
+                read,
+                notifdescript
+            ) VALUES (
+                <cfqueryparam value="Appointment completed. Follow-Up with #arguments.new_contactname#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.new_userid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="/app/contact/?contactid=#arguments.new_contactid#&t4=1" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="Follow-Up System Created!" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="System Added" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.new_contactid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">,
+                <cfqueryparam value="#arguments.sunotes#" cfsqltype="CF_SQL_LONGVARCHAR">
+            )
+        </cfquery>
+    <cfcatch>
+        <cflog file="application" text="Error inserting notification: #cfcatch.message#">
+        <cfthrow message="An error occurred while inserting the notification." detail="#cfcatch.detail#">
+    </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="updateNotificationReadStatus" access="public" returntype="void">
+    <cfargument name="notificationId" type="numeric" required="true">
+    
+    <cftry>
+        <cfquery name="updateQuery" datasource="yourDataSource">
+            UPDATE notifications 
+            SET `read` = 1 
+            WHERE id = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.notificationId#">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error updating notification read status: #cfcatch.message#" type="error">
+            <cflog file="application" text="Query: UPDATE notifications SET `read` = 1 WHERE id = #arguments.notificationId#" type="error">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="updateNotifications" access="public" returntype="void">
+    <cfargument name="userid" type="numeric" required="true">
+    
+    <cftry>
+        <cfquery datasource="abod">
+            UPDATE notifications 
+            SET trash = 1 
+            WHERE userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#"> 
+            AND trash = 0
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error updating notifications: #cfcatch.message#">
+            <cfthrow message="An error occurred while updating notifications." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getUnreadNotifications" access="public" returntype="query">
+    <cfargument name="userID" type="numeric" required="true">
+    <cfset var result = "">
+    
     <cftry>
         <cfquery name="result" datasource="abod">
-            #sql#
-            <cfloop from="1" to="#arrayLen(params)#" index="i">
-                <cfqueryparam value="#params[i].value#" cfsqltype="#params[i].cfsqltype#" null="#isNull(params[i].value)#">
-            </cfloop>
+            SELECT 
+                n.ID, 
+                n.notiftitle, 
+                n.notiftimestamp, 
+                c.recordname, 
+                n.subtitle, 
+                n.notifurl 
+            FROM 
+                notifications n 
+            INNER JOIN 
+                contactdetails c ON c.contactid = n.contactid 
+            WHERE 
+                n.userid = <cfqueryparam value="#arguments.userID#" cfsqltype="cf_sql_integer"> 
+                AND n.read = 0 
+                AND n.trash = 0
         </cfquery>
+        
         <cfcatch type="any">
-            <cflog file="application" text="Error in getnotifications: #cfcatch.message# - #cfcatch.detail# - SQL: #sql#">
-            <!--- Return an empty query with the correct schema on error --->
-            <cfset result = queryNew("ID,contactid,notiftitle,recordname,subtitle,notifurl,read,trash,notiftimestamp", "integer,integer,varchar,varchar,varchar,varchar,bit,bit,timestamp")>
+            <cflog file="application" text="Error in getUnreadNotifications: #cfcatch.message#">
+            <cfreturn queryNew("")>
         </cfcatch>
     </cftry>
-
-    <!--- Return the result query --->
+    
     <cfreturn result>
 </cffunction>
-
-<!--- Changes made:
-- Corrected initialization of the 'result' variable to an empty string to a proper query object.
---->
-
-<cffunction name="updatenotifications" access="public" returntype="boolean">
-    <cfargument name="notificationID" type="numeric" required="true">
-    <cfargument name="data" type="struct" required="true">
-    <cfset var sql = "UPDATE notifications_tbl SET">
-    <cfset var setClauses = []>
-    <cfset var validColumns = "userid,contactid,senderID,notifUrl,notifTitle,notifType,subtitle,read,trash,isDeleted,dateRead,notifTimestamp,notifDescript">
+<cffunction name="getNotifications" access="public" returntype="query">
+    <cfargument name="userID" type="numeric" required="true">
+    <cfset var result = "">
     
-    <!--- Loop through the data structure to build the SET clause --->
-    <cfloop collection="#arguments.data#" item="key">
-        <cfif listFindNoCase(validColumns, key)>
-            <cfset arrayAppend(setClauses, "#key# = ?")>
-        </cfif>
-    </cfloop>
-
-    <!--- If there are no valid columns to update, return false --->
-    <cfif arrayLen(setClauses) eq 0>
-        <cfreturn false>
-    </cfif>
-
-    <!--- Construct the SQL query --->
-    <cfset sql &= " " & arrayToList(setClauses, ", ") & " WHERE ID = ?">
-
-    <!--- Execute the query with error handling --->
     <cftry>
-        <cfquery datasource="#DSN#">
-            #sql#
-            <!--- Bind parameters dynamically based on data structure --->
-            <cfloop collection="#arguments.data#" item="key">
-                <cfif listFindNoCase(validColumns, key)>
-                    <cfqueryparam value="#arguments.data[key]#" cfsqltype="#getSQLType(key)#" null="#isNull(arguments.data[key])#">
-                </cfif>
-            </cfloop>
-            <!--- Bind the notification ID for the WHERE clause --->
-            <cfqueryparam value="#arguments.notificationID#" cfsqltype="CF_SQL_INTEGER">
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT 
+                n.ID, 
+                n.notiftitle, 
+                n.notiftimestamp, 
+                c.recordname, 
+                n.subtitle, 
+                n.notifurl, 
+                n.contactid, 
+                n.read, 
+                n.trash
+            FROM 
+                notifications n
+            LEFT JOIN 
+                contactdetails c ON c.contactid = n.contactid
+            WHERE 
+                n.userid = <cfqueryparam value="#arguments.userID#" cfsqltype="cf_sql_integer"> 
+            AND 
+                n.trash = 0
+            ORDER BY 
+                n.notiftimestamp DESC
         </cfquery>
-
-        <!--- Return true if update is successful --->
-        <cfreturn true>
-
-        <!--- Error handling block --->
+        
         <cfcatch type="any">
-            <!--- Log the error details --->
-            <cflog file="application" text="Error updating notifications: #cfcatch.message# Details: #cfcatch.detail# Query: #sql#">
-            <!--- Return false on error --->
-            <cfreturn false>
+            <cflog file="application" text="Error in getNotifications: #cfcatch.message#">
+            <cfset result = queryNew("ID, notiftitle, notiftimestamp, recordname, subtitle, notifurl, contactid, read, trash")>
         </cfcatch>
     </cftry>
-</cffunction>
 
-<!--- Changes made:
-- Added missing closing tag for cfargument.
---->
-</cfcomponent>
+    <cfreturn result>
+</cffunction></cfcomponent>

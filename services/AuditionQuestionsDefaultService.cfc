@@ -1,116 +1,47 @@
-<cfcomponent displayname="AuditionQuestionsDefaultService" hint="Handles operations for AuditionQuestionsDefault table" output="false" > 
-<cffunction name="insertaudquestions_default" access="public" returntype="numeric">
-    <cfargument name="qID" type="numeric" required="true">
-    <cfargument name="qTypeID" type="numeric" required="false" default="2">
-    <cfargument name="qtext" type="string" required="true">
-    <cfargument name="qorder" type="numeric" required="false" default="0">
-    <cfargument name="isDeleted" type="boolean" required="false" default=false>
-    <cfargument name="recordname" type="string" required="false">
-
-    <cfset var insertResult = 0>
-    <cfset var sql = "INSERT INTO audquestions_default (qID, qTypeID, qtext, qorder, isDeleted, recordname) VALUES (?, ?, ?, ?, ?, ?)">
+<cfcomponent displayname="AuditionQuestionsDefaultService" hint="Handles operations for AuditionQuestionsDefault table" output="false"> 
+<cffunction name="insertAudQuestionsDefault" access="public" returntype="void">
+    <cfargument name="new_qTypeID" type="any" required="true">
+    <cfargument name="new_qtext" type="string" required="true">
+    <cfargument name="new_qorder" type="any" required="true">
+    <cfargument name="new_isDeleted" type="boolean" required="true">
 
     <cftry>
-        <cfquery name="insertQuery" datasource="#DSN#" result="insertResult">
-            #sql#
-            <cfqueryparam value="#arguments.qID#" cfsqltype="CF_SQL_INTEGER">
-            <cfqueryparam value="#arguments.qTypeID#" cfsqltype="CF_SQL_INTEGER">
-            <cfqueryparam value="#arguments.qtext#" cfsqltype="CF_SQL_VARCHAR">
-            <cfqueryparam value="#arguments.qorder#" cfsqltype="CF_SQL_INTEGER">
-            <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
-            <cfqueryparam value="#arguments.recordname#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.recordname)#">
+        <cfquery datasource="abod">
+            INSERT INTO audquestions_default (qTypeID, qtext, qorder, isDeleted)
+            VALUES (
+                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_qTypeID#" null="#NOT len(trim(arguments.new_qTypeID))#">,
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_qtext#" maxlength="500" null="#NOT len(trim(arguments.new_qtext))#">,
+                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_qorder#" null="#NOT len(trim(arguments.new_qorder))#">,
+                <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+            )
         </cfquery>
-        <cfset insertResult = insertQuery.generatedKey>
-        <cfcatch>
-            <cflog file="application" text="Error inserting into audquestions_default: #cfcatch.message# Details: #cfcatch.detail# SQL: #sql#">
-            <!--- Return 0 or some error code to indicate failure --->
-            <cfreturn 0>
-        </cfcatch>
+    <cfcatch type="any">
+        <cflog file="application" text="Error inserting into audquestions_default: #cfcatch.message#" />
+        <cfrethrow />
+    </cfcatch>
     </cftry>
-
-    <!--- Return the generated key from the insert operation --->
-    <cfreturn insertResult>
 </cffunction>
+<cffunction name="updateAudQuestionsDefault" access="public" returntype="void">
+    <cfargument name="new_qTypeID" type="numeric" required="true">
+    <cfargument name="new_qtext" type="string" required="true">
+    <cfargument name="new_qorder" type="numeric" required="true">
+    <cfargument name="new_isDeleted" type="boolean" required="true">
+    <cfargument name="new_qID" type="numeric" required="true">
 
-<!--- Changes made:
-- No syntax errors were found in the provided code.
---->
-
-<cffunction name="updateaudquestions_default" access="public" returntype="boolean">
-    <cfargument name="qID" type="numeric" required="true">
-    <cfargument name="qTypeID" type="numeric" required="false" default="">
-    <cfargument name="qtext" type="string" required="false" default="">
-    <cfargument name="qorder" type="numeric" required="false" default="">
-    <cfargument name="isDeleted" type="boolean" required="false" default="">
-    <cfargument name="recordname" type="string" required="false" default="">
-    
-    <cfset var result = false>
-    <cfset var sql = "UPDATE audquestions_default SET">
-    <cfset var setClauses = []>
-    
-    <!--- Build SET clause dynamically --->
-    <cfif len(arguments.qTypeID)>
-        <cfset arrayAppend(setClauses, "qTypeID = ?")>
-    </cfif>
-    <cfif len(arguments.qtext)>
-        <cfset arrayAppend(setClauses, "qtext = ?")>
-    </cfif>
-    <cfif len(arguments.qorder)>
-        <cfset arrayAppend(setClauses, "qorder = ?")>
-    </cfif>
-    <cfif isDefined("arguments.isDeleted")>
-        <cfset arrayAppend(setClauses, "isDeleted = ?")>
-    </cfif>
-    <cfif len(arguments.recordname)>
-        <cfset arrayAppend(setClauses, "recordname = ?")>
-    </cfif>
-
-    <!--- If no fields to update, return false --->
-    <cfif arrayLen(setClauses) eq 0>
-        <cfreturn false>
-    </cfif>
-
-    <!--- Complete SQL statement --->
-    <cfset sql &= " " & arrayToList(setClauses, ", ") & " WHERE qID = ?">
-
-    <!--- Execute the query --->
     <cftry>
-        <cfquery datasource="#DSN#">
-            #sql#
-            <cfif len(arguments.qTypeID)>
-                <cfqueryparam value="#arguments.qTypeID#" cfsqltype="CF_SQL_INTEGER">
-            </cfif>
-            <cfif len(arguments.qtext)>
-                <cfqueryparam value="#arguments.qtext#" cfsqltype="CF_SQL_VARCHAR">
-            </cfif>
-            <cfif len(arguments.qorder)>
-                <cfqueryparam value="#arguments.qorder#" cfsqltype="CF_SQL_INTEGER">
-            </cfif>
-            <cfif isDefined("arguments.isDeleted")>
-                <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
-            </cfif>
-            <cfif len(arguments.recordname)>
-                <cfqueryparam value="#arguments.recordname#" cfsqltype="CF_SQL_VARCHAR">
-            </cfif>
-            <!--- qID is always required --->
-            <cfqueryparam value="#arguments.qID#" cfsqltype="CF_SQL_INTEGER">
+        <cfquery datasource="abod">
+            UPDATE audquestions_default 
+            SET 
+                qTypeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_qTypeID#" null="#NOT len(trim(arguments.new_qTypeID))#">,
+                qtext = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_qtext#" maxlength="500" null="#NOT len(trim(arguments.new_qtext))#">,
+                qorder = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_qorder#" null="#NOT len(trim(arguments.new_qorder))#">,
+                isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+            WHERE 
+                qID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_qID#">
         </cfquery>
-
-        <!--- If query executes without error, return true --->
-        <cfset result = true>
-
-        <!--- Error handling --->
         <cfcatch type="any">
-            <!--- Log the error --->
-            <cflog file="application" text="Error updating audquestions_default: #cfcatch.message# Details: #cfcatch.detail# SQL: #sql#">
+            <cflog file="application" text="Error updating audquestions_default: #cfcatch.message# Query: #cfcatch.query# Parameters: #serializeJSON(arguments)#">
+            <cfthrow message="Database update failed." detail="#cfcatch.detail#">
         </cfcatch>
     </cftry>
-
-    <!--- Return result --->
-    <cfreturn result>
-</cffunction> 
-
-<!--- Changes made:
-- None. The code was syntactically correct.
---->
-</cfcomponent>
+</cffunction></cfcomponent>

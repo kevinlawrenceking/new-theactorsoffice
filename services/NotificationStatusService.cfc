@@ -1,54 +1,50 @@
-<cfcomponent displayname="NotificationStatusService" hint="Handles operations for NotificationStatus table" output="false" > 
-<cffunction name="getnotstatuses" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="notID">
-    <cfset var queryResult = "">
-    <cfset var sql = "SELECT `notID`, `actionID`, `userID`, `suID`, `systemID`, `contactID`, `actionNo`, `actionDaysNo`, `actionDaysRecurring`, `actionlinkid`, `notStatus`, `notNotes`, `suStatus`, `actionDetails`, `actionTitle`, `navToURL`, `actionNotes`, `actionInfo`, `BtnName`, `ActionLinkURL`, `endlink`, `targetlink`, `checktype`, `delstart`, `delend`, `status_color`, `ispastdue`, `notTimeStamp`, `suTimeStamp`, `notStartDate`, `notEndDate`, `suStartDate`, `suEndDate`, `suNotes` FROM vm_notstatuses_funotifications_fuactions WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var validOrderByColumns = "notID, actionID, userID, suID, systemID, contactID, actionNo, actionDaysNo, actionDaysRecurring, actionlinkid, notStatus, notNotes, suStatus, actionDetails, actionTitle, navToURL, actionNotes, actionInfo, BtnName, ActionLinkURL, endlink, targetlink, checktype, delstart, delend, status_color, ispastdue, notTimeStamp, suTimeStamp, notStartDate, notEndDate, suStartDate, suEndDate">
-
+<cfcomponent displayname="NotificationStatusService" hint="Handles operations for NotificationStatus table" output="false"> 
+<cffunction name="getNotifications" access="public" returntype="query">
+    <cfargument name="currentid" type="numeric" required="true">
+    <cfargument name="sysActiveSuid" type="numeric" required="true">
+    <cfargument name="sessionUserid" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
     <cftry>
-        <!--- Add conditions based on filters --->
-        <cfif structKeyExists(arguments.filters, "userid")>
-            <cfset arrayAppend(whereClause, "userID = ?")>
-        </cfif>
-
-        <!--- Example of hardcoded conditions --->
-        <cfset arrayAppend(whereClause, "read = 0")>
-        <cfset arrayAppend(whereClause, "trash = 0")>
-
-        <!--- Append dynamic where clauses --->
-        <cfloop array="#whereClause#" index="condition">
-            <cfset sql &= " AND " & condition>
-        </cfloop>
-
-        <!--- Validate and append ORDER BY clause --->
-        <cfif listFindNoCase(validOrderByColumns, arguments.orderBy)>
-            <cfset sql &= " ORDER BY " & arguments.orderBy>
-        </cfif>
-
-        <!--- Execute the query --->
-        <cfquery name="queryResult" datasource="yourDataSource">
-            #sql#
-            <cfif structKeyExists(arguments.filters, "userid")>
-                <cfqueryparam value="#arguments.filters.userid#" cfsqltype="CF_SQL_INTEGER" null="#isNull(arguments.filters.userid)#">
-            </cfif>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT 
+                n.notID, n.actionID, n.userID, n.suID, n.notTimeStamp, 
+                n.notStartDate, n.notEndDate, 'Future' AS notStatus, 
+                n.notNotes, f.systemID, f.contactID, f.suTimeStamp, 
+                f.suStartDate, f.suEndDate, f.suStatus, f.suNotes, 
+                a.actionID, a.actionNo, a.actionDetails, a.actionTitle, 
+                a.navToURL, au.actionDaysNo, au.actionDaysRecurring, 
+                a.actionNotes, a.actionInfo, l.actionlinkid, l.BtnName, 
+                l.ActionLinkURL, l.endlink, l.targetlink, n.ispastdue,
+                ns.checktype, ns.delstart, ns.delend, ns.status_color
+            FROM 
+                notstatuses ns,
+                funotifications n
+            INNER JOIN 
+                fusystemusers f ON f.suID = n.suID
+            INNER JOIN 
+                fusystems s ON s.systemID = f.systemID
+            INNER JOIN 
+                fuactions a ON a.actionID = n.actionID
+            INNER JOIN 
+                actionusers au ON a.actionID = au.actionID
+            INNER JOIN 
+                fuActionLinks l ON l.actionlinkid = a.actionlinkid
+            WHERE 
+                f.contactID = <cfqueryparam value="#arguments.currentid#" cfsqltype="CF_SQL_INTEGER"> AND
+                f.suid = <cfqueryparam value="#arguments.sysActiveSuid#" cfsqltype="CF_SQL_INTEGER"> AND
+                au.userid = <cfqueryparam value="#arguments.sessionUserid#" cfsqltype="CF_SQL_INTEGER"> AND
+                (n.notstartdate IS NULL OR DATE(n.notstartdate) >= <cfqueryparam value="#DateFormat(Now(),'yyyy-mm-dd')#" cfsqltype="CF_SQL_DATE">) AND
+                n.notstatus = <cfqueryparam value="Pending" cfsqltype="CF_SQL_VARCHAR"> AND
+                ns.notstatus = <cfqueryparam value="Future" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
-
-    <cfcatch>
-        <!--- Log error details --->
-        <cflog file="application" text="Error in getnotstatuses: #cfcatch.message# Details: #cfcatch.detail# SQL: #sql#">
-
-        <!--- Return an empty query with the correct structure on error --->
-        <cfset queryResult = queryNew("notID,int|actionID,int|userID,int|suID,int|systemID,int|contactID,int|actionNo,int|actionDaysNo,int|actionDaysRecurring,int|actionlinkid,int|notStatus,varchar|notNotes,varchar|suStatus,varchar|actionDetails,varchar|actionTitle,varchar|navToURL,varchar|actionNotes,varchar|actionInfo,varchar|BtnName,varchar|ActionLinkURL,varchar|endlink,varchar|targetlink,varchar|checktype,varchar|delstart,varchar|delend,varchar|status_color,varchar|ispastdue,int|notTimeStamp,timestamp|suTimeStamp,timestamp|notStartDate,date|notEndDate,date|suStartDate,date|suEndDate,date|suNotes,longvarchar")>
-    </cfcatch>
+        
+        <cfreturn result>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getNotifications: #cfcatch.message# Query: #cfcatch.detail#">
+            <cfreturn queryNew("")>
+        </cfcatch>
     </cftry>
-
-    <!--- Return the result --->
-    <cfreturn queryResult>
-</cffunction> 
-
-<!--- Changes made:
-- None. The provided code does not contain syntax errors that would prevent execution.
---->
-</cfcomponent>
+</cffunction></cfcomponent>

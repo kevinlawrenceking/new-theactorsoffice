@@ -1,38 +1,22 @@
-<cfcomponent displayname="SiteLinksMasterService" hint="Handles operations for SiteLinksMaster table" output="false" > 
-<cffunction name="getsitelinks_master" access="public" returntype="query">
-    <cfargument name="newpnids" type="string" required="true">
-    <cfargument name="orderBy" type="string" required="false" default="sitelink_id">
-    
-    <cfset var queryResult = "">
-    <cfset var sql = "SELECT sitelink_id, sitetypeid, sitename, siteURL, siteicon, sitetypename FROM vm_sitelinks_master_sitetypes_master WHERE 1=1">
-    <cfset var validOrderByColumns = "sitelink_id,sitetypeid,sitename,siteURL,siteicon,sitetypename">
-
-    <!--- Validate and append WHERE clause --->
-    <cfif len(arguments.newpnids)>
-        <cfset sql &= " AND sitelink_id IN (#arguments.newpnids#)">
-    </cfif>
-
-    <!--- Validate ORDER BY clause --->
-    <cfif listFindNoCase(validOrderByColumns, arguments.orderBy)>
-        <cfset sql &= " ORDER BY #arguments.orderBy#">
-    </cfif>
-
-    <!--- Execute the query with error handling --->
+<cfcomponent displayname="SiteLinksMasterService" hint="Handles operations for SiteLinksMaster table" output="false"> 
+<cffunction name="getSiteLinks" access="public" returntype="query">
+    <cfargument name="siteTypeId" type="numeric" required="false">
+    <cfset var result = "">
     <cftry>
-        <cfquery name="queryResult" datasource="abod">
-            #sql#
+        <cfquery name="result" datasource="yourDatasource">
+            SELECT s.id, s.sitename, s.siteURL, s.siteicon, s.sitetypeid, t.sitetypename
+            FROM sitelinks_master s
+            INNER JOIN sitetypes_master t ON t.sitetypeid = s.siteTypeid
+            WHERE 1=1
+            <cfif structKeyExists(arguments, "siteTypeId")>
+                AND s.siteTypeid = <cfqueryparam value="#arguments.siteTypeId#" cfsqltype="CF_SQL_INTEGER">
+            </cfif>
+            ORDER BY s.sitename
         </cfquery>
         <cfcatch type="any">
-            <cflog file="application" text="Error in getsitelinks_master: #cfcatch.message# - #cfcatch.detail# - SQL: #sql#">
-            <!--- Return an empty query with the correct schema on error --->
-            <cfset queryResult = queryNew("sitelink_id,sitetypeid,sitename,siteURL,siteicon,sitetypename", "integer,integer,varchar,varchar,varchar,varchar")>
+            <cflog file="application" text="Error in getSiteLinks: #cfcatch.message#">
+            <cfreturn queryNew("id,sitename,siteURL,siteicon,sitetypeid,sitetypename")>
         </cfcatch>
     </cftry>
-
-    <cfreturn queryResult>
-</cffunction>
-
-<!--- Changes made:
-- Corrected initialization of 'queryResult' from an empty string to an empty query object.
---->
-</cfcomponent>
+    <cfreturn result>
+</cffunction></cfcomponent>

@@ -1,113 +1,44 @@
-<cfcomponent displayname="AuditionContractTypeService" hint="Handles operations for AuditionContractType table" output="false" > 
-<cffunction name="insertaudcontracttypes" access="public" returntype="numeric">
-    <cfargument name="contracttypeid" type="numeric" required="true">
-    <cfargument name="contracttype" type="string" required="true">
-    <cfargument name="audCatid" type="numeric" required="false" default="2">
-    <cfargument name="isDeleted" type="boolean" required="false" default=false>
-    <cfargument name="recordname" type="string" required="false">
-
-    <cfset var insertResult = 0>
+<cfcomponent displayname="AuditionContractTypeService" hint="Handles operations for AuditionContractType table" output="false"> 
+<cffunction name="insertAudContractTypes" access="public" returntype="void">
+    <cfargument name="new_contracttype" type="string" required="true">
+    <cfargument name="new_audCatid" type="numeric" required="true">
+    <cfargument name="new_isDeleted" type="boolean" required="true">
 
     <cftry>
-        <cfquery name="insertQuery" datasource="#DSN#" result="queryResult">
-            INSERT INTO audcontracttypes (
-                contracttypeid, 
-                contracttype, 
-                audCatid, 
-                isDeleted, 
-                recordname
-            ) VALUES (
-                <cfqueryparam value="#arguments.contracttypeid#" cfsqltype="CF_SQL_INTEGER">,
-                <cfqueryparam value="#arguments.contracttype#" cfsqltype="CF_SQL_VARCHAR">,
-                <cfqueryparam value="#arguments.audCatid#" cfsqltype="CF_SQL_INTEGER">,
-                <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">,
-                <cfqueryparam value="#arguments.recordname#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.recordname)#">
+        <cfquery datasource="abod">
+            INSERT INTO audcontracttypes (contracttype, audCatid, isDeleted)
+            VALUES (
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_contracttype#" maxlength="100" null="#NOT len(trim(arguments.new_contracttype))#">,
+                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audCatid#" null="#NOT len(trim(arguments.new_audCatid))#">,
+                <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
             )
         </cfquery>
-        <cfset insertResult = queryResult.generatedKey>
-        
-        <cfcatch>
-            <cflog file="application" text="Error inserting into audcontracttypes: #cfcatch.message# Details: #cfcatch.detail#">
-            <cfset insertResult = 0>
-        </cfcatch>
-    </cftry>
-
-    <cfreturn insertResult>
-</cffunction> 
-
-<!--- Changes made:
-- None. The code is syntactically correct.
---->
-
-<cffunction name="updateaudcontracttypes" access="public" returntype="boolean">
-    <cfargument name="contracttypeid" type="numeric" required="true">
-    <cfargument name="contracttype" type="string" required="false">
-    <cfargument name="audCatid" type="numeric" required="false">
-    <cfargument name="isDeleted" type="boolean" required="false">
-    <cfargument name="recordname" type="string" required="false">
-
-    <cfset var sql = "UPDATE audcontracttypes SET">
-    <cfset var setClauses = []>
-    <cfset var result = false>
-
-    <!--- Validate and build SET clauses --->
-    <cfif structKeyExists(arguments, "contracttype")>
-        <cfset arrayAppend(setClauses, "contracttype = ?")>
-    </cfif>
-    <cfif structKeyExists(arguments, "audCatid")>
-        <cfset arrayAppend(setClauses, "audCatid = ?")>
-    </cfif>
-    <cfif structKeyExists(arguments, "isDeleted")>
-        <cfset arrayAppend(setClauses, "isDeleted = ?")>
-    </cfif>
-    <cfif structKeyExists(arguments, "recordname")>
-        <cfset arrayAppend(setClauses, "recordname = ?")>
-    </cfif>
-
-    <!--- If no fields to update, return false --->
-    <cfif arrayLen(setClauses) eq 0>
-        <cfreturn false>
-    </cfif>
-
-    <!--- Construct the SQL query --->
-    <cfset sql &= " " & arrayToList(setClauses, ", ") & " WHERE contracttypeid = ?">
-
-    <!--- Execute the query in a try/catch block for error handling --->
-    <cftry>
-        <cfquery datasource="#DSN#">
-            #sql#
-            <!--- Bind parameters securely using cfqueryparam --->
-            <cfif structKeyExists(arguments, "contracttype")>
-                <cfqueryparam value="#arguments.contracttype#" cfsqltype="CF_SQL_VARCHAR">
-            </cfif>
-            <cfif structKeyExists(arguments, "audCatid")>
-                <cfqueryparam value="#arguments.audCatid#" cfsqltype="CF_SQL_INTEGER">
-            </cfif>
-            <cfif structKeyExists(arguments, "isDeleted")>
-                <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
-            </cfif>
-            <cfif structKeyExists(arguments, "recordname")>
-                <cfqueryparam value="#arguments.recordname#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.recordname)#">
-            </cfif>
-
-            <!--- WHERE clause parameter --->
-            <cfqueryparam value="#arguments.contracttypeid#" cfsqltype="CF_SQL_INTEGER">
-        </cfquery>
-
-        <!--- If no errors occurred, set result to true --->
-        <cfset result = true>
-
-        <!--- Error handling and logging --->
         <cfcatch type="any">
-            <cflog file="application" text="Error updating audcontracttypes: #cfcatch.message# Details: #cfcatch.detail# SQL: #sql#">
+            <cflog file="application" text="Error inserting into audcontracttypes: #cfcatch.message#">
+            <cfthrow message="An error occurred while inserting data." detail="#cfcatch.detail#">
         </cfcatch>
     </cftry>
+</cffunction>
+<cffunction name="updateAudContractTypes" access="public" returntype="void">
+    <cfargument name="new_contracttype" type="string" required="true">
+    <cfargument name="new_audCatid" type="numeric" required="true">
+    <cfargument name="new_isDeleted" type="boolean" required="true">
+    <cfargument name="new_contracttypeid" type="numeric" required="true">
 
-    <!--- Return the result of the operation --->
-    <cfreturn result>
-</cffunction> 
-
-<!--- Changes made:
-- Added missing closing tag for cftry.
---->
-</cfcomponent>
+    <cftry>
+        <cfquery datasource="abod">
+            UPDATE audcontracttypes 
+            SET 
+                contracttype = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_contracttype#" maxlength="100" null="#NOT len(trim(arguments.new_contracttype))#">,
+                audCatid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audCatid#" null="#NOT len(trim(arguments.new_audCatid))#">,
+                isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+            WHERE 
+                contracttypeid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contracttypeid#">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error updating audcontracttypes: #cfcatch.message#. Query: UPDATE audcontracttypes SET contracttype = ?, audCatid = ?, isDeleted = ? WHERE contracttypeid = ?. Parameters: new_contracttype=#arguments.new_contracttype#, new_audCatid=#arguments.new_audCatid#, new_isDeleted=#arguments.new_isDeleted#, new_contracttypeid=#arguments.new_contracttypeid#">
+            <cfthrow message="An error occurred while updating the contract types." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction></cfcomponent>

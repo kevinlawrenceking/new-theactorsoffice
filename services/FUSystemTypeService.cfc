@@ -1,54 +1,38 @@
-<cfcomponent displayname="FUSystemTypeService" hint="Handles operations for FUSystemType table" output="false" > 
-<cffunction name="getfusystemtypes" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="">
-    
-    <cfset var result = "">
-    <cfset var sql = "SELECT systemType, systemInfo, recordname, IsDeleted FROM fusystemtypes_tbl WHERE IsDeleted = 0">
-    <cfset var whereClause = []>
-    <cfset var validColumns = "systemType,systemInfo,recordname,IsDeleted">
-    <cfset var validOrderColumns = "systemType,systemInfo,recordname">
+<cfcomponent displayname="FUSystemTypeService" hint="Handles operations for FUSystemType table" output="false"> 
+<cffunction name="getSystemTypes" access="public" returntype="query">
+    <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
+    <cfset var queryResult = "">
+    <cfset var sql = "SELECT systemtype AS ID, systemtype AS systemname FROM fusystemtypes">
+    <cfset var whereClause = "">
+    <cfset var paramList = []>
 
-    <!--- Build the WHERE clause dynamically --->
-    <cfloop collection="#arguments.filters#" item="key">
-        <cfif listFindNoCase(validColumns, key)>
-            <cfset arrayAppend(whereClause, "#key# = ?")>
-        </cfif>
-    </cfloop>
-
-    <!--- Append WHERE conditions if any --->
-    <cfif arrayLen(whereClause) gt 0>
-        <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
+    <!--- Build WHERE clause dynamically based on conditions argument --->
+    <cfif structCount(arguments.conditions) gt 0>
+        <cfset whereClause = " WHERE ">
+        <cfloop collection="#arguments.conditions#" item="key">
+            <cfset whereClause &= "#key# = ? AND ">
+            <cfset arrayAppend(paramList, {value=arguments.conditions[key], cfsqltype=determineSQLType(key)})>
+        </cfloop>
+        <!--- Remove trailing 'AND ' --->
+        <cfset whereClause = left(whereClause, len(whereClause) - 5)>
     </cfif>
 
-    <!--- Add ORDER BY clause if valid --->
-    <cfif len(trim(arguments.orderBy)) and listFindNoCase(validOrderColumns, arguments.orderBy)>
-        <cfset sql &= " ORDER BY #arguments.orderBy#">
-    </cfif>
+    <!--- Append ORDER BY clause --->
+    <cfset sql &= whereClause & " ORDER BY systemtype">
 
-    <!--- Execute the query within a try/catch block --->
+    <!--- Execute the query with error handling --->
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="queryResult" datasource="yourDataSource">
             #sql#
-            <cfloop collection="#arguments.filters#" item="key">
-                <cfif listFindNoCase(validColumns, key)>
-                    <cfqueryparam value="#arguments.filters[key]#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.filters[key])#">
-                </cfif>
+            <cfloop array="#paramList#" index="param">
+                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
             </cfloop>
         </cfquery>
         <cfcatch type="any">
-            <!--- Log the error details --->
-            <cflog file="application" text="Error in getfusystemtypes: #cfcatch.message# - #cfcatch.detail#. SQL: #sql#">
-            <!--- Return an empty query with the correct schema --->
-            <cfset result = queryNew("systemType,systemInfo,recordname,IsDeleted", "varchar,varchar,varchar,bit")>
+            <cflog file="application" text="Error executing getSystemTypes: #cfcatch.message# SQL: #sql# Parameters: #serializeJSON(paramList)#">
+            <cfreturn queryNew("ID,systemname")>
         </cfcatch>
     </cftry>
 
-    <!--- Return the result query --->
-    <cfreturn result>
-</cffunction>
-
-<!--- Changes made:
-- Corrected the initialization of 'result' from an empty string to an empty query.
---->
-</cfcomponent>
+    <cfreturn queryResult>
+</cffunction></cfcomponent>

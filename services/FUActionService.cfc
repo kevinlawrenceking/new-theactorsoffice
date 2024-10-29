@@ -1,132 +1,60 @@
-<cfcomponent displayname="FUActionService" hint="Handles operations for FUAction table" output="false" > 
-<cffunction name="getfuactions" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="actionID">
-    <cfset var sql = "SELECT actionID, actionNo, actionDaysNo, actionDaysRecurring, systemID, actionLinkID, actionDetails, actionTitle, navToURL, actionNotes, actionInfo, recordname, UniqueName, IsDeleted, IsUnique FROM fuactions_tbl WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var queryParams = []>
+<cfcomponent displayname="FUActionService" hint="Handles operations for FUAction table" output="false"> 
+<cffunction name="getFuActions" access="public" returntype="query">
+    <cfargument name="target_id_system" type="numeric" required="true">
+    
     <cfset var result = "">
     
-    <!--- Define a whitelist of valid columns for ORDER BY clause --->
-    <cfset var validOrderColumns = "actionID,actionNo,actionDaysNo,actionDaysRecurring,systemID,actionLinkID,actionDetails,actionTitle,navToURL,actionNotes,actionInfo,recordname,UniqueName,IsDeleted,IsUnique">
-
-    <!--- Build dynamic WHERE clause --->
-    <cfloop collection="#arguments.filters#" item="key">
-        <cfif structKeyExists(arguments.filters, key) and len(trim(arguments.filters[key]))>
-            <cfif listFindNoCase("actionID,actionNo,actionDaysNo,actionDaysRecurring,systemID,actionLinkID", key)>
-                <cfset arrayAppend(whereClause, "#key# = ?")>
-                <cfset arrayAppend(queryParams, {value=arguments.filters[key], cfsqltype="CF_SQL_INTEGER"})>
-            <cfelseif listFindNoCase("actionDetails,actionTitle,navToURL,actionNotes,actionInfo,recordname,UniqueName", key)>
-                <cfset arrayAppend(whereClause, "#key# LIKE ?")>
-                <cfset arrayAppend(queryParams, {value="%#arguments.filters[key]#%", cfsqltype="CF_SQL_VARCHAR"})>
-            <cfelseif listFindNoCase("IsDeleted", key)>
-                <cfset arrayAppend(whereClause, "#key# = ?")>
-                <cfset arrayAppend(queryParams, {value=arguments.filters[key], cfsqltype="CF_SQL_BIT"})>
-            </cfif>
-        </cfif>
-    </cfloop>
-
-    <!--- Append WHERE clauses to SQL statement --->
-    <cfif arrayLen(whereClause) gt 0>
-        <cfset sql &= " AND " & arrayToList(whereClause," AND ")>
-    </cfif>
-
-    <!--- Validate and append ORDER BY clause --->
-    <cfif listFindNoCase(validOrderColumns, arguments.orderBy)>
-        <cfset sql &= " ORDER BY #arguments.orderBy#">
-    </cfif>
-
-    <!--- Execute the query within a try/catch block --->
     <cftry>
-        <cfquery name="result" datasource="abod">
-            #sql#
-            <cfloop array="#queryParams#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#" null="#isNull(param.value)#">
-            </cfloop>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT actionid, actiondaysno, actiondaysrecurring
+            FROM fuactions
+            WHERE actionid IN (
+                SELECT actionid 
+                FROM fuactions 
+                WHERE systemid = <cfqueryparam value="#arguments.target_id_system#" cfsqltype="CF_SQL_INTEGER">
+            )
         </cfquery>
+        
         <cfcatch type="any">
-            <!--- Log the error details --->
-            <cflog file="application" text="Error in getfuactions: #cfcatch.message# Details: #cfcatch.detail# SQL: #sql#">
-            <!--- Return an empty query with matching schema --->
-            <cfset result = queryNew("actionID, actionNo, actionDaysNo, actionDaysRecurring, systemID, actionLinkID,
-                                      actionDetails, actionTitle, navToURL,
-                                      actionNotes, actionInfo,
-                                      recordname,
-                                      UniqueName,
-                                      IsDeleted,
-                                      IsUnique",
-                                      "integer,
-                                       integer,
-                                       integer,
-                                       integer,
-                                       integer,
-                                       integer,
-                                       varchar,
-                                       varchar,
-                                       varchar,
-                                       varchar,
-                                       varchar,
-                                       varchar,
-                                       bit,
-                                       bit")>
+            <cflog file="application" text="Error in getFuActions: #cfcatch.message#">
+            <cfset result = queryNew("actionid,actiondaysno,actiondaysrecurring")>
         </cfcatch>
     </cftry>
-
-    <!--- Return the result query --->
+    
     <cfreturn result>
-</cffunction> 
+</cffunction>
+<cffunction name="getFuActions" access="public" returntype="query">
+    <cfargument name="actionId" type="numeric" required="false">
+    <cfargument name="actionDaysNo" type="numeric" required="false">
+    <cfargument name="actionDaysRecurring" type="numeric" required="false">
 
-<!--- Changes made:
-- No changes were necessary as the function code is syntactically correct.
---->
-
-<cffunction name="getvm_fuactions_tbl_fuactions" access="public" returntype="query">
-    <cfargument name="new_sitetypeid" type="numeric" required="true">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfset var result = "">
-    <cfset var sql = "SELECT actionid, actiondaysno, actiondaysrecurring FROM vm_fuactions_tbl_fuactions WHERE sitetypeid = ?">
-    <cfset var whereClause = []>
-    <cfset var validColumns = "actionid,actiondaysno,actiondaysrecurring">
-
+    <cfset var queryResult = "">
+    
     <cftry>
-        <!--- Build dynamic WHERE clause based on filters --->
-        <cfloop collection="#arguments.filters#" item="key">
-            <cfif listFindNoCase(validColumns, key)>
-                <cfset arrayAppend(whereClause, "#key# = ?")>
+        <cfquery name="queryResult" datasource="abod">
+            SELECT actionid, actiondaysno, actiondaysrecurring
+            FROM fuactions
+            WHERE 1=1
+            <cfif structKeyExists(arguments, "actionId")>
+                AND actionid = <cfqueryparam value="#arguments.actionId#" cfsqltype="CF_SQL_INTEGER">
             </cfif>
-        </cfloop>
-
-        <!--- Append dynamic WHERE clauses if any --->
-        <cfif arrayLen(whereClause) gt 0>
-            <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
-        </cfif>
-
-        <!--- Execute the query --->
-        <cfquery name="result" datasource="abod">
-            #sql#
-            <cfqueryparam value="#arguments.new_sitetypeid#" cfsqltype="CF_SQL_INTEGER">
-            <cfloop collection="#arguments.filters#" item="key">
-                <cfif listFindNoCase(validColumns, key)>
-                    <cfqueryparam value="#arguments.filters[key]#" cfsqltype="CF_SQL_INTEGER" null="#isNull(arguments.filters[key])#">
-                </cfif>
-            </cfloop>
+            <cfif structKeyExists(arguments, "actionDaysNo")>
+                AND actiondaysno = <cfqueryparam value="#arguments.actionDaysNo#" cfsqltype="CF_SQL_INTEGER">
+            </cfif>
+            <cfif structKeyExists(arguments, "actionDaysRecurring")>
+                AND actiondaysrecurring = <cfqueryparam value="#arguments.actionDaysRecurring#" cfsqltype="CF_SQL_INTEGER">
+            </cfif>
         </cfquery>
 
-        <!--- Order by actionid for consistent results --->
-        <cfif structKeyExists(arguments.filters, "orderBy") and listFindNoCase(validColumns, arguments.filters.orderBy)>
-            <cfset result = queryAddRow(result)>
-            <cfsort query="result" column="#arguments.filters.orderBy#" type="text" order="asc">
-        </cfif>
+        <!--- Return the query result --->
+        <cfreturn queryResult>
 
-    <cfcatch type="any">
-        <!--- Log error details --->
-        <cflog file="application" text="Error in getvm_fuactions_tbl_fuactions: #cfcatch.message# - #cfcatch.detail# - SQL: #sql#">
-
-        <!--- Return an empty query with correct schema on error --->
-        <cfset result = queryNew("actionid,actiondaysno,actiondaysrecurring", "integer,integer,integer")>
-    </cfcatch>
+        <cfcatch type="any">
+            <!--- Log error details --->
+            <cflog file="application" text="Error in getFuActions: #cfcatch.message# - Query: SELECT actionid, actiondaysno, actiondaysrecurring FROM fuactions - Parameters: #serializeJSON(arguments)#">
+            
+            <!--- Return an empty query if an error occurs --->
+            <cfreturn queryNew("actionid,actiondaysno,actiondaysrecurring", "integer,integer,integer")>
+        </cfcatch>
     </cftry>
-
-    <!--- Return the result query --->
-    <cfreturn result>
 </cffunction></cfcomponent>

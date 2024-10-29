@@ -1,56 +1,40 @@
-<cfcomponent displayname="FilteredQueryService" hint="Handles operations for FilteredQuery table" output="false" > 
-<cffunction name="getqFiltered" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="">
-    
-    <cfset var sql = "SELECT * FROM qFiltered WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var validColumns = ""> <!--- Add valid column names here --->
-    <cfset var validOrderColumns = ""> <!--- Add valid order by column names here --->
-    <cfset var queryResult = "">
-    
-    <cftry>
-        <!--- Build WHERE clause dynamically --->
-        <cfloop collection="#arguments.filters#" item="key">
-            <cfif listFindNoCase(validColumns, key)>
-                <cfset arrayAppend(whereClause, "#key# = ?")>
-            </cfif>
+<cfcomponent displayname="FilteredQueryService" hint="Handles operations for FilteredQuery table" output="false"> 
+<cffunction name="getTotalCount" access="public" returntype="query">
+    <cfargument name="sIndexColumn" type="string" required="true">
+    <cfargument name="conditions" type="struct" required="false" default="#StructNew()#">
+
+    <cfset var result = "">
+    <cfset var sql = "SELECT COUNT(#arguments.sIndexColumn#) as total FROM qFiltered">
+    <cfset var whereClause = "">
+    <cfset var paramList = []>
+
+    <!--- Build WHERE clause dynamically based on conditions --->
+    <cfif StructCount(arguments.conditions) gt 0>
+        <cfset whereClause = " WHERE ">
+        <cfloop collection="#arguments.conditions#" item="key">
+            <cfset whereClause &= "#key# = ? AND ">
+            <cfset ArrayAppend(paramList, {value=arguments.conditions[key], cfsqltype=determineSQLType(key)})>
         </cfloop>
+        <!--- Remove trailing 'AND ' --->
+        <cfset whereClause = Left(whereClause, Len(whereClause) - 4)>
+    </cfif>
 
-        <!--- Append WHERE clause to SQL if any conditions exist --->
-        <cfif arrayLen(whereClause) gt 0>
-            <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
-        </cfif>
+    <!--- Combine SQL with WHERE clause --->
+    <cfset sql &= whereClause>
 
-        <!--- Validate and append ORDER BY clause --->
-        <cfif len(arguments.orderBy) and listFindNoCase(validOrderColumns, arguments.orderBy)>
-            <cfset sql &= " ORDER BY #arguments.orderBy#">
-        </cfif>
-
-        <!--- Execute the query --->
-        <cfquery name="queryResult" datasource="abod">
+    <!--- Execute query within try/catch for error handling --->
+    <cftry>
+        <cfquery name="result" datasource="abod">
             #sql#
-            <cfloop collection="#arguments.filters#" item="key">
-                <cfif listFindNoCase(validColumns, key)>
-                    <cfqueryparam value="#arguments.filters[key]#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.filters[key])#"> <!--- Adjust cfsqltype as per schema --->
-                </cfif>
+            <cfloop array="#paramList#" index="param">
+                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
             </cfloop>
         </cfquery>
-
-    <cfcatch type="any">
-        <!--- Log error details --->
-        <cflog file="application" text="Error in getqFiltered: #cfcatch.message#, Detail: #cfcatch.detail#, SQL: #sql#">
-
-        <!--- Return an empty query with the correct structure on error --->
-        <cfset queryResult = queryNew("column1,column2", "CF_SQL_VARCHAR,CF_SQL_INTEGER")> <!--- Adjust columns and types as per schema --->
-    </cfcatch>
+        <cfcatch type="any">
+            <cflog file="errorLog" text="Error executing query: #cfcatch.message#. SQL: #sql#. Parameters: #SerializeJSON(paramList)#">
+            <cfreturn QueryNew("total", "integer")> <!--- Return empty query set --->
+        </cfcatch>
     </cftry>
 
-    <!--- Return the query result --->
-    <cfreturn queryResult>
-</cffunction> 
-
-<!--- Changes made:
-- None. The code is syntactically correct.
---->
-</cfcomponent>
+    <cfreturn result>
+</cffunction></cfcomponent>

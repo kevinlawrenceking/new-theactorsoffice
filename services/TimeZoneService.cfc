@@ -1,51 +1,79 @@
-<cfcomponent displayname="TimeZoneService" hint="Handles operations for TimeZone table" output="false" > 
-<cffunction name="gettimezones" access="public" returntype="query">
+<cfcomponent displayname="TimeZoneService" hint="Handles operations for TimeZone table" output="false"> 
+<cffunction name="getTimezones" access="public" returntype="query">
     <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="tzid">
-
-    <cfset var sql = "SELECT tzid, gmt, tzname, TZOFFSETFROM, TZOFFSETFROM_DAYLIGHT, TZOFFSETTO, TZOFFSETTO_DAYLIGHT, TZGENERAL, utcHourOffset, utcHourOffset_daylight FROM timezones WHERE 1=1">
+    <cfset var queryResult = "">
+    <cfset var sql = "SELECT tzid, gmt, tzname, utchouroffset FROM timezones">
     <cfset var whereClause = []>
     <cfset var params = []>
-    <cfset var validColumns = "tzid,gmt,tzname,TZOFFSETFROM,TZOFFSETFROM_DAYLIGHT,TZOFFSETTO,TZOFFSETTO_DAYLIGHT,TZGENERAL,utcHourOffset,utcHourOffset_daylight">
-    <cfset var validOrderColumns = "tzid,gmt,tzname,utcHourOffset,utcHourOffset_daylight">
-    <cfset var result = "">
 
+    <!--- Build WHERE clause dynamically based on filters --->
+    <cfif structKeyExists(arguments.filters, "tzid")>
+        <cfset arrayAppend(whereClause, "tzid = ?")>
+        <cfset arrayAppend(params, {value=arguments.filters.tzid, cfsqltype="CF_SQL_INTEGER"})>
+    </cfif>
+    
+    <cfif structKeyExists(arguments.filters, "gmt")>
+        <cfset arrayAppend(whereClause, "gmt = ?")>
+        <cfset arrayAppend(params, {value=arguments.filters.gmt, cfsqltype="CF_SQL_VARCHAR"})>
+    </cfif>
+
+    <cfif structKeyExists(arguments.filters, "tzname")>
+        <cfset arrayAppend(whereClause, "tzname = ?")>
+        <cfset arrayAppend(params, {value=arguments.filters.tzname, cfsqltype="CF_SQL_VARCHAR"})>
+    </cfif>
+
+    <cfif structKeyExists(arguments.filters, "utchouroffset")>
+        <cfset arrayAppend(whereClause, "utchouroffset = ?")>
+        <cfset arrayAppend(params, {value=arguments.filters.utchouroffset, cfsqltype="CF_SQL_INTEGER"})>
+    </cfif>
+
+    <!--- Append WHERE clause if conditions exist --->
+    <cfif arrayLen(whereClause) gt 0>
+        <cfset sql &= " WHERE " & arrayToList(whereClause, " AND ")>
+    </cfif>
+
+    <!--- Append ORDER BY clause --->
+    <cfset sql &= " ORDER BY utcHourOffset">
+
+    <!--- Execute the query with error handling --->
     <cftry>
-        <!--- Build dynamic WHERE clause --->
-        <cfloop collection="#arguments.filters#" item="key">
-            <cfif listFindNoCase(validColumns, key)>
-                <cfset arrayAppend(whereClause, "#key# = ?")>
-                <cfset arrayAppend(params, {value=arguments.filters[key], cfsqltype=de(listFindNoCase("tzid,gmt,tzname,TZOFFSETFROM,TZOFFSETFROM_DAYLIGHT,TZOFFSETTO,TZOFFSETTO_DAYLIGHT,TZGENERAL", key) ? "CF_SQL_VARCHAR" : "CF_SQL_DECIMAL")})>
-            </cfif>
-        </cfloop>
-
-        <!--- Append WHERE clauses if any --->
-        <cfif arrayLen(whereClause) gt 0>
-            <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
-        </cfif>
-
-        <!--- Validate and append ORDER BY clause --->
-        <cfif listFindNoCase(validOrderColumns, arguments.orderBy)>
-            <cfset sql &= " ORDER BY #arguments.orderBy#">
-        </cfif>
-
-        <!--- Execute query --->
-        <cfquery name="result" datasource="abod">
+        <cfquery name="queryResult" datasource="yourDataSource">
             #sql#
             <cfloop array="#params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
             </cfloop>
         </cfquery>
 
-    <cfcatch type="any">
-        <!--- Log error details --->
-        <cflog file="application" text="Error in gettimezones: #cfcatch.message# - #cfcatch.detail#. SQL: #sql#">
-        
-        <!--- Return an empty query with correct schema on error --->
-        <cfset result = queryNew("tzid,gmt,tzname,TZOFFSETFROM,TZOFFSETFROM_DAYLIGHT,TZOFFSETTO,TZOFFSETTO_DAYLIGHT,TZGENERAL,utcHourOffset,utcHourOffset_daylight", "varchar,varchar,varchar,varchar,varchar,varchar,varchar,varchar,decimal,decimal")>
-    </cfcatch>
+        <cfcatch type="any">
+            <cflog file="application" text="Error executing getTimezones: #cfcatch.message# SQL: #sql# Parameters: #serializeJSON(params)#">
+            <!--- Return an empty query on error --->
+            <query name="queryResult"></query>
+        </cfcatch>
     </cftry>
 
-    <!--- Return the result query --->
+    <!--- Return the query result --->
+    <cfreturn queryResult>
+</cffunction>
+<cffunction name="getTimezones" access="public" returntype="query">
+    <cfargument name="tzGeneral" type="string" required="false" default="">
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT tzid, gmt, tzname, tzgeneral, utchouroffset
+            FROM timezones
+            WHERE 1=1
+            <cfif len(trim(arguments.tzGeneral))>
+                AND tzgeneral = <cfqueryparam value="#arguments.tzGeneral#" cfsqltype="CF_SQL_VARCHAR">
+            </cfif>
+            ORDER BY gmt
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getTimezones: #cfcatch.message# Query: SELECT tzid, gmt, tzname, tzgeneral, utchouroffset FROM timezones WHERE tzgeneral IS NOT null AND tzgeneral <> '' ORDER BY gmt">
+            <cfreturn queryNew("tzid,gmt,tzname,tzgeneral,utchouroffset")>
+        </cfcatch>
+    </cftry>
+    
     <cfreturn result>
 </cffunction></cfcomponent>

@@ -1,176 +1,200 @@
-<cfcomponent displayname="ContactAuditionService" hint="Handles operations for ContactAudition table" output="false" > 
-<cffunction name="deleteaudcontacts_auditions_xref" access="public" returntype="boolean">
-    <cfargument name="contactid" type="numeric" required="true">
-    <cfargument name="audprojectid" type="numeric" required="true">
+<cfcomponent displayname="ContactAuditionService" hint="Handles operations for ContactAudition table" output="false"> 
+<cffunction name="insertAuditionXref" access="public" returntype="void">
+    <cfargument name="contactId" type="numeric" required="true">
+    <cfargument name="audStepId" type="numeric" required="true">
 
-    <cfset var result = false>
-    <cfset var sql = "DELETE FROM audcontacts_auditions_xref WHERE contactid = ? AND audprojectid = ?">
+    <cfset var queryResult = "">
+    
+    <cftry>
+        <cfquery name="queryResult" datasource="yourDataSource">
+            INSERT INTO audcontacts_auditions_xref (contactid, audprojectid, xrefnotes)
+            SELECT DISTINCT x.contactid, r.audprojectid, 'Was missing - audition_check.cfm' AS xrefnotes
+            FROM eventcontactsxref x
+            INNER JOIN events e ON x.eventid = e.eventid
+            INNER JOIN audroles r ON r.audRoleID = e.audroleid
+            LEFT JOIN audcontacts_auditions_xref ax ON x.contactid = ax.contactid AND r.audprojectid = ax.audprojectid
+            WHERE ax.contactid IS NULL 
+            AND x.contactid = <cfqueryparam value="#arguments.contactId#" cfsqltype="CF_SQL_INTEGER">
+            AND e.audstepid <> <cfqueryparam value="#arguments.audStepId#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <!--- Handle successful query execution if necessary --->
+        
+    <cfcatch type="any">
+        <cflog file="errorLog" text="Error in insertAuditionXref: #cfcatch.message# Query: #cfcatch.Detail#">
+        <!--- Additional error handling logic --->
+    </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="insertAuditionContact" access="public" returntype="void">
+    <cfargument name="audprojectid" type="numeric" required="true">
+    <cfargument name="new_contactid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="#DSN#">
-            #sql#
-            <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
-            <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
+        <cfquery datasource="abod">
+            INSERT IGNORE INTO audcontacts_auditions_xref 
+            SET audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">, 
+                xrefNotes = <cfqueryparam value="audition-add2.cfm" cfsqltype="CF_SQL_VARCHAR">, 
+                contactid = <cfqueryparam value="#arguments.new_contactid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        <cfset result = true>
         <cfcatch>
-            <cflog file="application" type="error" text="Error in deleteaudcontacts_auditions_xref: #cfcatch.message# Details: #cfcatch.detail# SQL: #sql#">
+            <cflog file="application" text="Error in insertAuditionContact: #cfcatch.message#">
+            <cfthrow message="Database error occurred while inserting audition contact." detail="#cfcatch.detail#">
         </cfcatch>
     </cftry>
-
-    <cfreturn result>
 </cffunction>
-<cffunction name="insertaudcontacts_auditions_xref" access="public" returntype="numeric">
-    <cfargument name="contactid" type="numeric" required="true">
-    <cfargument name="audprojectid" type="numeric" required="true">
-    <cfargument name="xrefNotes" type="string" required="false" default="">
-    <cfargument name="isfollow" type="boolean" required="false" default=false>
+<cfscript>
+function getAuditionContacts(required numeric audprojectid, required numeric new_contactid) {
+    var result = "";
+    try {
+        result = queryExecute(
+            "SELECT * FROM audcontacts_auditions_xref WHERE audprojectid = ? AND contactid = ?",
+            [
+                {value=arguments.audprojectid, cfsqltype="CF_SQL_INTEGER"},
+                {value=arguments.new_contactid, cfsqltype="CF_SQL_INTEGER"}
+            ]
+        );
+    } catch (any e) {
+        cflog(type="error", text="Error executing query in getAuditionContacts: #e.message#");
+        result = queryNew(""); // Return an empty query set on error
+    }
+    return result;
+}
+</cfscript>
 
-    <cfset var insertResult = 0>
-    <cfset var sql = "INSERT INTO audcontacts_auditions_xref (contactid, audprojectid, xrefNotes, isfollow) VALUES (?, ?, ?, ?)">
+<cffunction name="deleteAudContact" access="public" returntype="void" hint="Deletes a contact from the audcontacts_auditions_xref table based on project and contact IDs.">
+    <cfargument name="audprojectid" type="numeric" required="true" hint="The ID of the project." />
+    <cfargument name="old_contactid" type="numeric" required="true" hint="The ID of the contact to be deleted." />
 
     <cftry>
-        <cfquery name="insertQuery" datasource="#application.dsn#" result="queryResult">
-            #sql#
-            <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
-            <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
-            <cfqueryparam value="#arguments.xrefNotes#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.xrefNotes)#">
-            <cfqueryparam value="#arguments.isfollow#" cfsqltype="CF_SQL_BIT" null="#isNull(arguments.isfollow)#">
+        <cfquery datasource="abod">
+            DELETE FROM audcontacts_auditions_xref
+            WHERE audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
+            AND contactid = <cfqueryparam value="#arguments.old_contactid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        <cfset insertResult = queryResult.generatedKey>
+        <cfcatch type="any">
+            <cflog file="application" type="error" text="Error deleting contact: #cfcatch.message# Query: DELETE FROM audcontacts_auditions_xref WHERE audprojectid = #arguments.audprojectid# AND contactid = #arguments.old_contactid#">
+            <cfthrow message="An error occurred while deleting the contact." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="insertAuditionContact" access="public" returntype="void">
+    <cfargument name="audprojectid" type="numeric" required="true">
+    <cfargument name="contactid" type="numeric" required="true">
+
+    <cftry>
+        <cfquery name="qryInsert" datasource="abod">
+            INSERT IGNORE INTO audcontacts_auditions_xref 
+            SET 
+                audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">, 
+                contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
         <cfcatch>
-            <cflog text="Error inserting into audcontacts_auditions_xref: #cfcatch.message# Details: #cfcatch.detail# SQL: #sql#">
-            <cfset insertResult = 0>
+            <cflog file="application" type="error" text="Error inserting into audcontacts_auditions_xref: #cfcatch.message#">
+            <cfrethrow>
         </cfcatch>
     </cftry>
-
-    <cfreturn insertResult>
 </cffunction>
-<cffunction name="getaudcontacts_auditions_xref" access="public" returntype="query">
-    <cfargument name="contactid" type="numeric" required="false">
-    <cfargument name="audprojectid" type="numeric" required="false">
-    <cfargument name="orderBy" type="string" required="false" default="">
-    
-    <cfset var validColumns = "contactid,audprojectid,xrefNotes,isfollow">
-    <cfset var orderByClause = "">
-    <cfset var whereClause = "">
-    <cfset var queryParams = []>
-    <cfset var result = "">
-
-    <!--- Validate and construct ORDER BY clause --->
-    <cfif len(trim(arguments.orderBy))>
-        <cfif listFindNoCase(validColumns, arguments.orderBy)>
-            <cfset orderByClause = "ORDER BY #arguments.orderBy#">
-        </cfif>
-    </cfif>
-
-    <!--- Construct WHERE clause dynamically --->
-    <cfif structKeyExists(arguments, "contactid") and not isNull(arguments.contactid)>
-        <cfset whereClause &= " AND contactid = ?">
-        <cfset arrayAppend(queryParams, {value=arguments.contactid, cfsqltype="CF_SQL_INTEGER"})>
-    </cfif>
-
-    <cfif structKeyExists(arguments, "audprojectid") and not isNull(arguments.audprojectid)>
-        <cfset whereClause &= " AND audprojectid = ?">
-        <cfset arrayAppend(queryParams, {value=arguments.audprojectid, cfsqltype="CF_SQL_INTEGER"})>
-    </cfif>
-
-    <!--- If no conditions are provided, return an empty query --->
-    <cfif len(trim(whereClause)) eq 0>
-        <cfreturn queryNew("contactid,audprojectid,xrefNotes,isfollow", "integer,integer,varchar,bit")>
-    </cfif>
-
-    <!--- Execute the query within a try/catch block for error handling --->
-    <cftry>
-        <cfquery name="result" datasource="abod">
-            SELECT contactid, audprojectid, xrefNotes, isfollow
-            FROM audcontacts_auditions_xref
-            WHERE 1=1
-            #whereClause#
-            #orderByClause#
-            <!--- Moved cfqueryparam inside cfquery to ensure proper parameter binding --->
-        </cfquery>
-        <!--- Loop through parameters after cfquery to bind them correctly --->
-        <cfloop array="#queryParams#" index="param">
-            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-        </cfloop>
-        <cfcatch type="any">
-            <!--- Log the error details --->
-            <cflog file="application" text="Error in getaudcontacts_auditions_xref: #cfcatch.message# - #cfcatch.detail# - SQL: SELECT contactid, audprojectid, xrefNotes, isfollow FROM audcontacts_auditions_xref WHERE 1=1 #whereClause# #orderByClause#">
-            <!--- Return an empty query on error --->
-            <cfreturn queryNew("contactid,audprojectid,xrefNotes,isfollow", "integer,integer,varchar,bit")>
-        </cfcatch>
-    </cftry>
-
-    <!--- Return the result query --->
-    <cfreturn result>
-</cffunction>
-
-<!--- Changes made:
-- Moved cfqueryparam inside cfquery to ensure proper parameter binding.
---->
-
-<cffunction name="updateaudcontacts_auditions_xref" access="public" returntype="boolean">
-    <cfargument name="contactid" type="numeric" required="true">
+<cffunction name="deleteAudcontactsAuditionsXref" access="public" returntype="void">
     <cfargument name="audprojectid" type="numeric" required="true">
-    <cfargument name="xrefNotes" type="string" required="false" default="">
-    <cfargument name="isfollow" type="boolean" required="false" default="">
-    
-    <cfset var sql = "">
-    <cfset var result = false>
     
     <cftry>
-        <!--- Construct the SQL update statement --->
-        <cfset sql = "UPDATE audcontacts_auditions_xref SET">
+        <cfquery datasource="abod">
+            DELETE FROM audcontacts_auditions_xref 
+            WHERE audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
         
-        <!--- Initialize an array to hold set clauses --->
-        <cfset var setClauses = []>
-        
-        <!--- Add clauses based on provided arguments --->
-        <cfif len(trim(arguments.xrefNotes))>
-            <cfset arrayAppend(setClauses, "xrefNotes = ?")>
-        </cfif>
-        
-        <cfif structKeyExists(arguments, "isfollow")>
-            <cfset arrayAppend(setClauses, "isfollow = ?")>
-        </cfif>
-        
-        <!--- Ensure there are fields to update --->
-        <cfif arrayLen(setClauses) gt 0>
-            <cfset sql &= " " & arrayToList(setClauses, ", ") & " WHERE contactid = ? AND audprojectid = ?">
-            
-            <!--- Execute the query --->
-            <cfquery datasource="#DSN#">
-                #sql#
-                <cfif len(trim(arguments.xrefNotes))>
-                    <cfqueryparam value="#arguments.xrefNotes#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.xrefNotes)#">
-                </cfif>
-                <cfif structKeyExists(arguments, "isfollow")>
-                    <cfqueryparam value="#arguments.isfollow#" cfsqltype="CF_SQL_BIT" null="#isNull(arguments.isfollow)#">
-                </cfif>
-                <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
-                <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
-            </cfquery>
-            
-            <!--- If no error occurs, set result to true --->
-            <cfset result = true>
-        </cfif>
-
-        <!--- Handle any errors that occur during query execution --->
         <cfcatch type="any">
-            <!--- Log the error details --->
-            <cflog file="application" text="Error in updateaudcontacts_auditions_xref: #cfcatch.message# Details: #cfcatch.detail# SQL: #sql#">
-            
-            <!--- Return false on error --->
-            <cfset result = false>
+            <cflog file="application" text="Error in deleteAudcontactsAuditionsXref: #cfcatch.message#">
+            <cflog file="application" text="Query: DELETE FROM audcontacts_auditions_xref WHERE audprojectid = #arguments.audprojectid#">
+            <cflog file="application" text="Error Detail: #cfcatch.detail#">
         </cfcatch>
     </cftry>
+</cffunction>
+<cffunction name="insertAuditionContact" access="public" returntype="void">
+    <cfargument name="new_contactid" type="numeric" required="true">
+    <cfargument name="new_audprojectid" type="numeric" required="true">
 
-    <!--- Return the result of the operation --->
-    <cfreturn result>
-</cffunction> 
+    <cftry>
+        <cfquery datasource="abod">
+            INSERT INTO audcontacts_auditions_xref (contactid, audprojectid)
+            VALUES (
+                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contactid#" null="#NOT len(trim(arguments.new_contactid))#">,
+                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audprojectid#" null="#NOT len(trim(arguments.new_audprojectid))#">
+            )
+        </cfquery>
+        <cfcatch type="any">
+            <cflog file="application" text="Error in insertAuditionContact: #cfcatch.message# Query: INSERT INTO audcontacts_auditions_xref (contactid, audprojectid) VALUES (#arguments.new_contactid#, #arguments.new_audprojectid#)">
+            <cfthrow message="Error inserting audition contact." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="updateAudContactsAuditionsXref" access="public" returntype="void">
+    <cfargument name="new_contactid" type="numeric" required="true">
+    <cfargument name="new_audprojectid" type="numeric" required="true">
+    <cftry>
+        <cfquery datasource="abod">
+            UPDATE audcontacts_auditions_xref 
+            SET 
+                contactid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contactid#" null="#NOT len(trim(arguments.new_contactid))#">, 
+                audprojectid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audprojectid#" null="#NOT len(trim(arguments.new_audprojectid))#"> 
+            WHERE 
+                audprojectid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="0">
+        </cfquery>
+        <cfcatch type="any">
+            <cflog file="application" text="Error updating audcontacts_auditions_xref: #cfcatch.message#">
+            <cfthrow>
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="deleteReferralAuditions" access="public" returntype="void">
+    <cfargument name="audprojectid" type="numeric" required="true">
 
-<!--- Changes made:
-- Corrected the use of isDefined() to structKeyExists() for checking if 'isfollow' exists in arguments.
---->
-</cfcomponent>
+    <cftry>
+        <cfquery datasource="abod">
+            DELETE FROM audcontacts_auditions_xref 
+            WHERE audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="cf_sql_integer"> 
+            AND xrefNotes = <cfqueryparam value="Referral" cfsqltype="cf_sql_varchar">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in deleteReferralAuditions: #cfcatch.message# Query: DELETE FROM audcontacts_auditions_xref WHERE audprojectid = #arguments.audprojectid# AND xrefNotes = 'Referral';">
+            <cfthrow>
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="deleteAuditionContact" access="public" returntype="void">
+    <cfargument name="audprojectid" type="numeric" required="true">
+    <cfargument name="deletecontactid" type="numeric" required="true">
+
+    <cftry>
+        <cfquery datasource="abod">
+            DELETE FROM audcontacts_auditions_xref 
+            WHERE audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="cf_sql_integer"> 
+            AND contactid = <cfqueryparam value="#arguments.deletecontactid#" cfsqltype="cf_sql_integer">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in deleteAuditionContact: #cfcatch.message# Query: DELETE FROM audcontacts_auditions_xref WHERE audprojectid = #arguments.audprojectid# AND contactid = #arguments.deletecontactid#">
+            <cfthrow message="Error executing query in deleteAuditionContact." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="insertAudContactAuditionXref" access="public" returntype="void">
+    <cfargument name="audprojectid" type="numeric" required="true">
+    <cfargument name="contactid" type="numeric" required="true">
+
+    <cftry>
+        <cfquery datasource="yourDataSource">
+            INSERT IGNORE INTO audcontacts_auditions_xref 
+            SET audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="cf_sql_integer">, 
+                contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_integer">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in insertAudContactAuditionXref: #cfcatch.message#">
+            <cfthrow message="Database operation failed." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction></cfcomponent>

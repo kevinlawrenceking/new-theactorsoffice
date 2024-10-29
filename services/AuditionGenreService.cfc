@@ -1,66 +1,45 @@
-<cfcomponent displayname="AuditionGenreService" hint="Handles operations for AuditionGenre table" output="false" > 
-<cffunction name="insertaudgenres" access="public" returntype="numeric">
-    <cfargument name="audgenre" type="string" required="true">
-    <cfargument name="audCatid" type="numeric" required="true">
-    <cfargument name="recordname" type="string" required="false" default="">
-    
-    <cfset var insertResult = 0>
-    
+<cfcomponent displayname="AuditionGenreService" hint="Handles operations for AuditionGenre table" output="false"> 
+<cffunction name="insertAudGenre" access="public" returntype="void">
+    <cfargument name="new_audgenre" type="string" required="true">
+    <cfargument name="new_audCatid" type="numeric" required="true">
+    <cfargument name="new_isDeleted" type="boolean" required="true">
+
     <cftry>
-        <cfquery name="insertQuery" datasource="#DSN#" result="queryResult">
-            INSERT INTO audgenres (audgenre, audCatid, isDeleted, recordname) 
+        <cfquery datasource="abod">
+            INSERT INTO audgenres (audgenre, audCatid, isDeleted)
             VALUES (
-                <cfqueryparam value="#arguments.audgenre#" cfsqltype="CF_SQL_VARCHAR">,
-                <cfqueryparam value="#arguments.audCatid#" cfsqltype="CF_SQL_INTEGER">,
-                <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">,
-                <cfqueryparam value="#arguments.recordname#" cfsqltype="CF_SQL_VARCHAR" null="#not len(arguments.recordname)#">
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audgenre)#" maxlength="100" null="#NOT len(trim(arguments.new_audgenre))#">,
+                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audCatid#" null="#NOT len(trim(arguments.new_audCatid))#">,
+                <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
             )
         </cfquery>
-        
-        <cfset insertResult = queryResult.generatedKey>
-        
-        <cfcatch>
-            <cflog file="application" text="Error inserting into audgenres: #cfcatch.message# - #cfcatch.detail#">
-            <cflog file="application" text="SQL: INSERT INTO audgenres (audgenre, audCatid, isDeleted, recordname) VALUES (?, ?, ?, ?)">
+        <cfcatch type="any">
+            <cflog file="application" text="Error in insertAudGenre: #cfcatch.message#" />
+            <cflog file="application" text="Query: INSERT INTO audgenres (audgenre, audCatid, isDeleted) VALUES (#arguments.new_audgenre#, #arguments.new_audCatid#, #arguments.new_isDeleted#)" />
+            <cflog file="application" text="Error Detail: #cfcatch.detail#" />
+            <cflog file="application" text="Stack Trace: #cfcatch.stackTrace#" />
         </cfcatch>
     </cftry>
-    
-    <cfreturn insertResult>
 </cffunction>
+<cffunction name="updateAudGenre" access="public" returntype="void">
+    <cfargument name="new_audgenre" type="string" required="true">
+    <cfargument name="new_audCatid" type="numeric" required="true">
+    <cfargument name="new_isDeleted" type="boolean" required="true">
+    <cfargument name="new_audgenreid" type="numeric" required="true">
 
-<!--- Changes made:
-- None. The code is syntactically correct and should execute properly.
---->
-
-<cffunction name="updateaudgenres" access="public" returntype="boolean">
-    <cfargument name="audgenreid" type="numeric" required="true">
-    <cfargument name="audgenre" type="string" required="true">
-    <cfargument name="audCatid" type="numeric" required="true">
-    <cfargument name="isDeleted" type="boolean" required="true">
-    <cfargument name="recordname" type="string" required="false">
-
-    <cfset var result = false>
-    <cfset var sql = "UPDATE audgenres SET audgenre = ?, audCatid = ?, isDeleted = ?, recordname = ? WHERE audgenreid = ?">
-    
     <cftry>
-        <cfquery datasource="#DSN#">
-            #sql#
-            <cfqueryparam value="#arguments.audgenre#" cfsqltype="CF_SQL_VARCHAR">
-            <cfqueryparam value="#arguments.audCatid#" cfsqltype="CF_SQL_INTEGER">
-            <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
-            <cfqueryparam value="#arguments.recordname#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.recordname)#">
-            <cfqueryparam value="#arguments.audgenreid#" cfsqltype="CF_SQL_INTEGER">
+        <cfquery datasource="abod">
+            UPDATE audgenres 
+            SET 
+                audgenre = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audgenre)#" maxlength="100" null="#NOT len(trim(arguments.new_audgenre))#" />, 
+                audCatid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audCatid#" null="#NOT len(trim(arguments.new_audCatid))#" />, 
+                isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#" /> 
+            WHERE 
+                audgenreid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audgenreid#" />
         </cfquery>
-        <cfset result = true>
-        <cfcatch>
-            <cflog file="application" text="Error updating audgenres: #cfcatch.message# Details: #cfcatch.detail# SQL: #sql#">
-        </cfcatch>
+    <cfcatch type="any">
+        <cflog file="application" text="Error updating audgenres: #cfcatch.message# Query: #cfcatch.detail#">
+        <cfthrow message="An error occurred while updating the record." detail="#cfcatch.detail#">
+    </cfcatch>
     </cftry>
-
-    <cfreturn result>
-</cffunction> 
-
-<!--- Changes made:
-- None, the function code is syntactically correct.
---->
-</cfcomponent>
+</cffunction></cfcomponent>

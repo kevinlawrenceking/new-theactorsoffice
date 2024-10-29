@@ -1,55 +1,41 @@
-<cfcomponent displayname="PanelsMasterService" hint="Handles operations for PanelsMaster table" output="false" > 
-<cffunction name="getpgpanels_master" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="pnID">
-    
-    <cfset var validColumns = "pnID,pnOrderNo,pnColXl,pnColMd,pnTitle,pnFilename,pnDescription,IsDeleted">
-    <cfset var validOrderColumns = "pnID,pnOrderNo,pnColXl,pnColMd">
-    <cfset var sql = "SELECT pnID, pnOrderNo, pnColXl, pnColMd, pnTitle, pnFilename, pnDescription, IsDeleted FROM pgpanels_master_tbl WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var queryParams = []>
-    <cfset var result = "">
+<cfcomponent displayname="PanelsMasterService" hint="Handles operations for PanelsMaster table" output="false"> 
+<cffunction name="getPgPanelsMasterData" access="public" returntype="query">
+    <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
+    <cfset var queryResult = "">
+    <cfset var sql = "SELECT * FROM pgpanels_master">
+    <cfset var whereClauses = []>
+    <cfset var parameters = []>
 
-    <!--- Build dynamic WHERE clause --->
-    <cfloop collection="#arguments.filters#" item="key">
-        <cfif listFindNoCase(validColumns, key)>
-            <cfset arrayAppend(whereClause, "#key# = ?")>
-            <cfset arrayAppend(queryParams, {value=arguments.filters[key], cfsqltype=de("CF_SQL_" & uCase(listGetAt(validColumns, listFindNoCase(validColumns, key))))})>
+    <!--- Validate and build WHERE clauses --->
+    <cfloop collection="#arguments.conditions#" item="columnName">
+        <cfif listFindNoCase("validColumn1,validColumn2,validColumn3", columnName)>
+            <cfset arrayAppend(whereClauses, "#columnName# = ?")>
+            <cfset arrayAppend(parameters, {value=arguments.conditions[columnName], cfsqltype=determineSQLType(columnName)})>
         </cfif>
     </cfloop>
 
-    <!--- Append WHERE clause if conditions exist --->
-    <cfif arrayLen(whereClause) gt 0>
-        <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
+    <!--- Append WHERE clauses if any --->
+    <cfif arrayLen(whereClauses) gt 0>
+        <cfset sql &= " WHERE " & arrayToList(whereClauses, " AND ")>
     </cfif>
 
-    <!--- Validate and append ORDER BY clause --->
-    <cfif listFindNoCase(validOrderColumns, arguments.orderBy)>
-        <cfset sql &= " ORDER BY #arguments.orderBy#">
-    </cfif>
+    <!--- Add ORDER BY clause if needed --->
+    <!--- Assuming 'validOrderColumn' is a valid column for ordering --->
+    <cfset sql &= " ORDER BY validOrderColumn">
 
-    <!--- Execute the query within a try/catch block --->
+    <!--- Execute the query with error handling --->
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="queryResult" datasource="yourDataSource">
             #sql#
-            <cfloop array="#queryParams#" index="param">
+            <cfloop array="#parameters#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
             </cfloop>
         </cfquery>
-        <cfcatch>
-            <!--- Log the error details --->
-            <cflog file="application" type="error" text="Error in getpgpanels_master: #cfcatch.message# - #cfcatch.detail#. SQL: #sql#">
-            
-            <!--- Return an empty query with the correct columns --->
-            <cfset result = queryNew("pnID,pnOrderNo,pnColXl,pnColMd,pnTitle,pnFilename,pnDescription,IsDeleted", "integer,integer,integer,integer,varchar,varchar,varchar,bit")>
+        <cfcatch type="any">
+            <cflog file="application" text="Error executing query: #cfcatch.message# SQL: #sql# Parameters: #serializeJSON(parameters)#">
+            <cfreturn queryNew("")>
         </cfcatch>
     </cftry>
 
-    <!--- Return the result query --->
-    <cfreturn result>
-</cffunction>
-
-<!--- Changes made:
-- None. The code is syntactically correct.
---->
-</cfcomponent>
+    <cfreturn queryResult>
+</cffunction></cfcomponent>

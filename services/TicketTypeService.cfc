@@ -1,51 +1,40 @@
-<cfcomponent displayname="TicketTypeService" hint="Handles operations for TicketType table" output="false" > 
-<cffunction name="gettickettypes" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="ID">
-    
-    <cfset var validColumns = "ID,tickettype">
-    <cfset var validOrderByColumns = "ID,tickettype">
-    <cfset var sql = "SELECT ID, tickettype FROM tickettypes WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var queryParams = []>
-    <cfset var result = "">
+<cfcomponent displayname="TicketTypeService" hint="Handles operations for TicketType table" output="false"> 
+<cffunction name="getTicketTypes" access="public" returntype="query">
+    <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
+    <cfset var queryResult = "">
+    <cfset var sql = "SELECT tickettype AS id, tickettype AS name FROM tickettypes">
+    <cfset var whereClauses = []>
+    <cfset var paramList = []>
 
+    <!--- Validate and construct WHERE clause --->
+    <cfloop collection="#arguments.conditions#" item="key">
+        <cfif listFindNoCase("tickettype", key)>
+            <cfset arrayAppend(whereClauses, "#key# = ?")>
+            <cfset arrayAppend(paramList, {value=arguments.conditions[key], cfsqltype="CF_SQL_VARCHAR"})>
+        </cfif>
+    </cfloop>
+
+    <!--- Append WHERE clause if conditions exist --->
+    <cfif arrayLen(whereClauses) gt 0>
+        <cfset sql &= " WHERE " & arrayToList(whereClauses, " AND ")>
+    </cfif>
+
+    <!--- Append ORDER BY clause --->
+    <cfset sql &= " ORDER BY tickettype">
+
+    <!--- Execute query with error handling --->
     <cftry>
-        <!--- Build WHERE clause dynamically based on filters --->
-        <cfloop collection="#arguments.filters#" item="key">
-            <cfif listFindNoCase(validColumns, key)>
-                <cfset arrayAppend(whereClause, "#key# = ?")>
-                <cfset arrayAppend(queryParams, {value=arguments.filters[key], cfsqltype=key EQ 'ID' ? 'CF_SQL_INTEGER' : 'CF_SQL_VARCHAR', null=isNull(arguments.filters[key])})>
-            </cfif>
-        </cfloop>
-
-        <!--- Append WHERE clauses if any --->
-        <cfif arrayLen(whereClause) gt 0>
-            <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
-        </cfif>
-
-        <!--- Validate and append ORDER BY clause --->
-        <cfif listFindNoCase(validOrderByColumns, arguments.orderBy)>
-            <cfset sql &= " ORDER BY #arguments.orderBy#">
-        </cfif>
-
-        <!--- Execute the query --->
-        <cfquery name="result" datasource="abod">
+        <cfquery name="queryResult" datasource="abod">
             #sql#
-            <cfloop array="#queryParams#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#" null="#param.null#">
+            <cfloop array="#paramList#" index="param">
+                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
             </cfloop>
         </cfquery>
-
-    <cfcatch type="any">
-        <!--- Log the error --->
-        <cflog file="application" text="Error in gettickettypes: #cfcatch.message# - #cfcatch.detail#. SQL: #sql#">
-
-        <!--- Return an empty query with correct schema on error --->
-        <cfset result = queryNew("ID,tickettype", "integer,varchar")>
-    </cfcatch>
+        <cfcatch type="any">
+            <cflog file="application" text="Error executing getTicketTypes: #cfcatch.message# SQL: #sql# Parameters: #serializeJSON(paramList)#">
+            <cfreturn queryNew("id,name", "varchar,varchar")> <!--- Return empty query on error --->
+        </cfcatch>
     </cftry>
 
-    <!--- Return the result query --->
-    <cfreturn result>
+    <cfreturn queryResult>
 </cffunction></cfcomponent>

@@ -1,54 +1,42 @@
-<cfcomponent displayname="CityService" hint="Handles operations for City table" output="false" > 
-<cffunction name="getcities" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="id">
+<cfcomponent displayname="CityService" hint="Handles operations for City table" output="false"> 
+<cffunction name="getCities" access="public" returntype="query">
+    <cfargument name="countryId" type="numeric" required="false">
+    <cfargument name="regionId" type="numeric" required="false">
+    <cfargument name="cityName" type="string" required="false">
+
+    <cfset var local = {}>
+
+    <cfset local.queryString = "SELECT id, countryid, region_id, cityname FROM cities WHERE 1=1">
     
-    <cfset var sql = "SELECT `id`, `countryid`, `regionid`, `cityname`, `region_id` FROM `cities` WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var queryParams = []>
-    <cfset var validColumns = "id,countryid,regionid,cityname,region_id">
-    <cfset var validOrderByColumns = "id,countryid,regionid,cityname,region_id">
-    <cfset var result = "">
-
-    <!--- Build WHERE clause dynamically based on provided filters --->
-    <cfloop collection="#arguments.filters#" item="key">
-        <cfif listFindNoCase(validColumns, key)>
-            <cfset arrayAppend(whereClause, "#key# = ?")>
-            <cfset arrayAppend(queryParams, {value=arguments.filters[key], cfsqltype=de("CF_SQL_" & uCase(listGetAt(validColumns, listFindNoCase(validColumns, key))))})>
-        </cfif>
-    </cfloop>
-
-    <!--- Append WHERE clause to SQL if there are conditions --->
-    <cfif arrayLen(whereClause) gt 0>
-        <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
+    <cfif structKeyExists(arguments, "countryId")>
+        <cfset local.queryString &= " AND countryid = ?">
+        <cfset arrayAppend(local.params, {value=arguments.countryId, cfsqltype="CF_SQL_INTEGER"})>
+    </cfif>
+    
+    <cfif structKeyExists(arguments, "regionId")>
+        <cfset local.queryString &= " AND region_id = ?">
+        <cfset arrayAppend(local.params, {value=arguments.regionId, cfsqltype="CF_SQL_INTEGER"})>
+    </cfif>
+    
+    <cfif structKeyExists(arguments, "cityName")>
+        <cfset local.queryString &= " AND cityname LIKE ?">
+        <cfset arrayAppend(local.params, {value=arguments.cityName & "%", cfsqltype="CF_SQL_VARCHAR"})>
     </cfif>
 
-    <!--- Validate and append ORDER BY clause --->
-    <cfif listFindNoCase(validOrderByColumns, arguments.orderBy)>
-        <cfset sql &= " ORDER BY #arguments.orderBy#">
-    </cfif>
+    <cfset local.queryString &= " ORDER BY cityname">
 
-    <!--- Execute the query within a try/catch block for error handling --->
     <cftry>
-        <cfquery name="result" datasource="abod">
-            #sql#
-            <cfloop array="#queryParams#" index="param">
+        <cfquery name="local.result" datasource="abod">
+            #local.queryString#
+            <cfloop array="#local.params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
             </cfloop>
         </cfquery>
+        <cfreturn local.result>
+        
         <cfcatch type="any">
-            <!--- Log the error details --->
-            <cflog file="application" text="Error in getcities function: #cfcatch.message# - #cfcatch.detail#. SQL: #sql#">
-            <!--- Return an empty query with correct column names and types --->
-            <cfset result = queryNew("id,countryid,regionid,cityname,region_id", "integer,varchar,varchar,varchar,integer")>
+            <cflog file="application" text="Error executing getCities query: #cfcatch.message# Query: #local.queryString# Parameters: #serializeJSON(local.params)#">
+            <cfreturn queryNew("id,countryid,region_id,cityname")>
         </cfcatch>
     </cftry>
-
-    <!--- Return the result query --->
-    <cfreturn result>
-</cffunction> 
-
-<!--- Changes made:
-- Corrected the use of the 'de' function to 'createObject' for dynamic SQL type creation.
---->
-</cfcomponent>
+</cffunction></cfcomponent>

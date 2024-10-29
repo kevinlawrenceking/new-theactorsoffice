@@ -1,50 +1,29 @@
-<cfcomponent displayname="PanelService" hint="Handles operations for Panel table" output="false" > 
-<cffunction name="getpgpanels" access="public" returntype="query">
+<cfcomponent displayname="PanelService" hint="Handles operations for Panel table" output="false"> 
+<cffunction name="getPanelIds" access="public" returntype="query">
     <cfargument name="newpnids" type="array" required="true">
-    
-    <cfset var result = "">
-    <cfset var sql = "SELECT pnid FROM vm_pgpanels_panelids WHERE 1=0">
-    <cfset var whereClause = "">
 
+    <cfset var result = "">
+    
     <cftry>
-        <!--- Validate and build the WHERE clause if newpnids is not empty --->
-        <cfif arrayLen(arguments.newpnids) gt 0>
-            <cfset whereClause = " AND pnid IN (">
-            <cfloop index="i" from="1" to="#arrayLen(arguments.newpnids)#">
-                <cfset whereClause &= "?">
-                <cfif i lt arrayLen(arguments.newpnids)>
-                    <cfset whereClause &= ", ">
-                </cfif>
-            </cfloop>
-            <cfset whereClause &= ")">
+        <cfif arrayLen(arguments.newpnids) eq 0>
+            <cfreturn queryNew("pnid", "integer")>
         </cfif>
 
-        <!--- Construct the final SQL query --->
-        <cfset sql = "SELECT pnid FROM vm_pgpanels_panelids WHERE 1=1 #whereClause# ORDER BY pnid">
-
-        <!--- Execute the query --->
         <cfquery name="result" datasource="abod">
-            #sql#
-            <cfloop index="i" from="1" to="#arrayLen(arguments.newpnids)#">
-                <cfqueryparam value="#arguments.newpnids[i]#" cfsqltype="CF_SQL_INTEGER">
-            </cfloop>
+            SELECT pnid 
+            FROM pgpanels 
+            WHERE pnid IN (
+                <cfloop array="#arguments.newpnids#" index="pnid">
+                    <cfqueryparam value="#pnid#" cfsqltype="CF_SQL_INTEGER" list="true">
+                </cfloop>
+            )
         </cfquery>
 
-        <!--- Return the result --->
-        <cfreturn result>
-
-    <cfcatch type="any">
-        <!--- Log the error --->
-        <cflog file="application" type="error" text="Error in getpgpanels: #cfcatch.message# - #cfcatch.detail# - SQL: #sql#">
-
-        <!--- Return an empty query with the correct schema --->
-        <cfreturn queryNew("pnid", "integer")>
-    </cfcatch>
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getPanelIds: #cfcatch.message# Query: SELECT pnid FROM pgpanels WHERE pnid IN (#arguments.newpnids#)">
+            <cfthrow message="An error occurred while retrieving panel IDs." detail="#cfcatch.detail#">
+        </cfcatch>
     </cftry>
 
-</cffunction>
-
-<!--- Changes made:
-- Corrected the initialization of the 'result' variable to an empty query instead of a string.
---->
-</cfcomponent>
+    <cfreturn result>
+</cffunction></cfcomponent>

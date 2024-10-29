@@ -1,53 +1,68 @@
-<cfcomponent displayname="AuditionPayCycleService" hint="Handles operations for AuditionPayCycle table" output="false" > 
-<cffunction name="getaudpaycycles" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="paycycleid">
+<cfcomponent displayname="AuditionPayCycleService" hint="Handles operations for AuditionPayCycle table" output="false"> 
+<cffunction name="getPayCycles" access="public" returntype="query">
+    <cfargument name="paycycleid" type="numeric" required="false">
     <cfset var result = "">
-    <cfset var sql = "SELECT paycycleid, paycyclename FROM audpaycycles WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var validColumns = "paycycleid,paycyclename">
-    <cfset var validOrderColumns = "paycycleid,paycyclename">
-
-    <!--- Build dynamic WHERE clause --->
-    <cfloop collection="#arguments.filters#" item="key">
-        <cfif listFindNoCase(validColumns, key)>
-            <cfset arrayAppend(whereClause, "#key# = ?")>
-        </cfif>
-    </cfloop>
-
-    <!--- Append WHERE clause to SQL if conditions exist --->
-    <cfif arrayLen(whereClause) gt 0>
-        <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
-    </cfif>
-
-    <!--- Validate and append ORDER BY clause --->
-    <cfif listFindNoCase(validOrderColumns, arguments.orderBy)>
-        <cfset sql &= " ORDER BY #arguments.orderBy#">
-    </cfif>
-
-    <!--- Execute the query with error handling --->
+    
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT paycycleid AS id, paycycle AS name
+            FROM audpaycycles
+            WHERE 1=1
+            <cfif structKeyExists(arguments, "paycycleid")>
+                AND paycycleid = <cfqueryparam value="#arguments.paycycleid#" cfsqltype="CF_SQL_INTEGER">
+            </cfif>
+            ORDER BY paycycle
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getPayCycles: #cfcatch.message# - Query: SELECT paycycleid AS id, paycycle AS name FROM audpaycycles WHERE paycycleid = #arguments.paycycleid# ORDER BY paycycle">
+            <cfset result = queryNew("id,name", "integer,varchar")>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="getPayCycles" access="public" returntype="query">
+    <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
+    <cfset var queryResult = "">
+    <cfset var sql = "SELECT paycycleid AS id, paycyclename AS name FROM audpaycycles">
+    <cfset var whereClause = "">
+    <cfset var paramList = []>
+    
+    <!--- Construct WHERE clause dynamically --->
+    <cfif structCount(arguments.conditions) gt 0>
+        <cfset whereClause = " WHERE ">
+        <cfloop collection="#arguments.conditions#" item="key">
+            <cfif key eq "id">
+                <cfset whereClause &= "paycycleid = ? AND ">
+                <cfset arrayAppend(paramList, {value=arguments.conditions[key], cfsqltype="CF_SQL_INTEGER"})>
+            </cfif>
+            <cfif key eq "name">
+                <cfset whereClause &= "paycyclename LIKE ? AND ">
+                <cfset arrayAppend(paramList, {value=arguments.conditions[key], cfsqltype="CF_SQL_VARCHAR"})>
+            </cfif>
+        </cfloop>
+        <!--- Remove trailing 'AND ' --->
+        <cfset whereClause = left(whereClause, len(whereClause) - 4)>
+    </cfif>
+
+    <!--- Complete SQL statement --->
+    <cfset sql &= whereClause & " ORDER BY paycyclename">
+
+    <!--- Execute query with error handling --->
+    <cftry>
+        <cfquery name="queryResult" datasource="abod">
             #sql#
-            <cfloop collection="#arguments.filters#" item="key">
-                <cfif listFindNoCase(validColumns, key)>
-                    <cfqueryparam value="#arguments.filters[key]#" cfsqltype="#iif(key eq 'paycycleid', 'CF_SQL_INTEGER', 'CF_SQL_VARCHAR')#" null="#isNull(arguments.filters[key])#">
-                </cfif>
+            <cfloop array="#paramList#" index="param">
+                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
             </cfloop>
         </cfquery>
         <cfcatch type="any">
-            <!--- Log the error --->
-            <cflog file="application" text="Error in getaudpaycycles: #cfcatch.message# - #cfcatch.detail#. SQL: #sql#">
-            <!--- Return an empty query on error --->
-            <cfreturn queryNew("paycycleid,paycyclename", "integer,varchar")>
+            <cflog file="application" text="Error executing getPayCycles: #cfcatch.message# Query: #sql# Parameters: #serializeJSON(paramList)#">
+            <cfthrow message="An error occurred while retrieving pay cycles." detail="#cfcatch.detail#">
         </cfcatch>
     </cftry>
 
-    <!--- Return the result query --->
-    <cfreturn result>
-</cffunction>
-
-<!--- Changes made:
-- Removed unnecessary cfelse block that returned an empty query if no filters were provided.
---->
-</cfcomponent>
+    <!--- Return the result --->
+    <cfreturn queryResult>
+</cffunction></cfcomponent>

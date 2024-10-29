@@ -1,56 +1,21 @@
-<cfcomponent displayname="FTypeXRefService" hint="Handles operations for FTypeXRef table" output="false" > 
-<cffunction name="getftypexref" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="">
-    
-    <cfset var sql = "SELECT ftypefull, ftype, updatetype, cfparam, IsDeleted, update_yn FROM ftypexref_tbl WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var queryParams = []>
-    <cfset var validColumns = "ftypefull,ftype,updatetype,cfparam,IsDeleted,update_yn">
-    <cfset var validOrderColumns = "ftypefull,ftype,updatetype,cfparam,IsDeleted,update_yn">
+<cfcomponent displayname="FTypeXRefService" hint="Handles operations for FTypeXRef table" output="false"> 
+<cffunction name="getCFParamByType" access="public" returntype="query">
+    <cfargument name="type" type="string" required="true">
+
     <cfset var result = "">
-
+    
     <cftry>
-        <!--- Build dynamic WHERE clause based on filters --->
-        <cfloop collection="#arguments.filters#" item="key">
-            <cfif listFindNoCase(validColumns, key)>
-                <cfset arrayAppend(whereClause, "#key# = ?")>
-                <cfset arrayAppend(queryParams, {value=arguments.filters[key], cfsqltype=getSQLType(key)})>
-            </cfif>
-        </cfloop>
-
-        <!--- Append WHERE clause to SQL --->
-        <cfif arrayLen(whereClause) gt 0>
-            <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
-        </cfif>
-
-        <!--- Validate and append ORDER BY clause if provided --->
-        <cfif len(trim(arguments.orderBy)) and listFindNoCase(validOrderColumns, arguments.orderBy)>
-            <cfset sql &= " ORDER BY #arguments.orderBy#">
-        </cfif>
-
-        <!--- Execute the query --->
-        <cfquery name="result" datasource="abod">
-            #sql#
-            <cfloop array="#queryParams#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#" null="#isNull(param.value)#">
-            </cfloop>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT cfparam 
+            FROM ftypexref_tbl 
+            WHERE ftypefull = <cfqueryparam value="#arguments.type#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
-
-    <cfcatch type="any">
-        <!--- Log the error --->
-        <cflog file="application" text="Error in getftypexref: #cfcatch.message# Details: #cfcatch.detail# SQL: #sql#">
-
-        <!--- Return an empty query with correct schema on error --->
-        <cfset result = queryNew("ftypefull, ftype, updatetype, cfparam, IsDeleted, update_yn", "varchar,varchar,varchar,varchar,bit,char")>
-    </cfcatch>
+        
+        <cfcatch type="any">
+            <cflog file="application" type="error" text="Error in getCFParamByType: #cfcatch.message#; Query: SELECT cfparam FROM ftypexref_tbl WHERE ftypefull = ?; Parameters: #arguments.type#">
+            <cfset result = queryNew("cfparam")>
+        </cfcatch>
     </cftry>
 
-    <!--- Return the result --->
     <cfreturn result>
-</cffunction> 
-
-<!--- Changes made:
-- None. The code is syntactically correct.
---->
-</cfcomponent>
+</cffunction></cfcomponent>

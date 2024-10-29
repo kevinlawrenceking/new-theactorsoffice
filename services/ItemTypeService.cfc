@@ -1,119 +1,81 @@
-<cfcomponent displayname="ItemTypeService" hint="Handles operations for ItemType table" output="false" > 
-<cffunction name="getitemtypes" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="">
-
-    <cfset var sql = "SELECT `typeID`, `valueType`, `typeIcon`, `recordname`, `IsDeleted` FROM `itemtypes_tbl` WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var queryParams = []>
-    <cfset var validColumns = "typeID,valueType,typeIcon,recordname,IsDeleted">
-    <cfset var validOrderByColumns = "typeID,valueType,typeIcon,recordname,IsDeleted">
+<cfcomponent displayname="ItemTypeService" hint="Handles operations for ItemType table" output="false"> 
+<cffunction name="getItemTypes" access="public" returntype="query">
+    <cfargument name="catId" type="numeric" required="true">
+    <cfargument name="excludeTypeId" type="numeric" required="true">
+    
     <cfset var result = "">
-
+    
     <cftry>
-        <!--- Build WHERE clause dynamically --->
-        <cfloop collection="#arguments.filters#" item="key">
-            <cfif listFindNoCase(validColumns, key)>
-                <cfset arrayAppend(whereClause, "#key# = ?")>
-                <!--- Corrected the cfsqltype assignment --->
-                <cfset arrayAppend(queryParams, {value=arguments.filters[key], cfsqltype=de("CF_SQL_" & uCase(listGetAt(validColumns, listFindNoCase(validColumns, key))))})>
-            </cfif>
-        </cfloop>
-
-        <!--- Append WHERE conditions to SQL --->
-        <cfif arrayLen(whereClause) gt 0>
-            <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
-        </cfif>
-
-        <!--- Add ORDER BY clause if specified and valid --->
-        <cfif len(trim(arguments.orderBy)) and listFindNoCase(validOrderByColumns, arguments.orderBy)>
-            <cfset sql &= " ORDER BY #arguments.orderBy#">
-        </cfif>
-
-        <!--- Execute the query --->
-        <cfquery name="result" datasource="abod">
-            #sql#
-            <cfloop array="#queryParams#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-            </cfloop>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT i.valuetype
+            FROM itemtypes i
+            INNER JOIN itemcatxref x ON x.typeid = i.typeid
+            WHERE x.catid = <cfqueryparam value="#arguments.catId#" cfsqltype="CF_SQL_INTEGER">
+            AND i.typeid <> <cfqueryparam value="#arguments.excludeTypeId#" cfsqltype="CF_SQL_INTEGER">
+            ORDER BY i.valuetype
         </cfquery>
-
-        <!--- Handle errors and log them --->
+        
         <cfcatch type="any">
-            <cflog file="application" text="Error in getitemtypes: #cfcatch.message#. Detail: #cfcatch.detail#. SQL: #sql#">
-            <!--- Return an empty query with the correct schema on error --->
-            <cfset result = queryNew("typeID,valueType,typeIcon,recordname,IsDeleted", "smallint,varchar,varchar,varchar,bit")>
+            <cflog file="application" text="Error in getItemTypes: #cfcatch.message#">
+            <cfset result = queryNew("valuetype")>
         </cfcatch>
     </cftry>
-
-    <!--- Return the result query --->
+    
     <cfreturn result>
 </cffunction>
+<cffunction name="getItemTypes" access="public" returntype="query">
+    <cfargument name="typeid" type="numeric" required="false">
+    <cfargument name="valuetype" type="string" required="false">
+    <cfargument name="typeicon" type="string" required="false">
 
-<!--- Changes made:
-- Corrected the cfsqltype assignment in the queryParams array to ensure proper SQL type mapping.
---->
+    <cfset var queryResult = "">
+    <cfset var whereClause = []>
+    <cfset var params = []>
 
-<cffunction name="getvm_itemtypes_itemcatxref" access="public" returntype="query">
-    <cfargument name="userid" type="string" required="false">
-    <cfargument name="sitetypeid" type="numeric" required="false">
-    <cfargument name="isdeleted" type="boolean" required="false">
-    <cfargument name="isCustom" type="boolean" required="false">
-    <cfargument name="orderBy" type="string" required="false" default="valuetype">
-
-    <cfset var local = {} />
-    <cfset local.sql = "SELECT valuetype FROM vm_itemtypes_itemcatxref WHERE 1=1" />
-    <cfset local.whereClause = [] />
-    <cfset local.queryParams = [] />
-    <cfset local.validOrderByColumns = "valuetype" />
-
-    <!--- Build dynamic WHERE clause --->
-    <cfif structKeyExists(arguments, "userid")>
-        <cfset arrayAppend(local.whereClause, "(s.userid = ? OR s.userid = ?)")>
-        <cfset arrayAppend(local.queryParams, {value=arguments.userid, cfsqltype="CF_SQL_VARCHAR"})>
-        <cfset arrayAppend(local.queryParams, {value=session.userid, cfsqltype="CF_SQL_VARCHAR"})>
-    </cfif>
-
-    <cfif structKeyExists(arguments, "sitetypeid")>
-        <cfset arrayAppend(local.whereClause, "s.sitetypeid = ?")>
-        <cfset arrayAppend(local.queryParams, {value=arguments.sitetypeid, cfsqltype="CF_SQL_INTEGER"})>
-    </cfif>
-
-    <cfif structKeyExists(arguments, "isdeleted")>
-        <cfset arrayAppend(local.whereClause, "s.isdeleted = ?")>
-        <cfset arrayAppend(local.queryParams, {value=arguments.isdeleted, cfsqltype="CF_SQL_BIT"})>
-    </cfif>
-
-    <cfif structKeyExists(arguments, "isCustom")>
-        <cfset arrayAppend(local.whereClause, "s.isCustom = ?")>
-        <cfset arrayAppend(local.queryParams, {value=arguments.isCustom, cfsqltype="CF_SQL_BIT"})>
-    </cfif>
-
-    <!--- Append WHERE clauses if any --->
-    <cfif arrayLen(local.whereClause) gt 0>
-        <cfset local.sql &= " AND " & arrayToList(local.whereClause, " AND ") />
-    </cfif>
-
-    <!--- Validate and append ORDER BY clause --->
-    <cfif listFindNoCase(local.validOrderByColumns, arguments.orderBy)>
-        <cfset local.sql &= " ORDER BY #arguments.orderBy#" />
-    </cfif>
-
-    <!--- Execute query with error handling --->
     <cftry>
-        <cfquery name="local.result" datasource="yourDataSource">
-            #local.sql#
-            <cfloop array="#local.queryParams#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#" null="#isNull(param.value)#">
-            </cfloop>
-        </cfquery>
-        <cfreturn local.result>
+        <!--- Construct WHERE clause dynamically based on provided arguments --->
+        <cfif structKeyExists(arguments, "typeid") and not isNull(arguments.typeid)>
+            <cfset arrayAppend(whereClause, "typeid = ?")>
+            <cfset arrayAppend(params, {value=arguments.typeid, cfsqltype="CF_SQL_INTEGER"})>
+        </cfif>
 
-        <cfcatch type="any">
-            <!--- Log the error --->
-            <cflog file="application" text="Error in getvm_itemtypes_itemcatxref: #cfcatch.message# - #local.sql#">
-            <!--- Return an empty query with correct schema --->
-            <cfreturn queryNew("valuetype", "varchar")>
-        </cfcatch>
+        <cfif structKeyExists(arguments, "valuetype") and not isNull(arguments.valuetype)>
+            <cfset arrayAppend(whereClause, "valuetype = ?")>
+            <cfset arrayAppend(params, {value=arguments.valuetype, cfsqltype="CF_SQL_VARCHAR"})>
+        </cfif>
+
+        <cfif structKeyExists(arguments, "typeicon") and not isNull(arguments.typeicon)>
+            <cfset arrayAppend(whereClause, "typeicon = ?")>
+            <cfset arrayAppend(params, {value=arguments.typeicon, cfsqltype="CF_SQL_VARCHAR"})>
+        </cfif>
+
+        <!--- Execute query only if there are conditions to prevent unfiltered queries --->
+        <cfif arrayLen(whereClause) gt 0>
+            <cfquery name="queryResult" datasource="yourDataSource">
+                SELECT typeid, valuetype, typeicon
+                FROM itemtypes
+                WHERE #arrayToList(whereClause, " AND ")#
+                <!--- Bind parameters securely --->
+                <cfloop array="#params#" index="param">
+                    <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+                </cfloop>
+            </cfquery>
+        </else>
+            <!--- Return an empty query if no conditions are provided --->
+            <cfquery name="queryResult" dbtype="query">
+                SELECT typeid, valuetype, typeicon
+                WHERE 1=0
+            </cfquery>
+        </cfif>
+
+        <!--- Return the result set --->
+        <cfreturn queryResult>
+
+    <cfcatch type="any">
+        <!--- Log error details for debugging --->
+        <cflog file="application" text="Error in getItemTypes: #cfcatch.message#; Query: SELECT typeid, valuetype, typeicon FROM itemtypes WHERE #arrayToList(whereClause, ' AND ')#; Parameters: #serializeJSON(params)#">
+        <!--- Return an empty query on error --->
+        <cfreturn queryNew("typeid, valuetype, typeicon", "integer,varchar,varchar")>
+    </cfcatch>
     </cftry>
 </cffunction></cfcomponent>

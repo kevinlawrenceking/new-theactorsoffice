@@ -1,48 +1,97 @@
-<cfcomponent displayname="ComponentService" hint="Handles operations for Component table" output="false" > 
-<cffunction name="getpgcomps" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="">
-    <cfset var queryResult = "">
-    <cfset var sql = "SELECT compID, appID, menuOrder, compName, compIcon, compDir, compTable, compInner, compRecordName, recordname, service, IsDeleted, compOwner, menuYN, compActive FROM pgcomps_tbl WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var validColumns = "compID,appID,menuOrder,compName,compIcon,compDir,compTable,compInner,compRecordName,recordname,service,IsDeleted,compOwner,menuYN,compActive">
-    <cfset var validOrderByColumns = "compID,appID,menuOrder">
+<cfcomponent displayname="ComponentService" hint="Handles operations for Component table" output="false"> 
+<cffunction name="getFilteredPgComps" access="public" returntype="query">
+    <cfargument name="menuYN" type="string" required="true">
+    <cfargument name="compOwner" type="string" required="true">
+    <cfargument name="appid" type="numeric" required="true">
 
-
-    <cfloop collection="#arguments.filters#" item="key">
-        <cfif listFindNoCase(validColumns, key)>
-            <cfset arrayAppend(whereClause, "#key# = ?")>
-        </cfif>
-    </cfloop>
-
-    <cfif arrayLen(whereClause) gt 0>
-        <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
-    </cfif>
-
-
-    <cfif len(trim(arguments.orderBy)) and listFindNoCase(validOrderByColumns, arguments.orderBy)>
-        <cfset sql &= " ORDER BY #arguments.orderBy#">
-    </cfif>
-
+    <cfset var result = "">
+    
     <cftry>
-        <cfquery name="queryResult" datasource="abod">
-            #sql#
-            <cfloop collection="#arguments.filters#" item="key">
-                <cfif listFindNoCase(validColumns, key)>
-                    <cfqueryparam value="#arguments.filters[key]#" cfsqltype="#evaluate('CF_SQL_' & uCase(listGetAt(validColumns & ',', listFindNoCase(validColumns & ',', key))) )#" null="#isNull(arguments.filters[key])#">
-                </cfif>
-            </cfloop>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT 
+                c.compID, 
+                c.compName, 
+                c.compIcon, 
+                c.compOwner, 
+                c.menuYN, 
+                c.compDir, 
+                c.menuOrder 
+            FROM 
+                pgcomps c 
+            WHERE 
+                c.menuYN = <cfqueryparam value="#arguments.menuYN#" cfsqltype="CF_SQL_CHAR"> 
+                AND c.compOwner = <cfqueryparam value="#arguments.compOwner#" cfsqltype="CF_SQL_CHAR"> 
+                AND c.appid <> <cfqueryparam value="#arguments.appid#" cfsqltype="CF_SQL_INTEGER"> 
+            ORDER BY 
+                c.menuOrder
         </cfquery>
+        
         <cfcatch type="any">
-            <cflog file="application" text="Error in getpgcomps: #cfcatch.message# - #cfcatch.detail#. SQL: #sql#">
-
-            <cfset queryResult = queryNew("compID,appID,menuOrder,compName,compIcon,compDir,compTable,compInner,compRecordName,recordname,service,IsDeleted,compOwner,menuYN,compActive", "integer,integer,varchar,varchar,varchar,varchar,varchar,varchar,varchar,varchar,varchar,binary,char,char")>
+            <cflog file="errorLog" text="Error in getFilteredPgComps: #cfcatch.message#">
+            <cfreturn queryNew("compID, compName, compIcon, compOwner, menuYN, compDir, menuOrder")>
         </cfcatch>
     </cftry>
 
+    <cfreturn result>
+</cffunction>
+<cffunction name="getFilteredComps" access="public" returntype="query">
+    <cfargument name="menuYN" type="string" required="true">
+    <cfargument name="compOwner" type="string" required="true">
+    <cfargument name="appId" type="numeric" required="true">
 
-    <cfreturn queryResult>
-</cffunction> 
-
-
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT 
+                c.compID, 
+                c.compName, 
+                c.compIcon, 
+                c.compOwner, 
+                c.menuYN, 
+                c.compDir, 
+                c.menuOrder
+            FROM 
+                pgcomps c
+            WHERE 
+                c.menuYN = <cfqueryparam value="#arguments.menuYN#" cfsqltype="CF_SQL_CHAR"> 
+                AND c.compOwner = <cfqueryparam value="#arguments.compOwner#" cfsqltype="CF_SQL_CHAR"> 
+                AND c.appid <> <cfqueryparam value="#arguments.appId#" cfsqltype="CF_SQL_INTEGER">
+            ORDER BY 
+                c.menuOrder
+        </cfquery>
+        
+        <cfreturn result>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getFilteredComps: #cfcatch.message# Query: SELECT c.compID, c.compName, c.compIcon, c.compOwner, c.menuYN, c.compDir, c.menuOrder FROM pgcomps WHERE menuYN = ? AND compOwner = ? AND appid <> ? ORDER BY menuOrder Parameters: menuYN=#arguments.menuYN#, compOwner=#arguments.compOwner#, appId=#arguments.appId#">
+            <cfreturn queryNew("compID,compName,compIcon,compOwner,menuYN,compDir,menuOrder")>
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cfscript>
+function getPgComps(appID, compOwner) {
+    var result = "";
+    try {
+        if (isNumeric(appID) && len(compOwner)) {
+            var query = new Query();
+            query.setDatasource("abod");
+            query.setSQL("
+                SELECT c.compID, c.compName, c.compIcon, c.compOwner, c.menuYN, c.compDir, c.menuOrder 
+                FROM pgcomps c 
+                WHERE c.menuYN = 'Y' AND compOwner = ? AND c.appid = ? 
+                ORDER BY c.menuOrder
+            ");
+            query.addParam(name="compOwner", value=compOwner, cfsqltype="CF_SQL_CHAR");
+            query.addParam(name="appID", value=appID, cfsqltype="CF_SQL_INTEGER");
+            result = query.execute().getResult();
+        } else {
+            result = queryNew("compID,compName,compIcon,compOwner,menuYN,compDir,menuOrder");
+        }
+    } catch (any e) {
+        cflog(file="errorLog", text="Error in getPgComps: " & e.message);
+    }
+    return result;
+}
+</cfscript>
 </cfcomponent>

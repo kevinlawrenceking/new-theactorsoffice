@@ -1,60 +1,100 @@
-<cfcomponent displayname="PageAppLinkService" hint="Handles operations for PageAppLink table" output="false" > 
-<cffunction name="getpgapplinks" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="linkid">
+<cfcomponent displayname="PageAppLinkService" hint="Handles operations for PageAppLink table" output="false"> 
+<cffunction name="getLinks" access="public" returntype="query">
+    <cfargument name="pgid" type="numeric" required="true">
+    <cfset var result = "">
     
-    <cfset var sql = "SELECT linkid, link_no, linkurl, linkname, linktype, pluginname, rel, hrefid, linkloc_tb FROM vm_pgapplinks_pgplugins_pgpages WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var queryParams = []>
-    <cfset var validColumns = "linkid,link_no,linkurl,linkname,linktype,pluginname,rel,hrefid,linkloc_tb">
-    <cfset var validOrderColumns = "linkid,link_no,linkurl,linkname,linktype,pluginname">
-
-    <!--- Build WHERE clause dynamically based on filters --->
-    <cfif structKeyExists(arguments.filters, "linkid")>
-        <cfset arrayAppend(whereClause, "linkid = ?")>
-        <cfset arrayAppend(queryParams, {value=arguments.filters.linkid, cfsqltype="CF_SQL_INTEGER"})>
-    </cfif>
-
-    <cfif structKeyExists(arguments.filters, "pluginname")>
-        <cfset arrayAppend(whereClause, "pluginname = ?")>
-        <cfset arrayAppend(queryParams, {value=arguments.filters.pluginname, cfsqltype="CF_SQL_VARCHAR"})>
-    </cfif>
-
-    <!--- Additional conditions can be added similarly --->
-
-    <!--- Append WHERE clauses if any --->
-    <cfif arrayLen(whereClause) gt 0>
-        <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
-    </cfif>
-
-    <!--- Validate and append ORDER BY clause --->
-    <cfif listFindNoCase(validOrderColumns, arguments.orderBy)>
-        <cfset sql &= " ORDER BY #arguments.orderBy#">
-    </cfif>
-
-    <!--- Execute the query with error handling --->
     <cftry>
         <cfquery name="result" datasource="yourDataSource">
-            #sql#
-            <cfloop array="#queryParams#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-            </cfloop>
+            SELECT 
+                l.linkid, 
+                l.linkurl, 
+                l.linkname, 
+                l.linktype, 
+                l.link_no, 
+                l.linkloc_tb, 
+                l.pluginname, 
+                l.rel, 
+                l.hrefid
+            FROM 
+                pgapplinks l
+            INNER JOIN 
+                pgplugins p ON p.pluginName = l.pluginname
+            INNER JOIN 
+                pgpagespluginsxref x ON x.pluginid = p.pluginid
+            INNER JOIN 
+                pgpages g ON g.pgid = x.pgid
+            WHERE 
+                g.pgid = <cfqueryparam value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER"> 
+            AND 
+                l.linkloc_tb = <cfqueryparam value="t" cfsqltype="CF_SQL_CHAR">
+            ORDER BY 
+                l.link_no
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getLinks function: #cfcatch.message#">
+            <cfreturn queryNew("")>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="getFilteredLinks" access="public" returntype="query">
+    <cfargument name="pgid" type="numeric" required="true">
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="abod">
+            SELECT 
+                l.linkid, l.linkurl, l.linkname, l.linktype, 
+                l.link_no, l.linkloc_tb, l.pluginname, l.rel, l.hrefid 
+            FROM 
+                pgapplinks l 
+            INNER JOIN 
+                pgplugins p ON p.pluginName = l.pluginname 
+            INNER JOIN 
+                pgpagespluginsxref x ON x.pluginid = p.pluginid 
+            INNER JOIN 
+                pgpages g ON g.pgid = x.pgid 
+            WHERE 
+                g.pgid = <cfqueryparam value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER"> 
+                AND l.linkloc_tb = <cfqueryparam value="b" cfsqltype="CF_SQL_CHAR"> 
+                AND l.linkname NOT LIKE <cfqueryparam value="%calendar - custom%" cfsqltype="CF_SQL_VARCHAR"> 
+            ORDER BY 
+                l.link_no
+        </cfquery>
+        
+        <cfcatch>
+            <cflog file="application" text="Error in getFilteredLinks: #cfcatch.message#">
+            <cfreturn queryNew("")>
+        </cfcatch>
+    </cftry>
+
+    <cfreturn result>
+</cffunction>
+<cffunction name="getDistinctPluginNames" access="public" returntype="query">
+    <cfargument name="pgid" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT DISTINCT l.pluginname
+            FROM pgapplinks l
+            INNER JOIN pgplugins p ON p.pluginName = l.pluginname
+            INNER JOIN pgpagespluginsxref x ON x.pluginid = p.pluginid
+            INNER JOIN pgpages g ON g.pgid = x.pgid
+            WHERE g.pgid = <cfqueryparam value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER">
+            AND l.linkloc_tb = <cfqueryparam value="b" cfsqltype="CF_SQL_CHAR">
+            AND l.pluginname <> <cfqueryparam value="global" cfsqltype="CF_SQL_VARCHAR">
+            ORDER BY l.link_no
         </cfquery>
         
         <cfreturn result>
-
+        
         <cfcatch type="any">
-            <!--- Log the error details --->
-            <cflog file="application" text="Error in getpgapplinks: #cfcatch.message# - #cfcatch.detail# - SQL: #sql#">
-
-            <!--- Return an empty query with correct schema --->
-            <cfreturn queryNew("linkid,link_no,linkurl,linkname,linktype,pluginname,rel,hrefid,linkloc_tb", 
-                               "integer,integer,varchar,varchar,varchar,varchar,varchar,varchar,char")>
+            <cflog file="application" text="Error in getDistinctPluginNames: #cfcatch.message# Query: #cfcatch.detail#">
+            <cfreturn queryNew("pluginname")>
         </cfcatch>
     </cftry>
-</cffunction> 
-
-<!--- Changes made:
-     - None. The code is syntactically correct.
---->
-</cfcomponent>
+</cffunction></cfcomponent>

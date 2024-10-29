@@ -1,58 +1,37 @@
-<cfcomponent displayname="EventTypesService" hint="Handles operations for EventTypes table" output="false" > 
-<cffunction name="geteventtypes" access="public" returntype="query">
+<cfcomponent displayname="EventTypesService" hint="Handles operations for EventTypes table" output="false"> 
+<cffunction name="getEventTypes" access="public" returntype="query">
     <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="">
-
-    <cfset var sql = "SELECT eventTypeName, eventTypeDescription, recordname, eventtypecolor, IsDeleted FROM eventtypes_tbl WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var queryParams = []>
-    <cfset var validColumns = "eventTypeName,eventTypeDescription,recordname,eventtypecolor,IsDeleted">
-    <cfset var validOrderByColumns = "eventTypeName,eventTypeDescription,recordname,eventtypecolor">
-
-    <!--- Build dynamic WHERE clause --->
+    <cfset var queryResult = "">
+    <cfset var sql = "SELECT eventTypeName, eventtypedescription, eventtypecolor FROM eventtypes">
+    <cfset var whereClauses = []>
+    <cfset var paramValues = []>
+    
+    <!--- Add WHERE clauses dynamically based on filters --->
     <cfloop collection="#arguments.filters#" item="key">
-        <cfif listFindNoCase(validColumns, key)>
-            <cfif structKeyExists(arguments.filters, key) and not isNull(arguments.filters[key])>
-                <cfset arrayAppend(whereClause, "#key# = ?")>
-                <cfset arrayAppend(queryParams, {value=arguments.filters[key], cfsqltype=getSQLTypeForColumn(key)})>
-            </cfif>
+        <cfif listFindNoCase("eventTypeName,eventtypedescription,eventtypecolor", key)>
+            <cfset arrayAppend(whereClauses, "#key# = ?")>
+            <cfset arrayAppend(paramValues, {value=arguments.filters[key], cfsqltype=determineSQLType(key)})>
         </cfif>
     </cfloop>
 
-    <!--- Append WHERE clauses if any --->
-    <cfif arrayLen(whereClause) gt 0>
-        <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
-    <cfelse>
-        <!--- Return empty query if no filters are provided --->
-        <cfreturn queryNew("eventTypeName,eventTypeDescription,recordname,eventtypecolor,IsDeleted", "varchar,varchar,varchar,varchar,bit")>
-    </cfif>
-
-    <!--- Validate and append ORDER BY clause --->
-    <cfif len(arguments.orderBy) and listFindNoCase(validOrderByColumns, arguments.orderBy)>
-        <cfset sql &= " ORDER BY #arguments.orderBy#">
+    <!--- Construct final SQL statement --->
+    <cfif arrayLen(whereClauses) gt 0>
+        <cfset sql &= " WHERE " & arrayToList(whereClauses, " AND ")>
     </cfif>
 
     <!--- Execute the query with error handling --->
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="queryResult" datasource="yourDataSource">
             #sql#
-            <cfloop array="#queryParams#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#" null="#isNull(param.value)#">
+            <cfloop array="#paramValues#" index="param">
+                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
             </cfloop>
         </cfquery>
-
-        <cfreturn result>
-
         <cfcatch type="any">
-            <!--- Log the error details --->
-            <cflog file="application" text="Error in geteventtypes: #cfcatch.message#, Detail: #cfcatch.detail#, SQL: #sql#">
-            <!--- Return an empty query on error --->
-            <cfreturn queryNew("eventTypeName,eventTypeDescription,recordname,eventtypecolor,IsDeleted", "varchar,varchar,varchar,varchar,bit")>
+            <cflog file="errorLog" text="Error executing query: #cfcatch.message# - SQL: #sql# - Params: #serializeJSON(paramValues)#">
+            <cfreturn queryNew("eventTypeName,eventtypedescription,eventtypecolor")>
         </cfcatch>
     </cftry>
-</cffunction> 
 
-<!--- Changes made:
-- None. The function code contains no syntax errors.
---->
-</cfcomponent>
+    <cfreturn queryResult>
+</cffunction></cfcomponent>

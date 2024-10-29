@@ -1,200 +1,186 @@
-<cfcomponent displayname="EssenceService" hint="Handles operations for Essence table" output="false" > 
-<cffunction name="insertessences" access="public" returntype="numeric">
-    <cfargument name="essenceName" type="string" required="true">
-    <cfargument name="userID" type="numeric" required="true">
-    <cfargument name="isDeleted" type="boolean" required="false" default=false>
-
-    <cfset var insertResult = 0>
-    <cfset var sql = "INSERT INTO essences (essenceName, userID, isDeleted) VALUES (?, ?, ?)">
-
-    <cftry>
-        <cfquery name="insertQuery" datasource="#DSN#" result="result">
-            #sql#
-            <cfqueryparam value="#arguments.essenceName#" cfsqltype="CF_SQL_VARCHAR">
-            <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
-            <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
-        </cfquery>
-        <cfset insertResult = result.generatedKey>
-        <cfcatch>
-            <cflog file="application" text="Error inserting into essences: #cfcatch.message# Details: #cfcatch.detail# SQL: #sql#">
-            <!--- Return 0 to indicate failure --->
-            <cfset insertResult = 0>
-        </cfcatch>
-    </cftry>
-
-    <cfreturn insertResult>
-</cffunction>
-<!--- Changes made:
-- None. The code has no syntax errors and should execute properly.
---->
-
-<cffunction name="getessences" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="essenceID">
-    <cfargument name="orderDirection" type="string" required="false" default="ASC">
-
-    <cfset var validColumns = "essenceID,essenceName,userID,isDeleted">
-    <cfset var validOrderDirections = "ASC,DESC">
-    <cfset var whereClause = []>
-    <cfset var sql = "SELECT essenceID, essenceName, userID, isDeleted FROM essences WHERE 1=1">
-    <cfset var result = "">
-
-    <!--- Validate orderBy and orderDirection --->
-    <cfif not listFindNoCase(validColumns, arguments.orderBy)>
-        <cfset arguments.orderBy = "essenceID">
-    </cfif>
+<cfcomponent displayname="EssenceService" hint="Handles operations for Essence table" output="false"> 
+<cffunction name="getEssencesByRole" access="public" returntype="query">
+    <cfargument name="audroleid" type="numeric" required="true">
     
-    <cfif not listFindNoCase(validOrderDirections, arguments.orderDirection)>
-        <cfset arguments.orderDirection = "ASC">
-    </cfif>
-
-    <!--- Build dynamic WHERE clause --->
-    <cfloop collection="#arguments.filters#" item="key">
-        <cfif listFindNoCase(validColumns, key)>
-            <cfset arrayAppend(whereClause, "#key# = ?")>
-        </cfif>
-    </cfloop>
-
-    <!--- Append WHERE conditions to SQL if any --->
-    <cfif arrayLen(whereClause) gt 0>
-        <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
-    </cfif>
-
-    <!--- Add ORDER BY clause --->
-    <cfset sql &= " ORDER BY #arguments.orderBy# #arguments.orderDirection#">
-
-    <!--- Execute the query with error handling --->
+    <cfset var result = "">
+    
     <cftry>
         <cfquery name="result" datasource="abod">
-            #sql#
-            <cfloop collection="#arguments.filters#" item="key">
-                <cfif listFindNoCase(validColumns, key)>
-                    <cfqueryparam value="#arguments.filters[key]#" cfsqltype="
-                        <cfif key eq 'essenceID' or key eq 'userID'>
-                            CF_SQL_INTEGER
-                        <cfelseif key eq 'essenceName'>
-                            CF_SQL_VARCHAR
-                        <elseif key eq 'isDeleted'>
-                            CF_SQL_BIT
-                        </cfif>" null="#isNull(arguments.filters[key])#">
-                </cfif>
-            </cfloop>
+            SELECT *
+            FROM essences e
+            INNER JOIN audessences_audtion_xref x ON x.essenceid = e.essenceid
+            WHERE x.audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-
-        <!--- Return the result query --->
-        <cfreturn result>
-
-        <!--- Error handling --->
+        
         <cfcatch type="any">
-            <cflog file="application" text="Error in getessences: #cfcatch.message# - #cfcatch.detail#. SQL: #sql#">
-            <!--- Return an empty query with correct schema on error --->
-            <cfreturn queryNew("essenceID,essenceName,userID,isDeleted", "integer,varchar,integer,bit")>
+            <cflog file="application" text="Error in getEssencesByRole: #cfcatch.message#">
+            <cfset result = queryNew("")>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="updateEssenceIsDeleted" access="public" returntype="void">
+    <cfargument name="new_essenceid" type="numeric" required="true">
+    
+    <cftry>
+        <cfquery datasource="abod">
+            UPDATE essences
+            SET isdeleted = 1
+            WHERE essenceid = <cfqueryparam value="#arguments.new_essenceid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" type="error" text="Error updating essence: #cfcatch.message#; Query: UPDATE essences SET isdeleted = 1 WHERE essenceid = #arguments.new_essenceid#;">
+            <cfthrow message="An error occurred while updating the essence." detail="#cfcatch.detail#">
         </cfcatch>
     </cftry>
 </cffunction>
+<cffunction name="insertEssence" access="public" returntype="void">
+    <cfargument name="new_essenceName" type="string" required="true">
+    <cfargument name="userid" type="numeric" required="true">
 
-<!--- Changes made:
-- Corrected the syntax for the CFML conditional statement from `<elseif>` to `<cfelseif>`.
---->
-
-<cffunction name="updateEssences" access="public" returntype="boolean">
-    <cfargument name="essenceID" type="numeric" required="true">
-    <cfargument name="essenceName" type="string" required="true">
-    <cfargument name="userID" type="numeric" required="true">
-    <cfargument name="isDeleted" type="boolean" required="false" default="#false#">
-
-    <cfset var result = false>
-    <cfset var sql = "">
+    <cftry>
+        <cfquery datasource="abod">
+            INSERT INTO essences (essenceName, userID)
+            VALUES (
+                <cfqueryparam value="#arguments.new_essenceName#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            )
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in insertEssence function: #cfcatch.message# Query: INSERT INTO essences (essenceName, userID) VALUES (?, ?); Parameters: new_essenceName=#arguments.new_essenceName#, userid=#arguments.userid#">
+            <cfthrow message="An error occurred while inserting essence." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getEssenceById" access="public" returntype="query">
+    <cfargument name="essenceid" type="numeric" required="true">
+    
+    <cfset var result = "">
     
     <cftry>
-        <!--- Construct the SQL UPDATE statement --->
-        <cfset sql = "
-            UPDATE essences
-            SET 
-                essenceName = ?,
-                userID = ?,
-                isDeleted = ?
-            WHERE 
-                essenceID = ?
-        ">
-
-        <!--- Execute the query --->
-        <cfquery datasource="#DSN#">
-            #sql#
-            <cfqueryparam value="#arguments.essenceName#" cfsqltype="CF_SQL_VARCHAR">
-            <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
-            <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
-            <cfqueryparam value="#arguments.essenceID#" cfsqltype="CF_SQL_INTEGER">
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT *
+            FROM essences
+            WHERE essenceid = <cfqueryparam value="#arguments.essenceid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-
-        <!--- If no errors, set result to true --->
-        <cfset result = true>
-
-        <cfcatch>
-            <!--- Log error details --->
-            <cflog file="application" text="Error in updateEssences: #cfcatch.message#, Details: #cfcatch.detail#, SQL: #sql#">
-            
-            <!--- Handle error by returning false --->
-            <cfset result = false>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getEssenceById: #cfcatch.message# - Query: SELECT * FROM essences WHERE essenceid = #arguments.essenceid#">
+            <cfthrow message="Error retrieving essence by ID." detail="#cfcatch.detail#">
         </cfcatch>
     </cftry>
-
-    <!--- Return the result of the operation --->
+    
     <cfreturn result>
-</cffunction> 
+</cffunction>
+<cffunction name="updateEssence" access="public" returntype="void">
+    <cfargument name="new_essenceName" type="string" required="true">
+    <cfargument name="isdeleted" type="boolean" required="true">
+    <cfargument name="essenceid" type="numeric" required="true">
 
-<!--- Changes made:
-- None. The code is syntactically correct.
---->
-
-<cffunction name="getvm_essences_audessences_audtion_xref" access="public" returntype="query">
-    <cfargument name="essenceid" type="numeric" required="false">
-    <cfargument name="audroleid" type="numeric" required="false">
-    <cfargument name="essencename" type="string" required="false">
-    <cfargument name="orderBy" type="string" required="false" default="essenceid">
+    <cftry>
+        <cfquery datasource="abod">
+            UPDATE essences 
+            SET essenceName = <cfqueryparam value="#arguments.new_essenceName#" cfsqltype="CF_SQL_VARCHAR">, 
+                isDeleted = <cfqueryparam value="#arguments.isdeleted#" cfsqltype="CF_SQL_BIT">
+            WHERE essenceid = <cfqueryparam value="#arguments.essenceid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        <cfcatch type="any">
+            <cflog file="application" text="Error updating essence: #cfcatch.message#">
+            <cfthrow message="An error occurred while updating the essence.">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getEssencesByUserId" access="public" returntype="query">
+    <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
-    <cfset var sql = "SELECT essenceid, essencename, audroleid FROM vm_essences_audessences_audtion_xref WHERE 1=1">
-    <cfset var params = []>
-    <cfset var validOrderColumns = "essenceid,essencename,audroleid">
-
-    <!--- Build dynamic WHERE clause --->
-    <cfif structKeyExists(arguments, "essenceid") and not isNull(arguments.essenceid)>
-        <cfset sql &= " AND essenceid = ?">
-        <cfset arrayAppend(params, {value=arguments.essenceid, cfsqltype="CF_SQL_INTEGER"})>
-    </cfif>
-
-    <cfif structKeyExists(arguments, "audroleid") and not isNull(arguments.audroleid)>
-        <cfset sql &= " AND audroleid = ?">
-        <cfset arrayAppend(params, {value=arguments.audroleid, cfsqltype="CF_SQL_INTEGER"})>
-    </cfif>
-
-    <cfif structKeyExists(arguments, "essencename") and not isNull(arguments.essencename)>
-        <cfset sql &= " AND essencename = ?">
-        <cfset arrayAppend(params, {value=arguments.essencename, cfsqltype="CF_SQL_VARCHAR"})>
-    </cfif>
-
-    <!--- Validate ORDER BY column --->
-    <cfif listFindNoCase(validOrderColumns, arguments.orderBy)>
-        <cfset sql &= " ORDER BY #arguments.orderBy#">
-    </cfif>
-
-    <!--- Execute query with error handling --->
+    
     <cftry>
         <cfquery name="result" datasource="abod">
-            #sql#
-            <cfloop array="#params#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-            </cfloop>
+            SELECT essenceid, essencename
+            FROM essences
+            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            AND isdeleted = <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
+            ORDER BY essencename
         </cfquery>
-        <cfcatch>
-            <!--- Log error details --->
-            <cflog file="application" text="Error in getvm_essences_audessences_audtion_xref: #cfcatch.message# - #cfcatch.detail# - SQL: #sql#">
-            <!--- Return empty query with correct structure --->
-            <cfset result = queryNew("essenceid, essencename, audroleid", "integer,varchar,integer")>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getEssencesByUserId: #cfcatch.message#" />
+            <cfset result = queryNew("essenceid, essencename", "integer,varchar")>
         </cfcatch>
     </cftry>
 
-    <!--- Return the query result --->
+    <cfreturn result>
+</cffunction>
+<cffunction name="getEssenceId" access="public" returntype="query">
+    <cfargument name="new_essence" type="string" required="true">
+    <cfargument name="userid" type="numeric" required="true">
+
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT essenceid AS new_essenceid
+            FROM essences
+            WHERE essencename = <cfqueryparam value="#arguments.new_essence#" cfsqltype="CF_SQL_VARCHAR">
+            AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            AND isdeleted = 0
+        </cfquery>
+        
+        <cfcatch>
+            <cflog file="application" text="Error in getEssenceId: #cfcatch.message#">
+            <cfset result = queryNew("new_essenceid", "integer")>
+        </cfcatch>
+    </cftry>
+
+    <cfreturn result>
+</cffunction>
+<cffunction name="insertEssence" access="public" returntype="void">
+    <cfargument name="new_essence" type="string" required="true">
+    <cfargument name="userid" type="numeric" required="true">
+
+    <cftry>
+        <cfquery datasource="yourDataSource">
+            INSERT INTO essences (essenceName, userid, isdeleted)
+            VALUES (
+                <cfqueryparam value="#arguments.new_essence#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
+            )
+        </cfquery>
+        <cfcatch type="any">
+            <cflog file="application" text="Error inserting essence: #cfcatch.message#">
+            <cfthrow message="An error occurred while inserting the essence." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getEssences" access="public" returntype="query">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="abod">
+            SELECT 
+                e.essenceid AS ID, 
+                e.essencename AS NAME, 
+                e.userid 
+            FROM 
+                essences e 
+            WHERE 
+                e.userID = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+                AND isdeleted IS false 
+            ORDER BY 
+                e.essencename
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getEssences: #cfcatch.message#">
+            <cfset result = queryNew("ID, NAME, userid")>
+        </cfcatch>
+    </cftry>
+    
     <cfreturn result>
 </cffunction></cfcomponent>

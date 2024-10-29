@@ -1,56 +1,57 @@
-<cfcomponent displayname="SiteTypeMasterService" hint="Handles operations for SiteTypeMaster table" output="false" > 
-<cffunction name="getsitetypes_master" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="siteTypeid">
+<cfcomponent displayname="SiteTypeMasterService" hint="Handles operations for SiteTypeMaster table" output="false"> 
+<cffunction name="getSiteTypesByName" access="public" returntype="query">
+    <cfargument name="sitetypename" type="string" required="true">
     
-    <cfset var validColumns = "siteTypeid,siteTypeName,siteTypeDescription,pnTitle,IsDeleted">
-    <cfset var sql = "SELECT siteTypeid, siteTypeName, siteTypeDescription, pnTitle, IsDeleted FROM sitetypes_master_tbl WHERE IsDeleted = 0">
-    <cfset var whereClause = []>
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT *
+            FROM sitetypes_master
+            WHERE sitetypename = <cfqueryparam value="#arguments.sitetypename#" cfsqltype="CF_SQL_VARCHAR">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getSiteTypesByName: #cfcatch.message#">
+            <cfset result = queryNew("id", "integer")> <!--- Return an empty query set --->
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="getSiteTypes" access="public" returntype="query">
+    <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
     <cfset var queryResult = "">
+    <cfset var sql = "SELECT sitetypename, sitetypedescription FROM sitetypes_master">
+    <cfset var whereClauses = []>
+    <cfset var paramList = []>
 
-    <!--- Validate orderBy column --->
-    <cfif NOT listFindNoCase(validColumns, arguments.orderBy)>
-        <cfset arguments.orderBy = "siteTypeid">
-    </cfif>
-
-    <!--- Build dynamic WHERE clause --->
-    <cfloop collection="#arguments.filters#" item="key">
-        <cfif listFindNoCase(validColumns, key)>
-            <cfset arrayAppend(whereClause, "#key# = ?")>
+    <!--- Build WHERE clauses dynamically based on arguments --->
+    <cfloop collection="#arguments.conditions#" item="key">
+        <cfif listFindNoCase("sitetypename,sitetypedescription", key)>
+            <cfset arrayAppend(whereClauses, "#key# = ?")>
+            <cfset arrayAppend(paramList, {value=arguments.conditions[key], cfsqltype="CF_SQL_VARCHAR"})>
         </cfif>
     </cfloop>
 
-    <!--- Append WHERE conditions if any --->
-    <cfif arrayLen(whereClause) GT 0>
-        <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
+    <!--- Append WHERE clause if conditions exist --->
+    <cfif arrayLen(whereClauses) gt 0>
+        <cfset sql = sql & " WHERE " & arrayToList(whereClauses, " AND ")>
     </cfif>
 
-    <!--- Add ORDER BY clause --->
-    <cfset sql &= " ORDER BY #arguments.orderBy#">
-
-    <!--- Execute query within try/catch for error handling --->
+    <!--- Execute the query with error handling --->
     <cftry>
         <cfquery name="queryResult" datasource="abod">
             #sql#
-            <cfloop collection="#arguments.filters#" item="key">
-                <cfif listFindNoCase(validColumns, key)>
-                    <cfqueryparam value="#arguments.filters[key]#" cfsqltype="#evaluate("CF_SQL_" & uCase(listLast(key)))#" null="#isNull(arguments.filters[key])#">
-                </cfif>
+            <cfloop array="#paramList#" index="param">
+                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
             </cfloop>
         </cfquery>
         <cfcatch type="any">
-            <!--- Log error details --->
-            <cflog file="application" text="Error in getsitetypes_master: #cfcatch.message# - #cfcatch.detail#. SQL: #sql#">
-            <!--- Return an empty query with correct schema on error --->
-            <cfset queryResult = queryNew("siteTypeid,siteTypeName,siteTypeDescription,pnTitle,IsDeleted", "integer,varchar,varchar,varchar,bit")>
+            <cflog file="application" text="Error executing getSiteTypes: #cfcatch.message# SQL: #sql# Parameters: #serializeJSON(paramList)#">
+            <cfreturn queryNew("sitetypename,sitetypedescription", "varchar,varchar")>
         </cfcatch>
     </cftry>
 
-    <!--- Return the query result --->
     <cfreturn queryResult>
-</cffunction>
-
-<!--- Changes made:
-- No syntax errors found. The function is correctly structured.
---->
-</cfcomponent>
+</cffunction></cfcomponent>

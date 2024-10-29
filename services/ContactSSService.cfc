@@ -1,53 +1,42 @@
-<cfcomponent displayname="ContactSSService" hint="Handles operations for ContactSS table" output="false" > 
-<cffunction name="getcontacts_ss" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="">
-    <cfset var sql = "SELECT contactid, recid, userid, contactcheck, avatar, col1, col2, col2e, col2b, col5, hlink, col3, col4 FROM contacts_ss WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var params = []>
-    <cfset var validColumns = "contactid,recid,userid,contactcheck,avatar,col1,col2,col2e,col2b,col5,hlink,col3,col4">
-    <cfset var queryResult = "">
-
-    <!--- Build WHERE clause dynamically --->
-    <cfloop collection="#arguments.filters#" item="key">
-        <cfif listFindNoCase(validColumns, key)>
-            <cfset arrayAppend(whereClause, "#key# = ?")>
-            <cfset arrayAppend(params, {value=arguments.filters[key], cfsqltype=getSQLType(key)})>
-        </cfif>
-    </cfloop>
-
-    <!--- Append WHERE conditions to SQL --->
-    <cfif arrayLen(whereClause)>
-        <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
-    </cfif>
-
-    <!--- Validate and append ORDER BY clause --->
-    <cfif len(arguments.orderBy) and listFindNoCase(validColumns, arguments.orderBy)>
-        <cfset sql &= " ORDER BY #arguments.orderBy#">
-    </cfif>
-
-    <!--- Execute the query within a try/catch block for error handling --->
+<cfcomponent displayname="ContactSSService" hint="Handles operations for ContactSS table" output="false"> 
+<cffunction name="getContactsByUserId" access="public" returntype="query">
+    <cfargument name="userId" type="numeric" required="true">
+    
+    <cfset var result = "">
     <cftry>
-        <cfquery name="queryResult" datasource="yourDataSource">
-            #sql#
-            <cfloop array="#params#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#" null="#isNull(param.value)#">
-            </cfloop>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT col1 
+            FROM contacts_ss 
+            WHERE userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 
+            AND col1 NOT LIKE <cfqueryparam value="%#chr(34)#%" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
-
-        <!--- Handle any errors that occur during query execution --->
         <cfcatch type="any">
-            <cflog file="application" text="Error in getcontacts_ss: #cfcatch.message# - #cfcatch.detail# - SQL: #sql#">
-            <!--- Return an empty query with the correct schema on error --->
-            <cfset queryResult = queryNew("contactid,recid,userid,contactcheck,avatar,col1,col2,col2e,col2b,col5,hlink,col3,col4", "integer,integer,integer,varchar,varchar,varchar,varchar,varchar,varchar,varchar,longvarchar,longvarchar,longvarchar")>
+            <cflog file="errorLog" text="Error in getContactsByUserId: #cfcatch.message# Query: SELECT col1 FROM contacts_ss WHERE userid = ? AND col1 NOT LIKE ?">
+            <cfrethrow>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="getContactID" access="public" returntype="query">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="topsearch_myteam" type="string" required="true">
+
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT CONTACTID 
+            FROM contacts_ss 
+            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+            AND col1 = <cfqueryparam value="#arguments.topsearch_myteam#" cfsqltype="CF_SQL_VARCHAR">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getContactID: #cfcatch.message# Query: SELECT CONTACTID FROM contacts_ss WHERE userid = #arguments.userid# AND col1 = '#arguments.topsearch_myteam#'">
+            <cfset result = queryNew("CONTACTID")>
         </cfcatch>
     </cftry>
 
-    <!--- Return the result of the query --->
-    <cfreturn queryResult>
-</cffunction>
-
-<!--- Changes made:
-- None. The code is syntactically correct and should execute without errors.
---->
-</cfcomponent>
+    <cfreturn result>
+</cffunction></cfcomponent>

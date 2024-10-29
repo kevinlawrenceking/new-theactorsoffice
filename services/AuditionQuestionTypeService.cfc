@@ -1,61 +1,40 @@
-<cfcomponent displayname="AuditionQuestionTypeService" hint="Handles operations for AuditionQuestionType table" output="false" > 
-<cffunction name="insertaudqtypes" access="public" returntype="numeric">
-    <cfargument name="qtypeid" type="numeric" required="true">
-    <cfargument name="qtype" type="string" required="true">
-    <cfargument name="isDeleted" type="boolean" required="true">
-    <cfargument name="recordname" type="string" required="false">
-
-    <cfset var insertResult = 0>
-    <cfset var sql = "INSERT INTO audqtypes (qtypeid, qtype, isDeleted, recordname) VALUES (?, ?, ?, ?)">
+<cfcomponent displayname="AuditionQuestionTypeService" hint="Handles operations for AuditionQuestionType table" output="false"> 
+<cffunction name="insertAudqtypes" access="public" returntype="void">
+    <cfargument name="new_qtype" type="string" required="true">
+    <cfargument name="new_isDeleted" type="boolean" required="true">
 
     <cftry>
-        <cfquery name="insertQuery" datasource="#DSN#" result="queryResult">
-            #sql#
-            <cfqueryparam value="#arguments.qtypeid#" cfsqltype="CF_SQL_INTEGER">
-            <cfqueryparam value="#arguments.qtype#" cfsqltype="CF_SQL_VARCHAR">
-            <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
-            <cfqueryparam value="#arguments.recordname#" cfsqltype="CF_SQL_VARCHAR" null="#not structKeyExists(arguments, 'recordname')#">
+        <cfquery name="insertQuery" datasource="yourDataSource">
+            INSERT INTO audqtypes (qtype, isDeleted) 
+            VALUES (
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_qtype#" maxlength="100" null="#NOT len(trim(arguments.new_qtype))#">,
+                <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+            );
         </cfquery>
-        <cfset insertResult = queryResult.generatedKey>
-        <cfcatch>
-            <cflog file="application" text="Error inserting into audqtypes: #cfcatch.message# Details: #cfcatch.detail# SQL: #sql#">
-            <cfset insertResult = 0>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in insertAudqtypes: #cfcatch.message# - #cfcatch.detail#">
+            <cfthrow message="Database error" detail="#cfcatch.message#">
         </cfcatch>
     </cftry>
-
-    <cfreturn insertResult>
 </cffunction>
+<cffunction name="updateAudQTypes" access="public" returntype="void">
+    <cfargument name="new_qtype" type="string" required="true">
+    <cfargument name="new_isDeleted" type="boolean" required="true">
+    <cfargument name="new_qtypeid" type="numeric" required="true">
 
-<!--- Changes made:
-- No syntax errors found. Code is correct as provided.
---->
-
-<cffunction name="updateaudqtypes" access="public" returntype="boolean">
-    <cfargument name="qtypeid" type="numeric" required="true">
-    <cfargument name="qtype" type="string" required="true">
-    <cfargument name="isDeleted" type="boolean" required="true">
-    <cfargument name="recordname" type="string" required="false">
-
-    <cfset var result = false>
-    <cfset var sql = "UPDATE audqtypes SET qtype = ?, isDeleted = ?, recordname = ? WHERE qtypeid = ?">
-    
     <cftry>
-        <cfquery datasource="#DSN#">
-            #sql#
-            <cfqueryparam value="#arguments.qtype#" cfsqltype="CF_SQL_VARCHAR">
-            <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
-            <cfqueryparam value="#arguments.recordname#" cfsqltype="CF_SQL_VARCHAR" null="#not structKeyExists(arguments, 'recordname')#">
-            <cfqueryparam value="#arguments.qtypeid#" cfsqltype="CF_SQL_INTEGER">
+        <cfquery datasource="abod">
+            UPDATE audqtypes 
+            SET 
+                qtype = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_qtype#" maxlength="100" null="#NOT len(trim(arguments.new_qtype))#">, 
+                isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#"> 
+            WHERE 
+                qtypeid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_qtypeid#">
         </cfquery>
-        <cfset result = true>
-        <cfcatch>
-            <cflog file="application" type="error" text="Error updating audqtypes: #cfcatch.message#. Details: #cfcatch.detail#. SQL: #sql#">
+        <cfcatch type="any">
+            <cflog file="application" text="Error updating audqtypes: #cfcatch.message# - Query: UPDATE audqtypes SET qtype = ?, isDeleted = ? WHERE qtypeid = ?">
+            <cfthrow message="Error updating audqtypes." detail="#cfcatch.detail#">
         </cfcatch>
     </cftry>
-
-    <cfreturn result>
-</cffunction> 
-<!--- Changes made:
-- No changes were necessary as the code is syntactically correct.
---->
-</cfcomponent>
+</cffunction></cfcomponent>

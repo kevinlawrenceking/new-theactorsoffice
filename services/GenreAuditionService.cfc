@@ -1,156 +1,174 @@
-<cfcomponent displayname="GenreAuditionService" hint="Handles operations for GenreAudition table" output="false" > 
-<cffunction name="deleteaudgenres_audition_xref" access="public" returntype="boolean">
-    <cfargument name="ID" type="numeric" required="true">
-    <cfset var result = false>
+<cfcomponent displayname="GenreAuditionService" hint="Handles operations for GenreAudition table" output="false"> 
+<cffunction name="getAuditionDetails" access="public" returntype="query">
+    <cfargument name="projectList" type="string" required="true">
+    
+    <cfset var queryResult = "">
+    <cfset var sql = "">
+    
     <cftry>
-        <cfquery datasource="#DSN#">
-            DELETE FROM audgenres_audition_xref
-            WHERE ID = <cfqueryparam value="#arguments.ID#" cfsqltype="CF_SQL_INTEGER">
+        <cfset sql = "
+            SELECT 
+                p.audprojectid AS recid,
+                p.projdate AS Date,
+                p.projname AS Project,
+                r.audrolename AS Role,
+                r.chardescription AS `Character Description`,
+                ca.audcatname AS Category,
+                sc.audsubcatname AS SubCategory,
+                s.audsource AS Source,
+                c.recordname AS `Casting Director <cfif #sel_contactid# is not '%'> (Selected) </cfif>`,
+                p.projdescription AS `Project Description`,
+                net.network AS Network,
+                ton.tone AS `Style/Format`,
+                un.unionName AS `Union`,
+                ct.contracttype AS `Contract Type`,
+                rt.audroletype AS `Role TYPE`,
+                di.auddialect AS Dialect,
+                (SELECT GROUP_CONCAT(g.audgenre SEPARATOR ', ') 
+                 FROM audgenres_audition_xref x 
+                 INNER JOIN audgenres_user g ON g.audgenreid = x.audgenreID 
+                 WHERE x.audroleid = r.audroleid) AS Genres,
+                (SELECT GROUP_CONCAT(e.vocaltype SEPARATOR ', ') 
+                 FROM audvocaltypes_audition_xref x 
+                 INNER JOIN audvocaltypes e ON e.vocaltypeid = x.vocaltypeid 
+                 WHERE x.audroleid = r.audroleid) AS `Vocal Types`,
+                (SELECT GROUP_CONCAT(e.rangename SEPARATOR ', ') 
+                 FROM audageranges_audtion_xref x 
+                 INNER JOIN audageranges e ON e.rangeid = x.rangeid 
+                 WHERE x.audroleid = r.audroleid) AS `Age Ranges`,
+                (SELECT GROUP_CONCAT(e.essenceName SEPARATOR ', ') 
+                 FROM audessences_audtion_xref x 
+                 INNER JOIN essences e ON e.essenceid = x.essenceid 
+                 WHERE x.audroleid = r.audroleid) AS Essences,
+                CASE WHEN r.iscallback = 1 THEN 'Yes' ELSE 'No' END AS 'Callback?',
+                CASE WHEN r.iscallback = 1 THEN 'Yes' ELSE 'No' END AS 'Redirect?',
+                CASE WHEN r.ispin = 1 THEN 'Yes' ELSE 'No' END AS 'Pin/Avail?',
+                CASE WHEN r.isbooked = 1 THEN 'Yes' ELSE 'No' END AS 'Booked?',
+                CASE WHEN p.isdirect = 1 THEN 'Yes' ELSE 'No' END AS 'Direct Booking?'
+            FROM audprojects p
+            LEFT JOIN audroles r ON p.audprojectID = r.audprojectID
+            LEFT JOIN events a ON r.audroleid = a.audroleid
+            LEFT JOIN audsources s ON s.audSourceID = r.audSourceID
+            LEFT JOIN contactdetails c ON c.contactID = p.contactid
+            LEFT JOIN contactdetails c2 ON c2.contactID = r.contactid
+            LEFT JOIN audroletypes rt ON rt.audroletypeid = r.audroletypeid
+            LEFT JOIN audsteps st ON st.audstepid = a.audstepid
+            LEFT JOIN audsubcategories sc ON sc.audsubcatid = p.audsubcatid
+            LEFT JOIN audcategories ca ON ca.audcatid = sc.audcatid
+            LEFT JOIN audcontacts_auditions_xref x ON x.audprojectid = p.audprojectid
+            LEFT JOIN contactdetails c3 ON c3.contactid = x.contactid
+            LEFT JOIN audnetworks_user net ON (p.`networkID` = net.networkid)
+            LEFT JOIN audtones_user ton ON (p.`toneID` = ton.toneid)
+            LEFT JOIN audunions un ON (p.`unionID` = un.`unionID`)
+            LEFT JOIN audcontracttypes ct ON (p.`contractTypeID` = ct.contracttypeid)
+            LEFT JOIN auddialects_user di ON (r.`audDialectID` = di.auddialectid)
+            WHERE p.audprojectid IN (<cfqueryparam value="#arguments.projectList#" cfsqltype="CF_SQL_VARCHAR" list="true">)
+            GROUP BY r.audroleid, p.projname, s.audsource, rt.audroletype, r.iscallback, r.isredirect, r.ispin, r.isbooked
+            ORDER BY p.projdate DESC
+        ">
+        
+        <cfquery name="queryResult" datasource="yourDataSource">
+            #sql#
         </cfquery>
-        <cfset result = true>
-        <cfcatch>
-            <cflog file="application" text="Error in deleteaudgenres_audition_xref: #cfcatch.message# - #cfcatch.detail#">
-            <cfset result = false>
+        
+        <cfreturn queryResult>
+        
+        <cfcatch type="any">
+            <cflog file="errorLog" text="Error in getAuditionDetails: #cfcatch.message#">
+            <cfreturn queryNew("")>
         </cfcatch>
     </cftry>
+</cffunction>
+<cffunction name="getAuditionGenres" access="public" returntype="query">
+    <cfargument name="audgenre" type="string" required="true">
+    <cfargument name="audroleid" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="abod">
+            SELECT *
+            FROM audgenres_audition_xref x
+            INNER JOIN audgenres_user g ON g.audgenreid = x.audgenreid
+            WHERE g.audgenre = <cfqueryparam value="#arguments.audgenre#" cfsqltype="CF_SQL_VARCHAR">
+            AND x.audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="errorLog" text="Error in getAuditionGenres: #cfcatch.message# Query: SELECT * FROM audgenres_audition_xref x INNER JOIN audgenres_user g ON g.audgenreid = x.audgenreid WHERE g.audgenre = ? AND x.audroleid = ? Parameters: #arguments.audgenre#, #arguments.audroleid#">
+            <cfthrow message="Error executing query in getAuditionGenres" detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+    
     <cfreturn result>
 </cffunction>
+<cffunction name="deleteAudGenresAuditionXref" access="public" returntype="void">
+    <cfargument name="new_audroleid" type="numeric" required="true">
 
-<!--- Changes made:
-- None. The code is syntactically correct and should execute without errors.
---->
-<cffunction name="insertaudgenres_audition_xref" access="public" returntype="numeric">
-    <cfargument name="audroleid" type="numeric" required="true">
-    <cfargument name="audgenreID" type="numeric" required="true">
-    <cfset var insertResult = 0>
     <cftry>
-        <cfquery name="insertQuery" datasource="#DSN#" result="insertResult">
-            INSERT INTO audgenres_audition_xref (audroleid, audgenreID)
+        <cfquery datasource="abod">
+            DELETE FROM audgenres_audition_xref
+            WHERE audroleid = <cfqueryparam value="#arguments.new_audroleid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        <cfcatch>
+            <cflog file="application" text="Error in deleteAudGenresAuditionXref: #cfcatch.message#">
+            <cfthrow message="An error occurred while deleting the record." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="insertAuditionGenreRole" access="public" returntype="void">
+    <cfargument name="new_audgenreid" type="numeric" required="true">
+    <cfargument name="new_audroleid" type="numeric" required="true">
+
+    <cftry>
+        <cfquery datasource="abod">
+            INSERT INTO audgenres_audition_xref (audgenreid, audroleid)
             VALUES (
-                <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">,
-                <cfqueryparam value="#arguments.audgenreID#" cfsqltype="CF_SQL_INTEGER">
+                <cfqueryparam value="#arguments.new_audgenreid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.new_audroleid#" cfsqltype="CF_SQL_INTEGER">
             )
         </cfquery>
-        <cfreturn insertResult.generatedKey>
-        <cfcatch>
-            <cflog file="application" text="Error in insertaudgenres_audition_xref: #cfcatch.message# - #cfcatch.detail#">
-            <cfreturn 0>
+
+        <cfcatch type="any">
+            <cflog file="application" text="Error inserting into audgenres_audition_xref: #cfcatch.message#">
+            <cfthrow message="Database insert error" detail="#cfcatch.detail#">
         </cfcatch>
     </cftry>
-</cffunction> 
-<!--- Changes made:
-- None; the code is syntactically correct.
---->
-
-<cffunction name="getaudgenres_audition_xref" access="public" returntype="query">
-    <cfargument name="essencename" type="string" required="true">
-    <cfargument name="audroleid" type="numeric" required="true">
-    <cfargument name="userid" type="numeric" required="true">
-    <cfargument name="orderBy" type="string" required="false" default="">
-    
-    <cfset var sql = "">
-    <cfset var result = "">
-    <cfset var whereClause = []>
-    <cfset var validOrderByColumns = "audroleid,audgenreid,audgenre">
+</cffunction>
+<cffunction name="insertAuditionGenreXref" access="public" returntype="void">
+    <cfargument name="new_audRoleID" type="numeric" required="true">
+    <cfargument name="new_audgenreID" type="numeric" required="true">
 
     <cftry>
-        <!--- Build the SQL query --->
-        <cfset sql = "
-            SELECT
-                audroleid,
-                audgenreid,
-                audgenre
-            FROM
-                vm_audgenres_audition_xref_audgenres_user e
-            WHERE
-                e.essencename = ? AND
-                e.audroleid = ? AND
-                e.userid = ? AND
-                e.isdeleted = 0
-        ">
-
-        <!--- Add ORDER BY clause if valid --->
-        <cfif len(trim(arguments.orderBy)) AND listFindNoCase(validOrderByColumns, arguments.orderBy)>
-            <cfset sql &= " ORDER BY #arguments.orderBy#">
-        </cfif>
-
-        <!--- Execute the query --->
-        <cfquery name="result" datasource="abod">
-            #sql#
-            <cfqueryparam value="#arguments.essencename#" cfsqltype="CF_SQL_VARCHAR">
-            <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
-            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        <cfquery datasource="abod">
+            INSERT INTO audgenres_audition_xref (audRoleID, audgenreID)
+            VALUES (
+                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#" null="#NOT len(trim(arguments.new_audRoleID))#">,
+                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audgenreID#" null="#NOT len(trim(arguments.new_audgenreID))#">
+            )
         </cfquery>
+        <cfcatch type="any">
+            <cflog file="application" text="Error in insertAuditionGenreXref: #cfcatch.message#">
+            <cfthrow message="An error occurred while inserting into audgenres_audition_xref." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="updateAuditionXref" access="public" returntype="void">
+    <cfargument name="new_audRoleID" type="numeric" required="true">
+    <cfargument name="new_audgenreID" type="numeric" required="true">
+    <cfargument name="conditionValue" type="any" required="true">
 
-        <!--- Return the result --->
-        <cfreturn result>
-
-    <cfcatch>
-        <!--- Log the error --->
-        <cflog file="application" type="error"
-               text="Error in getaudgenres_audition_xref: #cfcatch.message#. Detail: #cfcatch.detail#. SQL: #sql#">
-
-        <!--- Return an empty query with correct schema --->
-        <cfreturn queryNew("audroleid,audgenreid,audgenre", "integer,integer,varchar")>
+    <cftry>
+        <cfquery datasource="abod">
+            UPDATE audgenres_audition_xref 
+            SET 
+                audRoleID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#" null="#NOT len(trim(arguments.new_audRoleID))#">, 
+                audgenreID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audgenreID#" null="#NOT len(trim(arguments.new_audgenreID))#"> 
+            WHERE someColumn = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.conditionValue#">
+        </cfquery>
+    <cfcatch type="any">
+        <cflog file="application" text="Error updating audgenres_audition_xref: #cfcatch.message#">
+        <cfthrow>
     </cfcatch>
     </cftry>
-</cffunction>
-<!--- Changes made:
-- None. The provided code is syntactically correct.
---->
-
-<cffunction name="updateaudgenres_audition_xref" access="public" returntype="boolean">
-    <cfargument name="ID" type="numeric" required="true">
-    <cfargument name="audroleid" type="numeric" required="false" default="">
-    <cfargument name="audgenreID" type="numeric" required="false" default="">
-    
-    <cfset var sql = "UPDATE audgenres_audition_xref SET">
-    <cfset var setClauses = []>
-    <cfset var result = false>
-
-    <!--- Build the SET clause dynamically based on provided arguments --->
-    <cfif structKeyExists(arguments, "audroleid") AND arguments.audroleid neq "" >
-        <cfset arrayAppend(setClauses, "audroleid = ?")>
-    </cfif>
-    
-    <cfif structKeyExists(arguments, "audgenreID") AND arguments.audgenreID neq "" >
-        <cfset arrayAppend(setClauses, "audgenreID = ?")>
-    </cfif>
-
-    <!--- If no fields to update, return false --->
-    <cfif arrayLen(setClauses) eq 0>
-        <cfreturn false>
-    </cfif>
-
-    <!--- Construct the final SQL query --->
-    <cfset sql &= " " & arrayToList(setClauses, ", ") & " WHERE ID = ?">
-
-    <!--- Execute the query within a try/catch block for error handling --->
-    <cftry>
-        <cfquery datasource="#DSN#">
-            #sql#
-            <cfif structKeyExists(arguments, "audroleid") AND arguments.audroleid neq "" >
-                <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
-            </cfif>
-            <cfif structKeyExists(arguments, "audgenreID") AND arguments.audgenreID neq "" >
-                <cfqueryparam value="#arguments.audgenreID#" cfsqltype="CF_SQL_INTEGER">
-            </cfif>
-            <cfqueryparam value="#arguments.ID#" cfsqltype="CF_SQL_INTEGER">
-        </cfquery>
-        <cfset result = true>
-        <cfcatch type="any">
-            <!--- Log the error details --->
-            <cflog file="application" text="Error updating audgenres_audition_xref: #cfcatch.message# - #cfcatch.detail# - SQL: #sql#">
-            <!--- Return false in case of an error --->
-            <cfset result = false>
-        </cfcatch>
-    </cftry>
-
-    <!--- Return the result of the operation --->
-    <cfreturn result>
-</cffunction>
-
-<!--- Changes made:
-- No syntax errors found. The code is correct as is.
---->
-</cfcomponent>
+</cffunction></cfcomponent>

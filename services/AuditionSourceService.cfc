@@ -1,157 +1,166 @@
-<cfcomponent displayname="AuditionSourceService" hint="Handles operations for AuditionSource table" output="false" > 
-<cffunction name="insertaudsources" access="public" returntype="numeric">
-    <cfargument name="audsource" type="string" required="true">
-    <cfargument name="recordname" type="string" required="false" default="">
+<cfcomponent displayname="AuditionSourceService" hint="Handles operations for AuditionSource table" output="false"> 
+<cffunction name="getAudSources" access="public" returntype="query">
+    <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
+    <cfset var result = "">
+    <cfset var sql = "SELECT audsource AS NAME FROM audsources">
+    <cfset var whereClause = "">
+    <cfset var paramList = []>
+
+    <!--- Build WHERE clause dynamically --->
+    <cfif structCount(arguments.conditions) gt 0>
+        <cfset whereClause = " WHERE ">
+        <cfloop collection="#arguments.conditions#" item="key">
+            <cfset whereClause &= "#key# = ? AND ">
+            <cfset arrayAppend(paramList, {value=arguments.conditions[key], cfsqltype=determineSQLType(key)})>
+        </cfloop>
+        <!--- Remove trailing ' AND ' --->
+        <cfset whereClause = left(whereClause, len(whereClause) - 5)>
+    </cfif>
+
+    <!--- Execute query within try/catch for error handling --->
+    <cftry>
+        <cfquery name="result" datasource="abod">
+            #sql##whereClause#
+            <cfloop array="#paramList#" index="param">
+                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+            </cfloop>
+        </cfquery>
+        <cfcatch>
+            <cflog file="application" text="Error executing getAudSources: #cfcatch.message# Query: #sql##whereClause# Parameters: #serializeJSON(paramList)#">
+            <cfreturn queryNew("NAME")> <!--- Return empty query on error --->
+        </cfcatch>
+    </cftry>
+
+    <cfreturn result>
+</cffunction>
+<cffunction name="getAudSources" access="public" returntype="query">
+    <cfargument name="isDeleted" type="boolean" required="false" default="false">
     
-    <cfset var insertResult = 0>
+    <cfset var result = "">
     <cfset var sql = "">
     
     <cftry>
         <cfset sql = "
-            INSERT INTO audsources (audsource, isDeleted, recordname) 
-            VALUES (?, ?, ?)
+            SELECT audsourceid, audsource
+            FROM audsources
+            WHERE isdeleted = ?
+            ORDER BY audsource
         ">
         
-        <cfquery name="insertQuery" datasource="#DSN#" result="result">
+        <cfquery name="result" datasource="yourDataSource">
             #sql#
-            <cfqueryparam value="#arguments.audsource#" cfsqltype="CF_SQL_VARCHAR">
-            <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
-            <cfqueryparam value="#arguments.recordname#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.recordname)#">
+            <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
         </cfquery>
         
-        <cfset insertResult = result.generatedKey>
-        
         <cfcatch type="any">
-            <cflog file="application" type="error"
-                text="Error in insertaudsources: #cfcatch.message# - #cfcatch.detail# - SQL: #sql#">
-            <cfset insertResult = 0>
+            <cflog file="application" text="Error in getAudSources: #cfcatch.message# Query: #sql# Parameters: isDeleted=#arguments.isDeleted#">
+            <cfset result = queryNew("audsourceid,audsource")>
         </cfcatch>
     </cftry>
     
-    <cfreturn insertResult>
+    <cfreturn result>
 </cffunction>
+<cffunction name="getAudSources" access="public" returntype="query">
+    <cfargument name="audsource" type="string" required="true">
 
-<!--- Changes made:
-- None. The function code is syntactically correct.
---->
-
-<cffunction name="getaudsources" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="audsourceid">
-    
-    <cfset var validColumns = "audsourceid,audsource,recordname,isDeleted">
-    <cfset var validOrderColumns = "audsourceid,audsource,recordname,isDeleted">
-    <cfset var sql = "SELECT audsourceid, audsource, recordname, isDeleted FROM audsources WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var queryParams = []>
     <cfset var result = "">
-
-    <!--- Build WHERE clause dynamically --->
-    <cfloop collection="#arguments.filters#" item="key">
-        <cfif listFindNoCase(validColumns, key)>
-            <cfif not isNull(arguments.filters[key])>
-                <cfset arrayAppend(whereClause, "#key# = ?")>
-                <!--- Corrected the cfsqltype assignment to use a valid SQL type --->
-                <cfset arrayAppend(queryParams, {value=arguments.filters[key], cfsqltype="CF_SQL_VARCHAR"})>
-            </cfif>
-        </cfif>
-    </cfloop>
-
-    <!--- Append WHERE clause to SQL if conditions exist --->
-    <cfif arrayLen(whereClause) gt 0>
-        <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
-    </cfif>
-
-    <!--- Validate and append ORDER BY clause --->
-    <cfif listFindNoCase(validOrderColumns, arguments.orderBy)>
-        <cfset sql &= " ORDER BY #arguments.orderBy#">
-    </cfif>
-
-    <!--- Execute the query --->
+    
     <cftry>
-        <cfquery name="result" datasource="abod">
-            #sql#
-            <cfloop array="#queryParams#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-            </cfloop>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT *
+            FROM audsources
+            WHERE isdeleted = 0
+            AND audsource = <cfqueryparam value="#arguments.audsource#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
-
-        <!--- Handle errors and log them --->
+        
         <cfcatch type="any">
-            <cflog text="Error in getaudsources: #cfcatch.message#. Details: #cfcatch.detail#. Query: #sql#" type="error">
-            <!--- Return an empty query with the correct schema on error --->
-            <cfset result = queryNew("audsourceid,audsource,recordname,isDeleted", "integer,varchar,varchar,bit")>
+            <cflog file="application" text="Error in getAudSources: #cfcatch.message#">
+            <cfreturn queryNew("")>
         </cfcatch>
     </cftry>
 
-    <!--- Return the result query --->
     <cfreturn result>
 </cffunction>
-
-<!--- Changes made:
-- Corrected the cfsqltype assignment in the queryParams array to use a valid SQL type ("CF_SQL_VARCHAR").
---->
-
-<cffunction name="updateaudsources" access="public" returntype="boolean">
-    <cfargument name="audsourceid" type="numeric" required="true">
-    <cfargument name="audsource" type="string" required="false">
-    <cfargument name="recordname" type="string" required="false">
-    <cfargument name="isDeleted" type="boolean" required="false">
-
-    <cfset var sql = "UPDATE audsources SET">
-    <cfset var setClauses = []>
-    <cfset var result = false>
-
-    <!--- Build the SET clause dynamically based on provided arguments --->
-    <cfif structKeyExists(arguments, "audsource")>
-        <cfset arrayAppend(setClauses, "audsource = ?")>
-    </cfif>
-    <cfif structKeyExists(arguments, "recordname")>
-        <cfset arrayAppend(setClauses, "recordname = ?")>
-    </cfif>
-    <cfif structKeyExists(arguments, "isDeleted")>
-        <cfset arrayAppend(setClauses, "isDeleted = ?")>
-    </cfif>
-
-    <!--- If there are no fields to update, return false --->
-    <cfif arrayLen(setClauses) eq 0>
-        <cfreturn false>
-    </cfif>
-
-    <!--- Construct the final SQL statement --->
-    <cfset sql &= " " & arrayToList(setClauses, ", ") & " WHERE audsourceid = ?">
-
-    <!--- Execute the query within a try/catch block for error handling --->
+<cffunction name="getAudSources" access="public" returntype="query">
+    <cfargument name="audsource" type="string" required="true">
+    
+    <cfset var result = "">
+    
     <cftry>
-        <cfquery datasource="#DSN#">
-            #sql#
-            <cfif structKeyExists(arguments, "audsource")>
-                <cfqueryparam value="#arguments.audsource#" cfsqltype="CF_SQL_VARCHAR">
-            </cfif>
-            <cfif structKeyExists(arguments, "recordname")>
-                <cfqueryparam value="#arguments.recordname#" cfsqltype="CF_SQL_VARCHAR" null="#not len(arguments.recordname)#">
-            </cfif>
-            <cfif structKeyExists(arguments, "isDeleted")>
-                <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
-            </cfif>
-            <cfqueryparam value="#arguments.audsourceid#" cfsqltype="CF_SQL_INTEGER">
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT *
+            FROM audsources
+            WHERE audsource = <cfqueryparam value="#arguments.audsource#" cfsqltype="CF_SQL_VARCHAR">
+            AND isdeleted = <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
         </cfquery>
-
-        <!--- If query executes without error, set result to true --->
-        <cfset result = true>
-
+        
         <cfcatch type="any">
-            <!--- Log the error details --->
-            <cflog file="application" text="Error updating audsources: #cfcatch.message# - #cfcatch.detail# - SQL: #sql#">
-            <!--- Optionally handle the error further or rethrow --->
+            <cflog file="application" text="Error in getAudSources: #cfcatch.message#">
+            <cfreturn queryNew("")>
         </cfcatch>
     </cftry>
-
-    <!--- Return the result of the update operation --->
+    
     <cfreturn result>
-</cffunction> 
+</cffunction>
+<cffunction name="insertAudsource" access="public" returntype="void">
+    <cfargument name="new_audsource" type="string" required="true">
+    <cfargument name="new_isDeleted" type="boolean" required="true">
 
-<!--- Changes made:
-- None. The function code is syntactically correct and should execute properly.
---->
-</cfcomponent>
+    <cftry>
+        <cfquery datasource="abod">
+            INSERT INTO audsources (audsource, isDeleted)
+            VALUES (
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audsource)#" maxlength="100" null="#NOT len(trim(arguments.new_audsource))#">,
+                <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+            );
+        </cfquery>
+        <cfcatch>
+            <cflog file="application" text="Error inserting into audsources: #cfcatch.message#">
+            <cfthrow message="Database error occurred while inserting audsource." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="updateAudsource" access="public" returntype="void">
+    <cfargument name="new_audsource" type="string" required="true">
+    <cfargument name="new_isDeleted" type="boolean" required="true">
+    <cfargument name="new_audsourceid" type="numeric" required="true">
+
+    <cftry>
+        <cfquery datasource="abod">
+            UPDATE audsources 
+            SET 
+                audsource = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audsource)#" maxlength="100" null="#NOT len(trim(arguments.new_audsource))#">,
+                isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+            WHERE 
+                audsourceid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audsourceid#">
+        </cfquery>
+        <cfcatch type="any">
+            <cflog file="application" text="Error updating audsource: #cfcatch.message#">
+            <cfthrow message="Error updating audsource." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getAudSources" access="public" returntype="query">
+    <cfargument name="excludeMyTeam" type="boolean" required="false" default="false">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT audsourceid AS id, audsource AS NAME 
+            FROM audsources
+            WHERE 1=1
+            <cfif arguments.excludeMyTeam>
+                AND audsource <> <cfqueryparam value="My Team" cfsqltype="CF_SQL_VARCHAR">
+            </cfif>
+            ORDER BY audsource
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getAudSources: #cfcatch.message#">
+            <cfset result = queryNew("id,NAME", "integer,varchar")>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction></cfcomponent>

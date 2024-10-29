@@ -1,145 +1,65 @@
-<cfcomponent displayname="AuditionSubcategorieService" hint="Handles operations for AuditionSubcategorie table" output="false" > 
-<cffunction name="insertaudsubcategories" access="public" returntype="numeric">
-    <cfargument name="audSubCatName" type="string" required="true">
-    <cfargument name="audSubCatNameSort" type="string" required="true">
-    <cfargument name="audCatId" type="numeric" required="true">
-    <cfargument name="isDeleted" type="boolean" default=false>
-    <cfargument name="recordname" type="string" required="false">
+<cfcomponent displayname="AuditionSubcategorieService" hint="Handles operations for AuditionSubcategorie table" output="false"> 
+<cffunction name="getAudSubcategories" access="public" returntype="query">
+    <cfargument name="new_audcatid" type="numeric" required="true">
+    <cfargument name="audsubcatname" type="string" required="true">
 
-    <cfset var insertResult = 0>
-    <cfset var sql = "INSERT INTO audsubcategories (audSubCatName, audSubCatNameSort, audCatId, isDeleted, recordname) VALUES (?, ?, ?, ?, ?)">
-
-    <cftry>
-        <cfquery name="insertQuery" datasource="#DSN#" result="result">
-            #sql#
-            <cfqueryparam value="#arguments.audSubCatName#" cfsqltype="CF_SQL_VARCHAR">
-            <cfqueryparam value="#arguments.audSubCatNameSort#" cfsqltype="CF_SQL_VARCHAR">
-            <cfqueryparam value="#arguments.audCatId#" cfsqltype="CF_SQL_INTEGER">
-            <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
-            <cfqueryparam value="#arguments.recordname#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.recordname)#">
-        </cfquery>
-        <cfset insertResult = result.generatedKey>
-        <cfcatch type="any">
-            <cflog file="application" text="Error inserting into audsubcategories: #cfcatch.message# Details: #cfcatch.detail# SQL: #sql#">
-            <cfset insertResult = 0>
-        </cfcatch>
-    </cftry>
-
-    <cfreturn insertResult>
-</cffunction>
-<!--- Changes made:
-- None. The code is syntactically correct and should execute without errors.
---->
-
-<cffunction name="getaudsubcategories" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="audSubCatId">
-    
-    <cfset var validColumns = "audSubCatId,audCatId,audSubCatName,audSubCatNameSort,recordname,isDeleted">
-    <cfset var validOrderByColumns = "audSubCatId,audCatId,audSubCatName,audSubCatNameSort,recordname,isDeleted">
-    <cfset var whereClause = []>
-    <cfset var queryParams = []>
-    <cfset var sql = "SELECT audSubCatId, audCatId, audSubCatName, audSubCatNameSort, recordname, isDeleted FROM audsubcategories WHERE 1=1">
     <cfset var result = "">
-
-    <!--- Validate orderBy column --->
-    <cfif not listFindNoCase(validOrderByColumns, arguments.orderBy)>
-        <cfset arguments.orderBy = "audSubCatId">
-    </cfif>
-
-    <!--- Build dynamic WHERE clause --->
-    <cfloop collection="#arguments.filters#" item="key">
-        <cfif listFindNoCase(validColumns, key)>
-            <cfset arrayAppend(whereClause, "#key# = ?")>
-            <cfset arrayAppend(queryParams, {value=arguments.filters[key], cfsqltype=de(iif(key eq 'isDeleted', 'CF_SQL_BIT', iif(key eq 'audSubCatId' or key eq 'audCatId', 'CF_SQL_INTEGER', 'CF_SQL_VARCHAR'))), null=iif(isNull(arguments.filters[key]), true, false)})>
-        </cfif>
-    </cfloop>
-
-    <!--- Construct final SQL query --->
-    <cfif arrayLen(whereClause) gt 0>
-        <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
-    </cfif>
-    <cfset sql &= " ORDER BY #arguments.orderBy#">
-
-    <!--- Execute the query --->
+    
     <cftry>
         <cfquery name="result" datasource="yourDataSource">
-            #sql#
-            <cfloop array="#queryParams#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#" null="#param.null#">
-            </cfloop>
+            SELECT * 
+            FROM audsubcategories 
+            WHERE audcatid = <cfqueryparam value="#arguments.new_audcatid#" cfsqltype="CF_SQL_INTEGER"> 
+            AND audsubcatname = <cfqueryparam value="#arguments.audsubcatname#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
+        
         <cfcatch type="any">
-            <cflog text="Error executing getaudsubcategories: #cfcatch.message#, Detail: #cfcatch.detail#, SQL: #sql#" type="error">
-            <!--- Return an empty query with correct schema on error --->
-            <cfset result = queryNew("audSubCatId,audCatId,audSubCatName,audSubCatNameSort,recordname,isDeleted", "integer,integer,varchar,varchar,varchar,bit")>
+            <cflog file="errorLog" text="Error in getAudSubcategories: #cfcatch.message# Query: SELECT * FROM audsubcategories WHERE audcatid = ? AND audsubcatname = ? Parameters: #arguments.new_audcatid#, #arguments.audsubcatname#">
+            <cfthrow message="Database error occurred. Please contact support." detail="#cfcatch.detail#">
         </cfcatch>
     </cftry>
 
-    <!--- Return the result --->
     <cfreturn result>
 </cffunction>
-
-<!--- Changes made:
-- Moved the ORDER BY clause outside of the cfif block to ensure it is always appended to the SQL query.
---->
-
-<cffunction name="updateaudsubcategories" access="public" returntype="boolean">
-    <cfargument name="audSubCatId" type="numeric" required="true">
-    <cfargument name="data" type="struct" required="true">
-    
-    <cfset var sql = "UPDATE audsubcategories SET">
-    <cfset var setClauses = []>
-    <cfset var validColumns = "audSubCatName,audSubCatNameSort,audCatId,isDeleted,recordname">
-    <cfset var result = false>
+<cffunction name="insertAudSubCategory" access="public" returntype="void">
+    <cfargument name="new_audSubCatName" type="string" required="true">
+    <cfargument name="new_audCatId" type="numeric" required="true">
+    <cfargument name="new_isDeleted" type="boolean" required="true">
 
     <cftry>
-        <!--- Build the SET clause dynamically based on provided data --->
-        <cfloop collection="#arguments.data#" item="key">
-            <cfif listFindNoCase(validColumns, key)>
-                <cfset arrayAppend(setClauses, "#key# = ?")>
-            </cfif>
-        </cfloop>
-
-        <!--- If there are no valid columns to update, return false --->
-        <cfif arrayLen(setClauses) eq 0>
-            <cfreturn false>
-        </cfif>
-
-        <!--- Construct the final SQL query --->
-        <cfset sql &= " " & arrayToList(setClauses, ", ") & " WHERE audSubCatId = ?">
-
-        <!--- Execute the update query --->
-        <cfquery datasource="#DSN#">
-            #sql#
-            <!--- Bind parameters for each column in the SET clause --->
-            <cfloop collection="#arguments.data#" item="key">
-                <cfif listFindNoCase(validColumns, key)>
-                    <cfqueryparam value="#arguments.data[key]#" 
-                                  cfsqltype="CF_SQL_VARCHAR"
-                                  null="#isNull(arguments.data[key])#">
-                </cfif>
-            </cfloop>
-            <!--- Bind parameter for the WHERE clause --->
-            <cfqueryparam value="#arguments.audSubCatId#" cfsqltype="CF_SQL_INTEGER">
+        <cfquery datasource="abod">
+            INSERT INTO audsubcategories (audSubCatName, audCatId, isDeleted)
+            VALUES (
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audSubCatName#" maxlength="100" null="#NOT len(trim(arguments.new_audSubCatName))#" />,
+                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audCatId#" null="#NOT len(trim(arguments.new_audCatId))#" />,
+                <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#" />
+            );
         </cfquery>
-
-        <!--- If no error occurs, set result to true --->
-        <cfset result = true>
-
         <cfcatch type="any">
-            <!--- Log error details --->
-            <cflog file="application" text="Error updating audsubcategories: #cfcatch.message# - #cfcatch.detail# - SQL: #sql#">
-            <!--- Return false on error --->
-            <cfset result = false>
+            <cflog file="application" text="Error in insertAudSubCategory: #cfcatch.message# Query: INSERT INTO audsubcategories (audSubCatName, audCatId, isDeleted) VALUES (#arguments.new_audSubCatName#, #arguments.new_audCatId#, #arguments.new_isDeleted#)" />
+            <cfthrow message="Error inserting into audsubcategories." detail="#cfcatch.detail#">
         </cfcatch>
     </cftry>
+</cffunction>
+<cffunction name="updateAudSubCategory" access="public" returntype="void">
+    <cfargument name="new_audSubCatName" type="string" required="true">
+    <cfargument name="new_audCatId" type="numeric" required="true">
+    <cfargument name="new_isDeleted" type="boolean" required="true">
+    <cfargument name="new_audSubCatId" type="numeric" required="true">
 
-    <!--- Return the result of the update operation --->
-    <cfreturn result>
-</cffunction> 
-
-<!--- Changes made:
-- Corrected cfsqltype in cfqueryparam to use a generic type (CF_SQL_VARCHAR) since dynamic determination was incorrect.
---->
-</cfcomponent>
+    <cftry>
+        <cfquery datasource="abod">
+            UPDATE audsubcategories 
+            SET 
+                audSubCatName = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audSubCatName)#" maxlength="100" null="#NOT len(trim(arguments.new_audSubCatName))#">,
+                audCatId = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audCatId#" null="#NOT len(trim(arguments.new_audCatId))#">,
+                isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+            WHERE 
+                audSubCatId = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audSubCatId#">
+        </cfquery>
+    <cfcatch type="any">
+        <cflog file="application" text="Error updating audsubcategories: #cfcatch.message# - Query: UPDATE audsubcategories SET audSubCatName, audCatId, isDeleted WHERE audSubCatId. Parameters: new_audSubCatName=#arguments.new_audSubCatName#, new_audCatId=#arguments.new_audCatId#, new_isDeleted=#arguments.new_isDeleted#, new_audSubCatId=#arguments.new_audSubCatId#">
+        <cfthrow message="An error occurred while updating the subcategory." detail="#cfcatch.detail#">
+    </cfcatch>
+    </cftry>
+</cffunction></cfcomponent>

@@ -1,94 +1,51 @@
-<cfcomponent displayname="AuditionToneUserService" hint="Handles operations for AuditionToneUser table" output="false" > 
-<cffunction name="insertaudtones_user" access="public" returntype="numeric">
-    <cfargument name="toneid" type="numeric" required="true">
+<cfcomponent displayname="AuditionToneUserService" hint="Handles operations for AuditionToneUser table" output="false"> 
+<cffunction name="insertAudtonesUser" access="public" returntype="void">
     <cfargument name="tone" type="string" required="true">
-    <cfargument name="audCatid" type="numeric" required="true" default="0">
-    <cfargument name="userid" type="numeric" required="true" default="0">
-    <cfargument name="isDeleted" type="boolean" required="true" default=false>
-    <cfargument name="recordname" type="string" required="false">
+    <cfargument name="audcatid" type="numeric" required="true">
+    <cfargument name="userid" type="numeric" required="true">
 
-    <cfset var insertResult = 0>
-    
     <cftry>
-        <cfquery name="insertQuery" datasource="#DSN#" result="result">
-            INSERT INTO audtones_user_tbl (toneid, tone, audCatid, userid, isDeleted, recordname)
+        <cfquery datasource="abod">
+            INSERT INTO audtones_user (tone, audcatid, userid)
             VALUES (
-                <cfqueryparam value="#arguments.toneid#" cfsqltype="CF_SQL_INTEGER">,
                 <cfqueryparam value="#arguments.tone#" cfsqltype="CF_SQL_VARCHAR">,
-                <cfqueryparam value="#arguments.audCatid#" cfsqltype="CF_SQL_INTEGER">,
-                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
-                <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">,
-                <cfqueryparam value="#arguments.recordname#" cfsqltype="CF_SQL_VARCHAR" null="#not structKeyExists(arguments, 'recordname')#">
+                <cfqueryparam value="#arguments.audcatid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
             )
         </cfquery>
-        
-        <cfset insertResult = result.generatedKey>
-        
-        <cfcatch>
-            <cflog file="application" text="Error inserting into audtones_user_tbl: #cfcatch.message# - #cfcatch.detail#">
-            <cflog file="application" text="SQL: INSERT INTO audtones_user_tbl (toneid, tone, audCatid, userid, isDeleted, recordname) VALUES (#arguments.toneid#, '#arguments.tone#', #arguments.audCatid#, #arguments.userid#, #arguments.isDeleted#, '#arguments.recordname#')">
+        <cfcatch type="any">
+            <cflog file="application" text="Error inserting into audtones_user: #cfcatch.message#; Query: INSERT INTO audtones_user (tone, audcatid, userid) VALUES ('#arguments.tone#', #arguments.audcatid#, #arguments.userid#)">
+            <cfthrow message="Database insertion error" detail="#cfcatch.detail#">
         </cfcatch>
     </cftry>
-
-    <cfreturn insertResult>
-</cffunction> 
-
-<!--- Changes made:
-- Removed default attributes from required arguments in cfargument tags as they are unnecessary.
---->
-
-<cffunction name="getaudtones_user" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="">
+</cffunction>
+<cffunction name="getUserTones" access="public" returntype="query">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="new_audcatid" type="numeric" required="true">
     
-    <cfset var validColumns = "toneid,audCatid,userid,tone,recordname,isDeleted">
-    <cfset var validOrderColumns = "toneid,audCatid,userid,tone,recordname,isDeleted">
-    <cfset var sql = "SELECT toneid, audCatid, userid, tone, recordname, isDeleted FROM audtones_user_tbl WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var queryParams = []>
     <cfset var result = "">
-
+    
     <cftry>
-        <!--- Build dynamic WHERE clause --->
-        <cfloop collection="#arguments.filters#" item="key">
-            <cfif listFindNoCase(validColumns, key)>
-                <cfset arrayAppend(whereClause, "#key# = ?")>
-                <cfset arrayAppend(queryParams, {value=arguments.filters[key], cfsqltype=getSQLTypeForColumn(key)})>
-            </cfif>
-        </cfloop>
-
-        <!--- Append WHERE clause if conditions exist --->
-        <cfif arrayLen(whereClause) gt 0>
-            <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
-        </cfif>
-
-        <!--- Validate and append ORDER BY clause --->
-        <cfif len(trim(arguments.orderBy)) and listFindNoCase(validOrderColumns, arguments.orderBy)>
-            <cfset sql &= " ORDER BY #arguments.orderBy#">
-        </cfif>
-
-        <!--- Execute the query --->
-        <cfquery name="result" datasource="abod">
-            #sql#
-            <cfloop array="#queryParams#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#" null="#isNull(param.value)#">
-            </cfloop>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT 
+                a.toneid AS ID, 
+                a.tone AS NAME, 
+                a.audcatid, 
+                a.userid 
+            FROM 
+                audtones_user a 
+            WHERE 
+                userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+                AND audcatid = <cfqueryparam value="#arguments.new_audcatid#" cfsqltype="CF_SQL_INTEGER"> 
+            ORDER BY 
+                a.tone
         </cfquery>
-
-    <cfcatch type="any">
-        <!--- Log the error --->
-        <cflog file="application" text="Error in getaudtones_user: #cfcatch.message# Details: #cfcatch.detail# SQL: #sql#">
-
-        <!--- Return an empty query with the correct schema --->
-        <cfset result = queryNew("toneid,audCatid,userid,tone,recordname,isDeleted", "integer,integer,integer,varchar,varchar,bit")>
-    </cfcatch>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getUserTones: #cfcatch.message# Query: SELECT a.toneid AS ID, a.tone AS NAME, a.audcatid, a.userid FROM audtones_user WHERE userid = #arguments.userid# AND audcatid = #arguments.new_audcatid# ORDER BY a.tone">
+            <cfset result = queryNew("ID, NAME, audcatid, userid")>
+        </cfcatch>
     </cftry>
-
-    <!--- Return the result --->
+    
     <cfreturn result>
-</cffunction> 
-
-<!--- Changes made:
-- No syntax errors were found in the provided code.
---->
-</cfcomponent>
+</cffunction></cfcomponent>

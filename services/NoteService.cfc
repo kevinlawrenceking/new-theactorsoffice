@@ -1,219 +1,572 @@
-<cfcomponent displayname="NoteService" hint="Handles operations for Note table" output="false" > 
-<cffunction name="deletenoteslog" access="public" returntype="boolean">
-    <cfargument name="noteID" type="numeric" required="true">
-    <cfset var result = false>
-    <cfset var sql = "DELETE FROM noteslog_tbl WHERE noteID = ?">
-    
+<cfcomponent displayname="NoteService" hint="Handles operations for Note table" output="false"> 
+<cffunction name="insertNoteLog" access="public" returntype="void">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="newcontactid" type="numeric" required="true">
+    <cfargument name="newnoteDetails" type="string" required="true">
+
     <cftry>
-        <cfquery datasource="#DSN#">
-            #sql#
-            <cfqueryparam value="#arguments.noteID#" cfsqltype="CF_SQL_INTEGER">
+        <cfquery datasource="abod">
+            INSERT INTO noteslog (userid, contactid, noteDetails) 
+            VALUES (
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#" />, 
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.newcontactid#" />, 
+                <cfqueryparam cfsqltype="cf_sql_longvarchar" value="#LEFT(trim(arguments.newnoteDetails), 2000)#" />
+            )
         </cfquery>
-        <cfset result = true>
         <cfcatch type="any">
-            <cflog file="deletenoteslog_errors" text="Error deleting note: #cfcatch.message# Details: #cfcatch.detail# SQL: #sql#">
-            <cfset result = false>
+            <cflog file="application" type="error" text="Error inserting into noteslog: #cfcatch.message# Query: INSERT INTO noteslog (userid, contactid, noteDetails) VALUES (?, ?, ?)" />
+            <cfthrow message="An error occurred while inserting the note log." detail="#cfcatch.detail#">
         </cfcatch>
     </cftry>
-
-    <cfreturn result>
 </cffunction>
+<cffunction name="deleteNoteById" access="public" returntype="void" hint="Deletes a note by its ID">
+    <cfargument name="noteid" type="numeric" required="true" hint="ID of the note to delete">
 
-<!--- Changes made:
-- None. The code is syntactically correct and should execute without errors.
---->
-
-<cffunction name="insertnoteslog" access="public" returntype="numeric">
-    <cfargument name="noteDetails" type="string" required="true">
-    <cfargument name="userID" type="numeric" required="true">
-    <cfargument name="contactID" type="numeric" required="true">
-    <cfargument name="IsDeleted" type="boolean" required="true">
-    <cfargument name="isPublic" type="boolean" required="true">
-    <cfargument name="eventid" type="numeric" required="false" default="">
-    <cfargument name="audprojectid" type="numeric" required="false" default="">
-    <cfargument name="notedetailshtml" type="string" required="false" default="">
-    
-    <cfset var sql = "INSERT INTO noteslog_tbl (noteDetails, userID, contactID, IsDeleted, isPublic, eventid, audprojectid, notedetailshtml) VALUES (?, ?, ?, ?, ?, ?, ?, ?)">
-    <cfset var insertResult = "">
+    <cftry>
+        <cfquery datasource="abod">
+            DELETE FROM noteslog 
+            WHERE noteid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.noteid#" />
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error deleting note with ID #arguments.noteid#: #cfcatch.message#" type="error">
+            <cfthrow message="Failed to delete note." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="deleteNoteById" access="public" returntype="void">
+    <cfargument name="noteId" type="numeric" required="true">
     
     <cftry>
-        <cfquery name="insertQuery" datasource="#DSN#" result="insertResult">
-            #sql#
-            <cfqueryparam value="#arguments.noteDetails#" cfsqltype="CF_SQL_VARCHAR">
-            <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
-            <cfqueryparam value="#arguments.contactID#" cfsqltype="CF_SQL_INTEGER">
-            <cfqueryparam value="#arguments.IsDeleted#" cfsqltype="CF_SQL_BIT">
-            <cfqueryparam value="#arguments.isPublic#" cfsqltype="CF_SQL_BIT">
-            <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER" null="#isNull(arguments.eventid)#">
-            <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER" null="#isNull(arguments.audprojectid)#">
-            <cfqueryparam value="#arguments.notedetailshtml#" cfsqltype="CF_SQL_LONGVARCHAR" null="#isNull(arguments.notedetailshtml)#">
+        <cfquery datasource="abod">
+            DELETE FROM noteslog 
+            WHERE noteid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.noteId#" />
         </cfquery>
-        <cfreturn insertResult.generatedKey>
         
-        <cfcatch>
-            <cflog file="application" text="Error inserting into noteslog_tbl: #cfcatch.message# - #cfcatch.detail# - SQL: #sql#">
-            <!--- Return a negative number to indicate failure --->
-            <cfreturn -1>
+        <cfcatch type="any">
+            <cflog file="application" text="Error deleting note with ID #arguments.noteId#: #cfcatch.message#" />
+            <cfthrow message="An error occurred while deleting the note." detail="#cfcatch.detail#">
         </cfcatch>
     </cftry>
 </cffunction>
+<cffunction name="insertNoteLog" access="public" returntype="void">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="new_eventid" type="numeric" required="true">
+    <cfargument name="noteDetails" type="string" required="true">
 
-<!--- Changes made:
-- None. The code is syntactically correct.
---->
-
-<cffunction name="getnoteslog" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="noteTimestamp">
-    <cfset var sql = "SELECT `noteID`, `userID`, `contactID`, `eventid`, `audprojectid`, `noteDetails`, `IsDeleted`, `isPublic`, `noteTimestamp`, `notedetailshtml` FROM noteslog_tbl WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var queryParams = []>
-    <cfset var validColumns = "noteID,userID,contactID,eventid,audprojectid,noteDetails,IsDeleted,isPublic,noteTimestamp,notedetailshtml">
-    <cfset var validOrderColumns = "noteID,userID,contactID,eventid,audprojectid,noteDetails,IsDeleted,isPublic,noteTimestamp">
-
-    <!--- Build dynamic WHERE clause --->
-    <cfloop collection="#arguments.filters#" item="key">
-        <cfif listFindNoCase(validColumns, key)>
-            <cfset arrayAppend(whereClause, "#key# = ?")>
-            <cfset arrayAppend(queryParams, {value=arguments.filters[key], cfsqltype=getSQLTypeForColumn(key)})>
-        </cfif>
-    </cfloop>
-
-    <!--- Append WHERE conditions to SQL if any --->
-    <cfif arrayLen(whereClause) gt 0>
-        <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
-    <cfelse>
-        <!--- Return empty query if no filters are provided --->
-        <cfreturn queryNew("noteID,userID,contactID,eventid,audprojectid,noteDetails,IsDeleted,isPublic,noteTimestamp,notedetailshtml", "integer,integer,integer,integer,integer,varchar,bit,bit,timestamp,longvarchar")>
-    </cfif>
-
-    <!--- Validate and append ORDER BY clause --->
-    <cfif listFindNoCase(validOrderColumns, arguments.orderBy)>
-        <cfset sql &= " ORDER BY #arguments.orderBy#">
-    </cfif>
-
-    <!--- Execute the query within a try/catch block --->
+    <cftry>
+        <cfquery datasource="abod">
+            INSERT INTO noteslog (userid, contactid, eventid, noteDetails, ispublic)
+            VALUES (
+                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="0" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.new_eventid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#trim(arguments.noteDetails)#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="1" cfsqltype="CF_SQL_BIT">
+            )
+        </cfquery>
+        <cfcatch type="any">
+            <cflog file="application" text="Error inserting into noteslog: #cfcatch.message#">
+            <cfthrow message="Error inserting into noteslog." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getNotesLogByNoteId" access="public" returntype="query">
+    <cfargument name="noteid" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
     <cftry>
         <cfquery name="result" datasource="abod">
+            SELECT * 
+            FROM noteslog 
+            WHERE noteid = <cfqueryparam value="#arguments.noteid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getNotesLogByNoteId: #cfcatch.message# Query: SELECT * FROM noteslog WHERE noteid = #arguments.noteid#">
+            <cfset result = queryNew("")>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="updateNoteIsDeleted" access="public" returntype="void">
+    <cfargument name="recid" type="numeric" required="true">
+    
+    <cftry>
+        <cfquery datasource="yourDataSource">
+            UPDATE noteslog_tbl 
+            SET isdeleted = 1 
+            WHERE noteid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" type="error" text="Error updating noteslog_tbl: #cfcatch.message#">
+            <cflog file="application" type="error" text="Query Error: #cfcatch.detail#">
+            <cflog file="application" type="error" text="Parameters: recid=#arguments.recid#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="insertNotesLog" access="public" returntype="void" output="false">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="contactid" type="numeric" required="true">
+    <cfargument name="noteDetails" type="string" required="true">
+    <cfargument name="isPublic" type="boolean" required="true">
+    <cfargument name="audprojectid" type="numeric" required="true">
+    <cfargument name="notedetailshtml" type="string" required="true">
+
+    <cftry>
+        <cfquery datasource="abod">
+            INSERT INTO noteslog (userid, contactid, noteDetails, isPublic, audprojectid, notedetailshtml)
+            VALUES (
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.contactid#" />,
+                <cfqueryparam cfsqltype="cf_sql_longvarchar" value="#LEFT(trim(arguments.noteDetails),2000)#" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.isPublic#" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.audprojectid#" />,
+                <cfqueryparam cfsqltype="cf_sql_longvarchar" value="#arguments.notedetailshtml#" />
+            )
+        </cfquery>
+        <cfcatch type="any">
+            <cflog file="application" text="Error inserting into noteslog: #cfcatch.message#">
+            <cfrethrow>
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="updateNotesLog" access="public" returntype="void">
+    <cfargument name="noteDetailsHtml" type="string" required="true">
+    
+    <cfset var sql = "">
+    <cfset var params = []>
+    
+    <cftry>
+        <cfset sql = "
+            UPDATE noteslog 
+            SET NOTEDETAILSHTML = REPLACE(NOTEDETAILSHTML, ?, '') 
+            WHERE NOTEDETAILSHTML LIKE ?
+        ">
+        
+        <cfset arrayAppend(params, {value=arguments.noteDetailsHtml, cfsqltype="CF_SQL_LONGVARCHAR"})>
+        <cfset arrayAppend(params, {value='%' & arguments.noteDetailsHtml & '%', cfsqltype="CF_SQL_LONGVARCHAR"})>
+        
+        <cfquery name="updateQuery" datasource="yourDataSource">
             #sql#
-            <cfloop array="#queryParams#" index="param">
+            <cfloop array="#params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
             </cfloop>
         </cfquery>
+        
+    <cfcatch type="any">
+        <cflog file="application" type="error" text="Error updating noteslog: #cfcatch.message# - SQL: #sql# - Params: #serializeJSON(params)#">
+    </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="insertNoteLog" access="public" returntype="void">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="contactid" type="numeric" required="true">
+    <cfargument name="noteDetails" type="string" required="true">
+    <cfargument name="isPublic" type="boolean" required="true">
+    <cfargument name="eventid" type="numeric" required="true">
+    <cfargument name="notedetailshtml" type="string" required="true">
+
+    <cftry>
+        <cfquery datasource="abod">
+            INSERT INTO noteslog (userid, contactid, noteDetails, isPublic, eventid, notedetailshtml)
+            VALUES (
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.contactid#" />,
+                <cfqueryparam cfsqltype="cf_sql_longvarchar" value="#LEFT(trim(arguments.noteDetails),2000)#" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.isPublic#" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.eventid#" />,
+                <cfqueryparam cfsqltype="cf_sql_longvarchar" value="#arguments.notedetailshtml#" />
+            )
+        </cfquery>
         <cfcatch type="any">
-            <!--- Log error details --->
-            <cflog file="application" text="Error in getnoteslog: #cfcatch.message# Details: #cfcatch.detail# SQL: #sql#">
-            <!--- Return empty query on error --->
-            <cfreturn queryNew("noteID,userID,contactID,eventid,audprojectid,noteDetails,IsDeleted,isPublic,noteTimestamp,notedetailshtml", "integer,integer,integer,integer,integer,varchar,bit,bit,timestamp,longvarchar")>
+            <cflog file="application" text="Error inserting note log: #cfcatch.message# - Query: INSERT INTO noteslog (userid, contactid, noteDetails, isPublic, eventid, notedetailshtml) VALUES (#arguments.userid#, #arguments.contactid#, #LEFT(trim(arguments.noteDetails),2000)#, #arguments.isPublic#, #arguments.eventid#, #arguments.notedetailshtml#)" />
+            <cfthrow message="An error occurred while inserting the note log." detail="#cfcatch.detail#">
         </cfcatch>
     </cftry>
+</cffunction>
+<cffunction name="insertNoteLog" access="public" returntype="void">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="contactid" type="numeric" required="true">
+    <cfargument name="noteDetails" type="string" required="true">
+    <cfargument name="isPublic" type="numeric" required="true">
+    <cfargument name="eventid" type="numeric" required="true">
 
-    <!--- Return the result set --->
-    <cfreturn result>
+    <cftry>
+        <cfquery datasource="abod">
+            INSERT INTO noteslog (userid, contactid, noteDetails, isPublic, eventid) 
+            VALUES (
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.contactid#" />,
+                <cfqueryparam cfsqltype="cf_sql_longvarchar" value="#LEFT(trim(arguments.noteDetails),2000)#" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.isPublic#" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.eventid#" />
+            )
+        </cfquery>
+        <cfcatch>
+            <cflog file="application" text="Error inserting into noteslog: #cfcatch.message# - #cfcatch.detail#">
+            <cfthrow message="Database Error" detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="updateNotesLog" access="public" returntype="void">
+    <cfargument name="noteDetails" type="string" required="true">
+    <cfargument name="new_noteText" type="string" required="true">
+    <cfargument name="isPublic" type="boolean" required="true">
+    <cfargument name="noteid" type="numeric" required="true">
 
-</cffunction> 
+    <cftry>
+        <cfquery datasource="abod">
+            UPDATE noteslog 
+            SET 
+                noteDetails = <cfqueryparam cfsqltype="cf_sql_longvarchar" value="#LEFT(trim(arguments.noteDetails),2000)#">,
+                notedetailshtml = <cfqueryparam cfsqltype="cf_sql_longvarchar" value="#trim(arguments.new_noteText)#">,
+                isPublic = <cfqueryparam cfsqltype="cf_sql_bit" value="#arguments.isPublic#">
+            WHERE 
+                noteid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.noteid#">
+        </cfquery>
+        <cfcatch type="any">
+            <cflog file="application" text="Error in updateNotesLog function: #cfcatch.message# Query: UPDATE noteslog SET noteDetails, notedetailshtml, isPublic WHERE noteid. Parameters: noteDetails=#arguments.noteDetails#, new_noteText=#arguments.new_noteText#, isPublic=#arguments.isPublic#, noteid=#arguments.noteid#">
+            <cfthrow>
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="updateNotesLog" access="public" returntype="void" output="false">
+    <cfargument name="noteDetails" type="string" required="true">
+    <cfargument name="isPublic" type="boolean" required="true">
+    <cfargument name="noteid" type="numeric" required="true">
 
-<!--- Changes made:
-- None. The code is syntactically correct and should execute without errors.
---->
-
-<cffunction name="updatenoteslog" access="public" returntype="boolean">
-    <cfargument name="noteID" type="numeric" required="true">
-    <cfargument name="data" type="struct" required="true">
-
-    <cfset var sql = "UPDATE noteslog_tbl SET">
-    <cfset var setClauses = []>
-    <cfset var result = false>
-
-    <!--- Define a list of valid columns to update --->
-    <cfset var validColumns = "noteDetails,userID,contactID,eventid,audprojectid,IsDeleted,isPublic,notedetailshtml,noteTimestamp">
-
-    <!--- Build the SET clause dynamically --->
-    <cfloop collection="#arguments.data#" item="key">
-        <cfif listFindNoCase(validColumns, key)>
-            <cfset arrayAppend(setClauses, "#key# = ?")>
-        </cfif>
-    </cfloop>
-
-    <!--- Ensure there is at least one column to update --->
-    <cfif arrayLen(setClauses) gt 0>
-        <cfset sql &= " " & arrayToList(setClauses, ", ") & " WHERE noteID = ?">
-
-        <!--- Execute the query within a try/catch block for error handling --->
-        <cftry>
-            <cfquery datasource="#DSN#">
-                #sql#
-                <cfloop collection="#arguments.data#" item="key">
-                    <cfif listFindNoCase(validColumns, key)>
-                        <cfqueryparam value="#arguments.data[key]#" cfsqltype="#getSQLType(key)#" null="#isNull(arguments.data[key])#">
-                    </cfif>
-                </cfloop>
-                <cfqueryparam value="#arguments.noteID#" cfsqltype="CF_SQL_INTEGER">
-            </cfquery>
-
-            <!--- If query executes successfully, set result to true --->
-            <cfset result = true>
-
-            <cfcatch type="any">
-                <!--- Log the error details --->
-                <cflog file="application" text="Error updating noteslog_tbl: #cfcatch.message# - #cfcatch.detail# - SQL: #sql#">
-            </cfcatch>
-        </cftry>
-    </cfif>
-
-    <!--- Return the result of the update operation --->
-    <cfreturn result>
-</cffunction> 
-
-<!--- Changes made:
-- None. The function code is syntactically correct.
---->
-
-<cffunction name="getvm_noteslog_contactdetails" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="">
+    <cftry>
+        <cfquery datasource="abod">
+            UPDATE noteslog 
+            SET 
+                noteDetails = <cfqueryparam cfsqltype="cf_sql_longvarchar" value="#LEFT(trim(arguments.noteDetails),2000)#">,
+                isPublic = <cfqueryparam cfsqltype="cf_sql_bit" value="#arguments.isPublic#">
+            WHERE 
+                noteid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.noteid#">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" type="error" text="Error updating noteslog: #cfcatch.message# Query: UPDATE noteslog SET noteDetails=?, isPublic=? WHERE noteid=? Parameters: #arguments.noteDetails#, #arguments.isPublic#, #arguments.noteid#">
+            <cfthrow>
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getNotesLog" access="public" returntype="query">
+    <cfargument name="userID" type="numeric" required="true">
+    <cfargument name="eventID" type="numeric" required="true">
     
-    <cfset var sql = "SELECT `noteID`, `userID`, `contactID`, `col3`, `col5`, `col4`, `col1`, `noteDetailsHTML` FROM vm_noteslog_contactdetails WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var params = []>
-    <cfset var validColumns = "noteID,userID,contactID,col3,col5,col4,col1,noteDetailsHTML">
-    <cfset var validOrderByColumns = listToArray(validColumns)>
     <cfset var result = "">
-
-    <!--- Build dynamic WHERE clause --->
-    <cfloop collection="#arguments.filters#" item="key">
-        <cfif listFindNoCase(validColumns, key)>
-            <cfset arrayAppend(whereClause, "#key# = ?")>
-            <cfset arrayAppend(params, {value=arguments.filters[key], cfsqltype=getSQLType(key)})>
-        </cfif>
-    </cfloop>
-
-    <!--- Append WHERE clause to SQL if conditions exist --->
-    <cfif arrayLen(whereClause) gt 0>
-        <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
-    </cfif>
-
-    <!--- Add ORDER BY clause if provided and valid --->
-    <cfif len(arguments.orderBy) and listFindNoCase(validColumns, arguments.orderBy)>
-        <cfset sql &= " ORDER BY #arguments.orderBy#">
-    </cfif>
-
-    <!--- Execute the query --->
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT 
+                n.noteID, 
+                n.noteTimestamp, 
+                n.noteid AS recid, 
+                'Date' AS head1, 
+                'Time' AS head2, 
+                'Relationships' AS head3, 
+                'Status' AS head4, 
+                'Details' AS head5, 
+                n.noteTimestamp AS col1, 
+                n.noteTimestamp AS col2, 
+                n.isPublic AS col4, 
+                n.noteDetails AS col5, 
+                n.noteDetailsHTML, 
+                n.userID
+            FROM 
+                noteslog n
+            WHERE 
+                n.userID = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER"> 
+                AND n.eventid = <cfqueryparam value="#arguments.eventID#" cfsqltype="CF_SQL_INTEGER">
+            ORDER BY 
+                n.noteTimestamp DESC
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getNotesLog: #cfcatch.message#">
+            <cfreturn queryNew("noteID,noteTimestamp,recid,head1,head2,head3,head4,head5,col1,col2,col4,col5,noteDetailsHTML,userID")>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="getNoteDetails" access="public" returntype="query">
+    <cfargument name="updateNoteID" type="numeric" required="true">
+    <cfset var result = "">
+    
     <cftry>
         <cfquery name="result" datasource="abod">
-            #sql#
-            <cfloop array="#params#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#" null="#isNull(param.value)#">
-            </cfloop>
+            SELECT 
+                n.noteID, 
+                n.noteDetails, 
+                n.userID, 
+                n.noteTimestamp, 
+                n.contactID, 
+                n.isPublic, 
+                d.contactFullName AS fullname
+            FROM 
+                noteslog n
+            INNER JOIN 
+                contactDetails d ON d.contactid = n.contactid
+            WHERE 
+                n.noteid = <cfqueryparam value="#arguments.updateNoteID#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-
-        <!--- Handle errors and return an empty query if necessary --->
+        
         <cfcatch type="any">
-            <cflog file="application" text="Error in getvm_noteslog_contactdetails: #cfcatch.message# - #cfcatch.detail# - SQL: #sql#">
-            <cfset result = queryNew("noteID,userID,contactID,col3,col5,col4,col1,noteDetailsHTML", "integer,integer,integer,varchar,varchar,bit,timestamp,longvarchar")>
+            <cflog file="application" text="Error in getNoteDetails: #cfcatch.message# Query: SELECT n.noteID, n.noteDetails, n.userID, n.noteTimestamp, n.contactID, n.isPublic, d.contactFullName AS fullname FROM noteslog n INNER JOIN contactDetails d ON d.contactid = n.contactid WHERE n.noteid = ? Parameters: #arguments.updateNoteID#">
+            <cfthrow message="An error occurred while retrieving note details." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="insertNoteLog" access="public" returntype="void">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="contactid" type="numeric" required="true">
+    <cfargument name="noteDetails" type="string" required="true">
+    <cfargument name="isPublic" type="boolean" required="true">
+    <cfargument name="eventid" type="numeric" required="true">
+
+    <cftry>
+        <cfquery datasource="abod">
+            INSERT INTO noteslog (userid, contactid, noteDetails, isPublic, eventid) 
+            VALUES (
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.contactid#" />,
+                <cfqueryparam cfsqltype="cf_sql_longvarchar" value="#arguments.noteDetails#" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.isPublic ? 1 : 0#" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.eventid#" />
+            )
+        </cfquery>
+        <cfcatch>
+            <cflog file="application" text="Error inserting into noteslog: #cfcatch.message#">
+            <cfrethrow>
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="insertNoteLog" access="public" returntype="void">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="noteDetails" type="string" required="true">
+    <cfargument name="new_audprojectid" type="numeric" required="true">
+
+    <cftry>
+        <cfquery datasource="abod">
+            INSERT INTO noteslog (userid, noteDetails, isPublic, audprojectid, contactid) 
+            VALUES (
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#" />,
+                <cfqueryparam cfsqltype="cf_sql_varchar" value="#LEFT(trim(arguments.noteDetails), 2000)#" />,
+                <cfqueryparam cfsqltype="cf_sql_bit" value="1" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_audprojectid#" />,
+                0
+            )
+        </cfquery>
+        <cfcatch type="any">
+            <cflog file="application" text="Error in insertNoteLog: #cfcatch.message# - Query: INSERT INTO noteslog (userid, noteDetails, isPublic, audprojectid, contactid) VALUES (?, ?, ?, ?, ?) - Parameters: userid=#arguments.userid#, noteDetails=#LEFT(trim(arguments.noteDetails), 2000)#, new_audprojectid=#arguments.new_audprojectid#"/>
+            <cfthrow message="Database insertion error." detail="#cfcatch.detail#"/>
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getNotesLog" access="public" returntype="query">
+    <cfargument name="select_userid" type="numeric" required="true">
+    <cfargument name="select_contactid" type="numeric" required="true">
+    <cfargument name="noteDetailsPrefix" type="string" required="true">
+
+    <cfset var result = "">
+
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT * 
+            FROM noteslog 
+            WHERE userid = <cfqueryparam value="#arguments.select_userid#" cfsqltype="CF_SQL_INTEGER"> 
+            AND contactid = <cfqueryparam value="#arguments.select_contactid#" cfsqltype="CF_SQL_INTEGER"> 
+            AND noteDetails LIKE <cfqueryparam value="#arguments.noteDetailsPrefix#%" cfsqltype="CF_SQL_VARCHAR">
+        </cfquery>
+        <cfcatch>
+            <cflog file="application" text="Error in getNotesLog function: #cfcatch.message#; SQL: #cfcatch.Sql#; Data: #arguments#">
+            <cfthrow message="Error retrieving notes log." detail="#cfcatch.detail#">
         </cfcatch>
     </cftry>
 
-    <!--- Return the result --->
+    <cfreturn result>
+</cffunction>
+<cffunction name="insertNoteLog" access="public" returntype="void">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="contactid" type="numeric" required="true">
+    <cfargument name="noteDetails" type="string" required="true">
+
+    <cftry>
+        <cfquery datasource="abod">
+            INSERT INTO noteslog (userid, contactid, noteDetails, ispublic) 
+            VALUES (
+                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#trim(arguments.noteDetails)#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="1" cfsqltype="CF_SQL_BIT">
+            )
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error inserting into noteslog: #cfcatch.message# - Query: INSERT INTO noteslog (userid, contactid, noteDetails, ispublic) VALUES (#arguments.userid#, #arguments.contactid#, '#trim(arguments.noteDetails)#', 1)">
+            <cfthrow message="An error occurred while inserting the note log." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getNotesLog" access="public" returntype="query">
+    <cfargument name="audprojectid" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT 
+                n.noteID, 
+                n.noteTimestamp, 
+                n.noteid AS recid, 
+                'Date' AS head1, 
+                'Time' AS head2, 
+                'Relationships' AS head3, 
+                'Status' AS head4, 
+                'Details' AS head5, 
+                n.noteDetails, 
+                n.noteTimestamp AS col1, 
+                n.noteTimestamp AS col2, 
+                n.isPublic AS col4, 
+                n.noteDetails AS col5, 
+                n.noteDetailsHTML, 
+                n.userID
+            FROM noteslog n
+            WHERE n.audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
+            AND n.audprojectid <> 0
+            ORDER BY n.noteTimestamp DESC
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="errorLog" text="Error in getNotesLog: #cfcatch.message# Query: #cfcatch.detail#">
+            <cfset result = queryNew("noteID,noteTimestamp,recid,head1,head2,head3,head4,head5,noteDetails,col1,col2,col4,col5,noteDetailsHTML,userID")>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="getNotesLog" access="public" returntype="query">
+    <cfargument name="userID" type="numeric" required="true">
+    <cfargument name="contactID" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT 
+                n.noteID, 
+                n.noteid AS recid, 
+                'Date' AS head1, 
+                'Time' AS head2, 
+                'Relationships' AS head3, 
+                'Status' AS head4, 
+                'Details' AS head5, 
+                n.noteTimestamp AS col1, 
+                n.noteTimestamp AS col2, 
+                d.contactfullname AS col3, 
+                n.isPublic AS col4, 
+                n.noteDetails AS col5, 
+                n.userID, 
+                n.contactID
+            FROM noteslog n
+            INNER JOIN contactDetails d ON d.contactid = n.contactid
+            WHERE n.userID = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
+            AND n.contactid = <cfqueryparam value="#arguments.contactID#" cfsqltype="CF_SQL_INTEGER">
+            ORDER BY n.noteTimestamp DESC
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getNotesLog: #cfcatch.message# Query: SELECT ... WHERE userID=#arguments.userID# AND contactID=#arguments.contactID#">
+            <cfset result = queryNew("")>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="getNotesLog" access="public" returntype="query">
+    <cfargument name="userID" type="numeric" required="true">
+    <cfargument name="eventID" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT 
+                n.noteID, 
+                n.noteTimestamp, 
+                n.noteid AS recid, 
+                'Date' AS head1, 
+                'Time' AS head2, 
+                'Relationships' AS head3, 
+                'Status' AS head4, 
+                'Details' AS head5, 
+                n.noteDetails, 
+                n.noteTimestamp AS col1, 
+                n.noteTimestamp AS col2, 
+                n.isPublic AS col4, 
+                n.noteDetails AS col5, 
+                n.noteDetailsHTML, 
+                n.userID
+            FROM noteslog n
+            WHERE n.userID = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
+            AND n.eventid = <cfqueryparam value="#arguments.eventID#" cfsqltype="CF_SQL_INTEGER">
+            ORDER BY n.noteTimestamp DESC
+        </cfquery>
+        
+        <cfreturn result>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getNotesLog: #cfcatch.message#; Query: #cfcatch.detail#">
+            <cfreturn queryNew("")>
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getNotesLog" access="public" returntype="query">
+    <cfargument name="userID" type="numeric" required="true">
+    <cfargument name="contactID" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT 
+                n.noteID, 
+                n.noteid AS recid, 
+                'Date' AS head1, 
+                'Time' AS head2, 
+                'Relationships' AS head3, 
+                'Status' AS head4, 
+                'Details' AS head5, 
+                n.notetimestamp, 
+                n.noteTimestamp AS col1, 
+                n.noteTimestamp AS col2, 
+                n.noteDetails, 
+                d.contactfullname AS col3, 
+                n.isPublic AS col4, 
+                n.noteDetails AS col5, 
+                n.noteDetailsHTML, 
+                n.userID, 
+                n.contactID
+            FROM noteslog n
+            INNER JOIN contactDetails d ON d.contactid = n.contactid
+            WHERE n.userID = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER"> 
+            AND n.contactid = <cfqueryparam value="#arguments.contactID#" cfsqltype="CF_SQL_INTEGER">
+            ORDER BY n.noteTimestamp DESC
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getNotesLog: #cfcatch.message# Query: #cfcatch.detail#">
+            <cfreturn queryNew("")>
+        </cfcatch>
+    </cftry>
+    
     <cfreturn result>
 </cffunction></cfcomponent>

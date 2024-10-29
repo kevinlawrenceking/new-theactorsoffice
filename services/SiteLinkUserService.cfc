@@ -1,213 +1,292 @@
-<cfcomponent displayname="SiteLinkUserService" hint="Handles operations for SiteLinkUser table" output="false" > 
-<cffunction name="insertsitelinks_user" access="public" returntype="numeric">
-    <cfargument name="siteName" type="string" required="true">
-    <cfargument name="siteURL" type="string" required="true">
-    <cfargument name="siteicon" type="string" required="false" default="unknown.png">
-    <cfargument name="siteTypeid" type="numeric" required="true">
-    <cfargument name="userid" type="numeric" required="true">
-    <cfargument name="IsDeleted" type="boolean" required="true">
-    <cfargument name="IsCustom" type="boolean" required="true">
-    <cfargument name="ver" type="numeric" required="false">
-    <cfargument name="siteicon_url" type="string" required="false">
+<cfcomponent displayname="SiteLinkUserService" hint="Handles operations for SiteLinkUser table" output="false"> 
+<cffunction name="updateSiteIcon" access="public" returntype="void">
+    <cfargument name="fileName" type="string" required="true">
+    <cfargument name="id" type="numeric" required="true">
 
-    <cfset var insertResult = 0>
-    
     <cftry>
-        <cfquery name="insertQuery" datasource="#DSN#" result="queryResult">
-            INSERT INTO sitelinks_user_tbl (
-                siteName, 
-                siteURL, 
-                siteicon, 
-                siteTypeid, 
-                userid, 
-                IsDeleted, 
-                IsCustom, 
-                ver, 
-                siteicon_url
-            ) VALUES (
-                <cfqueryparam value="#arguments.siteName#" cfsqltype="CF_SQL_VARCHAR">,
-                <cfqueryparam value="#arguments.siteURL#" cfsqltype="CF_SQL_VARCHAR">,
-                <cfqueryparam value="#arguments.siteicon#" cfsqltype="CF_SQL_VARCHAR">,
-                <cfqueryparam value="#arguments.siteTypeid#" cfsqltype="CF_SQL_INTEGER">,
-                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
-                <cfqueryparam value="#arguments.IsDeleted#" cfsqltype="CF_SQL_BIT">,
-                <cfqueryparam value="#arguments.IsCustom#" cfsqltype="CF_SQL_BIT">,
-                <cfqueryparam value="#arguments.ver#" cfsqltype="CF_SQL_INTEGER" null="#isNull(arguments.ver)#">,
-                <cfqueryparam value="#arguments.siteicon_url#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.siteicon_url)#">
-            )
+        <cfquery datasource="abod">
+            UPDATE sitelinks_user 
+            SET siteicon = <cfqueryparam value="#arguments.fileName#" cfsqltype="cf_sql_varchar"> 
+            WHERE id = <cfqueryparam value="#arguments.id#" cfsqltype="cf_sql_integer">
         </cfquery>
-        <cfset insertResult = queryResult.generatedKey>
-        
         <cfcatch>
-            <cflog file="application" text="Error inserting into sitelinks_user_tbl: #cfcatch.message# Details: #cfcatch.detail#">
-            <!--- Return 0 or another appropriate indicator of failure --->
-            <cfset insertResult = 0>
+            <cflog file="application" text="Error updating siteicon: #cfcatch.message# Query: UPDATE sitelinks_user SET siteicon = ? WHERE id = ? Parameters: #arguments.fileName#, #arguments.id#">
+            <cfthrow message="An error occurred while updating the site icon." detail="#cfcatch.detail#">
         </cfcatch>
     </cftry>
-
-    <cfreturn insertResult>
 </cffunction>
-
-<!--- Changes made:
-- Removed default attributes from IsDeleted and IsCustom arguments as they are marked required.
---->
-
-<cffunction name="getsitelinks_user" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="ID">
-    <cfset var validColumns = "ID,siteTypeid,userid,ver,siteName,siteURL,siteicon,siteicon_url,IsDeleted,IsCustom">
-    <cfset var validOrderBy = "ID,siteTypeid,userid,ver,siteName,siteURL,siteicon,siteicon_url">
-    <cfset var sql = "SELECT ID, siteTypeid, userid, ver, siteName, siteURL, siteicon, siteicon_url, IsDeleted, IsCustom FROM sitelinks_user_tbl WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var queryParams = []>
+<cffunction name="getCustomSiteLinks" access="public" returntype="query">
+    <cfargument name="siteIcon" type="string" required="false" default="unknown.png">
+    
     <cfset var result = "">
-
+    <cfset var sql = "SELECT id, sitename, siteurl, siteicon FROM sitelinks_user WHERE iscustom = 1 AND siteicon = ?">
+    
     <cftry>
-        <!--- Build the WHERE clause dynamically based on provided filters --->
-        <cfloop collection="#arguments.filters#" item="key">
-            <cfif listFindNoCase(validColumns, key)>
-                <cfset arrayAppend(whereClause, "#key# = ?")>
-                <cfset arrayAppend(queryParams, {value=arguments.filters[key], cfsqltype=getSQLType(key)})>
-            </cfif>
-        </cfloop>
-
-        <!--- Append the WHERE clause to the SQL statement --->
-        <cfif arrayLen(whereClause) gt 0>
-            <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
-        </cfif>
-
-        <!--- Validate and append ORDER BY clause --->
-        <cfif listFindNoCase(validOrderBy, arguments.orderBy)>
-            <cfset sql &= " ORDER BY #arguments.orderBy#">
-        </cfif>
-
-        <!--- Execute the query --->
         <cfquery name="result" datasource="abod">
             #sql#
-            <cfloop array="#queryParams#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-            </cfloop>
+            <cfqueryparam value="#arguments.siteIcon#" cfsqltype="CF_SQL_VARCHAR">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="errorLog" text="Error in getCustomSiteLinks: #cfcatch.message#; SQL: #sql#; Parameters: siteIcon=#arguments.siteIcon#">
+            <cfset result = queryNew("id,sitename,siteurl,siteicon")>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="updateSiteIcon" access="public" returntype="void" hint="Updates the site icon for a user.">
+    <cfargument name="new_siteicon" type="string" required="true" hint="New site icon value."/>
+    <cfargument name="id" type="numeric" required="true" hint="User ID."/>
+    
+    <cftry>
+        <cfquery datasource="yourDatasourceName">
+            UPDATE sitelinks_user 
+            SET siteicon = <cfqueryparam value="#arguments.new_siteicon#" cfsqltype="CF_SQL_VARCHAR">
+            WHERE id = <cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error updating site icon: #cfcatch.message# Query: UPDATE sitelinks_user SET siteicon = ? WHERE id = ? Parameters: new_siteicon=#arguments.new_siteicon#, id=#arguments.id#"/>
+            <cfthrow message="An error occurred while updating the site icon." detail="#cfcatch.detail#"/>
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="updateSitelinksUserTbl" access="public" returntype="void">
+    <cfargument name="new_id" type="numeric" required="true">
+
+    <cftry>
+        <cfquery datasource="abod">
+            UPDATE sitelinks_user_tbl 
+            SET isdeleted = 1 
+            WHERE id = <cfqueryparam value="#arguments.new_id#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
-    <cfcatch type="any">
-        <!--- Log the error details --->
-        <cflog file="application" text="Error in getsitelinks_user: #cfcatch.message# - #cfcatch.detail#. SQL: #sql#">
+        <cfcatch type="any">
+            <cflog file="application" text="Error updating sitelinks_user_tbl: #cfcatch.message# Query: UPDATE sitelinks_user_tbl SET isdeleted = 1 WHERE id = #arguments.new_id#">
+            <cfthrow message="An error occurred while updating the record." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="updateSiteLinksUser" access="public" returntype="void">
+    <cfargument name="new_id" type="numeric" required="true">
+
+    <cftry>
+        <cfquery datasource="abod">
+            UPDATE sitelinks_user_tbl
+            SET isdeleted = 0
+            WHERE id = <cfqueryparam value="#arguments.new_id#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
         
-        <!--- Return an empty query with matching schema on error --->
-        <cfset result = queryNew("ID,siteTypeid,userid,ver,siteName,siteURL,siteicon,siteicon_url,IsDeleted,IsCustom", 
-                                 "integer,integer,varchar,varchar,varchar,varchar,varchar,varchar,binary,binary")>
+        <cfcatch type="any">
+            <cflog file="application" text="Error updating sitelinks_user_tbl: #cfcatch.message# Query: UPDATE sitelinks_user_tbl SET isdeleted = 0 WHERE id = #arguments.new_id#">
+            <cfthrow message="An error occurred while updating the record." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getSiteLinksByUser" access="public" returntype="query">
+    <cfargument name="userid" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT 
+                s.id, 
+                s.sitetypeid, 
+                s.sitename, 
+                s.siteurl, 
+                s.siteicon, 
+                s.sitetypeid, 
+                t.sitetypename, 
+                t.pntitle
+            FROM 
+                sitelinks_user s
+            INNER JOIN 
+                sitetypes_user t ON t.sitetypeid = s.siteTypeid
+            WHERE 
+                s.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            ORDER BY 
+                s.sitename
+        </cfquery>
+        
+        <cfreturn result>
+        
+        <cfcatch type="any">
+            <cflog file="errorLog" text="Error in getSiteLinksByUser: #cfcatch.message# - Query: #cfcatch.detail#">
+            <cfreturn queryNew("")>
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getSiteLinks" access="public" returntype="query">
+    <cfargument name="userId" type="numeric" required="true">
+    <cfargument name="siteTypeId" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="abod">
+            SELECT 
+                s.id, 
+                s.sitetypeid, 
+                s.sitename, 
+                s.siteurl, 
+                s.siteicon, 
+                s.sitetypeid, 
+                t.sitetypename, 
+                t.pntitle, 
+                s.ver
+            FROM 
+                sitelinks_user s
+            INNER JOIN 
+                sitetypes_user t ON t.sitetypeid = s.siteTypeid
+            WHERE 
+                s.userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 
+                AND s.sitetypeid = <cfqueryparam value="#arguments.siteTypeId#" cfsqltype="CF_SQL_INTEGER">
+            ORDER BY 
+                s.sitename
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getSiteLinks: #cfcatch.message# Query: SELECT ... WHERE userid = #arguments.userId# AND sitetypeid = #arguments.siteTypeId#">
+            <cfset result = queryNew("id,sitetypeid,sitename,siteurl,siteicon,sitetypename,pntitle,ver")>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="getSiteLinks" access="public" returntype="query">
+    <cfargument name="userId" type="numeric" required="true">
+    <cfargument name="siteTypeId" type="numeric" required="true">
+
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="abod">
+            SELECT 
+                s.id, 
+                s.sitetypeid, 
+                s.sitename, 
+                s.siteurl, 
+                s.siteicon, 
+                s.sitetypeid, 
+                t.sitetypename, 
+                t.pntitle, 
+                s.ver
+            FROM 
+                sitelinks_user_tbl s
+            INNER JOIN 
+                sitetypes_user t ON t.sitetypeid = s.siteTypeid
+            WHERE 
+                s.userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 
+                AND s.sitetypeid = <cfqueryparam value="#arguments.siteTypeId#" cfsqltype="CF_SQL_INTEGER"> 
+                AND s.isdeleted = 1 
+                AND s.isCustom = 0
+            ORDER BY 
+                s.sitename
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getSiteLinks: #cfcatch.message#">
+            <cfset result = queryNew("")>
+        </cfcatch>
+    </cftry>
+
+    <cfreturn result>
+</cffunction>
+<cffunction name="getSiteLinksUser" access="public" returntype="query">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="new_sitename" type="string" required="true">
+
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT * 
+            FROM sitelinks_user 
+            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+            AND sitename = <cfqueryparam value="#arguments.new_sitename#" cfsqltype="CF_SQL_VARCHAR">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="errorLog" text="Error in getSiteLinksUser: #cfcatch.message# Query: SELECT * FROM sitelinks_user WHERE userid = ? AND sitename = ?">
+            <cfset result = queryNew("")>
+        </cfcatch>
+    </cftry>
+
+    <cfreturn result>
+</cffunction>
+<cffunction name="insertSiteLink" access="public" returntype="void">
+    <cfargument name="new_sitename" type="string" required="true">
+    <cfargument name="new_siteurl" type="string" required="true">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="new_sitetypeid" type="numeric" required="true">
+    <cfargument name="ver" type="string" required="false" default="">
+    
+    <cftry>
+        <cfquery datasource="abod">
+            INSERT INTO sitelinks_user (sitename, siteurl, userid, sitetypeid, IsCustom
+            <cfif len(arguments.ver) gt 0>, ver</cfif>)
+            VALUES (
+                <cfqueryparam value="#arguments.new_sitename#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.new_siteurl#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.new_sitetypeid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="1" cfsqltype="CF_SQL_BIT">
+                <cfif len(arguments.ver) gt 0>, 
+                    <cfqueryparam value="#arguments.ver#" cfsqltype="CF_SQL_VARCHAR">
+                </cfif>
+            )
+        </cfquery>
+    <cfcatch>
+        <cflog file="application" text="Error in insertSiteLink: #cfcatch.message#">
+        <cfthrow message="Database error occurred while inserting site link." detail="#cfcatch.detail#">
     </cfcatch>
     </cftry>
-
-    <!--- Return the result query --->
-    <cfreturn result>
-</cffunction> 
-
-<!--- Changes made:
-- Corrected data types in queryNew function to match expected types.
---->
-
-<cffunction name="updatesitelinks_user" access="public" returntype="boolean">
-    <cfargument name="ID" type="numeric" required="true">
-    <cfargument name="data" type="struct" required="true">
+</cffunction>
+<cffunction name="getSiteLinksUser" access="public" returntype="query">
+    <cfargument name="sitename" type="string" required="true">
+    <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var sql = "UPDATE sitelinks_user_tbl SET">
-    <cfset var setClauses = []>
-    <cfset var validColumns = "siteName,siteURL,siteicon,siteTypeid,userid,IsDeleted,IsCustom,ver,siteicon_url">
+    <cfset var result = "">
     
-    <!--- Build the SET clause dynamically --->
-    <cfloop collection="#arguments.data#" item="key">
-        <cfif listFindNoCase(validColumns, key)>
-            <cfset arrayAppend(setClauses, "#key# = ?")>
-        </cfif>
-    </cfloop>
-
-    <!--- If no valid columns are provided in data, return false --->
-    <cfif arrayLen(setClauses) EQ 0>
-        <cfreturn false>
-    </cfif>
-
-    <!--- Construct the final SQL query --->
-    <cfset sql &= " " & arrayToList(setClauses, ", ") & " WHERE ID = ?">
-
-    <!--- Execute the query within a try/catch block for error handling --->
     <cftry>
-        <cfquery datasource="#DSN#">
-            #sql#
-            <!--- Bind the parameters using cfqueryparam --->
-            <cfloop collection="#arguments.data#" item="key">
-                <cfif listFindNoCase(validColumns, key)>
-                    <cfqueryparam value="#arguments.data[key]#" cfsqltype="#evaluate('CF_SQL_' & uCase(replace(key, 'id', 'INTEGER', 'all')))#" null="#isNull(arguments.data[key])#">
-                </cfif>
-            </cfloop>
-            <cfqueryparam value="#arguments.ID#" cfsqltype="CF_SQL_INTEGER">
+        <cfquery name="result" datasource="abod">
+            SELECT *
+            FROM sitelinks_user_tbl
+            WHERE sitename = <cfqueryparam value="#arguments.sitename#" cfsqltype="CF_SQL_VARCHAR">
+            AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        <cfreturn true>
         
-        <!--- Error handling --->
         <cfcatch type="any">
-            <cflog file="application" text="Error updating sitelinks_user_tbl: #cfcatch.message#. Details: #cfcatch.detail#. SQL: #sql#">
-            <cfreturn false>
+            <cflog file="application" text="Error in getSiteLinksUser: #cfcatch.message# Query: SELECT * FROM sitelinks_user_tbl WHERE sitename = ? AND userid = ? Parameters: sitename=#arguments.sitename#, userid=#arguments.userid#">
+            <cfset result = queryNew("")>
         </cfcatch>
     </cftry>
-</cffunction> 
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="insertSiteLink" access="public" returntype="void">
+    <cfargument name="sitename" type="string" required="true">
+    <cfargument name="siteurl" type="string" required="true">
+    <cfargument name="siteicon" type="string" required="true">
+    <cfargument name="sitetypeid" type="numeric" required="true">
+    <cfargument name="userid" type="numeric" required="true">
 
-<!--- Changes made:
-- Added missing DSN variable declaration or reference to ensure datasource is defined.
---->
-
-<cffunction name="getvm_sitelinks_user_sitetypes_user" access="public" returntype="query">
-    <cfargument name="userid" type="numeric" required="false">
-    <cfargument name="sitetypeid" type="numeric" required="false">
-    <cfargument name="isdeleted" type="boolean" required="false">
-    <cfargument name="isCustom" type="boolean" required="false">
-    <cfargument name="orderBy" type="string" required="false" default="sitelink_id">
-
-    <cfset var queryResult = "">
-    <cfset var sql = "SELECT sitelink_id, sitename, siteurl, siteicon, sitetypeid, sitetypename, pntitle, ver FROM vm_sitelinks_user_sitetypes_user WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var orderByWhitelist = "sitelink_id,sitename,siteurl,sitetypeid,sitetypename,pntitle,ver">
-
-    <!--- Build dynamic WHERE clause --->
-    <cfif structKeyExists(arguments, "userid") and isNumeric(arguments.userid)>
-        <cfset arrayAppend(whereClause, "userid = <cfqueryparam value='#arguments.userid#' cfsqltype='CF_SQL_INTEGER'>")>
-    </cfif>
-
-    <cfif structKeyExists(arguments, "sitetypeid") and isNumeric(arguments.sitetypeid)>
-        <cfset arrayAppend(whereClause, "sitetypeid = <cfqueryparam value='#arguments.sitetypeid#' cfsqltype='CF_SQL_INTEGER'>")>
-    </cfif>
-
-    <cfif structKeyExists(arguments, "isdeleted")>
-        <cfset arrayAppend(whereClause, "isdeleted = <cfqueryparam value='#arguments.isdeleted#' cfsqltype='CF_SQL_BIT'>")>
-    </cfif>
-
-    <cfif structKeyExists(arguments, "isCustom")>
-        <cfset arrayAppend(whereClause, "isCustom = <cfqueryparam value='#arguments.isCustom#' cfsqltype='CF_SQL_BIT'>")>
-    </cfif>
-
-    <!--- Append WHERE clauses if any --->
-    <cfif arrayLen(whereClause) gt 0>
-        <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
-    </cfif>
-
-    <!--- Validate ORDER BY clause --->
-    <cfif listFindNoCase(orderByWhitelist, arguments.orderBy)>
-        <cfset sql &= " ORDER BY #arguments.orderBy#">
-    </cfif>
-
-    <!--- Execute the query --->
     <cftry>
-        <cfquery name="queryResult" datasource="#abod#">
-            #sql#
+        <cfquery datasource="abod">
+            INSERT INTO sitelinks_user_tbl (siteName, siteURL, siteicon, siteTypeid, userid)
+            VALUES (
+                <cfqueryparam value="#arguments.sitename#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.siteurl#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.siteicon#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.sitetypeid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            )
         </cfquery>
         <cfcatch type="any">
-            <!--- Log error details --->
-            <cflog file="application" text="Error in getvm_sitelinks_user_sitetypes_user: #cfcatch.message# - #cfcatch.detail# - SQL: #sql#">
-            <!--- Return an empty query with correct schema on error --->
-            <cfset queryResult = queryNew("sitelink_id,sitename,siteurl,siteicon,sitetypeid,sitetypename,pntitle,ver", "integer,varchar,varchar,varchar,integer,varchar,varchar,integer")>
+            <cflog file="application" text="Error in insertSiteLink: #cfcatch.message#">
+            <cfthrow message="Database error occurred while inserting site link.">
         </cfcatch>
     </cftry>
-
-    <!--- Return the result --->
-    <cfreturn queryResult>
 </cffunction></cfcomponent>

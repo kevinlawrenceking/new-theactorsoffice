@@ -1,241 +1,318 @@
-<cfcomponent displayname="EventContactsXRefService" hint="Handles operations for EventContactsXRef table" output="false" > 
-<cffunction name="deleteeventcontactsxref" access="public" returntype="boolean">
-    <cfargument name="eventContactID" type="numeric" required="true">
-    <cfset var result = false>
+<cfcomponent displayname="EventContactsXRefService" hint="Handles operations for EventContactsXRef table" output="false"> 
+<cffunction name="insertEventContact" access="public" returntype="void">
+    <cfargument name="new_eventid" type="numeric" required="true">
+    <cfargument name="new_contactid" type="numeric" required="true">
+
     <cftry>
-        <cfquery datasource="#DSN#">
-            DELETE FROM eventcontactsxref_tbl
-            WHERE eventContactID = <cfqueryparam value="#arguments.eventContactID#" cfsqltype="CF_SQL_INTEGER">
+        <cfquery datasource="abod">
+            INSERT INTO eventcontactsxref (eventid, contactid)
+            VALUES (
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_eventid#"/>,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_contactid#"/>
+            )
         </cfquery>
-        <cfset result = true>
         <cfcatch type="any">
-            <cflog file="application" text="Error in deleteeventcontactsxref: #cfcatch.message# Details: #cfcatch.detail#">
-            <cflog file="application" text="SQL Query: DELETE FROM eventcontactsxref_tbl WHERE eventContactID = #arguments.eventContactID#">
+            <cflog file="application" text="Error in insertEventContact: #cfcatch.message#" />
+            <cfrethrow />
         </cfcatch>
     </cftry>
-    <cfreturn result>
-</cffunction> 
-<!--- Changes made:
-- None. The code is syntactically correct.
---->
+</cffunction>
+<cffunction name="getEventContacts" access="public" returntype="query">
+    <cfargument name="ContactID" type="numeric" required="true">
+    <cfargument name="EventID" type="numeric" required="true">
 
-<cffunction name="inserteventcontactsxref" access="public" returntype="numeric">
-    <cfargument name="eventID" type="numeric" required="true">
-    <cfargument name="contactID" type="numeric" required="true">
-    <cfset var insertResult = 0>
-    <cfset var sql = "INSERT INTO eventcontactsxref_tbl (eventID, contactID, IsDeleted) VALUES (?, ?, ?)">
-
-    <cftry>
-        <cfquery name="insertQuery" datasource="#DSN#" result="queryResult">
-            #sql#
-            <cfqueryparam value="#arguments.eventID#" cfsqltype="CF_SQL_INTEGER">
-            <cfqueryparam value="#arguments.contactID#" cfsqltype="CF_SQL_INTEGER">
-            <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
-        </cfquery>
-        <cfset insertResult = queryResult.generatedKey>
-        <cfcatch>
-            <cflog file="application" text="Error in inserteventcontactsxref: #cfcatch.message# - #cfcatch.detail#">
-            <cflog file="application" text="SQL: #sql#">
-        </cfcatch>
-    </cftry>
-
-    <cfreturn insertResult>
-</cffunction> 
-<!--- Changes made:
-- No changes were necessary as the function code is syntactically correct.
---->
-
-<cffunction name="geteventcontactsxref" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="eventContactID">
-
-    <cfset var sql = "SELECT eventContactID, eventID, contactID, IsDeleted FROM eventcontactsxref_tbl WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var queryParams = []>
-    <cfset var validColumns = "eventContactID,eventID,contactID,IsDeleted">
-    <cfset var validOrderByColumns = "eventContactID,eventID,contactID,IsDeleted">
     <cfset var result = "">
-
-    <!--- Validate and build the WHERE clause dynamically --->
-    <cfloop collection="#arguments.filters#" item="key">
-        <cfif listFindNoCase(validColumns, key)>
-            <cfset arrayAppend(whereClause, "#key# = ?")>
-            <cfset arrayAppend(queryParams, {value=arguments.filters[key], cfsqltype=de("CF_SQL_" & listGetAt(validColumns, listFindNoCase(validColumns, key), ","))})>
-        </cfif>
-    </cfloop>
-
-    <!--- Append WHERE conditions if any --->
-    <cfif arrayLen(whereClause) gt 0>
-        <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
-    </cfif>
-
-    <!--- Validate and append ORDER BY clause --->
-    <cfif listFindNoCase(validOrderByColumns, arguments.orderBy)>
-        <cfset sql &= " ORDER BY #arguments.orderBy#">
-    </cfif>
-
-    <!--- Execute the query within a try/catch block for error handling --->
+    
     <cftry>
         <cfquery name="result" datasource="abod">
-            #sql#
-            <cfloop array="#queryParams#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-            </cfloop>
+            SELECT * 
+            FROM eventcontactsxref 
+            WHERE contactID = <cfqueryparam value="#arguments.ContactID#" cfsqltype="CF_SQL_INTEGER"> 
+            AND eventid = <cfqueryparam value="#arguments.EventID#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-
-        <!--- Handle errors and log them --->
+        
         <cfcatch type="any">
-            <cflog file="application" text="Error in geteventcontactsxref: #cfcatch.message# Details: #cfcatch.detail# SQL: #sql#">
-            <!--- Return an empty query with the correct structure on error --->
-            <cfset result = queryNew("eventContactID,eventID,contactID,IsDeleted", "integer,integer,integer,bit")>
+            <cflog file="application" text="Error in getEventContacts: #cfcatch.message#; Query: SELECT * FROM eventcontactsxref WHERE contactID = #arguments.ContactID# AND eventid = #arguments.EventID#;">
+            <cfthrow message="An error occurred while retrieving event contacts." detail="#cfcatch.detail#">
         </cfcatch>
     </cftry>
 
-    <!--- Return the result query --->
     <cfreturn result>
 </cffunction>
-
-<!--- Changes made:
-- No syntax errors were found in the provided code.
---->
-
-<cffunction name="updateeventcontactsxref" access="public" returntype="boolean">
-    <cfargument name="eventContactID" type="numeric" required="true">
-    <cfargument name="eventID" type="numeric" required="false" default="">
-    <cfargument name="contactID" type="numeric" required="false" default="">
-    <cfargument name="IsDeleted" type="boolean" required="false" default="">
+<cffunction name="updateEventContactIsDeleted" access="public" returntype="void">
+    <cfargument name="eventid" type="numeric" required="true">
     
-    <cfset var result = false>
-    <cfset var sql = "UPDATE eventcontactsxref_tbl SET">
-    <cfset var setClauses = []>
-    
-    <!--- Build SET clauses dynamically based on provided arguments --->
-    <cfif structKeyExists(arguments, "eventID") and len(trim(arguments.eventID))>
-        <cfset arrayAppend(setClauses, "eventID = ?")>
-    </cfif>
-    
-    <cfif structKeyExists(arguments, "contactID") and len(trim(arguments.contactID))>
-        <cfset arrayAppend(setClauses, "contactID = ?")>
-    </cfif>
-    
-    <cfif structKeyExists(arguments, "IsDeleted") and isBoolean(arguments.IsDeleted)>
-        <cfset arrayAppend(setClauses, "IsDeleted = ?")>
-    </cfif>
-
-    <!--- If no fields to update, return false --->
-    <cfif arrayLen(setClauses) eq 0>
-        <cfreturn false>
-    </cfif>
-
-    <!--- Construct the final SQL query --->
-    <cfset sql &= " " & arrayToList(setClauses, ", ") & " WHERE eventContactID = ?">
-
-    <!--- Try to execute the query --->
     <cftry>
-        <cfquery datasource="#DSN#">
-            #sql#
-            <cfif structKeyExists(arguments, "eventID") and len(trim(arguments.eventID))>
-                <cfqueryparam value="#arguments.eventID#" cfsqltype="CF_SQL_INTEGER">
-            </cfif>
-
-            <cfif structKeyExists(arguments, "contactID") and len(trim(arguments.contactID))>
-                <cfqueryparam value="#arguments.contactID#" cfsqltype="CF_SQL_INTEGER">
-            </cfif>
-
-            <cfif structKeyExists(arguments, "IsDeleted") and isBoolean(arguments.IsDeleted)>
-                <cfqueryparam value="#arguments.IsDeleted#" cfsqltype="CF_SQL_BIT">
-            </cfif>
-
-            <!--- eventContactID is always required --->
-            <cfqueryparam value="#arguments.eventContactID#" cfsqltype="CF_SQL_INTEGER">
+        <cfquery datasource="abod">
+            UPDATE eventcontactsxref 
+            SET isdeleted = 1 
+            WHERE eventid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.eventid#" />
         </cfquery>
-
-        <!--- If no error occurs, return true --->
-        <cfset result = true>
-
+        
         <cfcatch type="any">
-            <!--- Log the error details --->
-            <cflog file="application" text="Error in updateeventcontactsxref: #cfcatch.message# Details: #cfcatch.detail# SQL: #sql#">
+            <cflog file="application" text="Error updating eventcontactsxref: #cfcatch.message#; Query: UPDATE eventcontactsxref SET isdeleted = 1 WHERE eventid = #arguments.eventid#">
+            <cfthrow message="An error occurred while updating the event contact." detail="#cfcatch.detail#">
         </cfcatch>
     </cftry>
+</cffunction>
+<cffunction name="insertEventContact" access="public" returntype="void">
+    <cfargument name="eventid" type="numeric" required="true">
+    <cfargument name="new_contactid" type="numeric" required="true">
 
-    <!--- Return the result of the operation --->
+    <cftry>
+        <cfquery datasource="abod">
+            INSERT INTO eventcontactsxref (eventid, contactid)
+            VALUES (
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.eventid#" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_contactid#" />
+            )
+        </cfquery>
+        <cfcatch>
+            <cflog file="application" type="error" text="Error inserting event contact: #cfcatch.message#">
+            <cfthrow message="Database error occurred while inserting event contact." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getEventContacts" access="public" returntype="query">
+    <cfargument name="eventId" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT *
+            FROM eventcontactsxref
+            WHERE eventid = <cfqueryparam value="#arguments.eventId#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getEventContacts: #cfcatch.message#">
+            <cfreturn queryNew("")>
+        </cfcatch>
+    </cftry>
+    
     <cfreturn result>
-</cffunction> 
-
-<!--- Changes made:
-- Added missing closing tag for cftry.
---->
-
-<cffunction name="getvm_eventcontactsxref_tbl_contactdetails" access="public" returntype="query">
-    <cfargument name="eventid" type="numeric" required="false">
-    <cfargument name="contactid" type="numeric" required="false">
-    <cfargument name="contactfullname" type="string" required="false">
-    <cfargument name="contactstatus" type="string" required="false">
-    <cfargument name="orderBy" type="string" required="false" default="eventid">
-
-    <cfset var queryResult = "">
-    <cfset var sql = "SELECT eventid, contactid, contactfullname, contactstatus FROM vm_eventcontactsxref_tbl_contactdetails WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var validOrderByColumns = "eventid,contactid,contactfullname,contactstatus">
-
-    <!--- Building the WHERE clause dynamically --->
-    <cfif structKeyExists(arguments, "eventid") and not isNull(arguments.eventid)>
-        <cfset arrayAppend(whereClause, "eventid = ?")>
-    </cfif>
+</cffunction>
+<cffunction name="insertEventContactsXref" access="public" returntype="void">
+    <cfargument name="audProjectID" type="numeric" required="true">
+    <cfargument name="audStepID" type="numeric" required="true">
     
-    <cfif structKeyExists(arguments, "contactid") and not isNull(arguments.contactid)>
-        <cfset arrayAppend(whereClause, "contactid = ?")>
-    </cfif>
-
-    <cfif structKeyExists(arguments, "contactfullname") and not isNull(arguments.contactfullname)>
-        <cfset arrayAppend(whereClause, "contactfullname = ?")>
-    </cfif>
-
-    <cfif structKeyExists(arguments, "contactstatus") and not isNull(arguments.contactstatus)>
-        <cfset arrayAppend(whereClause, "contactstatus = ?")>
-    </cfif>
-
-    <!--- Append conditions to SQL if there are any --->
-    <cfif arrayLen(whereClause) gt 0>
-        <cfset sql &= " AND #arrayToList(whereClause, ' AND ')#">
-    </cfif>
-
-    <!--- Validate and append ORDER BY clause --->
-    <cfif listFindNoCase(validOrderByColumns, arguments.orderBy)>
-        <cfset sql &= " ORDER BY `#arguments.orderBy#`">
-    </cfif>
-
-    <!--- Execute the query within a try/catch block for error handling --->
     <cftry>
-        <cfquery name="queryResult" datasource="abod">
-            #sql#
-            <!--- Bind parameters using cfqueryparam --->
-            <cfif structKeyExists(arguments, "eventid") and not isNull(arguments.eventid)>
-                <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER">
-            </cfif>
-
-            <cfif structKeyExists(arguments, "contactid") and not isNull(arguments.contactid)>
-                <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
-            </cfif>
-
-            <cfif structKeyExists(arguments, "contactfullname") and not isNull(arguments.contactfullname)>
-                <cfqueryparam value="#arguments.contactfullname#" cfsqltype="CF_SQL_VARCHAR">
-            </cfif>
-
-            <cfif structKeyExists(arguments, "contactstatus") and not isNull(arguments.contactstatus)>
-                <cfqueryparam value="#arguments.contactstatus#" cfsqltype="CF_SQL_VARCHAR">
-            </cfif>
+        <cfquery name="qryInsertEventContactsXref" datasource="yourDataSource">
+            INSERT INTO eventcontactsxref (eventid, contactid)
+            SELECT DISTINCT e.eventid, c.contactid
+            FROM audprojects p
+            INNER JOIN audcontacts_auditions_xref ax ON ax.audprojectid = p.audprojectid
+            INNER JOIN contactdetails c ON c.contactid = ax.contactid
+            INNER JOIN audroles r ON r.audprojectID = p.audprojectid
+            INNER JOIN events e ON e.audRoleID = r.audroleid
+            LEFT JOIN eventcontactsxref ecx ON ecx.eventid = e.eventid AND ecx.contactid = c.contactid
+            WHERE p.isdeleted = 0 
+              AND c.IsDeleted = 0 
+              AND e.isdeleted = 0 
+              AND r.isdeleted = 0 
+              AND e.audstepid <> <cfqueryparam value="#arguments.audStepID#" cfsqltype="CF_SQL_INTEGER">
+              AND ecx.eventid IS NULL;
         </cfquery>
+        
         <cfcatch type="any">
-            <!--- Log the error details --->
-            <cflog file="application" text="Error in getvm_eventcontactsxref_tbl_contactdetails: #cfcatch.message# - #cfcatch.detail# - SQL: #sql#">
-            
-            <!--- Return an empty query with matching schema on error --->
-            <cfset queryResult = queryNew("eventid, contactid, contactfullname, contactstatus", "integer, integer, varchar, varchar")>
+            <cflog file="application" text="Error in insertEventContactsXref: #cfcatch.message#">
+            <cfthrow>
         </cfcatch>
     </cftry>
+</cffunction>
+<cffunction name="deleteInvalidEventContacts" access="public" returntype="void">
+    <cfargument name="eventIds" type="array" required="true">
+    
+    <cfset var local = {}>
 
-    <!--- Return the query result --->
-    <cfreturn queryResult>
+    <cftry>
+        <cfif arrayLen(arguments.eventIds) eq 0>
+            <!--- Return early if no event IDs are provided --->
+            <cfreturn>
+        </cfif>
+
+        <cfquery name="deleteQuery" datasource="abod">
+            DELETE FROM eventcontactsxref 
+            WHERE eventid NOT IN (
+                SELECT eventid FROM events
+            )
+            AND eventid NOT IN (
+                <cfloop array="#arguments.eventIds#" index="eventId">
+                    <cfqueryparam value="#eventId#" cfsqltype="CF_SQL_INTEGER" list="true">
+                </cfloop>
+            )
+        </cfquery>
+        
+        <!--- Log successful execution --->
+        <cflog text="Successfully executed deleteInvalidEventContacts function." type="information">
+
+    <cfcatch type="any">
+        <!--- Log error details --->
+        <cflog text="Error in deleteInvalidEventContacts: #cfcatch.message# - #cfcatch.detail#" type="error">
+    </cfcatch>
+    </cftry>
+</cffunction>
+<cfscript>
+function deleteEventContactsXref(required numeric audStepId) {
+    var result = {};
+    try {
+        // Validate input
+        if (!isNumeric(arguments.audStepId)) {
+            throw("Invalid input: audStepId must be numeric.");
+        }
+
+        // Define the query
+        var sql = "
+            DELETE FROM eventcontactsxref 
+            WHERE eventid IN (
+                SELECT eventid 
+                FROM events 
+                WHERE audstepid = ?
+            )
+        ";
+
+        // Execute the query with parameterization
+        result = queryExecute(
+            sql,
+            [
+                {value=arguments.audStepId, cfsqltype="CF_SQL_INTEGER"}
+            ]
+        );
+    } catch (any e) {
+        // Log error details
+        cflog(
+            text="Error in deleteEventContactsXref: " & e.message & ", SQL: " & sql,
+            file="application",
+            type="error"
+        );
+        
+        // Return a structured error response
+        result = {success=false, message=e.message};
+    }
+    
+    return result;
+}
+</cfscript>
+
+<cffunction name="getEventContactsXref" access="public" returntype="query">
+    <cfargument name="eventNumber" type="numeric" required="true">
+    <cfargument name="contactID" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT * 
+            FROM eventcontactsxref 
+            WHERE eventid = <cfqueryparam value="#arguments.eventNumber#" cfsqltype="cf_sql_integer"> 
+              AND contactid = <cfqueryparam value="#arguments.contactID#" cfsqltype="cf_sql_integer">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getEventContactsXref: #cfcatch.message# - Query: SELECT * FROM eventcontactsxref WHERE eventid = ? AND contactid = ?">
+            <cfthrow message="An error occurred while retrieving event contacts." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="insertEventContact" access="public" returntype="void">
+    <cfargument name="eventNumber" type="numeric" required="true">
+    <cfargument name="contactID" type="numeric" required="true">
+
+    <cftry>
+        <cfquery datasource="abod">
+            INSERT IGNORE INTO eventcontactsxref (eventid, contactid)
+            VALUES (
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.eventNumber#" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.contactID#" />
+            )
+        </cfquery>
+        <cfcatch type="any">
+            <cflog file="application" text="Error in insertEventContact: #cfcatch.message#">
+            <cflog file="application" text="Query: INSERT IGNORE INTO eventcontactsxref (eventid, contactid) VALUES (?, ?)">
+            <cflog file="application" text="Parameters: eventNumber=#arguments.eventNumber#, contactID=#arguments.contactID#">
+            <cfthrow>
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getEventContacts" access="public" returntype="query">
+    <cfargument name="eventid" type="numeric" required="true">
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT *
+            FROM eventcontactsxref
+            WHERE eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER" />
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getEventContacts: #cfcatch.message# - Query: SELECT * FROM eventcontactsxref WHERE eventid = #arguments.eventid#">
+            <cfreturn queryNew("")>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="getEventContacts" access="public" returntype="query">
+    <cfargument name="eventid" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT *
+            FROM eventcontactsxref x
+            INNER JOIN contactdetails c ON x.contactid = c.contactid
+            WHERE x.eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER" />
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getEventContacts: #cfcatch.message#; SQL: #cfcatch.sql#; Data: #arguments.eventid#" type="error">
+            <cfset result = queryNew("")>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="insertEventContact" access="public" returntype="void">
+    <cfargument name="new_eventid" type="numeric" required="true">
+    <cfargument name="new_contactid" type="numeric" required="true">
+
+    <cftry>
+        <cfquery datasource="abod">
+            INSERT INTO eventcontactsxref (eventid, contactid)
+            VALUES (
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_eventid#" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_contactid#" />
+            )
+        </cfquery>
+        <cfcatch type="any">
+            <cflog file="application" text="Error in insertEventContact: #cfcatch.message# Query: INSERT INTO eventcontactsxref (eventid, contactid) VALUES (#arguments.new_eventid#, #arguments.new_contactid#)" type="error">
+            <cfthrow message="Database error occurred while inserting event contact." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="updateEventContacts" access="public" returntype="void">
+    <cfargument name="deletecontactid" type="numeric" required="true">
+    <cfargument name="audprojectid" type="numeric" required="true">
+
+    <cftry>
+        <cfquery datasource="abod">
+            UPDATE eventcontactsxref_tbl x
+            INNER JOIN events e ON x.eventid = e.eventid
+            INNER JOIN audroles r ON r.audRoleID = e.audroleid
+            INNER JOIN audprojects p ON r.audprojectid = p.audprojectid
+            SET x.isdeleted = 1
+            WHERE x.contactid = <cfqueryparam value="#arguments.deletecontactid#" cfsqltype="cf_sql_integer">
+            AND p.audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="cf_sql_integer">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in updateEventContacts: #cfcatch.message# Query: #cfcatch.detail#">
+            <cfthrow message="An error occurred while updating event contacts." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
 </cffunction></cfcomponent>

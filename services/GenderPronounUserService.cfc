@@ -1,86 +1,126 @@
-<cfcomponent displayname="GenderPronounUserService" hint="Handles operations for GenderPronounUser table" output="false" > 
-<cffunction name="insertgenderpronouns_users" access="public" returntype="numeric">
-    <cfargument name="genderPronoun" type="string" required="true">
-    <cfargument name="genderPronounPlural" type="string" required="true">
+<cfcomponent displayname="GenderPronounUserService" hint="Handles operations for GenderPronounUser table" output="false"> 
+<cffunction name="getGenderPronoun" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
-    <cfargument name="isDeleted" type="boolean" default=false>
-    <cfargument name="isCustom" type="boolean" default=false>
 
-    <cfset var insertResult = 0>
-    <cfset var sql = "INSERT INTO genderpronouns_users_tbl (genderPronoun, genderPronounPlural, userid, isDeleted, isCustom) VALUES (?, ?, ?, ?, ?)">
-
-    <cftry>
-        <cfquery name="insertQuery" datasource="#DSN#" result="insertResult">
-            #sql#
-            <cfqueryparam value="#arguments.genderPronoun#" cfsqltype="CF_SQL_VARCHAR">
-            <cfqueryparam value="#arguments.genderPronounPlural#" cfsqltype="CF_SQL_VARCHAR">
-            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
-            <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
-            <cfqueryparam value="#arguments.isCustom#" cfsqltype="CF_SQL_BIT">
-        </cfquery>
-        <cfset insertResult = insertQuery.generatedKey>
-        <cfcatch>
-            <cflog file="application" text="Error inserting into genderpronouns_users_tbl: #cfcatch.message# - #cfcatch.detail# - SQL: #sql#">
-            <cfset insertResult = 0>
-        </cfcatch>
-    </cftry>
-
-    <cfreturn insertResult>
-</cffunction>
-
-<!--- Changes made:
-- None. The code is correct as provided.
---->
-
-<cffunction name="getgenderpronouns_users" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="">
-
-    <cfset var sql = "SELECT `userid`, `ID`, `genderPronoun`, `genderPronounPlural`, `isDeleted`, `isCustom` FROM genderpronouns_users_tbl WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var params = []>
-    <cfset var validColumns = "userid,ID,genderPronoun,genderPronounPlural,isDeleted,isCustom">
-    <cfset var validOrderColumns = "userid,ID,genderPronoun,genderPronounPlural">
-
-    <!--- Build the WHERE clause dynamically based on provided filters --->
-    <cfloop collection="#arguments.filters#" item="key">
-        <cfif listFindNoCase(validColumns, key)>
-            <cfset arrayAppend(whereClause, "#key# = ?")>
-            <cfset arrayAppend(params, {value=arguments.filters[key], cfsqltype=getSQLType(key)})>
-        </cfif>
-    </cfloop>
-
-    <!--- Add the WHERE clause to the SQL statement if conditions exist --->
-    <cfif arrayLen(whereClause) gt 0>
-        <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
-    </cfif>
-
-    <!--- Validate and append ORDER BY clause if specified --->
-    <cfif len(trim(arguments.orderBy)) and listFindNoCase(validOrderColumns, arguments.orderBy)>
-        <cfset sql &= " ORDER BY #arguments.orderBy#">
-    </cfif>
-
-    <!--- Try executing the query and handle errors gracefully --->
+    <cfset var result = "">
+    
     <cftry>
         <cfquery name="result" datasource="yourDataSource">
-            #sql#
-            <cfloop array="#params#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-            </cfloop>
+            SELECT genderPronoun
+            FROM genderpronouns_users
+            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
+        
         <cfcatch type="any">
-            <!--- Log the error details --->
-            <cflog file="application" text="Error in getgenderpronouns_users: #cfcatch.message# - #cfcatch.detail#. SQL: #sql#">
-            <!--- Return an empty query with the correct schema on error --->
-            <cfset result = queryNew("userid,ID,genderPronoun,genderPronounPlural,isDeleted,isCustom", "integer,integer,varchar,varchar,bit,bit")>
+            <cflog file="application" text="Error in getGenderPronoun: #cfcatch.message#">
+            <cfset result = queryNew("genderPronoun")>
         </cfcatch>
     </cftry>
 
-    <!--- Return the result query --->
     <cfreturn result>
-</cffunction> 
+</cffunction>
+<cffunction name="getGenderPronounsUsers" access="public" returntype="query">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="custom" type="string" required="true">
 
-<!--- Changes made:
-- None. The function code is syntactically correct.
---->
-</cfcomponent>
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT * 
+            FROM genderpronouns_users 
+            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+            AND genderPronoun = <cfqueryparam value="#arguments.custom#" cfsqltype="CF_SQL_VARCHAR">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getGenderPronounsUsers: #cfcatch.message#">
+            <cfset result = queryNew("")>
+        </cfcatch>
+    </cftry>
+
+    <cfreturn result>
+</cffunction>
+<cffunction name="insertGenderPronounsUser" access="public" returntype="void">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="custom" type="string" required="true">
+
+    <cftry>
+        <cfquery datasource="yourDatasourceName">
+            INSERT INTO genderpronouns_users_tbl (userid, isDeleted, isCustom, genderpronoun, genderpronounPlural)
+            VALUES (
+                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">,
+                <cfqueryparam value="1" cfsqltype="CF_SQL_BIT">,
+                <cfqueryparam value="#arguments.custom#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.custom#" cfsqltype="CF_SQL_VARCHAR">
+            )
+        </cfquery>
+    <cfcatch type="any">
+        <cflog file="application" text="Error in insertGenderPronounsUser: #cfcatch.message#">
+        <cfthrow>
+    </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getUserByGenderPronoun" access="public" returntype="query">
+    <cfargument name="genderpronoun" type="string" required="true">
+    <cfargument name="userid" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT * 
+            FROM genderpronouns_users 
+            WHERE genderpronoun = <cfqueryparam value="#arguments.genderpronoun#" cfsqltype="CF_SQL_VARCHAR"> 
+            AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getUserByGenderPronoun: #cfcatch.message# - Query: SELECT * FROM genderpronouns_users WHERE genderpronoun = ? AND userid = ? - Parameters: #arguments.genderpronoun#, #arguments.userid#">
+            <cfset result = queryNew("")>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="insertGenderPronounsUser" access="public" returntype="void">
+    <cfargument name="genderpronoun" type="string" required="true">
+    <cfargument name="genderpronounplural" type="string" required="true">
+    <cfargument name="userid" type="numeric" required="true">
+
+    <cftry>
+        <cfquery datasource="abod">
+            INSERT INTO genderpronouns_users (genderpronoun, genderpronounplural, userid)
+            VALUES (
+                <cfqueryparam value="#arguments.genderpronoun#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.genderpronounplural#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            )
+        </cfquery>
+        <cfcatch>
+            <cflog file="application" type="error" text="Error inserting into genderpronouns_users: #cfcatch.message#">
+            <cfthrow message="Database insertion error" detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getGenderPronoun" access="public" returntype="query">
+    <cfargument name="userid" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT genderPronoun
+            FROM genderpronouns_users
+            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getGenderPronoun: #cfcatch.message# Query: SELECT genderPronoun FROM genderpronouns_users WHERE userid = ? Parameters: #arguments.userid#">
+            <cfset result = queryNew("genderPronoun")>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction></cfcomponent>

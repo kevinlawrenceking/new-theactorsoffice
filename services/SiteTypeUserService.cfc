@@ -1,183 +1,248 @@
-<cfcomponent displayname="SiteTypeUserService" hint="Handles operations for SiteTypeUser table" output="false" > 
-<cffunction name="insertsitetypes_user" access="public" returntype="numeric">
-    <cfargument name="siteTypeid" type="numeric" required="true">
-    <cfargument name="siteTypeName" type="string" required="true">
-    <cfargument name="siteTypeDescription" type="string" required="false" default="">
-    <cfargument name="userid" type="numeric" required="true">
-    <cfargument name="IsDeleted" type="boolean" required="true">
-    <cfargument name="pnTitle" type="string" required="false" default="">
-    <cfargument name="pnid" type="numeric" required="false" default=0>
+<cfcomponent displayname="SiteTypeUserService" hint="Handles operations for SiteTypeUser table" output="false"> 
+<cffunction name="getPNIDBySiteTypeID" access="public" returntype="query">
+    <cfargument name="sitetypeid" type="numeric" required="true">
 
-    <cfset var insertResult = 0>
-    <cfset var sql = "INSERT INTO sitetypes_user_tbl (siteTypeid, siteTypeName, siteTypeDescription, userid, IsDeleted, pnTitle, pnid) VALUES (?, ?, ?, ?, ?, ?, ?)">
-
-    <cftry>
-        <cfquery name="insertQuery" datasource="#DSN#" result="result">
-            #sql#
-            <cfqueryparam value="#arguments.siteTypeid#" cfsqltype="CF_SQL_INTEGER">
-            <cfqueryparam value="#arguments.siteTypeName#" cfsqltype="CF_SQL_VARCHAR">
-            <cfqueryparam value="#arguments.siteTypeDescription#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.siteTypeDescription)#">
-            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
-            <cfqueryparam value="#arguments.IsDeleted#" cfsqltype="CF_SQL_BIT">
-            <cfqueryparam value="#arguments.pnTitle#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.pnTitle)#">
-            <cfqueryparam value="#arguments.pnid#" cfsqltype="CF_SQL_INTEGER" null="#isNull(arguments.pnid)#">
-        </cfquery>
-        <cfset insertResult = result.generatedKey>
-        <cfcatch>
-            <cflog file="application" text="Error inserting into sitetypes_user_tbl: #cfcatch.message# - #cfcatch.detail# - SQL: #sql#">
-            <!--- Return 0 or any other appropriate error indicator --->
-            <cfset insertResult = 0>
-        </cfcatch>
-    </cftry>
-
-    <cfreturn insertResult>
-</cffunction>
-
-<!--- Changes made:
-- Removed the default attribute from the 'IsDeleted' argument as it is not needed when 'required' is true.
---->
-
-<cffunction name="getsitetypes_user" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="">
-    <cfset var sql = "SELECT siteTypeid, siteTypeName, siteTypeDescription, userid, IsDeleted, pnTitle, pnid FROM sitetypes_user_tbl WHERE IsDeleted = 0">
-    <cfset var whereClause = []>
-    <cfset var queryParams = []>
-    <cfset var validColumns = "siteTypeid,siteTypeName,siteTypeDescription,userid,IsDeleted,pnTitle,pnid">
-    <cfset var validOrderColumns = "siteTypeid,siteTypeName,userid,pnid">
     <cfset var result = "">
+    <cfset var sql = "SELECT pnid FROM sitetypes_user_tbl WHERE sitetypeid = ?">
 
     <cftry>
-        <!--- Build dynamic WHERE clause based on filters --->
-        <cfloop collection="#arguments.filters#" item="key">
-            <cfif listFindNoCase(validColumns, key)>
-                <cfset arrayAppend(whereClause, "#key# = ?")>
-                <cfset arrayAppend(queryParams, {value=arguments.filters[key], cfsqltype=de("CF_SQL_" & listGetAt(validColumns, listFindNoCase(validColumns, key)) )})>
-            </cfif>
-        </cfloop>
-
-        <!--- Append WHERE conditions to SQL --->
-        <cfif arrayLen(whereClause) gt 0>
-            <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
-        </cfif>
-
-        <!--- Add ORDER BY clause if specified and valid --->
-        <cfif len(arguments.orderBy) and listFindNoCase(validOrderColumns, arguments.orderBy)>
-            <cfset sql &= " ORDER BY #arguments.orderBy#">
-        </cfif>
-
-        <!--- Execute the query --->
-        <cfquery name="result" datasource="yourDataSource">
-            #sql#
-            <cfloop array="#queryParams#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#" null="#isNull(param.value)#">
-            </cfloop>
-        </cfquery>
-
-    <cfcatch type="any">
-        <!--- Log the error --->
-        <cflog file="application" text="Error in getsitetypes_user: #cfcatch.message# - #cfcatch.detail# - SQL: #sql#">
-        
-        <!--- Return an empty query with the correct structure --->
-        <cfset result = queryNew("siteTypeid,siteTypeName,siteTypeDescription,userid,IsDeleted,pnTitle,pnid", "integer,varchar,varchar,integer,bit,varchar,integer")>
-    </cfcatch>
-    </cftry>
-
-    <!--- Return the result query --->
-    <cfreturn result>
-</cffunction> 
-
-<!--- Changes made:
-- No syntax errors were found in the provided code.
---->
-
-<cffunction name="updatesitetypes_user" access="public" returntype="boolean">
-    <cfargument name="siteTypeid" type="numeric" required="true">
-    <cfargument name="userid" type="numeric" required="true">
-    <cfargument name="data" type="struct" required="true">
-
-    <cfset var sql = "UPDATE sitetypes_user_tbl SET">
-    <cfset var setClauses = []>
-    <cfset var validColumns = "siteTypeName,siteTypeDescription,pnTitle,pnid,IsDeleted">
-    <cfset var result = false>
-
-    <cftry>
-        <!--- Construct SET clauses dynamically based on provided data --->
-        <cfloop collection="#arguments.data#" item="key">
-            <cfif listFindNoCase(validColumns, key)>
-                <cfset arrayAppend(setClauses, "#key# = ?")>
-            </cfif>
-        </cfloop>
-
-        <!--- If no valid columns are provided, return false --->
-        <cfif arrayLen(setClauses) EQ 0>
-            <cfreturn false>
-        </cfif>
-
-        <!--- Complete the SQL statement --->
-        <cfset sql &= " " & arrayToList(setClauses, ", ") & " WHERE siteTypeid = ? AND userid = ?">
-
-        <!--- Execute the query --->
-        <cfquery datasource="#DSN#">
-            #sql#
-            <cfloop collection="#arguments.data#" item="key">
-                <cfif listFindNoCase(validColumns, key)>
-                    <cfqueryparam value="#arguments.data[key]#" cfsqltype="#getSQLType(key)#" null="#isNull(arguments.data[key])#">
-                </cfif>
-            </cfloop>
-            <cfqueryparam value="#arguments.siteTypeid#" cfsqltype="CF_SQL_INTEGER">
-            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
-        </cfquery>
-
-        <!--- If no error occurred, set result to true --->
-        <cfset result = true>
-
-    <cfcatch type="any">
-        <!--- Log the error details --->
-        <cflog file="application" text="Error in updatesitetypes_user: #cfcatch.message# - #cfcatch.detail# - SQL: #sql#">
-        
-        <!--- Return false in case of an error --->
-        <cfset result = false>
-    </cfcatch>
-    </cftry>
-
-    <!--- Return the result of the operation --->
-    <cfreturn result>
-</cffunction> 
-
-<!--- Changes made:
-- Corrected missing closing tag for cfcatch.
---->
-
-<cffunction name="getvm_sitetypes_user_pgpanels_user" access="public" returntype="query">
-    <cfargument name="new_sitetypeid" type="numeric" required="true">
-    <cfargument name="orderBy" type="string" required="false" default="pnid">
-    
-    <cfset var validOrderColumns = "pnid,sitetypeid,sitetypename,sitetypedescription,pntitle,isvisible">
-    <cfset var sql = "SELECT pnid, sitetypeid, sitetypename, sitetypedescription, pntitle, isvisible FROM vm_sitetypes_user_pgpanels_user WHERE 1=1">
-    <cfset var result = "">
-    
-    <!--- Validate and append ORDER BY clause --->
-    <cfif listFindNoCase(validOrderColumns, arguments.orderBy)>
-        <cfset sql &= " ORDER BY #arguments.orderBy#">
-    </cfif>
-
-    <cftry>
-        <!--- Execute the query --->
         <cfquery name="result" datasource="abod">
             #sql#
-            AND sitetypeid = <cfqueryparam value="#arguments.new_sitetypeid#" cfsqltype="CF_SQL_INTEGER">
+            <cfqueryparam value="#arguments.sitetypeid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch>
-            <!--- Log error details --->
-            <cflog file="application" text="Error in getvm_sitetypes_user_pgpanels_user: #cfcatch.message#; Detail: #cfcatch.detail#; SQL: #sql#">
-            
-            <!--- Return an empty query with the correct schema on error --->
-            <cfset result = queryNew("pnid,sitetypeid,sitetypename,sitetypedescription,pntitle,isvisible", "integer,integer,varchar,varchar,varchar,bit")>
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getPNIDBySiteTypeID: #cfcatch.message# Query: #sql# Parameters: #arguments.sitetypeid#">
+            <cfthrow message="An error occurred while retrieving PNID by SiteTypeID." detail="#cfcatch.detail#">
         </cfcatch>
     </cftry>
 
-    <!--- Return the query result --->
+    <cfreturn result>
+</cffunction>
+<cffunction name="updateSiteTypeAsDeleted" access="public" returntype="void">
+    <cfargument name="sitetypeid" type="numeric" required="true">
+
+    <cfset var queryResult = "">
+    <cftry>
+        <cfquery name="queryResult" datasource="yourDatasourceName">
+            UPDATE sitetypes_user_tbl 
+            SET isdeleted = 1 
+            WHERE sitetypeid = <cfqueryparam value="#arguments.sitetypeid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        <cfcatch type="any">
+            <cflog file="application" text="Error updating sitetypes_user_tbl: #cfcatch.message# Query: #cfcatch.detail# Parameters: sitetypeid=#arguments.sitetypeid#">
+            <cfthrow message="Database update failed." detail="#cfcatch.message#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getSiteTypeDetails" access="public" returntype="query">
+    <cfargument name="new_sitetypeid" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT 
+                p.pnid, 
+                p.isvisible, 
+                s.sitetypeid, 
+                s.sitetypename, 
+                s.sitetypedescription, 
+                s.pntitle 
+            FROM 
+                sitetypes_user s 
+            INNER JOIN 
+                pgpanels_user p ON p.pnid = s.pnid 
+            WHERE 
+                s.sitetypeid = <cfqueryparam value="#arguments.new_sitetypeid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="errorLog" text="Error in getSiteTypeDetails: #cfcatch.message# Query: #cfcatch.detail#">
+            <cfreturn queryNew("")>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="updateSiteTypeName" access="public" returntype="void">
+    <cfargument name="new_sitetypename" type="string" required="true">
+    <cfargument name="new_sitetypeid" type="numeric" required="true">
+
+    <cftry>
+        <cfquery datasource="abod">
+            UPDATE sitetypes_user 
+            SET sitetypename = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_sitetypename#" />
+            WHERE sitetypeid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_sitetypeid#" />
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error updating sitetypes_user: #cfcatch.message# Query: UPDATE sitetypes_user SET sitetypename = ? WHERE sitetypeid = ? Parameters: #arguments.new_sitetypename#, #arguments.new_sitetypeid#">
+            <cfthrow message="An error occurred while updating the site type name." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getSiteTypesUser" access="public" returntype="query">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="new_sitetypename" type="string" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT *
+            FROM sitetypes_user
+            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            AND sitetypename = <cfqueryparam value="#arguments.new_sitetypename#" cfsqltype="CF_SQL_VARCHAR">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getSiteTypesUser: #cfcatch.message# Query: SELECT * FROM sitetypes_user WHERE userid = ? AND sitetypename = ? Parameters: #arguments.userid#, #arguments.new_sitetypename#">
+            <cfthrow message="Database query failed." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="insertSiteType" access="public" returntype="void">
+    <cfargument name="new_siteTypeName" type="string" required="true">
+    <cfargument name="userid" type="numeric" required="true">
+
+    <cftry>
+        <cfquery datasource="abod">
+            INSERT INTO sitetypes_user_tbl (siteTypeName, siteTypeDescription, userid, IsDeleted) 
+            VALUES (
+                <cfqueryparam value="#arguments.new_siteTypeName#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
+            )
+        </cfquery>
+        <cfcatch type="any">
+            <cflog file="application" text="Error inserting into sitetypes_user_tbl: #cfcatch.message#">
+            <cfthrow message="Database error occurred while inserting site type." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getSiteTypesUserBySitetypeId" access="public" returntype="query">
+    <cfargument name="sitetypeid" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT *
+            FROM sitetypes_user
+            WHERE sitetypeid = <cfqueryparam value="#arguments.sitetypeid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getSiteTypesUserBySitetypeId: #cfcatch.message# Query: SELECT * FROM sitetypes_user WHERE sitetypeid = ? Parameters: #arguments.sitetypeid#">
+            <cfset result = queryNew("")>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="updateSiteTypesUser" access="public" returntype="void">
+    <cfargument name="new_pnid" type="numeric" required="true">
+    <cfargument name="new_sitetypeid" type="numeric" required="true">
+
+    <cftry>
+        <cfquery datasource="abod">
+            UPDATE sitetypes_user
+            SET pnid = <cfqueryparam value="#arguments.new_pnid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE sitetypeid = <cfqueryparam value="#arguments.new_sitetypeid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error updating sitetypes_user: #cfcatch.message#">
+            <cfthrow message="An error occurred while updating the sitetypes_user table." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getSiteTypesUser" access="public" returntype="query">
+    <cfargument name="sitetypename" type="string" required="true">
+    <cfargument name="userid" type="numeric" required="true">
+
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT * 
+            FROM sitetypes_user 
+            WHERE sitetypename = <cfqueryparam value="#arguments.sitetypename#" cfsqltype="CF_SQL_VARCHAR"> 
+            AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getSiteTypesUser: #cfcatch.message# Query: SELECT * FROM sitetypes_user WHERE sitetypename = ? AND userid = ? Parameters: #arguments.sitetypename#, #arguments.userid#">
+            <cfreturn queryNew("")>
+        </cfcatch>
+    </cftry>
+
+    <cfreturn result>
+</cffunction>
+<cffunction name="insertSiteTypeUser" access="public" returntype="void">
+    <cfargument name="siteTypeName" type="string" required="true">
+    <cfargument name="siteTypeDescription" type="string" required="true">
+    <cfargument name="userId" type="numeric" required="true">
+
+    <cftry>
+        <cfquery datasource="abod">
+            INSERT INTO sitetypes_user (siteTypeName, siteTypeDescription, userid) 
+            VALUES (
+                <cfqueryparam value="#arguments.siteTypeName#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.siteTypeDescription#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
+            )
+        </cfquery>
+        <cfcatch>
+            <cflog file="application" text="Error inserting into sitetypes_user: #cfcatch.message#">
+            <cfthrow message="Database error occurred while inserting site type user.">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getSiteTypeId" access="public" returntype="query">
+    <cfargument name="sitetypename" type="string" required="true">
+    <cfargument name="userid" type="numeric" required="true">
+
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT sitetypeid 
+            FROM sitetypes_user 
+            WHERE sitetypename = <cfqueryparam value="#arguments.sitetypename#" cfsqltype="CF_SQL_VARCHAR"> 
+            AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getSiteTypeId: #cfcatch.message#">
+            <cfset result = queryNew("sitetypeid")>
+        </cfcatch>
+    </cftry>
+
+    <cfreturn result>
+</cffunction>
+<cffunction name="getSiteTypesByUserId" access="public" returntype="query">
+    <cfargument name="userid" type="numeric" required="true">
+
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT sitetypeid, sitetypename, sitetypedescription, pntitle
+            FROM sitetypes_user
+            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            ORDER BY sitetypename
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getSiteTypesByUserId: #cfcatch.message# Query: SELECT sitetypeid, sitetypename, sitetypedescription, pntitle FROM sitetypes_user WHERE userid = ? ORDER BY sitetypename Parameters: #arguments.userid#">
+            <cfset result = queryNew("sitetypeid,sitetypename,sitetypedescription,pntitle")>
+        </cfcatch>
+    </cftry>
+
     <cfreturn result>
 </cffunction></cfcomponent>

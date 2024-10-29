@@ -1,334 +1,1204 @@
-<cfcomponent displayname="TicketService" hint="Handles operations for Ticket table" output="false" > 
-<cffunction name="inserttickets" access="public" returntype="numeric">
-    <cfargument name="ticketData" type="struct" required="true">
-    <cfset var insertResult = 0>
+<cfcomponent displayname="TicketService" hint="Handles operations for Ticket table" output="false"> 
+<cffunction name="updateTicket" access="public" returntype="void">
+    <cfargument name="ticketid" type="numeric" required="true">
+    <cfargument name="new_ticketname" type="string" required="true">
+    <cfargument name="new_ticketdetails" type="string" required="true">
+    <cfargument name="new_ticketresponse" type="string" required="true">
+    <cfargument name="new_ticketStatus" type="string" required="true">
+    <cfargument name="new_ticketType" type="string" required="true">
+    <cfargument name="new_testingscript" type="string" required="true">
+    <cfargument name="new_patchNote" type="string" required="true">
+    <cfargument name="new_environ" type="string" required="true">
+    <cfargument name="new_ticketPriority" type="string" required="true">
+    <cfargument name="new_userid" type="numeric" required="false">
+    <cfargument name="new_verid" type="numeric" required="false">
+    <cfargument name="new_pgid" type="numeric" required="false">
+    <cfargument name="new_esthours" type="numeric" required="false">
+
     <cftry>
-        <cfquery name="insertQuery" datasource="#application.dsn#" result="queryResult">
-            INSERT INTO tickets_tbl (
-                pgID, ticketName, ticketDetails, ticketResponse, userid,
-                ticketCreatedDate, ticketCompletedDate, ticketStatus, ticketActive,
-                ticketType, recordname, IsDeleted, initial_email, complete_email,
-                ticketstring, verid, patchNote, environ, ticketPriority,
-                estHours, testingScript, customTestPageName, customTestPageLink,
-                errorid
-            ) VALUES (
-                <cfqueryparam value="#arguments.ticketData.pgID#" cfsqltype="CF_SQL_INTEGER" null="#isNull(arguments.ticketData.pgID)#">,
-                <cfqueryparam value="#arguments.ticketData.ticketName#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.ticketData.ticketName)#">,
-                <cfqueryparam value="#arguments.ticketData.ticketDetails#" cfsqltype="CF_SQL_LONGVARCHAR" null="#isNull(arguments.ticketData.ticketDetails)#">,
-                <cfqueryparam value="#arguments.ticketData.ticketResponse#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.ticketData.ticketResponse)#">,
-                <cfqueryparam value="#arguments.ticketData.userid#" cfsqltype="CF_SQL_INTEGER" null="#isNull(arguments.ticketData.userid)#">,
-                <cfqueryparam value="#arguments.ticketData.ticketCreatedDate#" cfsqltype="CF_SQL_TIMESTAMP" null="#isNull(arguments.ticketData.ticketCreatedDate)#">,
-                <cfqueryparam value="#arguments.ticketData.ticketCompletedDate#" cfsqltype="CF_SQL_TIMESTAMP" null="#isNull(arguments.ticketData.ticketCompletedDate)#">,
-                <cfqueryparam value="#arguments.ticketData.ticketStatus#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.ticketData.ticketStatus)#">,
-                <cfqueryparam value="#arguments.ticketData.ticketActive#" cfsqltype="CF_SQL_CHAR" null="#isNull(arguments.ticketData.ticketActive)#">,
-                <cfqueryparam value="#arguments.ticketData.ticketType#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.ticketData.ticketType)#">,
-                <cfqueryparam value="#arguments.ticketData.recordname#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.ticketData.recordname)#">,
-                <cfqueryparam value="#arguments.ticketData.IsDeleted#" cfsqltype="CF_SQL_BIT" null="#isNull(arguments.ticketData.IsDeleted)#">,
-                <cfqueryparam value="#arguments.ticketData.initial_email#" cfsqltype="CF_SQL_BIT" null="#isNull(arguments.ticketData.initial_email)#">,
-                <cfqueryparam value="#arguments.ticketData.complete_email#" cfsqltype="CF_SQL_BIT" null="#isNull(arguments.ticketData.complete_email)#">,
-                <cfqueryparam value="#arguments.ticketData.ticketstring#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.ticketData.ticketstring)#">,
-                <cfqueryparam value="#arguments.ticketData.verid#" cfsqltype="CF_SQL_INTEGER" null="#isNull(arguments.ticketData.verid)#">,
-                <cfqueryparam value="#arguments.ticketData.patchNote#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.ticketData.patchNote)#">,
-                <cfqueryparam value="#arguments.ticketData.environ#" cfsqltype="CF_SQL_CHAR" null="#isNull(arguments.ticketData.environ)#">,
-                <cfqueryparam value="#arguments.ticketData.ticketPriority#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.ticketData.ticketPriority)#">,
-                <cfqueryparam value="#arguments.ticketData.estHours#" cfsqltype="CF_SQL_DECIMAL" null="#isNull(arguments.ticketData.estHours)#">,
-                <cfqueryparam value="#arguments.ticketData.testingScript#" cfsqltype="CF_SQL_LONGVARCHAR" null="#isNull(arguments.ticketData.testingScript)#">,
-                <cfqueryparam value="#arguments.ticketData.customTestPageName#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.ticketData.customTestPageName)#">,
-                <cfqueryparam value="#arguments.ticketData.customTestPageLink#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.ticketData.customTestPageLink)#">,
-                <cfqueryparam value="#arguments.ticketData.errorid#" cfsqltype="CF_SQL_INTEGER" null="#isNull(arguments.errorid)#">
-            )
+        <cfquery datasource="#yourDataSource#" name="updateTicketQuery">
+            UPDATE tickets SET 
+                ticketname = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_ticketname#">,
+                ticketdetails = <cfqueryparam cfsqltype="cf_sql_longvarchar" value="#arguments.new_ticketdetails#">,
+                ticketresponse = <cfqueryparam cfsqltype="cf_sql_longvarchar" value="#arguments.new_ticketresponse#">,
+                ticketStatus = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_ticketStatus#">,
+                ticketType = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_ticketType#">,
+                testingscript = <cfqueryparam cfsqltype="cf_sql_longvarchar" value="#arguments.new_testingscript#">,
+                patchNote = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_patchNote#">,
+                environ = <cfqueryparam cfsqltype="cf_sql_char" value="#arguments.new_environ#">,
+                ticketPriority = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_ticketPriority#">
+            <cfif isNumeric(arguments.new_userid) AND arguments.new_userid NEQ "">
+                , userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_userid#">
+            </cfif>
+            <cfif isNumeric(arguments.new_verid) AND arguments.new_verid NEQ "">
+                , verid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_verid#">
+            </cfif>
+            <cfif isNumeric(arguments.new_pgid) AND arguments.new_pgid NEQ "">
+                , pgid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_pgid#">
+            </cfif>
+            <cfif isNumeric(arguments.new_esthours) AND arguments.new_esthours NEQ "">
+                , esthours = <cfqueryparam cfsqltype="cf_sql_float" value="#decimalformat(arguments.new_esthours)#">
+            </cfif>
+            WHERE ticketid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.ticketid#">
         </cfquery>
-        <!--- Return the generated key (ticketID) --->
-        <cfset insertResult = queryResult.generatedKey>
-    <cfcatch type="any">
-        <!--- Log the error --->
-        <cflog file="application"
-               text="Error in inserttickets: #cfcatch.message# - #cfcatch.detail#"
-               type="error">
-        <!--- Return 0 to indicate failure --->
-        <cfset insertResult = 0>
+        <!--- Add any additional logic here if needed --->
+        
+    <cfcatch>
+        <!--- Log the error details --->
+        <cflog file="/path/to/logfile.log"
+               text="[Error] Failed to update ticket: #CFcatch.message#. Query: #updateTicketQuery.sql#. Parameters: #serializeJSON(arguments)#"
+               application />
+        <!--- Re-throw the error if necessary --->
+        <!--- cfthrow ---> 
     </cfcatch>
     </cftry>
-    <cfreturn insertResult>
 </cffunction>
-<cffunction name="gettickets" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="ticketID">
-    <cfargument name="orderDirection" type="string" required="false" default="ASC">
-
-    <cfset var sql = "SELECT ticketID, pgID, userid, verid, errorid, ticketName, ticketResponse, ticketStatus, ticketType, recordname, ticketstring, patchNote, ticketPriority, customTestPageName, customTestPageLink, IsDeleted, initial_email, complete_email, ticketCompletedDate, ticketCreatedDate, ticketActive, environ, ticketDetails, testingScript, estHours FROM tickets_tbl WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var queryParams = []>
-    <cfset var validColumns = "ticketID,pgID,userid,verid,errorid,ticketName,ticketResponse,ticketStatus,ticketType,recordname,ticketstring,patchNote,ticketPriority,customTestPageName,customTestPageLink,IsDeleted,initial_email,complete_email,ticketCompletedDate,ticketCreatedDate,ticketActive,environ,ticketDetails,testingScript,estHours">
-    <cfset var validOrderColumns = "ticketID,ticketCreatedDate,ticketCompletedDate">
-
-    <!--- Build WHERE clause dynamically --->
-    <cfloop collection="#arguments.filters#" item="key">
-        <cfif listFindNoCase(validColumns, key)>
-            <cfset arrayAppend(whereClause, "#key# = ?")>
-            <cfset arrayAppend(queryParams,
-                structNew(
-                    "value": arguments.filters[key],
-                    "cfsqltype": evaluate("CF_SQL_" & uCase(listGetAt(validColumns & ",", listFindNoCase(validColumns & ",", key))))
-                )
-            )>
-        </cfif>
-    </cfloop>
-
-    <!--- Add WHERE conditions to SQL --->
-    <cfif arrayLen(whereClause) gt 0>
-        <cfset sql &= " AND " & arrayToList(whereClause," AND ")>
-    </cfif>
-
-    <!--- Validate and add ORDER BY clause --->
-    <cfif listFindNoCase(validOrderColumns, arguments.orderBy)>
-        <cfset sql &= " ORDER BY #arguments.orderBy# #arguments.orderDirection#">
-    </cfif>
-
-    <!--- Execute the query --->
-    <cftry>
-        <cfquery name="result" datasource="yourDataSource">
-            #sql#
-            <cfloop array="#queryParams#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#" null="#isNull(param.value)#">
-            </cfloop>
-        </cfquery>
-        <cfcatch type="any">
-            <!--- Log the error --->
-            <cflog file="application" text="Error in gettickets: #cfcatch.message# Details: #cfcatch.detail# SQL: #sql#">
-            <!--- Return an empty query with correct schema --->
-            <cfset result = queryNew("ticketID,int;pgID,int;userid,int;verid,int;errorid,int;ticketName,varchar;ticketResponse,varchar;ticketStatus,varchar;ticketType,varchar;recordname,varchar;ticketstring,varchar;patchNote,varchar;ticketPriority,varchar;customTestPageName,varchar;customTestPageLink,varchar;IsDeleted,int;initial_email,int;complete_email,int;ticketCompletedDate,date;ticketCreatedDate,date;ticketActive,char;environ,char;ticketDetails,longvarchar;testingScript,longvarchar;estHours,numeric")>
-        </cfcatch>
-    </cftry>
-
-    <!--- Return the result --->
-    <cfreturn result>
-</cffunction>
-<cffunction name="updatetickets" access="public" returntype="boolean">
-    <cfargument name="ticketID" type="numeric" required="true">
-    <cfargument name="data" type="struct" required="true">
-    <cfset var result = false>
-    <cfset var sql = "UPDATE tickets_tbl SET">
-    <cfset var setClauses = []>
-    <cfset var validColumns = "pgID,ticketName,ticketDetails,ticketResponse,userid,ticketCompletedDate,ticketStatus,ticketActive,ticketType,recordname,IsDeleted,initial_email,complete_email,ticketstring,verid,patchNote,environ,ticketPriority,estHours,testingScript,customTestPageName,customTestPageLink,errorid">
-    
-    <cftry>
-        <!--- Loop through the data struct to build the SET clause dynamically --->
-        <cfloop collection="#arguments.data#" item="key">
-            <cfif listFindNoCase(validColumns, key)>
-                <cfset arrayAppend(setClauses, "#key# = ?")>
-            </cfif>
-        </cfloop>
-
-        <!--- If there are no valid columns to update, return false --->
-        <cfif arrayLen(setClauses) eq 0>
-            <cfreturn false>
-        </cfif>
-
-        <!--- Construct the SQL query --->
-        <cfset sql &= " " & arrayToList(setClauses, ", ") & " WHERE ticketID = ?">
-
-        <!--- Execute the query --->
-        <cfquery datasource="#DSN#">
-            #sql#
-            <!--- Bind parameters using cfqueryparam for security --->
-            <cfloop collection="#arguments.data#" item="key">
-                <cfif listFindNoCase(validColumns, key)>
-                    <cfqueryparam value="#arguments.data[key]#" cfsqltype="#evaluate("CF_SQL_" & ucase(key))#" null="#isNull(arguments.data[key])#">
-                </cfif>
-            </cfloop>
-            <!--- Bind the ticketID parameter --->
-            <cfqueryparam value="#arguments.ticketID#" cfsqltype="CF_SQL_INTEGER">
-        </cfquery>
-
-        <!--- If no errors occurred, set result to true --->
-        <cfset result = true>
-
-        <cfcatch type="any">
-            <!--- Log the error details --->
-            <cflog file="application" text="Error updating tickets: #cfcatch.message# - #cfcatch.detail# - SQL: #sql#">
-            <!--- Return false on error --->
-            <cfset result = false>
-        </cfcatch>
-    </cftry>
-
-    <!--- Return the result of the update operation --->
-    <cfreturn result>
-</cffunction>
-<cffunction name="getvm_ticket_statuses" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="ticketstatus">
-
-    <cfset var sql = "SELECT `ticketstatus` FROM vm_ticket_statuses WHERE 1=1">
-    <cfset var whereClause = []>
+<cffunction name="getDistinctTicketStatuses" access="public" returntype="query">
+    <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
     <cfset var queryResult = "">
-    <cfset var validOrderByColumns = "ticketstatus">
+    <cfset var sql = "SELECT DISTINCT t.ticketstatus FROM tickets t">
+    <cfset var whereClause = "">
+    <cfset var paramList = []>
 
-    <!--- Build the WHERE clause dynamically --->
-    <cfloop collection="#arguments.filters#" item="key">
-        <cfif key eq "ticketstatus">
-            <cfset arrayAppend(whereClause, "`ticketstatus` = ?")>
-        </cfif>
-    </cfloop>
-
-    <!--- Append WHERE clauses if any --->
-    <cfif arrayLen(whereClause) gt 0>
-        <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
+    <!--- Build WHERE clause dynamically based on arguments --->
+    <cfif structCount(arguments.conditions) gt 0>
+        <cfset whereClause = " WHERE ">
+        <cfloop collection="#arguments.conditions#" item="key">
+            <cfset whereClause &= "t.#key# = ? AND ">
+            <cfset arrayAppend(paramList, {value=arguments.conditions[key], cfsqltype=determineSQLType(key)})>
+        </cfloop>
+        <cfset whereClause = left(whereClause, len(whereClause) - 5)> <!--- Remove trailing ' AND ' --->
     </cfif>
 
-    <!--- Validate and append ORDER BY clause --->
-    <cfif listFindNoCase(validOrderByColumns, arguments.orderBy)>
-        <cfset sql &= " ORDER BY `#arguments.orderBy#`">
-    </cfif>
+    <!--- Complete SQL statement with ORDER BY clause --->
+    <cfset sql &= whereClause & " ORDER BY t.ticketstatus">
 
-    <!--- Execute the query with error handling --->
+    <!--- Execute the query within a try/catch block for error handling --->
     <cftry>
         <cfquery name="queryResult" datasource="abod">
             #sql#
-            <cfloop collection="#arguments.filters#" item="key">
-                <cfif key eq "ticketstatus">
-                    <cfqueryparam value="#arguments.filters[key]#" cfsqltype="CF_SQL_VARCHAR" null="#not len(arguments.filters[key])#">
-                </cfif>
-            </cfloop>
-        </cfquery>
-
-        <cfcatch type="any">
-            <!--- Log the error details --->
-            <cflog file="application" text="Error in getvm_ticket_statuses: #cfcatch.message# Details: #cfcatch.detail# SQL: #sql#">
-
-            <!--- Return an empty query with the correct schema --->
-            <cfset queryResult = queryNew("ticketstatus", "varchar")>
-        </cfcatch>
-    </cftry>
-
-    <!--- Return the result --->
-    <cfreturn queryResult>
-</cffunction>
-<cffunction name="getvm_taoversions_hoursleft" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="id">
-    <cfset var result = "">
-    <cfset var sql = "SELECT major, minor, patch, id, alphabeta, name, hoursleft FROM vm_taoversions_hoursleft WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var validColumns = "major,minor,patch,id,alphabeta,name,hoursleft">
-    <cfset var validOrderColumns = "major,minor,patch,id,alphabeta,name,hoursleft">
-
-    <!--- Build dynamic WHERE clause --->
-    <cfloop collection="#arguments.filters#" item="key">
-        <cfif listFindNoCase(validColumns, key)>
-            <cfset arrayAppend(whereClause, "#key# = ?")>
-        </cfif>
-    </cfloop>
-
-    <!--- Append WHERE conditions to SQL --->
-    <cfif arrayLen(whereClause) gt 0>
-        <cfset sql = sql & " AND " & arrayToList(whereClause, " AND ")>
-    </cfif>
-
-    <!--- Validate and append ORDER BY clause --->
-    <cfif listFindNoCase(validOrderColumns, arguments.orderBy)>
-        <cfset sql = sql & " ORDER BY #arguments.orderBy#">
-    </cfif>
-
-    <!--- Execute the query within a try/catch block --->
-    <cftry>
-        <cfquery name="result" datasource="abod">
-            #sql#
-            <cfloop collection="#arguments.filters#" item="key">
-                <cfif listFindNoCase(validColumns, key)>
-                    <cfqueryparam value="#arguments.filters[key]#" cfsqltype="#evaluate("CF_SQL_" & uCase(getColumnType(key)))#" null="#isNull(arguments.filters[key])#">
-                </cfif>
+            <cfloop array="#paramList#" index="param">
+                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
             </cfloop>
         </cfquery>
         <cfcatch type="any">
-            <!--- Log the error details --->
-            <cflog file="application" type="error" text="Error in getvm_taoversions_hoursleft: #cfcatch.message# - #cfcatch.detail#. SQL: #sql#">
-            <!--- Return an empty query with the correct structure on error --->
-            <cfset result = queryNew("major,minor,patch,id,alphabeta,name,hoursleft", "integer,integer,integer,integer,varchar,varchar,decimal")>
+            <cflog file="application" text="Error executing getDistinctTicketStatuses: #cfcatch.message# Query: #sql# Parameters: #serializeJSON(paramList)#">
+            <cfthrow message="An error occurred while retrieving ticket statuses." detail="#cfcatch.detail#">
         </cfcatch>
     </cftry>
 
     <!--- Return the query result --->
+    <cfreturn queryResult>
+</cffunction>
+<cffunction name="getVersionDetails" access="public" returntype="query">
+    <cfargument name="verid" type="numeric" required="true">
+    <cfargument name="col6" type="numeric" required="true">
+
+    <cfset var result = "">
+    <cfset var sql = "">
+    
+    <cftry>
+        <cfset sql = "
+            SELECT v.major, v.minor, v.patch, v.verid AS id, v.alphabeta, 
+                   CONCAT(v.major, '.', v.minor, '.', v.patch, '.', v.version, '.', v.build, ' - ', v.versiontype) AS name,
+                   ((v.hoursavail) - IFNULL((SELECT SUM(esthours) FROM tickets t WHERE verid = v.verid), 0)) AS hoursleft
+            FROM taoversions v
+            WHERE v.verid <> ? 
+              AND ((v.hoursavail) - IFNULL((SELECT SUM(esthours) FROM tickets t WHERE verid = v.verid), 0) - ?) >= 0
+              AND v.versionstatus = 'Pending'
+            UNION
+            SELECT v.major, v.minor, v.patch, v.verid AS id, v.alphabeta,
+                   CONCAT(v.major, '.', v.minor, '.', v.patch, '.', v.version, '.', v.build, ' - ', v.versiontype) AS name,
+                   ((v.hoursavail) - (SELECT SUM(esthours) FROM tickets t WHERE verid = v.verid)) AS hoursleft
+            FROM taoversions v
+            WHERE v.verid = ?
+            ORDER BY major, minor, patch
+        ">
+        
+        <cfquery name="result" datasource="yourDataSource">
+            #sql#
+            <cfqueryparam value="#arguments.verid#" cfsqltype="CF_SQL_INTEGER">
+            <cfqueryparam value="#arguments.col6#" cfsqltype="CF_SQL_DECIMAL">
+            <cfqueryparam value="#arguments.verid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfreturn result>
+        
+    <cfcatch type="any">
+        <cflog file="errorLog" text="Error in getVersionDetails: #cfcatch.message#; SQL: #sql#; Parameters: verid=#arguments.verid#, col6=#arguments.col6#">
+        <cfthrow message="An error occurred while fetching version details." detail="#cfcatch.detail#">
+    </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="updateTicketStatus" access="public" returntype="void" hint="Updates the status of a ticket to Closed and marks it as deleted.">
+    <cfargument name="recid" type="numeric" required="true" hint="The ID of the ticket to update.">
+
+    <cftry>
+        <cfquery datasource="abod">
+            UPDATE tickets_tbl 
+            SET ticketstatus = <cfqueryparam value="Closed" cfsqltype="CF_SQL_VARCHAR">, 
+                isdeleted = <cfqueryparam value="1" cfsqltype="CF_SQL_BIT">
+            WHERE ticketid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" type="error" text="Error updating ticket status: #cfcatch.message# Query: UPDATE tickets_tbl SET ticketstatus = 'Closed', isdeleted = 1 WHERE ticketid = #arguments.recid#">
+            <cfthrow message="An error occurred while updating the ticket status." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getTicketDetails" access="public" returntype="query">
+    <cfargument name="recid" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT 
+                p.pgid, 
+                t.ticketID AS recID, 
+                t.ticketID AS pk, 
+                CONCAT(u.userfirstname, ' ', u.userlastname) AS col1, 
+                'User' AS head1, 
+                'Date' AS head2, 
+                'Time' AS head3, 
+                'Page' AS head4, 
+                'Status' AS head5, 
+                'Title' AS head6, 
+                'Response' AS head7, 
+                'Completed' AS head8, 
+                t.ticketResponse, 
+                t.ticketCompletedDate, 
+                t.ticketdetails, 
+                t.ticketCreatedDate, 
+                t.ticketCreatedDate, 
+                p.pgname, 
+                t.ticketStatus, 
+                t.ticketType, 
+                t.ticketPriority, 
+                t.verid, 
+                t.esthours, 
+                t.ticketName, 
+                t.ticketResponse, 
+                t.ticketCompletedDate, 
+                p.pgname, 
+                p.pgdir, 
+                t.patchnote, 
+                t.complete_email, 
+                t.initial_email
+            FROM tickets t
+            INNER JOIN taousers u ON u.userid = t.userid
+            INNER JOIN pgpages p ON p.pgid = t.pgid
+            WHERE t.verid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
+            AND t.patchnote <> <cfqueryparam value="" cfsqltype="CF_SQL_VARCHAR">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getTicketDetails: #cfcatch.message#">
+            <cfthrow message="Error retrieving ticket details." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+    
     <cfreturn result>
 </cffunction>
-<cffunction name="getvm_tickets_users_pages" access="public" returntype="query">
-    <cfargument name="userid" type="numeric" required="false">
-    <cfargument name="sessionUserId" type="numeric" required="false">
-    <cfargument name="sitetypeid" type="numeric" required="false">
+<cffunction name="getTicketDetails" access="public" returntype="query">
+    <cfargument name="recid" type="numeric" required="true">
     
-    <cfset var local = {} />
-    <cfset local.sql = "
-        SELECT 
-            recID, pk, pgid, verid, col1, head1, head2, head3, head4, head5, 
-            head6, head7, head8, ticketResponse, pgname, ticketStatus, 
-            ticketType, ticketPriority, ticketName, patchnote, pgdir,
-            complete_email, initial_email, ticketCompletedDate,
-            ticketCreatedDate, ticketdetails, esthours
-        FROM 
-            vm_tickets_users_pages
-        WHERE 
-            1=1
-    " />
-    <cfset local.whereClause = [] />
-
-    <!--- Build dynamic WHERE clause --->
-    <cfif structKeyExists(arguments, "userid")>
-        <cfset arrayAppend(local.whereClause, "s.userid = ?")>
-    </cfif>
+    <cfset var result = "">
     
-    <cfif structKeyExists(arguments, "sessionUserId")>
-        <cfset arrayAppend(local.whereClause, "s.userid = ?")>
-    </cfif>
-    
-    <cfif structKeyExists(arguments, "sitetypeid")>
-        <cfset arrayAppend(local.whereClause, "s.sitetypeid = ?")>
-    </cfif>
-
-    <!--- Additional static conditions --->
-    <cfset arrayAppend(local.whereClause, "s.isdeleted = 1")>
-    <cfset arrayAppend(local.whereClause, "s.isCustom = 0")>
-
-    <!--- Append dynamic WHERE clauses to SQL --->
-    <cfif arrayLen(local.whereClause) gt 0>
-        <cfset local.sql &= " AND " & arrayToList(local.whereClause, " AND ")>
-    </cfif>
-
-    <!--- Add ORDER BY clause --->
-    <cfset local.sql &= " ORDER BY recID">
-
-    <!--- Execute query with error handling --->
     <cftry>
-        <cfquery name="local.result" datasource="yourDataSource">
-            #local.sql#
-            <cfif structKeyExists(arguments, "userid")>
-                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER" null="#not len(arguments.userid)#">
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT 
+                p.pgid, 
+                t.ticketID AS recID, 
+                t.ticketID AS pk, 
+                CONCAT(u.userfirstname, ' ', u.userlastname) AS col1, 
+                'User' AS head1, 
+                'Date' AS head2, 
+                'Time' AS head3, 
+                'Page' AS head4, 
+                'Status' AS head5, 
+                'Title' AS head6, 
+                'Response' AS head7, 
+                'Completed' AS head8, 
+                t.ticketResponse, 
+                t.ticketCompletedDate, 
+                t.ticketdetails, 
+                t.ticketCreatedDate, 
+                t.ticketCreatedDate, 
+                p.pgname, 
+                t.ticketStatus, 
+                t.ticketType, 
+                t.ticketPriority, 
+                t.verid, 
+                t.esthours, 
+                t.ticketName, 
+                t.ticketResponse, 
+                t.ticketCompletedDate, 
+                p.pgname, 
+                p.pgdir, 
+                t.patchnote, 
+                t.complete_email, 
+                t.initial_email
+            FROM tickets t
+            INNER JOIN taousers u ON u.userid = t.userid
+            INNER JOIN pgpages p ON p.pgid = t.pgid
+            WHERE t.ticketid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getTicketDetails: #cfcatch.message#">
+            <cfset result = queryNew("")>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="updateTicketStatus" access="public" returntype="void" hint="Updates the ticket status based on ticket ID.">
+    <cfargument name="new_ticketid" type="numeric" required="true" hint="The ID of the ticket to update.">
+    
+    <cftry>
+        <cfquery name="updateStatus" datasource="yourDataSource">
+            UPDATE tickets 
+            SET ticketstatus = <cfqueryparam value="Tested - Success" cfsqltype="CF_SQL_VARCHAR">
+            WHERE ticketid = <cfqueryparam value="#arguments.new_ticketid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error updating ticket status: #cfcatch.message# Query: #cfcatch.query# Parameters: new_ticketid=#arguments.new_ticketid#">
+            <cfthrow message="Error updating ticket status." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="updateTicketStatus" access="public" returntype="void">
+    <cfargument name="new_ticketid" type="numeric" required="true">
+
+    <cftry>
+        <cfquery name="updateQuery" datasource="yourDataSource">
+            UPDATE tickets 
+            SET ticketstatus = <cfqueryparam value="Tested - Bug" cfsqltype="CF_SQL_VARCHAR"> 
+            WHERE ticketid = <cfqueryparam value="#arguments.new_ticketid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error updating ticket status: #cfcatch.message#">
+            <cfrethrow>
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getTicketDetails" access="public" returntype="query">
+    <cfargument name="recid" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT 
+                p.pgid, 
+                t.ticketID AS recID, 
+                t.ticketID AS pk, 
+                CONCAT(u.userfirstname, ' ', u.userlastname) AS col1, 
+                'User' AS head1, 
+                'Date' AS head2, 
+                'Time' AS head3, 
+                'Page' AS head4, 
+                'Status' AS head5, 
+                'Title' AS head6, 
+                'Response' AS head7, 
+                'Completed' AS head8, 
+                t.ticketResponse AS col7, 
+                t.ticketCompletedDate AS col8, 
+                t.ticketdetails, 
+                t.ticketCreatedDate AS col2, 
+                t.ticketCreatedDate AS col3, 
+                p.pgname AS col4, 
+                t.ticketStatus AS col5, 
+                t.ticketName AS col6, 
+                t.ticketResponse, 
+                t.ticketCompletedDate, 
+                p.pgname, 
+                p.pgdir, 
+                t.patchnote, 
+                t.complete_email, 
+                t.initial_email
+            FROM tickets t
+            INNER JOIN taousers u ON u.userid = t.userid
+            INNER JOIN pgpages p ON p.pgid = t.pgid
+            WHERE t.ticketid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getTicketDetails: #cfcatch.message# Query: #cfcatch.detail#">
+            <cfset result = queryNew("")>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="insertTicket" access="public" returntype="void">
+    <cfargument name="new_verid" type="numeric" required="true">
+    <cfargument name="new_ticketName" type="string" required="true">
+    <cfargument name="new_ticketdetails" type="string" required="true">
+    <cfargument name="new_tickettype" type="string" required="true">
+    <cfargument name="new_userid" type="numeric" required="true">
+    <cfargument name="qstring" type="string" required="true">
+
+    <cftry>
+        <cfquery datasource="abod">
+            INSERT INTO tickets (
+                pgid, verid, ticketName, ticketdetails, tickettype, userid, ticketactive, ticketstring
+            ) VALUES (
+                <cfqueryparam value="0" cfsqltype="cf_sql_integer">,
+                <cfqueryparam value="#arguments.new_verid#" cfsqltype="cf_sql_integer">,
+                <cfqueryparam value="#arguments.new_ticketName#" cfsqltype="cf_sql_varchar">,
+                <cfqueryparam value="#arguments.new_ticketdetails#" cfsqltype="cf_sql_varchar">,
+                <cfqueryparam value="#arguments.new_tickettype#" cfsqltype="cf_sql_varchar">,
+                <cfqueryparam value="#arguments.new_userid#" cfsqltype="cf_sql_integer">,
+                <cfqueryparam value="Y" cfsqltype="cf_sql_varchar">,
+                <cfqueryparam value="#arguments.qstring#" cfsqltype="cf_sql_varchar">
+            )
+        </cfquery>
+        <cfcatch type="any">
+            <cflog file="application" text="Error inserting ticket: #cfcatch.message# - Query: INSERT INTO tickets (pgid, verid, ticketName, ticketdetails, tickettype, userid, ticketactive, ticketstring) VALUES (0, #arguments.new_verid#, #arguments.new_ticketName#, #arguments.new_ticketdetails#, #arguments.new_tickettype#, #arguments.new_userid#, 'Y', #arguments.qstring#)">
+            <cfthrow message="Error inserting ticket." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getTicketDetails" access="public" returntype="query">
+    <cfargument name="recid" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT 
+                u.isbetatester, 
+                p.pgid, 
+                t.ticketID AS recID, 
+                t.ticketcreateddate, 
+                t.ticketID AS pk, 
+                CONCAT(u.userfirstname, ' ', u.userlastname) AS col1, 
+                'User' AS head1, 
+                'Date' AS head2, 
+                'Time' AS head3, 
+                'Page' AS head4, 
+                'Status' AS head5, 
+                'Title' AS head6, 
+                u.useremail, 
+                u.userfirstname, 
+                'Response' AS head7, 
+                'Completed' AS head8, 
+                t.ticketResponse AS col7, 
+                t.ticketCompletedDate AS col8, 
+                t.ticketdetails, 
+                CONCAT(u.userfirstname, ' ', u.userlastname) AS col1, 
+                t.ticketCreatedDate AS col2, 
+                t.ticketCreatedDate AS col3, 
+                p.pgname AS col4, 
+                t.ticketStatus AS col5, 
+                t.ticketName AS col6, 
+                t.ticketResponse, 
+                t.ticketCompletedDate, 
+                p.pgname, 
+                t.tickettype, 
+                p.pgdir, 
+                t.complete_email, 
+                t.initial_email
+            FROM tickets t
+            INNER JOIN taousers u ON u.userid = t.userid
+            INNER JOIN pgpages p ON p.pgid = t.pgid
+            WHERE t.ticketid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getTicketDetails: #cfcatch.message#">
+            <cfreturn queryNew("")>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="getTicketDetails" access="public" returntype="query">
+    <cfargument name="recid" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT 
+                p.pgid, 
+                t.ticketID AS recID, 
+                t.ticketID AS pk, 
+                CONCAT(u.userfirstname, ' ', u.userlastname) AS col1, 
+                'User' AS head1, 
+                'Date' AS head2, 
+                'Time' AS head3, 
+                'Page' AS head4, 
+                'Status' AS head5, 
+                'Title' AS head6, 
+                'Response' AS head7, 
+                'Completed' AS head8, 
+                t.ticketResponse, 
+                t.ticketCompletedDate, 
+                t.ticketdetails, 
+                t.ticketCreatedDate, 
+                p.pgname, 
+                t.ticketStatus, 
+                t.ticketType, 
+                t.ticketPriority, 
+                t.verid, 
+                t.esthours, 
+                t.testingscript, 
+                t.ticketName, 
+                t.customtestpagename, 
+                t.customtestpagelink, 
+                t.patchnote, 
+                t.complete_email, 
+                t.initial_email
+            FROM tickets t
+            INNER JOIN taousers u ON u.userid = t.userid
+            INNER JOIN pgpages p ON p.pgid = t.pgid
+            WHERE t.ticketid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getTicketDetails: #cfcatch.message#">
+            <cfset result = queryNew("")>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="updateTicket" access="public" returntype="void">
+    <cfargument name="new_ticketname" type="string" required="true">
+    <cfargument name="new_testingscript" type="string" required="true">
+    <cfargument name="new_ticketType" type="string" required="true">
+    <cfargument name="new_ticketStatus" type="string" required="true">
+    <cfargument name="new_verid" type="any" required="true">
+    <cfargument name="new_pgid" type="numeric" required="true">
+    <cfargument name="new_customtestpagename" type="string" required="true">
+    <cfargument name="new_customtestpagelink" type="string" required="true">
+    <cfargument name="new_ticketPriority" type="string" required="true">
+    <cfargument name="new_esthours" type="numeric" required="true">
+    <cfargument name="ticketid" type="numeric" required="true">
+
+    <cftry>
+        <cfquery datasource="#yourDatasource#" name="updateQuery">
+            UPDATE tickets 
+            SET 
+                ticketname = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_ticketname#" />,
+                testingscript = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_testingscript#" />,
+                ticketType = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_ticketType#" />,
+                ticketStatus = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_ticketStatus#" />,
+                verid = 
+                    <cfif arguments.new_verid is "NULL"> 
+                        NULL, ticketstatus = 'Pending' 
+                    <cfelse> 
+                        <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_verid#" /> 
+                    </cfif>,
+                pgid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_pgid#" />,
+                customtestpagename = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_customtestpagename#" />,
+                customtestpagelink = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_customtestpagelink#" />,
+                ticketPriority = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_ticketPriority#" />,
+                esthours = <cfqueryparam cfsqltype="cf_sql_float" value="#numberformat(arguments.new_esthours, '9.99')#" />
+            WHERE 
+                ticketid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.ticketid#" />
+        </cfquery>
+        <!--- Add any additional logic here if needed --->
+    <cfcatch>
+        <cflog file="applicationLog" text="[Error] updateTicket: #cfcatch.message# - Query: #updateQuery.sql# - Parameters: #serializeJSON(arguments)#">
+        <!--- Handle error appropriately --->
+        <!--- For example, rethrow or notify the user --->
+    </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getTicketDetails" access="public" returntype="query">
+    <cfargument name="ticketid" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT 
+                t.ticketid, 
+                t.ticketID AS recID, 
+                t.ticketName, 
+                t.testingscript, 
+                CONCAT(u.userfirstname, ' ', u.userlastname) AS username, 
+                t.ticketCreatedDate AS createddate, 
+                t.pgid, 
+                t.userid, 
+                t.ticketstatus, 
+                t.tickettype, 
+                t.environ, 
+                t.ticketPriority, 
+                p.pgname, 
+                p.pgdir, 
+                t.esthours, 
+                t.ticketCompletedDate, 
+                t.verid, 
+                t.ticketdetails, 
+                t.ticketResponse, 
+                t.patchnote, 
+                t.recordname, 
+                v.major, 
+                v.minor, 
+                v.patch, 
+                v.alphabeta, 
+                v.version, 
+                v.releasedate, 
+                t.customtestpagename, 
+                t.customtestpagelink
+            FROM tickets t
+            INNER JOIN taousers u ON u.userid = t.userid
+            INNER JOIN pgpages p ON p.pgid = t.pgid
+            LEFT JOIN taoversions v ON v.verid = t.verid
+            WHERE t.ticketid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.ticketid#" />
+        </cfquery>
+        
+        <cfreturn result>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getTicketDetails: #cfcatch.message# Query: SELECT ... WHERE ticketid = #arguments.ticketid#">
+            <cfthrow message="An error occurred while retrieving ticket details." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="updateTicketCompletion" access="public" returntype="void">
+    <cfargument name="recid" type="numeric" required="true">
+    
+    <cftry>
+        <cfquery datasource="abod">
+            UPDATE tickets 
+            SET ticketCompletedDate = <cfqueryparam value="#now()#" cfsqltype="cf_sql_timestamp" />, 
+                complete_email = <cfqueryparam value="1" cfsqltype="cf_sql_bit" />
+            WHERE ticketid = <cfqueryparam value="#arguments.recid#" cfsqltype="cf_sql_integer" />
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error updating ticket completion: #cfcatch.message# - Query: UPDATE tickets SET ticketCompletedDate = ?, complete_email = ? WHERE ticketid = ?" />
+            <cfthrow message="Error updating ticket completion." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getTicketDetails" access="public" returntype="query">
+    <cfargument name="recid" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT 
+                u.isbetatester, 
+                p.pgid, 
+                t.ticketID AS recID, 
+                t.ticketID AS pk, 
+                CONCAT(u.userfirstname, ' ', u.userlastname) AS col1, 
+                'User' AS head1, 
+                'Date' AS head2, 
+                'Time' AS head3, 
+                'Page' AS head4, 
+                'Status' AS head5, 
+                'Title' AS head6, 
+                u.useremail, 
+                u.userfirstname, 
+                'Response' AS head7, 
+                'Completed' AS head8, 
+                t.ticketResponse AS col7, 
+                t.ticketCompletedDate AS col8, 
+                t.ticketdetails, 
+                CONCAT(u.userfirstname, ' ', u.userlastname) AS col1, 
+                t.ticketCreatedDate AS col2, 
+                t.ticketCreatedDate AS col3, 
+                p.pgname AS col4, 
+                t.ticketStatus AS col5, 
+                t.ticketName AS col6, 
+                t.ticketResponse, 
+                t.ticketCompletedDate, 
+                p.pgname, 
+                t.tickettype, 
+                p.pgdir, 
+                t.complete_email, 
+                t.initial_email
+            FROM tickets t
+            INNER JOIN taousers u ON u.userid = t.userid
+            INNER JOIN pgpages p ON p.pgid = t.pgid
+            WHERE t.ticketid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfreturn result>
+        
+    <cfcatch type="any">
+        <cflog file="application" text="Error in getTicketDetails: #cfcatch.message#">
+        <cfthrow message="An error occurred while retrieving ticket details." detail="#cfcatch.detail#">
+    </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="updateTicketStatus" access="public" returntype="void">
+    <cfargument name="ticketId" type="numeric" required="true">
+    <cfargument name="userFirstName" type="string" required="true">
+    <cfargument name="userLastName" type="string" required="true">
+
+    <cftry>
+        <cfquery name="updateTicket" datasource="yourDataSource">
+            UPDATE tickets
+            SET ticketstatus = <cfqueryparam value="Closed" cfsqltype="cf_sql_varchar">,
+                ticketcompleteddate = CURDATE(),
+                ticketresponse = <cfqueryparam value="Closed by #arguments.userFirstName# #arguments.userLastName#" cfsqltype="cf_sql_varchar">
+            WHERE ticketid = <cfqueryparam value="#arguments.ticketId#" cfsqltype="cf_sql_integer">
+        </cfquery>
+        
+        <cfcatch>
+            <cflog file="application" text="Error updating ticket status: #cfcatch.message#">
+            <cflog file="application" text="Query: #cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="updateTicket" access="public" returntype="void">
+    <cfargument name="ticketresponse" type="string" required="true">
+    <cfargument name="next_verid" type="numeric" required="true">
+    <cfargument name="patchnote" type="string" required="true">
+    <cfargument name="recid" type="numeric" required="true">
+
+    <cftry>
+        <cfquery datasource="abod">
+            UPDATE tickets 
+            SET ticketCompletedDate = <cfqueryparam value="#now()#" cfsqltype="cf_sql_timestamp">,
+                ticketstatus = <cfqueryparam value="Completed" cfsqltype="cf_sql_varchar">,
+                ticketresponse = <cfqueryparam value="#arguments.ticketresponse#" cfsqltype="cf_sql_varchar">,
+                verid = <cfqueryparam value="#arguments.next_verid#" cfsqltype="cf_sql_integer">,
+                patchnote = <cfqueryparam value="#arguments.patchnote#" cfsqltype="cf_sql_varchar">,
+                complete_email = 1
+            WHERE ticketid = <cfqueryparam value="#arguments.recid#" cfsqltype="cf_sql_integer">
+        </cfquery>
+        
+        <!--- Log successful update --->
+        <cflog file="application" text="Ticket with ID #arguments.recid# updated successfully.">
+        
+    <cfcatch type="any">
+        <!--- Log error details --->
+        <cflog file="application" type="error" text="Error updating ticket with ID #arguments.recid#: #cfcatch.message#">
+    </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="updateTicketStatus" access="public" returntype="void">
+    <cfargument name="ticketId" type="numeric" required="true">
+    <cfargument name="status" type="string" required="true" default="Pass">
+    
+    <cftry>
+        <cfquery datasource="abod">
+            UPDATE tickets 
+            SET ticketstatus = <cfqueryparam value="#arguments.status#" cfsqltype="cf_sql_varchar" />
+            WHERE ticketid = <cfqueryparam value="#arguments.ticketId#" cfsqltype="cf_sql_integer" />
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error updating ticket status. Ticket ID: #arguments.ticketId#. Error: #cfcatch.message#">
+            <cfthrow message="An error occurred while updating the ticket status." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="updateTicket" access="public" returntype="void">
+    <cfargument name="ticketid" type="numeric" required="true">
+    <cfargument name="new_verid" type="any" required="true">
+    <cfargument name="new_ticketpriority" type="string" required="true">
+
+    <cftry>
+        <cfquery datasource="abod">
+            UPDATE tickets
+            <cfif arguments.new_verid is "NULL">
+                SET verid = NULL, ticketstatus = 'Pending'
+            <cfelse>
+                SET verid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_verid#" />
             </cfif>
-            <cfif structKeyExists(arguments, "sessionUserId")>
-                <cfqueryparam value="#arguments.sessionUserId#" cfsqltype="CF_SQL_INTEGER" null="#not len(arguments.sessionUserId)#">
-            </cfif>
-            <cfif structKeyExists(arguments, "sitetypeid")>
-                <cfqueryparam value="#arguments.sitetypeid#" cfsqltype="CF_SQL_INTEGER" null="#not len(arguments.sitetypeid)#">
-            </cfif>
+            , ticketpriority = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_ticketpriority#" />
+            WHERE ticketid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.ticketid#" />
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error updating ticket: #cfcatch.message# Query: #cfcatch.detail#">
+            <cfthrow message="An error occurred while updating the ticket." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getTicketStatus" access="public" returntype="query">
+    <cfargument name="ticketid" type="numeric" required="true">
+
+    <cfset var result = "">
+
+    <cftry>
+        <cfquery name="result" datasource="abod">
+            SELECT ticketstatus AS new_ticketstatus
+            FROM tickets
+            WHERE ticketid = <cfqueryparam value="#arguments.ticketid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
-        <cfreturn local.result>
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getTicketStatus: #cfcatch.message#">
+            <cfreturn queryNew("new_ticketstatus", "varchar")>
+        </cfcatch>
+    </cftry>
+
+    <cfreturn result>
+</cffunction>
+<cffunction name="getVersionDetails" access="public" returntype="query">
+    <cfargument name="verid" type="numeric" required="false">
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT 
+                v.versiontype, 
+                v.versiontype, 
+                v.major, 
+                v.minor, 
+                v.patch, 
+                v.verid AS id, 
+                v.alphabeta, 
+                CONCAT(v.major, '.', v.minor, '.', v.patch, '.', v.version, '.', v.build, ' - ', v.versiontype) AS name, 
+                ((v.hoursavail) - (SELECT SUM(esthours) FROM tickets t WHERE verid = v.verid)) AS hoursleft 
+            FROM 
+                taoversions v
+            WHERE 
+                1=1
+            <cfif structKeyExists(arguments, "verid")>
+                AND v.verid = <cfqueryparam value="#arguments.verid#" cfsqltype="CF_SQL_INTEGER">
+            </cfif>
+            ORDER BY 
+                v.major, v.minor, v.patch, v.build
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getVersionDetails: #cfcatch.message#">
+            <cfset result = queryNew("versiontype,id,name,hoursleft")>
+        </cfcatch>
+    </cftry>
+
+    <cfreturn result>
+</cffunction>
+<cffunction name="getAvailableVersions" access="public" returntype="query">
+    <cfargument name="verid" type="numeric" required="true">
+    <cfargument name="col6" type="numeric" required="true">
+    
+    <cfset var resultQuery = "">
+    
+    <cftry>
+        <cfquery name="resultQuery" datasource="yourDataSource">
+            SELECT 
+                v.major, 
+                v.minor, 
+                v.patch, 
+                v.verid AS id, 
+                v.alphabeta, 
+                CONCAT(v.major, '.', v.minor, '.', v.patch, '.', v.version, '.', v.build) AS name, 
+                ((v.hoursavail) - IFNULL((SELECT SUM(esthours) FROM tickets t WHERE verid = v.verid), 0)) AS hoursleft 
+            FROM 
+                taoversions v 
+            WHERE 
+                v.verid <> <cfqueryparam value="#arguments.verid#" cfsqltype="CF_SQL_INTEGER"> 
+                AND ((v.hoursavail) - IFNULL((SELECT SUM(esthours) FROM tickets t WHERE verid = v.verid), 0) - <cfqueryparam value="#arguments.col6#" cfsqltype="CF_SQL_DECIMAL"> >= 0) 
+                AND v.versionstatus = 'Pending'
+            UNION
+            SELECT 
+                v.major, 
+                v.minor, 
+                v.patch, 
+                v.verid AS id, 
+                v.alphabeta, 
+                CONCAT(v.major, '.', v.minor, '.', v.patch, '.', v.version, '.', v.build) AS name, 
+                ((v.hoursavail) - (SELECT SUM(esthours) FROM tickets t WHERE verid = v.verid)) AS hoursleft 
+            FROM 
+                taoversions v 
+            WHERE 
+                v.verid = <cfqueryparam value="#arguments.verid#" cfsqltype="CF_SQL_INTEGER">
+            ORDER BY major, minor, patch
+        </cfquery>
+        
+        <cfreturn resultQuery>
+        
+        <cfcatch type="any">
+            <cflog file="errorLog" text="Error in getAvailableVersions: #cfcatch.message# Query: #resultQuery# Parameters: verid=#arguments.verid#, col6=#arguments.col6#">
+            <cfthrow message="An error occurred while retrieving available versions." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getTickets" access="public" returntype="query">
+    <cfargument name="select_userid" type="numeric" required="false" default="">
+    <cfargument name="select_ticketstatus" type="string" required="false" default="">
+    <cfargument name="select_ticketpriority" type="string" required="false" default="">
+    <cfargument name="select_tickettype" type="string" required="false" default="">
+    <cfargument name="select_pgid" type="numeric" required="false" default="">
+    <cfargument name="select_verid" type="numeric" required="false" default="">
+    
+    <cfset var queryResult = "">
+    
+    <cftry>
+        <cfquery name="queryResult" datasource="yourDataSource">
+            SELECT 
+                'ID' AS head1, 
+                'Details' AS head2, 
+                'Page' AS head3, 
+                'Type' AS head4, 
+                'Status' AS head45, 
+                'Priority' AS head5, 
+                'Hours' AS head6, 
+                'Release' AS head7, 
+                t.ticketID AS col1, 
+                t.ticketID AS recid, 
+                t.ticketName AS col2, 
+                p.pgname AS col3, 
+                t.tickettype AS col4, 
+                t.ticketstatus AS col45, 
+                t.ticketpriority AS col5, 
+                t.esthours AS col6, 
+                CONCAT(v.major, '.', v.minor, '.', v.patch, '.', v.version, '.', v.build) AS col7,
+                t.verid,
+                p.pgname,
+                p.pgdir
+            FROM tickets t
+            LEFT JOIN taousers_tbl u ON u.userid = t.userid
+            LEFT JOIN pgpages p ON p.pgid = t.pgid
+            LEFT JOIN taoversions v ON v.verid = t.verid
+            WHERE t.ticketActive = 'Y'
+            <cfif len(arguments.select_userid)>
+                AND t.userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.select_userid#"/>
+            </cfif>
+            <cfif len(arguments.select_ticketstatus)>
+                AND t.ticketstatus = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.select_ticketstatus#"/>
+            </cfif>
+            <cfif len(arguments.select_ticketpriority)>
+                AND t.ticketpriority = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.select_ticketpriority#"/>
+            </cfif>
+            <cfif len(arguments.select_tickettype)>
+                AND t.tickettype = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.select_tickettype#"/>
+            </cfif>
+            <cfif len(arguments.select_pgid)>
+                AND p.pgid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.select_pgid#"/>
+            </cfif>
+            <cfif len(arguments.select_verid)>
+                AND t.verid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.select_verid#"/>
+            </cfif>
+            ORDER BY t.ticketCreatedDate DESC
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getTickets: #cfcatch.message#" />
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn queryResult>
+</cffunction>
+<cffunction name="getVersionDetails" access="public" returntype="query">
+    <cfargument name="verid" type="numeric" required="false">
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT 
+                v.versiontype, 
+                v.major, 
+                v.minor, 
+                v.patch, 
+                v.verid AS id, 
+                v.alphabeta, 
+                CONCAT(v.major, '.', v.minor, '.', v.patch, '.', v.version, '.', v.build, ' - ', v.versiontype) AS name,
+                (v.hoursavail - (SELECT SUM(esthours) FROM tickets t WHERE verid = v.verid)) AS hoursleft
+            FROM 
+                taoversions v
+            WHERE 
+                1=1
+            <cfif structKeyExists(arguments, "verid")>
+                AND v.verid = <cfqueryparam value="#arguments.verid#" cfsqltype="CF_SQL_INTEGER">
+            </cfif>
+            ORDER BY 
+                v.major, v.minor, v.patch, v.build
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getVersionDetails: #cfcatch.message#">
+            <cfset result = queryNew("versiontype,major,minor,patch,id,alphabeta,name,hoursleft")>
+        </cfcatch>
+    </cftry>
+
+    <cfreturn result>
+</cffunction>
+<cffunction name="getTicketDetails" access="public" returntype="query">
+    <cfargument name="recID" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT 
+                t.ticketID AS recID, 
+                t.ticketName, 
+                CONCAT(u.userfirstname, ' ', u.userlastname) AS username, 
+                t.ticketCreatedDate AS createddate, 
+                t.ticketstatus, 
+                t.tickettype, 
+                t.environ, 
+                t.ticketPriority, 
+                p.pgdir, 
+                p.pgname, 
+                t.esthours, 
+                t.ticketCompletedDate, 
+                t.verid, 
+                t.ticketdetails, 
+                t.ticketResponse, 
+                t.patchnote, 
+                t.recordname, 
+                t.testingscript, 
+                v.major, 
+                v.minor, 
+                v.patch, 
+                v.alphabeta, 
+                v.version, 
+                v.releasedate, 
+                t.customtestpagelink, 
+                t.customtestpagename
+            FROM tickets t
+            INNER JOIN taousers_tbl u ON u.userid = t.userid
+            INNER JOIN pgpages p ON p.pgid = t.pgid
+            LEFT JOIN taoversions v ON v.verid = t.verid
+            WHERE t.ticketid = <cfqueryparam value="#arguments.recID#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfreturn result>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getTicketDetails: #cfcatch.message# Query: #cfcatch.detail#">
+            <cfreturn queryNew("")>
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getTickets" access="public" returntype="query">
+    <cfargument name="statusList" type="array" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT 
+                'ID' AS head1, 
+                'Details' AS head2, 
+                'Page' AS head3, 
+                'Type' AS head4, 
+                'Status' AS head45, 
+                'Priority' AS head5, 
+                'Hours' AS head6, 
+                'Release' AS head7, 
+                t.ticketID AS col1, 
+                t.ticketID AS recid, 
+                t.ticketName AS col2, 
+                p.pgname AS col3, 
+                t.tickettype AS col4, 
+                t.ticketstatus AS col45, 
+                t.ticketpriority AS col5, 
+                t.esthours AS col6, 
+                CONCAT(v.major, '.', v.minor, '.', v.patch, '.', v.version, '.', v.build) AS col7,
+                p.pgname,
+                p.pgdir
+            FROM tickets t
+            INNER JOIN taousers_tbl u ON u.userid = t.userid
+            INNER JOIN pgpages p ON p.pgid = t.pgid
+            INNER JOIN taoversions v ON v.verid = t.verid
+            WHERE t.ticketstatus IN (
+                <cfloop array="#arguments.statusList#" index="status">
+                    <cfqueryparam value="#status#" cfsqltype="CF_SQL_VARCHAR" list="true">
+                    <cfif NOT isLastArrayElement()>,</cfif>
+                </cfloop>
+            )
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getTickets: #cfcatch.message#">
+            <cfset result = queryNew("head1,head2,head3,head4,head45,head5,head6,head7,col1,recid,col2,col3,col4,col45,col5,col6,col7")>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="getVersionDetails" access="public" returntype="query">
+    <cfargument name="recid" type="numeric" required="true">
+
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT 
+                v.verid, 
+                v.major, 
+                v.minor, 
+                v.patch, 
+                v.alphabeta, 
+                v.version, 
+                v.releasedate, 
+                v.releaseTime, 
+                v.reviewDate, 
+                v.hoursavail, 
+                v.build, 
+                v.reviewtime, 
+                v.versionstatus, 
+                v.isActive, 
+                v.versiontype,
+                CONCAT(v.major, '.', v.minor, '.', v.patch, '.', v.version, '.', v.build, ' -', v.versiontype) AS vername,
+                (SELECT COUNT(*) FROM tickets WHERE verid = v.verid) AS total_tickets,
+                (SELECT SUM(esthours) FROM tickets WHERE verid = v.verid) AS total_hours
+            FROM taoversions v
+            WHERE v.verid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getVersionDetails: #cfcatch.message#">
+            <cfset result = queryNew("")>
+        </cfcatch>
+    </cftry>
+
+    <cfreturn result>
+</cffunction>
+<cffunction name="getVersionDetails" access="public" returntype="query">
+    <cfargument name="recid" type="numeric" required="true">
+
+    <cfset var result = "">
+
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT 
+                v.verid, 
+                v.major, 
+                v.minor, 
+                v.patch, 
+                v.alphabeta, 
+                v.version, 
+                v.releasedate, 
+                v.releaseTime, 
+                v.reviewDate, 
+                v.reviewtime, 
+                v.versionstatus, 
+                v.isActive, 
+                v.versiontype,
+                ((v.hoursavail) - (SELECT SUM(esthours) FROM tickets t WHERE verid = v.verid)) AS hoursleft,
+                CONCAT(v.major,'.',v.minor,'.',v.patch,'.',v.version,'.',v.build) AS vername,
+                (SELECT COUNT(*) FROM tickets WHERE verid = v.verid) AS total_tickets,
+                (SELECT SUM(esthours) FROM tickets WHERE verid = v.verid) AS total_hours
+            FROM taoversions v
+            WHERE v.verid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
 
         <cfcatch type="any">
-            <!--- Log the error details --->
-            <cflog file="application" text="Error in getvm_tickets_users_pages: #cfcatch.message# - #cfcatch.detail# - SQL: #local.sql#">
-
-            <!--- Return an empty query with the correct schema --->
-            <cfreturn queryNew("recID,pk,pgid,verid,col1,head1,head2,head3,
-                                head4,head5,head6,head7,head8,ticketResponse,
-                                pgname,ticketStatus,ticketType,ticketPriority,
-                                ticketName,patchnote,pgdir,
-                                complete_email:int,
-                                initial_email:int,
-                                ticketCompletedDate:date,
-                                ticketCreatedDate:timestamp,
-                                ticketdetails:longvarchar,
-                                esthours:decimal",
-                               "integer,Integer,Integer,Integer,varchar,varchar,varchar,varchar,varchar,varchar,varchar,varchar,varchar,varchar,varchar,varchar,varchar,varchar,varchar,varchar,Integer,Integer,date,timestamp,longvarchar,double") />
+            <cflog file="application" text="Error in getVersionDetails: #cfcatch.message#">
+            <cfset result = queryNew("")>
         </cfcatch>
+    </cftry>
+
+    <cfreturn result>
+</cffunction>
+<cffunction name="getTicketsByVersion" access="public" returntype="query">
+    <cfargument name="recid" type="numeric" required="true">
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT 
+                'ID' AS head1,
+                'Details' AS head2,
+                'Page' AS head3,
+                'Type' AS head4,
+                'Status' AS head45,
+                'Priority' AS head5,
+                'Hours' AS head6,
+                'Release' AS head7,
+                t.ticketID AS col1,
+                t.ticketID AS recid,
+                t.ticketName AS col2,
+                p.pgname AS col3,
+                t.tickettype AS col4,
+                t.ticketstatus AS col45,
+                t.ticketpriority AS col5,
+                t.esthours AS col6,
+                CONCAT(v.major,'.',v.minor,'.',v.patch,'.',v.version,'.',v.build) AS col7,
+                p.pgname, 
+                p.pgdir, 
+                v.verid
+            FROM 
+                tickets t
+            INNER JOIN 
+                taousers u ON u.userid = t.userid
+            INNER JOIN 
+                pgpages p ON p.pgid = t.pgid
+            INNER JOIN 
+                taoversions v ON v.verid = t.verid
+            WHERE 
+                t.verid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
+            ORDER BY 
+                t.ticketid DESC
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getTicketsByVersion: #cfcatch.message#">
+            <cfreturn queryNew("")>
+        </cfcatch>
+    </cftry>
+
+    <cfreturn result>
+</cffunction>
+<cffunction name="getVersionDetails" access="public" returntype="query">
+    <cfargument name="verid" type="numeric" required="false">
+    
+    <cfset var result = "">
+    <cfset var sql = "">
+    <cfset var params = []>
+
+    <cftry>
+        <cfset sql = "
+            SELECT 
+                v.verid, 
+                'Release' AS head1, 
+                'Review Date' AS head2, 
+                'Release Date' AS head3, 
+                'Status' AS head4, 
+                'Type' AS head4b, 
+                'Total Tickets' AS head5, 
+                'Hours Left' AS head6, 
+                CONCAT(v.major, '.', v.minor, '.', v.patch, '.', v.version, '.', v.build, ' - ', v.versiontype) AS col1, 
+                v.reviewDate AS col2, 
+                v.reviewtime, 
+                v.releasedate AS col3, 
+                v.releaseTime, 
+                v.versionstatus AS col4, 
+                v.versiontype AS col4b, 
+                (SELECT COUNT(*) FROM tickets WHERE verid = v.verid) AS col5, 
+                (SELECT SUM(esthours) FROM tickets WHERE verid = v.verid) AS col6b,
+                v.major,
+                v.minor,
+                v.patch,
+                v.alphabeta,
+                v.version,
+                ((v.hoursavail) - (SELECT SUM(esthours) FROM tickets t WHERE verid = v.verid)) AS col6,
+                v.isActive
+            FROM taoversions v
+            WHERE 1=1
+        ">
+
+        <cfif structKeyExists(arguments, "verid")>
+            <cfset sql &= " AND v.verid = ?">
+            <cfset arrayAppend(params, {value=arguments.verid, cfsqltype="CF_SQL_INTEGER"})>
+        </cfif>
+
+        <cfset sql &= " ORDER BY v.major, v.minor, v.patch, v.version, v.build">
+
+        <cfquery name="result" datasource="abod">
+            #sql#
+            <cfloop array="#params#" index="param">
+                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+            </cfloop>
+        </cfquery>
+
+        <cfreturn result>
+
+    <cfcatch type="any">
+        <cflog file="application" text="Error in getVersionDetails: #cfcatch.message#">
+        <cfreturn queryNew("")>
+    </cfcatch>
     </cftry>
 </cffunction></cfcomponent>

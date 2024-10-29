@@ -1,189 +1,290 @@
-<cfcomponent displayname="TaoVersionService" hint="Handles operations for TaoVersion table" output="false" > 
-<cffunction name="inserttaoversions" access="public" returntype="numeric">
-    <cfargument name="verid" type="numeric" required="true">
-    <cfargument name="major" type="numeric" required="true">
-    <cfargument name="minor" type="numeric" required="true">
-    <cfargument name="patch" type="numeric" required="true">
-    <cfargument name="version" type="numeric" required="false" default="">
-    <cfargument name="alphabeta" type="string" required="true">
-    <cfargument name="build" type="numeric" required="true">
-    <cfargument name="releaseDate" type="date" required="false" default="">
-    <cfargument name="releaseTime" type="string" required="false" default="">
-    <cfargument name="reviewDate" type="date" required="false" default="">
-    <cfargument name="reviewTime" type="string" required="false" default="">
-    <cfargument name="IsActive" type="boolean" required="true">
-    <cfargument name="versionstatus" type="string" required="false" default="">
-    <cfargument name="hoursavail" type="numeric" required="false" default="">
-    <cfargument name="versiontype" type="string" required="false" default="">
-    
-    <cfset var insertResult = 0>
+<cfcomponent displayname="TaoVersionService" hint="Handles operations for TaoVersion table" output="false"> 
+<cffunction name="getLatestVersion" access="public" returntype="query">
+    <cfargument name="isActive" type="boolean" required="false" default="">
+    <cfset var result = "">
     
     <cftry>
-        <cfquery name="insertQuery" datasource="#DSN#" result="result">
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT verid 
+            FROM taoversions
+            WHERE 1=1
+            <cfif len(arguments.isActive)>
+                AND isactive = <cfqueryparam value="#arguments.isActive#" cfsqltype="CF_SQL_BIT">
+            </cfif>
+            ORDER BY isactive DESC, verid DESC
+            LIMIT 1
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" type="error" text="Error in getLatestVersion: #cfcatch.message#">
+            <cfset result = queryNew("verid")>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="getVersionData" access="public" returntype="query">
+    <cfargument name="major" type="numeric" required="false">
+    <cfargument name="minor" type="numeric" required="false">
+    <cfargument name="patch" type="numeric" required="false">
+    <cfargument name="version" type="string" required="false">
+
+    <cfset var local = {}>
+
+    <cfset local.queryString = "
+        SELECT verid AS id, major, minor, patch, version, versiontype, alphabeta, isactive 
+        FROM taoversions 
+        WHERE 1=1
+    ">
+
+    <cfif structKeyExists(arguments, "major")>
+        <cfset local.queryString &= " AND major = ?">
+        <cfset arrayAppend(local.params, {value=arguments.major, cfsqltype="CF_SQL_INTEGER"})>
+    </cfif>
+
+    <cfif structKeyExists(arguments, "minor")>
+        <cfset local.queryString &= " AND minor = ?">
+        <cfset arrayAppend(local.params, {value=arguments.minor, cfsqltype="CF_SQL_INTEGER"})>
+    </cfif>
+
+    <cfif structKeyExists(arguments, "patch")>
+        <cfset local.queryString &= " AND patch = ?">
+        <cfset arrayAppend(local.params, {value=arguments.patch, cfsqltype="CF_SQL_INTEGER"})>
+    </cfif>
+
+    <cfif structKeyExists(arguments, "version")>
+        <cfset local.queryString &= " AND version = ?">
+        <cfset arrayAppend(local.params, {value=arguments.version, cfsqltype="CF_SQL_VARCHAR"})>
+    </cfif>
+
+    <cfset local.queryString &= " ORDER BY major, minor, patch, version">
+
+    <cftry>
+        <cfquery name="local.result" datasource="#yourDataSource#">
+            #local.queryString#
+            <cfloop array="#local.params#" index="param">
+                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+            </cfloop>
+        </cfquery>
+        <cfreturn local.result>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getVersionData: #cfcatch.message# Query: #local.queryString# Parameters: #serializeJSON(local.params)#">
+            <cfthrow message="An error occurred while retrieving version data." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getLatestVersion" access="public" returntype="query">
+    <cfargument name="datasource" type="string" required="true">
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="#arguments.datasource#">
+            SELECT verid 
+            FROM taoversions 
+            ORDER BY verid DESC 
+            LIMIT 1
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getLatestVersion: #cfcatch.message# - Query: SELECT verid FROM taoversions ORDER BY verid DESC LIMIT 1">
+            <cfset result = queryNew("verid")>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="getOldFindName" access="public" returntype="query">
+    <cfargument name="old_verid" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT CONCAT(v.major, '.', v.minor, '.', v.patch, '.', v.version, '.', v.build) AS old_findname
+            FROM taoversions v
+            WHERE v.verid = <cfqueryparam value="#arguments.old_verid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="errorLog" text="Error in getOldFindName: #cfcatch.message# Query: SELECT CONCAT(v.major, '.', v.minor, '.', v.patch, '.', v.version, '.', v.build) AS old_findname FROM taoversions WHERE verid = #arguments.old_verid#">
+            <cfset result = queryNew("old_findname", "varchar")>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="getNewFindName" access="public" returntype="query">
+    <cfargument name="new_verid" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT CONCAT(v.major, '.', v.minor, '.', v.patch, '.', v.version, '.', v.build) AS new_findname
+            FROM taoversions v
+            WHERE v.verid = <cfqueryparam value="#arguments.new_verid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getNewFindName: #cfcatch.message# Query: SELECT CONCAT(v.major, '.', v.minor, '.', v.patch, '.', v.version, '.', v.build) AS new_findname FROM taoversions v WHERE v.verid = ? Parameters: #arguments.new_verid#">
+            <cfset result = queryNew("new_findname", "varchar")>
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="getTAOVersions" access="public" returntype="query">
+    <cfargument name="new_major" type="numeric" required="true">
+    <cfargument name="new_minor" type="numeric" required="true">
+    <cfargument name="new_patch" type="numeric" required="true">
+    <cfargument name="new_version" type="string" required="true">
+    <cfargument name="new_build" type="numeric" required="true">
+
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT *
+            FROM taoversions
+            WHERE major = <cfqueryparam value="#arguments.new_major#" cfsqltype="CF_SQL_INTEGER">
+            AND minor = <cfqueryparam value="#arguments.new_minor#" cfsqltype="CF_SQL_INTEGER">
+            AND patch = <cfqueryparam value="#arguments.new_patch#" cfsqltype="CF_SQL_INTEGER">
+            AND version = <cfqueryparam value="#arguments.new_version#" cfsqltype="CF_SQL_VARCHAR">
+            AND build = <cfqueryparam value="#arguments.new_build#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="errorLog" text="Error in getTAOVersions: #cfcatch.message# Query: SELECT * FROM taoversions WHERE major = ? AND minor = ? AND patch = ? AND version = ? AND build = ? Parameters: #arguments#">
+            <cfthrow message="An error occurred while retrieving TAO versions." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+
+    <cfreturn result>
+</cffunction>
+<cffunction name="insertTAOVersion" access="public" returntype="void">
+    <cfargument name="new_major" type="numeric" required="true">
+    <cfargument name="new_minor" type="numeric" required="true">
+    <cfargument name="new_patch" type="numeric" required="true">
+    <cfargument name="new_versionstatus" type="string" required="true">
+    <cfargument name="new_versiontype" type="string" required="true">
+    <cfargument name="new_version" type="numeric" required="true">
+    <cfargument name="new_build" type="numeric" required="true">
+    <cfargument name="new_reviewDate" type="date" required="false">
+    <cfargument name="new_releaseDate" type="date" required="false">
+    <cfargument name="new_reviewtime" type="string" required="false">
+    <cfargument name="new_releasetime" type="string" required="false">
+    <cfargument name="new_hoursavail" type="numeric" required="false">
+
+    <cftry>
+        <cfquery datasource="#yourDatasourceName#">
             INSERT INTO taoversions (
-                verid, major, minor, patch, version, alphabeta, build,
-                releaseDate, releaseTime, reviewDate, reviewTime,
-                IsActive, versionstatus, hoursavail, versiontype
+                major, minor, patch, versionstatus, versiontype, version, build,
+                reviewDate, releaseDate, reviewtime, releasetime, hoursavail
             ) VALUES (
-                <cfqueryparam value="#arguments.verid#" cfsqltype="CF_SQL_INTEGER">,
-                <cfqueryparam value="#arguments.major#" cfsqltype="CF_SQL_INTEGER">,
-                <cfqueryparam value="#arguments.minor#" cfsqltype="CF_SQL_INTEGER">,
-                <cfqueryparam value="#arguments.patch#" cfsqltype="CF_SQL_INTEGER">,
-                <cfqueryparam value="#arguments.version#" cfsqltype="CF_SQL_INTEGER" null="#isNull(arguments.version)#">,
-                <cfqueryparam value="#arguments.alphabeta#" cfsqltype="CF_SQL_VARCHAR">,
-                <cfqueryparam value="#arguments.build#" cfsqltype="CF_SQL_INTEGER">,
-                <cfqueryparam value="#arguments.releaseDate#" cfsqltype="CF_SQL_DATE" null="#isNull(arguments.releaseDate)#">,
-                <cfqueryparam value="#arguments.releaseTime#" cfsqltype="CF_SQL_TIME" null="#isNull(arguments.releaseTime)#">,
-                <cfqueryparam value="#arguments.reviewDate#" cfsqltype="CF_SQL_DATE" null="#isNull(arguments.reviewDate)#">,
-                <cfqueryparam value="#arguments.reviewTime#" cfsqltype="CF_SQL_TIME" null="#isNull(arguments.reviewTime)#">,
-                <cfqueryparam value="#arguments.IsActive#" cfsqltype="CF_SQL_BIT">,
-                <cfqueryparam value="#arguments.versionstatus#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.versionstatus)#">,
-                <cfqueryparam value="#arguments.hoursavail#" cfsqltype="CF_SQL_DECIMAL" null="#isNull(arguments.hoursavail)#">,
-                <cfqueryparam value="#arguments.versiontype#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.versiontype)#">
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_major#" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_minor#" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_patch#" />,
+                <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_versionstatus#" />,
+                <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_versiontype#" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_version#" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_build#" />,
+                <cfif arguments.new_reviewDate neq ""> 
+                    <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_reviewDate#" /> 
+                <cfelse> 
+                    NULL 
+                </cfif>,
+                <cfif arguments.new_releaseDate neq ""> 
+                    <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_releaseDate#" /> 
+                <cfelse> 
+                    NULL 
+                </cfif>,
+                <cfif arguments.new_reviewtime neq ""> 
+                    <cfqueryparam cfsqltype="cf_sql_time" value="#arguments.new_reviewtime#" /> 
+                <cfelse> 
+                    NULL 
+                </cfif>,
+                <cfif arguments.new_releasetime neq ""> 
+                    <cfqueryparam cfsqltype="cf_sql_time" value="#arguments.new_releasetime#" /> 
+                <cfelse> 
+                    NULL 
+                </cfif>,
+                <cfif arguments.new_hoursavail neq ""> 
+                    <cfqueryparam cfsqltype="cf_sql_float" value="#numberformat(arguments.new_hoursavail,'9.99')#" /> 
+                <cfelse> 
+                    NULL 
+                </cfif>
             )
         </cfquery>
-        
-        <!--- Return the generated key for the inserted row --->
-        <cfset insertResult = result.generatedKey>
-        
-        <!--- Error handling --->
-        <!--- Log the error and return 0 or some other indication of failure --->
-        
+        <cflog text="[INFO] Successfully inserted new TAO version." />
+    <cfcatch>
+        <cflog text="[ERROR] Error inserting new TAO version: #cfcatch.message# - SQL: #cffunctionname# - Parameters: #serializeJSON(arguments)#"/>
+        <!--- Handle error appropriately --->
     </cfcatch>
-        <!--- Handle errors gracefully --->
-        <!--- Log the error and return 0 or some other indication of failure --->
-        
-    </cffinally>
-    
+    </cftry>
 </cffunction>
-
-<!--- Changes made:
-     - Added missing cfcatch tag to handle exceptions.
-     - Removed redundant error logging comments.
-     --->
-
-<cffunction name="gettaoversions" access="public" returntype="query">
-    <cfargument name="filters" type="struct" required="false" default="#structNew()#">
-    <cfargument name="orderBy" type="string" required="false" default="verid">
-    <cfset var sql = "SELECT verid, major, minor, patch, version, build, alphabeta, versionstatus, versiontype, IsActive, releaseDate, reviewDate, hoursavail, releaseTime, reviewTime FROM taoversions WHERE 1=1">
-    <cfset var whereClause = []>
-    <cfset var orderByWhitelist = "verid,major,minor,patch,version,build,alphabeta,versionstatus,versiontype,IsActive,releaseDate,reviewDate,hoursavail,releaseTime,reviewTime">
-    <cfset var result = "">
-
-    <!--- Build the WHERE clause dynamically --->
-    <cfloop collection="#arguments.filters#" item="key">
-        <cfif listFindNoCase("verid,major,minor,patch,version,build,alphabeta,versionstatus,versiontype,isActive", key)>
-            <cfset arrayAppend(whereClause, "#key# = ?")>
-        </cfif>
-    </cfloop>
-
-    <!--- Construct the final SQL query --->
-    <cfif arrayLen(whereClause) gt 0>
-        <cfset sql = sql & " AND " & arrayToList(whereClause," AND ")>
-    <cfelse>
-        <!--- Return an empty query if no filters are provided --->
-        <cfreturn queryNew("verid,major,minor,patch,version,build,alphabeta,versionstatus,versiontype,isActive","integer,int,int,int,int,int,varchar,varchar,varchar,int")>
-    </cfif>
-
-    <!--- Validate and append ORDER BY clause --->
-    <cfif listFindNoCase(orderByWhitelist, arguments.orderBy)>
-        <cfset sql = sql & " ORDER BY #arguments.orderBy#">
-    </cfif>
-
-    <!--- Execute the query within a try/catch block for error handling --->
-    <cftry>
-        <cfquery name="result" datasource="abod">
-            #sql#
-            <cfloop collection="#arguments.filters#" item="key">
-                <cfif listFindNoCase("verid", key)>
-                    <cfqueryparam value="#arguments.filters[key]#" cfsqltype="CF_SQL_INTEGER" null="#isNull(arguments.filters[key])#">
-                </cfif>
-                <cfif listFindNoCase("major", key)>
-                    <cfqueryparam value="#arguments.filters[key]#" cfsqltype="CF_SQL_INTEGER" null="#isNull(arguments.filters[key])#">
-                </cfif>
-                <cfif listFindNoCase("minor", key)>
-                    <cfqueryparam value="#arguments.filters[key]#" cfsqltype="CF_SQL_INTEGER" null="#isNull(arguments.filters[key])#">
-                </cfif>
-                <cfif listFindNoCase("patch", key)>
-                    <cfqueryparam value="#arguments.filters[key]#" cfsqltype="CF_SQL_INTEGER" null="#isNull(arguments.filters[key])#">
-                </cfif>
-                <cfif listFindNoCase("version", key)>
-                    <cfqueryparam value="#arguments.filters[key]#" cfsqltype="CF_SQL_INTEGER" null="#isNull(arguments.filters[key])#">
-                </cfif>
-                <cfif listFindNoCase("build", key)>
-                    <cfqueryparam value="#arguments.filters[key]#" cfsqltype="CF_SQL_INTEGER" null="#isNull(arguments.filters[key])#">
-                </cfif>
-                <cfif listFindNoCase("alphabeta", key)>
-                    <cfqueryparam value="#arguments.filters[key]#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.filters[key])#">
-                </cfif>
-                <cfif listFindNoCase("versionstatus", key)>
-                    <cfqueryparam value="#arguments.filters[key]#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.filters[key])#">
-                </cfif>
-                <cfif listFindNoCase("versiontype", key)>
-                    <cfqueryparam value="#arguments.filters[key]#" cfsqltype="CF_SQL_VARCHAR" null="#isNull(arguments.filters[key])#">
-                </cfif>
-                <cfif listFindNoCase("IsActive", key)>
-                    <cfqueryparam value="#arguments.filters[key]#" cfsqltype="CF_SQL_BIT" null="#isNull(arguments.filters[key])#">
-                </cfif>
-            </cfloop>
-        </cfquery>
-
-        <!--- Return the result set --->
-        <cfreturn result>
-
-        <!--- Error handling and logging --->
-        <cfcatch type="any">
-            <cflog file="application" text="Error in gettaoversions: #cfcatch.message#. Detail: #cfcatch.detail#. SQL: #sql#">
-            <!--- Return an empty query on error --->
-            <cfreturn queryNew("verid,major,minor,patch,version,build,alphabeta,versionstatus,versiontype,isActive","integer,int,int,int,int,int,varchar,varchar,varchar,int")>
-        </cfcatch>
-    </cftry>
-
-</cffunction> 
-
-<!--- Changes made:
-- Corrected mismatched data types in the queryNew function to ensure consistency.
---->
-
-<cffunction name="updatetaoversions" access="public" returntype="boolean">
+<cffunction name="updateVersion" access="public" returntype="void">
     <cfargument name="verid" type="numeric" required="true">
-    <cfargument name="data" type="struct" required="true">
-    <cfset var sql = "UPDATE taoversions SET">
-    <cfset var setClauses = []>
-    <cfset var validColumns = "major,minor,patch,version,build,alphabeta,versionstatus,versiontype,IsActive,releaseDate,reviewDate,hoursavail,releaseTime,reviewTime">
+    <cfargument name="new_major" type="numeric" required="true">
+    <cfargument name="new_minor" type="numeric" required="true">
+    <cfargument name="new_patch" type="numeric" required="true">
+    <cfargument name="new_versionstatus" type="string" required="true">
+    <cfargument name="new_versiontype" type="string" required="true">
+    <cfargument name="new_version" type="numeric" required="true">
+    <cfargument name="new_build" type="numeric" required="true">
+    <cfargument name="new_reviewDate" type="date" required="false" default="">
+    <cfargument name="new_releaseDate" type="date" required="false" default="">
+    <cfargument name="new_reviewtime" type="string" required="false" default="">
+    <cfargument name="new_releasetime" type="string" required="false" default="">
+    <cfargument name="new_hoursavail" type="numeric" required="false" default="">
     
-    <cfloop collection="#arguments.data#" item="key">
-        <cfif listFindNoCase(validColumns, key)>
-            <cfset arrayAppend(setClauses, "#key# = ?")>
-        </cfif>
-    </cfloop>
+    <cfset var sql = "UPDATE taoversions SET major = ?, minor = ?, patch = ?, versionstatus = ?, versiontype = ?, version = ?, build = ?">
+    <cfset var params = [arguments.new_major, arguments.new_minor, arguments.new_patch, arguments.new_versionstatus, arguments.new_versiontype, arguments.new_version, arguments.new_build]>
 
-    <cfif arrayLen(setClauses) eq 0>
-        <cfreturn false>
+    <cfif len(arguments.new_reviewDate)>
+        <cfset sql &= ", reviewDate = ?">
+        <cfset arrayAppend(params, arguments.new_reviewDate)>
     </cfif>
-
-    <cfset sql &= " " & arrayToList(setClauses, ", ") & " WHERE verid = ?">
+    
+    <cfif len(arguments.new_releaseDate)>
+        <cfset sql &= ", releaseDate = ?">
+        <cfset arrayAppend(params, arguments.new_releaseDate)>
+    </cfif>
+    
+    <cfif len(arguments.new_reviewtime)>
+        <cfset sql &= ", reviewtime = ?">
+        <cfset arrayAppend(params, arguments.new_reviewtime)>
+    </cfif>
+    
+    <cfif len(arguments.new_releasetime)>
+        <cfset sql &= ", releasetime = ?">
+        <cfset arrayAppend(params, arguments.new_releasetime)>
+    </cfif>
+    
+    <cfif len(arguments.new_hoursavail)>
+        <cfset sql &= ", hoursavail = ?">
+        <cfset arrayAppend(params, numberFormat(arguments.new_hoursavail, "9.99"))>
+    </cfif>
+    
+    <cfset sql &= " WHERE verid = ?">
+    <cfset arrayAppend(params, arguments.verid)>
 
     <cftry>
-        <cfquery datasource="#DSN#">
+        <cfquery datasource="#application.datasource#" name="updateQuery">
             #sql#
-            <cfloop collection="#arguments.data#" item="key">
-                <cfqueryparam value="#arguments.data[key]#" 
-                    cfsqltype="#evaluate("CF_SQL_" & ucase(listGetAt(validColumns, listFindNoCase(validColumns, key)))#"
-                    null="#isNull(arguments.data[key])#">
-            </cfloop>
-            <cfqueryparam value="#arguments.verid#" cfsqltype="CF_SQL_INTEGER">
+            <cfsilent>
+                <!--- Loop through parameters and bind them --->
+                <cfloop from=1 to=#arrayLen(params)# index=i>
+                    <cfqueryparam value="#params[i]#" cfsqltype="#getSQLType(params[i])#"/>
+                </cfloop>
+            </cfsilent>
         </cfquery>
-        <cfreturn true>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating taoversions: #cfcatch.message# - #cfcatch.detail# - SQL: #sql#">
-            <cfreturn false>
+        <cfcatch>
+            <!--- Log the error --->
+            <cflog file="application" text="#serializeJSON(cfcatch)#">
+            <!--- Re-throw the error if necessary --->
+            <!--- cfthrow cfcatch --->
         </cfcatch>
     </cftry>
-</cffunction> 
-
-<!--- Changes made:
-- None. The code is syntactically correct.
---->
-</cfcomponent>
+</cffunction></cfcomponent>

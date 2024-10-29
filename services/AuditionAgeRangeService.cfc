@@ -1,48 +1,94 @@
-<cfcomponent displayname="AuditionAgeRangeService" hint="Handles operations for AuditionAgeRange table" output="false" > 
-<cffunction name="getvm_audageranges_audageranges_audtion_xref" access="public" returntype="query">
-    <cfargument name="new_contactid" type="numeric" required="true">
-    <cfargument name="orderBy" type="string" required="false" default="rangeid">
+<cfcomponent displayname="AuditionAgeRangeService" hint="Handles operations for AuditionAgeRange table" output="false"> 
+<cffunction name="getAgeRanges" access="public" returntype="query">
+    <cfargument name="isDeleted" type="boolean" required="true">
+
+    <cfset var result = "">
     
-    <cfset var validOrderByColumns = "rangeid,audroleid,rangename">
-    <cfset var queryResult = "">
-    <cfset var sql = "SELECT rangeid, audroleid, rangename FROM vm_audageranges_audageranges_audtion_xref WHERE 1=1">
-    <cfset var whereClause = []>
-    
-    <!--- Validate ORDER BY clause --->
-    <cfif listFindNoCase(validOrderByColumns, arguments.orderBy)>
-        <cfset sql &= " ORDER BY #arguments.orderBy#">
-    <cfelse>
-        <cfset sql &= " ORDER BY rangeid">
-    </cfif>
-
-    <!--- Add conditions to WHERE clause --->
-    <cfset arrayAppend(whereClause, "i.valuecategory = 'Tag'")>
-    <cfset arrayAppend(whereClause, "i.valuetype = 'Tags'")>
-    <cfset arrayAppend(whereClause, "tu.tagtype = 'C'")>
-    <cfset arrayAppend(whereClause, "tu.tagname = i.valuetext")>
-    <cfset arrayAppend(whereClause, "d.contactid = ?")>
-
-    <!--- Combine WHERE clauses --->
-    <cfif arrayLen(whereClause) gt 0>
-        <cfset sql &= " AND " & arrayToList(whereClause, " AND ")>
-    </cfif>
-
-    <!--- Execute the query --->
     <cftry>
-        <cfquery name="queryResult" datasource="abod">
-            #sql#
-            <cfqueryparam value="#arguments.new_contactid#" cfsqltype="CF_SQL_INTEGER">
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT rangeid, rangename 
+            FROM audageranges 
+            WHERE isdeleted = <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
+            ORDER BY rangeid
         </cfquery>
-
+        
         <cfcatch type="any">
-            <!--- Log error details --->
-            <cflog file="application" text="Error in getvm_audageranges_audageranges_audtion_xref: #cfcatch.message# - #cfcatch.detail# - SQL: #sql#">
-
-            <!--- Return an empty query with correct schema --->
-            <cfset queryResult = queryNew("rangeid,audroleid,rangename", "integer,integer,varchar")>
+            <cflog file="application" text="Error in getAgeRanges: #cfcatch.message# Query: SELECT rangeid, rangename FROM audageranges WHERE isdeleted = ? ORDER BY rangeid Parameters: #arguments.isDeleted#">
+            <cfthrow>
         </cfcatch>
     </cftry>
 
-    <!--- Return the result --->
-    <cfreturn queryResult>
+    <cfreturn result>
+</cffunction>
+<cffunction name="insertAgeRange" access="public" returntype="void">
+    <cfargument name="new_rangename" type="string" required="true">
+    <cfargument name="new_age_min" type="numeric" required="true">
+    <cfargument name="new_age_max" type="numeric" required="true">
+    <cfargument name="new_age_group" type="string" required="true">
+    <cfargument name="new_isDeleted" type="boolean" required="true">
+
+    <cftry>
+        <cfquery datasource="abod">
+            INSERT INTO audageranges (rangename, age_min, age_max, age_group, isDeleted)
+            VALUES (
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_rangename)#" maxlength="100" null="#NOT len(trim(arguments.new_rangename))#">,
+                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_age_min#" null="#NOT len(trim(arguments.new_age_min))#">,
+                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_age_max#" null="#NOT len(trim(arguments.new_age_max))#">,
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_age_group)#" maxlength="45" null="#NOT len(trim(arguments.new_age_group))#">,
+                <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+            )
+        </cfquery>
+        <cfcatch type="any">
+            <cflog file="application" text="Error in insertAgeRange: #cfcatch.message# - Query: INSERT INTO audageranges (rangename, age_min, age_max, age_group, isDeleted) VALUES (...)" type="error">
+            <cfthrow message="Failed to insert age range." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="updateAgeRanges" access="public" returntype="void">
+    <cfargument name="new_rangename" type="string" required="true">
+    <cfargument name="new_age_min" type="numeric" required="true">
+    <cfargument name="new_age_max" type="numeric" required="true">
+    <cfargument name="new_age_group" type="string" required="true">
+    <cfargument name="new_isDeleted" type="boolean" required="true">
+    <cfargument name="new_rangeid" type="numeric" required="true">
+
+    <cftry>
+        <cfquery datasource="abod">
+            UPDATE audageranges 
+            SET 
+                rangename = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_rangename#" maxlength="100" null="#NOT len(trim(arguments.new_rangename))#">,
+                age_min = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_age_min#" null="#NOT len(trim(arguments.new_age_min))#">,
+                age_max = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_age_max#" null="#NOT len(trim(arguments.new_age_max))#">,
+                age_group = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_age_group#" maxlength="45" null="#NOT len(trim(arguments.new_age_group))#">,
+                isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+            WHERE 
+                rangeid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_rangeid#">
+        </cfquery>
+        <cfcatch>
+            <cflog text="Error updating audageranges: #cfcatch.message#" type="error">
+            <cfrethrow>
+        </cfcatch>
+    </cftry>
+</cffunction>
+<cffunction name="getAgeRangesByRole" access="public" returntype="query">
+    <cfargument name="audroleid" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT g.rangename, g.rangeid 
+            FROM audageranges g 
+            INNER JOIN audageranges_audtion_xref x ON x.rangeid = g.rangeid 
+            WHERE x.audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="cf_sql_integer"> 
+            ORDER BY g.rangeid
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getAgeRangesByRole: #cfcatch.message#">
+            <cfthrow message="An error occurred while retrieving age ranges." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
 </cffunction></cfcomponent>
