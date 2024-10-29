@@ -1,7 +1,9 @@
 
 <cftry>
-    <cfset links = createObject("component", "/services/LinkService").getlinks(new_noteid)>
+    <cfset linkService = new "/services/LinkService.cfc"()>
+    <cfset links = linkService.getLinksByNoteId(new_noteid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in links_181_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in links_181_1.cfm]: #cfcatch.message#">
+        <cfthrow message="Error fetching links" detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

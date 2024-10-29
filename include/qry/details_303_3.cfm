@@ -1,9 +1,8 @@
 
 <cftry>
-    <cfset recid = 123> <!--- Example recid, replace with actual value --->
-    <cfset ticketService = new "/services/TicketService.cfc"()>
-    <cfset details = ticketService.gettickets(recid)>
-<cfcatch type="any">
-    <cfset errorLog = "[Error in details_303_3.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfset details = createObject("component", "/services/TicketService").getTicketDetails(recid=recid)>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in details_303_3.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while retrieving ticket details." detail="#cfcatch.detail#">
+    </cfcatch>
 </cftry>

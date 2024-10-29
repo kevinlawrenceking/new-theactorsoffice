@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset audsources_sel = createObject("component", "services.AuditionSourceService").getaudsources(myteam.recordcount)>
+    <cfset audSourceService = createObject("component", "services.AuditionSourceService")>
+    <cfset audsources_sel = audSourceService.getAudSources(excludeMyTeam=(myteam.recordcount EQ 0))>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in audsources_sel_499_2.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in audsources_sel_499_2.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset steps = createObject("component", "services.AuditionStepService").getaudsteps()>
+    <cfset steps = createObject("component", "services.AuditionStepService").getAudSteps()>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in steps_29_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in steps_29_1.cfm]: #cfcatch.message# Query: #cfcatch.detail#">
     </cfcatch>
 </cftry>

@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset findid = createObject("component", "/services/ReportUserService").getreports_user(session.userid, new_reportid)>
+    <cfset findid = createObject("component", "services.ReportUserService").getReportUserID(session.userid, new_reportid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in findid_146_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in findid_146_1.cfm]: #cfcatch.message#">
+        <cfset findid = queryNew("new_iD", "integer")>
     </cfcatch>
 </cftry>

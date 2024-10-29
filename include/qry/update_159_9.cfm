@@ -1,7 +1,7 @@
 
 <cftry>
     <cfset userService = new "/services/UserService.cfc"()>
-    <cfset userService.updatetaousers(
+    <cfset userService.updateUserDetails(
         calstarttime = calstarttime,
         calendtime = calendtime,
         defRows = defRows,
@@ -9,8 +9,8 @@
         defState = defState,
         userid = userid
     )>
-    <cfset isfetch = 1>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in update_159_9.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in update_159_9.cfm]: #cfcatch.message#">
+        <cfrethrow>
     </cfcatch>
 </cftry>

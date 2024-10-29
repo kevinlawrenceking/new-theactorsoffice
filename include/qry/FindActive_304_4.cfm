@@ -1,8 +1,9 @@
 
+<cfset systemUserService = createObject("component", "services.SystemUserService")>
+
 <cftry>
-    <cfset systemUserService = new "/services/SystemUserService.cfc"()>
-    <cfset FindActive = systemUserService.getfusystemusers(new_contactid)>
-<cfcatch type="any">
-    <cfset errorLog = "[Error in FindActive_304_4.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfset FindActive = systemUserService.getActiveSystemUserIDs(contactID=new_contactid)>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in FindActive_304_4.cfm]: #cfcatch.message#"/>
+    </cfcatch>
 </cftry>

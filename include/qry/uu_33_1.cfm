@@ -1,10 +1,9 @@
 
 <cftry>
-    <cfset componentPath = "/services/EventService.cfc">
-    <cfset eventService = createObject("component", componentPath)>
-    <cfset result = eventService.updateevents()>
+    <cfset eventService = createObject("component", "services.EventService")>
+    <cfset eventService.updateEventTitles(eventTitle="", projName="")>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in uu_33_1.cfm]: " & cfcatch.message>
-        <!--- Handle the error, e.g., log it --->
+        <cflog file="errorLog" text="[Error in uu_33_1.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while updating event titles." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

@@ -1,8 +1,8 @@
 
 <cftry>
-    <cfset eventService = new "/services/EventService.cfc"()>
-    <cfset result = eventService.updateevents()>
+    <cfset eventService = new "/services/EventService.cfc" />
+    <cfset eventService.updateEventStopTime(eventStartTime=now()) />
     <cfcatch type="any">
-        <cfset errorLog = "[Error in tt_14_3.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in tt_14_3.cfm]: #cfcatch.message#" />
     </cfcatch>
 </cftry>

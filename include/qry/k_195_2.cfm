@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset k = createObject("component", "services.SystemUserService").getvm_fusystemusers_funotifications_actionusers(userid)>
+    <cfset var systemUserService = createObject("component", "/services/SystemUserService")>
+    <cfset var k = systemUserService.getNotifications(userid=#userid#)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in k_195_2.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in k_195_2.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

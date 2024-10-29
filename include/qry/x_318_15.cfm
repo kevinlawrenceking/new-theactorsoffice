@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset x = createObject("component", "services.SiteLinksMasterService").getsitelinks_master()>
+    <cfset x = createObject("component", "/services/SiteLinksMasterService").getSiteLinks()>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in x_318_15.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in x_318_15.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

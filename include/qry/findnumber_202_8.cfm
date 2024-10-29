@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset findnumber = createObject("component", "/services/EventContactsXRefService").geteventcontactsxref(eventNumber=eventNumber, contactID=CONTACTID) />
+    <cfset findnumber = createObject("component", "services.EventContactsXRefService").getEventContactsXref(eventNumber=eventNumber, contactID=CONTACTID) />
     <cfcatch type="any">
-        <cfset errorLog = "[Error in findnumber_202_8.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in findnumber_202_8.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while fetching event contacts." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

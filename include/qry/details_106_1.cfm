@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset details = createObject("component", "services.ContactItemService").getcontactitems(url.itemid)>
+    <cfset details = createObject("component", "services.ContactItemService").getContactItems(itemid=url.itemid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in details_106_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in details_106_1.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while retrieving contact items." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset locationDetails = createObject("component", "services.EventService").getevents(audprojectid)>
+    <cfset locationDetails = createObject("component", "services.EventService").getEventDetails(audprojectid=#audprojectid#) />
     <cfcatch type="any">
-        <cfset errorLog = "[Error in locationDetails_492_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in locationDetails_492_1.cfm]: #cfcatch.message#" />
     </cfcatch>
 </cftry>

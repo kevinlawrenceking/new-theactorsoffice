@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset opencalls = createObject("component", "services.AuditionOpenCallOptionUserService").getaudopencalloptions_user(userid)>
+    <cfset opencalls = createObject("component", "services.AuditionOpenCallOptionUserService").getOpenCallOptions(userid=#userid#) />
     <cfcatch type="any">
-        <cfset errorLog = "[Error in opencalls_286_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in opencalls_286_1.cfm]: #cfcatch.message#">
+        <cfset opencalls = queryNew("opencallid,opencallname")>
     </cfcatch>
 </cftry>

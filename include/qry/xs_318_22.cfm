@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset xs = createObject("component", "services.FUActionService").getfuactions()>
+    <cfset xs = createObject("component", "/services/FUActionService").getFuActions()>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in xs_318_22.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in xs_318_22.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

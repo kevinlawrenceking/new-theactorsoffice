@@ -1,7 +1,10 @@
 
 <cftry>
-    <cfset notesRelationship = createObject("component", "services.NoteService").getvm_noteslog_contactdetails(session.userid, contactid)>
+    <cfset notesRelationship = createObject("component", "services.NoteService").getNotesLog(
+        userID = session.userid,
+        contactID = contactid
+    )>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in notesRelationship_509_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in notesRelationship_509_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

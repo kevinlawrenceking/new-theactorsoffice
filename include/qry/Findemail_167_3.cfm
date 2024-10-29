@@ -1,14 +1,8 @@
 
 <cftry>
-    <cfset contactItemService = new "/services/ContactItemService.cfc"()>
-    <cfset Findemail = contactItemService.getcontactitems({
-        valueCategory: 'Email',
-        contactID: myteam.contactid,
-        itemStatus: 'Active',
-        orderBy: 'primary_YN DESC',
-        limit: 1
-    })>
+    <cfset Findemail = createObject("component", "services.ContactItemService").getActiveEmail(contactID=myteam.contactid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in Findemail_167_3.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in Findemail_167_3.cfm]: #cfcatch.message#">
+        <cfthrow message="Error retrieving email." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

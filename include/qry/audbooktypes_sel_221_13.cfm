@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset audbooktypes_sel = createObject("component", "/services/AuditionBookTypeService").getaudbooktypes()>
+    <cfset audbooktypes_sel = createObject("component", "services.AuditionBookTypeService").getAudBookTypes()>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in audbooktypes_sel_221_13.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in audbooktypes_sel_221_13.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while retrieving audio book types." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

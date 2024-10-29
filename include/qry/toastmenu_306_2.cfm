@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset toastmenu = createObject("component", "/services/NotificationService").getnotifications(session.userid)>
-<cfcatch>
-    <cfset errorLog = "[Error in toastmenu_306_2.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfset toastmenu = createObject("component", "services.NotificationService").getNotifications(userID=session.userid)>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in toastmenu_306_2.cfm]: #cfcatch.message#">
+        <cfset toastmenu = queryNew("ID, notiftitle, notiftimestamp, recordname, subtitle, notifurl, contactid, read, trash")>
+    </cfcatch>
 </cftry>

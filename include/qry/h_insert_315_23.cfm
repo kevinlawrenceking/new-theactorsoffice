@@ -1,13 +1,12 @@
 
 <cftry>
-    <cfset h_insert = new services.ContactItemService().insertcontactitems(
+    <cfset variables.contactItemService = new "/services/ContactItemService.cfc"()>
+    <cfset variables.contactItemService.INScontactitems_24416(
         contactid = h.contactid,
-        valueType = 'Mobile',
-        valueCategory = 'Phone',
-        valueText = h.mobile_phone,
-        itemstatus = 'Active'
+        mobile_phone = h.mobile_phone
     )>
-    <cfcatch>
-        <cfset errorLog = "[Error in h_insert_315_23.cfm]: #cfcatch.message#">
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in h_insert_315_23.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while inserting the contact item." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

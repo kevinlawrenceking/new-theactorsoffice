@@ -1,6 +1,7 @@
 
 <cftry>
-    <cfset result = createObject("component", "services.AuditionRoleService").insertaudroles(
+    <cfset variables.auditionRoleService = new "/services/AuditionRoleService.cfc"()>
+    <cfset variables.auditionRoleService.insertAudRole(
         new_audRoleName = new_audRoleName,
         new_audprojectID = new_audprojectID,
         new_audRoleTypeID = new_audRoleTypeID,
@@ -13,8 +14,7 @@
         new_isDeleted = new_isDeleted,
         isdirect = isdirect
     )>
-    <cfset isfetch = 1>
-<cfcatch type="any">
-    <cfset errorLog = "[Error in audroles_ins_39_1.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfcatch>
+        <cflog file="errorLog" text="[Error in audroles_ins_39_1.cfm] #cfcatch.message# - Detail: #cfcatch.detail#" type="error">
+    </cfcatch>
 </cftry>

@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset find_subcat = createObject("component", "/services/AuditionCategoryService").getvm_audcategories_audsubcategories(x.audcatname)>
+    <cfset find_subcat = createObject("component", "/services/AuditionCategoryService").getAudSubCatId(audcatname=x.audcatname) />
     <cfcatch type="any">
-        <cfset errorLog = "[Error in find_subcat_308_16.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in find_subcat_308_16.cfm]: #cfcatch.message#" />
+        <cfset find_subcat = queryNew("audsubcatid", "integer") />
     </cfcatch>
 </cftry>

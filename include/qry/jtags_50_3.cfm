@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset jtags = createObject("component", "/services/TagsUserService").gettags_user(session.userid)>
+    <cfset jtags = createObject("component", "/services/TagsUserService").getUserTags(userId=session.userid) />
     <cfcatch type="any">
-        <cfset errorLog = "[Error in jtags_50_3.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in jtags_50_3.cfm]: #cfcatch.message#" />
+        <cfset jtags = queryNew("col1") />
     </cfcatch>
 </cftry>

@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset eventService = new "/services/EventService.cfc"()>
-    <cfset result = eventService.updateevents(
+    <cfset variables.eventService = createObject("component", "services.EventService")>
+    <cfset variables.eventService.updateEvent(
         eventTitle = eventTitle,
         eventTypeName = eventTypeName,
         eventDescription = eventDescription,
@@ -9,12 +9,11 @@
         eventStart = eventStart,
         eventStartTime = eventStartTime,
         dow = dow,
-        new_eventStopTime = new_eventStopTime,
+        eventStopTime = new_eventStopTime,
         endRecur = endRecur,
         eventid = eventid
     )>
-    <cfset isfetch = 1>
-<cfcatch type="any">
-    <cfset errorLog = "[Error in update_18_1.cfm]: " & cfcatch.message>
+<cfcatch>
+    <cflog file="errorLog" text="[Error in update_18_1.cfm] Failed to update event. Event ID: #eventid#. Error: #cfcatch.message#" type="error">
 </cfcatch>
 </cftry>

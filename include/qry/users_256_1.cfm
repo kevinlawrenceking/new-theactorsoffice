@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset users = createObject("component", "services.UserService").getvm_taousers_tickets_shares_timezones()>
+    <cfset userService = createObject("component", "services.UserService")>
+    <cfset users = userService.getUserRecords()>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in users_256_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in users_256_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

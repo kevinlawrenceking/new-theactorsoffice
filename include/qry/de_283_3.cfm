@@ -1,10 +1,9 @@
 
 <cftry>
-    <cfset result = createObject("component", "/services/ActionUserService").updateactionusers(userid, target_id_system)>
-    <cfset isfetch = 1>
-    <!--- Additional code to update the database with isfetch = 1 if necessary --->
-    <!--- Example: <cfquery>UPDATE some_table SET isfetch = 1 WHERE condition</cfquery> --->
-<cfcatch type="any">
-    <cfset errorLog = "[Error in de_283_3.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfset actionUserService = createObject("component", "/services/ActionUserService")>
+    <cfset actionUserService.updateActionUsers(userid=userid, target_id_system=target_id_system)>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in de_283_3.cfm]: #cfcatch.message#">
+        <cfrethrow>
+    </cfcatch>
 </cftry>

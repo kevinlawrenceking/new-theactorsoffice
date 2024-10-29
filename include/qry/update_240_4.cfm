@@ -1,12 +1,9 @@
 
 <cftry>
-    <cfset panelUserService = new "/services/PanelUserService.cfc"()>
-    <cfset panelUserService.updatepgpanels_user(
-        pntitle = x.correct_title,
-        pnid = x.pnid
-    )>
-    <cfset isfetch = 1>
+    <cfset panelUserService = createObject("component", "/services/PanelUserService")>
+    <cfset panelUserService.updatePgpanelsUser(correctTitle=x.correct_title, pnid=x.pnid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in update_240_4.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in update_240_4.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while updating the record." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

@@ -1,16 +1,15 @@
 
 <cftry>
-    <cfset result = createObject("component", "/services/NotificationService").insertfunotifications(
-        actionid = new_actionid,
-        userid = new_userid,
-        suID = NewSuid,
+    <cfset notificationService = createObject("component", "services.NotificationService")>
+    <cfset notificationService.insertNotification(
+        new_actionid = new_actionid,
+        new_userid = new_userid,
+        NewSuid = NewSuid,
         notstartdate = notstartdate,
-        notnotes = sunotes
+        sunotes = sunotes
     )>
-    <cfset isfetch = 1>
-    <!--- Update the database to set isfetch = 1 --->
-    <!--- Assuming there's a function or query to update the database here --->
-<cfcatch type="any">
-    <cfset errorLog = "[Error in addNotification_157_9.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in addNotification_157_9.cfm] #cfcatch.message#">
+        <cfthrow message="Error in addNotification_157_9.cfm" detail="#cfcatch.detail#">
+    </cfcatch>
 </cftry>

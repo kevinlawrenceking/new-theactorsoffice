@@ -1,8 +1,9 @@
 
 <cftry>
-    <cfset userService = new services.UserService()>
-    <cfset usercontact = userService.gettaousers(userid)>
-<cfcatch type="any">
-    <cfset errorLog = "[Error in usercontact_159_14.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfset userService = createObject("component", "services.UserService")>
+    <cfset usercontact = userService.getContactIdByUserId(userid=variables.userid)>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in usercontact_159_14.cfm]: #cfcatch.message#">
+        <cfset usercontact = queryNew("contactid")>
+    </cfcatch>
 </cftry>

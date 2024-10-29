@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset FindSystem = createObject("component", "services.SystemService").getfusystems(new_systemtype, new_systemscope)>
+    <cfset FindSystem = createObject("component", "services.SystemService").getSystemIds(systemType=new_systemtype, systemScope=new_systemscope) />
     <cfcatch type="any">
-        <cfset errorLog = "[Error in FindSystem_304_3.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in FindSystem_304_3.cfm]: #cfcatch.message#"/>
+        <cfset FindSystem = queryNew("systemid")>
     </cfcatch>
 </cftry>

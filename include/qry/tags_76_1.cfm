@@ -1,8 +1,9 @@
 
 <cftry>
-    <cfset tagsUserService = new services.TagsUserService()>
-    <cfset tags = tagsUserService.gettags_user(session.userid)>
+    <cfset tagsUserService = createObject("component", "/services/TagsUserService")>
+    <cfset tags = tagsUserService.getUserTags(userid=session.userid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in tags_76_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in tags_76_1.cfm] #cfcatch.message#">
+        <cfthrow message="An error occurred while retrieving user tags." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

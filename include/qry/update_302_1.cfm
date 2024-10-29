@@ -1,8 +1,9 @@
 
 <cftry>
-    <cfset ticketService = new services.TicketService()>
-    <cfset result = ticketService.updatetickets(recid=recid, status="Pass")>
+    <cfset ticketService = createObject("component", "services.TicketService")>
+    <cfset ticketService.updateTicketStatus(ticketId=recid, status="Pass")>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in update_302_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in update_302_1.cfm] Error updating ticket status. Ticket ID: #recid#. Error: #cfcatch.message#">
+        <cfthrow message="An error occurred while updating the ticket status." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

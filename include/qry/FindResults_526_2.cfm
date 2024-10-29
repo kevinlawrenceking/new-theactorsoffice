@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset FindResults = createObject("component", "/services/PageService").getpgpages(pgid)>
+    <cfset var pageService = createObject("component", "services.PageService")>
+    <cfset FindResults = pageService.getDynamicQueryResults(pgid=pgid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in FindResults_526_2.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in FindResults_526_2.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

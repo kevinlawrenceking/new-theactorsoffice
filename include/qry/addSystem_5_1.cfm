@@ -1,13 +1,13 @@
 
 <cftry>
-    <cfset result = createObject("component", "services.SystemUserService").insertfusystemusers(
-        systemID = new_systemid,
-        contactID = new_contactid,
-        userID = session.userid,
-        suStartDate = new_suStartDate,
-        suNotes = "Added via user batch update"
+    <cfset systemUserService = createObject("component", "/services/SystemUserService")>
+    <cfset systemUserService.insertSystemUser(
+        new_systemid = new_systemid,
+        new_contactid = new_contactid,
+        new_suStartDate = new_suStartDate
     )>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in addSystem_5_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in addSystem_5_1.cfm]: #cfcatch.message#">
+        <cfthrow message="Error adding system user." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

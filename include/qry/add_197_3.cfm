@@ -1,14 +1,15 @@
 
+<!--- This ColdFusion page handles the insertion of a new submission site into the database. --->
+
 <cftry>
-    <cfset result = new services.AuditionSubmitSiteUserService().insertaudsubmitsites_user(
-        submitsitename = new_submitsitename, 
-        catlist = sortedCatList, 
+    <cfset variables.service = new "/services/AuditionSubmitSiteUserService.cfc"()>
+    <cfset variables.service.insertAudSubmitSitesUser(
+        new_submitsitename = new_submitsitename,
+        sortedCatList = sortedCatList,
         userid = userid
     )>
-    <cfset isfetch = 1>
-    <!--- Update the database to set isfetch = 1 --->
-    <!--- Assuming there is a mechanism to update the database status here --->
-<cfcatch type="any">
-    <cfset errorLog = "[Error in add_197_3.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in add_197_3.cfm]: #cfcatch.message#">
+        <cfthrow>
+    </cfcatch>
 </cftry>

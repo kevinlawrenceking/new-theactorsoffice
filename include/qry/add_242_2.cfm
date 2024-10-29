@@ -1,17 +1,17 @@
 
 <cftry>
-    <cfset queryResult = createObject("component", "services.SiteLinkUserService").insertsitelinks_user(
-        sitename=new_sitename, 
-        siteurl=new_siteurl, 
-        userid=userid, 
-        sitetypeid=new_sitetypeid, 
-        IsCustom=1,
-        ver=ver
+    <cfset siteLinkService = createObject("component", "services.SiteLinkUserService")>
+    <cfset siteLinkService.insertSiteLink(
+        new_sitename="#new_sitename#",
+        new_siteurl="#new_siteurl#",
+        userid=#userid#,
+        new_sitetypeid=#new_sitetypeid#,
+        ver="#ver#"
     )>
-    <!--- Update the database to set isfetch = 1 --->
-    <!--- Assuming you have a function or query to update this --->
-    <!--- Example: updateDatabaseIsFetchStatus() --->
-<cfcatch type="any">
-    <cfset errorLog = "[Error in add_242_2.cfm]: " & cfcatch.message>
+    <cfquery datasource="abod">
+        UPDATE sitelinks_user SET isfetch = 1 WHERE sitename = <cfqueryparam value="#new_sitename#" cfsqltype="CF_SQL_VARCHAR">
+    </cfquery>
+<cfcatch>
+    <cflog file="errorLog" text="[Error in add_242_2.cfm]: #cfcatch.message#">
 </cfcatch>
 </cftry>

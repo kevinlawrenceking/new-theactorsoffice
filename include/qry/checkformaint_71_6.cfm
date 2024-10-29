@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset checkformaint = createObject("component", "services.SystemUserService").getvm_fusystemusers_fusystems(contactid=contactid, userid=userid)>
+    <cfset checkformaint = createObject("component", "/services/SystemUserService").getUserSystemID(contactid=contactid, userid=userid) />
     <cfcatch type="any">
-        <cfset errorLog = "[Error in checkformaint_71_6.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in checkformaint_71_6.cfm]: #cfcatch.message# Query: #cfcatch.detail#" />
+        <cfthrow message="Database error occurred. Please try again later." />
     </cfcatch>
 </cftry>

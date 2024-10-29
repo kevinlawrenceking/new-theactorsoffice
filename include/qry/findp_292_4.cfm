@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset findp = createObject("component", "services.AllFieldsService").getallfields()>
+    <cfset findp = createObject("component", "/services/AllFieldsService").getAllFieldsByKey("PRI")>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in findp_292_4.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in findp_292_4.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

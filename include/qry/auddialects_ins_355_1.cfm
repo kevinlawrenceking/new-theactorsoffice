@@ -1,11 +1,13 @@
 
 <cftry>
-    <cfset result = createObject("component", "services.AuditionDialectService").insertauddialects(
-        auddialect = new_auddialect,
-        audCatid = new_audCatid,
-        isDeleted = new_isDeleted
+    <cfset variables.auditionDialectService = createObject("component", "services.AuditionDialectService")>
+    <cfset variables.auditionDialectService.insertAuddialect(
+        new_auddialect = new_auddialect,
+        new_audCatid = new_audCatid,
+        new_isDeleted = new_isDeleted
     )>
-    <cfcatch>
-        <cflog file="errorLog" text="[Error in auddialects_ins_355_1.cfm] #cfcatch.message# - #cfcatch.detail#">
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in auddialects_ins_355_1.cfm]: #cfcatch.message#">
+        <cfthrow message="Error occurred while calling insertAuddialect function." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

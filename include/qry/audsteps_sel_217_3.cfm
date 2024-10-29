@@ -1,7 +1,9 @@
 
 <cftry>
-    <cfset audsteps_sel = createObject("component", "services.AuditionStepService").getaudsteps()>
+    <cfset audStepService = createObject("component", "services.AuditionStepService")>
+    <cfset audsteps_sel = audStepService.getAudSteps(isDeleted=false)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in audsteps_sel_217_3.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in audsteps_sel_217_3.cfm]: #cfcatch.message#">
+        <cfset audsteps_sel = queryNew("id,NAME")>
     </cfcatch>
 </cftry>

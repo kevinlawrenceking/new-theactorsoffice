@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset updates = createObject("component", "/services/ContactService").getvm_contactdetails_updatelog_taousers(userid=1, compid=1)>
+    <cfset updates = createObject("component", "/services/ContactService").getActiveContactDetails(userId=1, compId=1)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in updates_491_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in updates_491_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

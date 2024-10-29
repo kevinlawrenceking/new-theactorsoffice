@@ -1,12 +1,14 @@
 
 <cftry>
-    <cfset result = createObject("component", "/services/NotificationService").insertfunotifications(
-        actionid = addDaysNo.actionID,
+    <cfset variables.notificationService = createObject("component", "/services/NotificationService")>
+    <cfset variables.notificationService.insertNotification(
+        actionID = addDaysNo.actionID,
         userid = userid,
-        suID = NewSuid,
-        notstartdate = DateFormat(notstartdate, 'yyyy-mm-dd')
+        NewSuid = NewSuid,
+        notstartdate = notstartdate
     )>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in addNotification_315_37.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in addNotification_315_37.cfm]: #cfcatch.message#">
+        <cfthrow>
     </cfcatch>
 </cftry>

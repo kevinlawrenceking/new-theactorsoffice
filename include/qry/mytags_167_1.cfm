@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset mytags = createObject("component", "/services/ContactItemService").getcontactitems(myteam.contactid)>
+    <cfset mytags = createObject("component", "services.ContactItemService").getContactItems(contactId=myteam.contactid) />
     <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in mytags_167_1.cfm]: #cfcatch.message#">
+        <cflog text="[Error in mytags_167_1.cfm]: #cfcatch.message#" type="errorLog" />
     </cfcatch>
 </cftry>

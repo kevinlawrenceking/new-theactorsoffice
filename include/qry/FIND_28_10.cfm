@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset FIND = createObject("component", "services.AuditionPlatformsUserService").getaudPlatforms_user(userid=userid, audplatform=CustomPlatform)>
+    <cfset FIND = createObject("component", "services.AuditionPlatformUserService").getAudPlatformId(userid=userid, CustomPlatform=CustomPlatform)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in FIND_28_10.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in FIND_28_10.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

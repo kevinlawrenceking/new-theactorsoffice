@@ -1,7 +1,9 @@
 
 <cftry>
-    <cfset aud_details = createObject("component", "services.AuditionRoleService").getaudroles(audroleid)>
+    <cfset audRoleService = new "/services/AuditionRoleService.cfc" />
+    <cfset aud_details = audRoleService.getAudRoleDetails(audroleid=#audroleid#) />
     <cfcatch type="any">
-        <cfset errorLog = "[Error in aud_details_219_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in aud_details_219_1.cfm]: #cfcatch.message#" />
+        <cfthrow message="An error occurred while fetching role details." detail="#cfcatch.detail#" />
     </cfcatch>
 </cftry>

@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset notsdetails = createObject("component", "/services/NotificationService").getfunotifications(notid)>
+    <cfset notsdetails = createObject("component", "services.NotificationService").getNotificationDetails(notid=#notid#)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in notsdetails_513_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in notsdetails_513_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

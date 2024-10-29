@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset FindDetails = createObject("component", "/services/PageService").getpgpages(compid=compid, pgid=pgid, pgfilename='results.cfm')>
+    <cfset variables.pageService = createObject("component", "services.PageService")>
+    <cfset FindDetails = variables.pageService.getPgPages(compid=compid, pgid=pgid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in FindDetails_107_2.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in FindDetails_107_2.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

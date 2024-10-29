@@ -1,13 +1,9 @@
 
 <cftry>
-    <cfset result = createObject("component", "/services/SiteTypeUserService").insertsitetypes_user(
-        siteTypeName = new_siteTypeName,
-        siteTypeDescription = "",
-        userid = userid,
-        IsDeleted = 0
-    )>
-    <cfset isfetch = 1>
+    <cfset variables.siteTypeService = new "/services/SiteTypeUserService.cfc"()>
+    <cfset variables.siteTypeService.insertSiteType(new_siteTypeName=new_siteTypeName, userid=userid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in add_sitetype_249_2.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in add_sitetype_249_2.cfm]: #cfcatch.message#">
+        <cfthrow message="Error occurred while calling insertSiteType function." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

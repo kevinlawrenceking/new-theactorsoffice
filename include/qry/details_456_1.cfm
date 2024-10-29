@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset details = createObject("component", "/services/ContactService").getcontactdetails(contactID=contactid)>
-    <cfcatch type="any">
-        <cfset errorLog = "[Error in details_456_1.cfm]: " & cfcatch.message>
+    <cfset details = createObject("component", "services.ContactService").getContactDetails(contactid=contactid)>
+    <cfcatch>
+        <cflog file="errorLog" text="[Error in details_456_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

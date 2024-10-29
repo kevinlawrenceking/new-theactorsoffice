@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset auditionDetails = createObject("component", "/services/AuditionProjectService").getaudprojects(events.eventid)>
+    <cfset auditionService = createObject("component", "services.AuditionProjectService")>
+    <cfset auditionDetails = auditionService.getEventDetails(eventId=events.eventid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in auditionDetails_29_3.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in auditionDetails_29_3.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

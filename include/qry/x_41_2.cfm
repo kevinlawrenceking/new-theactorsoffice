@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset x = createObject("component", "/services/AuditionQuestionUserService").getaudquestions_user(cookie.userid)>
+    <cfset x = createObject("component", "services.AuditionQuestionUserService").getUserQuestions(userid=cookie.userid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in x_41_2.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in x_41_2.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

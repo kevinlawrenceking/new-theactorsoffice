@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset events = createObject("component", "/services/AuditionProjectService").getvm_audprojects_roles_events(mediaid)>
+    <cfset events = createObject("component", "/services/AuditionProjectService").getDistinctAudProjectIds(mediaid=mediaid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in events_166_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in events_166_1.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while fetching the data." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

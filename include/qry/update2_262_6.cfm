@@ -1,9 +1,9 @@
 
 <cftry>
-    <cfset componentPath = "/services/ContactItemService.cfc">
-    <cfset contactItemService = createObject("component", componentPath)>
-    <cfset result = contactItemService.updatecontactitems(valuetype=valuetype, itemid=itemid)>
+    <cfset variables.contactItemService = createObject("component", "services.ContactItemService")>
+    <cfset variables.contactItemService.updateContactItem(valuetype=valuetype, itemid=itemid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in update2_262_6.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" type="error" text="[Error in update2_262_6.cfm] #cfcatch.message#">
+        <cfthrow>
     </cfcatch>
 </cftry>

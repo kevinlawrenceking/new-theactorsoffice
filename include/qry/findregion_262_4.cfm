@@ -1,8 +1,7 @@
 
 <cftry>
-    <cfset regionService = new "/services/RegionService.cfc"()>
-    <cfset findregion = regionService.getregions(region_id, old_countryid)>
+    <cfset findregion = createObject("component", "services.RegionService").getRegionName(region_id=region_id, old_countryid=old_countryid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in findregion_262_4.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in findregion_262_4.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

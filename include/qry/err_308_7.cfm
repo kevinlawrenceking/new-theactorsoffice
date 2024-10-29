@@ -1,7 +1,9 @@
 
 <cftry>
-    <cfset err = createObject("component", "/services/AuditionImportErrorService").insertauditionsimport_error(error_msg="Invalid Category")>
-    <cfcatch>
-        <cflog file="errorLog" type="error" text="[Error in err_308_7.cfm]: #cfcatch.message#. Details: #cfcatch.detail#">
+    <cfset errorService = new "/services/AuditionImportErrorService.cfc"()>
+    <cfset errorService.insertAuditionsImportError(id=y.id)>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in err_308_7.cfm]: #cfcatch.message#">
+        <cfthrow>
     </cfcatch>
 </cftry>

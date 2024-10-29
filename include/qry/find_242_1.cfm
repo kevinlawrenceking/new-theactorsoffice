@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset find = createObject("component", "/services/SiteLinkUserService").getsitelinks_user(userid, new_sitename)>
+    <cfset siteLinkUserService = createObject("component", "/services/SiteLinkUserService")>
+    <cfset find = siteLinkUserService.getSiteLinksUser(userid=userid, new_sitename=new_sitename)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in find_242_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in find_242_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset jsons = createObject("component", "services.ContactSSService").getcontacts_ss(session.userid)>
+    <cfset jsons = createObject("component", "services.ContactSSService").getContactsByUserId(session.userid) />
     <cfcatch type="any">
-        <cfset errorLog = "[Error in jsons_50_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in jsons_50_1.cfm]: #cfcatch.message#"/>
+        <cfrethrow>
     </cfcatch>
 </cftry>

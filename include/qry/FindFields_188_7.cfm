@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset FindFields = createObject("component", "services.PageService").getpgpages(trim(thispage))>
-    <cfcatch type="any">
-        <cfset errorLog = "[Error in FindFields_188_7.cfm]: " & cfcatch.message>
+    <cfset FindFields = createObject("component", "/services/PageService").getDynamicQueryResults(thispage=trim(thispage))>
+    <cfcatch>
+        <cflog file="errorLog" text="[Error in FindFields_188_7.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

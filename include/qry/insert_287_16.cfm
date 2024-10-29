@@ -1,9 +1,9 @@
 
-<!--- This ColdFusion page handles the insertion of new vocal type and audition role associations into the database. --->
-
 <cftry>
-    <cfset result = createObject("component", "/services/AuditionVocalTypeXRefService").insertaudvocaltypes_audition_xref(new_vocaltypeid, new_audroleid)>
+    <cfset variables.auditionVocalTypeXRefService = createObject("component", "/services/AuditionVocalTypeXRefService")>
+    <cfset variables.auditionVocalTypeXRefService.insertAudVocalTypesAuditionXref(new_vocaltypeid=new_vocaltypeid, new_audroleid=new_audroleid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in insert_287_16.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in insert_287_16.cfm]: #cfcatch.message#">
+        <cfrethrow>
     </cfcatch>
 </cftry>

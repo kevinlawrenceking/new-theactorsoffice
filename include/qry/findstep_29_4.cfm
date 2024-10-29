@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset findstep = createObject("component", "/services/AuditionStepService").getaudsteps(new_audstepid)>
+    <cfset findstep = createObject("component", "services.AuditionStepService").getAudStepById(new_audstepid=new_audstepid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in findstep_29_4.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in findstep_29_4.cfm]: #cfcatch.message#">
+        <cfset findstep = queryNew("audstep")>
     </cfcatch>
 </cftry>

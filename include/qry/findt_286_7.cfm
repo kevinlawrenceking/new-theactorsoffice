@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset findt = createObject("component", "/services/AuditionAgeRangeXRefService").getaudageranges_audtion_xref(audroleid, new_rangeid)>
-<cfcatch type="any">
-    <cfset errorLog = "[Error in findt_286_7.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfset findt = createObject("component", "services.AuditionAgeRangeXRefService").getAuditionRanges(audroleid=audroleid, new_rangeid=new_rangeid)>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in findt_286_7.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while retrieving audition ranges." detail="#cfcatch.detail#">
+    </cfcatch>
 </cftry>

@@ -1,12 +1,14 @@
 
 <cftry>
-    <cfset result = createObject("component", "/services/AuditionQuestionsDefaultService").insertaudquestions_default(
+    <cfset variables.auditionQuestionsService = createObject("component", "/services/AuditionQuestionsDefaultService")>
+    <cfset variables.auditionQuestionsService.insertAudQuestionsDefault(
         new_qTypeID = new_qTypeID,
         new_qtext = new_qtext,
         new_qorder = new_qorder,
         new_isDeleted = new_isDeleted
     )>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in audquestions_default_ins_405_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in audquestions_default_ins_405_1.cfm]: #cfcatch.message#">
+        <cfrethrow>
     </cfcatch>
 </cftry>

@@ -1,10 +1,8 @@
 
 <cftry>
-    <cfset eventresults = createObject("component", "services.EventService").getevents({
-        userid: session.userid,
-        currentid: (isDefined("currentid") ? currentid : "")
-    })>
-<cfcatch>
-    <cfset errorLog = "[Error in eventresults_471_1.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfset eventService = createObject("component", "/services/EventService")>
+    <cfset eventresults = eventService.getEventDetails(userID=session.userid, currentID=structKeyExists(variables, "currentid") ? currentid : 0)>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in eventresults_471_1.cfm]: #cfcatch.message#">
+    </cfcatch>
 </cftry>

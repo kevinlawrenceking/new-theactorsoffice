@@ -1,7 +1,9 @@
 
 <cftry>
-    <cfset notesContactDetails = createObject("component", "/services/NoteService").getnoteslog(updatenoteid)>
+    <cfset notesService = createObject("component", "services.NoteService")>
+    <cfset notesContactDetails = notesService.getNoteDetails(updateNoteID=updatenoteid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in notesContactDetails_180_2.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in notesContactDetails_180_2.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while retrieving note details." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

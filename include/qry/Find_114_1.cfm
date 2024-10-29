@@ -1,8 +1,9 @@
 
 <cftry>
-    <cfset siteTypeUserService = new "/services/SiteTypeUserService.cfc"()>
-    <cfset Find = siteTypeUserService.getsitetypes_user(current_sitetypeid)>
+    <cfset siteTypeUserService = createObject("component", "services.SiteTypeUserService")>
+    <cfset Find = siteTypeUserService.getPNIDBySiteTypeID(sitetypeid=current_sitetypeid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in Find_114_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in Find_114_1.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while fetching PNID." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

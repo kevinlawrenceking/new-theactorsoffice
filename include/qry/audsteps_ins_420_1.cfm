@@ -1,11 +1,14 @@
 
 <cftry>
-    <cfset result = new "/services/AuditionStepService"().updateaudsteps(
-        new_audstep = new_audstep,
-        new_isDeleted = new_isDeleted,
+    <cfset variables.auditionStepService = createObject("component", "/services/AuditionStepService")>
+    <cfset variables.auditionStepService.updateAudStep(
+        new_audstep = new_audstep, 
+        new_isDeleted = new_isDeleted, 
         new_audstepid = new_audstepid
     )>
-<cfcatch type="any">
-    <cfset errorLog = "[Error in audsteps_ins_420_1.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in audsteps_ins_420_1.cfm]: #cfcatch.message#">
+        <cfthrow message="Error updating audsteps." detail="#cfcatch.detail#">
+    </cfcatch>
 </cftry>
+

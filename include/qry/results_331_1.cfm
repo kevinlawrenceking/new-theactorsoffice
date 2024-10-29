@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset results = createObject("component", "services.UpdateLogService").getupdatelog(FindUser.Userid)>
-    <cfcatch type="any">
-        <cfset errorLog = "[Error in results_331_1.cfm]: " & cfcatch.message>
+    <cfset results = createObject("component", "services.UpdateLogService").getUpdateLog(userId=FindUser.Userid)>
+    <cfcatch>
+        <cflog file="errorLog" text="[Error in results_331_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

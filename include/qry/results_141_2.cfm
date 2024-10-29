@@ -1,13 +1,7 @@
 
 <cftry>
-    <cfset contactItemService = new "/services/ContactItemService.cfc" />
-
-    <cfset results = contactItemService.getcontactitems({
-        userid: "#userid#",
-        uploadid: #uploadid#
-    }) />
-
-<cfcatch type="any">
-    <cfset errorLog("[Error in results_141_2.cfm]: " & cfcatch.message) />
-</cfcatch>
+    <cfset results = createObject("component", "services.ContactItemService").getActiveContacts(userid=#userid#, uploadid=#uploadid#) />
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in results_141_2.cfm]: #cfcatch.message# Query: #cfcatch.detail#" />
+    </cfcatch>
 </cftry>

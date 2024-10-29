@@ -1,7 +1,9 @@
 
 <cftry>
-    <cfset TagsContact = createObject("component", "services.ContactItemService").getcontactitems(ContactID)>
-<cfcatch>
-    <cfset errorLog = "[Error in TagsContact_541_1.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfset contactItemService = createObject("component", "/services/ContactItemService")>
+    <cfset TagsContact = contactItemService.getActiveContactTags(ContactID=#ContactID#)>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in TagsContact_541_1.cfm]: #cfcatch.message#">
+        <cfset TagsContact = queryNew("valuetext, tag")>
+    </cfcatch>
 </cftry>

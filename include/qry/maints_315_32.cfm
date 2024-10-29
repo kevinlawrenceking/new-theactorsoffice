@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset maints = createObject("component", "services.ContactImportService").getcontactsimport(new_uploadid)>
+    <cfset maints = createObject("component", "services.ContactImportService").getContactsImport(new_uploadid=new_uploadid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in maints_315_32.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in maints_315_32.cfm] #cfcatch.message#">
+        <cfthrow>
     </cfcatch>
 </cftry>

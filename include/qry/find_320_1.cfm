@@ -1,14 +1,13 @@
 
 <cftry>
-    <cfset taoVersionService = new "/services/TaoVersionService.cfc"()>
-    <cfset find = taoVersionService.gettaoversions(
-        major = new_major, 
-        minor = new_minor, 
-        patch = new_patch, 
-        version = new_version, 
-        build = new_build
+    <cfset find = createObject("component", "services.TaoVersionService").getTAOVersions(
+        new_major = new_major,
+        new_minor = new_minor,
+        new_patch = new_patch,
+        new_version = new_version,
+        new_build = new_build
     )>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in find_320_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in find_320_1.cfm] #cfcatch.message#">
     </cfcatch>
 </cftry>

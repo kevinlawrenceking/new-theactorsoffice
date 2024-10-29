@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset reminders = createObject("component", "/services/NotificationService").getfunotifications(userid)>
+    <cfset reminders = 0>
+    <cfset reminders = createObject("component", "/services/NotificationService").getRemindersTotal(userid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in reminders_511_1.cfm]: " & cfcatch.message>
+        <cflog type="error" text="[Error in reminders_511_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

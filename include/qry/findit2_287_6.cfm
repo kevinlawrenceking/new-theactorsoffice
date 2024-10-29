@@ -1,7 +1,10 @@
 
 <cftry>
-    <cfset findit2 = createObject("component", "services.AuditionOpenCallOptionUserService").getaudopencalloptions_user(new_opencallname, userid)>
+    <cfset findit2 = createObject("component", "services.AuditionOpenCallOptionUserService").getOpenCallOptions(
+        new_opencallname = new_opencallname,
+        userid = userid
+    )>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in findit2_287_6.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in findit2_287_6.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

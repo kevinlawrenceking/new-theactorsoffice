@@ -1,14 +1,9 @@
 
 <cftry>
-    <cfset tag_insert = new "/services/ContactItemService.cfc" />
-    <cfset tag_insert.insertcontactitems(
-        contactid = tag.contactid,
-        valueType = "Tags",
-        valueCategory = "tag",
-        valueText = new_tag1,
-        itemstatus = "Active"
-    ) />
+    <cfset contactItemService = createObject("component", "services.ContactItemService")>
+    <cfset contactItemService.insertContactItem(contactid=tag.contactid, new_tag1=new_tag1)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in tag_insert_315_11.cfm]: " & cfcatch.message />
+        <cflog file="errorLog" text="[Error in tag_insert_315_11.cfm]: #cfcatch.message#">
+        <cfthrow>
     </cfcatch>
 </cftry>

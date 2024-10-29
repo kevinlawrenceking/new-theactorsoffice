@@ -1,8 +1,8 @@
 
+<!--- This ColdFusion page retrieves audition records based on a specific record ID and filters for valid statuses. --->
 <cftry>
-    <cfset filters = { "id" = recordid, "status" = "Valid" }>
-    <cfset x = createObject("component", "services.AuditionImportService").getauditionsimport(filters=filters)>
+    <cfset x = createObject("component", "services.AuditionImportService").getValidAuditionsImport(recordid=recordid) />
     <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in x_308_11.cfm]: #cfcatch.message# - #cfcatch.detail#">
+        <cflog file="errorLog" text="[Error in x_308_11.cfm]: #cfcatch.message#" />
     </cfcatch>
 </cftry>

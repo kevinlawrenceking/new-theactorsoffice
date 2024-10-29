@@ -1,13 +1,15 @@
 
 <cftry>
-    <cfset result = createObject("component", "services.AuditionAgeRangeService").insertaudageranges(
-        rangename = new_rangename,
-        age_min = new_age_min,
-        age_max = new_age_max,
-        age_group = new_age_group,
-        isDeleted = new_isDeleted
+    <cfset variables.ageRangeService = createObject("component", "/services/AuditionAgeRangeService.cfc")>
+    <cfset variables.ageRangeService.insertAgeRange(
+        new_rangename = trim(new_rangename),
+        new_age_min = new_age_min,
+        new_age_max = new_age_max,
+        new_age_group = trim(new_age_group),
+        new_isDeleted = new_isDeleted
     )>
     <cfcatch type="any">
-        <cfset errorLog("[Error in audageranges_ins_339_1.cfm]: " & cfcatch.message)>
+        <cflog file="errorLog" text="[Error in audageranges_ins_339_1.cfm]: #cfcatch.message#" type="error">
+        <cfthrow message="Failed to insert age range." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

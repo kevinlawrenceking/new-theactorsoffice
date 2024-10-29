@@ -1,24 +1,26 @@
 
 <cftry>
-    <cfset updateResult = new "/services/ContactItemService"().updatecontactitems(
+    <cfset contactItemService = createObject("component", "services.ContactItemService")>
+    <cfset contactItemService.updateContactItems(
         valuetext = trim(valuetext),
         valuetype = trim(valuetype),
         catid = catid,
-        valuecompany = trim(valuecompany),
-        custom = trim(custom),
-        valueDepartment = trim(valueDepartment),
-        valueTitle = trim(valueTitle),
-        valueStreetAddress = trim(valueStreetAddress),
-        valueExtendedAddress = trim(valueExtendedAddress),
-        valueCity = trim(valueCity),
-        new_region_id = trim(new_region_id),
-        new_countryid = trim(new_countryid),
-        valuePostalCode = trim(valuePostalCode),
+        valuecompany = valuecompany,
+        custom = custom,
+        valueDepartment = valueDepartment,
+        valueTitle = valueTitle,
+        valueStreetAddress = valueStreetAddress,
+        valueExtendedAddress = valueExtendedAddress,
+        valueCity = valueCity,
+        new_region_id = new_region_id,
+        new_countryid = new_countryid,
+        valuePostalCode = valuePostalCode,
         itemdate = itemdate,
         deleteitem = deleteitem,
         itemid = itemid
     )>
-<cfcatch type="any">
-    <cfset errorLog("[Error in update_262_5.cfm]: " & cfcatch.message)>
+    <cfset isfetch = 1>
+<cfcatch>
+    <cflog file="errorLog" text="[Error in update_262_5.cfm] Failed to update contactitems: #cfcatch.message#">
 </cfcatch>
 </cftry>

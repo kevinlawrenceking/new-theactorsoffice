@@ -1,15 +1,13 @@
 
 <cftry>
-    <cfset result = createObject("component", "/services/NotificationService").insertnotifications(
-        subtitle = "Maintenance system created for #new_contactname#",
+    <cfset variables.notificationService = createObject("component", "services.NotificationService")>
+    <cfset variables.notificationService.insertNotification(
+        new_contactname = new_contactname,
         userid = userid,
-        notifUrl = "/app/contact/?contactid=#contactid#&t4=1",
-        notifTitle = "Maintenance System Created!",
-        notifType = "System Added",
-        contactid = contactid,
-        read = 0
+        contactid = contactid
     )>
     <cfcatch type="any">
-        <cfset errorLog("[Error in Insert_71_8.cfm]: " & cfcatch.message)>
+        <cflog file="errorLog" text="[Error in Insert_71_8.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while inserting notification." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

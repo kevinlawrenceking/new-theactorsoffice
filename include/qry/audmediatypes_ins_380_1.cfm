@@ -1,13 +1,14 @@
 
 <cftry>
-    <cfset result = createObject("component", "/services/AuditionMediaTypeService").updateaudmediatypes(
+    <cfset componentPath = "/services/AuditionMediaTypeService.cfc">
+    <cfset mediaTypeService = createObject("component", componentPath)>
+    <cfset mediaTypeService.updateMediaType(
         new_mediaType = new_mediaType,
         new_isDeleted = new_isDeleted,
         new_mediaTypeID = new_mediaTypeID
     )>
-    <cfset isfetch = 1>
-    <!--- Code to update the database with isfetch = 1 --->
-<cfcatch type="any">
-    <cfset errorLog = "[Error in audmediatypes_ins_380_1.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in audmediatypes_ins_380_1.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while updating the media type." detail="#cfcatch.detail#">
+    </cfcatch>
 </cftry>

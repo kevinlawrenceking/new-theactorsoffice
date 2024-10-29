@@ -1,11 +1,8 @@
 
 <cftry>
-    <cfset find = createObject("component", "/services/AuditionProjectService").getaudprojects(
-        projname = y.projname,
-        userid = session.userid,
-        isdeleted = 0
-    )>
-    <cfcatch>
-        <cfset errorLog = "[Error in find_308_2.cfm]: " & cfcatch.message>
+    <cfset find = createObject("component", "services.AuditionProjectService").getAudProjects(projname=y.projname)>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in find_308_2.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while retrieving projects." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

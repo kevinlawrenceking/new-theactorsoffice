@@ -1,8 +1,8 @@
 
 <cftry>
-    <!--- This ColdFusion page retrieves the event ID associated with a specific link ID from the database. --->
-    <cfset find = createObject("component", "/services/LinkService").getvm_links_noteslog(linkid)>
-<cfcatch type="any">
-    <cfset errorLog = "[Error in find_150_1.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfset find = createObject("component", "services.LinkService").getEventIdByLinkId(linkid=linkid)>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in find_150_1.cfm]: #cfcatch.message#;">
+        <cfthrow message="Error occurred while fetching event ID by link ID." detail="#cfcatch.detail#">
+    </cfcatch>
 </cftry>

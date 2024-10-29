@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset cu = createObject("component", "/services/ContactItemService").getvm_contactitems_itemcategory(currentid)>
+    <cfset cu = createObject("component", "services.ContactItemService").getContactItems(currentid=currentid) />
     <cfcatch type="any">
-        <cfset errorLog = "[Error in cu_83_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in cu_83_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

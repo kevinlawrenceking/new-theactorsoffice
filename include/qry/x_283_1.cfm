@@ -1,8 +1,7 @@
 
 <cftry>
-    <cfset x = createObject("component", "services.NotificationService").getfunotifications()>
+    <cfset x = createObject("component", "/services/NotificationService").getDuplicateNotifications()>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in x_283_1.cfm]: " & cfcatch.message>
-        <!--- Handle the error logging here --->
+        <cflog file="errorLog" text="[Error in x_283_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

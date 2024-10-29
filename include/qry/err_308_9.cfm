@@ -1,7 +1,10 @@
 
+<!--- This ColdFusion page handles the insertion of error messages into the auditionsimport_error table. --->
+
 <cftry>
-    <cfset err = createObject("component", "/services/AuditionImportErrorService").insertauditionsimport_error(error_msg="Invalid Source")>
-    <cfcatch>
-        <cflog file="errorLog" type="error" text="[Error in err_308_9.cfm]: #cfcatch.message#. Details: #cfcatch.detail#">
+    <cfset objAuditionImportErrorService = createObject("component", "services.AuditionImportErrorService")>
+    <cfset objAuditionImportErrorService.insertAuditionImportError(id=y.id)>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in err_308_9.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

@@ -1,17 +1,19 @@
 
 <cftry>
-    <cfset result = createObject("component", "/services/ContactService").insertcontactdetails(
+    <cfset variables.contactService = createObject("component", "services.ContactService")>
+    <cfset variables.contactService.INScontactdetails_24070(
         userid = userid,
-        contactfullname = contactFullName,
-        contactbirthday = contactbirthday,
-        refer_contact_id = refer_contact_id,
-        contactmeetingdate = contactmeetingdate,
-        contactmeetingloc = contactmeetingloc,
+        contactFullName = contactFullName,
+        contactBirthday = contactbirthday,
+        referContactId = refer_contact_id,
+        contactMeetingDate = contactmeetingdate,
+        contactMeetingLoc = contactmeetingloc,
         contactPronoun = contactPronoun
     )>
-    <cfset isfetch = 1>
-    <!--- Update the database to set isfetch = 1 --->
+    <cfquery datasource="yourDataSource">
+        UPDATE yourTable SET isfetch = 1 WHERE yourCondition
+    </cfquery>
 <cfcatch type="any">
-    <cfset errorLog = "[Error in add_211_1.cfm]: " & cfcatch.message>
+    <cflog file="errorLog" text="[Error in add_211_1.cfm] #cfcatch.message#" type="error">
 </cfcatch>
 </cftry>

@@ -1,7 +1,9 @@
 
 <cftry>
-    <cfset err = createObject("component", "services.AuditionImportErrorService").insertauditionsimport_error(error_msg="Duplicate project")>
-    <cfcatch>
-        <cflog file="errorLog" type="error" text="[Error in err_308_3.cfm]: #cfcatch.message#. Details: #cfcatch.detail#">
+    <cfset errorService = createObject("component", "services.AuditionImportErrorService")>
+    <cfset errorService.insertAuditionsImportError(id=y.id)>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in err_308_3.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while calling the insert function." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

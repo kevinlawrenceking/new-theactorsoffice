@@ -1,10 +1,11 @@
 
 <cftry>
-    <cfset ticketusers = createObject("component", "services.TicketTestUserService").getvm_tickettestusers_taousers(
-        ticketid = results.recid, 
-        currentUserid = session.userid
+    <cfset ticketTestUserService = createObject("component", "services.TicketTestUserService")>
+    <cfset ticketusers = ticketTestUserService.getTicketTestUsers(
+        ticketId = results.recid,
+        userId = session.userid
     )>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in ticketusers_323_3.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in ticketusers_323_3.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

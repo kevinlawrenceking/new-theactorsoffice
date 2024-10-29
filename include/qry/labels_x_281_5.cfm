@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset labels_x = createObject("component", "/services/ReportItemService").getreportitems(userid=userid, reportid=reports.reportid)>
+    <cfset labels_x = createObject("component", "/services/ReportItemService").getDistinctItemLabels(userid=#userid#, reportid=#reports.reportid#) />
     <cfcatch type="any">
-        <cfset errorLog = "[Error in labels_x_281_5.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in labels_x_281_5.cfm]: #cfcatch.message#" />
+        <cfthrow />
     </cfcatch>
 </cftry>

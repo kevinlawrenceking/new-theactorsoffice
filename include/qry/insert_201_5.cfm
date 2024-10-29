@@ -1,13 +1,9 @@
 
 <cftry>
-    <cfset result = new "/services/ContactItemService.cfc"().insertcontactitems(
-        contactID = CONTACTID,
-        valueType = 'Company',
-        valueCategory = 'Company',
-        valueText = Company,
-        itemStatus = 'Active'
-    )>
-    <cfcatch type="any">
-        <cfset errorLog = "[Error in insert_201_5.cfm]: " & cfcatch.message>
-    </cfcatch>
+    <cfset objContactItemService = createObject("component", "services.ContactItemService")>
+    <cfset objContactItemService.insertContactItem(CONTACTID=CONTACTID, Company=Company)>
+<cfcatch>
+    <cflog file="errorLog" text="[Error in insert_201_5.cfm]: #cfcatch.message#">
+    <cfthrow>
+</cfcatch>
 </cftry>

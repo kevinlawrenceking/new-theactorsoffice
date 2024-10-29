@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset types = createObject("component", "/services/AuditionMediaTypeService").getvm_audmediatypes_mediatypeid()>
+    <cfset mediaTypeIds = [1, 2, 3, 5, 6, 7, 8, 14]>
+    <cfset types = createObject("component", "/services/AuditionMediaTypeService").getMediaTypes(mediaTypeIds=mediaTypeIds)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in types_45_1.cfm]: " & cfcatch.message>
+        <cflog type="error" text="[Error in types_45_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

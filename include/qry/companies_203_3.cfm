@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset companies = createObject("component", "services.ContactItemService").getvm_contactitems_company(userid)>
+    <cfset companies = createObject("component", "services.ContactItemService").getDistinctValueCompany(userid=#userid#) />
     <cfcatch type="any">
-        <cfset errorLog = "[Error in companies_203_3.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in companies_203_3.cfm]: #cfcatch.message#">
+        <cfset companies = queryNew("new_valuecompany", "varchar")>
     </cfcatch>
 </cftry>

@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset audsources = createObject("component", "services.AuditionSourceService").getaudsources()>
+    <cfset audSourceService = createObject("component", "/services/AuditionSourceService")>
+    <cfset audsources = audSourceService.getAudSources(false)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in audsources_281_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in audsources_281_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

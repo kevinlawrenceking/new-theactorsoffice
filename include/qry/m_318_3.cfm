@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset m = createObject("component", "services.PanelsMasterService").getpgpanels_master()>
-    <cfcatch>
-        <cfset errorLog = "[Error in m_318_3.cfm]: " & cfcatch.message>
+    <cfset panelsMasterService = createObject("component", "/services/PanelsMasterService")>
+    <cfset m = panelsMasterService.getPgPanelsMasterData()>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in m_318_3.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

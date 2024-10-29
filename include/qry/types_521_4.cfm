@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset types = createObject("component", "/services/ItemCategoryService").getvm_itemcategory_itemtypes(new_catid, userid)>
-<cfcatch type="any">
-    <cfset errorLog = "[Error in types_521_4.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfset types = createObject("component", "/services/ItemCategoryService").getDistinctValueTypes(new_catid=new_catid, userid=userid)>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in types_521_4.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while fetching distinct value types." detail="#cfcatch.detail#">
+    </cfcatch>
 </cftry>

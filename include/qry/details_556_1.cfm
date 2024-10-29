@@ -1,8 +1,7 @@
 
 <cftry>
-    <cfset ticketService = new "/services/TicketService.cfc"()>
-    <cfset details = ticketService.gettickets(recid)>
+    <cfset details = createObject("component", "services.TicketService").getVersionDetails(recid=recid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in details_556_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in details_556_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

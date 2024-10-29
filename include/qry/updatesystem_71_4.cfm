@@ -1,12 +1,11 @@
 
 <cftry>
     <cfset notificationService = new "/services/NotificationService.cfc"()>
-    <cfset result = notificationService.updatefunotifications(
-        notstatus = "Pending",
-        notstartdate = (notsnext.notstartdate is "") ? DateFormat(new_notstartdate, "yyyy-mm-dd") : notsnext.notstartdate,
-        notid = notsnext.notid
-    )>
-    <cfcatch type="any">
-        <cfset errorLog = "[Error in updatesystem_71_4.cfm]: #cfcatch.message#">
-    </cfcatch>
+    <cfset notificationService.updateNotificationStatus(
+        notid = notsnext.notid, 
+        new_notstartdate = notsnext.notstartdate neq "" ? new_notstartdate : "")>
+<cfcatch type="any">
+    <cflog file="errorLog" text="[Error in updatesystem_71_4.cfm]: #cfcatch.message#">
+    <cfthrow message="Error updating notification status." detail="#cfcatch.detail#">
+</cfcatch>
 </cftry>

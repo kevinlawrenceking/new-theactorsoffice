@@ -1,7 +1,9 @@
 
 <cftry>
-    <cfset typeresult = createObject("component", "services.ItemTypesUserService").insertitemtypes_user(customtype, userid)>
+    <cfset variables.itemTypesUserService = createObject("component", "services.ItemTypesUserService")>
+    <cfset variables.itemTypesUserService.insertItemTypeUser(customtype="#customtype#", userid=#userid#)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in insert_199_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" type="error" text="[Error in insert_199_1.cfm]: #cfcatch.message#">
+        <cfthrow>
     </cfcatch>
 </cftry>

@@ -1,6 +1,7 @@
 
 <cftry>
-    <cfset result = createObject("component", "services.EventService").insertevents(
+    <cfset var eventService = createObject("component", "services.EventService")>
+    <cfset eventService.insertEvent(
         new_eventtitle = new_eventtitle,
         new_eventdescription = new_eventdescription,
         new_userid = new_userid,
@@ -17,7 +18,9 @@
         new_trackmileage = new_trackmileage,
         new_audlocid = new_audlocid
     )>
-    <cfcatch type="any">
-        <cfset errorLog("[Error in auditions_ins_32_1.cfm]: " & cfcatch.message)>
+    <cfcatch>
+        <cflog file="errorLog"
+               text="[Error in auditions_ins_32_1.cfm] Error: #cfcatch.message#, Detail: #cfcatch.detail#"
+               type="error"/>
     </cfcatch>
 </cftry>

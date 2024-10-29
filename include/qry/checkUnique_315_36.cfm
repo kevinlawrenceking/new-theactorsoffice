@@ -1,11 +1,11 @@
 
 <cftry>
-    <cfset checkUnique = createObject("component", "/services/NotificationService").getfunotifications({
-        contactID: maint_contactid,
-        actionTitle: addDaysNo.actionTitle,
-        isUnique: adddaysNo.IsUnique
-    })>
-<cfcatch>
-    <cfset errorLog = "[Error in checkUnique_315_36.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfset checkUnique = createObject("component", "services.NotificationService").getActionID(
+        maint_contactid = maint_contactid,
+        actionTitle = addDaysNo.actionTitle,
+        isUnique = adddaysNo.IsUnique
+    )>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in checkUnique_315_36.cfm]: #cfcatch.message#">
+    </cfcatch>
 </cftry>

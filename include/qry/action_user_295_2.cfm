@@ -1,10 +1,10 @@
 
 <cftry>
-    <cfset action_user = createObject("component", "/services/SystemService").getvm_fusystems_fuactions_actionusers(
+    <cfset action_user = createObject("component", "services.SystemService").getActionDetails(
         systemID = mysystems.systemid,
         userID = session.userid
     )>
-<cfcatch>
-    <cfset errorLog = "[Error in action_user_295_2.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in action_user_295_2.cfm]: #cfcatch.message#">
+    </cfcatch>
 </cftry>

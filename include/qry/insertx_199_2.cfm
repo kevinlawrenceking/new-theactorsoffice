@@ -1,8 +1,9 @@
 
 <cftry>
     <cfset variables.itemCategoryXRefUserService = createObject("component", "/services/ItemCategoryXRefUserService")>
-    <cfset variables.result = variables.itemCategoryXRefUserService.insertitemcatxref_user(new_typeid, catid, userid, 1)>
+    <cfset variables.itemCategoryXRefUserService.insertItemCatXrefUser(new_typeid=new_typeid, catid=catid, userid=userid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in insertx_199_2.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in insertx_199_2.cfm]: #cfcatch.message#">
+        <cfrethrow>
     </cfcatch>
 </cftry>

@@ -1,14 +1,13 @@
 
 <cftry>
     <cfset ticketTestUserService = new "/services/TicketTestUserService.cfc"()>
-    <cfset ticketTestUserService.updatetickettestusers(
-        teststatus = new_teststatus,
-        rejectnotes = new_rejectnotes,
-        id = testid
+    <cfset ticketTestUserService.updateTicketTestUsers(
+        new_teststatus = new_teststatus,
+        new_rejectnotes = new_rejectnotes,
+        testid = testid
     )>
-    <cfset isfetch = 1>
-    <!--- Update the database to set isfetch = 1 --->
-<cfcatch type="any">
-    <cfset errorLog = "[Error in update_213_2.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in update_213_2.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while updating the ticket test users." detail="#cfcatch.detail#">
+    </cfcatch>
 </cftry>

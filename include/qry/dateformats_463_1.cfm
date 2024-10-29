@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset dateformats = createObject("component", "services.DateFormatService").getdateformats()>
+    <cfset dateformatsService = createObject("component", "services.DateFormatService")>
+    <cfset dateformats = dateformatsService.getDateFormats()>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in dateformats_463_1.cfm]: #cfcatch.message#">
+        <cflog file="errorLog" text="[Error in dateformats_463_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

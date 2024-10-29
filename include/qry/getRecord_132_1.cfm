@@ -1,8 +1,7 @@
 
 <cftry>
-    <cfset filters = { "ID" = id }>
-    <cfset getRecord = createObject("component", "/services/AuditionImportService").getauditionsimport(filters=filters)>
+    <cfset getRecord = createObject("component", "services.AuditionImportService").getAuditionImportById(id=id)>
     <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in getRecord_132_1.cfm]: #cfcatch.message# - #cfcatch.detail#">
+        <cflog text="[Error in getRecord_132_1.cfm]: #cfcatch.message#" file="errorLog">
     </cfcatch>
 </cftry>

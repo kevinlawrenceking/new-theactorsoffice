@@ -1,12 +1,14 @@
 
 <cftry>
-    <cfset result = createObject("component", "services.AuditionUnionService").insertaudunions(
-        unionName = new_unionName,
-        countryid = new_countryid,
-        audCatID = new_audCatID,
-        isDeleted = new_isDeleted
+    <cfset objAuditionUnionService = createObject("component", "services.AuditionUnionService")>
+    <cfset objAuditionUnionService.insertAudUnion(
+        new_unionName = new_unionName,
+        new_countryid = new_countryid,
+        new_audCatID = new_audCatID,
+        new_isDeleted = new_isDeleted
     )>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in audunions_ins_432_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in audunions_ins_432_1.cfm] #cfcatch.message#">
+        <cfthrow message="An error occurred while inserting the record." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

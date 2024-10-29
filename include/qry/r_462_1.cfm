@@ -1,12 +1,8 @@
 
 <cftry>
-    <cfset r = createObject("component", "/services/NotificationService").getfunotifications(
-        suStatus="Active",
-        notStatus="Pending",
-        userid=session.userid,
-        notstartdate=DateFormat(Now(), 'yyyy-mm-dd')
-    )>
+    <cfset var notificationService = createObject("component", "services.NotificationService")>
+    <cfset r = notificationService.getPendingNotifications(userID=session.userid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in r_462_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in r_462_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

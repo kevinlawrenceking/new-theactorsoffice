@@ -1,10 +1,8 @@
 
-    
-<!--- Fetch Page to Get Active Team Contacts --->
-<cfset contactItemService = new "services.ContactItemService"()>
-
-<!--- Set the contactid variable from session --->
-<cfset contactid = myteam.contactid>
-
-<!--- Pass the userId to the function to fetch team contacts --->
-<cfset findtag = contactItemService.findTeamTags(contactid)>
+<cftry>
+    <cfset findtag = createObject("component", "services.ContactItemService").getContactItems(contactid=myteam.contactid)>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in findtag_97_1.cfm]: #cfcatch.message#">
+        <cfthrow>
+    </cfcatch>
+</cftry>

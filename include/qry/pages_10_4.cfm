@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset pages = createObject("component", "services.PageService").getpgpages()>
+    <cfset pages = createObject("component", "services.PageService").getActivePgPages(ticketActive="Y")>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in pages_10_4.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in pages_10_4.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

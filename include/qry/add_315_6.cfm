@@ -1,13 +1,8 @@
 
 <cftry>
-    <cfset result = new "/services/ContactService.cfc"().insertcontactdetails(
-        contactfullname = "#x.fname# #x.lname#",
-        userid = session.userid,
-        contactMeetingDate = x.contactmeetingDate neq "" ? x.contactmeetingDate : "",
-        contactMeetingLoc = x.contactMeetingLoc neq "" ? x.contactMeetingLoc : "",
-        contactBirthday = x.birthday neq "" ? x.birthday : ""
-    )>
-    <cfcatch>
-        <cfset errorLog = "[Error in add_315_6.cfm]: " & cfcatch.message>
+    <cfset contactService = createObject("component", "/services/ContactService")>
+    <cfset contactService.INScontactdetails_24399(x=x)>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in add_315_6.cfm]: #cfcatch.message#" type="error">
     </cfcatch>
 </cftry>

@@ -1,8 +1,9 @@
 
 <cftry>
-    <cfset variables.panelsUserXRefService = new "/services/PanelsUserXRefService.cfc"()>
-    <cfset variables.result = variables.panelsUserXRefService.deletepgpanels_user_xref(session.userid)>
+    <cfset panelsUserXRefService = new services.PanelsUserXRefService()>
+    <cfset panelsUserXRefService.deleteUserXref(userid=session.userid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in del_460_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in del_460_1.cfm]: #cfcatch.message#">
+        <cfthrow>
     </cfcatch>
 </cftry>

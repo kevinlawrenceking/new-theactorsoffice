@@ -1,8 +1,8 @@
 
 <cftry>
-    <cfset actionUserService = new "/services/ActionUserService.cfc" />
-    <cfset actionUserService.updateactionusers(new_id) />
+    <cfset actionUserService = createObject("component", "/services/ActionUserService")>
+    <cfset actionUserService.updateActionUser(new_id=new_id)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in update_112_1.cfm]: " & cfcatch.message />
+        <cflog file="errorLog" text="[Error in update_112_1.cfm]: #cfcatch.message#" type="error">
     </cfcatch>
 </cftry>

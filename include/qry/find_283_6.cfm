@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset find = createObject("component", "services.ActionUserService").getactionusers(xs.actionid, u.userid)>
+    <cfset find = createObject("component", "services.ActionUserService").getActionUsers(actionid=xs.actionid, userid=u.userid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in find_283_6.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" type="error" text="[Error in find_283_6.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while fetching action users." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

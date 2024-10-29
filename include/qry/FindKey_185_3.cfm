@@ -1,8 +1,7 @@
 
 <cftry>
-    <cfset pageFieldService = new "/services/PageFieldService.cfc"()>
-    <cfset FindKey = pageFieldService.getpgfields(rpgid, 'ID')>
+    <cfset FindKey = createObject("component", "services.PageFieldService").getFnameByPgid(rpgid=rpgid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in FindKey_185_3.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in FindKey_185_3.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

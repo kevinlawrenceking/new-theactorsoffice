@@ -1,14 +1,13 @@
 
 <cftry>
-    <cfset result = createObject("component", "/services/AuditionSubmitSiteUserService").insertaudsubmitsites_user(
-        submitsiteName = trim(new_submitsitename),
-        userid = userid,
-        catlist = new_catid
+    <cfset objService = createObject("component", "/services/AuditionSubmitSiteUserService")>
+    <cfset objService.INSaudsubmitsites_user_24297(
+        new_submitsitename=trim(new_submitsitename),
+        userid=userid,
+        new_catid=new_catid
     )>
-    <cfset isfetch = 1>
-    <!--- Update the database to set isfetch = 1 --->
-    <!--- Assuming there's a function or query to update the database with isfetch value --->
-<cfcatch type="any">
-    <cfset errorLog = "[Error in add_287_23.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in add_287_23.cfm]: #cfcatch.message#">
+        <cfthrow message="Error occurred while calling INSaudsubmitsites_user_24297." detail="#cfcatch.detail#">
+    </cfcatch>
 </cftry>

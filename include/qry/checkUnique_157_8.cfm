@@ -1,11 +1,8 @@
 
 <cftry>
-    <cfset contactService = new "/services/ContactService.cfc"()>
-    <cfset checkUnique = contactService.getcontactdetails({
-        uniquename: adddaysno.uniquename,
-        contactid: contactid
-    })>
+    <cfset checkUnique = createObject("component", "services.ContactService").getContactId(addDaysNoUniqueName=adddaysno.uniquename, contactId=contactid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in checkUnique_157_8.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in checkUnique_157_8.cfm]: #cfcatch.message#">
+        <cfthrow>
     </cfcatch>
 </cftry>

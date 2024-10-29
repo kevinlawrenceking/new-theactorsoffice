@@ -1,8 +1,8 @@
 
 <cftry>
-    <cfset durationService = new "/services/MeetingDurationService.cfc" />
-    <cfset duration = durationService.getmtgdurations(new_durid) />
-<cfcatch type="any">
-    <cfset errorLog = "[Error in duration_467_1.cfm]: " & cfcatch.message />
-</cfcatch>
+    <cfset durationService = createObject("component", "services.MeetingDurationService")>
+    <cfset duration = durationService.getMtgDurations(new_durid=new_durid)>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in duration_467_1.cfm]: #cfcatch.message#">
+    </cfcatch>
 </cftry>

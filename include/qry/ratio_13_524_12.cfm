@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset ratio_13 = createObject("component", "services.ReportUserService").getvm_reports_user_reportitems(session.userid, 13)>
+    <cfset ratio_13 = createObject("component", "/services/ReportUserService").getReportItem13(userId=session.userid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in ratio_13_524_12.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in ratio_13_524_12.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

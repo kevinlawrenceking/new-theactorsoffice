@@ -1,8 +1,9 @@
 
 <cftry>
     <cfset tagsUserService = new "/services/TagsUserService.cfc"()>
-    <cfset tagsUserService.inserttags_user(userid=userid, tagname=left(new_valuetext, 40), IsCustom=1)>
+    <cfset tagsUserService.insertTagUser(userid=userid, new_valuetext=new_valuetext)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in insert_tag_298_3.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in insert_tag_298_3.cfm]: #cfcatch.message#">
+        <cfthrow>
     </cfcatch>
 </cftry>

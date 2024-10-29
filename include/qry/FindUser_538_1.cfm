@@ -1,8 +1,9 @@
 
 <cftry>
-    <cfset userService = new services.UserService()>
-    <cfset FindUser = userService.gettaousers(GetAuthUser())>
+    <cfset userService = createObject("component", "services.UserService")>
+    <cfset FindUser = userService.getUserByEmail(userEmail=GetAuthUser())>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in FindUser_538_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in FindUser_538_1.cfm]: #cfcatch.message#">
+        <cfset FindUser = queryNew("userid,userFirstName,userLastName,userEmail,userRole")>
     </cfcatch>
 </cftry>

@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset FindUser = createObject("component", "services.UserService").getvm_taousers_tickets_shares_timezones(session.userid) />
+    <cfset userService = createObject("component", "services.UserService")>
+    <cfset FindUser = userService.getUserDetails(userID=session.userid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in FindUser_188_5.cfm]: " & cfcatch.message />
+        <cflog file="errorLog" text="[Error in FindUser_188_5.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

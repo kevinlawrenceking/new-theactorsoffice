@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset audtypes_sel = createObject("component", "services.AuditionTypeService").getaudtypes()>
+    <cfset audTypeService = createObject("component", "services.AuditionTypeService")>
+    <cfset audtypes_sel = audTypeService.getAudTypes(isDeleted=false)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in audtypes_sel_430_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in audtypes_sel_430_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

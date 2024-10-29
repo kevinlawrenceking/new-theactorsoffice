@@ -1,8 +1,8 @@
 
 <cftry>
-    <cfset itemCategoryService = new services.ItemCategoryService()>
-    <cfset c = itemCategoryService.getitemcategory()>
+    <cfset itemCategoryService = createObject("component", "/services/ItemCategoryService")>
+    <cfset c = itemCategoryService.getItemCategories()>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in c_83_2.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in c_83_2.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

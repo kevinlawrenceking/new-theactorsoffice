@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset x = createObject("component", "/services/SiteLinkUserService").getsitelinks_user()>
+    <cfset siteLinkService = createObject("component", "services.SiteLinkUserService")>
+    <cfset x = siteLinkService.getCustomSiteLinks(siteIcon="unknown.png")>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in x_91_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in x_91_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

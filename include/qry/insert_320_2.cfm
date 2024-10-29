@@ -1,22 +1,21 @@
 
 <cftry>
-    <cfset taoVersionService = new "/services/TaoVersionService.cfc" />
-    <cfset insertResult = taoVersionService.inserttaoversions(
-        major = new_major,
-        minor = new_minor,
-        patch = new_patch,
-        versionstatus = new_versionstatus,
-        versiontype = new_versiontype,
-        version = new_version,
-        build = new_build,
-        reviewDate = (new_reviewDate neq "") ? new_reviewDate : null,
-        releaseDate = (new_releaseDate neq "") ? new_releaseDate : null,
-        reviewtime = (new_reviewtime neq "") ? new_reviewtime : null,
-        releasetime = (new_releasetime neq "") ? new_releasetime : null,
-        hoursavail = (new_hoursavail neq "") ? numberformat(new_hoursavail, "9.99") : null
-    ) />
-<cfcatch type="any">
-    <cfset errorLog("[Error in insert_320_2.cfm]: " & cfcatch.message) />
+    <cfset taoVersionService = createObject("component", "/services/TaoVersionService")>
+    <cfset taoVersionService.insertTAOVersion(
+        new_major = new_major,
+        new_minor = new_minor,
+        new_patch = new_patch,
+        new_versionstatus = new_versionstatus,
+        new_versiontype = new_versiontype,
+        new_version = new_version,
+        new_build = new_build,
+        new_reviewDate = (new_reviewDate neq "") ? new_reviewDate : javaCast("null", ""),
+        new_releaseDate = (new_releaseDate neq "") ? new_releaseDate : javaCast("null", ""),
+        new_reviewtime = (new_reviewtime neq "") ? new_reviewtime : javaCast("null", ""),
+        new_releasetime = (new_releasetime neq "") ? new_releasetime : javaCast("null", ""),
+        new_hoursavail = (new_hoursavail neq "") ? numberformat(new_hoursavail, "9.99") : javaCast("null", "")
+    )>
+<cfcatch>
+    <cflog text="[Error in insert_320_2.cfm] #cfcatch.message#"/>
 </cfcatch>
 </cftry>
-

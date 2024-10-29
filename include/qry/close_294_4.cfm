@@ -1,8 +1,8 @@
 
 <cftry>
-    <cfset systemUserService = new "/services/SystemUserService.cfc"()>
-    <cfset result = systemUserService.updatefusystemusers(suid)>
+    <cfset systemUserService = createObject("component", "/services/SystemUserService")>
+    <cfset systemUserService.updateUserIsDeleted(suid=suid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in close_294_4.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in close_294_4.cfm]: #cfcatch.message#" type="error">
     </cfcatch>
 </cftry>

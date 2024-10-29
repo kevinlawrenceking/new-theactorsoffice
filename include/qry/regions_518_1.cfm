@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset regions = createObject("component", "services.RegionService").getregions()>
+    <cfset regions = createObject("component", "/services/RegionService").getRegions()>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in regions_518_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in regions_518_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

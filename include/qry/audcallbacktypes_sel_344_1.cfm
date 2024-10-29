@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset audcallbacktypes_sel = createObject("component", "services.AuditionCallbackTypeService").getaudcallbacktypes(audstepid=2, audcatid=audcatid)>
+    <cfset audcallbacktypes_sel = createObject("component", "services.AuditionCallbackTypeService").getCallbackTypes(audcatid=#audcatid#)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in audcallbacktypes_sel_344_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in audcallbacktypes_sel_344_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

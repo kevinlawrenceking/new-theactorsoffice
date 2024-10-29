@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset FIND = createObject("component", "/services/PanelUserService").getpgpanels_user(select_userid, m.pnFilename)>
+    <cfset FIND = createObject("component", "services.PanelUserService").getUserPanels(userid=select_userid, pnFilename=m.pnFilename)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in FIND_318_4.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in FIND_318_4.cfm]: #cfcatch.message#">
+        <cfset FIND = queryNew("")>
     </cfcatch>
 </cftry>

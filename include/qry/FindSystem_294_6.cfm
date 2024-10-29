@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset FindSystem = createObject("component", "services.SystemService").getfusystems(new_systemtype, new_systemscope)>
+    <cfset FindSystem = createObject("component", "services.SystemService").getFilteredSystems(systemtype=new_systemtype, systemscope=new_systemscope) />
     <cfcatch type="any">
-        <cfset errorLog = "[Error in FindSystem_294_6.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in FindSystem_294_6.cfm]: #cfcatch.message#" />
+        <cfthrow message="An error occurred while retrieving systems. Please try again later." />
     </cfcatch>
 </cftry>

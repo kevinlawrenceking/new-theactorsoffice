@@ -1,6 +1,7 @@
 
 <cftry>
-    <cfset result = createObject("component", "services.EventService").insertevents(
+    <cfset eventService = createObject("component", "services.EventService")>
+    <cfset eventService.insertEvent(
         new_userid = new_userid,
         new_audRoleID = new_audRoleID,
         new_audTypeID = new_audTypeID,
@@ -14,10 +15,7 @@
         new_workwithcoach = new_workwithcoach,
         new_trackmileage = new_trackmileage
     )>
-    <cfquery>
-        UPDATE database_table SET isfetch = 1 WHERE condition
-    </cfquery>
-<cfcatch type="any">
-    <cflog file="errorLog" text="[Error in auditions_ins_373_1.cfm]: #cfcatch.message#">
-</cfcatch>
+    <cfcatch>
+        <cflog file="errorLog" text="[Error in auditions_ins_373_1.cfm] Error: #cfcatch.message#, Detail: #cfcatch.detail#" type="error">
+    </cfcatch>
 </cftry>

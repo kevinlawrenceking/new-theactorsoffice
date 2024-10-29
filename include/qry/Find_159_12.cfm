@@ -1,12 +1,10 @@
 
 <cftry>
-    <cfset contactItemService = new "/services/ContactItemService.cfc"()>
-    <cfset Find = contactItemService.getcontactitems(
-        contactid = currentid,
-        valueCategory = categories.valuecategory,
-        itemStatus = "Pending"
+    <cfset Find = createObject("component", "services.ContactItemService").getPendingContactItems(
+        currentid = currentid,
+        valuecategory = categories.valuecategory
     )>
-    <cfcatch type="any">
-        <cfset errorLog = "[Error in Find_159_12.cfm]: " & cfcatch.message>
+    <cfcatch>
+        <cflog file="errorLog" text="[Error in Find_159_12.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

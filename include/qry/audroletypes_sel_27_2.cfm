@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset audroletypes_sel = createObject("component", "services.AuditionRoleTypeService").getaudroletypes(cat.audcatid)>
-<cfcatch type="any">
-    <cfset errorLog = "[Error in audroletypes_sel_27_2.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfset audRoleTypeService = createObject("component", "services.AuditionRoleTypeService")>
+    <cfset audroletypes_sel = audRoleTypeService.getAudRoleTypes(audcatid=cat.audcatid)>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in audroletypes_sel_27_2.cfm]: #cfcatch.message#">
+    </cfcatch>
 </cftry>

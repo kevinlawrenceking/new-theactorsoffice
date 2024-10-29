@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset types = createObject("component", "services.EventTypesUserService").geteventtypes_user(userid)>
+    <cfset types = createObject("component", "services.EventTypesUserService").getEventTypesByUser(userid=#userid#) />
     <cfcatch type="any">
-        <cfset errorLog = "[Error in types_334_2.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in types_334_2.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

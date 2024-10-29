@@ -1,10 +1,9 @@
 
 <cftry>
-    <cfset componentPath = "/services/AuditionRoleService.cfc">
-    <cfset auditionRoleService = createObject("component", componentPath)>
-    <cfset result = auditionRoleService.updateaudroles(audroleid)>
+    <cfset auditionRoleService = new "/services/AuditionRoleService.cfc"()>
+    <cfset auditionRoleService.updateAudRoleIsBooked(audroleid=#audroleid#)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in update_56_1.cfm]: " & cfcatch.message>
-        <cfoutput>#errorLog#</cfoutput>
+        <cflog file="errorLog" text="[Error in update_56_1.cfm]: #cfcatch.message#">
+        <cfthrow>
     </cfcatch>
 </cftry>

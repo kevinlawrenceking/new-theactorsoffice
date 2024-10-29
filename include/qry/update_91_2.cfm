@@ -1,8 +1,9 @@
 
 <cftry>
-    <cfset siteLinkUserService = new "/services/SiteLinkUserService.cfc"()>
-    <cfset siteLinkUserService.updatesitelinks_user(new_siteicon, id)>
+    <cfset siteLinkUserService = new "/services/SiteLinkUserService.cfc" />
+    <cfset siteLinkUserService.updateSiteIcon(new_siteicon=new_siteicon, id=id) />
     <cfcatch type="any">
-        <cfset errorLog = "[Error in update_91_2.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in update_91_2.cfm] #cfcatch.message#" />
+        <cfthrow message="An error occurred while updating the site icon." detail="#cfcatch.detail#" />
     </cfcatch>
 </cftry>

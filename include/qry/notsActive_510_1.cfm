@@ -1,12 +1,13 @@
 
 <cftry>
-    <cfset notsActive = createObject("component", "/services/NotificationService").getfunotifications(
+    <cfset notsActive = createObject("component", "/services/NotificationService").getNotifications(
         currentid = currentid,
-        suid = sysActive.suid,
-        userid = session.userid,
-        hide_completed = hide_completed
+        sysActiveSuid = sysActive.suid,
+        sessionUserid = session.userid,
+        hideCompleted = hide_completed
     )>
-<cfcatch>
-    <cfset errorLog("[Error in notsActive_510_1.cfm]: " & cfcatch.message)>
-</cfcatch>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in notsActive_510_1.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while fetching notifications." detail="#cfcatch.detail#">
+    </cfcatch>
 </cftry>

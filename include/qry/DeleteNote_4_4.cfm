@@ -1,8 +1,9 @@
 
 <cftry>
-    <cfset noteService = new "/services/NoteService.cfc"()>
-    <cfset noteService.deletenoteslog(updatenoteid)>
+    <cfset noteService = createObject("component", "services.NoteService")>
+    <cfset noteService.deleteNoteById(noteId=updatenoteid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in DeleteNote_4_4.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in DeleteNote_4_4.cfm] Error deleting note with ID #updatenoteid#: #cfcatch.message#">
+        <cfthrow message="An error occurred while deleting the note." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

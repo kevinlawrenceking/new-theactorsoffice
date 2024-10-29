@@ -1,8 +1,7 @@
 
 <cftry>
-    <cfset audcontacts = createObject("component", "/services/ContactService").getvm_contactdetails_audcontacts(audprojectid=audprojectid)>
+    <cfset audcontacts = createObject("component", "services.ContactService").getContactDetailsByAudProjectID(audprojectid=#audprojectid#)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in audcontacts_349_1.cfm]: " & cfcatch.message>
-        <cflog text="#errorLog#" type="error">
+        <cflog file="errorLog" type="error" text="[Error in audcontacts_349_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

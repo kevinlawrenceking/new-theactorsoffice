@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset statuses = createObject("component", "services.TicketStatusService").getvm_ticketstatuses_status_names()>
+    <cfset statuses = createObject("component", "/services/TicketStatusService").getTicketStatuses()>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in statuses_554_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in statuses_554_1.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while retrieving ticket statuses.">
     </cfcatch>
 </cftry>

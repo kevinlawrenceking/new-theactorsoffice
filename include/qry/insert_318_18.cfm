@@ -1,16 +1,14 @@
 
 <cftry>
-    <cfset SiteLinkUserService = new "/services/SiteLinkUserService.cfc"()>
-    <cfset SiteLinkUserService.insertsitelinks_user(
-        siteName = x.sitename,
-        siteURL = x.siteurl,
+    <cfset siteLinkService = createObject("component", "services.SiteLinkUserService")>
+    <cfset siteLinkService.insertSiteLink(
+        sitename = x.sitename,
+        siteurl = x.siteurl,
         siteicon = x.siteicon,
-        siteTypeid = new_sitetypeid,
+        sitetypeid = new_sitetypeid,
         userid = users.userid
     )>
-    <cfset isfetch = 1>
-    <!--- Update the database to set isfetch = 1 --->
-<cfcatch type="any">
-    <cfset errorLog = "[Error in insert_318_18.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in insert_318_18.cfm]: #cfcatch.message#">
+    </cfcatch>
 </cftry>

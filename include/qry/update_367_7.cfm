@@ -1,17 +1,19 @@
 
 <cftry>
-    <cfset eventService = new "/services/EventService.cfc" />
-    <cfset result = eventService.updateevents(
-        new_eventLocation = new_eventLocation,
-        new_audlocadd1 = new_audlocadd1,
-        new_audlocadd2 = new_audlocadd2,
-        new_audcity = new_audcity,
+    <cfset variables.eventService = createObject("component", "/services/EventService")>
+    <cfset variables.eventService.updateEventLocation(
+        new_eventLocation = trim(new_eventLocation),
+        new_audlocadd1 = trim(new_audlocadd1),
+        new_audlocadd2 = trim(new_audlocadd2),
+        new_audcity = trim(new_audcity),
         new_region_id = new_region_id,
-        new_audzip = new_audzip,
+        new_audzip = trim(new_audzip),
         new_eventid = new_eventid
-    ) />
-    <cfset isfetch = 1 />
-<cfcatch type="any">
-    <cfset errorLog = "[Error in update_367_7.cfm]: " & cfcatch.message />
-</cfcatch>
+    )>
+    <cfquery datasource="abod">
+        UPDATE database SET isfetch = 1 WHERE condition
+    </cfquery>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in update_367_7.cfm]: #cfcatch.message#">
+    </cfcatch>
 </cftry>

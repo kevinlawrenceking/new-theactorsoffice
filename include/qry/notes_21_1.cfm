@@ -1,8 +1,8 @@
 
 <cftry>
-    <cfset notesService = new "/services/NoteService.cfc"()>
-    <cfset notes = notesService.getnoteslog(noteid)>
+    <cfset notesService = createObject("component", "/services/NoteService")>
+    <cfset notes = notesService.getNotesLogByNoteId(noteid=noteid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in notes_21_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in notes_21_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

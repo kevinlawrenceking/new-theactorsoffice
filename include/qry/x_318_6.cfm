@@ -1,8 +1,8 @@
 
 <cftry>
-    <cfset siteTypeMasterService = createObject("component", "/services/SiteTypeMasterService")>
-    <cfset x = siteTypeMasterService.getsitetypes_master()>
+    <cfset siteTypeService = createObject("component", "/services/SiteTypeMasterService")>
+    <cfset x = siteTypeService.getSiteTypes()>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in x_318_6.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in x_318_6.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

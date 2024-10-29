@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset x = createObject("component", "/services/ReportsMasterService").getreports_master()>
+    <cfset x = createObject("component", "/services/ReportsMasterService").getReportsMaster()>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in x_524_3.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in x_524_3.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

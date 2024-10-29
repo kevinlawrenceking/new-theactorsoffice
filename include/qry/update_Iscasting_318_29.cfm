@@ -1,7 +1,9 @@
 
 <cftry>
-    <cfset result = new services.TagsUserService().updatetags_user(select_userid)>
+    <cfset tagsUserService = new services.TagsUserService()>
+    <cfset tagsUserService.updateTagsUser(select_userid=select_userid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in update_Iscasting_318_29.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in update_Iscasting_318_29.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while updating Iscasting status.">
     </cfcatch>
 </cftry>

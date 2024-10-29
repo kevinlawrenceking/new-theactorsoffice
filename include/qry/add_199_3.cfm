@@ -1,13 +1,9 @@
 
 <cftry>
-    <cfset result = createObject("component", "/services/ContactItemService").insertcontactitems(
-        contactid = contactid,
-        valuetype = trim(valuetype),
-        itemStatus = "Active",
-        valueCategory = valueCategory
-    )>
-    <cfset isfetch = 1>
-<cfcatch type="any">
-    <cfset errorLog = "[Error in add_199_3.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfset variables.contactItemService = createObject("component", "/services/ContactItemService")>
+    <cfset variables.contactItemService.insertContactItem(contactid=contactid, valuetype=trim(valuetype), valueCategory=valueCategory)>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in add_199_3.cfm] #cfcatch.message#">
+        <cfthrow message="Error inserting contact item." detail="#cfcatch.detail#">
+    </cfcatch>
 </cftry>

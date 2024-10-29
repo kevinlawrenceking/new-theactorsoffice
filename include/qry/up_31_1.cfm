@@ -1,9 +1,8 @@
 
 <cftry>
-    <cfset viewtypeid = (view eq "tbl") ? 1 : 2>
-    <cfset userService = new services.UserService()>
-    <cfset userService.updatetaousers(userid=userid, viewtypeid=viewtypeid)>
-<cfcatch type="any">
-    <cfset errorLog = "[Error in up_31_1.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfset userService = createObject("component", "services.UserService")>
+    <cfset userService.updateUserViewType(view=view, userid=userid)>
+    <cfcatch type="any">
+        <cflog file="errorLog" type="error" text="[Error in up_31_1.cfm], Error: #cfcatch.message#">
+    </cfcatch>
 </cftry>

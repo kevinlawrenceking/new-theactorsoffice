@@ -1,13 +1,14 @@
 
 <cftry>
-    <cfset result = createObject("component", "services.AuditionGenreService").updateaudgenres(
-        audgenreid = new_audgenreid,
-        audgenre = new_audgenre,
-        audCatid = new_audCatid,
-        isDeleted = new_isDeleted,
-        recordname = ""
+    <cfset variables.auditionGenreService = createObject("component", "services.AuditionGenreService")>
+    <cfset variables.auditionGenreService.updateAudGenre(
+        new_audgenre = trim(new_audgenre),
+        new_audCatid = new_audCatid,
+        new_isDeleted = new_isDeleted,
+        new_audgenreid = new_audgenreid
     )>
-    <cfcatch>
-        <cflog file="errorLog" text="[Error in audgenres_ins_364_1.cfm]: #cfcatch.message# Details: #cfcatch.detail#">
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in audgenres_ins_364_1.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while updating the record." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

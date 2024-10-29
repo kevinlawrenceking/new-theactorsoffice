@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset RPGResults = createObject("component", "/services/PageService").getpgpages(rpgid)>
+    <cfset RPGResults = createObject("component", "services.PageService").getDynamicQueryResults(rpgid=rpgid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in RPGResults_288_3.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in RPGResults_288_3.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while retrieving query results." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

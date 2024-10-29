@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset subsites = createObject("component", "services.AuditionSubmitSiteUserService").getaudsubmitsites_user(userid=userid)>
+    <cfset subsites = createObject("component", "services.AuditionSubmitSiteUserService").getSubmitSites(userid=userid) />
     <cfcatch type="any">
-        <cfset errorLog = "[Error in subsites_189_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in subsites_189_1.cfm]: #cfcatch.message#; Data: #userid#" />
+        <cfset subsites = QueryNew("submitsiteid, submitsitename, catlist") />
     </cfcatch>
 </cftry>

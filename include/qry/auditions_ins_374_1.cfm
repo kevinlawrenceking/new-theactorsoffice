@@ -1,6 +1,7 @@
 
 <cftry>
-    <cfset result = createObject("component", "/services/EventService").updateevents(
+    <cfset eventService = new "/services/EventService.cfc"()>
+    <cfset eventService.updateEvent(
         new_userid = new_userid,
         new_audRoleID = new_audRoleID,
         new_audTypeID = new_audTypeID,
@@ -17,15 +18,15 @@
         new_eventStopTime = new_eventStopTime,
         new_audplatformid = new_audplatformid,
         new_audStepID = new_audStepID,
-        new_parkingDetails = new_parkingDetails,
+        new_parkingDetails = trim(new_parkingDetails),
         new_workwithcoach = new_workwithcoach,
         new_trackmileage = new_trackmileage,
-        callbacktypeid = (len(trim(new_callbacktypeid)) ? javaCast("int",new_callbacktypeid) : javaCast("null", "")),
-        isDeleted = new_isDeleted,
-        eventid = new_eventid
+        new_callbacktypeid = (new_callbacktypeid neq "") ? new_callbacktypeid : null,
+        new_isDeleted = new_isDeleted,
+        new_eventid = new_eventid
     )>
     <cfset isfetch = 1>
-<cfcatch type="any">
-    <cflog file="errorLog" text="[Error in auditions_ins_374_1.cfm]: #cfcatch.message#">
-</cfcatch>
+    <cfcatch type="any">
+        <cfset errorLog("[Error in auditions_ins_374_1.cfm]: " & cfcatch.message)>
+    </cfcatch>
 </cftry>

@@ -1,17 +1,15 @@
 
 <cftry>
-    <cfset result = createObject("component", "services.AuditionSubcategorieService").updateaudsubcategories(
-        new_audSubCatName = new_audSubCatName,
+    <cfset variables.auditionSubcategorieService = createObject("component", "services.AuditionSubcategorieService")>
+    <cfset variables.auditionSubcategorieService.updateAudSubCategory(
+        new_audSubCatName = trim(new_audSubCatName),
         new_audCatId = new_audCatId,
         new_isDeleted = new_isDeleted,
         new_audSubCatId = new_audSubCatId
     )>
-    <cfset isfetch = 1>
-    <!--- Update the database to set isfetch = 1 --->
-    <cfquery>
-        UPDATE your_table_name SET isfetch = 1 WHERE condition
-    </cfquery>
-<cfcatch type="any">
-    <cfset errorLog = "[Error in audsubcategories_ins_423_1.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in audsubcategories_ins_423_1.cfm] #cfcatch.message#">
+        <cfthrow message="An error occurred while updating the subcategory." detail="#cfcatch.detail#">
+    </cfcatch>
 </cftry>
+

@@ -1,8 +1,7 @@
 
 <cftry>
-    <cfset pageService = new "/services/PageService.cfc"()>
-    <cfset FindPage = pageService.getpgpages(trim(thispage))>
+    <cfset FindPage = createObject("component", "/services/PageService").getAppPageDetails(thispage=trim(thispage))>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in FindPage_188_6.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in FindPage_188_6.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

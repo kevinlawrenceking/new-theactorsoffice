@@ -1,17 +1,13 @@
 
 <cftry>
-    <cfset result = createObject("component", "/services/PanelUserService").insertpgpanels_user(
-        pnTitle = new_pnTitle,
-        pnFilename = "mylinks_user.cfm",
-        pnOrderNo = Findtotal.new_pnOrderNo,
-        pncolxl = 3,
-        pncolMd = 3,
-        pnDescription = "",
-        IsDeleted = 0,
-        IsVisible = 1,
+    <cfset variables.panelUserService = createObject("component", "services.PanelUserService")>
+    <cfset variables.panelUserService.insertPgpanelsUser(
+        new_pnTitle = new_pnTitle,
+        new_pnOrderNo = Findtotal.new_pnOrderNo,
         userid = userid
     )>
     <cfcatch type="any">
-        <cfset errorLog("[Error in add_249_5.cfm]: " & cfcatch.message)>
+        <cflog file="errorLog" text="[Error in add_249_5.cfm]: #cfcatch.message#">
+        <cfthrow message="Error occurred while inserting user panel." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

@@ -1,14 +1,9 @@
 
 <cftry>
-    <cfset result = createObject("component", "/services/PanelUserService").updatepgpanels_user(userid=userid)>
-    <cfset isfetch = 1>
-    <!--- Update the database to set isfetch = 1 --->
-    <cfquery name="updateFetchStatus">
-        UPDATE pgpanels_user
-        SET isfetch = 1
-        WHERE userid = #userid#
-    </cfquery>
-<cfcatch type="any">
-    <cfset errorLog = "[Error in x_94_1.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfset objPanelUserService = createObject("component", "/services/PanelUserService")>
+    <cfset objPanelUserService.updateUserVisibility(userid=#userid#)>
+    <cfcatch type="any">
+        <cflog file="errorLog" type="error" text="[Error in x_94_1.cfm] #cfcatch.message#">
+        <cfthrow message="An error occurred while updating user visibility." detail="#cfcatch.detail#">
+    </cfcatch>
 </cftry>

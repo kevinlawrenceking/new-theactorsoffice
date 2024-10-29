@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset sudetails = createObject("component", "services.SystemService").getfusystems(new_systemid)>
+    <cfset sudetails = createObject("component", "services.SystemService").getSystemById(systemId=new_systemid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in sudetails_157_5.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in sudetails_157_5.cfm]: #cfcatch.message#">
+        <cfthrow message="Error fetching system details" detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

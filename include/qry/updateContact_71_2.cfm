@@ -1,8 +1,12 @@
 
 <cftry>
-    <cfset contactService = new "/services/ContactService.cfc"()>
-    <cfset contactService.updatecontactdetails(contactid, uniquename)>
+    <cfset contactService = createObject("component", "services.ContactService")>
+    <cfset contactService.updateContactDetails(
+        uniquename = "Y",
+        contactid = contactid
+    )>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in updateContact_71_2.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in updateContact_71_2.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while updating contact details." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

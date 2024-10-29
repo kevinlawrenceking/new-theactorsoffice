@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset types = createObject("component", "services.TicketTypeService").gettickettypes()>
+    <cfset ticketTypeService = createObject("component", "services.TicketTypeService")>
+    <cfset types = ticketTypeService.getTicketTypes()>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in types_256_2.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in types_256_2.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

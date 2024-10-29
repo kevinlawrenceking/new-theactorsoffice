@@ -1,7 +1,9 @@
 
 <cftry>
-    <cfset Audplatforms_user_sel = createObject("component", "/services/AuditionPlatformsUserService").getaudPlatforms_user(new_userid)>
+    <cfset AuditionPlatformUserService = createObject("component", "services.AuditionPlatformUserService")>
+    <cfset Audplatforms_user_sel = AuditionPlatformUserService.getUserAudPlatforms(new_userid=new_userid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in Audplatforms_user_sel_396_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in Audplatforms_user_sel_396_1.cfm]: #cfcatch.message#">
+        <cfset Audplatforms_user_sel = queryNew("ID, NAME", "integer,varchar")>
     </cfcatch>
 </cftry>

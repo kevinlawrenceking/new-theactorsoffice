@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset result = new services.ContactService().insertcontactdetails(userid=userid, contactFullName=cdfullname)>
+    <cfset result = createObject("component", "services.ContactService").INScontactdetails_23769(userid=userid, cdfullname=cdfullname)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in add_28_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in add_28_1.cfm]: #cfcatch.message#">
+        <cfthrow>
     </cfcatch>
 </cftry>

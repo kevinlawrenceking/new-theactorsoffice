@@ -1,12 +1,7 @@
 
 <cftry>
-    <cfset find_new_BusinessEmail = createObject("component", "services.ContactItemService").getcontactitems({
-        valuetype: "Business",
-        contactid: new_contactid,
-        itemstatus: "Active",
-        valuecategory: "Email"
-    })>
-<cfcatch type="any">
-    <cfset errorLog = "[Error in find_new_BusinessEmail_115_4.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfset find_new_BusinessEmail = createObject("component", "services.ContactItemService").getBusinessEmail(new_contactid=new_contactid) />
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in find_new_BusinessEmail_115_4.cfm]: #cfcatch.message#" />
+    </cfcatch>
 </cftry>

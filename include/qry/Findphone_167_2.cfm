@@ -1,13 +1,8 @@
 
 <cftry>
-    <cfset Findphone = createObject("component", "services.ContactItemService").getcontactitems({
-        valueCategory: 'Phone',
-        contactID: myteam.contactid,
-        itemStatus: 'Active',
-        orderBy: 'primary_YN DESC',
-        limit: 1
-    })>
+    <cfset Findphone = createObject("component", "services.ContactItemService").getActivePhone(contactID=myteam.contactid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in Findphone_167_2.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in Findphone_167_2.cfm]: #cfcatch.message#">
+        <cfset Findphone = queryNew("phone", "varchar")>
     </cfcatch>
 </cftry>

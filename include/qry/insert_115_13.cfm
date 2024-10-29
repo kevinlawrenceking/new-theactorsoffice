@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset exportItemService = new "/services/ExportItemService.cfc"()>
-    <cfset exportItemService.insertexportitems(
+    <cfset ExportItemService = createObject("component", "services.ExportItemService")>
+    <cfset ExportItemService.insertExportItem(
         new_exportid = new_exportid,
         new_contactid = new_contactid,
         new_FirstName = new_FirstName,
@@ -21,12 +21,13 @@
         new_State = new_State,
         new_Zip = new_Zip,
         new_Country = new_Country,
-        new_ContactMeetingDate = new_ContactMeetingDate,
-        new_ContactMeetingLoc = new_ContactMeetingLoc,
-        new_contactBirthday = new_contactBirthday,
-        new_Website = new_Website
+        new_ContactMeetingDate = isDate(new_ContactMeetingDate) ? dateFormat(new_ContactMeetingDate, "yyyy-mm-dd") : "",
+        new_ContactMeetingLoc = trim(new_ContactMeetingLoc),
+        new_contactBirthday = isDate(new_contactBirthday) ? dateFormat(new_contactBirthday, "yyyy-mm-dd") : "",
+        new_Website = trim(new_Website)
     )>
-<cfcatch type="any">
-    <cfset errorLog("[Error in insert_115_13.cfm]: " & cfcatch.message)>
-</cfcatch>
+    <cfset isfetch = 1>
+    <cfcatch type="any">
+        <cfset errorLog("[Error in insert_115_13.cfm]: " & cfcatch.message)>
+    </cfcatch>
 </cftry>

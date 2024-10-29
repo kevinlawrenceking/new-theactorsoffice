@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset jsons_myteam = createObject("component", "/services/EventService").getvm_events_tbl_eventcontactsxref(session.userid)>
+    <cfset jsons_myteam = createObject("component", "services.EventService").getDistinctEventDetails(userId=session.userid) />
     <cfcatch type="any">
-        <cfset errorLog = "[Error in jsons_myteam_50_2.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in jsons_myteam_50_2.cfm]: #cfcatch.message#">
+        <cfset jsons_myteam = queryNew("col1")>
     </cfcatch>
 </cftry>

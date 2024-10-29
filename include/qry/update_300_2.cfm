@@ -1,16 +1,13 @@
 
 <cftry>
-    <cfset TicketService = new "/services/TicketService.cfc"()>
-    <cfset TicketService.updatetickets(
-        ticketCompletedDate = now(),
-        ticketstatus = "Completed",
+    <cfset ticketService = createObject("component", "services.TicketService")>
+    <cfset ticketService.updateTicket(
         ticketresponse = ticketresponse,
-        verid = next_verid,
+        next_verid = next_verid,
         patchnote = patchnote,
-        complete_email = 1,
-        ticketid = recid
+        recid = recid
     )>
     <cfcatch type="any">
-        <cfset errorLog("[Error in update_300_2.cfm]: #cfcatch.message#")>
+        <cflog file="errorLog" type="error" text="[Error in update_300_2.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

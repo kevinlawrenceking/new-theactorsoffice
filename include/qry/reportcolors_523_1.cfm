@@ -1,8 +1,8 @@
 
 <cftry>
-    <cfset reportColorService = new services.ReportColorService()>
-    <cfset reportcolors = reportColorService.getreportcolors()>
-    <cfcatch type="any">
-        <cfset errorLog = "[Error in reportcolors_523_1.cfm]: " & cfcatch.message>
+    <cfset reportColorService = createObject("component", "services.ReportColorService")>
+    <cfset reportcolors = reportColorService.getReportColors()>
+    <cfcatch>
+        <cflog file="errorLog" text="[Error in reportcolors_523_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

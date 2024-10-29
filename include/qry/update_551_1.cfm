@@ -1,9 +1,9 @@
 
 <cftry>
-    <cfset notificationService = new services.NotificationService()>
-    <cfset notificationService.updatefunotifications(new_notid)>
-    <cfset isfetch = 1>
+    <cfset variables.notificationService = createObject("component", "/services/NotificationService")>
+    <cfset variables.notificationService.updateNotificationStatus(new_notid=new_notid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in update_551_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in update_551_1.cfm]: #cfcatch.message#">
+        <cfrethrow>
     </cfcatch>
 </cftry>

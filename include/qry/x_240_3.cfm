@@ -1,8 +1,10 @@
 
 <cftry>
-    <cfset panelUserService = new "/services/PanelUserService.cfc" />
-    <cfset x = panelUserService.getvm_pgpanels_user_sitetypes_user() />
+    <cfset userId = /* provide the user ID here */>
+    <cfset panelService = createObject("component", "/services/PanelUserService")>
+    <cfset x = panelService.getPanelTitles(userId=userId)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in x_240_3.cfm]: " & cfcatch.message />
+        <cflog file="errorLog" text="[Error in x_240_3.cfm]: #cfcatch.message#">
+        <cfthrow>
     </cfcatch>
 </cftry>

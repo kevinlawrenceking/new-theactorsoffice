@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset linkdetails = createObject("component", "services.EventTypesUserService").geteventtypes_user(id)>
+    <cfset linkdetails = createObject("component", "services.EventTypesUserService").getEventTypeById(id=id)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in linkdetails_309_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in linkdetails_309_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

@@ -1,11 +1,14 @@
 
 <cftry>
-    <cfset result = createObject("component", "/services/AuditionCategoryService").updateaudcategories(
-        audCatId = new_audCatId,
-        audCatName = new_audCatName,
-        isDeleted = new_isDeleted
+    <cfset variables.auditionCategoryService = new "/services/AuditionCategoryService.cfc"()>
+    <cfset variables.auditionCategoryService.updateAudCategory(
+        new_audCatName=new_audCatName, 
+        new_isDeleted=new_isDeleted, 
+        new_audCatId=new_audCatId
     )>
+    <cfset isfetch = 1>
     <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in audcategories_ins_347_1.cfm]: #cfcatch.message# - #cfcatch.detail#">
+        <cflog file="errorLog" text="[Error in audcategories_ins_347_1.cfm]: #cfcatch.message#" type="error">
+        <cfrethrow>
     </cfcatch>
 </cftry>

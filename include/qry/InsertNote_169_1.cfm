@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset noteService = new "/services/NoteService.cfc"()>
-    <cfset result = noteService.insertnoteslog(
+    <cfset noteService = createObject("component", "/services/NoteService")>
+    <cfset noteService.insertNotesLog(
         userid = userid,
         contactid = rcontactid,
         noteDetails = LEFT(trim(noteDetails), 2000),
@@ -9,8 +9,8 @@
         audprojectid = audprojectid,
         notedetailshtml = new_notetext
     )>
-    <cfset isfetch = 1>
-<cfcatch type="any">
-    <cfset errorLog = "[Error in InsertNote_169_1.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in InsertNote_169_1.cfm]: #cfcatch.message#">
+        <cfrethrow>
+    </cfcatch>
 </cftry>

@@ -1,18 +1,18 @@
 
 <cftry>
-    <cfset result = createObject("component", "services.EventService").insertevents(
-        eventTitle = new_projname,
-        eventTypeName = "Audition",
-        eventDescription = new_projDescription,
+    <cfset eventService = createObject("component", "/services/EventService")>
+    <cfset eventService.insertEvent(
+        new_projname = new_projname,
+        new_projDescription = new_projDescription,
         eventLocation = eventLocation,
-        eventStart = (eventStart neq "") ? eventStart : "",
-        eventStartTime = (eventStartTime neq "") ? eventStartTime : "",
-        eventStopTime = (eventStopTime neq "") ? eventStopTime : "",
+        eventStart = eventStart,
+        eventStartTime = eventStartTime,
+        eventStopTime = eventStopTime,
         userid = cookie.userid,
-        eventid = new_eventid
+        new_eventid = new_eventid
     )>
-    <cfset isfetch = 1>
+    <cflog file="application.log" text="Event inserted successfully." type="information">
 <cfcatch type="any">
-    <cfset errorLog = "[Error in add_365_3.cfm]: " & cfcatch.message>
+    <cflog file="errorLog" text="[Error in add_365_3.cfm] #cfcatch.message#" type="error">
 </cfcatch>
 </cftry>

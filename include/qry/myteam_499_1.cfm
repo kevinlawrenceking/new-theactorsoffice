@@ -1,11 +1,8 @@
- 
 
-
-<!--- Fetch Page to Get Active Team Contacts --->
-<cfset contactService = new "services.ContactService"()>
-
-<!--- Set the userId variable from session --->
-<cfset userId = session.userid>
-
-<!--- Pass the userId to the function to fetch team contacts --->
-<cfset myTeam = contactService.getActiveTeamContactsByUserId(userId)>
+<cftry>
+    <cfset myteam = createObject("component", "services.ContactService").getActiveContacts(userId=session.userid) />
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in myteam_499_1.cfm]: #cfcatch.message#">
+        <cfset myteam = queryNew("contactid,contactname,contactStatus", "integer,varchar,varchar")>
+    </cfcatch>
+</cftry>

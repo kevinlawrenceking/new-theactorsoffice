@@ -1,8 +1,9 @@
 
 <cftry>
     <cfset reportItemService = new "/services/ReportItemService.cfc"()>
-    <cfset reportItemService.deletereportitems(userid)>
+    <cfset reportItemService.deleteReportItems(userid=userid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in delete_all_282_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in delete_all_282_1.cfm]: #cfcatch.message#">
+        <cfthrow>
     </cfcatch>
 </cftry>

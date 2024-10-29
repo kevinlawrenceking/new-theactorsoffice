@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset y = createObject("component", "/services/InformationSchemaTableService").getinformation_schema_tables({tableNamePattern="aud%"})>
+    <cfset y = createObject("component", "/services/InformationSchemaTableService").getAuditTables("aud%")>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in y_292_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in y_292_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

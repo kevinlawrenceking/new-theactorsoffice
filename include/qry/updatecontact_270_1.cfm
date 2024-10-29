@@ -1,17 +1,19 @@
 
 <cftry>
-    <cfset contactService = new "/services/ContactService.cfc" />
-    <cfset contactService.updatecontactdetails(
+    <cfset variables.contactService = new "/services/ContactService.cfc"()>
+    <cfset variables.contactService.updateContactDetails(
+        contactid = contactid,
         contactfullname = trim(contactfullname),
-        contactPronoun = (contactPronoun is "custom") ? trim(custom) : trim(contactPronoun),
+        contactPronoun = contactPronoun,
+        custom = trim(custom),
         contactbirthday = contactbirthday,
         contactmeetingdate = contactmeetingdate,
         contactmeetingloc = trim(contactmeetingloc),
-        isdeleted = (deleteitem is "1") ? 1 : 0,
-        refer_contact_id = Len(trim(refer_contact_id)) ? refer_contact_id : null,
-        contactid = contactid
-    ) />
+        deleteitem = deleteitem,
+        refer_contact_id = refer_contact_id
+    )>
+    <cfset isfetch = 1>
 <cfcatch type="any">
-    <cfset errorLog("[Error in updatecontact_270_1.cfm]: #cfcatch.message#") />
+    <cflog file="errorLog" text="[Error in updatecontact_270_1.cfm] Failed to update contact details. Error: #cfcatch.message#">
 </cfcatch>
 </cftry>

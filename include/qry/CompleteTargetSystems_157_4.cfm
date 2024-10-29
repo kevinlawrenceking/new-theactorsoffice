@@ -1,12 +1,9 @@
 
 <cftry>
-    <cfset SystemUserService = new services.SystemUserService()>
-    <cfset result = SystemUserService.updatefusystemusers({
-        "userid": new_userid,
-        "systemids": [5, 6],
-        "contactid": new_contactid
-    })>
+    <cfset systemUserService = new "/services/SystemUserService.cfc"()>
+    <cfset systemUserService.updateUserStatus(new_userid=new_userid, new_contactid=new_contactid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in CompleteTargetSystems_157_4.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in CompleteTargetSystems_157_4.cfm] #cfcatch.message#">
+        <cfthrow message="An error occurred while updating the user status." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

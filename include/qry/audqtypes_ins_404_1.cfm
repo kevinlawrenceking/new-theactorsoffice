@@ -1,16 +1,13 @@
 
 <cftry>
-    <cfset result = createObject("component", "/services/AuditionQuestionTypeService").updateaudqtypes(
+    <cfset variables.auditionQuestionTypeService = new "/services/AuditionQuestionTypeService.cfc"()>
+    <cfset variables.auditionQuestionTypeService.updateAudQTypes(
         new_qtype = new_qtype,
         new_isDeleted = new_isDeleted,
         new_qtypeid = new_qtypeid
     )>
-    <cfquery name="updateFetchStatus">
-        UPDATE databaseTable
-        SET isfetch = 1
-        WHERE condition = 'your_condition'
-    </cfquery>
-<cfcatch type="any">
-    <cfset errorLog = "[Error in audqtypes_ins_404_1.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in audqtypes_ins_404_1.cfm]: #cfcatch.message#">
+        <cfthrow message="Error updating audqtypes." detail="#cfcatch.detail#">
+    </cfcatch>
 </cftry>

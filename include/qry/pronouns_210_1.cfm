@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset pronouns = createObject("component", "services.GenderPronounUserService").getgenderpronouns_users(userid)>
+    <cfset pronounsService = createObject("component", "services.GenderPronounUserService")>
+    <cfset pronouns = pronounsService.getGenderPronoun(userid=userid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in pronouns_210_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in pronouns_210_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

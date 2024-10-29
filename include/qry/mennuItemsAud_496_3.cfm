@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset mennuItemsaud = createObject("component", "/services/ComponentService").getpgcomps()>
+    <cfset componentService = new "/services/ComponentService.cfc"()>
+    <cfset mennuItemsAud = componentService.SELpgcomps_24681(3, 'A')>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in mennuItemsaud_496_3.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in mennuItemsAud_496_3.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

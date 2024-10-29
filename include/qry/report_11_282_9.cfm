@@ -1,11 +1,12 @@
 
 <cftry>
-    <cfset report_11 = createObject("component", "services.AuditionProjectService").getvm_audprojects_roles_events(
-        userID=userid, 
-        rangeStart=rangeselected.rangestart, 
-        rangeEnd=rangeselected.rangeend
+    <cfset report_11 = createObject("component", "services.AuditionProjectService").getRedirectsData(
+        userid = userid,
+        rangestart = rangeselected.rangestart,
+        rangeend = rangeselected.rangeend
     )>
+    <cfset isfetch = 1>
 <cfcatch type="any">
-    <cfset errorLog = "[Error in report_11_282_9.cfm]: " & cfcatch.message>
+    <cflog file="errorLog" text="[Error in report_11_282_9.cfm]: #cfcatch.message#">
 </cfcatch>
 </cftry>

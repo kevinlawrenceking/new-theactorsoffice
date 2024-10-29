@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset dashboardzz = createObject("component", "services.PanelUserService").getpgpanels_user(userid)>
+    <cfset dashboardzz = createObject("component", "/services/PanelUserService").getPanelsByUserId(userid=userid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in dashboardzz_93_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in dashboardzz_93_1.cfm]: #cfcatch.message#">
+        <cfset dashboardzz = queryNew("pnid,pntitle,pnColXl,pnColMd,pnFilename,new_pnorderno,isvisible")>
     </cfcatch>
 </cftry>

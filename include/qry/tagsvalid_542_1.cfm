@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset tagsvalid = createObject("component", "services.TagsUserService").gettags_user(session.userid)>
+    <cfset tagsvalid = createObject("component", "/services/TagsUserService").getUserTags(userId=session.userid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in tagsvalid_542_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in tagsvalid_542_1.cfm]: #cfcatch.message#">
+        <cfset tagsvalid = queryNew("tagname")>
     </cfcatch>
 </cftry>

@@ -1,12 +1,8 @@
 
 <cftry>
-    <cfset find_new_Website = createObject("component", "/services/ContactItemService").getcontactitems(
-        valuetype="Company Website",
-        contactid=new_contactid,
-        itemstatus="Active",
-        valuecategory="URL"
-    )>
+    <cfset find_new_Website = createObject("component", "services.ContactItemService").getNewWebsite(new_contactid=new_contactid) />
     <cfcatch type="any">
-        <cfset errorLog = "[Error in find_new_Website_115_3.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in find_new_Website_115_3.cfm]: #cfcatch.message#" />
+        <cfthrow message="An error occurred while fetching the new website." detail="#cfcatch.detail#" />
     </cfcatch>
 </cftry>

@@ -1,9 +1,8 @@
 
 <cftry>
-    <cfset err = createObject("component", "/services/AuditionImportErrorService").insertauditionsimport_error(
-        error_msg = "Missing project name"
-    )>
-    <cfcatch>
-        <cflog file="errorLog" type="error" text="[Error in err_308_4.cfm]: #cfcatch.message#. Details: #cfcatch.detail#">
+    <cfset objAuditionImportErrorService = createObject("component", "services.AuditionImportErrorService")>
+    <cfset objAuditionImportErrorService.insertAuditionsImportError(id=y.id)>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in err_308_4.cfm]: #cfcatch.message#" type="error">
     </cfcatch>
 </cftry>

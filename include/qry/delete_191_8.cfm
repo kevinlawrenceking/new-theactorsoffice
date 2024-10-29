@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset delete = createObject("component", "services.EventService").updateevents(userid=userid)>
+    <cfset eventService = createObject("component", "services.EventService")>
+    <cfset eventService.updateDeletedEvents(userid=userid)>
     <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in delete_191_8.cfm]: #cfcatch.message#">
+        <cflog file="errorLog" type="error" text="[Error in delete_191_8.cfm] #cfcatch.message#">
     </cfcatch>
 </cftry>

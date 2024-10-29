@@ -1,12 +1,17 @@
 
 <cftry>
     <cfset notificationService = new "/services/NotificationService.cfc"()>
-    <cfset notificationService.updatefunotifications(
-        notStatus = notStatus,
-        notEndDate = (notStatus eq "Completed" or notStatus eq "Skipped") ? notEndDate : "",
-        notId = notId
+    <cfset notificationService.updateNotificationStatus(
+        notStatus = "#notStatus#",
+        notEndDate = "#notEndDate#",
+        notId = #notid#
     )>
-    <cfcatch type="any">
-        <cfset errorLog = "[Error in addNotification_70_1.cfm]: " & cfcatch.message>
-    </cfcatch>
+    <cfquery name="updateFetchStatus" datasource="abod">
+        UPDATE databaseTableName
+        SET isfetch = 1
+        WHERE someCondition
+    </cfquery>
+<cfcatch type="any">
+    <cflog file="errorLog" text="[Error in addNotification_70_1.cfm] #cfcatch.message#">
+</cfcatch>
 </cftry>

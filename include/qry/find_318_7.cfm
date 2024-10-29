@@ -1,7 +1,11 @@
 
 <cftry>
-    <cfset find = createObject("component", "services.SiteTypeUserService").getsitetypes_user(x.sitetypename, select_userid)>
+    <cfset siteTypeUserService = createObject("component", "services.SiteTypeUserService")>
+    <cfset find = siteTypeUserService.getSiteTypesUser(
+        sitetypename = x.sitetypename,
+        userid = select_userid
+    )>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in find_318_7.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in find_318_7.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

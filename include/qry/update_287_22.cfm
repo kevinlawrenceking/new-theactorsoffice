@@ -1,9 +1,9 @@
 
 <cftry>
-    <cfset componentPath = "/services/AuditionSubmitSiteUserService.cfc">
-    <cfset component = createObject("component", componentPath)>
-    <cfset result = component.updateaudsubmitsites_user(new_catlist, new_submitsiteid)>
+    <cfset objService = createObject("component", "services.AuditionSubmitSiteUserService")>
+    <cfset objService.updateAudSubmitSitesUser(new_catlist=new_catlist, new_submitsiteid=new_submitsiteid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in update_287_22.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in update_287_22.cfm]: #cfcatch.message#">
+        <cfthrow message="Error updating record in audsubmitsites_user table.">
     </cfcatch>
 </cftry>

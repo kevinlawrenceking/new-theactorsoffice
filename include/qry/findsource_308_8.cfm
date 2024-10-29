@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset findsource = createObject("component", "services.AuditionSourceService").getaudsources(y.audsource)>
+    <cfset findsource = createObject("component", "services.AuditionSourceService").getAudSources(audsource=y.audsource)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in findsource_308_8.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in findsource_308_8.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

@@ -1,14 +1,16 @@
 
 <cftry>
-    <cfset result = new "/services/AuditionRoleService.cfc"().updateaudroles(
+    <cfset componentPath = "/services/AuditionRoleService.cfc">
+    <cfset auditionRoleService = createObject("component", componentPath)>
+    <cfset auditionRoleService.updateAudRoles(
         new_iscallback = new_iscallback,
         new_isredirect = new_isredirect,
         new_ispin = new_ispin,
         new_isbooked = new_isbooked,
         audroleid = audroleid
     )>
-    <cfset isfetch = 1>
-    <cfcatch type="any">
-        <cfset errorLog = "[Error in update_285_1.cfm]: " & cfcatch.message>
+    <cfcatch>
+        <cflog file="errorLog" text="[Error in update_285_1.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while updating the record.">
     </cfcatch>
 </cftry>

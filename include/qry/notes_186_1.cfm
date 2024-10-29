@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset notes = createObject("component", "/services/TicketService").getvm_tickets_users_pages(recid)>
+    <cfset notes = createObject("component", "/services/TicketService").getTicketDetails(recid=recid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in notes_186_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in notes_186_1.cfm]: #cfcatch.message#">
+        <cfthrow message="Error retrieving ticket details." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

@@ -1,9 +1,7 @@
 
 <cftry>
-    <cfset headshots_sel = createObject("component", "/services/AuditionMediaService").getaudmedia({
-        userid: userid
-    })>
+    <cfset headshots_sel = createObject("component", "services.AuditionMediaService").getMediaDetails(userid=userid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in headshots_sel_494_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in headshots_sel_494_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

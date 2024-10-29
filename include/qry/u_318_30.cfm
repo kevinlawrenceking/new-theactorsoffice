@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset u = createObject("component", "services.UserService").gettaousers(select_userid)>
+    <cfset userService = createObject("component", "services.UserService")>
+    <cfset u = userService.getUserById(select_userid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in u_318_30.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in u_318_30.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

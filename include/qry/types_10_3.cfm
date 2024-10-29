@@ -1,7 +1,9 @@
 
 <cftry>
-    <cfset types = createObject("component", "services.UserService").getvm_taousers_tickets_shares_timezones()>
+    <cfset userService = createObject("component", "services.UserService")>
+    <cfset types = userService.getActiveTicketTypes(ticketActive="Y")>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in types_10_3.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in types_10_3.cfm]: #cfcatch.message#">
+        <cfset types = queryNew("tickettype")>
     </cfcatch>
 </cftry>

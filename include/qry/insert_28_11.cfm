@@ -1,7 +1,9 @@
 
 <cftry>
-    <cfset resultx = createObject("component", "/services/AuditionPlatformsUserService").insertaudPlatforms_user(CustomPlatform, userid)>
+    <cfset objService = createObject("component", "services.AuditionPlatformUserService")>
+    <cfset objService.insertAudPlatformUser(CustomPlatform=CustomPlatform, userid=userid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in insert_28_11.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in insert_28_11.cfm]: #cfcatch.message#">
+        <cfthrow message="Error calling insertAudPlatformUser function" detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

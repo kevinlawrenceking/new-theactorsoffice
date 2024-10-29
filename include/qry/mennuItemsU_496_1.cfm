@@ -1,7 +1,11 @@
 
 <cftry>
-    <cfset mennuItemsU = createObject("component", "/services/ComponentService").getpgcomps()>
+    <cfset mennuItemsU = createObject("component", "/services/ComponentService").getFilteredPgComps(
+        menuYN="Y",
+        compOwner="U",
+        appid=3
+    )>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in mennuItemsU_496_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in mennuItemsU_496_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

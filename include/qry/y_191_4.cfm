@@ -1,8 +1,8 @@
 
 <cftry>
-    <cfset eventService = new "/services/EventService.cfc"()>
-    <cfset y = eventService.getvm_events_audroles(userid)>
+    <cfset y = createObject("component", "/services/EventService").getUpdatedProjectDates(userid=#userid#)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in y_191_4.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in y_191_4.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while fetching project dates." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset roleDetails = createObject("component", "services.AuditionRoleService").getaudroles(audroleid)>
+    <cfset roleDetails = createObject("component", "services.AuditionRoleService").getAudRoles(audroleid=#audroleid#)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in roleDetails_368_3.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in roleDetails_368_3.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

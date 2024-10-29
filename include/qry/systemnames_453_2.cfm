@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset systemnames = createObject("component", "/services/SystemService").getfusystems()>
+    <cfset systemService = createObject("component", "/services/SystemService")>
+    <cfset systemnames = systemService.getSystemData()>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in systemnames_453_2.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in systemnames_453_2.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

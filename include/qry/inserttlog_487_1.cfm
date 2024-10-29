@@ -1,14 +1,16 @@
 
 <cftry>
-    <cfset ticketsLogService = new "/services/TicketsLogTableService.cfc"()>
-    <cfset ticketsLogService.insertticketslog(
-        tlogDetails = new_tlogDetails,
-        userID = session.userid,
-        ticketid = new_ticketid,
-        ticketstatus = new_ticketstatus
+    <cfset objTicketsLogTableService = createObject("component", "services.TicketsLogTableService")>
+    <cfset objTicketsLogTableService.insertTicketLog(
+        new_tlogDetails = new_tlogDetails,
+        new_ticketid = new_ticketid,
+        new_ticketstatus = new_ticketstatus
     )>
-    <cfset isfetch = 1>
-<cfcatch type="any">
-    <cfset errorLog = "[Error in inserttlog_487_1.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfquery datasource="abod">
+        UPDATE database SET isfetch = 1 WHERE condition
+    </cfquery>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in inserttlog_487_1.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while inserting the ticket log." detail="#cfcatch.detail#">
+    </cfcatch>
 </cftry>

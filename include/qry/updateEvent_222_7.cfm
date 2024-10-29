@@ -1,14 +1,13 @@
 
 <cftry>
-    <cfset eventService = new "/services/EventService.cfc" />
-    <cfset result = eventService.updateevents(
-        eventid = findEvent.eventid,
-        new_eventStart = new_eventStart,
-        new_eventStartTime = new_eventStartTime,
-        new_eventStopTime = new_eventStopTime
-    ) />
-    <cfset isfetch = 1 />
-    <cfcatch type="any">
-        <cfset errorLog = "[Error in updateEvent_222_7.cfm]: " & cfcatch.message />
+    <cfset var eventService = createObject("component", "services.EventService")>
+    <cfset eventService.UPDevents_24108(
+        eventId = findEvent.eventid,
+        newEventStart = new_eventStart,
+        newEventStartTime = new_eventStartTime,
+        newEventStopTime = new_eventStopTime
+    )>
+    <cfcatch>
+        <cflog file="errorLog" text="[Error in updateEvent_222_7.cfm] #cfcatch.message#">
     </cfcatch>
 </cftry>

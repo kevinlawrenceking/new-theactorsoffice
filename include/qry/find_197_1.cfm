@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset find = createObject("component", "/services/AuditionSubmitSiteUserService").getaudsubmitsites_user(userid=userid, submitsitename=new_submitsitename)>
+    <cfset find = createObject("component", "services.AuditionSubmitSiteUserService").getSubmitSiteId(userid=userid, new_submitsitename=new_submitsitename)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in find_197_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in find_197_1.cfm]: #cfcatch.message#">
+        <cfset find = queryNew("submitsiteid", "integer")>
     </cfcatch>
 </cftry>

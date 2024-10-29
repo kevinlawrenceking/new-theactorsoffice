@@ -1,10 +1,9 @@
 
 <cftry>
-    <cfset result = createObject("component", "services.AuditionVocalTypeService").insertaudvocaltypes(
-        vocaltype = new_vocaltype,
-        isDeleted = new_isDeleted
-    )>
+    <cfset objVocalTypeService = createObject("component", "services.AuditionVocalTypeService")>
+    <cfset objVocalTypeService.insertVocalType(new_vocaltype=trim(new_vocaltype), new_isDeleted=new_isDeleted)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in audvocaltypes_ins_437_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in audvocaltypes_ins_437_1.cfm]: #cfcatch.message#">
+        <cfrethrow>
     </cfcatch>
 </cftry>

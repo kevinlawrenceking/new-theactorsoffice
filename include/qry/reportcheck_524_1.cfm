@@ -1,8 +1,8 @@
 
 <cftry>
-    <cfset reportUserService = new "/services/ReportUserService.cfc"()>
-    <cfset reportcheck = reportUserService.getreports_user(userid)>
-<cfcatch type="any">
-    <cfset errorLog = "[Error in reportcheck_524_1.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfset reportcheck = createObject("component", "services.ReportUserService").getUserReports(userid=userid)>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in reportcheck_524_1.cfm]: #cfcatch.message#">
+        <cfset reportcheck = queryNew("")>
+    </cfcatch>
 </cftry>

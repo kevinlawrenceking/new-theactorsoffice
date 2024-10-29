@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset ticketService = new "/services/TicketService.cfc" />
-    <cfset ticketService.updatetickets(
+    <cfset ticketService = createObject("component", "services.TicketService")>
+    <cfset ticketService.updateTicket(
         new_ticketname = new_ticketname,
         new_testingscript = new_testingscript,
         new_ticketType = new_ticketType,
@@ -13,8 +13,8 @@
         new_ticketPriority = new_ticketPriority,
         new_esthours = numberformat(new_esthours, "9.99"),
         ticketid = ticketid
-    ) />
-<cfcatch type="any">
-    <cflog file="errorLog" text="[Error in update_275_1.cfm]: #cfcatch.message#" />
+    )>
+<cfcatch>
+    <cflog file="errorLog" text="[Error in update_275_1.cfm]: #cfcatch.message#">
 </cfcatch>
 </cftry>

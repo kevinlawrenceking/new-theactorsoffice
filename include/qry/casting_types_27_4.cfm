@@ -1,7 +1,9 @@
 
 <cftry>
-    <cfset casting_types = createObject("component", "services.TagsUserService").gettags_user(userid=userid)>
+    <cfset casting_types = createObject("component", "services.TagsUserService").getUserTags(userid=userid)>
+
     <cfcatch type="any">
-        <cfset errorLog = "[Error in casting_types_27_4.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in casting_types_27_4.cfm]: #cfcatch.message#">
+        <cfset casting_types = queryNew("id,name")>
     </cfcatch>
 </cftry>

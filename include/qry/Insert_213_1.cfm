@@ -1,14 +1,13 @@
 
 <cftry>
-    <cfset ticketTestUserService = new "/services/TicketTestUserService.cfc"()>
-    <cfset ticketTestUserService.inserttickettestusers(
-        ticketid = new_ticketid,
-        userid = new_userid,
-        teststatus = new_teststatus,
-        rejectNotes = new_rejectnotes
+    <cfset ticketTestUserService = createObject("component", "services.TicketTestUserService")>
+    <cfset ticketTestUserService.insertTicketTestUser(
+        new_ticketid = new_ticketid,
+        new_userid = new_userid,
+        new_teststatus = new_teststatus,
+        new_rejectnotes = new_rejectnotes
     )>
-    <cfset isfetch = 1>
-<cfcatch type="any">
-    <cfset errorLog = "[Error in Insert_213_1.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfcatch>
+        <cflog file="errorLog" text="[Error in Insert_213_1.cfm]: #cfcatch.message#">
+    </cfcatch>
 </cftry>

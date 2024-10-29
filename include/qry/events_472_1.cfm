@@ -1,10 +1,10 @@
 
 <cftry>
-    <cfset events = createObject("component", "/services/EventService").getvm_events_eventtypes_user({
-        userid: session.userid,
-        currentid: currentid
-    })>
+    <cfset events = createObject("component", "/services/EventService").getEventDetails(
+        sessionUserID = session.userid,
+        currentID = (isDefined('currentid') ? currentid : 0)
+    )>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in events_472_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in events_472_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

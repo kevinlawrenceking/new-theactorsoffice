@@ -1,12 +1,14 @@
 
 <cftry>
-    <cfset result = createObject("component", "/services/AuditionTonesService").updateaudtones(
+    <cfset objAuditionTonesService = createObject("component", "services.AuditionTonesService")>
+    <cfset objAuditionTonesService.updateAudtones(
         new_tone = new_tone,
         new_audCatid = new_audCatid,
         new_isDeleted = new_isDeleted,
         new_toneid = new_toneid
     )>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in audtones_ins_427_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in audtones_ins_427_1.cfm]: #cfcatch.message#">
+        <cfrethrow>
     </cfcatch>
 </cftry>

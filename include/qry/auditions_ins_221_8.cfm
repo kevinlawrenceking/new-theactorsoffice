@@ -1,22 +1,22 @@
 
 <cftry>
-    <cfset result = createObject("component", "services.EventService").insertevents(
-        userid=new_userid,
-        audRoleID=new_audRoleID,
-        audTypeID=new_audTypeID,
-        audLocation=new_audLocation,
-        eventStart=new_eventStart,
-        eventStartTime=new_eventStartTime,
-        eventStopTime=new_eventStopTime,
-        audplatformID=new_audplatformid,
-        audStepID=new_audStepID,
-        parkingDetails=new_parkingDetails,
-        workwithcoach=new_workwithcoach,
-        trackmileage=new_trackmileage,
-        audlocid=new_audlocid,
-        isdeleted=1
+    <cfset objEventService = new "/services/EventService.cfc"()>
+    <cfset objEventService.insertEvent(
+        new_userid=new_userid,
+        new_audRoleID=new_audRoleID,
+        new_audTypeID=new_audTypeID,
+        new_audLocation=new_audLocation,
+        new_eventStart=new_eventStart,
+        new_eventStartTime=new_eventStartTime,
+        new_eventStopTime=new_eventStopTime,
+        new_audplatformid=new_audplatformid,
+        new_audStepID=new_audStepID,
+        new_parkingDetails=new_parkingDetails,
+        new_workwithcoach=new_workwithcoach,
+        new_trackmileage=new_trackmileage,
+        new_audlocid=new_audlocid
     )>
-<cfcatch type="any">
-    <cfset errorLog = "[Error in auditions_ins_221_8.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfcatch>
+        <cflog file="errorLog" text="[Error in auditions_ins_221_8.cfm] Error: #cfcatch.message#; Details: #serializeJSON(cfcatch)#" type="error">
+    </cfcatch>
 </cftry>

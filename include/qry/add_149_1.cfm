@@ -1,16 +1,17 @@
 
 <cftry>
-    <cfset result = createObject("component", "/services/LinkService").insertlinks(
+    <cfset variables.linkService = createObject("component", "services.LinkService")>
+    <cfset variables.linkService.insertLink(
         linkname = linkname,
         linkurl = linkurl,
-        isdeleted = 0,
-        userid = session.userid,
         noteid = noteid
     )>
-    <cfset isfetch = 1>
-    <!--- Update the database to set isfetch = 1 --->
-    <!--- Example: updateDatabaseFunction(isfetch) --->
+    <cfquery name="updateFetchStatus" datasource="yourDataSource">
+        UPDATE yourTableName
+        SET isfetch = 1
+        WHERE someCondition = someValue
+    </cfquery>
 <cfcatch type="any">
-    <cfset errorLog("[Error in add_149_1.cfm]: " & cfcatch.message)>
+    <cflog file="errorLog" text="[Error in add_149_1.cfm] #cfcatch.message#">
 </cfcatch>
 </cftry>

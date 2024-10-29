@@ -1,7 +1,9 @@
 
 <cftry>
-    <cfset countries = createObject("component", "/services/CountryService").getvm_countries_regions()>
+    <cfset countryService = createObject("component", "/services/CountryService")>
+    <cfset countries = countryService.getCountries(countryIds=[])>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in countries_457_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in countries_457_1.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while fetching countries." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

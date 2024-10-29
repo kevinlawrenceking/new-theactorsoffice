@@ -1,11 +1,12 @@
 
 <cftry>
-    <cfset sysActive = createObject("component", "services.SystemUserService").getvm_fusystemusers_fusystems(
-        contactID=currentid,
-        userID=session.userid,
-        hideCompleted=hide_completed
+    <cfset sysActive = createObject("component", "services.SystemUserService").getUserSystemDetails(
+        currentid = currentid,
+        sessionUserId = session.userid,
+        hideCompleted = hide_completed
     )>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in sysActive_537_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in sysActive_537_1.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while fetching system user details." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

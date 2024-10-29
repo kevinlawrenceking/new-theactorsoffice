@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset audmedia = createObject("component", "services.AuditionMediaService").getaudmedia(eventid)>
+    <cfset audmedia = createObject("component", "services.AuditionMediaService").getMediaByEventId(eventid=#eventid#) />
     <cfcatch type="any">
-        <cfset errorLog = "[Error in audmedia_38_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in audmedia_38_1.cfm]: #cfcatch.message#" />
+        <cfthrow>
     </cfcatch>
 </cftry>

@@ -1,12 +1,14 @@
 
 <cftry>
-    <cfset result = createObject("component", "services.AuditionLinkService").insertaudlinks(
+    <cfset variables.auditionLinkService = createObject("component", "/services/AuditionLinkService")>
+    <cfset variables.auditionLinkService.insertAudLink(
         linkname = linkname,
         linkurl = linkurl,
-        userid = session.userid,
         audroleid = audroleid
     )>
     <cfcatch>
-        <cflog file="errorLog" text="[Error in add_36_1.cfm]: #cfcatch.message# Details: #cfcatch.detail#">
+        <cflog file="errorLog" text="[Error in add_36_1.cfm]: #cfcatch.message#" type="error">
+        <cfthrow message="Error occurred while calling insertAudLink function." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>
+

@@ -1,19 +1,16 @@
 
 <cftry>
-    <cfset result = createObject("component", "/services/AuditionProjectService").insertaudprojects(
-        projName = new_projName,
-        projDescription = new_projDescription,
-        userid = cookie.userid,
-        audSubCatID = new_audSubCatID,
-        isDeleted = new_isDeleted,
-        IsDirect = isdirect,
-        contactid = new_contactid,
-        projdate = new_projdate
+    <cfset variables.auditionProjectService = createObject("component", "/services/AuditionProjectService")>
+    <cfset variables.auditionProjectService.insertAudProject(
+        new_projName = new_projName,
+        new_projDescription = new_projDescription,
+        new_audSubCatID = new_audSubCatID,
+        new_isDeleted = new_isDeleted,
+        isdirect = isdirect,
+        new_contactid = new_contactid,
+        new_projdate = new_projdate
     )>
-    <cfquery name="updateFetchStatus">
-        UPDATE your_table_name SET isfetch = 1 WHERE your_condition
-    </cfquery>
-<cfcatch type="any">
-    <cflog file="errorLog" text="[Error in audprojects_ins_308_19.cfm]: #cfcatch.message#">
-</cfcatch>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in audprojects_ins_308_19.cfm]: #cfcatch.message#">
+    </cfcatch>
 </cftry>

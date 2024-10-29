@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset FindLinksExtra = createObject("component", "services.PageAppLinkService").getpgapplinks(findpage.pgid, 'b', 'global')>
+    <cfset FindLinksExtra = createObject("component", "services.PageAppLinkService").getDistinctPluginNames(pgid=findpage.pgid) />
     <cfcatch type="any">
-        <cfset errorLog = "[Error in FindLinksExtra_188_10.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in FindLinksExtra_188_10.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

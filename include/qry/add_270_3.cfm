@@ -1,13 +1,9 @@
 
 <cftry>
-    <cfset result = new services.GenderPronounUserService().insertgenderpronouns_users(
-        userid = userid,
-        isDeleted = 0,
-        isCustom = 1,
-        genderpronoun = custom,
-        genderpronounPlural = custom
-    )>
-    <cfcatch type="any">
-        <cfset errorLog = "[Error in add_270_3.cfm]: " & cfcatch.message>
-    </cfcatch>
+    <cfset genderPronounService = createObject("component", "services.GenderPronounUserService")>
+    <cfset genderPronounService.insertGenderPronounsUser(userid=userid, custom=custom)>
+<cfcatch type="any">
+    <cflog file="errorLog" text="[Error in add_270_3.cfm]: #cfcatch.message#">
+    <cfthrow>
+</cfcatch>
 </cftry>

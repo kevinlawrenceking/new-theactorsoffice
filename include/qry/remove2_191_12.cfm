@@ -1,8 +1,8 @@
 
 <cftry>
-    <cfset application.eventContactsXRefService = createObject("component", "/services/EventContactsXRefService")>
-    <cfset application.eventContactsXRefService.deleteeventcontactsxref(audstepid=5)>
+    <cfset eventContactsService = new "/services/EventContactsXRefService.cfc"()>
+    <cfset result = eventContactsService.deleteEventContactsXref(audStepId=5)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in remove2_191_12.cfm]: " & cfcatch.message>
+        <cflog text="[Error in remove2_191_12.cfm]: #cfcatch.message#" file="errorLog" type="error">
     </cfcatch>
 </cftry>

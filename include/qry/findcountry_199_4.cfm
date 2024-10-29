@@ -1,8 +1,8 @@
 
 <cftry>
-    <cfset countryService = createObject("component", "services.CountryService")>
-    <cfset findcountry = countryService.getcountries(countryid)>
+    <cfset findcountry = createObject("component", "services.CountryService").getCountryById(countryid=countryid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in findcountry_199_4.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in findcountry_199_4.cfm]: #cfcatch.message#">
+        <cfthrow message="Error fetching country data. Please try again later.">
     </cfcatch>
 </cftry>

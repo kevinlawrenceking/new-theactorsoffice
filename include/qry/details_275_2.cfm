@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset details = createObject("component", "services.TicketService").gettickets(ticketid)>
+    <cfset details = createObject("component", "services.TicketService").getTicketDetails(ticketid=ticketid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in details_275_2.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in details_275_2.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while fetching ticket details." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset notesaud = createObject("component", "/services/NoteService").getnoteslog(audprojectid)>
+    <cfset notesaud = createObject("component", "/services/NoteService").getNotesLog(audprojectid=#audprojectid#)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in notesaud_506_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in notesaud_506_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

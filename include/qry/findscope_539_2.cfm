@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset findscope = createObject("component", "/services/ContactItemService").getvm_contactitems_tags(contactid, session.userid)>
+    <cfset findscope = createObject("component", "/services/ContactItemService").getActiveContactTags(contactid=#contactid#) />
     <cfcatch type="any">
-        <cfset errorLog = "[Error in findscope_539_2.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in findscope_539_2.cfm]: #cfcatch.message#" />
     </cfcatch>
 </cftry>

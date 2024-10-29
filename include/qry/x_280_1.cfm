@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset x = createObject("component", "/services/ReportRangeService").getvm_reportranges_excluded()>
+    <cfset reportRangeService = createObject("component", "/services/ReportRangeService")>
+    <cfset x = reportRangeService.getReportRanges(excludedRangeIds=[1, 7])>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in x_280_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in x_280_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

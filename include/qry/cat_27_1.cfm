@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset cat = createObject("component", "services.AuditionCategoryService").getvm_audcategories_audsubcategories(new_audsubcatid)>
+    <cfset cat = createObject("component", "services.AuditionCategoryService").getAudCategoryDetails(new_audsubcatid=new_audsubcatid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in cat_27_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in cat_27_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

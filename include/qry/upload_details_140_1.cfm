@@ -1,10 +1,8 @@
 
 <cftry>
-    <cfset upload_details = createObject("component", "services.AuditionImportService").getauditionsimport({
-        uploadid = uploadid,
-        status = "Added"
-    })>
+    <cfset upload_details = createObject("component", "services.AuditionImportService").getAuditionProjectIds(uploadid=uploadid)>
     <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in upload_details_140_1.cfm] #cfcatch.message# - #cfcatch.detail#">
+        <cflog file="errorLog" text="[Error in upload_details_140_1.cfm]: #cfcatch.message#">
+        <cfthrow>
     </cfcatch>
 </cftry>

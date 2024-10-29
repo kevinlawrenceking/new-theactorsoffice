@@ -1,7 +1,9 @@
 
 <cftry>
-    <cfset auditionprojectDetails = createObject("component", "services.AuditionProjectService").getaudprojects(audprojectid)>
+    <cfset auditionProjectService = createObject("component", "services.AuditionProjectService")>
+    <cfset auditionprojectDetails = auditionProjectService.getAudProjectDetails(audprojectid=#audprojectid#)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in auditionprojectDetails_370_1.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in auditionprojectDetails_370_1.cfm]: #cfcatch.message#">
+        <cfthrow message="An error occurred while retrieving project details.">
     </cfcatch>
 </cftry>

@@ -1,10 +1,9 @@
 
 <cftry>
-    <cfset componentPath = "/services/AuditionProjectService.cfc">
-    <cfset audProjectService = createObject("component", componentPath)>
-    <cfset result = audProjectService.updateaudprojects(audprojectid)>
+    <cfset objService = new "/services/AuditionProjectService.cfc"()>
+    <cfset objService.updateAudProjectIsDeleted(audprojectid=audprojectid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in del2_232_5.cfm]: " & cfcatch.message>
-        <!--- Handle the error, e.g., log it or display a message --->
+        <cflog file="errorLog" text="[Error in del2_232_5.cfm] #cfcatch.message#">
+        <cfthrow>
     </cfcatch>
 </cftry>

@@ -1,10 +1,7 @@
 
 <cftry>
-    <cfset addDaysNo = new "/services/SystemService.cfc"().getvm_fusystems_fuactions_actionusers(
-        systemID = maint_systemID,
-        userID = userid
-    )>
-<cfcatch>
-    <cfset errorLog = "[Error in addDaysNo_315_35.cfm]: " & cfcatch.message>
-</cfcatch>
+    <cfset addDaysNo = createObject("component", "services.SystemService").getSystemActions(maint_systemID=maint_systemID, userid=userid)>
+    <cfcatch>
+        <cflog file="errorLog" text="[Error in addDaysNo_315_35.cfm]: #cfcatch.message#">
+    </cfcatch>
 </cftry>

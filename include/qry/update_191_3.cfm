@@ -1,10 +1,9 @@
 
 <cftry>
-    <cfset componentPath = "/services/AuditionProjectService.cfc">
-    <cfset auditionProjectService = createObject("component", componentPath)>
-    <cfset result = auditionProjectService.updateaudprojects(x.new_projdate, x.audprojectID)>
+    <cfset objService = createObject("component", "/services/AuditionProjectService")>
+    <cfset objService.updateAudProjectDate(new_projdate=x.new_projdate, audprojectID=x.audprojectID)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in update_191_3.cfm]: " & cfcatch.message>
-        <cflog text="#errorLog#" type="error">
+        <cflog file="errorLog" text="[Error in update_191_3.cfm]: #cfcatch.message#"/>
+        <cfrethrow/>
     </cfcatch>
 </cftry>

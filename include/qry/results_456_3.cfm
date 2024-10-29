@@ -1,7 +1,8 @@
 
 <cftry>
-    <cfset results = createObject("component", "/services/ContactService").getcontactdetails(session.userid)>
+    <cfset results = createObject("component", "services.ContactService").getActiveContacts(userId=session.userid)>
     <cfcatch type="any">
-        <cfset errorLog = "[Error in results_456_3.cfm]: " & cfcatch.message>
+        <cflog file="errorLog" text="[Error in results_456_3.cfm]: #cfcatch.message#">
+        <cfset results = queryNew("contactid,col1")>
     </cfcatch>
 </cftry>
