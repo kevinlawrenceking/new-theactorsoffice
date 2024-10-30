@@ -167,7 +167,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT count(*) as nots_total
             FROM funotifications n
             INNER JOIN fusystemusers f ON f.suID = n.suID
