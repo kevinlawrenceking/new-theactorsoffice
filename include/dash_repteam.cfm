@@ -1,5 +1,5 @@
 <!--- This ColdFusion page displays a dashboard card with team member information and avatars. --->
-
+<cfabort>
 <cfinclude template="/include/qry/myteam_499_1.cfm" />
 
 <cfoutput>
