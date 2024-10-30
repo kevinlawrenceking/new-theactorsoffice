@@ -2,7 +2,7 @@
 <cffunction name="SELpgcomps" access="public" returntype="query">
     <cfargument name="menuYN" type="string" required="true">
     <cfargument name="compOwner" type="string" required="true">
-    <cfargument name="appid" type="numeric" required="true">
+    <cfargument name="appid" type="string" required="true">
 
     <cfset var result = "">
  
@@ -20,7 +20,7 @@
             WHERE 
                 c.menuYN = <cfqueryparam value="#arguments.menuYN#" cfsqltype="CF_SQL_CHAR"> 
                 AND c.compOwner = <cfqueryparam value="#arguments.compOwner#" cfsqltype="CF_SQL_CHAR"> 
-            AND c.appid = <cfqueryparam value="#arguments.appid#" cfsqltype="CF_SQL_INTEGER">
+            AND c.appid IN (<cfqueryparam value="#arguments.appid#" cfsqltype="CF_SQL_VARCHAR">) 
 
             ORDER BY 
                 c.menuOrder

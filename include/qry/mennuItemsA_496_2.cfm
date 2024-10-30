@@ -1,11 +1,8 @@
 
-<cftry>
-    <cfset mennuItemsA = createObject("component", "/services/ComponentService").SELpgcomps_24680(
-        menuYN = "Y",
-        compOwner = "A",
-        appId = 3
+
+    <cfset mennuItemsA = createObject("component", "services.ComponentService").SELpgcomps(
+        menuYN="Y",
+        compOwner="A",
+        appid="1,2"
     )>
-    <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in mennuItemsA_496_2.cfm]: #cfcatch.message#">
-    </cfcatch>
-</cftry>
+
