@@ -18,40 +18,42 @@
                 <cfloop query="myteam">
                     <cfinclude template="/include/qry/findtag_97_1.cfm" />
 
-                    <div class="col-md-2 col-lg-2" style="margin-top:7px;margin-left:7px;">
-                        <cfoutput>
-                            <a href="/app/contact/?contactid=#myteam.contactid#&t1=1" title="#myteam.contactname#">
-                                <!--- Check if the avatar image exists --->
-                                <cfif isimagefile("https://#host#.theactorsoffice.com#session.userContactsUrl#/#myteam.contactid#/avatar.jpg")>
-                                    <img src="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg" style="width:30px;" alt="#myteam.contactname#" />
-                                <cfelse>
-                                    <img src="#application.defaultAvatarUrl#" style="width:30px;" alt="#myteam.contactname#" />
+                         <div class="col-md-2 col-lg-2" style="margin-top:7px;margin-left:7px;">
+             <cfoutput>
+                 <a href="/app/contact/?contactid=#myteam.contactid#&t1=1" class="" title="#myteam.contactname#">
+                        <cfif #isimagefile("https://#host#.theactorsoffice.com#session.userContactsUrl#/#myteam.contactid#/avatar.jpg")# >
+                     <img src="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg" style="width:30px;" alt="#myteam.contactname#" />
+                            <cfelse>
+                                  <img src="#application.defaultAvatarUrl#" style="width:30px;" alt="#myteam.contactname#" />
                                 </cfif>
-                            </a>
-                        </cfoutput>
-                    </div>
 
-                    <div class="col-md-9 col-lg-9">
-                        <cfoutput>
-                            <a href="/app/contact/?contactid=#myteam.contactid#&t1=1" title="#myteam.contactname#">
-                                #myteam.contactname#
-                            </a>
-                            <br>
-                            <small>#findtag.tag#</small>
-                        </cfoutput>
-                    </div>
+                 </a>
+             </cfoutput>
+         </div>
 
-                    <!-- Clear row for spacing -->
-                    <div class="col-md-12 col-lg-12">&nbsp;</div>
-                </cfloop>
-            </div>
 
-            <!-- Centered edit link -->
-            <div class="col-md-12 col-lg-12">
-                <p style="text-align:center;">
-                    <a href="/app/myaccount/?t2=1"><i class="mdi mdi-square-edit-outline"></i></a>
-                </p>
-            </div>
-        </div> 
-    </div> 
-</cfoutput>
+
+  <div class="col-md-9 col-lg-9">
+             <cfoutput>
+                 <a href="/app/contact/?contactid=#myteam.contactid#&t1=1" class="" title="#myteam.contactname#">
+                     #myteam.contactname#
+                 </a>
+                 <BR> <small> #findtag.tag# </small>
+             </cfoutput>
+         </div>
+         <div class="col-md-12 col-lg-12">
+             &nbsp;
+         </div>
+     </cfloop>
+ </div>
+
+ <div class="col-md-12 col-lg-12">
+     <p style="text-align:center;">
+         <a href="/app/myaccount/?t2=1"><i class="mdi mdi-square-edit-outline"></i></a>
+     </p>
+ </div>
+
+
+ </div><!--end card -->
+</div>
+  
