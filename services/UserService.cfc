@@ -660,4 +660,163 @@
     </cftry>
     
     <cfreturn result>
-</cffunction></cfcomponent>
+</cffunction>
+
+    <!-- Function to get user details by ID, including related tables -->
+    <cffunction name="getUserById" access="public" returntype="struct" output="false" hint="Fetch user details by user ID along with related table data">
+        <cfargument name="userId" type="numeric" required="true">
+
+        <!-- Initialize a struct to hold the user data -->
+        <cfset var user = {}>
+
+        <!-- SQL Query to join all related tables and select all fields -->
+        <cfquery name="qUserDetails" >
+            SELECT
+                u.*,  -- All fields from taousers
+                t.*,  -- All fields from timezones
+                 tc.id, 
+                tc.userid, 
+                tc.CustomerFirst, 
+                tc.CustomerLast, 
+                tc.purchasedate, 
+                tc.CustomerFullName, 
+                tc.baseProductName, 
+                
+                tc.CustomerEmail, 
+                tc.PurchaseName, 
+                tc.BillingAddress, 
+                tc.BillingCity, 
+                tc.BillingZip, 
+                tc.BillingCountry, 
+                tc.BillingState, 
+                tc.InvoiceID, 
+                tc.CustomerID, 
+                tc.BaseProductLabel, 
+                tc.BaseProductID, 
+                tc.OrderDate, 
+                tc.TrialDays, 
+                tc.TrialEndDate, 
+                tc.PurchaseAmountCents, 
+                tc.BasePaymentPlanID, 
+                tc.status, 
+                tc.UUID, 
+                tc.IsDemo, 
+                tc.IsDeleted, 
+                tc.canceldate,
+                df.formatexample,
+                pp.planName,
+                pr.BaseProductLabel,
+                r.*,  
+                c.*  
+            FROM
+                taousers u
+            INNER JOIN dateformats df ON u.dateformatid = df.id
+
+            INNER JOIN timezones t ON u.tzid = t.tzid
+            INNER JOIN thrivecart tc ON u.customerid = tc.id  
+            INNER JOIN paymentplans pp ON pp.BasePaymentPlanId = tc.BasePaymentPlanId
+            INNER JOIN products pr ON pr.BaseProductId = tc.BaseProductId
+            LEFT JOIN regions r ON u.region_id = r.region_id
+            LEFT JOIN countries c ON u.countryid = c.countryid
+            WHERE u.userid = <cfqueryparam value="#arguments.userId#" cfsqltype="cf_sql_integer">
+        </cfquery>
+
+        <!-- Map query result to a struct -->
+        <cfif qUserDetails.recordCount EQ 1>
+             <cfset user = {
+                "user": {
+    "userId": qUserDetails.userID,
+    "userfirstName": qUserDetails.userFirstName,
+    "userlastName": qUserDetails.userLastName,
+    "useremail": qUserDetails.userEmail,
+    "userrole": qUserDetails.userRole,
+    "recordName": qUserDetails.recordname,
+    "usercontactId": qUserDetails.contactid,
+    "isDeleted": qUserDetails.IsDeleted,
+    "nletter_yn": qUserDetails.nletter_yn,
+    "nletter_link": qUserDetails.nletter_link,
+    "calStartTime": qUserDetails.calStartTime,
+    "calEndTime": qUserDetails.calEndTime,
+    "calSlotDuration": qUserDetails.calSlotDuration,
+    "avatarName": qUserDetails.avatarName,
+    "isBetaTester": qUserDetails.IsBetaTester,
+    "defRows": qUserDetails.defRows,
+    "defCountry": qUserDetails.defCountry,
+    "defState": qUserDetails.defState,
+    "tzid": qUserDetails.tzid,
+    "customerId": qUserDetails.customerid,
+    "userStatus": qUserDetails.userstatus,
+    "recover": qUserDetails.recover,
+    "passwordHash": qUserDetails.passwordHash,
+    "passwordSalt": qUserDetails.passwordSalt,
+    "userPassword": qUserDetails.userPassword,
+    "isAudition": qUserDetails.isAudition,
+    "viewtypeId": qUserDetails.viewtypeid,
+    "add1": qUserDetails.add1,
+    "add2": qUserDetails.add2,
+    "city": qUserDetails.city,
+    "regionId": qUserDetails.regionid,
+    "zip": qUserDetails.zip,
+    "isAuditionModule": qUserDetails.isAuditionModule,
+    "imdbId": qUserDetails.imdbid,
+    "isSetup": qUserDetails.isSetup,
+    "countryId": qUserDetails.countryid,
+    "defRegionId": qUserDetails.def_regionid,
+    "access_token": qUserDetails.access_token,
+    "refresh_token": qUserDetails.refresh_token,
+    "dateFormatID": qUserDetails.dateFormatID,
+    "datePrefID": qUserDetails.datePrefID,
+    "region_id": qUserDetails.region_id,
+    "formatexample": qUserDetails.formatexample,      
+    "planName": qUserDetails.planName,
+    "BaseProductLabel": qUserDetails.BaseProductLabel
+ },
+                "timezone": {
+                    "tzname": qUserDetails.tzname,
+                    "tzgeneral": qUserDetails.tzgeneral
+                },
+                "thrivecart": {
+                    "id": qUserDetails.id,
+                    "userId": qUserDetails.userid,
+                    "customerFirst": qUserDetails.CustomerFirst,
+                    "customerLast": qUserDetails.CustomerLast,
+                    "purchaseDate": qUserDetails.purchasedate,
+                    "customerFullName": qUserDetails.CustomerFullName,
+                    "baseProductName": qUserDetails.baseProductName,              
+                    "customerEmail": qUserDetails.CustomerEmail,
+                    "purchaseName": qUserDetails.PurchaseName,
+                    "billingAddress": qUserDetails.BillingAddress,
+                    "billingCity": qUserDetails.BillingCity,
+                    "billingZip": qUserDetails.BillingZip,
+                    "billingCountry": qUserDetails.BillingCountry,
+                    "billingState": qUserDetails.BillingState,
+                    "invoiceId": qUserDetails.InvoiceID,
+                    "customerId": qUserDetails.CustomerID,
+                    "baseProductLabel": qUserDetails.BaseProductLabel,
+                    "baseProductId": qUserDetails.BaseProductID,
+                    "orderDate": qUserDetails.OrderDate,
+                    "trialDays": qUserDetails.TrialDays,
+                    "trialEndDate": qUserDetails.TrialEndDate,
+                    "purchaseAmountCents": qUserDetails.PurchaseAmountCents,
+                    "basePaymentPlanId": qUserDetails.BasePaymentPlanID,
+                    "status": qUserDetails.status,
+                    "uuid": qUserDetails.UUID,
+                    "isDemo": qUserDetails.IsDemo,
+                    "isDeleted": qUserDetails.IsDeleted,
+                    "cancelDate": qUserDetails.canceldate
+                },
+                "region": {
+                    "regionId": qUserDetails.region_id,
+                    "regionName": qUserDetails.regionname
+                },
+                "country": {
+                    "countryId": qUserDetails.countryid,
+                    "countryName": qUserDetails.countryname
+                }
+            }>
+        </cfif>
+
+        <cfreturn user>
+    </cffunction>
+
+</cfcomponent>

@@ -1,6 +1,6 @@
 
 <cfset userService = new "services.UserService"()>
-<cfset userData = userService.SELtaousers(userID)>
+<cfset userData = userService.getUserById(userID)>
 
 <!--- Check if the query returned any rows --->
 <cfif userData.recordCount EQ 0>
