@@ -632,7 +632,7 @@ function getDynamicQuery(required numeric rpgid) {
     </cftry>
 </cffunction>
 <cfscript>
-function getDynamicQuery(required numeric pgid) {
+function getDynamicQueryx(required numeric pgid) {
     var result = "";
     try {
         var sql = "
