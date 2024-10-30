@@ -2,11 +2,7 @@
 <cfset userService = new "services.UserService"()>
 <cfset userData = userService.getUserById(userID)>
 
-<!--- Check if the query returned any rows --->
-<cfif userData.recordCount EQ 0>
-    <cfoutput>Not found!</cfoutput>
-    <cfabort>
-</cfif>
+
 
 <!--- Assuming the query returns only one record, you can fetch values from the first row (row 1) --->
 <cfset userId = userData.userID[1] />
