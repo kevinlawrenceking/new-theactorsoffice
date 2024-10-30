@@ -1,13 +1,13 @@
 <cfcomponent displayname="QuotesService" hint="" output="false"> 
 
-    <!-- Function to retrieve the quote of the day -->
+    <!--- Function to retrieve the quote of the day --->
     <cffunction name="getQuoteOfTheDay" access="public" returntype="query" output="false" hint="Retrieve the quote of the day.">
         
-        <!-- Get today's month and day -->
+        <!--- Get today's month and day --->
         <cfset todayMonth = dateFormat(Now(), "MM")>
         <cfset todayDay = dateFormat(Now(), "dd")>
         
-        <!-- Try to retrieve the quote for today using quoteMonth and quoteDay -->
+        <!--- Try to retrieve the quote for today using quoteMonth and quoteDay --->
         <cfquery name="quoteOfTheDay">
             SELECT 
                 quotename, 
@@ -22,10 +22,10 @@
             LIMIT 1
         </cfquery>
         
-        <!-- If no quote for today, retrieve a random quote with null quote date -->
+        <!--- If no quote for today, retrieve a random quote with null quote date --->
         <cfif quoteOfTheDay.recordcount eq 0>
             
-            <!-- Get a random quote with null quotedate -->
+            <!--- Get a random quote with null quotedate --->
             <cfquery name="randomQuote">
                 SELECT 
                     id,
@@ -39,7 +39,7 @@
                 LIMIT 1
             </cfquery>
 
-            <!-- If a random quote exists, update the quotedate to today -->
+            <!--- If a random quote exists, update the quotedate to today --->
             <cfif randomQuote.recordcount gt 0>
                 <cfquery>
                     UPDATE quotes 
@@ -50,11 +50,11 @@
                     WHERE id = <cfqueryparam cfsqltype="cf_sql_integer" value="#randomQuote.id#">
                 </cfquery>
 
-                <!-- Return the random quote -->
+                <!--- Return the random quote --->
                 <cfreturn randomQuote>
             </cfif>
 
-        <!-- If a quote for today exists, return it -->
+        <!--- If a quote for today exists, return it --->
         <cfelse>
             <cfreturn quoteOfTheDay>
         </cfif>

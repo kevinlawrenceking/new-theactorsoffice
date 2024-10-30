@@ -662,14 +662,14 @@
     <cfreturn result>
 </cffunction>
 
-    <!-- Function to get user details by ID, including related tables -->
+    <!--- Function to get user details by ID, including related tables --->
     <cffunction name="getUserById" access="public" returntype="struct" output="false" hint="Fetch user details by user ID along with related table data">
         <cfargument name="userId" type="numeric" required="true">
 
-        <!-- Initialize a struct to hold the user data -->
+        <!--- Initialize a struct to hold the user data --->
         <cfset var user = {}>
 
-        <!-- SQL Query to join all related tables and select all fields -->
+        <!--- SQL Query to join all related tables and select all fields --->
         <cfquery name="qUserDetails" >
             SELECT
                 u.*,  -- All fields from taousers
@@ -721,7 +721,7 @@
             WHERE u.userid = <cfqueryparam value="#arguments.userId#" cfsqltype="cf_sql_integer">
         </cfquery>
 
-        <!-- Map query result to a struct -->
+        <!--- Map query result to a struct --->
         <cfif qUserDetails.recordCount EQ 1>
              <cfset user = {
                 "user": {

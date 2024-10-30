@@ -26,7 +26,7 @@
 <cfoutput query="mennuItemsU">
     <li>
         <a href="/app/#mennuItemsU.compDir#/">
-            <i data-feather="#mennuItemsU.compIcon#"></i> <!-- Use 'compIcon' here to match query case -->
+            <i data-feather="#mennuItemsU.compIcon#"></i> <!--- Use 'compIcon' here to match query case --->
             <span>#mennuItemsU.compName#</span>
         </a>
     </li>
