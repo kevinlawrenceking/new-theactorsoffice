@@ -15,7 +15,7 @@
 </cfoutput>
 
 <div class="card-body">
-    <div class="row"><cfoutput>#myteam.recordcount#<Cfabort>
+    <div class="row"><cfoutput>#myteam.recordcount#</cfoutput><Cfabort>
         <!--- Loop through each member in the myteam query --->
         <cfloop query="myteam">
             <cfinclude template="/include/qry/findtag_97_1.cfm" />
