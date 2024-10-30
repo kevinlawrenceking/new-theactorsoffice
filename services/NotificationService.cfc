@@ -160,6 +160,41 @@
     
     <cfreturn result>
 </cffunction>
+
+<cffunction name="SELfunotifications_24639" access="public" returntype="query">
+    <cfargument name="userid" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
+            SELECT count(*) as nots_total
+            FROM funotifications n
+            INNER JOIN fusystemusers f ON f.suID = n.suID
+            INNER JOIN fusystems s ON s.systemID = f.systemID
+            INNER JOIN fuactions a ON a.actionID = n.actionID
+            INNER JOIN actionusers au ON a.actionID = au.actionID
+            INNER JOIN fuActionLinks l ON l.actionlinkid = a.actionlinkid
+            INNER JOIN notstatuses ns ON ns.notstatus = n.notStatus
+            INNER JOIN contactdetails c ON c.contactid = f.contactid
+            WHERE au.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            AND c.userid = au.userid
+            AND n.notstartdate IS NOT NULL
+            AND DATE(n.notstartdate) <= <cfqueryparam value="#DateFormat(Now(), 'yyyy-mm-dd')#" cfsqltype="CF_SQL_DATE">
+            AND n.notstatus = <cfqueryparam value="Pending" cfsqltype="CF_SQL_VARCHAR">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="errorLog" text="Error in getNotificationCount: #cfcatch.message# Query: #cfcatch.detail#">
+            <cfthrow message="Error executing query in getNotificationCount." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
+    
+    <cfreturn result>
+</cffunction>
+
+
+
 <cffunction name="SELnotifications_24351" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     <cfset var result = "">
