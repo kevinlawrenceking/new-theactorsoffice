@@ -32,7 +32,7 @@
                     </a>
                 </cfoutput>
             </div>
-xxx<Cfabort>
+ 
             <div class="col-md-9 col-lg-9">
                 <cfoutput>
                     <a href="/app/contact/?contactid=#myteam.contactid#&t1=1" class="" title="#myteam.contactname#">
@@ -55,4 +55,4 @@ xxx<Cfabort>
         </p>
     </div>
 </div><!--end card --->
-</div><cfabort>
+</div>xxxxx<cfabort>
