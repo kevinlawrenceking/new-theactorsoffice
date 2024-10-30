@@ -23,15 +23,15 @@
                         </a>
                     </div>
                 </li>
+<cfoutput query="mennuItemsU">
+    <li>
+        <a href="/app/#mennuItemsU.compDir#/">
+            <i data-feather="#mennuItemsU.compIcon#"></i> <!-- Use 'compIcon' here to match query case -->
+            <span>#mennuItemsU.compName#</span>
+        </a>
+    </li>
+</cfoutput>
 
-                <cfoutput query="mennuItemsU">
-                    <li>
-                        <a href="/app/#mennuItemsU.compDir#/">
-                            <i data-feather="#mennuItemsU.compicon#"></i>
-                            <span>#mennuItemsU.compName#</span>
-                        </a>
-                    </li>
-                </cfoutput>
 
                 <cfif userrole eq "Administrator">
                     <li>

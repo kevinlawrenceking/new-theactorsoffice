@@ -21,7 +21,8 @@
             WHERE 
                 c.menuYN = <cfqueryparam value="#arguments.menuYN#" cfsqltype="CF_SQL_CHAR"> 
                 AND c.compOwner = <cfqueryparam value="#arguments.compOwner#" cfsqltype="CF_SQL_CHAR"> 
-                AND c.appid <> <cfqueryparam value="#arguments.appid#" cfsqltype="CF_SQL_INTEGER"> 
+            AND c.appid = <cfqueryparam value="#arguments.appid#" cfsqltype="CF_SQL_INTEGER">
+
             ORDER BY 
                 c.menuOrder
         </cfquery>
