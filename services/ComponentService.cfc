@@ -5,8 +5,7 @@
     <cfargument name="appid" type="numeric" required="true">
 
     <cfset var result = "">
-    
-    <cftry>
+ 
         <cfquery name="result" datasource="abod">
             SELECT 
                 c.compID, 
@@ -26,12 +25,7 @@
             ORDER BY 
                 c.menuOrder
         </cfquery>
-        
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getFilteredPgComps: #cfcatch.message#">
-            <cfreturn queryNew("compID, compName, compIcon, compOwner, menuYN, compDir, menuOrder")>
-        </cfcatch>
-    </cftry>
+ 
 
     <cfreturn result>
 </cffunction>
