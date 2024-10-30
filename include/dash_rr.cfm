@@ -59,7 +59,7 @@
                     </div>
 
                     <!--- Check if there are any active reminders --->
-                    <cfif #notsactive.recordcount# is not "0">
+                    <cfif #reminders_total# is not "0">
                         <cfloop query="notsactive">
                             <cfoutput>
                                 <div class="col-md-12" style="padding-bottom:5px;">
