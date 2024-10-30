@@ -19,7 +19,7 @@
         <!--- Loop through each member in the myteam query --->
         <cfloop query="myteam">
             <cfinclude template="/include/qry/findtag_97_1.cfm" />
-<cfabort>
+
             <div class="col-md-2 col-lg-2" style="margin-top:7px;margin-left:7px;">
                 <cfoutput>
                     <a href="/app/contact/?contactid=#myteam.contactid#&t1=1" class="" title="#myteam.contactname#">
@@ -48,7 +48,7 @@
             </div>
         </cfloop>
     </div>
-
+<cfabort>
     <div class="col-md-12 col-lg-12">
         <p style="text-align:center;">
             <a href="/app/myaccount/?t2=1"><i class="mdi mdi-square-edit-outline"></i></a>
