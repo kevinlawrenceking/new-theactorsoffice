@@ -19,7 +19,7 @@
                     <cfinclude template="/include/qry/findtag_97_1.cfm" />
 
                          <div class="col-md-2 col-lg-2" style="margin-top:7px;margin-left:7px;">
-             <cfoutput>
+ 
                  <a href="/app/contact/?contactid=#myteam.contactid#&t1=1" class="" title="#myteam.contactname#">
                         <cfif #isimagefile("https://#host#.theactorsoffice.com#session.userContactsUrl#/#myteam.contactid#/avatar.jpg")# >
                      <img src="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg" style="width:30px;" alt="#myteam.contactname#" />
