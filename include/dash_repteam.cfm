@@ -17,9 +17,9 @@
 <div class="card-body">
     <div class="row">
         <!--- Loop through each member in the myteam query --->
-        <cfloop query="myteam"><cfabort>
+        <cfloop query="myteam">
             <cfinclude template="/include/qry/findtag_97_1.cfm" />
-
+<cfabort>
             <div class="col-md-2 col-lg-2" style="margin-top:7px;margin-left:7px;">
                 <cfoutput>
                     <a href="/app/contact/?contactid=#myteam.contactid#&t1=1" class="" title="#myteam.contactname#">
