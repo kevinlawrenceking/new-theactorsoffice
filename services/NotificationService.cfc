@@ -195,4 +195,17 @@
     </cftry>
 
     <cfreturn result>
-</cffunction></cfcomponent>
+</cffunction>
+    <cffunction name="getNotificationsByBatchlist" access="public" returntype="query" output="false" hint="Fetch notifications by batchlist">
+        <cfargument name="batchlist" type="string" required="true" hint="Comma-separated list of notification IDs"/>
+
+        <cfquery name="qNotifications" >
+            SELECT n.notID
+            FROM funotifications n
+            WHERE n.notid IN (#arguments.batchlist#)
+        </cfquery>
+
+        <cfreturn qNotifications>
+    </cffunction>
+
+</cfcomponent>
