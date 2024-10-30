@@ -1133,7 +1133,7 @@ function getContactRecordName(new_contactid) {
     <cfargument name="userId" type="numeric" required="true">
     <cfset var result = "">
     
-    <cftry>
+ 
         <cfquery name="result" datasource="abod">
             SELECT 
                 d.contactid, 
@@ -1155,12 +1155,7 @@ function getContactRecordName(new_contactid) {
             ORDER BY 
                 d.contactfullname
         </cfquery>
-        
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getActiveContacts: #cfcatch.message#">
-            <cfset result = queryNew("contactid,contactname,contactStatus", "integer,varchar,varchar")>
-        </cfcatch>
-    </cftry>
+
 
     <cfreturn result>
 </cffunction>

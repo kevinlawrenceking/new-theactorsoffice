@@ -48,11 +48,11 @@
             </div>
         </cfloop>
     </div>
-<cfabort>
+
     <div class="col-md-12 col-lg-12">
         <p style="text-align:center;">
             <a href="/app/myaccount/?t2=1"><i class="mdi mdi-square-edit-outline"></i></a>
         </p>
     </div>
 </div><!--end card --->
-</div>
+</div><cfabort>
