@@ -41,7 +41,7 @@
             <h5 class="m-0">
                 <a class="text-dark collapsed" data-bs-toggle="collapse" href="##collapse_system_#dashboards.currentrow#">
                     #dashboards.pnTitle# 
-                    (#numberformat(reminders.reminderstotal)#)
+                    (#numberformat(reminders_total)#)
                 </a>
             </h5>
         </div>

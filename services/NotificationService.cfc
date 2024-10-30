@@ -166,7 +166,7 @@
     
     <cfset var result = "">
     
-    <cftry>
+    <cftry>5
         <cfquery name="result" datasource="abod">
             SELECT count(*) as nots_total
             FROM funotifications n
