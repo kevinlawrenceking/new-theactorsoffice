@@ -2,24 +2,50 @@
 
 <cfinclude template="/include/qry/myteam_499_1.cfm" />
 
-<cfoutput>
-    <div class="card grid-item loaded" data-id="#dashboards.pnid#">
-        <div class="card-header" id="heading_system_#dashboards.currentrow#">
-            <h5 class="m-0">
-                <a class="text-dark collapsed" data-bs-toggle="collapse" href="##collapse_system_#dashboards.currentrow#">
-                    #dashboards.pnTitle#
-                </a>
-            </h5>
-        </div>
- 
-        <div id="collapse_system_#dashboards.currentrow#" class="card-body collapse">
-            <div class="row">
-                <!--- Loop through each member in the myteam query --->
-                <cfloop query="myteam">
-                    <cfinclude template="/include/qry/findtag_97_1.cfm" />
 
-                         <div class="col-md-2 col-lg-2" style="margin-top:7px;margin-left:7px;">
+
+
+<cfoutput>
+
+<div class="card grid-item loaded" data-id="#dashboards.pnid#" >
+
+    <div class="card-header" id="heading_system_#dashboards.currentrow#">
+
+        <h5 class="m-0">
+
+            <a class="text-dark collapsed" data-bs-toggle="collapse"  href="##collapse_system_#dashboards.currentrow#"  >
+
+                #dashboards.pnTitle# 
  
+            </a>
+
+        </h5>
+
+    </div>
+
+</cfoutput>
+
+    <div class="card-body">
+
+
+
+
+
+ <div class="row">
+
+
+
+
+     <cfloop query="myteam">
+
+
+    
+                  <cfinclude template="/include/qry/findtag_97_1.cfm" />
+             
+             
+
+         <div class="col-md-2 col-lg-2" style="margin-top:7px;margin-left:7px;">
+             <cfoutput>
                  <a href="/app/contact/?contactid=#myteam.contactid#&t1=1" class="" title="#myteam.contactname#">
                         <cfif #isimagefile("https://#host#.theactorsoffice.com#session.userContactsUrl#/#myteam.contactid#/avatar.jpg")# >
                      <img src="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg" style="width:30px;" alt="#myteam.contactname#" />
@@ -31,9 +57,10 @@
              </cfoutput>
          </div>
 
-
-
-  <div class="col-md-9 col-lg-9">
+             
+             
+             
+         <div class="col-md-9 col-lg-9">
              <cfoutput>
                  <a href="/app/contact/?contactid=#myteam.contactid#&t1=1" class="" title="#myteam.contactname#">
                      #myteam.contactname#
@@ -57,3 +84,4 @@
  </div><!--end card -->
 </div>
   
+           
