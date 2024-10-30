@@ -1,7 +1,7 @@
 <!--- This ColdFusion page displays a dashboard for reminders and allows users to complete or skip reminders based on their selection. --->
 <Cfset currentStartDate="#DateFormat(Now(),'yyyy-mm-dd')#" />  
 
-<cfinclude template="/include/qry/reminders_511_1.cfm" />
+<cfinclude template="/include/qry/reminders_511_1.cfm" /><cfabort>
 <cfinclude template="/include/qry/notsActive_511_2.cfm" />
 <cfinclude template="/include/qry/notsActives_461_1.cfm" />
 
