@@ -6,13 +6,12 @@
     <div class="card grid-item loaded" data-id="#dashboards.pnid#">
         <div class="card-header" id="heading_system_#dashboards.currentrow#">
             <h5 class="m-0">
-                <a class="text-dark collapsed" data-bs-toggle="collapse" href="#collapse_system_#dashboards.currentrow#">
+                <a class="text-dark collapsed" data-bs-toggle="collapse" href="##collapse_system_#dashboards.currentrow#">
                     #dashboards.pnTitle#
                 </a>
             </h5>
         </div>
-
-        <!-- Card Body with Collapse ID -->
+ 
         <div id="collapse_system_#dashboards.currentrow#" class="card-body collapse">
             <div class="row">
                 <!--- Loop through each member in the myteam query --->
