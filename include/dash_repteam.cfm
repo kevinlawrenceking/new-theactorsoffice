@@ -1,5 +1,5 @@
 <!--- This ColdFusion page displays a dashboard card with team member information and avatars. --->
-<cfabort>
+
 <cfinclude template="/include/qry/myteam_499_1.cfm" />
 
 <cfoutput>
@@ -17,7 +17,7 @@
 <div class="card-body">
     <div class="row">
         <!--- Loop through each member in the myteam query --->
-        <cfloop query="myteam">
+        <cfloop query="myteam"><cfabort>
             <cfinclude template="/include/qry/findtag_97_1.cfm" />
 
             <div class="col-md-2 col-lg-2" style="margin-top:7px;margin-left:7px;">
