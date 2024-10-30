@@ -845,12 +845,12 @@ function getDynamicQueryx(required numeric pgid) {
             SELECT
                 CASE 
                     WHEN l.linktype = 'css' THEN 
-                        CONCAT('<link href="', l.linkurl, '?ver=4', <cfqueryparam value="#arguments.version#" cfsqltype="cf_sql_varchar">, '" ', 
+                        CONCAT('<link href="', l.linkurl, '?ver=5', <cfqueryparam value="#arguments.version#" cfsqltype="cf_sql_varchar">, '" ', 
                                IF(l.rel IS NOT NULL, CONCAT('rel="', l.rel, '" '), ''), 
                                IF(l.hrefid IS NOT NULL, CONCAT('id="', l.hrefid, '" '), ''), 
                                'type="text/css" />')
                     WHEN l.linktype = 'script' THEN 
-                        CONCAT('<script src="', l.linkurl, '?ver=4', <cfqueryparam value="#arguments.version#" cfsqltype="cf_sql_varchar">, '"></script>')
+                        CONCAT('<script src="', l.linkurl, '?ver=5', <cfqueryparam value="#arguments.version#" cfsqltype="cf_sql_varchar">, '"></script>')
                     ELSE ''
                 END AS link_html,
                 l.linkloc_tb 
