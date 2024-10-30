@@ -129,6 +129,45 @@
         </cfcatch>
     </cftry>
 </cffunction>
+
+<cffunction name="getRemindersTotal" access="public" returntype="numeric">
+    <cfargument name="userID" type="numeric" required="true">
+    <cfset var remindersTotal = 0>
+    
+    <cftry>
+        <!-- Get the current date formatted as yyyy-mm-dd -->
+        <cfset var currentStartDate = DateFormat(Now(), 'yyyy-mm-dd')>
+
+        <cfquery name="reminders" datasource="yourDataSource">
+            SELECT count(*) AS reminderstotal
+            FROM funotifications n
+            INNER JOIN fusystemusers f ON f.suID = n.suID
+            INNER JOIN fusystems s ON s.systemID = f.systemID
+            INNER JOIN fuactions a ON a.actionID = n.actionID
+            INNER JOIN actionusers au ON a.actionID = au.actionID
+            INNER JOIN fuActionLinks l ON l.actionlinkid = a.actionlinkid
+            INNER JOIN notstatuses ns ON ns.notstatus = n.notStatus
+            INNER JOIN contactdetails c ON c.contactid = f.contactid
+            WHERE au.userid = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
+            AND c.userid = au.userid
+            AND n.notstartdate IS NOT NULL
+            AND DATE(n.notstartdate) <= <cfqueryparam value="#currentStartDate#" cfsqltype="CF_SQL_DATE">
+            AND n.notstatus = 'Pending'
+        </cfquery>
+
+        <!-- Set the result from the query -->
+        <cfset remindersTotal = reminders.reminderstotal>
+
+        <cfcatch type="any">
+            <cflog file="errorLog" text="Error in getRemindersTotal: #cfcatch.message#">
+        </cfcatch>
+    </cftry>
+
+    <cfreturn remindersTotal>
+</cffunction>
+
+
+
 <cffunction name="SELnotifications" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     <cfset var result = "">
