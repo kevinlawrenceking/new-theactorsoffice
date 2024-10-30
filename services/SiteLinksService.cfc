@@ -1,6 +1,6 @@
 <cfcomponent displayname="SiteLinksService" output="false" hint="Handles site links retrieval for specific panels.">
 
-    <!-- Function to get site links for a specific panel ID -->
+    <!--- Function to get site links for a specific panel ID --->
     <cffunction name="getSiteLinksByPanelId" access="public" returntype="query" output="false" hint="Retrieve site links for a specific panel ID.">
         <cfargument name="panelId" type="numeric" required="true" hint="The panel ID (pnid) for which to retrieve site links.">
 
@@ -23,7 +23,7 @@
         <cfreturn mylinks_user>
     </cffunction>
 
-    <!-- Function to get all URLs for a specific panel for the "Open All" button -->
+    <!--- Function to get all URLs for a specific panel for the "Open All" button --->
     <cffunction name="getAllUrlsByPanelId" access="public" returntype="string" output="false" hint="Retrieve all URLs for a specific panel for the 'Open All' button.">
         <cfargument name="panelId" type="numeric" required="true" hint="The panel ID for which to retrieve all URLs.">
 
@@ -37,7 +37,7 @@
         <cfreturn allUrls.siteurl_list>
     </cffunction>
 
-    <!-- New Function to get link details by link ID -->
+    <!--- New Function to get link details by link ID --->
     <cffunction name="getLinkDetailsById" access="public" returntype="query" output="false" hint="Retrieve link details for a specific link ID.">
         <cfargument name="linkId" type="numeric" required="true" hint="The ID of the link to retrieve details for.">
 
@@ -60,7 +60,7 @@
         <cfreturn linkdetails>
     </cffunction>
 
- <!-- Function to handle duplicate check and update site details in one query -->
+ <!--- Function to handle duplicate check and update site details in one query --->
     <cffunction name="updateSiteLinkDetails" access="public" returntype="void" output="false" hint="Check for duplicate sitenames and update site link details">
         <cfargument name="new_id" type="numeric" required="true" hint="ID of the site link to update">
         <cfargument name="userid" type="numeric" required="true" hint="User ID">
@@ -69,13 +69,13 @@
         <cfargument name="new_iscustom" type="numeric" required="true" hint="Indicates if the site is custom">
         <cfargument name="deletelink" type="numeric" required="true" hint="Indicates if the site link should be deleted">
         
-        <!-- Correct the URL format -->
+        <!--- Correct the URL format --->
         <cfset var corrected_new_siteurl = new_siteurl>
         <cfif left(new_siteurl, 8) neq "https://" and left(new_siteurl, 7) neq "http://">
             <cfset corrected_new_siteurl = "https://" & new_siteurl />
         </cfif>
 
-<!-- Step 1: Get the duplicate count (if there are any duplicates) -->
+<!--- Step 1: Get the duplicate count (if there are any duplicates) --->
 <cfquery name="duplicateCount">
     SELECT COUNT(*) AS duplicateCount
     FROM sitelinks_user
@@ -84,7 +84,7 @@
     AND id <> <cfqueryparam value="#arguments.new_id#" cfsqltype="cf_sql_integer">
 </cfquery>
 
-<!-- Step 2: Use the duplicate count in the update query -->
+<!--- Step 2: Use the duplicate count in the update query --->
 <cfquery name="updateSiteLink">
     UPDATE sitelinks_user
     SET 
@@ -104,7 +104,7 @@
 </cfquery>
 </cffunction>
 
-    <!-- Function to update sitelinks_user table dynamically based on passed variables -->
+    <!--- Function to update sitelinks_user table dynamically based on passed variables --->
     <cffunction name="updateSiteLink" access="public" returntype="void" output="false" hint="Updates the sitelinks_user table dynamically based on available arguments.">
         <cfargument name="new_id" type="numeric" required="true" hint="ID of the site link to update">
         <cfargument name="new_sitename" type="string" required="false" hint="New site name">
@@ -116,7 +116,7 @@
         <cfargument name="ver" type="integer" required="false" hint="Version number">
         <cfargument name="new_siteicon_url" type="string" required="false" hint="New site icon URL">
 
-        <!-- Query to update sitelinks_user with conditional updates -->
+        <!--- Query to update sitelinks_user with conditional updates --->
         <cfquery name="updateSiteLink">
             UPDATE sitelinks_user
             SET siteName = <cfqueryparam value="#arguments.new_sitename#" cfsqltype="cf_sql_varchar">
@@ -147,11 +147,11 @@
 
     </cffunction>
 
-<!-- Function to get sitetypeid and sitetypename for a specific panel ID (pnid) -->
+<!--- Function to get sitetypeid and sitetypename for a specific panel ID (pnid) --->
 <cffunction name="getSiteTypeDetailsByPanelId" access="public" returntype="struct" output="false" hint="Retrieve the sitetypeid and sitetypename for a specific panel ID (pnid).">
     <cfargument name="new_pnid" type="numeric" required="true" hint="The panel ID (pnid) for which to retrieve sitetypeid and sitetypename.">
     
-    <!-- Query to retrieve sitetypeid and sitetypename -->
+    <!--- Query to retrieve sitetypeid and sitetypename --->
     <cfquery name="siteTypeQuery">
         SELECT su.sitetypeid, su.sitetypename, p.pntitle
         FROM sitetypes_user su
@@ -160,22 +160,22 @@
         LIMIT 1
     </cfquery>
 
-    <!-- Create a structure to return both values -->
+    <!--- Create a structure to return both values --->
     <cfset var siteTypeDetails = structNew()>
 
-    <!-- Check if the record exists and populate the structure -->
+    <!--- Check if the record exists and populate the structure --->
     <cfif siteTypeQuery.recordcount gt 0>
         <cfset siteTypeDetails.sitetypeid = siteTypeQuery.sitetypeid>
         <cfset siteTypeDetails.sitetypename = siteTypeQuery.sitetypename>
          <cfset siteTypeDetails.pntitle = siteTypeQuery.pntitle>
     <cfelse>
-        <!-- Return 0 for sitetypeid and empty string for sitetypename if no result found -->
+        <!--- Return 0 for sitetypeid and empty string for sitetypename if no result found --->
         <cfset siteTypeDetails.sitetypeid = 0>
         <cfset siteTypeDetails.sitetypename = "">
            <cfset siteTypeDetails.pntitle = "">
     </cfif>
 
-    <!-- Return the structure -->
+    <!--- Return the structure --->
     <cfreturn siteTypeDetails>
 </cffunction>
 
