@@ -1,11 +1,11 @@
 <cfcomponent displayname="ContactImportService" hint="Handles operations for ContactImport table" output="false"> 
-<cffunction name="getContactsByUploadId" access="public" returntype="query">
+<cffunction name="DETcontactsimport" access="public" returntype="query">
     <cfargument name="uploadid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT contactid 
             FROM contactsimport 
             WHERE uploadid = <cfqueryparam value="#arguments.uploadid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -20,7 +20,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertContactImport" access="public" returntype="void">
+<cffunction name="INScontactsimport" access="public" returntype="void">
     <cfargument name="importData" type="struct" required="true">
     <cfargument name="newUploadId" type="numeric" required="true">
 
@@ -426,13 +426,13 @@
 
 
 
-<cffunction name="getContactsImportByUploadId" access="public" returntype="query">
+<cffunction name="SELcontactsimport" access="public" returntype="query">
     <cfargument name="uploadId" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM contactsimport
             WHERE uploadid = <cfqueryparam value="#arguments.uploadId#" cfsqltype="CF_SQL_INTEGER">
@@ -446,7 +446,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="updateContactStatus" access="public" returntype="void">
+<cffunction name="UPDCONTACTSIMPORT" access="public" returntype="void">
     <cfargument name="new_status" type="string" required="true">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="id" type="numeric" required="true">
@@ -465,13 +465,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getContactsImport" access="public" returntype="query">
+<cffunction name="SELcontactsimport_24403" access="public" returntype="query">
     <cfargument name="new_uploadid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM contactsimport
             WHERE uploadid = <cfqueryparam value="#arguments.new_uploadid#" cfsqltype="CF_SQL_INTEGER">
@@ -488,13 +488,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getContactsImport" access="public" returntype="query">
+<cffunction name="SELcontactsimport_24405" access="public" returntype="query">
     <cfargument name="new_uploadid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM contactsimport 
             WHERE uploadid = <cfqueryparam value="#arguments.new_uploadid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -511,13 +511,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getContactsImport" access="public" returntype="query">
+<cffunction name="SELcontactsimport_24407" access="public" returntype="query">
     <cfargument name="new_uploadid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM contactsimport
             WHERE uploadid = <cfqueryparam value="#arguments.new_uploadid#" cfsqltype="CF_SQL_INTEGER">
@@ -534,13 +534,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getFilteredContactsImport" access="public" returntype="query">
+<cffunction name="SELcontactsimport_24409" access="public" returntype="query">
     <cfargument name="new_uploadid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM contactsimport
             WHERE uploadid = <cfqueryparam value="#arguments.new_uploadid#" cfsqltype="CF_SQL_INTEGER">
@@ -557,13 +557,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getFilteredContactsImport" access="public" returntype="query">
+<cffunction name="SELcontactsimport_24411" access="public" returntype="query">
     <cfargument name="new_uploadid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM contactsimport 
             WHERE uploadid = <cfqueryparam value="#arguments.new_uploadid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -580,12 +580,12 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getFilteredContactsImport" access="public" returntype="query">
+<cffunction name="SELcontactsimport_24413" access="public" returntype="query">
     <cfargument name="new_uploadid" type="numeric" required="true">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM contactsimport
             WHERE uploadid = <cfqueryparam value="#arguments.new_uploadid#" cfsqltype="CF_SQL_INTEGER">
@@ -602,12 +602,12 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getContactsImport" access="public" returntype="query">
+<cffunction name="SELcontactsimport_24415" access="public" returntype="query">
     <cfargument name="new_uploadid" type="numeric" required="true">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM contactsimport 
             WHERE uploadid = <cfqueryparam value="#arguments.new_uploadid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -624,12 +624,12 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getContactsImport" access="public" returntype="query">
+<cffunction name="SELcontactsimport_24417" access="public" returntype="query">
     <cfargument name="new_uploadid" type="numeric" required="true">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM contactsimport
             WHERE uploadid = <cfqueryparam value="#arguments.new_uploadid#" cfsqltype="CF_SQL_INTEGER">
@@ -645,7 +645,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getContactsImport" access="public" returntype="query">
+<cffunction name="SELcontactsimport_24419" access="public" returntype="query">
     <cfargument name="new_uploadid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -668,13 +668,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getContactsImport" access="public" returntype="query">
+<cffunction name="SELcontactsimport_24421" access="public" returntype="query">
     <cfargument name="new_uploadid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM contactsimport 
             WHERE uploadid = <cfqueryparam value="#arguments.new_uploadid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -691,13 +691,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getContactsImportByUploadId" access="public" returntype="query">
+<cffunction name="SELcontactsimport_24423" access="public" returntype="query">
     <cfargument name="new_uploadid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM contactsimport 
             WHERE uploadid = <cfqueryparam value="#arguments.new_uploadid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -712,13 +712,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getContactsImport" access="public" returntype="query">
+<cffunction name="SELcontactsimport_24425" access="public" returntype="query">
     <cfargument name="new_uploadid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM contactsimport
             WHERE uploadid = <cfqueryparam value="#arguments.new_uploadid#" cfsqltype="CF_SQL_INTEGER">
@@ -735,13 +735,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getUploadData" access="public" returntype="query">
+<cffunction name="SELcontactsimport_24668" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 u.uploadid, 
                 u.`timestamp`, 

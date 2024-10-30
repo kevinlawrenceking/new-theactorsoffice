@@ -1,5 +1,5 @@
 <cfcomponent displayname="UpdateLogService" hint="Handles operations for UpdateLog table" output="false"> 
-<cffunction name="insertUpdateLog" access="public" returntype="void">
+<cffunction name="INSupdatelog" access="public" returntype="void">
     <cfargument name="oldvalue" type="string" required="true">
     <cfargument name="newvalue" type="string" required="true">
     <cfargument name="recordname" type="string" required="true">
@@ -30,13 +30,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getUpdateLog" access="public" returntype="query">
+<cffunction name="RESupdatelog" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 u.updateID, 
                 u.oldValue, 

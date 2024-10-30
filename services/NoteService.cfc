@@ -1,5 +1,5 @@
 <cfcomponent displayname="NoteService" hint="Handles operations for Note table" output="false"> 
-<cffunction name="insertNoteLog" access="public" returntype="void">
+<cffunction name="INSnoteslog" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="newcontactid" type="numeric" required="true">
     <cfargument name="newnoteDetails" type="string" required="true">
@@ -19,7 +19,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="deleteNoteById" access="public" returntype="void" hint="Deletes a note by its ID">
+<cffunction name="DELnoteslog" access="public" returntype="void" hint="Deletes a note by its ID">
     <cfargument name="noteid" type="numeric" required="true" hint="ID of the note to delete">
 
     <cftry>
@@ -34,7 +34,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="deleteNoteById" access="public" returntype="void">
+<cffunction name="DELnoteslog_23709" access="public" returntype="void">
     <cfargument name="noteId" type="numeric" required="true">
     
     <cftry>
@@ -49,7 +49,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertNoteLog" access="public" returntype="void">
+<cffunction name="INSnoteslog_23730" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_eventid" type="numeric" required="true">
     <cfargument name="noteDetails" type="string" required="true">
@@ -71,7 +71,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getNotesLogByNoteId" access="public" returntype="query">
+<cffunction name="SELnoteslog" access="public" returntype="query">
     <cfargument name="noteid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -91,11 +91,11 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="updateNoteIsDeleted" access="public" returntype="void">
+<cffunction name="UPDnoteslog" access="public" returntype="void">
     <cfargument name="recid" type="numeric" required="true">
     
     <cftry>
-        <cfquery datasource="yourDataSource">
+        <cfquery datasource="abod">
             UPDATE noteslog_tbl 
             SET isdeleted = 1 
             WHERE noteid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
@@ -108,7 +108,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertNotesLog" access="public" returntype="void" output="false">
+<cffunction name="INSnoteslog_23966" access="public" returntype="void" output="false">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="noteDetails" type="string" required="true">
@@ -134,7 +134,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateNotesLog" access="public" returntype="void">
+<cffunction name="UPDnoteslog_23967" access="public" returntype="void">
     <cfargument name="noteDetailsHtml" type="string" required="true">
     
     <cfset var sql = "">
@@ -150,7 +150,7 @@
         <cfset arrayAppend(params, {value=arguments.noteDetailsHtml, cfsqltype="CF_SQL_LONGVARCHAR"})>
         <cfset arrayAppend(params, {value='%' & arguments.noteDetailsHtml & '%', cfsqltype="CF_SQL_LONGVARCHAR"})>
         
-        <cfquery name="updateQuery" datasource="yourDataSource">
+        <cfquery name="updateQuery" datasource="abod">
             #sql#
             <cfloop array="#params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
@@ -162,7 +162,7 @@
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertNoteLog" access="public" returntype="void">
+<cffunction name="INSnoteslog_23969" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="noteDetails" type="string" required="true">
@@ -188,7 +188,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertNoteLog" access="public" returntype="void">
+<cffunction name="INSnoteslog_23972" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="noteDetails" type="string" required="true">
@@ -212,7 +212,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateNotesLog" access="public" returntype="void">
+<cffunction name="UPDnoteslog_23974" access="public" returntype="void">
     <cfargument name="noteDetails" type="string" required="true">
     <cfargument name="new_noteText" type="string" required="true">
     <cfargument name="isPublic" type="boolean" required="true">
@@ -234,7 +234,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateNotesLog" access="public" returntype="void" output="false">
+<cffunction name="UPDnoteslog_23980" access="public" returntype="void" output="false">
     <cfargument name="noteDetails" type="string" required="true">
     <cfargument name="isPublic" type="boolean" required="true">
     <cfargument name="noteid" type="numeric" required="true">
@@ -255,14 +255,14 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getNotesLog" access="public" returntype="query">
+<cffunction name="SELnoteslog_23987" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     <cfargument name="eventID" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 n.noteID, 
                 n.noteTimestamp, 
@@ -295,7 +295,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getNoteDetails" access="public" returntype="query">
+<cffunction name="DETnoteslog" access="public" returntype="query">
     <cfargument name="updateNoteID" type="numeric" required="true">
     <cfset var result = "">
     
@@ -325,7 +325,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertNoteLog" access="public" returntype="void">
+<cffunction name="INSnoteslog_24319" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="noteDetails" type="string" required="true">
@@ -349,7 +349,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertNoteLog" access="public" returntype="void">
+<cffunction name="INSnoteslog_24373" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="noteDetails" type="string" required="true">
     <cfargument name="new_audprojectid" type="numeric" required="true">
@@ -371,7 +371,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getNotesLog" access="public" returntype="query">
+<cffunction name="SELnoteslog_24400" access="public" returntype="query">
     <cfargument name="select_userid" type="numeric" required="true">
     <cfargument name="select_contactid" type="numeric" required="true">
     <cfargument name="noteDetailsPrefix" type="string" required="true">
@@ -379,7 +379,7 @@
     <cfset var result = "">
 
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM noteslog 
             WHERE userid = <cfqueryparam value="#arguments.select_userid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -394,7 +394,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="insertNoteLog" access="public" returntype="void">
+<cffunction name="INSnoteslog_24401" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="noteDetails" type="string" required="true">
@@ -416,13 +416,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getNotesLog" access="public" returntype="query">
+<cffunction name="SELnoteslog_24698" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 n.noteID, 
                 n.noteTimestamp, 
@@ -453,14 +453,14 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getNotesLog" access="public" returntype="query">
+<cffunction name="SELnoteslog_24700" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     <cfargument name="contactID" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 n.noteID, 
                 n.noteid AS recid, 
@@ -491,14 +491,14 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getNotesLog" access="public" returntype="query">
+<cffunction name="SELnoteslog_24702" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     <cfargument name="eventID" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 n.noteID, 
                 n.noteTimestamp, 
@@ -529,14 +529,14 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getNotesLog" access="public" returntype="query">
+<cffunction name="SELnoteslog_24704" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     <cfargument name="contactID" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 n.noteID, 
                 n.noteid AS recid, 

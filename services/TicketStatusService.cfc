@@ -1,5 +1,5 @@
 <cfcomponent displayname="TicketStatusService" hint="Handles operations for TicketStatus table" output="false"> 
-<cffunction name="getTicketStatuses" access="public" returntype="query">
+<cffunction name="SELticketstatuses" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
     <cfset var result = "">
     <cfset var sql = "SELECT ticketstatus AS id, ticketstatus AS name FROM ticketstatuses">
@@ -24,7 +24,7 @@
 
     <!--- Execute the query with error handling --->
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             #sql#
             <cfloop array="#params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
@@ -39,7 +39,7 @@
     <!--- Return the query result --->
     <cfreturn result>
 </cffunction>
-<cffunction name="getTicketStatuses" access="public" returntype="query">
+<cffunction name="SELticketstatuses_24766" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
     <cfset var queryResult = "">
     <cfset var sql = "SELECT ticketstatus AS name FROM ticketstatuses">
@@ -59,7 +59,7 @@
 
     <!--- Execute query with error handling --->
     <cftry>
-        <cfquery name="queryResult" datasource="yourDataSource">
+        <cfquery name="queryResult" datasource="abod">
             #sql##whereClause#
             <cfloop array="#paramList#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
@@ -73,7 +73,7 @@
 
     <cfreturn queryResult>
 </cffunction>
-<cffunction name="getTicketStatuses" access="public" returntype="query">
+<cffunction name="SELticketstatuses_24781" access="public" returntype="query">
     <cfargument name="status" type="string" required="false">
     
     <cfset var result = "">
@@ -104,7 +104,7 @@
             <cfset arrayAppend(params, {value=arguments.status, cfsqltype="CF_SQL_VARCHAR"})>
         </cfif>
 
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             #sql#
             <cfloop array="#params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">

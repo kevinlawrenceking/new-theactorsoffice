@@ -1,5 +1,5 @@
 <cfcomponent displayname="TagsUserService" hint="Handles operations for TagsUser table" output="false"> 
-<cffunction name="getUserTags" access="public" returntype="query">
+<cffunction name="SELtags_user" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfset var result = "">
     
@@ -21,13 +21,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getUserTags" access="public" returntype="query">
+<cffunction name="SELtags_user_23804" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT tagname AS col1
             FROM tags_user
             WHERE userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
@@ -42,13 +42,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getUserTags" access="public" returntype="query">
+<cffunction name="SELtags_user_23844" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT tagid, tagname 
             FROM tags_user 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -63,14 +63,14 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getTagsUser" access="public" returntype="query">
+<cffunction name="SELtags_user_24047" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="tagtypes" type="string" required="false" default="">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM tags_user 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
@@ -88,13 +88,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getUserTags" access="public" returntype="query">
+<cffunction name="SELtags_user_24063" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM tags_user
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
@@ -109,14 +109,14 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getUserTags" access="public" returntype="query">
+<cffunction name="SELtags_user_24324" access="public" returntype="query">
     <cfargument name="new_valuetext" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM tags_user
             WHERE tagname = <cfqueryparam value="#left(arguments.new_valuetext, 40)#" cfsqltype="CF_SQL_VARCHAR">
@@ -131,7 +131,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="insertTagUser" access="public" returntype="void">
+<cffunction name="INStags_user" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_valuetext" type="string" required="true">
 
@@ -152,13 +152,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getUserTags" access="public" returntype="query">
+<cffunction name="SELtags_user_24328" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM tags_user
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
@@ -173,7 +173,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="updateTagsUserTbl" access="public" returntype="void">
+<cffunction name="UPDtags_user" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="tagname" type="string" required="true">
 
@@ -192,13 +192,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getContactIdByTag" access="public" returntype="query">
+<cffunction name="SELtags_user_24341" access="public" returntype="query">
     <cfargument name="new_contactid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT d.contactid 
             FROM tags_user tu 
             INNER JOIN taousers u ON u.userid = tu.userid 
@@ -219,14 +219,14 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getTagsUser" access="public" returntype="query">
+<cffunction name="SELtags_user_24457" access="public" returntype="query">
     <cfargument name="tagname" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM tags_user 
             WHERE tagname = <cfqueryparam value="#arguments.tagname#" cfsqltype="CF_SQL_VARCHAR"> 
@@ -241,7 +241,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="insertTagUser" access="public" returntype="void">
+<cffunction name="INStags_user_24458" access="public" returntype="void">
     <cfargument name="tagname" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="tagtype" type="string" required="true">
@@ -261,11 +261,11 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateUserTags" access="public" returntype="void">
+<cffunction name="UPDtags_user_24459" access="public" returntype="void">
     <cfargument name="select_userid" type="numeric" required="true">
     
     <cftry>
-        <cfquery datasource="yourDataSource" name="updateQuery">
+        <cfquery datasource="abod" name="updateQuery">
             UPDATE tags_user 
             SET IsTeam = 1 
             WHERE userid = <cfqueryparam value="#arguments.select_userid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -282,7 +282,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateTagsUser" access="public" returntype="void">
+<cffunction name="UPDtags_user_24460" access="public" returntype="void">
     <cfargument name="select_userid" type="numeric" required="true">
     
     <cfset var sql = "">
@@ -302,7 +302,7 @@
         
         <cfset arrayAppend(params, {value=arguments.select_userid, cfsqltype="CF_SQL_INTEGER"})>
         
-        <cfquery name="updateQuery" datasource="yourDataSource">
+        <cfquery name="updateQuery" datasource="abod">
             #sql#
             <cfloop array="#params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
@@ -315,12 +315,12 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getUserTags" access="public" returntype="query">
+<cffunction name="SELtags_user_24765" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     <cfset var queryResult = "">
     
     <cftry>
-        <cfquery name="queryResult" datasource="yourDataSource">
+        <cfquery name="queryResult" datasource="abod">
             SELECT tagname 
             FROM tags_user 
             WHERE userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 

@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset eventService = createObject("component", "/services/EventService")>
-    <cfset eventService.insertEvent(
+    <cfset variables.eventService = new "/services/EventService.cfc"()>
+    <cfset variables.result = variables.eventService.INSevents(
         eventTitle = eventTitle,
         eventTypeName = eventTypeName,
         eventDescription = eventDescription,
@@ -13,7 +13,9 @@
         endRecur = endRecur,
         userid = userid
     )>
-    <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in add_14_1.cfm] #cfcatch.message#" type="error">
-    </cfcatch>
+    <!--- Update the database to set isfetch = 1 --->
+    <!--- Example: <cfquery>UPDATE some_table SET isfetch = 1 WHERE condition</cfquery> --->
+<cfcatch type="any">
+    <cflog file="errorLog" text="[Error in add_14_1.cfm] #cfcatch.message#" type="error">
+</cfcatch>
 </cftry>

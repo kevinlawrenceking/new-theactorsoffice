@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset ticketme = createObject("component", "services.TicketTestUserService").getTicketTestUsers(
+    <cfset ticketme = createObject("component", "services.TicketTestUserService").SELtickettestusers_24475(
         recid = results.recid,
         userid = session.userid
     )>

@@ -1,5 +1,5 @@
 <cfcomponent displayname="UserService" hint="Handles operations for User table" output="false"> 
-<cffunction name="getActiveUserTickets" access="public" returntype="query">
+<cffunction name="SELtaousers" access="public" returntype="query">
     <cfargument name="ticketActive" type="string" required="true">
     
     <cfset var qResult = "">
@@ -29,13 +29,13 @@
     
     <cfreturn qResult>
 </cffunction>
-<cffunction name="getActiveTicketTypes" access="public" returntype="query">
+<cffunction name="SELtaousers_23718" access="public" returntype="query">
     <cfargument name="ticketActive" type="string" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT DISTINCT t.tickettype
             FROM taousers u
             INNER JOIN tickets t ON u.userID = t.userid
@@ -51,13 +51,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getTicketTestUsers" access="public" returntype="query">
+<cffunction name="SELtaousers_23721" access="public" returntype="query">
     <cfargument name="ticketId" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 tu.id, 
                 tu.ticketid, 
@@ -81,7 +81,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="updateUserViewType" access="public" returntype="void">
+<cffunction name="UPDtaousers" access="public" returntype="void">
     <cfargument name="view" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
@@ -110,7 +110,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getUserDetails" access="public" returntype="query">
+<cffunction name="SELtaousers_23842" access="public" returntype="query">
     <cfargument name="select_userid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -140,7 +140,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="updateUserAccessToken" access="public" returntype="void">
+<cffunction name="UPDtaousers_23911" access="public" returntype="void">
     <cfargument name="accessToken" type="string" required="true">
     <cfargument name="userId" type="numeric" required="true">
 
@@ -157,7 +157,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateUser" access="public" returntype="void">
+<cffunction name="UPDtaousers_23945" access="public" returntype="void">
     <cfargument name="new_userfirstname" type="string" required="true">
     <cfargument name="new_userlastname" type="string" required="true">
     <cfargument name="new_avatarname" type="string" required="true">
@@ -179,7 +179,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateUserNewsletter" access="public" returntype="void">
+<cffunction name="UPDtaousers_23950" access="public" returntype="void">
     <cfargument name="new_nletter_link" type="string" required="true">
     <cfargument name="new_nletter_yn" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
@@ -197,7 +197,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateUserDetails" access="public" returntype="void">
+<cffunction name="UPDtaousers_23951" access="public" returntype="void">
     <cfargument name="calstarttime" type="date" required="true">
     <cfargument name="calendtime" type="date" required="true">
     <cfargument name="defRows" type="numeric" required="true">
@@ -224,13 +224,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getContactIdByUserId" access="public" returntype="query">
+<cffunction name="SELtaousers_23956" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
 
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT contactid 
             FROM taousers 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
@@ -243,7 +243,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="updateUserTokens" access="public" returntype="void">
+<cffunction name="UPDtaousers_23989" access="public" returntype="void">
     <cfargument name="accesstoken" type="string" required="true">
     <cfargument name="refreshToken" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
@@ -262,7 +262,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateUserAccessToken" access="public" returntype="void" hint="Updates the access token for a user based on their userid.">
+<cffunction name="UPDtaousers_23990" access="public" returntype="void" hint="Updates the access token for a user based on their userid.">
     <cfargument name="accessToken" type="string" required="true" hint="The new access token to be set.">
     <cfargument name="userid" type="numeric" required="true" hint="The ID of the user whose access token is to be updated.">
 
@@ -278,7 +278,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getUserDetails" access="public" returntype="query">
+<cffunction name="SELtaousers_23998" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     
     <cfset var result = "">
@@ -317,12 +317,12 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="updateUserAvatar" access="public" returntype="void">
+<cffunction name="UPDtaousers_23999" access="public" returntype="void">
     <cfargument name="userFirstName" type="string" required="true">
     <cfargument name="userId" type="numeric" required="true">
 
     <cftry>
-        <cfquery name="updateAvatar" datasource="yourDataSource">
+        <cfquery name="updateAvatar" datasource="abod">
             UPDATE taousers 
             SET avatarname = <cfqueryparam value="#arguments.userFirstName#" cfsqltype="CF_SQL_VARCHAR">
             WHERE userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
@@ -334,7 +334,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateUserContact" access="public" returntype="void">
+<cffunction name="UPDtaousers_24001" access="public" returntype="void">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
@@ -351,13 +351,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getUserDetails" access="public" returntype="query">
+<cffunction name="SELtaousers_24002" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 u.userid, 
                 u.recordname, 
@@ -390,7 +390,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getUserDetails" access="public" returntype="query">
+<cffunction name="SELtaousers_24072" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfset var result = "">
     
@@ -413,12 +413,12 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getUserById" access="public" returntype="query">
+<cffunction name="DETtaousers" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfset var result = "">
 
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM taousers 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
@@ -432,7 +432,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getLatestUserId" access="public" returntype="query">
+<cffunction name="SELtaousers_24142" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
     
     <cfset var queryResult = "">
@@ -470,7 +470,7 @@
 
     <cfreturn queryResult>
 </cffunction>
-<cffunction name="getUserRecords" access="public" returntype="query">
+<cffunction name="SELtaousers_24158" access="public" returntype="query">
     <cfargument name="recordName" type="string" required="false">
     
     <cfset var result = "">
@@ -488,7 +488,7 @@
     
     <!--- Execute the query with error handling --->
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             #sql#
             <cfif len(whereClause)>
                 <cfqueryparam value="#arguments.recordName#" cfsqltype="CF_SQL_VARCHAR">
@@ -504,7 +504,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getUsersWithShares" access="public" returntype="query">
+<cffunction name="SELtaousers_24306" access="public" returntype="query">
     <cfargument name="userIds" type="array" required="true">
     
     <cfset var result = "">
@@ -557,13 +557,13 @@
     </cftry>
 
 </cffunction>
-<cffunction name="getUserDetails" access="public" returntype="query">
+<cffunction name="SELtaousers_24432" access="public" returntype="query">
     <cfargument name="select_userid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 users.userid, 
                 users.recordname, 
@@ -587,13 +587,13 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getUserById" access="public" returntype="query">
+<cffunction name="SELtaousers_24461" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM taousers 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
@@ -607,13 +607,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getUserByEmail" access="public" returntype="query">
+<cffunction name="SELtaousers_24759" access="public" returntype="query">
     <cfargument name="userEmail" type="string" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 u.userid, 
                 u.userFirstName, 
@@ -634,13 +634,13 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getUserDetailsByEmail" access="public" returntype="query">
+<cffunction name="SELtaousers_24760" access="public" returntype="query">
     <cfargument name="userEmail" type="string" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 u.userid, 
                 u.userFirstName, 

@@ -1,5 +1,5 @@
 <cfcomponent displayname="ExportItemService" hint="Handles operations for ExportItem table" output="false"> 
-<cffunction name="insertExportItem" access="public" returntype="void">
+<cffunction name="INSexportitems" access="public" returntype="void">
     <cfargument name="new_exportid" type="numeric" required="true">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="new_FirstName" type="string" required="false" default="">
@@ -90,13 +90,13 @@
         </cftag>
         
 <|vq_10762|>
-<cffunction name="getExportItems" access="public" returntype="query">
+<cffunction name="SELexportitems" access="public" returntype="query">
     <cfargument name="exportID" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 contactid AS ID, 
                 FirstName, 

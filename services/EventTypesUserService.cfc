@@ -1,5 +1,5 @@
 <cfcomponent displayname="EventTypesUserService" hint="Handles operations for EventTypesUser table" output="false"> 
-<cffunction name="getEventTypeById" access="public" returntype="query">
+<cffunction name="DETeventtypes_user" access="public" returntype="query">
     <cfargument name="id" type="numeric" required="true">
     
     <cfset var result = "">
@@ -19,7 +19,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="updateEventTypeUser" access="public" returntype="void">
+<cffunction name="UPDeventtypes_user" access="public" returntype="void">
     <cfargument name="id" type="numeric" required="true">
     <cfargument name="new_eventtypecolor" type="string" required="true">
     <cfargument name="deletelink" type="boolean" required="false" default=false>
@@ -58,14 +58,14 @@
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getEventTypesByUser" access="public" returntype="query">
+<cffunction name="SELeventtypes_user" access="public" returntype="query">
     <cfargument name="eventTypeName" type="string" required="true">
     <cfargument name="userId" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT eventTypeName, eventtypedescription, eventtypecolor
             FROM eventtypes_user
             WHERE eventTypeName = <cfqueryparam value="#arguments.eventTypeName#" cfsqltype="CF_SQL_VARCHAR">
@@ -80,7 +80,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="insertEventTypeUser" access="public" returntype="void">
+<cffunction name="INSeventtypes_user" access="public" returntype="void">
     <cfargument name="eventTypeName" type="string" required="true">
     <cfargument name="eventtypedescription" type="string" required="true">
     <cfargument name="eventtypecolor" type="string" required="true">
@@ -104,14 +104,14 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getEventTypesForUser" access="public" returntype="query">
+<cffunction name="SELeventtypes_user_24484" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="isAuditionModule" type="boolean" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT eventtypename 
             FROM eventtypes_user 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER" />
@@ -129,12 +129,12 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getEventTypesByUser" access="public" returntype="query">
+<cffunction name="SELeventtypes_user_24486" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT eventtypename 
             FROM eventtypes_user 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -149,7 +149,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getUserEventTypes" access="public" returntype="query">
+<cffunction name="SELeventtypes_user_24619" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     
     <cfset var result = "">
@@ -179,13 +179,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getUserEventTypes" access="public" returntype="query">
+<cffunction name="SELeventtypes_user_24661" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 id, 
                 eventtypename, 

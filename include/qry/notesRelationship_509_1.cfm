@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset notesRelationship = createObject("component", "services.NoteService").getNotesLog(
+    <cfset notesRelationship = createObject("component", "services.NoteService").SELnoteslog_24704(
         userID = session.userid,
         contactID = contactid
     )>

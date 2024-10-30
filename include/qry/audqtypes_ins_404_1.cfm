@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset variables.auditionQuestionTypeService = new "/services/AuditionQuestionTypeService.cfc"()>
-    <cfset variables.auditionQuestionTypeService.updateAudQTypes(
+    <cfset variables.auditionQuestionTypeService = createObject("component", "/services/AuditionQuestionTypeService")>
+    <cfset variables.auditionQuestionTypeService.UPDaudqtypes(
         new_qtype = new_qtype,
         new_isDeleted = new_isDeleted,
         new_qtypeid = new_qtypeid

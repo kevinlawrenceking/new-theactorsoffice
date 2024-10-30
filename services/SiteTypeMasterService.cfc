@@ -1,11 +1,11 @@
 <cfcomponent displayname="SiteTypeMasterService" hint="Handles operations for SiteTypeMaster table" output="false"> 
-<cffunction name="getSiteTypesByName" access="public" returntype="query">
+<cffunction name="SELsitetypes_master" access="public" returntype="query">
     <cfargument name="sitetypename" type="string" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM sitetypes_master
             WHERE sitetypename = <cfqueryparam value="#arguments.sitetypename#" cfsqltype="CF_SQL_VARCHAR">
@@ -19,7 +19,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getSiteTypes" access="public" returntype="query">
+<cffunction name="SELsitetypes_master_24437" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
     <cfset var queryResult = "">
     <cfset var sql = "SELECT sitetypename, sitetypedescription FROM sitetypes_master">

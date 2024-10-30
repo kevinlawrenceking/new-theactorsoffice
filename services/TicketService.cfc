@@ -1,5 +1,5 @@
 <cfcomponent displayname="TicketService" hint="Handles operations for Ticket table" output="false"> 
-<cffunction name="updateTicket" access="public" returntype="void">
+<cffunction name="UPDtickets" access="public" returntype="void">
     <cfargument name="ticketid" type="numeric" required="true">
     <cfargument name="new_ticketname" type="string" required="true">
     <cfargument name="new_ticketdetails" type="string" required="true">
@@ -53,7 +53,7 @@
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getDistinctTicketStatuses" access="public" returntype="query">
+<cffunction name="SELtickets" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
     <cfset var queryResult = "">
     <cfset var sql = "SELECT DISTINCT t.ticketstatus FROM tickets t">
@@ -90,7 +90,7 @@
     <!--- Return the query result --->
     <cfreturn queryResult>
 </cffunction>
-<cffunction name="getVersionDetails" access="public" returntype="query">
+<cffunction name="SELtickets_23720" access="public" returntype="query">
     <cfargument name="verid" type="numeric" required="true">
     <cfargument name="col6" type="numeric" required="true">
 
@@ -115,7 +115,7 @@
             ORDER BY major, minor, patch
         ">
         
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             #sql#
             <cfqueryparam value="#arguments.verid#" cfsqltype="CF_SQL_INTEGER">
             <cfqueryparam value="#arguments.col6#" cfsqltype="CF_SQL_DECIMAL">
@@ -130,7 +130,7 @@
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateTicketStatus" access="public" returntype="void" hint="Updates the status of a ticket to Closed and marks it as deleted.">
+<cffunction name="UPDtickets_23866" access="public" returntype="void" hint="Updates the status of a ticket to Closed and marks it as deleted.">
     <cfargument name="recid" type="numeric" required="true" hint="The ID of the ticket to update.">
 
     <cftry>
@@ -147,13 +147,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getTicketDetails" access="public" returntype="query">
+<cffunction name="SELtickets_23997" access="public" returntype="query">
     <cfargument name="recid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 p.pgid, 
                 t.ticketID AS recID, 
@@ -201,13 +201,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getTicketDetails" access="public" returntype="query">
+<cffunction name="DETtickets" access="public" returntype="query">
     <cfargument name="recid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 p.pgid, 
                 t.ticketID AS recID, 
@@ -254,11 +254,11 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="updateTicketStatus" access="public" returntype="void" hint="Updates the ticket status based on ticket ID.">
+<cffunction name="UPDtickets_24076" access="public" returntype="void" hint="Updates the ticket status based on ticket ID.">
     <cfargument name="new_ticketid" type="numeric" required="true" hint="The ID of the ticket to update.">
     
     <cftry>
-        <cfquery name="updateStatus" datasource="yourDataSource">
+        <cfquery name="updateStatus" datasource="abod">
             UPDATE tickets 
             SET ticketstatus = <cfqueryparam value="Tested - Success" cfsqltype="CF_SQL_VARCHAR">
             WHERE ticketid = <cfqueryparam value="#arguments.new_ticketid#" cfsqltype="CF_SQL_INTEGER">
@@ -270,11 +270,11 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateTicketStatus" access="public" returntype="void">
+<cffunction name="UPDtickets_24077" access="public" returntype="void">
     <cfargument name="new_ticketid" type="numeric" required="true">
 
     <cftry>
-        <cfquery name="updateQuery" datasource="yourDataSource">
+        <cfquery name="updateQuery" datasource="abod">
             UPDATE tickets 
             SET ticketstatus = <cfqueryparam value="Tested - Bug" cfsqltype="CF_SQL_VARCHAR"> 
             WHERE ticketid = <cfqueryparam value="#arguments.new_ticketid#" cfsqltype="CF_SQL_INTEGER">
@@ -286,13 +286,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getTicketDetails" access="public" returntype="query">
+<cffunction name="DETtickets_24109" access="public" returntype="query">
     <cfargument name="recid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 p.pgid, 
                 t.ticketID AS recID, 
@@ -335,7 +335,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertTicket" access="public" returntype="void">
+<cffunction name="INStickets" access="public" returntype="void">
     <cfargument name="new_verid" type="numeric" required="true">
     <cfargument name="new_ticketName" type="string" required="true">
     <cfargument name="new_ticketdetails" type="string" required="true">
@@ -364,13 +364,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getTicketDetails" access="public" returntype="query">
+<cffunction name="DETtickets_24162" access="public" returntype="query">
     <cfargument name="recid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 u.isbetatester, 
                 p.pgid, 
@@ -418,13 +418,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getTicketDetails" access="public" returntype="query">
+<cffunction name="DETtickets_24208" access="public" returntype="query">
     <cfargument name="recid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 p.pgid, 
                 t.ticketID AS recID, 
@@ -469,7 +469,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="updateTicket" access="public" returntype="void">
+<cffunction name="UPDtickets_24216" access="public" returntype="void">
     <cfargument name="new_ticketname" type="string" required="true">
     <cfargument name="new_testingscript" type="string" required="true">
     <cfargument name="new_ticketType" type="string" required="true">
@@ -512,13 +512,13 @@
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getTicketDetails" access="public" returntype="query">
+<cffunction name="DETtickets_24217" access="public" returntype="query">
     <cfargument name="ticketid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 t.ticketid, 
                 t.ticketID AS recID, 
@@ -564,7 +564,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateTicketCompletion" access="public" returntype="void">
+<cffunction name="UPDtickets_24332" access="public" returntype="void">
     <cfargument name="recid" type="numeric" required="true">
     
     <cftry>
@@ -581,13 +581,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getTicketDetails" access="public" returntype="query">
+<cffunction name="REStickets" access="public" returntype="query">
     <cfargument name="recid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 u.isbetatester, 
                 p.pgid, 
@@ -634,13 +634,13 @@
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateTicketStatus" access="public" returntype="void">
+<cffunction name="UPDtickets_24335" access="public" returntype="void">
     <cfargument name="ticketId" type="numeric" required="true">
     <cfargument name="userFirstName" type="string" required="true">
     <cfargument name="userLastName" type="string" required="true">
 
     <cftry>
-        <cfquery name="updateTicket" datasource="yourDataSource">
+        <cfquery name="updateTicket" datasource="abod">
             UPDATE tickets
             SET ticketstatus = <cfqueryparam value="Closed" cfsqltype="cf_sql_varchar">,
                 ticketcompleteddate = CURDATE(),
@@ -654,7 +654,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateTicket" access="public" returntype="void">
+<cffunction name="UPDtickets_24337" access="public" returntype="void">
     <cfargument name="ticketresponse" type="string" required="true">
     <cfargument name="next_verid" type="numeric" required="true">
     <cfargument name="patchnote" type="string" required="true">
@@ -681,7 +681,7 @@
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateTicketStatus" access="public" returntype="void">
+<cffunction name="UPDtickets_24339" access="public" returntype="void">
     <cfargument name="ticketId" type="numeric" required="true">
     <cfargument name="status" type="string" required="true" default="Pass">
     
@@ -698,7 +698,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateTicket" access="public" returntype="void">
+<cffunction name="UPDtickets_24384" access="public" returntype="void">
     <cfargument name="ticketid" type="numeric" required="true">
     <cfargument name="new_verid" type="any" required="true">
     <cfargument name="new_ticketpriority" type="string" required="true">
@@ -721,7 +721,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getTicketStatus" access="public" returntype="query">
+<cffunction name="DETtickets_24385" access="public" returntype="query">
     <cfargument name="ticketid" type="numeric" required="true">
 
     <cfset var result = "">
@@ -741,12 +741,12 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getVersionDetails" access="public" returntype="query">
+<cffunction name="SELtickets_24472" access="public" returntype="query">
     <cfargument name="verid" type="numeric" required="false">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 v.versiontype, 
                 v.versiontype, 
@@ -776,14 +776,14 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getAvailableVersions" access="public" returntype="query">
+<cffunction name="SELtickets_24473" access="public" returntype="query">
     <cfargument name="verid" type="numeric" required="true">
     <cfargument name="col6" type="numeric" required="true">
     
     <cfset var resultQuery = "">
     
     <cftry>
-        <cfquery name="resultQuery" datasource="yourDataSource">
+        <cfquery name="resultQuery" datasource="abod">
             SELECT 
                 v.major, 
                 v.minor, 
@@ -822,7 +822,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getTickets" access="public" returntype="query">
+<cffunction name="REStickets_24478" access="public" returntype="query">
     <cfargument name="select_userid" type="numeric" required="false" default="">
     <cfargument name="select_ticketstatus" type="string" required="false" default="">
     <cfargument name="select_ticketpriority" type="string" required="false" default="">
@@ -833,7 +833,7 @@
     <cfset var queryResult = "">
     
     <cftry>
-        <cfquery name="queryResult" datasource="yourDataSource">
+        <cfquery name="queryResult" datasource="abod">
             SELECT 
                 'ID' AS head1, 
                 'Details' AS head2, 
@@ -888,12 +888,12 @@
     
     <cfreturn queryResult>
 </cffunction>
-<cffunction name="getVersionDetails" access="public" returntype="query">
+<cffunction name="SELtickets_24480" access="public" returntype="query">
     <cfargument name="verid" type="numeric" required="false">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 v.versiontype, 
                 v.major, 
@@ -922,13 +922,13 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getTicketDetails" access="public" returntype="query">
+<cffunction name="DETtickets_24767" access="public" returntype="query">
     <cfargument name="recID" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 t.ticketID AS recID, 
                 t.ticketName, 
@@ -971,13 +971,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getTickets" access="public" returntype="query">
+<cffunction name="REStickets_24768" access="public" returntype="query">
     <cfargument name="statusList" type="array" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 'ID' AS head1, 
                 'Details' AS head2, 
@@ -1018,13 +1018,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getVersionDetails" access="public" returntype="query">
+<cffunction name="DETtickets_24782" access="public" returntype="query">
     <cfargument name="recid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 v.verid, 
                 v.major, 
@@ -1056,13 +1056,13 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getVersionDetails" access="public" returntype="query">
+<cffunction name="DETtickets_24784" access="public" returntype="query">
     <cfargument name="recid" type="numeric" required="true">
 
     <cfset var result = "">
 
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 v.verid, 
                 v.major, 
@@ -1093,12 +1093,12 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getTicketsByVersion" access="public" returntype="query">
+<cffunction name="REStickets_24785" access="public" returntype="query">
     <cfargument name="recid" type="numeric" required="true">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 'ID' AS head1,
                 'Details' AS head2,
@@ -1142,7 +1142,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getVersionDetails" access="public" returntype="query">
+<cffunction name="REStickets_24787" access="public" returntype="query">
     <cfargument name="verid" type="numeric" required="false">
     
     <cfset var result = "">

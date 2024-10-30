@@ -1,12 +1,12 @@
 <cfcomponent displayname="TicketTestUserService" hint="Handles operations for TicketTestUser table" output="false"> 
-<cffunction name="getTicketTestUsers" access="public" returntype="query">
+<cffunction name="SELtickettestusers" access="public" returntype="query">
     <cfargument name="recid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM tickettestusers 
             WHERE ticketid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -21,7 +21,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertTicketTestUser" access="public" returntype="void">
+<cffunction name="INStickettestusers" access="public" returntype="void">
     <cfargument name="new_ticketid" type="numeric" required="true">
     <cfargument name="new_userid" type="numeric" required="true">
     <cfargument name="new_teststatus" type="string" required="true">
@@ -43,7 +43,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateTicketTestUsers" access="public" returntype="void">
+<cffunction name="UPDtickettestusers" access="public" returntype="void">
     <cfargument name="new_teststatus" type="string" required="true">
     <cfargument name="new_rejectnotes" type="string" required="true">
     <cfargument name="testid" type="numeric" required="true">
@@ -63,14 +63,14 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getTicketTestUsers" access="public" returntype="query">
+<cffunction name="SELtickettestusers_24474" access="public" returntype="query">
     <cfargument name="ticketId" type="numeric" required="true">
     <cfargument name="userId" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 tu.id, 
                 tu.ticketid, 
@@ -95,7 +95,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getTicketTestUsers" access="public" returntype="query">
+<cffunction name="SELtickettestusers_24475" access="public" returntype="query">
     <cfargument name="recid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     

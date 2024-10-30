@@ -1,11 +1,11 @@
 <cfcomponent displayname="FUActionService" hint="Handles operations for FUAction table" output="false"> 
-<cffunction name="getFuActions" access="public" returntype="query">
+<cffunction name="SELfuactions" access="public" returntype="query">
     <cfargument name="target_id_system" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT actionid, actiondaysno, actiondaysrecurring
             FROM fuactions
             WHERE actionid IN (
@@ -23,7 +23,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getFuActions" access="public" returntype="query">
+<cffunction name="SELfuactions_24453" access="public" returntype="query">
     <cfargument name="actionId" type="numeric" required="false">
     <cfargument name="actionDaysNo" type="numeric" required="false">
     <cfargument name="actionDaysRecurring" type="numeric" required="false">

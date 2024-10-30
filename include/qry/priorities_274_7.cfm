@@ -1,8 +1,7 @@
 
 <cftry>
-    <cfset prioritiesService = createObject("component", "/services/TicketPriorityService")>
-    <cfset priorities = prioritiesService.getTicketPriorities()>
+    <cfset priorities = createObject("component", "services.TicketPriorityService").SELticketpriority()>
     <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in priorities_274_7.cfm]: #cfcatch.message#"/>
+        <cflog file="errorLog" text="[Error in priorities_274_7.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

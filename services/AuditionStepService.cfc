@@ -1,9 +1,9 @@
 <cfcomponent displayname="AuditionStepService" hint="Handles operations for AuditionStep table" output="false"> 
-<cffunction name="getAudSteps" access="public" returntype="query">
+<cffunction name="SELaudsteps" access="public" returntype="query">
     <cfargument name="stepinfo1" type="string" required="false">
     <cfset var result = "">
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM audsteps
             WHERE stepinfo1 IS NOT NULL
@@ -18,13 +18,13 @@
     </cftry>
     <cfreturn result>
 </cffunction>
-<cffunction name="getAudStepById" access="public" returntype="query">
+<cffunction name="SELaudsteps_23784" access="public" returntype="query">
     <cfargument name="new_audstepid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT audstep
             FROM audsteps
             WHERE audstepid = <cfqueryparam value="#arguments.new_audstepid#" cfsqltype="CF_SQL_INTEGER">
@@ -38,13 +38,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getAudStepsByUserId" access="public" returntype="query">
+<cffunction name="SELaudsteps_23792" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "" />
 
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT audstepid AS id, audstep AS name
             FROM audsteps
             WHERE audstepid IN (
@@ -64,13 +64,13 @@
 
     <cfreturn result />
 </cffunction>
-<cffunction name="getAudSteps" access="public" returntype="query">
+<cffunction name="SELaudsteps_24083" access="public" returntype="query">
     <cfargument name="isDeleted" type="boolean" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 audstepid AS id, 
                 audstep AS NAME 
@@ -90,7 +90,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertAudStep" access="public" returntype="void">
+<cffunction name="INSaudsteps" access="public" returntype="void">
     <cfargument name="new_audstep" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
@@ -108,7 +108,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAudStep" access="public" returntype="void">
+<cffunction name="UPDaudsteps" access="public" returntype="void">
     <cfargument name="new_audstep" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_audstepid" type="numeric" required="true">

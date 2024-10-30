@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset taoVersionService = new "/services/TaoVersionService.cfc"()>
-    <cfset taoVersionService.updateVersion(
+    <cfset taoVersionService = new services.TaoVersionService()>
+    <cfset taoVersionService.UPDtaoversions(
         verid = verid,
         new_major = new_major,
         new_minor = new_minor,
@@ -10,14 +10,13 @@
         new_versiontype = new_versiontype,
         new_version = new_version,
         new_build = new_build,
-        new_reviewDate = (len(new_reviewDate) ? new_reviewDate : ""),
-        new_releaseDate = (len(new_releaseDate) ? new_releaseDate : ""),
-        new_reviewtime = (len(new_reviewtime) ? new_reviewtime : ""),
-        new_releasetime = (len(new_releasetime) ? new_releasetime : ""),
-        new_hoursavail = (len(new_hoursavail) ? numberFormat(new_hoursavail, "9.99") : "")
+        new_reviewDate = new_reviewDate,
+        new_releaseDate = new_releaseDate,
+        new_reviewtime = new_reviewtime,
+        new_releasetime = new_releasetime,
+        new_hoursavail = numberFormat(new_hoursavail, "9.99")
     )>
-    <cfset isfetch = 1>
-    <cfcatch>
-        <cflog file="errorLog" text="[Error in update_322_1.cfm]: #serializeJSON(cfcatch)#">
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in update_322_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

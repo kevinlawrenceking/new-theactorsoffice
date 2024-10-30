@@ -1,5 +1,5 @@
 <cfcomponent displayname="ReportColorService" hint="Handles operations for ReportColor table" output="false"> 
-<cffunction name="getReportColors" access="public" returntype="query">
+<cffunction name="SELreportcolors" access="public" returntype="query">
     <cfargument name="colorName" type="string" required="false">
     
     <cfset var result = "">
@@ -15,7 +15,7 @@
     <cfset sql &= whereClause & " ORDER BY colorname">
 
     <cftry>
-        <cfquery name="result" datasource="yourDatasource">
+        <cfquery name="result" datasource="abod">
             #sql#
             <cfloop array="#params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">

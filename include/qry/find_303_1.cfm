@@ -1,7 +1,6 @@
 
 <cftry>
-    <cfset versionService = createObject("component", "services.TaoVersionService")>
-    <cfset find = versionService.getLatestVersion(datasource="yourDatasourceName")>
+    <cfset find = createObject("component", "services.TaoVersionService").SELtaoversions_24331(datasource="yourDataSourceName")>
     <cfcatch type="any">
         <cflog file="errorLog" text="[Error in find_303_1.cfm]: #cfcatch.message#">
     </cfcatch>

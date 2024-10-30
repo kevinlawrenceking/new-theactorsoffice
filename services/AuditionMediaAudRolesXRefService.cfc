@@ -1,5 +1,5 @@
 <cfcomponent displayname="AuditionMediaAudRolesXRefService" hint="Handles operations for AuditionMediaAudRolesXRef table" output="false"> 
-<cffunction name="insertAudmediaAudrolesXref" access="public" returntype="void">
+<cffunction name="INSaudmedia_audroles_xref" access="public" returntype="void">
     <cfargument name="new_mediaid" type="numeric" required="true">
     <cfargument name="new_audroleid" type="numeric" required="true">
     <cfargument name="new_mediaAudroleDescript" type="string" required="false" default="">
@@ -21,7 +21,7 @@
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAudmediaAudrolesXref" access="public" returntype="void">
+<cffunction name="UPDaudmedia_audroles_xref" access="public" returntype="void">
     <cfargument name="new_mediaid" required="true" type="numeric">
     <cfargument name="new_audroleid" required="true" type="numeric">
     <cfargument name="new_mediaAudroleDescript" required="true" type="string">

@@ -1,11 +1,11 @@
 
 <cftry>
-    <cfset report_6 = createObject("component", "/services/AuditionProjectService").getAuditionData(
+    <cfset report_6 = createObject("component", "/services/AuditionProjectService").SELaudprojects_24246(
         rangeStart = rangeselected.rangestart,
         rangeEnd = rangeselected.rangeend,
         userId = userid
-    )>
+    ) />
     <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in report_6_282_19.cfm]: #cfcatch.message#">
+        <cflog file="errorLog" text="[Error in report_6_282_19.cfm]: #cfcatch.message# Query: #cfcatch.detail#" />
     </cfcatch>
 </cftry>

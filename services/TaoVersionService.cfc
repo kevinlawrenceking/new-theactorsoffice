@@ -1,10 +1,10 @@
 <cfcomponent displayname="TaoVersionService" hint="Handles operations for TaoVersion table" output="false"> 
-<cffunction name="getLatestVersion" access="public" returntype="query">
+<cffunction name="SELtaoversions" access="public" returntype="query">
     <cfargument name="isActive" type="boolean" required="false" default="">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT verid 
             FROM taoversions
             WHERE 1=1
@@ -23,7 +23,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getVersionData" access="public" returntype="query">
+<cffunction name="SELtaoversions_24215" access="public" returntype="query">
     <cfargument name="major" type="numeric" required="false">
     <cfargument name="minor" type="numeric" required="false">
     <cfargument name="patch" type="numeric" required="false">
@@ -74,7 +74,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getLatestVersion" access="public" returntype="query">
+<cffunction name="SELtaoversions_24331" access="public" returntype="query">
     <cfargument name="datasource" type="string" required="true">
     <cfset var result = "">
     
@@ -94,13 +94,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getOldFindName" access="public" returntype="query">
+<cffunction name="SELtaoversions_24386" access="public" returntype="query">
     <cfargument name="old_verid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT CONCAT(v.major, '.', v.minor, '.', v.patch, '.', v.version, '.', v.build) AS old_findname
             FROM taoversions v
             WHERE v.verid = <cfqueryparam value="#arguments.old_verid#" cfsqltype="CF_SQL_INTEGER">
@@ -114,13 +114,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getNewFindName" access="public" returntype="query">
+<cffunction name="SELtaoversions_24387" access="public" returntype="query">
     <cfargument name="new_verid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT CONCAT(v.major, '.', v.minor, '.', v.patch, '.', v.version, '.', v.build) AS new_findname
             FROM taoversions v
             WHERE v.verid = <cfqueryparam value="#arguments.new_verid#" cfsqltype="CF_SQL_INTEGER">
@@ -134,7 +134,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getTAOVersions" access="public" returntype="query">
+<cffunction name="SELtaoversions_24469" access="public" returntype="query">
     <cfargument name="new_major" type="numeric" required="true">
     <cfargument name="new_minor" type="numeric" required="true">
     <cfargument name="new_patch" type="numeric" required="true">
@@ -144,7 +144,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM taoversions
             WHERE major = <cfqueryparam value="#arguments.new_major#" cfsqltype="CF_SQL_INTEGER">
@@ -162,7 +162,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="insertTAOVersion" access="public" returntype="void">
+<cffunction name="INStaoversions" access="public" returntype="void">
     <cfargument name="new_major" type="numeric" required="true">
     <cfargument name="new_minor" type="numeric" required="true">
     <cfargument name="new_patch" type="numeric" required="true">
@@ -223,7 +223,7 @@
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateVersion" access="public" returntype="void">
+<cffunction name="UPDtaoversions" access="public" returntype="void">
     <cfargument name="verid" type="numeric" required="true">
     <cfargument name="new_major" type="numeric" required="true">
     <cfargument name="new_minor" type="numeric" required="true">

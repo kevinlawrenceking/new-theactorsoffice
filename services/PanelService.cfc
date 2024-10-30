@@ -1,5 +1,5 @@
 <cfcomponent displayname="PanelService" hint="Handles operations for Panel table" output="false"> 
-<cffunction name="getPanelIds" access="public" returntype="query">
+<cffunction name="SELpgpanels" access="public" returntype="query">
     <cfargument name="newpnids" type="array" required="true">
 
     <cfset var result = "">

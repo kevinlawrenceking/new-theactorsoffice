@@ -1,9 +1,8 @@
 
 <cftry>
-    <cfset variables.notificationService = createObject("component", "services.NotificationService")>
-    <cfset variables.notificationService.insertNotification(
-        new_contactname = new_contactname,
-        userid = userid,
+    <cfset createObject("component", "/services/NotificationService").INSnotifications(
+        new_contactname = new_contactname, 
+        userid = userid, 
         contactid = contactid
     )>
     <cfcatch type="any">

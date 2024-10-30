@@ -1,5 +1,5 @@
 <cfcomponent displayname="AuditionEssenceXRefService" hint="Handles operations for AuditionEssenceXRef table" output="false"> 
-<cffunction name="getAuditionEssences" access="public" returntype="query">
+<cffunction name="SELaudessences_audtion_xref" access="public" returntype="query">
     <cfargument name="essencename" type="string" required="true">
     <cfargument name="audroleid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
@@ -7,7 +7,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM audessences_audtion_xref x
             INNER JOIN essences e ON e.essenceid = x.essenceid
@@ -25,7 +25,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="deleteAudessencesAudtionXref" access="public" returntype="void">
+<cffunction name="DELaudessences_audtion_xref" access="public" returntype="void">
     <cfargument name="new_audroleid" type="numeric" required="true">
     
     <cftry>
@@ -40,7 +40,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertAuditionXref" access="public" returntype="void">
+<cffunction name="INSaudessences_audtion_xref" access="public" returntype="void">
     <cfargument name="new_essenceid" type="numeric" required="true">
     <cfargument name="new_audroleid" type="numeric" required="true">
 

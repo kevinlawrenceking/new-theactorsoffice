@@ -1,12 +1,12 @@
 <cfcomponent displayname="AuditionAgeRangeXRefService" hint="Handles operations for AuditionAgeRangeXRef table" output="false"> 
-<cffunction name="getAuditionRanges" access="public" returntype="query">
+<cffunction name="SELaudageranges_audtion_xref" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     <cfargument name="new_rangeid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM audageranges_audtion_xref 
             WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -21,7 +21,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="deleteAudageRangesAudtionXref" access="public" returntype="void">
+<cffunction name="DELaudageranges_audtion_xref" access="public" returntype="void">
     <cfargument name="new_audroleid" type="numeric" required="true">
 
     <cftry>
@@ -36,7 +36,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertAudageRangesAudtionXref" access="public" returntype="void">
+<cffunction name="INSaudageranges_audtion_xref" access="public" returntype="void">
     <cfargument name="new_rangeid" type="numeric" required="true">
     <cfargument name="new_audroleid" type="numeric" required="true">
 
@@ -54,7 +54,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertAuditionRangeXref" access="public" returntype="void">
+<cffunction name="INSaudageranges_audtion_xref_24502" access="public" returntype="void">
     <cfargument name="new_audRoleID" type="numeric" required="true">
     <cfargument name="new_rangeid" type="numeric" required="true">
 
@@ -73,7 +73,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAuditionRange" access="public" returntype="void">
+<cffunction name="UPDaudageranges_audtion_xref" access="public" returntype="void">
     <cfargument name="new_audRoleID" type="numeric" required="true">
     <cfargument name="new_rangeid" type="numeric" required="true">
     <cfargument name="new_id" type="numeric" required="true">

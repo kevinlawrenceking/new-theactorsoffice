@@ -1,11 +1,11 @@
 <cfcomponent displayname="AuditionLinkService" hint="Handles operations for AuditionLink table" output="false"> 
-<cffunction name="getAudlinksByRoleId" access="public" returntype="query">
+<cffunction name="SELaudlinks" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM audlinks 
             WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
@@ -19,13 +19,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertAudLink" access="public" returntype="void">
+<cffunction name="INSaudlinks" access="public" returntype="void">
     <cfargument name="linkname" type="string" required="true">
     <cfargument name="linkurl" type="string" required="true">
     <cfargument name="audroleid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="yourDataSource">
+        <cfquery datasource="abod">
             INSERT INTO audlinks_tbl (linkname, linkurl, isdeleted, userid, audroleid)
             VALUES (
                 <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.linkname#" />,
@@ -41,13 +41,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getAudLinksByLinkId" access="public" returntype="query">
+<cffunction name="DETaudlinks" access="public" returntype="query">
     <cfargument name="linkid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM audlinks 
             WHERE linkid = <cfqueryparam value="#arguments.linkid#" cfsqltype="CF_SQL_INTEGER">
@@ -61,7 +61,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="updateAudlinksIsDeleted" access="public" returntype="void">
+<cffunction name="UPDaudlinks" access="public" returntype="void">
     <cfargument name="linkid" type="numeric" required="true">
 
     <cftry>

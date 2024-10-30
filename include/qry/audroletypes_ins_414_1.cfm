@@ -1,7 +1,7 @@
 
 <cftry>
     <cfset variables.auditionRoleTypeService = createObject("component", "services.AuditionRoleTypeService")>
-    <cfset variables.auditionRoleTypeService.updateAudRoleType(
+    <cfset variables.auditionRoleTypeService.UPDaudroletypes(
         new_audroletype = trim(new_audroletype),
         new_audCatid = new_audCatid,
         new_isDeleted = new_isDeleted,
@@ -9,6 +9,5 @@
     )>
     <cfcatch type="any">
         <cflog file="errorLog" text="[Error in audroletypes_ins_414_1.cfm] #cfcatch.message#">
-        <cfthrow message="An error occurred while updating the record." detail="#cfcatch.Detail#">
     </cfcatch>
 </cftry>

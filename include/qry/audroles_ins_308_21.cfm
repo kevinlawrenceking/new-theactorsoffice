@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset variables.auditionRoleService = new "/services/AuditionRoleService.cfc"()>
-    <cfset variables.auditionRoleService.insertAudRole(
+    <cfset variables.auditionRoleService = createObject("component", "/services/AuditionRoleService")>
+    <cfset variables.auditionRoleService.INSaudroles_24372(
         new_audRoleName = new_audRoleName,
         new_audprojectID = new_audprojectID,
         new_charDescription = new_charDescription,
@@ -13,10 +13,8 @@
         ispin = ispin,
         isredirect = isredirect
     )>
-    <cfquery datasource="#application.datasource#">
-        UPDATE database_table SET isfetch = 1 WHERE condition
-    </cfquery>
     <cfcatch>
-        <cflog file="errorLog" text="[Error in audroles_ins_308_21.cfm] #cfcatch.message#, Detail: #cfcatch.detail#">
+        <cflog file="errorLog" text="[Error in audroles_ins_308_21.cfm] Error: #cfcatch.message#, Detail: #cfcatch.detail#">
+        <cfthrow message="[Error in audroles_ins_308_21.cfm] Database operation failed." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

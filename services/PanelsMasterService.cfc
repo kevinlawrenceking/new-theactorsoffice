@@ -1,5 +1,5 @@
 <cfcomponent displayname="PanelsMasterService" hint="Handles operations for PanelsMaster table" output="false"> 
-<cffunction name="getPgPanelsMasterData" access="public" returntype="query">
+<cffunction name="SELpgpanels_master" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
     <cfset var queryResult = "">
     <cfset var sql = "SELECT * FROM pgpanels_master">
@@ -25,7 +25,7 @@
 
     <!--- Execute the query with error handling --->
     <cftry>
-        <cfquery name="queryResult" datasource="yourDataSource">
+        <cfquery name="queryResult" datasource="abod">
             #sql#
             <cfloop array="#parameters#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">

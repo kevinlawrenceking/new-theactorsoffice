@@ -1,8 +1,8 @@
 
 <cftry>
-    <cfset events = createObject("component", "services.AuditionProjectService").getDistinctEvents(audprojectid=audprojectid) />
+    <cfset eventsService = createObject("component", "services.AuditionProjectService")>
+    <cfset events = eventsService.SELaudprojects_24062(audprojectid=#audprojectid#)>
     <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in events_203_1.cfm]: #cfcatch.message#" />
-        <cfset events = queryNew("eventid,eventstart","integer,date") />
+        <cflog file="errorLog" text="[Error in events_203_1.cfm]: #cfcatch.message#">
     </cfcatch>
 </cftry>

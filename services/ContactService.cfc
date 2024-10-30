@@ -1,12 +1,12 @@
 <cfcomponent displayname="ContactService" hint="Handles operations for Contact table" output="false"> 
-<cffunction name="getContactId" access="public" returntype="query">
+<cffunction name="SELcontactdetails" access="public" returntype="query">
     <cfargument name="addDaysNoUniqueName" type="string" required="true">
     <cfargument name="newContactId" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT d.contactid
             FROM contactdetails d
             WHERE d.[#arguments.addDaysNoUniqueName#] = <cfqueryparam value="Y" cfsqltype="CF_SQL_CHAR">
@@ -22,12 +22,12 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getContactDetails" access="public" returntype="query">
+<cffunction name="SELcontactdetails_23722" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM contactdetails d 
             WHERE recordname <> '' 
@@ -43,14 +43,14 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getContactDetails" access="public" returntype="query">
+<cffunction name="SELcontactdetails_23727" access="public" returntype="query">
     <cfargument name="userid" required="true" type="numeric">
     <cfargument name="relationship" required="true" type="numeric">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM contactdetails
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
@@ -65,7 +65,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="insertContactDetails" access="public" returntype="void">
+<cffunction name="INScontactdetails" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="contactFullName" type="string" required="true">
 
@@ -83,7 +83,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertContactDetails" access="public" returntype="void">
+<cffunction name="INScontactdetails_23769" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="cdfullname" type="string" required="true">
 
@@ -102,7 +102,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertContactDetails" access="public" returntype="void">
+<cffunction name="INScontactdetails_23775" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="contactfullname" type="string" required="true">
 
@@ -121,7 +121,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getContactDetails" access="public" returntype="query">
+<cffunction name="SELcontactdetails_23806" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">
     <cfset var result = "">
     
@@ -141,7 +141,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="updateContactBirthday" access="public" returntype="void">
+<cffunction name="UPDcontactdetails" access="public" returntype="void">
     <cfargument name="final_birthday" type="date" required="true">
     <cfargument name="New_contactid" type="numeric" required="true">
 
@@ -158,7 +158,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateContactDetails" access="public" returntype="void">
+<cffunction name="UPDcontactdetails_23816" access="public" returntype="void">
     <cfargument name="uniquename" type="string" required="true">
     <cfargument name="contactid" type="numeric" required="true">
 
@@ -175,7 +175,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertContactDetails" access="public" returntype="void">
+<cffunction name="INScontactdetails_23839" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="contactfullname" type="string" default="Unknown">
 
@@ -193,14 +193,14 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getContactDetails" access="public" returntype="query">
+<cffunction name="SELcontactdetails_23843" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="select_contactid" type="numeric" default="0">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT contactid, recordname 
             FROM contactdetails 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
@@ -218,7 +218,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="updateContactDetails" access="public" returntype="void">
+<cffunction name="UPDcontactdetails_23861" access="public" returntype="void">
     <cfargument name="idList" type="array" required="true">
 
     <cfset var queryResult = "">
@@ -255,14 +255,14 @@
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getActiveContacts" access="public" returntype="query">
+<cffunction name="SELcontactdetails_23888" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     <cfargument name="idList" type="string" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 contactid AS new_contactid, 
                 SUBSTRING_INDEX(contactfullname, ' ', 1) AS new_FirstName, 
@@ -286,13 +286,13 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getContactFullnames" access="public" returntype="query">
+<cffunction name="SELcontactdetails_23906" access="public" returntype="query">
     <cfargument name="searchTerm" type="string" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT DISTINCT contactfullname 
             FROM contactdetails 
             WHERE contactfullname <> '' 
@@ -323,13 +323,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getContactRecordName" access="public" returntype="query">
+<cffunction name="SELcontactdetails_23913" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT recordname 
             FROM contactdetails 
             WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
@@ -376,7 +376,7 @@ function getContactRecordName(new_contactid) {
 }
 </cfscript>
 
-<cffunction name="getContactId" access="public" returntype="query">
+<cffunction name="SELcontactdetails_23939" access="public" returntype="query">
     <cfargument name="addDaysNoUniqueName" type="string" required="true">
     <cfargument name="contactId" type="numeric" required="true">
     
@@ -399,7 +399,7 @@ function getContactRecordName(new_contactid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertContactDetails" access="public" returntype="void">
+<cffunction name="INScontactdetails_24000" access="public" returntype="void">
     <cfargument name="userFirstName" type="string" required="true">
     <cfargument name="userLastName" type="string" required="true">
     <cfargument name="userId" type="numeric" required="true">
@@ -407,7 +407,7 @@ function getContactRecordName(new_contactid) {
     <cfset var fullName = "#arguments.userFirstName# #arguments.userLastName#">
 
     <cftry>
-        <cfquery datasource="yourDataSource" name="insertQuery">
+        <cfquery datasource="abod" name="insertQuery">
             INSERT INTO contactdetails (ContactFullName, userid, user_yn)
             VALUES (
                 <cfqueryparam value="#fullName#" cfsqltype="CF_SQL_VARCHAR">,
@@ -421,7 +421,7 @@ function getContactRecordName(new_contactid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertContactDetails" access="public" returntype="void">
+<cffunction name="INScontactdetails_24048" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="contactfullname" type="string" required="true">
 
@@ -439,13 +439,13 @@ function getContactRecordName(new_contactid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getContactDetails" access="public" returntype="query">
+<cffunction name="SELcontactdetails_24069" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM contactdetails
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
@@ -460,7 +460,7 @@ function getContactRecordName(new_contactid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertContactDetails" access="public" returntype="void">
+<cffunction name="INScontactdetails_24070" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="contactFullName" type="string" required="true">
     <cfargument name="contactBirthday" type="date" required="false" default="">
@@ -530,13 +530,13 @@ function getContactRecordName(new_contactid) {
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getContactDetails" access="public" returntype="query">
+<cffunction name="DETcontactdetails" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM contactdetails 
             WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
@@ -550,7 +550,7 @@ function getContactRecordName(new_contactid) {
 
     <cfreturn result>
 </cffunction>
-<cffunction name="updateContactDetails" access="public" returntype="void">
+<cffunction name="UPDcontactdetails_24202" access="public" returntype="void">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="contactfullname" type="string" required="true">
     <cfargument name="contactPronoun" type="string" required="true">
@@ -588,13 +588,13 @@ function getContactRecordName(new_contactid) {
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getContactDetails" access="public" returntype="query">
+<cffunction name="SELcontactdetails_24263" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT contactid, recordname
             FROM contactdetails
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
@@ -610,13 +610,13 @@ function getContactRecordName(new_contactid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getContactDetails" access="public" returntype="query">
+<cffunction name="DETcontactdetails_24264" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM contactdetails 
             WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
@@ -630,14 +630,14 @@ function getContactRecordName(new_contactid) {
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getContactDetails" access="public" returntype="query">
+<cffunction name="SELcontactdetails_24293" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="referral" type="string" required="true">
 
     <cfset var result = "">
 
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM contactdetails 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -651,7 +651,7 @@ function getContactRecordName(new_contactid) {
 
     <cfreturn result>
 </cffunction>
-<cffunction name="insertContactDetails" access="public" returntype="void">
+<cffunction name="INScontactdetails_24294" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="contactfullname" type="string" required="true">
 
@@ -669,7 +669,7 @@ function getContactRecordName(new_contactid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getContactDetails" access="public" returntype="query">
+<cffunction name="DETcontactdetails_24340" access="public" returntype="query">
     <cfargument name="idList" type="array" required="true">
     <cfset var result = "">
     
@@ -678,7 +678,7 @@ function getContactRecordName(new_contactid) {
     </cfif>
 
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT contactid, recordname
             FROM contactdetails d
             WHERE d.contactid IN (
@@ -696,7 +696,7 @@ function getContactRecordName(new_contactid) {
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getContactDetails" access="public" returntype="query">
+<cffunction name="SELcontactdetails_24364" access="public" returntype="query">
     <cfargument name="cdfullname" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
@@ -718,13 +718,13 @@ function getContactRecordName(new_contactid) {
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getContactDetails" access="public" returntype="query">
+<cffunction name="SELcontactdetails_24397" access="public" returntype="query">
     <cfargument name="fname" type="string" required="true">
     <cfargument name="lname" type="string" required="true">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM contactdetails
             WHERE contactfullname = <cfqueryparam value="#arguments.fname# #arguments.lname#" cfsqltype="CF_SQL_VARCHAR">
@@ -739,7 +739,7 @@ function getContactRecordName(new_contactid) {
 
     <cfreturn result>
 </cffunction>
-<cffunction name="insertContactDetails" access="public" returntype="void">
+<cffunction name="INScontactdetails_24399" access="public" returntype="void">
     <cfargument name="x" type="struct" required="true">
     <cfset var queryStr = "">
     <cfset var valuesStr = "">
@@ -789,14 +789,14 @@ function getContactRecordName(new_contactid) {
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getContactDetails" access="public" returntype="query">
+<cffunction name="SELcontactdetails_24433" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     <cfargument name="selectContactId" type="numeric" required="false" default="0">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT contactid, recordname
             FROM contactdetails
             WHERE userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
@@ -814,7 +814,7 @@ function getContactRecordName(new_contactid) {
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getActiveContactDetails" access="public" returntype="query">
+<cffunction name="SELcontactdetails_24483" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -841,7 +841,7 @@ function getContactRecordName(new_contactid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getContactDetailsByAudProjectID" access="public" returntype="query">
+<cffunction name="SELcontactdetails_24514" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -870,14 +870,14 @@ function getContactRecordName(new_contactid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getFilteredContacts" access="public" returntype="query">
+<cffunction name="SELcontactdetails_24515" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="audprojectid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT DISTINCT 
                 d.contactid, 
                 d.recordname AS contactname, 
@@ -903,7 +903,7 @@ function getContactRecordName(new_contactid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertContactDetails" access="public" returntype="void">
+<cffunction name="INScontactdetails_24537" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="cdfullname" type="string" required="true">
 
@@ -922,13 +922,13 @@ function getContactRecordName(new_contactid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getUpcomingBirthdays" access="public" returntype="query">
+<cffunction name="SELcontactdetails_24617" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 datediff(d.contactbirthday, curdate()) AS daysuntil, 
                 d.contactfullname AS col1, 
@@ -952,7 +952,7 @@ function getContactRecordName(new_contactid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getContactDetails" access="public" returntype="query">
+<cffunction name="DETcontactdetails_24624" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -993,13 +993,13 @@ function getContactRecordName(new_contactid) {
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getContactDetails" access="public" returntype="query">
+<cffunction name="DETcontactdetails_24625" access="public" returntype="query">
     <cfargument name="refer_contact_id" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 d.contactid, 
                 d.contacttitle, 
@@ -1030,12 +1030,12 @@ function getContactRecordName(new_contactid) {
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getActiveContacts" access="public" returntype="query">
+<cffunction name="REScontactdetails" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 d.contactid, 
                 d.recordname AS col1 
@@ -1056,13 +1056,13 @@ function getContactRecordName(new_contactid) {
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getContactDetails" access="public" returntype="query">
+<cffunction name="DETcontactdetails_24629" access="public" returntype="query">
     <cfargument name="refer_contact_id" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 d.contactid, 
                 d.contacttitle, 
@@ -1094,7 +1094,7 @@ function getContactRecordName(new_contactid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getActiveContactDetails" access="public" returntype="query">
+<cffunction name="SELcontactdetails_24674" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     <cfargument name="compId" type="numeric" required="true">
     
@@ -1129,12 +1129,12 @@ function getContactRecordName(new_contactid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getActiveContacts" access="public" returntype="query">
+<cffunction name="SELcontactdetails_24683" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 d.contactid, 
                 d.recordname AS contactname, 
@@ -1164,13 +1164,13 @@ function getContactRecordName(new_contactid) {
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getContactDetails" access="public" returntype="query">
+<cffunction name="DETcontactdetails_24685" access="public" returntype="query">
     <cfargument name="rcontactid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 d.contactid, 
                 d.contacttitle, 

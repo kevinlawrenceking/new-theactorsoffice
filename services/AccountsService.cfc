@@ -1,5 +1,5 @@
 <cfcomponent displayname="AccountsService" hint="Handles operations for Accounts table" output="false"> 
-<cffunction name="getAccountById" access="public" returntype="query">
+<cffunction name="SELaccounts" access="public" returntype="query">
     <cfargument name="accountID" type="numeric" required="true">
     
     <cfset var result = "">

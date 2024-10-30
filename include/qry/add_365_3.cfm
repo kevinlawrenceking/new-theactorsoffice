@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset eventService = createObject("component", "/services/EventService")>
-    <cfset eventService.insertEvent(
+    <cfset eventService = new "/services/EventService.cfc"()>
+    <cfset eventService.INSevents_24528(
         new_projname = new_projname,
         new_projDescription = new_projDescription,
         eventLocation = eventLocation,
@@ -11,8 +11,8 @@
         userid = cookie.userid,
         new_eventid = new_eventid
     )>
-    <cflog file="application.log" text="Event inserted successfully." type="information">
+    <cfset isfetch = 1>
 <cfcatch type="any">
-    <cflog file="errorLog" text="[Error in add_365_3.cfm] #cfcatch.message#" type="error">
+    <cflog file="errorLog" text="[Error in add_365_3.cfm]: #cfcatch.message#" type="error">
 </cfcatch>
 </cftry>

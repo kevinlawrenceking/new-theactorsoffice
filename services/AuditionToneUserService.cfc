@@ -1,5 +1,5 @@
 <cfcomponent displayname="AuditionToneUserService" hint="Handles operations for AuditionToneUser table" output="false"> 
-<cffunction name="insertAudtonesUser" access="public" returntype="void">
+<cffunction name="INSaudtones_user" access="public" returntype="void">
     <cfargument name="tone" type="string" required="true">
     <cfargument name="audcatid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
@@ -19,14 +19,14 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getUserTones" access="public" returntype="query">
+<cffunction name="SELaudtones_user" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_audcatid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 a.toneid AS ID, 
                 a.tone AS NAME, 

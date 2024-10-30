@@ -1,8 +1,7 @@
 
 <cftry>
-    <cfset componentPath = "/services/AuditionProjectsCastingAboutService.cfc">
-    <cfset componentInstance = createObject("component", componentPath)>
-    <cfset componentInstance.insertAudProjectsCastingAbout(
+    <cfset objService = createObject("component", "services.AuditionProjectsCastingAboutService")>
+    <cfset objService.INSaudprojects_castingabout(
         new_projName = new_projName,
         new_projtye = new_projtye,
         new_Status1 = new_Status1,
@@ -18,6 +17,6 @@
         new_audnetwork = new_audnetwork
     )>
 <cfcatch>
-    <cflog text="[Error in audprojects_castingabout_ins_397_1.cfm] Error: #cfcatch.message#." type="error">
+    <cflog text="[Error in audprojects_castingabout_ins_397_1.cfm] #cfcatch.message#" type="error" file="errorLog">
 </cfcatch>
 </cftry>

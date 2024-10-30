@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset reportUserService = createObject("component", "/services/ReportUserService")>
-    <cfset reportUserService.insertReportUser(
+    <cfset reportUserService = new "/services/ReportUserService.cfc"()>
+    <cfset reportUserService.INSreports_user(
         reportid = x.reportid,
         reportname = x.reportname,
         reportorderno = x.reportorderno,

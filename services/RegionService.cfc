@@ -1,11 +1,11 @@
 <cfcomponent displayname="RegionService" hint="Handles operations for Region table" output="false"> 
-<cffunction name="getRegionNameById" access="public" returntype="query">
+<cffunction name="SELregions" access="public" returntype="query">
     <cfargument name="region_id" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT regionname 
             FROM regions 
             WHERE region_id = <cfqueryparam value="#arguments.region_id#" cfsqltype="CF_SQL_INTEGER">
@@ -19,12 +19,12 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getRegionIdByRegionName" access="public" returntype="query">
+<cffunction name="SELregions_24170" access="public" returntype="query">
     <cfargument name="valueregion" type="string" required="true">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT region_id 
             FROM regions 
             WHERE regionname = <cfqueryparam value="#arguments.valueregion#" cfsqltype="cf_sql_varchar">
@@ -38,14 +38,14 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getRegionName" access="public" returntype="query">
+<cffunction name="SELregions_24177" access="public" returntype="query">
     <cfargument name="region_id" type="numeric" required="true">
     <cfargument name="old_countryid" type="string" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT regionname 
             FROM regions 
             WHERE region_id = <cfqueryparam value="#arguments.region_id#" cfsqltype="CF_SQL_INTEGER"> 
@@ -60,7 +60,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getRegions" access="public" returntype="query">
+<cffunction name="SELregions_24717" access="public" returntype="query">
     <cfargument name="regionID" type="numeric" required="false">
     <cfargument name="regionName" type="string" required="false">
 
@@ -90,7 +90,7 @@
 
     <!--- Execute the query --->
     <cftry>
-        <cfquery name="queryResult" datasource="yourDataSource">
+        <cfquery name="queryResult" datasource="abod">
             #sql#
             <cfloop array="#params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
@@ -108,12 +108,12 @@
     <!--- Return the result --->
     <cfreturn queryResult>
 </cffunction>
-<cffunction name="getRegionIdByRegionName" access="public" returntype="query">
+<cffunction name="SELregions_24721" access="public" returntype="query">
     <cfargument name="regionName" type="string" required="true">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT region_id
             FROM regions
             WHERE regionname = <cfqueryparam value="#arguments.regionName#" cfsqltype="CF_SQL_VARCHAR">

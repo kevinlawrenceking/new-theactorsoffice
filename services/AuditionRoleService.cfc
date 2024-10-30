@@ -1,11 +1,11 @@
 <cfcomponent displayname="AuditionRoleService" hint="Handles operations for AuditionRole table" output="false"> 
-<cffunction name="getAudRoleDetails" access="public" returntype="query">
+<cffunction name="SELaudroles" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 r.audroleid, 
                 r.audprojectid, 
@@ -43,7 +43,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertAudRole" access="public" returntype="void">
+<cffunction name="INSaudroles" access="public" returntype="void">
     <cfargument name="new_audRoleName" type="string" required="true">
     <cfargument name="new_audprojectID" type="numeric" required="true">
     <cfargument name="new_audRoleTypeID" type="numeric" required="true">
@@ -92,7 +92,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAudRoleIsBooked" access="public" returntype="void">
+<cffunction name="UPDaudroles" access="public" returntype="void">
     <cfargument name="audroleid" type="numeric" required="true">
 
     <cftry>
@@ -108,7 +108,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getAudRoleDetails" access="public" returntype="query">
+<cffunction name="SELaudroles_23809" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -147,7 +147,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAudroles" access="public" returntype="void">
+<cffunction name="UPDaudroles_23810" access="public" returntype="void">
     <cfargument name="new_audroleid" type="numeric" required="true">
     <cfargument name="new_incometypeid" type="numeric" required="false">
     <cfargument name="new_payrate" type="numeric" required="false">
@@ -199,7 +199,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAudRolesStatus" access="public" returntype="void">
+<cffunction name="UPDaudroles_23813" access="public" returntype="void">
     <cfargument name="statusField" type="string" required="true">
     <cfargument name="newAudRoleId" type="numeric" required="true">
 
@@ -216,7 +216,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAudrolesStatus" access="public" returntype="void">
+<cffunction name="UPDaudroles_23814" access="public" returntype="void">
     <cfargument name="statusField" type="string" required="true">
     <cfargument name="newAudroleId" type="numeric" required="true">
 
@@ -233,13 +233,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getAudRoleDetails" access="public" returntype="query">
+<cffunction name="SELaudroles_23851" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 r.audroleid, 
                 r.audprojectid, 
@@ -280,13 +280,13 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getAudRoles" access="public" returntype="query">
+<cffunction name="DETaudroles" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 r.audroleid, 
                 r.audprojectid, 
@@ -319,7 +319,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getAudRoleDetails" access="public" returntype="query">
+<cffunction name="DETaudroles_24086" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -358,13 +358,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getRoleDetails" access="public" returntype="query">
+<cffunction name="DETaudroles_24090" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 r.audroleid, 
                 r.audprojectid, 
@@ -408,13 +408,13 @@
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getRoleDetails" access="public" returntype="query">
+<cffunction name="DETaudroles_24122" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 r.audroleid, 
                 r.audprojectid, 
@@ -455,7 +455,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="updateAudRoleIsDeleted" access="public" returntype="void" output="false">
+<cffunction name="UPDaudroles_24126" access="public" returntype="void" output="false">
     <cfargument name="audroleid" type="numeric" required="true">
 
     <cftry>
@@ -471,7 +471,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getAudRoles" access="public" returntype="query">
+<cffunction name="SELaudroles_24165" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="submitsiteid" type="numeric" required="true">
     
@@ -493,7 +493,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="updateAudRoles" access="public" returntype="void">
+<cffunction name="UPDaudroles_24260" access="public" returntype="void">
     <cfargument name="new_iscallback" type="boolean" required="true">
     <cfargument name="new_isredirect" type="boolean" required="true">
     <cfargument name="new_ispin" type="boolean" required="true">
@@ -515,7 +515,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAudRoles" access="public" returntype="void" output="false">
+<cffunction name="UPDaudroles_24299" access="public" returntype="void" output="false">
     <cfargument name="new_audRoleName" type="string" required="true">
     <cfargument name="new_opencallid" type="numeric" required="true">
     <cfargument name="new_audRoleTypeID" type="numeric" required="true">
@@ -553,7 +553,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertAudRole" access="public" returntype="void">
+<cffunction name="INSaudroles_24372" access="public" returntype="void">
     <cfargument name="new_audRoleName" type="string" required="true">
     <cfargument name="new_audprojectID" type="numeric" required="true">
     <cfargument name="new_charDescription" type="string" required="false" default="">
@@ -598,7 +598,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAudroles" access="public" returntype="void">
+<cffunction name="UPDaudroles_24542" access="public" returntype="void">
     <cfargument name="audsourceid" type="numeric" required="true">
     
     <cftry>
@@ -614,13 +614,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getAudRoles" access="public" returntype="query">
+<cffunction name="DETaudroles_24544" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 r.audroleid, r.audprojectid, r.auddialectid, r.audRoleName, 
                 r.charDescription, r.holdStartDate, r.holdEndDate, rt.audroletype, 
@@ -649,7 +649,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertAudRole" access="public" returntype="void">
+<cffunction name="INSaudroles_24593" access="public" returntype="void">
     <cfargument name="new_audRoleName" type="string" required="true">
     <cfargument name="new_audprojectID" type="numeric" required="true">
     <cfargument name="new_audRoleTypeID" type="numeric" required="true">
@@ -710,7 +710,7 @@
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAudRoles" access="public" returntype="void">
+<cffunction name="UPDaudroles_24594" access="public" returntype="void">
     <cfargument name="new_audRoleName" type="string" required="true">
     <cfargument name="new_audprojectID" type="numeric" required="true">
     <cfargument name="new_audRoleTypeID" type="numeric" required="true">

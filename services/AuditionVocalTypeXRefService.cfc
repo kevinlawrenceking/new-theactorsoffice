@@ -1,5 +1,5 @@
 <cfcomponent displayname="AuditionVocalTypeXRefService" hint="Handles operations for AuditionVocalTypeXRef table" output="false"> 
-<cffunction name="getAuditionVocalTypes" access="public" returntype="query">
+<cffunction name="SELaudvocaltypes_audition_xref" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     <cfargument name="new_vocaltypeid" type="numeric" required="true">
     
@@ -21,7 +21,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="deleteAudVocalTypesAuditionXref" access="public" returntype="void">
+<cffunction name="DELaudvocaltypes_audition_xref" access="public" returntype="void">
     <cfargument name="audroleid" type="numeric" required="true">
     
     <cftry>
@@ -36,7 +36,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertAudVocalTypesAuditionXref" access="public" returntype="void">
+<cffunction name="INSaudvocaltypes_audition_xref" access="public" returntype="void">
     <cfargument name="new_vocaltypeid" type="numeric" required="true">
     <cfargument name="new_audroleid" type="numeric" required="true">
 
@@ -55,7 +55,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertAuditionVocalType" access="public" returntype="void">
+<cffunction name="INSaudvocaltypes_audition_xref_24613" access="public" returntype="void">
     <cfargument name="new_audRoleID" type="numeric" required="true">
     <cfargument name="new_vocaltypeid" type="numeric" required="true">
 
@@ -74,7 +74,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAudVocalTypesAuditionXref" access="public" returntype="void" output="false">
+<cffunction name="UPDaudvocaltypes_audition_xref" access="public" returntype="void" output="false">
     <cfargument name="new_audRoleID" type="numeric" required="true">
     <cfargument name="new_vocaltypeid" type="numeric" required="true">
     <cfargument name="new_id" type="numeric" required="true">

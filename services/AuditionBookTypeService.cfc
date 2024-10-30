@@ -1,10 +1,10 @@
 <cfcomponent displayname="AuditionBookTypeService" hint="Handles operations for AuditionBookType table" output="false"> 
-<cffunction name="getAudBookTypes" access="public" returntype="query">
+<cffunction name="SELaudbooktypes" access="public" returntype="query">
     <cfargument name="audbooktypeid" type="numeric" required="false">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT audbooktypeid AS id, audbooktype AS name
             FROM audbooktypes
             WHERE isdeleted = 0

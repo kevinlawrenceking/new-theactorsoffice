@@ -1,5 +1,5 @@
 <cfcomponent displayname="FUSystemTypeService" hint="Handles operations for FUSystemType table" output="false"> 
-<cffunction name="getSystemTypes" access="public" returntype="query">
+<cffunction name="SELfusystemtypes" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
     <cfset var queryResult = "">
     <cfset var sql = "SELECT systemtype AS ID, systemtype AS systemname FROM fusystemtypes">
@@ -22,7 +22,7 @@
 
     <!--- Execute the query with error handling --->
     <cftry>
-        <cfquery name="queryResult" datasource="yourDataSource">
+        <cfquery name="queryResult" datasource="abod">
             #sql#
             <cfloop array="#paramList#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">

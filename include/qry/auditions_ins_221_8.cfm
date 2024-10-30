@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset objEventService = new "/services/EventService.cfc"()>
-    <cfset objEventService.insertEvent(
+    <cfset variables.eventService = new "/services/EventService.cfc"()>
+    <cfset variables.eventService.INSevents_24096(
         new_userid=new_userid,
         new_audRoleID=new_audRoleID,
         new_audTypeID=new_audTypeID,

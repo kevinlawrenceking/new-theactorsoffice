@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset find = createObject("component", "services.ReportUserService").getReportDetails(
+    <cfset find = createObject("component", "services.ReportUserService").SELreports_user_24728(
         reportid = x.reportid,
         userid = u.userid,
         reportname = x.reportname

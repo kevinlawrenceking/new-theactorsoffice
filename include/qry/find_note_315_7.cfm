@@ -1,7 +1,6 @@
 
 <cftry>
-    <cfset noteService = createObject("component", "/services/NoteService")>
-    <cfset find_note = noteService.getNotesLog(
+    <cfset find_note = createObject("component", "services.NoteService").SELnoteslog_24400(
         select_userid = select_userid,
         select_contactid = select_contactid,
         noteDetailsPrefix = left(x.notes, 8)

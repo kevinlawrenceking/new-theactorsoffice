@@ -1,11 +1,11 @@
 <cfcomponent displayname="MeetingDurationService" hint="Handles operations for MeetingDuration table" output="false"> 
-<cffunction name="getDurationsByHours" access="public" returntype="query">
+<cffunction name="SELmtgdurations" access="public" returntype="query">
     <cfargument name="new_durhours" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT durid AS new_durid
             FROM mtgdurations
             WHERE durhours = <cfqueryparam value="#arguments.new_durhours#" cfsqltype="CF_SQL_INTEGER">
@@ -19,13 +19,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getDurationsByHours" access="public" returntype="query">
+<cffunction name="SELmtgdurations_24493" access="public" returntype="query">
     <cfargument name="new_durhours" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT durid AS new_durid
             FROM mtgdurations
             WHERE durhours = <cfqueryparam value="#arguments.new_durhours#" cfsqltype="CF_SQL_INTEGER">
@@ -39,13 +39,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getMtgDurations" access="public" returntype="query">
+<cffunction name="SELmtgdurations_24655" access="public" returntype="query">
     <cfargument name="new_durid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT durid, durhours, durhours * 3600 AS durseconds, durname
             FROM mtgdurations
             WHERE durid = <cfqueryparam value="#arguments.new_durid#" cfsqltype="CF_SQL_INTEGER">
@@ -59,7 +59,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getMtgDurations" access="public" returntype="query">
+<cffunction name="SELmtgdurations_24656" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
     
     <cfset var queryResult = "">

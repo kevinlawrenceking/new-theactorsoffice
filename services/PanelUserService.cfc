@@ -1,5 +1,5 @@
 <cfcomponent displayname="PanelUserService" hint="Handles operations for PanelUser table" output="false"> 
-<cffunction name="getPanelsByUserId" access="public" returntype="query">
+<cffunction name="SELpgpanels_user" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -30,7 +30,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="updateUserVisibility" access="public" returntype="void">
+<cffunction name="UPDpgpanels_user" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
 
     <cftry>
@@ -46,7 +46,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateUserVisibility" access="public" returntype="void">
+<cffunction name="UPDpgpanels_user_23858" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_isvisible" type="array" required="true">
 
@@ -80,7 +80,7 @@
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updatePgpanelsUser" access="public" returntype="void">
+<cffunction name="UPDpgpanels_user_23886" access="public" returntype="void">
     <cfargument name="pnid" type="numeric" required="true">
     
     <cftry>
@@ -96,7 +96,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updatePgpanelsUserVisibility" access="public" returntype="void">
+<cffunction name="UPDpgpanels_user_24135" access="public" returntype="void">
     <cfargument name="isvisible" type="boolean" required="true">
     <cfargument name="pnid" type="numeric" required="true">
 
@@ -112,13 +112,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getPanelTitles" access="public" returntype="query">
+<cffunction name="SELpgpanels_user_24136" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 p.pnid, 
                 p.pntitle, 
@@ -140,7 +140,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="updatePgpanelsUser" access="public" returntype="void">
+<cffunction name="UPDpgpanels_user_24137" access="public" returntype="void">
     <cfargument name="correctTitle" type="string" required="true">
     <cfargument name="pnid" type="numeric" required="true">
 
@@ -157,13 +157,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getNewPnOrderNo" access="public" returntype="query">
+<cffunction name="SELpgpanels_user_24147" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT p.pnOrderno + 1 AS new_pnOrderNo
             FROM pgpanels_user p
             WHERE p.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
@@ -178,7 +178,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertPgpanelsUser" access="public" returntype="void">
+<cffunction name="INSpgpanels_user" access="public" returntype="void">
     <cfargument name="new_pnTitle" type="string" required="true">
     <cfargument name="new_pnOrderNo" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
@@ -213,14 +213,14 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getUserPanels" access="public" returntype="query">
+<cffunction name="SELpgpanels_user_24435" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="pnFilename" type="string" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM pgpanels_user
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
@@ -235,7 +235,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="insertPgPanelsUser" access="public" returntype="void">
+<cffunction name="INSpgpanels_user_24436" access="public" returntype="void">
     <cfargument name="select_userid" type="numeric" required="true">
     <cfargument name="m" type="struct" required="true">
 
@@ -271,13 +271,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getNewPnOrderNo" access="public" returntype="query">
+<cffunction name="SELpgpanels_user_24440" access="public" returntype="query">
     <cfargument name="select_userid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT p.pnOrderno + 1 AS new_pnOrderNo
             FROM pgpanels_user p
             WHERE p.userid = <cfqueryparam value="#arguments.select_userid#" cfsqltype="CF_SQL_INTEGER">
@@ -292,7 +292,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertPgpanelsUser" access="public" returntype="void">
+<cffunction name="INSpgpanels_user_24441" access="public" returntype="void">
     <cfargument name="new_pnTitle" type="string" required="true">
     <cfargument name="new_pnOrderNo" type="numeric" required="true">
     <cfargument name="select_userid" type="numeric" required="true">
@@ -327,13 +327,13 @@
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getPanelsForUser" access="public" returntype="query">
+<cffunction name="SELpgpanels_user_24640" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 p.pnid, 
                 p.pntitle, 
@@ -358,13 +358,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getPanelsByUserId" access="public" returntype="query">
+<cffunction name="SELpgpanels_user_24642" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 p.pnid, 
                 p.pntitle, 

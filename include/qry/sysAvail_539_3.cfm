@@ -1,8 +1,8 @@
 
 <cftry>
-    <cfset sysAvail = createObject("component", "/services/SystemService").getFilteredSystems(
-        new_systemscope = new_systemscope,
-        currentid = currentid,
+    <cfset sysAvail = createObject("component", "services.SystemService").SELfusystems_24762(
+        new_systemscope = new_systemscope, 
+        currentid = currentid, 
         session_userid = session.userid
     )>
     <cfcatch type="any">

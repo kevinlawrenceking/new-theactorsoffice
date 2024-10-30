@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset action_user = createObject("component", "services.SystemService").getActionDetails(
+    <cfset action_user = createObject("component", "services.SystemService").SELfusystems_24321(
         systemID = mysystems.systemid,
         userID = session.userid
     )>

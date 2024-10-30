@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset itemsbycatActive = createObject("component", "services.ContactItemService").getActiveContactItems(
+    <cfset itemsbycatActive = createObject("component", "services.ContactItemService").SELcontactitems_24673(
         currentid = currentid,
         activeCategoriesValueCategory = ActiveCategories.valueCategory,
         catArea_UCB = catArea_UCB

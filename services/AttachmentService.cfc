@@ -1,5 +1,5 @@
 <cfcomponent displayname="AttachmentService" hint="Handles operations for Attachment table" output="false"> 
-<cffunction name="insertAttachment" access="public" returntype="void">
+<cffunction name="INSattachments" access="public" returntype="void">
     <cfargument name="attachname" type="string" required="true">
     <cfargument name="attachfilename" type="string" required="true">
     <cfargument name="noteid" type="numeric" required="true">
@@ -22,13 +22,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getAttachmentDetails" access="public" returntype="query">
+<cffunction name="DETattachments" access="public" returntype="query">
     <cfargument name="attachid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT attachid, noteid, attachname, attachfilename
             FROM attachments
             WHERE attachid = <cfqueryparam value="#arguments.attachid#" cfsqltype="CF_SQL_INTEGER">
@@ -42,7 +42,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="updateAttachmentIsDeleted" access="public" returntype="void">
+<cffunction name="UPDattachments" access="public" returntype="void">
     <cfargument name="attachid" type="numeric" required="true">
 
     <cftry>
@@ -58,7 +58,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getAttachmentsByNoteId" access="public" returntype="query">
+<cffunction name="SELattachments" access="public" returntype="query">
     <cfargument name="new_noteid" type="numeric" required="true">
     
     <cfset var result = "">

@@ -1,9 +1,9 @@
 
 <cftry>
-    <cfset variables.auditionPlatformsService = createObject("component", "/services/AuditionPlatformsService")>
-    <cfset variables.auditionPlatformsService.updateAudplatform(
-        new_audplatform = new_audplatform, 
-        new_isDeleted = new_isDeleted, 
+    <cfset variables.auditionPlatformsService = createObject("component", "services.AuditionPlatformsService")>
+    <cfset variables.auditionPlatformsService.UPDaudplatforms(
+        new_audplatform = new_audplatform,
+        new_isDeleted = new_isDeleted,
         new_audplatformid = new_audplatformid
     )>
     <cfcatch type="any">

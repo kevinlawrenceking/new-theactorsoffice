@@ -1,14 +1,13 @@
 
-<!--- This ColdFusion page handles the insertion of user item types into the database. --->
 <cftry>
-    <cfset variables.itemTypesUserService = createObject("component", "services.ItemTypesUserService")>
-    <cfset variables.itemTypesUserService.insertItemTypeUser(
+    <cfset itemTypesUserService = new "/services/ItemTypesUserService.cfc"()>
+    <cfset itemTypesUserService.INSitemtypes_user_24464(
         valuetype = x.valuetype,
         typeicon = x.typeicon,
         userid = users.userid
     )>
     <cfcatch>
         <cflog file="errorLog" text="[Error in insert_318_33.cfm]: #cfcatch.message#">
-        <cfthrow message="Error in insert_318_33.cfm" detail="#cfcatch.detail#">
+        <cfthrow message="Error calling INSitemtypes_user_24464." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

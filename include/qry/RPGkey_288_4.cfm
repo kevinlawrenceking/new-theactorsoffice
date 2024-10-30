@@ -1,8 +1,9 @@
 
 <cftry>
-    <cfset RPGkey = createObject("component", "services.PageService").getPgFields(rpgid=#rpgid#) />
+    <cfset pageService = createObject("component", "services.PageService")>
+    <cfset RPGkey = pageService.SELpgpages_24303(rpgid=#rpgid#)>
     <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in RPGkey_288_4.cfm]: #cfcatch.message# - Query: #cfcatch.detail#" />
-        <cfset RPGkey = queryNew("fname,ftype") />
+        <cflog file="errorLog" text="[Error in RPGkey_288_4.cfm]: #cfcatch.message#">
+        <cfset RPGkey = queryNew("fname,ftype")>
     </cfcatch>
 </cftry>

@@ -1,5 +1,5 @@
 <cfcomponent displayname="AuditionNetworkService" hint="Handles operations for AuditionNetwork table" output="false"> 
-<cffunction name="insertIntoAudnetworks" access="public" returntype="void">
+<cffunction name="INSaudnetworks" access="public" returntype="void">
     <cfargument name="new_network" type="string" required="true">
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
@@ -19,7 +19,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAudNetworks" access="public" returntype="void">
+<cffunction name="UPDaudnetworks" access="public" returntype="void">
     <cfargument name="new_network" type="string" required="true">
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">

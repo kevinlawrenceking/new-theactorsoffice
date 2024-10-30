@@ -1,5 +1,5 @@
 <cfcomponent displayname="AuditionContractTypeService" hint="Handles operations for AuditionContractType table" output="false"> 
-<cffunction name="insertAudContractTypes" access="public" returntype="void">
+<cffunction name="INSaudcontracttypes" access="public" returntype="void">
     <cfargument name="new_contracttype" type="string" required="true">
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
@@ -19,7 +19,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAudContractTypes" access="public" returntype="void">
+<cffunction name="UPDaudcontracttypes" access="public" returntype="void">
     <cfargument name="new_contracttype" type="string" required="true">
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">

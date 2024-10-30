@@ -1,5 +1,5 @@
 <cfcomponent displayname="EventTypesService" hint="Handles operations for EventTypes table" output="false"> 
-<cffunction name="getEventTypes" access="public" returntype="query">
+<cffunction name="SELeventtypes" access="public" returntype="query">
     <cfargument name="filters" type="struct" required="false" default="#structNew()#">
     <cfset var queryResult = "">
     <cfset var sql = "SELECT eventTypeName, eventtypedescription, eventtypecolor FROM eventtypes">
@@ -21,7 +21,7 @@
 
     <!--- Execute the query with error handling --->
     <cftry>
-        <cfquery name="queryResult" datasource="yourDataSource">
+        <cfquery name="queryResult" datasource="abod">
             #sql#
             <cfloop array="#paramValues#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">

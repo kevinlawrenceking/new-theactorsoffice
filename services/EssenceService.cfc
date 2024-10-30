@@ -1,5 +1,5 @@
 <cfcomponent displayname="EssenceService" hint="Handles operations for Essence table" output="false"> 
-<cffunction name="getEssencesByRole" access="public" returntype="query">
+<cffunction name="SELessences" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -20,7 +20,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="updateEssenceIsDeleted" access="public" returntype="void">
+<cffunction name="UPDessences" access="public" returntype="void">
     <cfargument name="new_essenceid" type="numeric" required="true">
     
     <cftry>
@@ -36,7 +36,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertEssence" access="public" returntype="void">
+<cffunction name="INSessences" access="public" returntype="void">
     <cfargument name="new_essenceName" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
@@ -55,13 +55,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getEssenceById" access="public" returntype="query">
+<cffunction name="DETessences" access="public" returntype="query">
     <cfargument name="essenceid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM essences
             WHERE essenceid = <cfqueryparam value="#arguments.essenceid#" cfsqltype="CF_SQL_INTEGER">
@@ -75,7 +75,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="updateEssence" access="public" returntype="void">
+<cffunction name="UPDessences_24181" access="public" returntype="void">
     <cfargument name="new_essenceName" type="string" required="true">
     <cfargument name="isdeleted" type="boolean" required="true">
     <cfargument name="essenceid" type="numeric" required="true">
@@ -93,7 +93,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getEssencesByUserId" access="public" returntype="query">
+<cffunction name="SELessences_24270" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
@@ -115,14 +115,14 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getEssenceId" access="public" returntype="query">
+<cffunction name="SELessences_24282" access="public" returntype="query">
     <cfargument name="new_essence" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT essenceid AS new_essenceid
             FROM essences
             WHERE essencename = <cfqueryparam value="#arguments.new_essence#" cfsqltype="CF_SQL_VARCHAR">
@@ -138,12 +138,12 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="insertEssence" access="public" returntype="void">
+<cffunction name="INSessences_24283" access="public" returntype="void">
     <cfargument name="new_essence" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="yourDataSource">
+        <cfquery datasource="abod">
             INSERT INTO essences (essenceName, userid, isdeleted)
             VALUES (
                 <cfqueryparam value="#arguments.new_essence#" cfsqltype="CF_SQL_VARCHAR">,
@@ -157,7 +157,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getEssences" access="public" returntype="query">
+<cffunction name="SELessences_24658" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfset var result = "">
     

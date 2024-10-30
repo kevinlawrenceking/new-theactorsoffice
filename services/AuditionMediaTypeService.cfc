@@ -1,5 +1,5 @@
 <cfcomponent displayname="AuditionMediaTypeService" hint="Handles operations for AuditionMediaType table" output="false"> 
-<cffunction name="getMediaTypes" access="public" returntype="query">
+<cffunction name="SELaudmediatypes" access="public" returntype="query">
     <cfargument name="mediaTypeIds" type="array" required="true">
     
     <cfset var result = "">
@@ -24,13 +24,13 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getMediaTypes" access="public" returntype="query">
+<cffunction name="SELaudmediatypes_23753" access="public" returntype="query">
     <cfargument name="mediaTypeIds" type="array" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT mediatypeid, mediatype
             FROM audmediatypes
             WHERE mediatypeid IN (
@@ -80,7 +80,7 @@ function getMediaTypes(required array mediaTypeIds) {
 }
 </cfscript>
 
-<cffunction name="getMediaTypes" access="public" returntype="query">
+<cffunction name="SELaudmediatypes_24067" access="public" returntype="query">
     <cfargument name="src" type="string" required="false" default="">
     
     <cfset var queryResult = "">
@@ -95,7 +95,7 @@ function getMediaTypes(required array mediaTypeIds) {
     <cfset sqlQuery &= " ORDER BY mediatype">
 
     <cftry>
-        <cfquery name="queryResult" datasource="yourDataSource">
+        <cfquery name="queryResult" datasource="abod">
             #sqlQuery#
             <cfloop array="#params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
@@ -110,7 +110,7 @@ function getMediaTypes(required array mediaTypeIds) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getMediaTypes" access="public" returntype="query">
+<cffunction name="SELaudmediatypes_24198" access="public" returntype="query">
     <cfargument name="src" type="string" required="true">
     
     <cfset var queryResult = "">
@@ -151,7 +151,7 @@ function getMediaTypes(required array mediaTypeIds) {
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertMediaType" access="public" returntype="void" output="false">
+<cffunction name="INSaudmediatypes" access="public" returntype="void" output="false">
     <cfargument name="new_mediaType" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
@@ -171,7 +171,7 @@ function getMediaTypes(required array mediaTypeIds) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateMediaType" access="public" returntype="void">
+<cffunction name="UPDaudmediatypes" access="public" returntype="void">
     <cfargument name="new_mediaType" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_mediaTypeID" type="numeric" required="true">

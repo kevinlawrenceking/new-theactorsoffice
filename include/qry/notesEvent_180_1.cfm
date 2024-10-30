@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset notesEvent = createObject("component", "services.NoteService").getNotesLog(
+    <cfset notesEvent = createObject("component", "/services/NoteService").SELnoteslog_23987(
         userID = session.userid,
         eventID = eventid
     )>

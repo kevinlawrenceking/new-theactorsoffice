@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset actionUserService = new "/services/ActionUserService.cfc"()>
-    <cfset actionUserService.insertActionUser(
+    <cfset actionUserService = createObject("component", "services.ActionUserService")>
+    <cfset actionUserService.INSactionusers_24455(
         actionid = xs.actionid,
         userid = users.userid,
         actiondaysno = xs.actiondaysno,

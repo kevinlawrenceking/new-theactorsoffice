@@ -1,5 +1,5 @@
 <cfcomponent displayname="ReportRangeService" hint="Handles operations for ReportRange table" output="false"> 
-<cffunction name="getReportRanges" access="public" returntype="query">
+<cffunction name="SELreportranges" access="public" returntype="query">
     <cfargument name="excludedRangeIds" type="array" required="true">
     <cfset var qryResult = "">
     <cftry>
@@ -20,7 +20,7 @@
     </cftry>
     <cfreturn qryResult>
 </cffunction>
-<cffunction name="updateReportRanges" access="public" returntype="void">
+<cffunction name="UPDreportranges" access="public" returntype="void">
     <cfargument name="new_rangestart" type="date" required="true">
     <cfargument name="new_rangeend" type="date" required="true">
     <cfargument name="current_rangeid" type="numeric" required="true">
@@ -38,7 +38,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateReportRanges" access="public" returntype="void">
+<cffunction name="UPDreportranges_24221" access="public" returntype="void">
     <cfargument name="customStart" type="date" required="true">
     <cfargument name="customEnd" type="date" required="true">
 
@@ -56,13 +56,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getReportRange" access="public" returntype="query">
+<cffunction name="SELreportranges_24229" access="public" returntype="query">
     <cfargument name="new_rangeid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT rangeid, rangename, rangestart, rangeend
             FROM reportranges
             WHERE rangeid = <cfqueryparam value="#arguments.new_rangeid#" cfsqltype="CF_SQL_INTEGER">

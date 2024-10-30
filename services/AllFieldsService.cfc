@@ -22,13 +22,13 @@ function getFilteredAllFields(keyValue, extraValue) {
 </cfscript>
 
 
-<cffunction name="getAllFieldsByKey" access="public" returntype="query">
+<cffunction name="SELallfields_24310" access="public" returntype="query">
     <cfargument name="keyValue" type="string" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM allfields
             WHERE [key] = <cfqueryparam value="#arguments.keyValue#" cfsqltype="CF_SQL_VARCHAR">

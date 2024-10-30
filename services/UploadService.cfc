@@ -1,5 +1,5 @@
 <cfcomponent displayname="UploadService" hint="Handles operations for Upload table" output="false"> 
-<cffunction name="insertUpload" access="public" returntype="void">
+<cffunction name="INSuploads" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
 
     <cftry>
@@ -14,13 +14,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getUploadDetails" access="public" returntype="query">
+<cffunction name="DETuploads" access="public" returntype="query">
     <cfargument name="uploadid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT uploadid, `TIMESTAMP`, userid, uploadstatus
             FROM uploads
             WHERE uploadid = <cfqueryparam value="#arguments.uploadid#" cfsqltype="CF_SQL_INTEGER">

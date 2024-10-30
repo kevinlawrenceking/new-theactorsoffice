@@ -1,12 +1,12 @@
 <cfcomponent displayname="AuditionGenreUserService" hint="Handles operations for AuditionGenreUser table" output="false"> 
-<cffunction name="getAudGenresUser" access="public" returntype="query">
+<cffunction name="SELaudgenres_user" access="public" returntype="query">
     <cfargument name="audcatid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM audgenres_user
             WHERE audcatid = <cfqueryparam value="#arguments.audcatid#" cfsqltype="CF_SQL_INTEGER">
@@ -21,7 +21,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getAudGenresUser" access="public" returntype="query">
+<cffunction name="SELaudgenres_user_24272" access="public" returntype="query">
     <cfargument name="new_audcatid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     
@@ -43,7 +43,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getAudGenresByUser" access="public" returntype="query">
+<cffunction name="SELaudgenres_user_24273" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_audcatid" type="numeric" required="true">
     
@@ -66,7 +66,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getAudGenreId" access="public" returntype="query">
+<cffunction name="SELaudgenres_user_24285" access="public" returntype="query">
     <cfargument name="new_genre" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
@@ -88,13 +88,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertAudgenresUser" access="public" returntype="void">
+<cffunction name="INSaudgenres_user" access="public" returntype="void">
     <cfargument name="new_genre" type="string" required="true">
     <cfargument name="new_catid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="yourDataSource">
+        <cfquery datasource="abod">
             INSERT INTO audgenres_user (audgenre, audcatid, userid)
             VALUES (
                 <cfqueryparam value="#arguments.new_genre#" cfsqltype="CF_SQL_VARCHAR">,
@@ -108,14 +108,14 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getAudGenres" access="public" returntype="query">
+<cffunction name="SELaudgenres_user_24523" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT g.audgenre 
             FROM audgenres_user g 
             INNER JOIN audgenres_audition_xref x ON x.audgenreID = g.audgenreID 

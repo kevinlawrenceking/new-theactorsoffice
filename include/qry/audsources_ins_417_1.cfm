@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset variables.auditionSourceService = createObject("component", "/services/AuditionSourceService")>
-    <cfset variables.auditionSourceService.updateAudsource(
+    <cfset variables.auditionSourceService = createObject("component", "services.AuditionSourceService")>
+    <cfset variables.auditionSourceService.UPDaudsources(
         new_audsource = trim(new_audsource),
         new_isDeleted = new_isDeleted,
         new_audsourceid = new_audsourceid

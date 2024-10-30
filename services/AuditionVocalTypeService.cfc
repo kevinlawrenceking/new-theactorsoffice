@@ -1,11 +1,11 @@
 <cfcomponent displayname="AuditionVocalTypeService" hint="Handles operations for AuditionVocalType table" output="false"> 
-<cffunction name="getVocalTypes" access="public" returntype="query">
+<cffunction name="SELaudvocaltypes" access="public" returntype="query">
     <cfargument name="isDeleted" type="boolean" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT vocaltypeid, vocaltype 
             FROM audvocaltypes 
             WHERE isdeleted = <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
@@ -20,7 +20,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertVocalType" access="public" returntype="void">
+<cffunction name="INSaudvocaltypes" access="public" returntype="void">
     <cfargument name="new_vocaltype" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
@@ -39,7 +39,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateVocalType" access="public" returntype="void">
+<cffunction name="UPDaudvocaltypes" access="public" returntype="void">
     <cfargument name="new_vocaltype" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_vocaltypeid" type="numeric" required="true">

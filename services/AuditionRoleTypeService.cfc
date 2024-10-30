@@ -1,11 +1,11 @@
 <cfcomponent displayname="AuditionRoleTypeService" hint="Handles operations for AuditionRoleType table" output="false"> 
-<cffunction name="getAudRoleTypes" access="public" returntype="query">
+<cffunction name="SELaudroletypes" access="public" returntype="query">
     <cfargument name="audcatid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT audroletypeid AS id, audroletype AS name
             FROM audroletypes
             WHERE audcatid = <cfqueryparam value="#arguments.audcatid#" cfsqltype="CF_SQL_INTEGER">
@@ -20,13 +20,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertAudRoleType" access="public" returntype="void">
+<cffunction name="INSaudroletypes" access="public" returntype="void">
     <cfargument name="new_audroletype" type="string" required="true">
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
     <cftry>
-        <cfquery datasource="yourDataSource">
+        <cfquery datasource="abod">
             INSERT INTO audroletypes (audroletype, audCatid, isDeleted)
             VALUES (
                 <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audroletype#" maxlength="100" null="#NOT len(trim(arguments.new_audroletype))#">,
@@ -40,14 +40,14 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAudRoleType" access="public" returntype="void">
+<cffunction name="UPDaudroletypes" access="public" returntype="void">
     <cfargument name="new_audroletype" type="string" required="true">
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_audroletypeid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="yourDataSource">
+        <cfquery datasource="abod">
             UPDATE audroletypes 
             SET 
                 audroletype = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audroletype)#" maxlength="100" null="#NOT len(trim(arguments.new_audroletype))#">,

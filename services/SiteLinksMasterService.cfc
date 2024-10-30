@@ -1,9 +1,9 @@
 <cfcomponent displayname="SiteLinksMasterService" hint="Handles operations for SiteLinksMaster table" output="false"> 
-<cffunction name="getSiteLinks" access="public" returntype="query">
+<cffunction name="SELsitelinks_master" access="public" returntype="query">
     <cfargument name="siteTypeId" type="numeric" required="false">
     <cfset var result = "">
     <cftry>
-        <cfquery name="result" datasource="yourDatasource">
+        <cfquery name="result" datasource="abod">
             SELECT s.id, s.sitename, s.siteURL, s.siteicon, s.sitetypeid, t.sitetypename
             FROM sitelinks_master s
             INNER JOIN sitetypes_master t ON t.sitetypeid = s.siteTypeid

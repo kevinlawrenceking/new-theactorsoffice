@@ -1,7 +1,7 @@
 
 <cftry>
     <cfset ticketTestUserService = new "/services/TicketTestUserService.cfc"()>
-    <cfset ticketTestUserService.updateTicketTestUsers(
+    <cfset ticketTestUserService.UPDtickettestusers(
         new_teststatus = new_teststatus,
         new_rejectnotes = new_rejectnotes,
         testid = testid

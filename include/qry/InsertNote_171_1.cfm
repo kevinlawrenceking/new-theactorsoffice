@@ -1,10 +1,10 @@
 
 <cftry>
-    <cfset variables.noteService = createObject("component", "/services/NoteService")>
-    <cfset variables.noteService.insertNoteLog(
+    <cfset variables.noteService = new "/services/NoteService.cfc"()>
+    <cfset variables.noteService.INSnoteslog_23969(
         userid = userid,
         contactid = rcontactid,
-        noteDetails = LEFT(trim(noteDetails), 2000),
+        noteDetails = LEFT(trim(noteDetails),2000),
         isPublic = isPublic,
         eventid = eventid,
         notedetailshtml = new_notetext

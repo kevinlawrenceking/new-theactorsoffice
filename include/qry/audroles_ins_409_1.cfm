@@ -1,9 +1,7 @@
 
 <cftry>
-    <cfset componentPath = "/services/AuditionRoleService.cfc">
-    <cfset auditionRoleService = createObject("component", componentPath)>
-    
-    <cfset auditionRoleService.insertAudRole(
+    <cfset variables.auditionRoleService = createObject("component", "/services/AuditionRoleService")>
+    <cfset variables.auditionRoleService.INSaudroles_24593(
         new_audRoleName = new_audRoleName,
         new_audprojectID = new_audprojectID,
         new_audRoleTypeID = new_audRoleTypeID,
@@ -19,12 +17,7 @@
         ispin = ispin,
         isredirect = isredirect
     )>
-    
-    <cfquery datasource="#application.datasource#">
-        UPDATE databaseTable SET isfetch = 1 WHERE someCondition
-    </cfquery>
-
 <cfcatch>
-    <cflog file="errorLog" text="[Error in audroles_ins_409_1.cfm] #cfcatch.message#"/>
+    <cflog file="errorLog" text="[Error in audroles_ins_409_1.cfm] #cfcatch.message#">
 </cfcatch>
 </cftry>

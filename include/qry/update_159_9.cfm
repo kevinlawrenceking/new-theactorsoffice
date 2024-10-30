@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset userService = new "/services/UserService.cfc"()>
-    <cfset userService.updateUserDetails(
+    <cfset variables.userService = createObject("component", "services.UserService")>
+    <cfset variables.userService.UPDtaousers_23951(
         calstarttime = calstarttime,
         calendtime = calendtime,
         defRows = defRows,

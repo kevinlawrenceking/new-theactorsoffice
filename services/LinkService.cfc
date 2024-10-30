@@ -1,11 +1,11 @@
 <cfcomponent displayname="LinkService" hint="Handles operations for Link table" output="false"> 
-<cffunction name="insertLink" access="public" returntype="void">
+<cffunction name="INSlinks" access="public" returntype="void">
     <cfargument name="linkname" type="string" required="true">
     <cfargument name="linkurl" type="string" required="true">
     <cfargument name="noteid" type="numeric" required="true">
 
     <cftry>
-        <cfquery name="insertLinkQuery" datasource="yourDataSource">
+        <cfquery name="insertLinkQuery" datasource="abod">
             INSERT INTO links (linkname, linkurl, isdeleted, userid, noteid) 
             VALUES (
                 <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.linkname#" />, 
@@ -21,7 +21,7 @@
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getEventIdByLinkId" access="public" returntype="query">
+<cffunction name="SELlinks" access="public" returntype="query">
     <cfargument name="linkid" type="numeric" required="true">
 
     <cfset var result = "">
@@ -42,7 +42,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="updateLinkIsDeleted" access="public" returntype="void" hint="Updates the isdeleted field for a given linkid">
+<cffunction name="UPDlinks" access="public" returntype="void" hint="Updates the isdeleted field for a given linkid">
     <cfargument name="linkid" type="numeric" required="true" hint="The ID of the link to update">
 
     <cftry>
@@ -58,7 +58,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getLinksByNoteId" access="public" returntype="query">
+<cffunction name="SELlinks_23981" access="public" returntype="query">
     <cfargument name="new_noteid" type="numeric" required="true">
     
     <cfset var result = "">

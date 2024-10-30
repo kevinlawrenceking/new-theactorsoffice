@@ -1,9 +1,9 @@
 
 <cftry>
     <cfset genderPronounService = new "/services/GenderPronounUserService.cfc"()>
-    <cfset genderPronounService.insertGenderPronounsUser(
-        genderpronoun = x.genderpronoun, 
-        genderpronounplural = x.genderpronounplural, 
+    <cfset genderPronounService.INSgenderpronouns_users_24445(
+        genderpronoun = x.genderpronoun,
+        genderpronounplural = x.genderpronounplural,
         userid = users.userid
     )>
     <cfcatch>

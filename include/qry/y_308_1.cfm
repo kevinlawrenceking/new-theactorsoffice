@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset y = createObject("component", "services.AuditionImportService").getAuditionsImport(
+    <cfset y = createObject("component", "services.AuditionImportService").SELauditionsimport_24352(
         isfix = isfix,
         recordid = recordid,
         new_uploadid = new_uploadid

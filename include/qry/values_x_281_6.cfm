@@ -1,8 +1,8 @@
 
 <cftry>
-    <cfset values_x = createObject("component", "/services/ReportItemService").getReportItems(
-        userid = userid, 
-        reportid = reports.reportid, 
+    <cfset values_x = createObject("component", "services.ReportItemService").SELreportitems_24227(
+        userid = userid,
+        reportid = reports.reportid,
         itemdataset = dataset_x.itemdataset
     )>
     <cfcatch type="any">

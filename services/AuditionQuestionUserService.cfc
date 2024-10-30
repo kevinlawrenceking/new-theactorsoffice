@@ -1,5 +1,5 @@
 <cfcomponent displayname="AuditionQuestionUserService" hint="Handles operations for AuditionQuestionUser table" output="false"> 
-<cffunction name="getUserQuestions" access="public" returntype="query">
+<cffunction name="SELaudquestions_user" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -19,13 +19,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getUserQuestions" access="public" returntype="query">
+<cffunction name="SELaudquestions_user_24078" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM audquestions_user
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
@@ -39,13 +39,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getQuestionsAndAnswers" access="public" returntype="query">
+<cffunction name="SELaudquestions_user_24501" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 q.qid, 
                 q.qtext, 
@@ -79,7 +79,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertAudQuestionsUser" access="public" returntype="void">
+<cffunction name="INSaudquestions_user" access="public" returntype="void">
     <cfargument name="new_qTypeID" type="numeric" required="true">
     <cfargument name="new_qtext" type="string" required="true">
     <cfargument name="new_qorder" type="numeric" required="true">
@@ -103,7 +103,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAudQuestionsUser" access="public" returntype="void">
+<cffunction name="UPDaudquestions_user" access="public" returntype="void">
     <cfargument name="new_qTypeID" type="numeric" required="true">
     <cfargument name="new_qtext" type="string" required="true">
     <cfargument name="new_qorder" type="numeric" required="true">

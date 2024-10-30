@@ -1,5 +1,5 @@
 <cfcomponent displayname="AuditionMediaXRefService" hint="Handles operations for AuditionMediaXRef table" output="false"> 
-<cffunction name="insertAudmediaAuditionsXref" access="public" returntype="void">
+<cffunction name="INSaudmedia_auditions_xref" access="public" returntype="void">
     <cfargument name="new_mediaid" type="numeric" required="true">
     <cfargument name="audprojectid" type="numeric" required="true">
 
@@ -18,7 +18,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="deleteAudMediaAuditionsXref" access="public" returntype="void">
+<cffunction name="DELaudmedia_auditions_xref" access="public" returntype="void">
     <cfargument name="mediaid" type="numeric" required="true">
     <cfargument name="audprojectid" type="numeric" required="true">
 
@@ -35,7 +35,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertAudmediaAuditionsXref" access="public" returntype="void">
+<cffunction name="INSaudmedia_auditions_xref_24153" access="public" returntype="void">
     <cfargument name="mediaid" type="numeric" required="true">
     <cfargument name="audprojectid" type="numeric" required="true">
 
@@ -56,7 +56,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getAuditionsByMediaAndProject" access="public" returntype="query">
+<cffunction name="SELaudmedia_auditions_xref" access="public" returntype="query">
     <cfargument name="new_mediaID" type="numeric" required="true">
     <cfargument name="audprojectid" type="numeric" required="true">
     
@@ -78,7 +78,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertAuditionMedia" access="public" returntype="void">
+<cffunction name="INSaudmedia_auditions_xref_24568" access="public" returntype="void">
     <cfargument name="audprojectid" type="numeric" required="true">
     <cfargument name="new_mediaID" type="numeric" required="true">
 

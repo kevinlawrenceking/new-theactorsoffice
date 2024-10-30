@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset result = createObject("component", "services.AuditionGenreService").insertAudGenre(
+    <cfset result = createObject("component", "services.AuditionGenreService").INSaudgenres(
         new_audgenre = trim(new_audgenre),
         new_audCatid = new_audCatid,
         new_isDeleted = new_isDeleted

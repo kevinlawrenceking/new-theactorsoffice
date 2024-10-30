@@ -1,10 +1,10 @@
 <cfcomponent displayname="ContactItemService" hint="Handles operations for ContactItem table" output="false"> 
-<cffunction name="getContactItems" access="public" returntype="query">
+<cffunction name="SELcontactitems" access="public" returntype="query">
     <cfargument name="contactId" type="numeric" required="true">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 contactid, 
                 itemid, 
@@ -26,13 +26,13 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getActivePhone" access="public" returntype="query">
+<cffunction name="SELcontactitems_23758" access="public" returntype="query">
     <cfargument name="contactID" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT contactitems.valueText AS phone
             FROM contactitems
             WHERE contactitems.valueCategory = <cfqueryparam value="Phone" cfsqltype="CF_SQL_VARCHAR">
@@ -50,13 +50,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getActiveEmail" access="public" returntype="query">
+<cffunction name="SELcontactitems_23759" access="public" returntype="query">
     <cfargument name="contactID" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT contactitems.valueText AS email
             FROM contactitems
             WHERE contactitems.valueCategory = <cfqueryparam value="Email" cfsqltype="CF_SQL_VARCHAR">
@@ -74,7 +74,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertContactItem" access="public" returntype="void">
+<cffunction name="INScontactitems" access="public" returntype="void">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="cdtype" type="string" required="true">
 
@@ -95,7 +95,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertContactItem" access="public" returntype="void">
+<cffunction name="INScontactitems_23771" access="public" returntype="void">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="cdco" type="string" required="true">
 
@@ -116,12 +116,12 @@
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getContactItems" access="public" returntype="query">
+<cffunction name="SELcontactitems_23840" access="public" returntype="query">
     <cfargument name="currentid" type="numeric" required="true">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT i.itemid, c.catid, c.valuecategory
             FROM contactitems i
             INNER JOIN itemcategory c ON c.valuecategory = i.valuecategory
@@ -136,12 +136,12 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getContactItems" access="public" returntype="query">
+<cffunction name="SELcontactitems_23855" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT contactid, itemid, `contactitems`.`valueText` AS tag
             FROM contactitems
             WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
@@ -157,7 +157,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getContactItems" access="public" returntype="query">
+<cffunction name="DETcontactitems" access="public" returntype="query">
     <cfargument name="itemid" type="numeric" required="true">
     
     <cfset var queryResult = "">
@@ -182,7 +182,7 @@
     
     <cfreturn queryResult>
 </cffunction>
-<cffunction name="getNewWebsite" access="public" returntype="query">
+<cffunction name="SELcontactitems_23889" access="public" returntype="query">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfset var queryResult = "">
     <cftry>
@@ -201,11 +201,11 @@
     </cftry>
     <cfreturn queryResult>
 </cffunction>
-<cffunction name="getBusinessEmail" access="public" returntype="query">
+<cffunction name="SELcontactitems_23890" access="public" returntype="query">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfset var result = "">
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT valuetext AS new_businessEmail 
             FROM contactitems 
             WHERE valuetype = <cfqueryparam cfsqltype="cf_sql_varchar" value="Business" /> 
@@ -220,7 +220,7 @@
     </cftry>
     <cfreturn result>
 </cffunction>
-<cffunction name="getPersonalEmail" access="public" returntype="query">
+<cffunction name="SELcontactitems_23891" access="public" returntype="query">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfset var result = "">
     <cftry>
@@ -239,7 +239,7 @@
     </cftry>
     <cfreturn result>
 </cffunction>
-<cffunction name="getCompanyByContactId" access="public" returntype="query">
+<cffunction name="SELcontactitems_23892" access="public" returntype="query">
     <cfargument name="contactId" type="numeric" required="true">
     <cfset var result = "">
     
@@ -259,13 +259,13 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getWorkPhone" access="public" returntype="query">
+<cffunction name="SELcontactitems_23893" access="public" returntype="query">
     <cfargument name="new_contactid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT valuetext AS new_WorkPhone
             FROM contactitems
             WHERE valuetype = <cfqueryparam cfsqltype="cf_sql_varchar" value="Work" />
@@ -282,13 +282,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getNewMobilePhone" access="public" returntype="query">
+<cffunction name="SELcontactitems_23894" access="public" returntype="query">
     <cfargument name="new_contactid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT valuetext AS new_mobilePhone 
             FROM contactitems 
             WHERE valuetype = <cfqueryparam cfsqltype="cf_sql_varchar" value="mobile" />
@@ -305,12 +305,12 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getNewHomePhone" access="public" returntype="query">
+<cffunction name="SELcontactitems_23895" access="public" returntype="query">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfset var queryResult = "">
     
     <cftry>
-        <cfquery name="queryResult" datasource="yourDataSource">
+        <cfquery name="queryResult" datasource="abod">
             SELECT valuetext AS new_homePhone 
             FROM contactitems 
             WHERE valuetype = <cfqueryparam cfsqltype="cf_sql_varchar" value="home" /> 
@@ -327,13 +327,13 @@
 
     <cfreturn queryResult>
 </cffunction>
-<cffunction name="getBusinessAddress" access="public" returntype="query">
+<cffunction name="SELcontactitems_23896" access="public" returntype="query">
     <cfargument name="new_contactid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 valuestreetaddress AS new_address, 
                 valueextendedaddress AS new_address2, 
@@ -357,12 +357,12 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getContactAddress" access="public" returntype="query">
+<cffunction name="SELcontactitems_23897" access="public" returntype="query">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDatasource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 valuestreetaddress AS new_address, 
                 valueextendedaddress AS new_address2, 
@@ -386,13 +386,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getContactTags" access="public" returntype="query">
+<cffunction name="SELcontactitems_23898" access="public" returntype="query">
     <cfargument name="contactID" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT valuetext AS tag
             FROM contactitems
             WHERE valueCategory = <cfqueryparam cfsqltype="cf_sql_varchar" value="Tag" />
@@ -408,13 +408,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getContactItems" access="public" returntype="query">
+<cffunction name="DETcontactitems_23910" access="public" returntype="query">
     <cfargument name="itemid" type="numeric" required="true">
     
     <cfset var queryResult = "">
     
     <cftry>
-        <cfquery name="queryResult" datasource="yourDataSource">
+        <cfquery name="queryResult" datasource="abod">
             SELECT i.itemid, i.valueText
             FROM contactitems i
             WHERE i.itemid = <cfqueryparam value="#arguments.itemid#" cfsqltype="cf_sql_integer">
@@ -428,14 +428,14 @@
     
     <cfreturn queryResult>
 </cffunction>
-<cffunction name="getActiveContacts" access="public" returntype="query">
+<cffunction name="REScontactitems" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="uploadid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 d.contactid, 
                 'Name' AS head1, 
@@ -514,7 +514,7 @@ function getContactDetails(required numeric uploadid) {
 }
 </cfscript>
 
-<cffunction name="insertContactItem" access="public" returntype="void">
+<cffunction name="INScontactitems_23947" access="public" returntype="void">
     <cfargument name="new_contactid" type="numeric" required="true">
     
     <cftry>
@@ -542,13 +542,13 @@ function getContactDetails(required numeric uploadid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getContactItemsByContactId" access="public" returntype="query">
+<cffunction name="SELcontactitems_23948" access="public" returntype="query">
     <cfargument name="deletecontactid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT itemid 
             FROM contactitems 
             WHERE contactid = <cfqueryparam value="#arguments.deletecontactid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -563,7 +563,7 @@ function getContactDetails(required numeric uploadid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="updateContactItem" access="public" returntype="void">
+<cffunction name="UPDcontactitems" access="public" returntype="void">
     <cfargument name="new_itemid" type="numeric" required="true">
 
     <cftry>
@@ -579,12 +579,12 @@ function getContactDetails(required numeric uploadid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateContactItems" access="public" returntype="void">
+<cffunction name="UPDcontactitems_23952" access="public" returntype="void">
     <cfargument name="itemid" type="numeric" required="true">
     <cfargument name="contactid" type="numeric" required="true">
 
     <cftry>
-        <cfquery name="updateQuery" datasource="yourDataSource">
+        <cfquery name="updateQuery" datasource="abod">
             UPDATE contactitems 
             SET isDeleted = 1 
             WHERE itemid = <cfqueryparam value="#arguments.itemid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -597,7 +597,7 @@ function getContactDetails(required numeric uploadid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateContactItems" access="public" returntype="void">
+<cffunction name="UPDcontactitems_23953" access="public" returntype="void">
     <cfargument name="currentid" type="numeric" required="true">
     
     <cftry>
@@ -614,14 +614,14 @@ function getContactDetails(required numeric uploadid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getPendingContactItems" access="public" returntype="query">
+<cffunction name="SELcontactitems_23954" access="public" returntype="query">
     <cfargument name="currentid" type="numeric" required="true">
     <cfargument name="valuecategory" type="string" required="true">
 
     <cfset var result = "">
 
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT itemid 
             FROM contactitems 
             WHERE contactid = <cfqueryparam value="#arguments.currentid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -636,7 +636,7 @@ function getContactDetails(required numeric uploadid) {
 
     <cfreturn result>
 </cffunction>
-<cffunction name="insertContactItem" access="public" returntype="void">
+<cffunction name="INScontactitems_23955" access="public" returntype="void">
     <cfargument name="contactID" type="numeric" required="true">
     <cfargument name="valueTypeDef" type="string" required="true">
     <cfargument name="valuecategory" type="string" required="true">
@@ -658,12 +658,12 @@ function getContactDetails(required numeric uploadid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getContactItems" access="public" returntype="query">
+<cffunction name="SELcontactitems_23962" access="public" returntype="query">
     <cfargument name="contactId" type="numeric" required="true">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 contactid, 
                 itemid, 
@@ -686,11 +686,11 @@ function getContactDetails(required numeric uploadid) {
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getActivePhone" access="public" returntype="query">
+<cffunction name="SELcontactitems_23963" access="public" returntype="query">
     <cfargument name="contactID" type="numeric" required="true">
     <cfset var result = "">
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT contactitems.valueText AS phone
             FROM contactitems
             WHERE contactitems.valueCategory = <cfqueryparam value="Phone" cfsqltype="CF_SQL_VARCHAR">
@@ -706,13 +706,13 @@ function getContactDetails(required numeric uploadid) {
     </cftry>
     <cfreturn result>
 </cffunction>
-<cffunction name="getActiveEmail" access="public" returntype="query">
+<cffunction name="SELcontactitems_23964" access="public" returntype="query">
     <cfargument name="contactID" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT contactitems.valueText AS email
             FROM contactitems
             WHERE contactitems.valueCategory = <cfqueryparam value="Email" cfsqltype="CF_SQL_VARCHAR">
@@ -730,13 +730,13 @@ function getContactDetails(required numeric uploadid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getDistinctValueCompany" access="public" returntype="query">
+<cffunction name="SELcontactitems_24040" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT DISTINCT i.valueCompany AS new_valuecompany 
             FROM contactitems i 
             INNER JOIN contactdetails d ON d.contactid = i.contactid 
@@ -756,7 +756,7 @@ function getContactDetails(required numeric uploadid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertContactItem" access="public" returntype="void">
+<cffunction name="INScontactitems_24043" access="public" returntype="void">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="valuetype" type="string" required="true">
     <cfargument name="valueCategory" type="string" required="true">
@@ -777,7 +777,7 @@ function getContactDetails(required numeric uploadid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateContactItems" access="public" returntype="void">
+<cffunction name="UPDcontactitems_24046" access="public" returntype="void">
     <cfargument name="valuetext" type="string" required="true">
     <cfargument name="catid" type="string" required="true">
     <cfargument name="valuecompany" type="string" required="false" default="">
@@ -826,7 +826,7 @@ function getContactDetails(required numeric uploadid) {
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertContactItem" access="public" returntype="void">
+<cffunction name="INScontactitems_24049" access="public" returntype="void">
     <cfargument name="contactID" type="numeric" required="true">
     <cfargument name="tag" type="string" required="true">
 
@@ -847,7 +847,7 @@ function getContactDetails(required numeric uploadid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertContactItem" access="public" returntype="void">
+<cffunction name="INScontactitems_24050" access="public" returntype="void">
     <cfargument name="contactID" type="numeric" required="true">
     <cfargument name="workEmail" type="string" required="true">
 
@@ -869,7 +869,7 @@ function getContactDetails(required numeric uploadid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertContactItem" access="public" returntype="void">
+<cffunction name="INScontactitems_24051" access="public" returntype="void">
     <cfargument name="contactID" type="numeric" required="true">
     <cfargument name="workPhone" type="string" required="true">
 
@@ -891,7 +891,7 @@ function getContactDetails(required numeric uploadid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertContactItem" access="public" returntype="void">
+<cffunction name="INScontactitems_24052" access="public" returntype="void">
     <cfargument name="CONTACTID" type="numeric" required="true">
     <cfargument name="Company" type="string" required="true">
 
@@ -912,7 +912,7 @@ function getContactDetails(required numeric uploadid) {
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertContactItem" access="public" returntype="void">
+<cffunction name="INScontactitems_24057" access="public" returntype="void">
     <cfargument name="contactID" type="numeric" required="true">
     <cfargument name="company" type="string" required="true">
 
@@ -934,7 +934,7 @@ function getContactDetails(required numeric uploadid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertContactItem" access="public" returntype="void">
+<cffunction name="INScontactitems_24058" access="public" returntype="void">
     <cfargument name="CONTACTID" type="numeric" required="true">
     <cfargument name="Company_new" type="string" required="true">
 
@@ -955,13 +955,13 @@ function getContactDetails(required numeric uploadid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getDistinctValueCompany" access="public" returntype="query">
+<cffunction name="SELcontactitems_24064" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT DISTINCT i.valueCompany AS new_valuecompany
             FROM contactitems i
             INNER JOIN contactdetails d ON d.contactid = i.contactid
@@ -981,13 +981,13 @@ function getContactDetails(required numeric uploadid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getContactItems" access="public" returntype="query">
+<cffunction name="DETcontactitems_24168" access="public" returntype="query">
     <cfargument name="itemid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 i.itemid, i.contactid, i.valueType, i.valueCategory, i.valueText, 
                 i.valueCompany, i.valueDepartment, i.valueTitle, i.valueStreetAddress, 
@@ -1010,7 +1010,7 @@ function getContactDetails(required numeric uploadid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateContactItems" access="public" returntype="void">
+<cffunction name="UPDcontactitems_24178" access="public" returntype="void">
     <cfargument name="valuetext" type="string" required="true">
     <cfargument name="valuetype" type="string" required="true">
     <cfargument name="catid" type="string" required="true">
@@ -1083,7 +1083,7 @@ function getContactDetails(required numeric uploadid) {
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateContactItem" access="public" returntype="void">
+<cffunction name="UPDcontactitems_24179" access="public" returntype="void">
     <cfargument name="valuetype" type="string" required="true">
     <cfargument name="itemid" type="numeric" required="true">
 
@@ -1099,14 +1099,14 @@ function getContactDetails(required numeric uploadid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getActiveContactTags" access="public" returntype="query">
+<cffunction name="SELcontactitems_24207" access="public" returntype="query">
     <cfargument name="ContactID" type="numeric" required="true">
     <cfargument name="new_tagname" type="string" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT valuetext 
             FROM contactitems 
             WHERE valueCategory = <cfqueryparam value="Tag" cfsqltype="CF_SQL_VARCHAR"> 
@@ -1124,13 +1124,13 @@ function getContactDetails(required numeric uploadid) {
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getActiveCastingDirectors" access="public" returntype="query">
+<cffunction name="SELcontactitems_24313" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM contactitems 
             WHERE valuecategory = <cfqueryparam value="Tag" cfsqltype="CF_SQL_VARCHAR"> 
@@ -1147,14 +1147,14 @@ function getContactDetails(required numeric uploadid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getActiveContactTags" access="public" returntype="query">
+<cffunction name="SELcontactitems_24314" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM contactitems
             WHERE valuecategory = <cfqueryparam value="Tag" cfsqltype="CF_SQL_VARCHAR">
@@ -1176,7 +1176,7 @@ function getContactDetails(required numeric uploadid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="deleteContactItemsByTag" access="public" returntype="void">
+<cffunction name="DELcontactitems" access="public" returntype="void">
     <cfargument name="contactid" type="numeric" required="true">
 
     <cftry>
@@ -1191,7 +1191,7 @@ function getContactDetails(required numeric uploadid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertContactItem" access="public" returntype="void">
+<cffunction name="INScontactitems_24327" access="public" returntype="void">
     <cfargument name="contactID" type="numeric" required="true">
     <cfargument name="newValueText" type="string" required="true">
 
@@ -1213,14 +1213,14 @@ function getContactDetails(required numeric uploadid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getContactItemsByTag" access="public" returntype="query">
+<cffunction name="SELcontactitems_24329" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="tagname" type="string" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM contactitems
             WHERE valuecategory = <cfqueryparam value="Tag" cfsqltype="CF_SQL_VARCHAR">
@@ -1240,14 +1240,14 @@ function getContactDetails(required numeric uploadid) {
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getActiveContactItemsByTag" access="public" returntype="query">
+<cffunction name="SELcontactitems_24347" access="public" returntype="query">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="new_tagname" type="string" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM CONTACTITEMS 
             WHERE contactid = <cfqueryparam value="#arguments.new_contactid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -1264,7 +1264,7 @@ function getContactDetails(required numeric uploadid) {
 
     <cfreturn result>
 </cffunction>
-<cffunction name="insertContactItem" access="public" returntype="void">
+<cffunction name="INScontactitems_24348" access="public" returntype="void">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="new_tagname" type="string" required="true">
 
@@ -1285,12 +1285,12 @@ function getContactDetails(required numeric uploadid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateContactItems" access="public" returntype="void">
+<cffunction name="UPDCONTACTITEMS_24349" access="public" returntype="void">
     <cfargument name="itemid" type="numeric" required="true">
     <cfargument name="new_currentStartDate" type="string" required="true">
 
     <cftry>
-        <cfquery name="updateQuery" datasource="yourDataSource">
+        <cfquery name="updateQuery" datasource="abod">
             UPDATE CONTACTITEMS_tbl 
             SET isdeleted = 1, 
                 itemnotes = <cfqueryparam value="Delete via Bulk Update - #arguments.new_currentStartDate#" cfsqltype="CF_SQL_VARCHAR">
@@ -1303,7 +1303,7 @@ function getContactDetails(required numeric uploadid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertContactItem" access="public" returntype="void">
+<cffunction name="INScontactitems_24404" access="public" returntype="void">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="new_tag1" type="string" required="true">
 
@@ -1324,7 +1324,7 @@ function getContactDetails(required numeric uploadid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertContactItem" access="public" returntype="void">
+<cffunction name="INScontactitems_24406" access="public" returntype="void">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="new_tag2" type="string" required="true">
 
@@ -1346,7 +1346,7 @@ function getContactDetails(required numeric uploadid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertContactItem" access="public" returntype="void" output="false">
+<cffunction name="INScontactitems_24408" access="public" returntype="void" output="false">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="new_tag3" type="string" required="true">
 
@@ -1368,7 +1368,7 @@ function getContactDetails(required numeric uploadid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertContactItem" access="public" returntype="void" hint="Inserts a new contact item into the database.">
+<cffunction name="INScontactitems_24410" access="public" returntype="void" hint="Inserts a new contact item into the database.">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="business_email" type="string" required="true">
 
@@ -1390,7 +1390,7 @@ function getContactDetails(required numeric uploadid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertContactItem" access="public" returntype="void">
+<cffunction name="INScontactitems_24412" access="public" returntype="void">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="personal_email" type="string" required="true">
 
@@ -1411,7 +1411,7 @@ function getContactDetails(required numeric uploadid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertContactItem" access="public" returntype="void">
+<cffunction name="INScontactitems_24414" access="public" returntype="void">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="work_phone" type="string" required="true">
 
@@ -1433,7 +1433,7 @@ function getContactDetails(required numeric uploadid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertContactItem" access="public" returntype="void">
+<cffunction name="INScontactitems_24416" access="public" returntype="void">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="mobile_phone" type="string" required="true">
 
@@ -1455,7 +1455,7 @@ function getContactDetails(required numeric uploadid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertContactItem" access="public" returntype="void">
+<cffunction name="INScontactitems_24418" access="public" returntype="void">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="home_phone" type="string" required="true">
 
@@ -1476,7 +1476,7 @@ function getContactDetails(required numeric uploadid) {
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertContactItem" access="public" returntype="void">
+<cffunction name="INScontactitems_24420" access="public" returntype="void">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="company" type="string" required="true">
 
@@ -1499,7 +1499,7 @@ function getContactDetails(required numeric uploadid) {
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertContactItem" access="public" returntype="void">
+<cffunction name="INScontactitems_24422" access="public" returntype="void">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="website" type="string" required="true">
 
@@ -1520,13 +1520,13 @@ function getContactDetails(required numeric uploadid) {
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertContactItem" access="public" returntype="void">
+<cffunction name="INScontactitems_24424" access="public" returntype="void">
     <cfargument name="address" type="struct" required="true">
 
     <cfset var queryResult = "">
     
     <cftry>
-        <cfquery name="queryResult" datasource="yourDataSource">
+        <cfquery name="queryResult" datasource="abod">
             INSERT INTO contactitems (
                 contactid, 
                 valueType, 
@@ -1558,13 +1558,13 @@ function getContactDetails(required numeric uploadid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getContactItemsWithTags" access="public" returntype="query">
+<cffunction name="SELcontactitems_24620" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 ci.contactid AS id, 
                 concat(c.recordname, ' (', ti.tagname, ')') AS name
@@ -1591,13 +1591,13 @@ function getContactDetails(required numeric uploadid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getActiveEmails" access="public" returntype="query">
+<cffunction name="SELcontactitems_24657" access="public" returntype="query">
     <cfargument name="currentid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT valueText AS email
             FROM contactitems
             WHERE valueCategory = <cfqueryparam value="Email" cfsqltype="CF_SQL_VARCHAR">
@@ -1614,13 +1614,13 @@ function getContactDetails(required numeric uploadid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getActiveCompany" access="public" returntype="query">
+<cffunction name="SELcontactitems_24663" access="public" returntype="query">
     <cfargument name="currentid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT i.valueCompany 
             FROM contactitems i 
             INNER JOIN itemcategory c ON c.valueCategory = i.valuecategory 
@@ -1641,7 +1641,7 @@ function getContactDetails(required numeric uploadid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getActiveContactItems" access="public" returntype="query">
+<cffunction name="SELcontactitems_24671" access="public" returntype="query">
     <cfargument name="contactID" type="numeric" required="true">
     
     <cfset var result = "">
@@ -1682,14 +1682,14 @@ function getContactDetails(required numeric uploadid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getContactItems" access="public" returntype="query">
+<cffunction name="SELcontactitems_24672" access="public" returntype="query">
     <cfargument name="currentid" type="numeric" required="true">
     <cfargument name="catArea_UCB" type="string" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 i.itemID, i.valueType, i.valueCategory, i.valuetext, 
                 i.valuecompany, i.valuedepartment, i.valuetitle, 
@@ -1715,7 +1715,7 @@ function getContactDetails(required numeric uploadid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getActiveContactItems" access="public" returntype="query">
+<cffunction name="SELcontactitems_24673" access="public" returntype="query">
     <cfargument name="currentid" type="numeric" required="true">
     <cfargument name="activeCategoriesValueCategory" type="string" required="true">
     <cfargument name="catArea_UCB" type="string" required="true">
@@ -1723,7 +1723,7 @@ function getContactDetails(required numeric uploadid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 i.itemID, i.valueType, i.valueCategory, i.valuetext, i.valueCompany, 
                 i.valuedepartment, i.valuetitle, i.valueStreetAddress, i.valueExtendedAddress, 
@@ -1751,12 +1751,12 @@ function getContactDetails(required numeric uploadid) {
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getContactItems" access="public" returntype="query">
+<cffunction name="SELcontactitems_24682" access="public" returntype="query">
     <cfargument name="userContactID" type="numeric" required="true">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 i.valuetext, 
                 i.valuetype, 
@@ -1782,13 +1782,13 @@ function getContactDetails(required numeric uploadid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getActivePhoneNumbers" access="public" returntype="query">
+<cffunction name="SELcontactitems_24714" access="public" returntype="query">
     <cfargument name="currentid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT valueText as phonenumber 
             FROM contactitems 
             WHERE valueCategory = <cfqueryparam value="Phone" cfsqltype="CF_SQL_VARCHAR"> 
@@ -1805,7 +1805,7 @@ function getContactDetails(required numeric uploadid) {
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getSocialProfileItems" access="public" returntype="query">
+<cffunction name="SELcontactitems_24715" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
@@ -1838,7 +1838,7 @@ function getContactDetails(required numeric uploadid) {
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getContactItemDetails" access="public" returntype="query">
+<cffunction name="DETcontactitems_24719" access="public" returntype="query">
     <cfargument name="itemid" type="numeric" required="true">
 
     <cfset var queryResult = "">
@@ -1867,11 +1867,11 @@ function getContactDetails(required numeric uploadid) {
 
     <cfreturn queryResult>
 </cffunction>
-<cffunction name="getActiveContactTags" access="public" returntype="query">
+<cffunction name="SELcontactitems_24761" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">
     <cfset var result = "">
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM contactitems 
             WHERE valuecategory = <cfqueryparam value="Tag" cfsqltype="CF_SQL_VARCHAR"> 
@@ -1891,13 +1891,13 @@ function getContactDetails(required numeric uploadid) {
     </cftry>
     <cfreturn result>
 </cffunction>
-<cffunction name="getActiveContactTags" access="public" returntype="query">
+<cffunction name="SELcontactitems_24764" access="public" returntype="query">
     <cfargument name="ContactID" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 CONCAT("<span class='badge badge-blue' style='font-size: 12px; font-weight: 500;'>", valueText, "</span>") AS valuetext, 
                 valuetext AS tag 

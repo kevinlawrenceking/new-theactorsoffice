@@ -1,5 +1,5 @@
 <cfcomponent displayname="ItemCategoryXRefUserService" hint="Handles operations for ItemCategoryXRefUser table" output="false"> 
-<cffunction name="insertItemCatXrefUser" access="public" returntype="void">
+<cffunction name="INSitemcatxref_user" access="public" returntype="void">
     <cfargument name="new_typeid" type="numeric" required="true">
     <cfargument name="catid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
@@ -21,7 +21,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getItemCatXrefUser" access="public" returntype="query">
+<cffunction name="SELitemcatxref_user" access="public" returntype="query">
     <cfargument name="select_userid" type="numeric" required="true">
     <cfargument name="new_typeid" type="numeric" required="true">
     <cfargument name="new_catid" type="numeric" required="true">
@@ -29,7 +29,7 @@
     <cfset var result = "">
 
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM itemcatxref_user
             WHERE userid = <cfqueryparam value="#arguments.select_userid#" cfsqltype="CF_SQL_INTEGER">
@@ -45,7 +45,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="insertItemCatXrefUser" access="public" returntype="void" output="false">
+<cffunction name="INSitemcatxref_user_24468" access="public" returntype="void" output="false">
     <cfargument name="new_typeid" type="numeric" required="true">
     <cfargument name="new_catid" type="numeric" required="true">
     <cfargument name="select_userid" type="numeric" required="true">

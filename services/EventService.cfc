@@ -1,5 +1,5 @@
 <cfcomponent displayname="EventService" hint="Handles operations for Event table" output="false"> 
-<cffunction name="insertEvent" access="public" returntype="void">
+<cffunction name="INSevents" access="public" returntype="void">
     <cfargument name="eventTitle" type="string" required="true">
     <cfargument name="eventTypeName" type="string" required="true">
     <cfargument name="eventDescription" type="string" required="true">
@@ -93,13 +93,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateEventStartTime" access="public" returntype="void">
+<cffunction name="UPDevents" access="public" returntype="void">
     <cfargument name="newStartTime" type="string" required="true">
     
     <cfset var queryResult = "">
     
     <cftry>
-        <cfquery name="queryResult" datasource="yourDataSource">
+        <cfquery name="queryResult" datasource="abod">
             UPDATE events 
             SET eventstarttime = <cfqueryparam value="#arguments.newStartTime#" cfsqltype="CF_SQL_TIME">
             WHERE eventstarttime IS NULL
@@ -111,11 +111,11 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateEventStopTime" access="public" returntype="void">
+<cffunction name="UPDevents_23725" access="public" returntype="void">
     <cfargument name="eventStartTime" type="date" required="true">
     
     <cftry>
-        <cfquery name="updateQuery" datasource="yourDataSource">
+        <cfquery name="updateQuery" datasource="abod">
             UPDATE events 
             SET eventstoptime = TIME( (ADDTIME(TIME(eventstarttime), TIME('01:00:00'))) % (TIME('24:00:00')))
             WHERE eventstarttime = <cfqueryparam value="#arguments.eventStartTime#" cfsqltype="CF_SQL_TIME">
@@ -127,11 +127,11 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateEventStop" access="public" returntype="void">
+<cffunction name="UPDevents_23726" access="public" returntype="void">
     <cfargument name="eventStart" type="date" required="true">
     
     <cftry>
-        <cfquery name="updateQuery" datasource="yourDataSource">
+        <cfquery name="updateQuery" datasource="abod">
             UPDATE events 
             SET eventstop = <cfqueryparam value="#arguments.eventStart#" cfsqltype="CF_SQL_TIMESTAMP">
             WHERE eventstop IS NULL 
@@ -144,7 +144,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateEventIsDeleted" access="public" returntype="void">
+<cffunction name="UPDevents_23731" access="public" returntype="void">
     <cfargument name="eventid" type="numeric" required="true">
 
     <cftry>
@@ -160,7 +160,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateEvent" access="public" returntype="void">
+<cffunction name="UPDevents_23733" access="public" returntype="void">
     <cfargument name="eventTitle" type="string" required="true">
     <cfargument name="eventTypeName" type="string" required="true">
     <cfargument name="eventDescription" type="string" required="true">
@@ -212,14 +212,14 @@
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getFilteredEvents" access="public" returntype="query">
+<cffunction name="RESevents" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     <cfargument name="eventid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 a.eventid AS recid, 
                 'Date' AS head1, 
@@ -255,12 +255,12 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="updateEventTitles" access="public" returntype="void">
+<cffunction name="UPDevents_23762" access="public" returntype="void">
     <cfargument name="eventTitle" type="string" required="true">
     <cfargument name="projName" type="string" required="true">
 
     <cftry>
-        <cfquery name="updateQuery" datasource="yourDataSource">
+        <cfquery name="updateQuery" datasource="abod">
             UPDATE events_tbl e
             INNER JOIN audroles r ON r.audroleid = e.audroleid
             INNER JOIN audprojects p ON p.audprojectid = r.audprojectid
@@ -275,13 +275,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getEventDetails" access="public" returntype="query">
+<cffunction name="SELevents" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT DISTINCT 
                 p.contactid, 
                 c.contactfullname, 
@@ -313,13 +313,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getEvents" access="public" returntype="query">
+<cffunction name="SELevents_23785" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM events
             WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
@@ -335,13 +335,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getEvents" access="public" returntype="query">
+<cffunction name="SELevents_23786" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM events 
             WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -357,13 +357,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getEvents" access="public" returntype="query">
+<cffunction name="SELevents_23787" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM events
             WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
@@ -379,12 +379,12 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getEvents" access="public" returntype="query">
+<cffunction name="SELevents_23788" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM events 
             WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -400,13 +400,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getEventsByProject" access="public" returntype="query">
+<cffunction name="SELevents_23789" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM events e 
             INNER JOIN audroles r ON r.audroleid = e.audroleid 
@@ -421,7 +421,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertEvent" access="public" returntype="void">
+<cffunction name="INSevents_23790" access="public" returntype="void">
     <cfargument name="new_eventtitle" type="string" required="true">
     <cfargument name="new_eventdescription" type="string" required="true">
     <cfargument name="new_userid" type="numeric" required="true">
@@ -482,7 +482,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getDistinctEventDetails" access="public" returntype="query">
+<cffunction name="SELevents_23803" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     
     <cfset var result = "">
@@ -519,7 +519,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateEventIsDeleted" access="public" returntype="void">
+<cffunction name="UPDevents_23860" access="public" returntype="void">
     <cfargument name="recid" type="numeric" required="true">
     
     <cftry>
@@ -535,13 +535,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getProjectDates" access="public" returntype="query">
+<cffunction name="SELevents_24012" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 p.audprojectID, 
                 MIN(a.eventStart) AS new_projDate 
@@ -572,13 +572,13 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getUpdatedProjectDates" access="public" returntype="query">
+<cffunction name="SELevents_24014" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 p.audprojectID, 
                 MAX(a.eventStart) AS new_projDate 
@@ -608,11 +608,11 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="updateDeletedEvents" access="public" returntype="void">
+<cffunction name="UPDevents_24018" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
 
     <cftry>
-        <cfquery name="updateQuery" datasource="yourDataSource">
+        <cfquery name="updateQuery" datasource="abod">
             UPDATE events 
             SET isdeleted = 1 
             WHERE isdeleted = 0 
@@ -625,7 +625,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertEvent" access="public" returntype="void">
+<cffunction name="INSevents_24096" access="public" returntype="void">
     <cfargument name="new_userid" type="numeric" required="yes">
     <cfargument name="new_audRoleID" type="numeric" required="yes">
     <cfargument name="new_audTypeID" type="numeric" required="yes">
@@ -670,7 +670,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateEventIsDeleted" access="public" returntype="void">
+<cffunction name="UPDevents_24104" access="public" returntype="void">
     <cfargument name="new_eventid" type="numeric" required="true">
 
     <cftry>
@@ -686,7 +686,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getEventDetails" access="public" returntype="query">
+<cffunction name="SELevents_24105" access="public" returntype="query">
     <cfargument name="new_eventid" type="numeric" required="true">
     <cfset var result = "">
     
@@ -705,7 +705,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="updateEvent" access="public" returntype="void">
+<cffunction name="UPDevents_24108" access="public" returntype="void">
     <cfargument name="eventId" type="numeric" required="true">
     <cfargument name="newEventStart" type="string" required="false" default="">
     <cfargument name="newEventStartTime" type="string" required="false" default="">
@@ -748,13 +748,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getEventById" access="public" returntype="query">
+<cffunction name="DETevents" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM events
             WHERE eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER">
@@ -768,7 +768,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="updateEventIsDeleted" access="public" returntype="void">
+<cffunction name="UPDevents_24118" access="public" returntype="void">
     <cfargument name="eventid" type="numeric" required="true">
 
     <cftry>
@@ -784,7 +784,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateEventIsDeleted" access="public" returntype="void">
+<cffunction name="UPDevents_24119" access="public" returntype="void">
     <cfargument name="eventid" type="numeric" required="true">
 
     <cftry>
@@ -800,7 +800,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getEventIdsByAudRoleId" access="public" returntype="query">
+<cffunction name="SELevents_24123" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -820,7 +820,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="updateEventIsDeleted" access="public" returntype="void" output="false">
+<cffunction name="UPDevents_24124" access="public" returntype="void" output="false">
     <cfargument name="new_eventid" type="numeric" required="true">
 
     <cftry>
@@ -836,14 +836,14 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getEvents" access="public" returntype="query">
+<cffunction name="SELevents_24379" access="public" returntype="query">
     <cfargument name="eventtypename" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * FROM events 
             WHERE eventtypename = <cfqueryparam value="#arguments.eventtypename#" cfsqltype="CF_SQL_VARCHAR"> 
             AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
@@ -857,13 +857,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getEventById" access="public" returntype="query">
+<cffunction name="DETevents_24487" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 e.eventID, 
                 e.eventID AS recid, 
@@ -893,13 +893,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getEventDetails" access="public" returntype="query">
+<cffunction name="DETevents_24492" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 e.eventID, 
                 e.eventID AS recid, 
@@ -930,13 +930,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getEventDetails" access="public" returntype="query">
+<cffunction name="SELevents_24527" access="public" returntype="query">
     <cfargument name="new_eventid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 ad.eventLocation, 
                 ad.audlocadd1, 
@@ -964,7 +964,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertEvent" access="public" returntype="void">
+<cffunction name="INSevents_24528" access="public" returntype="void">
     <cfargument name="new_projname" type="string" required="true">
     <cfargument name="new_projDescription" type="string" required="true">
     <cfargument name="eventLocation" type="string" required="true">
@@ -1017,13 +1017,13 @@
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateEventStopTime" access="public" returntype="void">
+<cffunction name="UPDevents_24530" access="public" returntype="void">
     <cfargument name="eventStartTime" type="string" required="true">
     
     <cfset var queryResult = "">
     
     <cftry>
-        <cfquery name="queryResult" datasource="yourDataSource">
+        <cfquery name="queryResult" datasource="abod">
             UPDATE events 
             SET eventstoptime = TIME((ADDTIME(TIME(eventstarttime), TIME('01:00:00'))) % (TIME('24:00:00')))
             WHERE eventstarttime = <cfqueryparam value="#arguments.eventStartTime#" cfsqltype="CF_SQL_TIME">
@@ -1036,7 +1036,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateEventLocation" access="public" returntype="void">
+<cffunction name="UPDevents_24540" access="public" returntype="void">
     <cfargument name="new_eventLocation" type="string" required="true">
     <cfargument name="new_audlocadd1" type="string" required="true">
     <cfargument name="new_audlocadd2" type="string" required="true">
@@ -1064,13 +1064,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getEventDetails" access="public" returntype="query">
+<cffunction name="SELevents_24546" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 a.eventid, 
                 a.eventStart, 
@@ -1105,12 +1105,12 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getEventDetails" access="public" returntype="query">
+<cffunction name="SELevents_24547" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 a.eventid, 
                 p.projname AS col2, 
@@ -1146,7 +1146,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertEvent" access="public" returntype="void">
+<cffunction name="INSevents_24555" access="public" returntype="void">
     <cfargument name="new_userid" type="numeric" required="true">
     <cfargument name="new_audRoleID" type="numeric" required="true">
     <cfargument name="new_audTypeID" type="numeric" required="true">
@@ -1189,7 +1189,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateEventLocation" access="public" returntype="void">
+<cffunction name="UPDevents_24556" access="public" returntype="void">
     <cfargument name="new_eventLocation" type="string" required="true">
     <cfargument name="new_audlocadd1" type="string" required="true">
     <cfargument name="new_audlocadd2" type="string" required="true">
@@ -1215,7 +1215,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateEvent" access="public" returntype="void">
+<cffunction name="UPDevents_24557" access="public" returntype="void">
     <cfargument name="new_userid" type="numeric" required="true">
     <cfargument name="new_audRoleID" type="numeric" required="true">
     <cfargument name="new_audTypeID" type="numeric" required="true">
@@ -1281,7 +1281,7 @@
                 eventid = ? 
         </cfquery>
         </cffunction>
-<cffunction name="updateEvent" access="public" returntype="void">
+<cffunction name="UPDevents_24558" access="public" returntype="void">
     <cfargument name="new_eventid" type="numeric" required="true">
     <cfargument name="eventStart" type="date" required="false" default="">
     <cfargument name="eventStartTime" type="string" required="false" default="">
@@ -1324,14 +1324,14 @@
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getEventDetails" access="public" returntype="query">
+<cffunction name="SELevents_24597" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     <cfargument name="focusid" type="numeric" default="0">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 a.eventid, 
                 a.eventStart, 
@@ -1359,14 +1359,14 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getEventDetails" access="public" returntype="query">
+<cffunction name="SELevents_24618" access="public" returntype="query">
     <cfargument name="sessionUserId" type="numeric" required="true">
     <cfargument name="currentId" type="numeric" required="false">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 e.eventID, 
                 e.eventID AS recid, 
@@ -1409,7 +1409,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getEventDetails" access="public" returntype="query">
+<cffunction name="SELevents_24659" access="public" returntype="query">
     <cfargument name="sessionUserID" type="numeric" required="true">
     <cfargument name="currentID" type="numeric" required="false">
 
@@ -1463,14 +1463,14 @@
 
     <cfreturn queryResult>
 </cffunction>
-<cffunction name="getEventDetails" access="public" returntype="query">
+<cffunction name="RESevents_24660" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     <cfargument name="currentID" type="numeric" required="false">
     
     <cfset var queryResult = "">
     
     <cftry>
-        <cfquery name="queryResult" datasource="yourDataSource">
+        <cfquery name="queryResult" datasource="abod">
             SELECT 
                 e.eventID, 
                 e.eventID AS recid, 
@@ -1517,13 +1517,13 @@
     
     <cfreturn queryResult>
 </cffunction>
-<cffunction name="getEventDetails" access="public" returntype="query">
+<cffunction name="DETevents_24675" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 e.eventlocation AS same_eventLocation, 
                 e.audlocadd1 AS same_audlocadd1, 
@@ -1555,7 +1555,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getEvents" access="public" returntype="query">
+<cffunction name="SELevents_24686" access="public" returntype="query">
     <cfargument name="sessionUserId" type="numeric" required="true">
     <cfargument name="contactId" type="numeric" required="true">
     
@@ -1589,7 +1589,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getEventDetails" access="public" returntype="query">
+<cffunction name="SELevents_24695" access="public" returntype="query">
     <cfargument name="sessionUserID" type="numeric" required="true">
     <cfargument name="contactID" type="numeric" required="true">
     

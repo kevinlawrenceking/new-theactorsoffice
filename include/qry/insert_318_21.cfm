@@ -1,16 +1,16 @@
 
+<!--- This ColdFusion page handles the insertion of event types for users into the database. --->
+
 <cftry>
-    <cfset eventTypesUserService = new "/services/EventTypesUserService.cfc"()>
-    <cfset eventTypesUserService.insertEventTypeUser(
+    <cfset objEventTypesUserService = createObject("component", "services.EventTypesUserService")>
+    <cfset objEventTypesUserService.INSeventtypes_user(
         eventTypeName = xs.eventTypeName,
         eventtypedescription = xs.eventtypedescription,
         eventtypecolor = xs.eventtypecolor,
         userid = users.userid
     )>
-    <cfquery datasource="abod">
-        UPDATE database SET isfetch = 1 WHERE condition
-    </cfquery>
     <cfcatch type="any">
         <cflog file="errorLog" text="[Error in insert_318_21.cfm]: #cfcatch.message#">
+        <cfthrow>
     </cfcatch>
 </cftry>

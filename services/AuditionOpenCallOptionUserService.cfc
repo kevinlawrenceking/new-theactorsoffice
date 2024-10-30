@@ -1,11 +1,11 @@
 <cfcomponent displayname="AuditionOpenCallOptionUserService" hint="Handles operations for AuditionOpenCallOptionUser table" output="false"> 
-<cffunction name="getOpenCallOptions" access="public" returntype="query">
+<cffunction name="SELaudopencalloptions_user" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT opencallid, opencallname
             FROM audopencalloptions_user
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
@@ -20,13 +20,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getOpenCallOptions" access="public" returntype="query">
+<cffunction name="SELaudopencalloptions_user_24262" access="public" returntype="query">
     <cfargument name="new_opencallid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT opencallid, opencallname
             FROM audopencalloptions_user
             WHERE opencallid = <cfqueryparam value="#arguments.new_opencallid#" cfsqltype="CF_SQL_INTEGER">
@@ -40,14 +40,14 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getOpenCallOptions" access="public" returntype="query">
+<cffunction name="SELaudopencalloptions_user_24280" access="public" returntype="query">
     <cfargument name="new_opencallname" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
 
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM audopencalloptions_user
             WHERE opencallname = <cfqueryparam value="#arguments.new_opencallname#" cfsqltype="CF_SQL_VARCHAR">
@@ -62,7 +62,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="insertAudOpenCallOptionsUser" access="public" returntype="void">
+<cffunction name="INSaudopencalloptions_user" access="public" returntype="void">
     <cfargument name="new_opencallname" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 

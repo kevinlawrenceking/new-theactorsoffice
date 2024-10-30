@@ -1,11 +1,11 @@
 <cfcomponent displayname="AuditionProjectService" hint="Handles operations for AuditionProject table" output="false"> 
-<cffunction name="getEventDetails" access="public" returntype="query">
+<cffunction name="DETaudprojects" access="public" returntype="query">
     <cfargument name="eventId" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 pr.audprojectid AS recid, 
                 ad.eventid, 
@@ -63,13 +63,13 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getContactDetailsByUserId" access="public" returntype="query">
+<cffunction name="SELaudprojects" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT DISTINCT 
                 c.contactfullname AS cd, 
                 c.contactid 
@@ -93,13 +93,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getDistinctValueCompany" access="public" returntype="query">
+<cffunction name="SELaudprojects_23795" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT DISTINCT i.valueCompany 
             FROM audprojects p 
             INNER JOIN contactdetails c ON c.contactid = p.contactid 
@@ -117,7 +117,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getProjectDetails" access="public" returntype="query">
+<cffunction name="DETaudprojects_23811" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -154,7 +154,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAudProject" access="public" returntype="void">
+<cffunction name="UPDaudprojects" access="public" returntype="void">
     <cfargument name="new_audSubCatID" type="numeric" required="true">
     <cfargument name="new_audprojectID" type="numeric" required="true">
 
@@ -171,7 +171,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getDistinctAudProjectIds" access="public" returntype="query">
+<cffunction name="SELaudprojects_23961" access="public" returntype="query">
     <cfargument name="mediaid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -193,14 +193,14 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="updateAudProjects" access="public" returntype="void">
+<cffunction name="UPDaudprojects_24011" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="audprojectids" type="array" required="true">
 
     <cfset var local = {}>
 
     <cftry>
-        <cfquery name="updateQuery" datasource="yourDataSource">
+        <cfquery name="updateQuery" datasource="abod">
             UPDATE audprojects 
             SET projdate = NULL 
             WHERE isdeleted <> 1 
@@ -222,7 +222,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAudProjectDate" access="public" returntype="void">
+<cffunction name="UPDaudprojects_24013" access="public" returntype="void">
     <cfargument name="new_projdate" type="date" required="true">
     <cfargument name="audprojectID" type="numeric" required="true">
 
@@ -239,7 +239,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateProjectDate" access="public" returntype="void">
+<cffunction name="UPDaudprojects_24015" access="public" returntype="void">
     <cfargument name="new_projdate" type="date" required="true">
     <cfargument name="audprojectID" type="numeric" required="true">
 
@@ -256,12 +256,12 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getAudProjects" access="public" returntype="query">
+<cffunction name="SELaudprojects_24016" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 p.audprojectID, 
                 CAST(p.audprojectdate AS DATE) AS new_projDate 
@@ -281,7 +281,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="updateProjectDate" access="public" returntype="void">
+<cffunction name="UPDaudprojects_24017" access="public" returntype="void">
     <cfargument name="new_projdate" type="date" required="true">
     <cfargument name="audprojectID" type="numeric" required="true">
 
@@ -297,11 +297,11 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateProjectDates" access="public" returntype="void">
+<cffunction name="UPDaudprojects_24019" access="public" returntype="void">
     <cfargument name="projDate" type="string" required="true">
     
     <cftry>
-        <cfquery name="updateQuery" datasource="yourDataSource">
+        <cfquery name="updateQuery" datasource="abod">
             UPDATE audprojects p
             INNER JOIN auditionsimport i ON i.audprojectid = p.audprojectid
             SET p.projdate = <cfqueryparam value="#arguments.projDate#" cfsqltype="CF_SQL_DATE">
@@ -314,7 +314,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getDistinctEvents" access="public" returntype="query">
+<cffunction name="SELaudprojects_24062" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -340,13 +340,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getProjectDetails" access="public" returntype="query">
+<cffunction name="SELaudprojects_24085" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT projname, projdescription, contactid
             FROM audprojects
             WHERE audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
@@ -360,12 +360,12 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getProjectDetails" access="public" returntype="query">
+<cffunction name="DETaudprojects_24089" access="public" returntype="query">
     <cfargument name="audprojectID" type="numeric" required="true">
     <cfset var result = "">
 
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 proj.audprojectID, 
                 r.audroleid, 
@@ -400,7 +400,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getEventDetails" access="public" returntype="query">
+<cffunction name="SELaudprojects_24097" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
 
     <cfset var result = "">
@@ -470,13 +470,13 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getEventDetails" access="public" returntype="query">
+<cffunction name="DETaudprojects_24106" access="public" returntype="query">
     <cfargument name="new_eventid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 pr.audprojectid AS recid, 
                 ad.eventid, 
@@ -534,7 +534,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getProjectDetails" access="public" returntype="query">
+<cffunction name="DETaudprojects_24107" access="public" returntype="query">
     <cfargument name="audprojectID" type="numeric" required="true">
     
     <cfset var result = "">
@@ -576,7 +576,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAudProjectIsDeleted" access="public" returntype="void">
+<cffunction name="UPDaudprojects_24125" access="public" returntype="void">
     <cfargument name="audprojectid" type="numeric" required="true">
     
     <cftry>
@@ -592,7 +592,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getCallbacksData" access="public" returntype="query">
+<cffunction name="SELaudprojects_24230" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_rangestart" type="date" required="true">
     <cfargument name="new_rangeend" type="date" required="true">
@@ -600,7 +600,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT count(p.audprojectID) as totals, 
                    'Number of Callbacks' as label, 
                    'Auditions' as itemDataset 
@@ -622,7 +622,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getRedirectsData" access="public" returntype="query">
+<cffunction name="SELaudprojects_24236" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
@@ -656,7 +656,7 @@
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getAuditionPinsCount" access="public" returntype="query">
+<cffunction name="SELaudprojects_24237" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
@@ -690,7 +690,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getAuditionData" access="public" returntype="query">
+<cffunction name="SELaudprojects_24238" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
@@ -723,7 +723,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getAuditionBookings" access="public" returntype="query">
+<cffunction name="SELaudprojects_24239" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
@@ -731,7 +731,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 count(p.audprojectID) as totals, 
                 'Number of Bookings' as label, 
@@ -757,7 +757,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getAuditionData" access="public" returntype="query">
+<cffunction name="SELaudprojects_24240" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
@@ -765,7 +765,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 count(p.audprojectid) as totals, 
                 c.audcatname as label, 
@@ -798,7 +798,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getAuditionData" access="public" returntype="query">
+<cffunction name="SELaudprojects_24241" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
@@ -806,7 +806,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 count(p.audprojectid) as totals, 
                 e.essencename as label, 
@@ -839,7 +839,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getAuditionData" access="public" returntype="query">
+<cffunction name="SELaudprojects_24242" access="public" returntype="query">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
     <cfargument name="userid" type="numeric" required="true">
@@ -847,7 +847,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 count(p.audprojectid) as totals, 
                 IFNULL(s.audsource, 'Unknown') as label, 
@@ -924,7 +924,7 @@ function getAuditionData(struct rangeselected, numeric userid) {
 }
 </cfscript>
 
-<cffunction name="getAuditionData" access="public" returntype="query">
+<cffunction name="SELaudprojects_24244" access="public" returntype="query">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
     <cfargument name="userid" type="numeric" required="true">
@@ -932,7 +932,7 @@ function getAuditionData(struct rangeselected, numeric userid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 count(p.audprojectid) as totals, 
                 IFNULL(ss.submitsitename, 'Unknown') as label, 
@@ -966,7 +966,7 @@ function getAuditionData(struct rangeselected, numeric userid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getAuditionData" access="public" returntype="query">
+<cffunction name="SELaudprojects_24245" access="public" returntype="query">
     <cfargument name="rangeStart" type="date" required="true">
     <cfargument name="rangeEnd" type="date" required="true">
     <cfargument name="userId" type="numeric" required="true">
@@ -1006,7 +1006,7 @@ function getAuditionData(struct rangeselected, numeric userid) {
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getAuditionData" access="public" returntype="query">
+<cffunction name="SELaudprojects_24246" access="public" returntype="query">
     <cfargument name="rangeStart" type="date" required="true">
     <cfargument name="rangeEnd" type="date" required="true">
     <cfargument name="userId" type="numeric" required="true">
@@ -1014,7 +1014,7 @@ function getAuditionData(struct rangeselected, numeric userid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 COUNT(p.audprojectid) AS totals, 
                 IFNULL(o.opencallname, 'Unknown') AS label, 
@@ -1096,7 +1096,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
 }
 </cfscript>
 
-<cffunction name="getAuditionCounts" access="public" returntype="query">
+<cffunction name="SELaudprojects_24248" access="public" returntype="query">
     <cfargument name="new_audsourceid" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="rangeselected" type="struct" required="true">
@@ -1147,7 +1147,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getAuditionData" access="public" returntype="query">
+<cffunction name="SELaudprojects_24250" access="public" returntype="query">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
     <cfargument name="userid" type="numeric" required="true">
@@ -1155,7 +1155,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 count(r.audroleid) AS totals, 
                 a.rangename AS label, 
@@ -1190,7 +1190,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getAuditionData" access="public" returntype="query">
+<cffunction name="SELaudprojects_24251" access="public" returntype="query">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
     <cfargument name="userid" type="numeric" required="true">
@@ -1199,7 +1199,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 count(r.audroleid) AS totals, 
                 g.audgenre AS label, 
@@ -1235,12 +1235,12 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getAudProjects" access="public" returntype="query">
+<cffunction name="SELaudprojects_24353" access="public" returntype="query">
     <cfargument name="projname" type="string" required="true">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM audprojects
             WHERE projname = <cfqueryparam value="#arguments.projname#" cfsqltype="CF_SQL_VARCHAR">
@@ -1256,7 +1256,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertAudProject" access="public" returntype="void">
+<cffunction name="INSaudprojects" access="public" returntype="void">
     <cfargument name="new_projName" type="string" required="true">
     <cfargument name="new_projDescription" type="string" required="false" default="">
     <cfargument name="new_audSubCatID" type="numeric" required="false">
@@ -1293,7 +1293,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getAudProjectDetails" access="public" returntype="query">
+<cffunction name="SELaudprojects_24500" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -1334,13 +1334,13 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getProjectDetails" access="public" returntype="query">
+<cffunction name="DETaudprojects_24543" access="public" returntype="query">
     <cfargument name="audprojectID" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 proj.audprojectID, 
                 r.audroleid, 
@@ -1378,7 +1378,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getAudProjectDetails" access="public" returntype="query">
+<cffunction name="SELaudprojects_24550" access="public" returntype="query">
     <cfargument name="audprojectID" type="numeric" required="true">
 
     <cfset var result = "">
@@ -1406,13 +1406,13 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getAudProjectDetails" access="public" returntype="query">
+<cffunction name="DETaudprojects_24553" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 a4.audroleid, 
                 a.projName, 
@@ -1447,13 +1447,13 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getAudProjectDetails" access="public" returntype="query">
+<cffunction name="DETaudprojects_24554" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 a.audprojectid, 
                 a.projname, 
@@ -1488,7 +1488,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getDistinctContactIds" access="public" returntype="query">
+<cffunction name="SELaudprojects_24559" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="sel_coname" type="string" required="true">
     
@@ -1512,7 +1512,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getDynamicQuery" access="public" returntype="query">
+<cffunction name="RESaudprojects" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="byimport" type="string" required="false" default="">
     <cfargument name="sel_contactid" type="string" required="false" default="%">
@@ -1642,7 +1642,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
           <return _emptyQuery_ />
         </cfcatch>
     </cffunction>
-<cffunction name="insertAudProject" access="public" returntype="void">
+<cffunction name="INSaudprojects_24585" access="public" returntype="void">
     <cfargument name="new_projName" type="string" required="true">
     <cfargument name="new_projDescription" type="string" required="true">
     <cfargument name="new_userid" type="numeric" required="true">
@@ -1693,7 +1693,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAudProject" access="public" returntype="void">
+<cffunction name="UPDaudprojects_24586" access="public" returntype="void">
     <cfargument name="new_projName" type="string" required="true">
     <cfargument name="new_projDescription" type="string" required="true">
     <cfargument name="new_unionID" type="numeric" required="true">
@@ -1723,13 +1723,13 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getProjectDetails" access="public" returntype="query">
+<cffunction name="DETaudprojects_24716" access="public" returntype="query">
     <cfargument name="audprojectID" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 proj.audprojectID, 
                 proj.projName, 

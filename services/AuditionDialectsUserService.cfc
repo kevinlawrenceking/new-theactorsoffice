@@ -1,5 +1,5 @@
 <cfcomponent displayname="AuditionDialectsUserService" hint="Handles operations for AuditionDialectsUser table" output="false"> 
-<cffunction name="insertAuddialectsUser" access="public" returntype="void">
+<cffunction name="INSauddialects_user" access="public" returntype="void">
     <cfargument name="CustomDialect" type="string" required="true">
     <cfargument name="new_catid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
@@ -19,7 +19,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getAudDialectsUser" access="public" returntype="query">
+<cffunction name="SELauddialects_user" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_audcatid" type="numeric" required="true">
     

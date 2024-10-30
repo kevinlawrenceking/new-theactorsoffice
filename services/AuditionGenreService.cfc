@@ -1,5 +1,5 @@
 <cfcomponent displayname="AuditionGenreService" hint="Handles operations for AuditionGenre table" output="false"> 
-<cffunction name="insertAudGenre" access="public" returntype="void">
+<cffunction name="INSaudgenres" access="public" returntype="void">
     <cfargument name="new_audgenre" type="string" required="true">
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
@@ -21,7 +21,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAudGenre" access="public" returntype="void">
+<cffunction name="UPDaudgenres" access="public" returntype="void">
     <cfargument name="new_audgenre" type="string" required="true">
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">

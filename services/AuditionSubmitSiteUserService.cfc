@@ -1,11 +1,11 @@
 <cfcomponent displayname="AuditionSubmitSiteUserService" hint="Handles operations for AuditionSubmitSiteUser table" output="false"> 
-<cffunction name="getSubmitSites" access="public" returntype="query">
+<cffunction name="SELaudsubmitsites_user" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT submitsiteid, submitsitename, catlist
             FROM audsubmitsites_user
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
@@ -21,7 +21,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getSubmitSiteId" access="public" returntype="query">
+<cffunction name="SELaudsubmitsites_user_24034" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_submitsitename" type="string" required="true">
 
@@ -43,7 +43,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="updateSubmitSite" access="public" returntype="void">
+<cffunction name="UPDaudsubmitsites_user" access="public" returntype="void">
     <cfargument name="new_submitsitename" type="string" required="true">
     <cfargument name="sortedCatList" type="string" required="false" default="">
     <cfargument name="submitsiteid" type="numeric" required="true">
@@ -67,7 +67,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertAudSubmitSitesUser" access="public" returntype="void">
+<cffunction name="INSaudsubmitsites_user" access="public" returntype="void">
     <cfargument name="new_submitsitename" type="string" required="true">
     <cfargument name="sortedCatList" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
@@ -87,7 +87,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getSubmitSiteDetails" access="public" returntype="query">
+<cffunction name="DETaudsubmitsites_user" access="public" returntype="query">
     <cfargument name="submitsiteid" type="numeric" required="true">
 
     <cfset var result = "">
@@ -107,7 +107,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="updateSubmitSite" access="public" returntype="void">
+<cffunction name="UPDaudsubmitsites_user_24167" access="public" returntype="void">
     <cfargument name="new_submitsitename" type="string" required="true">
     <cfargument name="isdeleted" type="boolean" required="true">
     <cfargument name="catlist" type="string" required="false" default="">
@@ -135,7 +135,7 @@
 
         <cfset arrayAppend(params, {value=arguments.submitsiteid, cfsqltype='CF_SQL_INTEGER'})>
 
-        <cfquery datasource="yourDataSource">
+        <cfquery datasource="abod">
             #sql#
             <cfloop array="#params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
@@ -148,14 +148,14 @@
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getSubmitSites" access="public" returntype="query">
+<cffunction name="SELaudsubmitsites_user_24265" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_audcatid" type="string" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT submitsiteid, submitsitename 
             FROM audsubmitsites_user 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -172,14 +172,14 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getSubmitSiteDetails" access="public" returntype="query">
+<cffunction name="SELaudsubmitsites_user_24295" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_submitsitename" type="string" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 submitsiteid AS new_submitsiteid, 
                 catlist AS new_catlist 
@@ -197,7 +197,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="updateAudSubmitSitesUser" access="public" returntype="void">
+<cffunction name="UPDaudsubmitsites_user_24296" access="public" returntype="void">
     <cfargument name="new_catlist" type="string" required="true">
     <cfargument name="new_submitsiteid" type="numeric" required="true">
 
@@ -214,7 +214,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertSubmitSite" access="public" returntype="void">
+<cffunction name="INSaudsubmitsites_user_24297" access="public" returntype="void">
     <cfargument name="new_submitsitename" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_catid" type="string" required="true">

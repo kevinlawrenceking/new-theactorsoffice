@@ -1,5 +1,5 @@
 <cfcomponent displayname="SiteTypeUserService" hint="Handles operations for SiteTypeUser table" output="false"> 
-<cffunction name="getPNIDBySiteTypeID" access="public" returntype="query">
+<cffunction name="SELsitetypes_user" access="public" returntype="query">
     <cfargument name="sitetypeid" type="numeric" required="true">
 
     <cfset var result = "">
@@ -19,7 +19,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="updateSiteTypeAsDeleted" access="public" returntype="void">
+<cffunction name="UPDsitetypes_user" access="public" returntype="void">
     <cfargument name="sitetypeid" type="numeric" required="true">
 
     <cfset var queryResult = "">
@@ -35,13 +35,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getSiteTypeDetails" access="public" returntype="query">
+<cffunction name="SELsitetypes_user_24133" access="public" returntype="query">
     <cfargument name="new_sitetypeid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 p.pnid, 
                 p.isvisible, 
@@ -65,7 +65,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="updateSiteTypeName" access="public" returntype="void">
+<cffunction name="UPDsitetypes_user_24134" access="public" returntype="void">
     <cfargument name="new_sitetypename" type="string" required="true">
     <cfargument name="new_sitetypeid" type="numeric" required="true">
 
@@ -82,14 +82,14 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getSiteTypesUser" access="public" returntype="query">
+<cffunction name="SELsitetypes_user_24144" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_sitetypename" type="string" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM sitetypes_user
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
@@ -104,7 +104,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertSiteType" access="public" returntype="void">
+<cffunction name="INSsitetypes_user" access="public" returntype="void">
     <cfargument name="new_siteTypeName" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
@@ -124,13 +124,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getSiteTypesUserBySitetypeId" access="public" returntype="query">
+<cffunction name="SELsitetypes_user_24146" access="public" returntype="query">
     <cfargument name="sitetypeid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM sitetypes_user
             WHERE sitetypeid = <cfqueryparam value="#arguments.sitetypeid#" cfsqltype="CF_SQL_INTEGER">
@@ -144,7 +144,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="updateSiteTypesUser" access="public" returntype="void">
+<cffunction name="UPDsitetypes_user_24149" access="public" returntype="void">
     <cfargument name="new_pnid" type="numeric" required="true">
     <cfargument name="new_sitetypeid" type="numeric" required="true">
 
@@ -161,14 +161,14 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getSiteTypesUser" access="public" returntype="query">
+<cffunction name="SELsitetypes_user_24438" access="public" returntype="query">
     <cfargument name="sitetypename" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM sitetypes_user 
             WHERE sitetypename = <cfqueryparam value="#arguments.sitetypename#" cfsqltype="CF_SQL_VARCHAR"> 
@@ -183,7 +183,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="insertSiteTypeUser" access="public" returntype="void">
+<cffunction name="INSsitetypes_user_24439" access="public" returntype="void">
     <cfargument name="siteTypeName" type="string" required="true">
     <cfargument name="siteTypeDescription" type="string" required="true">
     <cfargument name="userId" type="numeric" required="true">
@@ -203,14 +203,14 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getSiteTypeId" access="public" returntype="query">
+<cffunction name="SELsitetypes_user_24447" access="public" returntype="query">
     <cfargument name="sitetypename" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT sitetypeid 
             FROM sitetypes_user 
             WHERE sitetypename = <cfqueryparam value="#arguments.sitetypename#" cfsqltype="CF_SQL_VARCHAR"> 
@@ -225,13 +225,13 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getSiteTypesByUserId" access="public" returntype="query">
+<cffunction name="SELsitetypes_user_24752" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT sitetypeid, sitetypename, sitetypedescription, pntitle
             FROM sitetypes_user
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">

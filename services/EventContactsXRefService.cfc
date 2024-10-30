@@ -1,5 +1,5 @@
 <cfcomponent displayname="EventContactsXRefService" hint="Handles operations for EventContactsXRef table" output="false"> 
-<cffunction name="insertEventContact" access="public" returntype="void">
+<cffunction name="INSeventcontactsxref" access="public" returntype="void">
     <cfargument name="new_eventid" type="numeric" required="true">
     <cfargument name="new_contactid" type="numeric" required="true">
 
@@ -17,7 +17,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getEventContacts" access="public" returntype="query">
+<cffunction name="SELeventcontactsxref" access="public" returntype="query">
     <cfargument name="ContactID" type="numeric" required="true">
     <cfargument name="EventID" type="numeric" required="true">
 
@@ -39,7 +39,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="updateEventContactIsDeleted" access="public" returntype="void">
+<cffunction name="UPDeventcontactsxref" access="public" returntype="void">
     <cfargument name="eventid" type="numeric" required="true">
     
     <cftry>
@@ -55,7 +55,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertEventContact" access="public" returntype="void">
+<cffunction name="INSeventcontactsxref_23737" access="public" returntype="void">
     <cfargument name="eventid" type="numeric" required="true">
     <cfargument name="new_contactid" type="numeric" required="true">
 
@@ -73,13 +73,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getEventContacts" access="public" returntype="query">
+<cffunction name="SELeventcontactsxref_23738" access="public" returntype="query">
     <cfargument name="eventId" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM eventcontactsxref
             WHERE eventid = <cfqueryparam value="#arguments.eventId#" cfsqltype="CF_SQL_INTEGER">
@@ -93,12 +93,12 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertEventContactsXref" access="public" returntype="void">
+<cffunction name="INSeventcontactsxref_24020" access="public" returntype="void">
     <cfargument name="audProjectID" type="numeric" required="true">
     <cfargument name="audStepID" type="numeric" required="true">
     
     <cftry>
-        <cfquery name="qryInsertEventContactsXref" datasource="yourDataSource">
+        <cfquery name="qryInsertEventContactsXref" datasource="abod">
             INSERT INTO eventcontactsxref (eventid, contactid)
             SELECT DISTINCT e.eventid, c.contactid
             FROM audprojects p
@@ -121,7 +121,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="deleteInvalidEventContacts" access="public" returntype="void">
+<cffunction name="DELeventcontactsxref" access="public" returntype="void">
     <cfargument name="eventIds" type="array" required="true">
     
     <cfset var local = {}>
@@ -195,14 +195,14 @@ function deleteEventContactsXref(required numeric audStepId) {
 }
 </cfscript>
 
-<cffunction name="getEventContactsXref" access="public" returntype="query">
+<cffunction name="SELeventcontactsxref_24060" access="public" returntype="query">
     <cfargument name="eventNumber" type="numeric" required="true">
     <cfargument name="contactID" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM eventcontactsxref 
             WHERE eventid = <cfqueryparam value="#arguments.eventNumber#" cfsqltype="cf_sql_integer"> 
@@ -217,7 +217,7 @@ function deleteEventContactsXref(required numeric audStepId) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertEventContact" access="public" returntype="void">
+<cffunction name="INSeventcontactsxref_24061" access="public" returntype="void">
     <cfargument name="eventNumber" type="numeric" required="true">
     <cfargument name="contactID" type="numeric" required="true">
 
@@ -237,12 +237,12 @@ function deleteEventContactsXref(required numeric audStepId) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getEventContacts" access="public" returntype="query">
+<cffunction name="SELeventcontactsxref_24489" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM eventcontactsxref
             WHERE eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER" />
@@ -256,13 +256,13 @@ function deleteEventContactsXref(required numeric audStepId) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getEventContacts" access="public" returntype="query">
+<cffunction name="SELeventcontactsxref_24499" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM eventcontactsxref x
             INNER JOIN contactdetails c ON x.contactid = c.contactid
@@ -277,7 +277,7 @@ function deleteEventContactsXref(required numeric audStepId) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertEventContact" access="public" returntype="void">
+<cffunction name="INSeventcontactsxref_24532" access="public" returntype="void">
     <cfargument name="new_eventid" type="numeric" required="true">
     <cfargument name="new_contactid" type="numeric" required="true">
 
@@ -295,7 +295,7 @@ function deleteEventContactsXref(required numeric audStepId) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateEventContacts" access="public" returntype="void">
+<cffunction name="UPDeventcontactsxref_24549" access="public" returntype="void">
     <cfargument name="deletecontactid" type="numeric" required="true">
     <cfargument name="audprojectid" type="numeric" required="true">
 

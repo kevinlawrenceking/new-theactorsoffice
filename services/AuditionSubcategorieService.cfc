@@ -1,12 +1,12 @@
 <cfcomponent displayname="AuditionSubcategorieService" hint="Handles operations for AuditionSubcategorie table" output="false"> 
-<cffunction name="getAudSubcategories" access="public" returntype="query">
+<cffunction name="SELaudsubcategories" access="public" returntype="query">
     <cfargument name="new_audcatid" type="numeric" required="true">
     <cfargument name="audsubcatname" type="string" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM audsubcategories 
             WHERE audcatid = <cfqueryparam value="#arguments.new_audcatid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -21,7 +21,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="insertAudSubCategory" access="public" returntype="void">
+<cffunction name="INSaudsubcategories" access="public" returntype="void">
     <cfargument name="new_audSubCatName" type="string" required="true">
     <cfargument name="new_audCatId" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
@@ -41,7 +41,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAudSubCategory" access="public" returntype="void">
+<cffunction name="UPDaudsubcategories" access="public" returntype="void">
     <cfargument name="new_audSubCatName" type="string" required="true">
     <cfargument name="new_audCatId" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">

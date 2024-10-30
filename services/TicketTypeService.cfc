@@ -1,5 +1,5 @@
 <cfcomponent displayname="TicketTypeService" hint="Handles operations for TicketType table" output="false"> 
-<cffunction name="getTicketTypes" access="public" returntype="query">
+<cffunction name="SELtickettypes" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
     <cfset var queryResult = "">
     <cfset var sql = "SELECT tickettype AS id, tickettype AS name FROM tickettypes">

@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset noteService = createObject("component", "/services/NoteService")>
-    <cfset noteService.insertNotesLog(
+    <cfset noteService = createObject("component", "services.NoteService")>
+    <cfset noteService.INSnoteslog_23966(
         userid = userid,
         contactid = rcontactid,
         noteDetails = LEFT(trim(noteDetails), 2000),

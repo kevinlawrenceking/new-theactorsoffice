@@ -1,5 +1,5 @@
 <cfcomponent displayname="ComponentService" hint="Handles operations for Component table" output="false"> 
-<cffunction name="getFilteredPgComps" access="public" returntype="query">
+<cffunction name="SELpgcomps" access="public" returntype="query">
     <cfargument name="menuYN" type="string" required="true">
     <cfargument name="compOwner" type="string" required="true">
     <cfargument name="appid" type="numeric" required="true">
@@ -7,7 +7,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 c.compID, 
                 c.compName, 
@@ -34,7 +34,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getFilteredComps" access="public" returntype="query">
+<cffunction name="SELpgcomps_24680" access="public" returntype="query">
     <cfargument name="menuYN" type="string" required="true">
     <cfargument name="compOwner" type="string" required="true">
     <cfargument name="appId" type="numeric" required="true">
@@ -42,7 +42,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 c.compID, 
                 c.compName, 

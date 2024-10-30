@@ -1,5 +1,5 @@
 <cfcomponent displayname="AuditionUnionService" hint="Handles operations for AuditionUnion table" output="false"> 
-<cffunction name="getUnionData" access="public" returntype="query">
+<cffunction name="SELaudunions" access="public" returntype="query">
     <cfargument name="new_countryid" type="string" required="false" default="">
     <cfargument name="new_audcatid" type="numeric" required="false" default=0>
 
@@ -38,7 +38,7 @@
         <cfset sql &= whereClause & " ORDER BY u.unionname">
 
         <!--- Execute the query --->
-        <cfquery name="queryResult" datasource="yourDataSource">
+        <cfquery name="queryResult" datasource="abod">
             #sql#
             <cfloop array="#params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
@@ -57,14 +57,14 @@
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertAudUnion" access="public" returntype="void">
+<cffunction name="INSaudunions" access="public" returntype="void">
     <cfargument name="new_unionName" type="string" required="true">
     <cfargument name="new_countryid" type="string" required="true">
     <cfargument name="new_audCatID" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
     <cftry>
-        <cfquery datasource="yourDataSource">
+        <cfquery datasource="abod">
             INSERT INTO audunions (unionName, countryid, audCatID, isDeleted)
             VALUES (
                 <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_unionName#" maxlength="100" null="#NOT len(trim(arguments.new_unionName))#">,
@@ -79,7 +79,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAudunions" access="public" returntype="void">
+<cffunction name="UPDaudunions" access="public" returntype="void">
     <cfargument name="new_unionName" type="string" required="true">
     <cfargument name="new_countryid" type="string" required="true">
     <cfargument name="new_audCatID" type="numeric" required="true">

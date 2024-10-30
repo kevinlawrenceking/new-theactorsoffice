@@ -1,5 +1,5 @@
 <cfcomponent displayname="NotificationService" hint="Handles operations for Notification table" output="false"> 
-<cffunction name="insertNotification" access="public" returntype="void">
+<cffunction name="INSnotifications" access="public" returntype="void">
     <cfargument name="new_contactname" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="contactid" type="numeric" required="true">
@@ -31,7 +31,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertNotification" access="public" returntype="void">
+<cffunction name="INSnotifications_23830" access="public" returntype="void">
     <cfargument name="new_contactname" type="string" required="true">
     <cfargument name="contactid" type="numeric" required="true">
     
@@ -62,7 +62,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertNotification" access="public" returntype="void">
+<cffunction name="INSnotifications_23937" access="public" returntype="void">
     <cfargument name="new_contactname" type="string" required="true">
     <cfargument name="new_userid" type="numeric" required="true">
     <cfargument name="new_contactid" type="numeric" required="true">
@@ -96,11 +96,11 @@
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateNotificationReadStatus" access="public" returntype="void">
+<cffunction name="UPDnotifications" access="public" returntype="void">
     <cfargument name="notificationId" type="numeric" required="true">
     
     <cftry>
-        <cfquery name="updateQuery" datasource="yourDataSource">
+        <cfquery name="updateQuery" datasource="abod">
             UPDATE notifications 
             SET `read` = 1 
             WHERE id = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.notificationId#">
@@ -112,7 +112,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateNotifications" access="public" returntype="void">
+<cffunction name="UPDnotifications_24009" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
     
     <cftry>
@@ -129,7 +129,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getUnreadNotifications" access="public" returntype="query">
+<cffunction name="SELnotifications" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     <cfset var result = "">
     
@@ -160,12 +160,12 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getNotifications" access="public" returntype="query">
+<cffunction name="SELnotifications_24351" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 n.ID, 
                 n.notiftitle, 

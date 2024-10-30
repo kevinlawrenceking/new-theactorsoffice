@@ -1,5 +1,5 @@
 <cfcomponent displayname="ItemCategoryService" hint="Handles operations for ItemCategory table" output="false"> 
-<cffunction name="getItemCategories" access="public" returntype="query">
+<cffunction name="SELitemcategory" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
     
     <cfset var queryResult = "">
@@ -25,7 +25,7 @@
 
     <!--- Execute the query with error handling --->
     <cftry>
-        <cfquery name="queryResult" datasource="yourDataSource">
+        <cfquery name="queryResult" datasource="abod">
             #sql#
             <cfloop array="#params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
@@ -39,13 +39,13 @@
 
     <cfreturn queryResult>
 </cffunction>
-<cffunction name="getItemCategoryByCatId" access="public" returntype="query">
+<cffunction name="DETitemcategory" access="public" returntype="query">
     <cfargument name="catid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM itemcategory 
             WHERE catid = <cfqueryparam value="#arguments.catid#" cfsqltype="cf_sql_integer">
@@ -59,14 +59,14 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getDistinctValueTypes" access="public" returntype="query">
+<cffunction name="SELitemcategory_24039" access="public" returntype="query">
     <cfargument name="new_catid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT DISTINCT i.valuetype 
             FROM itemcategory c 
             INNER JOIN itemcatxref_user x ON x.catid = c.catid 
@@ -85,12 +85,12 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getDistinctCategoriesAndValueTypes" access="public" returntype="query">
+<cffunction name="SELitemcategory_24465" access="public" returntype="query">
     <cfargument name="catidList" type="array" required="false" default="#ArrayNew(1)#">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT DISTINCT c.catid, i.valuetype
             FROM itemcategory c
             INNER JOIN itemcatxref x ON x.catid = c.catid
@@ -115,7 +115,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getItemCategories" access="public" returntype="query">
+<cffunction name="SELitemcategory_24621" access="public" returntype="query">
     <cfargument name="catArea_UCB" type="string" required="true">
     
     <cfset var result = "">
@@ -146,7 +146,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getDistinctValueTypes" access="public" returntype="query">
+<cffunction name="SELitemcategory_24722" access="public" returntype="query">
     <cfargument name="new_catid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     

@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset report_13 = createObject("component", "services.AuditionProjectService").getAuditionBookings(
+    <cfset report_13 = createObject("component", "services.AuditionProjectService").SELaudprojects_24239(
         userid = userid,
         rangestart = rangeselected.rangestart,
         rangeend = rangeselected.rangeend

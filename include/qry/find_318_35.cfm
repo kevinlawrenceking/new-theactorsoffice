@@ -1,6 +1,7 @@
 
 <cftry>
-    <cfset find = createObject("component", "services.ItemTypesUserService").getItemTypesByUser(
+    <cfset itemTypesUserService = new services.ItemTypesUserService()>
+    <cfset find = itemTypesUserService.SELitemtypes_user_24466(
         valuetype = x.valuetype,
         userid = select_userid
     )>

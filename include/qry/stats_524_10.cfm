@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset stats = createObject("component", "services.ReportUserService").getUserReports(
+    <cfset stats = createObject("component", "services.ReportUserService").SELreports_user_24734(
         userID = session.userid,
         reportTypeID = 4
     )>

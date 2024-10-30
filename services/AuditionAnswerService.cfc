@@ -1,5 +1,5 @@
 <cfcomponent displayname="AuditionAnswerService" hint="Handles operations for AuditionAnswer table" output="false"> 
-<cffunction name="deleteAudAnswersByEventId" access="public" returntype="void">
+<cffunction name="DELaudanswers" access="public" returntype="void">
     <cfargument name="eventid" type="numeric" required="true">
     
     <cftry>
@@ -14,7 +14,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertAudAnswers" access="public" returntype="void">
+<cffunction name="INSaudanswers" access="public" returntype="void">
     <cfargument name="qid" type="numeric" required="true">
     <cfargument name="eventid" type="numeric" required="true">
 
@@ -33,7 +33,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAudAnswers" access="public" returntype="void">
+<cffunction name="UPDaudanswers" access="public" returntype="void">
     <cfargument name="new_qtype" type="string" required="true">
     <cfargument name="new_value" required="true">
     <cfargument name="new_answerID" type="numeric" required="true">
@@ -57,7 +57,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertAudAnswers" access="public" returntype="void">
+<cffunction name="INSaudanswers_24506" access="public" returntype="void">
     <cfargument name="new_qID" type="numeric" required="true">
     <cfargument name="new_eventid" type="numeric" required="true">
     <cfargument name="new_aText" type="string" required="true">
@@ -83,7 +83,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAudAnswers" access="public" returntype="void">
+<cffunction name="UPDaudanswers_24507" access="public" returntype="void">
     <cfargument name="new_qID" type="numeric" required="true">
     <cfargument name="new_eventid" type="numeric" required="true">
     <cfargument name="new_aText" type="string" required="true">

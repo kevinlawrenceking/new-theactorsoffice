@@ -1,10 +1,10 @@
 <cfcomponent displayname="AuditionQuestionTypeService" hint="Handles operations for AuditionQuestionType table" output="false"> 
-<cffunction name="insertAudqtypes" access="public" returntype="void">
+<cffunction name="INSaudqtypes" access="public" returntype="void">
     <cfargument name="new_qtype" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
     <cftry>
-        <cfquery name="insertQuery" datasource="yourDataSource">
+        <cfquery name="insertQuery" datasource="abod">
             INSERT INTO audqtypes (qtype, isDeleted) 
             VALUES (
                 <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_qtype#" maxlength="100" null="#NOT len(trim(arguments.new_qtype))#">,
@@ -18,7 +18,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAudQTypes" access="public" returntype="void">
+<cffunction name="UPDaudqtypes" access="public" returntype="void">
     <cfargument name="new_qtype" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_qtypeid" type="numeric" required="true">

@@ -1,9 +1,9 @@
 
 <cftry>
-    <cfset exportService = new "/services/ExportService.cfc"()>
-    <cfset exportService.insertExport(userid=session.userid)>
+    <cfset objExportService = createObject("component", "services.ExportService")>
+    <cfset objExportService.INSexports(userid=session.userid)>
     <cfcatch type="any">
         <cflog file="errorLog" text="[Error in AddExport_115_1.cfm]: #cfcatch.message#"/>
-        <cfthrow message="Error occurred while adding export." detail="#cfcatch.detail#"/>
+        <cfthrow message="Error occurred while calling INSexports function." detail="#cfcatch.detail#"/>
     </cfcatch>
 </cftry>

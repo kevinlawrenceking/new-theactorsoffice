@@ -1,0 +1,23 @@
+/*************************************/
+/***** STYLING RANGE INPUT ***********/
+/*************************************/
+/*http://brennaobrien.com/blog/2014/05/style-input-type-range-in-every-browser.html */
+/*************************************/
+/*
+.cr-slider:focus::-webkit-slider-runnable-track {
+background: #ccc;
+}
+*/
+
+/*hide the outline behind the border*/
+/*******************************************/
+
+/***********************************/
+/* Rotation Tools */
+/***********************************/
+
+.btn-success:disabled {
+	color: #fff;
+	background-color: #D3D3D3;
+	border-color: #D3D3D3
+}

@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset variables.attachmentService = new "/services/AttachmentService.cfc"()>
-    <cfset variables.attachmentService.insertAttachment(
+    <cfset variables.attachmentService = createObject("component", "services.AttachmentService")>
+    <cfset variables.attachmentService.INSattachments(
         attachname = attachname,
         attachfilename = attachfilename,
         noteid = noteid

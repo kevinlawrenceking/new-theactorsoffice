@@ -1,7 +1,6 @@
 
 <cftry>
-    <cfset variables.systemUserService = createObject("component", "/services/SystemUserService")>
-    <cfset variables.systemUserService.insertSystemUser(
+    <cfset result = createObject("component", "services.SystemUserService").INSfusystemusers_24477(
         systemID = systemID,
         contactID = contactID,
         userID = userid,

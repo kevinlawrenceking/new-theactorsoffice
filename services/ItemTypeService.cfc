@@ -1,12 +1,12 @@
 <cfcomponent displayname="ItemTypeService" hint="Handles operations for ItemType table" output="false"> 
-<cffunction name="getItemTypes" access="public" returntype="query">
+<cffunction name="SELitemtypes" access="public" returntype="query">
     <cfargument name="catId" type="numeric" required="true">
     <cfargument name="excludeTypeId" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT i.valuetype
             FROM itemtypes i
             INNER JOIN itemcatxref x ON x.typeid = i.typeid
@@ -23,7 +23,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getItemTypes" access="public" returntype="query">
+<cffunction name="SELitemtypes_24462" access="public" returntype="query">
     <cfargument name="typeid" type="numeric" required="false">
     <cfargument name="valuetype" type="string" required="false">
     <cfargument name="typeicon" type="string" required="false">
@@ -51,7 +51,7 @@
 
         <!--- Execute query only if there are conditions to prevent unfiltered queries --->
         <cfif arrayLen(whereClause) gt 0>
-            <cfquery name="queryResult" datasource="yourDataSource">
+            <cfquery name="queryResult" datasource="abod">
                 SELECT typeid, valuetype, typeicon
                 FROM itemtypes
                 WHERE #arrayToList(whereClause, " AND ")#

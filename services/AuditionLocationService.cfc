@@ -1,5 +1,5 @@
 <cfcomponent displayname="AuditionLocationService" hint="Handles operations for AuditionLocation table" output="false"> 
-<cffunction name="updateAudLocations" access="public" returntype="void">
+<cffunction name="UPDaudlocations" access="public" returntype="void">
     <cfargument name="new_userid" type="numeric" required="true">
     <cfargument name="new_eventLocation" type="string" required="true">
     <cfargument name="new_audlocadd1" type="string" required="true">
@@ -33,7 +33,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertAudLocation" access="public" returntype="void">
+<cffunction name="INSaudlocations" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="custom" type="string" required="true">
 
@@ -51,7 +51,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getAudLocations" access="public" returntype="query">
+<cffunction name="SELaudlocations" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">

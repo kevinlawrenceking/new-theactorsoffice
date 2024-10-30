@@ -1,5 +1,5 @@
 <cfcomponent displayname="ItemTypesUserService" hint="Handles operations for ItemTypesUser table" output="false"> 
-<cffunction name="insertItemTypeUser" access="public" returntype="void">
+<cffunction name="INSitemtypes_user" access="public" returntype="void">
     <cfargument name="customtype" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
     
@@ -20,14 +20,14 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getItemTypesByUser" access="public" returntype="query">
+<cffunction name="SELitemtypes_user" access="public" returntype="query">
     <cfargument name="valuetype" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM itemtypes_user
             WHERE valuetype = <cfqueryparam value="#arguments.valuetype#" cfsqltype="CF_SQL_VARCHAR">
@@ -41,7 +41,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="insertItemTypeUser" access="public" returntype="void">
+<cffunction name="INSitemtypes_user_24464" access="public" returntype="void">
     <cfargument name="valuetype" type="string" required="true">
     <cfargument name="typeicon" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
@@ -61,14 +61,14 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getItemTypesByUser" access="public" returntype="query">
+<cffunction name="SELitemtypes_user_24466" access="public" returntype="query">
     <cfargument name="valuetype" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
 
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT typeid
             FROM itemtypes_user
             WHERE valuetype = <cfqueryparam value="#arguments.valuetype#" cfsqltype="CF_SQL_VARCHAR">

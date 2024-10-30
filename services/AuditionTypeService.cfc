@@ -1,9 +1,9 @@
 <cfcomponent displayname="AuditionTypeService" hint="Handles operations for AuditionType table" output="false"> 
-<cffunction name="getAudTypes" access="public" returntype="query">
+<cffunction name="SELaudtypes" access="public" returntype="query">
     <cfargument name="audcatid" type="string" required="true">
     <cfset var result = "">
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 audtypeid AS id, 
                 audtype AS name, 
@@ -23,13 +23,13 @@
     </cftry>
     <cfreturn result>
 </cffunction>
-<cffunction name="getDistinctAudtypes" access="public" returntype="query">
+<cffunction name="SELaudtypes_23793" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT DISTINCT audtype AS id, audtype AS name
             FROM audtypes
             WHERE audtype IN (
@@ -50,13 +50,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getAudTypes" access="public" returntype="query">
+<cffunction name="SELaudtypes_24082" access="public" returntype="query">
     <cfargument name="new_audcatid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 audtypeid AS id, 
                 audtype AS name, 
@@ -104,13 +104,13 @@ function getAudtypes(new_audcatid) {
 }
 </cfscript>
 
-<cffunction name="getDynamicQuery" access="public" returntype="query">
+<cffunction name="SELaudtypes_24231" access="public" returntype="query">
     <cfargument name="audstepIds" type="array" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 audstepid, 
                 4 AS new_reportid, 
@@ -139,7 +139,7 @@ function getAudtypes(new_audcatid) {
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getTotalAudRoles" access="public" returntype="query">
+<cffunction name="SELaudtypes_24234" access="public" returntype="query">
     <cfargument name="audstepid" type="numeric" required="true">
     <cfargument name="new_audtypeid" type="numeric" required="true">
     <cfargument name="rangestart" type="date" required="true">
@@ -172,13 +172,13 @@ function getAudtypes(new_audcatid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getAudtypeById" access="public" returntype="query">
+<cffunction name="SELaudtypes_24526" access="public" returntype="query">
     <cfargument name="new_audtypeid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT audtype 
             FROM audtypes 
             WHERE audtypeid = <cfqueryparam value="#arguments.new_audtypeid#" cfsqltype="CF_SQL_INTEGER">
@@ -192,7 +192,7 @@ function getAudtypes(new_audcatid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertAudType" access="public" returntype="void">
+<cffunction name="INSaudtypes" access="public" returntype="void">
     <cfargument name="new_audtype" type="string" required="true">
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
@@ -212,13 +212,13 @@ function getAudtypes(new_audcatid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getAudTypes" access="public" returntype="query">
+<cffunction name="SELaudtypes_24608" access="public" returntype="query">
     <cfargument name="isDeleted" type="boolean" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 audtypeid AS id, 
                 audtype AS name, 
@@ -239,7 +239,7 @@ function getAudtypes(new_audcatid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="updateAudtypes" access="public" returntype="void">
+<cffunction name="UPDaudtypes" access="public" returntype="void">
     <cfargument name="new_audtype" type="string" required="true">
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">

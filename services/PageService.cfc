@@ -1,10 +1,10 @@
 <cfcomponent displayname="PageService" hint="Handles operations for Page table" output="false"> 
-<cffunction name="getActivePgPages" access="public" returntype="query">
+<cffunction name="SELpgpages" access="public" returntype="query">
     <cfargument name="ticketActive" type="string" required="true">
     <cfset var queryResult = "">
     
     <cftry>
-        <cfquery name="queryResult" datasource="yourDataSource">
+        <cfquery name="queryResult" datasource="abod">
             SELECT DISTINCT p.pgid, p.pgname 
             FROM taousers u 
             INNER JOIN tickets t ON u.userID = t.userid 
@@ -21,12 +21,12 @@
 
     <cfreturn queryResult>
 </cffunction>
-<cffunction name="getPgPagesResults" access="public" returntype="query">
+<cffunction name="SELpgpages_23868" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
     
     <cfset var result = "">
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM pgpages p
             INNER JOIN pgcomps c ON c.compID = p.compid
@@ -41,14 +41,14 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getPgPages" access="public" returntype="query">
+<cffunction name="DETpgpages" access="public" returntype="query">
     <cfargument name="compid" type="numeric" required="true">
     <cfargument name="pgid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT pgid, pgdir
             FROM pgpages
             WHERE compid = <cfqueryparam value="#arguments.compid#" cfsqltype="CF_SQL_INTEGER">
@@ -64,13 +64,13 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getPgPagesWithCompName" access="public" returntype="query">
+<cffunction name="SELpgpages_23870" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT p.pgTitle, c.compname 
             FROM pgpages p 
             INNER JOIN pgcomps c ON c.compID = p.compID 
@@ -86,12 +86,12 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getAppDetails" access="public" returntype="query">
+<cffunction name="SELpgpages_23912" access="public" returntype="query">
     <cfargument name="ref_pgid" type="numeric" required="true">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 a.appname, a.appAuthor, c.compname, p.pgname, a.appId, 
                 a.appDescription, a.appLogoName, a.colorTopBar, a.colorLeftSideBar, 
@@ -114,12 +114,12 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getPgDirByPgid" access="public" returntype="query">
+<cffunction name="DETpgpages_23991" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT pgdir 
             FROM pgpages 
             WHERE pgid = <cfqueryparam value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER">
@@ -166,13 +166,13 @@ function getDynamicQuery(required numeric rpgid) {
 }
 </cfscript>
 
-<cffunction name="getAppPageDetails" access="public" returntype="query">
+<cffunction name="SELpgpages_24003" access="public" returntype="query">
     <cfargument name="thispage" type="string" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 a.appname, a.appAuthor, c.compname, p.pgname, a.appId, a.appDescription, 
                 a.appLogoName, a.colorTopBar, a.colorLeftSideBar, a.mocktoday, a.mock_yn, 
@@ -198,13 +198,13 @@ function getDynamicQuery(required numeric rpgid) {
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getDynamicQueryResults" access="public" returntype="query">
+<cffunction name="SELpgpages_24004" access="public" returntype="query">
     <cfargument name="thispage" type="string" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 a.appname, c.compname, p.pgname, f.fname, 
                 a.appId, a.appName, a.appDescription, a.appLogoName, 
@@ -236,7 +236,7 @@ function getDynamicQuery(required numeric rpgid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getPgdirByPgid" access="public" returntype="query">
+<cffunction name="DETpgpages_24197" access="public" returntype="query">
     <cfargument name="details_pgid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -256,13 +256,13 @@ function getDynamicQuery(required numeric rpgid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getActivePages" access="public" returntype="query">
+<cffunction name="SELpgpages_24210" access="public" returntype="query">
     <cfargument name="compactive" type="string" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT p.pgid AS ID, p.pgname AS name
             FROM pgpages p
             INNER JOIN pgcomps c ON c.compid = p.compid
@@ -278,14 +278,14 @@ function getDynamicQuery(required numeric rpgid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getPgPagesDetails" access="public" returntype="query">
+<cffunction name="DETpgpages_24259" access="public" returntype="query">
     <cfargument name="compid" type="numeric" required="true">
     <cfargument name="pgid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT pgid, pgdir 
             FROM pgpages 
             WHERE compid = <cfqueryparam value="#arguments.compid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -300,13 +300,13 @@ function getDynamicQuery(required numeric rpgid) {
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getPgPagesData" access="public" returntype="query">
+<cffunction name="SELpgpages_24300" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 a.appname, a.appAuthor, c.compname, p.pgname, a.appId, a.appDescription, 
                 a.appLogoName, a.colorTopBar, a.colorLeftSideBar, c.compid, c.compDir, 
@@ -332,13 +332,13 @@ function getDynamicQuery(required numeric rpgid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getDynamicQuery" access="public" returntype="query">
+<cffunction name="SELpgpages_24301" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 a.appname, c.compname, p.pgname, f.fname, f.num_min, f.num_max, 
                 f.required_yn, a.appId, a.appName, a.appDescription, a.appLogoName, 
@@ -365,13 +365,13 @@ function getDynamicQuery(required numeric rpgid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getDynamicQueryResults" access="public" returntype="query">
+<cffunction name="RESpgpages_24302" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 a.appname, c.compname, p.pgname, f.fname, f.required_yn, f.num_min, f.num_max,
                 a.appId, a.appName, a.appDescription, a.appLogoName, a.colorTopBar, a.colorLeftSideBar,
@@ -405,13 +405,13 @@ function getDynamicQuery(required numeric rpgid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getPgFields" access="public" returntype="query">
+<cffunction name="SELpgpages_24303" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT f.fname, f.ftype 
             FROM pgpages p 
             INNER JOIN pgcomps c ON c.compID = p.compID 
@@ -429,13 +429,13 @@ function getDynamicQuery(required numeric rpgid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getDynamicQueryResults" access="public" returntype="query">
+<cffunction name="SELpgpages_24304" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 a.appname, c.compname, p.pgname, f.fname, f.required_yn, f.num_min, f.num_max, 
                 a.appId, a.appName, a.appDescription, a.appLogoName, a.colorTopBar, a.colorLeftSideBar, 
@@ -460,13 +460,13 @@ function getDynamicQuery(required numeric rpgid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getDynamicQueryResults" access="public" returntype="query">
+<cffunction name="SELpgpages_24305" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 a.appname, c.compname, p.pgname, f.fname, f.num_min, f.num_max, 
                 f.required_yn, a.appId, a.appName, a.appDescription, a.appLogoName, 
@@ -498,12 +498,12 @@ function getDynamicQuery(required numeric rpgid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getDynamicQueryResults" access="public" returntype="query">
+<cffunction name="RESpgpages_24652" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
     <cfset var result = "">
 
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 f.fname, f.fieldid, f.pgid, f.ftype, f.ftypefull, 
                 f.update_yn, f.updatename, f.updatetype, f.fkey, 
@@ -538,13 +538,13 @@ function getDynamicQuery(required numeric rpgid) {
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getDynamicQueryResults" access="public" returntype="query">
+<cffunction name="SELpgpages_24653" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 f.fname, 
                 f2.fname AS fnameb, 
@@ -581,7 +581,7 @@ function getDynamicQuery(required numeric rpgid) {
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getDynamicQueryResults" access="public" returntype="query">
+<cffunction name="RESpgpages_24739" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -674,12 +674,12 @@ function getDynamicQuery(required numeric pgid) {
 }
 </cfscript>
 
-<cffunction name="getDynamicQueryResults" access="public" returntype="query">
+<cffunction name="RESpgpages_24777" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 f.fname, f.fieldid, f.pgid, f.ftype, f.ftypefull, f.update_yn, 
                 f.updatename, f.updatetype, f.fkey, f.det_cols, 
@@ -714,13 +714,13 @@ function getDynamicQuery(required numeric pgid) {
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getDynamicQueryResults" access="public" returntype="query">
+<cffunction name="SELpgpages_24778" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 f.fname, 
                 f2.fname AS fnameb, 

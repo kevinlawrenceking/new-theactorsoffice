@@ -5849,7 +5849,7 @@ fieldset:disabled .btn {
     padding: 1px 3px;
     background-color: #DECE8E;
     color: #f8f8ff;
-    border: 1px solid #C7B97F
+    border: 1px solid #C7B97F;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
 	border-radius: .25rem
@@ -23655,7 +23655,7 @@ button.close {
     padding: 1px 3px;
     background: #DECE8E;
     color: #f8f8ff;
-    border-color: #C7B97F
+    border-color: #C7B97F;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     border-radius: 3px

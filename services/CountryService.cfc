@@ -1,11 +1,11 @@
 <cfcomponent displayname="CountryService" hint="Handles operations for Country table" output="false"> 
-<cffunction name="getCountryById" access="public" returntype="query">
+<cffunction name="SELcountries" access="public" returntype="query">
     <cfargument name="countryid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT countryid, countryname
             FROM countries
             WHERE countryid = <cfqueryparam value="#arguments.countryid#" cfsqltype="CF_SQL_INTEGER">
@@ -19,13 +19,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getCountriesByCountryName" access="public" returntype="query">
+<cffunction name="SELcountries_24169" access="public" returntype="query">
     <cfargument name="countryName" type="string" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM countries 
             WHERE countryname = <cfqueryparam value="#arguments.countryName#" cfsqltype="cf_sql_varchar">
@@ -39,7 +39,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getCountries" access="public" returntype="query">
+<cffunction name="SELcountries_24637" access="public" returntype="query">
     <cfargument name="countryIds" type="array" required="true">
     
     <cfset var result = "">
@@ -74,13 +74,13 @@
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getCountriesByCountryName" access="public" returntype="query">
+<cffunction name="SELcountries_24720" access="public" returntype="query">
     <cfargument name="countryName" type="string" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM countries 
             WHERE countryname = <cfqueryparam value="#arguments.countryName#" cfsqltype="CF_SQL_VARCHAR">

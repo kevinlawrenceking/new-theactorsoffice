@@ -1,5 +1,5 @@
 <cfcomponent displayname="AuditionQuestionsDefaultService" hint="Handles operations for AuditionQuestionsDefault table" output="false"> 
-<cffunction name="insertAudQuestionsDefault" access="public" returntype="void">
+<cffunction name="INSaudquestions_default" access="public" returntype="void">
     <cfargument name="new_qTypeID" type="any" required="true">
     <cfargument name="new_qtext" type="string" required="true">
     <cfargument name="new_qorder" type="any" required="true">
@@ -21,7 +21,7 @@
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAudQuestionsDefault" access="public" returntype="void">
+<cffunction name="UPDaudquestions_default" access="public" returntype="void">
     <cfargument name="new_qTypeID" type="numeric" required="true">
     <cfargument name="new_qtext" type="string" required="true">
     <cfargument name="new_qorder" type="numeric" required="true">

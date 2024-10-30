@@ -1,7 +1,7 @@
 
 <cftry>
     <cfset variables.notificationService = createObject("component", "/services/NotificationService")>
-    <cfset variables.notificationService.insertNotification(
+    <cfset variables.notificationService.INSfunotifications_24430(
         actionID = addDaysNo.actionID,
         userid = userid,
         NewSuid = NewSuid,

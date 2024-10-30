@@ -1,9 +1,7 @@
 
-<!--- This ColdFusion page handles the insertion of a new submission site into the database. --->
-
 <cftry>
     <cfset variables.service = new "/services/AuditionSubmitSiteUserService.cfc"()>
-    <cfset variables.service.insertAudSubmitSitesUser(
+    <cfset variables.service.INSaudsubmitsites_user(
         new_submitsitename = new_submitsitename,
         sortedCatList = sortedCatList,
         userid = userid

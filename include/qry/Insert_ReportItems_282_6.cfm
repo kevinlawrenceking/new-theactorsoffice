@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset reportItemService = new services.ReportItemService()>
-    <cfset reportItemService.insertReportItems(
+    <cfset variables.reportItemService = createObject("component", "services.ReportItemService")>
+    <cfset variables.reportItemService.INSreportitems_24233(
         newLabel = report_4_loop.new_label,
         itemOrderNo = i,
         newID = new_id,

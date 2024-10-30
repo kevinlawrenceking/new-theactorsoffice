@@ -1,11 +1,11 @@
 <cfcomponent displayname="GenderPronounUserService" hint="Handles operations for GenderPronounUser table" output="false"> 
-<cffunction name="getGenderPronoun" access="public" returntype="query">
+<cffunction name="SELgenderpronouns_users" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT genderPronoun
             FROM genderpronouns_users
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
@@ -19,14 +19,14 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getGenderPronounsUsers" access="public" returntype="query">
+<cffunction name="SELgenderpronouns_users_24203" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="custom" type="string" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM genderpronouns_users 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -41,7 +41,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="insertGenderPronounsUser" access="public" returntype="void">
+<cffunction name="INSgenderpronouns_users" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="custom" type="string" required="true">
 
@@ -62,14 +62,14 @@
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getUserByGenderPronoun" access="public" returntype="query">
+<cffunction name="SELgenderpronouns_users_24444" access="public" returntype="query">
     <cfargument name="genderpronoun" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM genderpronouns_users 
             WHERE genderpronoun = <cfqueryparam value="#arguments.genderpronoun#" cfsqltype="CF_SQL_VARCHAR"> 
@@ -84,7 +84,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertGenderPronounsUser" access="public" returntype="void">
+<cffunction name="INSgenderpronouns_users_24445" access="public" returntype="void">
     <cfargument name="genderpronoun" type="string" required="true">
     <cfargument name="genderpronounplural" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
@@ -104,13 +104,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getGenderPronoun" access="public" returntype="query">
+<cffunction name="SELgenderpronouns_users_24627" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT genderPronoun
             FROM genderpronouns_users
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">

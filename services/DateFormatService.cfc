@@ -1,11 +1,11 @@
 <cfcomponent displayname="DateFormatService" hint="Handles operations for DateFormat table" output="false"> 
-<cffunction name="getDateFormats" access="public" returntype="query">
+<cffunction name="SELdateformats" access="public" returntype="query">
     <cfargument name="id" type="numeric" required="false" default="">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT id, formatexample, formatnotes
             FROM dateformats
             WHERE 1=1

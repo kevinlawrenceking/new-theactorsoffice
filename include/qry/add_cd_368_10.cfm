@@ -1,9 +1,7 @@
 
-<!--- This ColdFusion page handles the insertion of audition contacts into the database. --->
-
 <cftry>
-    <cfset contactAuditionService = createObject("component", "/services/ContactAuditionService")>
-    <cfset contactAuditionService.insertAudContactAuditionXref(
+    <cfset variables.contactAuditionService = createObject("component", "/services/ContactAuditionService")>
+    <cfset variables.contactAuditionService.INSaudcontacts_auditions_xref_24551(
         audprojectid = cdcheck.audprojectid,
         contactid = cdcheck.contactid
     )>

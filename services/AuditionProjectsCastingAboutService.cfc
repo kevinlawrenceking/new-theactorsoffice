@@ -1,5 +1,5 @@
 <cfcomponent displayname="AuditionProjectsCastingAboutService" hint="Handles operations for AuditionProjectsCastingAbout table" output="false"> 
-<cffunction name="insertAudProjectsCastingAbout" access="public" returntype="void">
+<cffunction name="INSaudprojects_castingabout" access="public" returntype="void">
     <cfargument name="new_projName" type="string" required="true">
     <cfargument name="new_projtye" type="string" required="true">
     <cfargument name="new_Status1" type="string" required="true">
@@ -43,7 +43,7 @@
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAudprojectsCastingabout" access="public" returntype="void">
+<cffunction name="UPDaudprojects_castingabout" access="public" returntype="void">
     <cfargument name="new_projName" type="string" required="true">
     <cfargument name="new_projtye" type="string" required="true">
     <cfargument name="new_Status1" type="string" required="true">

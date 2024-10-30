@@ -1,5 +1,5 @@
 <cfcomponent displayname="PanelsUserXRefService" hint="Handles operations for PanelsUserXRef table" output="false"> 
-<cffunction name="deleteUserXref" access="public" returntype="void">
+<cffunction name="DELpgpanels_user_xref" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
 
     <cftry>
@@ -14,7 +14,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertPgpanelsUserXref" access="public" returntype="void">
+<cffunction name="INSpgpanels_user_xref" access="public" returntype="void">
     <cfargument name="newpnid" type="numeric" required="true">
     <cfargument name="newuserid" type="numeric" required="true">
 

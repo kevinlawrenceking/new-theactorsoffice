@@ -1,5 +1,5 @@
 <cfcomponent displayname="SiteLinkUserService" hint="Handles operations for SiteLinkUser table" output="false"> 
-<cffunction name="updateSiteIcon" access="public" returntype="void">
+<cffunction name="UPDsitelinks_user" access="public" returntype="void">
     <cfargument name="fileName" type="string" required="true">
     <cfargument name="id" type="numeric" required="true">
 
@@ -15,7 +15,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getCustomSiteLinks" access="public" returntype="query">
+<cffunction name="SELsitelinks_user" access="public" returntype="query">
     <cfargument name="siteIcon" type="string" required="false" default="unknown.png">
     
     <cfset var result = "">
@@ -35,7 +35,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="updateSiteIcon" access="public" returntype="void" hint="Updates the site icon for a user.">
+<cffunction name="UPDsitelinks_user_23854" access="public" returntype="void" hint="Updates the site icon for a user.">
     <cfargument name="new_siteicon" type="string" required="true" hint="New site icon value."/>
     <cfargument name="id" type="numeric" required="true" hint="User ID."/>
     
@@ -52,7 +52,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateSitelinksUserTbl" access="public" returntype="void">
+<cffunction name="UPDsitelinks_user_23883" access="public" returntype="void">
     <cfargument name="new_id" type="numeric" required="true">
 
     <cftry>
@@ -68,7 +68,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateSiteLinksUser" access="public" returntype="void">
+<cffunction name="UPDsitelinks_user_23930" access="public" returntype="void">
     <cfargument name="new_id" type="numeric" required="true">
 
     <cftry>
@@ -84,13 +84,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getSiteLinksByUser" access="public" returntype="query">
+<cffunction name="SELsitelinks_user_23943" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 s.id, 
                 s.sitetypeid, 
@@ -118,7 +118,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getSiteLinks" access="public" returntype="query">
+<cffunction name="SELsitelinks_user_23958" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     <cfargument name="siteTypeId" type="numeric" required="true">
     
@@ -155,7 +155,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getSiteLinks" access="public" returntype="query">
+<cffunction name="SELsitelinks_user_23959" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     <cfargument name="siteTypeId" type="numeric" required="true">
 
@@ -194,14 +194,14 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getSiteLinksUser" access="public" returntype="query">
+<cffunction name="SELsitelinks_user_24138" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_sitename" type="string" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM sitelinks_user 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -216,7 +216,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="insertSiteLink" access="public" returntype="void">
+<cffunction name="INSsitelinks_user" access="public" returntype="void">
     <cfargument name="new_sitename" type="string" required="true">
     <cfargument name="new_siteurl" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
@@ -244,7 +244,7 @@
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getSiteLinksUser" access="public" returntype="query">
+<cffunction name="SELsitelinks_user_24448" access="public" returntype="query">
     <cfargument name="sitename" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
     
@@ -266,7 +266,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertSiteLink" access="public" returntype="void">
+<cffunction name="INSsitelinks_user_24449" access="public" returntype="void">
     <cfargument name="sitename" type="string" required="true">
     <cfargument name="siteurl" type="string" required="true">
     <cfargument name="siteicon" type="string" required="true">

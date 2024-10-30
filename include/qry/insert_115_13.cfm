@@ -1,7 +1,9 @@
 
 <cftry>
-    <cfset ExportItemService = createObject("component", "services.ExportItemService")>
-    <cfset ExportItemService.insertExportItem(
+    <cfset componentPath = "/services/ExportItemService.cfc">
+    <cfset exportItemService = createObject("component", componentPath)>
+    
+    <cfset exportItemService.INSexportitems(
         new_exportid = new_exportid,
         new_contactid = new_contactid,
         new_FirstName = new_FirstName,
@@ -21,13 +23,14 @@
         new_State = new_State,
         new_Zip = new_Zip,
         new_Country = new_Country,
-        new_ContactMeetingDate = isDate(new_ContactMeetingDate) ? dateFormat(new_ContactMeetingDate, "yyyy-mm-dd") : "",
-        new_ContactMeetingLoc = trim(new_ContactMeetingLoc),
-        new_contactBirthday = isDate(new_contactBirthday) ? dateFormat(new_contactBirthday, "yyyy-mm-dd") : "",
-        new_Website = trim(new_Website)
+        new_ContactMeetingDate = isDate(new_ContactMeetingDate) ? createODBCDate(new_ContactMeetingDate) : "",
+        new_ContactMeetingLoc = new_ContactMeetingLoc,
+        new_contactBirthday = isDate(new_contactBirthday) ? createODBCDate(new_contactBirthday) : "",
+        new_Website = new_Website
     )>
-    <cfset isfetch = 1>
-    <cfcatch type="any">
-        <cfset errorLog("[Error in insert_115_13.cfm]: " & cfcatch.message)>
-    </cfcatch>
-</cftry>
+    
+    <cfset updateDatabase()>
+    
+    <cffunction name="updateDatabase" access="private" returntype="void">
+        <!--- Update database to set isfetch to 1 --->
+    

@@ -1,9 +1,9 @@
 <cfcomponent displayname="ExportService" hint="Handles operations for Export table" output="false"> 
-<cffunction name="insertExport" access="public" returntype="void">
+<cffunction name="INSexports" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
 
     <cftry>
-        <cfquery name="insertQuery" datasource="yourDataSource">
+        <cfquery name="insertQuery" datasource="abod">
             INSERT INTO exports (userid) 
             VALUES (<cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">)
         </cfquery>
@@ -14,7 +14,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateExportStatus" access="public" returntype="void">
+<cffunction name="UPDexports" access="public" returntype="void">
     <cfargument name="exportID" type="numeric" required="true">
     <cfargument name="status" type="string" required="true">
 

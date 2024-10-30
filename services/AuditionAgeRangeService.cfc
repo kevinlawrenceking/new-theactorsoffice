@@ -1,11 +1,11 @@
 <cfcomponent displayname="AuditionAgeRangeService" hint="Handles operations for AuditionAgeRange table" output="false"> 
-<cffunction name="getAgeRanges" access="public" returntype="query">
+<cffunction name="SELaudageranges" access="public" returntype="query">
     <cfargument name="isDeleted" type="boolean" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT rangeid, rangename 
             FROM audageranges 
             WHERE isdeleted = <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
@@ -20,7 +20,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="insertAgeRange" access="public" returntype="void">
+<cffunction name="INSaudageranges" access="public" returntype="void">
     <cfargument name="new_rangename" type="string" required="true">
     <cfargument name="new_age_min" type="numeric" required="true">
     <cfargument name="new_age_max" type="numeric" required="true">
@@ -44,7 +44,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAgeRanges" access="public" returntype="void">
+<cffunction name="UPDaudageranges" access="public" returntype="void">
     <cfargument name="new_rangename" type="string" required="true">
     <cfargument name="new_age_min" type="numeric" required="true">
     <cfargument name="new_age_max" type="numeric" required="true">
@@ -70,13 +70,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getAgeRangesByRole" access="public" returntype="query">
+<cffunction name="SELaudageranges_24552" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT g.rangename, g.rangeid 
             FROM audageranges g 
             INNER JOIN audageranges_audtion_xref x ON x.rangeid = g.rangeid 

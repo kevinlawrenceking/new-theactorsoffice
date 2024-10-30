@@ -1,5 +1,5 @@
 <cfcomponent displayname="ReportItemService" hint="Handles operations for ReportItem table" output="false"> 
-<cffunction name="insertReportItem" access="public" returntype="void">
+<cffunction name="INSreportitems" access="public" returntype="void">
     <cfargument name="itemLabel" type="string" required="true">
     <cfargument name="itemOrderNo" type="numeric" required="true">
     <cfargument name="itemValueInt" type="numeric" required="true">
@@ -27,14 +27,14 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getReportItems" access="public" returntype="query">
+<cffunction name="SELreportitems" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="reportid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 r.reportid, 
                 i.itemid, 
@@ -61,7 +61,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getDistinctItemDatasets" access="public" returntype="query">
+<cffunction name="SELreportitems_24225" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="reportid" type="numeric" required="true">
     
@@ -85,14 +85,14 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getDistinctItemLabels" access="public" returntype="query">
+<cffunction name="SELreportitems_24226" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="reportid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT DISTINCT i.itemlabel
             FROM reportitems i
             INNER JOIN reports_user r ON r.id = i.id
@@ -108,7 +108,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getReportItems" access="public" returntype="query">
+<cffunction name="SELreportitems_24227" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="reportid" type="numeric" required="true">
     <cfargument name="itemdataset" type="string" required="true">
@@ -116,7 +116,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT DISTINCT 
                 i.itemlabel, 
                 i.itemValueInt 
@@ -140,7 +140,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="deleteReportItems" access="public" returntype="void">
+<cffunction name="DELreportitems" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
     
     <cftry>
@@ -155,7 +155,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertReportItems" access="public" returntype="void">
+<cffunction name="INSreportitems_24233" access="public" returntype="void">
     <cfargument name="newLabel" type="string" required="true">
     <cfargument name="itemOrderNo" type="numeric" required="true">
     <cfargument name="newID" type="numeric" required="true">
@@ -181,12 +181,12 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateReportItems" access="public" returntype="void">
+<cffunction name="UPDreportitems" access="public" returntype="void">
     <cfargument name="new_itemvalueint" type="numeric" required="true">
     <cfargument name="new_itemid" type="numeric" required="true">
 
     <cftry>
-        <cfquery name="updateQuery" datasource="yourDataSource">
+        <cfquery name="updateQuery" datasource="abod">
             UPDATE reportitems 
             SET itemValueInt = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_itemvalueint#" />
             WHERE itemid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_itemid#" />
@@ -200,7 +200,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getReportItems" access="public" returntype="query">
+<cffunction name="RESreportitems" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     
     <cfset var result = "">

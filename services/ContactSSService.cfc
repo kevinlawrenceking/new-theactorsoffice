@@ -1,10 +1,10 @@
 <cfcomponent displayname="ContactSSService" hint="Handles operations for ContactSS table" output="false"> 
-<cffunction name="getContactsByUserId" access="public" returntype="query">
+<cffunction name="SELcontacts_ss" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     
     <cfset var result = "">
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT col1 
             FROM contacts_ss 
             WHERE userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 
@@ -18,14 +18,14 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getContactID" access="public" returntype="query">
+<cffunction name="SELcontacts_ss_23946" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="topsearch_myteam" type="string" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT CONTACTID 
             FROM contacts_ss 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 

@@ -1,5 +1,5 @@
 <cfcomponent displayname="CityService" hint="Handles operations for City table" output="false"> 
-<cffunction name="getCities" access="public" returntype="query">
+<cffunction name="SELcities" access="public" returntype="query">
     <cfargument name="countryId" type="numeric" required="false">
     <cfargument name="regionId" type="numeric" required="false">
     <cfargument name="cityName" type="string" required="false">

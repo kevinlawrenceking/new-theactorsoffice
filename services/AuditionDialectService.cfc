@@ -1,5 +1,5 @@
 <cfcomponent displayname="AuditionDialectService" hint="Handles operations for AuditionDialect table" output="false"> 
-<cffunction name="insertAuddialect" access="public" returntype="void">
+<cffunction name="INSauddialects" access="public" returntype="void">
     <cfargument name="new_auddialect" type="string" required="true">
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
@@ -20,7 +20,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAuddialects" access="public" returntype="void">
+<cffunction name="UPDauddialects" access="public" returntype="void">
     <cfargument name="new_auddialect" type="string" required="true">
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">

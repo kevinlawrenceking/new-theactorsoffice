@@ -1,5 +1,5 @@
 <cfcomponent displayname="AuditionImportService" hint="Handles operations for AuditionImport table" output="false"> 
-<cffunction name="getAuditionsImportData" access="public" returntype="query">
+<cffunction name="RESauditionsimport" access="public" returntype="query">
     <cfargument name="id" type="numeric" required="true">
     
     <cfset var result = "">
@@ -33,13 +33,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getAuditionImportById" access="public" returntype="query">
+<cffunction name="SELauditionsimport" access="public" returntype="query">
     <cfargument name="id" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 id, 
                 audsubcatid, 
@@ -71,7 +71,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getAuditionProjectIds" access="public" returntype="query">
+<cffunction name="DETauditionsimport" access="public" returntype="query">
     <cfargument name="uploadid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -92,13 +92,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getAuditionImportData" access="public" returntype="query">
+<cffunction name="RESauditionsimport_23917" access="public" returntype="query">
     <cfargument name="uploadid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 ai.id, 
                 sc.audsubcatid AS selected_id, 
@@ -154,7 +154,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getAuditionsImportData" access="public" returntype="query">
+<cffunction name="SELauditionsimport_23919" access="public" returntype="query">
     <cfargument name="uploadid" type="numeric" required="false">
     <cfargument name="timestamp" type="date" required="false">
     
@@ -170,7 +170,7 @@
             <cfset sql &= " AND timestamp = ?">
         </cfif>
         
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             #sql#
             <cfif structKeyExists(arguments, "uploadid")>
                 <cfqueryparam value="#arguments.uploadid#" cfsqltype="CF_SQL_INTEGER">
@@ -189,7 +189,7 @@
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getAuditionsImport" access="public" returntype="query">
+<cffunction name="SELauditionsimport_24352" access="public" returntype="query">
     <cfargument name="isfix" type="string" required="true">
     <cfargument name="recordid" type="numeric" required="false">
     <cfargument name="new_uploadid" type="numeric" required="false">
@@ -197,7 +197,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT * 
             FROM auditionsimport
             WHERE 
@@ -216,12 +216,12 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="updateAuditionStatus" access="public" returntype="void">
+<cffunction name="UPDauditionsimport" access="public" returntype="void">
     <cfargument name="new_status" type="string" required="true">
     <cfargument name="id" type="numeric" required="true">
 
     <cftry>
-        <cfquery name="updateStatus" datasource="yourDataSource">
+        <cfquery name="updateStatus" datasource="abod">
             UPDATE auditionsimport 
             SET status = <cfqueryparam value="#arguments.new_status#" cfsqltype="CF_SQL_VARCHAR">
             WHERE id = <cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">
@@ -233,7 +233,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getValidAuditionsImport" access="public" returntype="query">
+<cffunction name="SELauditionsimport_24362" access="public" returntype="query">
     <cfargument name="recordid" type="numeric" required="true">
     <cfset var result = "">
     
@@ -253,13 +253,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getValidAuditionsImport" access="public" returntype="query">
+<cffunction name="SELauditionsimport_24363" access="public" returntype="query">
     <cfargument name="new_uploadid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM auditionsimport
             WHERE uploadid = <cfqueryparam value="#arguments.new_uploadid#" cfsqltype="CF_SQL_INTEGER">
@@ -274,7 +274,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="updateAuditionsImport" access="public" returntype="void">
+<cffunction name="UPDauditionsimport_24374" access="public" returntype="void">
     <cfargument name="new_status" type="string" required="true">
     <cfargument name="new_audprojectid" type="numeric" required="true">
     <cfargument name="id" type="numeric" required="true">
@@ -292,7 +292,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAuditionsImport" access="public" returntype="void">
+<cffunction name="UPDauditionsimport_24376" access="public" returntype="void">
     <cfargument name="formData" type="struct" required="true">
     <cfargument name="findData" type="struct" required="true">
 
@@ -326,7 +326,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertAuditionsImport" access="public" returntype="void">
+<cffunction name="INSauditionsimport" access="public" returntype="void">
     <cfargument name="importdata" type="struct" required="true">
     <cfargument name="new_audsubcatid" type="numeric" required="true">
     <cfargument name="new_uploadid" type="numeric" required="true">
@@ -381,7 +381,7 @@
     </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertAuditionImport" access="public" returntype="void">
+<cffunction name="INSauditionsimport_24392" access="public" returntype="void">
     <cfargument name="importdata" type="struct" required="true">
     <cfargument name="new_uploadid" type="numeric" required="true">
 
@@ -435,7 +435,7 @@
     </cftry>
 
 </cffunction>
-<cffunction name="getUploadsByUser" access="public" returntype="query">
+<cffunction name="SELauditionsimport_24561" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">

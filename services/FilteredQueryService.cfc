@@ -1,5 +1,5 @@
 <cfcomponent displayname="FilteredQueryService" hint="Handles operations for FilteredQuery table" output="false"> 
-<cffunction name="getTotalCount" access="public" returntype="query">
+<cffunction name="SELqFiltered" access="public" returntype="query">
     <cfargument name="sIndexColumn" type="string" required="true">
     <cfargument name="conditions" type="struct" required="false" default="#StructNew()#">
 

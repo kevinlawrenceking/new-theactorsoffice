@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset variables.auditionProjectService = new "/services/AuditionProjectService.cfc"()>
-    <cfset variables.auditionProjectService.updateAudProjects(userid=userid, audprojectids=del.audprojectid)>
+    <cfset variables.auditionProjectService = createObject("component", "/services/AuditionProjectService")>
+    <cfset variables.auditionProjectService.UPDaudprojects_24011(userid=userid, audprojectids=[/* array of project IDs */])>
     <cfcatch type="any">
         <cflog file="errorLog" text="[Error in del_191_1.cfm]: #cfcatch.message#">
     </cfcatch>

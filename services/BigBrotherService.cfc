@@ -1,5 +1,5 @@
 <cfcomponent displayname="BigBrotherService" hint="Handles operations for BigBrother table" output="false"> 
-<cffunction name="insertBigBrotherRecord" access="public" returntype="void">
+<cffunction name="INSbigbrother" access="public" returntype="void">
     <cfargument name="pgid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="remote_addr" type="string" required="true">
@@ -29,11 +29,11 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getUserActivity" access="public" returntype="query">
+<cffunction name="RESbigbrother" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     <cfset var result = "">
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 b.id, 
                 b.id AS recid, 

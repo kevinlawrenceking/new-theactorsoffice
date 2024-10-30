@@ -1,5 +1,5 @@
 <cfcomponent displayname="AuditionSourceService" hint="Handles operations for AuditionSource table" output="false"> 
-<cffunction name="getAudSources" access="public" returntype="query">
+<cffunction name="SELaudsources" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
     <cfset var result = "">
     <cfset var sql = "SELECT audsource AS NAME FROM audsources">
@@ -33,7 +33,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getAudSources" access="public" returntype="query">
+<cffunction name="SELaudsources_24222" access="public" returntype="query">
     <cfargument name="isDeleted" type="boolean" required="false" default="false">
     
     <cfset var result = "">
@@ -47,7 +47,7 @@
             ORDER BY audsource
         ">
         
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             #sql#
             <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
         </cfquery>
@@ -60,13 +60,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getAudSources" access="public" returntype="query">
+<cffunction name="SELaudsources_24359" access="public" returntype="query">
     <cfargument name="audsource" type="string" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM audsources
             WHERE isdeleted = 0
@@ -81,13 +81,13 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getAudSources" access="public" returntype="query">
+<cffunction name="SELaudsources_24371" access="public" returntype="query">
     <cfargument name="audsource" type="string" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM audsources
             WHERE audsource = <cfqueryparam value="#arguments.audsource#" cfsqltype="CF_SQL_VARCHAR">
@@ -102,7 +102,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertAudsource" access="public" returntype="void">
+<cffunction name="INSaudsources" access="public" returntype="void">
     <cfargument name="new_audsource" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
@@ -120,7 +120,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAudsource" access="public" returntype="void">
+<cffunction name="UPDaudsources" access="public" returntype="void">
     <cfargument name="new_audsource" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_audsourceid" type="numeric" required="true">
@@ -140,13 +140,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getAudSources" access="public" returntype="query">
+<cffunction name="SELaudsources_24684" access="public" returntype="query">
     <cfargument name="excludeMyTeam" type="boolean" required="false" default="false">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT audsourceid AS id, audsource AS NAME 
             FROM audsources
             WHERE 1=1

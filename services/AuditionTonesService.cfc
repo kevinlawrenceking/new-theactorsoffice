@@ -1,5 +1,5 @@
 <cfcomponent displayname="AuditionTonesService" hint="Handles operations for AuditionTones table" output="false"> 
-<cffunction name="insertAudtones" access="public" returntype="void">
+<cffunction name="INSaudtones" access="public" returntype="void">
     <cfargument name="new_tone" type="string" required="true">
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
@@ -19,7 +19,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAudtones" access="public" returntype="void">
+<cffunction name="UPDaudtones" access="public" returntype="void">
     <cfargument name="new_tone" type="string" required="true">
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">

@@ -1,8 +1,7 @@
 
 <cftry>
-    <cfset componentPath = "/services/AuditionRoleService.cfc">
-    <cfset componentInstance = createObject("component", componentPath)>
-    <cfset componentInstance.updateAudRoles(
+    <cfset variables.auditionRoleService = createObject("component", "/services/AuditionRoleService")>
+    <cfset variables.auditionRoleService.UPDaudroles_24299(
         new_audRoleName = new_audRoleName,
         new_opencallid = new_opencallid,
         new_audRoleTypeID = new_audRoleTypeID,

@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset variables.contactService = new "/services/ContactService.cfc"()>
-    <cfset variables.contactService.updateContactDetails(
+    <cfset contactService = new "/services/ContactService.cfc"()>
+    <cfset contactService.UPDcontactdetails_24202(
         contactid = contactid,
         contactfullname = trim(contactfullname),
         contactPronoun = contactPronoun,
@@ -9,10 +9,9 @@
         contactbirthday = contactbirthday,
         contactmeetingdate = contactmeetingdate,
         contactmeetingloc = trim(contactmeetingloc),
-        deleteitem = deleteitem,
+        deleteitem = (deleteitem is "1"),
         refer_contact_id = refer_contact_id
     )>
-    <cfset isfetch = 1>
 <cfcatch type="any">
     <cflog file="errorLog" text="[Error in updatecontact_270_1.cfm] Failed to update contact details. Error: #cfcatch.message#">
 </cfcatch>

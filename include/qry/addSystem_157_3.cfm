@@ -1,7 +1,6 @@
 
 <cftry>
-    <cfset variables.systemUserService = createObject("component", "services.SystemUserService")>
-    <cfset variables.systemUserService.insertFuSystemUser(
+    <cfset result = createObject("component", "services.SystemUserService").INSfusystemusers_23934(
         new_systemid = new_systemid,
         new_contactid = new_contactid,
         new_userid = new_userid,
@@ -13,4 +12,3 @@
         <cfthrow>
     </cfcatch>
 </cftry>
-

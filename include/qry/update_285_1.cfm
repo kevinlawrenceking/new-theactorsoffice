@@ -2,7 +2,7 @@
 <cftry>
     <cfset componentPath = "/services/AuditionRoleService.cfc">
     <cfset auditionRoleService = createObject("component", componentPath)>
-    <cfset auditionRoleService.updateAudRoles(
+    <cfset auditionRoleService.UPDaudroles_24260(
         new_iscallback = new_iscallback,
         new_isredirect = new_isredirect,
         new_ispin = new_ispin,

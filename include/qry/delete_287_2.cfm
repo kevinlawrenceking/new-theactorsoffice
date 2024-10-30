@@ -1,8 +1,7 @@
 
 <cftry>
-    <cfset componentPath = "/services/AuditionEssenceXRefService.cfc">
-    <cfset auditionService = createObject("component", componentPath)>
-    <cfset auditionService.deleteAudessencesAudtionXref(new_audroleid=new_audroleid)>
+    <cfset objService = createObject("component", "services.AuditionEssenceXRefService")>
+    <cfset objService.DELaudessences_audtion_xref(new_audroleid=new_audroleid)>
     <cfcatch type="any">
         <cflog file="errorLog" text="[Error in delete_287_2.cfm]: #cfcatch.message#">
         <cfrethrow>

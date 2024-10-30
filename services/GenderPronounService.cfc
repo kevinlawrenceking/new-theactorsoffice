@@ -1,5 +1,5 @@
 <cfcomponent displayname="GenderPronounService" hint="Handles operations for GenderPronoun table" output="false"> 
-<cffunction name="getGenderPronouns" access="public" returntype="query">
+<cffunction name="SELgenderpronouns" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
     <cfset var result = "">
     <cfset var sql = "SELECT genderpronoun, genderpronounplural FROM genderpronouns">
@@ -21,7 +21,7 @@
 
     <!--- Execute query with error handling --->
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             #sql#
             <cfloop array="#params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">

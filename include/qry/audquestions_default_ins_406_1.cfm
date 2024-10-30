@@ -1,7 +1,7 @@
 
 <cftry>
     <cfset variables.service = new "/services/AuditionQuestionsDefaultService.cfc"()>
-    <cfset variables.service.updateAudQuestionsDefault(
+    <cfset variables.service.UPDaudquestions_default(
         new_qTypeID = new_qTypeID,
         new_qtext = new_qtext,
         new_qorder = new_qorder,
@@ -9,6 +9,7 @@
         new_qID = new_qID
     )>
     <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in audquestions_default_ins_406_1.cfm] #cfcatch.message#">
+        <cflog file="errorLog" text="[Error in audquestions_default_ins_406_1.cfm]: #cfcatch.message#">
+        <cfthrow message="Database update failed." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

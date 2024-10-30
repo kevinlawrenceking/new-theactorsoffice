@@ -1,9 +1,9 @@
 
 <cftry>
-    <cfset siteLinkUserService = createObject("component", "/services/SiteLinkUserService")>
-    <cfset siteLinkUserService.updateSitelinksUserTbl(new_id=new_id)>
+    <cfset variables.siteLinkUserService = createObject("component", "/services/SiteLinkUserService")>
+    <cfset variables.siteLinkUserService.UPDsitelinks_user_23883(new_id=new_id)>
     <cfcatch type="any">
         <cflog file="errorLog" text="[Error in update_113_1.cfm]: #cfcatch.message#">
-        <cfthrow message="An error occurred while calling the update function." detail="#cfcatch.detail#">
+        <cfthrow message="An error occurred while updating the record." detail="#cfcatch.detail#">
     </cfcatch>
 </cftry>

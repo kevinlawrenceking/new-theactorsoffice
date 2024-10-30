@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset variables.auditionMediaService = createObject("component", "services.AuditionMediaService")>
-    <cfset variables.auditionMediaService.updateAudmedia(
+    <cfset variables.auditionMediaService = createObject("component", "/services/AuditionMediaService")>
+    <cfset variables.auditionMediaService.UPDaudmedia_24571(
         new_mediaTypeID = new_mediaTypeID,
         new_mediaURL = new_mediaURL,
         new_mediaName = new_mediaName,
@@ -14,6 +14,7 @@
     )>
 <cfcatch>
     <cflog file="errorLog" text="[Error in audmedia_upd_386_1.cfm] #cfcatch.message#">
-    <cfthrow message="Error in audmedia_upd_386_1.cfm" detail="#cfcatch.detail#">
+    <cfthrow message="Error updating audmedia." detail="#cfcatch.message#">
 </cfcatch>
 </cftry>
+

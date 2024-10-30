@@ -1,5 +1,5 @@
 <cfcomponent displayname="NotificationStatusService" hint="Handles operations for NotificationStatus table" output="false"> 
-<cffunction name="getNotifications" access="public" returntype="query">
+<cffunction name="SELnotstatuses" access="public" returntype="query">
     <cfargument name="currentid" type="numeric" required="true">
     <cfargument name="sysActiveSuid" type="numeric" required="true">
     <cfargument name="sessionUserid" type="numeric" required="true">
@@ -7,7 +7,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 n.notID, n.actionID, n.userID, n.suID, n.notTimeStamp, 
                 n.notStartDate, n.notEndDate, 'Future' AS notStatus, 

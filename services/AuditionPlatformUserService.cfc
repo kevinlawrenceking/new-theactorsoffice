@@ -1,5 +1,5 @@
 <cfcomponent displayname="AuditionPlatformUserService" hint="Handles operations for AuditionPlatformUser table" output="false"> 
-<cffunction name="getAudPlatformId" access="public" returntype="query">
+<cffunction name="SELaudPlatforms_user_23778" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="CustomPlatform" type="string" required="true">
 
@@ -21,7 +21,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertAudPlatformUser" access="public" returntype="void">
+<cffunction name="INSaudPlatforms_user_23779" access="public" returntype="void">
     <cfargument name="CustomPlatform" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
@@ -40,7 +40,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getUserAudPlatforms" access="public" returntype="query">
+<cffunction name="SELaudplatforms_user_24582" access="public" returntype="query">
     <cfargument name="new_userid" type="numeric" required="true">
     
     <cfset var result = "">

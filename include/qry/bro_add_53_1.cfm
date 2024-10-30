@@ -1,7 +1,7 @@
 
 <cftry>
     <cfset bigBrotherService = new "/services/BigBrotherService.cfc"()>
-    <cfset bigBrotherService.insertBigBrotherRecord(
+    <cfset bigBrotherService.INSbigbrother(
         pgid = cookie.pgid,
         userid = session.userid,
         remote_addr = cgi.remote_addr,

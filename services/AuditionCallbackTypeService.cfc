@@ -1,11 +1,11 @@
 <cfcomponent displayname="AuditionCallbackTypeService" hint="Handles operations for AuditionCallbackType table" output="false"> 
-<cffunction name="getCallbackTypes" access="public" returntype="query">
+<cffunction name="SELaudcallbacktypes" access="public" returntype="query">
     <cfargument name="audcatid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 callbacktypeid AS id, 
                 callbacktype AS name 
@@ -27,13 +27,13 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getCallbackTypes" access="public" returntype="query">
+<cffunction name="SELaudcallbacktypes_24509" access="public" returntype="query">
     <cfargument name="audcatid" type="numeric" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT callbacktypeid AS id, callbacktype AS name
             FROM audcallbacktypes
             WHERE audstepid = 2

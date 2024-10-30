@@ -1,16 +1,7 @@
 
-<cfscript>
-try {
-    // Create an instance of the ContactService component
-    contactService = new "/services/ContactService.cfc";
-
-    // Call the function to get the contact record name
-    fin_recordname = contactService.getContactRecordName(new_contactid);
-} catch (any e) {
-    // Log the error details
-    cflog(
-        file="errorLog",
-        text="[Error in fin_recordname_157_1.cfm]: #e.message#"
-    );
-}
-</cfscript>
+<cftry>
+    <cfset fin_recordname = createObject("component", "/services/ContactService").SELcontactdetails_23932(new_contactid)>
+    <cfcatch type="any">
+        <cflog file="errorLog" text="[Error in fin_recordname_157_1.cfm]: #cfcatch.message#">
+    </cfcatch>
+</cftry>

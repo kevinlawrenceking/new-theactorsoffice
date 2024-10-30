@@ -1,11 +1,11 @@
 <cfcomponent displayname="AuditionCategoryService" hint="Handles operations for AuditionCategory table" output="false"> 
-<cffunction name="getAudCategoryDetails" access="public" returntype="query">
+<cffunction name="SELaudcategories" access="public" returntype="query">
     <cfargument name="new_audsubcatid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 c.audcatid, 
                 c.audcatname, 
@@ -27,7 +27,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getAudSubcategories" access="public" returntype="query">
+<cffunction name="SELaudcategories_23908" access="public" returntype="query">
     <cfargument name="audcatid" type="numeric" required="false">
     
     <cfset var result = "">
@@ -61,13 +61,13 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getAudCategories" access="public" returntype="query">
+<cffunction name="SELaudcategories_24033" access="public" returntype="query">
     <cfargument name="isDeleted" type="boolean" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT audcatid, audcatname
             FROM audcategories
             WHERE isdeleted = <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
@@ -82,13 +82,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getAudCategoryID" access="public" returntype="query">
+<cffunction name="SELaudcategories_24357" access="public" returntype="query">
     <cfargument name="audcatname" type="string" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT audcatid 
             FROM audcategories 
             WHERE audcatname = <cfqueryparam value="#arguments.audcatname#" cfsqltype="CF_SQL_VARCHAR">
@@ -102,13 +102,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getAudSubCatId" access="public" returntype="query">
+<cffunction name="SELaudcategories_24367" access="public" returntype="query">
     <cfargument name="audcatname" type="string" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT s.audsubcatid 
             FROM audcategories c 
             INNER JOIN audsubcategories s ON s.audcatid = c.audcatid 
@@ -125,13 +125,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getAudCategories" access="public" returntype="query">
+<cffunction name="SELaudcategories_24368" access="public" returntype="query">
     <cfargument name="audcatname" type="string" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT *
             FROM audcategories
             WHERE audcatname = <cfqueryparam value="#arguments.audcatname#" cfsqltype="CF_SQL_VARCHAR">
@@ -146,13 +146,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getCategoryAndSubcategory" access="public" returntype="query">
+<cffunction name="SELaudcategories_24375" access="public" returntype="query">
     <cfargument name="audsubcatid" type="numeric" required="true">
 
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 ac.audcatname AS category, 
                 aisc.audsubcatname AS subcategory 
@@ -174,14 +174,14 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getNewAudSubCatId" access="public" returntype="query">
+<cffunction name="SELaudcategories_24389" access="public" returntype="query">
     <cfargument name="audcatname" type="string" required="true">
     <cfargument name="audsubcatname" type="string" required="true">
     
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT s.audsubcatid AS new_audsubcatid
             FROM audcategories c
             INNER JOIN audsubcategories s ON s.audcatid = c.audcatid
@@ -197,7 +197,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertAudCategory" access="public" returntype="void">
+<cffunction name="INSaudcategories" access="public" returntype="void">
     <cfargument name="new_audCatName" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
@@ -216,7 +216,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAudCategory" access="public" returntype="void">
+<cffunction name="UPDaudcategories" access="public" returntype="void">
     <cfargument name="new_audCatName" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_audCatId" type="numeric" required="true">
@@ -236,13 +236,13 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getAudCategories" access="public" returntype="query">
+<cffunction name="SELaudcategories_24735" access="public" returntype="query">
     <cfargument name="isDeleted" type="boolean" required="false" default=false>
 
     <cfset var result = "" />
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT audcatid, audcatname
             FROM audcategories
             WHERE isdeleted = <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
@@ -259,12 +259,12 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="getActiveAudCategories" access="public" returntype="query">
+<cffunction name="SELaudcategories_24744" access="public" returntype="query">
     <cfargument name="isDeleted" type="boolean" required="true">
     
     <cfset var result = "">
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT a.audcatid, a.audcatname
             FROM audcategories a
             WHERE a.isDeleted = <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">

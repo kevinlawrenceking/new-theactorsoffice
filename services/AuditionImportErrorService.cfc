@@ -1,5 +1,5 @@
 <cfcomponent displayname="AuditionImportErrorService" hint="Handles operations for AuditionImportError table" output="false"> 
-<cffunction name="getErrorMessageById" access="public" returntype="query">
+<cffunction name="SELauditionsimport_error" access="public" returntype="query">
     <cfargument name="id" type="numeric" required="true">
     
     <cfset var result = "">
@@ -19,7 +19,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="insertAuditionsImportError" access="public" returntype="void">
+<cffunction name="INSauditionsimport_error" access="public" returntype="void">
     <cfargument name="id" type="numeric" required="true">
     <cfargument name="errorMsg" type="string" default="Duplicate project">
 
@@ -37,7 +37,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertAuditionsImportError" access="public" returntype="void">
+<cffunction name="INSauditionsimport_error_24355" access="public" returntype="void">
     <cfargument name="id" type="numeric" required="true">
     <cfargument name="errorMsg" type="string" default="Missing project name">
 
@@ -54,7 +54,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertAuditionsImportError" access="public" returntype="void">
+<cffunction name="INSauditionsimport_error_24356" access="public" returntype="void">
     <cfargument name="id" type="numeric" required="true">
     <cfargument name="errorMsg" type="string" default="Missing Role name">
 
@@ -72,7 +72,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertAuditionsImportError" access="public" returntype="void">
+<cffunction name="INSauditionsimport_error_24358" access="public" returntype="void">
     <cfargument name="id" type="numeric" required="true">
     <cfargument name="errorMsg" type="string" default="Invalid Category">
 
@@ -90,7 +90,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertAuditionImportError" access="public" returntype="void">
+<cffunction name="INSauditionsimport_error_24360" access="public" returntype="void">
     <cfargument name="id" type="numeric" required="true">
     <cfargument name="errorMsg" type="string" default="Invalid Source">
 

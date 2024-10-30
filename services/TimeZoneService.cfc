@@ -1,5 +1,5 @@
 <cfcomponent displayname="TimeZoneService" hint="Handles operations for TimeZone table" output="false"> 
-<cffunction name="getTimezones" access="public" returntype="query">
+<cffunction name="SELtimezones" access="public" returntype="query">
     <cfargument name="filters" type="struct" required="false" default="#structNew()#">
     <cfset var queryResult = "">
     <cfset var sql = "SELECT tzid, gmt, tzname, utchouroffset FROM timezones">
@@ -37,7 +37,7 @@
 
     <!--- Execute the query with error handling --->
     <cftry>
-        <cfquery name="queryResult" datasource="yourDataSource">
+        <cfquery name="queryResult" datasource="abod">
             #sql#
             <cfloop array="#params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
@@ -54,12 +54,12 @@
     <!--- Return the query result --->
     <cfreturn queryResult>
 </cffunction>
-<cffunction name="getTimezones" access="public" returntype="query">
+<cffunction name="SELtimezones_24770" access="public" returntype="query">
     <cfargument name="tzGeneral" type="string" required="false" default="">
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT tzid, gmt, tzname, tzgeneral, utchouroffset
             FROM timezones
             WHERE 1=1

@@ -1,7 +1,7 @@
 
 <cftry>
-    <cfset panelUserService = new services.PanelUserService()>
-    <cfset panelUserService.insertPgPanelsUser(
+    <cfset variables.panelUserService = createObject("component", "services.PanelUserService")>
+    <cfset variables.panelUserService.INSpgpanels_user_24436(
         select_userid = select_userid,
         m = {
             pntitle = m.pntitle,

@@ -1,10 +1,10 @@
 <cfcomponent displayname="AuditionPlatformsService" hint="Handles operations for AuditionPlatforms table" output="false"> 
-<cffunction name="insertAudPlatform" access="public" returntype="void">
+<cffunction name="INSaudplatforms" access="public" returntype="void">
     <cfargument name="new_audplatform" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
     <cftry>
-        <cfquery datasource="yourDataSource">
+        <cfquery datasource="abod">
             INSERT INTO audplatforms (audplatform, isDeleted)
             VALUES (
                 <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audplatform)#" maxlength="100" null="#NOT len(trim(arguments.new_audplatform))#">,
@@ -17,7 +17,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAudplatform" access="public" returntype="void">
+<cffunction name="UPDaudplatforms" access="public" returntype="void">
     <cfargument name="new_audplatform" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_audplatformid" type="numeric" required="true">

@@ -1,5 +1,5 @@
 <cfcomponent displayname="GenreAuditionService" hint="Handles operations for GenreAudition table" output="false"> 
-<cffunction name="getAuditionDetails" access="public" returntype="query">
+<cffunction name="SELaudgenres_audition_xref" access="public" returntype="query">
     <cfargument name="projectList" type="string" required="true">
     
     <cfset var queryResult = "">
@@ -67,7 +67,7 @@
             ORDER BY p.projdate DESC
         ">
         
-        <cfquery name="queryResult" datasource="yourDataSource">
+        <cfquery name="queryResult" datasource="abod">
             #sql#
         </cfquery>
         
@@ -79,7 +79,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="getAuditionGenres" access="public" returntype="query">
+<cffunction name="SELaudgenres_audition_xref_24274" access="public" returntype="query">
     <cfargument name="audgenre" type="string" required="true">
     <cfargument name="audroleid" type="numeric" required="true">
     
@@ -102,7 +102,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="deleteAudGenresAuditionXref" access="public" returntype="void">
+<cffunction name="DELaudgenres_audition_xref" access="public" returntype="void">
     <cfargument name="new_audroleid" type="numeric" required="true">
 
     <cftry>
@@ -116,7 +116,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertAuditionGenreRole" access="public" returntype="void">
+<cffunction name="INSaudgenres_audition_xref" access="public" returntype="void">
     <cfargument name="new_audgenreid" type="numeric" required="true">
     <cfargument name="new_audroleid" type="numeric" required="true">
 
@@ -135,7 +135,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="insertAuditionGenreXref" access="public" returntype="void">
+<cffunction name="INSaudgenres_audition_xref_24521" access="public" returntype="void">
     <cfargument name="new_audRoleID" type="numeric" required="true">
     <cfargument name="new_audgenreID" type="numeric" required="true">
 
@@ -153,7 +153,7 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cffunction name="updateAuditionXref" access="public" returntype="void">
+<cffunction name="UPDaudgenres_audition_xref" access="public" returntype="void">
     <cfargument name="new_audRoleID" type="numeric" required="true">
     <cfargument name="new_audgenreID" type="numeric" required="true">
     <cfargument name="conditionValue" type="any" required="true">

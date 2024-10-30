@@ -1,7 +1,7 @@
 
 <cftry>
     <cfset variables.auditionRoleService = new "/services/AuditionRoleService.cfc"()>
-    <cfset variables.auditionRoleService.insertAudRole(
+    <cfset variables.auditionRoleService.INSaudroles(
         new_audRoleName = new_audRoleName,
         new_audprojectID = new_audprojectID,
         new_audRoleTypeID = new_audRoleTypeID,
