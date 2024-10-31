@@ -1,4 +1,37 @@
 <cfcomponent displayname="ContactImportService" hint="Handles operations for ContactImport table" output="false"> 
+
+<cffunction name="getContactImports" access="public" returntype="query">
+    <cfargument name="userid" type="numeric" required="true">
+
+    <cfquery name="imports" datasource="abod">
+        SELECT 
+            u.uploadid,
+            u.`timestamp`,
+            u.userid,
+            u.uploadstatus,
+            i.status,
+            COUNT(i.ID) AS total_adds
+        FROM 
+            contactsimport i 
+        INNER JOIN 
+            uploads u ON u.uploadid = i.uploadid
+        INNER JOIN 
+            contactdetails d ON d.contactid = i.contactid
+        WHERE 
+            u.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+            AND u.isdeleted = 0
+        GROUP BY 
+            u.uploadid,
+            u.timestamp,
+            u.userid,
+            u.uploadstatus,
+            i.status
+    </cfquery>
+    <cfreturn imports>
+</cffunction>
+
+
+
 <cffunction name="DETcontactsimport" access="public" returntype="query">
     <cfargument name="uploadid" type="numeric" required="true">
     
