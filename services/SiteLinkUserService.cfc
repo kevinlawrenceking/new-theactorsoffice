@@ -216,13 +216,15 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="INSsitelinks_user" access="public" returntype="void">
+<cffunction name="INSsitelinks_user" access="public" returntype="numeric">
     <cfargument name="new_sitename" type="string" required="true">
     <cfargument name="new_siteurl" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_sitetypeid" type="numeric" required="true">
     <cfargument name="ver" type="string" required="false" default="">
-    
+
+    <cfset var insertedID = 0>
+
     <cftry>
         <cfquery datasource="abod">
             INSERT INTO sitelinks_user (sitename, siteurl, userid, sitetypeid, IsCustom
@@ -236,14 +238,24 @@
                 <cfif len(arguments.ver) gt 0>, 
                     <cfqueryparam value="#arguments.ver#" cfsqltype="CF_SQL_VARCHAR">
                 </cfif>
-            )
+            );
+
+            <!--- Retrieve the last inserted ID --->
+            SELECT LAST_INSERT_ID() AS insertedID;
         </cfquery>
+
+        <!--- Set the returned ID to the variable --->
+        <cfset insertedID = qLAST_INSERT_ID.insertedID>
+
     <cfcatch>
         <cflog file="application" text="Error in insertSiteLink: #cfcatch.message#">
         <cfthrow message="Database error occurred while inserting site link." detail="#cfcatch.detail#">
     </cfcatch>
-    </cftry>
+
+    <!--- Return the inserted ID --->
+    <cfreturn insertedID>
 </cffunction>
+
 <cffunction name="SELsitelinks_user_24448" access="public" returntype="query">
     <cfargument name="sitename" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
