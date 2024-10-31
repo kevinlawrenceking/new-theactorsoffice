@@ -133,11 +133,12 @@
     
     <cfreturn result>
 </cffunction>
-<cfscript>
-function getDynamicQuery(required numeric rpgid) {
-    var result = "";
-    try {
-        var querySQL = "
+<cffunction name="getDynamicQuery" access="public" returntype="query">
+    <cfargument name="rpgid" type="numeric" required="true">
+    <cfset var result = "">
+
+    <cftry>
+        <cfquery name="result" datasource="yourDataSource">
             SELECT 
                 f.fname, f.fieldid, f.pgid, f.ftype, f.ftypefull, 
                 f.update_yn, f.updatename, f.updatetype, f.fkey, 
@@ -150,21 +151,20 @@ function getDynamicQuery(required numeric rpgid) {
             LEFT JOIN pgfields f2 ON f.fkey = f2.fieldid 
             LEFT JOIN pgpages p2 ON p2.pgid = f2.pgid 
             LEFT JOIN pgcomps c2 ON c2.compid = p2.compid 
-            WHERE p.pgid = ? AND f.results_yn = 'Y' 
-            ORDER BY f.displayOrder";
+            WHERE p.pgid = <cfqueryparam value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER">
+            AND f.results_yn = 'Y'
+            ORDER BY f.displayOrder
+        </cfquery>
         
-        var queryParams = [
-            {value: rpgid, cfsqltype: "CF_SQL_INTEGER"}
-        ];
+        <cfcatch type="any">
+            <cflog type="error" text="Error executing dynamic query: #cfcatch.message#">
+            <cfthrow type="DatabaseError" message="An error occurred while fetching data." detail="#cfcatch.detail#">
+        </cfcatch>
+    </cftry>
 
-        result = queryExecute(querySQL, queryParams);
-    } catch (any e) {
-        cflog(type="error", text="Error executing dynamic query: " & e.message);
-        throw(type="DatabaseError", message="An error occurred while fetching data.", detail=e.detail);
-    }
-    return result;
-}
-</cfscript>
+    <cfreturn result>
+</cffunction>
+
 
 <cffunction name="SELpgpages_24003" access="public" returntype="query">
     <cfargument name="thispage" type="string" required="true">
