@@ -225,7 +225,7 @@
 
     <cfset var insertedID = 0>
 
- <cftry>
+<cftry>
     <cfquery datasource="abod" result="result">
         INSERT INTO sitelinks_user (
             sitename, 
@@ -249,11 +249,13 @@
     <!--- Capture the last inserted ID --->
     <cfset insertedID = result.generatedKey>
 
-<cfcatch>
-    <cflog file="application" text="Error in insertSiteLink: #cfcatch.message#">
+<cfcatch type="any">
+    <!--- Log the error with the available information --->
+    <cflog file="errorLog" type="error" text="[Error in add_242_2.cfm]: #cfcatch.detail#">
     <cfthrow message="Database error occurred while inserting site link." detail="#cfcatch.detail#">
 </cfcatch>
 </cftry>
+
 
     <!--- Return the inserted ID --->
     <cfreturn insertedID>
