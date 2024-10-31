@@ -1,4 +1,36 @@
 <cfcomponent displayname="ContactService" hint="Handles operations for Contact table" output="false"> 
+
+<cffunction name="getContactUpdates" access="public" returntype="query">
+    <cfargument name="dsn" type="string" required="true">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="compid" type="numeric" required="true">
+
+    <cfquery name="updates" datasource="abod">
+        SELECT 
+            d.contactid,
+            'Name' AS head1,
+            'Last Update' AS head2,
+            d.contactfullname AS col1,
+            MAX(u.updatetimestamp) AS col2
+        FROM 
+            contactdetails d
+        INNER JOIN 
+            updatelog u 
+            ON u.recid = d.contactid
+        WHERE 
+            d.contactStatus = 'Active' 
+            AND d.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+            AND u.userid = d.userid
+            AND u.compid = <cfqueryparam value="#arguments.compid#" cfsqltype="CF_SQL_INTEGER">
+        GROUP BY 
+            d.contactfullname
+    </cfquery>
+
+    <cfreturn updates>
+</cffunction>
+
+
+
 <cffunction name="SELcontactdetails" access="public" returntype="query">
     <cfargument name="addDaysNoUniqueName" type="string" required="true">
     <cfargument name="newContactId" type="numeric" required="true">
