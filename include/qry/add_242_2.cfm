@@ -10,9 +10,7 @@
         new_sitetypeid = new_sitetypeid, 
         ver = ver
     )>
-
-    <!--- Log the inserted ID if needed, for debugging --->
-    <cflog file="application" text="Inserted ID for new site link: #variables.id#" type="info">
+ 
  
 
  
