@@ -226,7 +226,7 @@
     <cfset var insertedID = 0>
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery datasource="abod" result="result">
             INSERT INTO sitelinks_user (sitename, siteurl, userid, sitetypeid, IsCustom
             <cfif len(arguments.ver) gt 0>, ver</cfif>)
             VALUES (
@@ -239,13 +239,10 @@
                     <cfqueryparam value="#arguments.ver#" cfsqltype="CF_SQL_VARCHAR">
                 </cfif>
             );
-
-            <!--- Retrieve the last inserted ID --->
-            SELECT LAST_INSERT_ID() AS insertedID;
         </cfquery>
 
-        <!--- Set the returned ID to the variable --->
-        <cfset insertedID = qLAST_INSERT_ID.insertedID>
+        <!--- Capture the last inserted ID --->
+        <cfset insertedID = result.generatedKey>
 
     <cfcatch>
         <cflog file="application" text="Error in insertSiteLink: #cfcatch.message#">
