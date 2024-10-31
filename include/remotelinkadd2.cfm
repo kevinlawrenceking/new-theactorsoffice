@@ -26,9 +26,6 @@
 <!--- Include the query to add records based on certain criteria --->
 <cfinclude template="/include/qry/add_242_2.cfm" />
 
-<!--- Get the ID of the last inserted record --->
-<cfset id = queryResult.GENERATED_KEY>
-
 <!--- Now, lastInsertedId contains the ID of the newly inserted record --->
 <cfinclude template="/include/customicon_single.cfm" />
 

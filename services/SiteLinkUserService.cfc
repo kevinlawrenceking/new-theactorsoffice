@@ -223,9 +223,7 @@
     <cfargument name="new_sitetypeid" type="numeric" required="true">
     <cfargument name="ver" type="string" required="false" default="">
 
-    <cfset var insertedID = 0>
-
- 
+    <!--- Perform the insert query and capture the result --->
     <cfquery datasource="abod" result="result">
         INSERT INTO sitelinks_user (
             sitename, 
@@ -246,13 +244,7 @@
         );
     </cfquery>
 
-    <!--- Capture the last inserted ID --->
-    <cfset insertedID = result.generatedKey>
-
- 
-
-    <!--- Return the inserted ID --->
-    <cfreturn insertedID>
+    <cfreturn result.generatedKey>
 </cffunction>
 
 <cffunction name="SELsitelinks_user_24448" access="public" returntype="query">
