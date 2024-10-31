@@ -251,7 +251,7 @@
         <cflog file="application" text="Error in insertSiteLink: #cfcatch.message#">
         <cfthrow message="Database error occurred while inserting site link." detail="#cfcatch.detail#">
     </cfcatch>
-
+</cftry>
     <!--- Return the inserted ID --->
     <cfreturn insertedID>
 </cffunction>
