@@ -5,7 +5,7 @@
 
 <!--- Include the query to find records based on certain criteria --->
 <cfinclude template="/include/qry/find_242_1.cfm" />
-
+<cfabort>
 <!--- Check if any records were found --->
 <cfif #find.recordcount# is not "0">
     <cfset ver = find.recordcount />
