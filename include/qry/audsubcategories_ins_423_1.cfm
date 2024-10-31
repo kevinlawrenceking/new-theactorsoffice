@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset variables.service = createObject("component", "/services/AuditionSubcategorieService")>
+    <cfset variables.service = createObject("component", "services.AuditionSubcategorieService")>
     <cfset variables.service.UPDaudsubcategories(
         new_audSubCatName = trim(new_audSubCatName),
         new_audCatId = new_audCatId,

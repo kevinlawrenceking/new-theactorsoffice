@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset variables.service = createObject("component", "/services/AuditionSubmitSiteUserService")>
+    <cfset variables.service = createObject("component", "services.AuditionSubmitSiteUserService")>
     <cfset variables.service.INSaudsubmitsites_user(
         new_submitsitename = new_submitsitename,
         sortedCatList = sortedCatList,

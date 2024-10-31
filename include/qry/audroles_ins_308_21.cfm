@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset variables.auditionRoleService = createObject("component", "/services/AuditionRoleService")>
+    <cfset variables.auditionRoleService = createObject("component", "services.AuditionRoleService")>
     <cfset variables.auditionRoleService.INSaudroles_24372(
         new_audRoleName = new_audRoleName,
         new_audprojectID = new_audprojectID,

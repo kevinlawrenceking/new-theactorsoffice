@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset checkUnique = createObject("component", "/services/ContactService").SELcontactdetails(
+    <cfset checkUnique = createObject("component", "services.ContactService").SELcontactdetails(
         addDaysNoUniqueName = adddaysno.uniquename,
         newContactId = new_contactid
     )>

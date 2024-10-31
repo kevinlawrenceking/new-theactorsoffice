@@ -2,7 +2,7 @@
 <!--- This ColdFusion page handles the insertion of a new submission site into the database. --->
 
 <cftry>
-    <cfset objService = createObject("component", "/services/AuditionSubmitSiteUserService")>
+    <cfset objService = createObject("component", "services.AuditionSubmitSiteUserService")>
     <cfset objService.INSaudsubmitsites_user_24297(
         new_submitsitename=trim(new_submitsitename),
         userid=userid,

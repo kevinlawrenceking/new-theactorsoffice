@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset tagsUserService = createObject("component", "/services/TagsUserService")>
+    <cfset tagsUserService = createObject("component", "services.TagsUserService")>
     <cfset tagsUserService.UPDtags_user_24460(select_userid=select_userid)>
     <cfcatch type="any">
         <cflog file="errorLog" text="[Error in update_Iscasting_318_29.cfm]: #cfcatch.message#">

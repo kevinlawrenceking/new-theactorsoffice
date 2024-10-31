@@ -1,6 +1,6 @@
  
     <!--- Load the SiteLinkUserService component --->
-    <cfset variables.siteLinkUserService = createObject("component", "/services/SiteLinkUserService")>
+    <cfset variables.siteLinkUserService = createObject("component", "services.SiteLinkUserService")>
 
     <!--- Call INSsitelinks_user and capture the returned ID --->
     <cfset id = variables.siteLinkUserService.INSsitelinks_user(

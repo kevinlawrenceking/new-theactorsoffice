@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset ticketService = createObject("component", "/services/TicketService")>
+    <cfset ticketService = createObject("component", "services.TicketService")>
     <cfset ticketService.INStickets(
         new_verid = new_verid,
         new_ticketName = new_ticketName,

@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset variables.auditionMediaService = createObject("component", "/services/AuditionMediaService")>
+    <cfset variables.auditionMediaService = createObject("component", "services.AuditionMediaService")>
     <cfset variables.auditionMediaService.UPDaudmedia_24571(
         new_mediaTypeID = new_mediaTypeID,
         new_mediaURL = new_mediaURL,

@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset eventService = createObject("component", "/services/EventService")>
+    <cfset eventService = createObject("component", "services.EventService")>
     <cfset eventss = eventService.SELevents_24618(
         sessionUserId = session.userid,
         currentId = (isDefined('currentid') ? currentid : 0)

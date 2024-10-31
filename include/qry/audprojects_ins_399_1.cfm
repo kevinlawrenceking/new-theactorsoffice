@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset auditionProjectService = createObject("component", "/services/AuditionProjectService")>
+    <cfset auditionProjectService = createObject("component", "services.AuditionProjectService")>
     <cfset auditionProjectService.INSaudprojects_24585(
         new_projName = new_projName,
         new_projDescription = new_projDescription,

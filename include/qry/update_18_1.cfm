@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset eventService = createObject("component", "/services/EventService")>
+    <cfset eventService = createObject("component", "services.EventService")>
     <cfset eventService.UPDevents_23733(
         eventTitle = eventTitle,
         eventTypeName = eventTypeName,

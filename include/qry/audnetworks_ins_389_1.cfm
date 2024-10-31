@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset variables.auditionNetworkService = createObject("component", "/services/AuditionNetworkService")>
+    <cfset variables.auditionNetworkService = createObject("component", "services.AuditionNetworkService")>
     <cfset variables.auditionNetworkService.UPDaudnetworks(
         new_network = new_network,
         new_audCatid = new_audCatid,

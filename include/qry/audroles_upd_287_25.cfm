@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset variables.auditionRoleService = createObject("component", "/services/AuditionRoleService")>
+    <cfset variables.auditionRoleService = createObject("component", "services.AuditionRoleService")>
     <cfset variables.auditionRoleService.UPDaudroles_24299(
         new_audRoleName = new_audRoleName,
         new_opencallid = new_opencallid,

@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset variables.ageRangeService = createObject("component", "/services/AuditionAgeRangeService")>
+    <cfset variables.ageRangeService = createObject("component", "services.AuditionAgeRangeService")>
     <cfset variables.ageRangeService.INSaudageranges(
         new_rangename = trim(new_rangename),
         new_age_min = new_age_min,

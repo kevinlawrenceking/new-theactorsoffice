@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset contactItemService = createObject("component", "/services/ContactItemService")>
+    <cfset contactItemService = createObject("component", "services.ContactItemService")>
     <cfset contactItemService.UPDcontactitems_24178(
         valuetext=trim(valuetext),
         valuetype=trim(valuetype),

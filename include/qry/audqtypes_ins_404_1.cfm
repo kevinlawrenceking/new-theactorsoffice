@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset variables.auditionQuestionTypeService = createObject("component", "/services/AuditionQuestionTypeService")>
+    <cfset variables.auditionQuestionTypeService = createObject("component", "services.AuditionQuestionTypeService")>
     <cfset variables.auditionQuestionTypeService.UPDaudqtypes(
         new_qtype = new_qtype,
         new_isDeleted = new_isDeleted,

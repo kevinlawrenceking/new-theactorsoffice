@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset variables.eventService = createObject("component", "/services/EventService")>
+    <cfset variables.eventService = createObject("component", "services.EventService")>
     <cfset variables.eventService.INSevents_24096(
         new_userid=new_userid,
         new_audRoleID=new_audRoleID,

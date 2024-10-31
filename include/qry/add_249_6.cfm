@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset variables.siteTypeUserService = createObject("component", "/services/SiteTypeUserService")>
+    <cfset variables.siteTypeUserService = createObject("component", "services.SiteTypeUserService")>
     <cfset variables.siteTypeUserService.UPDsitetypes_user_24149(new_pnid=new_pnid, new_sitetypeid=new_sitetypeid)>
     <cfcatch type="any">
         <cflog file="errorLog" text="[Error in add_249_6.cfm]: #cfcatch.message#">

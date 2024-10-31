@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset variables.auditionImportService = createObject("component", "/services/AuditionImportService")>
+    <cfset variables.auditionImportService = createObject("component", "services.AuditionImportService")>
     <cfset variables.auditionImportService.INSauditionsimport(
         importdata = importdata,
         new_audsubcatid = new_audsubcatid,

@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset notsActive = createObject("component", "/services/NotificationService").SELfunotifications_24706(
+    <cfset notsActive = createObject("component", "services.NotificationService").SELfunotifications_24706(
         currentid = currentid,
         sysActiveSuid = sysActive.suid,
         sessionUserid = session.userid,

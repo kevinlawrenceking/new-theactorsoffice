@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset variables.service = createObject("component", "/services/AuditionQuestionsDefaultService")>
+    <cfset variables.service = createObject("component", "services.AuditionQuestionsDefaultService")>
     <cfset variables.service.UPDaudquestions_default(
         new_qTypeID = new_qTypeID,
         new_qtext = new_qtext,

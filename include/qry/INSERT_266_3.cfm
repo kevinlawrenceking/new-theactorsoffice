@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset updateLogService = createObject("component", "/services/UpdateLogService")>
+    <cfset updateLogService = createObject("component", "services.UpdateLogService")>
     <cfset updateLogService.INSupdatelog(
         oldvalue = "#oldvalue#",
         newvalue = "#newvalue#",

@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset bigBrotherService = createObject("component", "/services/BigBrotherService")>
+    <cfset bigBrotherService = createObject("component", "services.BigBrotherService")>
     <cfset bigBrotherService.INSbigbrother(
         pgid = cookie.pgid,
         userid = session.userid,

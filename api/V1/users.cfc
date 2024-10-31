@@ -1,7 +1,7 @@
 <cfcomponent displayname="UsersAPI" output="false" hint="API endpoints for user-related operations.">
 
     <!--- Dependency Injection (Optional): Initialize the UserService --->
-    <cfset variables.userService = createObject("component", "/services/UserService")>
+    <cfset variables.userService = createObject("component", "services.UserService")>
 
     <!--- API Method to Create a New User --->
     <cffunction name="createUser" access="remote" returntype="struct" httpmethod="POST" output="false">

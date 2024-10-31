@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset createObject("component", "/services/NotificationService").INSnotifications(
+    <cfset createObject("component", "services.NotificationService").INSnotifications(
         new_contactname = new_contactname, 
         userid = userid, 
         contactid = contactid

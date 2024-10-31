@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset var eventTypesUserService = createObject("component", "/services/EventTypesUserService")>
+    <cfset var eventTypesUserService = createObject("component", "services.EventTypesUserService")>
     <cfset eventTypesUserService.UPDeventtypes_user(
         id = id,
         new_eventtypecolor = new_eventtypecolor,

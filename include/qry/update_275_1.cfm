@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset ticketService = createObject("component", "/services/TicketService")>
+    <cfset ticketService = createObject("component", "services.TicketService")>
     <cfset ticketService.UPDtickets_24216(
         new_ticketname = new_ticketname,
         new_testingscript = new_testingscript,

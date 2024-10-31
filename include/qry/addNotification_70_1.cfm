@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset notificationService = createObject("component", "/services/NotificationService")>
+    <cfset notificationService = createObject("component", "services.NotificationService")>
     <cfset notificationService.UPDfunotifications_23831(
         notStatus = notStatus,
         notEndDate = notEndDate,

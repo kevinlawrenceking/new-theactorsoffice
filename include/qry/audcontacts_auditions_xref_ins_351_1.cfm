@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset contactAuditionService = createObject("component", "/services/ContactAuditionService.cfc" />
+    <cfset contactAuditionService = createObject("component", "services.ContactAuditionService.cfc" />
     <cfset contactAuditionService.UPDaudcontacts_auditions_xref(
         new_contactid = new_contactid,
         new_audprojectid = new_eventid

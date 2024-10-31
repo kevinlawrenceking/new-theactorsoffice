@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset variables.auditionStepService = createObject("component", "/services/AuditionStepService")>
+    <cfset variables.auditionStepService = createObject("component", "services.AuditionStepService")>
     <cfset variables.auditionStepService.UPDaudsteps(
         new_audstep = new_audstep,
         new_isDeleted = new_isDeleted,

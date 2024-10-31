@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset variables.contactItemService = createObject("component", "/services/ContactItemService")>
+    <cfset variables.contactItemService = createObject("component", "services.ContactItemService")>
     <cfset variables.contactItemService.INScontactitems_24348(
         new_contactid = new_contactid,
         new_tagname = new_tagname
