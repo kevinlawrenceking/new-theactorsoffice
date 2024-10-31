@@ -631,11 +631,14 @@
         </cfcatch>
     </cftry>
 </cffunction>
-<cfscript>
-function getDynamicQueryx(required numeric pgid) {
-    var result = "";
-    try {
-        var sql = "
+
+
+<cffunction name="getDynamicQueryx" access="public" returntype="query">
+    <cfargument name="pgid" type="numeric" required="true">
+    <cfset var result = "">
+
+    <cftry>
+        <cfquery name="result" datasource="abod">
             SELECT 
                 f.fname, 
                 f2.fname AS fnameb, 
@@ -643,7 +646,7 @@ function getDynamicQueryx(required numeric pgid) {
                 c.comptable, 
                 f2.fieldid, 
                 f2.fkey, 
-                concat('t', f.fieldid) AS talias 
+                CONCAT('t', f.fieldid) AS talias 
             FROM 
                 pgpages p 
             INNER JOIN 
@@ -659,20 +662,20 @@ function getDynamicQueryx(required numeric pgid) {
             LEFT JOIN 
                 pgcomps c2 ON c2.compid = p2.compid 
             WHERE 
-                p.pgid = ? AND f.results_yn = 'Y' AND f.fkey <> ''";
+                p.pgid = <cfqueryparam value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER">
+                AND f.results_yn = 'Y' 
+                AND f.fkey <> ''
+        </cfquery>
 
-        result = queryExecute(
-            sql,
-            {pgid={value=arguments.pgid, cfsqltype="CF_SQL_INTEGER"}},
-            {datasource="abod"}
-        );
-    } catch (any e) {
-        cflog(text="Error executing dynamic query: " & e.message, file="application");
-        throw(type="DatabaseError", message="An error occurred while executing the query.", detail=e.message);
-    }
-    return result;
-}
-</cfscript>
+        <cfcatch type="any">
+            <cflog text="Error executing dynamic query: #cfcatch.message#" file="application">
+            <cfthrow type="DatabaseError" message="An error occurred while executing the query." detail="#cfcatch.message#">
+        </cfcatch>
+    </cftry>
+
+    <cfreturn result>
+</cffunction>
+
 
 <cffunction name="RESpgpages_24777" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
