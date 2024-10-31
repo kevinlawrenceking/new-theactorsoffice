@@ -225,30 +225,36 @@
 
     <cfset var insertedID = 0>
 
-    <cftry>
-        <cfquery datasource="abod" result="result">
-            INSERT INTO sitelinks_user (sitename, siteurl, userid, sitetypeid, IsCustom
-            <cfif len(arguments.ver) gt 0>, ver</cfif>)
-            VALUES (
-                <cfqueryparam value="#arguments.new_sitename#" cfsqltype="CF_SQL_VARCHAR">,
-                <cfqueryparam value="#arguments.new_siteurl#" cfsqltype="CF_SQL_VARCHAR">,
-                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
-                <cfqueryparam value="#arguments.new_sitetypeid#" cfsqltype="CF_SQL_INTEGER">,
-                <cfqueryparam value="1" cfsqltype="CF_SQL_BIT">
-                <cfif len(arguments.ver) gt 0>, 
-                    <cfqueryparam value="#arguments.ver#" cfsqltype="CF_SQL_VARCHAR">
-                </cfif>
-            );
-        </cfquery>
+ <cftry>
+    <cfquery datasource="abod" result="result">
+        INSERT INTO sitelinks_user (
+            sitename, 
+            siteurl, 
+            userid, 
+            sitetypeid, 
+            IsCustom
+            <cfif len(arguments.ver) gt 0>, ver</cfif>
+        ) VALUES (
+            <cfqueryparam value="#arguments.new_sitename#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfqueryparam value="#arguments.new_siteurl#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="#arguments.new_sitetypeid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="1" cfsqltype="CF_SQL_BIT">
+            <cfif len(arguments.ver) gt 0>, 
+                <cfqueryparam value="#arguments.ver#" cfsqltype="CF_SQL_VARCHAR">
+            </cfif>
+        );
+    </cfquery>
 
-        <!--- Capture the last inserted ID --->
-        <cfset insertedID = result.generatedKey>
+    <!--- Capture the last inserted ID --->
+    <cfset insertedID = result.generatedKey>
 
-    <cfcatch>
-        <cflog file="application" text="Error in insertSiteLink: #cfcatch.message#">
-        <cfthrow message="Database error occurred while inserting site link." detail="#cfcatch.detail#">
-    </cfcatch>
+<cfcatch>
+    <cflog file="application" text="Error in insertSiteLink: #cfcatch.message#">
+    <cfthrow message="Database error occurred while inserting site link." detail="#cfcatch.detail#">
+</cfcatch>
 </cftry>
+
     <!--- Return the inserted ID --->
     <cfreturn insertedID>
 </cffunction>
