@@ -1,7 +1,6 @@
 <cfcomponent displayname="ContactService" hint="Handles operations for Contact table" output="false"> 
 
 <cffunction name="getContactUpdates" access="public" returntype="query">
-    <cfargument name="dsn" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="compid" type="numeric" required="true">
 
