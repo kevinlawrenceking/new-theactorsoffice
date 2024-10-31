@@ -9,7 +9,7 @@
 <cfparam name="pgaction" default="View"/>
 <cfparam name="nots_total" default="0"/>
 
-<cfset notificationService = createObject("component", "services.NotificationService"()>
+<cfset notificationService = createObject("component", "services.NotificationService")>
 
 <!--- Check if the page action is batch and batchlist is not zero --->
 <cfif pgaction is "batch" AND batchlist is not "0">

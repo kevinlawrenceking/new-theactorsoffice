@@ -3,7 +3,7 @@
 <cfparam name="ver" default="1" /> 
 
 <!--- Initialize the SiteLinksService --->
-<cfset siteLinksService = createObject("component", "services.SiteLinksService"()>
+<cfset siteLinksService = createObject("component", "services.SiteLinksService")>
 
 <!--- Update site link details with provided parameters --->
 <cfset siteLinksService.updateSiteLinkDetails(

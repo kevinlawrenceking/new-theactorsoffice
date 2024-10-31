@@ -1,6 +1,6 @@
 <!--- This ColdFusion page retrieves link details, processes an icon from a specified domain, and updates the site icon in the database. --->
 <cfparam name="dbug" default="N" />
-<cfset siteLinksService = createObject("component", "services.SiteLinksService"()>
+<cfset siteLinksService = createObject("component", "services.SiteLinksService")>
 <cfset linkDetails = siteLinksService.getLinkDetailsById(id)> 
 
 <cfset siteurl = linkDetails.siteurl />

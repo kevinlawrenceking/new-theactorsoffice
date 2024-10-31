@@ -1,5 +1,5 @@
 <!--- This ColdFusion page handles the display and management of site links for a specific dashboard panel. --->
-<cfset siteLinksService = createObject("component", "services.SiteLinksService"()>
+<cfset siteLinksService = createObject("component", "services.SiteLinksService")>
 <cfset mylinks_user = siteLinksService.getSiteLinksByPanelId(dashboards.pnid)>
 <cfset siteurl_list = siteLinksService.getAllUrlsByPanelId(dashboards.pnid)>
 <cfset siteTypeDetails = siteLinksService.getSiteTypeDetailsByPanelId(dashboards.pnid)>
