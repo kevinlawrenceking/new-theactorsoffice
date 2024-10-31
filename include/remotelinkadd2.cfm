@@ -5,7 +5,7 @@
 
 <!--- Include the query to find records based on certain criteria --->
 <cfinclude template="/include/qry/find_242_1.cfm" />
-<cfabort>
+
 <!--- Check if any records were found --->
 <cfif #find.recordcount# is not "0">
     <cfset ver = find.recordcount />
@@ -25,7 +25,7 @@
 
 <!--- Include the query to add records based on certain criteria --->
 <cfinclude template="/include/qry/add_242_2.cfm" />
-
+<cfabort>
 <!--- Get the ID of the last inserted record --->
 <cfset id = queryResult.GENERATED_KEY>
 
