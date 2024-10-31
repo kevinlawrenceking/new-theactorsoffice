@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset variables.contactImportService = new "/services/ContactImportService.cfc"()>
+    <cfset variables.contactImportService = createObject("component", "/services/ContactImportService")>
     <cfset variables.contactImportService.INScontactsimport(importData=importdata, newUploadId=new_uploadid)>
     <cfset isfetch = 1>
     <!--- Update the database to set isfetch = 1 --->

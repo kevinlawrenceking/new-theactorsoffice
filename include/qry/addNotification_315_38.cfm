@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset notificationService = new "/services/NotificationService.cfc"()>
+    <cfset notificationService = createObject("component", "/services/NotificationService")>
     <cfset notificationService.INSfunotifications_24431(
         actionID = addDaysNo.actionID,
         userid = userid,

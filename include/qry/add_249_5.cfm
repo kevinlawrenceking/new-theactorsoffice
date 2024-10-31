@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset variables.panelUserService = new "/services/PanelUserService.cfc" />
+    <cfset variables.panelUserService = createObject("component", "/services/PanelUserService.cfc" />
     <cfset variables.panelUserService.INSpgpanels_user(
         new_pnTitle = new_pnTitle,
         new_pnOrderNo = Findtotal.new_pnOrderNo,

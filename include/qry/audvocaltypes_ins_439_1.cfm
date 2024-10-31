@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset variables.vocalTypeService = new "/services/AuditionVocalTypeService.cfc"()>
+    <cfset variables.vocalTypeService = createObject("component", "/services/AuditionVocalTypeService")>
     <cfset variables.vocalTypeService.UPDaudvocaltypes(
         new_vocaltype = new_vocaltype,
         new_isDeleted = new_isDeleted,

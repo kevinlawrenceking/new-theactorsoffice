@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset variables.service = new "/services/AuditionMediaAudRolesXRefService.cfc"()>
+    <cfset variables.service = createObject("component", "/services/AuditionMediaAudRolesXRefService")>
     <cfset variables.service.UPDaudmedia_audroles_xref(
         new_mediaid = new_mediaid,
         new_audroleid = new_audroleid,

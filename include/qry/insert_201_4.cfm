@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset contactItemService = new "/services/ContactItemService.cfc"()>
+    <cfset contactItemService = createObject("component", "/services/ContactItemService")>
     <cfset contactItemService.INScontactitems_24051(contactID=CONTACTID, workPhone=Workphone)>
     <cfcatch type="any">
         <cflog file="errorLog" text="[Error in insert_201_4.cfm]: #cfcatch.message#">

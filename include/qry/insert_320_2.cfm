@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset taoVersionService = new "/services/TaoVersionService.cfc"()>
+    <cfset taoVersionService = createObject("component", "/services/TaoVersionService")>
     <cfset taoVersionService.INStaoversions(
         new_major = new_major,
         new_minor = new_minor,

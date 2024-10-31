@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset variables.projectService = new "/services/AuditionProjectService.cfc"()>
+    <cfset variables.projectService = createObject("component", "/services/AuditionProjectService")>
     <cfset variables.projectService.UPDaudprojects_24586(
         new_projName = new_projName,
         new_projDescription = new_projDescription,

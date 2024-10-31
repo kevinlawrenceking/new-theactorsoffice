@@ -19,7 +19,7 @@
 <cfparam name="contactid" default="0" />
 
 <!--- Load the UserService --->
-<cfset userService = new "/services/UserService.cfc"() />
+<cfset userService = createObject("component", "services.UserService")>
 
 <!--- Fetch the user data using the UserService --->
 <cfset userData = userService.getUserByHash(u) />

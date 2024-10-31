@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset variables.auditionService = new "/services/AuditionAgeRangeXRefService.cfc"()>
+    <cfset variables.auditionService = createObject("component", "/services/AuditionAgeRangeXRefService")>
     <cfset variables.auditionService.UPDaudageranges_audtion_xref(
         new_audRoleID=new_audRoleID, 
         new_rangeid=new_rangeid, 

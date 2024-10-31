@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset eventContactsXRefService = new "/services/EventContactsXRefService.cfc"()>
+    <cfset eventContactsXRefService = createObject("component", "/services/EventContactsXRefService")>
     <cfset eventContactsXRefService.UPDeventcontactsxref_24549(deletecontactid=deletecontactid, audprojectid=audprojectid)>
     <cfcatch type="any">
         <cflog file="errorLog" text="[Error in delete2_368_8.cfm]: #cfcatch.message#">

@@ -1,5 +1,5 @@
 <!--- This ColdFusion page displays a card with a quote of the day. --->
-<cfset quotesService = new "services.QuotesService"()>
+<cfset quotesService = createObject("component", "services.QuotesService"()>
 <cfset quoteOfTheDay = quotesService.getQuoteOfTheDay()>
 
 <cfoutput>

@@ -1,6 +1,6 @@
 <!--- This ColdFusion page displays a dashboard card for upcoming birthdays, fetching data from the BirthdayService and rendering it in a structured format. --->
 <!--- Initialize BirthdayService --->
-<cfset birthdayService = new "services.BirthdayService"()>
+<cfset birthdayService = createObject("component", "services.BirthdayService"()>
 
 <!--- Fetch birthdays for the dashboard --->
 <cfset birthdays = birthdayService.getBirthdaysForDashboard(session.userid)>

@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset eventService = new "/services/EventService.cfc"()>
+    <cfset eventService = createObject("component", "/services/EventService")>
     <cfset eventService.UPDevents_24556(
         new_eventLocation = trim(new_eventLocation),
         new_audlocadd1 = trim(new_audlocadd1),

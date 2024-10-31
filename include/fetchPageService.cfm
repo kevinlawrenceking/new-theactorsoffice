@@ -1,5 +1,5 @@
 <!--- This ColdFusion page retrieves and processes page details based on the provided RPG ID or page directory. --->
-<cfset pageService = new "services.PageService"()>
+<cfset pageService = createObject("component", "services.PageService"()>
 
 <!--- Check if RPG ID is greater than 0 to fetch page details accordingly --->
 <cfif rpgid GT 0>

@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset variables.siteLinkUserService = new "/services/SiteLinkUserService.cfc"()>
+    <cfset variables.siteLinkUserService = createObject("component", "/services/SiteLinkUserService")>
     <cfset variables.siteLinkUserService.INSsitelinks_user(
         new_sitename = new_sitename, 
         new_siteurl = new_siteurl, 

@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset contactService = new "/services/ContactService.cfc"()>
+    <cfset contactService = createObject("component", "/services/ContactService")>
     <cfset contactService.UPDcontactdetails_24202(
         contactid = contactid,
         contactfullname = trim(contactfullname),

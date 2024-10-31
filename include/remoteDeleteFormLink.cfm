@@ -1,5 +1,5 @@
 <!--- This ColdFusion page confirms the deletion of a site link and provides a form to submit the deletion request. --->
-<cfset siteLinksService = new "services.SiteLinksService" ()>
+<cfset siteLinksService = createObject("component", "services.SiteLinksService" ()>
 <cfset linkDetails = siteLinksService.getLinkDetailsById(new_id)>
 
 <cfoutput>

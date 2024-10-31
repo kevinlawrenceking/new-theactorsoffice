@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset eventService = new "/services/EventService.cfc" />
+    <cfset eventService = createObject("component", "/services/EventService.cfc" />
     <cfset eventService.INSevents_24555(
         new_userid = new_userid,
         new_audRoleID = new_audRoleID,

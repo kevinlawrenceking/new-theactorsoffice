@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset eventService = new "/services/EventService.cfc"()>
+    <cfset eventService = createObject("component", "/services/EventService")>
     <cfset eventService.INSevents_24528(
         new_projname = new_projname,
         new_projDescription = new_projDescription,

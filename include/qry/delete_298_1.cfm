@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset contactItemService = new "/services/ContactItemService.cfc"()>
+    <cfset contactItemService = createObject("component", "/services/ContactItemService")>
     <cfset contactItemService.DELcontactitems(contactid=contactid)>
     <cfcatch type="any">
         <cflog file="errorLog" text="[Error in delete_298_1.cfm]: #cfcatch.message#">

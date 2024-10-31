@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset variables.noteService = new "/services/NoteService.cfc"()>
+    <cfset variables.noteService = createObject("component", "/services/NoteService")>
     <cfset variables.noteService.INSnoteslog_23969(
         userid = userid,
         contactid = rcontactid,

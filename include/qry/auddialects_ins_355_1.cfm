@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset variables.service = new "/services/AuditionDialectService.cfc"()>
+    <cfset variables.service = createObject("component", "/services/AuditionDialectService")>
     <cfset variables.service.INSauddialects(
         new_auddialect = new_auddialect,
         new_audCatid = new_audCatid,

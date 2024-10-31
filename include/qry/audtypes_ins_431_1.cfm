@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset variables.auditionTypeService = new "/services/AuditionTypeService.cfc"()>
+    <cfset variables.auditionTypeService = createObject("component", "/services/AuditionTypeService")>
     <cfset variables.auditionTypeService.UPDaudtypes(
         new_audtype = trim(new_audtype),
         new_audCatid = new_audCatid,

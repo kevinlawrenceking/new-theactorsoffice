@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset variables.service = new "/services/AuditionQuestionUserService.cfc"()>
+    <cfset variables.service = createObject("component", "/services/AuditionQuestionUserService")>
     <cfset variables.service.INSaudquestions_user(
         new_qTypeID = new_qTypeID,
         new_qtext = new_qtext,

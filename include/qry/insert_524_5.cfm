@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset reportUserService = new "/services/ReportUserService.cfc"()>
+    <cfset reportUserService = createObject("component", "/services/ReportUserService")>
     <cfset reportUserService.INSreports_user(
         reportid = x.reportid,
         reportname = x.reportname,

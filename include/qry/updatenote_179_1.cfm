@@ -1,6 +1,6 @@
 
 <cftry>
-    <cfset variables.noteService = new "/services/NoteService.cfc"()>
+    <cfset variables.noteService = createObject("component", "/services/NoteService")>
     <cfset variables.noteService.UPDnoteslog_23980(
         noteDetails = LEFT(trim(noteDetails), 2000),
         isPublic = isPublic,
