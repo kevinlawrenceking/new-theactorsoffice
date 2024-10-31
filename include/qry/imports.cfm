@@ -1,2 +1,2 @@
-<cfset imports = contactService.getContactImports(userid = userid)>
+<cfset imports = ContactImportService.getContactImports(userid = userid)>
 
