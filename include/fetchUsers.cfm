@@ -1,6 +1,5 @@
 
 <cfset userService = createObject("component", "services.UserService")>
-
 <cfset userData = userService.getUserById(userID)>
 
 
