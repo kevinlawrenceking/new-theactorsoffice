@@ -14,7 +14,5 @@
     <!--- Log the inserted ID if needed, for debugging --->
     <cflog file="application" text="Inserted ID for new site link: #variables.id#" type="info">
  
-    <!--- Log any errors encountered --->
-    <cflog file="errorLog" text="[Error in add_242_2.cfm]: #cfcatch.message#" type="error">
- 
+
  
