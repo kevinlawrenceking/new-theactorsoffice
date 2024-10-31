@@ -1,4 +1,4 @@
-<cftry>
+ 
     <!--- Load the SiteLinkUserService component --->
     <cfset variables.siteLinkUserService = createObject("component", "/services/SiteLinkUserService")>
 
@@ -13,10 +13,8 @@
 
     <!--- Log the inserted ID if needed, for debugging --->
     <cflog file="application" text="Inserted ID for new site link: #id#" type="info">
-
-<cfcatch>
+ 
     <!--- Log any errors encountered --->
     <cflog file="errorLog" text="[Error in add_242_2.cfm]: #cfcatch.message#" type="error">
-    <cfthrow message="Error occurred while adding site link." detail="#cfcatch.detail#">
-</cfcatch>
-</cftry>
+ 
+ 
