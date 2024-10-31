@@ -1258,7 +1258,7 @@
         window.ParsleyValidator.addValidator('checkemail', {
             validateString: function(value) {
                 return $.ajax({
-                    url: '/include/fetch.php?userID=<Cfoutput>#userid#</cfoutput>',
+                    url: '/include/fetch.cfm?userID=<Cfoutput>#userid#</cfoutput>',
                     method: "POST",
                     data: {
                         email: value

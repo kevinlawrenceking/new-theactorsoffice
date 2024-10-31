@@ -67,7 +67,7 @@
         window.Parsley.addValidator('checksitetypename', {
             validateString: function(value) {
                 return $.ajax({
-                    url:'/include/fetch_sitetypename.php?userID=<cfoutput>#userID#</cfoutput>',
+                    url:'/include/fetch_sitetypename.cfm?userID=<cfoutput>#userID#</cfoutput>',
                     method:"POST",
                     data:{sitetypename:value},
                     dataType:"json",

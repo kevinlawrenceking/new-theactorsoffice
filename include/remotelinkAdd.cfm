@@ -89,7 +89,7 @@
         window.Parsley.addValidator('checksitename', {
             validateString: function(value) {
                 return $.ajax({
-                    url: '/include/fetch_sitename.php?userID=<Cfoutput>#userid#</cfoutput>',
+                    url: '/include/fetch_sitename.cfm?userID=<Cfoutput>#userid#</cfoutput>',
                     method: "POST",
                     data: { sitename: value },
                     dataType: "json",
@@ -110,7 +110,7 @@
         window.Parsley.addValidator('checksiteurl', {
             validateString: function(value) {
                 return $.ajax({
-                    url: '/include/fetch_siteurl.php?userID=<Cfoutput>#userid#</cfoutput>',
+                    url: '/include/fetch_siteurl.cfm?userID=<Cfoutput>#userid#</cfoutput>',
                     method: "POST",
                     data: { siteurl: value },
                     dataType: "json",
