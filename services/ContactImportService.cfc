@@ -1,6 +1,5 @@
 <cfcomponent displayname="ContactImportService" hint="Handles operations for ContactImport table" output="false"> 
 
-<cfcomponent displayname="ContactsImportService" output="false">
 
     <cffunction name="getImportsByUserID" access="public" returntype="query" output="false" hint="Retrieve import data for a specific user.">
         <!--- Define function arguments --->
@@ -36,7 +35,6 @@
         <cfreturn imports>
     </cffunction>
 
-</cfcomponent>
 
 
 
