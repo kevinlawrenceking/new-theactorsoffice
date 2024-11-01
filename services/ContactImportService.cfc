@@ -80,25 +80,27 @@
                 ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,
                 ?, ?, ?, ?, ?, ?, ?">
 
-            <!-- Populate the params array with each field -->
-            <cfarrayappend(params, {value=arguments.newUploadId, cfsqltype="CF_SQL_INTEGER"})>
-            <cfarrayappend(params, {value=trim(arguments.importData.FirstName), cfsqltype="CF_SQL_VARCHAR", maxlength=100})>
-            <cfarrayappend(params, {value=trim(arguments.importData.LastName), cfsqltype="CF_SQL_VARCHAR", maxlength=100})>
-            <cfarrayappend(params, {value=trim(arguments.importData.Tag1), cfsqltype="CF_SQL_VARCHAR", maxlength=100})>
-            <cfarrayappend(params, {value=trim(arguments.importData.Tag2), cfsqltype="CF_SQL_VARCHAR", maxlength=100})>
-            <cfarrayappend(params, {value=trim(arguments.importData.Tag3), cfsqltype="CF_SQL_VARCHAR", maxlength=100})>
-            <cfarrayappend(params, {value=trim(arguments.importData.BusinessEmail), cfsqltype="CF_SQL_VARCHAR", maxlength=100})>
-            <cfarrayappend(params, {value=trim(arguments.importData.PersonalEmail), cfsqltype="CF_SQL_VARCHAR", maxlength=100})>
-            <cfarrayappend(params, {value=trim(arguments.importData.WorkPhone), cfsqltype="CF_SQL_VARCHAR", maxlength=100})>
-            <cfarrayappend(params, {value=trim(arguments.importData.MobilePhone), cfsqltype="CF_SQL_VARCHAR", maxlength=100})>
-            <cfarrayappend(params, {value=trim(arguments.importData.HomePhone), cfsqltype="CF_SQL_VARCHAR", maxlength=100})>
-            <cfarrayappend(params, {value=trim(arguments.importData.Company), cfsqltype="CF_SQL_VARCHAR", maxlength=200})>
-            <cfarrayappend(params, {value=trim(arguments.importData.Address), cfsqltype="CF_SQL_VARCHAR", maxlength=200})>
-            <cfarrayappend(params, {value=trim(arguments.importData.Address2), cfsqltype="CF_SQL_VARCHAR", maxlength=100})>
-            <cfarrayappend(params, {value=trim(arguments.importData.City), cfsqltype="CF_SQL_VARCHAR", maxlength=100})>
-            <cfarrayappend(params, {value=trim(arguments.importData.State), cfsqltype="CF_SQL_VARCHAR", maxlength=100})>
-            <cfarrayappend(params, {value=trim(arguments.importData.Zip), cfsqltype="CF_SQL_VARCHAR", maxlength=100})>
-            <cfarrayappend(params, {value=trim(arguments.importData.Country), cfsqltype="CF_SQL_VARCHAR", maxlength=100})>
+   
+ 
+<cfarrayappend(params, {value=arguments.newUploadId, cfsqltype="CF_SQL_INTEGER"}) 
+<cfarrayappend(params, {value=trim(arguments.importData.FirstName), cfsqltype="CF_SQL_VARCHAR", maxlength=100}) 
+<cfarrayappend(params, {value=trim(arguments.importData.LastName), cfsqltype="CF_SQL_VARCHAR", maxlength=100}) 
+<cfarrayappend(params, {value=trim(arguments.importData.Tag1), cfsqltype="CF_SQL_VARCHAR", maxlength=100}) 
+<cfarrayappend(params, {value=trim(arguments.importData.Tag2), cfsqltype="CF_SQL_VARCHAR", maxlength=100}) 
+<cfarrayappend(params, {value=trim(arguments.importData.Tag3), cfsqltype="CF_SQL_VARCHAR", maxlength=100}) 
+<cfarrayappend(params, {value=trim(arguments.importData.BusinessEmail), cfsqltype="CF_SQL_VARCHAR", maxlength=100}) 
+<cfarrayappend(params, {value=trim(arguments.importData.PersonalEmail), cfsqltype="CF_SQL_VARCHAR", maxlength=100}) 
+<cfarrayappend(params, {value=trim(arguments.importData.WorkPhone), cfsqltype="CF_SQL_VARCHAR", maxlength=100}) 
+<cfarrayappend(params, {value=trim(arguments.importData.MobilePhone), cfsqltype="CF_SQL_VARCHAR", maxlength=100}) 
+<cfarrayappend(params, {value=trim(arguments.importData.HomePhone), cfsqltype="CF_SQL_VARCHAR", maxlength=100}) 
+<cfarrayappend(params, {value=trim(arguments.importData.Company), cfsqltype="CF_SQL_VARCHAR", maxlength=200}) 
+<cfarrayappend(params, {value=trim(arguments.importData.Address), cfsqltype="CF_SQL_VARCHAR", maxlength=200}) 
+<cfarrayappend(params, {value=trim(arguments.importData.Address2), cfsqltype="CF_SQL_VARCHAR", maxlength=100}) 
+<cfarrayappend(params, {value=trim(arguments.importData.City), cfsqltype="CF_SQL_VARCHAR", maxlength=100}) 
+<cfarrayappend(params, {value=trim(arguments.importData.State), cfsqltype="CF_SQL_VARCHAR", maxlength=100}) 
+<cfarrayappend(params, {value=trim(arguments.importData.Zip), cfsqltype="CF_SQL_VARCHAR", maxlength=100}) 
+<cfarrayappend(params, {value=trim(arguments.importData.Country), cfsqltype="CF_SQL_VARCHAR", maxlength=100}) 
+
 
             <cfif structKeyExists(arguments.importData, "contactMeetingDate") and arguments.importData.contactMeetingDate neq "">
                 <cfset sql &= ", ?">
