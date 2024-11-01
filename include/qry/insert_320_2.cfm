@@ -15,7 +15,7 @@
         new_releasetime = (new_releasetime neq "") ? new_releasetime : javaCast("null", ""),
         new_hoursavail = (new_hoursavail neq "") ? numberformat(new_hoursavail, '9.99') : javaCast("null", "")
     )>
-    <cfquery name="updateFetchStatus" datasource="#yourDatasourceName#">
+    <cfquery name="updateFetchStatus" datasource="#abodName#">
         UPDATE yourTableName SET isfetch = 1 WHERE yourCondition
     </cfquery>
 <cfcatch>

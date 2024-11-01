@@ -6,7 +6,7 @@
         <cfargument name="userid" type="numeric" required="true" hint="The ID of the user to fetch import data for.">
         
         <!--- Query to fetch import data --->
-        <cfquery name="imports" datasource="yourDataSource">
+        <cfquery name="imports" datasource="abod">
             SELECT 
                 u.uploadid,
                 u.`timestamp`,

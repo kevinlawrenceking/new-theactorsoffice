@@ -66,7 +66,7 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
     <cftry>
-        <cfquery datasource="yourDatasourceName">
+        <cfquery datasource="abodName">
             INSERT INTO audanswers (qID, eventideventid, eventid, aText, aRating, aMemo, isDeleted)
             VALUES (
                 <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_qID#" null="#NOT len(trim(arguments.new_qID))#">,

@@ -16,7 +16,7 @@
     <cfargument name="new_esthours" type="numeric" required="false">
 
     <cftry>
-        <cfquery datasource="#yourDataSource#" name="updateTicketQuery">
+        <cfquery datasource="#abod#" name="updateTicketQuery">
             UPDATE tickets SET 
                 ticketname = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_ticketname#">,
                 ticketdetails = <cfqueryparam cfsqltype="cf_sql_longvarchar" value="#arguments.new_ticketdetails#">,
@@ -483,7 +483,7 @@
     <cfargument name="ticketid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="#yourDatasource#" name="updateQuery">
+        <cfquery datasource="#abod#" name="updateQuery">
             UPDATE tickets 
             SET 
                 ticketname = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_ticketname#" />,

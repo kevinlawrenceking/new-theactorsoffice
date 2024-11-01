@@ -5,7 +5,7 @@
     <cfset var queryResult = "">
 
     <cftry>
-        <cfquery name="queryResult" datasource="yourDataSource">
+        <cfquery name="queryResult" datasource="abod">
             SELECT * 
             FROM allfields 
             WHERE [key] <> <cfqueryparam value="#arguments.keyValue#" cfsqltype="CF_SQL_VARCHAR">

@@ -185,7 +185,7 @@
     <cfargument name="new_isshare" type="boolean" required="true">
 
     <cftry>
-        <cfquery datasource="#yourDataSource#" name="insertResult">
+        <cfquery datasource="#abod#" name="insertResult">
             INSERT INTO audmedia (
                 mediaTypeID, 
                 mediaURL, 

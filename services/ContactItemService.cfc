@@ -793,7 +793,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="itemid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="#yourDataSource#" name="updateQuery">
+        <cfquery datasource="#abod#" name="updateQuery">
             UPDATE contactitems
             SET valuetext = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.valuetext)#">
             <cfif arguments.catid EQ "9">

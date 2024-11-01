@@ -138,7 +138,7 @@
     <cfset var result = "">
 
     <cftry>
-        <cfquery name="result" datasource="yourDataSource">
+        <cfquery name="result" datasource="abod">
             SELECT 
                 f.fname, f.fieldid, f.pgid, f.ftype, f.ftypefull, 
                 f.update_yn, f.updatename, f.updatetype, f.fkey, 

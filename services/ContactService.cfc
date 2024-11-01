@@ -546,7 +546,7 @@ function getContactRecordName(new_contactid) {
         <cfset arrayAppend(params, {value=arguments.contactPronoun, cfsqltype="CF_SQL_VARCHAR"})>
 
         <!--- Execute the query --->
-        <cfquery datasource="#yourDataSource#" name="insertQuery">
+        <cfquery datasource="#abod#" name="insertQuery">
             #sql#
             <cfdump var="#params#"> <!--- For debugging purposes --->
             <!--- Bind parameters dynamically --->

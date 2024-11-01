@@ -187,7 +187,7 @@
     <cfset arrayAppend(params, { value=arguments.new_audroleid, cfsqltype="CF_SQL_INTEGER" })>
 
     <cftry>
-        <cfquery datasource="#yourDataSource#" name="updateQuery">
+        <cfquery datasource="#abod#" name="updateQuery">
             #sql#
             <cfloop array="#params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">

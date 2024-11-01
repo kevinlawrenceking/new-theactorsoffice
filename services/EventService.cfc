@@ -439,7 +439,7 @@
     <cfargument name="new_audlocid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="#yourDataSource#" name="insertEventQuery">
+        <cfquery datasource="#abod#" name="insertEventQuery">
             INSERT INTO events_tbl (
                 eventtitle, 
                 eventdescription, 
@@ -1161,7 +1161,7 @@
     <cfargument name="new_trackmileage" type="boolean" required="true">
 
     <cftry>
-        <cfquery datasource="#yourDataSource#" name="insertEventQuery">
+        <cfquery datasource="#abod#" name="insertEventQuery">
             INSERT INTO events_tbl (
                 userid, audRoleID, audTypeID, audLocation, eventStart, 
                 eventStartTime, eventStopTime, audplatformID, audStepID, 

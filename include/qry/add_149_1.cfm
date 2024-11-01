@@ -7,7 +7,7 @@
         noteid = noteid
     )>
     <!--- Update the database to set isfetch = 1 --->
-    <cfquery datasource="yourDataSource">
+    <cfquery datasource="abod">
         UPDATE some_table SET isfetch = 1 WHERE some_condition
     </cfquery>
 <cfcatch type="any">

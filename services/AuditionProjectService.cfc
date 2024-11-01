@@ -1528,7 +1528,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="#yourDataSource#">
+        <cfquery name="result" datasource="#abod#">
             SELECT 
                 p.audprojectid AS recid, 
                 p.audprojectid, 

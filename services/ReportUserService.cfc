@@ -100,7 +100,7 @@
     <cfargument name="colorid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="#yourDatasource#" name="insertQuery">
+        <cfquery datasource="#abod#" name="insertQuery">
             INSERT INTO reports_user 
             (reportid, reportname, reportorderno, reporttypeid, reportdescription, userid, colmd, colxl, datalabel, colorid) 
             VALUES 

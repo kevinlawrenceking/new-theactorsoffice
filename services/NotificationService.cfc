@@ -138,7 +138,7 @@
         <!-- Get the current date formatted as yyyy-mm-dd -->
         <cfset var currentStartDate = DateFormat(Now(), 'yyyy-mm-dd')>
 
-        <cfquery name="reminders" datasource="yourDataSource">
+        <cfquery name="reminders" datasource="abod">
             SELECT count(*) AS reminderstotal
             FROM funotifications n
             INNER JOIN fusystemusers f ON f.suID = n.suID

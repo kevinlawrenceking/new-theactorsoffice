@@ -297,7 +297,7 @@
     <cfargument name="findData" type="struct" required="true">
 
     <cftry>
-        <cfquery datasource="yourDatasourceName">
+        <cfquery datasource="abodName">
             UPDATE auditionsimport 
             SET 
                 projDate = <cfqueryparam value="#arguments.formData.projDate#" cfsqltype="CF_SQL_DATE">,
@@ -368,7 +368,7 @@
         <cfset arrayAppend(params, {value=trim(arguments.importdata.charDescription), cfsqltype="CF_SQL_VARCHAR", maxlength=500})>
         <cfset arrayAppend(params, {value=trim(arguments.importdata.note), cfsqltype="CF_SQL_VARCHAR", maxlength=500})>
 
-        <cfquery datasource="#yourDataSource#" name="insertQuery">
+        <cfquery datasource="#abod#" name="insertQuery">
             #sql#
             <cfloop index="param" array="#params#">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#" 
@@ -421,7 +421,7 @@
     <cfset arrayAppend(params, {value=trim(arguments.importdata.note), cfsqltype="CF_SQL_VARCHAR", maxlength=500})>
 
     <cftry>
-        <cfquery name="insertQuery" datasource="#yourDataSource#">
+        <cfquery name="insertQuery" datasource="#abod#">
             #sql#
             <cfloop index="param" array="#params#">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#" 

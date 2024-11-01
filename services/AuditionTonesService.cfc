@@ -26,7 +26,7 @@
     <cfargument name="new_toneid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="yourDatasourceName">
+        <cfquery datasource="abodName">
             UPDATE audtones 
             SET 
                 tone = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_tone#" maxlength="100" null="#NOT len(trim(arguments.new_tone))#">,

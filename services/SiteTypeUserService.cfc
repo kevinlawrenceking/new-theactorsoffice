@@ -24,7 +24,7 @@
 
     <cfset var queryResult = "">
     <cftry>
-        <cfquery name="queryResult" datasource="yourDatasourceName">
+        <cfquery name="queryResult" datasource="abodName">
             UPDATE sitetypes_user_tbl 
             SET isdeleted = 1 
             WHERE sitetypeid = <cfqueryparam value="#arguments.sitetypeid#" cfsqltype="CF_SQL_INTEGER">

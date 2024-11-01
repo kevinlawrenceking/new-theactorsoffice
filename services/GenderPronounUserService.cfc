@@ -46,7 +46,7 @@
     <cfargument name="custom" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="yourDatasourceName">
+        <cfquery datasource="abodName">
             INSERT INTO genderpronouns_users_tbl (userid, isDeleted, isCustom, genderpronoun, genderpronounPlural)
             VALUES (
                 <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,

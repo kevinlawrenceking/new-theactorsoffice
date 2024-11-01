@@ -60,7 +60,7 @@
     <cfset local.queryString &= " ORDER BY major, minor, patch, version">
 
     <cftry>
-        <cfquery name="local.result" datasource="#yourDataSource#">
+        <cfquery name="local.result" datasource="#abod#">
             #local.queryString#
             <cfloop array="#local.params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
@@ -177,7 +177,7 @@
     <cfargument name="new_hoursavail" type="numeric" required="false">
 
     <cftry>
-        <cfquery datasource="#yourDatasourceName#">
+        <cfquery datasource="#abodName#">
             INSERT INTO taoversions (
                 major, minor, patch, versionstatus, versiontype, version, build,
                 reviewDate, releaseDate, reviewtime, releasetime, hoursavail

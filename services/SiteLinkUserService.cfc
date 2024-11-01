@@ -40,7 +40,7 @@
     <cfargument name="id" type="numeric" required="true" hint="User ID."/>
     
     <cftry>
-        <cfquery datasource="yourDatasourceName">
+        <cfquery datasource="abodName">
             UPDATE sitelinks_user 
             SET siteicon = <cfqueryparam value="#arguments.new_siteicon#" cfsqltype="CF_SQL_VARCHAR">
             WHERE id = <cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">
