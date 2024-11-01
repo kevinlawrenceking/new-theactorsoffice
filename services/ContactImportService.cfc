@@ -1,6 +1,7 @@
 <cfcomponent displayname="ContactImportService" hint="Handles operations for ContactImport table" output="false"> 
 
 <cffunction name="getContactImports" access="public" returntype="query">
+
     <cfargument name="userid" type="numeric" required="true">
 
     <cfquery name="imports" datasource="abod">
