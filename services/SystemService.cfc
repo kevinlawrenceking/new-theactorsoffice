@@ -1,4 +1,23 @@
 <cfcomponent displayname="SystemService" hint="Handles operations for System table" output="false"> 
+    <!--- Function to retrieve system types --->
+    <cffunction name="SELfusystemtypes" access="public" returntype="query" output="false">
+        <cftry>
+            <cfquery name="queryResult" datasource="abod">
+                SELECT systemtype AS ID, systemtype AS systemname 
+                FROM fusystemtypes 
+                ORDER BY systemtype
+            </cfquery>
+            <cfreturn queryResult>
+        <cfcatch type="any">
+            <!--- Log the error --->
+            <cflog file="errorLog" text="Error in SELfusystemtypes: #cfcatch.message#"/>
+            <!--- Return an empty query --->
+            <cfreturn queryNew("ID,systemname", "varchar,varchar")>
+        </cfcatch>
+        </cftry>
+    </cffunction>
+
+    
 <cffunction name="SELfusystems" access="public" returntype="query">
     <cfargument name="new_systemid" type="numeric" required="true">
     <cfargument name="session_userid" type="numeric" required="true">
