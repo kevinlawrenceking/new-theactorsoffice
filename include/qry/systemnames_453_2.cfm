@@ -1,14 +1,12 @@
-<cftry>
-   
-    <cfset systemnames = createObject("component", "services.SystemService").SELfusystems_24634()>
-    
+<!--- Define the query before using it --->
+<cfquery name="systemNAMES" datasource="yourDataSource">
+    SELECT id, systemname FROM yourTable
+</cfquery>
 
-    <cfif NOT isQuery(systemnames) OR systemnames.recordCount EQ 0>
-        <cfthrow message="The query returned no results or was not executed properly.">
-    </cfif>
-    
-<cfcatch type="any">
+<select id="select-system" name="new_systemid" class="form-control" data-parsley-required="" data-parsley-error-message="System is required">
+    <option value="">Select a System...</option>
+    <cfoutput query="systemNAMES">
+        <option value="#systemNAMES.id#">#systemNAMES.systemname#</option>
+    </cfoutput>
+</select>
 
-    <cflog file="errorLog" text="[Error in systemnames_453_2.cfm]: #cfcatch.message#">
-</cfcatch>
-</cftry>
