@@ -60,7 +60,7 @@
                         </cfif>
                     </div>
 
-                    <cfif #pgFilename# is not ""><cfoutput>#pgfilename#</cfoutput><cfabort>
+                    <cfif #pgFilename# is not ""> 
                         <cfinclude template="/include/#pgFilename#" />
                     </cfif>
                 </div>
