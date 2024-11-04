@@ -16,6 +16,11 @@
         <cfset search = form["search[value]"]>
     </cfif>
     
+    <cfdump var="#contacts_table#" label="contacts_table">
+<cfdump var="#userid#" label="userid">
+<cfdump var="#search#" label="search">
+
+
 
     <cfif structKeyExists(form, "order[0][column]")>
         <cfset formOrderColumn = form["order[0][column]"]>
