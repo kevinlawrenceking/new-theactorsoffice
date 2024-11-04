@@ -102,7 +102,7 @@ AND
 </cfquery>
  
 <!--- Total data set length --->
-<CFINCLUDE template="/include/remote_load.cfm" /><cfquery datasource="#dsn#" dbtype="query" name="qCount">
+<cfquery datasource="#dsn#" dbtype="query" name="qCount">
 SELECT COUNT(#sIndexColumn#) as total
 FROM   qFiltered
 </cfquery>
@@ -143,5 +143,3 @@ Output
     ""
 </cfif>
  }
-    
-<cfset script_name_include="/include/#ListLast(GetCurrentTemplatePath(), "\")#" /><cfinclude template="/include/bigbrotherinclude.cfm" /> 
