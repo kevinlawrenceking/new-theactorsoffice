@@ -31,7 +31,7 @@
     </cfif>
     
     <!--- Instantiate the ContactService component --->
-    <cfset contactService = createObject("component", "ContactService")>
+    <cfset contactService = createObject("component", "services.ContactService")>
     
     <!--- Call the getFilteredContacts function --->
     <cfset qFiltered = contactService.getFilteredContacts(
