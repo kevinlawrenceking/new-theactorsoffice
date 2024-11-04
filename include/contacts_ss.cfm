@@ -14,7 +14,8 @@
  
     
 <!--- Data set after filtering --->
- <CFINCLUDE template="/include/remote_load.cfm" /><cfquery datasource="#dsn#" name="qFiltered" >
+
+ <cfquery datasource="#dsn#" name="qFiltered" >
 SELECT contactid,col1,col2,col2b,col3,col4,col5,userid, hlink 
     from #contacts_table#
     
