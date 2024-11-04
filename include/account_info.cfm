@@ -8,7 +8,7 @@
 
 <cfinclude template="/include/qry/regions_518_1.cfm"/>
 
-<cfinclude template="/include/qry/timezones_547_1.cfm"/>
+<cfinclude template="/include/qry/timezones_min_547_2.cfm" />
 
 <script>
   $(document).ready(function () {
