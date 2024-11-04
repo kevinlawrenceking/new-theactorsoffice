@@ -8,9 +8,9 @@
 
 <cfinclude template="/include/qry/countries_457_1.cfm" />
 
-<cfinclude template="/include/qry/regions.cfm" />
+<cfinclude template="/include/qry/regions_518_1.cfm" />
 
-<cfinclude template="/include/qry/timezones.cfm" />
+<cfinclude template="/include/qry/timezones_547_1.cfm" />
 
 <script>
     $(document).ready(function() {
