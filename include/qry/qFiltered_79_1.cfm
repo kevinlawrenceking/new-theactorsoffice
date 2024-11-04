@@ -1,7 +1,4 @@
-<!--- FetchContacts.cfm --->
-<cftry>
-
-    
+ 
     <!--- Define necessary variables and parameters --->
     <cfparam name="contacts_table" default="#contacts_table#" type="string">
     <cfparam name="userid" default="#userid#" type="numeric">
@@ -55,10 +52,4 @@
     <!--- Optionally, you can calculate the total number of records here --->
     <!--- But since your existing code does this after including qFiltered, you can leave it as is --->
     
-<cfcatch type="any">
-    <!--- Log the error for debugging purposes --->
-    <cflog file="errorLog" text="[Error in FetchContacts.cfm]: #cfcatch.message#">
-    <!--- Handle the error as needed --->
-    <cfthrow message="Error occurred: #cfcatch.message#">
-</cfcatch>
-</cftry>
+ 
