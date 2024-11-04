@@ -1,7 +1,3 @@
 
-<cftry>
-    <cfset notsActive = createObject("component", "services.NotificationService").SELfunotifications_24709(userID=userid)>
-    <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in notsActive_511_2.cfm]: #cfcatch.message#">
-    </cfcatch>
-</cftry>
+    <!--- Call the SELfunotifications_24709 function from NotificationService and pass userID --->
+    <cfset variables.notsActive = createObject("component", "services.NotificationService").SELfunotifications_24709(userid=userid)>
