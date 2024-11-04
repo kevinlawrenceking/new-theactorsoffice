@@ -1,4 +1,23 @@
 <cfcomponent displayname="SystemService" hint="Handles operations for System table" output="false"> 
+    <!--- Function to retrieve system types --->
+    <cffunction name="SELfusystemtypes" access="public" returntype="query" output="false">
+        <cftry>
+            <cfquery name="queryResult" datasource="abod">
+                SELECT systemtype AS ID, systemtype AS systemname 
+                FROM fusystemtypes 
+                ORDER BY systemtype
+            </cfquery>
+            <cfreturn queryResult>
+        <cfcatch type="any">
+            <!--- Log the error --->
+            <cflog file="errorLog" text="Error in SELfusystemtypes: #cfcatch.message#"/>
+            <!--- Return an empty query --->
+            <cfreturn queryNew("ID,systemname", "varchar,varchar")>
+        </cfcatch>
+        </cftry>
+    </cffunction>
+
+    
 <cffunction name="SELfusystems" access="public" returntype="query">
     <cfargument name="new_systemid" type="numeric" required="true">
     <cfargument name="session_userid" type="numeric" required="true">
@@ -422,43 +441,14 @@
     <cfreturn result>
 </cffunction>
 <cffunction name="SELfusystems_24634" access="public" returntype="query">
-    <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
-    <cfset var queryResult = "">
-    <cfset var sql = "SELECT systemid AS id, systemname FROM fusystems">
-    <cfset var whereClause = "">
-    <cfset var paramList = "">
-    
-    <!--- Build WHERE clause dynamically based on conditions argument --->
-    <cfif structCount(arguments.conditions) gt 0>
-        <cfset whereClause = " WHERE ">
-        <cfloop collection="#arguments.conditions#" item="key">
-            <cfset whereClause &= "#key# = ? AND ">
-            <cfset paramList &= "<cfqueryparam value='#arguments.conditions[key]#' cfsqltype='#getSQLType(key)#'>,">
-        </cfloop>
-        <!--- Remove trailing 'AND ' and comma --->
-        <cfset whereClause = left(whereClause, len(whereClause) - 4)>
-        <cfset paramList = left(paramList, len(paramList) - 1)>
-    </cfif>
-
-    <!--- Complete SQL statement with ORDER BY clause --->
-    <cfset sql &= whereClause & " ORDER BY systemname">
-
-    <!--- Execute query within try/catch for error handling --->
-    <cftry>
-        <cfquery name="queryResult" datasource="abod">
-            #sql#
-            #paramList#
-        </cfquery>
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error executing query: #cfcatch.message# SQL: #sql# Parameters: #serializeJSON(arguments.conditions)#"/>
-            <!--- Return empty query if error occurs --->
-            <cfreturn queryNew("id,systemname", "integer,varchar")>
-        </cfcatch>
-    </cftry>
-
-    <!--- Return the query result --->
+    <cfquery name="queryResult" datasource="abod">
+        SELECT systemid AS id, systemname 
+        FROM fusystems 
+        ORDER BY systemname
+    </cfquery>
     <cfreturn queryResult>
 </cffunction>
+
 <cffunction name="SELfusystems_24750" access="public" returntype="query">
     <cfargument name="systemid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
