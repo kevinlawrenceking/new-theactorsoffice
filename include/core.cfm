@@ -26,7 +26,7 @@
         <meta name="robots" content="noindex">
     </cfoutput>
 
-    <cfinclude template="/include/FindLinksT.cfm" />
+    <cfinclude template="/include/qry/FindLinksT.cfm" />
 
 <cfset rev="13" />
     <cfloop query="FindLinksT">
