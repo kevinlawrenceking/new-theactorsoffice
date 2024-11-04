@@ -6,7 +6,7 @@
 
 <cfinclude template="/include/modal.cfm" />
 
-<cfinclude template="/include/qry/countries.cfm" />
+<cfinclude template="/include/qry/countries_457_1.cfm" />
 
 <cfinclude template="/include/qry/regions.cfm" />
 
@@ -605,8 +605,6 @@
 <cfparam name="def_region_id" default="" />
 
 <cfparam name="def_countryid" default="" />
-
-<cfinclude template="/include/qry/countries.cfm" />
 
 <cfinclude template="/include/qry/regions.cfm" />
 
