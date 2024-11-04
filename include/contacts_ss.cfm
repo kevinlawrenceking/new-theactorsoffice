@@ -6,9 +6,10 @@
 <cfparam name="length" default="10" type="integer" />
 <cfparam name="search" default="" type="string" />
  <cfparam name="uploadid" default="0" type="integer" />
-<cfif len(form["search[value]"]) gt 0>
-    <cfset search=form["search[value]"]>
+<cfif structKeyExists(form, "search[value]") and len(form["search[value]"]) gt 0>
+    <cfset search = form["search[value]"]>
 </cfif>
+
 
  
     
