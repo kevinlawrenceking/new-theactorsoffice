@@ -1,5 +1,116 @@
 <cfcomponent displayname="ContactService" hint="Handles operations for Contact table" output="false"> 
 
+ <!--- Function to retrieve filtered contacts --->
+    <cffunction name="getFilteredContacts" access="public" returntype="query" output="false">
+        <!--- Define arguments --->
+        <cfargument name="contacts_table" type="string" required="true">
+        <cfargument name="userid" type="numeric" required="true">
+        <cfargument name="bytag" type="string" required="false" default="">
+        <cfargument name="byimport" type="string" required="false" default="">
+        <cfargument name="bylike" type="string" required="false" default="">
+        <cfargument name="uploadid" type="numeric" required="false" default="0">
+        <cfargument name="search" type="string" required="false" default="">
+        <cfargument name="listColumns" type="string" required="false" default="">
+        <cfargument name="formOrderColumn" type="string" required="false" default="">
+        <cfargument name="formOrderDir" type="string" required="false" default="asc">
+
+        <!--- Declare local variables --->
+        <cfset var qFiltered = "">
+        <cfset var sql = "">
+        <cfset var paramList = []>
+        <cfset var allowedOrderColumns = {
+            "1": "col1",
+            "2": "col2",
+            "3": "col2b",
+            "4": "col3",
+            "5": "col4",
+            "6": "col5"
+        }>
+        <cfset var orderColumn = "">
+        <cfset var orderDir = "asc">
+        <cfset var i = 0>
+
+        <!--- Start building SQL query --->
+        <cfset sql = "SELECT contactid, col1, col2, col2b, col3, col4, col5, userid, hlink FROM #arguments.contacts_table# WHERE userid = ?">
+        <cfset paramList.append({value=arguments.userid, cfsqltype="CF_SQL_INTEGER"})>
+
+        <!--- Build WHERE clauses based on conditions --->
+        <cfif len(trim(arguments.bytag))>
+            <cfset sql &= " AND contactid IN ( SELECT contactid FROM contactitems WHERE valuetype = 'tags' AND itemstatus = 'active' AND valuetext = ? )">
+            <cfset paramList.append({value=arguments.bytag, cfsqltype="CF_SQL_VARCHAR"})>
+        </cfif>
+
+        <cfif len(trim(arguments.byimport))>
+            <cfset sql &= " AND contactid IN ( SELECT contactid FROM contactsimport WHERE uploadid = ? )">
+            <cfset paramList.append({value=arguments.byimport, cfsqltype="CF_SQL_INTEGER"})>
+        </cfif>
+
+        <cfif len(trim(arguments.bylike))>
+            <cfset sql &= " AND col1 LIKE ?">
+            <cfset paramList.append({value="%" & trim(arguments.bylike) & "%", cfsqltype="CF_SQL_VARCHAR"})>
+        </cfif>
+
+        <cfif arguments.uploadid neq 0>
+            <cfset sql &= " AND contactid IN ( SELECT contactid FROM contactsimport WHERE uploadid = ? )">
+            <cfset paramList.append({value=arguments.uploadid, cfsqltype="CF_SQL_INTEGER"})>
+        </cfif>
+
+        <cfif len(trim(arguments.search))>
+            <cfif trim(arguments.search) is "no system">
+                <cfset sql &= " AND contactid NOT IN ( SELECT contactid FROM contacts_ss_followup WHERE userid = ? )">
+                <cfset paramList.append({value=arguments.userid, cfsqltype="CF_SQL_INTEGER"})>
+                <cfset sql &= " AND contactid NOT IN ( SELECT contactid FROM contacts_ss_maint WHERE userid = ? )">
+                <cfset paramList.append({value=arguments.userid, cfsqltype="CF_SQL_INTEGER"})>
+                <cfset sql &= " AND contactid NOT IN ( SELECT contactid FROM contacts_ss_target WHERE userid = ? )">
+                <cfset paramList.append({value=arguments.userid, cfsqltype="CF_SQL_INTEGER"})>
+            <cfelse>
+                <cfset sql &= " AND (">
+                <cfloop list="#arguments.listColumns#" index="thisColumn">
+                    <cfif i gt 0>
+                        <cfset sql &= " OR ">
+                    </cfif>
+                    <cfset sql &= "#thisColumn# LIKE ?">
+                    <cfset paramList.append({value="%" & trim(arguments.search) & "%", cfsqltype="CF_SQL_VARCHAR"})>
+                    <cfset i++>
+                </cfloop>
+                <cfset sql &= " )">
+            </cfif>
+        </cfif>
+
+        <!--- Build ORDER BY clause if applicable --->
+        <cfif structKeyExists(allowedOrderColumns, arguments.formOrderColumn)>
+            <cfset orderColumn = allowedOrderColumns[arguments.formOrderColumn]>
+            <cfif arguments.formOrderDir eq "desc">
+                <cfset orderDir = "DESC">
+            <cfelse>
+                <cfset orderDir = "ASC">
+            </cfif>
+            <cfset sql &= " ORDER BY #orderColumn# #orderDir#">
+        </cfif>
+
+        <!--- Execute query --->
+        <cftry>
+            <cfquery name="qFiltered" datasource="abod">
+                #sql#
+                <!--- Bind parameters --->
+                <cfloop array="#paramList#" index="param">
+                    <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+                </cfloop>
+            </cfquery>
+            <!--- Return the query result --->
+            <cfreturn qFiltered>
+        <cfcatch type="any">
+            <!--- Log the error --->
+            <cflog file="errorLog" text="Error in getFilteredContacts: #cfcatch.message#">
+            <!--- Return an empty query --->
+            <cfreturn queryNew("contactid,col1,col2,col2b,col3,col4,col5,userid,hlink", "integer,varchar,varchar,varchar,varchar,varchar,varchar,integer,varchar")>
+        </cfcatch>
+        </cftry>
+    </cffunction>
+
+
+
+
 <cffunction name="getContactUpdates" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="compid" type="numeric" required="true">
