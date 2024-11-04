@@ -25,10 +25,26 @@
         <meta content="#appAuthor#" name="author" />
         <meta name="robots" content="noindex">
     </cfoutput>
+<cfquery name="FindLinksT" datasource="#dsn#">
+    SELECT l.linkid, l.linkurl, l.linkname, l.linktype, l.link_no, l.linkloc_tb, l.pluginname, l.rel, l.hrefid FROM pgapplinks l INNER JOIN pgplugins p ON p.pluginName = l.pluginname INNER JOIN pgpagespluginsxref x ON x.pluginid = p.pluginid INNER JOIN pgpages g ON g.pgid = x.pgid WHERE g.pgid = #findpage.pgid# AND l.linkloc_tb = 't' ORDER BY l.link_no
+</cfquery>
 
-    <cfoutput>
-        #pagelinks.top_links#
-    </cfoutput>
+    <cfloop query="FindLinksT">
+<cfoutput>
+<cfif "#findlinkst.linktype#" is "script">
+<script src="#findlinkst.linkurl#?ver=#rev#.4"></script>
+<cfelseif "#findlinkst.linktype#" is "script_include">
+
+<cfinclude template="#findlinkst.linkurl#?ver=#rev#.4.1">
+
+<cfelse>
+<link href="#findlinkst.linkurl#?ver=#rev#.3.1.2" <cfif #findlinkst.rel# is not "">rel="#rel#" </cfif>type="text/css" <cfif #findlinkst.hrefid# is not "">id="#findlinkst.hrefid#"</cfif> />
+</cfif>
+</cfoutput>
+</cfloop>
+
+
+   
 
     <style>
         body.authentication-bg {
