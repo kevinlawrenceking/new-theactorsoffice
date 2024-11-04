@@ -20,7 +20,7 @@
 <cfdump var="#userid#" label="userid">
 <cfdump var="#search#" label="search">
 
-
+<cfabort>
 
     <cfif structKeyExists(form, "order[0][column]")>
         <cfset formOrderColumn = form["order[0][column]"]>
