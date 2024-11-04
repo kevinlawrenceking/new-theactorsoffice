@@ -72,7 +72,7 @@ AND
       
       
 </cfif>
-<cfif form["order[0][column]"] gt 0>
+<cfif structKeyExists(form, "order[0][column]") and val(form["order[0][column]"]) gt 0>
     ORDER BY
     
         <cfif form["order[0][column]"] eq '1'>
