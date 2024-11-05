@@ -1,2 +1,2 @@
 <cfset auditionMediaService = createObject("component", "services.AuditionMediaService")>
-<cfset headshots = auditionMediaService.GetHeadshots(userid=123)>
+<cfset headshots = auditionMediaService.GetHeadshots(userid=userid)>
