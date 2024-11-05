@@ -279,21 +279,22 @@
     <cfreturn result>
     </cffunction>
 <cffunction name="SELfusystems_24320" access="public" returntype="query">
-    <cfargument name="systemIds" type="array" required="true">
+    <cfargument name="systemIds" type="string" required="true">
     
     <cfset var result = "">
     
-    <cfquery name="result" >
+    <cfquery name="result" datasource="abod">
         SELECT * 
         FROM fusystems 
         WHERE systemid IN (
-            <cfqueryparam value="#arrayToList(arguments.systemIds)#" cfsqltype="CF_SQL_INTEGER" list="true">
+            <cfqueryparam value="#arguments.systemIds#" cfsqltype="CF_SQL_INTEGER" list="true">
         )
-        ORDER BY FIELD(systemid, <cfqueryparam value="#arrayToList(arguments.systemIds)#" cfsqltype="CF_SQL_INTEGER" list="true">)
+        ORDER BY FIELD(systemid, #arguments.systemIds#)
     </cfquery>
     
     <cfreturn result>
 </cffunction>
+
 
 <cffunction name="SELfusystems_24321" access="public" returntype="query">
     <cfargument name="systemID" type="numeric" required="true">
