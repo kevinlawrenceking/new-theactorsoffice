@@ -7,7 +7,7 @@
         <cfset var actions = "">
 
         <!--- Query to fetch user actions --->
-        <cfquery name="actions" datasource="#dsn#">
+        <cfquery name="actions" >
             SELECT 
                 au.id,
                 s.systemID,
