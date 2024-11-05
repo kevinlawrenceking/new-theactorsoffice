@@ -102,7 +102,7 @@
                         </form>
                     </cfif>
                 </div>
-            </div>
+            </div>`
         </div>
     </div>
 </cfloop>
@@ -110,3 +110,4 @@
 </div>
 </div>
 
+</div>
