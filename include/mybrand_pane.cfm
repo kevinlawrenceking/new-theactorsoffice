@@ -46,7 +46,7 @@
 <cfset modalid="remoteAddEssenceContact" />
 <cfset modaltitle="Add Essence" />
 <cfinclude template="/include/modal.cfm" />
-<cfinclude template="/include/qry/essence_sel.cfm" />
+<cfinclude template="/include/qry/essence_sel_470_1.cfm" />
 
 <h4>My Essence 
     <a href="" title="click for details" data-bs-toggle="modal" data-bs-target="#essencehelp">     
