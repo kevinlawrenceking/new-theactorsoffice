@@ -144,6 +144,9 @@
                         </div>
                     </div>
 
+                    <cfdump var="#headshots_sel#" label="Headshots Query Output">
+<CfaborT>
+
                     <!--- Table row for each material --->
                     <tr>
                         <td>
