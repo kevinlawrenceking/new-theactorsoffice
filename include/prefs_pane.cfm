@@ -1,4 +1,3 @@
-<!--- This ColdFusion page displays user preferences and settings, including calendar settings, newsletter options, and submission sites. --->
 
 <h4>Preferences</h4>
 
@@ -102,7 +101,7 @@
             </cfif>
         </cfif>
     </div>
-</div>
+
 
 <cfinclude template="/include/qry/subsites_189_1.cfm" />
 
