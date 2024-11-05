@@ -97,7 +97,7 @@
                     <A HREF="#new_nletter_link#" target="external">#nletter_link#</A>
                 </cfoutput>
             </cfif>
-            <cfif #nletter_link# is="">
+            <cfif #nletter_link# is "">
                 <i>Please add your newsletter link.</i>
             </cfif>
         </cfif>
