@@ -549,7 +549,7 @@
 
         <cfinclude template="/include/qry/regions.cfm"/>
 
-        <cfinclude template="/include/qry/cities.cfm"/>
+        <cfinclude template="/include/qry/cities_448_1.cfm"/>
 
         <cfif #ctaction# is "addmember">
 
