@@ -535,6 +535,7 @@
                       <input type="hidden" name="t4" value="1"/>
 
               <!--- Start Time Selection --->
+              <cfoutput>
     <div class="form-group col-md-6">
         <label for="calstarttime">Start Time<span class="text-danger">*</span></label>
         <select class="form-control" name="calstarttime" id="calstarttime">
