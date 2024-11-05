@@ -142,13 +142,16 @@
             <cfelseif "#findlinksb.linktype#" is "script_include">    
                 <cfinclude template="#findlinksb.linkurl#">   
             <cfelse>
-                <link href="#findlinksb.linkurl#" 
+                <link href="#findlinksb.linkurl#?rev=#rev#.7" 
                       <cfif #findlinksb.rel# is not ""> rel="#findlinksb.rel#"</cfif> 
                       type="text/css" 
                       <cfif #findlinksb.hrefid# is not ""> id="#findlinksb.hrefid#"</cfif> />
             </cfif>
         </cfoutput>
     </cfloop>
+
+
+ 
 
 
 </body>
