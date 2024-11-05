@@ -1115,8 +1115,9 @@
                 </cfif>
 
               </cfif>
-
-              <cfinclude template="/include/qry/thrivecartdetails.cfm"/>
+<cfif #customerid# is "">
+<cfset customerid = 0 />
+</cfif>
               <cfparam name="currentid" default="0"/>
               <cfset session.pgrtn="P"/>
 
