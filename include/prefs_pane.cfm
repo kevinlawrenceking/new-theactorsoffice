@@ -107,7 +107,6 @@
 <cfinclude template="/include/qry/subsites_189_1.cfm" />
 
 
-</div>
 <div class="d-flex justify-content-between">
     <div class="float-left">
         <h5>My Submission Sites</h5>

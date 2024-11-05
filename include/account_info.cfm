@@ -991,12 +991,8 @@
 
                       </div>
 
-                      <div class="tab-pane<cfif #tab4_expand# is 'true'> show active</cfif>" id="pref">
-
-                        <cfinclude template="/include/prefs_pane.cfm"/>
-
-                      </div>
-
+              <!--- prefs pane --->
+              
                       <div class="tab-pane<cfif #tab7_expand# is 'true'> show active</cfif>" id="systems">
 
                         <cfinclude template="/include/systemprefs_pane.cfm"/>
