@@ -51,19 +51,10 @@
         </cfif>
 
         <cfquery name="result" datasource="abod">
-            SELECT countryid, countryname 
-            FROM countries 
-            WHERE isdeleted = 0 
-            AND countryid IN (
-                SELECT countryid FROM regions
-            )
-            AND countryid IN (
-                <cfloop index="i" from="1" to="#arrayLen(arguments.countryIds)#">
-                    <cfqueryparam value="#arguments.countryIds[i]#" cfsqltype="CF_SQL_INTEGER" />
-                    <cfif i LT arrayLen(arguments.countryIds)>,</cfif>
-                </cfloop>
-            )
-            ORDER BY countryname
+SELECT countryid, countryname FROM countries 
+    WHERE isdeleted = 0 and countryid in (select countryid from regions)
+    ORDER BY countryname
+
         </cfquery>
 
         <cfreturn result>
