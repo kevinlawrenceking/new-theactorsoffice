@@ -71,8 +71,9 @@
          
 <cfoutput>
     <!--- Start and End times for the loop --->
-    <cfset startTime = createDateTime(0, 0, 0, 5, 0, 0)>
-    <cfset endTime = createDateTime(0, 0, 0, 23, 45, 0)>
+<cfset startTime = createTime(5, 0, 0)>
+<cfset endTime = createTime(23, 45, 0)>
+
     
     <!--- Start Time Selection --->
     <div class="form-group col-md-6">
