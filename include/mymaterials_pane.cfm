@@ -32,9 +32,7 @@
 <!--- Load query for retrieving materials --->
 <cfinclude template="/include/qry/materials_sel.cfm" />
 
-<h1>headshots_sel dump</h1>
-                    <cfdump var="#headshots_sel#" label="Headshots Query Output">
-<CfaborT>
+
 
 <!--- Modal for 'My Materials' information/help --->
 <div id="mymaterialshelp" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" aria-hidden="true">
