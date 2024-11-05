@@ -4,12 +4,11 @@
 
 <cfinclude template="/include/qry/mysystems_295_1.cfm" />
 
-<div class="row">
-    <div class="col-xl-12">
-        <div id="accordion_systems" class="mb-3">
+<div class="row"> <!-- (1) -->
+    <div class="col-xl-12"> <!-- (2) -->
+        <div id="accordion_systems" class="mb-3"> <!-- (3) -->
 
             <cfset y=0>
-
             <cfparam name="target_id_system" default="0">
 
             <!--- Loop through each system in the mysystems query --->
@@ -20,47 +19,47 @@
 
                 <!--- Check if the current system matches the target system ID --->
                 <cfif #mysystems.systemid# is "#target_id_system#">
-                    <div class="card mb-1">
-                        <div class="card-header" id="<cfoutput>heading_system_#mysystems.systemid#</cfoutput>">
+                    <div class="card mb-1"> <!-- (4) -->
+                        <div class="card-header" id="<cfoutput>heading_system_#mysystems.systemid#</cfoutput>"> <!-- (5) -->
                             <h5 class="m-0">
                                 <a class="text-dark" data-bs-toggle="collapse" href="#collapse_system_<cfoutput>#mysystems.systemid#</cfoutput>" aria-expanded="true">
                                     <cfoutput>#mysystems.systemname# <span class="badge badge-success badge-pill float-end">#numberformat(action_user.recordcount)#</span></cfoutput>
                                 </a>
                             </h5>
-                        </div>
+                        </div> <!-- Close (5) -->
 
-                        <div id="collapse_system_<cfoutput>#mysystems.systemid#</cfoutput>" class="collapse show" aria-labelledby="<cfoutput>heading_system_#mysystems.systemid#</cfoutput>" data-bs-parent="#accordion_systems" style="">
-
+                        <div id="collapse_system_<cfoutput>#mysystems.systemid#</cfoutput>" class="collapse show" aria-labelledby="<cfoutput>heading_system_#mysystems.systemid#</cfoutput>" data-bs-parent="#accordion_systems" style=""> <!-- (6) -->
+</div>
                 <cfelse>
 
-                    <div class="card mb-1">
-                        <div class="card-header" id="<cfoutput>heading_system_#mysystems.systemid#</cfoutput>">
+                    <div class="card mb-1"> <!-- (7) -->
+                        <div class="card-header" id="<cfoutput>heading_system_#mysystems.systemid#</cfoutput>"> <!-- (8) -->
                             <h5 class="m-0">
                                 <a class="text-dark text-dark collapsed" data-bs-toggle="collapse" href="#collapse_system_<cfoutput>#mysystems.systemid#</cfoutput>" aria-expanded="false">
                                     <cfoutput>#mysystems.systemname# <span class="badge badge-success badge-pill float-end">#numberformat(action_user.recordcount)#</span></cfoutput>
                                 </a>
                             </h5>
-                        </div>
+                        </div> <!-- Close (8) -->
 
-                        <div id="collapse_system_<cfoutput>#mysystems.systemid#</cfoutput>" class="collapse" aria-labelledby="<cfoutput>heading_system_#mysystems.systemid#</cfoutput>" data-bs-parent="#accordion_systems" style="">
+                        <div id="collapse_system_<cfoutput>#mysystems.systemid#</cfoutput>" class="collapse" aria-labelledby="<cfoutput>heading_system_#mysystems.systemid#</cfoutput>" data-bs-parent="#accordion_systems" style=""> <!-- (9) -->
 
                 </cfif>
 
-                <div class="card-body">
+                <div class="card-body"> <!-- (10) -->
                     <p>
                         <cfoutput>#mysystems.systemdescript#</cfoutput>
                     </p>
 
                     <cfoutput>
-                        <A href="/include/restoreaction.cfm?target_id_system=#mysystems.systemid#">
+                        <a href="/include/restoreaction.cfm?target_id_system=#mysystems.systemid#">
                             <button type="button" class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="background-color: ##406e8e; border: ##406e8e">Restore to Default</button>
-                        </A>
+                        </a>
                     </cfoutput>
 
-                    <div class="row">
+                    <div class="row"> <!-- (11) -->
                         <!--- Loop through each action for the current system --->
                         <cfloop query="action_user">
-                            <div class="col-md-12">
+                            <div class="col-md-12"> <!-- (12) -->
                                 <cfoutput>
                                     <h5>
                                         <a title="Edit" href="updateactionlink.cfm" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##updateaction_#action_user.id#">
@@ -69,19 +68,19 @@
                                         </a>
                                     </h5>
 
-                                    <p>#action_user.actiondetails#.<BR>
+                                    <p>#action_user.actiondetails#.<br>
                                         <cfif #action_user.actiondaysno# is "0">Starts <strong>immediately</strong>
                                         <cfelse>Starts in <strong>#action_user.actiondaysno# day<cfif #action_user.actiondaysno# is not "1">s</cfif></strong>
                                         </cfif>
                                         <cfif #numberformat(action_user.actiondaysrecurring)# is not "0">, repeating every <strong>#action_user.actiondaysrecurring# days</strong></cfif>.
                                         <cfif #isdefined('df6kj')#>
-                                            &nbsp;&nbsp; &nbsp;<A title="Remove Action No #action_user.actionno#" class="pl-1" style="color:red;" href="/include/excludeaction.cfm?ctaction=excludeaction&new_id=#action_user.id#&target_id_system=#mysystems.systemid#"><i class="mdi mdi-trash-can-outline"></i></A>
+                                            &nbsp;&nbsp;&nbsp;<a title="Remove Action No #action_user.actionno#" class="pl-1" style="color:red;" href="/include/excludeaction.cfm?ctaction=excludeaction&new_id=#action_user.id#&target_id_system=#mysystems.systemid#"><i class="mdi mdi-trash-can-outline"></i></a>
                                         </cfif>
                                     </p>
                                 </cfoutput>
-                            </div>
+                            </div> <!-- Close (12) -->
                         </cfloop>
-                    </div>
+                    </div> <!-- Close (11) -->
 
                     <!--- Check if there are any actions to restore --->
                     <cfif #action_user_del.recordcount# is not "0">
@@ -101,13 +100,11 @@
                             </h5>
                         </form>
                     </cfif>
-                </div>
-            </div>`
-        </div>
-    </div>
+                </div> <!-- Close (10) -->
+            </div> <!-- Close (7) or (4) -->
+        </div> <!-- Close (9) or (6) -->
+    </div> <!-- Close (3) -->
 </cfloop>
 
-</div>
-</div>
-
-</div>
+</div> <!-- Close (2) -->
+</div> <!-- Close (1) -->
