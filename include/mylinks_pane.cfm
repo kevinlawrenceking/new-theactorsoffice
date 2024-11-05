@@ -1,6 +1,6 @@
 <!--- This ColdFusion page handles the display of site types and their associated links, including modals for adding and updating links and panels. --->
 
-<cfinclude template="/include/qry/sitetypes.cfm" />
+<cfinclude template="/include/qry/sitetypes_535_1.cfm" />
 <cfinclude template="/include/qry/mylinks_159_1.cfm" />
 
 <cfoutput>
