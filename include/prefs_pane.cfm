@@ -60,7 +60,7 @@
 
 <h5>
     My Newsletter
-    <a title="Edit" href="" title="Update calendar settings" data-bs-toggle="modal" data-bs-target="#updatenewsletter">
+    <a href="" title="Update newsletter settings" data-bs-toggle="modal" data-bs-target="#updatenewsletter">
         <i class="mdi mdi-square-edit-outline"></i>
     </a>
 </h5>
@@ -70,11 +70,12 @@
         <strong>Newsletter?</strong>
     </div>
     <div class="col-md-10 p-2">
-        <a title="Edit" href="" title="Update calendar settings" data-bs-toggle="modal" data-bs-target="#updatenewsletter">
-            <cfif #nletter_yn# is "Y">Yes</cfif>
-            <cfif #nletter_yn# is not "Y">No</cfif>
+        <a href="" title="Update newsletter settings" data-bs-toggle="modal" data-bs-target="#updatenewsletter">
+            <cfif nletter_yn is "Y">Yes
+            <cfelse>No</cfif>
         </a>
     </div>
+</div>
 
     <div class="col-md-2 p-2">
         <strong>Newsletter Link</strong>
