@@ -1,4 +1,46 @@
 <cfcomponent displayname="ActionUserService" hint="Handles operations for ActionUser table" output="false"> 
+
+   <cffunction name="GetUserActions" access="public" returntype="query" output="false" hint="Retrieve actions for a specific user ID.">
+        <cfargument name="userid" type="numeric" required="yes" hint="ID of the user to retrieve actions for.">
+
+        <!--- Initialize the query variable --->
+        <cfset var actions = "">
+
+        <!--- Query to fetch user actions --->
+        <cfquery name="actions" datasource="#dsn#">
+            SELECT 
+                au.id,
+                s.systemID,
+                s.systemName,
+                s.SystemType,
+                s.SystemScope,
+                s.SystemDescript,
+                s.SystemTriggerNote,
+                a.actionID,
+                a.actionNo,
+                a.actionDetails,
+                a.actionTitle,
+                a.navToURL,
+                au.actionDaysNo,
+                au.actionDaysRecurring,
+                a.actionNotes,
+                a.actionInfo
+            FROM 
+                fusystems s
+                INNER JOIN fuactions a ON s.systemid = a.systemid
+                INNER JOIN actionusers au ON au.actionid = a.actionid
+            WHERE 
+                au.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            ORDER BY 
+                a.actionNo
+        </cfquery>
+
+        <cfreturn actions>
+    </cffunction>
+
+
+
+
 <cffunction name="UPDactionusers" access="public" returntype="void" hint="Updates the isdeleted status of a user in the actionusers_tbl">
     <cfargument name="new_id" type="numeric" required="true" hint="ID of the user to be updated">
 
