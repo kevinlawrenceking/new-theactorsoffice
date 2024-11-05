@@ -533,6 +533,7 @@
                 m.mediatypeid, 
                 m.mediaName, 
                 m.mediaLoc, 
+                m.mediaurl,
                 0 AS eventid, 
                 m.mediaFilename, 
                 m.mediaExt, 
