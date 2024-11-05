@@ -1,3 +1,7 @@
+<!--- Ensure userid and audprojectid are defined before usage --->
+<cfparam name="userid" default="">
+<cfparam name="audprojectid" default="">
+
 <!--- Create an instance of the AuditionMediaService component --->
 <cfset auditionMediaService = createObject("component", "services.AuditionMediaService")>
 

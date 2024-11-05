@@ -1,7 +1,8 @@
+<!--- Ensure userid is defined --->
+<cfparam name="userid" default="">
 
-<cftry>
-    <cfset headshots_sel = createObject("component", "services.AuditionMediaService").SELaudmedia_24678(userid=userid) />
-    <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in headshots_sel_494_1.cfm]: #cfcatch.message#" />
-    </cfcatch>
-</cftry>
+<!--- Create an instance of the AuditionMediaService component --->
+<cfset auditionMediaService = createObject("component", "services.AuditionMediaService")>
+
+<!--- Call the SELaudmedia_24678 function with userid argument --->
+<cfset headshots_sel = auditionMediaService.SELaudmedia_24678(userid=userid)>
