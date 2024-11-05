@@ -27,7 +27,7 @@
     </cfoutput>
 
     <cfinclude template="/include/qry/FindLinksT.cfm" />
-
+    <cfinclude template="/include/qry/FindLinksB.cfm" />
 <cfset rev="13" />
     <cfloop query="FindLinksT">
 <cfoutput>
@@ -133,13 +133,23 @@
         };
     </script>
 
-    <cfoutput>
-        #pagelinks.bottom_links#
-    </cfoutput>
 
-    <!--- Loop through the array of include links and include each file --->
-    <cfloop array="#includeLinksArray#" index="includeFile">
-        <cfinclude template="#includeFile#">
+        <!--- Loop through FindLinksB query to include additional scripts and styles --->
+    <cfloop query="FindLinksB">
+        <cfoutput>
+            <cfif "#findlinksb.linktype#" is "script">
+                <script src="#findlinksb.linkurl#?ver=#rev#"></script>
+            <cfelseif "#findlinksb.linktype#" is "script_include">    
+                <cfinclude template="#findlinksb.linkurl#">   
+            <cfelse>
+                <link href="#findlinksb.linkurl#" 
+                      <cfif #findlinksb.rel# is not ""> rel="#findlinksb.rel#"</cfif> 
+                      type="text/css" 
+                      <cfif #findlinksb.hrefid# is not ""> id="#findlinksb.hrefid#"</cfif> />
+            </cfif>
+        </cfoutput>
     </cfloop>
+
+
 </body>
 </html>
