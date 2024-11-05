@@ -9,7 +9,7 @@
 
 
 
- <cfquery datasource="#dsn#" name="mysystems">
+ <cfquery  name="mysystems">
      SELECT * FROM fusystems order by FIELD(systemid,5,6,1,2,3,4)
  </cfquery>
 
@@ -36,7 +36,7 @@
                      <cfloop query="mysystems">
 
 
-                         <cfquery datasource="#dsn#" name="action_user">
+                         <cfquery  name="action_user">
   
                              SELECT au.id,
                              s.systemID
@@ -65,7 +65,7 @@
                          </cfquery>
 
 
-                         <cfquery datasource="#dsn#" name="action_user_del">
+                         <cfquery  name="action_user_del">
                              SELECT
                              MAX(au.id) AS id
     
