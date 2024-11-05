@@ -8,7 +8,7 @@
 <cfinclude template="/include/qry/auddialects_user_sel.cfm" />
 <cfinclude template="/include/qry/essence_sel.cfm" />
 <cfinclude template="/include/qry/audroletypes_sel.cfm" />
-<cfinclude template="/include/qry/myteam.cfm" />
+<cfinclude template="/include/qry/myteam_499_1.cfm" />
 <script src="/app/assets/js/jquery.chained.js"></script>
 
 <p>Enter the information below and press the update button to continue.</p>
