@@ -3,7 +3,9 @@
 
 <!--- Ensure 'materials' variable is defined --->
 <cfparam name="materials" default="" />
-
+<h1>headshots_sel dump</h1>
+                    <cfdump var="#headshots_sel#" label="Headshots Query Output">
+<CfaborT
 <!--- JavaScript to load modal content for adding new materials --->
 <cfoutput>
     <script>
@@ -143,9 +145,7 @@
                             </div>
                         </div>
                     </div>
-
-                    <cfdump var="#headshots_sel#" label="Headshots Query Output">
-<CfaborT>
+>
 
                     <!--- Table row for each material --->
                     <tr>
