@@ -82,7 +82,7 @@
     </div>
     <div class="col-md-10 p-2">
         <cfif #nletter_yn# is "Y">
-            <cfif #nletter_link# is not="">
+            <cfif #nletter_link# is not "">
                 <cfif #left('#nletter_link#','4')# is "http">
                     <cfoutput>
                         <cfset new_nletter_link="#nletter_link#" />
