@@ -44,11 +44,7 @@
     
     <cfset var result = "">
     
-    <cftry>
-        <cfif arrayLen(arguments.countryIds) eq 0>
-            <!--- Return an empty query if no country IDs are provided --->
-            <cfreturn queryNew("countryid,countryname", "integer,varchar")>
-        </cfif>
+  
 
         <cfquery name="result" datasource="abod">
 SELECT countryid, countryname FROM countries 
@@ -59,11 +55,7 @@ SELECT countryid, countryname FROM countries
 
         <cfreturn result>
 
-    <cfcatch type="any">
-        <cflog file="application" text="Error in getCountries: #cfcatch.message# Query: #result.sql# Parameters: #arguments.countryIds#">
-        <cfthrow message="An error occurred while retrieving countries." detail="#cfcatch.detail#">
-    </cfcatch>
-    </cftry>
+ 
 </cffunction>
 <cffunction name="SELcountries_24720" access="public" returntype="query">
     <cfargument name="countryName" type="string" required="true">
