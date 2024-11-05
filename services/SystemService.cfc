@@ -277,6 +277,7 @@
         </cfcatch>
     </cftry>
     <cfreturn result>
+    </cffunction>
 <cffunction name="SELfusystems_24320" access="public" returntype="query">
     <cfargument name="systemIds" type="array" required="true">
     
