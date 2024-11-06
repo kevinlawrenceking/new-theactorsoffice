@@ -216,8 +216,6 @@
     <cfargument name="new_avatarname" type="string" required="true">
     <cfargument name="new_useremail" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
-
-    <cftry>
         <cfquery datasource="abod">
             UPDATE taousers 
             SET userfirstname = <cfqueryparam value="#arguments.new_userfirstname#" cfsqltype="CF_SQL_VARCHAR">,
@@ -226,11 +224,7 @@
                 useremail = <cfqueryparam value="#arguments.new_useremail#" cfsqltype="CF_SQL_VARCHAR">
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        <cfcatch>
-            <cflog file="application" text="Error updating user: #cfcatch.message#">
-            <cfthrow message="An error occurred while updating the user. Please try again later.">
-        </cfcatch>
-    </cftry>
+
 </cffunction>
 <cffunction name="UPDtaousers_23950" access="public" returntype="void">
     <cfargument name="new_nletter_link" type="string" required="true">
