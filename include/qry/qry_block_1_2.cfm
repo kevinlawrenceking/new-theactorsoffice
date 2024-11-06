@@ -1,6 +1,6 @@
 
 
-    <cfset actionUserService = createObject("component", "services.ActionUserService")>
+    <cfset UserService = createObject("component", "services.UserService")>
 
 
-        <cfset actionUserService.UPDactionusers_23923(new_id=new_id)>
+        <cfset UserService.UPDtaousers_23945(userid=userid)>
