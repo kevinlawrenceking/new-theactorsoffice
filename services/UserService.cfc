@@ -211,6 +211,7 @@
     </cftry>
 </cffunction>
 <cffunction name="UPDtaousers_23945" access="public" returntype="void">
+
   <cfargument name="new_userfirstname" type="string" required="true">
     <cfargument name="new_userlastname" type="string" required="true">
     <cfargument name="new_avatarname" type="string" required="true">
@@ -220,8 +221,9 @@
     <cfargument name="city" type="string" required="false">
     <cfargument name="zip" type="string" required="false">
     <cfargument name="region_id" type="numeric" required="false">
-    <cfargument name="countryid" type="numeric" required="false">
+    <cfargument name="countryid" type="string" required="false">
     <cfargument name="userid" type="numeric" required="true">
+
 
            <cfquery >
         UPDATE taousers 
@@ -234,9 +236,10 @@
             city = <cfqueryparam value="#arguments.city#" cfsqltype="CF_SQL_VARCHAR">,
             zip = <cfqueryparam value="#arguments.zip#" cfsqltype="CF_SQL_VARCHAR">,
             region_id = <cfqueryparam value="#arguments.region_id#" cfsqltype="CF_SQL_INTEGER">,
-            countryid = <cfqueryparam value="#arguments.countryid#" cfsqltype="CF_SQL_INTEGER">
+            countryid = <cfqueryparam value="#arguments.countryid#" cfsqltype="CF_SQL_VARCHAR">
         WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
+    
 </cffunction>
 <cffunction name="UPDtaousers_23950" access="public" returntype="void">
     <cfargument name="new_nletter_link" type="string" required="true">
