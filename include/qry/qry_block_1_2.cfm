@@ -1,5 +1,5 @@
 <cfset UserService = createObject("component", "services.UserService")>
-<h1><cfoutput>region_id: #region_id#</cfoutput></h1><cfaborT>
+
 
 <cfset UserService.UPDtaousers_23945(
     userid=userid,
