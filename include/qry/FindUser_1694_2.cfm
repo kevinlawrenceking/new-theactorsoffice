@@ -6,6 +6,6 @@
     <cfset userService = createObject("component", "services.UserService")>
 
 
-    <cfset FindUser = userService.GetUserDetails(userid=userid) />
+    <cfset Details = userService.GetUserDetails(userid=userid) />
 
 

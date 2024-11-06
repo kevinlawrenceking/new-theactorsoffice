@@ -15,6 +15,7 @@
                 u.add2, 
                 u.city, 
                 u.region_id AS new_region_id, 
+                u.region_id,
                 u.zip, 
                 u.tzid, 
                 u.defRows,
@@ -29,11 +30,11 @@
                 v.viewtype,
                 u.defcountry,
                 u.defstate,
+                c.countryid,
                 c.countryid AS new_countryid,
                 u.add1,
                 u.add2,
                 u.city,
-                u.region_id,
                 u.zip,
                 u.dateformatid,
                 df.*
@@ -239,7 +240,7 @@
             countryid = <cfqueryparam value="#arguments.countryid#" cfsqltype="CF_SQL_VARCHAR">
         WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
-    
+
 </cffunction>
 <cffunction name="UPDtaousers_23950" access="public" returntype="void">
     <cfargument name="new_nletter_link" type="string" required="true">
