@@ -40,7 +40,7 @@
     
     <cfset var result = "">
     
-    <cftry>
+
         <cfquery name="result" datasource="abod">
             SELECT 
                 p.pnid, 
@@ -57,11 +57,7 @@
                 s.sitetypeid = <cfqueryparam value="#arguments.new_sitetypeid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getSiteTypeDetails: #cfcatch.message# Query: #cfcatch.detail#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+   
     
     <cfreturn result>
 </cffunction>
