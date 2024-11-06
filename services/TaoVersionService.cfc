@@ -7,9 +7,9 @@
             SELECT verid 
             FROM taoversions
             WHERE 1=1
-            <cfif len(arguments.isActive)>
-                AND isactive = <cfqueryparam value="#arguments.isActive#" cfsqltype="CF_SQL_BIT">
-            </cfif>
+    
+                AND isactive = <cfqueryparam value="1" cfsqltype="CF_SQL_BIT">
+ 
             ORDER BY isactive DESC, verid DESC
             LIMIT 1
         </cfquery>
