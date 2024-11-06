@@ -8,7 +8,7 @@
             FROM taoversions
             WHERE 1=1
     
-                AND isactive = <cfqueryparam value="1" cfsqltype="CF_SQL_BIT">
+                AND isactive = <cfqueryparam value="TRUE" cfsqltype="CF_SQL_BIT">
  
             ORDER BY isactive DESC, verid DESC
             LIMIT 1
