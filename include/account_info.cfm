@@ -304,7 +304,23 @@
     </div>
 </div>
 
+<!-- JavaScript to dynamically update the selected attribute -->
+<script>
+    document.getElementById('countryid').addEventListener('change', function() {
+        updateSelectedAttribute(this);
+    });
 
+    document.getElementById('region_id').addEventListener('change', function() {
+        updateSelectedAttribute(this);
+    });
+
+    function updateSelectedAttribute(selectElement) {
+        // Remove 'selected' attribute from all options
+        Array.from(selectElement.options).forEach(option => option.removeAttribute('selected'));
+        // Set 'selected' attribute on the currently chosen option
+        selectElement.options[selectElement.selectedIndex].setAttribute('selected', 'selected');
+    }
+</script>
                   <cfoutput>
 
                     <div class="row">
