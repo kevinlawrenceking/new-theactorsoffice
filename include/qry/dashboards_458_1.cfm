@@ -7,4 +7,4 @@
 <cfset dashboards = panelUserService.SELpgpanels_user_24640(userid=userid) />
 
 
-<Cfdump var="#dashboards#"> <BR>#dashboards.recordcount#<br>                                                                       
+<Cfdump var="#dashboards#"> <BR><cfoutput>#dashboards.recordcount#<br>  </cfoutput>                                                                     
