@@ -331,8 +331,7 @@
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
-    
-    <cftry>
+
         <cfquery name="result" datasource="abod">
             SELECT 
                 p.pnid, 
@@ -349,12 +348,6 @@
             ORDER BY 
                 p.pnorderno
         </cfquery>
-        
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getPanelsForUser: #cfcatch.message#">
-            <cfset result = queryNew("pnid,pntitle,pnColXl,pnColMd,pnFilename,new_pnorderno")>
-        </cfcatch>
-    </cftry>
     
     <cfreturn result>
 </cffunction>
