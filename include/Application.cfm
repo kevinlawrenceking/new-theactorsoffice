@@ -23,7 +23,7 @@
 <cfif isDefined('userid')>
 <cfscript>
                 baseMediaPath = "C:\home\theactorsoffice.com\media-" & datasourceName;
-                baseMediaUrl = "/media-" & this.datasource;
+                baseMediaUrl = "/media-" & datasourceName;
 
                 imagesPath = baseMediaPath & "\images";
                 imagesUrl = baseMediaUrl & "/images";
