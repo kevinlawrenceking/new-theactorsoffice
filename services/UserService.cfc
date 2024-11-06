@@ -211,20 +211,32 @@
     </cftry>
 </cffunction>
 <cffunction name="UPDtaousers_23945" access="public" returntype="void">
-    <cfargument name="new_userfirstname" type="string" required="true">
+  <cfargument name="new_userfirstname" type="string" required="true">
     <cfargument name="new_userlastname" type="string" required="true">
     <cfargument name="new_avatarname" type="string" required="true">
     <cfargument name="new_useremail" type="string" required="true">
+    <cfargument name="add1" type="string" required="false">
+    <cfargument name="add2" type="string" required="false">
+    <cfargument name="city" type="string" required="false">
+    <cfargument name="zip" type="string" required="false">
+    <cfargument name="region_id" type="numeric" required="false">
+    <cfargument name="countryid" type="numeric" required="false">
     <cfargument name="userid" type="numeric" required="true">
-        <cfquery datasource="abod">
-            UPDATE taousers 
-            SET userfirstname = <cfqueryparam value="#arguments.new_userfirstname#" cfsqltype="CF_SQL_VARCHAR">,
-                userlastname = <cfqueryparam value="#arguments.new_userlastname#" cfsqltype="CF_SQL_VARCHAR">,
-                avatarname = <cfqueryparam value="#arguments.new_avatarname#" cfsqltype="CF_SQL_VARCHAR">,
-                useremail = <cfqueryparam value="#arguments.new_useremail#" cfsqltype="CF_SQL_VARCHAR">
-            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
-        </cfquery>
 
+           <cfquery >
+        UPDATE taousers 
+        SET userfirstname = <cfqueryparam value="#arguments.new_userfirstname#" cfsqltype="CF_SQL_VARCHAR">,
+            userlastname = <cfqueryparam value="#arguments.new_userlastname#" cfsqltype="CF_SQL_VARCHAR">,
+            avatarname = <cfqueryparam value="#arguments.new_avatarname#" cfsqltype="CF_SQL_VARCHAR">,
+            useremail = <cfqueryparam value="#arguments.new_useremail#" cfsqltype="CF_SQL_VARCHAR">,
+            add1 = <cfqueryparam value="#arguments.add1#" cfsqltype="CF_SQL_VARCHAR">,
+            add2 = <cfqueryparam value="#arguments.add2#" cfsqltype="CF_SQL_VARCHAR">,
+            city = <cfqueryparam value="#arguments.city#" cfsqltype="CF_SQL_VARCHAR">,
+            zip = <cfqueryparam value="#arguments.zip#" cfsqltype="CF_SQL_VARCHAR">,
+            region_id = <cfqueryparam value="#arguments.region_id#" cfsqltype="CF_SQL_INTEGER">,
+            countryid = <cfqueryparam value="#arguments.countryid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+    </cfquery>
 </cffunction>
 <cffunction name="UPDtaousers_23950" access="public" returntype="void">
     <cfargument name="new_nletter_link" type="string" required="true">
