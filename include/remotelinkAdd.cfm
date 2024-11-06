@@ -13,7 +13,7 @@
         <input type="hidden" name="userid" value="#userid#">
         <input type="hidden" name="target_id" value="#new_sitetypeid#">
         <input type="hidden" name="target" value="#target#">
-        <input type="hidden" name="RETINAICONS14PATH" value="#Application.retinaIcons14Path#">
+        <input type="hidden" name="RETINAICONS14PATH" value="#retinaIcons14Path#">
     </cfoutput>
 
     <div class="row">
