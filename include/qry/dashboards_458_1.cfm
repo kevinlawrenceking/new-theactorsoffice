@@ -5,3 +5,5 @@
         <cfset dashboards = queryNew("pnid,pntitle,pnColXl,pnColMd,pnFilename,new_pnorderno")>
     </cfcatch>
 </cftry>
+
+<cfdump var="#dashboards#">
