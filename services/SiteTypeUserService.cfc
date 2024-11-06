@@ -57,26 +57,18 @@
                 s.sitetypeid = <cfqueryparam value="#arguments.new_sitetypeid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-   
-    
     <cfreturn result>
 </cffunction>
 <cffunction name="UPDsitetypes_user_24134" access="public" returntype="void">
     <cfargument name="new_sitetypename" type="string" required="true">
     <cfargument name="new_sitetypeid" type="numeric" required="true">
-
-    <cftry>
-        <cfquery datasource="abod">
+ 
+        <cfquery >
             UPDATE sitetypes_user 
             SET sitetypename = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_sitetypename#" />
             WHERE sitetypeid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_sitetypeid#" />
         </cfquery>
-        
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating sitetypes_user: #cfcatch.message# Query: UPDATE sitetypes_user SET sitetypename = ? WHERE sitetypeid = ? Parameters: #arguments.new_sitetypename#, #arguments.new_sitetypeid#">
-            <cfthrow message="An error occurred while updating the site type name." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+
 </cffunction>
 <cffunction name="SELsitetypes_user_24144" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
