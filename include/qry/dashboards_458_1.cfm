@@ -6,4 +6,3 @@
     </cfcatch>
 </cftry>
 
-<cfdump var="#dashboards#">
