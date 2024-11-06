@@ -3,8 +3,7 @@
     <cfargument name="isActive" type="boolean" required="false" default="">
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result">
             SELECT verid 
             FROM taoversions
             WHERE 1=1
@@ -15,12 +14,8 @@
             LIMIT 1
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" type="error" text="Error in getLatestVersion: #cfcatch.message#">
-            <cfset result = queryNew("verid")>
-        </cfcatch>
-    </cftry>
-    
+ 
+
     <cfreturn result>
 </cffunction>
 <cffunction name="SELtaoversions_24215" access="public" returntype="query">
