@@ -2,12 +2,12 @@
 
 <cfparam name="isvisible" default="0" />
 
-<!--- Include the first query template for adding data
-<cfinclude template="/include/qry/add_240_1.cfm" />   --->
+<!--- Include the first query template for adding data  --->
+<cfinclude template="/include/qry/add_240_1.cfm" /> 
 
-<!--- Include the second query template for updating data --->
+<!--- Include the second query template for updating data 
 <cfinclude template="/include/qry/updatep_240_2.cfm" />
-
+--->
 <!--- Include the third query template for fetching data 
 <cfinclude template="/include/qry/x_240_3.cfm" />
 
