@@ -20,7 +20,6 @@
 >
 
 
-
 <cfif isDefined('userid')>
 <cfscript>
                 baseMediaPath = "C:\home\theactorsoffice.com\media-" & this.datasource;
