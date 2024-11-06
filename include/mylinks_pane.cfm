@@ -105,11 +105,12 @@
                 </cfif>
 
                 <cfif #sitetypes.sitetypeid# is "#target_id#">
+                <Cfoutput>
                     <div class="card mb-1">
-                        <div class="card-header" id="<cfoutput>heading#sitetypes.sitetypeid#</cfoutput>">
+                        <div class="card-header" id="heading#sitetypes.sitetypeid#">
                             <h5 class="m-0">
-                                <a class="text-dark" data-bs-toggle="collapse" href="#collapse<cfoutput>#sitetypes.sitetypeid#</cfoutput>" aria-expanded="true">
-                                    <cfoutput>#sitetypes.sitetypename#</cfoutput>
+                                <a class="text-dark" data-bs-toggle="collapse" href="##collapse#sitetypes.sitetypeid#" aria-expanded="true">
+                                 #sitetypes.sitetypename#
                                 </a>
                                 <a title="Edit Title" href="" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##updateheading#sitetypes.sitetypeid#"><i class="mdi mdi-square-edit-outline"></i></a> 
 
@@ -124,7 +125,7 @@
                             </h5>
                         </div>
                         <!--- end card-header --->
-
+</cfoutput>
                         <div id="collapse<cfoutput>#sitetypes.sitetypeid#</cfoutput>" class="collapse show" aria-labelledby="<cfoutput>heading#sitetypes.sitetypeid#</cfoutput>" data-bs-parent="#accordion" style="">
                 </cfif>
 
