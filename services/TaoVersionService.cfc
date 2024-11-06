@@ -1,6 +1,6 @@
 <cfcomponent displayname="TaoVersionService" hint="Handles operations for TaoVersion table" output="false"> 
 <cffunction name="SELtaoversions" access="public" returntype="query">
-    <cfargument name="isActive" type="boolean" required="false" default="">
+
     <cfset var result = "">
     
         <cfquery name="result">
@@ -8,7 +8,7 @@
             FROM taoversions
             WHERE 1=1
     
-                AND isactive = <cfqueryparam value="TRUE" cfsqltype="CF_SQL_BIT">
+                AND isactive = 1
  
             ORDER BY isactive DESC, verid DESC
             LIMIT 1
