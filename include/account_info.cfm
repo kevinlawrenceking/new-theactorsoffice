@@ -276,30 +276,34 @@
 
                   </cfoutput>
 
-                  <div class="row">
-                    <div class="form-group col-md-6">
-                      <label for="countryid">Country<span class="text-danger">*</span>
-                      </label>
-                      <select id="countryid" class="form-control" name="countryid" data-parsley-required="data-parsley-required" data-parsley-error-message="Country is required">
-                        <option value="">--</option>
-                        <cfoutput query="countries">
-                          <option value="#countries.countryid#" >#countries.countryname#</option>
-                        </cfoutput>
-                      </select>
-                    </div>
+               <div class="row">
+    <div class="form-group col-md-6">
+        <label for="countryid">Country<span class="text-danger">*</span></label>
+        <select id="countryid" class="form-control" name="countryid" data-parsley-required="data-parsley-required" data-parsley-error-message="Country is required">
+            <option value="">--</option>
+            <cfoutput query="countries">
+                <option value="#countries.countryid#" 
+                    <cfif countries.countryid EQ new_countryid>selected</cfif>>
+                    #countries.countryname#
+                </option>
+            </cfoutput>
+        </select>
+    </div>
 
-                    <div class="form-group col-md-6">
-                      <label for="region_id">State/Region<span class="text-danger">*</span>
-                      </label>
-                      <select id="region_id" name="region_id" class="form-control" style="position: relative; z-index: 1050;">
-                        <option value="">--</option>
-                        <cfoutput query="regions">
-                          <option value="#regions.region_id#" data-chained="#regions.countryid#" >#regions.regionname#</option>
-                        </cfoutput>
-                      </select>
-                    </div>
+    <div class="form-group col-md-6">
+        <label for="region_id">State/Region<span class="text-danger">*</span></label>
+        <select id="region_id" name="region_id" class="form-control" style="position: relative; z-index: 1050;">
+            <option value="">--</option>
+            <cfoutput query="regions">
+                <option value="#regions.region_id#" data-chained="#regions.countryid#" 
+                    <cfif regions.region_id EQ new_region_id>selected</cfif>>
+                    #regions.regionname#
+                </option>
+            </cfoutput>
+        </select>
+    </div>
+</div>
 
-                  </div>
 
                   <cfoutput>
 
