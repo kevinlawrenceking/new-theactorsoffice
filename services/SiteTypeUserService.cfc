@@ -51,7 +51,7 @@
                 s.pntitle 
             FROM 
                 sitetypes_user s 
-            INNER JOIN 
+            LEFT JOIN 
                 pgpanels_user p ON p.pnid = s.pnid 
             WHERE 
                 s.sitetypeid = <cfqueryparam value="#arguments.new_sitetypeid#" cfsqltype="CF_SQL_INTEGER">
