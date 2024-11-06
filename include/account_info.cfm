@@ -415,6 +415,8 @@
 
           </cfif>
 
+          <cfset new_region_id = region_id/>
+
           <cfif #new_region_id# is "" and #def_region_id# is not "">
 
             <cfset new_region_id=def_region_id/>
