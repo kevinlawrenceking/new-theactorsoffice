@@ -39,39 +39,25 @@
     </cffunction>
 
 
-
-
 <cffunction name="UPDactionusers" access="public" returntype="void" hint="Updates the isdeleted status of a user in the actionusers_tbl">
     <cfargument name="new_id" type="numeric" required="true" hint="ID of the user to be updated">
 
-    <cftry>
         <cfquery datasource="abod">
             UPDATE actionusers_tbl 
             SET isdeleted = 1 
             WHERE id = <cfqueryparam value="#arguments.new_id#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating actionusers_tbl: #cfcatch.message# Query: UPDATE actionusers_tbl SET isdeleted = 1 WHERE id = #arguments.new_id#" type="error">
-            <cfthrow message="Database update failed." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
 </cffunction>
+
 <cffunction name="UPDactionusers_23923" access="public" returntype="void">
     <cfargument name="new_id" type="numeric" required="true">
 
-    <cftry>
         <cfquery datasource="abod">
             UPDATE actionusers_tbl 
             SET isdeleted = 0 
             WHERE id = <cfqueryparam value="#arguments.new_id#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
-        <cfcatch type="any">
-            <cflog file="errorLog" type="error" text="Error updating actionusers_tbl: #cfcatch.message#">
-            <cfrethrow>
-        </cfcatch>
-    </cftry>
 </cffunction>
 <cffunction name="UPDactionusers_24030" access="public" returntype="void">
     <cfargument name="actionDaysNo" type="numeric" required="true">
@@ -82,7 +68,6 @@
     <cfset var sql = "">
     <cfset var params = []>
 
-    <cftry>
         <cfset sql = "UPDATE actionusers_tbl SET actionDaysNo = ?">
         <cfset arrayAppend(params, {value=arguments.actionDaysNo, cfsqltype="CF_SQL_INTEGER"})>
 
@@ -107,17 +92,11 @@
             </cfloop>
         </cfquery>
         
-    <cfcatch type="any">
-        <cflog file="application" text="Error in updateActionUsers: #cfcatch.message# Query: #sql# Parameters: #serializeJSON(params)#">
-        <cfthrow message="Error executing updateActionUsers function." detail="#cfcatch.detail#">
-    </cfcatch>
-    </cftry>
 </cffunction>
 <cffunction name="UPDactionusers_24254" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="target_id_system" type="numeric" required="true">
 
-    <cftry>
         <cfquery datasource="abod">
             UPDATE actionusers_tbl 
             SET isdeleted = 1 
@@ -129,19 +108,13 @@
             )
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating actionusers_tbl: #cfcatch.message#">
-            <cfrethrow>
-        </cfcatch>
-    </cftry>
 </cffunction>
 <cffunction name="SELactionusers" access="public" returntype="query">
     <cfargument name="actionid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
-    
+
     <cfset var result = "">
-    
-    <cftry>
+
         <cfquery name="result" datasource="abod">
             SELECT * 
             FROM actionusers 
@@ -149,11 +122,6 @@
             AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" type="error" text="Error in getActionUsers: #cfcatch.message# Query: SELECT * FROM actionusers WHERE actionid = ?, userid = ? Parameters: #arguments.actionid#, #arguments.userid#">
-            <cfthrow message="An error occurred while fetching action users." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
     
     <cfreturn result>
 </cffunction>
@@ -163,7 +131,6 @@
     <cfargument name="actiondaysno" type="numeric" required="true">
     <cfargument name="actiondaysrecurring" type="string" required="false" default="">
     
-    <cftry>
         <cfquery datasource="abod">
             INSERT INTO actionusers_tbl (
                 actionid, 
@@ -181,12 +148,7 @@
                 0
             )
         </cfquery>
-        
-        <cfcatch>
-            <cflog file="application" text="Error in insertActionUser: #cfcatch.message#">
-            <cfthrow message="Error executing insertActionUser function." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+
 </cffunction>
 <cffunction name="SELactionusers_24454" access="public" returntype="query">
     <cfargument name="actionid" type="numeric" required="true">
@@ -201,12 +163,10 @@
             WHERE actionid = <cfqueryparam value="#arguments.actionid#" cfsqltype="CF_SQL_INTEGER"> 
             AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        <cfcatch type="any">
+
             <cflog file="application" text="Error in getActionUsers: #cfcatch.message# Query: SELECT * FROM actionusers WHERE actionid = ? AND userid = ? Parameters: #arguments.actionid#, #arguments.userid#">
             <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+
     
     <cfreturn result>
 </cffunction>
@@ -215,8 +175,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="actiondaysno" type="numeric" required="true">
     <cfargument name="actiondaysrecurring" type="string" required="false" default="">
-    
-    <cftry>
+
         <cfquery datasource="abod">
             INSERT INTO actionusers_tbl (actionid, userid, actiondaysno
             <cfif len(arguments.actiondaysrecurring) gt 0>, actiondaysrecurring</cfif>, IsDeleted)
@@ -230,10 +189,5 @@
                 0
             )
         </cfquery>
-        
-        <cfcatch>
-            <cflog file="application" text="Error inserting into actionusers_tbl: #cfcatch.message#">
-            <cfrethrow>
-        </cfcatch>
-    </cftry>
+
 </cffunction></cfcomponent>
