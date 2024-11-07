@@ -44,7 +44,7 @@
 <cfinclude template="/include/qry/addNotification_70_1.cfm" />
 
 <!--- If notstatus is not "Pending" and uniquename is not empty, update contact --->
-<cfif #notstatus# is not "Pending" and #uniquename# is not="">
+<cfif #notstatus# is not "Pending" and #uniquename#is not "">
     <cfinclude template="/include/qry/updateContact_70_2.cfm" />
 </cfif>
 

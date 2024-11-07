@@ -289,7 +289,7 @@
                                                     <center>#DateFormat('#results.col1#','yyyy')#</center>
                                                 </cfif>
 
-                                                <cfif #results.col1# is not="">
+                                                <cfif #results.col1#is not "">
                                                     <a href="/app/audition/?audprojectid=#results.recid#" title="#DateFormat('#results.col1#','long')#">
                                                         <img src="#application.datesUrl#/#DateFormat('#results.col1#','yyyy-mm-dd')#.png" style="max-width:75px;" alt="...">
                                                     </a>
@@ -320,7 +320,7 @@
                                                         </div>
                                                     </cfif>
 
-                                                    <cfif #results.col4# is not="">
+                                                    <cfif #results.col4#is not "">
                                                         <h5 class="card-title">#results.audcatname#</h5>
                                                         <h6>#results.audsubcatname#</h6>
                                                         <h7>#results.col4#</h7>
@@ -338,8 +338,8 @@
 
                                                     <p class="card-text">
                                                         <small class="text-muted">
-                                                            Source: <cfif #results.col5# is not="">
-                                                                <cfif #results.col5# is "My Team" and #results.contactname# is not="">
+                                                            Source: <cfif #results.col5#is not "">
+                                                                <cfif #results.col5# is "My Team" and #results.contactname#is not "">
                                                                     #results.contactname#
                                                                 <cfelse>
                                                                     #results.col5#
@@ -433,8 +433,8 @@
 
                                                         <td style="word-break: break-all;">#results.col2#</td>
                                                         <td style="word-break: break-all;">
-                                                            <cfif #results.col3# is not="">
-                                                                <cfif #results.col3# is "My Team" and #results.contactname# is not="">
+                                                            <cfif #results.col3#is not "">
+                                                                <cfif #results.col3# is "My Team" and #results.contactname#is not "">
                                                                     #results.contactname#
                                                                 <cfelse>
                                                                     #results.col3#

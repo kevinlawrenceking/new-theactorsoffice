@@ -124,7 +124,7 @@
         <cfabort>
     </cfif>
 
-    <cfif #details_pgid# is not="">
+    <cfif #details_pgid#is not "">
         <cfinclude template="/include/qry/Finddetails_266_4.cfm" />
         <cfset returnpage = "/app/#Finddetails.pgdir#/?recid=#details_recid#&contactid=#contactid#&t1=#t1#&t2=#t2#&t3=#t3#&t4=#t4#" />
     <cfelse>

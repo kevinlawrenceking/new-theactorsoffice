@@ -70,7 +70,7 @@
                             </cfif>
 
                             <!--- Link to view audition or appointment based on project ID --->
-                            <cfif #eventresults.audprojectid# is not="">
+                            <cfif #eventresults.audprojectid#is not "">
                                 <a href="/app/audition/?audprojectid=#eventresults.audprojectid#" class="btn btn-xs btn-primary waves-effect waves-light">
                                     <i class="mdi mdi-eye-outline"></i> View Audition
                                 </a>
