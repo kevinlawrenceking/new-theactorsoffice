@@ -1,5 +1,88 @@
 <cfcomponent displayname="ContactService" hint="Handles operations for Contact table" output="false"> 
+ <!--- Function to retrieve filtered contacts --->
+    <cffunction name="getFilteredContacts" access="public" returntype="query" output="false">
+        <!--- Define arguments --->
+        <cfargument name="contacts_table" type="string" required="true">
+        <cfargument name="userid" type="numeric" required="true">
+        <cfargument name="bytag" type="string" required="false" default="">
+        <cfargument name="byimport" type="numeric" required="false" default="">
+        <cfargument name="bylike" type="string" required="false" default="">
+        <cfargument name="uploadid" type="numeric" required="false" default="0">
+        <cfargument name="search" type="string" required="false" default="">
+        <cfargument name="listColumns" type="string" required="false" default="">
+        <cfargument name="orderColumn" type="string" required="false" default="">
+        <cfargument name="orderDir" type="string" required="false" default="asc">
 
+        <!--- Declare local variables --->
+        <cfset var qFiltered = "">
+        <cfset var orderColumnName = "">
+        <cfset var allowedOrderColumns = {"1":"col1", "2":"col2", "3":"col2b", "4":"col3", "5":"col4", "6":"col5"}>
+        <cfset var orderDir = listFirst("asc,desc", arguments.orderDir | "asc")>
+
+        <!--- Build SQL query dynamically --->
+        <cfquery name="qFiltered" datasource="abod">
+            SELECT contactid, col1, col2, col2b, col3, col4, col5, userid, hlink
+            FROM #arguments.contacts_table#
+            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer">
+
+            <!--- Dynamic conditions --->
+            <cfif len(trim(arguments.bytag))>
+                AND contactid IN (
+                    SELECT contactid FROM contactitems WHERE valuetype = 'tags' AND itemstatus = 'active' AND valuetext = <cfqueryparam value="#arguments.bytag#" cfsqltype="cf_sql_varchar">
+                )
+            </cfif>
+
+            <cfif len(trim(arguments.byimport))>
+                AND contactid IN (
+                    SELECT contactid FROM contactsimport WHERE uploadid = <cfqueryparam value="#arguments.byimport#" cfsqltype="cf_sql_integer">
+                )
+            </cfif>
+
+            <cfif len(trim(arguments.bylike))>
+                AND col1 LIKE <cfqueryparam value="%#trim(arguments.bylike)#%" cfsqltype="cf_sql_varchar">
+            </cfif>
+
+            <cfif arguments.uploadid neq 0>
+                AND contactid IN (
+                    SELECT contactid FROM contactsimport WHERE uploadid = <cfqueryparam value="#arguments.uploadid#" cfsqltype="cf_sql_integer">
+                )
+            </cfif>
+
+            <cfif len(trim(arguments.search))>
+                <cfif trim(arguments.search) is "no system">
+                    AND contactid NOT IN (
+                        SELECT contactid FROM contacts_ss_followup WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer">
+                    )
+                    AND contactid NOT IN (
+                        SELECT contactid FROM contacts_ss_maint WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer">
+                    )
+                    AND contactid NOT IN (
+                        SELECT contactid FROM contacts_ss_target WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer">
+                    )
+                <cfelse>
+                    AND (
+                    <cfloop list="#arguments.listColumns#" index="thisColumn">
+                        <cfif thisColumn neq listFirst(arguments.listColumns)>
+                            OR
+                        </cfif>
+                        #thisColumn# LIKE <cfqueryparam value="%#trim(arguments.search)#%" cfsqltype="cf_sql_varchar">
+                    </cfloop>
+                    )
+                </cfif>
+            </cfif>
+
+            <!--- Dynamic ORDER BY clause --->
+            <cfif structKeyExists(allowedOrderColumns, arguments.orderColumn)>
+                ORDER BY #allowedOrderColumns[arguments.orderColumn]#
+                <cfif arguments.orderDir eq 'desc'>
+                    DESC
+                </cfif>
+            </cfif>
+        </cfquery>
+
+        <!--- Return the query result --->
+        <cfreturn qFiltered>
+    </cffunction>
 <cffunction name="getContactUpdates" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="compid" type="numeric" required="true">
