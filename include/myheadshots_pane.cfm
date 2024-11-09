@@ -17,7 +17,7 @@
 <cfset modaltitle="Delete Headshot" />
 <cfinclude template="/include/modal.cfm" />
 
-<cfinclude template="/include/qry/headshots_sel.cfm" />
+<cfinclude template="/include/qry/headshots_sel_478_1.cfm" />
 
 <cfoutput>
     <h4 class="p-1 d-flex">My Headshots 

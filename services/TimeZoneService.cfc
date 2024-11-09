@@ -58,8 +58,7 @@
     <cfargument name="tzGeneral" type="string" required="false" default="">
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result">
             SELECT tzid, gmt, tzname, tzgeneral, utchouroffset
             FROM timezones
             WHERE 1=1
@@ -69,11 +68,7 @@
             ORDER BY gmt
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getTimezones: #cfcatch.message# Query: SELECT tzid, gmt, tzname, tzgeneral, utchouroffset FROM timezones WHERE tzgeneral IS NOT null AND tzgeneral <> '' ORDER BY gmt">
-            <cfreturn queryNew("tzid,gmt,tzname,tzgeneral,utchouroffset")>
-        </cfcatch>
-    </cftry>
+  
     
     <cfreturn result>
 </cffunction></cfcomponent>

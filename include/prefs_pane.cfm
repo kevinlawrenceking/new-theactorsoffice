@@ -1,4 +1,3 @@
-<!--- This ColdFusion page displays user preferences and settings, including calendar settings, newsletter options, and submission sites. --->
 
 <h4>Preferences</h4>
 
@@ -60,7 +59,7 @@
 
 <h5>
     My Newsletter
-    <a title="Edit" href="" title="Update calendar settings" data-bs-toggle="modal" data-bs-target="#updatenewsletter">
+    <a href="" title="Update newsletter settings" data-bs-toggle="modal" data-bs-target="#updatenewsletter">
         <i class="mdi mdi-square-edit-outline"></i>
     </a>
 </h5>
@@ -70,18 +69,19 @@
         <strong>Newsletter?</strong>
     </div>
     <div class="col-md-10 p-2">
-        <a title="Edit" href="" title="Update calendar settings" data-bs-toggle="modal" data-bs-target="#updatenewsletter">
-            <cfif #nletter_yn# is "Y">Yes</cfif>
-            <cfif #nletter_yn# is not "Y">No</cfif>
+        <a href="" title="Update newsletter settings" data-bs-toggle="modal" data-bs-target="#updatenewsletter">
+            <cfif nletter_yn is "Y">Yes
+            <cfelse>No</cfif>
         </a>
     </div>
+</div>
 
     <div class="col-md-2 p-2">
         <strong>Newsletter Link</strong>
     </div>
     <div class="col-md-10 p-2">
         <cfif #nletter_yn# is "Y">
-            <cfif #nletter_link# is not="">
+            <cfif #nletter_link# is not "">
                 <cfif #left('#nletter_link#','4')# is "http">
                     <cfoutput>
                         <cfset new_nletter_link="#nletter_link#" />
@@ -96,14 +96,15 @@
                     <A HREF="#new_nletter_link#" target="external">#nletter_link#</A>
                 </cfoutput>
             </cfif>
-            <cfif #nletter_link# is="">
+            <cfif #nletter_link# is "">
                 <i>Please add your newsletter link.</i>
             </cfif>
         </cfif>
     </div>
-</div>
+
 
 <cfinclude template="/include/qry/subsites_189_1.cfm" />
+
 
 <div class="d-flex justify-content-between">
     <div class="float-left">

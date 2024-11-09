@@ -1,4 +1,27 @@
 <cfcomponent displayname="RegionService" hint="Handles operations for Region table" output="false"> 
+
+    <!--- Function to retrieve all regions ordered by region name --->
+    <cffunction name="GetRegions" access="public" returntype="query" output="false" hint="Retrieve all regions ordered by region name.">
+
+        <!--- Initialize the query variable --->
+        <cfset var regions = "">
+
+        <!--- Query to fetch regions --->
+        <cfquery name="regions" >
+            SELECT 
+                countryid, 
+                region_id, 
+                regionname 
+            FROM 
+                regions 
+            ORDER BY 
+                regionname
+        </cfquery>
+
+        <cfreturn regions>
+    </cffunction>
+
+
 <cffunction name="SELregions" access="public" returntype="query">
     <cfargument name="region_id" type="numeric" required="true">
     

@@ -1,4 +1,58 @@
 <cfcomponent displayname="UserService" hint="Handles operations for User table" output="false"> 
+
+    <!--- Define the datasource property --->
+ 
+
+    <!--- Function to retrieve user details by user ID --->
+    <cffunction name="GetUserDetails" access="public" returntype="query" output="false">
+        <cfargument name="userid" type="numeric" required="yes">
+
+        <cfquery name="details">
+            SELECT 
+                u.viewtypeid, 
+                tz.tzgeneral,
+                u.add1, 
+                u.add2, 
+                u.city, 
+                u.region_id AS new_region_id, 
+                u.region_id,
+                u.zip, 
+                u.tzid, 
+                u.defRows,
+                u.calstarttime, 
+                u.calendtime, 
+                u.avatarname, 
+                u.userfirstname, 
+                u.userlastname, 
+                u.useremail, 
+                u.nletter_yn,
+                u.nletter_link, 
+                v.viewtype,
+                u.defcountry,
+                u.defstate,
+                c.countryid,
+                c.countryid AS new_countryid,
+                u.add1,
+                u.add2,
+                u.city,
+                u.zip,
+                u.dateformatid,
+                df.*
+            FROM 
+                taousers u 
+                LEFT JOIN dateformats df ON df.id = u.dateFormatid
+                LEFT OUTER JOIN viewtypes v ON v.viewtypeid = u.viewtypeid
+                LEFT JOIN regions r ON r.region_id = u.region_id
+                LEFT JOIN countries c ON c.countryid = r.countryid
+                LEFT JOIN timezones tz ON tz.tzid = u.tzid
+            WHERE 
+                u.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
+        </cfquery>
+
+        <cfreturn details>
+    </cffunction>
+
+
 <cffunction name="SELtaousers" access="public" returntype="query">
     <cfargument name="ticketActive" type="string" required="true">
     
@@ -158,26 +212,35 @@
     </cftry>
 </cffunction>
 <cffunction name="UPDtaousers_23945" access="public" returntype="void">
-    <cfargument name="new_userfirstname" type="string" required="true">
+
+  <cfargument name="new_userfirstname" type="string" required="true">
     <cfargument name="new_userlastname" type="string" required="true">
     <cfargument name="new_avatarname" type="string" required="true">
     <cfargument name="new_useremail" type="string" required="true">
+    <cfargument name="add1" type="string" required="false">
+    <cfargument name="add2" type="string" required="false">
+    <cfargument name="city" type="string" required="false">
+    <cfargument name="zip" type="string" required="false">
+    <cfargument name="region_id" type="numeric" required="false">
+    <cfargument name="countryid" type="string" required="false">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cftry>
-        <cfquery datasource="abod">
-            UPDATE taousers 
-            SET userfirstname = <cfqueryparam value="#arguments.new_userfirstname#" cfsqltype="CF_SQL_VARCHAR">,
-                userlastname = <cfqueryparam value="#arguments.new_userlastname#" cfsqltype="CF_SQL_VARCHAR">,
-                avatarname = <cfqueryparam value="#arguments.new_avatarname#" cfsqltype="CF_SQL_VARCHAR">,
-                useremail = <cfqueryparam value="#arguments.new_useremail#" cfsqltype="CF_SQL_VARCHAR">
-            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
-        </cfquery>
-        <cfcatch>
-            <cflog file="application" text="Error updating user: #cfcatch.message#">
-            <cfthrow message="An error occurred while updating the user. Please try again later.">
-        </cfcatch>
-    </cftry>
+
+           <cfquery >
+        UPDATE taousers 
+        SET userfirstname = <cfqueryparam value="#arguments.new_userfirstname#" cfsqltype="CF_SQL_VARCHAR">,
+            userlastname = <cfqueryparam value="#arguments.new_userlastname#" cfsqltype="CF_SQL_VARCHAR">,
+            avatarname = <cfqueryparam value="#arguments.new_avatarname#" cfsqltype="CF_SQL_VARCHAR">,
+            useremail = <cfqueryparam value="#arguments.new_useremail#" cfsqltype="CF_SQL_VARCHAR">,
+            add1 = <cfqueryparam value="#arguments.add1#" cfsqltype="CF_SQL_VARCHAR">,
+            add2 = <cfqueryparam value="#arguments.add2#" cfsqltype="CF_SQL_VARCHAR">,
+            city = <cfqueryparam value="#arguments.city#" cfsqltype="CF_SQL_VARCHAR">,
+            zip = <cfqueryparam value="#arguments.zip#" cfsqltype="CF_SQL_VARCHAR">,
+            region_id = <cfqueryparam value="#arguments.region_id#" cfsqltype="CF_SQL_INTEGER">,
+            countryid = <cfqueryparam value="#arguments.countryid#" cfsqltype="CF_SQL_VARCHAR">
+        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+    </cfquery>
+
 </cffunction>
 <cffunction name="UPDtaousers_23950" access="public" returntype="void">
     <cfargument name="new_nletter_link" type="string" required="true">

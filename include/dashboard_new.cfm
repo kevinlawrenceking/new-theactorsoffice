@@ -51,6 +51,7 @@
 <div class="packery-grid" data-packery='{ "itemSelector": ".grid-item", "gutter": 10 }'>
   <!--- Loop through dashboards and include their templates --->
   <cfloop query="dashboards">
+
     <cfinclude template="/include/#dashboards.pnFilename#"/>
   </cfloop>
 </div>

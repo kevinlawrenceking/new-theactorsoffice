@@ -97,20 +97,16 @@
     </cftry>
 </cffunction>
 <cffunction name="UPDpgpanels_user_24135" access="public" returntype="void">
-    <cfargument name="isvisible" type="boolean" required="true">
+ 
     <cfargument name="pnid" type="numeric" required="true">
 
-    <cftry>
-        <cfquery datasource="abod">
+ 
+        <cfquery  >
             UPDATE pgpanels_user
             SET isvisible = <cfqueryparam value="#arguments.isvisible#" cfsqltype="CF_SQL_BIT">
             WHERE pnid = <cfqueryparam value="#arguments.pnid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error updating pgpanels_user visibility. Error: #cfcatch.message#">
-            <cfthrow message="An error occurred while updating the visibility." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+ 
 </cffunction>
 <cffunction name="SELpgpanels_user_24136" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
@@ -331,8 +327,7 @@
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
-    
-    <cftry>
+
         <cfquery name="result" datasource="abod">
             SELECT 
                 p.pnid, 
@@ -349,12 +344,6 @@
             ORDER BY 
                 p.pnorderno
         </cfquery>
-        
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getPanelsForUser: #cfcatch.message#">
-            <cfset result = queryNew("pnid,pntitle,pnColXl,pnColMd,pnFilename,new_pnorderno")>
-        </cfcatch>
-    </cftry>
     
     <cfreturn result>
 </cffunction>

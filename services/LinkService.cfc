@@ -3,23 +3,19 @@
     <cfargument name="linkname" type="string" required="true">
     <cfargument name="linkurl" type="string" required="true">
     <cfargument name="noteid" type="numeric" required="true">
-
-    <cftry>
+    <cfargument name="userid" type="numeric" required="true">
+    
         <cfquery name="insertLinkQuery" datasource="abod">
             INSERT INTO links (linkname, linkurl, isdeleted, userid, noteid) 
             VALUES (
                 <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.linkname#" />, 
                 <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.linkurl#" />, 
                 <cfqueryparam cfsqltype="cf_sql_integer" value="0" />, 
-                <cfqueryparam cfsqltype="cf_sql_integer" value="#session.userid#" />, 
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#" />, 
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.noteid#" />
             )
         </cfquery>
-    <cfcatch type="any">
-        <cflog file="application" text="Error inserting link: #cfcatch.message# Query: INSERT INTO links (linkname, linkurl, isdeleted, userid, noteid) VALUES (#arguments.linkname#, #arguments.linkurl#, 0, #session.userid#, #arguments.noteid#)" />
-        <cfthrow message="An error occurred while inserting the link." detail="#cfcatch.detail#">
-    </cfcatch>
-    </cftry>
+ 
 </cffunction>
 <cffunction name="SELlinks" access="public" returntype="query">
     <cfargument name="linkid" type="numeric" required="true">

@@ -8,7 +8,7 @@
 <cfset pgrtn = "P" />
 
 <cfinclude template="/include/tab_check_account.cfm" />
-<cfinclude template="/include/qry/sitetypes.cfm" />
+<cfinclude template="/include/qry/sitetypes_535_1.cfm" />
 <cfinclude template="/include/qry/timezones.cfm" />
 <cfinclude template="/include/qry/mylinks_159_1.cfm" />
 <cfinclude template="/include/qry/actions_159_2.cfm" />

@@ -1,26 +1,21 @@
 <cfcomponent displayname="TaoVersionService" hint="Handles operations for TaoVersion table" output="false"> 
 <cffunction name="SELtaoversions" access="public" returntype="query">
-    <cfargument name="isActive" type="boolean" required="false" default="">
+
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result">
             SELECT verid 
             FROM taoversions
             WHERE 1=1
-            <cfif len(arguments.isActive)>
-                AND isactive = <cfqueryparam value="#arguments.isActive#" cfsqltype="CF_SQL_BIT">
-            </cfif>
+    
+                AND isactive = 1
+ 
             ORDER BY isactive DESC, verid DESC
             LIMIT 1
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" type="error" text="Error in getLatestVersion: #cfcatch.message#">
-            <cfset result = queryNew("verid")>
-        </cfcatch>
-    </cftry>
-    
+ 
+
     <cfreturn result>
 </cffunction>
 <cffunction name="SELtaoversions_24215" access="public" returntype="query">

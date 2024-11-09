@@ -1,4 +1,45 @@
+
 <cfcomponent displayname="AuditionMediaService" hint="Handles operations for AuditionMedia table" output="false"> 
+
+    <!--- Function to select headshots based on user ID --->
+    <cffunction name="GetHeadshots" access="public" returntype="query" output="false" hint="Retrieve headshots for a specific user ID.">
+        <cfargument name="userid" type="numeric" required="yes" hint="ID of the user to retrieve headshots for.">
+
+        <!--- Query to fetch headshots --->
+        <cfquery name="headshots_sel">
+            SELECT 
+                m.mediaid,
+                m.mediatypeid,
+                m.mediaName,
+                m.mediaLoc,
+                m.mediaurl,
+                0 AS eventid,
+                m.mediaFilename,
+                m.mediaExt,
+                m.userid,
+                m.mediacreated,
+                m.isdeleted,
+                t.mediaType,
+                t.isimage,
+                e.isimage AS isValidImage
+            FROM 
+                audmedia m  
+            INNER JOIN 
+                audmediatypes t ON t.mediaTypeID = m.mediatypeid
+            LEFT JOIN 
+                exttypes e ON e.mediaext = m.mediaext
+            WHERE 
+                m.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+                AND m.isdeleted IS FALSE 
+                AND t.ismaterial = 1 
+                AND m.isshare = 1
+            ORDER BY 
+                m.mediaName
+        </cfquery>
+
+        <cfreturn headshots_sel>
+    </cffunction>
+
 <cffunction name="SELaudmedia" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     <cfargument name="mediatypeid" type="numeric" required="true">
@@ -446,6 +487,7 @@
                 m.mediaid, 
                 m.mediatypeid, 
                 m.mediaName, 
+                m.mediaurl,
                 m.mediaLoc, 
                 m.mediaFilename, 
                 m.mediaExt, 
@@ -491,6 +533,7 @@
                 m.mediatypeid, 
                 m.mediaName, 
                 m.mediaLoc, 
+                m.mediaurl,
                 0 AS eventid, 
                 m.mediaFilename, 
                 m.mediaExt, 
@@ -574,6 +617,7 @@
                 m.mediaid, 
                 m.mediatypeid, 
                 m.mediaName, 
+                m.mediaurl,
                 m.mediaLoc, 
                 m.mediaFilename, 
                 m.mediaExt, 

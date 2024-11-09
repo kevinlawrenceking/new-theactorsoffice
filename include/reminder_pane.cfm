@@ -72,7 +72,7 @@
                         </cfif>
                         #notsactive.delstart# #notsActive.actiondetails# #notsactive.delend#
                         <!--- Check for end date --->
-                        <cfif #notsactive.notEndDate# is not="">
+                        <cfif #notsactive.notEndDate#is not "">
                             (#notsactive.notstatus# #dateformat('#notsactive.notEndDate#','m/d')#)
                         </cfif>
                         <cfif #notsactive.notEndDate# is="">
@@ -116,7 +116,7 @@
                                 </a>
                             </cfif>
                             <span style="color:purple;">#notsinactive.delstart# #notsinactive.actiondetails# #notsinactive.delend#</span>
-                            <cfif #notsinactive.notstartDate# is not="">
+                            <cfif #notsinactive.notstartDate#is not "">
                                 <span style="color:purple;">(FUTURE DATE: #dateformat('#notsinactive.notstartDate#','m/d')#)</span>  
                             <cfelse>
                                 <span style="color:purple;">(FUTURE DATE: TBD)</span>  

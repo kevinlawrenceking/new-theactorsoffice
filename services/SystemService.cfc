@@ -277,32 +277,25 @@
         </cfcatch>
     </cftry>
     <cfreturn result>
-</cffunction>
+    </cffunction>
 <cffunction name="SELfusystems_24320" access="public" returntype="query">
-    <cfargument name="systemIds" type="array" required="true">
+    <cfargument name="systemIds" type="string" required="true">
     
     <cfset var result = "">
-    <cfset var sql = "SELECT * FROM fusystems WHERE systemid IN (#createPlaceholders(arguments.systemIds)#) ORDER BY FIELD(systemid, #createPlaceholders(arguments.systemIds)#)">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
-            #sql#
-            <cfloop array="#arguments.systemIds#" index="systemId">
-                <cfqueryparam value="#systemId#" cfsqltype="CF_SQL_INTEGER">
-            </cfloop>
-            <cfloop array="#arguments.systemIds#" index="systemId">
-                <cfqueryparam value="#systemId#" cfsqltype="CF_SQL_INTEGER">
-            </cfloop>
-        </cfquery>
-        
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getOrderedFusystems: #cfcatch.message# Query: #sql# Parameters: #arguments.systemIds#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+    <cfquery name="result" datasource="abod">
+        SELECT * 
+        FROM fusystems 
+        WHERE systemid IN (
+            <cfqueryparam value="#arguments.systemIds#" cfsqltype="CF_SQL_INTEGER" list="true">
+        )
+        ORDER BY FIELD(systemid, #arguments.systemIds#)
+    </cfquery>
     
     <cfreturn result>
 </cffunction>
+
+
 <cffunction name="SELfusystems_24321" access="public" returntype="query">
     <cfargument name="systemID" type="numeric" required="true">
     <cfargument name="userID" type="numeric" required="true">

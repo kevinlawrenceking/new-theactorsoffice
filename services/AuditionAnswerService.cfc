@@ -1,24 +1,18 @@
-<cfcomponent displayname="AuditionAnswerService" hint="Handles operations for AuditionAnswer table" output="false"> 
-<cffunction name="DELaudanswers" access="public" returntype="void">
-    <cfargument name="eventid" type="numeric" required="true">
-    
-    <cftry>
+<cfcomponent displayname="AuditionAnswerService" hint="Handles operations for AuditionAnswer table" output="false">
+
+    <cffunction name="DELaudanswers" access="public" returntype="void">
+        <cfargument name="eventid" type="numeric" required="true">
+
         <cfquery datasource="abod">
             DELETE FROM audanswers
             WHERE eventid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.eventid#">
         </cfquery>
-        
-        <cfcatch type="any">
-            <cflog file="application" type="error" text="Error in deleteAudAnswersByEventId: #cfcatch.message#; Query: DELETE FROM audanswers WHERE eventid = #arguments.eventid#;">
-            <cfthrow>
-        </cfcatch>
-    </cftry>
-</cffunction>
-<cffunction name="INSaudanswers" access="public" returntype="void">
-    <cfargument name="qid" type="numeric" required="true">
-    <cfargument name="eventid" type="numeric" required="true">
+    </cffunction>
 
-    <cftry>
+    <cffunction name="INSaudanswers" access="public" returntype="void">
+        <cfargument name="qid" type="numeric" required="true">
+        <cfargument name="eventid" type="numeric" required="true">
+
         <cfquery datasource="abod">
             INSERT INTO audanswers (qid, eventid)
             VALUES (
@@ -26,19 +20,13 @@
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.eventid#">
             )
         </cfquery>
+    </cffunction>
 
-        <cfcatch type="any">
-            <cflog file="application" text="Error inserting into audanswers: #cfcatch.message#" type="error">
-            <cflog file="application" text="Query: INSERT INTO audanswers (qid, eventid) VALUES (#arguments.qid#, #arguments.eventid#)" type="error">
-        </cfcatch>
-    </cftry>
-</cffunction>
-<cffunction name="UPDaudanswers" access="public" returntype="void">
-    <cfargument name="new_qtype" type="string" required="true">
-    <cfargument name="new_value" required="true">
-    <cfargument name="new_answerID" type="numeric" required="true">
+    <cffunction name="UPDaudanswers" access="public" returntype="void">
+        <cfargument name="new_qtype" type="string" required="true">
+        <cfargument name="new_value" required="true">
+        <cfargument name="new_answerID" type="numeric" required="true">
 
-    <cftry>
         <cfquery datasource="abod">
             UPDATE audanswers SET 
             <cfif arguments.new_qtype eq "text">
@@ -50,24 +38,18 @@
             </cfif>
             WHERE answerID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_answerID#">
         </cfquery>
-        
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating audanswers: #cfcatch.message# Query: #cfcatch.query# Parameters: new_qtype=#arguments.new_qtype#, new_value=#arguments.new_value#, new_answerID=#arguments.new_answerID#">
-            <cfthrow>
-        </cfcatch>
-    </cftry>
-</cffunction>
-<cffunction name="INSaudanswers_24506" access="public" returntype="void">
-    <cfargument name="new_qID" type="numeric" required="true">
-    <cfargument name="new_eventid" type="numeric" required="true">
-    <cfargument name="new_aText" type="string" required="true">
-    <cfargument name="new_aRating" type="numeric" required="true">
-    <cfargument name="new_aMemo" type="string" required="true">
-    <cfargument name="new_isDeleted" type="boolean" required="true">
+    </cffunction>
 
-    <cftry>
+    <cffunction name="INSaudanswers_24506" access="public" returntype="void">
+        <cfargument name="new_qID" type="numeric" required="true">
+        <cfargument name="new_eventid" type="numeric" required="true">
+        <cfargument name="new_aText" type="string" required="true">
+        <cfargument name="new_aRating" type="numeric" required="true">
+        <cfargument name="new_aMemo" type="string" required="true">
+        <cfargument name="new_isDeleted" type="boolean" required="true">
+
         <cfquery datasource="abodName">
-            INSERT INTO audanswers (qID, eventideventid, eventid, aText, aRating, aMemo, isDeleted)
+            INSERT INTO audanswers (qID, eventid, aText, aRating, aMemo, isDeleted)
             VALUES (
                 <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_qID#" null="#NOT len(trim(arguments.new_qID))#">,
                 <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#" null="#NOT len(trim(arguments.new_eventid))#">,
@@ -77,22 +59,17 @@
                 <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
             )
         </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error inserting into audanswers: #cfcatch.message#">
-            <cfrethrow>
-        </cfcatch>
-    </cftry>
-</cffunction>
-<cffunction name="UPDaudanswers_24507" access="public" returntype="void">
-    <cfargument name="new_qID" type="numeric" required="true">
-    <cfargument name="new_eventid" type="numeric" required="true">
-    <cfargument name="new_aText" type="string" required="true">
-    <cfargument name="new_aRating" type="numeric" required="true">
-    <cfargument name="new_aMemo" type="string" required="true">
-    <cfargument name="new_isDeleted" type="boolean" required="true">
-    <cfargument name="new_answerID" type="numeric" required="true">
+    </cffunction>
 
-    <cftry>
+    <cffunction name="UPDaudanswers_24507" access="public" returntype="void">
+        <cfargument name="new_qID" type="numeric" required="true">
+        <cfargument name="new_eventid" type="numeric" required="true">
+        <cfargument name="new_aText" type="string" required="true">
+        <cfargument name="new_aRating" type="numeric" required="true">
+        <cfargument name="new_aMemo" type="string" required="true">
+        <cfargument name="new_isDeleted" type="boolean" required="true">
+        <cfargument name="new_answerID" type="numeric" required="true">
+
         <cfquery datasource="abod">
             UPDATE audanswers 
             SET 
@@ -105,9 +82,6 @@
             WHERE 
                 answerID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_answerID#">
         </cfquery>
-        <cfcatch>
-            <cflog file="application" text="Error updating audanswers: #cfcatch.message#" type="error">
-            <cfrethrow>
-        </cfcatch>
-    </cftry>
-</cffunction></cfcomponent>
+    </cffunction>
+
+</cfcomponent>

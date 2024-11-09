@@ -71,7 +71,7 @@
 </Cfoutput>
 
 <cfparam name="valuetext" default="">
-<cfinclude template="/include/qry/cities.cfm" />
+<cfinclude template="/include/qry/cities_448_1.cfm" />
 
 <!--- Set default duration hours if not provided --->
 <cfif #aud_det.new_durhours# is "">

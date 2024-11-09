@@ -1527,7 +1527,6 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     
     <cfset var result = "">
     
-    <cftry>
         <cfquery name="result" datasource="#abod#">
             SELECT 
                 p.audprojectid AS recid, 
@@ -1627,7 +1626,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
         <cfreturn result>
         
         <!--- Error handling --->
-        <cfcatch type="any">
+ 
           <!--- Log the error --->
           <cflog file="#yourLogFile#" text="#cfcatch.message#" />
           <!--- Return an empty query --->
@@ -1640,7 +1639,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
           <!--- Assuming _emptyQueryComponent_ and _emptyQueryMethod_ are defined to return an empty query structure --->
           <!--- Return the empty query --->
           <return _emptyQuery_ />
-        </cfcatch>
+ 
     </cffunction>
 <cffunction name="INSaudprojects_24585" access="public" returntype="void">
     <cfargument name="new_projName" type="string" required="true">
@@ -1655,7 +1654,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     <cfargument name="isdirect" type="boolean" required="true">
     <cfargument name="new_contactid" type="numeric" required="false">
 
-    <cftry>
+ 
         <cfquery datasource="#application.datasource#">
             INSERT INTO audprojects (
                 projName, 
@@ -1687,11 +1686,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
                 </cfif>
             );
         </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="[insertAudProject] Error: #cfcatch.message#" />
-            <!--- Optionally rethrow or handle the error as needed --->
-        </cfcatch>
-    </cftry>
+
 </cffunction>
 <cffunction name="UPDaudprojects_24586" access="public" returntype="void">
     <cfargument name="new_projName" type="string" required="true">
@@ -1703,7 +1698,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="new_audprojectID" type="numeric" required="true">
 
-    <cftry>
+
         <cfquery datasource="#application.datasource#">
             UPDATE audprojects 
             SET 
@@ -1717,18 +1712,14 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
             WHERE 
                 audprojectID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audprojectID#">
         </cfquery>
-        <cfcatch>
-            <cflog file="application" text="Error updating audprojects: #cfcatch.message#, Query: #cfcatch.detail#">
-            <cfthrow message="Error updating audprojects." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+      
 </cffunction>
 <cffunction name="DETaudprojects_24716" access="public" returntype="query">
     <cfargument name="audprojectID" type="numeric" required="true">
 
     <cfset var result = "">
     
-    <cftry>
+
         <cfquery name="result" datasource="abod">
             SELECT 
                 proj.audprojectID, 
@@ -1762,10 +1753,5 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
         </cfquery>
         
         <cfreturn result>
-        
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getProjectDetails: #cfcatch.message#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+    
 </cffunction></cfcomponent>
