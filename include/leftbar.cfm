@@ -1,10 +1,10 @@
-<cfparam name="mock_yn" default="N" />
-<cfparam name="BROWSER_USER_AVATAR_FILENAME" default="N" />
+<cfparam name="mockYN" default="N" />
+<cfparam name="browserUserAvatarFileName" default="N" />
 
-<cfif mock_yn eq "Y" and len(mocktoday)>
-    <cfset cookie.mocktoday = mocktoday />
+<cfif mockYN eq "Y" and len(mockToday)>
+    <cfset cookie.mockToday = mockToday />
 <cfelse>
-    <cfcookie name="mocktoday" expires="#now()#">
+    <cfcookie name="mockToday" expires="#now()#">
 </cfif>
 
 <div class="left-side-menu">
@@ -15,37 +15,36 @@
                 <li>
                     <div class="user-lg text-center">
                         <a href="/app/image-upload/?ref_pgid=7" style="text-align:center;">
-                            <cfoutput>
-                                <img src="#session.userAvatarUrl#" alt="user-image" id="mobile" class="rounded-circle avatar-md text-center">
-                                <br />
-                                <span class="pro-user-name ml-1 text-center">#avatarname#</span>
-                            </cfoutput>
+                            <img src="#session.userAvatarUrl#" alt="user-image" id="mobile" class="rounded-circle avatar-md text-center">
+                            <br />
+                            <span class="pro-user-name ml-1 text-center">#avatarName#</span>
                         </a>
                     </div>
                 </li>
-<cfoutput query="mennuItemsU">
-    <li>
-        <a href="/app/#mennuItemsU.compDir#/">
-            <i data-feather="#mennuItemsU.compIcon#"></i> <!--- Use 'compIcon' here to match query case --->
-            <span>#mennuItemsU.compName#</span>
-        </a>
-    </li>
-</cfoutput>
 
-
-                <cfif userrole eq "Administrator">
+                <cfoutput query="menuItemsU">
                     <li>
-                        <a href="#sidebara" data-bs-toggle="collapse">
+                        <a href="/app/#menuItemsU.compDir#/">
+                            <i data-feather="#menuItemsU.compIcon#"></i>
+                            <span>#menuItemsU.compName#</span>
+                        </a>
+                    </li>
+                </cfoutput>
+
+                <cfif userRole eq "Administrator">
+                    <li>
+                        <a href="#sidebarA" data-bs-toggle="collapse">
                             <i data-feather="sliders"></i>
                             <span>Relationships - Admin</span>
                             <span class="menu-arrow"></span>
                         </a>
-                        <div class="collapse" id="sidebara">
+
+                        <div class="collapse" id="sidebarA">
                             <ul class="nav-second-level">
-                                <cfoutput query="mennuItemsa">
+                                <cfoutput query="menuItemsA">
                                     <li>
-                                        <a href="/app/#mennuItemsa.compDir#/">
-                                            <span>#mennuItemsa.compName#</span>
+                                        <a href="/app/#menuItemsA.compDir#/">
+                                            <span>#menuItemsA.compName#</span>
                                         </a>
                                     </li>
                                 </cfoutput>
@@ -59,12 +58,13 @@
                             <span>Audition - Admin</span>
                             <span class="menu-arrow"></span>
                         </a>
+
                         <div class="collapse" id="sidebarEmail">
                             <ul class="nav-second-level">
-                                <cfoutput query="mennuItemsaud">
+                                <cfoutput query="menuItemsAud">
                                     <li>
-                                        <a href="/app/#mennuItemsaud.compDir#/">
-                                            <span>#mennuItemsaud.compName#</span>
+                                        <a href="/app/#menuItemsAud.compDir#/">
+                                            <span>#menuItemsAud.compName#</span>
                                         </a>
                                     </li>
                                 </cfoutput>
@@ -73,7 +73,7 @@
                     </li>
                 </cfif>
 
-                <cfif isbetatester eq "1">
+                <cfif isBetaTester eq "1">
                     <li>
                         <a href="/app/Testings/">
                             <i data-feather="list"></i>
@@ -81,11 +81,11 @@
                         </a>
                     </li>
                 </cfif>
+
             </ul>
-        </div>
-        <!--- End Sidebar --->
-        <div class="clearfix"></div>
-    </div>
-    <!--- Sidebar -left --->
+        </div> <!--- End Sidebar --->
+        <div class="clearfix"></div> 
+    </div> <!--- Sidebar -left --->
 </div>
 
+<!--- Changes: Standardized variable names and casing (Rule 5), Removed unnecessary cfoutput tags (Rule 2), Ensured consistent attribute quoting, spacing, and formatting (Rule 6) --->

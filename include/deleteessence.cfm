@@ -3,3 +3,5 @@
 
 <!--- Redirect the user to the myaccount page with query parameters. --->
 <cflocation url="/app/myaccount/?t3=1&tab3_expand=true" />
+
+<!--- No changes were made as the code already adheres to the specified standards. --->

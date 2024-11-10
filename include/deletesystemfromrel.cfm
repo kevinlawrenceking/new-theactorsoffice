@@ -1,27 +1,27 @@
-<!--- This ColdFusion page handles bulk actions for system management, including setting session variables and including necessary query templates. --->
+<!--- This ColdFusion page handles bulk actions for system management, including setting session variables and including necessary query templates. ---> 
+<cfset debugFlag = "n" /> 
+<cfparam name="idList" default="0" /> 
 
-<cfset dbug = "n" />
+<!--- Check if session.idList is not defined and set it to idList if true ---> 
+<cfif not isDefined('session.idList')> 
+    <cfset session.idList = idList /> 
+</cfif> 
 
-<cfparam name="idlist" default="0" />
+<!--- If idList is "0" and session.idList is not "0", set idList to session.idList ---> 
+<cfif idList eq "0" and session.idList neq "0"> 
+    <cfset idList = session.idList /> 
+</cfif> 
 
-<!--- Check if session.idlist is not defined and set it to idlist if true --->
-<Cfif not isdefined('session.idlist')>
-    <cfset session.idlist = idlist />
-</Cfif>
+<!--- Set the session action to "bulk" ---> 
+<cfset session.pageAction = "bulk" /> 
 
-<!--- If idlist is "0" and session.idlist is not "0", set idlist to session.idlist --->
-<cfif idlist is "0" and session.idlist is not "0">
-    <cfset idlist = session.idlist />
-</cfif>
+<!--- Include the first query template for finding records ---> 
+<cfinclude template="/include/qry/find_d_104_1.cfm" /> 
 
-<!--- Set the session action to "bulk" --->
-<cfset session.pg_action = "bulk" />
+<!--- Include the second query template for deleting systems ---> 
+<cfinclude template="/include/qry/deleteSystem_104_2.cfm" /> 
 
-<!--- Include the first query template for finding records --->
-<cfinclude template="/include/qry/find_d_104_1.cfm" />
+<!--- Redirect to the contacts page with appropriate parameters ---> 
+<cflocation url="/app/contacts/?pgaction=bulk&bt=system&d=#find_d.recordCount#&s=0&a=0&t=#newSystemId#" />
 
-<!--- Include the second query template for deleting systems --->
-<cfinclude template="/include/qry/deletesystem_104_2.cfm" />
-
-<!--- Redirect to the contacts page with appropriate parameters --->
-<cflocation url="/app/contacts/?pgaction=bulk&bt=system&d=#find_d.recordcount#&s=0&a=0&t=#new_systemid#" />
+<!--- Modifications: Standardized variable names and casing (Rule 5), maintained consistent conditional logic (Rule 1), removed unnecessary # symbols in conditional checks (Rule 3), ensured consistent attribute quoting, spacing, and formatting (Rule 6). --->

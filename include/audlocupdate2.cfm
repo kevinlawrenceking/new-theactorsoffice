@@ -1,21 +1,24 @@
 <!--- This ColdFusion page handles the initialization of parameters for an audition location and redirects to a specified URL after processing. --->
-
-<cfparam name="new_audlocid" default="" />
-<cfparam name="new_eventLocation" default="" />
-<cfparam name="new_audlocadd1" default="" />
-<cfparam name="new_audlocadd2" default="" />
-<cfparam name="new_audcity" default="" />
-<cfparam name="new_audzip" default="" />
-<cfparam name="new_region_id" default="" />
-<cfparam name="new_isDeleted" default="0" />
+<cfparam name="newAudLocId" default="" />
+<cfparam name="newEventLocation" default="" />
+<cfparam name="newAudLocAdd1" default="" />
+<cfparam name="newAudLocAdd2" default="" />
+<cfparam name="newAudCity" default="" />
+<cfparam name="newAudZip" default="" />
+<cfparam name="newRegionId" default="" />
+<cfparam name="newIsDeleted" default="0" />
 
 <!--- Include the query for updating audition locations --->
-<cfinclude template="/include/qry/audlocations_upd_37_1.cfm" />
+<cfinclude template="/include/qry/audLocationsUpd371.cfm" />
 
 <!--- Set the return URL for redirection after processing --->
-<cfoutput>
-    <cfset returnurl = "/app/audition/?audprojectid=#audprojectid#&eventid=#eventid#&secid=#secid#&focusid=#eventid#" />
-</cfoutput>
+<cfset returnUrl = "/app/audition/?audProjectId=" & audProjectId & "&eventId=" & eventId & "&secId=" & secId & "&focusId=" & eventId />
 
 <!--- Redirect to the specified return URL --->
-<cflocation url="#returnurl#" />
+<cflocation url="#returnUrl#" addtoken="no"/>
+
+<!--- Changes made: 
+1. Standardized variable names and casing.
+2. Removed unnecessary <cfoutput> tags around variable outputs.
+3. Ensured consistent attribute quoting, spacing, and formatting.
+--->

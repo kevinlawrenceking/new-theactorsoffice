@@ -1,5 +1,3 @@
-<!--- This ColdFusion page contains the navigation bar and search functionality for the application. --->
-
 <div class="navbar-custom">
     <div class="container-fluid">
         <ul class="list-unstyled topnav-menu float-end mb-0">
@@ -22,7 +20,6 @@
                     </div>
                 </form>
             </li>
-
             <li class="dropdown d-inline-block d-lg-none">
                 <!--- Mobile Search Dropdown --->
                 <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
@@ -34,7 +31,6 @@
                     </form>
                 </div>
             </li>
-
             <li class="dropdown d-none d-lg-inline-block topbar-dropdown">
                 <!--- Help and Support Dropdown --->
                 <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
@@ -44,44 +40,35 @@
                     <div class="p-lg-1">
                         <div class="row no-gutters">
                             <div class="col">
-                                <cfoutput>
-                                    <a class="dropdown-icon-item" href="https://theactorsoffice.helpwise.help/" target="FAQ">
-                                        <img src="#application.imagesUrl#/faq.png?ver=3" alt="FAQ">
-                                        <span>FAQ</span>
-                                    </a>
-                                </cfoutput>
+                                <a class="dropdown-icon-item" href="https://theactorsoffice.helpwise.help/" target="FAQ">
+                                    <img src="<cfoutput>#application.imagesUrl#</cfoutput>/faq.png?ver=3" alt="FAQ">
+                                    <span>FAQ</span>
+                                </a>
                             </div>
                             <div class="col">
-                                <cfoutput>
-                                    <a class="dropdown-icon-item" href="https://www.facebook.com/groups/taousercommunity" target="usercommunity">
-                                        <img src="#application.imagesUrl#/usercom.png?ver=3" alt="User Community">
-                                        <span>User Community</span>
-                                    </a>
-                                </cfoutput>
+                                <a class="dropdown-icon-item" href="https://www.facebook.com/groups/taousercommunity" target="usercommunity">
+                                    <img src="<cfoutput>#application.imagesUrl#</cfoutput>/usercom.png?ver=3" alt="User Community">
+                                    <span>User Community</span>
+                                </a>
                             </div>
                             <cfif userRole EQ "Administrator">
                                 <div class="col">
-                                    <cfoutput>
-                                        <a href="remoteSupportForm.cfm" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteSupportForm" class="dropdown-icon-item">
-                                            <img src="#application.imagesUrl#/feedback.png?ver=3" alt="Feedback">
-                                            <span>Create a Ticket</span>
-                                        </a>
-                                    </cfoutput>
+                                    <a href="remoteSupportForm.cfm" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="#remoteSupportForm" class="dropdown-icon-item">
+                                        <img src="<cfoutput>#application.imagesUrl#</cfoutput>/feedback.png?ver=3" alt="Feedback">
+                                        <span>Create a Ticket</span>
+                                    </a>
                                 </div>
                             </cfif>
                             <div class="col">
-                                <cfoutput>
-                                    <a class="dropdown-icon-item" href="mailto:support@theactorsoffice.com?subject=I%20Need%20Some%20Support%20with%20TAO">
-                                        <img src="#application.imagesUrl#/contact.png?ver=3" alt="Contact Support">
-                                        <span>Contact Support</span>
-                                    </a>
-                                </cfoutput>
+                                <a class="dropdown-icon-item" href="mailto:support@theactorsoffice.com?subject=I%20Need%20Some%20Support%20with%20TAO">
+                                    <img src="<cfoutput>#application.imagesUrl#</cfoutput>/contact.png?ver=3" alt="Contact Support">
+                                    <span>Contact Support</span>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </li>
-
             <li class="dropdown notification-list topbar-dropdown">
                 <!--- User Profile Dropdown --->
                 <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
@@ -103,26 +90,24 @@
             </li>
         </ul>
 
-        <Cfoutput>
-            <div class="logo-box">
-                <a href="/app/" class="logo logo-dark text-center">
-                    <span class="logo-sm">
-                        <img src="#application.imagesUrl#/logo-sm.png" alt="" height="30">
-                    </span>
-                    <span class="logo-lg">
-                        <img src="#application.imagesUrl#/logo-sm.png" alt="" height="30">
-                    </span>
-                </a>
-                <a href="/app/" class="logo logo-light text-center">
-                    <span class="logo-sm">
-                        <img src="#application.imagesUrl#/logo-sm.png" alt="" height="30">
-                    </span>
-                    <span class="logo-lg">
-                        <img src="#application.imagesUrl#/logo-light.png" alt="" height="30">
-                    </span>
-                </a>
-            </div>
-        </cfoutput>
+        <div class="logo-box">
+            <a href="/app/" class="logo logo-dark text-center">
+                <span class="logo-sm">
+                    <img src="<cfoutput>#application.imagesUrl#</cfoutput>/logo-sm.png" alt="" height="30">
+                </span>
+                <span class="logo-lg">
+                    <img src="<cfoutput>#application.imagesUrl#</cfoutput>/logo-sm.png" alt="" height="30">
+                </span>
+            </a>
+            <a href="/app/" class="logo logo-light text-center">
+                <span class="logo-sm">
+                    <img src="<cfoutput>#application.imagesUrl#</cfoutput>/logo-sm.png" alt="" height="30">
+                </span>
+                <span class="logo-lg">
+                    <img src="<cfoutput>#application.imagesUrl#</cfoutput>/logo-light.png" alt="" height="30">
+                </span>
+            </a>
+        </div>
 
         <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
             <li>
@@ -144,5 +129,8 @@
         </ul>
 
         <div class="clearfix"></div>
+
     </div>
 </div>
+
+<!--- Changes: Removed unnecessary cfoutput tags around variable outputs, standardized variable names and casing, ensured consistent attribute quoting, spacing, and formatting. --->

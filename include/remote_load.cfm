@@ -1,22 +1,22 @@
 <!--- This ColdFusion page sets up database connection parameters based on the host environment. --->
-
 <cfinclude template="/include/qry/findit_278_1.cfm" />
 
-<cfset current_ver = int(findit.verid) />
+<cfset currentVersion = int(findit.verid) /> <!--- Standardized variable name and casing --->
 
 <!--- Check the host environment to determine database settings --->
 <cfif host eq "app" or host eq "uat">
-    
-    <cfset dsn = "abo" />
-    <cfset rev = current_ver />
-    <cfset suffix = IIF(host eq "app", "_1.5", "") />
-    <cfset information_schema = "actorsbusinessoffice" />
-    
+    <cfset dataSourceName = "abo" />
+    <cfset revision = currentVersion />
+    <cfset suffix = (host eq "app") ? "_1.5" : "" /> <!--- Maintain consistent and efficient conditional logic --->
+    <cfset informationSchema = "actorsbusinessoffice" />
 <cfelse>
-    
-    <cfset dsn = "abod" />
-    <cfset rev = rand() />
+    <cfset dataSourceName = "abod" />
+    <cfset revision = rand() />
     <cfset suffix = "" />
-    <cfset information_schema = "new_development" />
-    
+    <cfset informationSchema = "new_development" />
 </cfif>
+
+<!--- Changes: 
+1. Standardized variable names and casing.
+2. Maintain consistent and efficient conditional logic.
+--->

@@ -1,10 +1,6 @@
-<!--- This ColdFusion page handles the display and submission of an event form in a modal dialog. --->
-
 <script>
     $(document).ready(function() {
-        <!--- Event listener for showing the modal and loading content ---> 
         $("#addeventtype").on("show.bs.modal", function(event) {
-            <!--- Place the returned HTML into the selected element --->
             $(this).find(".modal-body").load("/include/addeventtype.cfm");
         });
     });
@@ -18,7 +14,7 @@
                 <h5 class="modal-title" id="modal-title">Event</h5>
             </div>
             <div class="modal-body p-4">
-                <form class="needs-validation" name="event-form" id="form-event" novalidate>
+                <form class="needs-validation" name="eventForm" id="formEvent" novalidate>
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
@@ -30,7 +26,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label class="control-label">Category</label>
-                                <select class="form-control custom-select" name="category" id="event-category" required>
+                                <select class="form-control custom-select" name="category" id="eventCategory" required>
                                     <option value="bg-danger" selected>Danger</option>
                                     <option value="bg-success">Success</option>
                                     <option value="bg-primary">Primary</option>
@@ -84,15 +80,17 @@
                     </div>
                     <div class="row mt-2">
                         <div class="col-6">
-                            <button type="button" class="btn btn-danger btn-sm" id="btn-delete-event">Delete</button>
+                            <button type="button" class="btn btn-danger btn-sm" id="btnDeleteEvent">Delete</button>
                         </div>
                         <div class="col-6 text-right">
                             <button type="button" class="btn btn-light mr-1 btn-sm" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary btn-sm waves-effect waves-light" id="btn-save-event">Save</button>
+                            <button type="submit" class="btn btn-primary btn-sm waves-effect waves-light" id="btnSaveEvent">Save</button>
                         </div>
                     </div>
                 </form>
             </div>
-        </div> <!--- end modal-content --->
-    </div> <!--- end modal dialog --->
+        </div> 
+    </div> 
 </div>
+
+<!--- Changes made: Standardized variable names and casing (Rule 5), Ensured consistent attribute quoting, spacing, and formatting (Rule 6) --->

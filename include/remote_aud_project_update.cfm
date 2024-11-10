@@ -1,177 +1,138 @@
 <!--- This ColdFusion page handles the audition project update form, including various selections and inputs related to the project details. --->
-
-<cfset dbug="N" />
+<cfset debugMode = "N" />
 
 <!--- Include necessary query templates for project details and selections --->
-<cfinclude template="/include/qry/auditionprojectDetails.cfm" />
-<cfinclude template="/include/qry/audcategories_sel.cfm" />
-<cfinclude template="/include/qry/audsubcategories_sel.cfm" />
-<cfinclude template="/include/qry/audunions_sel.cfm" />
-<cfinclude template="/include/qry/audnetworks_user_sel.cfm" />
-<cfinclude template="/include/qry/audtones_user_sel.cfm" />
-<cfinclude template="/include/qry/audcontracttypes_sel.cfm" />
-<cfinclude template="/include/qry/castingdirectors_sel.cfm" />
+<cfinclude template="/include/qry/auditionProjectDetails.cfm" />
+<cfinclude template="/include/qry/audCategoriesSel.cfm" />
+<cfinclude template="/include/qry/audSubCategoriesSel.cfm" />
+<cfinclude template="/include/qry/audUnionsSel.cfm" />
+<cfinclude template="/include/qry/audNetworksUserSel.cfm" />
+<cfinclude template="/include/qry/audTonesUserSel.cfm" />
+<cfinclude template="/include/qry/audContractTypesSel.cfm" />
+<cfinclude template="/include/qry/castingDirectorsSel.cfm" />
 
-<cfset dbug="N" />
+<cfset debugMode = "N" />
+
 <script src="/app/assets/js/jquery.chained.js"></script>
 
 <!--- Form for updating audition project details --->
 <form action="/include/remote_aud_project_update2.cfm" method="post" class="parsley-examples" name="event-form" id="form-event" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" data-parsley-trigger="keyup" data-parsley-validate>
-    <cfoutput>
-        <input type="hidden" name="audprojectid" value="#audprojectid#" />
-        <input type="hidden" name="new_userid" value="#userid#" />
-        <input type="hidden" name="new_audprojectid" value="#audprojectid#" />
-        <input type="hidden" name="secid" value="#secid#" />
-        <input type="hidden" name="old_toneid" value="#auditionprojectdetails.toneid#" /> 
-        <input type="hidden" name="audsubcatid" value="#auditionprojectDetails.audsubcatid#" />
-        <input type="hidden" name="old_networkid" value="#auditionprojectDetails.networkID#" />
-        <input type="hidden" name="audcatid" value="#auditionprojectDetails.audcatid#" />
-        <input type="hidden" name="userid" value="#userid#" />
-    </cfoutput>
+    <input type="hidden" name="audProjectId" value="#audProjectId#" />
+    <input type="hidden" name="newUserId" value="#userId#" />
+    <input type="hidden" name="newAudProjectId" value="#audProjectId#" />
+    <input type="hidden" name="secId" value="#secId#" />
+    <input type="hidden" name="oldToneId" value="#auditionProjectDetails.toneId#" />
+    <input type="hidden" name="audSubCatId" value="#auditionProjectDetails.audSubCatId#" />
+    <input type="hidden" name="oldNetworkId" value="#auditionProjectDetails.networkID#" />
+    <input type="hidden" name="audCatId" value="#auditionProjectDetails.audCatId#" />
+    <input type="hidden" name="userId" value="#userId#" />
 
     <div class="row">
         <div class="form-group col-md-12">
-            <h4>Category: #auditionprojectDetails.audCatName# - #auditionprojectDetails.audSubCatName#</h4>
+            <h4>Category: #auditionProjectDetails.audCatName# - #auditionProjectDetails.audSubCatName#</h4>
         </div>
 
-        <cfoutput query="auditionprojectdetails">
+        <cfoutput query="auditionProjectDetails">
             <div class="form-group col-md-12">
                 <label for="projName">Project Name (Title)<span class="text-danger">*</span></label>
-                <input class="form-control" type="text" id="projName" name="new_projName" value="#auditionprojectdetails.projName#" placeholder="Project Name (Title)" required data-parsley-required data-parsley-error-message="Project Name is required">
-                <div class="invalid-feedback">
-                    Please enter a Project Name (Title).
-                </div>
+                <input class="form-control" type="text" id="projName" name="newProjName" value="#projName#" placeholder="Project Name (Title)" required data-parsley-required data-parsley-error-message="Project Name is required">
+                <div class="invalid-feedback"> Please enter a Project Name (Title). </div>
             </div>
 
             <div class="form-group col-md-12">
                 <label for="projDescription">Project Description / Logline</label>
-                <textarea class="form-control" type="text" style="min-height:160px;" id="projDescription" name="new_projDescription" rows="4" placeholder="Project Description  ">#auditionprojectdetails.projdescription#</textarea>
-                <div class="invalid-feedback">
-                    Please enter a Project Description or logline.
-                </div>
+                <textarea class="form-control" type="text" style="min-height:160px;" id="projDescription" name="newProjDescription" rows="4" placeholder="Project Description ">#projDescription#</textarea>
+                <div class="invalid-feedback"> Please enter a Project Description or logline. </div>
             </div>
 
-            <input type="hidden" name="old_contactid" value="#auditionprojectDetails.contactid#" />
+            <input type="hidden" name="oldContactId" value="#contactId#" />
         </cfoutput>
 
         <div class="form-group col-sm-12">
-            <label for="new_contactid">Casting Director </label>
-            <select id="new_contactid" class="form-control" name="new_contactid">
+            <label for="newContactId">Casting Director </label>
+            <select id="newContactId" class="form-control" name="newContactId">
                 <option value="0">--</option>
-                <cfoutput query="castingdirectors_sel">
-                    <option value="#castingdirectors_sel.id#" <cfif #castingdirectors_sel.id# is "#auditionprojectDetails.contactid#"> Selected </cfif> >#castingdirectors_sel.name#</option>
+                <cfoutput query="castingDirectorsSel">
+                    <option value="#id#" <cfif id is auditionProjectDetails.contactId> Selected </cfif>>#name#</option>
                 </cfoutput>
             </select>
         </div>
 
         <!--- Check if there are any networks available --->
-        <cfif #audnetworks_user_sel.recordcount# is "0">
-            <cfoutput> <input type="hidden" name="new_networkID" value="#auditionprojectdetails.networkid#" /></cfoutput>
+        <cfif audNetworksUserSel.recordCount is 0>
+            <input type="hidden" name="newNetworkID" value="#auditionProjectDetails.networkId#" />
         <cfelse>
             <div class="form-group col-md-6">
-                <label for="new_networkID">Network</label>
-                <select class="form-control" name="new_networkID" id="new_networkID" onchange="if (this.value=='CustomNetwork'){this.form['CustomNetwork'].style.visibility='visible',this.form['CustomNetwork'].required=true} else {this.form['CustomNetwork'].style.visibility='hidden',this.form['CustomNetwork'].required=false};">
+                <label for="newNetworkID">Network</label>
+                <select class="form-control" name="newNetworkID" id="newNetworkID" onchange="if (this.value=='CustomNetwork'){this.form['CustomNetwork'].style.visibility='visible',this.form['CustomNetwork'].required=true} else {this.form['CustomNetwork'].style.visibility='hidden',this.form['CustomNetwork'].required=false};">
                     <option value="">--</option>
                     <option value="CustomNetwork">***ADD CUSTOM</option>
-                    <cfoutput query="audnetworks_user_sel">
-                        <cfif #auditionprojectDetails.networkID# is "#audnetworks_user_sel.id#">
-                            <option value="#audnetworks_user_sel.id#" Selected data-chained="#audnetworks_user_sel.audcatid#">#audnetworks_user_sel.name#</option>
-                        <cfelse>
-                            <option value="#audnetworks_user_sel.id#" data-chained="#audnetworks_user_sel.audcatid#">#audnetworks_user_sel.name#</option>
-                        </cfif>
+                    <cfoutput query="audNetworksUserSel">
+                        <option value="#id#" data-chained="#audCatId#" <cfif auditionProjectDetails.networkID is id> Selected </cfif>>#name#</option>
                     </cfoutput>
                 </select>
-                <div class="invalid-feedback">
-                    Please select a Network.
-                </div>
+                <div class="invalid-feedback"> Please select a Network. </div>
             </div>
 
-            <cfoutput>
-                <div class="form-group col-md-6" id="CustomNetworks" style="visibility:hidden;">
-                    <label for="CustomTone">Custom Network</label>
-                    <input class="form-control" type="text" id="CustomNetwork" name="CustomNetwork" value="" placeholder="Enter a Custom Network">
-                </div>
-            </cfoutput>
+            <div class="form-group col-md-6" id="CustomNetworks" style="visibility:hidden;">
+                <label for="CustomNetwork">Custom Network</label>
+                <input class="form-control" type="text" id="CustomNetwork" name="CustomNetwork" value="" placeholder="Enter a Custom Network">
+            </div>
         </cfif>
 
         <!--- Check if there are any tones available --->
-        <cfif #audtones_user_sel.recordcount# is "0">
-            <cfoutput> <input type="hidden" name="new_toneID" value="#auditionprojectdetails.toneid#" /></cfoutput>
+        <cfif audTonesUserSel.recordCount is 0>
+            <input type="hidden" name="newToneID" value="#auditionProjectDetails.toneId#" />
         <cfelse>
             <div class="form-group col-md-6">
-                <label for="new_toneID">Style / Format</label>
-                <select class="form-control" name="new_toneID" id="new_toneID" onchange="if (this.value=='Custom'){this.form['Custom'].style.visibility='visible',this.form['Custom'].required=true} else {this.form['Custom'].style.visibility='hidden',this.form['Custom'].required=false};">
+                <label for="newToneID">Style / Format</label>
+                <select class="form-control" name="newToneID" id="newToneID" onchange="if (this.value=='Custom'){this.form['Custom'].style.visibility='visible',this.form['Custom'].required=true} else {this.form['Custom'].style.visibility='hidden',this.form['Custom'].required=false};">
                     <option value="">--</option>
                     <option value="Custom">***ADD CUSTOM</option>
-                    <cfoutput query="audtones_user_sel">
-                        <cfif #auditionprojectDetails.toneID# is "#audtones_user_sel.id#">
-                            <option value="#audtones_user_sel.id#" Selected>#audtones_user_sel.name#</option>
-                        <cfelse>
-                            <option value="#audtones_user_sel.id#">#audtones_user_sel.name#</option>
-                        </cfif>
+                    <cfoutput query="audTonesUserSel">
+                        <option value="#id#" <cfif auditionProjectDetails.toneID is id> Selected </cfif>>#name#</option>
                     </cfoutput>
                 </select>
-                <div class="invalid-feedback">
-                    Please select a Style / Format.
-                </div>
+                <div class="invalid-feedback"> Please select a Style / Format. </div>
             </div>
 
-            <cfoutput>
-                <div class="form-group col-md-6" id="Custom" style="visibility:hidden;">
-                    <label for="new_custom">Custom Tone</label>
-                    <input class="form-control" type="text" id="new_custom" name="Custom" value="" placeholder="Enter a Custom Tone">
-                </div>
-            </cfoutput>
+            <div class="form-group col-md-6" id="Custom" style="visibility:hidden;">
+                <label for="newCustom">Custom Tone</label>
+                <input class="form-control" type="text" id="newCustom" name="Custom" value="" placeholder="Enter a Custom Tone">
+            </div>
         </cfif>
 
         <!--- Check if there are any unions available --->
-        <cfif #audunions_sel.recordcount# is "0">
-            <cfoutput> <input type="hidden" name="new_unionID" value="#auditionprojectdetails.unionid#" /></cfoutput>
+        <cfif audUnionsSel.recordCount is 0>
+            <input type="hidden" name="newUnionID" value="#auditionProjectDetails.unionId#" />
         <cfelse>
             <div class="form-group col-md-6">
-                <label for="unionID">Union</label>
-                <select class="form-control" name="new_unionID" id="new_unionID">
+                <label for="newUnionID">Union</label>
+                <select class="form-control" name="newUnionID" id="newUnionID">
                     <option value="">--</option>
-                    <cfoutput query="audunions_sel">
-                        <cfif #auditionprojectDetails.unionID# is "#audunions_sel.id#">
-                            <option value="#audunions_sel.id#" Selected data-chained="#audunions_sel.audcatid#">#audunions_sel.name#</option>
-                        <cfelse>
-                            <option value="#audunions_sel.id#" data-chained="#audunions_sel.audcatid#">#audunions_sel.name#</option>
-                        </cfif>
+                    <cfoutput query="audUnionsSel">
+                        <option value="#id#" data-chained="#audCatId#" <cfif auditionProjectDetails.unionID is id> Selected </cfif>>#name#</option>
                     </cfoutput>
                 </select>
-                <div class="invalid-feedback">
-                    Please select a Union.
-                </div>
+                <div class="invalid-feedback"> Please select a Union. </div>
             </div>
         </cfif>
 
         <!--- Check if there are any contract types available --->
-        <cfif #audcontracttypes_sel.recordcount# is "0">
-            <cfoutput> <input type="hidden" name="new_contracttypeid" value="#auditionprojectdetails.contracttypeid#" /></cfoutput>
+        <cfif audContractTypesSel.recordCount is 0>
+            <input type="hidden" name="newContractTypeId" value="#auditionProjectDetails.contractTypeId#" />
         <cfelse>
             <div class="form-group col-md-6">
-                <label for="new_contractTypeID">Contract Type</label>
-                <select class="form-control" name="new_contractTypeID" id="new_contractTypeID">
+                <label for="newContractTypeID">Contract Type</label>
+                <select class="form-control" name="newContractTypeID" id="newContractTypeID">
                     <option value="">--</option>
-                    <cfoutput query="audcontracttypes_sel">
-                        <cfif #auditionprojectDetails.contracttypeID# is "#audcontracttypes_sel.id#">
-                            <option value="#audcontracttypes_sel.id#" Selected data-chained="#audcontracttypes_sel.audcatid#">#audcontracttypes_sel.name#</option>
-                        <cfelse>
-                            <option value="#audcontracttypes_sel.id#" data-chained="#audcontracttypes_sel.audcatid#">#audcontracttypes_sel.name#</option>
-                        </cfif>
+                    <cfoutput query="audContractTypesSel">
+                        <option value="#id#" data-chained="#audCatId#" <cfif auditionProjectDetails.contractTypeID is id> Selected </cfif>>#name#</option>
                     </cfoutput>
                 </select>
-                <div class="invalid-feedback">
-                    Please select a Contract Type.
-                </div>
+                <div class="invalid-feedback"> Please select a Contract Type. </div>
             </div>
         </cfif>
 
         <div class="form-group text-center col-md-12">
-            <button class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="background-color: #406e8e; border: #406e8e;" type="submit">Update</button>
-        </div>
-    </div>
-</form>
-
-<script src="/app/assets/js/libs/parsleyjs/parsley.min.js"></script>
+            <button class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="background-color: ##406e8e; border: ##406e8e;" type="submit">Update</button

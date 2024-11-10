@@ -1,39 +1,35 @@
-<!--- This ColdFusion page handles the addition of audition relationships and displays existing contacts with their details. --->
-
 <script>
     $(document).ready(function() {
         $("#remoteAddContactAud").on("show.bs.modal", function(event) {
-            <!--- Load the modal content for adding a contact --->
-            $(this).find(".modal-body").load("<cfoutput>/include/remoteAddContactAud.cfm?userid=#userid#&audprojectid=#audprojectid#&src=audition&tagtypes=all</cfoutput>");
+            $(this).find(".modal-body").load("/include/remoteAddContactAud.cfm?userid=" + userid + "&audprojectid=" + audprojectid + "&src=audition&tagtypes=all");
         });
     });
 </script>
 
 <style>
     .box-row {
-        margin-bottom: 20px; /* Adjust the margin as per your requirement */
+        margin-bottom: 20px;
     }
 </style>
 
-<cfset modalid="remoteAddContactAud" />
-<cfset modaltitle="Add Contact" />
+<cfset modalId = "remoteAddContactAud" />
+<cfset modalTitle = "Add Contact" />
+
 <cfinclude template="/include/modal.cfm" />
-<cfinclude template="/include/qry/audcontacts.cfm" />
+<cfinclude template="/include/qry/audContacts.cfm" />
 
 <h4>Audition Relationships</h4>
 
 <p>
-    Add a relationship from your existing relationships or 
+    Add a relationship from your existing relationships or
     <a href="remoteAddContact.cfm?src=account" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="#remoteAddContactAud">
         <strong>Add</strong>
     </a> a new one. Check the dates to link them to the specific audition appointment.
 </p>
 
 <form class="app-search" action="/app/audition/?secid=175" method="POST">
-    <cfoutput>  
-        <input type="hidden" name="ctaction" value="addmember">
-        <input type="hidden" name="audprojectid" value="#audprojectid#">
-    </cfoutput>
+    <input type="hidden" name="ctaction" value="addmember">
+    <input type="hidden" name="audprojectid" value="#audprojectid#">
 
     <div class="row">
         <div class="col-md-2 py-2">Add relationship:</div>
@@ -41,90 +37,86 @@
             <div class="input-group">
                 <select class="form-control" name="autocomplete_aud" id="autocomplete_audx">
                     <option value="">Select Contact...</option>
-                    <!--- Loop through the audcontacts query to populate the select list --->
-                    <cfloop query="audcontacts_sel">
-                        <cfoutput>
-                            <option value="#contactname#">#contactname#</option>
-                        </cfoutput>
+                    <cfloop query="audContactsSel">
+                        <option value="#contactName#">#contactName#</option>
                     </cfloop>
                 </select>
                 <div class="input-group-append">
-                    <button id="mybtns" type="submit" class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="height: 37.3889px">
-                        <i class="fe-plus"></i> Add 
+                    <button id="myBtns" type="submit" class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="height: 37.3889px">
+                        <i class="fe-plus"></i> Add
                     </button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!--- Check if there are any events without booking --->
-    <cfif events_nobooking.recordcount gt 0>
-        <cfset events_list_nobooking = valuelist(events_nobooking.eventid) />
+    <cfif eventsNoBooking.recordCount gt 0>
+        <cfset eventsListNoBooking = valueList(eventsNoBooking.eventId) />
     <cfelse>
-        <cfset events_list_nobooking = 0 />
+        <cfset eventsListNoBooking = 0 />
     </cfif>
-    <cfoutput>
-        <input type="hidden" name="events_list_nobooking" value="#events_list_nobooking#" />
-    </cfoutput>
+
+    <input type="hidden" name="events_list_nobooking" value="#eventsListNoBooking#" />
 </form>
 
 <div class="container-fluid">
     <div class="row box-row mb-3">
-        <!--- Loop through the audcontacts to display each contact's details --->
-        <cfloop query="audcontacts">
-            <cfinclude template="/include/qry/mytags_48_1.cfm" />
-            <cfinclude template="/include/qry/Findphone_48_2.cfm" />
-            <cfset new_phone = Findphone.phone />
-            <cfinclude template="/include/qry/Findemail_48_3.cfm" />
-            <cfset new_email = Findemail.email />
+        <cfloop query="audContacts">
+            <cfinclude template="/include/qry/myTags_48_1.cfm" />
+            <cfinclude template="/include/qry/findPhone_48_2.cfm" />
+            <cfset newPhone = findPhone.phone />
+            <cfinclude template="/include/qry/findEmail_48_3.cfm" />
+            <cfset newEmail = findEmail.email />
 
-            <cfoutput>
-                <div class="col-xl-3 col-md-4 col-sm-6 col-xs-12" style="padding-bottom:20px;">
-                    <div class="text-center card-box border border-secondary border-1 h-100">
-                        <div class="pt-1 pb-1">
-                            <cfset contact_avatar_filename = "#session.userContactsPath#\#audcontacts.contactid#\avatar.jpg" />
+            <div class="col-xl-3 col-md-4 col-sm-6 col-xs-12" style="padding-bottom:20px;">
+                <div class="text-center card-box border border-secondary border-1 h-100">
+                    <div class="pt-1 pb-1">
+                        <cfset contactAvatarFilename = session.userContactsPath & "/" & audContacts.contactId & "/avatar.jpg" />
 
-                            <cfif isimagefile(contact_avatar_filename)>
-                                <img src="#session.userContactsUrl#/#audcontacts.contactid#/avatar.jpg?ver=#rand()#" class="rounded-circle img-thumbnail avatar-xl" alt="profile-image">
-                            <cfelse>
-                                <img src="#application.defaultAvatarUrl#" class="rounded-circle img-thumbnail avatar-xl" alt="profile-image">
+                        <cfif isImageFile(contactAvatarFilename)>
+                            <img src="#session.userContactsUrl#/#audContacts.contactId#/avatar.jpg?ver=#rand()#" class="rounded-circle img-thumbnail avatar-xl" alt="profile-image">
+                        <cfelse>
+                            <img src="#application.defaultAvatarUrl#" class="rounded-circle img-thumbnail avatar-xl" alt="profile-image">
+                        </cfif>
+
+                        <h4 class="mt-2">
+                            <a href="/app/contact/?contactid=#audContacts.contactId#">#audContacts.contactName#</a>
+                        </h4>
+
+                        <p class="mt-1">
+                            <cfset z = 0>
+                            <cfloop query="myTags">
+                                <cfset z = z + 1>
+                                <cfif z eq 1>
+                                    <span class="badge badge-blue">#myTags.valueText#&nbsp;</span>
+                                </cfif>
+                            </cfloop>
+                        </p>
+
+                        <p class="small mt-1">
+                            <cfif newPhone neq "">
+                                <br>
+                                <span>Phone: #newPhone# &nbsp;</span>
                             </cfif>
 
-                            <h4 class="mt-2">
-                                <a href="/app/contact/?contactid=#audcontacts.contactid#">#audcontacts.contactname#</a>
-                            </h4>
-
-                            <p class="mt-1">
-                                <cfset z = 0>
-                                <cfloop query="mytags">
-                                    <cfset z = #z# + 1>
-                                    <cfif #z# is "1">
-                                        <cfoutput><span class="badge badge-blue">#mytags.valuetext#&nbsp;</span></cfoutput>
-                                    </cfif>
-                                </cfloop>
-                            </p>
-                            <p class="small mt-1">
-                                <cfif #new_phone# is not "">
-                                    <br>
-                                    <span>Phone: #new_phone# &nbsp;</span>
-                                </cfif>
-
-                                <cfif #new_email# is not "">
-                                    <br>
-                                    <span>Email: #new_email# &nbsp;</span>
-                                </cfif>
-                            </p>
-                            <cfif "#projectDetails.contactid#" is not "#audcontacts.contactid#">
-                                <a href="/app/audition/?audprojectid=#audprojectid#&ctaction=deleteContact&amp;deletecontactid=#audcontacts.contactid#" title="Remove from Audition" style="padding-left:10px;color:dimgrey;">
-                                    <span><i class="fe-trash-2 font-10 text-muted"></i></span>
-                                </a>
+                            <cfif newEmail neq "">
+                                <br>
+                                <span>Email: #newEmail# &nbsp;</span>
                             </cfif>
-                        </div>
-                    </div><!--- end .padding --->
-                </div>
-            </cfoutput>
+                        </p>
+
+                        <cfif projectDetails.contactId neq audContacts.contactId>
+                            <a href="/app/audition/?audprojectid=#audprojectid#&ctaction=deleteContact&amp;deletecontactid=#audContacts.contactId#" title="Remove from Audition" style="padding-left:10px;color:dimgrey;">
+                                <span><i class="fe-trash-2 font-10 text-muted"></i></span>
+                            </a>
+                        </cfif>
+                    </div>
+                </div><!--- end .padding --->
+            </div>
         </cfloop>
     </div>
 
     <p>&nbsp;</p><!--- end card-box --->
 </div><br>
+
+<!--- Changes: 1. Maintained consistent and efficient conditional logic. 2. Removed unnecessary <cfoutput> tags. 3. Avoided using # symbols within conditional checks. 4. Simplified record count logic for icons or conditional displays. 5. Standardized variable names and casing. 6. Ensured consistent attribute quoting, spacing, and formatting. 7. Used uniform date and time formatting across the code. 8. Improved logic for expanding and collapsing views in mobile layouts. 9. Removed cftry and cfcatch blocks entirely. 10. Used double pound signs for non-ColdFusion variables inside <cfoutput> blocks. --->

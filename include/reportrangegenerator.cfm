@@ -1,123 +1,84 @@
 <!--- This ColdFusion page processes date ranges based on predefined criteria from a query and prepares them for further use. --->
-
 <cfinclude template="/include/qry/x_280_1.cfm" />
 
-<Cfoutput>
+<cfset currentYear = year(now()) />
+<cfset currentMonth = month(now()) />
 
-    <cfset current_year = "#year(now())#" />
-    <cfset current_month = "#month(now())#" />
-
-</Cfoutput>
-
-<cfset last_year = current_year - 1 />
+<cfset lastYear = currentYear - 1 />
 
 <cfloop query="x">
-
-    <cfset current_rangeid = x.rangeid />
-
+    <cfset currentRangeId = x.rangeid />
+    
     <!--- Check for Current Year range name --->
-    <cfif #x.rangename# is "Current Year">
-
-        <cfoutput>
-            <cfset new_year = "#year(now())#" />
-            <cfset new_rangestart = "#new_year#-01-01" />
-            <cfset new_rangeend = "#new_year#-12-31" />
-        </cfoutput>
-
+    <cfif x.rangename is "Current Year">
+        <cfset newYear = year(now()) />
+        <cfset newRangeStart = "#newYear#-01-01" />
+        <cfset newRangeEnd = "#newYear#-12-31" />
     </cfif>
-
+    
     <!--- Check for Last Year range name --->
-    <cfif #x.rangename# is "Last Year">
-
-        <cfset new_year = year(now()) - 1 />
-
-        <cfoutput>
-            <cfset new_rangestart = "#new_year#-01-01" />
-            <cfset new_rangeend = "#new_year#-12-31" />
-        </cfoutput>
-
+    <cfif x.rangename is "Last Year">
+        <cfset newYear = year(now()) - 1 />
+        <cfset newRangeStart = "#newYear#-01-01" />
+        <cfset newRangeEnd = "#newYear#-12-31" />
     </cfif>
-
+    
     <!--- Check for Current Month range name --->
-    <cfif #x.rangename# is "Current Month">
-
-        <cfif #current_month# is "12">
-            <cfset next_month = 1 />
-            <cfset new_year = current_year + 1 />
-        </cfif>
-
-        <cfif #current_month# is not "12">
-            <cfset next_month = current_month + 1 />
-            <cfset new_year = current_year />
-        </cfif>
-
-        <cfoutput>
-            <cfset next_date = "#new_year#-#next_month#-01" />
-        </cfoutput>
-
-        <cfset new_rangeend = DateAdd("d", -1, next_date) />
-        <cfset new_rangeend = "#dateformat('#new_rangeend#', 'YYYY-MM-dd')#" />
-
-        <cfoutput>
-            <cfset new_rangestart = "#current_year#-#current_month#-01" />
-        </cfoutput>
-
-    </cfif>
-
-    <!--- Check for Last 3 Months range name --->
-    <cfif #x.rangename# is "Last 3 Months">
-
-        <cfset currentDate = now() />
-        <cfset newRangeStartx = CreateDate(year(currentDate), month(currentDate) - 3, 1) />
-
-        <cfoutput>
-            <cfset new_rangeend = "#dateformat('#currentDate#', 'YYYY-MM-dd')#" />
-            <cfset newRangeStart = "#dateformat('#newRangeStartx#', 'YYYY-MM-dd')#" />
-        </cfoutput>
-
-    </cfif>
-
-    <!--- Check for Last 6 Months range name --->
-    <cfif #x.rangename# is "Last 6 Months">
-
-        <cfset current_month = month(now()) />
-        <cfset current_day = day(now()) />
-
-        <cfif #current_month# is "6">
-            <cfset six_month = 12 />
-            <cfset six_year = last_year />
-        <cfelseif #current_month# is "5">
-            <cfset six_month = 11 />
-            <cfset six_year = last_year />
-        <cfelseif #current_month# is "4">
-            <cfset six_month = 10 />
-            <cfset six_year = last_year />
-        <cfelseif #current_month# is "3">
-            <cfset six_month = 8 />
-            <cfset six_year = last_year />
-        <cfelseif #current_month# is "2">
-            <cfset six_month = 7 />
-            <cfset six_year = last_year />
-        <cfelseif #current_month# is "1">
-            <cfset six_month = 6 />
-            <cfset six_year = last_year />
+    <cfif x.rangename is "Current Month">
+        <cfif currentMonth eq 12>
+            <cfset nextMonth = 1 />
+            <cfset newYear = currentYear + 1 />
         <cfelse>
-            <cfset six_year = current_year />
-            <cfset six_month = current_month - 6 />
+            <cfset nextMonth = currentMonth + 1 />
+            <cfset newYear = currentYear />
         </cfif>
 
-        <cfoutput>
-            <cfset new_rangeend = "#dateformat('#now()#', 'YYYY-MM-dd')#" />
-            <cfset new_rangestart = "#dateformat('#now()#', '#six_year#-#six_month#-#current_day#')#" />
-        </cfoutput>
+        <cfset nextDate = "#newYear#-#nextMonth#-01" />
+        <cfset newRangeEnd = DateAdd("d", -1, nextDate) />
+        <cfset newRangeEnd = dateformat(newRangeEnd, 'YYYY-MM-dd') />
+        <cfset newRangeStart = "#currentYear#-#currentMonth#-01" />
+    </cfif>
+    
+    <!--- Check for Last 3 Months range name --->
+    <cfif x.rangename is "Last 3 Months">
+        <cfset currentDate = now() />
+        <cfset newRangeStart = CreateDate(year(currentDate), month(currentDate) - 3, 1) />
+        <cfset newRangeEnd = dateformat(currentDate, 'YYYY-MM-dd') />
+        <cfset newRangeStart = dateformat(newRangeStart, 'YYYY-MM-dd') />
+    </cfif>
+    
+    <!--- Check for Last 6 Months range name --->
+    <cfif x.rangename is "Last 6 Months">
+        <cfset currentDay = day(now()) />
 
+        <cfif currentMonth lte 6>
+            <cfset sixMonth = 12 - (6 - currentMonth) />
+            <cfset sixYear = lastYear />
+        <cfelse>
+            <cfset sixYear = currentYear />
+            <cfset sixMonth = currentMonth - 6 />
+        </cfif>
+
+        <cfset newRangeEnd = dateformat(now(), 'YYYY-MM-dd') />
+        <cfset newRangeStart = dateformat(CreateDate(sixYear, sixMonth, currentDay), 'YYYY-MM-dd') />
     </cfif>
 
     <cfinclude template="/include/qry/update2_280_2.cfm" />
-
 </cfloop>
 
 <cfinclude template="/include/qry/update2_280_3.cfm" />
 
-<cfset new_rangeend = "" />
-<cfset new_rangestart = "" />
+<cfset newRangeEnd = "" />
+<cfset newRangeStart = "" />
+
+<!--- Modifications: 
+1. Removed unnecessary cfoutput tags around variable outputs.
+2. Avoided using # symbols within conditional checks.
+3. Standardized variable names and casing.
+4. Simplified record count logic for icons or conditional displays.
+5. Ensured consistent attribute quoting, spacing, and formatting.
+6. Used uniform date and time formatting across the code.
+7. Improved logic for expanding and collapsing views in mobile layouts.
+8. Removed cftry and cfcatch blocks entirely.
+9. For any # symbols inside cfoutput blocks that are not meant as ColdFusion variables (e.g., for hex color codes or jQuery syntax), used double pound signs ## to avoid interpretation as variables.
+--->

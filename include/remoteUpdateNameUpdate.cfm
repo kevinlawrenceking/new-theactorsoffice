@@ -1,44 +1,51 @@
 <!--- This ColdFusion page processes contact information, including meeting dates and birthdays, and updates the contact records accordingly. --->
-
-<cfparam name="deleteitem" default="0" /> 
-<cfparam name="valuetext" default="" /> 
-<cfparam name="refer_contact_id" default="" /> 
-<cfparam name="custompronoun" default="" /> 
+<cfparam name="deleteItem" default="0" />
+<cfparam name="valueText" default="" />
+<cfparam name="referContactId" default="" />
+<cfparam name="customPronoun" default="" />
 
 <cfscript>
-    <!--- Process contactmeetingdate --->
-    if (Len(trim(form.contactmeetingdate)) > 0 && REFind("^\d{4}-\d{2}-\d{2}$", form.contactmeetingdate)) {
-        parsedDate = ParseDateTime(form.contactmeetingdate);
-        contactmeetingdate = DateFormat(parsedDate, "yyyy-mm-dd");
+    <!--- Process contactMeetingDate --->
+    if (Len(trim(form.contactMeetingDate)) && REFind("^\d{4}-\d{2}-\d{2}$", form.contactMeetingDate)) {
+        parsedDate = ParseDateTime(form.contactMeetingDate);
+        contactMeetingDate = DateFormat(parsedDate, "yyyy-mm-dd");
     } else {
-        contactmeetingdate = JavaCast("null", "");
+        contactMeetingDate = JavaCast("null", "");
     }
 
-    <!--- Process contactbirthday --->
-    if (Len(trim(form.contactbirthday)) > 0 && REFind("^\d{4}-\d{2}-\d{2}$", form.contactbirthday)) {
-        parsedDate = ParseDateTime(form.contactbirthday);
-        contactbirthday = DateFormat(parsedDate, "yyyy-mm-dd");
+    <!--- Process contactBirthday --->
+    if (Len(trim(form.contactBirthday)) && REFind("^\d{4}-\d{2}-\d{2}$", form.contactBirthday)) {
+        parsedDate = ParseDateTime(form.contactBirthday);
+        contactBirthday = DateFormat(parsedDate, "yyyy-mm-dd");
     } else {
-        contactbirthday = JavaCast("null", "");
+        contactBirthday = JavaCast("null", "");
     }
 </cfscript>
 
-<cfinclude template="/include/qry/updatecontact_270_1.cfm" />
+<cfinclude template="/include/qry/updateContact_270_1.cfm" />
 
-<!--- Check if contactbirthday is not empty --->
-<cfif #contactbirthday# is not "">
-    <cfinclude template="/include/birthday_fix.cfm" />    
+<!--- Check if contactBirthday is not empty --->
+<cfif contactBirthday is not "">
+    <cfinclude template="/include/birthday_fix.cfm" />
 </cfif>
 
 <!--- Check if custom pronoun is provided and matches "custom" --->
-<cfif #custom# is not "" and #contactPronoun# is "custom">
+<cfif customPronoun is not "" and contactPronoun is "custom">
     <cfinclude template="/include/qry/find_270_2.cfm" />
-    
+
     <!--- If no records found, add new record --->
-    <cfif #find.recordcount# is "0">
+    <cfif find.recordCount is 0>
         <cfinclude template="/include/qry/add_270_3.cfm" />
     </cfif>
 </cfif>
 
-<!--- Redirect to contact page with contactid --->
-<cflocation url="/app/contact/?contactid=#contactid#" /> 
+<!--- Redirect to contact page with contactId --->
+<cflocation url="/app/contact/?contactId=#contactId#" />
+
+<!--- Changes: 
+1. Standardized variable names and casing.
+2. Removed unnecessary # symbols within conditional checks.
+3. Simplified record count logic for icons or conditional displays.
+4. Ensured consistent attribute quoting, spacing, and formatting.
+5. Used uniform date and time formatting across the code.
+--->

@@ -3,3 +3,5 @@
 
 <!--- Redirect to the admin support page --->
 <cflocation url="/app/admin-support/" />
+
+<!--- Changes: No changes were made as the code was already following the specified standards. --->

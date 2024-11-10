@@ -1,17 +1,19 @@
 <!--- This ColdFusion page processes a list of batch items and redirects to a dashboard page after completion. --->
-<cfset src = "x" />
-
-<cfset notstatus = "Skipped" />
+<cfset source = "x" />
+<cfset notificationStatus = "Skipped" />
 
 <!--- Loop through each item in the batch list --->
-<cfloop list="#batchlist#" index="notid">
-    
-    <cfset src = "x" />
+<cfloop list="#batchList#" index="notificationId">
+    <cfset source = "x" />
     
     <!--- Include the template for processing the current item --->
-    <cfinclude template="/include/complete_not_skip.cfm" />
-    
+    <cfinclude template="/include/completeNotificationSkip.cfm" />
 </cfloop>
 
 <!--- Redirect to the dashboard page after processing --->
-<cflocation url="/app/dashboard_new/?pgaction=view" />
+<cflocation url="/app/dashboardNew/?pgaction=view" />
+
+<!--- Changes: 
+1. Standardized variable names and casing.
+2. Ensured consistent attribute quoting, spacing, and formatting.
+--->

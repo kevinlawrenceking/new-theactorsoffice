@@ -1,202 +1,192 @@
 <!--- This ColdFusion page manages user media directories and avatars for user contacts. --->
-<cfset dbug="N" />
+<cfset debugFlag = "N" />
+<cfparam name="selectUserId" default="0" />
+<cfparam name="selectContactId" default="0" />
 
-<cfparam name="select_userid" default="0" />
-<cfparam name="select_contactid" default="0" />
+<!--- Set start time and media root directory variables --->
+<cfset startTime = timeformat(now(),'HHMMSS') />
+<cfset dirMediaRoot = datasourceMediaPath />
 
-<cfoutput>
-    <!--- Set start time and media root directory variables --->
-    <cfset starttime = "#timeformat(NOw(),'HHMMSS')#" />
-    <cfset dir_media_root = "#datasourceMediaPath#" />
+<!--- Debug output for media root directory --->
+<cfif debugFlag is "Y">
+    <h2>dirMediaRoot: #dirMediaRoot#</h2>
+</cfif>
 
-    <!--- Debug output for media root directory --->
-    <cfif #dbug# is "Y">
-        <h2>dir_media_root: #dir_media_root#</h2>
-    </cfif>
+<cfset browserMediaRoot = "/media-#host#" />
 
-    <cfset browser_media_root = "/media-#host#" />
+<!--- Debug output for browser media root --->
+<cfif debugFlag is "Y">
+    <h2>browserMediaRoot: #browserMediaRoot#</h2>
+</cfif>
 
-    <!--- Debug output for browser media root --->
-    <cfif #dbug# is "Y">
-        <h2>browser_media_root: #browser_media_root#</h2>
-    </cfif>
+<cfset dirMediaRootDefaults = "#dirMediaRoot#\defaults" />
 
-    <cfset dir_media_root_defaults = "#dir_media_root#\defaults" />
+<!--- Debug output for media root defaults directory --->
+<cfif debugFlag is "Y">
+    <h2>dirMediaRootDefaults: #dirMediaRootDefaults#</h2>
+</cfif>
 
-    <!--- Debug output for media root defaults directory --->
-    <cfif #dbug# is "Y">
-        <h2>dir_media_root_defaults: #dir_media_root_defaults#</h2>
-    </cfif>
+<cfset browserMediaRootDefaults = "#browserMediaRoot#/defaults" />
 
-    <cfset browser_media_root_defaults = "#browser_media_root#/defaults" />
+<!--- Debug output for browser media root defaults --->
+<cfif debugFlag is "Y">
+    <h2>browserMediaRootDefaults: #browserMediaRootDefaults#</h2>
+</cfif>
 
-    <!--- Debug output for browser media root defaults --->
-    <cfif #dbug# is "Y">
-        <h2>browser_media_root_defaults: #browser_media_root_defaults#</h2>
-    </cfif>
+<cfset dirMissingAvatarFilename = "#dirMediaRootDefaults#\avatar.jpg" />
 
-    <cfset dir_missing_avatar_filename = "#dir_media_root_defaults#\avatar.jpg" />
+<!--- Debug output for missing avatar filename --->
+<cfif debugFlag is "Y">
+    <h2>dirMissingAvatarFilename: #dirMissingAvatarFilename#</h2>
+</cfif>
 
-    <!--- Debug output for missing avatar filename --->
-    <cfif #dbug# is "Y">
-        <h2>dir_missing_avatar_filename: #dir_missing_avatar_filename#</h2>
-    </cfif>
+<cfset browserMissingAvatarFilename = "#browserMediaRootDefaults#/avatar.jpg" />
 
-    <cfset browser_missing_avatar_filename = "#browser_media_root_defaults#/avatar.jpg" />
-
-    <!--- Debug output for browser missing avatar filename --->
-    <cfif #dbug# is "Y">
-        <h2>browser_missing_avatar_filename: #browser_missing_avatar_filename#</h2>
-    </cfif>
-</cfoutput>
+<!--- Debug output for browser missing avatar filename --->
+<cfif debugFlag is "Y">
+    <h2>browserMissingAvatarFilename: #browserMissingAvatarFilename#</h2>
+</cfif>
 
 <cfinclude template="/include/qry/U_126_1.cfm" />
 
 <cfloop query="U">
-    <cfoutput>
-        <!--- Debug output for each user --->
-        <cfif #dbug# is "Y">
-            <h2>User: #u.userid#</h2>
-        </cfif>
+    <!--- Debug output for each user --->
+    <cfif debugFlag is "Y">
+        <h2>User: #u.userId#</h2>
+    </cfif>
 
-        <cfset browser_media_root_user = "#session.userMediaUrl#" />
+    <cfset browserMediaRootUser = session.userMediaUrl />
 
-        <!--- Debug output for user media root --->
-        <cfif #dbug# is "Y">
-            <p>browser_media_root_user: #browser_media_root_user#</p>
-        </cfif>
+    <!--- Debug output for user media root --->
+    <cfif debugFlag is "Y">
+        <p>browserMediaRootUser: #browserMediaRootUser#</p>
+    </cfif>
 
-        <cfset dir_media_root_user = "#dir_media_root#\users\#u.userid#" />
+    <cfset dirMediaRootUser = "#dirMediaRoot#\users\#u.userId#" />
 
-        <!--- Debug output for user media root directory --->
-        <cfif #dbug# is "Y">
-            <p>dir_media_root_user: #session.userMediaPath#</p>
-        </cfif>
+    <!--- Debug output for user media root directory --->
+    <cfif debugFlag is "Y">
+        <p>dirMediaRootUser: #session.userMediaPath#</p>
+    </cfif>
 
-        <cfset session.userAvatarPath = "#session.userMediaPath#\avatar.jpg" />
+    <cfset session.userAvatarPath = "#session.userMediaPath#\avatar.jpg" />
 
-        <!--- Debug output for user avatar path --->
-        <cfif #dbug# is "Y">
-            <p>session.userAvatarPath: #session.userAvatarPath#</p>
-        </cfif>
+    <!--- Debug output for user avatar path --->
+    <cfif debugFlag is "Y">
+        <p>session.userAvatarPath: #session.userAvatarPath#</p>
+    </cfif>
 
-        <cfset session.contactAvatarUrl = "#browser_media_root_user#/avatar.jpg" />
+    <cfset session.contactAvatarUrl = "#browserMediaRootUser#/avatar.jpg" />
 
-        <!--- Debug output for contact avatar URL --->
-        <cfif #dbug# is "Y">
-            <p>session.contactAvatarUrl: #session.contactAvatarUrl#</p>
-        </cfif>
+    <!--- Debug output for contact avatar URL --->
+    <cfif debugFlag is "Y">
+        <p>session.contactAvatarUrl: #session.contactAvatarUrl#</p>
+    </cfif>
 
-        <!--- Create user media directory if it does not exist --->
-        <CFIF not DirectoryExists("#session.userMediaPath#")>
-            <CFDIRECTORY directory="#session.userMediaPath#" action="create">
-            <h3>dir_media_root_user dir created: #session.contactAvatarUrl#</h3>
-        </CFIF>
+    <!--- Create user media directory if it does not exist --->
+    <CFIF not DirectoryExists(session.userMediaPath)>
+        <CFDIRECTORY directory="#session.userMediaPath#" action="create">
+        <h3>dirMediaRootUser dir created: #session.contactAvatarUrl#</h3>
+    </CFIF>
 
-        <cfset browser_media_root_user_contacts = "#browser_media_root_user#/contacts" />
+    <cfset browserMediaRootUserContacts = "#browserMediaRootUser#/contacts" />
 
-        <!--- Debug output for user contacts media root --->
-        <cfif #dbug# is "Y">
-            <p>browser_media_root_user_contacts: #browser_media_root_user_contacts#</p>
-        </cfif>
+    <!--- Debug output for user contacts media root --->
+    <cfif debugFlag is "Y">
+        <p>browserMediaRootUserContacts: #browserMediaRootUserContacts#</p>
+    </cfif>
 
-        <cfset dir_media_root_user_contacts = "#session.userMediaPath#\contacts" />
+    <cfset dirMediaRootUserContacts = "#session.userMediaPath#\contacts" />
 
-        <!--- Debug output for user contacts media root directory --->
-        <cfif #dbug# is "Y">
-            <p>dir_media_root_user_contacts: #dir_media_root_user_contacts#</p>
-        </cfif>
+    <!--- Debug output for user contacts media root directory --->
+    <cfif debugFlag is "Y">
+        <p>dirMediaRootUserContacts: #dirMediaRootUserContacts#</p>
+    </cfif>
 
-        <!--- Create user contacts directory if it does not exist --->
-        <CFIF not DirectoryExists("#dir_media_root_user_contacts#")>
-            <CFDIRECTORY directory="#dir_media_root_user_contacts#" action="create">
-            <h3>dir_media_root_user_contacts dir created: #dir_media_root_user_contacts#</h3>
-        </CFIF>
+    <!--- Create user contacts directory if it does not exist --->
+    <CFIF not DirectoryExists(dirMediaRootUserContacts)>
+        <CFDIRECTORY directory="#dirMediaRootUserContacts#" action="create">
+        <h3>dirMediaRootUserContacts dir created: #dirMediaRootUserContacts#</h3>
+    </CFIF>
 
-        <cfset browser_media_root_user_imports = "#browser_media_root_user#/imports" />
+    <cfset browserMediaRootUserImports = "#browserMediaRootUser#/imports" />
 
-        <!--- Debug output for user imports media root --->
-        <cfif #dbug# is "Y">
-            <p>browser_media_root_user_imports: #browser_media_root_user_imports#</p>
-        </cfif>
+    <!--- Debug output for user imports media root --->
+    <cfif debugFlag is "Y">
+        <p>browserMediaRootUserImports: #browserMediaRootUserImports#</p>
+    </cfif>
 
-        <cfset dir_media_root_user_imports = "#session.userMediaPath#\imports" />
+    <cfset dirMediaRootUserImports = "#session.userMediaPath#\imports" />
 
-        <!--- Debug output for user imports media root directory --->
-        <cfif #dbug# is "Y">
-            <p>dir_media_root_user_imports: #dir_media_root_user_imports#</p>
-        </cfif>
+    <!--- Debug output for user imports media root directory --->
+    <cfif debugFlag is "Y">
+        <p>dirMediaRootUserImports: #dirMediaRootUserImports#</p>
+    </cfif>
 
-        <!--- Create user imports directory if it does not exist --->
-        <CFIF not DirectoryExists("#dir_media_root_user_imports#")>
-            <CFDIRECTORY directory="#dir_media_root_user_imports#" action="create">
-            <h3>dir_media_root_user_imports dir created: #dir_media_root_user_imports#</h3>
-        </CFIF>
+    <!--- Create user imports directory if it does not exist --->
+    <CFIF not DirectoryExists(dirMediaRootUserImports)>
+        <CFDIRECTORY directory="#dirMediaRootUserImports#" action="create">
+        <h3>dirMediaRootUserImports dir created: #dirMediaRootUserImports#</h3>
+    </CFIF>
 
-        <!--- Check if user avatar exists, if not, copy the default avatar --->
-        <cfif NOT fileExists(session.userAvatarPath)>
-            <cffile action="copy" source="#dir_missing_avatar_filename#" destination="#session.userMediaPath#\" />
-            <h3>default avatar moved to: #session.userMediaPath#</h3>
-        </cfif>
-    </cfoutput>
+    <!--- Check if user avatar exists, if not, copy the default avatar --->
+    <cfif NOT fileExists(session.userAvatarPath)>
+        <cffile action="copy" source="#dirMissingAvatarFilename#" destination="#session.userMediaPath#\">
+        <h3>default avatar moved to: #session.userMediaPath#</h3>
+    </cfif>
 
     <cfinclude template="/include/qry/C_73_2.cfm" />
 
     <!--- Debug output for creating folders for contacts --->
-    <cfif #dbug# is "Y">
-        <cfoutput>
-            <h3> #u.userid#: Creating folders for #c.recordcount# contacts</h3>
-        </cfoutput>
+    <cfif debugFlag is "Y">
+        <h3> #u.userId#: Creating folders for #c.recordcount# contacts</h3>
     </cfif>
 
     <cfloop query="C">
-        <cfoutput>
-            <cfset new_contactid = "#C.contactid#" />
+        <cfset newContactId = C.contactId />
 
-            <!--- Debug output for each contact --->
-            <cfif #dbug# is "Y">
-                <h3>#c.recordname#: Contact ID #new_contactid#</h3>
-            </cfif>
+        <!--- Debug output for each contact --->
+        <cfif debugFlag is "Y">
+            <h3>#c.recordname#: Contact ID #newContactId#</h3>
+        </cfif>
 
-            <cfset dir_media_root_user_contacts_folder = "#dir_media_root_user_contacts#\#new_contactid#" />
+        <cfset dirMediaRootUserContactsFolder = "#dirMediaRootUserContacts#\#newContactId#" />
 
-            <!--- Create contact folder if it does not exist --->
-            <CFIF not DirectoryExists("#dir_media_root_user_contacts_folder#")>
-                <CFDIRECTORY directory="#dir_media_root_user_contacts_folder#" action="create">
-                <h3>dir_media_root_user_contacts_folder dir created: #dir_media_root_user_contacts_folder#</h3>
-            </CFIF>
+        <!--- Create contact folder if it does not exist --->
+        <CFIF not DirectoryExists(dirMediaRootUserContactsFolder)>
+            <CFDIRECTORY directory="#dirMediaRootUserContactsFolder#" action="create">
+            <h3>dirMediaRootUserContactsFolder dir created: #dirMediaRootUserContactsFolder#</h3>
+        </CFIF>
 
-            <cfset dir_media_root_user_contacts_folder_attachements = "#dir_media_root_user_contacts_folder#\attachments" />
+        <cfset dirMediaRootUserContactsFolderAttachments = "#dirMediaRootUserContactsFolder#\attachments" />
 
-            <!--- Create attachments folder if it does not exist --->
-            <CFIF not DirectoryExists("#dir_media_root_user_contacts_folder_attachements#")>
-                <CFDIRECTORY directory="#dir_media_root_user_contacts_folder_attachements#" action="create">
-                <h3>dir_media_root_user_contacts_folder_attachements dir created: #dir_media_root_user_contacts_folder_attachements#</h3>
-            </CFIF>
+        <!--- Create attachments folder if it does not exist --->
+        <CFIF not DirectoryExists(dirMediaRootUserContactsFolderAttachments)>
+            <CFDIRECTORY directory="#dirMediaRootUserContactsFolderAttachments#" action="create">
+            <h3>dirMediaRootUserContactsFolderAttachments dir created: #dirMediaRootUserContactsFolderAttachments#</h3>
+        </CFIF>
 
-            <cfset dir_contact_avatar_filename = "#dir_media_root_user_contacts_folder#\avatar.jpg" />
+        <cfset dirContactAvatarFilename = "#dirMediaRootUserContactsFolder#\avatar.jpg" />
 
-            <!--- Debug output for contact avatar filename --->
-            <cfif #dbug# is "Y">
-                <p>dir_contact_avatar_filename: #dir_contact_avatar_filename#</p>
-            </cfif>
+        <!--- Debug output for contact avatar filename --->
+        <cfif debugFlag is "Y">
+            <p>dirContactAvatarFilename: #dirContactAvatarFilename#</p>
+        </cfif>
 
-            <!--- Check if contact avatar exists, if not, copy the default avatar --->
-            <cfif NOT fileExists(dir_contact_avatar_filename)>
-                <cffile action="copy" source="#dir_missing_avatar_filename#" destination="#dir_media_root_user_contacts_folder#\" />
-                <h3>default contact avatar moved to: #dir_media_root_user_contacts_folder#</h3>
-            </cfif>
-        </cfoutput>
+        <!--- Check if contact avatar exists, if not, copy the default avatar --->
+        <cfif NOT fileExists(dirContactAvatarFilename)>
+            <cffile action="copy" source="#dirMissingAvatarFilename#" destination="#dirMediaRootUserContactsFolder#\">
+            <h3>default contact avatar moved to: #dirMediaRootUserContactsFolder#</h3>
+        </cfif>
     </cfloop>
 </cfloop>
 
-<cfoutput>
-    <cfset endtime = "#timeformat(NOw(),'HHMMSS')#" />
-    <cfset dur = endtime - starttime />
-    
-    <!--- Debug output for completion time --->
-    <cfif #dbug# is "Y">  
-        <h1>Completed: <cfoutput>#dur# second(s)</cfoutput></h1>
-    </cfif>
-</cfoutput>
+<cfset endTime = timeformat(now(),'HHMMSS') />
+<cfset duration = endTime - startTime />
 
+<!--- Debug output for completion time --->
+<cfif debugFlag is "Y">
+    <h1>Completed: #duration# second(s)</h1>
+</cfif>
+
+<!--- Modifications were made based on the following rules: 2, 3, 5, 6, 7 --->

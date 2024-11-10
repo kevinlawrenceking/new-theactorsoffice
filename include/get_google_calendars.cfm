@@ -20,3 +20,7 @@
 
 <!--- Output the JSON response --->
 <cfoutput>#calendarsJSON#</cfoutput>
+
+<!--- Changes made: 
+1. No changes were required as per standards for improvements. The code was already following all specified standards.
+--->
