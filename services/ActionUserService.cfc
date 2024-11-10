@@ -155,8 +155,7 @@
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
-    
-    <cftry>
+ 
         <cfquery name="result" datasource="abod">
             SELECT * 
             FROM actionusers 
