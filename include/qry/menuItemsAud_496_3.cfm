@@ -1,5 +1,5 @@
 <cfset componentService = createObject("component", "services.ComponentService")>
-<cfset mennuItemsAud = componentService.SELpgcomps(
+<cfset menuItemsAud = componentService.SELpgcomps(
     menuYN="Y",
     compOwner="A",
     appid="3"
