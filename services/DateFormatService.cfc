@@ -4,7 +4,7 @@
         <!--- Initialize an empty query variable --->
         <cfset var result = "">
 
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result">
             SELECT id, formatexample, formatnotes
             FROM dateformats
         </cfquery>

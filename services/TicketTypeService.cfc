@@ -22,19 +22,13 @@
     <!--- Append ORDER BY clause --->
     <cfset sql &= " ORDER BY tickettype">
 
-    <!--- Execute query with error handling --->
-    <cftry>
-        <cfquery name="queryResult" datasource="abod">
-            #sql#
-            <cfloop array="#paramList#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-            </cfloop>
-        </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error executing getTicketTypes: #cfcatch.message# SQL: #sql# Parameters: #serializeJSON(paramList)#">
-            <cfreturn queryNew("id,name", "varchar,varchar")> <!--- Return empty query on error --->
-        </cfcatch>
-    </cftry>
+    <!--- Execute query without error handling --->
+    <cfquery name="queryResult">
+        #sql#
+        <cfloop array="#paramList#" index="param">
+            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+        </cfloop>
+    </cfquery>
 
     <cfreturn queryResult>
 </cffunction></cfcomponent>

@@ -35,21 +35,13 @@
     <!--- Append ORDER BY clause --->
     <cfset sql &= " ORDER BY utcHourOffset">
 
-    <!--- Execute the query with error handling --->
-    <cftry>
-        <cfquery name="queryResult" datasource="abod">
-            #sql#
-            <cfloop array="#params#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-            </cfloop>
-        </cfquery>
-
-        <cfcatch type="any">
-            <cflog file="application" text="Error executing getTimezones: #cfcatch.message# SQL: #sql# Parameters: #serializeJSON(params)#">
-            <!--- Return an empty query on error --->
-            <query name="queryResult"></query>
-        </cfcatch>
-    </cftry>
+    <!--- Execute the query --->
+    <cfquery name="queryResult">
+        #sql#
+        <cfloop array="#params#" index="param">
+            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+        </cfloop>
+    </cfquery>
 
     <!--- Return the query result --->
     <cfreturn queryResult>
@@ -67,8 +59,6 @@
             </cfif>
             ORDER BY gmt
         </cfquery>
-        
-  
-    
+
     <cfreturn result>
 </cffunction></cfcomponent>

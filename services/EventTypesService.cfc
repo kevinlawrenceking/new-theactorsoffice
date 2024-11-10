@@ -19,19 +19,13 @@
         <cfset sql &= " WHERE " & arrayToList(whereClauses, " AND ")>
     </cfif>
 
-    <!--- Execute the query with error handling --->
-    <cftry>
-        <cfquery name="queryResult" datasource="abod">
-            #sql#
-            <cfloop array="#paramValues#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-            </cfloop>
-        </cfquery>
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error executing query: #cfcatch.message# - SQL: #sql# - Params: #serializeJSON(paramValues)#">
-            <cfreturn queryNew("eventTypeName,eventtypedescription,eventtypecolor")>
-        </cfcatch>
-    </cftry>
+    <!--- Execute the query --->
+    <cfquery name="queryResult">
+        #sql#
+        <cfloop array="#paramValues#" index="param">
+            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+        </cfloop>
+    </cfquery>
 
     <cfreturn queryResult>
 </cffunction></cfcomponent>

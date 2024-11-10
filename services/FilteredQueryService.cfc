@@ -22,19 +22,13 @@
     <!--- Combine SQL with WHERE clause --->
     <cfset sql &= whereClause>
 
-    <!--- Execute query within try/catch for error handling --->
-    <cftry>
-        <cfquery name="result" datasource="abod">
-            #sql#
-            <cfloop array="#paramList#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-            </cfloop>
-        </cfquery>
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error executing query: #cfcatch.message#. SQL: #sql#. Parameters: #SerializeJSON(paramList)#">
-            <cfreturn QueryNew("total", "integer")> <!--- Return empty query set --->
-        </cfcatch>
-    </cftry>
+    <!--- Execute query --->
+    <cfquery name="result">
+        #sql#
+        <cfloop array="#paramList#" index="param">
+            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+        </cfloop>
+    </cfquery>
 
     <cfreturn result>
 </cffunction></cfcomponent>

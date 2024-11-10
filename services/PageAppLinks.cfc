@@ -1,10 +1,9 @@
 <cfcomponent displayname="PageAppLinks" output="false">
 
-    <!--- Function to fetch application links based on a page ID --->
     <cffunction name="GetPageAppLinks" access="public" returntype="query" output="false">
         <cfargument name="pgid" type="numeric" required="yes">
 
-        <cfquery name="FindLinksT" >
+        <cfquery name="FindLinksT">
             SELECT 
                 l.linkid, 
                 l.linkurl, 
@@ -32,7 +31,6 @@
 
     <cffunction name="GetLinksForPageB" access="public" returntype="query" output="false">
         <cfargument name="pgid" type="numeric" required="true">
-        <cfset var result = "">
 
         <cfquery name="result">
             SELECT

@@ -3,27 +3,20 @@
     <cfargument name="newpnids" type="array" required="true">
 
     <cfset var result = "">
-    
-    <cftry>
-        <cfif arrayLen(arguments.newpnids) eq 0>
-            <cfreturn queryNew("pnid", "integer")>
-        </cfif>
 
-        <cfquery name="result" datasource="abod">
-            SELECT pnid 
-            FROM pgpanels 
-            WHERE pnid IN (
-                <cfloop array="#arguments.newpnids#" index="pnid">
-                    <cfqueryparam value="#pnid#" cfsqltype="CF_SQL_INTEGER" list="true">
-                </cfloop>
-            )
-        </cfquery>
+    <cfif arrayLen(arguments.newpnids) eq 0>
+        <cfreturn queryNew("pnid", "integer")>
+    </cfif>
 
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getPanelIds: #cfcatch.message# Query: SELECT pnid FROM pgpanels WHERE pnid IN (#arguments.newpnids#)">
-            <cfthrow message="An error occurred while retrieving panel IDs." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+    <cfquery name="result">
+        SELECT pnid 
+        FROM pgpanels 
+        WHERE pnid IN (
+            <cfloop array="#arguments.newpnids#" index="pnid">
+                <cfqueryparam value="#pnid#" cfsqltype="CF_SQL_INTEGER" list="true">
+            </cfloop>
+        )
+    </cfquery>
 
     <cfreturn result>
 </cffunction></cfcomponent>

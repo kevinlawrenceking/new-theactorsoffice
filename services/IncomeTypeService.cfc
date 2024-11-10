@@ -19,19 +19,13 @@
         <cfset sql &= " WHERE " & arrayToList(whereClause, " AND ")>
     </cfif>
 
-    <!--- Execute query with error handling --->
-    <cftry>
-        <cfquery name="result" datasource="abod">
-            #sql#
-            <cfloop array="#paramValues#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-            </cfloop>
-        </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getIncomeTypes: #cfcatch.message#, SQL: #sql#, Params: #serializeJSON(paramValues)#">
-            <cfthrow message="Database error occurred while fetching income types." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+    <!--- Execute query --->
+    <cfquery name="result">
+        #sql#
+        <cfloop array="#paramValues#" index="param">
+            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+        </cfloop>
+    </cfquery>
 
     <cfreturn result>
 </cffunction></cfcomponent>

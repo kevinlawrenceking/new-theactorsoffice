@@ -5,7 +5,7 @@
         <cfargument name="new_rangeid" type="numeric" required="true">
         <cfset var result = "">
 
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result">
             SELECT * 
             FROM audageranges_audtion_xref 
             WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -18,7 +18,7 @@
     <cffunction name="DELaudageranges_audtion_xref" access="public" returntype="void">
         <cfargument name="new_audroleid" type="numeric" required="true">
 
-        <cfquery datasource="abod">
+        <cfquery>
             DELETE FROM audageranges_audtion_xref
             WHERE audroleid = <cfqueryparam value="#arguments.new_audroleid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
@@ -28,7 +28,7 @@
         <cfargument name="new_rangeid" type="numeric" required="true">
         <cfargument name="new_audroleid" type="numeric" required="true">
 
-        <cfquery datasource="abod">
+        <cfquery>
             INSERT INTO audageranges_audtion_xref (rangeid, audroleid)
             VALUES (
                 <cfqueryparam value="#arguments.new_rangeid#" cfsqltype="CF_SQL_INTEGER">,
@@ -41,7 +41,7 @@
         <cfargument name="new_audRoleID" type="numeric" required="true">
         <cfargument name="new_rangeid" type="numeric" required="true">
 
-        <cfquery datasource="abod">
+        <cfquery>
             INSERT INTO audageranges_audtion_xref (audRoleID, rangeid)
             VALUES (
                 <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#" null="#NOT len(trim(arguments.new_audRoleID))#">,
@@ -55,7 +55,7 @@
         <cfargument name="new_rangeid" type="numeric" required="true">
         <cfargument name="new_id" type="numeric" required="true">
 
-        <cfquery datasource="abod">
+        <cfquery>
             UPDATE audageranges_audtion_xref 
             SET 
                 audRoleID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#" null="#NOT len(trim(arguments.new_audRoleID))#">,

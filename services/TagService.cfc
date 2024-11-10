@@ -14,18 +14,12 @@
         <cfset whereClause &= arrayToList(paramList, " AND ")>
     </cfif>
 
-    <cftry>
-        <cfquery name="queryResult" datasource="abod">
-            #sql##whereClause#
-            <cfloop collection="#arguments.conditions#" item="key">
-                <cfqueryparam value="#arguments.conditions[key]#" cfsqltype="#determineSQLType(key)#">
-            </cfloop>
-        </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" type="error" text="Error executing getTags: #cfcatch.message# Query: #sql##whereClause# Parameters: #serializeJSON(arguments.conditions)#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+    <cfquery name="queryResult">
+        #sql##whereClause#
+        <cfloop collection="#arguments.conditions#" item="key">
+            <cfqueryparam value="#arguments.conditions[key]#" cfsqltype="#determineSQLType(key)#">
+        </cfloop>
+    </cfquery>
 
     <cfreturn queryResult>
 </cffunction></cfcomponent>

@@ -3,7 +3,7 @@
     <cffunction name="SELaudageranges" access="public" returntype="query">
         <cfargument name="isDeleted" type="boolean" required="true">
         
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result">
             SELECT rangeid, rangename 
             FROM audageranges 
             WHERE isdeleted = <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
@@ -20,14 +20,14 @@
         <cfargument name="new_age_group" type="string" required="true">
         <cfargument name="new_isDeleted" type="boolean" required="true">
         
-        <cfquery datasource="abod">
+        <cfquery>
             INSERT INTO audageranges (rangename, age_min, age_max, age_group, isDeleted)
             VALUES (
-                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_rangename)#" maxlength="100" null="#NOT len(trim(arguments.new_rangename))#">,
-                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_age_min#" null="#NOT len(trim(arguments.new_age_min))#">,
-                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_age_max#" null="#NOT len(trim(arguments.new_age_max))#">,
-                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_age_group)#" maxlength="45" null="#NOT len(trim(arguments.new_age_group))#">,
-                <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_rangename)#" maxlength="100">,
+                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_age_min#">,
+                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_age_max#">,
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_age_group)#" maxlength="45">,
+                <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#">
             )
         </cfquery>
     </cffunction>
@@ -40,14 +40,14 @@
         <cfargument name="new_isDeleted" type="boolean" required="true">
         <cfargument name="new_rangeid" type="numeric" required="true">
         
-        <cfquery datasource="abod">
+        <cfquery>
             UPDATE audageranges 
             SET 
-                rangename = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_rangename#" maxlength="100" null="#NOT len(trim(arguments.new_rangename))#">,
-                age_min = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_age_min#" null="#NOT len(trim(arguments.new_age_min))#">,
-                age_max = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_age_max#" null="#NOT len(trim(arguments.new_age_max))#">,
-                age_group = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_age_group#" maxlength="45" null="#NOT len(trim(arguments.new_age_group))#">,
-                isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+                rangename = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_rangename#" maxlength="100">,
+                age_min = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_age_min#">,
+                age_max = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_age_max#">,
+                age_group = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_age_group#" maxlength="45">,
+                isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#">
             WHERE 
                 rangeid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_rangeid#">
         </cfquery>
@@ -56,7 +56,7 @@
     <cffunction name="SELaudageranges_24552" access="public" returntype="query">
         <cfargument name="audroleid" type="numeric" required="true">
         
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result">
             SELECT g.rangename, g.rangeid 
             FROM audageranges g 
             INNER JOIN audageranges_audtion_xref x ON x.rangeid = g.rangeid 

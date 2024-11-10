@@ -23,19 +23,13 @@
     <!--- Assuming 'validOrderColumn' is a valid column for ordering --->
     <cfset sql &= " ORDER BY validOrderColumn">
 
-    <!--- Execute the query with error handling --->
-    <cftry>
-        <cfquery name="queryResult" datasource="abod">
-            #sql#
-            <cfloop array="#parameters#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-            </cfloop>
-        </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error executing query: #cfcatch.message# SQL: #sql# Parameters: #serializeJSON(parameters)#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+    <!--- Execute the query without error handling --->
+    <cfquery name="queryResult">
+        #sql#
+        <cfloop array="#parameters#" index="param">
+            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+        </cfloop>
+    </cfquery>
 
     <cfreturn queryResult>
 </cffunction></cfcomponent>

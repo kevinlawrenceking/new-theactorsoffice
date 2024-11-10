@@ -4,18 +4,11 @@
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
-            SELECT durid AS new_durid
-            FROM mtgdurations
-            WHERE durhours = <cfqueryparam value="#arguments.new_durhours#" cfsqltype="CF_SQL_INTEGER">
-        </cfquery>
-        
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getDurationsByHours: #cfcatch.message#">
-            <cfreturn queryNew("new_durid", "integer")>
-        </cfcatch>
-    </cftry>
+    <cfquery name="result">
+        SELECT durid AS new_durid
+        FROM mtgdurations
+        WHERE durhours = <cfqueryparam value="#arguments.new_durhours#" cfsqltype="CF_SQL_INTEGER">
+    </cfquery>
     
     <cfreturn result>
 </cffunction>
@@ -24,18 +17,11 @@
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
-            SELECT durid AS new_durid
-            FROM mtgdurations
-            WHERE durhours = <cfqueryparam value="#arguments.new_durhours#" cfsqltype="CF_SQL_INTEGER">
-        </cfquery>
-        
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getDurationsByHours: #cfcatch.message# Query: SELECT durid AS new_durid FROM mtgdurations WHERE durhours = ? Parameters: #arguments.new_durhours#">
-            <cfset result = queryNew("new_durid")>
-        </cfcatch>
-    </cftry>
+    <cfquery name="result">
+        SELECT durid AS new_durid
+        FROM mtgdurations
+        WHERE durhours = <cfqueryparam value="#arguments.new_durhours#" cfsqltype="CF_SQL_INTEGER">
+    </cfquery>
     
     <cfreturn result>
 </cffunction>
@@ -44,18 +30,11 @@
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
-            SELECT durid, durhours, durhours * 3600 AS durseconds, durname
-            FROM mtgdurations
-            WHERE durid = <cfqueryparam value="#arguments.new_durid#" cfsqltype="CF_SQL_INTEGER">
-        </cfquery>
-        
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getMtgDurations: #cfcatch.message#">
-            <cfreturn queryNew("durid,durhours,durseconds,durname", "integer,double,double,varchar")>
-        </cfcatch>
-    </cftry>
+    <cfquery name="result">
+        SELECT durid, durhours, durhours * 3600 AS durseconds, durname
+        FROM mtgdurations
+        WHERE durid = <cfqueryparam value="#arguments.new_durid#" cfsqltype="CF_SQL_INTEGER">
+    </cfquery>
     
     <cfreturn result>
 </cffunction>
@@ -84,18 +63,12 @@
     <cfset sql &= " ORDER BY durid">
 
     <!--- Execute the query --->
-    <cftry>
-        <cfquery name="queryResult" datasource="abod">
-            #sql#
-            <cfloop array="#params#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-            </cfloop>
-        </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error executing query: #cfcatch.message# SQL: #sql# Parameters: #serializeJSON(params)#">
-            <cfset queryResult = queryNew("durid,durhours,durname")> <!--- Return empty query on error --->
-        </cfcatch>
-    </cftry>
+    <cfquery name="queryResult">
+        #sql#
+        <cfloop array="#params#" index="param">
+            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+        </cfloop>
+    </cfquery>
 
     <cfreturn queryResult>
 </cffunction></cfcomponent>

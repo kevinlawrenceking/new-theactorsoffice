@@ -14,18 +14,12 @@
 
     <cfset sql &= whereClause & " ORDER BY colorname">
 
-    <cftry>
-        <cfquery name="result" datasource="abod">
-            #sql#
-            <cfloop array="#params#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-            </cfloop>
-        </cfquery>
-        <cfcatch>
-            <cflog file="application" text="Error executing query in getReportColors: #cfcatch.message#">
-            <cfreturn queryNew("colorid,colorname,colorscheme", "integer,varchar,varchar")>
-        </cfcatch>
-    </cftry>
+    <cfquery name="result">
+        #sql#
+        <cfloop array="#params#" index="param">
+            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+        </cfloop>
+    </cfquery>
 
     <cfreturn result>
 </cffunction></cfcomponent>

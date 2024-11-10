@@ -19,19 +19,13 @@
         <cfset sql &= " WHERE " & arrayToList(whereClauses, " AND ")>
     </cfif>
 
-    <!--- Execute query with error handling --->
-    <cftry>
-        <cfquery name="result" datasource="abod">
-            #sql#
-            <cfloop array="#params#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-            </cfloop>
-        </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error executing getGenderPronouns: #cfcatch.message# SQL: #sql# Parameters: #serializeJSON(params)#">
-            <cfreturn queryNew("genderpronoun,genderpronounplural", "varchar,varchar")>
-        </cfcatch>
-    </cftry>
+    <!--- Execute query without error handling --->
+    <cfquery name="result">
+        #sql#
+        <cfloop array="#params#" index="param">
+            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+        </cfloop>
+    </cfquery>
 
     <cfreturn result>
 </cffunction></cfcomponent>

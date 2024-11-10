@@ -2,7 +2,7 @@
 
     <cffunction name="SELcities" access="public" returntype="query" output="false">
         
-        <cfquery name="result" >
+        <cfquery name="result">
             SELECT 
                 id, 
                 countryid, 

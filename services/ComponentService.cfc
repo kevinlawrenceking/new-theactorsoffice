@@ -6,7 +6,7 @@
 
     <cfset var result = "">
  
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result">
             SELECT 
                 c.compID, 
                 c.compName, 
@@ -25,7 +25,6 @@
             ORDER BY 
                 c.menuOrder
         </cfquery>
- 
 
     <cfreturn result>
 </cffunction>
@@ -36,9 +35,8 @@
 
     <cfset var result = "">
 
- 
         <cfif isNumeric(arguments.appID) AND len(arguments.compOwner)>
-            <cfquery name="result" datasource="abod">
+            <cfquery name="result">
                 SELECT 
                     c.compID, 
                     c.compName, 
@@ -60,7 +58,6 @@
             <cfset result = queryNew("compID,compName,compIcon,compOwner,menuYN,compDir,menuOrder")>
         </cfif>
 
- 
     <cfreturn result>
 </cffunction>
 

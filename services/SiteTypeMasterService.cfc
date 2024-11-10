@@ -4,18 +4,11 @@
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
-            SELECT *
-            FROM sitetypes_master
-            WHERE sitetypename = <cfqueryparam value="#arguments.sitetypename#" cfsqltype="CF_SQL_VARCHAR">
-        </cfquery>
-        
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getSiteTypesByName: #cfcatch.message#">
-            <cfset result = queryNew("id", "integer")> <!--- Return an empty query set --->
-        </cfcatch>
-    </cftry>
+    <cfquery name="result">
+        SELECT *
+        FROM sitetypes_master
+        WHERE sitetypename = <cfqueryparam value="#arguments.sitetypename#" cfsqltype="CF_SQL_VARCHAR">
+    </cfquery>
     
     <cfreturn result>
 </cffunction>
@@ -39,19 +32,13 @@
         <cfset sql = sql & " WHERE " & arrayToList(whereClauses, " AND ")>
     </cfif>
 
-    <!--- Execute the query with error handling --->
-    <cftry>
-        <cfquery name="queryResult" datasource="abod">
-            #sql#
-            <cfloop array="#paramList#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-            </cfloop>
-        </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error executing getSiteTypes: #cfcatch.message# SQL: #sql# Parameters: #serializeJSON(paramList)#">
-            <cfreturn queryNew("sitetypename,sitetypedescription", "varchar,varchar")>
-        </cfcatch>
-    </cftry>
+    <!--- Execute the query --->
+    <cfquery name="queryResult">
+        #sql#
+        <cfloop array="#paramList#" index="param">
+            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+        </cfloop>
+    </cfquery>
 
     <cfreturn queryResult>
 </cffunction></cfcomponent>

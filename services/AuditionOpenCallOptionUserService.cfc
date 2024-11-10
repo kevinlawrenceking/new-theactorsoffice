@@ -4,80 +4,56 @@
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
-            SELECT opencallid, opencallname
-            FROM audopencalloptions_user
-            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
-            ORDER BY opencallname
-        </cfquery>
-        
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getOpenCallOptions: #cfcatch.message# Query: SELECT opencallid, opencallname FROM audopencalloptions_user WHERE userid = ? ORDER BY opencallname Parameters: userid=#arguments.userid#">
-            <cfset result = queryNew("opencallid,opencallname")>
-        </cfcatch>
-    </cftry>
+    <cfquery name="result">
+        SELECT opencallid, opencallname
+        FROM audopencalloptions_user
+        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        ORDER BY opencallname
+    </cfquery>
     
     <cfreturn result>
 </cffunction>
+
 <cffunction name="SELaudopencalloptions_user_24262" access="public" returntype="query">
     <cfargument name="new_opencallid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
-            SELECT opencallid, opencallname
-            FROM audopencalloptions_user
-            WHERE opencallid = <cfqueryparam value="#arguments.new_opencallid#" cfsqltype="CF_SQL_INTEGER">
-        </cfquery>
-        
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getOpenCallOptions: #cfcatch.message# Query: SELECT opencallid, opencallname FROM audopencalloptions_user WHERE opencallid = #arguments.new_opencallid#">
-            <cfset result = queryNew("opencallid, opencallname", "integer,varchar")>
-        </cfcatch>
-    </cftry>
+    <cfquery name="result">
+        SELECT opencallid, opencallname
+        FROM audopencalloptions_user
+        WHERE opencallid = <cfqueryparam value="#arguments.new_opencallid#" cfsqltype="CF_SQL_INTEGER">
+    </cfquery>
     
     <cfreturn result>
 </cffunction>
+
 <cffunction name="SELaudopencalloptions_user_24280" access="public" returntype="query">
     <cfargument name="new_opencallname" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
 
-    <cftry>
-        <cfquery name="result" datasource="abod">
-            SELECT *
-            FROM audopencalloptions_user
-            WHERE opencallname = <cfqueryparam value="#arguments.new_opencallname#" cfsqltype="CF_SQL_VARCHAR">
-            AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
-        </cfquery>
-        
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getOpenCallOptions: #cfcatch.message# Query: SELECT * FROM audopencalloptions_user WHERE opencallname = ? AND userid = ? Parameters: #arguments.new_opencallname#, #arguments.userid#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+    <cfquery name="result">
+        SELECT *
+        FROM audopencalloptions_user
+        WHERE opencallname = <cfqueryparam value="#arguments.new_opencallname#" cfsqltype="CF_SQL_VARCHAR">
+        AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+    </cfquery>
 
     <cfreturn result>
 </cffunction>
+
 <cffunction name="INSaudopencalloptions_user" access="public" returntype="void">
     <cfargument name="new_opencallname" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cftry>
-        <cfquery datasource="abod">
-            INSERT INTO audopencalloptions_user (opencallname, userid, isdeleted)
-            VALUES (
-                <cfqueryparam value="#arguments.new_opencallname#" cfsqltype="CF_SQL_VARCHAR">,
-                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
-                <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
-            )
-        </cfquery>
-        <cfcatch>
-            <cflog file="application" text="Error in insertAudOpenCallOptionsUser: #cfcatch.message#">
-            <cfthrow>
-        </cfcatch>
-    </cftry>
+    <cfquery>
+        INSERT INTO audopencalloptions_user (opencallname, userid, isdeleted)
+        VALUES (
+            <cfqueryparam value="#arguments.new_opencallname#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
+        )
+    </cfquery>
 </cffunction></cfcomponent>

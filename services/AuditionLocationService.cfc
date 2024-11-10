@@ -10,65 +10,47 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_audlocid" type="numeric" required="true">
 
-    <cftry>
-        <cfquery datasource="#application.datasource#">
-            UPDATE audlocations 
-            SET 
-                userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_userid#" null="#NOT len(trim(arguments.new_userid))#">,
-                eventLocation = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_eventLocation#" maxlength="500" null="#NOT len(trim(arguments.new_eventLocation))#">,
-                audlocadd1 = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audlocadd1#" maxlength="500" null="#NOT len(trim(arguments.new_audlocadd1))#">,
-                audlocadd2 = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audlocadd2#" maxlength="500" null="#NOT len(trim(arguments.new_audlocadd2))#">,
-                audcity = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audcity#" maxlength="500" null="#NOT len(trim(arguments.new_audcity))#">,
-                region_id = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_region_id#" null="#NOT len(trim(arguments.new_region_id))#">,
-                audzip = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audzip#" maxlength="50" null="#NOT len(trim(arguments.new_audzip))#">,
-                isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
-            WHERE 
-                audlocid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audlocid#">
-        </cfquery>
-        <cfcatch>
-            <cflog file="application_errors.log"
-                   text="[updateAudLocations] Error: #cfcatch.message#, Detail: #cfcatch.detail#, Query: #cfcatch.query#, Parameters: #serializeJSON(arguments)#"
-                   type="error">
-            <cfthrow message="[updateAudLocations] Error executing query." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+    <cfquery>
+        UPDATE audlocations 
+        SET 
+            userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_userid#" null="#NOT len(trim(arguments.new_userid))#">,
+            eventLocation = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_eventLocation#" maxlength="500" null="#NOT len(trim(arguments.new_eventLocation))#">,
+            audlocadd1 = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audlocadd1#" maxlength="500" null="#NOT len(trim(arguments.new_audlocadd1))#">,
+            audlocadd2 = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audlocadd2#" maxlength="500" null="#NOT len(trim(arguments.new_audlocadd2))#">,
+            audcity = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audcity#" maxlength="500" null="#NOT len(trim(arguments.new_audcity))#">,
+            region_id = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_region_id#" null="#NOT len(trim(arguments.new_region_id))#">,
+            audzip = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audzip#" maxlength="50" null="#NOT len(trim(arguments.new_audzip))#">,
+            isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+        WHERE 
+            audlocid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audlocid#">
+    </cfquery>
 </cffunction>
+
 <cffunction name="INSaudlocations" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="custom" type="string" required="true">
 
-    <cftry>
-        <cfquery datasource="abod">
-            INSERT INTO audlocations (userid, eventLocation) 
-            VALUES (
-                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">, 
-                <cfqueryparam value="#arguments.custom#" cfsqltype="CF_SQL_VARCHAR">
-            )
-        </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error in insertAudLocation: #cfcatch.message# Query: INSERT INTO audlocations (userid, eventLocation) VALUES (#arguments.userid#, '#arguments.custom#')">
-            <cfthrow message="An error occurred while inserting the location." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+    <cfquery>
+        INSERT INTO audlocations (userid, eventLocation) 
+        VALUES (
+            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">, 
+            <cfqueryparam value="#arguments.custom#" cfsqltype="CF_SQL_VARCHAR">
+        )
+    </cfquery>
 </cffunction>
+
 <cffunction name="SELaudlocations" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
-    
-    <cftry>
-        <cfquery name="result" datasource="abod">
-            SELECT l.audlocid AS ID, l.eventLocation AS Name 
-            FROM audlocations l 
-            WHERE l.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
-            ORDER BY l.eventLocation
-        </cfquery>
-        
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getAudLocations: #cfcatch.message# Query: SELECT l.audlocid AS ID, l.eventLocation AS Name FROM audlocations l WHERE l.userid = ? ORDER BY l.eventLocation Parameters: userid=#arguments.userid#">
-            <cfset result = queryNew("ID, Name", "integer,varchar")>
-        </cfcatch>
-    </cftry>
+
+    <cfquery name="result">
+        SELECT l.audlocid AS ID, l.eventLocation AS Name 
+        FROM audlocations l 
+        WHERE l.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+        ORDER BY l.eventLocation
+    </cfquery>
     
     <cfreturn result>
-</cffunction></cfcomponent>
+</cffunction>
+</cfcomponent>

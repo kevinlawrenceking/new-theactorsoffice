@@ -1,1 +1,1 @@
-<cfcomponent displayname="AuditionPlatformsUserService" hint="Handles operations for AuditionPlatformsUser table" output="false"> </cfcomponent>
+It seems like there is no actual code provided to modify. The provided code only contains the opening and closing tags of a ColdFusion component. Please provide the complete code that needs to be modified.

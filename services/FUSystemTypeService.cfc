@@ -14,25 +14,19 @@
             <cfset arrayAppend(paramList, {value=arguments.conditions[key], cfsqltype=determineSQLType(key)})>
         </cfloop>
         <!--- Remove trailing 'AND ' --->
-        <cfset whereClause = left(whereClause, len(whereClause) - 5)>
+        <cfset whereClause = left(whereClause, len(whereClause) - 4)>
     </cfif>
 
     <!--- Append ORDER BY clause --->
     <cfset sql &= whereClause & " ORDER BY systemtype">
 
-    <!--- Execute the query with error handling --->
-    <cftry>
-        <cfquery name="queryResult" datasource="abod">
-            #sql#
-            <cfloop array="#paramList#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-            </cfloop>
-        </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error executing getSystemTypes: #cfcatch.message# SQL: #sql# Parameters: #serializeJSON(paramList)#">
-            <cfreturn queryNew("ID,systemname")>
-        </cfcatch>
-    </cftry>
+    <!--- Execute the query without error handling --->
+    <cfquery name="queryResult">
+        #sql#
+        <cfloop array="#paramList#" index="param">
+            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+        </cfloop>
+    </cfquery>
 
     <cfreturn queryResult>
 </cffunction></cfcomponent>

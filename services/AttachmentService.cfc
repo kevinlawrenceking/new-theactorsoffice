@@ -5,7 +5,7 @@
         <cfargument name="attachfilename" type="string" required="true">
         <cfargument name="noteid" type="numeric" required="true">
         
-        <cfquery datasource="abod">
+        <cfquery>
             INSERT INTO attachments (attachname, attachfilename, isdeleted, userid, noteid) 
             VALUES (
                 <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.attachname#" />,
@@ -21,7 +21,7 @@
         <cfargument name="attachid" type="numeric" required="true">
         <cfset var result = "">
 
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result">
             SELECT attachid, noteid, attachname, attachfilename
             FROM attachments
             WHERE attachid = <cfqueryparam value="#arguments.attachid#" cfsqltype="CF_SQL_INTEGER">
@@ -33,8 +33,8 @@
     <cffunction name="UPDattachments" access="public" returntype="void">
         <cfargument name="attachid" type="numeric" required="true">
 
-        <cfquery datasource="abod">
-            UPDATE attachments_tbl
+        <cfquery>
+            UPDATE attachments
             SET isdeleted = 1
             WHERE attachid = <cfqueryparam value="#arguments.attachid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
@@ -44,7 +44,7 @@
         <cfargument name="new_noteid" type="numeric" required="true">
         <cfset var result = "">
 
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result">
             SELECT attachid, noteid, attachname, attachfilename, userid
             FROM attachments
             WHERE noteid = <cfqueryparam value="#arguments.new_noteid#" cfsqltype="CF_SQL_INTEGER">

@@ -4,18 +4,11 @@
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
-            SELECT countryid, countryname
-            FROM countries
-            WHERE countryid = <cfqueryparam value="#arguments.countryid#" cfsqltype="CF_SQL_INTEGER">
-        </cfquery>
-        
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getCountryById: #cfcatch.message#; Query: SELECT countryid, countryname FROM countries WHERE countryid = #arguments.countryid#;">
-            <cfthrow message="Database error occurred. Please try again later.">
-        </cfcatch>
-    </cftry>
+    <cfquery name="result">
+        SELECT countryid, countryname
+        FROM countries
+        WHERE countryid = <cfqueryparam value="#arguments.countryid#" cfsqltype="CF_SQL_INTEGER">
+    </cfquery>
     
     <cfreturn result>
 </cffunction>
@@ -24,18 +17,11 @@
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
-            SELECT * 
-            FROM countries 
-            WHERE countryname = <cfqueryparam value="#arguments.countryName#" cfsqltype="cf_sql_varchar">
-        </cfquery>
-        
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getCountriesByCountryName: #cfcatch.message# Query: SELECT * FROM countries WHERE countryname = ? Parameters: #arguments.countryName#">
-            <cfthrow message="Database query error" detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+    <cfquery name="result">
+        SELECT * 
+        FROM countries 
+        WHERE countryname = <cfqueryparam value="#arguments.countryName#" cfsqltype="CF_SQL_VARCHAR">
+    </cfquery>
     
     <cfreturn result>
 </cffunction>
@@ -43,37 +29,25 @@
     <cfargument name="countryIds" type="array" required="true">
     
     <cfset var result = "">
-    
-  
 
-        <cfquery name="result" datasource="abod">
-SELECT countryid, countryname FROM countries 
-    WHERE isdeleted = 0 and countryid in (select countryid from regions)
-    ORDER BY countryname
+    <cfquery name="result">
+        SELECT countryid, countryname FROM countries 
+        WHERE isdeleted = 0 and countryid in (select countryid from regions)
+        ORDER BY countryname
+    </cfquery>
 
-        </cfquery>
-
-        <cfreturn result>
-
- 
+    <cfreturn result>
 </cffunction>
 <cffunction name="SELcountries_24720" access="public" returntype="query">
     <cfargument name="countryName" type="string" required="true">
     
     <cfset var result = "">
-    
-    <cftry>
-        <cfquery name="result" datasource="abod">
-            SELECT * 
-            FROM countries 
-            WHERE countryname = <cfqueryparam value="#arguments.countryName#" cfsqltype="CF_SQL_VARCHAR">
-        </cfquery>
-        
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getCountriesByCountryName: #cfcatch.message# Query: SELECT * FROM countries WHERE countryname = ? Parameters: #arguments.countryName#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+
+    <cfquery name="result">
+        SELECT * 
+        FROM countries 
+        WHERE countryname = <cfqueryparam value="#arguments.countryName#" cfsqltype="CF_SQL_VARCHAR">
+    </cfquery>
     
     <cfreturn result>
 </cffunction></cfcomponent>
