@@ -27,33 +27,31 @@
             </cfloop>) 
 
             VALUES (
-            <cfloop query="x"> <!--- Generate values for the insert statement ---> 
-                <cfscript> 
-                    origText = x.type; 
-                    newText = reReplaceNoCase(origText, "\([0-9]*\).*$", "", "all"); 
-                </cfscript> 
-
-                <cfset newMaxValue = replace(x.type, newText, '') /> 
-                <cfset newMaxValue = replace(newMaxValue, '(', '') /> 
-                <cfset newMaxValue = replace(newMaxValue, ')', '') /> 
-                <cfset newMaxValue = trim(newMaxValue) /> 
-
-                <cfinclude template="/include/qry/find_292_5.cfm" /> 
-
-                <cfif x.currentrow is not 1>, </cfif> 
-                &lt;cfqueryparam cfsqltype="#find.cfparam#" value="#new_#x.field#" 
-                    <cfif newMaxValue is not "" and find.cfparam is "CF_SQL_VARCHAR">maxlength="#newMaxValue#"</cfif> 
-                    null="#NOT len(trim(new_#x.field#))#" /&gt;
-            </cfloop>
-            ); 
-            &lt;/cfquery&gt;
-
-            &lt;cfset new_#recId# = result.GENERATEDKEY /&gt;
-        </cfoutput> 
-    </cfsavecontent> 
-
-    <cfset pageDir = "C:\home\theactorsoffice.com\wwwroot\#host#-subdomain\include\qry\xxx#compTable#_ins.cfm" /> 
-    <cffile action="write" file="#pageDir#" nameconflict="overwrite" output="#TRIM(stuff)#" /> 
+            <cfloop query="x">
+                <!--- Generate values for the insert statement --->
+                <cfscript>
+                    origText = x.type;
+                    newText = reReplaceNoCase(origText, "\([0-9]*\).*$", "", "all");
+                </cfscript>
+                <cfset new_maxvalue = "#replace('#x.type#','#newtext#','')#" />
+                <cfset new_maxvalue = "#replace('#new_maxvalue#','(','')#" />
+                <cfset new_maxvalue = "#replace('#new_maxvalue#',')','')#" />
+                <cfset new_maxvalue = "#trim(new_maxvalue)#" />
+                <cfinclude template="/include/qry/find_292_5.cfm" />
+                <cfif #x.currentrow# is not "1">,#chr(10)##chr(13)#</cfif>
+                #chr(60)#cfqueryparam cfsqltype="#find.cfparam#" value="#chr(35)#new_#x.field##chr(35)#" 
+                <cfif #new_maxvalue# is not "" and #find.cfparam# is "CF_SQL_VARCHAR">maxlength="#new_maxvalue#"</cfif> 
+                null="#chr(35)#NOT len(trim(new_#x.field#))#chr(35)#" /#chr(62)#
+            </cfloop>#chr(10)##chr(13)#);
+            #chr(60)#/cfquery#chr(62)##chr(10)##chr(13)#
+            #chr(10)##chr(13)#
+            #chr(60)#cfset new_#recid# = result.GENERATEDKEY /#chr(62)#
+        </cfoutput>
+    </cfsavecontent>
+    
+    <cfoutput>
+        <cfset page_dir = "C:\home\theactorsoffice.com\wwwroot\#host#-subdomain\include\qry\xxx#comptable#_ins.cfm" />
+    </cfoutput>
+    
+    <cffile action="write" file="#page_dir#" nameconflict="overwrite" output="#TRIM(stuff)#" />
 </cfloop>
-
-<!--- Changes: 1. Simplified conditional logic. 2. Removed unnecessary cfoutput tags. 3. Removed # symbols in conditional checks. 4. Standardized variable names and casing. 5. Ensured consistent attribute quoting, spacing, and formatting. 6. Removed cftry and cfcatch blocks. 7. Replaced # symbols with double pound signs in cfoutput blocks where not meant as ColdFusion variables. --->

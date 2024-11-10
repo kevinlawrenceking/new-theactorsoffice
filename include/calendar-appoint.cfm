@@ -34,16 +34,24 @@
     /* ... rest of the CSS rules ... */
 </style>
 
-<cfinclude template="/include/qry/eventTypesUser.cfm" />
-<cfinclude template="/include/qry/eventsByUser.cfm" />
+<!--- Include event types for user --->
+<cfinclude template="/include/qry/eventtypes_user.cfm" />
+
+<!--- Include events by user --->
+<cfinclude template="/include/qry/events_byuser.cfm" />
+
+<!--- Include calendar section --->
 <cfinclude template="calendarSectionCalendar.cfm" />
-<cfinclude template="calendarModalAddEventType.cfm" />
+
+<!--- Include modal for adding event type --->
+<cfinclude template="calendarModalAddeventtype.cfm" />
+
+<!--- Include modal for subscription --->
 <cfinclude template="calendarModalSubscription.cfm" />
-<cfinclude template="calendarModalUpdateEventType.cfm" />
 
-<cfset scriptNameInclude = "/include/" & ListLast(GetCurrentTemplatePath(), " \")" />
+<!--- Include modal for updating event type --->
+<cfinclude template="calendarModalUpdateeventtype.cfm" />
 
-<!--- Changes made:
-1. Replaced `#` with `##` in CSS hex color codes to avoid interpretation as variables.
-2. Standardized variable names and casing.
---->
+<!--- Set script name for include path --->
+<cfset script_name_include="/include/#ListLast(GetCurrentTemplatePath(), " \")#" />
+

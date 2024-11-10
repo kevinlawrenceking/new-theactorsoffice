@@ -203,4 +203,4 @@ RECORDz: #Y.RECORDCOUNT#
     <cfinclude template="/include/qry/update_contact_308_23.cfm"/>
 </cfloop>
 
-<!--- Changes: Standardized variable names and casing, removed unnecessary cfoutput tags, improved conditional logic, ensured consistent attribute quoting, spacing, and formatting, simplified record count logic, used uniform date and time formatting.
+<!--- Changes: Standardized variable names and casing, removed unnecessary cfoutput tags, improved conditional logic, ensured consistent attribute quoting, spacing, and formatting, simplified record count logic, used uniform date and time formatting. --->

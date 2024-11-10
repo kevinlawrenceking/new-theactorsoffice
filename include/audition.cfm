@@ -44,30 +44,6 @@
             </div>
         </div>
     </div>
-
-    <div id="StatusCancel#steps.audStepId#" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: red;color:white;">
-                    <h4 class="modal-title">Cancel #steps.audStep#</h4>
-                    <a href="">
-                        <button type="button" value="Cancel" class="close" aria-hidden="true"><i class="mdi mdi-close-thick"></i></button>
-                    </a>
-                </div>
-                <div class="modal-body">
-                    <h4>Do you need to cancel your #steps.audStep# status?</h4><br>
-                    <form action="/include/changeStatus.cfm">
-                        <input type="hidden" value="#audProjectId#" name="audProjectId" />
-                        <input type="hidden" value="cancel" name="pgAction" />
-                        <input type="hidden" name="newAudRoleId" value="#audRoleId#" />
-                        <input type="hidden" name="newAudStepId" value="#steps.audStepId#" />
-                        <input type="submit" class="btn btn-xs waves-effect waves-light" style="background-color:red;color:white;" value="Yes" />
-                        <input type="hidden" name="statusField" value="#statusField#" />
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 </cfloop>
 
 <cfinclude template="/include/qry/roleCheck_29_2.cfm" />
@@ -85,7 +61,7 @@
 
 <cfif pgAction is "change">
     <cfset cookie.isTab = newIsTab />
-    <cfset pgAction = "view">
+    <cfset pgAction = "view" />
 </cfif>
 
 <cfif isDefined('cookie.isTab')>
@@ -119,10 +95,11 @@
                     <div class="row" style="margin: auto;">
                         <cfif auditionDetails.eventStart is not "">
                             <h4 class="px-1 d-flex text-nowrap">
-                                <img src="#application.datesUrl#/#DateFormat(auditionDetails.eventStart,'yyyy-mm-dd')#.png" style="max-width:75px;" alt="...">
+                                <img src="#application.datesUrl#/#DateFormat(auditionDetails.eventStart, 'yyyy-mm-dd')#.png" style="max-width:75px;" alt="...">
                             </h4>
                         </cfif>
-                        <div class="col-md-12 p-1"><strong>Time: </strong>#timeFormat(auditionDetails.eventStartTime)# <cfif auditionDetails.eventStopTime is not "">- #timeFormat(auditionDetails.eventStopTime)#</cfif></div>
+                        <div class="col-md-12 p-1"><strong>Time: </strong>#timeFormat(auditionDetails.eventStartTime)# 
+                        <cfif auditionDetails.eventStopTime is not "">- #timeFormat(auditionDetails.eventStopTime)#</cfif></div>
                         <div class="col-md-12 p-1"><strong> Stage: </strong>#auditionDetails.audStep#</div>
                         <cfif auditionDetails.audStepId is "2">
                             <div class="col-md-12 p-1"><strong>Callback Type: </strong>#auditionDetails.callbackType#</div>
@@ -134,12 +111,28 @@
                         <cfif auditionDetails.audType is "online">
                             <div class="col-md-12 p-1"><strong> Platform: </strong>#auditionDetails.audPlatform#</div>
                         </cfif>
-                        <div class="col-md-12 p-1"><strong> Worked with Coach: </strong> <cfif auditionDetails.workWithCoach is "1">Yes<cfelse>No</cfif> </div>
                         <cfif auditionDetails.audType is "In Person">
                             <div class="col-md-12 p-1"><strong>Parking Details: </strong>#auditionDetails.parkingDetails#</div>
+                            <div class="col-md-12 p-1"><strong> Track Mileage: </strong>
+                                <cfif auditionDetails.trackMileage is "1">Yes<cfelse>No</cfif>
+                            </div>
                         </cfif>
-                        <cfif auditionDetails.audType is "In Person">
-                            <div class="col-md-12 p-1"><strong> Track Mileage: </strong> <cfif auditionDetails.trackMileage is "1">Yes<cfelse>No</cfif> </div>
+                        <cfif auditionDetails.isLocation is "true">
+                            <div class="col-md-12 p-1"><strong>Location: </strong>#auditionDetails.eventLocation#<cfif auditionDetails.eventLocation is not "" and auditionDetails.audLocAdd1 is not "">, #auditionDetails.audLocAdd1#</cfif>
+                                <cfif auditionDetails.audLocAdd2 is not "">, #auditionDetails.audLocAdd2#</cfif>
+                                <cfif auditionDetails.audCity is not "">, #auditionDetails.audCity#</cfif>
+                                <cfif auditionDetails.regionName is not ""> , #auditionDetails.regionName#</cfif>
+                                <cfif auditionDetails.audZip is not ""> , #auditionDetails.audZip#</cfif>
+                                <cfif auditionDetails.countryName is not "" and auditionDetails.countryName is not "United States">#auditionDetails.countryName#</cfif>
+                            </div>
+                        <cfelse>
+                            <cfif auditionDetails.audType is "online">
+                                <div class="col-md-12 p-1"><strong>Zoom Link: </strong>#auditionDetails.audLocation#</div>
+                            </cfif>
                         </cfif>
-                        <cfif auditionDetails.audType is "In Person">
-                            <div class="col-md
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</cfloop>

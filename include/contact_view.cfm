@@ -118,12 +118,101 @@
                 </div>
             </div>
         </div>
-        <cfset contact_active = (contact_expand is "true") ? "show active" : "" />
-        <cfset appointments_active = (appointments_expand is "true") ? "show active" : "" />
-        <cfset notes_active = (notes_expand is "true") ? "show active" : "" />
+       <cfif #contact_expand# is "true">
+            <cfset contact_active = "show active" />
+        </cfif>
+
+        <cfif #contact_expand# is not "true">
+            <cfset contact_active = "" />
+        </cfif>
+
+        <cfif #appointments_expand# is "true">
+            <cfset appointments_active = "show active" />
+        </cfif>
+
+        <cfif #appointments_expand# is not "true">
+            <cfset appointments_active = "" />
+        </cfif>
+
+        <cfif #notes_expand# is "true">
+            <cfset notes_active = "show active" />
+        </cfif>
+
+        <cfif #notes_expand# is not "true">
+            <cfset notes_active = "" />
+        </cfif>
+
         <cfparam name="status_active_check" default="" />
         <cfparam name="status_completed_check" default="" />
         <cfparam name="status_future_check" default="" />
         <cfparam name="relationship_expand_check" default="" />
-        <cfset status_active_check = (status_active is "Y") ? "checked" : "" />
-        <cfset status
+
+        <cfif #status_active# is "Y">
+            <cfset status_active_check="checked" />
+        </cfif>
+
+        <cfif #status_completed# is "Y">
+            <cfset status_completed_check="checked" />
+        </cfif>
+
+        <cfif #status_future# is "Y">
+            <cfset status_future_check="checked" />
+        </cfif>
+
+        <cfif #relationship_expand# is "true">
+            <cfset relationship_expand_check="show active" />
+        </cfif>
+
+        <div class="card-body">
+            <ul class="nnav nav-pills nav-fill navtab-bg>
+                <li class="nav-item">
+                    <a href="#contact" data-bs-toggle="tab" aria-expanded="<cfoutput>#contact_expand#</cfoutput>" class="nav-link<cfif #contact_expand# is 'true'> active</cfif>">Relationship Info</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#notes" data-bs-toggle="tab" aria-expanded="<cfoutput>#notes_expand#</cfoutput>" class="nav-link<cfif #notes_expand# is 'true'> active</cfif>">Notes
+                        <cfif notesContact.recordcount neq 0>
+                            <span class="badge  badge-primary badge-pill">
+                                <cfoutput>#numberformat(notesContact.recordcount)#</cfoutput>
+                            </span>
+                        </cfif>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#appointments" data-bs-toggle="tab" aria-expanded="<cfoutput>#appointments_expand#</cfoutput>" class="nav-link<cfif #appointments_expand# is 'true'> active</cfif>">Appointments
+                        <cfif eventresults.recordcount neq 0>
+                            <span class="badge  badge-primary badge-pill">
+                                <cfoutput>(#numberformat(eventresults.recordcount)#)</cfoutput>
+                            </span>
+                        </cfif>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#relationship" data-bs-toggle="tab" aria-expanded="<cfoutput>#relationship_expand#</cfoutput>" class="nav-link<cfif #relationship_expand# is 'true'> active</cfif>">Relationship Reminders</a>
+                </li>
+            </ul>
+
+            <div class="tab-content">
+                <div class="tab-pane <Cfoutput>#contact_active#</cfoutput>" id="contact">
+                    <cfinclude template="/include/contact_pane.cfm" />
+                </div>
+
+                <div class="tab-pane<cfif #notes_expand# is 'true'> show active</cfif>" id="notes">
+                    <cfinclude template="/include/notes_relationship_pane.cfm" />
+                </div>
+
+                <div class="tab-pane <Cfoutput>#appointments_active#</cfoutput>" id="appointments">
+                    <cfinclude template="/include/appointments_pane.cfm" />
+                </div>
+
+                <div class="tab-pane <Cfoutput>#relationship_expand_check#</cfoutput>" id="relationship">
+                    <cfinclude template="/include/reminder_pane.cfm" />
+                </div>
+            </div>
+
+            <cfset script_name_include="/include/#ListLast(GetCurrentTemplatePath(), " \")#" />
+        </div>
+    </div>
+</div>

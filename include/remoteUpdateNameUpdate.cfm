@@ -5,7 +5,7 @@
 <cfparam name="customPronoun" default="" />
 
 <cfscript>
-    <!--- Process contactMeetingDate --->
+
     if (Len(trim(form.contactMeetingDate)) && REFind("^\d{4}-\d{2}-\d{2}$", form.contactMeetingDate)) {
         parsedDate = ParseDateTime(form.contactMeetingDate);
         contactMeetingDate = DateFormat(parsedDate, "yyyy-mm-dd");
@@ -13,7 +13,7 @@
         contactMeetingDate = JavaCast("null", "");
     }
 
-    <!--- Process contactBirthday --->
+
     if (Len(trim(form.contactBirthday)) && REFind("^\d{4}-\d{2}-\d{2}$", form.contactBirthday)) {
         parsedDate = ParseDateTime(form.contactBirthday);
         contactBirthday = DateFormat(parsedDate, "yyyy-mm-dd");

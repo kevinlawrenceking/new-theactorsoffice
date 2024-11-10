@@ -9,7 +9,7 @@
 <cfparam name="contactId" default="0" />
 
 <cfscript>
-    <!--- Define new table name and form fields based on RPGAdd structure --->
+
     newTableName = rpg.compTable;
     newFormFields = valueList(RPGAdd.fname);
 </cfscript>
@@ -17,7 +17,7 @@
 newTableName: #newTableName#<BR>
 newFormFields: #valueList(RPGAdd.fname)# /app/#pgDir#/?contactId=#contactId#&tab1=#tab1#&tab2=#tab2#&tab3=#tab3#&tab4=#tab4#
 
-<CFINSERT TABLENAME="#newTableName#" formfields="#newFormFields#" >
+<CFINSERT TABLENAME="#newTableName#" datasource="#dsn#" formfields="#newFormFields#" >
 
 <!--- Check if rpgid is equal to "8" and include necessary templates --->
 <cfif rpgid is "8">
