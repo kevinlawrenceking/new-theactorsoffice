@@ -88,6 +88,7 @@
         </cfquery>
     </cffunction>
 
+ <!--- Function to update sitelinks_user table dynamically based on passed variables --->
     <cffunction name="updateSiteLink" access="public" returntype="void" output="false" hint="Updates the sitelinks_user table dynamically based on available arguments.">
         <cfargument name="new_id" type="numeric" required="true" hint="ID of the site link to update">
         <cfargument name="new_sitename" type="string" required="false" hint="New site name">
@@ -99,11 +100,68 @@
         <cfargument name="ver" type="integer" required="false" hint="Version number">
         <cfargument name="new_siteicon_url" type="string" required="false" hint="New site icon URL">
 
+        <!--- Query to update sitelinks_user with conditional updates --->
         <cfquery name="updateSiteLink">
             UPDATE sitelinks_user
-            SET siteName = <cfqueryparam value="#arguments.new_sitename#" cfsqltype="cf_sql_varchar">,
-                siteURL = <cfqueryparam value="#arguments.new_siteurl#" cfsqltype="cf_sql_varchar">,
-                siteicon = <cfqueryparam value="#arguments.new_siteicon#" cfsqltype="cf_sql_varchar">,
-                siteTypeid = <cfqueryparam value="#arguments.new_sitetypeid#" cfsqltype="cf_sql_integer">,
-                IsCustom = <cfqueryparam value="#arguments.new_iscustom#" cfsqltype="cf_sql_bit">,
-                IsDeleted = <cfqueryparam value="#arguments.deletelink#" cfsqltype
+            SET siteName = <cfqueryparam value="#arguments.new_sitename#" cfsqltype="cf_sql_varchar">
+              
+                <cfif structKeyExists(arguments, "new_siteurl")>
+                    ,siteURL = <cfqueryparam value="#arguments.new_siteurl#" cfsqltype="cf_sql_varchar">
+                </cfif>
+                <cfif structKeyExists(arguments, "new_siteicon")>
+                    ,siteicon = <cfqueryparam value="#arguments.new_siteicon#" cfsqltype="cf_sql_varchar">
+                </cfif>
+                <cfif structKeyExists(arguments, "new_sitetypeid")>
+                    ,siteTypeid = <cfqueryparam value="#arguments.new_sitetypeid#" cfsqltype="cf_sql_integer">
+                </cfif>
+                <cfif structKeyExists(arguments, "new_iscustom")>
+                    ,IsCustom = <cfqueryparam value="#arguments.new_iscustom#" cfsqltype="cf_sql_bit">
+                </cfif>
+                <cfif structKeyExists(arguments, "deletelink")>
+                    ,IsDeleted = <cfqueryparam value="#arguments.deletelink#" cfsqltype="cf_sql_bit">
+                </cfif>
+                <cfif structKeyExists(arguments, "ver")>
+                    ,ver = <cfqueryparam value="#arguments.ver#" cfsqltype="cf_sql_integer">
+                </cfif>
+                <cfif structKeyExists(arguments, "new_siteicon_url")>
+                    ,siteicon_url = <cfqueryparam value="#arguments.new_siteicon_url#" cfsqltype="cf_sql_varchar">
+                </cfif>
+            WHERE id = <cfqueryparam value="#arguments.new_id#" cfsqltype="cf_sql_integer">
+        </cfquery>
+
+    </cffunction>
+
+<!--- Function to get sitetypeid and sitetypename for a specific panel ID (pnid) --->
+<cffunction name="getSiteTypeDetailsByPanelId" access="public" returntype="struct" output="false" hint="Retrieve the sitetypeid and sitetypename for a specific panel ID (pnid).">
+    <cfargument name="new_pnid" type="numeric" required="true" hint="The panel ID (pnid) for which to retrieve sitetypeid and sitetypename.">
+    
+    <!--- Query to retrieve sitetypeid and sitetypename --->
+    <cfquery name="siteTypeQuery">
+        SELECT su.sitetypeid, su.sitetypename, p.pntitle
+        FROM sitetypes_user su
+        INNER JOIN pgpanels_user p ON su.pnid = p.pnid
+        WHERE su.pnid = <cfqueryparam value="#arguments.new_pnid#" cfsqltype="cf_sql_integer">
+        LIMIT 1
+    </cfquery>
+
+    <!--- Create a structure to return both values --->
+    <cfset var siteTypeDetails = structNew()>
+
+    <!--- Check if the record exists and populate the structure --->
+    <cfif siteTypeQuery.recordcount gt 0>
+        <cfset siteTypeDetails.sitetypeid = siteTypeQuery.sitetypeid>
+        <cfset siteTypeDetails.sitetypename = siteTypeQuery.sitetypename>
+         <cfset siteTypeDetails.pntitle = siteTypeQuery.pntitle>
+    <cfelse>
+        <!--- Return 0 for sitetypeid and empty string for sitetypename if no result found --->
+        <cfset siteTypeDetails.sitetypeid = 0>
+        <cfset siteTypeDetails.sitetypename = "">
+           <cfset siteTypeDetails.pntitle = "">
+    </cfif>
+
+    <!--- Return the structure --->
+    <cfreturn siteTypeDetails>
+</cffunction>
+
+
+</cfcomponent>
