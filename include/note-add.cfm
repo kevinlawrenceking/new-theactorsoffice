@@ -1,9 +1,10 @@
 <!--- This ColdFusion page is used to display a form for adding notes related to a contact, including relationships and event connections. --->
-<cfparam name="contactID" default="0" />
-<cfset currentID = contactID />
+
+<cfparam name="rcontactid" default="0" />
+<cfset currentid = rcontactid />
 
 <style>
-    .hidden-div {
+    #hidden_div {
         display: none;
     }
 </style>
@@ -11,26 +12,37 @@
 <cfinclude template="/include/qry/relationships_13_1.cfm" />
 
 <div class="row">
+
     <div class="col-xl-6 col-lg-8 col-md-12">
         <div class="card">
+
             <div class="card-body">
-                <h4><cfoutput>#details.fullName#</cfoutput></h4>
+                
+                <cfoutput>
+                    <h4>#details.fullName#</h4>
+                </cfoutput> 
+
                 <!--- Form for adding notes --->
                 <cfform method="post" action="/include/note-add2.cfm" class="parsley-examples" name="event-form" id="form-event" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" data-parsley-trigger="keyup" data-parsley-validate>
-                    <input type="hidden" name="returnurl" value="<cfoutput>#returnurl#</cfoutput>">
-                    <input type="hidden" name="contactID" value="<cfoutput>#contactID#</cfoutput>">
-                    <input type="hidden" name="userID" value="<cfoutput>#session.userID#</cfoutput>">
-
+                    
+                    <cfoutput>
+                        <input type="hidden" name="returnurl" value="#returnurl#">
+                        <input type="hidden" name="rcontactid" value="#rcontactid#">
+                        <input type="hidden" name="userid" value="#session.userid#">
+                    </cfoutput>
+                    
                     <div class="row">
+
                         <!--- Initialize selectize for relationships --->
                         <script>
                             $(document).ready(function() {
                                 $("#select-relationship").selectize({
-                                    persist: false,
-                                    createOnBlur: true,
-                                    create: true,
+                                    persist: !1,
+                                    createOnBlur: !0,
+                                    create: !0,
                                     plugins: ["remove_button"],
                                     delimiter: ",",
+                                    persist: false,
                                     create: function(input) {
                                         return {
                                             value: input,
@@ -47,14 +59,16 @@
                         </div>
 
                         <!--- Check if relationships are defined --->
-                        <cfif isdefined('relationships')>
+                        <cfif isdefined('sdfsdfdsf')>
                             <div class="col-lg-12">
                                 <div class="form-group mb-3">
                                     <label for="select-relationship">Relationships<span class="text-danger">*</span></label>
                                     <select id="select-relationship" name="relationships" autocomplete="off" multiple required data-parsley-required data-parsley-error-message="Relationship is required" class="demo-default selectize-close-btn" style="width: 100%" placeholder="Select a Relationship..." value="">
                                         <option value="">Select a Relationship...</option>
                                         <cfloop query="relationships">
-                                            <option value="<cfoutput>#relationships.contactID#</cfoutput>" <cfif relationships.contactID eq contactID>selected</cfif>><cfoutput>#recordName#</cfoutput></option>
+                                            <cfoutput>
+                                                <option value="#relationships.contactid#" <cfif "#relationships.contactid#" is "#rcontactid#">selected </cfif>>#recordname#</option>
+                                            </cfoutput>
                                         </cfloop>
                                     </select>
                                 </div>
@@ -70,14 +84,15 @@
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="eventID">Connect to an event</label>
-                            <select class="form-control" name="eventID" id="eventID">
+                            <label for="eventid">Connect to an event</label>
+                            <select class="form-control" name="eventid" id="eventid">
                                 <option value="0" selected>No event</option>
-                                <cfloop query="events">
-                                    <option value="<cfoutput>#eventID#</cfoutput>"><cfoutput>#dateFormat(eventStart)# - #eventTitle#</cfoutput></option>
-                                </cfloop>
+                                <cfoutput query="events">
+                                    <option value="#eventid#">#dateformat(eventStart)# - #eventTitle#</option>
+                                </cfoutput>
                             </select>
                         </div>
+
                     </div>
 
                     <div class="row mt-2">
@@ -101,6 +116,5 @@
     });
 </script>
 
-<cfset scriptNameInclude = "/include/" & ListLast(GetCurrentTemplatePath(), " \") />
+<cfset script_name_include="/include/#ListLast(GetCurrentTemplatePath(), " \")#" />
 
-<!--- Changes made according to standards: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10. --->

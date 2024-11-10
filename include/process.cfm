@@ -1,15 +1,14 @@
 <!--- This ColdFusion page handles redirection based on the selected category. --->
-<cfset debug = 'N'>
+
+<cfset dbug = 'N'>
+
 <!--- Check the category and redirect accordingly --->
 <cfif category eq "Contacts">
-    <cflocation url="/app/contact/?contactid=#selectedId#" />
+    <cflocation url = "/app/contact/?contactid=#selectedid#"/>
+    
 <cfelseif category eq "Tags">
-    <cflocation url="/app/contacts/?bytag=#selectedId#" />
+    <cflocation url = "/app/contacts/?bytag=#selectedid#"/>
+    
 <cfelse>
-    <cflocation url="/app/appoint-update/?eventId=#selectedId#&returnUrl=calendar-appoint&rContactId=0" />
+    <cflocation url = "/app/appoint-update/?eventid=#selectedid#&returnurl=calendar-appoint&rcontactid=0"/>
 </cfif>
-
-<!--- Changes made: 
-1. Standardized variable names and casing.
-2. Ensured consistent attribute quoting, spacing, and formatting.
---->

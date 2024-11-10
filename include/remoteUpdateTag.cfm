@@ -1,13 +1,15 @@
 <!--- This ColdFusion page manages the selection and updating of tags for contacts in The Actor's Office. --->
+
 <cfinclude template="/include/qry/tagsContact.cfm" />
 
 <script>
     $("#select-tag").selectize({
-        persist: false,
-        createOnBlur: true,
-        create: true,
+        persist: !1,
+        createOnBlur: !0,
+        create: !0,
         plugins: ["remove_button"],
         delimiter: ",",
+        persist: false,
         create: function (input) {
             return {
                 value: input,
@@ -23,9 +25,11 @@
 
 <cfinclude template="/include/qry/tags_203_2.cfm" />
 
-<form action="/include/tagchange.cfm">
-    <input type="hidden" name="userid" value="#userid#" />
-    <input type="hidden" name="contactid" value="#contactid#" />
+<form action="/include/tagchange.cfm"> 
+    <cfoutput>
+        <input type="hidden" name="userid" value="#userid#" />
+        <input type="hidden" name="contactid" value="#contactid#" />
+    </cfoutput>
 
     <div class="row">
         <div class="col-lg-12">
@@ -38,16 +42,20 @@
                 <label for="select-tag">Click in the box to select a tag <strong>or</strong> type a new one:</label>
                 <select id="select-tag" name="tag" multiple class="demo-default selectize-close-btn" style="width: 100%" placeholder="Select a tag..." value="Publicist">
                     <option value="">Select a tag...</option>
+                    
                     <!--- Loop through the tags query to populate the select options --->
                     <cfloop query="tags">
-                        <cfset newTagName = tags.tagname />
+                        <cfset new_tagname = tags.tagname />
                         <cfinclude template="/include/qry/findt_272_2.cfm" />
-                        <cfif findt.recordcount eq 1>
-                            <cfset newSelect = "selected" />
+                        
+                        <cfif #findt.recordcount# is "1">
+                            <cfset new_select = "selected" />
                         <cfelse>
-                            <cfset newSelect = "" />
+                            <cfset new_select = "" />
                         </cfif>
-                        <option value="#newTagName#" #newSelect#>#newTagName#</option>
+                        <cfoutput>
+                            <option value="#tagname#" #new_select#>#tagname#</option>
+                        </cfoutput>
                     </cfloop>
                 </select>
             </div>
@@ -59,12 +67,3 @@
 <p>The Actor's Office comes with pre-loaded tags that will be the main ones you will use as an actor and you have the ability to add your own as well.</p>
 <p>Your contact will be placed in the appropriate Automated Relationship Reminder System depending on how you tag them. From now on, look at your relationships through the lens of either Casting Directors OR Industry folks. Industry folks are everyone else, writers, producers, directors, etc.</p>
 
-<!--- Changes made: 
-1. Removed unnecessary cfoutput tags around variable outputs.
-2. Avoided using # symbols within conditional checks.
-3. Standardized variable names and casing.
-4. Simplified record count logic for icons or conditional displays.
-5. Ensured consistent attribute quoting, spacing, and formatting.
-6. Removed cftry and cfcatch blocks entirely.
-7. Used double pound signs ## to avoid interpretation as variables in cfoutput blocks.
---->

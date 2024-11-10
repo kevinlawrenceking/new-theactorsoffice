@@ -1,40 +1,54 @@
-<form action="ingestform.cfm" name="imageForm" method="post">
-    <input type="hidden" name="pgAction" value="Add" />
+<!--- This ColdFusion page handles an image submission form with radio button selections and visibility toggling for additional options. --->
+
+<form action="ingestform.cfm" name="Image_Form" method="post">
+    <input type="hidden" name="pg_action" value="Add" />
+
+    <!--- JavaScript function to check radio button selection and toggle visibility of additional options. --->
     <script type="text/javascript">
-        function yesNoCheck() {
-            if (document.getElementById('myTattedLife').checked || document.getElementById('datingCanBeMurder').checked) {
+        function yesnoCheck() {
+            if (document.getElementById('MyTattedLife').checked || document.getElementById('DatingCanBeMurder').checked) {
                 document.getElementById('ifYes').style.visibility = 'visible';
             } else {
                 document.getElementById('ifYes').style.visibility = 'hidden';
             }
         }
+    </script>
 
-        function clear() {
-            clearRadioGroup("reachCategories");
+    <!--- JavaScript functions to clear radio button selections and hide additional options. --->
+    <script>
+        function Clear() {
+            clearRadioGroup("Reach_Categories");
         }
 
-        function clearRadioGroup(groupName) {
-            var ele = document.getElementsByName(groupName);
+        function clearRadioGroup(GroupName) {
+            var ele = document.getElementsByName(GroupName);
             for (var i = 0; i < ele.length; i++) {
                 ele[i].checked = false;
             }
             document.getElementById('ifYes').style.visibility = 'hidden';
         }
     </script>
+
     <div class="form-group">
         <div style="margin-right:5px; margin-left:15px;">
-            <label class="form-check-label" for="myTattedLife" style="margin-right:5px; margin-left:5px;">
-                <input type="radio" name="reachCategories" id="myTattedLife" value="My Tatted Life" class="styled" onclick="yesNoCheck();"> My Tatted Life
+            <!--- Radio button for "My Tatted Life" category selection. --->
+            <label class="form-check-label" for="My Tatted Life" style="margin-right:5px; margin-left:5px;">
+                <input type="radio" name="Reach_Categories" id="MyTattedLife" value="My Tatted Life" class="styled" onclick="javascript:yesnoCheck();">
+                My Tatted Life
             </label>
+
+            <!--- Additional options that appear based on radio button selection. --->
             <span style="visibility:hidden" id="ifYes">
-                <input type="button" value="Clear Restriction" class="small" onclick="clear();">
+                <input type="button" value="Clear Restriction" class="small" onclick="Clear();">
             </span>
         </div>
     </div>
+
     <p>
-        <input type="submit" onclick="popup('popUpDiv')" id="submitIt" name="submitIt" value="Continue" style="visibility: hidden;" class="btn submitIt btn-xs btn-primary legitRipple" />
+        <!--- Submit button to continue with the form submission. --->
+        <input type="submit" onclick="popup('popUpDiv')" id="submitit" name="submitit" value="Continue" style="visibility: hidden;" class="btn submitit btn-xs btn-primary legitRipple" />
     </p>
 </form>
-<input type="file" name="files">
 
-<!--- Modifications: Standardized variable names and casing, ensured consistent attribute quoting, spacing, and formatting. --->
+<!--- File input for uploading files. --->
+<input type="file" name="files">

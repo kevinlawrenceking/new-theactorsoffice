@@ -1,28 +1,15 @@
-<!--- Set the user ID from the session --->
-<cfset userID = session.userID />
+<!--- This ColdFusion page handles the retrieval and display of media files for the user. --->
 
-<!--- Get the current server name --->
-<cfset currentURL = cgi.server_name />
+<cfset userid = session.userid /> <!--- Set the user ID from the session --->
 
-<!--- Extract the host from the server name --->
-<cfset host = ListFirst(currentURL, ".") />
+<cfset currentURL = cgi.server_name /> <!--- Get the current server name --->
 
-<!--- Include the attachment details template --->
-<cfinclude template="/include/qry/attachdetails_109_1.cfm" />
+<cfset host = ListFirst(currentURL, ".") /> <!--- Extract the host from the server name --->
 
-<!--- Retrieve the media file as binary data --->
-<cfhttp url="#session.userMediaUrl#/#attachdetails.mediaFileName#" getAsBinary="yes" />
+<cfinclude template="/include/qry/attachdetails_109_1.cfm" /> <!--- Include the attachment details template --->
 
-<!--- Set the header for content disposition to inline with the filename --->
-<cfheader name="Content-Disposition" value='inline; filename="#attachdetails.mediaFileName#"' />
+<cfhttp url="#session.userMediaUrl#/#attachdetails.mediafilename#" getAsBinary="yes"/> <!--- Retrieve the media file as binary data --->
 
-<!--- Output the binary content of the media file --->
-<cfcontent type="application/octet-stream" variable="#cfhttp.fileContent#" />
+<cfheader name="Content-Disposition" value="inline; filename=#attachdetails.mediafilename#" /> <!--- Set the header for content disposition to inline with the filename --->
 
-<!---
-Changes Made:
-1. Standardized variable names and casing.
-2. Ensured consistent attribute quoting, spacing, and formatting.
-3. Removed unnecessary `<cfoutput>` tags around variable outputs.
-4. Avoided using `#` symbols within conditional checks unless essential.
---->
+<cfcontent type="application/octet-stream" variable="#cfhttp.fileContent#" /> <!--- Output the binary content of the media file --->

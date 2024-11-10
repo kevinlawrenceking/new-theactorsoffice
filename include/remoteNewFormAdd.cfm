@@ -1,38 +1,41 @@
 <!--- This ColdFusion page handles the insertion of data into a specified table and includes various setup processes based on conditions. --->
+
 <cfinclude template="rpg_load.cfm" />
 
-<cfparam name="debug" default="Y" />
-<cfparam name="tab1" default="0" />
-<cfparam name="tab2" default="0" />
-<cfparam name="tab3" default="0" />
-<cfparam name="tab4" default="0" />
-<cfparam name="contactId" default="0" />
+<cfparam name="dbug" default="Y" />
+<cfparam name="t1" default="0" />
+<cfparam name="t2" default="0" />
+<cfparam name="t3" default="0" />
+<cfparam name="t4" default="0" />
+<cfparam name="contactid" default="0" />
 
 <cfscript>
-
-    newTableName = rpg.compTable;
-    newFormFields = valueList(RPGAdd.fname);
+    <!--- Define new table name and form fields based on RPGAdd structure --->
+    new_tablename = rpg.comptable
+    newformfields = valuelist(RPGAdd.fname)
 </cfscript>
 
-newTableName: #newTableName#<BR>
-newFormFields: #valueList(RPGAdd.fname)# /app/#pgDir#/?contactId=#contactId#&tab1=#tab1#&tab2=#tab2#&tab3=#tab3#&tab4=#tab4#
+<cfoutput>
+    <!--- Output the new table name and form fields for debugging purposes --->
+    new_tablename: #new_tablename#<BR>
+    newformfields: #valuelist(RPGAdd.fname)#
+    /app/#pgDir#/?contactid=#contactid#&t1=#t1#&t2=#t2#&t3=#t3#&t4=#t4# 
+</cfoutput>
 
-<CFINSERT TABLENAME="#newTableName#" datasource="#dsn#" formfields="#newFormFields#" >
+<CFINSERT 
+    TABLENAME="#new_tablename#" 
+    formfields="#newformfields#"
+>
 
 <!--- Check if rpgid is equal to "8" and include necessary templates --->
-<cfif rpgid is "8">
+<cfif #rpgid# is "8">
     <cfinclude template="/include/qry/find_246_1.cfm" />
+    
     <!--- Set the selected user ID from the find query --->
-    <cfset selectUserId = find.userId />
+    <cfset select_userid = find.userid />
+    
     <cfinclude template="/include/user_setup.cfm" />
 </cfif>
 
 <!--- Redirect to the specified URL after processing --->
-<cflocation url="/app/#pgDir#/?contactId=#contactId#&tab1=#tab1#&tab2=#tab2#&tab3=#tab3#&tab4=#tab4#" />
-
-<!--- Changes: 
-1. Standardized variable names and casing.
-2. Removed unnecessary `<cfoutput>` tags around variable outputs.
-3. Avoided using `#` symbols within conditional checks.
-4. Ensured consistent attribute quoting, spacing, and formatting.
---->
+<cflocation url="/app/#pgDir#/?contactid=#contactid#&t1=#t1#&t2=#t2#&t3=#t3#&t4=#t4#" />

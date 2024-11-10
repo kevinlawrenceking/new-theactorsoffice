@@ -1,19 +1,20 @@
 <!--- This ColdFusion page handles user data display and provides a link for sharing user information. --->
-<cfparam name="contactExpand" default="true" />
+<cfparam name="contact_expand" default="true" />
 <cfparam name="a" default="0" />
 <cfparam name="d" default="0" />
 <cfparam name="s" default="0" />
-<cfparam name="contactCheckVisible" default="false" />
-<cfparam name="maintenanceExpand" default="false" />
-<cfparam name="byTag" default="" />
-<cfparam name="targetExpand" default="false" />
-<cfparam name="followUpExpand" default="false" />
-<cfparam name="allExpand" default="false" />
-<cfparam name="pgAction" default="view" />
 
-<!--- Check if session variable 'pgAction' is defined; if not, set it to 'view' --->
-<cfif NOT isDefined('session.pgAction')>
-    <cfset session.pgAction = "view">
+<cfparam name="contactcheckvisible" default="false" />
+<cfparam name="maintenance_expand" default="false" />
+<cfparam name="bytag" default="" />
+<cfparam name="target_expand" default="false" />
+<cfparam name="followup_expand" default="false" />
+<cfparam name="all_expand" default="false" />
+<cfparam name="pgaction" default="view" />
+
+<!--- Check if session variable 'pgaction' is defined; if not, set it to 'view' --->
+<cfif NOT isdefined('session.pgaction')>
+    <cfset session.pgaction = "view">
 </cfif>
 
 <!--- Include the query template for user data --->
@@ -26,20 +27,15 @@
                 <!--- Loop through the query results and output user information with a share link --->
                 <cfloop query="x">
                     <cfoutput>
-                        #x.userFirstName# #x.userLastName#: 
-                        <a href="https://##host##.theactorsoffice.com/share/?u=##left(passwordHash,10)##"> 
-                            https://##host##.theactorsoffice.com/share/?u=##left(passwordHash,10)##
-                        </a><br/>
+                        #x.userfirstname# #x.userlastname#: 
+                        <A HREF="https://#host#.theactorsoffice.com/share/?u=#left(passwordhash,10)#">
+                            https://#host#.theactorsoffice.com/share/?u=#left(passwordhash,10)#
+                        </A><BR/>
                     </cfoutput>
                 </cfloop>
             </div>
         </div>
     </div>
-</div> <!--- end row --->
-</div> <!--- container --->
+</div> <!--- end row ---> 
 
-<!--- Changes: 
-1. Standardized variable names and casing.
-2. Removed unnecessary `<cfoutput>` tags around variable outputs.
-3. Used double pound signs `##` to avoid interpretation as variables.
---->
+</div> <!--- container --->

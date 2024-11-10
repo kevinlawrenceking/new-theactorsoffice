@@ -1,37 +1,41 @@
-<h4 class="text-nowrap">My Billing</h4>
+<!--- This ColdFusion page displays billing information including invoice ID, purchase date, trial end date, product, and plan details. --->
+
+<h4 class="text-nowrap">
+    My Billing
+</h4>
 <div class="row" style="margin: auto;">
+    
     <!--- Output billing information --->
     <cfoutput>
+        
         <div class="col-md-12 col-lg-6 p-1">
-            <strong>Invoice ID: </strong>invoiceid
+            <strong>Invoice ID: </strong>#invoiceid#
         </div>
+        
         <div class="col-md-12 col-lg-6 p-1">
-            <strong>Purchase Date: </strong>#DateFormat(purchaseDate)#
+            <strong>Purchase Date: </strong>#dateformat(purchasedate)#
         </div>
+        
         <!--- Check if trial end date is available --->
-        <cfif DateFormat(trialEndDate) neq "">
+        <cfif #dateformat(trialenddate)# is not "">
             <div class="col-md-12 col-lg-6 p-1">
-                <strong>Trial End Date: </strong>#DateFormat(trialEndDate)#
+                <strong>Trial End Date: </strong>#dateformat(trialenddate)#
             </div>
         </cfif>
+        
         <div class="col-md-12 col-lg-6 p-1">
-            <strong>Product: </strong>baseProductLabel
+            <strong>Product: </strong>#baseproductlabel#
         </div>
+        
         <div class="col-md-12 col-lg-6 p-1">
-            <strong>Plan: </strong>planName
+            <strong>Plan: </strong>#planname#
         </div>
+        
     </cfoutput>
+    
     <div class="col-md-12 col-lg-6 p-1">
-        <strong>Have questions and want to cancel? </strong>
-        <a href="mailto:support@theactorsoffice.com">Email</a> us
+        <strong>Have questions and want to cancel? </strong> 
+        <a href="mailto:support@theactorsoffice.com">Email</A> us
     </div>
+    
 </div>
-
-<!---
-Modifications:
-1. Removed unnecessary `<cfoutput>` tags around variable outputs.
-2. Avoided using `#` symbols within conditional checks.
-3. Standardized variable names and casing.
-4. Ensured consistent attribute quoting, spacing, and formatting.
-5. Used uniform date and time formatting across the code.
---->

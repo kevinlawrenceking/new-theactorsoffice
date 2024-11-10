@@ -1,4 +1,4 @@
-nta<cfparam name="dbug" default="Y" />
+<cfparam name="dbug" default="Y" />
 <cfparam name="dbugdbug" default="YY" />
 <cfparam name="select_user" default="0" />
 <cfparam name="select_contactid" default="0" />

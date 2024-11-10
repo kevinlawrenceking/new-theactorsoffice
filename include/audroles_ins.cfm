@@ -1,22 +1,17 @@
-<!--- Initialize parameters for a new audit role --->
-<cfparam name="newAudRoleName" default="" />
-<cfparam name="isDirect" default="0" />
-<cfparam name="newAudRoleTypeID" default="" />
-<cfparam name="newCharDescription" default="" />
-<cfparam name="newHoldStartDate" default="" />
-<cfparam name="newHoldEndDate" default="" />
-<cfparam name="newAudDialectID" default="" />
-<cfparam name="newAudSourceID" default="" />
-<cfparam name="newUserId" default="" />
-<cfparam name="newIsDeleted" default="0" />
+<!--- This ColdFusion page initializes parameters for a new audit role and includes a query for inserting the role into the database. --->
+<cfparam name="new_audRoleName" default="" />
+<cfparam name="isdirect" default="0" />
+<cfparam name="new_audRoleTypeID" default="" />
+<cfparam name="new_charDescription" default="" />
+<cfparam name="new_holdStartDate" default="" />
+<cfparam name="new_holdEndDate" default="" />
+<cfparam name="new_audDialectID" default="" />
+<cfparam name="new_audSourceID" default="" />
+<cfparam name="new_userid" default="" />
+<cfparam name="new_isDeleted" default="0" />
 
 <!--- Include the query for inserting the new audit role into the database --->
-<cfinclude template="/include/qry/audRolesIns391.cfm" />
+<cfinclude template="/include/qry/audroles_ins_39_1.cfm" />
 
 <!--- Set the new audit role ID from the result of the insertion query --->
-<cfset newAudRoleID = result.generatedKey />
-
-<!--- Changes: 
-1. Standardized variable names and casing.
-2. Ensured consistent attribute quoting, spacing, and formatting.
---->
+<cfset new_audRoleID = result.GENERATEDKEY />

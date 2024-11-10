@@ -1,11 +1,12 @@
-<!--- Parameter initialization --->
-<cfparam name="newPnIds" default="" />
+<!--- This ColdFusion page handles parameter initialization and includes necessary query templates before redirecting the user to the account page. --->
 
-<!--- Include query templates --->
+<cfparam name="newpnids" default="" />
+
+<!--- Include the first query template for processing data. --->
 <cfinclude template="/include/qry/x_94_1.cfm" />
-<cfinclude template="/include/qry/pgPanels_94_2.cfm" />
 
-<!--- Redirect to account page --->
-<cflocation url="/app/myAccount/?t1=1" />
+<!--- Include the second query template for pagination panels. --->
+<cfinclude template="/include/qry/pgpanels_94_2.cfm" />
 
-<!--- Changes: Standardized variable names and casing (Rule 5), ensured consistent attribute quoting, spacing, and formatting (Rule 6) --->
+<!--- Redirect the user to the account page with a query parameter. --->
+<cflocation url="/app/myaccount/?t1=1" />

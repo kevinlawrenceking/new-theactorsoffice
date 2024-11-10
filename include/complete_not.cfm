@@ -1,98 +1,100 @@
 <!--- This ColdFusion page processes notifications and updates system information based on user input and session data. --->
+
 <cfparam name="src" default="c" />
-<cfset debug="Y" />
+<cfset dbug="Y" />
 
 <!--- Check if session variable 'mocktoday' is defined and set currentStartDate accordingly --->
-<cfif isDefined('session.mocktoday')>
-    <cfset currentStartDate = DateFormat(session.mocktoday, 'yyyy-mm-dd') />
-<cfelse>
-    <!--- If 'mocktoday' is not defined, set currentStartDate to today's date --->
-    <cfset currentStartDate = DateFormat(Now(), 'yyyy-mm-dd') />
+<cfif #isdefined('session.mocktoday')#>
+    <Cfset currentStartDate="#DateFormat(session.mocktoday,'yyyy-mm-dd')#" />
+</cfif>
+
+<!--- If 'mocktoday' is not defined, set currentStartDate to today's date --->
+<cfif NOT #isdefined('session.mocktoday')#>
+    <Cfset currentStartDate="#DateFormat(Now(),'yyyy-mm-dd')#" />
 </cfif>
 
 <!--- Include the notification details query --->
-<cfinclude template="/include/qry/notsDetails.cfm" />
+<cfinclude template="/include/qry/notsdetails.cfm" />
 
 <!--- Calculate the start date for notifications based on actionDaysRecurring --->
-<cfset notsStartDate = dateAdd('d', numberFormat(notsDetails.actionDaysRecurring), currentStartDate) />
+<cfset notstartdate=dateAdd('d', numberformat(notsdetails.actionDaysRecurring), currentStartDate) />
 
-<!--- Set various contact and notification details from the query results --->
-<cfset contactId = notsDetails.contactId />
-<cfset newContactName = notsDetails.newContactName />
-<cfset systemId = notsDetails.systemId />
-<cfset userId = notsDetails.userId />
-<cfset actionId = notsDetails.actionId />
-<cfset newsUid = notsDetails.newsUid />
-<cfset newSystemScope = notsDetails.newSystemScope />
-<cfset actionDaysRecurring = notsDetails.actionDaysRecurring />
-<cfset uniqueName = notsDetails.uniqueName />
-<cfset isUnique = notsDetails.isUnique />
+<cfoutput>
+    <!--- Set various contact and notification details from the query results --->
+    <cfset contactid="#notsdetails.contactid#" />
+    <cfset new_contactname="#notsdetails.new_contactname#" />
+    <cfset systemid="#notsdetails.systemid#" />
+    <cfset userid="#notsdetails.userid#" />
+    <cfset actionid="#notsdetails.actionid#" />
+    <cfset newsuid=#notsdetails.newsuid# />
+    <cfset newsystemscope="#notsdetails.newsystemscope#" />
+    <cfset actionDaysRecurring="#notsdetails.actionDaysRecurring#" />
+    <cfset uniquename="#notsdetails.uniquename#" />
+    <cfset IsUnique="#notsdetails.IsUnique#" />
 
-<!--- Set default notification status if not defined --->
-<cfif NOT isDefined('notStatus')>
-    <Cfset notStatus="Pending" />
-</cfif>
+    <!--- Set default notification status if not defined --->
+    <cfif NOT #isdefined('notstatus')#>
+        <Cfset notstatus="Pending" />
+    </cfif>
 
-<cfset notEndDate = DateFormat(Now(), 'yyyy-mm-dd') />
+    <cfset notEndDate="#DateFormat(Now(),'yyyy-mm-dd')#" />
+</cfoutput>
 
 <!--- Include the add notification query --->
 <cfinclude template="/include/qry/addNotification_70_1.cfm" />
 
-<!--- If notStatus is not "Pending" and uniqueName is not empty, update contact --->
-<cfif notStatus neq "Pending" and uniqueName neq "">
+<!--- If notstatus is not "Pending" and uniquename is not empty, update contact --->
+<cfif #notstatus# is not "Pending" and #uniquename#is not "">
     <cfinclude template="/include/qry/updateContact_70_2.cfm" />
 </cfif>
 
 <!--- If actionDaysRecurring is not zero, calculate the newest start date and add notification --->
-<cfif numberFormat(actionDaysRecurring) neq "0">
-    <cfset newestNotsStartDate = dateAdd('d', numberFormat(actionDaysRecurring), currentStartDate) />
+<Cfif #numberformat(actionDaysRecurring)# is not "0">
+    <cfset newest_notstartdate=dateAdd('d', numberformat(actionDaysRecurring), currentStartDate) />
     <cfinclude template="/include/qry/addNotification_70_3.cfm" />
-</cfif>
+</Cfif>
 
 <!--- Include the next notifications query --->
-<cfinclude template="/include/qry/notsNext.cfm" />
+<cfinclude template="/include/qry/notsnext.cfm" />
 
-<cfset notsAfter = numberFormat(notsNext.recordCount) />
+<cfset notsafter=numberformat(notsnext.recordcount) />
+<cfoutput>notsafter: #notsafter#</cfoutput>
 
 <!--- If there is one notification after, loop through and update system --->
-<cfif notsAfter eq "1">
-    <cfloop query="notsNext">
-        <cfset newNotsStartDate = dateAdd('d', numberFormat(notsNext.actionDaysNo), currentStartDate) />
-        <cfinclude template="/include/qry/updateSystem_70_4.cfm" />
+<cfif #notsafter# is "1">
+    <cfloop query="notsnext">
+        <cfset new_notstartdate=dateAdd('d', numberformat(notsnext.actiondaysno), currentStartDate) />
+        <cfinclude template="/include/qry/updatesystem_70_4.cfm" />
     </cfloop>
 </cfif>
 
 <!--- If there are no notifications after, perform maintenance checks and updates --->
-<cfif notsAfter eq "0">
-    <cfinclude template="/include/qry/updateSystem_70_5.cfm" />
-    <cfinclude template="/include/qry/checkForMaint_70_6.cfm" />
+<cfif #notsafter# is "0">
+    <cfinclude template="/include/qry/updatesystem_70_5.cfm" />
+    <cfinclude template="/include/qry/checkformaint_70_6.cfm" />
 
-    <!--- If no records found in checkForMaint, find the system and insert if found --->
-    <cfif checkForMaint.recordCount eq "0">
+    <!--- If no records found in checkformaint, find the system and insert if found --->
+    <cfif #checkformaint.recordcount# is "0">
         <cfinclude template="/include/qry/findSystem_70_7.cfm" />
-
-        <cfif findSystem.recordCount eq "1">
-            <cfset systemId = findSystem.systemId />
-            <cfinclude template="/include/qry/insert_72_8.cfm" />
-            <cfset session.ftom = "Y" />
+        <cfif #findsystem.recordcount# is "1">
+            <cfset systemid=findsystem.systemid />
+            <cfinclude template="/include/qry/Insert_72_8.cfm" />
+            <cfset session.ftom="Y" />
             <cfinclude template="/include/add_system.cfm" />
         </cfif>
     </cfif>
 </cfif>
 
+<cfoutput>#session.zquery#</cfoutput>
+
+<cfset script_name_include="/include/#ListLast(GetCurrentTemplatePath(), " \")#" />
+
 <!--- Redirect based on the value of src --->
-<cfif src eq "c">
-    <cflocation url="/app/contact?contactId=#contactId#&t4=1&hide_completed=#hideCompleted#" />
-<cfelseif src eq "d">
+<cfif #src# is "c">
+    <cflocation url="/app/contact?contactid=#contactid#&t4=1&hide_completed=#hide_completed#" />
+</cfif>
+
+<cfif #src# is "d">
     <cflocation url="/app/dashboard_new/" />
 </cfif>
 
-<!--- Changes: 
-1. Removed unnecessary cfoutput tags around variable outputs.
-2. Avoided using # symbols within conditional checks unless essential.
-3. Standardized variable names and casing.
-4. Ensured consistent attribute quoting, spacing, and formatting.
-5. Used uniform date and time formatting across the code.
-6. Removed cftry and cfcatch blocks entirely.
-7. For any # symbols inside cfoutput blocks that are not meant as ColdFusion variables (e.g., for hex color codes or jQuery syntax), used double pound signs ## to avoid interpretation as variables.
---->

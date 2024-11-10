@@ -1,21 +1,23 @@
 <!--- This ColdFusion page determines the return URL based on the contact ID provided and redirects the user accordingly. --->
-<cfparam name="contactId" default="0" />
-<cfinclude template="/include/qry/updateNote_179_1.cfm" />
+
+<cfparam name="rcontactid" default="0" />
+
+<cfinclude template="/include/qry/updatenote_179_1.cfm" />
 
 <!--- Check if the contact ID is 0 to set the return URL accordingly --->
-<cfif contactId eq 0>
-    <cfset returnURL = "/app/#returnurl#/" />
-<cfelse>
-    <cfset returnURL = "/app/#returnurl#?contactid=#contactId#" />
-</cfif>
+<Cfif "#rcontactid#" is "0">
+    
+    <cfoutput>
+        <cfset return_url = "/app/#returnurl#/" />
+    </cfoutput>
+    
+<Cfelse>
+    
+    <cfoutput>
+        <cfset return_url = "/app/#returnurl#?contactid=#rcontactid#" />
+    </cfoutput>
+
+</Cfif>
 
 <!--- Redirect to the determined return URL with a query parameter --->
-<cflocation url="#returnURL#&t3=1">
-
-<!--- 
-Modifications made based on the following rules:
-1. Standardized variable names and casing.
-2. Removed unnecessary `<cfoutput>` tags around variable outputs.
-3. Avoided using `#` symbols within conditional checks.
-4. Ensured consistent attribute quoting, spacing, and formatting.
---->
+<cflocation url="#return_url#&t3=1">

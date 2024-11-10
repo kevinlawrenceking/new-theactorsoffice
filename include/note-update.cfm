@@ -1,49 +1,106 @@
 <!--- This ColdFusion page handles the display and update of notes related to contacts, including relationships and visibility options. --->
-<cfparam name="rContactId" default="0" />
-<cfset currentId = rContactId />
+
+<cfparam name="rcontactid" default="0" />
+<cfset currentid = rcontactid />
+
 <style>
-    #hidden_div { display: none; }
+    #hidden_div {
+        display: none;
+    }
 </style>
+
 <cfinclude template="/include/qry/relationships_13_1.cfm" />
 
 <div class="row">
     <div class="col-xl-6 col-lg-8 col-md-12">
         <div class="card">
             <div class="card-body">
-                <h4><cfoutput>#details.fullName#</cfoutput></h4>
+                <cfoutput>
+                    <h4>#details.fullName#</h4>
+                </cfoutput>
+
                 <!--- Form for updating notes --->
-                <cfform method="post" action="/include/note-update2.cfm" class="parsley-examples" name="event-form" id="form-event" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" data-parsley-trigger="keyup" data-parsley-validate>
-                    <input type="hidden" name="returnurl" value="<cfoutput>#returnurl#</cfoutput>">
-                    <input type="hidden" name="rContactId" value="<cfoutput>#rContactId#</cfoutput>">
-                    <input type="hidden" name="userId" value="<cfoutput>#session.userId#</cfoutput>">
-                    <input type="hidden" name="noteId" value="<cfoutput>#noteId#</cfoutput>">
+                <cfform method="post" action="/include/note-update2.cfm" class="parsley-examples" name="event-form" id="form-event" 
+                    data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" 
+                    data-parsley-trigger="keyup" data-parsley-validate>
+                    
+                    <cfoutput>
+                        <input type="hidden" name="returnurl" value="#returnurl#">
+                        <input type="hidden" name="rcontactid" value="#rcontactid#">
+                        <input type="hidden" name="userid" value="#session.userid#">
+                        <input type="hidden" name="noteid" value="#noteid#">
+                    </cfoutput>
 
-                    <!--- JavaScript for selectize functionality --->
-                    <script>
-                        $(document).ready(function() {
-                            $("#select-relationship").selectize({
-                                persist: false,
-                                createOnBlur: true,
-                                create: true,
-                                plugins: ["remove_button"],
-                                delimiter: ",",
-                                create: function(input) {
-                                    return {
-                                        value: input,
-                                        text: input,
-                                    };
-                                },
+                    <div class="row">
+                        <!--- JavaScript for selectize functionality --->
+                        <script>
+                            $(document).ready(function() {
+                                $("#select-relationship").selectize({
+                                    persist: !1,
+                                    createOnBlur: !0,
+                                    create: !0,
+                                    plugins: ["remove_button"],
+                                    delimiter: ",",
+                                    persist: false,
+                                    create: function(input) {
+                                        return {
+                                            value: input,
+                                            text: input,
+                                        };
+                                    },
+                                });
                             });
-                        });
-                    </script>
+                        </script>
 
-                    <cfif isdefined('sdfsdfdsf')>
-                        <!--- Relationships --->
-                        <cfinclude template="/include/relationships.cfm" />
-                    </cfif>
+                        <div class="form-group col-md-12">
+                            <label for="eventDescription">Note Details<span class="text-danger">*</span></label>
+                            <textarea class="form-control" type="text" id="noteDetails" name="noteDetails" 
+                                placeholder="Write a note..." rows="8" required 
+                                data-parsley-required data-parsley-error-message="Details are required">
+                                <cfoutput>#note.notedetails#</cfoutput>
+                            </textarea>
+                        </div>
 
-                    <!--- Visibility and Event Connection --->
-                    <cfinclude template="/include/visibility_and_event_connection.cfm" />
+                        <cfif isdefined('sdfsdfdsf')>
+                            <div class="col-lg-12">
+                                <div class="form-group mb-3">
+                                    <label for="select-relationship">Relationships<span class="text-danger">*</span></label>
+                                    <select id="select-relationship" name="relationships" autocomplete="off" multiple 
+                                        required data-parsley-required data-parsley-error-message="Relationship is required" 
+                                        class="demo-default selectize-close-btn" style="width: 100%" placeholder="Select a Relationship...">
+                                        <option value="">Select a Relationship...</option>
+                                        <cfloop query="relationships">
+                                            <cfoutput>
+                                                <option value="#relationships.contactid#" 
+                                                    <cfif relationships.contactid is rcontactid>selected</cfif>>#recordname#</option>
+                                            </cfoutput>
+                                        </cfloop>
+                                    </select>
+                                </div>
+                            </div>
+                        </cfif>
+
+                        <div class="form-group col-md-6">
+                            <label for="eventTypeName">Who can see your note?<span class="text-danger">*</span></label>
+                            <select class="form-control" name="isPublic" id="isPublic" 
+                                data-parsley-required data-parsley-error-message="Note type is required">
+                                <option value="1" <cfif note.ispublic is "1"> selected</cfif> >Team</option>
+                                <option value="0" <cfif note.ispublic is "0"> selected</cfif> >Only me</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="eventid">Connect to an event</label>
+                            <select class="form-control" name="eventid" id="eventid">
+                                <option value="0" <cfif events.eventid is "0"> selected</cfif>>No event</option>
+                                <cfoutput query="events">
+                                    <option value="#eventid#" <cfif events.eventid is note.eventid> selected</cfif> >
+                                        #dateformat(events.eventStart)# - #events.eventTitle#
+                                    </option>
+                                </cfoutput>
+                            </select>
+                        </div>
+                    </div>
 
                     <div class="row mt-2">
                         <div class="col-6"></div>
@@ -66,17 +123,5 @@
     });
 </script>
 
-<cfset scriptNameInclude="/include/#ListLast(GetCurrentTemplatePath(), " \")#" />
+<cfset script_name_include="/include/#ListLast(GetCurrentTemplatePath(), " \")#" />
 
-<!--- Changes were made according to the following rules:
-1. Maintain consistent and efficient conditional logic, especially for styling or control structures.
-2. Remove unnecessary `<cfoutput>` tags around variable outputs.
-3. Avoid using `#` symbols within conditional checks unless essential.
-4. Simplify record count logic for icons or conditional displays.
-5. Standardize variable names and casing.
-6. Ensure consistent attribute quoting, spacing, and formatting.
-7. Use uniform date and time formatting across the code.
-8. Improve logic for expanding and collapsing views in mobile layouts.
-9. Remove any `cftry` and `cfcatch` blocks entirely.
-10. For any `#` symbols inside `<cfoutput>` blocks that are not meant as ColdFusion variables (e.g., for hex color codes or jQuery syntax), use double pound signs `##` to avoid interpretation as variables.
-11. Only return the code, concisely edited, with no additional output. --->

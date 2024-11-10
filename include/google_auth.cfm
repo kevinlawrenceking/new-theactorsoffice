@@ -1,5 +1,5 @@
-```ColdFusion
 <!--- This ColdFusion page handles Google OAuth authentication and token storage --->
+
 <cfoauth 
     type="google" 
     clientid="764716537559-ncfiag8dl4p05v7c9kcoltss0ou3heki.apps.googleusercontent.com" 
@@ -14,7 +14,3 @@
 
 <!--- Redirect to a success page or continue with your application's flow --->
 <cflocation url="/app/contacts/" addtoken="no">
-
-<!--- Changes made based on standards: 
-6. Ensured consistent attribute quoting, spacing, and formatting.
---->

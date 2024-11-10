@@ -1,86 +1,120 @@
-<cfset debug = "N" />
-<cfparam name="contactExpand" default="true" />
-<cfparam name="idList" default="0" />
+<cfset dbug="N" />
 
-<cfif idList is "0" and session.idList is not "0">
-    <cfset idList = session.idList />
+<!--- Set default parameters for the contact expansion and ID list --->
+<cfparam name="contact_expand" default="true" />
+<cfparam name="idlist" default="0" />
+
+<!--- Check if idlist is 0 and session.idlist is not 0, then set idlist from session --->
+<cfif #idlist# is "0" and #session.idlist# is not "0">
+    <cfset idlist = session.idlist />
 </cfif>
 
-<cfif debug is "N">
-    <cfif idList is "0">
+<!--- If debugging is off, check if idlist is 0 and redirect if true --->
+<CFIF #dbug# is "N">
+    <cfif #idlist# is "0">
         <cflocation url="/app/contacts/?bulk_no=0" />
     </cfif>
-</cfif>
+</CFIF>
 
-<cfparam name="contactCheckVisible" default="false" />
-<cfparam name="maintenanceExpand" default="false" />
-<cfparam name="byTag" default="" />
-<cfparam name="targetExpand" default="false" />
-<cfparam name="followUpExpand" default="false" />
-<cfparam name="allExpand" default="false" />
-<cfparam name="pgAction" default="view" />
+<!--- Set additional default parameters --->
+<cfparam name="contactcheckvisible" default="false" />
+<cfparam name="maintenance_expand" default="false" />
+<cfparam name="bytag" default="" />
+<cfparam name="target_expand" default="false" />
+<cfparam name="followup_expand" default="false" />
+<cfparam name="all_expand" default="false" />
+<cfparam name="pgaction" default="view" />
 <cfparam name="systemID" default="0" />
 
-<cfinclude template="/include/qry/lastUpdates.cfm" />
+<!--- Include last updates query --->
+<cfinclude template="/include/qry/lastupdates.cfm" />
 
-<cfset session.idList = idList />
+<!--- Set session idlist to the current idlist --->
+<cfset session.idlist=idlist />
 
-<cfset noDeleted = 0 />
-<cfset noSkipped = 0 />
-<cfset noAdded = 0 />
-<cfset newAddRemove = addRemove />
+<!--- Initialize counters for added, skipped, and deleted records --->
+<cfset no_deleted=0 />
+<cfset no_skipped=0 />
+<cfset no_added=0 />
+<cfset new_addremove = addremove />
 
-<cfinclude template="/include/qry/batchDetails_304_1.cfm" />
+<!--- Include batch details query --->
+<cfinclude template="/include/qry/BatchDetails_304_1.cfm" />
 
-<cfloop query="batchDetails">
-    <cfif debug is "Y">
-        <h2>Contact: #batchDetails.recordName# (#batchDetails.contactId#) </h2>
+<!--- Loop through each record in BatchDetails query --->
+<cfloop query="BatchDetails">
+    
+    <!--- If debugging is on, output contact details --->
+    <cfif #dbug# is "Y">
+        <cfoutput>
+            <h2>Contact: #batchdetails.recordname# (#batchdetails.contactid#) </h2>
+        </cfoutput>
     </cfif>
 
-    <cfset newContactId = batchDetails.contactId />
-    <cfset newTagName = newTagName />
-    <Cfset newCurrentStartDate = dateFormat(Now(),'yyyy-mm-dd') />
+    <!--- Set new contact ID and current start date --->
+    <cfset new_contactid=BatchDetails.contactid />
+    <cfset new_tagname=new_tagname />
+    <Cfset new_currentStartDate=dateFormat(Now(),'yyyy-mm-dd') />
 
-    <cfinclude template="/include/qry/findSame_305_2.cfm" />
+    <!--- Include query to find same records --->
+    <cfinclude template="/include/qry/findsame_305_2.cfm" />
 
-    <cfif addRemove is "add">
-        <cfif findSame.recordCount is "0">
+    <!--- Check if the action is to add --->
+    <cfif #addremove# is "add">
+        
+        <!--- If no matching records found, insert new record --->
+        <cfif #findsame.recordcount# is "0">
             <cfinclude template="/include/qry/insert_305_3.cfm" />
-            <cfset noAdded = noAdded + 1 />
+            <cfoutput>
+                <cfset no_added=#no_added# + 1 />
+            </cfoutput>
+        </cfif>
+        
+        <!--- If one matching record found, increment skipped counter --->
+        <cfif #findsame.recordcount# is "1">
+            <cfoutput>
+                <cfset no_skipped=#no_skipped# + 1 />
+            </cfoutput>
         </cfif>
 
-        <cfif findSame.recordCount is "1">
-            <cfset noSkipped = noSkipped + 1 />
-        </cfif>
     </cfif>
 
-    <cfif addRemove is "remove">
-        <cfif findSame.recordCount is "0">
-            <cfset noSkipped = noSkipped + 1 />
+    <!--- Check if the action is to remove --->
+    <cfif #addremove# is "remove">
+        
+        <!--- If no matching records found, increment skipped counter --->
+        <cfif #findsame.recordcount# is "0">
+            <cfoutput>
+                <cfset no_skipped=#no_skipped# + 1 />
+            </cfoutput>
         </cfif>
-
-        <cfif findSame.recordCount is "1">
+        
+        <!--- If one matching record found, delete record and increment deleted counter --->
+        <cfif #findsame.recordcount# is "1">
             <cfinclude template="/include/qry/insert_305_4.cfm" />
-            <cfset noDeleted = noDeleted + 1 />
+            <cfoutput>
+                <cfset no_deleted=#no_deleted# + 1 />
+            </cfoutput>
         </cfif>
+        
     </cfif>
+
 </cfloop>
 
-<P>ID LIST: #session.idList#<BR>Tag: #newTagName#<BR>Action: #addRemove#</P>
-<p>No Skipped: #noSkipped#<BR>No Deleted: #noDeleted#<BR>No Added: #noAdded#</p>
+<!--- Output the results of the processing --->
+<cfoutput>
+    <P>ID LIST: #session.idlist#<BR>Tag: #new_tagname#<BR>action: #addremove#</P>
+    <p>no_skipped: #no_skipped#<BR>no_deleted: #no_deleted#<BR>no_added: #no_added#</p>
+</cfoutput>
 
-<cfset scriptNameInclude = "/include/#ListLast(GetCurrentTemplatePath(), ' \')#" />
+<!--- Set the script name for inclusion --->
+<cfset script_name_include="/include/#ListLast(GetCurrentTemplatePath(), " \")#" />
 
-<cfset session.pgAction = "bulk" />
+<!--- Set the session page action to bulk --->
+<cfset session.pgaction="bulk" />
 
-<cfif debug is "N">
-    <cflocation url="/app/contacts/?bt=tag&d=#noDeleted#&s=#noSkipped#&a=#noAdded#&t=#newTagName#" />
+<!--- If debugging is off, redirect to contacts page with results --->
+<cfif #dbug# is "N">
+    <cflocation url="/app/contacts/?bt=tag&d=#no_deleted#&s=#no_skipped#&a=#no_added#&t=#new_tagname#" />
 </cfif>
 
-<!--- Modifications made based on standards: 
-1. Removed unnecessary cfoutput tags around variable outputs.
-2. Avoided using # symbols within conditional checks.
-3. Standardized variable names and casing.
-4. Ensured consistent attribute quoting, spacing, and formatting.
-5. Used uniform date and time formatting across the code.
---->

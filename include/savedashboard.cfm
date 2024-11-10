@@ -1,2 +1,2 @@
 <!--- This ColdFusion page redirects the user to the new dashboard page --->
-<cflocation url="/app/dashboard_new/" /> <!--- Standard 6: Ensured consistent attribute quoting, spacing, and formatting. --->
+<cflocation url="/app/dashboard_new/" />

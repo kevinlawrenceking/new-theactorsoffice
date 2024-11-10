@@ -1,40 +1,57 @@
 <!--- This ColdFusion page handles a form for adding a new contact with various fields including name, birthday, meeting date, and pronouns. It includes AJAX functionality for autocomplete on name and company fields. --->
+
 <cfinclude template="/include/qry/pronouns_210_1.cfm" />
 <cfinclude template="/include/qry/refers_210_2.cfm" />
 
-<form action="/include/remoteAddNameAdd.cfm" method="post" class="parsley-examples" id="profile-form" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" data-parsley-trigger="keyup" data-parsley-validate>
+<form action="/include/remoteAddNameAdd.cfm" method="post" class="parsley-examples" id="profile-form" 
+      data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" 
+      data-parsley-trigger="keyup" 
+      data-parsley-validate>
+
     <div class="row" />
+
     <div class="form-group col-md-6">
         <label for="contactFullName">Name<span class="text-danger">*</span></label>
-        <input class="form-control" type="text" id="contactFullName" name="contactFullName" value="" data-parsley-maxlength="500" data-parsley-maxlength-message="Max length 500 characters" data-parsley-required data-parsley-error-message="Valid Name is required" placeholder="Enter Name" autocomplete="off">
-        <cfif isdefined('sfsfsd')>
+        <input class="form-control" type="text" id="contactFullName" name="contactFullName" value="" 
+               data-parsley-maxlength="500" 
+               data-parsley-maxlength-message="Max length 500 characters" 
+               data-parsley-required 
+               data-parsley-error-message="Valid Name is required" 
+               placeholder="Enter Name" autocomplete="off">
+        <cfif #isdefined('sfsfsd')#>
             <div id="nameResults"></div>
         </cfif>
     </div>
+
     <div class="form-group col-sm-6 mb-6">
         <label for="simpleinput">Next Birthday</label>
-        <input class="form-control" id="contactBirthday" value="" type="date" name="contactBirthday">
+        <input class="form-control" id="contactbirthday" value="" type="date" name="contactbirthday">
     </div>
+
     <div class="form-group col-sm-6 mb-6">
         <label for="simpleinput">Initial Meeting Date</label>
-        <input class="form-control" id="contactMeetingDate" value="" type="date" name="contactMeetingDate">
+        <input class="form-control" id="contactmeetingdate" value="" type="date" name="contactmeetingdate">
     </div>
+
     <div class="form-group col-sm-6 mb-6">
-        <label for="contactMeetingLoc">Initial Meeting Location</label>
-        <input class="form-control" id="contactMeetingLoc" type="text" name="contactMeetingLoc" value="">
+        <label for="contactmeetingloc">Initial Meeting Location</label>
+        <input class="form-control" id="contactmeetingloc" type="text" name="contactmeetingloc" value="">
     </div>
+
     <div class="form-group col-sm-6 mb-6">
-        <label for="referContactId">Referred By</label>
-        <select id="referContactId" name="referContactId" class="form-control" style="width:100%;">
+        <label for="refer_contact_id">Referred By</label>
+        <select id="refer_contact_id" name="refer_contact_id" class="form-control" style="width:100%;">
             <option value="">Select a Relationship</option>
             <cfoutput query="refers">
                 <option value="#refers.contactid#">#refers.contactfullname#</option>
             </cfoutput>
         </select>
     </div>
+
     <div class="form-group col-sm-6 mb-6">
         <label for="contactPronoun">Gender Pronoun</label>
-        <select id="contactPronoun" name="contactPronoun" class="form-control" onchange="if (this.value=='custom'){this.form['custom'].style.visibility='visible',this.form['custom'].required=true}else {this.form['custom'].style.visibility='hidden',this.form['custom'].required=false};">
+        <select id="contactPronoun" name="contactPronoun" class="form-control" 
+                onchange="if (this.value=='custom'){this.form['custom'].style.visibility='visible',this.form['custom'].required=true}else {this.form['custom'].style.visibility='hidden',this.form['custom'].required=false};">
             <option value="">Select a Pronoun</option>
             <cfoutput query="pronouns">
                 <option value="#pronouns.genderPronoun#">#pronouns.genderPronoun#</option>
@@ -42,15 +59,23 @@
             <option value="custom">Custom</option>
         </select>
     </div>
-    <div class="form-group col-sm-6 mb-6"></div>
+
+    <div class="form-group col-sm-6 mb-6">
+    </div>
+
     <div class="form-group col-sm-6 mb-6">
         <div class="input-group">
-            <input class="form-control" type="text" name="custom" id="custom" style="visibility:hidden;" data-parsley-maxlength="50" placeholder="Add a Gender Pronoun in single/plural format.">
+            <input class="form-control" type="text" name="custom" id="custom" style="visibility:hidden;" 
+                   data-parsley-maxlength="50" 
+                   placeholder="Add a Gender Pronoun in single/plural format.">
         </div>
     </div>
+
     <div class="form-group text-center col-md-12">
-        <button class="btn btn-primary editable-submit btn-sm waves-effect waves-light" type="submit" style="background-color: ##406e8e; border: ##406e8e;">Add</button>
+        <button class="btn btn-primary editable-submit btn-sm waves-effect waves-light" type="submit" 
+                style="background-color: #406e8e; border: #406e8e;">Add</button>
     </div>
+
 </form>
 
 <script>
@@ -70,8 +95,8 @@
                         data: {
                             method: cfcMethod,
                             searchTerm: searchTerm,
-                            dsn: "<cfoutput>#dsn#</cfoutput>",
-                            userid: "<cfoutput>#userid#</cfoutput>"
+                            dsn: "<Cfoutput>#dsn#</cfoutput>",
+                            userid: "<Cfoutput>#userid#</cfoutput>"
                         },
                         dataType: 'json',
                         success: function(data) {
@@ -79,6 +104,7 @@
                             const resultsDiv = $(resultsId);
                             resultsDiv.empty();
                             resultsDiv.css('display', 'block');
+
                             if (results.length > 0) {
                                 for (let i = 0; i < results.length; i++) {
                                     const value = results[i][0];
@@ -122,11 +148,4 @@
     });
 </script>
 
-<cfset scriptNameInclude="/include/#ListLast(GetCurrentTemplatePath(), " \")#" />
-
-<!--- Changes made based on standards: 
-1. Removed unnecessary # symbols in cfif condition.
-2. Standardized variable names and casing.
-3. Used double pound signs for hex color codes to avoid interpretation as variables.
-4. Removed cfoutput tags around variable outputs in AJAX call.
---->
+<cfset script_name_include="/include/#ListLast(GetCurrentTemplatePath(), " \")#" />

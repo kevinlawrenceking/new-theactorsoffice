@@ -189,7 +189,7 @@
                                             <input type="hidden" name="old_verid" value="#results.verid#" />     
                                             <input type="hidden" name="old_ticketpriority" value="#results.col5#" />   
                                             <cfif #results.col45# is not "closed" and #results.col45# is not "Released">
-                                        
+                                                <cfoutput>
                                                     <select onchange="javascript:this.form.submit()" name="new_ticketpriority" id="new_ticketpriority_#results.recid#" required>
                                                 </cfoutput>
                                                 <cfloop query="priorities">
@@ -255,7 +255,7 @@
                             <div id="remoteNewForm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
-                                        <div class="modal-header" style="background-color: ##f3f7f9;">
+                                        <div class="modal-header" style="background-color: #f3f7f9;">
                                             <h4 class="modal-title" id="standard-modalLabel">Add</h4>
                                             <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">x</button>
                                         </div>
