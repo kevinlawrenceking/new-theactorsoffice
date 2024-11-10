@@ -1,7 +1,2 @@
-
-<cftry>
-    <cfset details = createObject("component", "services.TicketService").DETtickets_24784(recid=recid)>
-    <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in details_556_1.cfm]: #cfcatch.message#">
-    </cfcatch>
-</cftry>
+<cfset ticketService = createObject("component", "services.TicketService")>
+<cfset details = ticketService.DETtickets_24784(recid=recid)>

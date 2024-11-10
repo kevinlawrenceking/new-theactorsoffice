@@ -1,7 +1,2 @@
-
-<cftry>
-    <cfset getAccountInfo = createObject("component", "services.AccountsService").SELaccounts(accountID=#accountID#) />
-    <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in getAccountInfo_475_1.cfm]: #cfcatch.message#" />
-    </cfcatch>
-</cftry>
+<cfset accountsService = createObject("component", "services.AccountsService") />
+<cfset getAccountInfo = accountsService.SELaccounts(accountID=accountID) />

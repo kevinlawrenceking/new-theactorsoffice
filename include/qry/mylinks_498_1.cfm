@@ -1,7 +1,2 @@
-
-<cftry>
-    <cfset mylinks = createObject("component", "services.ContactItemService").SELcontactitems_24682(userContactID=#userContactID#)>
-    <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in mylinks_498_1.cfm]: #cfcatch.message#">
-    </cfcatch>
-</cftry>
+<cfset contactItemService = createObject("component", "services.ContactItemService")>
+<cfset mylinks = contactItemService.SELcontactitems_24682(userContactID=userContactID)>

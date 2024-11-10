@@ -1,7 +1,2 @@
-
-<cftry>
-    <cfset notsNext = createObject("component", "services.NotificationService").SELfunotifications_24713(newsuid=newsuid)>
-    <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in notsNext_514_1.cfm]: #cfcatch.message#">
-    </cfcatch>
-</cftry>
+<cfset notificationService = createObject("component", "services.NotificationService")>
+<cfset notsNext = notificationService.SELfunotifications_24713(newsuid=newsuid)>

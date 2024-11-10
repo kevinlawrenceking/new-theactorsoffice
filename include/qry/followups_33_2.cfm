@@ -1,7 +1,2 @@
-
-<cftry>
-    <cfset followups = createObject("component", "services.EventService").SELevents(audprojectid=audprojectid) />
-    <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in followups_33_2.cfm]: #cfcatch.message#">
-    </cfcatch>
-</cftry>
+<cfset eventService = createObject("component", "services.EventService")>
+<cfset followups = eventService.SELevents(audprojectid=audprojectid)>

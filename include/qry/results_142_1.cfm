@@ -1,7 +1,2 @@
-
-<cftry>
-    <cfset results = createObject("component", "services.ContactItemService").getContactDetails(uploadid=#uploadid#)>
-    <cfcatch type="any">
-        <cflog type="error" text="[Error in results_142_1.cfm]: #cfcatch.message#">
-    </cfcatch>
-</cftry>
+<cfset contactItemService = createObject("component", "services.ContactItemService")>
+<cfset results = contactItemService.getContactDetails(uploadid=uploadid)>

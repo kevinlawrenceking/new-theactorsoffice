@@ -1,10 +1,5 @@
-
-<cftry>
-    <cfset eventresults = createObject("component", "services.EventService").RESevents_24660(
-        userID = session.userid,
-        currentID = isDefined("currentid") ? currentid : 0
-    )>
-    <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in eventresults_471_1.cfm]: #cfcatch.message#">
-    </cfcatch>
-</cftry>
+<cfset eventService = createObject("component", "services.EventService")>
+<cfset eventresults = eventService.RESevents_24660(
+    userID = userid,
+    currentID = isDefined("currentid") ? currentid : 0
+)>

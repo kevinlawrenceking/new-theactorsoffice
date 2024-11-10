@@ -1,7 +1,6 @@
-
-
-    <cfset mennuItemsAud = createObject("component", "services.ComponentService").SELpgcomps(
-        menuYN="Y",
-        compOwner="A",
-        appid="3"
-    )>
+<cfset componentService = createObject("component", "services.ComponentService")>
+<cfset mennuItemsAud = componentService.SELpgcomps(
+    menuYN="Y",
+    compOwner="A",
+    appid="3"
+)>

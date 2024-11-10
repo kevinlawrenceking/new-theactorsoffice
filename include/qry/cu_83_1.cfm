@@ -1,7 +1,2 @@
-
-<cftry>
-    <cfset cu = createObject("component", "services.ContactItemService").SELcontactitems_23840(currentid=#currentid#)>
-    <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in cu_83_1.cfm]: #cfcatch.message#">
-    </cfcatch>
-</cftry>
+<cfset contactItemService = createObject("component", "services.ContactItemService")>
+<cfset cu = contactItemService.SELcontactitems_23840(currentid=currentid)>

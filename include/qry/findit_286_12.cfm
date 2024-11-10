@@ -1,8 +1,2 @@
-
-<cftry>
-    <cfset findit = createObject("component", "services.AuditionGenreUserService").SELaudgenres_user_24272(new_audcatid=new_audcatid, userid=userid)>
-    <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in findit_286_12.cfm]: #cfcatch.message#">
-        <cfthrow message="Error executing fetch in findit_286_12.cfm." detail="#cfcatch.detail#">
-    </cfcatch>
-</cftry>
+<cfset auditionGenreUserService = createObject("component", "services.AuditionGenreUserService")>
+<cfset findit = auditionGenreUserService.SELaudgenres_user_24272(new_audcatid=new_audcatid, userid=userid)>

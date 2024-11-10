@@ -1,7 +1,2 @@
-
-<cftry>
-    <cfset findregion = createObject("component", "services.RegionService").SELregions_24721(regionName=details.valueregion)>
-    <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in findregion_521_3.cfm]: #cfcatch.message#">
-    </cfcatch>
-</cftry>
+<cfset regionService = createObject("component", "services.RegionService")>
+<cfset findregion = regionService.SELregions_24721(regionName=details.valueregion)>

@@ -1,8 +1,2 @@
-
-<cftry>
-    <cfset birthdays = createObject("component", "services.ContactService").SELcontactdetails_24617(userId=session.userid)>
-    <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in birthdays_442_1.cfm]: #cfcatch.message#">
-        <cfset birthdays = queryNew("daysuntil,col1,contactid,col2", "integer,varchar,integer,varchar")>
-    </cfcatch>
-</cftry>
+<cfset contactService = createObject("component", "services.ContactService")>
+<cfset birthdays = contactService.SELcontactdetails_24617(userId=userid)>

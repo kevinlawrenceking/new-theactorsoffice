@@ -1,7 +1,2 @@
-
-<cftry>
-    <cfset FindLinksT = createObject("component", "services.PageAppLinkService").SELpgapplinks(pgid=findpage.pgid) />
-    <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in FindLinksT_188_8.cfm]: #cfcatch.message#" />
-    </cfcatch>
-</cftry>
+<cfset PageAppLinkService = createObject("component", "services.PageAppLinkService") />
+<cfset FindLinksT = PageAppLinkService.SELpgapplinks(pgid=findpage.pgid) />

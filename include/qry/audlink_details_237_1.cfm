@@ -1,8 +1,2 @@
-
-<cftry>
-    <cfset audlink_details = createObject("component", "services.AuditionLinkService").DETaudlinks(linkid=linkid)>
-    <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in audlink_details_237_1.cfm]: #cfcatch.message#">
-        <cfthrow>
-    </cfcatch>
-</cftry>
+<cfset auditionLinkService = createObject("component", "services.AuditionLinkService")>
+<cfset audlink_details = auditionLinkService.DETaudlinks(linkid=linkid)>

@@ -1,7 +1,2 @@
-
-<cftry>
-    <cfset addDaysNo = createObject("component", "services.SystemService").SELfusystems_24428(maint_systemID=maint_systemID, userid=userid)>
-    <cfcatch>
-        <cflog file="errorLog" text="[Error in addDaysNo_315_35.cfm]: #cfcatch.message#">
-    </cfcatch>
-</cftry>
+<cfset systemService = createObject("component", "services.SystemService")>
+<cfset addDaysNo = systemService.SELfusystems_24428(maint_systemID=maint_systemID, userid=userid)>

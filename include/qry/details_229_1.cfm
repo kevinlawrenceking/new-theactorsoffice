@@ -1,7 +1,2 @@
-
-<cftry>
-    <cfset details = createObject("component", "services.EventService").DETevents(eventid=#eventid#) />
-    <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in details_229_1.cfm]: #cfcatch.message#" />
-    </cfcatch>
-</cftry>
+<cfset eventService = createObject("component", "services.EventService") />
+<cfset details = eventService.DETevents(eventid=eventid) />

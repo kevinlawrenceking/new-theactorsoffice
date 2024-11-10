@@ -1,8 +1,2 @@
-
-<cftry>
-    <cfset details = createObject("component", "services.TicketService").REStickets(recid=#recid#)>
-    <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in details_303_3.cfm]: #cfcatch.message#">
-        <cfthrow message="An error occurred while retrieving ticket details." detail="#cfcatch.detail#">
-    </cfcatch>
-</cftry>
+<cfset ticketService = createObject("component", "services.TicketService")>
+<cfset details = ticketService.REStickets(recid=recid)>

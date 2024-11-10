@@ -1,7 +1,2 @@
-
-<cftry>
-    <cfset audessences_audtion_xref = createObject("component", "services.EssenceService").SELessences(audroleid=roledetails.audroleid) />
-    <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in audessences_audtion_xref_49_1.cfm]: #cfcatch.message#" />
-    </cfcatch>
-</cftry>
+<cfset essenceService = createObject("component", "services.EssenceService") />
+<cfset audessences_audtion_xref = essenceService.SELessences(audroleid=roledetails.audroleid) />

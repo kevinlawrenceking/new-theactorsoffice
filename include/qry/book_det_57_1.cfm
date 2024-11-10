@@ -1,7 +1,2 @@
-
-<cftry>
-    <cfset book_det = createObject("component", "services.AuditionRoleService").SELaudroles_23809(audroleid=#audroleid#)>
-    <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in book_det_57_1.cfm]: #cfcatch.message#">
-    </cfcatch>
-</cftry>
+<cfset auditionRoleService = createObject("component", "services.AuditionRoleService")>
+<cfset book_det = auditionRoleService.SELaudroles_23809(audroleid=audroleid)>

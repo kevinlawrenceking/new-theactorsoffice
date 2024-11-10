@@ -1,7 +1,2 @@
-
-<cftry>
-    <cfset Findphone = createObject("component", "services.ContactItemService").SELcontactitems_23758(contactID=audcontacts.contactid)>
-    <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in Findphone_48_2.cfm]: #cfcatch.message#">
-    </cfcatch>
-</cftry>
+<cfset contactItemService = createObject("component", "services.ContactItemService")>
+<cfset Findphone = contactItemService.SELcontactitems_23758(contactID=audcontacts.contactid)>

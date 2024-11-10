@@ -1,7 +1,2 @@
-
-<cftry>
-    <cfset errs = createObject("component", "services.AuditionImportErrorService").SELauditionsimport_error(id=results.id)>
-    <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in errs_125_2.cfm]: #cfcatch.message#">
-    </cfcatch>
-</cftry>
+<cfset auditionImportErrorService = createObject("component", "services.AuditionImportErrorService")>
+<cfset errs = auditionImportErrorService.SELauditionsimport_error(id=results.id)>

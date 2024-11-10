@@ -1,7 +1,2 @@
-
-<cftry>
-    <cfset notsdetails = createObject("component", "services.NotificationService").DETfunotifications(notid=#notid#)>
-    <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in notsdetails_513_1.cfm]: #cfcatch.message#">
-    </cfcatch>
-</cftry>
+<cfset notificationService = createObject("component", "services.NotificationService")>
+<cfset notsdetails = notificationService.DETfunotifications(notid=#notid#)>

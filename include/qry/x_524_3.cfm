@@ -1,7 +1,2 @@
-
-<cftry>
-    <cfset x = createObject("component", "services.ReportsMasterService").SELreports_master()>
-    <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in x_524_3.cfm]: #cfcatch.message#">
-    </cfcatch>
-</cftry>
+<cfset reportsMasterService = createObject("component", "services.ReportsMasterService")>
+<cfset x = reportsMasterService.SELreports_master()>

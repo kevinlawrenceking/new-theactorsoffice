@@ -1,8 +1,2 @@
-
-<cftry>
-    <cfset find = createObject("component", "services.AuditionProjectService").SELaudprojects_24353(projname=y.projname)>
-    <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in find_308_2.cfm]: #cfcatch.message#">
-        <cfthrow message="An error occurred while retrieving projects." detail="#cfcatch.detail#">
-    </cfcatch>
-</cftry>
+<cfset auditionProjectService = createObject("component", "services.AuditionProjectService")>
+<cfset find = auditionProjectService.SELaudprojects_24353(projname=y.projname)>

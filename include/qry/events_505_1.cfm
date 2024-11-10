@@ -1,7 +1,2 @@
-
-<cftry>
-    <cfset events = createObject("component", "services.EventService").SELevents_24695(sessionUserID=session.userid, contactID=rcontactid)>
-    <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in events_505_1.cfm]: #cfcatch.message#">
-    </cfcatch>
-</cftry>
+<cfset eventService = createObject("component", "services.EventService")>
+<cfset events = eventService.SELevents_24695(sessionUserID=userid, contactID=rcontactid)>

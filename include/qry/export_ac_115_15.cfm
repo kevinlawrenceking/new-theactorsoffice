@@ -1,8 +1,2 @@
-
-<cftry>
-    <cfset export_ac = createObject("component", "services.ExportItemService").SELexportitems(exportID=new_exportid) />
-    <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in export_ac_115_15.cfm]: #cfcatch.message#">
-        <cfthrow message="Error retrieving export items." detail="#cfcatch.detail#">
-    </cfcatch>
-</cftry>
+<cfset exportService = createObject("component", "services.ExportItemService") />
+<cfset export_ac = exportService.SELexportitems(exportID=new_exportid) />

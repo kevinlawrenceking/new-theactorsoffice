@@ -1,12 +1,6 @@
-
-<cftry>
-    <cfset y = createObject("component", "services.AuditionImportService").SELauditionsimport_24352(
-        isfix = isfix,
-        recordid = recordid,
-        new_uploadid = new_uploadid
-    )>
-    <cfcatch>
-        <cflog file="errorLog" text="[Error in y_308_1.cfm]: #cfcatch.message#">
-        <cfthrow message="An error occurred while fetching data from auditionsimport.">
-    </cfcatch>
-</cftry>
+<cfset auditionImportService = createObject("component", "services.AuditionImportService")>
+<cfset y = auditionImportService.SELauditionsimport_24352(
+    isfix = isfix,
+    recordid = recordid,
+    new_uploadid = new_uploadid
+)>

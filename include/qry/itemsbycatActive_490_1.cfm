@@ -1,11 +1,6 @@
-
-<cftry>
-    <cfset itemsbycatActive = createObject("component", "services.ContactItemService").SELcontactitems_24673(
-        currentid = currentid,
-        activeCategoriesValueCategory = ActiveCategories.valueCategory,
-        catArea_UCB = catArea_UCB
-    )>
-    <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in itemsbycatActive_490_1.cfm]: #cfcatch.message#">
-    </cfcatch>
-</cftry>
+<cfset contactItemService = createObject("component", "services.ContactItemService")>
+<cfset itemsbycatActive = contactItemService.SELcontactitems_24673(
+    currentid = currentid,
+    activeCategoriesValueCategory = ActiveCategories.valueCategory,
+    catArea_UCB = catArea_UCB
+)>

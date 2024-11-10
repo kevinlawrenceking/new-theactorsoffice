@@ -1,7 +1,2 @@
-
-<cftry>
-    <cfset imports = createObject("component", "services.ContactImportService").SELcontactsimport_24668(userid=userid)>
-    <cfcatch type="any">
-        <cflog file="errorLog" text="[Error in imports_485_1.cfm]: #cfcatch.message#">
-    </cfcatch>
-</cftry>
+<cfset contactImportService = createObject("component", "services.ContactImportService")>
+<cfset imports = contactImportService.SELcontactsimport_24668(userid=userid)>
