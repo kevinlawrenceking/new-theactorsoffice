@@ -1,5 +1,7 @@
 <cfcomponent displayname="AuditionNetworkUserService" hint="Handles operations for AuditionNetworkUser table" output="false"> 
+
     <cffunction name="INSaudnetworks_user" access="public" returntype="void">
+
         <cfargument name="CustomNetwork" type="string" required="true">
         <cfargument name="audcatid" type="numeric" required="true">
         <cfargument name="userid" type="numeric" required="true">

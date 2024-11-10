@@ -165,4 +165,66 @@
 </cffunction>
 
 <cffunction name="INSsitelinks_user" access="public" returntype="numeric">
-    <cfargument name="new_sitename" type="
+    <cfargument name="new_sitename" type="string" required="true">
+    <cfargument name="new_siteurl" type="string" required="true">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="new_sitetypeid" type="numeric" required="true">
+    <cfargument name="ver" type="string" required="false" default="">
+
+    <!--- Perform the insert query and capture the result --->
+    <cfquery datasource="abod" result="result">
+        INSERT INTO sitelinks_user (
+            sitename, 
+            siteurl, 
+            userid, 
+            sitetypeid, 
+            IsCustom
+            <cfif len(arguments.ver) gt 0>, ver</cfif>
+        ) VALUES (
+            <cfqueryparam value="#arguments.new_sitename#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfqueryparam value="#arguments.new_siteurl#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="#arguments.new_sitetypeid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="1" cfsqltype="CF_SQL_BIT">
+            <cfif len(arguments.ver) gt 0>, 
+                <cfqueryparam value="#arguments.ver#" cfsqltype="CF_SQL_VARCHAR">
+            </cfif>
+        );
+    </cfquery>
+
+    <cfreturn result.generatedKey>
+</cffunction>
+
+<cffunction name="SELsitelinks_user_24448" access="public" returntype="query">
+    <cfargument name="sitename" type="string" required="true">
+    <cfargument name="userid" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
+        <cfquery name="result" datasource="abod">
+            SELECT *
+            FROM sitelinks_user_tbl
+            WHERE sitename = <cfqueryparam value="#arguments.sitename#" cfsqltype="CF_SQL_VARCHAR">
+            AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+    <cfreturn result>
+</cffunction>
+<cffunction name="INSsitelinks_user_24449" access="public" returntype="void">
+    <cfargument name="sitename" type="string" required="true">
+    <cfargument name="siteurl" type="string" required="true">
+    <cfargument name="siteicon" type="string" required="true">
+    <cfargument name="sitetypeid" type="numeric" required="true">
+    <cfargument name="userid" type="numeric" required="true">
+
+        <cfquery datasource="abod">
+            INSERT INTO sitelinks_user_tbl (siteName, siteURL, siteicon, siteTypeid, userid)
+            VALUES (
+                <cfqueryparam value="#arguments.sitename#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.siteurl#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.siteicon#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.sitetypeid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            )
+        </cfquery>
+</cffunction></cfcomponent>

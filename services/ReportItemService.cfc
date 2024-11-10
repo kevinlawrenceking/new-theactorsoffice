@@ -144,7 +144,24 @@
     <cfargument name="new_itemvalueint" type="numeric" required="true">
     <cfargument name="new_itemid" type="numeric" required="true">
 
-    <cfquery name="updateQuery">
-        UPDATE reportitems 
-        SET itemValueInt = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_itemvalueint#" />
-        WHERE itemid
+        <cfquery name="updateQuery" datasource="abod">
+            UPDATE reportitems 
+            SET itemValueInt = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_itemvalueint#" />
+            WHERE itemid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_itemid#" />
+        </cfquery>
+        
+</cffunction>
+<cffunction name="RESreportitems" access="public" returntype="query">
+    <cfargument name="userId" type="numeric" required="true">
+    
+    <cfset var result = "">
+    
+        <cfquery name="result" datasource="abod">
+            SELECT *
+            FROM reportitems
+            WHERE userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+    
+    <cfreturn result>
+</cffunction></cfcomponent>

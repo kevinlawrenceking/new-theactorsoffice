@@ -143,9 +143,53 @@ function getAudtypes(new_audcatid) {
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
-        <cfquery>
+        <cfquery datasource="abod">
             INSERT INTO audtypes (audtype, audCatid, isDeleted)
             VALUES (
                 <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audtype#" maxlength="100" null="#NOT len(trim(arguments.new_audtype))#">,
                 <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audCatid#" null="#NOT len(trim(arguments.new_audCatid))#">,
-                <cfqueryparam cfsqltype="CF_SQL_BIT
+                <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+            )
+        </cfquery>
+
+</cffunction>
+<cffunction name="SELaudtypes_24608" access="public" returntype="query">
+    <cfargument name="isDeleted" type="boolean" required="true">
+    
+    <cfset var result = "">
+    
+        <cfquery name="result" datasource="abod">
+            SELECT 
+                audtypeid AS id, 
+                audtype AS name, 
+                audcategories 
+            FROM 
+                audtypes 
+            WHERE 
+                isdeleted = <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
+            ORDER BY 
+                audtype
+        </cfquery>
+        
+    
+    <cfreturn result>
+</cffunction>
+<cffunction name="UPDaudtypes" access="public" returntype="void">
+    <cfargument name="new_audtype" type="string" required="true">
+    <cfargument name="new_audCatid" type="numeric" required="true">
+    <cfargument name="new_isDeleted" type="boolean" required="true">
+    <cfargument name="new_audtypeid" type="numeric" required="true">
+
+        <cfquery datasource="abod">
+            UPDATE audtypes 
+            SET 
+                audtype = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audtype)#" maxlength="100" null="#NOT len(trim(arguments.new_audtype))#">,
+                audCatid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audCatid#" null="#NOT len(trim(arguments.new_audCatid))#">,
+                isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+            WHERE 
+                audtypeid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audtypeid#">
+        </cfquery>
+        
+
+</cffunction>
+</cfcomponent>

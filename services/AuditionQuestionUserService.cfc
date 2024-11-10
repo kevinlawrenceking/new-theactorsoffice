@@ -94,5 +94,3 @@ Here is the refined and standardized ColdFusion component code:
 </cffunction>
 
 </cfcomponent>
-
-This code has been updated according to the instructions. The `datasource` attribute has been removed from all `<cfquery>` tags, all `cftry` and `cfcatch` blocks have been removed, and no coding errors were detected.

@@ -1,4 +1,4 @@
-<cfcomponent displayname="AuditionMediaTypeService" hint="Handles operations for AuditionMediaType table" output="false"> 
+<cfcomponent displayname="AuditionMediaTypeService"  output="false"> 
 <cffunction name="SELaudmediatypes" access="public" returntype="query">
     <cfargument name="mediaTypeIds" type="array" required="true">
     
@@ -10,7 +10,7 @@
         WHERE mediatypeid IN (
             <cfloop array="#arguments.mediaTypeIds#" index="mediaTypeId">
                 <cfqueryparam value="#mediaTypeId#" cfsqltype="CF_SQL_INTEGER" />
-                <cfif arrayLen(arguments.mediaTypeIds) GT 1 AND mediaTypeId NE arrayLast(arguments.mediaTypeIds)>,</cfif>
+                <cfif arrayLen(arguments.mediaTypeIds) GT 1 AND mediaTypeId NEq arrayLast(arguments.mediaTypeIds)>,</cfif>
             </cfloop>
         )
     </cfquery>

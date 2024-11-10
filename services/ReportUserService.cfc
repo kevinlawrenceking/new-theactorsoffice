@@ -136,22 +136,62 @@
     <cfargument name="reportTypeID" type="numeric" default="4">
 
     <cfset var result = "">
-
-    <cfquery name="result">
-        SELECT 
-            r.ID, 
-            r.reportid, 
-            r.userid, 
-            r.reportname, 
-            r.reportorderno, 
-            r.reporttypeid, 
-            r.datalabel, 
-            t.reporttypename, 
-            r.reportdescription, 
-            r.colmd, 
-            r.colxl, 
-            i.itemvalueint AS statvalue
-        FROM 
-            reports_user r
-        INNER JOIN 
-            reporttypes t ON t
+    
+            <cfquery name="result" datasource="abod">
+            SELECT 
+                r.ID, 
+                r.reportid, 
+                r.userid, 
+                r.reportname, 
+                r.reportorderno, 
+                r.reporttypeid, 
+                r.datalabel, 
+                t.reporttypename, 
+                r.reportdescription, 
+                r.colmd, 
+                r.colxl, 
+                i.itemvalueint AS statvalue
+            FROM 
+                reports_user r
+            INNER JOIN 
+                reporttypes t ON t.reporttypeid = r.reporttypeid
+            INNER JOIN 
+                reportitems i ON i.id = r.id
+            WHERE 
+                r.userid = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER"> 
+                AND t.reporttypeid = <cfqueryparam value="#arguments.reportTypeID#" cfsqltype="CF_SQL_INTEGER"> 
+                AND i.userid = r.userid
+            ORDER BY 
+                r.reportorderno
+        </cfquery>
+        
+        <cfreturn result>
+</cffunction>
+<cffunction name="SELreports_user_24736" access="public" returntype="query">
+    <cfargument name="userId" type="numeric" required="true">
+    <cfset var result = "">
+        <cfquery name="result" datasource="abod">
+            SELECT i.itemvalueint AS item_13
+            FROM reports_user u
+            INNER JOIN reportitems i ON i.ID = u.id
+            WHERE u.userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
+            AND u.reportid = <cfqueryparam value="13" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+    <cfreturn result>
+</cffunction>
+<cffunction name="SELreports_user_24737" access="public" returntype="query">
+    <cfargument name="userId" type="numeric" required="true">
+    <cfargument name="reportId" type="numeric" required="true" default="17">
+    
+    <cfset var result = "">
+    
+        <cfquery name="result" datasource="abod">
+            SELECT i.itemvalueint AS item_17
+            FROM reports_user u
+            INNER JOIN reportitems i ON i.ID = u.id
+            WHERE u.userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
+            AND u.reportid = <cfqueryparam value="#arguments.reportId#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+    
+    <cfreturn result>
+</cffunction></cfcomponent>

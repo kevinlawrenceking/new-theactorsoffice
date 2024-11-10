@@ -138,4 +138,44 @@
 </cffunction>
 <cffunction name="SELsitetypes_user_24447" access="public" returntype="query">
     <cfargument name="sitetypename" type="string" required="true">
-    <cfargument name="userid" type="numeric"
+    <cfargument name="userid" type="numeric" required="true">
+
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="abod">
+            SELECT sitetypeid 
+            FROM sitetypes_user 
+            WHERE sitetypename = <cfqueryparam value="#arguments.sitetypename#" cfsqltype="CF_SQL_VARCHAR"> 
+            AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getSiteTypeId: #cfcatch.message#">
+            <cfset result = queryNew("sitetypeid")>
+        </cfcatch>
+    </cftry>
+
+    <cfreturn result>
+</cffunction>
+<cffunction name="SELsitetypes_user_24752" access="public" returntype="query">
+    <cfargument name="userid" type="numeric" required="true">
+
+    <cfset var result = "">
+    
+    <cftry>
+        <cfquery name="result" datasource="abod">
+            SELECT sitetypeid, sitetypename, sitetypedescription, pntitle
+            FROM sitetypes_user
+            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            ORDER BY sitetypename
+        </cfquery>
+        
+        <cfcatch type="any">
+            <cflog file="application" text="Error in getSiteTypesByUserId: #cfcatch.message# Query: SELECT sitetypeid, sitetypename, sitetypedescription, pntitle FROM sitetypes_user WHERE userid = ? ORDER BY sitetypename Parameters: #arguments.userid#">
+            <cfset result = queryNew("sitetypeid,sitetypename,sitetypedescription,pntitle")>
+        </cfcatch>
+    </cftry>
+
+    <cfreturn result>
+</cffunction></cfcomponent>

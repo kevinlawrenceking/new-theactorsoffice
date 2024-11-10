@@ -1239,7 +1239,6 @@
     <cfargument name="new_isDeleted" type="boolean" required="false">
     <cfargument name="new_eventid" type="numeric" required=true>
 
-    <cftry>
         <cfquery datasource="#application.datasource#">
             UPDATE events_tbl 
             SET 

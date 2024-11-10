@@ -117,6 +117,21 @@ function getAuditionContacts(required numeric audprojectid, required numeric new
     <cfargument name="audprojectid" type="numeric" required="true">
     <cfargument name="deletecontactid" type="numeric" required="true">
 
-    <cfquery>
-        DELETE FROM audcontacts_auditions_xref 
-        WHERE
+        <cfquery datasource="abod">
+            DELETE FROM audcontacts_auditions_xref 
+            WHERE audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="cf_sql_integer"> 
+            AND contactid = <cfqueryparam value="#arguments.deletecontactid#" cfsqltype="cf_sql_integer">
+        </cfquery>
+        
+</cffunction>
+<cffunction name="INSaudcontacts_auditions_xref_24551" access="public" returntype="void">
+    <cfargument name="audprojectid" type="numeric" required="true">
+    <cfargument name="contactid" type="numeric" required="true">
+
+        <cfquery datasource="abod">
+            INSERT IGNORE INTO audcontacts_auditions_xref 
+            SET audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="cf_sql_integer">, 
+                contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_integer">
+        </cfquery>
+        >
+</cffunction></cfcomponent>

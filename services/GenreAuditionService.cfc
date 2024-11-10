@@ -39,11 +39,11 @@
              FROM audessences_audtion_xref x 
              INNER JOIN essences e ON e.essenceid = x.essenceid 
              WHERE x.audroleid = r.audroleid) AS Essences,
-            CASE WHEN r.iscallback = 1 THEN 'Yes' ELSE 'No' END AS 'Callback?',
-            CASE WHEN r.iscallback = 1 THEN 'Yes' ELSE 'No' END AS 'Redirect?',
-            CASE WHEN r.ispin = 1 THEN 'Yes' ELSE 'No' END AS 'Pin/Avail?',
-            CASE WHEN r.isbooked = 1 THEN 'Yes' ELSE 'No' END AS 'Booked?',
-            CASE WHEN p.isdirect = 1 THEN 'Yes' ELSE 'No' END AS 'Direct Booking?'
+            CASE WHEN r.iscallback = 1 THEN 'Yes' ELSE 'No' END AS `Callback?`,
+            CASE WHEN r.isredirect = 1 THEN 'Yes' ELSE 'No' END AS `Redirect?`,
+            CASE WHEN r.ispin = 1 THEN 'Yes' ELSE 'No' END AS `Pin/Avail?`,
+            CASE WHEN r.isbooked = 1 THEN 'Yes' ELSE 'No' END AS `Booked?`,
+            CASE WHEN p.isdirect = 1 THEN 'Yes' ELSE 'No' END AS `Direct Booking?`
         FROM audprojects p
         LEFT JOIN audroles r ON p.audprojectID = r.audprojectID
         LEFT JOIN events a ON r.audroleid = a.audroleid
@@ -72,6 +72,7 @@
     
     <cfreturn queryResult>
 </cffunction>
+
 
 <cffunction name="SELaudgenres_audition_xref_24274" access="public" returntype="query">
     <cfargument name="audgenre" type="string" required="true">
@@ -112,4 +113,29 @@
     </cfquery>
 </cffunction>
 
-<cffunction name="INSaudgenres_audition_xref_24521" access="public
+<cffunction name="INSaudgenres_audition_xref_24521" access="public" returntype="void">
+    <cfargument name="new_audRoleID" type="numeric" required="true">
+    <cfargument name="new_audgenreID" type="numeric" required="true">
+        <cfquery datasource="abod">
+            INSERT INTO audgenres_audition_xref (audRoleID, audgenreID)
+            VALUES (
+                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#" null="#NOT len(trim(arguments.new_audRoleID))#">,
+                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audgenreID#" null="#NOT len(trim(arguments.new_audgenreID))#">
+            )
+        </cfquery>
+</cffunction>
+<cffunction name="UPDaudgenres_audition_xref" access="public" returntype="void">
+    <cfargument name="new_audRoleID" type="numeric" required="true">
+    <cfargument name="new_audgenreID" type="numeric" required="true">
+    <cfargument name="conditionValue" type="any" required="true">
+
+        <cfquery datasource="abod">
+            UPDATE audgenres_audition_xref 
+            SET 
+                audRoleID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#" null="#NOT len(trim(arguments.new_audRoleID))#">, 
+                audgenreID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audgenreID#" null="#NOT len(trim(arguments.new_audgenreID))#"> 
+            WHERE someColumn = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.conditionValue#">
+        </cfquery>
+
+
+</cffunction></cfcomponent>

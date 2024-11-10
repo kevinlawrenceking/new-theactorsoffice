@@ -157,4 +157,94 @@
 </cffunction>
 
 <cffunction name="SELtags_user_24457" access="public" returntype="query">
-    <cfargument name="tagname
+    <cfargument name="tagname" type="string" required="true">
+    <cfargument name="userid" type="numeric" required="true">
+
+    <cfset var result = "">
+    
+    
+        <cfquery name="result" datasource="abod">
+            SELECT * 
+            FROM tags_user 
+            WHERE tagname = <cfqueryparam value="#arguments.tagname#" cfsqltype="CF_SQL_VARCHAR"> 
+            AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+
+    <cfreturn result>
+</cffunction>
+<cffunction name="INStags_user_24458" access="public" returntype="void">
+    <cfargument name="tagname" type="string" required="true">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="tagtype" type="string" required="true">
+
+    
+        <cfquery datasource="abod">
+            INSERT INTO tags_user (tagname, userid, tagtype)
+            VALUES (
+                <cfqueryparam value="#arguments.tagname#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.tagtype#" cfsqltype="CF_SQL_VARCHAR">
+            )
+        </cfquery>
+
+</cffunction>
+<cffunction name="UPDtags_user_24459" access="public" returntype="void">
+    <cfargument name="select_userid" type="numeric" required="true">
+    
+    
+        <cfquery datasource="abod" name="updateQuery">
+            UPDATE tags_user 
+            SET IsTeam = 1 
+            WHERE userid = <cfqueryparam value="#arguments.select_userid#" cfsqltype="CF_SQL_INTEGER"> 
+            AND tagname IN (
+                SELECT tagname 
+                FROM tags 
+                WHERE isteam = <cfqueryparam value="1" cfsqltype="CF_SQL_BIT">
+            )
+        </cfquery>
+        
+</cffunction>
+<cffunction name="UPDtags_user_24460" access="public" returntype="void">
+    <cfargument name="select_userid" type="numeric" required="true">
+    
+    <cfset var sql = "">
+    <cfset var params = []>
+    
+    
+        <cfset sql = "
+            UPDATE tags_user 
+            SET Iscasting = 1 
+            WHERE userid = ? 
+            AND tagname IN (
+                SELECT tagname 
+                FROM tags 
+                WHERE Iscasting = 1
+            )
+        ">
+        
+        <cfset arrayAppend(params, {value=arguments.select_userid, cfsqltype="CF_SQL_INTEGER"})>
+        
+        <cfquery name="updateQuery" datasource="abod">
+            #sql#
+            <cfloop array="#params#" index="param">
+                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+            </cfloop>
+        </cfquery>
+
+</cffunction>
+<cffunction name="SELtags_user_24765" access="public" returntype="query">
+    <cfargument name="userId" type="numeric" required="true">
+    <cfset var queryResult = "">
+    
+    
+        <cfquery name="queryResult" datasource="abod">
+            SELECT tagname 
+            FROM tags_user 
+            WHERE userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 
+            ORDER BY tagname
+        </cfquery>
+    
+
+    <cfreturn queryResult>
+</cffunction></cfcomponent>

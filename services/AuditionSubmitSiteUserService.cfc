@@ -112,15 +112,51 @@
     <cfreturn result>
 </cffunction>
 
+
 <cffunction name="SELaudsubmitsites_user_24295" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_submitsitename" type="string" required="true">
+
     <cfset var result = "">
-    <cfquery name="result">
-        SELECT 
-            submitsiteid AS new_submitsiteid, 
-            catlist AS new_catlist 
-        FROM 
-            audsubmitsites_user 
-        WHERE 
-            userid
+    
+        <cfquery name="result" datasource="abod">
+            SELECT 
+                submitsiteid AS new_submitsiteid, 
+                catlist AS new_catlist 
+            FROM 
+                audsubmitsites_user 
+            WHERE 
+                userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+                AND submitsitename = <cfqueryparam value="#trim(arguments.new_submitsitename)#" cfsqltype="CF_SQL_VARCHAR">
+        </cfquery>
+
+
+    <cfreturn result>
+</cffunction>
+<cffunction name="UPDaudsubmitsites_user_24296" access="public" returntype="void">
+    <cfargument name="new_catlist" type="string" required="true">
+    <cfargument name="new_submitsiteid" type="numeric" required="true">
+
+
+        <cfquery datasource="abod">
+            UPDATE audsubmitsites_user 
+            SET catlist = <cfqueryparam value="#arguments.new_catlist#" cfsqltype="CF_SQL_VARCHAR">
+            WHERE submitsiteid = <cfqueryparam value="#arguments.new_submitsiteid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+
+</cffunction>
+<cffunction name="INSaudsubmitsites_user_24297" access="public" returntype="void">
+    <cfargument name="new_submitsitename" type="string" required="true">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="new_catid" type="string" required="true">
+
+        <cfquery datasource="abod">
+            INSERT INTO audsubmitsites_user_tbl (submitsiteName, userid, catlist)
+            VALUES (
+                <cfqueryparam value="#trim(arguments.new_submitsitename)#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.new_catid#" cfsqltype="CF_SQL_VARCHAR">
+            )
+        </cfquery>
+ 
+</cffunction></cfcomponent>
