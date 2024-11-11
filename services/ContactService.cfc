@@ -605,9 +605,10 @@ function getContactRecordName(new_contactid) {
 <cffunction name="INScontactdetails_24070" access="public" returntype="numeric">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="contactFullName" type="string" required="true">
-    <cfargument name="contactBirthday" type="date" required="false" default="">
-    <cfargument name="referContactId" type="numeric" required="false" default="">
-    <cfargument name="contactMeetingDate" type="date" required="false" default="">
+<cfargument name="contactBirthday" type="date" required="false" default="#JavaCast('null', '')#">
+<cfargument name="referContactId" type="numeric" required="false" default="#JavaCast('null', '')#">
+<cfargument name="contactMeetingDate" type="date" required="false" default="#JavaCast('null', '')#">
+
     <cfargument name="contactMeetingLoc" type="string" required="true">
     <cfargument name="contactPronoun" type="string" required="true">
 
