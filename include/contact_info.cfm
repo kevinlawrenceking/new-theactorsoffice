@@ -62,9 +62,16 @@
 </cfif>
 
 <!--- Cookie-based status checks for active, completed, future --->
-<cfset status_active = iif(isDefined('cookie.status_active'), cookie.status_active, status_active) />
-<cfset status_completed = iif(isDefined('cookie.status_completed'), cookie.status_completed, status_completed) />
-<cfset status_future = iif(isDefined('cookie.status_future'), cookie.status_future, status_future) />
+<!--- Check for cookie values and set status accordingly --->
+<cfif isdefined('cookie.status_active')>
+    <cfset status_active = cookie.status_active />
+</cfif>
+<cfif isdefined('cookie.status_completed')>
+    <cfset status_completed = cookie.status_completed />
+</cfif>
+<cfif isdefined('cookie.status_future')>
+    <cfset status_future = cookie.status_future />
+</cfif>
 
 <!--- Modal setup and looping through queries for contact relationships, tags, etc. --->
 <cfloop query="ru">
