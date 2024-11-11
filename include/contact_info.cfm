@@ -141,7 +141,7 @@
 </cfif>
 
 <cfset rpgid = 36 />
-
+<cfinclude template="/include/qry/details_456_1.cfm" />
 <cfinclude template="/include/modalRemoteNewForm.cfm" />
 <cfinclude template="/include/qry/contacts_333_1.cfm" />
 <cfinclude template="/include/qry/categories_446_1.cfm" />
