@@ -612,7 +612,7 @@ function getContactRecordName(new_contactid) {
     <cfargument name="contactMeetingLoc" type="string" required="true">
     <cfargument name="contactPronoun" type="string" required="true">
 
-    <cfquery datasource="#abod#" name="insertQuery" result="insertResult">
+    <cfquery  name="insertQuery" result="insertResult">
         INSERT INTO contactdetails (
             userid, 
             contactfullname, 
