@@ -1,4 +1,52 @@
 <cfcomponent displayname="ContactItemService" hint="Handles operations for ContactItem table" output="false"> 
+<cffunction name="itemsByCatActive" access="public" returntype="struct">
+    <!--- Define required arguments --->
+    <cfargument name="contactid" type="numeric" required="true">
+    <cfargument name="valueCategory" type="string" required="true">
+    <cfargument name="catArea_UCB" type="string" required="true">
+
+    <!--- Query to fetch items by category with active status --->
+    <cfquery name="itemsbycatActive">
+        SELECT 
+            i.itemID,
+            i.valueType,
+            i.valueCategory,
+            i.valuetext,
+            i.valueCompany,
+            i.valuedepartment,
+            i.valuetitle,
+            i.valueStreetAddress,
+            i.valueExtendedAddress,
+            i.valueCity,
+            i.valueRegion,
+            i.itemDate,
+            i.itemNotes,
+            i.itemStatus,
+            i.itemCreationDate,
+            i.itemLastUpdated,
+            i.valueCountry,
+            c.catfieldset,
+            c.caticon,
+            i.valuepostalcode,
+            i.primary_yn
+        FROM contactitems i
+        INNER JOIN itemcategory c ON c.valueCategory = i.valuecategory
+        WHERE i.contactID = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_integer">
+          AND c.valuecategory = <cfqueryparam value="#arguments.valueCategory#" cfsqltype="cf_sql_varchar">
+          AND i.itemstatus = 'Active'
+          AND i.valuecategory <> 'Tag'
+          AND c.catArea_UCB IN ('B', <cfqueryparam value="#arguments.catArea_UCB#" cfsqltype="cf_sql_varchar">)
+        ORDER BY i.valuetext
+    </cfquery>
+
+    <!--- Create struct to hold query and record count --->
+    <cfset var resultStruct = structNew()>
+    <cfset resultStruct.itemsbycatActive = itemsbycatActive>
+    <cfset resultStruct.recordcount = itemsbycatActive.recordcount>
+
+    <cfreturn resultStruct>
+</cffunction>
+
 
    <!--- Function to retrieve active categories --->
     <cffunction name="getActiveCategories" access="remote" returntype="query" output="false" hint="Get a list of active categories.">
