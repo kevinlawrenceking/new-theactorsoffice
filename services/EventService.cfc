@@ -1,4 +1,60 @@
 <cfcomponent displayname="EventService" hint="Handles operations for Event table" output="false"> 
+
+<cffunction name="eventresults" access="public" returntype="struct">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="currentid" type="numeric" required="false" default="">
+ 
+
+    <!-- Query for event results -->
+    <cfquery name="eventresults">
+        SELECT 
+            e.eventID,
+            e.eventID AS recid,
+            e.eventTitle AS col1,
+            e.eventDescription,
+            e.eventLocation AS col2,
+            e.eventStatus AS col4,
+            e.eventCreation,
+            e.eventStart AS col3,
+            e.eventStop,
+            e.eventTypeName AS col5,
+            'Appointment' AS head1,
+            'Location' AS head2,
+            'Date' AS head3,
+            'Status' AS head4,
+            'Type' AS head5,
+            e.userid,
+            e.eventStartTime,
+            e.eventStopTime,
+            t.eventtypecolor,
+            e.eventid,
+            r.audprojectid,
+            s.audstep
+        FROM events e
+        INNER JOIN eventtypes_user t ON t.eventtypename = e.eventtypename
+        LEFT JOIN events a ON e.eventid = a.eventid
+        LEFT JOIN audroles r ON r.audroleid = a.audroleid
+        LEFT JOIN audsteps s ON s.audstepid = a.audstepid
+        WHERE e.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer">
+          AND t.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer">
+
+        <cfif arguments.currentid neq "">
+            AND e.eventid IN (SELECT eventid FROM eventcontactsxref WHERE contactid = <cfqueryparam value="#arguments.currentid#" cfsqltype="cf_sql_integer">)
+        </cfif>
+
+        ORDER BY e.eventstart DESC
+    </cfquery>
+
+    <cfset var resultStruct = structNew()>
+    <cfset resultStruct.eventresults = eventresults>
+    <cfset resultStruct.recordcount = eventresults.recordcount>
+
+    <cfreturn resultStruct>
+</cffunction>
+
+
+
+
 <cffunction name="INSevents" access="public" returntype="void">
     <cfargument name="eventTitle" type="string" required="true">
     <cfargument name="eventTypeName" type="string" required="true">
