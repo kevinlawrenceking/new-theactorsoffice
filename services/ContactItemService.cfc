@@ -1,4 +1,24 @@
 <cfcomponent displayname="ContactItemService" hint="Handles operations for ContactItem table" output="false"> 
+
+ <cffunction name="SELfindscope_24712" access="public" returntype="query">
+        <cfargument name="contactid" type="numeric" required="true">
+        <cfargument name="userid" type="numeric" required="true">
+        
+        <cfquery name="findscope"  maxrows="1">
+            SELECT * 
+            FROM contactitems 
+            WHERE valuecategory = 'Tag' 
+              AND contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_integer">
+              AND itemstatus = 'Active' 
+              AND valuetext IN (
+                SELECT tagname 
+                FROM tags_user 
+                WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer">
+                  AND tagtype = 'C'
+              )
+        </cfquery>
+
+</cffunction>
 <cffunction name="SELcontactitems" access="public" returntype="query">
     <cfargument name="contactId" type="numeric" required="true">
     <cfset var result = "">

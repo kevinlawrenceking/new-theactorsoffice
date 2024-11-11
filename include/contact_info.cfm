@@ -154,6 +154,7 @@
 <cfinclude template="/include/qry/notsall_512_1.cfm" />
 <cfinclude template="/include/qry/eventss_443_1.cfm" />
 <!--- <cfinclude template="/include/qry/systemNotificationsActive.cfm" /> --->
+<cfinclude template="/include/qry/findscope.cfm" />
 <cfinclude template="/include/qry/sysAvail_539_3.cfm" />
 <cfinclude template="/include/qry/rels_519_1.cfm" />
 <cfinclude template="/include/qry/emailcheck_469_1.cfm" />
