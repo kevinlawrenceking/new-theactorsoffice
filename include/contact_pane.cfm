@@ -40,7 +40,7 @@
                     <cfif #result.itemsbycatActive.recordcount# is not "0">
 
                         <!--- Loop through items by category active --->
-                        <cfloop query="itemsbycatActive">
+                        <cfloop query="result.itemsbycatActive">
 
                             <!--- Check if category fieldset is address --->
                             <cfif #ActiveCategories.catfieldset# is "address">
