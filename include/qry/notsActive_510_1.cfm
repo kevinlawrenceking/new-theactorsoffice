@@ -2,6 +2,8 @@
 <cfset notsActive = notificationService.SELfunotifications_24706(
     currentid = currentid,
     sysActiveSuid = sysActive.suid,
-    sessionUserid = userid,
+    userid = userid,
     hideCompleted = hide_completed
 )>
+
+

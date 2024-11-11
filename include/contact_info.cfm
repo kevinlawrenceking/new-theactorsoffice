@@ -430,7 +430,9 @@
 </div>
 
 <cfloop query="sysactive">
-    <cfinclude template="/include/qry/notsActive.cfm" />
+    <cfinclude template="/include/qry/notsactive_510_1.cfm" />
+    <cfinclude template="/include/qry/notsInactive_510_2.cfm" />
+    
     <cfloop query="notsactive">
         <cfoutput>
             <div id="action#notsActive.actionid#-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">

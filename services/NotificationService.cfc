@@ -1,5 +1,69 @@
 <cfcomponent displayname="NotificationService" hint="Handles operations for Notification table" output="false"> 
 
+    <cffunction name="SELfunotifications_24706" access="public" returntype="query">
+        <cfargument name="currentid" type="numeric" required="true">
+        <cfargument name="sysActiveSuid" type="numeric" required="true">
+        <cfargument name="userid" type="numeric" required="true">
+        <cfargument name="hide_completed" type="string" required="true">
+        
+        <cfquery name="notsActive">
+            SELECT
+                n.notID,
+                n.actionID,
+                n.userID,
+                n.suID,
+                n.notTimeStamp,
+                n.notStartDate,
+                n.notEndDate,
+                n.notStatus,
+                n.notNotes,
+                f.systemID,
+                f.contactID,
+                f.suTimeStamp,
+                f.suStartDate,
+                f.suEndDate,
+                f.suStatus,
+                f.suNotes,
+                a.actionID,
+                a.actionNo,
+                a.actionDetails,
+                a.actionTitle,
+                a.navToURL,
+                au.actionDaysNo,
+                au.actionDaysRecurring,
+                a.actionNotes,
+                a.actionInfo,
+                l.actionlinkid,
+                l.BtnName,
+                l.ActionLinkURL,
+                l.endlink,
+                l.targetlink,
+                n.ispastdue,
+                ns.checktype,
+                ns.delstart,
+                ns.delend,
+                ns.status_color
+            FROM funotifications n
+            INNER JOIN fusystemusers f ON f.suID = n.suID
+            INNER JOIN fusystems s ON s.systemID = f.systemID
+            INNER JOIN fuactions a ON a.actionID = n.actionID
+            INNER JOIN actionusers au ON a.actionID = au.actionID
+            INNER JOIN fuActionLinks l ON l.actionlinkid = a.actionlinkid
+            INNER JOIN notstatuses ns ON ns.notstatus = n.notStatus
+            WHERE f.contactID = <cfqueryparam value="#arguments.currentid#" cfsqltype="cf_sql_integer">
+              AND f.suID = <cfqueryparam value="#arguments.sysActiveSuid#" cfsqltype="cf_sql_integer">
+              AND au.userID = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer">
+              AND n.notStartDate IS NOT NULL
+              AND DATE(n.notStartDate) <= <cfqueryparam value="#DateFormat(Now(), 'yyyy-mm-dd')#" cfsqltype="cf_sql_date">
+            <cfif arguments.hide_completed is "Y">
+              AND n.notStatus NOT IN ('Completed', 'Skipped')
+            </cfif>
+            ORDER BY FIELD(n.notStatus, 'Pending', 'Completed', 'Skipped'), n.notEndDate
+        </cfquery>
+        
+        <cfreturn notsActive>
+    </cffunction>
+
 <cffunction name="SELfunotifications_24709" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     <cfset var result = "">
