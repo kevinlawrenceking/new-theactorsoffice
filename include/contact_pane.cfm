@@ -19,7 +19,7 @@
                     <cfoutput>
 
                         <!--- Check if items by category active record count is not 0 --->
-                        <cfif #itemsbycatActive.recordcount# is not "0">
+                        <cfif #result.itembycatActive.recordcount# is not "0">
 
                             <i class="#ActiveCategories.caticon# font-26" style="position: absolute; left: 0; top: 0;"></i>
 
@@ -27,7 +27,7 @@
                         <!--- end if itemsbycatActive.recordcount is not 0 --->
 
                         <!--- Check if items by category active record count is 0 --->
-                        <cfif #itemsbycatActive.recordcount# is "0">
+                        <cfif #result.itembycatActive.recordcount# is "0">
 
                             <i class="#ActiveCategories.caticon# text-muted font-weight-lighter font-26" style="position: absolute; left: 0; top: 0;"></i>
 
@@ -37,7 +37,7 @@
                     </cfoutput>
 
                     <!--- Check if items by category active record count is not 0 --->
-                    <cfif #itemsbycatActive.recordcount# is not "0">
+                    <cfif #result.itembycatActive.recordcount# is not "0">
 
                         <!--- Loop through items by category active --->
                         <cfloop query="itemsbycatActive">
@@ -49,20 +49,20 @@
 
                                     <h5 style="#h5style#">
 
-                                        #itemsbycatActive.valuestreetaddress#
+                                        #result.itembycatActive.valuestreetaddress#
 
-                                        <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateC#itemsbycatActive.itemid#" toggle="tooltip" data-bs-placement="top" title="Update" #ActiveCategories.valueCategory# data-bs-original-title="Update #ActiveCategories.valueCategory#">
+                                        <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateC#result.itembycatActive.itemid#" toggle="tooltip" data-bs-placement="top" title="Update" #ActiveCategories.valueCategory# data-bs-original-title="Update #ActiveCategories.valueCategory#">
 
                                             <i class="mdi mdi-square-edit-outline"></i>
 
                                         </a>
 
                                         <!--- Check if extended address is not blank --->
-                                        <cfif #itemsbycatActive.valueExtendedaddress# is not "">
+                                        <cfif #result.itembycatActive.valueExtendedaddress# is not "">
 
-                                            <br />#itemsbycatActive.valueExtendedaddress#
+                                            <br />#result.itembycatActive.valueExtendedaddress#
 
-                                            <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateC#itemsbycatActive.itemid#" toggle="tooltip" data-bs-placement="top" title="Update #ActiveCategories.valueCategory#" data-bs-original-title="Update #ActiveCategories.valueCategory#">
+                                            <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateC#result.itembycatActive.itemid#" toggle="tooltip" data-bs-placement="top" title="Update #ActiveCategories.valueCategory#" data-bs-original-title="Update #ActiveCategories.valueCategory#">
 
                                                 <i class="mdi mdi-square-edit-outline"></i>
 
@@ -72,14 +72,14 @@
                                         <!--- end if itemsbycatActive.valueExtendedaddress is not blank --->
 
                                         <!--- Check if city is not blank --->
-                                        <cfif #itemsbycatActive.valuecity# is not "">
+                                        <cfif #result.itembycatActive.valuecity# is not "">
 
-                                            <br />#itemsbycatActive.valuecity#
+                                            <br />#result.itembycatActive.valuecity#
 
                                             <!--- Check if extended address is blank --->
-                                            <cfif #itemsbycatActive.valueExtendedaddress# is "">
+                                            <cfif #result.itembycatActive.valueExtendedaddress# is "">
 
-                                                <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateC#itemsbycatActive.itemid#" data-bs-placement="top" title="Update #ActiveCategories.valueCategory#" data-bs-original-title="Update #ActiveCategories.valueCategory#">
+                                                <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateC#result.itembycatActive.itemid#" data-bs-placement="top" title="Update #ActiveCategories.valueCategory#" data-bs-original-title="Update #ActiveCategories.valueCategory#">
 
                                                     <i class="mdi mdi-square-edit-outline"></i>
 
@@ -92,14 +92,14 @@
                                         <!--- end if itemsbycatActive.valuecity is not blank --->
 
                                         <!--- Check if city and region are not blank --->
-                                        <cfif #itemsbycatActive.valuecity# is not "" and #itemsbycatActive.valueRegion# is not "">
+                                        <cfif #result.itembycatActive.valuecity# is not "" and #result.itembycatActive.valueRegion# is not "">
 
-                                            ,#itemsbycatActive.valueRegion#
+                                            ,#result.itembycatActive.valueRegion#
 
                                             <!--- Check if extended address is blank --->
-                                            <cfif #itemsbycatActive.valueExtendedaddress# is "">
+                                            <cfif #result.itembycatActive.valueExtendedaddress# is "">
 
-                                                <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateC#itemsbycatActive.itemid#" data-bs-placement="top" title="Update #ActiveCategories.valueCategory#" data-bs-original-title="Update #ActiveCategories.valueCategory#">
+                                                <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateC#result.itembycatActive.itemid#" data-bs-placement="top" title="Update #ActiveCategories.valueCategory#" data-bs-original-title="Update #ActiveCategories.valueCategory#">
 
                                                     <i class="mdi mdi-square-edit-outline"></i>
 
@@ -112,9 +112,9 @@
                                         <!--- end if itemsbycatActive.valuecity is not blank and itemsbycatActive.valueRegion is not blank --->
 
                                         <!--- Check if postal code is not blank --->
-                                        <cfif #itemsbycatActive.valuepostalcode# is not "">
+                                        <cfif #result.itembycatActive.valuepostalcode# is not "">
 
-                                            &nbsp; #itemsbycatActive.valuepostalcode#
+                                            &nbsp; #result.itembycatActive.valuepostalcode#
 
                                         </cfif>
                                         <!--- end if itemsbycatActive.valuepostalcode is NOT blank --->
@@ -123,7 +123,7 @@
 
                                     <div style="font-13 text-uppercase mb-1; text-align:left;">
 
-                                        #itemsbycatActive.valuetype#
+                                        #result.itembycatActive.valuetype#
 
                                     </div>
 
@@ -139,26 +139,26 @@
 
                                     <h5 style="#h5style#">
 
-                                        #itemsbycatActive.valueCompany#
+                                        #result.itembycatActive.valueCompany#
 
-                                        <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateC#itemsbycatActive.itemid#" data-bs-placement="top" title="Update #ActiveCategories.valueCategory#" data-bs-original-title="Update #ActiveCategories.valueCategory#">
+                                        <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateC#result.itembycatActive.itemid#" data-bs-placement="top" title="Update #ActiveCategories.valueCategory#" data-bs-original-title="Update #ActiveCategories.valueCategory#">
 
                                             <i class="mdi mdi-square-edit-outline"></i>
 
                                         </a>
 
                                         <!--- Check if title is not blank --->
-                                        <cfif #itemsbycatActive.valueTitle# is not "">
+                                        <cfif #result.itembycatActive.valueTitle# is not "">
 
-                                            <br />#itemsbycatActive.valueTitle#
+                                            <br />#result.itembycatActive.valueTitle#
 
                                         </cfif>
                                         <!--- end if itemsbycatActive.valueTitle is not blank --->
 
                                         <!--- Check if department is not blank --->
-                                        <cfif #itemsbycatActive.valueDepartment# is not "">
+                                        <cfif #result.itembycatActive.valueDepartment# is not "">
 
-                                            <br />#itemsbycatActive.valueDepartment#
+                                            <br />#result.itembycatActive.valueDepartment#
 
                                         </cfif>
                                         <!--- end if itemsbycatActive.valueDepartment is not blank --->
@@ -167,7 +167,7 @@
 
                                     <div style="font-13 text-uppercase mb-1; text-align:left;">
 
-                                        #itemsbycatActive.valuetype#
+                                        #result.itembycatActive.valuetype#
 
                                     </div>
 
@@ -181,9 +181,9 @@
 
                                 <cfoutput>
 
-                                    <h5 style="#h5style#">#dateformat('#itemsbycatActive.itemdate#','mm-dd-YYYY')#
+                                    <h5 style="#h5style#">#dateformat('#result.itembycatActive.itemdate#','mm-dd-YYYY')#
 
-                                        <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateC#itemsbycatActive.itemid#" data-bs-placement="top" title="Update #ActiveCategories.valueCategory#" data-bs-original-title="Update #ActiveCategories.valueCategory#">
+                                        <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateC#result.itembycatActive.itemid#" data-bs-placement="top" title="Update #ActiveCategories.valueCategory#" data-bs-original-title="Update #ActiveCategories.valueCategory#">
 
                                             <i class="mdi mdi-square-edit-outline"></i>
 
@@ -193,7 +193,7 @@
 
                                     <div style="font-13 text-uppercase mb-1; text-align:left;">
 
-                                        #itemsbycatActive.valuetype#
+                                        #result.itembycatActive.valuetype#
 
                                     </div>
 
@@ -209,13 +209,13 @@
 
                                     <h5 style="#h5style#">
 
-                                        #itemsbycatActive.itemnotes#
+                                        #result.itembycatActive.itemnotes#
 
                                     </h5>
 
                                     <div style="font-13 text-uppercase mb-1; text-align:left;">
 
-                                        #itemsbycatActive.valuetype#
+                                        #result.itembycatActive.valuetype#
 
                                     </div>
 
@@ -238,7 +238,7 @@
 
                                         <h5 style="#h5style#">#formatPhoneNumber#
 
-                                            <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateC#itemsbycatActive.itemid#" data-bs-placement="top" title="Update Phone" data-bs-original-title="Update #ActiveCategories.valueCategory#">
+                                            <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateC#result.itembycatActive.itemid#" data-bs-placement="top" title="Update Phone" data-bs-original-title="Update #ActiveCategories.valueCategory#">
 
                                                 <i class="mdi mdi-square-edit-outline"></i>
 
@@ -248,7 +248,7 @@
 
                                         <div style="font-13 text-uppercase mb-1; text-align:left;">
 
-                                            #itemsbycatActive.valuetype#
+                                            #result.itembycatActive.valuetype#
 
                                         </div>
 
@@ -264,9 +264,9 @@
 
                                         <h5 style="#h5style#">
 
-                                            <a HREF="mailto:#itemsbycatActive.valuetext#" target="_blank">#itemsbycatActive.valuetext#</a>
+                                            <a HREF="mailto:#result.itembycatActive.valuetext#" target="_blank">#result.itembycatActive.valuetext#</a>
 
-                                            <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateC#itemsbycatActive.itemid#" toggle="tooltip" data-bs-placement="top" title="Update #ActiveCategories.valueCategory#" data-bs-original-title="Update #ActiveCategories.valueCategory#">
+                                            <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateC#result.itembycatActive.itemid#" toggle="tooltip" data-bs-placement="top" title="Update #ActiveCategories.valueCategory#" data-bs-original-title="Update #ActiveCategories.valueCategory#">
 
                                                 <i class="mdi mdi-square-edit-outline"></i>
 
@@ -276,7 +276,7 @@
 
                                         <div style="font-13 text-uppercase mb-1; text-align:left;">
 
-                                            #itemsbycatActive.valuetype#
+                                            #result.itembycatActive.valuetype#
 
                                         </div>
 
@@ -294,9 +294,9 @@
 
                                             <cfif #left(itemsbycatActive.valuetext,4)# is "http">
 
-                                                <a href="#itemsbycatActive.valuetext#" target="_blank">
+                                                <a href="#result.itembycatActive.valuetext#" target="_blank">
 
-                                                    #itemsbycatActive.valuetext#
+                                                    #result.itembycatActive.valuetext#
 
                                                 </a>
 
@@ -305,12 +305,12 @@
 
                                             <cfif #left(itemsbycatActive.valuetext,4)# is not "http">
 
-                                                #itemsbycatActive.valuetext#
+                                                #result.itembycatActive.valuetext#
 
                                             </cfif>
                                             <!--- end if left(itemsbycatActive.valuetext,4) is NOT http --->
 
-                                            <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateC#itemsbycatActive.itemid#" toggle="tooltip" data-bs-placement="top" title="Update #ActiveCategories.valueCategory#" data-bs-original-title="Update #ActiveCategories.valueCategory#">
+                                            <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateC#result.itembycatActive.itemid#" toggle="tooltip" data-bs-placement="top" title="Update #ActiveCategories.valueCategory#" data-bs-original-title="Update #ActiveCategories.valueCategory#">
 
                                                 <i class="mdi mdi-square-edit-outline"></i>
 
@@ -320,7 +320,7 @@
 
                                         <div style="font-13 text-uppercase mb-1; text-align:left;">
 
-                                            #itemsbycatActive.valuetype#
+                                            #result.itembycatActive.valuetype#
 
                                         </div>
 
@@ -338,7 +338,7 @@
                     <!--- end itemsbycatActive.recordcount is not 0 --->
 
                     <!--- Check if items by category active record count is 0 --->
-                    <cfif #itemsbycatActive.recordcount# is "0">
+                    <cfif #result.itembycatActive.recordcount# is "0">
 
                         <h5 class="text-muted font-weight-lighter">Add <cfoutput> #ActiveCategories.valueCategory#</cfoutput>
 

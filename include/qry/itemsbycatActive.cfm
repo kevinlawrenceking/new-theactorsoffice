@@ -1,7 +1,7 @@
-<cfset contactItemService = createObject("component", "services.ContactItemService")>
+<cfset contactItemService = createObject("component", "services.contactItemService")>
 
 <!--- Call the function and pass necessary arguments --->
-<cfset itemsbycatActive = contactItemService.itemsByCatActive(
+<cfset result = contactItemService.itemsByCatActive(
     contactid = currentid,
     valueCategory = ActiveCategories.valueCategory,
     catArea_UCB = catArea_UCB
