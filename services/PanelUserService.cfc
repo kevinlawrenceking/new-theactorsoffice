@@ -289,7 +289,20 @@
             ORDER BY 
                 p.pnorderno
         </cfquery>
-    <cfoutput>#result.recordcount#</cfoutput><cfabort>
+    <cfoutput>     SELECT 
+                p.pnid, 
+                p.pntitle, 
+                p.pnColXl, 
+                p.pnColMd, 
+                p.pnFilename, 
+                p.pnorderno AS new_pnorderno
+            FROM 
+                pgpanels_user p
+            WHERE 
+                p.userid = #arguments.userid#
+                AND p.isvisible = 1
+            ORDER BY 
+                p.pnorderno#result.recordcount#</cfoutput><cfabort>
     <cfreturn result>
 </cffunction>
 <cffunction name="SELpgpanels_user_24642" access="public" returntype="query">
