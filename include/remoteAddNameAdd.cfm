@@ -5,13 +5,13 @@
 <cfinclude template="/include/qry/add_211_1.cfm" />
 
 <!--- Set the generated key for the current contact --->
-<cfset currentid = result.generated_key />
+<cfset currentid = insertResult.generatedKey />
 
 <!--- Set the contact ID for further processing --->
-<cfset contactid = result.generated_key />
+<cfset contactid = insertResult.generatedKey />
 
 <!--- Retrieve the user ID from the session --->
-<cfset select_userid = session.userid />
+<cfset select_userid = userid />
 <!--- Set the current contact ID for reference --->
 <cfset select_contactid = currentid />
 
