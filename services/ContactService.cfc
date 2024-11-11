@@ -1095,8 +1095,7 @@ function getContactRecordName(new_contactid) {
     <cfargument name="contactid" type="numeric" required="true">
     
     <cfset var result = "">
-    
-    <cftry>
+
        <cfquery name="result" datasource="abod">
     SELECT 
         d.contactid, 
@@ -1122,18 +1121,13 @@ function getContactRecordName(new_contactid) {
         d2.contactFullName AS referDetailsFullname  
     FROM contactdetails d
     INNER JOIN taousers u ON u.userid = d.userid
-    LEFT JOIN contactdetails d2 ON d.refer_contact_id = d2.contactid  <!-- Left join with contactdetails as d2 -->
+    LEFT JOIN contactdetails d2 ON d.refer_contact_id = d2.contactid  
     WHERE d.contactID = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
 </cfquery>
 
         
         <cfreturn result>
-        
-    <cfcatch>
-        <cflog file="application" text="Error in getContactDetails: #cfcatch.message#">
-        <cfreturn queryNew("")>
-    </cfcatch>
-    </cftry>
+
 </cffunction>
 <cffunction name="DETcontactdetails_24625" access="public" returntype="query">
     <cfargument name="refer_contact_id" type="numeric" required="true">
