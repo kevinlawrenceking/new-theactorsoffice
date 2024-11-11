@@ -613,24 +613,25 @@ function getContactRecordName(new_contactid) {
     <cfargument name="contactPronoun" type="string" required="true">
 
     <cfquery  name="insertQuery" result="insertResult">
-        INSERT INTO contactdetails (
-            userid, 
-            contactfullname, 
-            contactmeetingloc, 
-            contactPronoun
-            <cfif isDate(arguments.contactBirthday)>, contactbirthday</cfif>
-            <cfif isNumeric(arguments.referContactId)>, refer_contact_id</cfif>
-            <cfif isDate(arguments.contactMeetingDate)>, contactmeetingdate</cfif>
-        ) 
-        VALUES (
-            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
-            <cfqueryparam value="#arguments.contactFullName#" cfsqltype="CF_SQL_VARCHAR">,
-            <cfqueryparam value="#arguments.contactMeetingLoc#" cfsqltype="CF_SQL_VARCHAR">,
-            <cfqueryparam value="#arguments.contactPronoun#" cfsqltype="CF_SQL_VARCHAR">
-            <cfif isDate(arguments.contactBirthday)>, <cfqueryparam value="#arguments.contactBirthday#" cfsqltype="CF_SQL_DATE"></cfif>
-            <cfif isNumeric(arguments.referContactId)>, <cfqueryparam value="#arguments.referContactId#" cfsqltype="CF_SQL_INTEGER"></cfif>
-            <cfif isDate(arguments.contactMeetingDate)>, <cfqueryparam value="#arguments.contactMeetingDate#" cfsqltype="CF_SQL_DATE"></cfif>
-        )
+
+    INSERT INTO contactdetails (
+        userid, 
+        contactfullname,
+        contactmeetingloc, 
+        contactPronoun
+        <cfif structKeyExists(arguments, "contactBirthday") and isDate(arguments.contactBirthday)>, contactbirthday</cfif>
+        <cfif structKeyExists(arguments, "referContactId") and isNumeric(arguments.referContactId)>, refer_contact_id</cfif>
+        <cfif structKeyExists(arguments, "contactMeetingDate") and isDate(arguments.contactMeetingDate)>, contactmeetingdate</cfif>
+    ) VALUES (
+        <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+        <cfqueryparam value="#arguments.contactFullName#" cfsqltype="CF_SQL_VARCHAR">,
+        <cfqueryparam value="#arguments.contactMeetingLoc#" cfsqltype="CF_SQL_VARCHAR">,
+        <cfqueryparam value="#arguments.contactPronoun#" cfsqltype="CF_SQL_VARCHAR">
+        <cfif structKeyExists(arguments, "contactBirthday") and isDate(arguments.contactBirthday)>, <cfqueryparam value="#arguments.contactBirthday#" cfsqltype="CF_SQL_DATE"></cfif>
+        <cfif structKeyExists(arguments, "referContactId") and isNumeric(arguments.referContactId)>, <cfqueryparam value="#arguments.referContactId#" cfsqltype="CF_SQL_INTEGER"></cfif>
+        <cfif structKeyExists(arguments, "contactMeetingDate") and isDate(arguments.contactMeetingDate)>, <cfqueryparam value="#arguments.contactMeetingDate#" cfsqltype="CF_SQL_DATE"></cfif>
+    )
+
     </cfquery>
 
     <!--- Return the primary key of the newly inserted record --->
