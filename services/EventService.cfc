@@ -1363,8 +1363,7 @@
     <cfargument name="currentId" type="numeric" required="false">
     
     <cfset var result = "">
-    
-    <cftry>
+
         <cfquery name="result" datasource="abod">
             SELECT 
                 e.eventID, 
@@ -1402,11 +1401,6 @@
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getEventDetails: #cfcatch.message# Query: #result.sql#">
-            <cfthrow message="An error occurred while retrieving event details." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
 </cffunction>
 <cffunction name="SELevents_24659" access="public" returntype="query">
     <cfargument name="sessionUserID" type="numeric" required="true">
