@@ -1,7 +1,7 @@
 <!--- This ColdFusion page handles the contact details, including fetching related data, managing modals for updates, and displaying contact information. --->
 
 <cfinclude template="/include/fetchLocationService.cfm" />
-
+<cfparam name="suID" default="7" />
 <cfparam name="recid" default="0" />
 <cfparam name="t2" default="0" />
 <cfset dbugz = "N" />
@@ -16,6 +16,15 @@
         <cfset t1 = 0 />
     </cfif>
 </cfif>
+
+
+
+<cfif #isdefined('session.mocktoday')# >
+<Cfset currentStartDate = "#DateFormat(session.mocktoday,'yyyy-mm-dd')#"/> 
+    <cfelse>
+<Cfset currentStartDate = "#DateFormat(Now(),'yyyy-mm-dd')#"/>
+</cfif>
+
 
 <cfparam name="contact_expand" default="true" />
 <cfparam name="appointments_expand" default="false" />
@@ -134,24 +143,24 @@
 <cfset rpgid = 36 />
 
 <cfinclude template="/include/modalRemoteNewForm.cfm" />
-<cfinclude template="/include/qry/contacts.cfm" />
-<cfinclude template="/include/qry/categories.cfm" />
-<cfinclude template="/include/qry/items.cfm" />
-<cfinclude template="/include/qry/notesContact.cfm" />
-<cfinclude template="/include/qry/SystemsContact.cfm" />
-<cfinclude template="/include/qry/tagsContact.cfm" />
-<cfinclude template="/include/qry/profiles.cfm" />
-<cfinclude template="/include/qry/sysactive.cfm" />
-<cfinclude template="/include/qry/notsall.cfm" />
-<cfinclude template="/include/qry/events.cfm" />
-<cfinclude template="/include/qry/systemNotificationsActive.cfm" />
-<cfinclude template="/include/qry/SystemsActiveContact.cfm" />
-<cfinclude template="/include/qry/ru.cfm" />
-<cfinclude template="/include/qry/emailcheck.cfm" />
-<cfinclude template="/include/qry/phonecheck.cfm" />
-<cfinclude template="/include/qry/rels.cfm" />
+<cfinclude template="/include/qry/contacts_333_1.cfm" />
+<cfinclude template="/include/qry/categories_446_1.cfm" />
+<cfinclude template="/include/qry/items_488_1.cfm" />
+<cfinclude template="/include/qry/notesContact_507_1.cfm" />
+<cfinclude template="/include/qry/Systems_540_1.cfm" />
+<cfinclude template="/include/qry/TagsContact_541_1.cfm" />
+<cfinclude template="/include/qry/profiles_516_1.cfm" />
+<cfinclude template="/include/qry/sysActive_537_1.cfm" />
+<cfinclude template="/include/qry/notsall_512_1.cfm" />
+<cfinclude template="/include/qry/eventss_443_1.cfm" />
+<!--- <cfinclude template="/include/qry/systemNotificationsActive.cfm" /> --->
+<cfinclude template="/include/qry/sysAvail_539_3.cfm" />
+<cfinclude template="/include/qry/rels_519_1.cfm" />
+<cfinclude template="/include/qry/emailcheck_469_1.cfm" />
+<cfinclude template="/include/qry/phonecheck_515_1.cfm" />
+<!--- <cfinclude template="/include/qry/rels.cfm" /> --->
 <cfinclude template="/include/fetchContactItems.cfm" />
-<cfinclude template="/include/qry/findcompany.cfm" />
+<cfinclude template="/include/qry/findcompany_476_1.cfm" />
 
 <cfif #details.contactphoto# is not "">
     <cfset browser_contact_avatar_filename = details.contactphoto />
