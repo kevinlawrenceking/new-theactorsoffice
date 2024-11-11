@@ -2,7 +2,7 @@
 <cffunction name="SELnotstatuses" access="public" returntype="query">
     <cfargument name="currentid" type="numeric" required="true">
     <cfargument name="sysActiveSuid" type="numeric" required="true">
-    <cfargument name="sessionUserid" type="numeric" required="true">
+    <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
@@ -33,7 +33,7 @@
         WHERE 
             f.contactID = <cfqueryparam value="#arguments.currentid#" cfsqltype="CF_SQL_INTEGER"> AND
             f.suid = <cfqueryparam value="#arguments.sysActiveSuid#" cfsqltype="CF_SQL_INTEGER"> AND
-            au.userid = <cfqueryparam value="#arguments.sessionUserid#" cfsqltype="CF_SQL_INTEGER"> AND
+            au.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> AND
             (n.notstartdate IS NULL OR DATE(n.notstartdate) >= <cfqueryparam value="#DateFormat(Now(),'yyyy-mm-dd')#" cfsqltype="CF_SQL_DATE">) AND
             n.notstatus = <cfqueryparam value="Pending" cfsqltype="CF_SQL_VARCHAR"> AND
             ns.notstatus = <cfqueryparam value="Future" cfsqltype="CF_SQL_VARCHAR">
