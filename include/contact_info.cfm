@@ -15,7 +15,7 @@
 <cfset dbugz = "N" />
 
 <!--- Determine current start date based on session.mocktoday or Now() --->
-<cfset currentStartDate = iif(isDefined("session.mocktoday"), DateFormat(session.mocktoday, "yyyy-mm-dd"), DateFormat(Now(), "yyyy-mm-dd")) />
+<cfset currentStartDate = iif(structKeyExists(session, "mocktoday"), DateFormat(session.mocktoday, "yyyy-mm-dd"), DateFormat(Now(), "yyyy-mm-dd")) />
 
 
 <!--- Evaluate t1, t2, t3, t4 for section expansion settings --->
