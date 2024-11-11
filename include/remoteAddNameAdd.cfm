@@ -4,11 +4,10 @@
 <!--- Include the query to add a new contact --->
 <cfinclude template="/include/qry/add_211_1.cfm" />
 
-<!--- Set the generated key for the current contact --->
-<cfset currentid = insertResult.generatedKey />
+
 
 <!--- Set the contact ID for further processing --->
-<cfset contactid = insertResult.generatedKey />
+<cfset contactid = currentid />
 
 <!--- Retrieve the user ID from the session --->
 <cfset select_userid = userid />
