@@ -142,6 +142,9 @@
 
 <cfset rpgid = 36 />
 <cfinclude template="/include/qry/details_456_1.cfm" />
+<cfif #details.contactphoto# is not "">
+    <cfset browser_contact_avatar_filename = details.contactphoto />
+</cfif>
 <cfinclude template="/include/qry/ru.cfm" />
 <cfinclude template="/include/modalRemoteNewForm.cfm" />
 <cfinclude template="/include/qry/contacts_333_1.cfm" />
