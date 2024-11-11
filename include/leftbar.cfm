@@ -7,71 +7,88 @@
     <cfcookie name="mocktoday" expires="#now()#">
 </cfif>
 
-<div class="left-side-menu">
-    <div class="h-100" data-simplebar>
-        <!--- Sidemenu --->
-        <div id="sidebar-menu">
+   <div id="sidebar-menu">
+
             <ul id="side-menu">
+        <li><div class="user-lg text-center">
+            
+            <A HREF="/app/image-upload/?ref_pgid=7" style="text-align:center;">
+
+                <cfoutput> <img src="/media-#host#/users/#session.userid#/avatar.jpg?ver=#rand()#" alt="user-image" id="mobile" class="rounded-circle avatar-md text-center" ></cfoutput><BR />
+               <span class="pro-user-name ml-1 text-center"  >
+                    <cfoutput>#useravatarname#</cfoutput>
+                </span>
+
+            </A>
+</div>
+
+        </li>
+                <Cfoutput query="menuItemsU">
+                    <li>
+                        <a href="/app/#menuItemsU.compDir#/">
+                            <i data-feather="#menuitemsU.compicon#"></i>
+                            <span> #menuItemsU.compName# </span>
+                        </a>
+                    </li>
+
+                </Cfoutput>
+
+                <cfif #userrole# is "Administrator">
+
+ 
                 <li>
-                    <div class="user-lg text-center">
-                        <a href="/app/image-upload/?ref_pgid=7" style="text-align:center;">
-                            <cfoutput>
-                                <img src="#session.userAvatarUrl#" alt="user-image" id="mobile" class="rounded-circle avatar-md text-center">
-                                <br />
-                                <span class="pro-user-name ml-1 text-center">#avatarname#</span>
-                            </cfoutput>
-                        </a>
-                    </div>
-                </li>
-<cfoutput query="menuItemsU">
-    <li>
-        <a href="/app/#menuItemsU.compDir#/">
-            <i data-feather="#menuItemsU.compIcon#"></i> <!--- Use 'compIcon' here to match query case --->
-            <span>#menuItemsU.compName#</span>
-        </a>
-    </li>
-</cfoutput>
-
-
-                <cfif userrole eq "Administrator">
-                    <li>
-                        <a href="#sidebara" data-bs-toggle="collapse">
-                            <i data-feather="sliders"></i>
-                            <span>Relationships - Admin</span>
-                            <span class="menu-arrow"></span>
-                        </a>
-                        <div class="collapse" id="sidebara">
-                            <ul class="nav-second-level">
-                                <cfoutput query="menuItemsa">
-                                    <li>
-                                        <a href="/app/#menuItemsa.compDir#/">
-                                            <span>#menuItemsa.compName#</span>
-                                        </a>
-                                    </li>
-                                </cfoutput>
-                            </ul>
-                        </div>
-                    </li>
-
-                    <li>
-                        <a href="#sidebarEmail" data-bs-toggle="collapse">
-                            <i data-feather="sliders"></i>
-                            <span>Audition - Admin</span>
-                            <span class="menu-arrow"></span>
-                        </a>
-                        <div class="collapse" id="sidebarEmail">
-                            <ul class="nav-second-level">
-                                <cfoutput query="menuItemsaud">
-                                    <li>
-                                        <a href="/app/#menuItemsaud.compDir#/">
-                                            <span>#menuItemsaud.compName#</span>
-                                        </a>
-                                    </li>
-                                </cfoutput>
-                            </ul>
-                        </div>
-                    </li>
+                                <a href="#sidebara" data-bs-toggle="collapse">
+                                <i data-feather="sliders"></i>
+                                    <span> Relationships - Admin </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="sidebara">
+                                    <ul class="nav-second-level">
+                                        
+                                          <Cfoutput query="menuItemsa">    
+                                             <li>
+                            <a href="/app/#menuItemsA.compDir#/">
+             
+                                <span> #menuItemsA.compName# </span>
+                            </a>
+                        </li>
+                                        </Cfoutput>
+                                        
+                                        
+                                    </ul>
+                                </div>
+                            </li>
+          
+                
+                
+                <li>
+                                <a href="#sidebarEmail" data-bs-toggle="collapse">
+                                      <i data-feather="sliders"></i>
+                                    <span> Audition - Admin </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="sidebarEmail">
+                                    <ul class="nav-second-level">
+                                        
+                                          <Cfoutput query="menuItemsaud">    
+                                             <li>
+                            <a href="/app/#menuItemsAud.compDir#/">
+                      
+                                <span> #menuItemsAud.compName# </span>
+                            </a>
+                        </li>
+                                        </Cfoutput>
+                                        
+                                        
+                                    </ul>
+                                </div>
+                            </li>
+                
+                
+                
+                
                 </cfif>
+                
 
                 <cfif isbetatester eq "1">
                     <li>
