@@ -1,13 +1,22 @@
 <cfparam name="mock_yn" default="N" />
-<cfparam name="BROWSER_USER_AVATAR_FILENAME" default="N" />
 
-<cfif mock_yn eq "Y" and len(mocktoday)>
-    <cfset cookie.mocktoday = mocktoday />
-<cfelse>
-    <cfcookie name="mocktoday" expires="#now()#">
+<cfparam name="BROWSER_USER_AVATAR_FILENAME" default="N" />
+<cfif #mock_yn# is "Y" and #mocktoday# is not "">
+
+    <cfset cookie.mocktoday=mocktoday />
+    <cfelse>
+
+        <cfcookie name="mocktoday" expires="#now()#">
+
 </cfif>
 
-   <div id="sidebar-menu">
+<div class="left-side-menu">
+
+    <div class="h-100" data-simplebar>
+  
+        
+        <!--- Sidemenu --->
+        <div id="sidebar-menu">
 
             <ul id="side-menu">
         <li><div class="user-lg text-center">
@@ -16,13 +25,15 @@
 
                 <cfoutput> <img src="/media-#host#/users/#session.userid#/avatar.jpg?ver=#rand()#" alt="user-image" id="mobile" class="rounded-circle avatar-md text-center" ></cfoutput><BR />
                <span class="pro-user-name ml-1 text-center"  >
-                    <cfoutput>#useravatarname#</cfoutput>
+                    <cfoutput>#avatarname#</cfoutput>
                 </span>
 
             </A>
 </div>
+          
 
         </li>
+                
                 <Cfoutput query="menuItemsU">
                     <li>
                         <a href="/app/#menuItemsU.compDir#/">
@@ -89,20 +100,31 @@
                 
                 </cfif>
                 
+                
+                
+                
+                
+                
 
-                <cfif isbetatester eq "1">
+                <cfif #userIsBetaTester# is "1">
                     <li>
                         <a href="/app/Testings/">
                             <i data-feather="list"></i>
-                            <span>Testing Log</span>
+                            <span> Testing Log</span>
                         </a>
                     </li>
-                </cfif>
-            </ul>
-        </div>
-        <!--- End Sidebar --->
-        <div class="clearfix"></div>
-    </div>
-    <!--- Sidebar -left --->
-</div>
 
+                </cfif>
+
+
+            </ul>
+
+        </div>
+        <!-- End Sidebar -->
+
+        <div class="clearfix"></div>
+
+    </div>
+    <!-- Sidebar -left -->
+
+</div>
