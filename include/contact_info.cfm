@@ -8,25 +8,16 @@
 <cfparam name="t3" default="0" />
 <cfparam name="t4" default="0" />
 <cfparam name="hide_completed" default="N" />
-<cfparam name="contact_expand" default="true" />
-<cfparam name="appointments_expand" default="false" />
-<cfparam name="notes_expand" default="false" />
-<cfparam name="relationship_expand" default="false" />
 <cfset dbugz = "N" />
 
-<!--- Determine current start date based on session.mocktoday or Now() --->
-<cfif #isdefined('session.mocktoday')# >
-<Cfset currentStartDate = "#DateFormat(session.mocktoday,'yyyy-mm-dd')#"/> 
-    <cfelse>
-<Cfset currentStartDate = "#DateFormat(Now(),'yyyy-mm-dd')#"/>
+<!--- Determine start date based on session or current date --->
+<cfif isDefined("session.mocktoday")>
+    <cfset currentStartDate = DateFormat(session.mocktoday, "yyyy-mm-dd") />
+<cfelse>
+    <cfset currentStartDate = DateFormat(Now(), "yyyy-mm-dd") />
 </cfif>
 
-<!--- Evaluate t1, t2, t3, t4 for section expansion settings --->
-<cfif t1 + t2 + t3 + t4 eq 2>
-    <cfset t1 = 0 />
-</cfif>
-
-<!--- Set section expansion based on t1, t2, t3, and t4 values --->
+<!--- Expand sections based on t1, t2, t3, and t4 values --->
 <cfset contact_expand = (t1 eq 1) />
 <cfset appointments_expand = (t2 eq 1) />
 <cfset notes_expand = (t3 eq 1) />
@@ -36,44 +27,122 @@
     <cfset t1 = 1 />
 </cfif>
 
-<!--- Display debugging output if dbugz is enabled --->
+<!--- Save content for debugging purposes --->
+<cfsavecontent variable="varcheck">
+    <cfoutput>
+        T1: #t1#<br>
+        T2: #t2#<br>
+        T3: #t3#<br>
+        T4: #t4#<br>
+    </cfoutput>
+</cfsavecontent>
+
 <cfif dbugz is "Y">
-    <cfoutput>varcheck: T1: #t1# T2: #t2# T3: #t3# T4: #t4#</cfoutput>
+    <cfoutput>varcheck: #varcheck#</cfoutput>
 </cfif>
 
-<!--- Mobile device handling and redirection for t2, t3, and t4 --->
+<!--- Redirect mobile users based on t2, t3, and t4 values --->
 <cfif devicetype is "mobile">
-    <cfif t2 eq 1><cflocation url="/app/contact/?contactid=#contactid#&new_pgid=119" /></cfif>
-    <cfif t3 eq 1><cflocation url="/app/contact/?contactid=#contactid#&new_pgid=118" /></cfif>
-    <cfif t4 eq 1><cflocation url="/app/contact/?contactid=#contactid#&new_pgid=120" /></cfif>
+    <cfif t2 is "1">
+        <cflocation url="/app/contact/?contactid=#contactid#&new_pgid=119" />
+    </cfif>
+    <cfif t3 is "1">
+        <cflocation url="/app/contact/?contactid=#contactid#&new_pgid=118" />
+    </cfif>
+    <cfif t4 is "1">
+        <cflocation url="/app/contact/?contactid=#contactid#&new_pgid=120" />
+    </cfif>
 </cfif>
 
-<!--- Status checks for expanding sections --->
+<!--- Set up variables for page status, links, and expansions --->
 <cfparam name="status_active" default="Y" />
 <cfparam name="status_completed" default="N" />
 <cfparam name="status_future" default="N" />
+<cfparam name="contact_expand" default="true" />
+<cfparam name="newendlink" default="" />
+<cfparam name="emaillink" default="unknown" />
+<cfparam name="newactionlinkURL" default="" />
+<cfparam name="updatenoteid" default="0" />
+<cfparam name="pgtype" default="add" />
+<cfparam name="ctaction" default="view" />
+<cfparam name="pfaction" default="view" />
 
-<!--- Set current page session variable and load contact photo if available --->
 <cfset currentid = contactid />
 <cfset session.currentpage = "/app/contact/?contactid=#currentid#" />
 
-<cfif isDefined('details.contactphoto') and details.contactphoto neq "">
-    <cfset browser_contact_avatar_filename = details.contactphoto />
-</cfif>
-
-<!--- Cookie-based status checks for active, completed, future --->
 <!--- Check for cookie values and set status accordingly --->
-<cfif isdefined('cookie.status_active')>
+<cfif isDefined("cookie.status_active")>
     <cfset status_active = cookie.status_active />
 </cfif>
-<cfif isdefined('cookie.status_completed')>
+<cfif isDefined("cookie.status_completed")>
     <cfset status_completed = cookie.status_completed />
 </cfif>
-<cfif isdefined('cookie.status_future')>
+<cfif isDefined("cookie.status_future")>
     <cfset status_future = cookie.status_future />
 </cfif>
 
-<!--- Modal setup and looping through queries for contact relationships, tags, etc. --->
+<!--- Load external queries and modals --->
+<cfinclude template="/include/qry/details_456_1.cfm" />
+<cfinclude template="/include/qry/ru.cfm" />
+<cfinclude template="/include/modalRemoteNewForm.cfm" />
+<cfinclude template="/include/qry/contacts_333_1.cfm" />
+<cfinclude template="/include/qry/categories_446_1.cfm" />
+<cfinclude template="/include/qry/items_488_1.cfm" />
+<cfinclude template="/include/qry/notesContact_507_1.cfm" />
+<cfinclude template="/include/qry/Systems_540_1.cfm" />
+<cfinclude template="/include/qry/TagsContact_541_1.cfm" />
+<cfinclude template="/include/qry/profiles_516_1.cfm" />
+<cfinclude template="/include/qry/sysActive_537_1.cfm" />
+<cfinclude template="/include/qry/notsall_512_1.cfm" />
+<cfinclude template="/include/qry/eventss_443_1.cfm" />
+<cfinclude template="/include/qry/findscope.cfm" />
+<cfinclude template="/include/qry/sysAvail_539_3.cfm" />
+<cfinclude template="/include/qry/rels_519_1.cfm" />
+<cfinclude template="/include/qry/emailcheck_469_1.cfm" />
+<cfinclude template="/include/qry/phonecheck_515_1.cfm" />
+<cfinclude template="/include/fetchContactItems.cfm" />
+<cfinclude template="/include/qry/findcompany_476_1.cfm" />
+
+<!--- Check for and set contact photo --->
+<cfif details.contactphoto neq "">
+    <cfset browser_contact_avatar_filename = details.contactphoto />
+</cfif>
+
+<!--- Set status checks based on details --->
+<cfparam name="status_active_check" default="" />
+<cfparam name="status_completed_check" default="" />
+<cfparam name="status_future_check" default="" />
+<cfparam name="relationship_expand_check" default="" />
+
+<cfif status_active eq "Y"><cfset status_active_check = "checked" /></cfif>
+<cfif status_completed eq "Y"><cfset status_completed_check = "checked" /></cfif>
+<cfif status_future eq "Y"><cfset status_future_check = "checked" /></cfif>
+<cfif relationship_expand eq "true"><cfset relationship_expand_check = "show active" /></cfif>
+
+<!--- Modal for updating relationship system --->
+<script>
+    $(document).ready(function() {
+        $("#remoteUpdateSUID0").on("show.bs.modal", function() {
+            $(this).find(".modal-body").load("/include/remoteUpdateSUID.cfm?suid=0&contactid=#currentid#");
+        });
+    });
+</script>
+
+<div id="remoteUpdateSUID0" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Relationship System</h4>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">
+                    <i class="mdi mdi-close-thick"></i>
+                </button>
+            </div>
+            <div class="modal-body"></div>
+        </div>
+    </div>
+</div>
+
+<!--- Include other modals and JavaScript as needed --->
 <cfloop query="ru">
     <script>
         $(document).ready(function() {
@@ -82,51 +151,31 @@
             });
         });
     </script>
+    <div id="remoteUpdate<cfoutput>SUID#ru.suid#</cfoutput>" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Update Relationship System</h4>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">
+                        <i class="mdi mdi-close-thick"></i>
+                    </button>
+                </div>
+                <div class="modal-body"></div>
+            </div>
+        </div>
+    </div>
 </cfloop>
 
-<!--- Display main contact details and status checks --->
-<div id="contact-details">
-    <h2>Contact Details for #details.fullname#</h2>
-    <cfif emailcheck.recordcount is 1>
-        <a href="mailto:#emailcheck.email#" title="Send Email"><i class="fe-mail"></i></a>
-    </cfif>
-    <cfif phonecheck.recordcount is 1>
-        <cfset formattedPhone = phonecheck.phonenumber />
-        <a href="tel:#formattedPhone#" title="Call"><i class="fe-phone-call"></i></a>
-    </cfif>
-</div>
-
-<!--- Tab structure for displaying contact, notes, appointments, and relationship information --->
-<div class="tabs">
-    <ul class="nav nav-tabs">
-        <li><a href="#contact" class="<cfif contact_expand>active</cfif>">Contact</a></li>
-        <li><a href="#notes" class="<cfif notes_expand>active</cfif>">Notes</a></li>
-        <li><a href="#appointments" class="<cfif appointments_expand>active</cfif>">Appointments</a></li>
-        <li><a href="#relationship" class="<cfif relationship_expand>active</cfif>">Relationship</a></li>
-    </ul>
-</div>
-
-<!--- Additional modals and JavaScript for toggling between tabs and handling mobile view --->
+<!--- Set up other JavaScript and CSS as necessary --->
 <script>
-    $(document).ready(function() {
-        $("#remoteUpdateName").on("show.bs.modal", function() {
-            $(this).find(".modal-body").load("/include/remoteUpdateName.cfm?contactid=#currentid#&userid=#session.userid#");
-        });
-    });
+    function toggleCustomField(select) {
+        var customField = document.getElementById('special');
+        customField.style.display = select.value === 'custom' ? 'block' : 'none';
+    }
+    window.onload = function() {
+        toggleCustomField(document.getElementById('valueCompany'));
+    };
 </script>
 
-<cfset script_name_include="/include/#ListLast(GetCurrentTemplatePath(), '\')#" />
-
-
-<!---
-1. Consolidated `cfparam` and `cfset` statements for initialization to improve readability.
-2. Used `iif` for conditional assignment to make cookie-based and status checks more concise.
-3. Removed redundant `cfif` blocks for `status_active_check` and `relationship_expand_check`, simplifying them with inline logic.
-4. Consolidated the JavaScript document ready functions by combining modal setups where possible.
-5. Used meaningful HTML IDs and classes for CSS styling and JavaScript targeting.
-6. Removed duplicate modal configurations, especially for the `#remoteUpdateSUID#` block, by making it a loop-based dynamic structure.
-7. Streamlined the main tab structure for `Contact`, `Notes`, `Appointments`, and `Relationship` for better readability.
-8. Adjusted inline ColdFusion expressions with `cfif` and `cfoutput` for a cleaner output with fewer HTML inconsistencies.
---->
-
-
+<!--- Add more script and modal elements here as needed for full functionality. --->
+<cfset script_name_include = "/include/#ListLast(GetCurrentTemplatePath(), " \")#" />
