@@ -18,21 +18,18 @@
         <!--- Sidemenu --->
         <div id="sidebar-menu">
 
-            <ul id="side-menu">
-        <li><div class="user-lg text-center">
-            
-            <A HREF="/app/image-upload/?ref_pgid=7" style="text-align:center;">
-
-                <cfoutput> <img src="/media-#host#/users/#session.userid#/avatar.jpg?ver=#rand()#" alt="user-image" id="mobile" class="rounded-circle avatar-md text-center" ></cfoutput><BR />
-               <span class="pro-user-name ml-1 text-center"  >
-                    <cfoutput>#avatarname#</cfoutput>
-                </span>
-
-            </A>
-</div>
-          
-
-        </li>
+                <ul id="side-menu">
+                <li>
+                    <div class="user-lg text-center">
+                        <a href="/app/image-upload/?ref_pgid=7" style="text-align:center;">
+                            <cfoutput>
+                                <img src="#session.userAvatarUrl#" alt="user-image" id="mobile" class="rounded-circle avatar-md text-center">
+                                <br />
+                                <span class="pro-user-name ml-1 text-center">#avatarname#</span>
+                            </cfoutput>
+                        </a>
+                    </div>
+                </li>
                 
                 <Cfoutput query="menuItemsU">
                     <li>
