@@ -1,5 +1,34 @@
 <cfcomponent displayname="ContactService" hint="Handles operations for Contact table" output="false"> 
 
+
+    <cffunction name="ru" access="public" returntype="query">
+        <cfargument name="contactid" type="numeric" required="true">
+        <cfargument name="userid" type="numeric" required="true">
+        
+        <cfquery name="ru">
+            SELECT 
+                fc.suID,
+                fc.contactid,
+                fc.userid,
+                fc.suStartDate,
+                fc.suenddate,
+                fc.suStatus,
+                s.systemName,
+                s.systemdescript,
+                s.systemtype,
+                s.systemscope,
+                s.systemid,
+                s.recordname
+            FROM fusystemusers fc 
+            INNER JOIN fusystems s ON s.systemID = fc.systemID
+            WHERE fc.contactID = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_integer">
+              AND fc.userID = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer">
+              AND fc.sustatus = 'Active'
+        </cfquery>
+        
+        <cfreturn ru>
+    </cffunction>
+
  <!--- Function to retrieve filtered contacts --->
     <cffunction name="getFilteredContacts" access="public" returntype="query" output="false">
         <!--- Define arguments --->
