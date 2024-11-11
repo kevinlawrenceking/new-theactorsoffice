@@ -9,7 +9,7 @@
 <cfparam name="t2" default="0" />
 <cfparam name="t3" default="0" />
 <cfparam name="t4" default="0" />
-
+<cfparam name="hide_completed" default="N" />
 <!--- Check if t1 is not zero and adjust t1 accordingly --->
 <cfif #t1# is not "0">
     <cfif t1 + t2 + t3 + t4 eq 2>
