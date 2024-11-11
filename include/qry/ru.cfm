@@ -2,5 +2,5 @@
 
 <cfset ru = contactService.ru(
     contactid = currentid,   
-    userid = .userid   
+    userid = userid   
 ) />
