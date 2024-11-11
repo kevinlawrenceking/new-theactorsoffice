@@ -101,9 +101,8 @@
                 </cfif>
                 
                 
-                
-                
-                
+                  
+                <cfparam name="userisbetatester" default="0" />
                 
 
                 <cfif #userIsBetaTester# is "1">
