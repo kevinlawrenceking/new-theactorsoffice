@@ -5,7 +5,6 @@
 
 <cfset starttime = timeformat(now(), 'HHMMSS') />
 
-<cfloop query="U">
     <cfset browser_media_root_user = session.userMediaUrl />
     <cfset dir_media_root_user = session.userMediaPath />
     <cfset browser_media_root_user_contacts = session.userContactsUrl />
@@ -32,12 +31,7 @@
     <cfinclude template="/include/qry/C_73_2.cfm" />
 
     <cfloop query="C">
-        <cfset new_contactid = C.contactid />
-        
-        <cfif dbug is "Y">
-            <h3>#c.recordname#: Contact ID #new_contactid#</h3>
-        </cfif>
-
+        <cfset new_contactid = C.contactid /
         <cfset dir_media_root_user_contacts_folder = "#dir_media_root_user_contacts#\#new_contactid#" />
         <cfset dir_media_root_user_contacts_folder_attachments = "#dir_media_root_user_contacts_folder#\attachments" />
 
@@ -53,7 +47,6 @@
             <cffile action="copy" source="#dir_missing_avatar_filename#" destination="#dir_media_root_user_contacts_folder#\" />
         </cfif>
     </cfloop>
-</cfloop>
 
 <cfoutput>
     <cfset endtime = timeformat(now(), 'HHMMSS') />
