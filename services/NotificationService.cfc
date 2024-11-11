@@ -1,5 +1,21 @@
 <cfcomponent displayname="NotificationService" hint="Handles operations for Notification table" output="false"> 
 
+    <cffunction name="SELfunotifications_24711" access="public" returntype="query">
+        <cfargument name="currentid" type="numeric" required="true">
+        
+        <cfquery name="notsall">
+            SELECT
+                n.notID
+            FROM funotifications n
+            INNER JOIN fusystemusers f ON f.suID = n.suID
+            INNER JOIN fusystems s ON s.systemID = f.systemID
+            INNER JOIN fuactions a ON a.actionID = n.actionID
+            WHERE f.contactID = <cfqueryparam value="#arguments.currentid#" cfsqltype="cf_sql_integer">
+        </cfquery>
+        
+        <cfreturn notsall>
+    </cffunction>
+
     <cffunction name="SELfunotifications_24706" access="public" returntype="query">
         <cfargument name="currentid" type="numeric" required="true">
         <cfargument name="sysActiveSuid" type="numeric" required="true">
