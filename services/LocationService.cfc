@@ -1,15 +1,20 @@
-<cfcomponent displayname="AccountsService" hint="Handles operations for Accounts table" output="false"> 
-    <cffunction name="SELaccounts" access="public" returntype="query">
-        <cfargument name="accountID" type="numeric" required="true">
-    
-        <cfset var result = "">
-    
-        <cfquery name="result">
-            SELECT * 
-            FROM accounts 
-            WHERE id = <cfqueryparam value="#arguments.accountID#" cfsqltype="CF_SQL_INTEGER">
+<cfcomponent displayname="LocationService" output="false" hint="Handles country and region-related operations.">
+   <cffunction name="getCountries" access="public" returntype="query" output="false" hint="Fetches all countries that have regions">
+        <cfquery name="qCountries" cachedwithin="#CreateTimeSpan(1, 0, 0, 0)#">
+            SELECT countryid, countryname 
+            FROM countries 
+            WHERE isdeleted = 0 
+            AND countryid IN (SELECT countryid FROM regions)
+            ORDER BY countryname
         </cfquery>
- 
-        <cfreturn result>
+        <cfreturn qCountries>
+    </cffunction>
+    <cffunction name="getRegions" access="public" returntype="query" output="false" hint="Fetches regions for the selected country">
+        <cfquery name="qRegions" cachedwithin="#CreateTimeSpan(1, 0, 0, 0)#" >
+            SELECT countryid, region_id, regionname 
+            FROM regions 
+            ORDER BY regionname
+        </cfquery>
+        <cfreturn qRegions>
     </cffunction>
 </cfcomponent>
