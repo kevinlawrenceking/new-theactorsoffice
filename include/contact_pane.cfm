@@ -230,7 +230,7 @@
                                 <!--- Check if category is Phone --->
                                 <cfif #ActiveCategories.valueCategory# is "Phone">
 
-                                    <cfset phonenumber=itemsbycatActive.valuetext />
+                                    <cfset phonenumber=result.itemsbycatActive.valuetext />
 
                                     <cfinclude template="formatPhoneNumber.cfm" />
 
@@ -292,7 +292,7 @@
 
                                         <h5 style="#h5style#">
 
-                                            <cfif #left(itemsbycatActive.valuetext,4)# is "http">
+                                            <cfif #left(result.itemsbycatActive.valuetext,4)# is "http">
 
                                                 <a href="#result.itemsbycatActive.valuetext#" target="_blank">
 
@@ -303,7 +303,7 @@
                                             </cfif>
                                             <!--- end if left(itemsbycatActive.valuetext,4) is http --->
 
-                                            <cfif #left(itemsbycatActive.valuetext,4)# is not "http">
+                                            <cfif #left(result.itemsbycatActive.valuetext,4)# is not "http">
 
                                                 #result.itemsbycatActive.valuetext#
 
