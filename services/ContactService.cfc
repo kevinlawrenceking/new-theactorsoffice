@@ -602,7 +602,7 @@ function getContactRecordName(new_contactid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="INScontactdetails_24070" access="public" returntype="void">
+<cffunction name="INScontactdetails_24070" access="public" returntype="numeric">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="contactFullName" type="string" required="true">
     <cfargument name="contactBirthday" type="date" required="false" default="">
@@ -611,67 +611,31 @@ function getContactRecordName(new_contactid) {
     <cfargument name="contactMeetingLoc" type="string" required="true">
     <cfargument name="contactPronoun" type="string" required="true">
 
-    <cfset var sql = "">
-    <cfset var params = []>
+    <!--- Insert query with fixed structure and conditional parameters --->
+    <cfquery datasource="#abod#" name="insertQuery" result="insertResult">
+        INSERT INTO contactdetails (
+            userid, 
+            contactfullname, 
+            contactmeetingloc, 
+            contactPronoun
+            <cfif len(trim(arguments.contactBirthday))>, contactbirthday</cfif>
+            <cfif len(trim(arguments.referContactId))>, refer_contact_id</cfif>
+            <cfif len(trim(arguments.contactMeetingDate))>, contactmeetingdate</cfif>
+        ) 
+        VALUES (
+            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="#arguments.contactFullName#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfqueryparam value="#arguments.contactMeetingLoc#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfqueryparam value="#arguments.contactPronoun#" cfsqltype="CF_SQL_VARCHAR">
+            <cfif len(trim(arguments.contactBirthday))>, <cfqueryparam value="#arguments.contactBirthday#" cfsqltype="CF_SQL_DATE"></cfif>
+            <cfif len(trim(arguments.referContactId))>, <cfqueryparam value="#arguments.referContactId#" cfsqltype="CF_SQL_INTEGER"></cfif>
+            <cfif len(trim(arguments.contactMeetingDate))>, <cfqueryparam value="#arguments.contactMeetingDate#" cfsqltype="CF_SQL_DATE"></cfif>
+        )
+    </cfquery>
 
-    <cftry>
-        <cfset sql = "INSERT INTO contactdetails (userid, contactfullname">
-        
-        <cfif len(trim(arguments.contactBirthday))>
-            <cfset sql &= ", contactbirthday">
-            <cfset arrayAppend(params, {value=arguments.contactBirthday, cfsqltype="CF_SQL_DATE"})>
-        </cfif>
-
-        <cfif len(trim(arguments.referContactId))>
-            <cfset sql &= ", refer_contact_id">
-            <cfset arrayAppend(params, {value=arguments.referContactId, cfsqltype="CF_SQL_INTEGER"})>
-        </cfif>
-
-        <cfif len(trim(arguments.contactMeetingDate))>
-            <cfset sql &= ", contactmeetingdate">
-            <cfset arrayAppend(params, {value=arguments.contactMeetingDate, cfsqltype="CF_SQL_DATE"})>
-        </cfif>
-
-        <cfset sql &= ", contactmeetingloc, contactPronoun) VALUES (?, ?">
-
-        <!--- Add placeholders for optional parameters --->
-        <cfif len(trim(arguments.contactBirthday))>
-            <cfset sql &= ", ?">
-        </cfif>
-
-        <cfif len(trim(arguments.referContactId))>
-            <cfset sql &= ", ?">
-        </cfif>
-
-        <cfif len(trim(arguments.contactMeetingDate))>
-            <cfset sql &= ", ?">
-        </cfif>
-
-        <!--- Closing the SQL statement --->
-        <cfset sql &= ", ?, ?)">
-
-        <!--- Add mandatory parameters --->
-        <cfset arrayAppend(params, {value=arguments.userid, cfsqltype="CF_SQL_INTEGER"})>
-        <cfset arrayAppend(params, {value=arguments.contactFullName, cfsqltype="CF_SQL_VARCHAR"})>
-        <cfset arrayAppend(params, {value=arguments.contactMeetingLoc, cfsqltype="CF_SQL_VARCHAR"})>
-        <cfset arrayAppend(params, {value=arguments.contactPronoun, cfsqltype="CF_SQL_VARCHAR"})>
-
-        <!--- Execute the query --->
-        <cfquery datasource="#abod#" name="insertQuery">
-            #sql#
-            <cfdump var="#params#"> <!--- For debugging purposes --->
-            <!--- Bind parameters dynamically --->
-            <cfloop array="#params#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-            </cfloop>
-        </cfquery>
-
-    <cfcatch type="any">
-        <!--- Log the error --->
-        <cflog file="application" text="#cfcatch.message#" type="error">
-    </cfcatch>
-    </cftry>
+    <cfreturn insertResult.generatedKey>
 </cffunction>
+
 <cffunction name="DETcontactdetails" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">
 
