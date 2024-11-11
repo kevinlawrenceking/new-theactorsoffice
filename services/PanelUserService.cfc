@@ -273,7 +273,7 @@
     
     <cfset var result = "">
 
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 p.pnid, 
                 p.pntitle, 
@@ -289,7 +289,7 @@
             ORDER BY 
                 p.pnorderno
         </cfquery>
-    
+    <cfoutput>#result.recordcount#</cfoutput><cfabort>
     <cfreturn result>
 </cffunction>
 <cffunction name="SELpgpanels_user_24642" access="public" returntype="query">
