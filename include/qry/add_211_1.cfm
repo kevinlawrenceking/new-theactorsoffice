@@ -20,5 +20,5 @@
     <cfset params["contactMeetingDate"] = contactmeetingdate>
 </cfif>
 
-<!--- Call the service method with the params struct --->
-<cfset contactService.INScontactdetails_24070(argumentCollection=params)>
+
+<cfset currentid = contactService.INScontactdetails_24070(argumentCollection=params)>
