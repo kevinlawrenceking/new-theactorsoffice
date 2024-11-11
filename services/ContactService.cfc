@@ -611,30 +611,32 @@ function getContactRecordName(new_contactid) {
     <cfargument name="contactMeetingLoc" type="string" required="true">
     <cfargument name="contactPronoun" type="string" required="true">
 
-    <!--- Insert query with fixed structure and conditional parameters --->
     <cfquery datasource="#abod#" name="insertQuery" result="insertResult">
         INSERT INTO contactdetails (
             userid, 
             contactfullname, 
             contactmeetingloc, 
             contactPronoun
-            <cfif len(trim(arguments.contactBirthday))>, contactbirthday</cfif>
-            <cfif len(trim(arguments.referContactId))>, refer_contact_id</cfif>
-            <cfif len(trim(arguments.contactMeetingDate))>, contactmeetingdate</cfif>
+            <cfif isDate(arguments.contactBirthday)>, contactbirthday</cfif>
+            <cfif isNumeric(arguments.referContactId)>, refer_contact_id</cfif>
+            <cfif isDate(arguments.contactMeetingDate)>, contactmeetingdate</cfif>
         ) 
         VALUES (
             <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
             <cfqueryparam value="#arguments.contactFullName#" cfsqltype="CF_SQL_VARCHAR">,
             <cfqueryparam value="#arguments.contactMeetingLoc#" cfsqltype="CF_SQL_VARCHAR">,
             <cfqueryparam value="#arguments.contactPronoun#" cfsqltype="CF_SQL_VARCHAR">
-            <cfif len(trim(arguments.contactBirthday))>, <cfqueryparam value="#arguments.contactBirthday#" cfsqltype="CF_SQL_DATE"></cfif>
-            <cfif len(trim(arguments.referContactId))>, <cfqueryparam value="#arguments.referContactId#" cfsqltype="CF_SQL_INTEGER"></cfif>
-            <cfif len(trim(arguments.contactMeetingDate))>, <cfqueryparam value="#arguments.contactMeetingDate#" cfsqltype="CF_SQL_DATE"></cfif>
+            <cfif isDate(arguments.contactBirthday)>, <cfqueryparam value="#arguments.contactBirthday#" cfsqltype="CF_SQL_DATE"></cfif>
+            <cfif isNumeric(arguments.referContactId)>, <cfqueryparam value="#arguments.referContactId#" cfsqltype="CF_SQL_INTEGER"></cfif>
+            <cfif isDate(arguments.contactMeetingDate)>, <cfqueryparam value="#arguments.contactMeetingDate#" cfsqltype="CF_SQL_DATE"></cfif>
         )
     </cfquery>
 
+    <!--- Return the primary key of the newly inserted record --->
     <cfreturn insertResult.generatedKey>
 </cffunction>
+
+
 
 <cffunction name="DETcontactdetails" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">
