@@ -29,7 +29,7 @@
         </cfif>
 
 
-        <cfset dir_media_root_user="#session.userMediaPath#"# />
+        <cfset dir_media_root_user="#session.userMediaPath#" />
 
         <cfif #dbug# is "Y">
 
@@ -37,13 +37,7 @@
 
         </cfif>
 
-        <cfset session.userAvatarPath="#session.userAvatarPath#" />
-
-        <cfif #dbug# is "Y">
-
-            <p>session.userAvatarPath: #session.userAvatarPath#</p>
-
-        </cfif>
+    
 
         <cfset session.contactAvatarUrl="#session.userAvatarUrl#" />
 
