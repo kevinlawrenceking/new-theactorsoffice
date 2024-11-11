@@ -3,7 +3,7 @@
     currentid = currentid,
     sysActiveSuid = sysActive.suid,
     userid = userid,
-    hideCompleted = hide_completed
+    hide_Completed = hide_completed
 )>
 
 
