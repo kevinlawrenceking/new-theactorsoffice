@@ -1097,32 +1097,35 @@ function getContactRecordName(new_contactid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
-            SELECT 
-                d.contactid, 
-                d.contacttitle, 
-                d.recordname, 
-                d.contactmeetingdate, 
-                d.contactmeetingloc, 
-                d.refer_contact_id, 
-                d.contactFullName AS fullname, 
-                d.contactfullname, 
-                d.contactNickname, 
-                d.contactID, 
-                d.userID, 
-                d.contactStatus, 
-                d.contactCreationDate, 
-                d.contactLastUpdated, 
-                d.contactphoto, 
-                d.contactBirthday, 
-                d.contactPronoun, 
-                d.newsletter_yn, 
-                d.googlealert_yn, 
-                d.socialmedia_yn
-            FROM contactdetails d
-            INNER JOIN taousers u ON u.userid = d.userid
-            WHERE d.contactID = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
-        </cfquery>
+       <cfquery name="result" datasource="abod">
+    SELECT 
+        d.contactid, 
+        d.contacttitle, 
+        d.recordname, 
+        d.contactmeetingdate, 
+        d.contactmeetingloc, 
+        d.refer_contact_id, 
+        d.contactFullName AS fullname, 
+        d.contactfullname, 
+        d.contactNickname, 
+        d.contactID, 
+        d.userID, 
+        d.contactStatus, 
+        d.contactCreationDate, 
+        d.contactLastUpdated, 
+        d.contactphoto, 
+        d.contactBirthday, 
+        d.contactPronoun, 
+        d.newsletter_yn, 
+        d.googlealert_yn, 
+        d.socialmedia_yn,
+        d2.contactFullName AS referDetailsFullname  
+    FROM contactdetails d
+    INNER JOIN taousers u ON u.userid = d.userid
+    LEFT JOIN contactdetails d2 ON d.refer_contact_id = d2.contactid  <!-- Left join with contactdetails as d2 -->
+    WHERE d.contactID = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
+</cfquery>
+
         
         <cfreturn result>
         

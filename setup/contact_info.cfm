@@ -598,7 +598,7 @@
 
 
 
-                <cfif #details.refer_contact_id# is not "">
+                <cfif #details.referdetailsfullname# is not "">
 
                     <cfif #refer_details.recordcount# is "1">
 

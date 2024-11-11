@@ -83,7 +83,7 @@
                         </p>
                     </cfif>
 
-                    <cfif #details.refer_contact_id# is not "">
+                    <cfif #details.referdetailsfullname# is not "">
                         <cfif #refer_details.recordcount# is "1">
                             <p class="mt-1 mb-0 text-muted font-14">
                                 <strong>Referred By:</strong> #refer_details.fullName#
