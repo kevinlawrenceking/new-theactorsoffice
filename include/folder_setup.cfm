@@ -5,8 +5,6 @@
 
 <cfset starttime = timeformat(now(), 'HHMMSS') />
 
-<cfinclude template="/include/qry/U_126_1.cfm" />
-
 <cfloop query="U">
     <cfset browser_media_root_user = session.userMediaUrl />
     <cfset dir_media_root_user = session.userMediaPath />
