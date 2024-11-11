@@ -604,7 +604,7 @@
 
                         <p class="mt-1 mb-0 text-muted py-1 font-14">
 
-                            <strong>Referred By:</strong> #refer_details.fullName#
+                            <strong>Referred By:</strong> #details.referdetailsfullname#
                         </p>
 
                     </cfif>

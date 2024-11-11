@@ -816,7 +816,7 @@ id="item-img-output" />
 
                         <p class="mt-1 mb-0 text-muted py-1 font-14">
 
-                            <strong>Referred By:</strong> <cfif #details.referdetailsfullname# is not "">  <cfoutput>#refer_details.fullName#</cfoutput>  </cfif>
+                            <strong>Referred By:</strong> <cfif #details.referdetailsfullname# is not "">  <cfoutput>#details.referdetailsfullname#</cfoutput>  </cfif>
                         </p>
 
                   
