@@ -14,87 +14,11 @@
     <cfoutput>
     <cfset starttime = "#timeformat(NOw(),'HHMMSS')#" />
     
-    <cfset dir_media_root="#datasourceMediaPath#' />
 
-    <cfif #dbug# is "Y">
-
-        <h2>dir_media_root: #dir_media_root#</h2>
-
-    </cfif>
-
-    <cfset browser_media_root="/media-#host#" />
-
-    <cfif #dbug# is "Y">
-
-        <h2>browser_media_root: #browser_media_root#</h2>
-
-    </cfif>
-
-
-
-    <cfset dir_media_root_defaults="#dir_media_root#\defaults" />
-
-    <cfif #dbug# is "Y">
-
-        <h2>dir_media_root_defaults: #dir_media_root_defaults#</h2>
-
-    </cfif>
-
-    <cfset browser_media_root_defaults="#browser_media_root#/defaults" />
-
-    <cfif #dbug# is "Y">
-
-        <h2>browser_media_root_defaults: #browser_media_root_defaults#</h2>
-
-    </cfif>
-
-    <cfset dir_missing_avatar_filename="#dir_media_root_defaults#\avatar.jpg" />
-
-    <cfif #dbug# is "Y">
-
-        <h2>dir_missing_avatar_filename: #dir_missing_avatar_filename#</h2>
-
-    </cfif>
-
-    <cfset browser_missing_avatar_filename="#browser_media_root_defaults#/avatar.jpg" />
-
-    <cfif #dbug# is "Y">
-
-        <h2>browser_missing_avatar_filename: #browser_missing_avatar_filename#</h2>
-
-    </cfif>
-    
- 
-    
-
-</cfoutput>
-
-<cfquery  name="U"  >
-    SELECT
-    u.userid
-    ,u.recordname
-    ,u.userFirstName
-    ,u.userLastName
-    ,u.userEmail
-    ,u.contactid
-    ,u.userRole
-    FROM taousers u
-    <cfif #select_userid# is not "0">
-    where u.userid = #select_userid#
-    </cfif>
-</cfquery>
-
-        
-<cfloop query="U">
 
     <cfoutput>
         
-
-        <cfif #dbug# is "Y">
-
-            <h2>User: #u.userid#</h2>
-
-        </cfif>
+ 
 
         <cfset browser_media_root_user="#session.userMediaUrl#" />
 
@@ -105,7 +29,7 @@
         </cfif>
 
 
-        <cfset dir_media_root_user="#dir_media_root#\users\#u.userid#" />
+        <cfset dir_media_root_user="#session.userMediaPath#"# />
 
         <cfif #dbug# is "Y">
 
@@ -113,7 +37,7 @@
 
         </cfif>
 
-        <cfset session.userAvatarPath="#session.userMediaPath#\avatar.jpg" />
+        <cfset session.userAvatarPath="#session.userAvatarPath#" />
 
         <cfif #dbug# is "Y">
 
@@ -121,7 +45,7 @@
 
         </cfif>
 
-        <cfset session.contactAvatarUrl="#browser_media_root_user#/avatar.jpg" />
+        <cfset session.contactAvatarUrl="#session.userAvatarUrl#" />
 
         <cfif #dbug# is "Y">
 
@@ -140,7 +64,7 @@
 
         </CFIF>
 
-        <cfset browser_media_root_user_contacts="#browser_media_root_user#/contacts" />
+        <cfset browser_media_root_user_contacts="#session.userContactsUrl#" />
 
         <cfif #dbug# is "Y">
 
@@ -148,7 +72,7 @@
 
         </cfif>
 
-        <cfset dir_media_root_user_contacts="#session.userMediaPath#\contacts" />
+        <cfset dir_media_root_user_contacts="#session.userContactsPath#" />
 
         <cfif #dbug# is "Y">
 
@@ -168,7 +92,7 @@
         </CFIF>
 
 
-        <cfset browser_media_root_user_imports="#browser_media_root_user#/imports" />
+        <cfset browser_media_root_user_imports="#session.userImportsUrl#" />
 
         <cfif #dbug# is "Y">
 
@@ -176,7 +100,7 @@
 
         </cfif>
 
-        <cfset dir_media_root_user_imports="#session.userMediaPath#\imports" />
+        <cfset dir_media_root_user_imports="#session.userImportsPath#" />
 
         <cfif #dbug# is "Y">
 
