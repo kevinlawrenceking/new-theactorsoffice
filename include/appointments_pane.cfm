@@ -105,7 +105,7 @@
             <div id="accordion_systems" class="mb-3" style="width:100%;">
                 <cfset k=0 />
                 <!--- Loop through event results for mobile display --->
-                <cfloop query="eventresults">
+                <cfloop query="eventresults.eventresults">
                     <cfset new_eventid = eventresults.eventresults.eventid />
                     <cfoutput>
                         <cfset k=#k# + 1 />
