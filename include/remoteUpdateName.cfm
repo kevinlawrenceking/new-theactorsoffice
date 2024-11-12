@@ -1,6 +1,6 @@
 <!--- This ColdFusion page handles the display and update of contact information including name, birthday, meeting date, pronouns, and referral details. --->
 
-<cfinclude template="/include/qry/pronouns_269_1.cfm" />
+<cfinclude template="/include/qry/pronouns_210_1.cfm" />
 <cfinclude template="/include/qry/refers_210_2.cfm" />
 <cfinclude template="/include/qry/details_269_3.cfm" />
 
