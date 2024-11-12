@@ -1146,49 +1146,50 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="itemid" type="numeric" required="true">
 
     <cfquery datasource="#application.datasource#">
-        UPDATE contactitems 
-        SET 
-            <!--- Only include valuetext if provided --->
-            <cfif len(trim(arguments.valuetext))>
-                valuetext = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valuetext)#">
-            </cfif>
-            
-            <!--- Include valuetype if provided --->
-            <cfif len(trim(arguments.valuetype))>
-                <cfif len(trim(arguments.valuetext))>,</cfif>
-                valuetype = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valuetype)#">
-            </cfif>
-            
-            <!--- Conditional fields for catid 9 --->
-            <cfif arguments.catid eq "9">
-                , valueCompany = <cfqueryparam cfsqltype="cf_sql_varchar"
-                    value="#iif(arguments.valuecompany eq 'custom' and arguments.custom neq '' and arguments.custom neq 'custom', trim(arguments.custom), trim(arguments.valuecompany))#">
-                , valueDepartment = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valueDepartment)#">
-                , valueTitle = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valueTitle)#">
-            </cfif>
-            
-            <!--- Conditional fields for catid 2 --->
-            <cfif arguments.catid eq "2">
-                , valueStreetAddress = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valueStreetAddress)#">
-                , valueExtendedAddress = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valueExtendedAddress)#">
-                , valueCity = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valueCity)#">
-                , valueRegion = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.new_region_id)#">
-                , valueCountry = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.new_countryid)#">
-                , valuePostalCode = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valuePostalCode)#">
-            </cfif>
+    UPDATE contactitems 
+    SET 
+        <!--- Only include valuetext if provided --->
+        <cfif len(trim(arguments.valuetext))>
+            valuetext = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valuetext)#">
+        </cfif>
+        
+        <!--- Include valuetype if provided --->
+        <cfif len(trim(arguments.valuetype))>
+            <cfif len(trim(arguments.valuetext))>,</cfif>
+            valuetype = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valuetype)#">
+        </cfif>
+        
+        <!--- Conditional fields for catid 9 --->
+        <cfif arguments.catid eq "9">
+            , valueCompany = <cfqueryparam cfsqltype="cf_sql_varchar" 
+                value="#iif(arguments.valuecompany eq 'custom' and arguments.custom neq '' and arguments.custom neq 'custom', trim(arguments.custom), trim(arguments.valuecompany))#">
+            , valueDepartment = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valueDepartment)#">
+            , valueTitle = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valueTitle)#">
+        </cfif>
+        
+        <!--- Conditional fields for catid 2 --->
+        <cfif arguments.catid eq "2">
+            , valueStreetAddress = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valueStreetAddress)#">
+            , valueExtendedAddress = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valueExtendedAddress)#">
+            , valueCity = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valueCity)#">
+            , valueRegion = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.new_region_id)#">
+            , valueCountry = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.new_countryid)#">
+            , valuePostalCode = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valuePostalCode)#">
+        </cfif>
 
-            <!--- Include itemdate only if provided --->
-            <cfif structKeyExists(arguments, "itemdate") and isDate(arguments.itemdate)>
-                , itemdate = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.itemdate#">
-            </cfif>
-            
-            <!--- Set isdeleted if deleteitem is true --->
-            <cfif arguments.deleteitem>
-                , isdeleted = 1
-            </cfif>
-            
-        WHERE itemid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.itemid#">
-    </cfquery>
+        <!--- Include itemdate only if provided and valid date --->
+        <cfif structKeyExists(arguments, "itemdate") and isDate(arguments.itemdate)>
+            , itemdate = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.itemdate#">
+        </cfif>
+        
+        <!--- Set isdeleted if deleteitem is true --->
+        <cfif arguments.deleteitem>
+            , isdeleted = 1
+        </cfif>
+        
+    WHERE itemid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.itemid#">
+</cfquery>
+
 </cffunction>
 
 <cffunction name="UPDcontactitems_24179" access="public" returntype="void">
