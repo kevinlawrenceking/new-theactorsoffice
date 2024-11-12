@@ -1135,20 +1135,20 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="deleteitem" type="boolean" required="false" default=false>
     <cfargument name="itemid" type="numeric" required="true">
 
-    <cfquery >
+   <cfquery datasource="#application.datasource#">
     UPDATE contactitems 
     SET 
         <!--- Only include valuetext if provided --->
-        <cfif len(trim(arguments.valuetext))>
+        <cfif structKeyExists(arguments, "valuetext") and len(trim(arguments.valuetext))>
             valuetext = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valuetext)#">
         </cfif>
-        
+
         <!--- Include valuetype if provided --->
-        <cfif len(trim(arguments.valuetype))>
-            <cfif len(trim(arguments.valuetext))>,</cfif>
+        <cfif structKeyExists(arguments, "valuetype") and len(trim(arguments.valuetype))>
+            <cfif structKeyExists(arguments, "valuetext") and len(trim(arguments.valuetext))>,</cfif>
             valuetype = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valuetype)#">
         </cfif>
-        
+
         <!--- Conditional fields for catid 9 --->
         <cfif arguments.catid eq "9">
             , valueCompany = <cfqueryparam cfsqltype="cf_sql_varchar" 
@@ -1156,7 +1156,7 @@ function getContactDetails(required numeric uploadid) {
             , valueDepartment = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valueDepartment)#">
             , valueTitle = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valueTitle)#">
         </cfif>
-        
+
         <!--- Conditional fields for catid 2 --->
         <cfif arguments.catid eq "2">
             , valueStreetAddress = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valueStreetAddress)#">
@@ -1167,18 +1167,19 @@ function getContactDetails(required numeric uploadid) {
             , valuePostalCode = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valuePostalCode)#">
         </cfif>
 
-        <!--- Include itemdate only if provided and valid date --->
+        <!--- Include itemdate only if provided and valid --->
         <cfif structKeyExists(arguments, "itemdate") and isDate(arguments.itemdate)>
             , itemdate = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.itemdate#">
         </cfif>
-        
+
         <!--- Set isdeleted if deleteitem is true --->
-        <cfif arguments.deleteitem>
+        <cfif structKeyExists(arguments, "deleteitem") and arguments.deleteitem>
             , isdeleted = 1
         </cfif>
-        
+
     WHERE itemid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.itemid#">
 </cfquery>
+
 
 </cffunction>
 
