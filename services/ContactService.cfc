@@ -688,39 +688,48 @@ function getContactRecordName(new_contactid) {
     <cfargument name="contactfullname" type="string" required="true">
     <cfargument name="contactPronoun" type="string" required="true">
     <cfargument name="custom" type="string" required="false" default="">
-    <cfargument name="contactbirthday" type="date" required="false">
-    <cfargument name="contactmeetingdate" type="date" required="false">
+    <cfargument name="contactbirthday" type="any" required="false" default="">
+    <cfargument name="contactmeetingdate" type="any" required="false" default="">
     <cfargument name="contactmeetingloc" type="string" required="false" default="">
     <cfargument name="deleteitem" type="boolean" required="false" default=false>
     <cfargument name="refer_contact_id" type="numeric" required="false">
-
-    <cftry>
-        <cfquery datasource="#application.datasource#">
-            UPDATE contactdetails 
-            SET contactfullname = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.contactfullname)#">,
-                contactPronoun = 
-                    <cfif arguments.contactPronoun is "custom">
-                        <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.custom)#">
-                    <cfelse>
-                        <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.contactPronoun)#">
-                    </cfif>,
-                contactbirthday = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.contactbirthday#" null="#IsNull(arguments.contactbirthday)#">,
-                contactmeetingdate = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.contactmeetingdate#" null="#IsNull(arguments.contactmeetingdate)#">,
-                contactmeetingloc = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.contactmeetingloc)#">
-                <cfif arguments.deleteitem>
-                    ,isdeleted = 1
-                </cfif>
-                <cfif Len(trim(arguments.refer_contact_id))>
-                    ,refer_contact_id = <cfqueryparam value="#arguments.refer_contact_id#" cfsqltype="cf_sql_integer">
-                </cfif>
-            WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_integer">
-        </cfquery>
-    <cfcatch type="any">
-        <cflog file="application" text="[Error] Failed to update contact details. Error: #cfcatch.message# Query: UPDATE contactdetails SET ... WHERE contactid = #arguments.contactid#">
-        <!--- Optionally rethrow or handle the error further --->
-    </cfcatch>
-    </cftry>
+    
+    <!--- Ensure datasource exists --->
+    <cfquery datasource="#application.datasource#">
+        UPDATE contactdetails 
+        SET contactfullname = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.contactfullname)#">,
+            contactPronoun = 
+                <cfif arguments.contactPronoun is "custom">
+                    <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.custom)#">
+                <cfelse>
+                    <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.contactPronoun)#">
+                </cfif>,
+            contactmeetingloc = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.contactmeetingloc)#">
+            
+            <!--- Conditionally update contactbirthday if it has a value --->
+            <cfif not isNull(arguments.contactbirthday) and len(trim(arguments.contactbirthday))>
+                , contactbirthday = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.contactbirthday#">
+            </cfif>
+            
+            <!--- Conditionally update contactmeetingdate if it has a value --->
+            <cfif not isNull(arguments.contactmeetingdate) and len(trim(arguments.contactmeetingdate))>
+                , contactmeetingdate = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.contactmeetingdate#">
+            </cfif>
+            
+            <!--- Mark as deleted if deleteitem is true --->
+            <cfif arguments.deleteitem>
+                , isdeleted = 1
+            </cfif>
+            
+            <!--- Conditionally update refer_contact_id if it has a value --->
+            <cfif Len(trim(arguments.refer_contact_id))>
+                , refer_contact_id = <cfqueryparam value="#arguments.refer_contact_id#" cfsqltype="cf_sql_integer">
+            </cfif>
+            
+        WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_integer">
+    </cfquery>
 </cffunction>
+
 <cffunction name="SELcontactdetails_24263" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
