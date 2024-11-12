@@ -3,13 +3,13 @@
 
     <div class="float-left">
         <!--- Check if there are no appointments --->
-        <cfif #eventresults.eventresults..recordcount# is "0">
+        <cfif #eventresults.eventresults.recordcount# is "0">
             No appointments.
         </cfif>
 
         <!--- Display the count of active appointments --->
         <cfoutput>
-            You have <strong>#eventresults.eventresults..recordcount#</strong> active appointment<cfif #eventresults.eventresults..recordcount# is not "1">s</cfif> with #details.recordname#.
+            You have <strong>#eventresults.eventresults.recordcount#</strong> active appointment<cfif #eventresults.eventresults.recordcount# is not "1">s</cfif> with #details.recordname#.
         </cfoutput>
     </div>
 
@@ -27,12 +27,12 @@
     <!--- Table to display event results --->
     <table id="events-datatable" class="table display dt-responsive nowrap w-100 table-striped table-hover">
         <thead>
-            <cfoutput query="eventresults.eventresults." maxrows="1">
+            <cfoutput query="eventresults.eventresults" maxrows="1">
                 <!--- Determine row type for styling --->
-                <cfif (eventresults.eventresults..CurrentRow MOD 2)>
+                <cfif (eventresults.eventresults.CurrentRow MOD 2)>
                     <Cfset rowtypee="Odd" />
                 </cfif>
-                <cfif (eventresults.eventresults..CurrentRow MOD 1)>
+                <cfif (eventresults.eventresults.CurrentRow MOD 1)>
                     <Cfset rowtypee="Even" />
                 </cfif>
 
@@ -63,7 +63,7 @@
                             </cfif>
 
                             <!--- Link to edit appointment if project ID matches --->
-                            <cfif #eventresults.eventresults..audprojectid# is "557567567567575757575">
+                            <cfif #eventresults.eventresults.audprojectid# is "557567567567575757575">
                                 <a title="Edit" href="/app/appoint-update/?eventid=#eventresults.eventresults.eventid#&returnurl=contact&rcontactid=#currentid#">
                                     <i class="mdi mdi-square-edit-outline"></i>
                                 </a>
