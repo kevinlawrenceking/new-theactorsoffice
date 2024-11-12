@@ -164,10 +164,13 @@
                     <label for="valueCompany">#details.recordname# Name<span class="text-danger">*</span></label>
                     <select id="valueCompany" name="valueCompany" class="form-control" data-parsley-required data-parsley-error-message="Name is required." onchange="toggleCustomField(this)">
                         <option value=""></option>
+
+                        </cfoutput>
                         <option value="custom">***ADD NEW***</option>
-                        <cfoutput query="companies">
+                        <cfloop query="companies"><cfoutput>
                             <option value="#companies.new_valuecompany#" <cfif companies.new_valuecompany eq details.valueCompany>selected</cfif>>#companies.new_valuecompany#</option>
                         </cfoutput>
+                        </cfloop>
                     </select>
                 </div>
                 
