@@ -54,14 +54,14 @@
                     </cfif>
 
                     <!-- Edit link based on specific project ID -->
-                    <cfif eventresults.audprojectid eq "557567567567575757575">
+                    <cfif eventresults.eventresults.audprojectid eq "557567567567575757575">
                         <a title="Edit" href="/app/appoint-update/?eventid=#eventresults.eventid#&returnurl=contact&rcontactid=#currentid#">
                             <i class="mdi mdi-square-edit-outline"></i>
                         </a>
                     </cfif>
 
                     <!-- Conditional view link for audition or appointment -->
-                    <cfif eventresults.audprojectid neq "">
+                    <cfif eventresults.eventresults.audprojectid neq "">
                         <a href="/app/audition/?audprojectid=#eventresults.audprojectid#" class="btn btn-xs btn-primary waves-effect waves-light">
                             <i class="mdi mdi-eye-outline"></i> View Audition
                         </a>
@@ -72,19 +72,19 @@
                     </cfif>
                 </td>
 
-                <td>#eventresults.col1#</td>
-                <td>#eventresults.col2#</td>
-                <td>#dateformat(eventresults.col3, 'm-d-YYYY')#</td>
-                <td>#timeformat(eventresults.eventStartTime, 'medium')#</td>
+                <td>#eventresults.eventresults.col1#</td>
+                <td>#eventresults.eventresults.col2#</td>
+                <td>#dateformat(eventresults.eventresults.col3, 'm-d-YYYY')#</td>
+                <td>#timeformateventresults.(eventresults.eventStartTime, 'medium')#</td>
                 <td>
-                    #eventresults.col5#
-                    <cfif eventresults.audstep neq "" and eventresults.audstep neq "Audition"> (#eventresults.audstep#)</cfif>
+                    #eventresults.eventresults.col5#
+                    <cfif eventresults.eventresults.audstep neq "" and eventresults.eventresults.audstep neq "Audition"> (#eventresults.eventresults.audstep#)</cfif>
                 </td>
                 
                 <!-- Delete link, only displayed when there's one matching record -->
                 <td>
                     <cfif finall.recordcount eq 1>
-                        <a href="/include/deleteappointment.cfm?recid=#eventresults.recid#&contactid=#currentid#">
+                        <a href="/include/deleteappointment.cfm?recid=#eventresults.eventresults.recid#&contactid=#currentid#">
                             <i class="mdi mdi-trash-can-outline mr-1"></i>
                         </a>
                     </cfif>
@@ -106,7 +106,7 @@
                 <cfset k=0 />
                 <!--- Loop through event results for mobile display --->
                 <cfloop query="eventresults">
-                    <cfset new_eventid = eventresults.eventid />
+                    <cfset new_eventid = eventresults.eventresults.eventid />
                     <cfoutput>
                         <cfset k=#k# + 1 />
                     </cfoutput>
