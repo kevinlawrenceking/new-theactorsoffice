@@ -1,7 +1,8 @@
-<cfset contactItemService = createObject("component", "services.ContactItemService")>
+<cfset contactItemService = createObject("component", "services.ContactItemService")> 
 <cfset params = {}>
 
 <!--- Conditionally add variables to the params struct --->
+
 <cfif len(trim(valuetext))>
     <cfset params.valuetext = trim(valuetext)>
 </cfif>
@@ -54,7 +55,8 @@
     <cfset params.valuePostalCode = valuePostalCode>
 </cfif>
 
-<cfif isDefined("itemdate")>
+<!--- Only add itemdate if it is a valid date --->
+<cfif isDefined("itemdate") and isDate(itemdate)>
     <cfset params.itemdate = itemdate>
 </cfif>
 
