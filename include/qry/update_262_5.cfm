@@ -54,7 +54,7 @@
     <cfset params.valuePostalCode = valuePostalCode>
 </cfif>
 
-<cfif isDefined("itemdate")>
+<cfif isDefined("itemdate") and isDate(itemdate)>
     <cfset params.itemdate = itemdate>
 </cfif>
 
