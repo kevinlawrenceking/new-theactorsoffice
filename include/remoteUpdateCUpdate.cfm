@@ -26,14 +26,14 @@
     <cfset new_countryid = findcountry.countryname />
     <cfset old_countryid = findcountry.countryid />
 </cfif>
---->
+
 
 <!--- Include region query and check if a region is found --->
 <cfinclude template="/include/qry/findregion_262_4.cfm" />
 <cfif #findregion.recordcount# is "1">
     <cfset new_region_id = findregion.regionname />
 </cfif>
-
+--->
 <!--- Handle URL prefixing based on category ID for categories 4 and 5 --->
 <cfif #catid# is "4">
     <cfset preurl = "https://" />
