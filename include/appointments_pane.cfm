@@ -25,80 +25,76 @@
 
 <div class="nomobile">
     <!--- Table to display event results --->
-    <table id="events-datatable" class="table display dt-responsive nowrap w-100 table-striped table-hover">
-        <thead>
-            <cfoutput query="eventresults.eventresults" maxrows="1">
-                <!--- Determine row type for styling --->
-                <cfif (eventresults.eventresults.CurrentRow MOD 2)>
-                    <Cfset rowtypee="Odd" />
-                </cfif>
-                <cfif (eventresults.eventresults.CurrentRow MOD 1)>
-                    <Cfset rowtypee="Even" />
-                </cfif>
+ 
+<table id="events-datatable" class="table display dt-responsive nowrap w-100 table-striped table-hover">
+    <thead>
+        <!-- Render the table header with column names -->
+        <tr>
+            <th>Action</th>
+            <th>#head1#</th>
+            <th>#head2#</th>
+            <th>#head3#</th>
+            <th>Time</th>
+            <th>#head5#</th>
+            <th></th>
+        </tr>
+    </thead>
 
-                <tr class="#rowtypee#">
-                    <th>Action</th>
-                    <th>#head1#</th>
-                    <th>#head2#</th>
-                    <th>#head3#</th>
-                    <th>Time</th>
-                    <th>#head5#</th>
-                    <th></th>
-                </tr>
-            </cfoutput>
-        </thead>
+    <tbody>
+        <!-- Loop through each record in the event results query -->
+        <cfloop query="eventresults.eventresults">
+            <cfinclude template="/include/qry/finall_20_1.cfm" />
+            <tr role="row" class="#iif(currentrow mod 2 eq 0, 'Even', 'Odd')#">
+                <td>
+                    <!-- Details link -->
+                    <cfif isdefined("xxxxxx")>
+                        <a title="Details" href="/app/appoint/?eventid=#eventresults.eventid#&returnurl=contact&rcontactid=#currentid#">
+                            <i class="mdi mdi-information-outline"></i>
+                        </a>
+                    </cfif>
 
-        <tbody>
-            <!--- Loop through event results to display each appointment --->
-            <cfloop query="eventresults.eventresults.">
-                <cfoutput>
-                    <cfinclude template="/include/qry/finall_20_1.cfm" />
-                    <tr role="row">
-                        <td>
-                            <!--- Link to appointment details if defined --->
-                            <cfif #isdefined('xxxxxx')#>
-                                <a title="Details" href="/app/appoint/?eventid=#eventresults.eventid#&returnurl=contact&rcontactid=#currentid#">
-                                    <i class="mdi mdi-information-outline"></i>
-                                </a>
-                            </cfif>
+                    <!-- Edit link based on specific project ID -->
+                    <cfif eventresults.audprojectid eq "557567567567575757575">
+                        <a title="Edit" href="/app/appoint-update/?eventid=#eventresults.eventid#&returnurl=contact&rcontactid=#currentid#">
+                            <i class="mdi mdi-square-edit-outline"></i>
+                        </a>
+                    </cfif>
 
-                            <!--- Link to edit appointment if project ID matches --->
-                            <cfif #eventresults.eventresults.audprojectid# is "557567567567575757575">
-                                <a title="Edit" href="/app/appoint-update/?eventid=#eventresults.eventresults.eventid#&returnurl=contact&rcontactid=#currentid#">
-                                    <i class="mdi mdi-square-edit-outline"></i>
-                                </a>
-                            </cfif>
+                    <!-- Conditional view link for audition or appointment -->
+                    <cfif eventresults.audprojectid neq "">
+                        <a href="/app/audition/?audprojectid=#eventresults.audprojectid#" class="btn btn-xs btn-primary waves-effect waves-light">
+                            <i class="mdi mdi-eye-outline"></i> View Audition
+                        </a>
+                    <cfelse>
+                        <a href="/app/appoint/?eventid=#eventresults.eventid#" class="btn btn-xs btn-primary waves-effect waves-light">
+                            <i class="mdi mdi-eye-outline"></i> View Appointment
+                        </a>
+                    </cfif>
+                </td>
 
-                            <!--- Link to view audition or appointment based on project ID --->
-                            <cfif #eventresults.eventresults.audprojectid#is not "">
-                                <a href="/app/audition/?audprojectid=#eventresults.eventresults.audprojectid#" class="btn btn-xs btn-primary waves-effect waves-light">
-                                    <i class="mdi mdi-eye-outline"></i> View Audition
-                                </a>
-                            <cfelse>
-                                <a href="/app/appoint/?eventid=#eventresults.eventresults.eventid#" class="btn btn-xs btn-primary waves-effect waves-light">
-                                    <i class="mdi mdi-eye-outline"></i> View Appointment
-                                </a>
-                            </cfif>
-                        </td>
+                <td>#eventresults.col1#</td>
+                <td>#eventresults.col2#</td>
+                <td>#dateformat(eventresults.col3, 'm-d-YYYY')#</td>
+                <td>#timeformat(eventresults.eventStartTime, 'medium')#</td>
+                <td>
+                    #eventresults.col5#
+                    <cfif eventresults.audstep neq "" and eventresults.audstep neq "Audition"> (#eventresults.audstep#)</cfif>
+                </td>
+                
+                <!-- Delete link, only displayed when there's one matching record -->
+                <td>
+                    <cfif finall.recordcount eq 1>
+                        <a href="/include/deleteappointment.cfm?recid=#eventresults.recid#&contactid=#currentid#">
+                            <i class="mdi mdi-trash-can-outline mr-1"></i>
+                        </a>
+                    </cfif>
+                </td>
+            </tr>
+        </cfloop>
+    </tbody>
+</table>
 
-                        <td>#eventresults.eventresults.col1#</td>
-                        <td>#eventresults.eventresults.col2#</td>
-                        <td>#dateformat('#eventresults.eventresults.col3#','m-d-YYYY')#</td>
-                        <td>#timeformat('#eventresults.eventresults.eventStartTime#','medium')#</td>
-                        <td>#eventresults.eventresults.col5# <cfif #eventresults.eventresults.audstep# is not "" and #eventresults.eventresults.audstep# is not "Audition"> (#eventresults.eventresults.audstep#)</cfif></td>
-                        <TD>
-                            <!--- Link to delete appointment if record count is 1 --->
-                            <cfif "#finall.recordcount#" is "1">
-                                <A href="/include/deleteappointment.cfm?recid=#eventresults.eventresults.recid#&contactid=#currentid#">
-                                    <i class="mdi mdi-trash-can-outline mr-1"></i>
-                                </A>
-                            </cfif>
-                        </TD>
-                    </tr>
-                </cfoutput>
-            </cfloop>
-        </tbody>
-    </table>
+
 </div>
 
 <div class="mobile" style="100%;">
