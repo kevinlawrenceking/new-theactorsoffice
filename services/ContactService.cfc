@@ -516,17 +516,13 @@
 </cffunction>
 <cfscript>
 function getContactRecordName(new_contactid) {
-    // Validate input
     if (!isNumeric(new_contactid) || new_contactid == 0) {
         return queryNew("recordname", "varchar");
     }
 
-    // Initialize the query result variable
     var result = "";
 
-    // Try-catch block for error handling
     try {
-        // Execute the query with parameterization
         result = queryExecute(
             "SELECT recordname FROM contactdetails WHERE contactid = ? AND contactid <> 0",
             [
@@ -534,12 +530,10 @@ function getContactRecordName(new_contactid) {
             ]
         );
     } catch (any e) {
-        // Log the error details
         cflog(
             file="application",
             text="Error executing query in getContactRecordName: #e.message#"
         );
-        // Return an empty query set on error
         result = queryNew("recordname", "varchar");
     }
 

@@ -1,19 +1,14 @@
 <cfscript>
-    /**
-     * Function to count occurrences of a substring in a string (case-insensitive)
-     * @param text The text to search within.
-     * @param substring The substring to count.
-     * @return The number of occurrences.
-     */
+
     function countOccurrences(text, substring) {
         var count = 0;
         var pos = 1;
-        var result = 0; // Initialize the result variable
+        var result = 0; 
         while (pos <= len(text)) {
             result = reFindNoCase(substring, text, pos);
             if (result GT 0) {
                 count++;
-                pos = result + 1; // Move to the next position
+                pos = result + 1;  
             } else {
                 break;
             }

@@ -66,10 +66,8 @@ function getReportRanges(required struct params) {
     var conditions = [];
     var paramValues = [];
 
-    // Define valid columns for WHERE clause
     var validColumns = ["rangeid", "rangename", "rangestart", "rangeend"];
 
-    // Loop through params to build dynamic WHERE clause
     for (var key in params) {
         if (listFindNoCase(validColumns, key)) {
             arrayAppend(conditions, "#key# = ?");
@@ -77,15 +75,12 @@ function getReportRanges(required struct params) {
         }
     }
 
-    // Append conditions to SQL if any
     if (arrayLen(conditions) > 0) {
         sql &= " AND " & arrayToList(conditions, " AND ");
     } else {
-        // Return empty query if no valid conditions are provided
         return result;
     }
 
-    // Execute the query with error handling
     result = queryExecute(
         sql,
         paramValues
@@ -94,7 +89,6 @@ function getReportRanges(required struct params) {
     return result;
 }
 
-// Function to map column names to CFSQL types
 function getCFSQLType(columnName) {
     switch (columnName) {
         case "rangeid":
@@ -105,7 +99,7 @@ function getCFSQLType(columnName) {
         case "rangeend":
             return "CF_SQL_TIMESTAMP";
         default:
-            return "CF_SQL_VARCHAR"; // Default type
+            return "CF_SQL_VARCHAR";
     }
 }
 </cfscript>

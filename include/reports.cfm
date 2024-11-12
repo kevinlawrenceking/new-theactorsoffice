@@ -97,7 +97,7 @@
                             </h3>
                             <p class="text-muted mb-1 text-truncate">#stats.reportname#</p>
                         </div>
-                    </div> <!--- end row-->
+                    </div> <!--- end row --->
                 </div>
             </div>
         </cfoutput>

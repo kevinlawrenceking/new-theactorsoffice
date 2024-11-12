@@ -115,12 +115,10 @@
 function deleteEventContactsXref(required numeric audStepId) {
     var result = {};
 
-    // Validate input
     if (!isNumeric(arguments.audStepId)) {
         throw("Invalid input: audStepId must be numeric.");
     }
 
-    // Define the query
     var sql = "
         DELETE FROM eventcontactsxref 
         WHERE eventid IN (
@@ -130,7 +128,6 @@ function deleteEventContactsXref(required numeric audStepId) {
         )
     ";
 
-    // Execute the query with parameterization
     result = queryExecute(
         sql,
         [
