@@ -73,7 +73,7 @@
     <cfset new_audPlatformid = resultx.generatedkey />
 <cfelseif #new_audplatformid# is "CustomPlatform" and #CustomPlatform# is not "" and #find.recordcount# is "1">
     <cfset new_audPlatformid = find.audplatformid />
-<cfelseif #new_audplatformid# is "CustomPlatform" and #CustomPlatform# is="">
+<cfelseif #new_audplatformid# is "CustomPlatform" and #CustomPlatform# is "">
     <cfset new_audPlatformid = old_audplatformid />
 </cfif>
 

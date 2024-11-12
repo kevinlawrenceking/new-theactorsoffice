@@ -75,7 +75,7 @@
                         <cfif #notsactive.notEndDate#is not "">
                             (#notsactive.notstatus# #dateformat('#notsactive.notEndDate#','m/d')#)
                         </cfif>
-                        <cfif #notsactive.notEndDate# is="">
+                        <cfif #notsactive.notEndDate# is "">
                             (Due Date #dateformat('#notsactive.notstartdate#','m/d')#)
                         </cfif>
                         <!--- Check if notification is past due --->

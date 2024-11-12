@@ -16,7 +16,7 @@
 <cfparam name="focusid" default="" />
 
 <cfoutput>
-    <cfif #focusid# is="">
+    <cfif #focusid# is "">
         <!--- If no focus ID is provided, redirect to the audition page --->
         <cflocation url="/app/audition/?audprojectid=#audprojectid#" />
     <cfelse>

@@ -63,7 +63,7 @@
                                 <cfif #details.contactBirthday# is not "">
                                     #month(details.contactbirthday)#/#day(details.contactbirthday)#
                                 </cfif>
-                                <cfif #details.contactBirthday# is="">
+                                <cfif #details.contactBirthday# is "">
                                     Add Birthday
                                 </cfif>
                             </a>
