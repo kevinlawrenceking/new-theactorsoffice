@@ -58,9 +58,7 @@
 <!--- Include update queries for contact items --->
 <cfinclude template="/include/qry/update_262_5.cfm" />
 <cfinclude template="/include/qry/update2_262_6.cfm" />
-<cfoutput>
-    update contactitems set valuetype = '#valuetype#' WHERE itemid = #itemid#
-</cfoutput>
+
 
 <cfset script_name_include = "/include/#ListLast(GetCurrentTemplatePath(), " \")#" />
 

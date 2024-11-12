@@ -1143,9 +1143,8 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="valuePostalCode" type="string" required="false" default="">
     <cfargument name="itemdate" type="date" required="false">
     <cfargument name="deleteitem" type="boolean" required="false" default=false>
-    <cfargument name="itemid" type="numeric" required=true>
+    <cfargument name="itemid" type="numeric" required="true">
 
-    <cftry>
         <cfquery datasource="#application.datasource#">
             UPDATE contactitems 
             SET 
@@ -1189,16 +1188,6 @@ function getContactDetails(required numeric uploadid) {
                 value="#arguments.itemid#">
         </cfquery>
         
-        <!--- Log success if needed --->
-        
-    <cfcatch>
-        <!--- Log error details --->
-        <cflog file="/path/to/logfile.log"
-            text="[Error] Failed to update contactitems: #cffile.errorDetail# - Query: #cffile.queryString# - Parameters: #arguments#"/>
-        <!--- Handle error appropriately --->
-        <!--- Re-throw or return an error message as needed --->
-    </cfcatch>
-    </cftry>
 </cffunction>
 <cffunction name="UPDcontactitems_24179" access="public" returntype="void">
     <cfargument name="valuetype" type="string" required="true">
