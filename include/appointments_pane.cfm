@@ -3,13 +3,13 @@
 
     <div class="float-left">
         <!--- Check if there are no appointments --->
-        <cfif #eventresults.recordcount# is "0">
+        <cfif #eventresults.eventresultsrecordcount# is "0">
             No appointments.
         </cfif>
 
         <!--- Display the count of active appointments --->
         <cfoutput>
-            You have <strong>#eventresults.recordcount#</strong> active appointment<cfif #eventresults.recordcount# is not "1">s</cfif> with #details.recordname#.
+            You have <strong>#eventresults.eventresultsrecordcount#</strong> active appointment<cfif #eventresults.eventresultsrecordcount# is not "1">s</cfif> with #details.recordname#.
         </cfoutput>
     </div>
 
@@ -57,39 +57,39 @@
                         <td>
                             <!--- Link to appointment details if defined --->
                             <cfif #isdefined('xxxxxx')#>
-                                <a title="Details" href="/app/appoint/?eventid=#eventresults.eventid#&returnurl=contact&rcontactid=#currentid#">
+                                <a title="Details" href="/app/appoint/?eventid=#eventresults.eventresultseventid#&returnurl=contact&rcontactid=#currentid#">
                                     <i class="mdi mdi-information-outline"></i>
                                 </a>
                             </cfif>
 
                             <!--- Link to edit appointment if project ID matches --->
-                            <cfif #eventresults.audprojectid# is "557567567567575757575">
-                                <a title="Edit" href="/app/appoint-update/?eventid=#eventresults.eventid#&returnurl=contact&rcontactid=#currentid#">
+                            <cfif #eventresults.eventresultsaudprojectid# is "557567567567575757575">
+                                <a title="Edit" href="/app/appoint-update/?eventid=#eventresults.eventresultseventid#&returnurl=contact&rcontactid=#currentid#">
                                     <i class="mdi mdi-square-edit-outline"></i>
                                 </a>
                             </cfif>
 
                             <!--- Link to view audition or appointment based on project ID --->
-                            <cfif #eventresults.audprojectid#is not "">
-                                <a href="/app/audition/?audprojectid=#eventresults.audprojectid#" class="btn btn-xs btn-primary waves-effect waves-light">
+                            <cfif #eventresults.eventresultsaudprojectid#is not "">
+                                <a href="/app/audition/?audprojectid=#eventresults.eventresultsaudprojectid#" class="btn btn-xs btn-primary waves-effect waves-light">
                                     <i class="mdi mdi-eye-outline"></i> View Audition
                                 </a>
                             <cfelse>
-                                <a href="/app/appoint/?eventid=#eventresults.eventid#" class="btn btn-xs btn-primary waves-effect waves-light">
+                                <a href="/app/appoint/?eventid=#eventresults.eventresultseventid#" class="btn btn-xs btn-primary waves-effect waves-light">
                                     <i class="mdi mdi-eye-outline"></i> View Appointment
                                 </a>
                             </cfif>
                         </td>
 
-                        <td>#eventresults.col1#</td>
-                        <td>#eventresults.col2#</td>
-                        <td>#dateformat('#eventresults.col3#','m-d-YYYY')#</td>
-                        <td>#timeformat('#eventresults.eventStartTime#','medium')#</td>
-                        <td>#eventresults.col5# <cfif #eventresults.audstep# is not "" and #eventresults.audstep# is not "Audition"> (#eventresults.audstep#)</cfif></td>
+                        <td>#eventresults.eventresultscol1#</td>
+                        <td>#eventresults.eventresultscol2#</td>
+                        <td>#dateformat('#eventresults.eventresultscol3#','m-d-YYYY')#</td>
+                        <td>#timeformat('#eventresults.eventresultseventStartTime#','medium')#</td>
+                        <td>#eventresults.eventresultscol5# <cfif #eventresults.eventresultsaudstep# is not "" and #eventresults.eventresultsaudstep# is not "Audition"> (#eventresults.eventresultsaudstep#)</cfif></td>
                         <TD>
                             <!--- Link to delete appointment if record count is 1 --->
                             <cfif "#finall.recordcount#" is "1">
-                                <A href="/include/deleteappointment.cfm?recid=#eventresults.recid#&contactid=#currentid#">
+                                <A href="/include/deleteappointment.cfm?recid=#eventresults.eventresultsrecid#&contactid=#currentid#">
                                     <i class="mdi mdi-trash-can-outline mr-1"></i>
                                 </A>
                             </cfif>
@@ -117,7 +117,7 @@
 
                     <cfset cardclass="" />
                     <!--- Set target ID for the first event --->
-                    <cfif #eventresults.currentrow# is "1">
+                    <cfif #eventresults.eventresultscurrentrow# is "1">
                         <cfoutput>
                             <cfset target_id="#new_eventid#" />
                         </cfoutput>
@@ -135,43 +135,43 @@
                     </cfif>
 
                     <div class="card mb-1" style="width:100%;">
-                        <div class="card-header" id="heading_system_<cfoutput>#eventresults.currentrow#</cfoutput>">
+                        <div class="card-header" id="heading_system_<cfoutput>#eventresults.eventresultscurrentrow#</cfoutput>">
                             <h5 class="m-0 align-middle" style="width:100%;">
                                 <a class="text-dark collapsed" data-bs-toggle="collapse" 
-                                   href="#collapse_system_<cfoutput>#eventresults.currentrow#</cfoutput>" 
+                                   href="#collapse_system_<cfoutput>#eventresults.eventresultscurrentrow#</cfoutput>" 
                                    aria-expanded="<cfoutput>#header_aria_exanded#</cfoutput>">
                                     <cfoutput>
-                                        <strong>#dateformat('#eventresults.col3#','short')#</strong> - 
-                                        #timeformat('#eventresults.eventStartTime#','short')# 
+                                        <strong>#dateformat('#eventresults.eventresultscol3#','short')#</strong> - 
+                                        #timeformat('#eventresults.eventresultseventStartTime#','short')# 
                                         <i class="fe-menu"></i>
                                     </cfoutput>
                                     <span class="badge badge-sm badge-blue badge-pill float-end" style="font-size:.7em;">
-                                        <cfoutput>#eventresults.col5#</cfoutput>
+                                        <cfoutput>#eventresults.eventresultscol5#</cfoutput>
                                     </span>
                                 </a>
                             </h5>
                         </div>
 
-                        <div id="collapse_system_<cfoutput>#eventresults.currentrow#</cfoutput>" 
+                        <div id="collapse_system_<cfoutput>#eventresults.eventresultscurrentrow#</cfoutput>" 
                              class="<cfoutput>#collapse_show#</cfoutput>" 
-                             aria-labelledby="collapse_system_<cfoutput>#eventresults.currentrow#</cfoutput>" 
+                             aria-labelledby="collapse_system_<cfoutput>#eventresults.eventresultscurrentrow#</cfoutput>" 
                              data-bs-parent="#accordion_systems">
                             <div class="card-body">
                                 <cfoutput>
-                                    <h5>#eventresults.col1# 
-                                        <a title="Edit" href="/app/appoint-update/?eventid=#eventresults.eventid#&returnurl=contact&rcontactid=#currentid#">
+                                    <h5>#eventresults.eventresultscol1# 
+                                        <a title="Edit" href="/app/appoint-update/?eventid=#eventresults.eventresultseventid#&returnurl=contact&rcontactid=#currentid#">
                                             <i class="mdi mdi-square-edit-outline"></i>
                                         </a>
                                     </h5>
                                 </cfoutput>
-                                <cfif #eventresults.col2# is not "">
+                                <cfif #eventresults.eventresultscol2# is not "">
                                     <h6>Location</h6>
-                                    <p><cfoutput>#eventresults.col2#</cfoutput></p>
+                                    <p><cfoutput>#eventresults.eventresultscol2#</cfoutput></p>
                                 </cfif>
 
-                                <cfif #eventresults.eventDescription# is not "">
+                                <cfif #eventresults.eventresultseventDescription# is not "">
                                     <h6>Description</h6>
-                                    <p><cfoutput>#eventresults.eventDescription#</cfoutput></p>
+                                    <p><cfoutput>#eventresults.eventresultseventDescription#</cfoutput></p>
                                 </cfif>
                             </div>
                         </div>
