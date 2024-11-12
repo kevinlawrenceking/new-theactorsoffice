@@ -121,7 +121,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 contactid, 
                 itemid, 
@@ -149,7 +149,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT contactitems.valueText AS phone
             FROM contactitems
             WHERE contactitems.valueCategory = <cfqueryparam value="Phone" cfsqltype="CF_SQL_VARCHAR">
@@ -173,7 +173,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT contactitems.valueText AS email
             FROM contactitems
             WHERE contactitems.valueCategory = <cfqueryparam value="Email" cfsqltype="CF_SQL_VARCHAR">
@@ -196,7 +196,7 @@
     <cfargument name="cdtype" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             INSERT INTO CONTACTITEMS (CONTACTID, VALUETYPE, VALUECATEGORY, VALUETEXT, ITEMSTATUS)
             VALUES (
                 <cfqueryparam value="#arguments.new_contactid#" cfsqltype="CF_SQL_INTEGER">,
@@ -217,7 +217,7 @@
     <cfargument name="cdco" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             INSERT INTO CONTACTITEMS (CONTACTID, VALUETYPE, VALUECATEGORY, ValueCompany, ITEMSTATUS)
             VALUES (
                 <cfqueryparam value="#arguments.new_contactid#" cfsqltype="CF_SQL_INTEGER">,
@@ -238,7 +238,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT i.itemid, c.catid, c.valuecategory
             FROM contactitems i
             INNER JOIN itemcategory c ON c.valuecategory = i.valuecategory
@@ -258,7 +258,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT contactid, itemid, `contactitems`.`valueText` AS tag
             FROM contactitems
             WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
@@ -280,7 +280,7 @@
     <cfset var queryResult = "">
     
     <cftry>
-        <cfquery name="queryResult" datasource="abod">
+        <cfquery name="queryResult" >
             SELECT 
                 i.itemid, 
                 i.contactid, 
@@ -303,7 +303,7 @@
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfset var queryResult = "">
     <cftry>
-        <cfquery name="queryResult" datasource="abod">
+        <cfquery name="queryResult" >
             SELECT valuetext AS new_website 
             FROM contactitems 
             WHERE valuetype = <cfqueryparam cfsqltype="cf_sql_varchar" value="Company Website" />
@@ -322,7 +322,7 @@
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfset var result = "">
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT valuetext AS new_businessEmail 
             FROM contactitems 
             WHERE valuetype = <cfqueryparam cfsqltype="cf_sql_varchar" value="Business" /> 
@@ -341,7 +341,7 @@
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfset var result = "">
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT valuetext AS new_PersonalEmail
             FROM contactitems
             WHERE valuetype = <cfqueryparam cfsqltype="cf_sql_varchar" value="Personal" />
@@ -361,7 +361,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT valuecompany AS new_Company
             FROM contactitems
             WHERE contactid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.contactId#" />
@@ -382,7 +382,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT valuetext AS new_WorkPhone
             FROM contactitems
             WHERE valuetype = <cfqueryparam cfsqltype="cf_sql_varchar" value="Work" />
@@ -405,7 +405,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT valuetext AS new_mobilePhone 
             FROM contactitems 
             WHERE valuetype = <cfqueryparam cfsqltype="cf_sql_varchar" value="mobile" />
@@ -427,7 +427,7 @@
     <cfset var queryResult = "">
     
     <cftry>
-        <cfquery name="queryResult" datasource="abod">
+        <cfquery name="queryResult" >
             SELECT valuetext AS new_homePhone 
             FROM contactitems 
             WHERE valuetype = <cfqueryparam cfsqltype="cf_sql_varchar" value="home" /> 
@@ -450,7 +450,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 valuestreetaddress AS new_address, 
                 valueextendedaddress AS new_address2, 
@@ -479,7 +479,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 valuestreetaddress AS new_address, 
                 valueextendedaddress AS new_address2, 
@@ -509,7 +509,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT valuetext AS tag
             FROM contactitems
             WHERE valueCategory = <cfqueryparam cfsqltype="cf_sql_varchar" value="Tag" />
@@ -531,7 +531,7 @@
     <cfset var queryResult = "">
     
     <cftry>
-        <cfquery name="queryResult" datasource="abod">
+        <cfquery name="queryResult" >
             SELECT i.itemid, i.valueText
             FROM contactitems i
             WHERE i.itemid = <cfqueryparam value="#arguments.itemid#" cfsqltype="cf_sql_integer">
@@ -552,7 +552,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 d.contactid, 
                 'Name' AS head1, 
@@ -621,7 +621,7 @@ function getContactDetails(required numeric uploadid) {
         result = queryExecute(
             sql,
             {uploadid={value=arguments.uploadid, cfsqltype="CF_SQL_INTEGER"}},
-            {datasource="abod"}
+            {}
         );
     } catch (any e) {
         cflog(type="error", text="Error in getContactDetails: #e.message#");
@@ -635,7 +635,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="new_contactid" type="numeric" required="true">
     
     <cftry>
-        <cfquery name="insertQuery" datasource="abod">
+        <cfquery name="insertQuery" >
             INSERT INTO contactitems (
                 contactid, 
                 valuetype, 
@@ -665,7 +665,7 @@ function getContactDetails(required numeric uploadid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT itemid 
             FROM contactitems 
             WHERE contactid = <cfqueryparam value="#arguments.deletecontactid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -684,7 +684,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="new_itemid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             UPDATE contactitems_tbl 
             SET isdeleted = 1 
             WHERE itemid = <cfqueryparam value="#arguments.new_itemid#" cfsqltype="CF_SQL_INTEGER">
@@ -701,7 +701,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="contactid" type="numeric" required="true">
 
     <cftry>
-        <cfquery name="updateQuery" datasource="abod">
+        <cfquery name="updateQuery" >
             UPDATE contactitems 
             SET isDeleted = 1 
             WHERE itemid = <cfqueryparam value="#arguments.itemid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -718,7 +718,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="currentid" type="numeric" required="true">
     
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             UPDATE contactitems 
             SET isDeleted = 1 
             WHERE contactid = <cfqueryparam value="#arguments.currentid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -738,7 +738,7 @@ function getContactDetails(required numeric uploadid) {
     <cfset var result = "">
 
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT itemid 
             FROM contactitems 
             WHERE contactid = <cfqueryparam value="#arguments.currentid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -759,7 +759,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="valuecategory" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             INSERT INTO contactitems (contactID, valueType, valuecategory, itemStatus) 
             VALUES (
                 <cfqueryparam value="#arguments.contactID#" cfsqltype="CF_SQL_INTEGER">,
@@ -780,7 +780,7 @@ function getContactDetails(required numeric uploadid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 contactid, 
                 itemid, 
@@ -807,7 +807,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="contactID" type="numeric" required="true">
     <cfset var result = "">
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT contactitems.valueText AS phone
             FROM contactitems
             WHERE contactitems.valueCategory = <cfqueryparam value="Phone" cfsqltype="CF_SQL_VARCHAR">
@@ -829,7 +829,7 @@ function getContactDetails(required numeric uploadid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT contactitems.valueText AS email
             FROM contactitems
             WHERE contactitems.valueCategory = <cfqueryparam value="Email" cfsqltype="CF_SQL_VARCHAR">
@@ -853,7 +853,7 @@ function getContactDetails(required numeric uploadid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT DISTINCT i.valueCompany AS new_valuecompany 
             FROM contactitems i 
             INNER JOIN contactdetails d ON d.contactid = i.contactid 
@@ -879,7 +879,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="valueCategory" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             INSERT INTO contactitems (contactid, valuetype, itemStatus, valueCategory)
             VALUES (
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.contactid#" />,
@@ -910,7 +910,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="itemid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="#abod#" name="updateQuery">
+        <cfquery  name="updateQuery">
             UPDATE contactitems
             SET valuetext = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.valuetext)#">
             <cfif arguments.catid EQ "9">
@@ -948,7 +948,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="tag" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             INSERT INTO CONTACTITEMS (CONTACTID, VALUETYPE, VALUECATEGORY, VALUETEXT, ITEMSTATUS) 
             VALUES (
                 <cfqueryparam value="#arguments.contactID#" cfsqltype="CF_SQL_INTEGER">,
@@ -969,7 +969,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="workEmail" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             INSERT INTO CONTACTITEMS (CONTACTID, VALUETYPE, VALUECATEGORY, VALUETEXT, ITEMSTATUS)
             VALUES (
                 <cfqueryparam value="#arguments.contactID#" cfsqltype="CF_SQL_INTEGER">,
@@ -991,7 +991,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="workPhone" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             INSERT INTO CONTACTITEMS (CONTACTID, VALUETYPE, VALUECATEGORY, VALUETEXT, ITEMSTATUS)
             VALUES (
                 <cfqueryparam value="#arguments.contactID#" cfsqltype="CF_SQL_INTEGER">,
@@ -1012,8 +1012,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="CONTACTID" type="numeric" required="true">
     <cfargument name="Company" type="string" required="true">
 
-    <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             INSERT INTO CONTACTITEMS (CONTACTID, VALUETYPE, VALUECATEGORY, VALUETEXT, ITEMSTATUS) 
             VALUES (
                 <cfqueryparam value="#arguments.CONTACTID#" cfsqltype="CF_SQL_INTEGER">,
@@ -1023,18 +1022,14 @@ function getContactDetails(required numeric uploadid) {
                 <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
             )
         </cfquery>
-    <cfcatch>
-        <cflog file="application" text="Error inserting into CONTACTITEMS: #cfcatch.message#">
-        <cfthrow>
-    </cfcatch>
-    </cftry>
+
 </cffunction>
 <cffunction name="INScontactitems_24057" access="public" returntype="void">
     <cfargument name="contactID" type="numeric" required="true">
     <cfargument name="company" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             INSERT INTO CONTACTITEMS (CONTACTID, VALUETYPE, VALUECATEGORY, valuecompany, ITEMSTATUS)
             VALUES (
                 <cfqueryparam value="#arguments.contactID#" cfsqltype="CF_SQL_INTEGER">,
@@ -1054,9 +1049,8 @@ function getContactDetails(required numeric uploadid) {
 <cffunction name="INScontactitems_24058" access="public" returntype="void">
     <cfargument name="CONTACTID" type="numeric" required="true">
     <cfargument name="Company_new" type="string" required="true">
-
-    <cftry>
-        <cfquery datasource="abod">
+ 
+        <cfquery >
             INSERT INTO CONTACTITEMS (CONTACTID, VALUETYPE, VALUECATEGORY, valuecompany, ITEMSTATUS)
             VALUES (
                 <cfqueryparam value="#arguments.CONTACTID#" cfsqltype="CF_SQL_INTEGER">,
@@ -1066,11 +1060,7 @@ function getContactDetails(required numeric uploadid) {
                 <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
             )
         </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error in insertContactItem: #cfcatch.message#">
-            <cfthrow message="Error inserting contact item." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+      
 </cffunction>
 <cffunction name="SELcontactitems_24064" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
@@ -1078,7 +1068,7 @@ function getContactDetails(required numeric uploadid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT DISTINCT i.valueCompany AS new_valuecompany
             FROM contactitems i
             INNER JOIN contactdetails d ON d.contactid = i.contactid
@@ -1104,7 +1094,7 @@ function getContactDetails(required numeric uploadid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 i.itemid, i.contactid, i.valueType, i.valueCategory, i.valueText, 
                 i.valueCompany, i.valueDepartment, i.valueTitle, i.valueStreetAddress, 
@@ -1197,7 +1187,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="itemid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             UPDATE contactitems 
             SET valuetype = <cfqueryparam value="#arguments.valuetype#" cfsqltype="CF_SQL_VARCHAR">
             WHERE itemid = <cfqueryparam value="#arguments.itemid#" cfsqltype="CF_SQL_INTEGER">
@@ -1213,9 +1203,8 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="new_tagname" type="string" required="true">
 
     <cfset var result = "">
-    
-    <cftry>
-        <cfquery name="result" datasource="abod">
+ 
+        <cfquery name="result" >
             SELECT valuetext 
             FROM contactitems 
             WHERE valueCategory = <cfqueryparam value="Tag" cfsqltype="CF_SQL_VARCHAR"> 
@@ -1225,11 +1214,7 @@ function getContactDetails(required numeric uploadid) {
             ORDER BY valuetext
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getActiveContactTags: #cfcatch.message#">
-            <cfset result = queryNew("valuetext")>
-        </cfcatch>
-    </cftry>
+ 
 
     <cfreturn result>
 </cffunction>
@@ -1239,7 +1224,7 @@ function getContactDetails(required numeric uploadid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT * 
             FROM contactitems 
             WHERE valuecategory = <cfqueryparam value="Tag" cfsqltype="CF_SQL_VARCHAR"> 
@@ -1263,7 +1248,7 @@ function getContactDetails(required numeric uploadid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT *
             FROM contactitems
             WHERE valuecategory = <cfqueryparam value="Tag" cfsqltype="CF_SQL_VARCHAR">
@@ -1289,7 +1274,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="contactid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             DELETE FROM contactitems
             WHERE valuecategory = <cfqueryparam value="Tag" cfsqltype="CF_SQL_VARCHAR">
             AND contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
@@ -1305,7 +1290,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="newValueText" type="string" required="true">
 
     <cftry>
-        <cfquery name="insertQuery" datasource="abod">
+        <cfquery name="insertQuery" >
             INSERT INTO CONTACTITEMS (CONTACTID, VALUETYPE, VALUECATEGORY, VALUETEXT, ITEMSTATUS)
             VALUES (
                 <cfqueryparam value="#arguments.contactID#" cfsqltype="CF_SQL_INTEGER">,
@@ -1329,7 +1314,7 @@ function getContactDetails(required numeric uploadid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT *
             FROM contactitems
             WHERE valuecategory = <cfqueryparam value="Tag" cfsqltype="CF_SQL_VARCHAR">
@@ -1356,7 +1341,7 @@ function getContactDetails(required numeric uploadid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT * 
             FROM CONTACTITEMS 
             WHERE contactid = <cfqueryparam value="#arguments.new_contactid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -1378,7 +1363,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="new_tagname" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             INSERT INTO CONTACTITEMS (CONTACTID, VALUETYPE, VALUECATEGORY, VALUETEXT, ITEMSTATUS)
             VALUES (
                 <cfqueryparam value="#arguments.new_contactid#" cfsqltype="CF_SQL_INTEGER">,
@@ -1399,7 +1384,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="new_currentStartDate" type="string" required="true">
 
     <cftry>
-        <cfquery name="updateQuery" datasource="abod">
+        <cfquery name="updateQuery" >
             UPDATE CONTACTITEMS_tbl 
             SET isdeleted = 1, 
                 itemnotes = <cfqueryparam value="Delete via Bulk Update - #arguments.new_currentStartDate#" cfsqltype="CF_SQL_VARCHAR">
@@ -1417,7 +1402,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="new_tag1" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             INSERT INTO contactitems (contactid, valueType, valueCategory, valueText, itemstatus)
             VALUES (
                 <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">,
@@ -1438,7 +1423,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="new_tag2" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             INSERT INTO contactitems (contactid, valueType, valueCategory, valueText, itemstatus) 
             VALUES (
                 <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">,
@@ -1460,7 +1445,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="new_tag3" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             INSERT INTO contactitems (contactid, valueType, valueCategory, valueText, itemstatus) 
             VALUES (
                 <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">,
@@ -1482,7 +1467,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="business_email" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             INSERT INTO contactitems (contactid, valueType, valueCategory, valueText, itemstatus)
             VALUES (
                 <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">,
@@ -1504,7 +1489,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="personal_email" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             INSERT INTO contactitems (contactid, valueType, valueCategory, valueText, itemstatus)
             VALUES (
                 <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">,
@@ -1525,7 +1510,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="work_phone" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             INSERT INTO contactitems (contactid, valueType, valueCategory, valueText, itemstatus)
             VALUES (
                 <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">,
@@ -1547,7 +1532,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="mobile_phone" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             INSERT INTO contactitems (contactid, valueType, valueCategory, valueText, itemstatus)
             VALUES (
                 <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">,
@@ -1569,7 +1554,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="home_phone" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             INSERT INTO contactitems (contactid, valueType, valueCategory, valueText, itemstatus)
             VALUES (
                 <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">,
@@ -1590,7 +1575,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="company" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             INSERT INTO contactitems (contactid, valueType, valueCategory, valuecompany, itemstatus)
             VALUES (
                 <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">,
@@ -1613,7 +1598,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="website" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             INSERT INTO contactitems (contactid, valueType, valueCategory, valuetext, itemstatus)
             VALUES (
                 <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">,
@@ -1635,7 +1620,7 @@ function getContactDetails(required numeric uploadid) {
     <cfset var queryResult = "">
     
     <cftry>
-        <cfquery name="queryResult" datasource="abod">
+        <cfquery name="queryResult" >
             INSERT INTO contactitems (
                 contactid, 
                 valueType, 
@@ -1673,7 +1658,7 @@ function getContactDetails(required numeric uploadid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 ci.contactid AS id, 
                 concat(c.recordname, ' (', ti.tagname, ')') AS name
@@ -1706,7 +1691,7 @@ function getContactDetails(required numeric uploadid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT valueText AS email
             FROM contactitems
             WHERE valueCategory = <cfqueryparam value="Email" cfsqltype="CF_SQL_VARCHAR">
@@ -1729,7 +1714,7 @@ function getContactDetails(required numeric uploadid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT i.valueCompany 
             FROM contactitems i 
             INNER JOIN itemcategory c ON c.valueCategory = i.valuecategory 
@@ -1756,7 +1741,7 @@ function getContactDetails(required numeric uploadid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 i.itemID, 
                 i.valueType, 
@@ -1798,7 +1783,7 @@ function getContactDetails(required numeric uploadid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 i.itemID, i.valueType, i.valueCategory, i.valuetext, 
                 i.valuecompany, i.valuedepartment, i.valuetitle, 
@@ -1832,7 +1817,7 @@ function getContactDetails(required numeric uploadid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 i.itemID, i.valueType, i.valueCategory, i.valuetext, i.valueCompany, 
                 i.valuedepartment, i.valuetitle, i.valueStreetAddress, i.valueExtendedAddress, 
@@ -1865,7 +1850,7 @@ function getContactDetails(required numeric uploadid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 i.valuetext, 
                 i.valuetype, 
@@ -1897,7 +1882,7 @@ function getContactDetails(required numeric uploadid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT valueText as phonenumber 
             FROM contactitems 
             WHERE valueCategory = <cfqueryparam value="Phone" cfsqltype="CF_SQL_VARCHAR"> 
@@ -1921,7 +1906,7 @@ function getContactDetails(required numeric uploadid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 i.valuetext, 
                 i.valuetype, 
@@ -1953,7 +1938,7 @@ function getContactDetails(required numeric uploadid) {
     <cfset var queryResult = "">
     
     <cftry>
-        <cfquery name="queryResult" datasource="abod">
+        <cfquery name="queryResult" >
             SELECT 
                 i.itemid, i.contactid, i.valueType, i.valueCategory, i.valueText, 
                 i.valueCompany, i.valueDepartment, i.valueTitle, i.valueStreetAddress, 
@@ -1980,7 +1965,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="contactid" type="numeric" required="true">
     <cfset var result = "">
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT * 
             FROM contactitems 
             WHERE valuecategory = <cfqueryparam value="Tag" cfsqltype="CF_SQL_VARCHAR"> 
@@ -2006,7 +1991,7 @@ function getContactDetails(required numeric uploadid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 CONCAT("<span class='badge badge-blue' style='font-size: 12px; font-weight: 500;'>", valueText, "</span>") AS valuetext, 
                 valuetext AS tag 
