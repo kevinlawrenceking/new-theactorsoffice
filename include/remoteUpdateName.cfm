@@ -28,7 +28,6 @@
         </div>
 
         <cfscript>
-            <!--- Process contactbirthday --->
             if (Len(trim(contactbirthday)) > 0 && REFind("^\d{4}-\d{2}-\d{2}$", contactbirthday)) {
                 parsedDate = ParseDateTime(contactbirthday);
                 contactbirthday = DateFormat(parsedDate, "yyyy-mm-dd");
@@ -36,7 +35,6 @@
                 contactbirthday = JavaCast("null", "");
             }
 
-            <!--- Process contactmeetingdate --->
             if (Len(trim(contactmeetingdate)) > 0 && REFind("^\d{4}-\d{2}-\d{2}$", contactmeetingdate)) {
                 parsedDate = ParseDateTime(contactmeetingdate);
                 contactmeetingdate = DateFormat(parsedDate, "yyyy-mm-dd");
