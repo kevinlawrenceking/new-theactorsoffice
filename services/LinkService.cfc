@@ -1,4 +1,33 @@
 <cfcomponent displayname="LinkService" hint="Handles operations for Link table" output="false"> 
+
+<cffunction name="getLinksByNoteId" access="public" returntype="struct">
+    <!--- Define required arguments --->
+    <cfargument name="noteid" type="numeric" required="true">
+
+    <!--- Query to fetch links based on note ID --->
+    <cfquery name="links">
+        SELECT
+            linkid,
+            linkname,
+            linkurl,
+            userid,
+            noteid
+        FROM
+            links
+        WHERE
+            noteid = <cfqueryparam value="#arguments.noteid#" cfsqltype="cf_sql_integer">
+    </cfquery>
+
+    <!--- Create a struct to hold query and record count --->
+    <cfset var resultStruct = structNew()>
+    <cfset resultStruct.links = links>
+    <cfset resultStruct.recordcount = links.recordcount>
+
+    <cfreturn resultStruct>
+</cffunction>
+
+
+
 <cffunction name="INSlinks" access="public" returntype="void">
     <cfargument name="linkname" type="string" required="true">
     <cfargument name="linkurl" type="string" required="true">
