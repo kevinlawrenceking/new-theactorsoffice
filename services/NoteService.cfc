@@ -535,7 +535,7 @@
     
     <cfset var result = "">
     
-    <cftry>
+
         <cfquery name="result" datasource="abod">
             SELECT 
                 n.noteID, 
@@ -562,11 +562,6 @@
             ORDER BY n.noteTimestamp DESC
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getNotesLog: #cfcatch.message# Query: #cfcatch.detail#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
     
     <cfreturn result>
 </cffunction></cfcomponent>

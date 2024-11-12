@@ -164,6 +164,7 @@
 <!--- <cfinclude template="/include/qry/rels.cfm" /> --->
 <cfinclude template="/include/fetchContactItems.cfm" />
 <cfinclude template="/include/qry/findcompany_476_1.cfm" />
+<cfinclude template="/include/qry/notesRelationship_509_1.cfm" />
 
 <cfif #details.contactphoto# is not "">
     <cfset browser_contact_avatar_filename = details.contactphoto />
