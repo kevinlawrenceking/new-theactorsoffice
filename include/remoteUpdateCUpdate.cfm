@@ -20,12 +20,13 @@
     <cfinclude template="/include/qry/insertx_262_2.cfm" />
 </cfif>
 
-<!--- Include country query and check if a country is found --->
+<!--- Include country query and check if a country is found 
 <cfinclude template="/include/qry/findcountry_199_4.cfm" />
 <cfif #findcountry.recordcount# is "1">
     <cfset new_countryid = findcountry.countryname />
     <cfset old_countryid = findcountry.countryid />
 </cfif>
+--->
 
 <!--- Include region query and check if a region is found --->
 <cfinclude template="/include/qry/findregion_262_4.cfm" />
