@@ -29,12 +29,8 @@
 <cfset new_catid = details.catid />
 
 <!--- Include different query templates based on the category id --->
-<cfif new_catid is "4">
-    <cfinclude template="/include/qry/types_261_4.cfm" />
-<cfelse>
-    <cfinclude template="/include/qry/types_261_5.cfm" />
-</cfif>
 
+<cfinclude template="/include/qry/types.cfm" />
 <cfoutput>
     <cfset formid = "remoteupdate#itemid#" />
 </cfoutput>
@@ -49,19 +45,20 @@
 
     <div class="row">
         <!--- Check if there is only one type and set the valuetype accordingly --->
-        <cfif types.recordcount eq 1>
-            <cfoutput><input type="hidden" name="valuetype" value="#types.valuetype#" /></cfoutput>
-        <cfelse>
-            <div class="form-group col-md-6">
-                <label for="valuetext">Type <span class="text-danger">*</span></label>
-                <select id="valueType" name="valueType" class="form-control" data-parsley-required data-parsley-error-message="Type is required" onchange="showDiv('hidden_div', this)">
-                    <option value=""></option>
-                    <cfoutput query="types">
-                        <option value="#types.valuetype#" <cfif types.valuetype eq details.valueType>selected</cfif>>#types.valuetype#</option>
-                    </cfoutput>
-                </select>
-            </div>
-        </cfif>
+<cfif typesResult.types.recordcount eq 1>
+    <cfoutput><input type="hidden" name="valuetype" value="#typesResult.types.valuetype#" /></cfoutput>
+<cfelse>
+    <div class="form-group col-md-6">
+        <label for="valuetext">Type <span class="text-danger">*</span></label>
+        <select id="valueType" name="valueType" class="form-control" data-parsley-required data-parsley-error-message="Type is required" onchange="showDiv('hidden_div', this)">
+            <option value=""></option>
+            <cfoutput query="typesResult.types">
+                <option value="#typesResult.types.valuetype#" <cfif typesResult.types.valuetype eq details.valueType>selected</cfif>>#typesResult.types.valuetype#</option>
+            </cfoutput>
+        </select>
+    </div>
+</cfif>
+
 
         <div id="hidden_div" class="form-group col-md-6">
             <label for="customtype">Custom Type</label>

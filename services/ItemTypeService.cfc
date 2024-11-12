@@ -1,5 +1,43 @@
 <cfcomponent displayname="ItemTypeService" hint="Handles operations for ItemType table" output="false"> 
 
+<cffunction name="getValueTypesByCategory" access="public" returntype="struct">
+    <cfargument name="catid" type="numeric" required="true">
+    <cfargument name="userid" type="numeric" required="false" default="">
+
+    <cfset var result = structNew()>
+
+    <cfquery name="types" >
+        SELECT DISTINCT i.valuetype
+        FROM 
+            <cfif arguments.catid eq 4>
+                itemtypes i
+                INNER JOIN itemcatxref x ON x.typeid = i.typeid
+            <cfelse>
+                itemcategory c
+                INNER JOIN itemcatxref_user x ON x.catid = c.catid
+                INNER JOIN itemtypes_user i ON i.typeid = x.typeid
+            </cfif>
+        WHERE 
+            x.catid = <cfqueryparam value="#arguments.catid#" cfsqltype="cf_sql_integer">
+            <cfif arguments.catid eq 4>
+                AND i.typeid <> 1000
+            <cfelse>
+                AND i.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer">
+                AND x.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer">
+            </cfif>
+        ORDER BY i.valuetype
+    </cfquery>
+
+
+    <cfset result.types = types>
+    <cfset result.recordcount = types.recordcount>
+
+    <cfreturn result>
+</cffunction>
+
+
+
+
 <cffunction name="SELitemTypesByCategoryAndUser" access="public" returntype="struct">
     <!--- This function retrieves distinct value types based on user and category IDs. --->
     <cfargument name="new_catid" type="numeric" required="true">
