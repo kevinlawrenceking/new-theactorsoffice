@@ -1,4 +1,63 @@
 <cfcomponent displayname="ItemTypeService" hint="Handles operations for ItemType table" output="false"> 
+
+<cffunction name="SELitemTypesByCategoryAndUser" access="public" returntype="struct">
+    <!--- This function retrieves distinct value types based on user and category IDs. --->
+    <cfargument name="new_catid" type="numeric" required="true">
+    <cfargument name="userid" type="numeric" required="true">
+
+    <cfset var resultStruct = structNew()>
+
+    <!--- Query to get distinct value types for a given category and user --->
+    <cfquery name="types" >
+        SELECT DISTINCT 
+            i.valuetype
+        FROM 
+            itemcategory c
+        INNER JOIN 
+            itemcatxref_user x ON x.catid = c.catid
+        INNER JOIN 
+            itemtypes_user i ON i.typeid = x.typeid
+        WHERE 
+            x.catid = <cfqueryparam value="#arguments.new_catid#" cfsqltype="cf_sql_integer">
+            AND i.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer">
+            AND x.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer">
+        ORDER BY 
+            i.valuetype
+    </cfquery>
+    
+    <cfset resultStruct.types = types>
+    <cfset resultStruct.recordcount = types.recordcount>
+    
+    <cfreturn resultStruct>
+</cffunction>
+
+<cffunction name="SELitemTypesByCategory_4" access="public" returntype="struct">
+
+    <cfset var resultStruct = structNew()>
+
+    <cfquery name="types">
+        SELECT 
+            i.valuetype
+        FROM 
+            itemtypes i
+        INNER JOIN 
+            itemcatxref x ON x.typeid = i.typeid
+        WHERE 
+            x.catid = 4 
+            AND i.typeid <> 1000
+        ORDER BY 
+            i.valuetype
+    </cfquery>
+
+    <cfset resultStruct.types = types>
+    <cfset resultStruct.recordcount = types.recordcount>
+    
+    <cfreturn resultStruct>
+
+</cffunction>
+
+
+
 <cffunction name="SELitemtypes" access="public" returntype="query">
     <cfargument name="catId" type="numeric" required="true">
     <cfargument name="excludeTypeId" type="numeric" required="true">
