@@ -1151,8 +1151,14 @@ function getContactDetails(required numeric uploadid) {
 
         <!--- Conditional fields for catid 9 --->
         <cfif arguments.catid eq "9">
-            , valueCompany = <cfqueryparam cfsqltype="cf_sql_varchar" value="#iif(arguments.valuecompany eq 'custom' and arguments.custom neq '' and arguments.custom neq 'custom', trim(arguments.custom), trim(arguments.valuecompany))#">
-            , valueDepartment = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valueDepartment)#">
+       
+       <cfif structKeyExists(arguments, "valuecompany")>
+    , valueCompany = <cfqueryparam cfsqltype="cf_sql_varchar" 
+        value="#iif(trim(arguments.valuecompany) eq 'custom' and trim(arguments.custom) neq '' and trim(arguments.custom) neq 'custom', trim(arguments.custom), trim(arguments.valuecompany))#">
+</cfif>
+
+       
+         , valueDepartment = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valueDepartment)#">
             , valueTitle = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valueTitle)#">
         </cfif>
 
