@@ -1151,8 +1151,7 @@ function getContactDetails(required numeric uploadid) {
 
         <!--- Conditional fields for catid 9 --->
         <cfif arguments.catid eq "9">
-            , valueCompany = <cfqueryparam cfsqltype="cf_sql_varchar" 
-                value="#iif(arguments.valuecompany eq 'custom' and arguments.custom neq '' and arguments.custom neq 'custom', trim(arguments.custom), trim(arguments.valuecompany))#">
+            , valueCompany = <cfqueryparam cfsqltype="cf_sql_varchar" value="#iif(arguments.valuecompany eq 'custom' and arguments.custom neq '' and arguments.custom neq 'custom', trim(arguments.custom), trim(arguments.valuecompany))#">
             , valueDepartment = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valueDepartment)#">
             , valueTitle = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valueTitle)#">
         </cfif>
@@ -1179,8 +1178,6 @@ function getContactDetails(required numeric uploadid) {
 
     WHERE itemid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.itemid#">
 </cfquery>
-
-
 </cffunction>
 
 <cffunction name="UPDcontactitems_24179" access="public" returntype="void">
