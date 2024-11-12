@@ -119,7 +119,7 @@
 
         <!--- Execute query --->
         <cftry>
-            <cfquery name="qFiltered" datasource="abod">
+            <cfquery name="qFiltered" >
                 #sql#
                 <!--- Bind parameters --->
                 <cfloop array="#paramList#" index="param">
@@ -144,7 +144,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="compid" type="numeric" required="true">
 
-    <cfquery name="updates" datasource="abod">
+    <cfquery name="updates" >
         SELECT 
             d.contactid,
             'Name' AS head1,
@@ -177,7 +177,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT d.contactid
             FROM contactdetails d
             WHERE d.[#arguments.addDaysNoUniqueName#] = <cfqueryparam value="Y" cfsqltype="CF_SQL_CHAR">
@@ -198,7 +198,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT * 
             FROM contactdetails d 
             WHERE recordname <> '' 
@@ -221,7 +221,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT *
             FROM contactdetails
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
@@ -241,7 +241,7 @@
     <cfargument name="contactFullName" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             INSERT INTO contactdetails (userid, contactFullName) 
             VALUES (
                 <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">, 
@@ -259,7 +259,7 @@
     <cfargument name="cdfullname" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             INSERT INTO contactdetails (userid, contactFullName) 
             VALUES (
                 <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
@@ -278,7 +278,7 @@
     <cfargument name="contactfullname" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             INSERT INTO contactdetails (userid, contactfullname) 
             VALUES (
                 <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">, 
@@ -297,7 +297,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT contactid, contactbirthday 
             FROM contactdetails 
             WHERE contactbirthday IS NOT NULL 
@@ -317,7 +317,7 @@
     <cfargument name="New_contactid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             UPDATE contactdetails 
             SET contactbirthday = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.final_birthday#" />
             WHERE contactid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.New_contactid#" />
@@ -334,7 +334,7 @@
     <cfargument name="contactid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             UPDATE contactdetails
             SET #arguments.uniquename# = <cfqueryparam value="Y" cfsqltype="CF_SQL_CHAR">
             WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
@@ -351,7 +351,7 @@
     <cfargument name="contactfullname" type="string" default="Unknown">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             INSERT INTO contactdetails (userid, contactfullname) 
             VALUES (
                 <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
@@ -371,7 +371,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT contactid, recordname 
             FROM contactdetails 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
@@ -411,7 +411,7 @@
         <cfset sql = sql & ")">
 
         <!--- Execute the query with parameterized inputs --->
-        <cfquery name="queryResult" datasource="abod">
+        <cfquery name="queryResult" >
             #sql#
             <cfloop array="#arguments.idList#" index="id">
                 <cfqueryparam value="#id#" cfsqltype="CF_SQL_INTEGER">
@@ -433,7 +433,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 contactid AS new_contactid, 
                 SUBSTRING_INDEX(contactfullname, ' ', 1) AS new_FirstName, 
@@ -463,7 +463,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT DISTINCT contactfullname 
             FROM contactdetails 
             WHERE contactfullname <> '' 
@@ -500,7 +500,7 @@
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT recordname 
             FROM contactdetails 
             WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
@@ -548,7 +548,7 @@ function getContactRecordName(new_contactid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT d.contactid 
             FROM contactdetails d 
             WHERE d.#arguments.addDaysNoUniqueName# = <cfqueryparam value="Y" cfsqltype="CF_SQL_CHAR"> 
@@ -572,7 +572,7 @@ function getContactRecordName(new_contactid) {
     <cfset var fullName = "#arguments.userFirstName# #arguments.userLastName#">
 
     <cftry>
-        <cfquery datasource="abod" name="insertQuery">
+        <cfquery  name="insertQuery">
             INSERT INTO contactdetails (ContactFullName, userid, user_yn)
             VALUES (
                 <cfqueryparam value="#fullName#" cfsqltype="CF_SQL_VARCHAR">,
@@ -591,7 +591,7 @@ function getContactRecordName(new_contactid) {
     <cfargument name="contactfullname" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             INSERT INTO contactdetails_tbl (userid, contactfullname)
             VALUES (
                 <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
@@ -610,7 +610,7 @@ function getContactRecordName(new_contactid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT *
             FROM contactdetails
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
@@ -669,7 +669,7 @@ function getContactRecordName(new_contactid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT * 
             FROM contactdetails 
             WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
@@ -695,7 +695,7 @@ function getContactRecordName(new_contactid) {
     <cfargument name="refer_contact_id" type="numeric" required="false">
     
     <!--- Ensure datasource exists --->
-    <cfquery datasource="#application.datasource#">
+    <cfquery>
         UPDATE contactdetails 
         SET contactfullname = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.contactfullname)#">,
             contactPronoun = 
@@ -736,7 +736,7 @@ function getContactRecordName(new_contactid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT contactid, recordname
             FROM contactdetails
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
@@ -758,7 +758,7 @@ function getContactRecordName(new_contactid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT * 
             FROM contactdetails 
             WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
@@ -779,7 +779,7 @@ function getContactRecordName(new_contactid) {
     <cfset var result = "">
 
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT * 
             FROM contactdetails 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -798,7 +798,7 @@ function getContactRecordName(new_contactid) {
     <cfargument name="contactfullname" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             INSERT INTO contactdetails (userid, contactfullname) 
             VALUES (
                 <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
@@ -820,7 +820,7 @@ function getContactRecordName(new_contactid) {
     </cfif>
 
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT contactid, recordname
             FROM contactdetails d
             WHERE d.contactid IN (
@@ -845,7 +845,7 @@ function getContactRecordName(new_contactid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT * 
             FROM contactdetails 
             WHERE contactfullname = <cfqueryparam value="#arguments.cdfullname#" cfsqltype="CF_SQL_VARCHAR"> 
@@ -866,7 +866,7 @@ function getContactRecordName(new_contactid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT *
             FROM contactdetails
             WHERE contactfullname = <cfqueryparam value="#arguments.fname# #arguments.lname#" cfsqltype="CF_SQL_VARCHAR">
@@ -916,7 +916,7 @@ function getContactRecordName(new_contactid) {
         <cfset valuesStr &= ")">
 
         <!--- Execute the query --->
-        <cfquery name="insertQuery" datasource="#application.datasource#">
+        <cfquery name="insertQuery" >
             #queryStr# #valuesStr#
             <cfqueryparam value="#arguments.x.fname# #arguments.x.lname#" cfsqltype="CF_SQL_VARCHAR">
             <cfqueryparam value="#session.userid#" cfsqltype="CF_SQL_INTEGER">
@@ -938,7 +938,7 @@ function getContactRecordName(new_contactid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT contactid, recordname
             FROM contactdetails
             WHERE userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
@@ -962,7 +962,7 @@ function getContactRecordName(new_contactid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 d.contactid, 
                 d.recordname 
@@ -989,7 +989,7 @@ function getContactRecordName(new_contactid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT DISTINCT 
                 d.contactid, 
                 d.recordname AS contactname, 
@@ -1019,7 +1019,7 @@ function getContactRecordName(new_contactid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT DISTINCT 
                 d.contactid, 
                 d.recordname AS contactname, 
@@ -1050,7 +1050,7 @@ function getContactRecordName(new_contactid) {
     <cfargument name="cdfullname" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery >
             INSERT INTO contactdetails (userid, cdco) 
             VALUES (
                 <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">, 
@@ -1070,7 +1070,7 @@ function getContactRecordName(new_contactid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 datediff(d.contactbirthday, curdate()) AS daysuntil, 
                 d.contactfullname AS col1, 
@@ -1099,7 +1099,7 @@ function getContactRecordName(new_contactid) {
     
     <cfset var result = "">
 
-       <cfquery name="result" datasource="abod">
+       <cfquery name="result" >
     SELECT 
         d.contactid, 
         d.contacttitle, 
@@ -1138,7 +1138,7 @@ function getContactRecordName(new_contactid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 d.contactid, 
                 d.contacttitle, 
@@ -1174,7 +1174,7 @@ function getContactRecordName(new_contactid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 d.contactid, 
                 d.recordname AS col1 
@@ -1201,7 +1201,7 @@ function getContactRecordName(new_contactid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 d.contactid, 
                 d.contacttitle, 
@@ -1240,7 +1240,7 @@ function getContactRecordName(new_contactid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 d.contactid, 
                 'Name' AS head1, 
@@ -1273,7 +1273,7 @@ function getContactRecordName(new_contactid) {
     <cfset var result = "">
     
  
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 d.contactid, 
                 d.recordname AS contactname, 
@@ -1304,7 +1304,7 @@ function getContactRecordName(new_contactid) {
     <cfset var result = "">
     
     <cftry>
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 d.contactid, 
                 d.contacttitle, 
