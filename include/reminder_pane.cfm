@@ -31,8 +31,9 @@
 
 <div id="tab-relationship-view" style="flex: 1 1 auto;">
     <!--- Loop through active systems --->
+       
     <cfloop query="sysActive">
-        <cfinclude template="/include/qry/notsActive.cfm" /> 
+        <cfinclude template="/include/qry/notsInactive_510_2.cfm" /> 
         <cfoutput>
             <div class="row">
                 <div class="col-md-12">
