@@ -3,13 +3,13 @@
 
     <div class="float-left">
         <!--- Check if there are no appointments --->
-        <cfif #eventresults.eventresultsrecordcount# is "0">
+        <cfif #eventresults.eventresults.recordcount# is "0">
             No appointments.
         </cfif>
 
         <!--- Display the count of active appointments --->
         <cfoutput>
-            You have <strong>#eventresults.eventresultsrecordcount#</strong> active appointment<cfif #eventresults.eventresultsrecordcount# is not "1">s</cfif> with #details.recordname#.
+            You have <strong>#eventresults.eventresults.recordcount#</strong> active appointment<cfif #eventresults.eventresults.recordcount# is not "1">s</cfif> with #details.recordname#.
         </cfoutput>
     </div>
 
