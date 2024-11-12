@@ -3,13 +3,13 @@
 
     <div class="float-left">
         <!--- Check if there are no appointments --->
-        <cfif #eventresults.eventresults.recordcount# is "0">
+        <cfif #eventresults.eventresults..recordcount# is "0">
             No appointments.
         </cfif>
 
         <!--- Display the count of active appointments --->
         <cfoutput>
-            You have <strong>#eventresults.eventresults.recordcount#</strong> active appointment<cfif #eventresults.eventresults.recordcount# is not "1">s</cfif> with #details.recordname#.
+            You have <strong>#eventresults.eventresults..recordcount#</strong> active appointment<cfif #eventresults.eventresults..recordcount# is not "1">s</cfif> with #details.recordname#.
         </cfoutput>
     </div>
 
@@ -27,12 +27,12 @@
     <!--- Table to display event results --->
     <table id="events-datatable" class="table display dt-responsive nowrap w-100 table-striped table-hover">
         <thead>
-            <cfoutput query="eventresults" maxrows="1">
+            <cfoutput query="eventresults.eventresults." maxrows="1">
                 <!--- Determine row type for styling --->
-                <cfif (eventresults.CurrentRow MOD 2)>
+                <cfif (eventresults.eventresults..CurrentRow MOD 2)>
                     <Cfset rowtypee="Odd" />
                 </cfif>
-                <cfif (eventresults.CurrentRow MOD 1)>
+                <cfif (eventresults.eventresults..CurrentRow MOD 1)>
                     <Cfset rowtypee="Even" />
                 </cfif>
 
@@ -50,46 +50,46 @@
 
         <tbody>
             <!--- Loop through event results to display each appointment --->
-            <cfloop query="eventresults">
+            <cfloop query="eventresults.eventresults.">
                 <cfoutput>
                     <cfinclude template="/include/qry/finall_20_1.cfm" />
                     <tr role="row">
                         <td>
                             <!--- Link to appointment details if defined --->
                             <cfif #isdefined('xxxxxx')#>
-                                <a title="Details" href="/app/appoint/?eventid=#eventresults.eventresultseventid#&returnurl=contact&rcontactid=#currentid#">
+                                <a title="Details" href="/app/appoint/?eventid=#eventresults.eventid#&returnurl=contact&rcontactid=#currentid#">
                                     <i class="mdi mdi-information-outline"></i>
                                 </a>
                             </cfif>
 
                             <!--- Link to edit appointment if project ID matches --->
-                            <cfif #eventresults.eventresultsaudprojectid# is "557567567567575757575">
-                                <a title="Edit" href="/app/appoint-update/?eventid=#eventresults.eventresultseventid#&returnurl=contact&rcontactid=#currentid#">
+                            <cfif #eventresults.eventresults..audprojectid# is "557567567567575757575">
+                                <a title="Edit" href="/app/appoint-update/?eventid=#eventresults.eventresults.eventid#&returnurl=contact&rcontactid=#currentid#">
                                     <i class="mdi mdi-square-edit-outline"></i>
                                 </a>
                             </cfif>
 
                             <!--- Link to view audition or appointment based on project ID --->
-                            <cfif #eventresults.eventresultsaudprojectid#is not "">
-                                <a href="/app/audition/?audprojectid=#eventresults.eventresultsaudprojectid#" class="btn btn-xs btn-primary waves-effect waves-light">
+                            <cfif #eventresults.eventresults.audprojectid#is not "">
+                                <a href="/app/audition/?audprojectid=#eventresults.eventresults.audprojectid#" class="btn btn-xs btn-primary waves-effect waves-light">
                                     <i class="mdi mdi-eye-outline"></i> View Audition
                                 </a>
                             <cfelse>
-                                <a href="/app/appoint/?eventid=#eventresults.eventresultseventid#" class="btn btn-xs btn-primary waves-effect waves-light">
+                                <a href="/app/appoint/?eventid=#eventresults.eventresults.eventid#" class="btn btn-xs btn-primary waves-effect waves-light">
                                     <i class="mdi mdi-eye-outline"></i> View Appointment
                                 </a>
                             </cfif>
                         </td>
 
-                        <td>#eventresults.eventresultscol1#</td>
-                        <td>#eventresults.eventresultscol2#</td>
-                        <td>#dateformat('#eventresults.eventresultscol3#','m-d-YYYY')#</td>
-                        <td>#timeformat('#eventresults.eventresultseventStartTime#','medium')#</td>
-                        <td>#eventresults.eventresultscol5# <cfif #eventresults.eventresultsaudstep# is not "" and #eventresults.eventresultsaudstep# is not "Audition"> (#eventresults.eventresultsaudstep#)</cfif></td>
+                        <td>#eventresults.eventresults.col1#</td>
+                        <td>#eventresults.eventresults.col2#</td>
+                        <td>#dateformat('#eventresults.eventresults.col3#','m-d-YYYY')#</td>
+                        <td>#timeformat('#eventresults.eventresults.eventStartTime#','medium')#</td>
+                        <td>#eventresults.eventresults.col5# <cfif #eventresults.eventresults.audstep# is not "" and #eventresults.eventresults.audstep# is not "Audition"> (#eventresults.eventresults.audstep#)</cfif></td>
                         <TD>
                             <!--- Link to delete appointment if record count is 1 --->
                             <cfif "#finall.recordcount#" is "1">
-                                <A href="/include/deleteappointment.cfm?recid=#eventresults.eventresultsrecid#&contactid=#currentid#">
+                                <A href="/include/deleteappointment.cfm?recid=#eventresults.eventresults.recid#&contactid=#currentid#">
                                     <i class="mdi mdi-trash-can-outline mr-1"></i>
                                 </A>
                             </cfif>
@@ -117,7 +117,7 @@
 
                     <cfset cardclass="" />
                     <!--- Set target ID for the first event --->
-                    <cfif #eventresults.eventresultscurrentrow# is "1">
+                    <cfif #eventresults.eventresults.currentrow# is "1">
                         <cfoutput>
                             <cfset target_id="#new_eventid#" />
                         </cfoutput>
@@ -135,43 +135,43 @@
                     </cfif>
 
                     <div class="card mb-1" style="width:100%;">
-                        <div class="card-header" id="heading_system_<cfoutput>#eventresults.eventresultscurrentrow#</cfoutput>">
+                        <div class="card-header" id="heading_system_<cfoutput>#eventresults.eventresults.currentrow#</cfoutput>">
                             <h5 class="m-0 align-middle" style="width:100%;">
                                 <a class="text-dark collapsed" data-bs-toggle="collapse" 
-                                   href="#collapse_system_<cfoutput>#eventresults.eventresultscurrentrow#</cfoutput>" 
+                                   href="#collapse_system_<cfoutput>#eventresults.eventresults.currentrow#</cfoutput>" 
                                    aria-expanded="<cfoutput>#header_aria_exanded#</cfoutput>">
                                     <cfoutput>
-                                        <strong>#dateformat('#eventresults.eventresultscol3#','short')#</strong> - 
-                                        #timeformat('#eventresults.eventresultseventStartTime#','short')# 
+                                        <strong>#dateformat('#eventresults.eventresults.col3#','short')#</strong> - 
+                                        #timeformat('#eventresults.eventresults.eventStartTime#','short')# 
                                         <i class="fe-menu"></i>
                                     </cfoutput>
                                     <span class="badge badge-sm badge-blue badge-pill float-end" style="font-size:.7em;">
-                                        <cfoutput>#eventresults.eventresultscol5#</cfoutput>
+                                        <cfoutput>#eventresults.eventresults.col5#</cfoutput>
                                     </span>
                                 </a>
                             </h5>
                         </div>
 
-                        <div id="collapse_system_<cfoutput>#eventresults.eventresultscurrentrow#</cfoutput>" 
+                        <div id="collapse_system_<cfoutput>#eventresults.eventresults.currentrow#</cfoutput>" 
                              class="<cfoutput>#collapse_show#</cfoutput>" 
-                             aria-labelledby="collapse_system_<cfoutput>#eventresults.eventresultscurrentrow#</cfoutput>" 
+                             aria-labelledby="collapse_system_<cfoutput>#eventresults.eventresults.currentrow#</cfoutput>" 
                              data-bs-parent="#accordion_systems">
                             <div class="card-body">
                                 <cfoutput>
-                                    <h5>#eventresults.eventresultscol1# 
-                                        <a title="Edit" href="/app/appoint-update/?eventid=#eventresults.eventresultseventid#&returnurl=contact&rcontactid=#currentid#">
+                                    <h5>#eventresults.eventresults.col1# 
+                                        <a title="Edit" href="/app/appoint-update/?eventid=#eventresults.eventresults.eventid#&returnurl=contact&rcontactid=#currentid#">
                                             <i class="mdi mdi-square-edit-outline"></i>
                                         </a>
                                     </h5>
                                 </cfoutput>
-                                <cfif #eventresults.eventresultscol2# is not "">
+                                <cfif #eventresults.eventresults.col2# is not "">
                                     <h6>Location</h6>
-                                    <p><cfoutput>#eventresults.eventresultscol2#</cfoutput></p>
+                                    <p><cfoutput>#eventresults.eventresults.col2#</cfoutput></p>
                                 </cfif>
 
-                                <cfif #eventresults.eventresultseventDescription# is not "">
+                                <cfif #eventresults.eventresults.eventDescription# is not "">
                                     <h6>Description</h6>
-                                    <p><cfoutput>#eventresults.eventresultseventDescription#</cfoutput></p>
+                                    <p><cfoutput>#eventresults.eventresults.eventDescription#</cfoutput></p>
                                 </cfif>
                             </div>
                         </div>
