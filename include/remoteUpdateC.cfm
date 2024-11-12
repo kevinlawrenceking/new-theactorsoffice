@@ -167,13 +167,14 @@
 
                         </cfoutput>
                         <option value="custom">***ADD NEW***</option>
-                        <cfloop query="companies"><cfoutput>
+                        <cfloop query="companies">
+                        <cfoutput>
                             <option value="#companies.new_valuecompany#" <cfif companies.new_valuecompany eq details.valueCompany>selected</cfif>>#companies.new_valuecompany#</option>
                         </cfoutput>
                         </cfloop>
                     </select>
                 </div>
-                
+                <Cfoutput>
                 <div class="form-group col-md-12" id="special" style="display: none;">
                     <label for="custom">Custom Name</label>
                     <input class="form-control" type="text" id="custom" name="custom" value="" placeholder="Enter Custom #details.recordname#">
