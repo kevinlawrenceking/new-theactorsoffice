@@ -1244,7 +1244,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
             SELECT *
             FROM audprojects
             WHERE projname = <cfqueryparam value="#arguments.projname#" cfsqltype="CF_SQL_VARCHAR">
-            AND userid = <cfqueryparam value="#session.userid#" cfsqltype="CF_SQL_INTEGER">
+            AND userid = <cfqueryparam value="#userid#" cfsqltype="CF_SQL_INTEGER">
             AND isdeleted = <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
         </cfquery>
         

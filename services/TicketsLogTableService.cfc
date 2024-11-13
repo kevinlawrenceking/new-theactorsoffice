@@ -8,7 +8,7 @@
         INSERT INTO ticketslog_tbl (tlogDetails, userID, ticketid, ticketstatus)
         VALUES (
             <cfqueryparam value="#arguments.new_tlogDetails#" cfsqltype="cf_sql_varchar" />,
-            <cfqueryparam value="#session.userid#" cfsqltype="cf_sql_integer" />,
+            <cfqueryparam value="#userid#" cfsqltype="cf_sql_integer" />,
             <cfqueryparam value="#arguments.new_ticketid#" cfsqltype="cf_sql_integer" />,
             <cfqueryparam value="#arguments.new_ticketstatus#" cfsqltype="cf_sql_varchar" />
         )

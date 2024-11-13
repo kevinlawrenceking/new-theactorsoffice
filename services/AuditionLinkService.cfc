@@ -26,7 +26,7 @@ Here is the updated ColdFusion component code:
             <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.linkname#" />,
             <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.linkurl#" />,
             <cfqueryparam cfsqltype="cf_sql_integer" value="0" />,
-            <cfqueryparam cfsqltype="cf_sql_integer" value="#session.userid#" />,
+            <cfqueryparam cfsqltype="cf_sql_integer" value="#userid#" />,
             <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.audroleid#" />
         )
     </cfquery>

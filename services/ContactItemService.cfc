@@ -1829,7 +1829,7 @@ function getContactDetails(required numeric uploadid) {
             AND valuetext IN (
                 SELECT tagname AS valuetext 
                 FROM tags_user 
-                WHERE userid = <cfqueryparam value="#session.userid#" cfsqltype="CF_SQL_INTEGER"> 
+                WHERE userid = <cfqueryparam value="#userid#" cfsqltype="CF_SQL_INTEGER"> 
                 AND tagtype = <cfqueryparam value="C" cfsqltype="CF_SQL_CHAR">
             )
         </cfquery>

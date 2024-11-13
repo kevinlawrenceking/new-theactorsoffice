@@ -827,7 +827,7 @@ function getContactRecordName(new_contactid) {
             SELECT *
             FROM contactdetails
             WHERE contactfullname = <cfqueryparam value="#arguments.fname# #arguments.lname#" cfsqltype="CF_SQL_VARCHAR">
-            AND userid = <cfqueryparam value="#session.userid#" cfsqltype="CF_SQL_INTEGER">
+            AND userid = <cfqueryparam value="#userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         
@@ -875,7 +875,7 @@ function getContactRecordName(new_contactid) {
         <cfquery result="result" name="insertQuery" >
             #queryStr# #valuesStr#
             <cfqueryparam value="#arguments.x.fname# #arguments.x.lname#" cfsqltype="CF_SQL_VARCHAR">
-            <cfqueryparam value="#session.userid#" cfsqltype="CF_SQL_INTEGER">
+            <cfqueryparam value="#userid#" cfsqltype="CF_SQL_INTEGER">
             <cfloop array="#params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
             </cfloop>

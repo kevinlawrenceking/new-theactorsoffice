@@ -10,7 +10,7 @@
         VALUES (
             <cfqueryparam value="#arguments.new_systemid#" cfsqltype="CF_SQL_INTEGER">,
             <cfqueryparam value="#arguments.new_contactid#" cfsqltype="CF_SQL_INTEGER">,
-            <cfqueryparam value="#session.userid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="#userid#" cfsqltype="CF_SQL_INTEGER">,
             <cfqueryparam value="#arguments.new_suStartDate#" cfsqltype="CF_SQL_DATE">,
             <cfqueryparam value="Added via user batch update" cfsqltype="CF_SQL_VARCHAR">
         )
