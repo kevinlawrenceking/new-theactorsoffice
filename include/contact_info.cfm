@@ -1008,7 +1008,7 @@ id="item-img-output" />
                 </cfloop>
 
             </div>
-        </div><!--- /btn-group --!>
+        </div><!--- /btn-group ---!>
 
 
 

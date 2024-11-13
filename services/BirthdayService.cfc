@@ -1,11 +1,11 @@
 <cfcomponent displayname="BirthdaysService"  hint="List of contactbirthdays">
     <cffunction output="false" name="getBirthdaysForDashboard" access="public" returntype="query"  hint="Retrieves upcoming birthdays for a specific user">
-        <!--- Arguments --!>
+        <!--- Arguments ---!>
         <cfargument name="userid" type="numeric" required="true" hint="The user ID to retrieve birthdays for">
         <cfargument name="daysLimit" type="numeric" required="false" default="15" hint="The number of days ahead to check for birthdays">
         <cfargument name="maxRows" type="numeric" required="false" default="10" hint="The maximum number of rows to return">
 
-        <!--- Query to retrieve the upcoming birthdays --!>
+        <!--- Query to retrieve the upcoming birthdays ---!>
         <cfquery result="result" name="birthdays" maxrows="#arguments.maxRows#">
             SELECT  
                 datediff(d.contactbirthday, curdate()) as daysuntil,   
@@ -20,7 +20,7 @@
             ORDER BY datediff(d.contactbirthday, curdate())
         </cfquery>
 
-        <!--- Return the query result --!>
+        <!--- Return the query result ---!>
         <cfreturn birthdays>
     </cffunction>
 
