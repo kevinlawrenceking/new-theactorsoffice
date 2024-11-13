@@ -29,7 +29,7 @@
 <table id="events-datatable" class="table display dt-responsive nowrap w-100 table-striped table-hover">
     <thead>
         <!--- Render the table header with column names --->
-        <tr>
+        <tr><Cfoutput>
             <th>Action</th>
             <th>#head1#</th>
             <th>#head2#</th>
@@ -37,7 +37,7 @@
             <th>Time</th>
             <th>#head5#</th>
             <th></th>
-        </tr>
+       </cfoutput> </tr>
     </thead>
 
     <tbody>
