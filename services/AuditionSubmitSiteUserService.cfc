@@ -80,7 +80,7 @@
         UPDATE audsubmitsites_user 
         SET submitsitename = ?, 
             isDeleted = ? 
-            #<cfif arguments.catlist neq ''> '<cfelse> catlist = ?', ', catlist = NULL'</cfif>#
+            #iif(arguments.catlist neq '', ', catlist = ?', ', catlist = NULL')#
         WHERE submitsiteid = ?
     ">
     <cfset arrayAppend(params, {value=arguments.new_submitsitename, cfsqltype='CF_SQL_VARCHAR'})>
