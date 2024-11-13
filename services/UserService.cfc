@@ -52,7 +52,6 @@
         <cfreturn details>
     </cffunction>
 
-
 <cffunction output="false" name="SELtaousers" access="public" returntype="query">
     <cfargument name="ticketActive" type="string" required="true">
     
@@ -224,7 +223,6 @@
     <cfargument name="region_id" type="numeric" required="false">
     <cfargument name="countryid" type="string" required="false">
     <cfargument name="userid" type="numeric" required="true">
-
 
            <cfquery result="result" >
         UPDATE taousers 

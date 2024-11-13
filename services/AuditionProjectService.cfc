@@ -1265,7 +1265,6 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     <cfargument name="new_contactid" type="numeric" required="false">
     <cfargument name="new_projdate" type="date" required="true">
 
-
         <cfquery result="result" >
             INSERT INTO audprojects (
                 projName,
@@ -1679,7 +1678,6 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     <cfargument name="new_contractTypeID" type="numeric" required="true">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="new_audprojectID" type="numeric" required="true">
-
 
         <cfquery result="result">
             UPDATE audprojects 

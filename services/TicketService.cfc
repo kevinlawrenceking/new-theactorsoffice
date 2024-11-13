@@ -15,7 +15,6 @@
     <cfargument name="new_pgid" type="numeric" required="false">
     <cfargument name="new_esthours" type="numeric" required="false">
 
-
         <cfquery result="result"  name="updateTicketQuery">
             UPDATE tickets SET 
                 ticketname = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_ticketname#">,

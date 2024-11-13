@@ -47,7 +47,6 @@
     <cfreturn resultStruct>
 </cffunction>
 
-
    <!--- Function to retrieve active categories --->
     <cffunction output="false" name="getActiveCategories" access="remote" returntype="query"  hint="Get a list of active categories.">
         <cfquery result="result" name="ActiveCategories">
@@ -85,9 +84,6 @@
         <!--- Return the query result --->
         <cfreturn InactiveCategories />
     </cffunction>
-
-
-
 
 <cffunction output="false" name="SELfindscope_24712" access="public" returntype="string">
     <cfargument name="contactid" type="numeric" required="true">
@@ -1400,7 +1396,6 @@ function getContactDetails(required numeric uploadid) {
 <cffunction output="false" name="INScontactitems_24414" access="public" returntype="numeric">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="work_phone" type="string" required="true">
-
 
         <cfquery result="result" >
             INSERT INTO contactitems (contactid, valueType, valueCategory, valueText, itemstatus)

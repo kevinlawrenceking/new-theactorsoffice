@@ -163,5 +163,4 @@
     <cfreturn siteTypeDetails>
 </cffunction>
 
-
 </cfcomponent>

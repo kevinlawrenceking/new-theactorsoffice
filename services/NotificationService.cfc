@@ -204,7 +204,6 @@
         )
     </cfquery>
 
-
 <cffunction output="false" name="UPDnotifications" access="public" returntype="void">
     <cfargument name="notificationId" type="numeric" required="true">
 
@@ -249,13 +248,10 @@
             AND n.notstatus = 'Pending'
         </cfquery>
 
-
         <cfset remindersTotal = reminders.reminderstotal>
 
     <cfreturn remindersTotal>
 </cffunction>
-
-
 
 <cffunction output="false" name="SELnotifications" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
@@ -309,8 +305,6 @@
 
     <cfreturn result>
 </cffunction>
-
-
 
 <cffunction output="false" name="SELnotifications_24351" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">

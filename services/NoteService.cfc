@@ -100,7 +100,6 @@
     <cfargument name="audprojectid" type="numeric" required="true">
     <cfargument name="notedetailshtml" type="string" required="true">
 
-
         <cfquery result="result" >
             INSERT INTO noteslog (userid, contactid, noteDetails, isPublic, audprojectid, notedetailshtml)
             VALUES (
@@ -187,7 +186,6 @@
     <cfargument name="new_noteText" type="string" required="true">
     <cfargument name="isPublic" type="boolean" required="true">
     <cfargument name="noteid" type="numeric" required="true">
-
 
         <cfquery result="result" >
             UPDATE noteslog 

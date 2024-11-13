@@ -113,7 +113,6 @@
     <cfreturn result>
 </cffunction>
 
-
 <cffunction output="false" name="SELaudsubmitsites_user_24295" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_submitsitename" type="string" required="true">
@@ -131,13 +130,11 @@
                 AND submitsitename = <cfqueryparam value="#trim(arguments.new_submitsitename)#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
 
-
     <cfreturn result>
 </cffunction>
 <cffunction output="false" name="UPDaudsubmitsites_user_24296" access="public" returntype="void">
     <cfargument name="new_catlist" type="string" required="true">
     <cfargument name="new_submitsiteid" type="numeric" required="true">
-
 
         <cfquery result="result" >
             UPDATE audsubmitsites_user 

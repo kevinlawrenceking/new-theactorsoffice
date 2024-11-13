@@ -1,6 +1,5 @@
 <cfcomponent displayname="ContactService" hint="Handles operations for Contact table" > 
 
-
     <cffunction output="false" name="ru" access="public" returntype="query">
         <cfargument name="contactid" type="numeric" required="true">
         <cfargument name="userid" type="numeric" required="true">
@@ -137,9 +136,6 @@
         
     </cffunction>
 
-
-
-
 <cffunction output="false" name="getContactUpdates" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="compid" type="numeric" required="true">
@@ -167,8 +163,6 @@
 
     <cfreturn updates>
 </cffunction>
-
-
 
 <cffunction output="false" name="SELcontactdetails" access="public" returntype="query">
     <cfargument name="addDaysNoUniqueName" type="string" required="true">
@@ -630,8 +624,6 @@ function getContactRecordName(new_contactid) {
     <!--- Return the primary key of the newly inserted record --->
     <cfreturn insertResult.generatedKey>
 </cffunction>
-
-
 
 <cffunction output="false" name="DETcontactdetails" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">
@@ -1242,7 +1234,6 @@ function getContactRecordName(new_contactid) {
             ORDER BY 
                 d.contactfullname
         </cfquery>
-
 
     <cfreturn result>
 </cffunction>

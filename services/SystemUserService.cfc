@@ -218,7 +218,6 @@
         </cfquery>
         
 
-
     <cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELfusystemusers_24344" access="public" returntype="query">
@@ -378,7 +377,6 @@
         </cfquery>
         
         <cfreturn result>
-
 
     
 </cffunction>

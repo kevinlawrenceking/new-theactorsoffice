@@ -28,15 +28,11 @@
         ORDER BY i.valuetype
     </cfquery>
 
-
     <cfset result.types = types>
     <cfset result.recordcount = types.recordcount>
 
     <cfreturn result>
 </cffunction>
-
-
-
 
 <cffunction output="false" name="SELitemTypesByCategoryAndUser" access="public" returntype="struct">
     <!--- This function retrieves distinct value types based on user and category IDs. --->
@@ -93,8 +89,6 @@
     <cfreturn resultStruct>
 
 </cffunction>
-
-
 
 <cffunction output="false" name="SELitemtypes" access="public" returntype="query">
     <cfargument name="catId" type="numeric" required="true">

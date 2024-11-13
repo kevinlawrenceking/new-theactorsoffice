@@ -26,8 +26,6 @@
     <cfreturn resultStruct>
 </cffunction>
 
-
-
 <cffunction output="false" name="INSlinks" access="public" returntype="numeric">
     <cfargument name="linkname" type="string" required="true">
     <cfargument name="linkurl" type="string" required="true">

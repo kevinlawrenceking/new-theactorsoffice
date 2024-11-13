@@ -38,7 +38,6 @@
         <cfreturn actions>
     </cffunction>
 
-
 <cffunction output="false" name="UPDactionusers" access="public" returntype="void" hint="Updates the isdeleted status of a user in the actionusers_tbl">
     <cfargument name="new_id" type="numeric" required="true" hint="ID of the user to be updated">
 

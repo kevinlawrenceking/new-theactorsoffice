@@ -73,7 +73,6 @@
     <cfreturn queryResult>
 </cffunction>
 
-
 <cffunction output="false" name="SELaudgenres_audition_xref_24274" access="public" returntype="query">
     <cfargument name="audgenre" type="string" required="true">
     <cfargument name="audroleid" type="numeric" required="true">
@@ -138,6 +137,5 @@
                 audgenreID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audgenreID#" null="#NOT len(trim(arguments.new_audgenreID))#"> 
             WHERE someColumn = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.conditionValue#">
         </cfquery>
-
 
 </cffunction></cfcomponent>

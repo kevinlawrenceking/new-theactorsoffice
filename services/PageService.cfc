@@ -165,7 +165,6 @@
     <cfreturn result>
 </cffunction>
 
-
 <cffunction output="false" name="SELpgpages_24003" access="public" returntype="query">
     <cfargument name="thispage" type="string" required="true">
 
@@ -632,7 +631,6 @@
     
 </cffunction>
 
-
 <cffunction output="false" name="getDynamicQueryx" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
     
@@ -675,7 +673,6 @@
 
     <cfreturn result>
 </cffunction>
-
 
 <cffunction output="false" name="RESpgpages_24777" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">

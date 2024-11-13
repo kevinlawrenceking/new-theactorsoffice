@@ -160,7 +160,6 @@
 
 </cffunction>
 
-
 <cffunction output="false" name="DETfusystems_24029" access="public" returntype="query">
     <cfargument name="id" type="numeric" required="true">
     
@@ -244,7 +243,6 @@
     
     <cfreturn result>
 </cffunction>
-
 
 <cffunction output="false" name="SELfusystems_24321" access="public" returntype="query">
     <cfargument name="systemID" type="numeric" required="true">
