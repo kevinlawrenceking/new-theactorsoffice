@@ -115,7 +115,7 @@
 
                     <cfset cardclass="" />
               
-              <Cfouput>
+              <cfoutput>
                     <cfif #eventresults.eventresults.currentrow# is "1">
                     
                             <cfset target_id="#new_eventid#" />
