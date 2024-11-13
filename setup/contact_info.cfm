@@ -135,7 +135,7 @@
     <script>
         $(document).ready(function() {
             $("#remoteUpdate<cfoutput>C#cu.itemid#</cfoutput>").on("show.bs.modal", function(event) {
-                // Place the returned HTML into the selected element
+                
                 $(this).find(".modal-body").load("<cfoutput>/include/remoteupdatec.cfm?userid=#userid#&itemid=#cu.itemid#</cfoutput>");
             });
         });
@@ -184,7 +184,7 @@
     <script>
         $(document).ready(function() {
             $("#remoteAdd<cfoutput>C#c.catid#</cfoutput>").on("show.bs.modal", function(event) {
-                // Place the returned HTML into the selected element
+                
                 $(this).find(".modal-body").load("<cfoutput>/include/remoteAddC.cfm?catid=#c.catid#&userid=#session.userid#&contactid=#currentid#</cfoutput>");
             });
         });
@@ -222,7 +222,7 @@
 <script>
     $(document).ready(function() {
         $("#remoteUpdateTag").on("show.bs.modal", function(event) {
-            // Place the returned HTML into the selected element
+            
             $(this).find(".modal-body").load("<cfoutput>/include/remoteUpdateTag.cfm?contactid=#currentid#</cfoutput>");
         });
     });
@@ -256,7 +256,7 @@
 <script>
     $(document).ready(function() {
         $("#remoteNewForm").on("show.bs.modal", function(event) {
-            // Place the returned HTML into the selected element
+            
             $(this).find(".modal-body").load("<cfoutput>/include/RemoteNewForm.cfm?rpgid=36&pgid=3&t2=1&pgdir=#pgdir#&contactid=#contactid#</cfoutput>");
         });
     });
@@ -298,7 +298,7 @@
 <script>
     $(document).ready(function() {
         $("#remoteUploadForm").on("show.bs.modal", function(event) {
-            // Place the returned HTML into the selected element
+            
             $(this).find(".modal-body").load("/include/remoteUploadForm.cfm");
         });
     });
@@ -338,7 +338,7 @@
 <script>
     $(document).ready(function() {
         $("#remoteUpdateName").on("show.bs.modal", function(event) {
-            // Place the returned HTML into the selected element
+            
             $(this).find(".modal-body").load("<cfoutput>/include/remoteUpdateName.cfm?contactid=#currentid#&userid=#session.userid#</cfoutput>");
         });
     });
@@ -483,7 +483,7 @@
                             <script>
                                 $(document).ready(function() {
                                     $("##remoteDeleteForm#recid#").on("show.bs.modal", function(event) {
-                                        // Place the returned HTML into the selected element
+                                        
                                         $(this).find(".modal-body").load("/include/remoteDeleteForm.cfm?recid=#recid#&rpgid=#3#&pgaction=update&pgdir=#pgdir#");
                                     });
                                 });

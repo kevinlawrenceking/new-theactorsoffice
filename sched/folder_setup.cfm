@@ -10,7 +10,7 @@
     
     <cfset starttime = "#timeformat(NOw(),'HHMMSS')#" />
     
-    <cfset dir_media_root="#datasourceMediaPath#' />
+    <cfset dir_media_root="#datasourceMediaPath#" />
 
     <cfif #dbug# is "Y">
 

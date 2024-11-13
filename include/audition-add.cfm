@@ -133,7 +133,7 @@
 
             <script>
               function showDivssss(divId, element) {
-                console.log("Value: ", element.value, "Type: ", typeof element.value); // Debugging line
+                console.log("Value: ", element.value, "Type: ", typeof element.value); 
                 document.getElementById(divId).style.display = element.value == '0' ? 'none' : 'block';
               }
             </script>

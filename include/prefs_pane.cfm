@@ -115,7 +115,7 @@
         <script>
             $(document).ready(function() {
                 $("##remoteaddaudsubmitsite").on("show.bs.modal", function(event) {
-                    // Place the returned HTML into the selected element
+                    
                     $(this).find(".modal-body").load("/include/remoteaddaudsubmitsite.cfm?userid=#userid#");
                 });
             });
@@ -143,7 +143,7 @@
                     <script>
                         $(document).ready(function() {
                             $("##remoteUpdateaudsubmitsite_#subsites.submitsiteid#").on("show.bs.modal", function(event) {
-                                // Place the returned HTML into the selected element
+                                
                                 $(this).find(".modal-body").load("/include/remoteUpdateaudsubmitsite.cfm?userid=#userid#&src=account&submitsiteid=#subsites.submitsiteid#");
                             });
                         });

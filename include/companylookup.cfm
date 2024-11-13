@@ -77,10 +77,10 @@
             $('#results').on('click', 'div', function() {
                 const selectedValue = $(this).text();
                 if ($(this).hasClass('add-new')) {
-                    // Remove the "Add new: " prefix
+         
                     const newCompanyName = selectedValue.replace(/^Add new: /, '');
                     $('#companySearch').val(newCompanyName);
-                    // Handle the new company addition logic here
+                 
                 } else {
                     $('#companySearch').val(selectedValue);
                 }

@@ -13,7 +13,7 @@
 <script>
   $(document).ready(function () {
     $("#dashboardupdate").on("show.bs.modal", function (event) {
-      // Place the returned HTML into the selected element
+      
       $(this)
         .find(".modal-body")
         .load("<cfoutput>/include/dashboardupdate.cfm?userid=#userid#</cfoutput>");
@@ -315,9 +315,9 @@
     });
 
     function updateSelectedAttribute(selectElement) {
-        // Remove 'selected' attribute from all options
+
         Array.from(selectElement.options).forEach(option => option.removeAttribute('selected'));
-        // Set 'selected' attribute on the currently chosen option
+
         selectElement.options[selectElement.selectedIndex].setAttribute('selected', 'selected');
     }
 </script>
@@ -352,7 +352,7 @@
             <script>
               $(document).ready(function () {
                 $("##updateaction_#actions.id#").on("show.bs.modal", function (event) {
-                  // Place the returned HTML into the selected element
+                  
                   $(this)
                     .find(".modal-body")
                     .load("/include/remoteactionUpdate.cfm?id=#actions.id#");

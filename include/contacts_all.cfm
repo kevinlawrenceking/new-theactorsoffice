@@ -23,7 +23,7 @@
 <script>
     $(document).ready(function() {
         $("#remoteAddName").on("show.bs.modal", function(event) {
-            // Place the returned HTML into the selected element
+            
             $(this).find(".modal-body").load("/include/remoteAddName.cfm");
         });
     });

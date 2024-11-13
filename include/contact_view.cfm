@@ -148,7 +148,7 @@
                             <script>
                                 $(document).ready(function() {
                                     $("##remoteDeleteForm#recid#").on("show.bs.modal", function(event) {
-                                        // Place the returned HTML into the selected element
+                                        
                                         $(this).find(".modal-body").load("/include/remoteDeleteForm.cfm?recid=#recid#&rpgid=#pgid#&pgaction=update&pgdir=#pgdir#");
                                     });
                                 });

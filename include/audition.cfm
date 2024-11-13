@@ -180,7 +180,7 @@
         <script>
             $(document).ready(function() {
                 $("##auditionupdate_#events.eventid#").on("show.bs.modal", function(event) {
-                    // Place the returned HTML into the selected element
+                    
                     $(this).find(".modal-body").load("/include/remoteaudupdateform.cfm?secid=#secid#&eventid=#events.eventid#&audcatid=#audcatid#&audprojectid=#audprojectid#&rpgid=175&details_pgid=176&pgdir=audition&userid=#userid#");
                 });
             });
@@ -204,7 +204,7 @@
     <script>
         $(document).ready(function() {
             $("##remoteDeleteFormAudproject#projectdetails.audprojectid#").on("show.bs.modal", function(event) {
-                // Place the returned HTML into the selected element
+                
                 $(this).find(".modal-body").load("/include/remoteDeleteFormAudproject.cfm?audprojectid=#projectdetails.audprojectid#");
             });
         });
@@ -229,7 +229,7 @@
         <script>
             $(document).ready(function() {
                 $("##auditionadd_#findstep.audstep#").on("show.bs.modal", function(event) {
-                    // Place the returned HTML into the selected element
+                    
                     $(this).find(".modal-body").load("/include/remoteaudupdateform.cfm?NEW_AUDSUBCATID=#new_audsubcatid#&audcatid=#audcatid#&pgaction=add&audstepid=#new_audstepid#&secid=#secid#&audprojectid=#audprojectid#&rpgid=184&details_pgid=176&pgdir=audition&userid=#userid#");
                 });
             });
@@ -238,7 +238,7 @@
         <script>
             $(document).ready(function() {
                 $("##auditionadd_#findstep.audstep#_cancel").on("show.bs.modal", function(event) {
-                    // Place the returned HTML into the selected element
+                    
                     $(this).find(".modal-body").load("/include/remoteaudupdateform_cancel.cfm?NEW_AUDSUBCATID=#new_audsubcatid#&audcatid=#audcatid#&pgaction=add&audstepid=#new_audstepid#&secid=#secid#&audprojectid=#audprojectid#&rpgid=184&details_pgid=176&pgdir=audition&userid=#userid#");
                 });
             });
@@ -261,7 +261,7 @@
 <script>
     $(document).ready(function() {
         $("#catupdate").on("show.bs.modal", function(event) {
-            // Place the returned HTML into the selected element
+            
             $(this).find(".modal-body").load("/include/catupdateform.cfm?AUDPROJECTID=<cfoutput>#audprojectid#</cfoutput>&audcatid=<cfoutput>#projectdetails.audcatid#</cfoutput>&rpgid=184&secid=176&details_pgid=176&pgdir=audition");
         });
     });
@@ -282,7 +282,7 @@
 <script>
     $(document).ready(function() {
         $("#projectupdate").on("show.bs.modal", function(event) {
-            // Place the returned HTML into the selected element
+            
             $(this).find(".modal-body").load("/include/remote_aud_project_update.cfm?<cfoutput>secid=#secid#</cfoutput>&audprojectid=<cfoutput>#projectdetails.audprojectid#</cfoutput>&rpgid=148&pgdir=audition");
         });
     });
@@ -303,7 +303,7 @@
 <script>
     $(document).ready(function() {
         $("#audlocupdate").on("show.bs.modal", function(event) {
-            // Place the returned HTML into the selected element
+            
             $(this).find(".modal-body").load("/include/audlocupdate.cfm?secid=<cfoutput>#secid#</cfoutput>&userid=<cfoutput>#userid#</cfoutput>&audprojectid=<cfoutput>#audprojectid#</cfoutput>");
         });
     });

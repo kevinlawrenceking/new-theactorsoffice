@@ -23,18 +23,17 @@ $(function() {
         },
         minLength: 2,
         select: function(event, ui) {
-            // Populate hidden fields with selected values
+
             $("#selectedId").val(ui.item.id);
             $("#category").val(ui.item.category);
 
-            // Submit the form
             $("#submitform").submit();
         },
         open: function() {
             var inputWidth = $("#autocomplete").outerWidth();
             $(".ui-autocomplete").css({
-                "width": (inputWidth * 1.5) + "px", // Increase the width by 1.5 times the input field width
-                "white-space": "nowrap" // Prevents wrapping
+                "width": (inputWidth * 1.5) + "px",
+                "white-space": "nowrap" 
             });
         }
     });

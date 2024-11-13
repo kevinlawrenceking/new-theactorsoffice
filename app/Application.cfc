@@ -26,7 +26,7 @@
 
     <cfscript>
         this.name = "TAO";
-        this.datasource = application.dsn; // Setting this.datasource using application.dsn
+        this.datasource = application.dsn;
         this.sessionManagement = true;
         this.applicationTimeout = createTimeSpan(1, 1, 0, 0);
         this.sessionTimeout = createTimeSpan(0, 0, 20, 0);

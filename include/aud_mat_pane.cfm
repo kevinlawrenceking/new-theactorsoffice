@@ -35,7 +35,7 @@
     <script>
         $(document).ready(function() {
             $("##remoteselectheadshot").on("show.bs.modal", function(event) {
-                // Place the returned HTML into the selected element
+                
                 $(this).find(".modal-body").load("/include/remoteselectheadshot.cfm?selected_eventid=#eventid#&eventid=#eventid#&audprojectid=#audprojectid#&secid=177");
             });
         });
@@ -44,7 +44,7 @@
     <script>
         $(document).ready(function() {
             $("##remoteselectmaterial").on("show.bs.modal", function(event) {
-                // Place the returned HTML into the selected element
+                
                 $(this).find(".modal-body").load("/include/remoteselectmaterial.cfm?selected_eventid=#eventid#&eventid=#eventid#&audprojectid=#audprojectid#&secid=177");
             });
         });
@@ -53,7 +53,7 @@
     <script>
         $(document).ready(function() {
             $("##remoteadd").on("show.bs.modal", function(event) {
-                // Place the returned HTML into the selected element
+                
                 $(this).find(".modal-body").load("/include/remotaudmatadd.cfm?eventid=#eventid#&audprojectid=#audprojectid#&secid=177&new_isshare=0");
             });
         });
@@ -79,7 +79,7 @@
     <script>
         $(document).ready(function() {
             $("##matupdate").on("show.bs.modal", function(event) {
-                // Place the returned HTML into the selected element
+                
                 $(this).find(".modal-body").load("/include/audlinkadd.cfm?audroleid=<Cfoutput>#audroleid#</cfoutput>&eventid=<Cfoutput>#eventid#&audprojectid=#audprojectid#</cfoutput>&pgdir=audition");
             });
         });
@@ -115,7 +115,7 @@
     <script>
         $(document).ready(function() {
             $("##remoteaddMaterial").on("show.bs.modal", function(event) {
-                // Place the returned HTML into the selected element
+                
                 $(this).find(".modal-body").load("/include/remoteaddMaterial.cfm?userid=#userid#&src=aud&audprojectid=#audprojectid#&new_isshare=0");
             });
         });
@@ -169,7 +169,7 @@
                     <script>
                         $(document).ready(function() {
                             $("##remoteDeleteaudmedia#audmedia.mediaid#").on("show.bs.modal", function(event) {
-                                // Place the returned HTML into the selected element
+                                
                                 $(this).find(".modal-body").load("/include/remoteDeleteaudmedia.cfm?mediaid=#audmedia.mediaid#&secid=177");
                             });
                         });
@@ -192,7 +192,7 @@
                     <script>
                         $(document).ready(function() {
                             $("##remoteRemoveaudmedia#audmedia.mediaid#").on("show.bs.modal", function(event) {
-                                // Place the returned HTML into the selected element
+                                
                                 $(this).find(".modal-body").load("/include/remoteRemoveaudmedia.cfm?mediaid=#audmedia.mediaid#&audprojectid=#audprojectid#&secid=196");
                             });
                         });
@@ -215,7 +215,7 @@
                     <script>
                         $(document).ready(function() {
                             $("##remoteupdatematerial#audmedia.mediaid#").on("show.bs.modal", function(event) {
-                                // Place the returned HTML into the selected element
+                                
                                 $(this).find(".modal-body").load("/include/remoteupdatematerial.cfm?mediaid=#audmedia.mediaid#&src=aud&dir=aud&audprojectid=#audprojectid#");
                             });
                         });
@@ -260,7 +260,7 @@
                     <script type="text/javascript">
                         document.getElementById('downloadLink_#audmedia.mediaid#').addEventListener('click', function(e) {
                             e.preventDefault();
-                            // Variables that you want to pass
+                            
                             const host = '#host#';
                             const userid = '#userid#';
                             const mediafilename = '#audmedia.mediafilename#';

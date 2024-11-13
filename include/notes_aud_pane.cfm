@@ -72,7 +72,7 @@
                         <script>
                             $(document).ready(function() {
                                 $("##remoteDeleteFormNoteAud#notesaud.noteid#").on("show.bs.modal", function(event) {
-                                    // Place the returned HTML into the selected element
+                                    
                                     $(this).find(".modal-body").load("/include/remoteDeleteFormNoteAud.cfm?recid=#notesaud.noteid#&audprojectid=#audprojectid#&returnurl=audition");
                                 });
                             });
@@ -95,7 +95,7 @@
                         <script>
                             $(document).ready(function() {
                                 $("##remoteaddlink#notesaud.noteid#").on("show.bs.modal", function(event) {
-                                    // Place the returned HTML into the selected element
+                                    
                                     $(this).find(".modal-body").load("/include/linkadd.cfm?audprojectid=#audprojectid#&contactid=0&noteid=#new_noteid#&returnurl=audition");
                                 });
                             });
@@ -118,7 +118,7 @@
                         <script>
                             $(document).ready(function() {
                                 $("##remotenotedetails#notesaud.noteid#").on("show.bs.modal", function(event) {
-                                    // Place the returned HTML into the selected element
+                                    
                                     $(this).find(".modal-body").load("/include/remotenotedetails.cfm?contactid=0&noteid=#new_noteid#&returnurl=audition");
                                 });
                             });
@@ -141,7 +141,7 @@
                         <script>
                             $(document).ready(function() {
                                 $("##remoteaddattachment#notesaud.noteid#").on("show.bs.modal", function(event) {
-                                    // Place the returned HTML into the selected element
+                                    
                                     $(this).find(".modal-body").load("/include/attachmentaddaud.cfm?audprojectid=#audprojectid#&contactid=0&noteid=#new_noteid#&returnurl=audition");
                                 });
                             });

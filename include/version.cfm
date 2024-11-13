@@ -98,7 +98,7 @@
                             <script>
                                 $(document).ready(function(){
                                     $("##vermodal").on("show.bs.modal", function(event){
-                                        // Place the returned HTML into the selected element
+                                        
                                         $(this).find(".modal-body").load("/include/patchnotes.cfm?recid=#details.verid#&oldverid=#details.verid#");
                                     });
                                 });
@@ -271,7 +271,7 @@
                                     <script>
                                         $(document).ready(function(){
                                             $("##myModal#results.recid#").on("show.bs.modal", function(event){
-                                                // Place the returned HTML into the selected element
+                                                
                                                 $(this).find(".modal-body").load("/include/remoteverticketupdate.cfm?recid=#results.recid#&oldverid=#details.verid#");
                                             });
                                         });
@@ -280,7 +280,7 @@
                                     <script>
                                         $(document).ready(function(){
                                             $("##approve#results.recid#").on("show.bs.modal", function(event){
-                                                // Place the returned HTML into the selected element
+                                                
                                                 $(this).find(".modal-body").load("/include/remoteapprove.cfm?recid=#results.recid#&oldverid=#details.verid#");
                                             });
                                         });

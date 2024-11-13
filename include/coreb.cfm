@@ -189,7 +189,7 @@
             <script>
                 $(document).ready(function() {
                     $("#remoteSupportForm").on("show.bs.modal", function(event) {
-                        // Place the returned HTML into the selected element
+                        
                         $(this).find(".modal-body").load("/include/RemoteSupportForm.cfm<cfoutput>?pgid=#pgid#&pgdir=#pgdir#&qstring=#cgi.query_string#&userrole=#userrole#</cfoutput>");
                     });
                 });

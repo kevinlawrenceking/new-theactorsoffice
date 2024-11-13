@@ -7,7 +7,7 @@
         <script>
             $(document).ready(function() {
                 $("##remoteUpdateAnswer").on("show.bs.modal", function(event) {
-                    // Place the returned HTML into the selected element
+                    
                     $(this).find(".modal-body").load("/include/remoteassform.cfm?eventid=#eventid#&audprojectid=#audprojectid#");
                 });
             });

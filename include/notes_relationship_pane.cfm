@@ -62,7 +62,7 @@
                         <script>
                             $(document).ready(function() {
                                 $("##remoteDeleteFormNote#new_noteid#").on("show.bs.modal", function(event) {
-                                    // Place the returned HTML into the selected element
+                                    
                                     $(this).find(".modal-body").load("/include/remoteDeleteFormNote.cfm?recid=#new_noteid#&contactid=#currentid#&pgdir=contact&t3=1");
                                 });
                             });
@@ -83,7 +83,7 @@
                         <script>
                             $(document).ready(function() {
                                 $("##remoteaddlink#notesRelationship.noteid#").on("show.bs.modal", function(event) {
-                                    // Place the returned HTML into the selected element
+                                    
                                     $(this).find(".modal-body").load("/include/linkadd.cfm?noteid=#new_noteid#&contactid=#currentid#&returnurl=contact");
                                 });
                             });
@@ -104,7 +104,7 @@
                         <script>
                             $(document).ready(function() {
                                 $("##remotenotedetails#NotesRelationship.noteid#").on("show.bs.modal", function(event) {
-                                    // Place the returned HTML into the selected element
+                                    
                                     $(this).find(".modal-body").load("/include/remotenotedetails.cfm?contactid=0&noteid=#new_noteid#&returnurl=appoint");
                                 });
                             });
@@ -125,7 +125,7 @@
                         <script>
                             $(document).ready(function() {
                                 $("##remoteaddattachment#notesRelationship.noteid#").on("show.bs.modal", function(event) {
-                                    // Place the returned HTML into the selected element
+                                    
                                     $(this).find(".modal-body").load("/include/attachmentadd.cfm?noteid=#new_noteid#&reventid=0&eventid=0&contactid=#currentid#&returnurl=contact");
                                 });
                             });

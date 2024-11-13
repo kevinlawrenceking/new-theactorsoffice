@@ -52,7 +52,7 @@
 
 <SCRIPT>
     $(document).ready(function() {
-        // Initialize DataTable for basic-datatable
+        
         $("#basic-datatable").DataTable({
             "iDisplayLength": 100,
             language: {
@@ -66,7 +66,6 @@
             }
         });
 
-        // Initialize DataTable for datatable-buttons
         var a = $("#datatable-buttons").DataTable({
             lengthChange: !1,
             buttons: [{

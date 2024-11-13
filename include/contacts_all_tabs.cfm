@@ -14,14 +14,14 @@
 <style>
     /* Extra small devices (phones, less than 768px) */
     /* No media query since this is the default in Bootstrap */
-    .font-size: 11px; // regular text
+    .font-size: 11px; 
     .large {
         font-size: 20px;
     }
 
     /* Small devices (tablets, 768px and up) */
     @media (min-width: @screen-sm-min) {
-        .font-size: 13px; // regular text
+        .font-size: 13px; 
         .large {
             font-size: 50px;
         }
@@ -29,7 +29,7 @@
 
     /* Medium devices (desktops, 992px and up) */
     @media (min-width: @screen-md-min) {
-        .font-size: 16px; // regular text
+        .font-size: 16px; 
         .large {
             font-size: 100px;
         }
@@ -37,7 +37,7 @@
 
     /* Large devices (large desktops, 1200px and up) */
     @media (min-width: @screen-lg-min) {
-        .font-size: 18px; // regular text
+        .font-size: 18px; 
         .large {
             font-size: 150px;
         }
@@ -56,7 +56,7 @@
 <script>
     $(document).ready(function() {
         $("#remoteAddName").on("show.bs.modal", function(event) {
-            // Place the returned HTML into the selected element
+            
             $(this).find(".modal-body").load("/include/remoteAddName.cfm");
         });
     });
@@ -389,7 +389,7 @@
     <script>
         (function($) {
             function storeTabs($tabs, $destination) {
-                // measure width
+                
                 $tabs.each(function() {
                     var width = $(this).outerWidth(true);
                     $(this).find('a').data('width', width);
@@ -438,18 +438,16 @@
                         }
                     });
                 } else {
-                    // check if enough space to move a menu item back out of "..."
-                    // get parent width
                     var parentWidth = $element.parent().width();
                     var tabSetWidth = 0;
                     var xPxAvailable;
 
-                    // calculate total width of tab set (can't just use width of ul because it is 100% by default)
+                    
                     $element.children('li').each(function() {
                         tabSetWidth += $(this).outerWidth(true);
                     });
 
-                    // calculate available horizontal space
+                    
                     xPxAvailable = parentWidth - tabSetWidth;
 
                     $element.find('.dropdown-menu a').each(function() {
@@ -463,7 +461,6 @@
                         }
                     });
 
-                    // if no menu items left, remove "..."
                     if (!$element.find('.dropdown-menu a').length) {
                         $element.find('.responsivetabs-more').remove();
                     }

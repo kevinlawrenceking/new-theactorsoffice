@@ -16,7 +16,7 @@
             <script>
                 $(document).ready(function() {
                     $("##remoteadd#types.mediatypeid#").on("show.bs.modal", function(event) {
-                        // Place the returned HTML into the selected element
+                        
                         $(this).find(".modal-body").load("/include/remotaudmatadd.cfm?eventid=#eventid#&audprojectid=#audprojectid#&mediatypeid=#types.mediatypeid#&secid=177");
                     });
                 });
@@ -52,7 +52,7 @@
             <script>
                 $(document).ready(function() {
                     $("##bookupdate").on("show.bs.modal", function(event) {
-                        // Place the returned HTML into the selected element
+                        
                         $(this).find(".modal-body").load("/include/bookupdateform.cfm?secid=<cfoutput>#secid#</cfoutput>&audprojectid=<cfoutput>#audprojectid#</cfoutput>&focusid=<cfoutput>#focusid#</cfoutput>&eventid=<cfoutput>#eventid#&audroleid=#audroleid#</cfoutput>&pgdir=audition");
                     });
                 });
@@ -75,7 +75,7 @@
         <script>
             $(document).ready(function() {
                 $("#auditionadd").on("show.bs.modal", function(event) {
-                    // Place the returned HTML into the selected element
+                    
                     $(this).find(".modal-body").load("/include/remoteaudaddform.cfm?new_audprojectid=<cfoutput>#audprojectid#</cfoutput>&new_audstepid=4&secid=181&audroleid=<cfoutput>#audroleid#</cfoutput>&pgdir=audition");
                 });
             });

@@ -146,7 +146,7 @@
                                 <script>
                                     $(document).ready(function(){
                                         $("##myModal#results.recid#").on("show.bs.modal", function(event){
-                                            // Place the returned HTML into the selected element
+                                            
                                             $(this).find(".modal-body").load("/include/remotecontent.cfm?recid=#results.recid#");
                                         });
                                     });
@@ -154,7 +154,7 @@
                                 <script>
                                     $(document).ready(function(){
                                         $("##remoteNewForm").on("show.bs.modal", function(event){
-                                            // Place the returned HTML into the selected element
+                                            
                                             $(this).find(".modal-body").load("/include/RemoteNewForm.cfm?rpgid=36");
                                         });
                                     });

@@ -72,7 +72,7 @@
                         <script>
                             $(document).ready(function() {
                                 $("##remoteaddlink#NotesEvent.noteid#").on("show.bs.modal", function(event) {
-                                    // Place the returned HTML into the selected element
+                                    
                                     $(this).find(".modal-body").load("/include/linkadd.cfm?contactid=0&noteid=#new_noteid#&returnurl=appoint");
                                 });
                             });
@@ -94,7 +94,7 @@
                         <script>
                             $(document).ready(function() {
                                 $("##remotenotedetails#NotesEvent.noteid#").on("show.bs.modal", function(event) {
-                                    // Place the returned HTML into the selected element
+                                    
                                     $(this).find(".modal-body").load("/include/remotenotedetails.cfm?contactid=0&noteid=#new_noteid#&returnurl=appoint");
                                 });
                             });
@@ -116,7 +116,7 @@
                         <script>
                             $(document).ready(function() {
                                 $("##remoteaddattachment#NotesEvent.noteid#").on("show.bs.modal", function(event) {
-                                    // Place the returned HTML into the selected element
+                                    
                                     $(this).find(".modal-body").load("/include/attachmentadd.cfm?contactid=0&noteid=#new_noteid#&returnurl=appoint");
                                 });
                             });

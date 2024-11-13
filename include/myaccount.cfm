@@ -214,7 +214,7 @@
                     <script>
                         $(document).ready(function() {
                             $("#actinglinksupdate").on("show.bs.modal", function(event) {
-                                // Place the returned HTML into the selected element
+                                
                                 $(this).find(".modal-body").load("<cfoutput>/include/actinglinksupdate.cfm?userid=#userid#</cfoutput>");
                             });
                         });
@@ -223,7 +223,7 @@
                     <script>
                         $(document).ready(function() {
                             $("#dashboardupdate").on("show.bs.modal", function(event) {
-                                // Place the returned HTML into the selected element
+                                
                                 $(this).find(".modal-body").load("<cfoutput>/include/dashboardupdate.cfm?userid=#userid#</cfoutput>");
                             });
                         });
@@ -249,7 +249,7 @@
                         <script>
                             $(document).ready(function() {
                                 $("##paneladd").on("show.bs.modal", function(event) {
-                                    // Place the returned HTML into the selected element
+                                    
                                     $(this).find(".modal-body").load("/include/remotePanelAdd.cfm?userid=#userid#");
                                 });
                             });
@@ -261,7 +261,7 @@
                             <script>
                                 $(document).ready(function() {
                                     $("##addlink_#sitetypes.sitetypeid#").on("show.bs.modal", function(event) {
-                                        // Place the returned HTML into the selected element
+                                        
                                         $(this).find(".modal-body").load("/include/remotelinkAdd.cfm?new_sitetypeid=#sitetypes.sitetypeid#&userid=#userid#");
                                     });
                                 });
@@ -288,7 +288,7 @@
                             <script>
                                 $(document).ready(function() {
                                     $("##updatelink_#mylinks.id#").on("show.bs.modal", function(event) {
-                                        // Place the returned HTML into the selected element
+                                        
                                         $(this).find(".modal-body").load("/include/remotelinkUpdate.cfm?id=#mylinks.id#");
                                     });
                                 });
@@ -315,7 +315,7 @@
                             <script>
                                 $(document).ready(function() {
                                     $("##updateaction_#actions.id#").on("show.bs.modal", function(event) {
-                                        // Place the returned HTML into the selected element
+                                        
                                         $(this).find(".modal-body").load("/include/remoteactionUpdate.cfm?id=#actions.id#");
                                     });
                                 });
