@@ -50,6 +50,8 @@
     <select id="valueType" name="valueType" class="form-control" data-parsley-required="true" 
             data-parsley-error-message="Type is required" onchange="showDiv('hidden_div', this)">
         <option value=""></option>
+        <option value="Custom" <cfif types.valuetype eq "Custom"> selected </cfif>>Custom</option>
+        
         <cfoutput query="types">
             <option value="#types.valuetype#" <cfif types.valuetype eq details.valuetypedef>selected</cfif>>
                 <cfif types.valuetype eq "Custom">*Add New Type<cfelse>#types.valuetype#</cfif>
