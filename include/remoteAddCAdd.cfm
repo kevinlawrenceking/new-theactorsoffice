@@ -10,7 +10,7 @@
 <!--- Check if the value type is "Custom" and custom type is provided --->
 <cfif #valuetype# is "Custom" and #customtype# is not "">
     <cfinclude template="/include/qry/insert_199_1.cfm" />
-    <cfset new_typeid = typeresult.generatedkey />
+  
     <cfoutput>
         <cfset valuetype = "#customtype#" />
     </cfoutput>
