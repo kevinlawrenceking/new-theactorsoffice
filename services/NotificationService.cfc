@@ -201,7 +201,7 @@
             <cfqueryparam value="#arguments.sunotes#" cfsqltype="CF_SQL_LONGVARCHAR">
         )
     </cfquery>
-
+</cffunction>
 <cffunction output="false" name="UPDnotifications" access="public" returntype="void">
     <cfargument name="notificationId" type="numeric" required="true">
 
