@@ -3,3 +3,4 @@
 <cfset notifications = notificationService.fetchNotifications(
     userID = userid
 ) />
+
