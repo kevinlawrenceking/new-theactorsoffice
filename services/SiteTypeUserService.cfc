@@ -2,7 +2,7 @@
 <cffunction output="false" name="SELsitetypes_user" access="public" returntype="query">
     <cfargument name="sitetypeid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     <cfset var sql = "SELECT pnid FROM sitetypes_user_tbl WHERE sitetypeid = ?">
 
     <cfquery name="result">
@@ -24,7 +24,7 @@
 <cffunction output="false" name="SELsitetypes_user_24133" access="public" returntype="query">
     <cfargument name="new_sitetypeid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT 
@@ -59,7 +59,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_sitetypename" type="string" required="true">
     
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT *
@@ -88,7 +88,7 @@
 <cffunction output="false" name="SELsitetypes_user_24146" access="public" returntype="query">
     <cfargument name="sitetypeid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT *
@@ -112,7 +112,7 @@
     <cfargument name="sitetypename" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT * 
@@ -142,7 +142,7 @@
     <cfargument name="sitetypename" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
 
         <cfquery name="result" >
@@ -158,7 +158,7 @@
 <cffunction output="false" name="SELsitetypes_user_24752" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
 
         <cfquery name="result" >

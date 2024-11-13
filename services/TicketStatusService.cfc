@@ -1,7 +1,7 @@
 <cfcomponent displayname="TicketStatusService" hint="Handles operations for TicketStatus table" > 
 <cffunction output="false" name="SELticketstatuses" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
-    <cfset var result = "">
+    
     <cfset var sql = "SELECT ticketstatus AS id, ticketstatus AS name FROM ticketstatuses">
     <cfset var whereClauses = []>
     <cfset var params = []>
@@ -66,7 +66,7 @@
 <cffunction output="false" name="SELticketstatuses_24781" access="public" returntype="query">
     <cfargument name="status" type="string" required="false">
     
-    <cfset var result = "">
+    
     <cfset var sql = "">
     <cfset var params = []>
     

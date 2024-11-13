@@ -2,7 +2,7 @@
     <cffunction output="false" name="SELftypexref" access="public" returntype="query">
         <cfargument name="type" type="string" required="true">
 
-        <cfset var result = "">
+        
 
         <cfquery name="result">
             SELECT cfparam 

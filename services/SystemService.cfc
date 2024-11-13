@@ -14,7 +14,7 @@
 <cffunction output="false" name="SELfusystems_23821" access="public" returntype="query">
     <cfargument name="newsystemscope" type="string" required="true">
 
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT s.systemid
@@ -31,7 +31,7 @@
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="new_systemid" type="numeric" required="false">
 
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT su.suid 
@@ -49,7 +49,7 @@
 
 <cffunction output="false" name="DETfusystems" access="public" returntype="query">
     <cfargument name="systemId" type="numeric" required="true">
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT *
@@ -64,7 +64,7 @@
     <cfargument name="new_systemid" type="numeric" required="true">
     <cfargument name="new_userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT 
@@ -93,7 +93,7 @@
 <cffunction output="false" name="SELfusystems_23944" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT 
@@ -127,7 +127,7 @@
     <cfargument name="new_systemid" type="numeric" required="true">
     <cfargument name="session_userid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
         <cfquery name="result" >
             SELECT 
@@ -164,7 +164,7 @@
 <cffunction output="false" name="DETfusystems_24029" access="public" returntype="query">
     <cfargument name="id" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -198,7 +198,7 @@
     <cfargument name="systemtype" type="string" required="true">
     <cfargument name="systemscope" type="string" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -216,7 +216,7 @@
     <cfargument name="systemType" type="string" required="true">
     <cfargument name="systemScope" type="string" required="true">
 
-    <cfset var result = "">
+    
 
         <cfquery name="result" >
             SELECT *
@@ -231,7 +231,7 @@
 <cffunction output="false" name="SELfusystems_24320" access="public" returntype="query">
     <cfargument name="systemIds" type="string" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result" >
         SELECT * 
@@ -286,7 +286,7 @@
     <cfargument name="systemID" type="numeric" required="true">
     <cfargument name="userID" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
         <cfquery name="result" >
             SELECT MAX(au.id) AS id, a.actionID, a.actionTitle, a.actionno 
@@ -314,7 +314,7 @@
     <cfargument name="systemType" type="string" required="true">
     <cfargument name="systemScope" type="string" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -330,7 +330,7 @@
     <cfargument name="maint_systemID" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -376,7 +376,7 @@
     <cfargument name="systemid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
         <cfquery name="result" >
             SELECT 
@@ -413,7 +413,7 @@
     <cfargument name="currentid" type="numeric" required="true">
     <cfargument name="session_userid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
         <cfquery name="result" >
             SELECT * 

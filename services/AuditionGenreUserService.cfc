@@ -3,7 +3,7 @@
     <cfargument name="audcatid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT *
@@ -19,7 +19,7 @@
     <cfargument name="new_audcatid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT * 
@@ -35,7 +35,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_audcatid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT audgenreid, audgenre, audcatid
@@ -52,7 +52,7 @@
     <cfargument name="new_genre" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT audgenreid
@@ -84,7 +84,7 @@
     <cfargument name="audroleid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT g.audgenre 

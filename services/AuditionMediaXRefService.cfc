@@ -43,7 +43,7 @@
     <cfargument name="new_mediaID" type="numeric" required="true">
     <cfargument name="audprojectid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT * 

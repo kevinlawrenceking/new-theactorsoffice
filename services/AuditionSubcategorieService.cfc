@@ -3,7 +3,7 @@
     <cfargument name="new_audcatid" type="numeric" required="true">
     <cfargument name="audsubcatname" type="string" required="true">
 
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT * 

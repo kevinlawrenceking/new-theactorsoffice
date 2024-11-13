@@ -1,7 +1,7 @@
 <cfcomponent displayname="AuditionTypeService" hint="Handles operations for AuditionType table" > 
 <cffunction output="false" name="SELaudtypes" access="public" returntype="query">
     <cfargument name="audcatid" type="string" required="true">
-    <cfset var result = "">
+    
         <cfquery name="result">
             SELECT 
                 audtypeid AS id, 
@@ -20,7 +20,7 @@
 
 <cffunction output="false" name="SELaudtypes_23793" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
-    <cfset var result = "">
+    
         <cfquery name="result">
             SELECT DISTINCT audtype AS id, audtype AS name
             FROM audtypes
@@ -38,7 +38,7 @@
 
 <cffunction output="false" name="SELaudtypes_24082" access="public" returntype="query">
     <cfargument name="new_audcatid" type="numeric" required="true">
-    <cfset var result = "">
+    
         <cfquery name="result">
             SELECT 
                 audtypeid AS id, 
@@ -77,7 +77,7 @@ function getAudtypes(new_audcatid) {
 
 <cffunction output="false" name="SELaudtypes_24231" access="public" returntype="query">
     <cfargument name="audstepIds" type="array" required="true">
-    <cfset var result = "">
+    
         <cfquery name="result">
             SELECT 
                 audstepid, 
@@ -108,7 +108,7 @@ function getAudtypes(new_audcatid) {
     <cfargument name="rangeend" type="date" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
         <cfquery name="result">
             SELECT count(r.audroleid) as totals
             FROM audtypes t
@@ -129,7 +129,7 @@ function getAudtypes(new_audcatid) {
 
 <cffunction output="false" name="SELaudtypes_24526" access="public" returntype="query">
     <cfargument name="new_audtypeid" type="numeric" required="true">
-    <cfset var result = "">
+    
         <cfquery name="result">
             SELECT audtype 
             FROM audtypes 
@@ -156,7 +156,7 @@ function getAudtypes(new_audcatid) {
 <cffunction output="false" name="SELaudtypes_24608" access="public" returntype="query">
     <cfargument name="isDeleted" type="boolean" required="true">
     
-    <cfset var result = "">
+    
     
         <cfquery name="result" >
             SELECT 

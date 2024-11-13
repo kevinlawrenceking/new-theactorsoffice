@@ -174,7 +174,7 @@
     <cfargument name="addDaysNoUniqueName" type="string" required="true">
     <cfargument name="newContactId" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -195,7 +195,7 @@
 </cffunction>
 <cffunction output="false" name="SELcontactdetails_23722" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -218,7 +218,7 @@
     <cfargument name="userid" required="true" type="numeric">
     <cfargument name="relationship" required="true" type="numeric">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -279,7 +279,7 @@
 </cffunction>
 <cffunction output="false" name="SELcontactdetails_23806" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -348,7 +348,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="select_contactid" type="numeric" default="0">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -410,7 +410,7 @@
     <cfargument name="userId" type="numeric" required="true">
     <cfargument name="idList" type="string" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -440,7 +440,7 @@
 <cffunction output="false" name="SELcontactdetails_23906" access="public" returntype="query">
     <cfargument name="searchTerm" type="string" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -477,7 +477,7 @@
 <cffunction output="false" name="SELcontactdetails_23913" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -525,7 +525,7 @@ function getContactRecordName(new_contactid) {
     <cfargument name="addDaysNoUniqueName" type="string" required="true">
     <cfargument name="contactId" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -577,7 +577,7 @@ function getContactRecordName(new_contactid) {
 <cffunction output="false" name="SELcontactdetails_24069" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -636,7 +636,7 @@ function getContactRecordName(new_contactid) {
 <cffunction output="false" name="DETcontactdetails" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -703,7 +703,7 @@ function getContactRecordName(new_contactid) {
 <cffunction output="false" name="SELcontactdetails_24263" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -725,7 +725,7 @@ function getContactRecordName(new_contactid) {
 <cffunction output="false" name="DETcontactdetails_24264" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -746,7 +746,7 @@ function getContactRecordName(new_contactid) {
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="referral" type="string" required="true">
 
-    <cfset var result = "">
+    
 
     
         <cfquery name="result" >
@@ -778,7 +778,7 @@ function getContactRecordName(new_contactid) {
 </cffunction>
 <cffunction output="false" name="DETcontactdetails_24340" access="public" returntype="query">
     <cfargument name="idList" type="array" required="true">
-    <cfset var result = "">
+    
     
     <cfif arrayLen(arguments.idList) eq 0>
         <cfreturn queryNew("contactid,recordname")>
@@ -807,7 +807,7 @@ function getContactRecordName(new_contactid) {
     <cfargument name="cdfullname" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -828,7 +828,7 @@ function getContactRecordName(new_contactid) {
 <cffunction output="false" name="SELcontactdetails_24397" access="public" returntype="query">
     <cfargument name="fname" type="string" required="true">
     <cfargument name="lname" type="string" required="true">
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -895,7 +895,7 @@ function getContactRecordName(new_contactid) {
     <cfargument name="userId" type="numeric" required="true">
     <cfargument name="selectContactId" type="numeric" required="false" default="0">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -919,7 +919,7 @@ function getContactRecordName(new_contactid) {
 <cffunction output="false" name="SELcontactdetails_24483" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -946,7 +946,7 @@ function getContactRecordName(new_contactid) {
 <cffunction output="false" name="SELcontactdetails_24514" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -976,7 +976,7 @@ function getContactRecordName(new_contactid) {
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="audprojectid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1022,7 +1022,7 @@ function getContactRecordName(new_contactid) {
 <cffunction output="false" name="SELcontactdetails_24617" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
         <cfquery name="result" >
             SELECT 
@@ -1045,7 +1045,7 @@ function getContactRecordName(new_contactid) {
 <cffunction output="false" name="DETcontactdetails_24624" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
 
        <cfquery name="result" >
     SELECT 
@@ -1083,7 +1083,7 @@ function getContactRecordName(new_contactid) {
 <cffunction output="false" name="DETcontactdetails_24625" access="public" returntype="query">
     <cfargument name="refer_contact_id" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1119,7 +1119,7 @@ function getContactRecordName(new_contactid) {
 </cffunction>
 <cffunction output="false" name="REScontactdetails" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1146,7 +1146,7 @@ function getContactRecordName(new_contactid) {
 <cffunction output="false" name="DETcontactdetails_24629" access="public" returntype="query">
     <cfargument name="refer_contact_id" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1185,7 +1185,7 @@ function getContactRecordName(new_contactid) {
     <cfargument name="userId" type="numeric" required="true">
     <cfargument name="compId" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1218,7 +1218,7 @@ function getContactRecordName(new_contactid) {
 </cffunction>
 <cffunction output="false" name="SELcontactdetails_24683" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
-    <cfset var result = "">
+    
     
  
         <cfquery name="result" >
@@ -1249,7 +1249,7 @@ function getContactRecordName(new_contactid) {
 <cffunction output="false" name="DETcontactdetails_24685" access="public" returntype="query">
     <cfargument name="rcontactid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >

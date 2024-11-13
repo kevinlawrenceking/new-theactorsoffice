@@ -16,7 +16,7 @@
     <cfargument name="valuetype" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT *
@@ -48,7 +48,7 @@
     <cfargument name="valuetype" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT typeid

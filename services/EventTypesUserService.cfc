@@ -2,7 +2,7 @@
 <cffunction output="false" name="DETeventtypes_user" access="public" returntype="query">
     <cfargument name="id" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT *
@@ -47,7 +47,7 @@
     <cfargument name="eventTypeName" type="string" required="true">
     <cfargument name="userId" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT eventTypeName, eventtypedescription, eventtypecolor
@@ -82,7 +82,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="isAuditionModule" type="boolean" required="true">
 
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT eventtypename 
@@ -99,7 +99,7 @@
 
 <cffunction output="false" name="SELeventtypes_user_24486" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT eventtypename 
@@ -114,7 +114,7 @@
 <cffunction output="false" name="SELeventtypes_user_24619" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT 
@@ -138,7 +138,7 @@
 <cffunction output="false" name="SELeventtypes_user_24661" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT 

@@ -78,7 +78,7 @@
     <cfargument name="audgenre" type="string" required="true">
     <cfargument name="audroleid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT *

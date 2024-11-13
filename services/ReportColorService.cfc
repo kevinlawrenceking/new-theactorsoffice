@@ -2,7 +2,7 @@
 <cffunction output="false" name="SELreportcolors" access="public" returntype="query">
     <cfargument name="colorName" type="string" required="false">
     
-    <cfset var result = "">
+    
     <cfset var sql = "SELECT colorid, colorname, colorscheme FROM reportcolors">
     <cfset var whereClause = "">
     <cfset var params = []>

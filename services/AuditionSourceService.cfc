@@ -1,7 +1,7 @@
 <cfcomponent displayname="AuditionSourceService" hint="Handles operations for AuditionSource table" > 
 <cffunction output="false" name="SELaudsources" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
-    <cfset var result = "">
+    
     <cfset var sql = "SELECT audsource AS NAME FROM audsources">
     <cfset var whereClause = "">
     <cfset var paramList = []>
@@ -31,7 +31,7 @@
 <cffunction output="false" name="SELaudsources_24222" access="public" returntype="query">
     <cfargument name="isDeleted" type="boolean" required="false" default="false">
     
-    <cfset var result = "">
+    
     
     <cfset var sql = "
         SELECT audsourceid, audsource
@@ -51,7 +51,7 @@
 <cffunction output="false" name="SELaudsources_24359" access="public" returntype="query">
     <cfargument name="audsource" type="string" required="true">
 
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT *
@@ -66,7 +66,7 @@
 <cffunction output="false" name="SELaudsources_24371" access="public" returntype="query">
     <cfargument name="audsource" type="string" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT *
@@ -110,7 +110,7 @@
 <cffunction output="false" name="SELaudsources_24684" access="public" returntype="query">
     <cfargument name="excludeMyTeam" type="boolean" required="false" default="false">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT audsourceid AS id, audsource AS NAME 

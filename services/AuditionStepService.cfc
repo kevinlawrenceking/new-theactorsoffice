@@ -1,7 +1,7 @@
 <cfcomponent displayname="AuditionStepService" hint="Handles operations for AuditionStep table" > 
 <cffunction output="false" name="SELaudsteps" access="public" returntype="query">
     <cfargument name="stepinfo1" type="string" required="false">
-    <cfset var result = "">
+    
         <cfquery name="result">
             SELECT *
             FROM audsteps
@@ -14,7 +14,7 @@
 </cffunction>
 <cffunction output="false" name="SELaudsteps_23784" access="public" returntype="query">
     <cfargument name="new_audstepid" type="numeric" required="true">
-    <cfset var result = "">
+    
         <cfquery name="result">
             SELECT audstep
             FROM audsteps
@@ -40,7 +40,7 @@
 </cffunction>
 <cffunction output="false" name="SELaudsteps_24083" access="public" returntype="query">
     <cfargument name="isDeleted" type="boolean" required="true">
-    <cfset var result = "">
+    
         <cfquery name="result">
             SELECT 
                 audstepid AS id, 

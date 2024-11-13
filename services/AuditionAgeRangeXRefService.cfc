@@ -3,7 +3,7 @@
     <cffunction output="false" name="SELaudageranges_audtion_xref" access="public" returntype="query">
         <cfargument name="audroleid" type="numeric" required="true">
         <cfargument name="new_rangeid" type="numeric" required="true">
-        <cfset var result = "">
+        
 
         <cfquery name="result">
             SELECT * 

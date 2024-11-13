@@ -85,7 +85,7 @@
     <cfargument name="verid" type="numeric" required="true">
     <cfargument name="col6" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     <cfset var sql = "">
     
     
@@ -141,7 +141,7 @@
 <cffunction output="false" name="SELtickets_23997" access="public" returntype="query">
     <cfargument name="recid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -195,7 +195,7 @@
 <cffunction output="false" name="DETtickets" access="public" returntype="query">
     <cfargument name="recid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -280,7 +280,7 @@
 <cffunction output="false" name="DETtickets_24109" access="public" returntype="query">
     <cfargument name="recid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -354,7 +354,7 @@
 <cffunction output="false" name="DETtickets_24162" access="public" returntype="query">
     <cfargument name="recid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -408,7 +408,7 @@
 <cffunction output="false" name="DETtickets_24208" access="public" returntype="query">
     <cfargument name="recid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -496,7 +496,7 @@
 <cffunction output="false" name="DETtickets_24217" access="public" returntype="query">
     <cfargument name="ticketid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -565,7 +565,7 @@
 <cffunction output="false" name="REStickets" access="public" returntype="query">
     <cfargument name="recid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -705,7 +705,7 @@
 <cffunction output="false" name="DETtickets_24385" access="public" returntype="query">
     <cfargument name="ticketid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
 
     
         <cfquery name="result" >
@@ -724,7 +724,7 @@
 </cffunction>
 <cffunction output="false" name="SELtickets_24472" access="public" returntype="query">
     <cfargument name="verid" type="numeric" required="false">
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -871,7 +871,7 @@
 </cffunction>
 <cffunction output="false" name="SELtickets_24480" access="public" returntype="query">
     <cfargument name="verid" type="numeric" required="false">
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -906,7 +906,7 @@
 <cffunction output="false" name="DETtickets_24767" access="public" returntype="query">
     <cfargument name="recID" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -955,7 +955,7 @@
 <cffunction output="false" name="REStickets_24768" access="public" returntype="query">
     <cfargument name="statusList" type="array" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1002,7 +1002,7 @@
 <cffunction output="false" name="DETtickets_24782" access="public" returntype="query">
     <cfargument name="recid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1040,7 +1040,7 @@
 <cffunction output="false" name="DETtickets_24784" access="public" returntype="query">
     <cfargument name="recid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
 
     
         <cfquery name="result" >
@@ -1076,7 +1076,7 @@
 </cffunction>
 <cffunction output="false" name="REStickets_24785" access="public" returntype="query">
     <cfargument name="recid" type="numeric" required="true">
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1126,7 +1126,7 @@
 <cffunction output="false" name="REStickets_24787" access="public" returntype="query">
     <cfargument name="verid" type="numeric" required="false">
     
-    <cfset var result = "">
+    
     <cfset var sql = "">
     <cfset var params = []>
 

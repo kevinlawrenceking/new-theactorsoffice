@@ -2,7 +2,7 @@
     <cffunction output="false" name="SELaccounts" access="public" returntype="query">
         <cfargument name="accountID" type="numeric" required="true">
     
-        <cfset var result = "">
+        
     
         <cfquery name="result">
             SELECT * 

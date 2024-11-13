@@ -26,7 +26,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="reportid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT 
@@ -54,7 +54,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="reportid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT DISTINCT i.itemdataset
@@ -72,7 +72,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="reportid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT DISTINCT i.itemlabel
@@ -90,7 +90,7 @@
     <cfargument name="reportid" type="numeric" required="true">
     <cfargument name="itemdataset" type="string" required="true">
 
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT DISTINCT 
@@ -156,7 +156,7 @@
 <cffunction output="false" name="RESreportitems" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
         <cfquery name="result" >
             SELECT *

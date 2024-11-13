@@ -43,7 +43,7 @@
 <cffunction output="false" name="SELaudlocations" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT l.audlocid AS ID, l.eventLocation AS Name 

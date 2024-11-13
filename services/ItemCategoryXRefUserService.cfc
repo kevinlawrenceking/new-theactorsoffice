@@ -21,7 +21,7 @@
     <cfargument name="new_typeid" type="numeric" required="true">
     <cfargument name="new_catid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT *

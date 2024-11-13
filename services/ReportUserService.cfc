@@ -3,7 +3,7 @@
     <cfargument name="userID" type="numeric" required="true">
     <cfargument name="reportID" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT r.ID as new_iD
@@ -19,7 +19,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_reportid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT r.ID as new_iD
@@ -34,7 +34,7 @@
 <cffunction output="false" name="SELreports_user_24725" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT * 
@@ -50,7 +50,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="reportname" type="string" required="true">
 
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT reportid, reportname, reportorderno, reporttypeid, reportdescription, colorid
@@ -97,7 +97,7 @@
 
 <cffunction output="false" name="SELreports_user_24733" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT 
@@ -136,7 +136,7 @@
     <cfargument name="userID" type="numeric" required="true">
     <cfargument name="reportTypeID" type="numeric" default="4">
 
-    <cfset var result = "">
+    
     
             <cfquery name="result" >
             SELECT 
@@ -170,7 +170,7 @@
 </cffunction>
 <cffunction output="false" name="SELreports_user_24736" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
-    <cfset var result = "">
+    
         <cfquery name="result" >
             SELECT i.itemvalueint AS item_13
             FROM reports_user u
@@ -184,7 +184,7 @@
     <cfargument name="userId" type="numeric" required="true">
     <cfargument name="reportId" type="numeric" required="true" default="17">
     
-    <cfset var result = "">
+    
     
         <cfquery name="result" >
             SELECT i.itemvalueint AS item_17

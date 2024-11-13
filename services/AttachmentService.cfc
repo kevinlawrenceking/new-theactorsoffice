@@ -20,7 +20,7 @@
 
     <cffunction output="false" name="DETattachments" access="public" returntype="query">
         <cfargument name="attachid" type="numeric" required="true">
-        <cfset var result = "">
+        
 
         <cfquery name="result">
             SELECT attachid, noteid, attachname, attachfilename
@@ -43,7 +43,7 @@
 
     <cffunction output="false" name="SELattachments" access="public" returntype="query">
         <cfargument name="new_noteid" type="numeric" required="true">
-        <cfset var result = "">
+        
 
         <cfquery name="result">
             SELECT attachid, noteid, attachname, attachfilename, userid

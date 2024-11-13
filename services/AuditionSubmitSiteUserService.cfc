@@ -2,7 +2,7 @@
 
 <cffunction output="false" name="SELaudsubmitsites_user" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
-    <cfset var result = "">
+    
     <cfquery name="result">
         SELECT submitsiteid, submitsitename, catlist
         FROM audsubmitsites_user
@@ -16,7 +16,7 @@
 <cffunction output="false" name="SELaudsubmitsites_user_24034" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_submitsitename" type="string" required="true">
-    <cfset var result = "">
+    
     <cfquery name="result">
         SELECT submitsiteid 
         FROM audsubmitsites_user 
@@ -60,7 +60,7 @@
 
 <cffunction output="false" name="DETaudsubmitsites_user" access="public" returntype="query">
     <cfargument name="submitsiteid" type="numeric" required="true">
-    <cfset var result = "">
+    
     <cfquery name="result">
         SELECT submitsiteid, submitsitename, catlist
         FROM audsubmitsites_user
@@ -101,7 +101,7 @@
 <cffunction output="false" name="SELaudsubmitsites_user_24265" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_audcatid" type="string" required="true">
-    <cfset var result = "">
+    
     <cfquery name="result">
         SELECT submitsiteid, submitsitename 
         FROM audsubmitsites_user 
@@ -118,7 +118,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_submitsitename" type="string" required="true">
 
-    <cfset var result = "">
+    
     
         <cfquery name="result" >
             SELECT 

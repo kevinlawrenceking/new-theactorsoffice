@@ -71,7 +71,7 @@
 <cffunction output="false" name="SELexportitems" access="public" returntype="query">
     <cfargument name="exportID" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
         <cfquery name="result" >
             SELECT 

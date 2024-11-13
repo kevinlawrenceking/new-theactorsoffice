@@ -1,7 +1,7 @@
 <cfcomponent displayname="EssenceService" hint="Handles operations for Essence table" > 
 <cffunction output="false" name="SELessences" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
-    <cfset var result = "">
+    
     <cfquery name="result">
         SELECT *
         FROM essences e
@@ -35,7 +35,7 @@
 
 <cffunction output="false" name="DETessences" access="public" returntype="query">
     <cfargument name="essenceid" type="numeric" required="true">
-    <cfset var result = "">
+    
     <cfquery name="result">
         SELECT *
         FROM essences
@@ -58,7 +58,7 @@
 
 <cffunction output="false" name="SELessences_24270" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
-    <cfset var result = "">
+    
     <cfquery name="result">
         SELECT essenceid, essencename
         FROM essences
@@ -72,7 +72,7 @@
 <cffunction output="false" name="SELessences_24282" access="public" returntype="query">
     <cfargument name="new_essence" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
-    <cfset var result = "">
+    
     <cfquery name="result">
         SELECT essenceid AS new_essenceid
         FROM essences
@@ -99,7 +99,7 @@
 
 <cffunction output="false" name="SELessences_24658" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
-    <cfset var result = "">
+    
     <cfquery name="result">
         SELECT 
             e.essenceid AS ID, 

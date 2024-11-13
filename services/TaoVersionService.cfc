@@ -2,7 +2,7 @@
              output = "false">
     
     <cffunction name = "SELtaoversions" access = "public" returntype = "query">
-        <cfset var result = "">
+        
         <cfquery name = "result">
             SELECT verid
             FROM taoversions
@@ -62,7 +62,7 @@
     <cffunction name = "SELtaoversions_24331" access = "public" returntype = "query">
         <cfargument name = "datasource" type = "string" required = "true"/>
     
-        <cfset var result = "">
+        
     
         <cfquery name = "result">
             SELECT verid
@@ -77,7 +77,7 @@
     <cffunction name = "SELtaoversions_24386" access = "public" returntype = "query">
         <cfargument name = "old_verid" type = "numeric" required = "true"/>
     
-        <cfset var result = "">
+        
     
         <cfquery name = "result">
             SELECT CONCAT(v.major, '.', v.minor, '.', v.patch, '.', v.version, '.', v.build) AS 
@@ -93,7 +93,7 @@
     <cffunction name = "SELtaoversions_24387" access = "public" returntype = "query">
         <cfargument name = "new_verid" type = "numeric" required = "true"/>
     
-        <cfset var result = "">
+        
     
         <cfquery name = "result">
             SELECT CONCAT(v.major, '.', v.minor, '.', v.patch, '.', v.version, '.', v.build) AS 
@@ -113,7 +113,7 @@
         <cfargument name = "new_version" type = "string" required = "true"/>
         <cfargument name = "new_build" type = "numeric" required = "true"/>
     
-        <cfset var result = "">
+        
     
         <cfquery name = "result">
             SELECT *

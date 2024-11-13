@@ -2,7 +2,7 @@
 <cffunction output="false" name="SELaudmediatypes" access="public" returntype="query">
     <cfargument name="mediaTypeIds" type="array" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT * 
@@ -21,7 +21,7 @@
 <cffunction output="false" name="SELaudmediatypes_23753" access="public" returntype="query">
     <cfargument name="mediaTypeIds" type="array" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT mediatypeid, mediatype

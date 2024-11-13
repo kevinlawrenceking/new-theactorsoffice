@@ -48,7 +48,7 @@
 <cffunction output="false" name="SELreportranges_24229" access="public" returntype="query">
     <cfargument name="new_rangeid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT rangeid, rangename, rangestart, rangeend

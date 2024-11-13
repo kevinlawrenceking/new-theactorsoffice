@@ -50,7 +50,7 @@
 <cffunction output="false" name="SELlinks" access="public" returntype="query">
     <cfargument name="linkid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT n.eventid 
@@ -75,7 +75,7 @@
 <cffunction output="false" name="SELlinks_23981" access="public" returntype="query">
     <cfargument name="new_noteid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT linkid, linkname, linkurl, userid, noteid

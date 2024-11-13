@@ -2,7 +2,7 @@
 <cffunction output="false" name="SELaudcallbacktypes" access="public" returntype="query">
     <cfargument name="audcatid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT 
@@ -23,7 +23,7 @@
 <cffunction output="false" name="SELaudcallbacktypes_24509" access="public" returntype="query">
     <cfargument name="audcatid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT callbacktypeid AS id, callbacktype AS name

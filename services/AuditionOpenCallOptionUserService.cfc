@@ -2,7 +2,7 @@
 <cffunction output="false" name="SELaudopencalloptions_user" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT opencallid, opencallname
@@ -17,7 +17,7 @@
 <cffunction output="false" name="SELaudopencalloptions_user_24262" access="public" returntype="query">
     <cfargument name="new_opencallid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT opencallid, opencallname
@@ -32,7 +32,7 @@
     <cfargument name="new_opencallname" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT *

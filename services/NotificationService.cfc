@@ -82,7 +82,7 @@
 
 <cffunction output="false" name="SELfunotifications_24709" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT 
@@ -259,7 +259,7 @@
 
 <cffunction output="false" name="SELnotifications" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
-    <cfset var result = "">
+    
 
         <cfquery name="result" >
             SELECT 
@@ -286,7 +286,7 @@
 <cffunction output="false" name="SELfunotifications_24639" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
 
         <cfquery name="result" >
@@ -314,7 +314,7 @@
 
 <cffunction output="false" name="SELnotifications_24351" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
-    <cfset var result = "">
+    
     
 
         <cfquery name="result" >

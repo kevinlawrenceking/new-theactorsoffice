@@ -2,7 +2,7 @@
 <cffunction output="false" name="SELsitetypes_master" access="public" returntype="query">
     <cfargument name="sitetypename" type="string" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT *

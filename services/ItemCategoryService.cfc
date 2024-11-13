@@ -37,7 +37,7 @@
 <cffunction output="false" name="DETitemcategory" access="public" returntype="query">
     <cfargument name="catid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT * 
@@ -52,7 +52,7 @@
     <cfargument name="new_catid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT DISTINCT i.valuetype 
@@ -70,7 +70,7 @@
 
 <cffunction output="false" name="SELitemcategory_24465" access="public" returntype="query">
     <cfargument name="catidList" type="array" required="false" default="#ArrayNew(1)#">
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT DISTINCT c.catid, i.valuetype
@@ -95,7 +95,7 @@
 <cffunction output="false" name="SELitemcategory_24621" access="public" returntype="query">
     <cfargument name="catArea_UCB" type="string" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT 
@@ -121,7 +121,7 @@
     <cfargument name="new_catid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT DISTINCT i.valuetype

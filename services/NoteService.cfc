@@ -64,7 +64,7 @@
 <cffunction output="false" name="SELnoteslog" access="public" returntype="query">
     <cfargument name="noteid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
         <cfquery name="result" >
             SELECT * 
@@ -219,7 +219,7 @@
     <cfargument name="userID" type="numeric" required="true">
     <cfargument name="eventID" type="numeric" required="true">
     
-    <cfset var result = "">
+    
 
         <cfquery name="result" >
             SELECT 
@@ -251,7 +251,7 @@
 </cffunction>
 <cffunction output="false" name="DETnoteslog" access="public" returntype="query">
     <cfargument name="updateNoteID" type="numeric" required="true">
-    <cfset var result = "">
+    
     
 
         <cfquery name="result" >
@@ -319,7 +319,7 @@
     <cfargument name="select_contactid" type="numeric" required="true">
     <cfargument name="noteDetailsPrefix" type="string" required="true">
 
-    <cfset var result = "">
+    
 
     
         <cfquery name="result" >
@@ -356,7 +356,7 @@
 <cffunction output="false" name="SELnoteslog_24698" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -394,7 +394,7 @@
     <cfargument name="userID" type="numeric" required="true">
     <cfargument name="contactID" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -432,7 +432,7 @@
     <cfargument name="userID" type="numeric" required="true">
     <cfargument name="eventID" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -470,7 +470,7 @@
     <cfargument name="userID" type="numeric" required="true">
     <cfargument name="contactID" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
 
         <cfquery name="result" >

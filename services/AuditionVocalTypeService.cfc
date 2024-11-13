@@ -2,7 +2,7 @@
 <cffunction output="false" name="SELaudvocaltypes" access="public" returntype="query">
     <cfargument name="isDeleted" type="boolean" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT vocaltypeid, vocaltype 

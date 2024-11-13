@@ -14,7 +14,7 @@
 <cffunction output="false" name="SELsitelinks_user" access="public" returntype="query">
     <cfargument name="siteIcon" type="string" required="false" default="unknown.png">
     
-    <cfset var result = "">
+    
     <cfset var sql = "SELECT id, sitename, siteurl, siteicon FROM sitelinks_user WHERE iscustom = 1 AND siteicon = ?">
     
     <cfquery name="result">
@@ -59,7 +59,7 @@
 <cffunction output="false" name="SELsitelinks_user_23943" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT 
@@ -88,7 +88,7 @@
     <cfargument name="userId" type="numeric" required="true">
     <cfargument name="siteTypeId" type="numeric" required="true">
     
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT 
@@ -119,7 +119,7 @@
     <cfargument name="userId" type="numeric" required="true">
     <cfargument name="siteTypeId" type="numeric" required="true">
 
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT 
@@ -152,7 +152,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_sitename" type="string" required="true">
 
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT * 
@@ -199,7 +199,7 @@
     <cfargument name="sitename" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
         <cfquery name="result" >
             SELECT *

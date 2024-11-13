@@ -1,7 +1,7 @@
 <cfcomponent displayname="ShareService" hint="Handles operations for Share table" > 
     <cffunction output="false" name="SELshares" access="public" returntype="query">
         <cfargument name="userId" type="numeric" required="true">
-        <cfset var result = "">
+        
 
         <cfquery name="result">
             SELECT *

@@ -2,7 +2,7 @@
 <cffunction output="false" name="SELmtgdurations" access="public" returntype="query">
     <cfargument name="new_durhours" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT durid AS new_durid
@@ -15,7 +15,7 @@
 <cffunction output="false" name="SELmtgdurations_24493" access="public" returntype="query">
     <cfargument name="new_durhours" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT durid AS new_durid
@@ -28,7 +28,7 @@
 <cffunction output="false" name="SELmtgdurations_24655" access="public" returntype="query">
     <cfargument name="new_durid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT durid, durhours, durhours * 3600 AS durseconds, durname

@@ -252,7 +252,7 @@
     <cfargument name="audroleid" type="numeric" required="true">
     <cfargument name="eventid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -314,7 +314,7 @@
 <cffunction output="false" name="SELevents" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -352,7 +352,7 @@
 <cffunction output="false" name="SELevents_23785" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -374,7 +374,7 @@
 <cffunction output="false" name="SELevents_23786" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -396,7 +396,7 @@
 <cffunction output="false" name="SELevents_23787" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -417,7 +417,7 @@
 </cffunction>
 <cffunction output="false" name="SELevents_23788" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -439,7 +439,7 @@
 <cffunction output="false" name="SELevents_23789" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -514,7 +514,7 @@
 <cffunction output="false" name="SELevents_23803" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -567,7 +567,7 @@
 <cffunction output="false" name="SELevents_24012" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -604,7 +604,7 @@
 <cffunction output="false" name="SELevents_24014" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -704,7 +704,7 @@
 </cffunction>
 <cffunction output="false" name="SELevents_24105" access="public" returntype="query">
     <cfargument name="new_eventid" type="numeric" required="true">
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -767,7 +767,7 @@
 <cffunction output="false" name="DETevents" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -819,7 +819,7 @@
 <cffunction output="false" name="SELevents_24123" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -856,7 +856,7 @@
     <cfargument name="eventtypename" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -876,7 +876,7 @@
 <cffunction output="false" name="DETevents_24487" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -912,7 +912,7 @@
 <cffunction output="false" name="DETevents_24492" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -949,7 +949,7 @@
 <cffunction output="false" name="SELevents_24527" access="public" returntype="query">
     <cfargument name="new_eventid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1078,7 +1078,7 @@
 <cffunction output="false" name="SELevents_24546" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1118,7 +1118,7 @@
 </cffunction>
 <cffunction output="false" name="SELevents_24547" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1331,7 +1331,7 @@
     <cfargument name="audroleid" type="numeric" required="true">
     <cfargument name="focusid" type="numeric" default="0">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1366,7 +1366,7 @@
     <cfargument name="sessionUserId" type="numeric" required="true">
     <cfargument name="currentId" type="numeric" required="false">
     
-    <cfset var result = "">
+    
 
         <cfquery name="result" >
             SELECT 
@@ -1517,7 +1517,7 @@
 <cffunction output="false" name="DETevents_24675" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1556,7 +1556,7 @@
     <cfargument name="sessionUserId" type="numeric" required="true">
     <cfargument name="contactId" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1590,7 +1590,7 @@
     <cfargument name="sessionUserID" type="numeric" required="true">
     <cfargument name="contactID" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >

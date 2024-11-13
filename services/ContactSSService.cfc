@@ -2,7 +2,7 @@
 <cffunction output="false" name="SELcontacts_ss" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT col1 
@@ -18,7 +18,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="topsearch_myteam" type="string" required="true">
 
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT CONTACTID 

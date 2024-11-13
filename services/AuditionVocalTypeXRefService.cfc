@@ -4,7 +4,7 @@
     <cfargument name="audroleid" type="numeric" required="true">
     <cfargument name="new_vocaltypeid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT * 

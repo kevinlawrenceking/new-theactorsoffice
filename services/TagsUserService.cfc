@@ -1,7 +1,7 @@
 <cfcomponent displayname="TagsUserService" hint="Handles operations for TagsUser table" > 
 <cffunction output="false" name="SELtags_user" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT tagid AS id, tagname AS name
@@ -17,7 +17,7 @@
 
 <cffunction output="false" name="SELtags_user_23804" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT tagname AS col1
@@ -31,7 +31,7 @@
 
 <cffunction output="false" name="SELtags_user_23844" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT tagid, tagname 
@@ -46,7 +46,7 @@
 <cffunction output="false" name="SELtags_user_24047" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="tagtypes" type="string" required="false" default="">
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT * 
@@ -63,7 +63,7 @@
 
 <cffunction output="false" name="SELtags_user_24063" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT *
@@ -79,7 +79,7 @@
     <cfargument name="new_valuetext" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT *
@@ -111,7 +111,7 @@
 <cffunction output="false" name="SELtags_user_24328" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT *
@@ -139,7 +139,7 @@
 <cffunction output="false" name="SELtags_user_24341" access="public" returntype="query">
     <cfargument name="new_contactid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT d.contactid 
@@ -161,7 +161,7 @@
     <cfargument name="tagname" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >

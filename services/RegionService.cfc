@@ -17,7 +17,7 @@
 
     <cffunction output="false" name="SELregions" access="public" returntype="query">
         <cfargument name="region_id" type="numeric" required="true">
-        <cfset var result = "">
+        
         <cfquery name="result">
             SELECT regionname 
             FROM regions 
@@ -28,7 +28,7 @@
 
     <cffunction output="false" name="SELregions_24170" access="public" returntype="query">
         <cfargument name="valueregion" type="string" required="true">
-        <cfset var result = "">
+        
         <cfquery name="result">
             SELECT region_id 
             FROM regions 
@@ -40,7 +40,7 @@
     <cffunction output="false" name="SELregions_24177" access="public" returntype="query">
         <cfargument name="region_id" type="numeric" required="true">
         <cfargument name="old_countryid" type="string" required="true">
-        <cfset var result = "">
+        
         <cfquery name="result">
             SELECT regionname 
             FROM regions 
@@ -80,7 +80,7 @@
 
     <cffunction output="false" name="SELregions_24721" access="public" returntype="query">
         <cfargument name="regionName" type="string" required="true">
-        <cfset var result = "">
+        
         <cfquery name="result">
             SELECT region_id
             FROM regions

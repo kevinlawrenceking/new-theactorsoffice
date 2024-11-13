@@ -34,7 +34,7 @@
     <cffunction output="false" name="SELcontactsimport_24668" access="public" returntype="query">
         <cfargument name="userid" type="numeric" required="true">
     
-        <cfset var result = "">
+        
     
         <cfquery name="result">
             SELECT 

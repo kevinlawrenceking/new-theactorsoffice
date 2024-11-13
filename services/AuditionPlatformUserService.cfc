@@ -4,7 +4,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="CustomPlatform" type="string" required="true">
 
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT audplatformid 
@@ -33,7 +33,7 @@
 <cffunction output="false" name="SELaudplatforms_user_24582" access="public" returntype="query">
     <cfargument name="new_userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT audplatformid AS ID, audplatform AS NAME

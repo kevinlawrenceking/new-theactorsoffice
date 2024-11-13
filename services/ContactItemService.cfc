@@ -118,7 +118,7 @@
 
 <cffunction output="false" name="SELcontactitems" access="public" returntype="query">
     <cfargument name="contactId" type="numeric" required="true">
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -146,7 +146,7 @@
 <cffunction output="false" name="SELcontactitems_23758" access="public" returntype="query">
     <cfargument name="contactID" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -170,7 +170,7 @@
 <cffunction output="false" name="SELcontactitems_23759" access="public" returntype="query">
     <cfargument name="contactID" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -225,7 +225,7 @@
 </cffunction>
 <cffunction output="false" name="SELcontactitems_23840" access="public" returntype="query">
     <cfargument name="currentid" type="numeric" required="true">
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -245,7 +245,7 @@
 </cffunction>
 <cffunction output="false" name="SELcontactitems_23855" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -310,7 +310,7 @@
 </cffunction>
 <cffunction output="false" name="SELcontactitems_23890" access="public" returntype="query">
     <cfargument name="new_contactid" type="numeric" required="true">
-    <cfset var result = "">
+    
     
         <cfquery name="result" >
             SELECT valuetext AS new_businessEmail 
@@ -329,7 +329,7 @@
 </cffunction>
 <cffunction output="false" name="SELcontactitems_23891" access="public" returntype="query">
     <cfargument name="new_contactid" type="numeric" required="true">
-    <cfset var result = "">
+    
     
         <cfquery name="result" >
             SELECT valuetext AS new_PersonalEmail
@@ -348,7 +348,7 @@
 </cffunction>
 <cffunction output="false" name="SELcontactitems_23892" access="public" returntype="query">
     <cfargument name="contactId" type="numeric" required="true">
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -369,7 +369,7 @@
 <cffunction output="false" name="SELcontactitems_23893" access="public" returntype="query">
     <cfargument name="new_contactid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -392,7 +392,7 @@
 <cffunction output="false" name="SELcontactitems_23894" access="public" returntype="query">
     <cfargument name="new_contactid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -437,7 +437,7 @@
 <cffunction output="false" name="SELcontactitems_23896" access="public" returntype="query">
     <cfargument name="new_contactid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -466,7 +466,7 @@
 </cffunction>
 <cffunction output="false" name="SELcontactitems_23897" access="public" returntype="query">
     <cfargument name="new_contactid" type="numeric" required="true">
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -496,7 +496,7 @@
 <cffunction output="false" name="SELcontactitems_23898" access="public" returntype="query">
     <cfargument name="contactID" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -539,7 +539,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="uploadid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -647,7 +647,7 @@ function getContactDetails(required numeric uploadid) {
 <cffunction output="false" name="SELcontactitems_23948" access="public" returntype="query">
     <cfargument name="deletecontactid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
 
         <cfquery name="result" >
             SELECT itemid 
@@ -707,7 +707,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="currentid" type="numeric" required="true">
     <cfargument name="valuecategory" type="string" required="true">
 
-    <cfset var result = "">
+    
 
     
         <cfquery name="result" >
@@ -743,7 +743,7 @@ function getContactDetails(required numeric uploadid) {
 </cffunction>
 <cffunction output="false" name="SELcontactitems_23962" access="public" returntype="query">
     <cfargument name="contactId" type="numeric" required="true">
-    <cfset var result = "">
+    
     
 
         <cfquery name="result" >
@@ -765,7 +765,7 @@ function getContactDetails(required numeric uploadid) {
 </cffunction>
 <cffunction output="false" name="SELcontactitems_23963" access="public" returntype="query">
     <cfargument name="contactID" type="numeric" required="true">
-    <cfset var result = "">
+    
 
         <cfquery name="result" >
             SELECT contactitems.valueText AS phone
@@ -782,7 +782,7 @@ function getContactDetails(required numeric uploadid) {
 <cffunction output="false" name="SELcontactitems_23964" access="public" returntype="query">
     <cfargument name="contactID" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -806,7 +806,7 @@ function getContactDetails(required numeric uploadid) {
 <cffunction output="false" name="SELcontactitems_24040" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -987,7 +987,7 @@ function getContactDetails(required numeric uploadid) {
 <cffunction output="false" name="SELcontactitems_24064" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1013,7 +1013,7 @@ function getContactDetails(required numeric uploadid) {
 <cffunction output="false" name="DETcontactitems_24168" access="public" returntype="query">
     <cfargument name="itemid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1131,7 +1131,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="ContactID" type="numeric" required="true">
     <cfargument name="new_tagname" type="string" required="true">
 
-    <cfset var result = "">
+    
  
         <cfquery name="result" >
             SELECT valuetext 
@@ -1150,7 +1150,7 @@ function getContactDetails(required numeric uploadid) {
 <cffunction output="false" name="SELcontactitems_24313" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1174,7 +1174,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1235,7 +1235,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="tagname" type="string" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1262,7 +1262,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="new_tagname" type="string" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1515,7 +1515,7 @@ function getContactDetails(required numeric uploadid) {
 <cffunction output="false" name="SELcontactitems_24620" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1548,7 +1548,7 @@ function getContactDetails(required numeric uploadid) {
 <cffunction output="false" name="SELcontactitems_24657" access="public" returntype="query">
     <cfargument name="currentid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1571,7 +1571,7 @@ function getContactDetails(required numeric uploadid) {
 <cffunction output="false" name="SELcontactitems_24663" access="public" returntype="query">
     <cfargument name="currentid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1598,7 +1598,7 @@ function getContactDetails(required numeric uploadid) {
 <cffunction output="false" name="SELcontactitems_24671" access="public" returntype="query">
     <cfargument name="contactID" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1640,7 +1640,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="currentid" type="numeric" required="true">
     <cfargument name="catArea_UCB" type="string" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1674,7 +1674,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="activeCategoriesValueCategory" type="string" required="true">
     <cfargument name="catArea_UCB" type="string" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1707,7 +1707,7 @@ function getContactDetails(required numeric uploadid) {
 </cffunction>
 <cffunction output="false" name="SELcontactitems_24682" access="public" returntype="query">
     <cfargument name="userContactID" type="numeric" required="true">
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1739,7 +1739,7 @@ function getContactDetails(required numeric uploadid) {
 <cffunction output="false" name="SELcontactitems_24714" access="public" returntype="query">
     <cfargument name="currentid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1763,7 +1763,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1823,7 +1823,7 @@ function getContactDetails(required numeric uploadid) {
 </cffunction>
 <cffunction output="false" name="SELcontactitems_24761" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">
-    <cfset var result = "">
+    
     
         <cfquery name="result" >
             SELECT * 
@@ -1848,7 +1848,7 @@ function getContactDetails(required numeric uploadid) {
 <cffunction output="false" name="SELcontactitems_24764" access="public" returntype="query">
     <cfargument name="ContactID" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >

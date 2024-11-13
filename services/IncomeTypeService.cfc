@@ -1,7 +1,7 @@
 <cfcomponent displayname="IncomeTypeService" hint="Handles operations for IncomeType table" > 
 <cffunction output="false" name="SELincometypes" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
-    <cfset var result = "">
+    
     <cfset var sql = "SELECT incometypeid AS id, incometype AS name FROM incometypes">
     <cfset var whereClause = []>
     <cfset var paramValues = []>

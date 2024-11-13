@@ -4,7 +4,7 @@
     <cfargument name="compOwner" type="string" required="true">
     <cfargument name="appid" type="string" required="true">
 
-    <cfset var result = "">
+    
  
         <cfquery name="result">
             SELECT 
@@ -33,7 +33,7 @@
     <cfargument name="appID" type="numeric" required="true">
     <cfargument name="compOwner" type="string" required="true">
 
-    <cfset var result = "">
+    
 
         <cfif isNumeric(arguments.appID) AND len(arguments.compOwner)>
             <cfquery name="result">

@@ -2,7 +2,7 @@
 <cffunction output="false" name="SELaudroles" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -104,7 +104,7 @@
 <cffunction output="false" name="SELaudroles_23809" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -224,7 +224,7 @@
 <cffunction output="false" name="SELaudroles_23851" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -271,7 +271,7 @@
 <cffunction output="false" name="DETaudroles" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -310,7 +310,7 @@
 <cffunction output="false" name="DETaudroles_24086" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -349,7 +349,7 @@
 <cffunction output="false" name="DETaudroles_24090" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -399,7 +399,7 @@
 <cffunction output="false" name="DETaudroles_24122" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -463,7 +463,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="submitsiteid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -599,7 +599,7 @@
 <cffunction output="false" name="DETaudroles_24544" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >

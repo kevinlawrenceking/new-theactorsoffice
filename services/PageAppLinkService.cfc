@@ -1,7 +1,7 @@
 <cfcomponent displayname="PageAppLinkService" hint="Handles operations for PageAppLink table" > 
 <cffunction output="false" name="SELpgapplinks" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT 
@@ -35,7 +35,7 @@
 
 <cffunction output="false" name="SELpgapplinks_24006" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT 
@@ -63,7 +63,7 @@
 <cffunction output="false" name="SELpgapplinks_24007" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT DISTINCT l.pluginname

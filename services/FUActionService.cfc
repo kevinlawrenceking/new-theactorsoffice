@@ -2,7 +2,7 @@
 <cffunction output="false" name="SELfuactions" access="public" returntype="query">
     <cfargument name="target_id_system" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT actionid, actiondaysno, actiondaysrecurring

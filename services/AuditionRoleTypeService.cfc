@@ -3,7 +3,7 @@
 <cffunction output="false" name="SELaudroletypes" access="public" returntype="query">
     <cfargument name="audcatid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT audroletypeid AS id, audroletype AS name

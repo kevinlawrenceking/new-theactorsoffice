@@ -2,7 +2,7 @@
 <cffunction output="false" name="SELcountries" access="public" returntype="query">
     <cfargument name="countryid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT countryid, countryname
@@ -15,7 +15,7 @@
 <cffunction output="false" name="SELcountries_24169" access="public" returntype="query">
     <cfargument name="countryName" type="string" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT * 
@@ -28,7 +28,7 @@
 <cffunction output="false" name="SELcountries_24637" access="public" returntype="query">
     <cfargument name="countryIds" type="array" required="true">
     
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT countryid, countryname FROM countries 
@@ -41,7 +41,7 @@
 <cffunction output="false" name="SELcountries_24720" access="public" returntype="query">
     <cfargument name="countryName" type="string" required="true">
     
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT * 

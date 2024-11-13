@@ -2,7 +2,7 @@
 > 
 <cffunction output="false" name="SELinformation_schema" access="public" returntype="query">
     <cfargument name="tableNamePattern" type="string" required="true">
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT table_name AS new_comptable

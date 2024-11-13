@@ -3,7 +3,7 @@
 <cffunction output="false" name="SELauditionsimport_error" access="public" returntype="query">
     <cfargument name="id" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT error_msg 

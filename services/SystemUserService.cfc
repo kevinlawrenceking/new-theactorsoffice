@@ -32,7 +32,7 @@
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT fc.suID 
@@ -50,7 +50,7 @@
     <cfargument name="idlist" type="array" required="true">
     <cfargument name="new_systemid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT COUNT(*) AS totals
@@ -128,7 +128,7 @@
 <cffunction output="false" name="SELfusystemusers_24031" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -167,7 +167,7 @@
 <cffunction output="false" name="DETfusystemusers" access="public" returntype="query">
     <cfargument name="suid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -207,7 +207,7 @@
 <cffunction output="false" name="SELfusystemusers_24343" access="public" returntype="query">
     <cfargument name="contactID" type="numeric" required="true">
 
-    <cfset var result = "">
+    
 
     
         <cfquery name="result" >
@@ -225,7 +225,7 @@
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="new_systemid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -258,7 +258,7 @@
     <cfargument name="maint_contactid" type="numeric" required="true">
     <cfargument name="maint_systemid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
 
     
         <cfquery name="result" >
@@ -314,7 +314,7 @@
     <cfargument name="currentid" type="numeric" required="true">
     <cfargument name="sessionUserId" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -346,7 +346,7 @@
     <cfargument name="sessionUserId" type="numeric" required="true">
     <cfargument name="hideCompleted" type="string" required="false" default="N">
 
-    <cfset var result = "">
+    
 
     
         <cfquery name="result" >

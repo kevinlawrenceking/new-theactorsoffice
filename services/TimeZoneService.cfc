@@ -48,7 +48,7 @@
 </cffunction>
 <cffunction output="false" name="SELtimezones_24770" access="public" returntype="query">
     <cfargument name="tzGeneral" type="string" required="false" default="">
-    <cfset var result = "">
+    
     
         <cfquery name="result">
             SELECT tzid, gmt, tzname, tzgeneral, utchouroffset

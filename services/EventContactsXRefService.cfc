@@ -18,7 +18,7 @@
     <cfargument name="ContactID" type="numeric" required="true">
     <cfargument name="EventID" type="numeric" required="true">
 
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT * 
@@ -57,7 +57,7 @@
 <cffunction output="false" name="SELeventcontactsxref_23738" access="public" returntype="query">
     <cfargument name="eventId" type="numeric" required="true">
     
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT *
@@ -146,7 +146,7 @@ function deleteEventContactsXref(required numeric audStepId) {
     <cfargument name="eventNumber" type="numeric" required="true">
     <cfargument name="contactID" type="numeric" required="true">
     
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT * 
@@ -172,7 +172,7 @@ function deleteEventContactsXref(required numeric audStepId) {
 </cffunction>
 <cffunction output="false" name="SELeventcontactsxref_24489" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
-    <cfset var result = "">
+    
     
         <cfquery name="result" >
             SELECT *
@@ -185,7 +185,7 @@ function deleteEventContactsXref(required numeric audStepId) {
 <cffunction output="false" name="SELeventcontactsxref_24499" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
 
         <cfquery name="result" >
             SELECT *

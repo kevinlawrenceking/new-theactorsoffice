@@ -1,7 +1,7 @@
 <cfcomponent displayname="AuditionPayCycleService" hint="Handles operations for AuditionPayCycle table" > 
 <cffunction output="false" name="SELaudpaycycles" access="public" returntype="query">
     <cfargument name="paycycleid" type="numeric" required="false">
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT paycycleid AS id, paycycle AS name

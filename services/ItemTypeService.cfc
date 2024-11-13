@@ -100,7 +100,7 @@
     <cfargument name="catId" type="numeric" required="true">
     <cfargument name="excludeTypeId" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT i.valuetype

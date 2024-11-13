@@ -1,7 +1,7 @@
 <cfcomponent displayname="SiteLinksMasterService" hint="Handles operations for SiteLinksMaster table" > 
 <cffunction output="false" name="SELsitelinks_master" access="public" returntype="query">
     <cfargument name="siteTypeId" type="numeric" required="false">
-    <cfset var result = "">
+    
         <cfquery name="result">
             SELECT s.id, s.sitename, s.siteURL, s.siteicon, s.sitetypeid, t.sitetypename
             FROM sitelinks_master s

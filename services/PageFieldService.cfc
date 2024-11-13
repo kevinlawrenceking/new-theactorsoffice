@@ -2,7 +2,7 @@
 
 <cffunction output="false" name="SELpgfields" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT fname 
@@ -16,7 +16,7 @@
 
 <cffunction output="false" name="SELpgfields_24115" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT *
@@ -32,7 +32,7 @@
     <cfargument name="pgid" type="numeric" required="true">
     <cfargument name="updatename" type="string" required="true" default="ID">
 
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT * 

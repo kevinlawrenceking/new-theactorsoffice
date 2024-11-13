@@ -2,7 +2,7 @@
 
 <cffunction output="false" name="SELpgpanels_user" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
-    <cfset var result = "">
+    
     <cfquery name="result">
         SELECT 
             p.pnid, 
@@ -79,7 +79,7 @@
 <cffunction output="false" name="SELpgpanels_user_24136" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT 
@@ -112,7 +112,7 @@
 <cffunction output="false" name="SELpgpanels_user_24147" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT p.pnOrderno + 1 AS new_pnOrderNo
@@ -159,7 +159,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="pnFilename" type="string" required="true">
 
-    <cfset var result = "">
+    
     
         <cfquery name="result" >
             SELECT *
@@ -204,7 +204,7 @@
 <cffunction output="false" name="SELpgpanels_user_24440" access="public" returntype="query">
     <cfargument name="select_userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
         <cfquery name="result" >
             SELECT p.pnOrderno + 1 AS new_pnOrderNo
@@ -249,7 +249,7 @@
 <cffunction output="false" name="SELpgpanels_user_24640" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
 
         <cfquery name="result" >
             SELECT 
@@ -273,7 +273,7 @@
 <cffunction output="false" name="SELpgpanels_user_24642" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
 
         <cfquery name="result" >

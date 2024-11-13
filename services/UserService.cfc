@@ -86,7 +86,7 @@
 <cffunction output="false" name="SELtaousers_23718" access="public" returntype="query">
     <cfargument name="ticketActive" type="string" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -108,7 +108,7 @@
 <cffunction output="false" name="SELtaousers_23721" access="public" returntype="query">
     <cfargument name="ticketId" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -167,7 +167,7 @@
 <cffunction output="false" name="SELtaousers_23842" access="public" returntype="query">
     <cfargument name="select_userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -290,7 +290,7 @@
 <cffunction output="false" name="SELtaousers_23956" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
 
     
         <cfquery name="result" >
@@ -344,7 +344,7 @@
 <cffunction output="false" name="SELtaousers_23998" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -417,7 +417,7 @@
 <cffunction output="false" name="SELtaousers_24002" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -455,7 +455,7 @@
 </cffunction>
 <cffunction output="false" name="SELtaousers_24072" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -478,7 +478,7 @@
 </cffunction>
 <cffunction output="false" name="DETtaousers" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
-    <cfset var result = "">
+    
 
     
         <cfquery name="result" >
@@ -536,7 +536,7 @@
 <cffunction output="false" name="SELtaousers_24158" access="public" returntype="query">
     <cfargument name="recordName" type="string" required="false">
     
-    <cfset var result = "">
+    
     <cfset var sql = "SELECT MIN(u.userid) AS id, u.recordname AS name FROM taousers u">
     <cfset var whereClause = "">
     <cfset var orderByClause = " ORDER BY u.recordname">
@@ -570,7 +570,7 @@
 <cffunction output="false" name="SELtaousers_24306" access="public" returntype="query">
     <cfargument name="userIds" type="array" required="true">
     
-    <cfset var result = "">
+    
     <cfset var sql = "">
     <cfset var paramList = "">
     
@@ -623,7 +623,7 @@
 <cffunction output="false" name="SELtaousers_24432" access="public" returntype="query">
     <cfargument name="select_userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -653,7 +653,7 @@
 <cffunction output="false" name="SELtaousers_24461" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -673,7 +673,7 @@
 <cffunction output="false" name="SELtaousers_24759" access="public" returntype="query">
     <cfargument name="userEmail" type="string" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -700,7 +700,7 @@
 <cffunction output="false" name="SELtaousers_24760" access="public" returntype="query">
     <cfargument name="userEmail" type="string" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >

@@ -11,7 +11,7 @@
 <cffunction output="false" name="DETuploads" access="public" returntype="query">
     <cfargument name="uploadid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT uploadid, `TIMESTAMP`, userid, uploadstatus

@@ -2,7 +2,7 @@
 <cffunction output="false" name="SELpgpanels" access="public" returntype="query">
     <cfargument name="newpnids" type="array" required="true">
 
-    <cfset var result = "">
+    
 
     <cfif arrayLen(arguments.newpnids) eq 0>
         <cfreturn queryNew("pnid", "integer")>

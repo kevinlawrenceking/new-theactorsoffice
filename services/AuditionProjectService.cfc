@@ -2,7 +2,7 @@
 <cffunction output="false" name="DETaudprojects" access="public" returntype="query">
     <cfargument name="eventId" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -66,7 +66,7 @@
 <cffunction output="false" name="SELaudprojects" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -96,7 +96,7 @@
 <cffunction output="false" name="SELaudprojects_23795" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -120,7 +120,7 @@
 <cffunction output="false" name="DETaudprojects_23811" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -174,7 +174,7 @@
 <cffunction output="false" name="SELaudprojects_23961" access="public" returntype="query">
     <cfargument name="mediaid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -258,7 +258,7 @@
 </cffunction>
 <cffunction output="false" name="SELaudprojects_24016" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -317,7 +317,7 @@
 <cffunction output="false" name="SELaudprojects_24062" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -343,7 +343,7 @@
 <cffunction output="false" name="SELaudprojects_24085" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -362,7 +362,7 @@
 </cffunction>
 <cffunction output="false" name="DETaudprojects_24089" access="public" returntype="query">
     <cfargument name="audprojectID" type="numeric" required="true">
-    <cfset var result = "">
+    
 
     
         <cfquery name="result" >
@@ -403,7 +403,7 @@
 <cffunction output="false" name="SELaudprojects_24097" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -473,7 +473,7 @@
 <cffunction output="false" name="DETaudprojects_24106" access="public" returntype="query">
     <cfargument name="new_eventid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -537,7 +537,7 @@
 <cffunction output="false" name="DETaudprojects_24107" access="public" returntype="query">
     <cfargument name="audprojectID" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -597,7 +597,7 @@
     <cfargument name="new_rangestart" type="date" required="true">
     <cfargument name="new_rangeend" type="date" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -627,7 +627,7 @@
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -661,7 +661,7 @@
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -695,7 +695,7 @@
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -728,7 +728,7 @@
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -762,7 +762,7 @@
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -803,7 +803,7 @@
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -844,7 +844,7 @@
     <cfargument name="rangeend" type="date" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -929,7 +929,7 @@ function getAuditionData(struct rangeselected, numeric userid) {
     <cfargument name="rangeend" type="date" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -971,7 +971,7 @@ function getAuditionData(struct rangeselected, numeric userid) {
     <cfargument name="rangeEnd" type="date" required="true">
     <cfargument name="userId" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1011,7 +1011,7 @@ function getAuditionData(struct rangeselected, numeric userid) {
     <cfargument name="rangeEnd" type="date" required="true">
     <cfargument name="userId" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1101,7 +1101,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="rangeselected" type="struct" required="true">
 
-    <cfset var result = "">
+    
     
         <cfquery name="result" >
             SELECT count(p.audprojectid) as totals, 'Non-Union' as label, 'Auditions' as itemDataset
@@ -1152,7 +1152,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     <cfargument name="rangeend" type="date" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1196,7 +1196,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_audcatid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1237,7 +1237,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
 </cffunction>
 <cffunction output="false" name="SELaudprojects_24353" access="public" returntype="query">
     <cfargument name="projname" type="string" required="true">
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1292,7 +1292,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
 <cffunction output="false" name="SELaudprojects_24500" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1333,7 +1333,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
 <cffunction output="false" name="DETaudprojects_24543" access="public" returntype="query">
     <cfargument name="audprojectID" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1377,7 +1377,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
 <cffunction output="false" name="SELaudprojects_24550" access="public" returntype="query">
     <cfargument name="audprojectID" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1405,7 +1405,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
 <cffunction output="false" name="DETaudprojects_24553" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1446,7 +1446,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
 <cffunction output="false" name="DETaudprojects_24554" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1488,7 +1488,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="sel_coname" type="string" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -1521,7 +1521,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     <cfargument name="materials" type="string" required="false" default="%">
     <cfargument name="audsearch" type="string" required="false" default="">
     
-    <cfset var result = "">
+    
     
         <cfquery name="result" >
             SELECT 
@@ -1699,7 +1699,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
 <cffunction output="false" name="DETaudprojects_24716" access="public" returntype="query">
     <cfargument name="audprojectID" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
 
         <cfquery name="result" >

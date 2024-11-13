@@ -4,7 +4,7 @@ Here is the updated ColdFusion component code:
 <cffunction output="false" name="SELaudlinks" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT * 
@@ -36,7 +36,7 @@ Here is the updated ColdFusion component code:
 <cffunction output="false" name="DETaudlinks" access="public" returntype="query">
     <cfargument name="linkid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT * 

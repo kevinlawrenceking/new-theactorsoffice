@@ -44,7 +44,7 @@
     <cfargument name="audprojectid" type="numeric" required="true">
     <cfargument name="mediatypeid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -68,7 +68,7 @@
 <cffunction output="false" name="SELaudmedia_23799" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
         <cfquery name="result" >
             SELECT 
@@ -117,7 +117,7 @@
 <cffunction output="false" name="DETaudmedia" access="public" returntype="query">
     <cfargument name="mediaid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -136,7 +136,7 @@
 </cffunction>
 <cffunction output="false" name="DETaudmedia_24113" access="public" returntype="query">
     <cfargument name="mediaid" type="numeric" required="true">
-    <cfset var result = "">
+    
     
         <cfquery name="result" >
             SELECT 
@@ -171,7 +171,7 @@
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
 
-    <cfset var result = "">
+    
 
     
         <cfquery name="result" >
@@ -251,7 +251,7 @@
 <cffunction output="false" name="SELaudmedia_24569" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -294,7 +294,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="audprojectid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -385,7 +385,7 @@
 <cffunction output="false" name="SELaudmedia_24572" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -426,7 +426,7 @@
 <cffunction output="false" name="SELaudmedia_24573" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -469,7 +469,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="audprojectid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -514,7 +514,7 @@
 <cffunction output="false" name="SELaudmedia_24666" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -557,7 +557,7 @@
 <cffunction output="false" name="DETaudmedia_24676" access="public" returntype="query">
     <cfargument name="mediaid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -599,7 +599,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="audprojectid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
 
     
         <cfquery name="result" >
@@ -643,7 +643,7 @@
 <cffunction output="false" name="SELaudmedia_24678" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >

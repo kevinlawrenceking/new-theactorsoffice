@@ -3,7 +3,7 @@
     <cfargument name="sIndexColumn" type="string" required="true">
     <cfargument name="conditions" type="struct" required="false" default="#StructNew()#">
 
-    <cfset var result = "">
+    
     <cfset var sql = "SELECT COUNT(#arguments.sIndexColumn#) as total FROM qFiltered">
     <cfset var whereClause = "">
     <cfset var paramList = []>

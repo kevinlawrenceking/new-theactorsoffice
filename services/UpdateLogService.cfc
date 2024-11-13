@@ -28,7 +28,7 @@
 <cffunction output="false" name="RESupdatelog" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     <cfquery name="result">
         SELECT 

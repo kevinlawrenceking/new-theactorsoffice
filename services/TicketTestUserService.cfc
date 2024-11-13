@@ -3,7 +3,7 @@
     <cfargument name="recid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT * 
@@ -49,7 +49,7 @@
     <cfargument name="ticketId" type="numeric" required="true">
     <cfargument name="userId" type="numeric" required="true">
 
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT 
@@ -74,7 +74,7 @@
     <cfargument name="recid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
 
     <cfquery name="result">
         SELECT 

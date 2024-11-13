@@ -17,7 +17,7 @@
 
     <cffunction output="false" name="SELallfields_24310" access="public" returntype="query">
         <cfargument name="keyValue" type="string" required="true">
-        <cfset var result = "">
+        
 
         <cfquery name="result">
             SELECT *

@@ -24,7 +24,7 @@
 <cffunction output="false" name="SELpgpages_23868" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
         <cfquery name="result" >
             SELECT *
@@ -45,7 +45,7 @@
     <cfargument name="compid" type="numeric" required="true">
     <cfargument name="pgid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -67,7 +67,7 @@
 <cffunction output="false" name="SELpgpages_23870" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -88,7 +88,7 @@
 </cffunction>
 <cffunction output="false" name="SELpgpages_23912" access="public" returntype="query">
     <cfargument name="ref_pgid" type="numeric" required="true">
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -116,7 +116,7 @@
 </cffunction>
 <cffunction output="false" name="DETpgpages_23991" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -135,7 +135,7 @@
 </cffunction>
 <cffunction output="false" name="getDynamicQuery" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
-    <cfset var result = "">
+    
 
     
         <cfquery name="result" >
@@ -169,7 +169,7 @@
 <cffunction output="false" name="SELpgpages_24003" access="public" returntype="query">
     <cfargument name="thispage" type="string" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -201,7 +201,7 @@
 <cffunction output="false" name="SELpgpages_24004" access="public" returntype="query">
     <cfargument name="thispage" type="string" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -239,7 +239,7 @@
 <cffunction output="false" name="DETpgpages_24197" access="public" returntype="query">
     <cfargument name="details_pgid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -259,7 +259,7 @@
 <cffunction output="false" name="SELpgpages_24210" access="public" returntype="query">
     <cfargument name="compactive" type="string" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -282,7 +282,7 @@
     <cfargument name="compid" type="numeric" required="true">
     <cfargument name="pgid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -303,7 +303,7 @@
 <cffunction output="false" name="SELpgpages_24300" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -335,7 +335,7 @@
 <cffunction output="false" name="SELpgpages_24301" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -368,7 +368,7 @@
 <cffunction output="false" name="RESpgpages_24302" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -408,7 +408,7 @@
 <cffunction output="false" name="SELpgpages_24303" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -432,7 +432,7 @@
 <cffunction output="false" name="SELpgpages_24304" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -463,7 +463,7 @@
 <cffunction output="false" name="SELpgpages_24305" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -500,7 +500,7 @@
 </cffunction>
 <cffunction output="false" name="RESpgpages_24652" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
-    <cfset var result = "">
+    
 
     
         <cfquery name="result" >
@@ -541,7 +541,7 @@
 <cffunction output="false" name="SELpgpages_24653" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
 
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -584,7 +584,7 @@
 <cffunction output="false" name="RESpgpages_24739" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -635,7 +635,7 @@
 
 <cffunction output="false" name="getDynamicQueryx" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
-    <cfset var result = "">
+    
 
     
         <cfquery name="result" >
@@ -679,7 +679,7 @@
 
 <cffunction output="false" name="RESpgpages_24777" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
@@ -720,7 +720,7 @@
 <cffunction output="false" name="SELpgpages_24778" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
     
-    <cfset var result = "">
+    
     
     
         <cfquery name="result" >
