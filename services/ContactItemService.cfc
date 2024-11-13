@@ -233,9 +233,7 @@
         
         
             
-            <cfset result = queryNew("itemid, catid, valuecategory", "integer, integer, varchar")>
-        
-    
+      
     
     <cfreturn result>
 </cffunction>
