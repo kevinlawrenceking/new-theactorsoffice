@@ -5,7 +5,7 @@
     <cfargument name="currentid" type="numeric" required="false" default="">
  
 
-    <!--- Query for event results ---!>
+    <!--- Query for event results --->
     <cfquery result="result" name="eventresults">
         SELECT 
             e.eventID,

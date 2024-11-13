@@ -69,5 +69,5 @@
       </div>
 
     </div>
-    <!--end card ---!>
+    <!--end card --->
   </div>
