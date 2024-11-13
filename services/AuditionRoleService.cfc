@@ -516,7 +516,7 @@
     <cfargument name="new_audRoleID" type="numeric" required="true">
 
     
-        <cfquery result="result" " name="updateQuery">
+        <cfquery result="result" name="updateQuery">
             UPDATE audroles 
             SET 
                 audRoleName = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audRoleName#" maxlength="500" null="#NOT len(trim(arguments.new_audRoleName))#">,

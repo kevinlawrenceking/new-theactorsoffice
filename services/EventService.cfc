@@ -102,7 +102,7 @@
 
     <!--- Execute the query --->
 
-        <cfquery result="result" " name="insertEventQuery">
+        <cfquery result="result" name="insertEventQuery">
             #sql#
             <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.eventTitle#"/>
             <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.eventTypeName#"/>
