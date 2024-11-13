@@ -73,7 +73,8 @@
     </cfif>
 </cfif>
 
-<cfinclude template="/include/qry/update_199_6.cfm" />
+<!---
+<cfinclude template="/include/qry/update_199_6.cfm" /> --->
 
 <!--- Redirect to contact page with contact ID --->
 <cflocation url="/app/contact/?contactid=#contactid#" />
