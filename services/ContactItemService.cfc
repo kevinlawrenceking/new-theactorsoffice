@@ -811,14 +811,13 @@ function getContactDetails(required numeric uploadid) {
             AND d.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer"> 
             AND i.valuecompany <> '' 
             AND i.valueCompany IS NOT NULL 
-            AND i.valuecompany <> 'Custom' 
+            <!--- AND i.valuecompany <> 'Custom' --->
             ORDER BY i.valuecompany
         </cfquery>
         
         
             
-            <cfset result = queryNew("new_valuecompany", "varchar")>
-        
+       
     
     
     <cfreturn result>
