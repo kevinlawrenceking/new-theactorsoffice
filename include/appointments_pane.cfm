@@ -146,7 +146,7 @@
                         <div class="card-header" id="">
                             <h5 class="m-0 align-middle" style="width:100%;">
                                 <a class="text-dark collapsed" data-bs-toggle="collapse" 
-                                   href="#heading_system_#" 
+                                   href="#heading_system#" 
                                    aria-expanded="#header_aria_expanded#">
                            
                                <strong>#dateformat(eventresults.eventresults.col3, 'short')#</strong> - 
