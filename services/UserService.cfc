@@ -206,7 +206,7 @@
         
         
             
-            <cfrethrow>
+            
         
     
 </cffunction>
@@ -279,16 +279,10 @@
                 userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#" />
         </cfquery>
         
-        
-            
-            <cfrethrow>
-        
-    
+ 
 </cffunction>
 <cffunction output="false" name="SELtaousers_23956" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
-
-    
 
     
         <cfquery name="result" >
@@ -297,10 +291,8 @@
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-            
             <cfset result = queryNew("contactid")>
         
-    
 
     <cfreturn result>
 </cffunction>
