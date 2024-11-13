@@ -873,7 +873,7 @@ function getContactDetails(required numeric uploadid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="INScontactitems_24043" access="public" returntype="numberic">
+<cffunction name="INScontactitems_24043" access="public" returntype="numeric">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="valuetype" type="string" required="true">
     <cfargument name="valueCategory" type="string" required="true">
