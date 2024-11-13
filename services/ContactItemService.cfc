@@ -873,7 +873,7 @@ function getContactDetails(required numeric uploadid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="INScontactitems_24043" access="public" returntype="void">
+<cffunction name="INScontactitems_24043" access="public" returntype="numberic">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="valuetype" type="string" required="true">
     <cfargument name="valueCategory" type="string" required="true">
@@ -887,6 +887,7 @@ function getContactDetails(required numeric uploadid) {
                 <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.valueCategory#" />
             )
         </cfquery>
+  <cfreturn result.generatedKey>      
 </cffunction>
 <cffunction name="UPDcontactitems_24046" access="public" returntype="void">
     <cfargument name="valuetext" type="string" required="true">
