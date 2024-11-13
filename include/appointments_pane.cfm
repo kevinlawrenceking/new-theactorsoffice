@@ -93,7 +93,6 @@
                 </td>
             </tr>
             </cfloop>
-        </cfloop>
     </tbody>
 </table>
 
