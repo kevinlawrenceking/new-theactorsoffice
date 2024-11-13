@@ -172,7 +172,7 @@
             <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
         )
     </cfquery>
- 
+ </cffunction>
 
 <cffunction output="false" name="INSnotifications_23937" access="public" returntype="numeric">
     <cfargument name="new_contactname" type="string" required="true">
