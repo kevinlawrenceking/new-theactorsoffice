@@ -116,11 +116,11 @@
             </ul>
 
         </div>
-        <!-- End Sidebar -->
+        <!--- End Sidebar --!>
 
         <div class="clearfix"></div>
 
     </div>
-    <!-- Sidebar -left -->
+    <!--- Sidebar -left --!>
 
 </div>

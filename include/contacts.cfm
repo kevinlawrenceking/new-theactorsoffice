@@ -162,7 +162,7 @@
     </div>
 
 
-<h1>Here</h1>
+
  <cfelse>
          <script>
         $(document).ready(function() {
@@ -249,7 +249,7 @@
                 <div class="card-header" role="tab" id="heading-A">
                     <h5 class="mb-0">
                         <a data-bs-toggle="collapse" href="#collapse-A" aria-expanded="<cfoutput>#contact_expand#</cfoutput>" aria-controls="collapse-A">
-                            All Relationshipsxxx
+                            All Relationships
                         </a>
                     </h5>
                 </div>
@@ -342,9 +342,8 @@
 
 
 
-    <!-- end row -->
 
-</div> <!-- container -->
+</div> 
 
 
 

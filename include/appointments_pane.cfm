@@ -28,7 +28,7 @@
  
 <table id="events-datatable" class="table display dt-responsive nowrap w-100 table-striped table-hover">
     <thead>
-        <!-- Render the table header with column names -->
+        <!--- Render the table header with column names --!>
         <tr>
             <th>Action</th>
             <th>#head1#</th>
@@ -41,27 +41,27 @@
     </thead>
 
     <tbody>
-        <!-- Loop through each record in the event results query -->
+        <!--- Loop through each record in the event results query --!>
         <cfloop query="eventresults.eventresults">
             <cfinclude template="/include/qry/finall_20_1.cfm" />
             <cfoutput>
             <tr role="row" class="#iif(currentrow mod 2 eq 0, 'Even', 'Odd')#">
                 <td>
-                    <!-- Details link -->
+                    <!--- Details link --!>
                     <cfif isdefined("xxxxxx")>
                         <a title="Details" href="/app/appoint/?eventid=#eventresults.eventid#&returnurl=contact&rcontactid=#currentid#">
                             <i class="mdi mdi-information-outline"></i>
                         </a>
                     </cfif>
 
-                    <!-- Edit link based on specific project ID -->
+                    <!--- Edit link based on specific project ID --!>
                     <cfif eventresults.eventresults.audprojectid eq "557567567567575757575">
                         <a title="Edit" href="/app/appoint-update/?eventid=#eventresults.eventid#&returnurl=contact&rcontactid=#currentid#">
                             <i class="mdi mdi-square-edit-outline"></i>
                         </a>
                     </cfif>
 
-                    <!-- Conditional view link for audition or appointment -->
+                    <!--- Conditional view link for audition or appointment --!>
                     <cfif eventresults.eventresults.audprojectid neq "">
                         <a href="/app/audition/?audprojectid=#eventresults.audprojectid#" class="btn btn-xs btn-primary waves-effect waves-light">
                             <i class="mdi mdi-eye-outline"></i> View Audition
@@ -82,7 +82,7 @@
                     <cfif eventresults.eventresults.audstep neq "" and eventresults.eventresults.audstep neq "Audition"> (#eventresults.eventresults.audstep#)</cfif>
                 </td>
                 
-                <!-- Delete link, only displayed when there's one matching record -->
+                <!--- Delete link, only displayed when there's one matching record --!>
                 <td>
                     <cfif finall.recordcount eq 1>
                         <a href="/include/deleteappointment.cfm?recid=#eventresults.eventresults.recid#&contactid=#currentid#">

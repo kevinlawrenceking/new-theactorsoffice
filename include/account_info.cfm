@@ -304,7 +304,7 @@
     </div>
 </div>
 
-<!-- JavaScript to dynamically update the selected attribute -->
+<!--- JavaScript to dynamically update the selected attribute --!>
 <script>
     document.getElementById('countryid').addEventListener('change', function() {
         updateSelectedAttribute(this);
