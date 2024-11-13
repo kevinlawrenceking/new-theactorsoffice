@@ -50,6 +50,7 @@
 <cfelse>
     <tr role="row" class="Odd">
 </cfif>
+
                 <td>
                     <!--- Details link --->
                     <cfif isdefined("xxxxxx")>
@@ -67,7 +68,7 @@
 
                     <!--- Conditional view link for audition or appointment --->
                     <cfif eventresults.eventresults.audprojectid neq "">
-                        <a href="/app/audition/?audprojectid=#eventresults.audprojectid#" class="btn btn-xs btn-primary waves-effect waves-light">
+                        <a href="/app/audition/?audprojectid=#eventresults.eventresults.audprojectid#" class="btn btn-xs btn-primary waves-effect waves-light">
                             <i class="mdi mdi-eye-outline"></i> View Audition
                         </a>
                     <cfelse>
