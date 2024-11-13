@@ -76,13 +76,14 @@
                 <td>#eventresults.eventresults.col1#</td>
                 <td>#eventresults.eventresults.col2#</td>
                 <td>#dateformat(eventresults.eventresults.col3, 'm-d-YYYY')#</td>
-                <td>#timeformateventresults.(eventresults.eventStartTime, 'medium')#</td>
+                <td>#timeFormat(eventresults.eventresults.eventStartTime, 'medium')#</td>
+
                 <td>
                     #eventresults.eventresults.col5#
                     <cfif eventresults.eventresults.audstep neq "" and eventresults.eventresults.audstep neq "Audition"> (#eventresults.eventresults.audstep#)</cfif>
                 </td>
                 
-                <!--- Delete link, only displayed when there's one matching record --->
+      
                 <td>
                     <cfif finall.recordcount eq 1>
                         <a href="/include/deleteappointment.cfm?recid=#eventresults.eventresults.recid#&contactid=#currentid#">
