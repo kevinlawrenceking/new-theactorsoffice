@@ -350,20 +350,6 @@
 
 
 
-
-
-
-
-<CFINCLUDE template="/include/remote_load.cfm" />
-
-
-
-
-
-
-
-
-
 <cfquery datasource="#dsn#" name="tags">
     SELECT tagid,tagname FROM tags_user where userid = #session.userid# order by tagname
 </cfquery>
