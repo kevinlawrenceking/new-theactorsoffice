@@ -72,7 +72,7 @@
                             <i class="mdi mdi-eye-outline"></i> View Audition
                         </a>
                     <cfelse>
-                        <a href="/app/appoint/?eventid=#eventresults.eventid#" class="btn btn-xs btn-primary waves-effect waves-light">
+                        <a href="/app/appoint/?eventid=#eventresults.eventresults.eventid#" class="btn btn-xs btn-primary waves-effect waves-light">
                             <i class="mdi mdi-eye-outline"></i> View Appointment
                         </a>
                     </cfif>
