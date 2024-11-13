@@ -1,6 +1,6 @@
 <cfcomponent displayname="SystemUserService" hint="Handles operations for SystemUser table" output="false"> 
 
-<cffunction name="INSfusystemusers" access="public" returntype="void">
+<cffunction name="INSfusystemusers" access="public" returntype="numeric">
     <cfargument name="new_systemid" type="numeric" required="true">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="new_suStartDate" type="date" required="true">
