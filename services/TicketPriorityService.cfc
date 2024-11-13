@@ -1,5 +1,5 @@
-<cfcomponent displayname="TicketPriorityService" hint="Handles operations for TicketPriority table" output="false"> 
-<cffunction name="SELticketpriority" access="public" returntype="query">
+<cfcomponent displayname="TicketPriorityService" hint="Handles operations for TicketPriority table" > 
+<cffunction output="false" name="SELticketpriority" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
     
     <cfset var queryResult = "">

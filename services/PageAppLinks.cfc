@@ -1,6 +1,6 @@
-<cfcomponent displayname="PageAppLinks" output="false">
+<cfcomponent displayname="PageAppLinks" >
 
-    <cffunction name="GetPageAppLinks" access="public" returntype="query" output="false">
+    <cffunction output="false" name="GetPageAppLinks" access="public" returntype="query" >
         <cfargument name="pgid" type="numeric" required="yes">
 
         <cfquery result="result" name="FindLinksT">
@@ -29,7 +29,7 @@
         <cfreturn FindLinksT>
     </cffunction>
 
-    <cffunction name="GetLinksForPageB" access="public" returntype="query" output="false">
+    <cffunction output="false" name="GetLinksForPageB" access="public" returntype="query" >
         <cfargument name="pgid" type="numeric" required="true">
 
         <cfquery name="result">

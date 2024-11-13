@@ -1,5 +1,5 @@
-<cfcomponent displayname="PanelsMasterService" hint="Handles operations for PanelsMaster table" output="false"> 
-<cffunction name="SELpgpanels_master" access="public" returntype="query">
+<cfcomponent displayname="PanelsMasterService" hint="Handles operations for PanelsMaster table" > 
+<cffunction output="false" name="SELpgpanels_master" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
     <cfset var queryResult = "">
     <cfset var sql = "SELECT * FROM pgpanels_master">

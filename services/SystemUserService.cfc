@@ -1,6 +1,6 @@
-<cfcomponent displayname="SystemUserService" hint="Handles operations for SystemUser table" output="false"> 
+<cfcomponent displayname="SystemUserService" hint="Handles operations for SystemUser table" > 
 
-<cffunction name="INSfusystemusers" access="public" returntype="numeric">
+<cffunction output="false" name="INSfusystemusers" access="public" returntype="numeric">
     <cfargument name="new_systemid" type="numeric" required="true">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="new_suStartDate" type="date" required="true">
@@ -15,9 +15,10 @@
             <cfqueryparam value="Added via user batch update" cfsqltype="CF_SQL_VARCHAR">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="UPDfusystemusers" access="public" returntype="void">
+<cffunction output="false" name="UPDfusystemusers" access="public" returntype="void">
     <cfargument name="suid" type="numeric" required="true">
 
     <cfquery result="result">
@@ -27,7 +28,7 @@
     </cfquery>
 </cffunction>
 
-<cffunction name="SELfusystemusers" access="public" returntype="query">
+<cffunction output="false" name="SELfusystemusers" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     
@@ -45,7 +46,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELfusystemusers_23864" access="public" returntype="query">
+<cffunction output="false" name="SELfusystemusers_23864" access="public" returntype="query">
     <cfargument name="idlist" type="array" required="true">
     <cfargument name="new_systemid" type="numeric" required="true">
 
@@ -66,7 +67,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="UPDfusystemusers_23865" access="public" returntype="void">
+<cffunction output="false" name="UPDfusystemusers_23865" access="public" returntype="void">
     <cfargument name="idList" type="array" required="true">
     <cfargument name="newSystemId" type="numeric" required="true">
 
@@ -91,7 +92,7 @@
     </cfquery>
 </cffunction>
 
-<cffunction name="INSfusystemusers_23934" access="public" returntype="void">
+<cffunction output="false" name="INSfusystemusers_23934" access="public" returntype="numeric">
     <cfargument name="new_systemid" type="numeric" required="true">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="new_userid" type="numeric" required="true">
@@ -108,9 +109,10 @@
             <cfqueryparam value="#arguments.sunotes#" cfsqltype="CF_SQL_VARCHAR">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="UPDfusystemusers_23935" access="public" returntype="void">
+<cffunction output="false" name="UPDfusystemusers_23935" access="public" returntype="void">
     <cfargument name="new_userid" type="numeric" required="true">
     <cfargument name="new_contactid" type="numeric" required="true">
 
@@ -123,13 +125,13 @@
     </cfquery>
 </cffunction>
 
-<cffunction name="SELfusystemusers_24031" access="public" returntype="query">
+<cffunction output="false" name="SELfusystemusers_24031" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
     
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 n.notid, 
                 a.id, 
@@ -162,13 +164,13 @@
     
     
 </cffunction>
-<cffunction name="DETfusystemusers" access="public" returntype="query">
+<cffunction output="false" name="DETfusystemusers" access="public" returntype="query">
     <cfargument name="suid" type="numeric" required="true">
     
     <cfset var result = "">
     
     
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 fc.suID, 
                 fc.contactid, 
@@ -190,11 +192,11 @@
         <cfreturn result>
         
 </cffunction>
-<cffunction name="UPDfusystemusers_24315" access="public" returntype="void">
+<cffunction output="false" name="UPDfusystemusers_24315" access="public" returntype="void">
     <cfargument name="suid" type="numeric" required="true">
 
     
-        <cfquery result="result" datasource="abod">
+        <cfquery result="result" >
             UPDATE fusystemusers 
             SET isdeleted = 1 
             WHERE suid = <cfqueryparam value="#arguments.suid#" cfsqltype="CF_SQL_INTEGER">
@@ -202,13 +204,13 @@
         
 
 </cffunction>
-<cffunction name="SELfusystemusers_24343" access="public" returntype="query">
+<cffunction output="false" name="SELfusystemusers_24343" access="public" returntype="query">
     <cfargument name="contactID" type="numeric" required="true">
 
     <cfset var result = "">
 
     
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT fc.suID 
             FROM fusystemusers fc 
             WHERE fc.contactID = <cfqueryparam value="#arguments.contactID#" cfsqltype="CF_SQL_INTEGER"> 
@@ -219,14 +221,14 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="SELfusystemusers_24344" access="public" returntype="query">
+<cffunction output="false" name="SELfusystemusers_24344" access="public" returntype="query">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="new_systemid" type="numeric" required="true">
 
     <cfset var result = "">
     
     
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT *
             FROM fusystemusers_tbl
             WHERE contactid = <cfqueryparam value="#arguments.new_contactid#" cfsqltype="CF_SQL_INTEGER">
@@ -238,11 +240,11 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="UPDfusystemusers_24345" access="public" returntype="void">
+<cffunction output="false" name="UPDfusystemusers_24345" access="public" returntype="void">
     <cfargument name="new_contactid" type="numeric" required="true">
     
     
-        <cfquery result="result" name="updateQuery" datasource="abod">
+        <cfquery result="result" name="updateQuery" >
             UPDATE fusystemusers_tbl 
             SET isdeleted = 1, sunotes = 'Deleted via batch update' 
             WHERE contactID = <cfqueryparam value="#arguments.new_contactid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -252,14 +254,14 @@
         
     
 </cffunction>
-<cffunction name="SELfusystemusers_24426" access="public" returntype="query">
+<cffunction output="false" name="SELfusystemusers_24426" access="public" returntype="query">
     <cfargument name="maint_contactid" type="numeric" required="true">
     <cfargument name="maint_systemid" type="numeric" required="true">
 
     <cfset var result = "">
 
     
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT *
             FROM fusystemusers
             WHERE contactid = <cfqueryparam value="#arguments.maint_contactid#" cfsqltype="CF_SQL_INTEGER">
@@ -270,14 +272,14 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="INSfusystemusers_24427" access="public" returntype="void">
+<cffunction output="false" name="INSfusystemusers_24427" access="public" returntype="numeric">
     <cfargument name="maint_systemID" type="numeric" required="true">
     <cfargument name="maint_contactID" type="numeric" required="true">
     <cfargument name="userid" type="string" required="true">
     <cfargument name="suStartDate" type="date" required="true">
 
     
-        <cfquery result="result" datasource="abod">
+        <cfquery result="result" >
             INSERT INTO fuSystemUsers (systemID, contactID, userID, suStartDate)
             VALUES (
                 <cfqueryparam value="#arguments.maint_systemID#" cfsqltype="CF_SQL_INTEGER">,
@@ -286,17 +288,17 @@
                 <cfqueryparam value="#arguments.suStartDate#" cfsqltype="CF_SQL_DATE">
             )
         </cfquery>
-
+<cfreturn result.generatedKey>
     
 </cffunction>
-<cffunction name="INSfusystemusers_24477" access="public" returntype="void">
+<cffunction output="false" name="INSfusystemusers_24477" access="public" returntype="numeric">
     <cfargument name="systemID" type="numeric" required="true">
     <cfargument name="contactID" type="numeric" required="true">
     <cfargument name="userID" type="string" required="true">
     <cfargument name="suStartDate" type="date" required="true">
 
     
-        <cfquery result="result" datasource="abod">
+        <cfquery result="result" >
             INSERT INTO fuSystemUsers (systemID, contactID, userID, suStartDate)
             VALUES (
                 <cfqueryparam value="#arguments.systemID#" cfsqltype="CF_SQL_INTEGER">,
@@ -306,16 +308,16 @@
             )
         </cfquery>
 
-    
+    <cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="SELfusystemusers_24718" access="public" returntype="query">
+<cffunction output="false" name="SELfusystemusers_24718" access="public" returntype="query">
     <cfargument name="currentid" type="numeric" required="true">
     <cfargument name="sessionUserId" type="numeric" required="true">
 
     <cfset var result = "">
     
     
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 fc.suID, 
                 fc.contactid, 
@@ -339,7 +341,7 @@
         <cfreturn result>
 
 </cffunction>
-<cffunction name="SELfusystemusers_24758" access="public" returntype="query">
+<cffunction output="false" name="SELfusystemusers_24758" access="public" returntype="query">
     <cfargument name="currentid" type="numeric" required="true">
     <cfargument name="sessionUserId" type="numeric" required="true">
     <cfargument name="hideCompleted" type="string" required="false" default="N">
@@ -347,7 +349,7 @@
     <cfset var result = "">
 
     
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 fc.suID, 
                 fc.contactid, 

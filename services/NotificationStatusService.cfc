@@ -1,5 +1,5 @@
-<cfcomponent displayname="NotificationStatusService" hint="Handles operations for NotificationStatus table" output="false"> 
-<cffunction name="SELnotstatuses" access="public" returntype="query">
+<cfcomponent displayname="NotificationStatusService" hint="Handles operations for NotificationStatus table" > 
+<cffunction output="false" name="SELnotstatuses" access="public" returntype="query">
     <cfargument name="currentid" type="numeric" required="true">
     <cfargument name="sysActiveSuid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">

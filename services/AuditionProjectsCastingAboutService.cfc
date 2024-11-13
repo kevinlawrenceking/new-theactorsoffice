@@ -1,5 +1,5 @@
-<cfcomponent displayname="AuditionProjectsCastingAboutService" hint="Handles operations for AuditionProjectsCastingAbout table" output="false"> 
-<cffunction name="INSaudprojects_castingabout" access="public" returntype="void">
+<cfcomponent displayname="AuditionProjectsCastingAboutService" hint="Handles operations for AuditionProjectsCastingAbout table" > 
+<cffunction output="false" name="INSaudprojects_castingabout" access="public" returntype="numeric">
     <cfargument name="new_projName" type="string" required="true">
     <cfargument name="new_projtye" type="string" required="true">
     <cfargument name="new_Status1" type="string" required="true">
@@ -35,9 +35,10 @@
             <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audnetwork#" maxlength="500">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="UPDaudprojects_castingabout" access="public" returntype="void">
+<cffunction output="false" name="UPDaudprojects_castingabout" access="public" returntype="void">
     <cfargument name="new_projName" type="string" required="true">
     <cfargument name="new_projtye" type="string" required="true">
     <cfargument name="new_Status1" type="string" required="true">

@@ -1,5 +1,5 @@
-<cfcomponent displayname="SiteTypeMasterService" hint="Handles operations for SiteTypeMaster table" output="false"> 
-<cffunction name="SELsitetypes_master" access="public" returntype="query">
+<cfcomponent displayname="SiteTypeMasterService" hint="Handles operations for SiteTypeMaster table" > 
+<cffunction output="false" name="SELsitetypes_master" access="public" returntype="query">
     <cfargument name="sitetypename" type="string" required="true">
     
     <cfset var result = "">
@@ -12,7 +12,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELsitetypes_master_24437" access="public" returntype="query">
+<cffunction output="false" name="SELsitetypes_master_24437" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
     <cfset var queryResult = "">
     <cfset var sql = "SELECT sitetypename, sitetypedescription FROM sitetypes_master">

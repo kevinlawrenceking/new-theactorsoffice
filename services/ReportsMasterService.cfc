@@ -1,5 +1,5 @@
-<cfcomponent displayname="ReportsMasterService" hint="Handles operations for ReportsMaster table" output="false"> 
-<cffunction name="SELreports_master" access="public" returntype="query">
+<cfcomponent displayname="ReportsMasterService" hint="Handles operations for ReportsMaster table" > 
+<cffunction output="false" name="SELreports_master" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
     
     <cfset var queryResult = "">

@@ -1,6 +1,6 @@
-<cfcomponent displayname="ReportRangeService" hint="Handles operations for ReportRange table" output="false"> 
+<cfcomponent displayname="ReportRangeService" hint="Handles operations for ReportRange table" > 
 
-<cffunction name="SELreportranges" access="public" returntype="query">
+<cffunction output="false" name="SELreportranges" access="public" returntype="query">
     <cfargument name="excludedRangeIds" type="array" required="true">
     <cfset var qryResult = "">
 
@@ -18,7 +18,7 @@
     <cfreturn qryResult>
 </cffunction>
 
-<cffunction name="UPDreportranges" access="public" returntype="void">
+<cffunction output="false" name="UPDreportranges" access="public" returntype="void">
     <cfargument name="new_rangestart" type="date" required="true">
     <cfargument name="new_rangeend" type="date" required="true">
     <cfargument name="current_rangeid" type="numeric" required="true">
@@ -32,7 +32,7 @@
 
 </cffunction>
 
-<cffunction name="UPDreportranges_24221" access="public" returntype="void">
+<cffunction output="false" name="UPDreportranges_24221" access="public" returntype="void">
     <cfargument name="customStart" type="date" required="true">
     <cfargument name="customEnd" type="date" required="true">
 
@@ -45,7 +45,7 @@
 
 </cffunction>
 
-<cffunction name="SELreportranges_24229" access="public" returntype="query">
+<cffunction output="false" name="SELreportranges_24229" access="public" returntype="query">
     <cfargument name="new_rangeid" type="numeric" required="true">
     
     <cfset var result = "">

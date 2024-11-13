@@ -1,6 +1,6 @@
-<cfcomponent displayname="ActionUserService" hint="Handles operations for ActionUser table" output="false"> 
+<cfcomponent displayname="ActionUserService" hint="Handles operations for ActionUser table" > 
 
-   <cffunction name="GetUserActions" access="public" returntype="query" output="false" hint="Retrieve actions for a specific user ID.">
+   <cffunction output="false" name="GetUserActions" access="public" returntype="query"  hint="Retrieve actions for a specific user ID.">
         <cfargument name="userid" type="numeric" required="yes" hint="ID of the user to retrieve actions for.">
 
         <!--- Initialize the query variable --->
@@ -39,27 +39,27 @@
     </cffunction>
 
 
-<cffunction name="UPDactionusers" access="public" returntype="void" hint="Updates the isdeleted status of a user in the actionusers_tbl">
+<cffunction output="false" name="UPDactionusers" access="public" returntype="void" hint="Updates the isdeleted status of a user in the actionusers_tbl">
     <cfargument name="new_id" type="numeric" required="true" hint="ID of the user to be updated">
 
-        <cfquery result="result" datasource="abod">
+        <cfquery result="result" >
             UPDATE actionusers_tbl 
             SET isdeleted = 1 
             WHERE id = <cfqueryparam value="#arguments.new_id#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 </cffunction>
 
-<cffunction name="UPDactionusers_23923" access="public" returntype="void">
+<cffunction output="false" name="UPDactionusers_23923" access="public" returntype="void">
     <cfargument name="new_id" type="numeric" required="true">
 
-        <cfquery result="result" datasource="abod">
+        <cfquery result="result" >
             UPDATE actionusers_tbl 
             SET isdeleted = 0 
             WHERE id = <cfqueryparam value="#arguments.new_id#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
 </cffunction>
-<cffunction name="UPDactionusers_24030" access="public" returntype="void">
+<cffunction output="false" name="UPDactionusers_24030" access="public" returntype="void">
     <cfargument name="actionDaysNo" type="numeric" required="true">
     <cfargument name="deleteaction" type="string" required="true">
     <cfargument name="actionDaysRecurring" type="string" required="true">
@@ -85,7 +85,7 @@
         <cfset sql &= " WHERE id = ?">
         <cfset arrayAppend(params, {value=arguments.id, cfsqltype="CF_SQL_INTEGER"})>
 
-        <cfquery result="result" datasource="abod">
+        <cfquery result="result" >
             #sql#
             <cfloop array="#params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
@@ -93,11 +93,11 @@
         </cfquery>
         
 </cffunction>
-<cffunction name="UPDactionusers_24254" access="public" returntype="void">
+<cffunction output="false" name="UPDactionusers_24254" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="target_id_system" type="numeric" required="true">
 
-        <cfquery result="result" datasource="abod">
+        <cfquery result="result" >
             UPDATE actionusers_tbl 
             SET isdeleted = 1 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -109,13 +109,13 @@
         </cfquery>
         
 </cffunction>
-<cffunction name="SELactionusers" access="public" returntype="query">
+<cffunction output="false" name="SELactionusers" access="public" returntype="query">
     <cfargument name="actionid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
 
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT * 
             FROM actionusers 
             WHERE actionid = <cfqueryparam value="#arguments.actionid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -125,13 +125,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="INSactionusers" access="public" returntype="void">
+<cffunction output="false" name="INSactionusers" access="public" returntype="numeric">
     <cfargument name="actionid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="actiondaysno" type="numeric" required="true">
     <cfargument name="actiondaysrecurring" type="string" required="false" default="">
     
-        <cfquery result="result" datasource="abod">
+        <cfquery result="result" >
             INSERT INTO actionusers_tbl (
                 actionid, 
                 userid, 
@@ -148,34 +148,34 @@
                 0
             )
         </cfquery>
-
+ <cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="SELactionusers_24454" access="public" returntype="query">
+<cffunction output="false" name="SELactionusers_24454" access="public" returntype="query">
     <cfargument name="actionid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
  
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT * 
             FROM actionusers 
             WHERE actionid = <cfqueryparam value="#arguments.actionid#" cfsqltype="CF_SQL_INTEGER"> 
             AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
-            <cflog file="application" text="Error in getActionUsers: #cfcatch.message# Query: SELECT * FROM actionusers WHERE actionid = ? AND userid = ? Parameters: #arguments.actionid#, #arguments.userid#">
-            <cfreturn queryNew("")>
+            
+            
 
     
     <cfreturn result>
 </cffunction>
-<cffunction name="INSactionusers_24455" access="public" returntype="void">
+<cffunction output="false" name="INSactionusers_24455" access="public" returntype="numeric">
     <cfargument name="actionid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="actiondaysno" type="numeric" required="true">
     <cfargument name="actiondaysrecurring" type="string" required="false" default="">
 
-        <cfquery result="result" datasource="abod">
+        <cfquery result="result" >
             INSERT INTO actionusers_tbl (actionid, userid, actiondaysno
             <cfif len(arguments.actiondaysrecurring) gt 0>, actiondaysrecurring</cfif>, IsDeleted)
             VALUES (
@@ -188,5 +188,5 @@
                 0
             )
         </cfquery>
-
+ <cfreturn result.generatedKey>
 </cffunction></cfcomponent>

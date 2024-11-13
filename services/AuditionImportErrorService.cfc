@@ -1,6 +1,6 @@
-<cfcomponent displayname="AuditionImportErrorService" hint="Handles operations for AuditionImportError table" output="false"> 
+<cfcomponent displayname="AuditionImportErrorService" hint="Handles operations for AuditionImportError table" > 
 
-<cffunction name="SELauditionsimport_error" access="public" returntype="query">
+<cffunction output="false" name="SELauditionsimport_error" access="public" returntype="query">
     <cfargument name="id" type="numeric" required="true">
     
     <cfset var result = "">
@@ -14,7 +14,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="INSauditionsimport_error" access="public" returntype="void">
+<cffunction output="false" name="INSauditionsimport_error" access="public" returntype="numeric">
     <cfargument name="id" type="numeric" required="true">
     <cfargument name="errorMsg" type="string" default="Duplicate project">
 
@@ -25,9 +25,10 @@
             <cfqueryparam value="#arguments.errorMsg#" cfsqltype="CF_SQL_VARCHAR">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="INSauditionsimport_error_24355" access="public" returntype="void">
+<cffunction output="false" name="INSauditionsimport_error_24355" access="public" returntype="numeric">
     <cfargument name="id" type="numeric" required="true">
     <cfargument name="errorMsg" type="string" default="Missing project name">
 
@@ -38,9 +39,10 @@
             <cfqueryparam value="#arguments.errorMsg#" cfsqltype="CF_SQL_VARCHAR">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="INSauditionsimport_error_24356" access="public" returntype="void">
+<cffunction output="false" name="INSauditionsimport_error_24356" access="public" returntype="numeric">
     <cfargument name="id" type="numeric" required="true">
     <cfargument name="errorMsg" type="string" default="Missing Role name">
 
@@ -51,9 +53,10 @@
             <cfqueryparam value="#arguments.errorMsg#" cfsqltype="CF_SQL_VARCHAR">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="INSauditionsimport_error_24358" access="public" returntype="void">
+<cffunction output="false" name="INSauditionsimport_error_24358" access="public" returntype="numeric">
     <cfargument name="id" type="numeric" required="true">
     <cfargument name="errorMsg" type="string" default="Invalid Category">
 
@@ -64,9 +67,10 @@
             <cfqueryparam value="#arguments.errorMsg#" cfsqltype="CF_SQL_VARCHAR">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="INSauditionsimport_error_24360" access="public" returntype="void">
+<cffunction output="false" name="INSauditionsimport_error_24360" access="public" returntype="numeric">
     <cfargument name="id" type="numeric" required="true">
     <cfargument name="errorMsg" type="string" default="Invalid Source">
 
@@ -77,6 +81,7 @@
             <cfqueryparam value="#arguments.errorMsg#" cfsqltype="CF_SQL_VARCHAR">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
 </cfcomponent>

@@ -1,5 +1,5 @@
-<cfcomponent displayname="AuditionPayCycleService" hint="Handles operations for AuditionPayCycle table" output="false"> 
-<cffunction name="SELaudpaycycles" access="public" returntype="query">
+<cfcomponent displayname="AuditionPayCycleService" hint="Handles operations for AuditionPayCycle table" > 
+<cffunction output="false" name="SELaudpaycycles" access="public" returntype="query">
     <cfargument name="paycycleid" type="numeric" required="false">
     <cfset var result = "">
 
@@ -15,7 +15,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="SELaudpaycycles_24579" access="public" returntype="query">
+<cffunction output="false" name="SELaudpaycycles_24579" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
     <cfset var queryResult = "">
     <cfset var sql = "SELECT paycycleid AS id, paycyclename AS name FROM audpaycycles">

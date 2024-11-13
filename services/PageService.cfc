@@ -1,10 +1,10 @@
-<cfcomponent displayname="PageService" hint="Handles operations for Page table" output="false"> 
-<cffunction name="SELpgpages" access="public" returntype="query">
+<cfcomponent displayname="PageService" hint="Handles operations for Page table" > 
+<cffunction output="false" name="SELpgpages" access="public" returntype="query">
     <cfargument name="ticketActive" type="string" required="true">
     <cfset var queryResult = "">
     
-    <cftry>
-        <cfquery result="result" name="queryResult" datasource="abod">
+    
+        <cfquery result="result" name="queryResult" >
             SELECT DISTINCT p.pgid, p.pgname 
             FROM taousers u 
             INNER JOIN tickets t ON u.userID = t.userid 
@@ -13,42 +13,42 @@
             ORDER BY p.pgname
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getActivePgPages: #cfcatch.message#">
+        
+            
             <cfreturn queryNew("pgid,pgname", "integer,varchar")>
-        </cfcatch>
-    </cftry>
+        
+    
 
     <cfreturn queryResult>
 </cffunction>
-<cffunction name="SELpgpages_23868" access="public" returntype="query">
+<cffunction output="false" name="SELpgpages_23868" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
     
     <cfset var result = "">
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT *
             FROM pgpages p
             INNER JOIN pgcomps c ON c.compID = p.compid
             WHERE p.parentpgid = <cfqueryparam value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER">
             AND p.pgfilename = <cfqueryparam value="results.cfm" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
-        <cfcatch>
-            <cflog file="errorLog" text="Error in getPgPagesResults: #cfcatch.message# Query: SELECT * FROM pgpages p INNER JOIN pgcomps c ON c.compID = p.compid WHERE p.parentpgid = ? AND p.pgfilename = 'results.cfm' Parameters: pgid=#arguments.pgid#">
-            <cfthrow message="Database error occurred. Please try again later.">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="DETpgpages" access="public" returntype="query">
+<cffunction output="false" name="DETpgpages" access="public" returntype="query">
     <cfargument name="compid" type="numeric" required="true">
     <cfargument name="pgid" type="numeric" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT pgid, pgdir
             FROM pgpages
             WHERE compid = <cfqueryparam value="#arguments.compid#" cfsqltype="CF_SQL_INTEGER">
@@ -56,21 +56,21 @@
             AND pgfilename = <cfqueryparam value="results.cfm" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getPgPages: #cfcatch.message# Query: SELECT pgid, pgdir FROM pgpages WHERE compid = #arguments.compid# AND pgid <> #arguments.pgid# AND pgfilename = 'results.cfm'">
+        
+             #arguments.pgid# AND pgfilename = 'results.cfm'">
             <cfreturn queryNew("pgid,pgdir", "integer,varchar")>
-        </cfcatch>
-    </cftry>
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="SELpgpages_23870" access="public" returntype="query">
+<cffunction output="false" name="SELpgpages_23870" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT p.pgTitle, c.compname 
             FROM pgpages p 
             INNER JOIN pgcomps c ON c.compID = p.compID 
@@ -78,20 +78,20 @@
             WHERE p.pgid = <cfqueryparam value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getPgPagesWithCompName: #cfcatch.message# Query: SELECT p.pgTitle, c.compname FROM pgpages p INNER JOIN pgcomps c ON c.compID = p.compID INNER JOIN pgapps a ON a.appID = c.appid WHERE p.pgid = #arguments.rpgid#">
+        
+            
             <cfset result = queryNew("pgTitle, compname", "varchar,varchar")>
-        </cfcatch>
-    </cftry>
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELpgpages_23912" access="public" returntype="query">
+<cffunction output="false" name="SELpgpages_23912" access="public" returntype="query">
     <cfargument name="ref_pgid" type="numeric" required="true">
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 a.appname, a.appAuthor, c.compname, p.pgname, a.appId, 
                 a.appDescription, a.appLogoName, a.colorTopBar, a.colorLeftSideBar, 
@@ -108,37 +108,37 @@
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getAppDetails: #cfcatch.message# Query: SELECT ... WHERE p.pgid = #arguments.ref_pgid#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="DETpgpages_23991" access="public" returntype="query">
+<cffunction output="false" name="DETpgpages_23991" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT pgdir 
             FROM pgpages 
             WHERE pgid = <cfqueryparam value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getPgDirByPgid: #cfcatch.message# Query: SELECT pgdir FROM pgpages WHERE pgid = #arguments.pgid#">
-            <cfthrow message="Database query failed." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="getDynamicQuery" access="public" returntype="query">
+<cffunction output="false" name="getDynamicQuery" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
     <cfset var result = "">
 
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 f.fname, f.fieldid, f.pgid, f.ftype, f.ftypefull, 
                 f.update_yn, f.updatename, f.updatetype, f.fkey, 
@@ -156,23 +156,23 @@
             ORDER BY f.displayOrder
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog type="error" text="Error executing dynamic query: #cfcatch.message#">
-            <cfthrow type="DatabaseError" message="An error occurred while fetching data." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 
     <cfreturn result>
 </cffunction>
 
 
-<cffunction name="SELpgpages_24003" access="public" returntype="query">
+<cffunction output="false" name="SELpgpages_24003" access="public" returntype="query">
     <cfargument name="thispage" type="string" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 a.appname, a.appAuthor, c.compname, p.pgname, a.appId, a.appDescription, 
                 a.appLogoName, a.colorTopBar, a.colorLeftSideBar, a.mocktoday, a.mock_yn, 
@@ -190,21 +190,21 @@
                 p.pgDir = <cfqueryparam value="#trim(arguments.thispage)#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getAppPageDetails: #cfcatch.message#">
-            <cfset result = queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="SELpgpages_24004" access="public" returntype="query">
+<cffunction output="false" name="SELpgpages_24004" access="public" returntype="query">
     <cfargument name="thispage" type="string" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 a.appname, c.compname, p.pgname, f.fname, 
                 a.appId, a.appName, a.appDescription, a.appLogoName, 
@@ -228,41 +228,41 @@
                 p.pgDir = <cfqueryparam value="#trim(arguments.thispage)#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
         
-        <cfcatch>
-            <cflog file="application" text="Error in getDynamicQueryResults: #cfcatch.message#">
-            <cfset result = queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="DETpgpages_24197" access="public" returntype="query">
+<cffunction output="false" name="DETpgpages_24197" access="public" returntype="query">
     <cfargument name="details_pgid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT pgdir
             FROM pgpages
             WHERE pgid = <cfqueryparam value="#arguments.details_pgid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getPgdirByPgid: #cfcatch.message# - Query: SELECT pgdir FROM pgpages WHERE pgid = ? - Parameters: #arguments.details_pgid#">
+        
+            
             <cfset result = queryNew("pgdir")>
-        </cfcatch>
-    </cftry>
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELpgpages_24210" access="public" returntype="query">
+<cffunction output="false" name="SELpgpages_24210" access="public" returntype="query">
     <cfargument name="compactive" type="string" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT p.pgid AS ID, p.pgname AS name
             FROM pgpages p
             INNER JOIN pgcomps c ON c.compid = p.compid
@@ -270,43 +270,43 @@
             ORDER BY p.pgname
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getActivePages: #cfcatch.message#">
+        
+            
             <cfset result = queryNew("ID, name")>
-        </cfcatch>
-    </cftry>
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="DETpgpages_24259" access="public" returntype="query">
+<cffunction output="false" name="DETpgpages_24259" access="public" returntype="query">
     <cfargument name="compid" type="numeric" required="true">
     <cfargument name="pgid" type="numeric" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT pgid, pgdir 
             FROM pgpages 
             WHERE compid = <cfqueryparam value="#arguments.compid#" cfsqltype="CF_SQL_INTEGER"> 
             AND pgid <> <cfqueryparam value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER"> 
             AND pgfilename = <cfqueryparam value="details.cfm" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getPgPagesDetails: #cfcatch.message# Query: SELECT pgid, pgdir FROM pgpages WHERE compid = #arguments.compid# AND pgid <> #arguments.pgid# AND pgfilename = 'details.cfm'">
-            <cfthrow message="An error occurred while fetching page details." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+             #arguments.pgid# AND pgfilename = 'details.cfm'">
+            
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="SELpgpages_24300" access="public" returntype="query">
+<cffunction output="false" name="SELpgpages_24300" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 a.appname, a.appAuthor, c.compname, p.pgname, a.appId, a.appDescription, 
                 a.appLogoName, a.colorTopBar, a.colorLeftSideBar, c.compid, c.compDir, 
@@ -326,19 +326,19 @@
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getPgPagesData: #cfcatch.message# - #cfcatch.detail#">
-            <cfthrow message="Database query error" detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="SELpgpages_24301" access="public" returntype="query">
+<cffunction output="false" name="SELpgpages_24301" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 a.appname, c.compname, p.pgname, f.fname, f.num_min, f.num_max, 
                 f.required_yn, a.appId, a.appName, a.appDescription, a.appLogoName, 
@@ -357,21 +357,21 @@
             AND f.update_yn = <cfqueryparam value="y" cfsqltype="CF_SQL_CHAR">
         </cfquery>
         
-        <cfcatch>
-            <cflog file="application" text="Error in getDynamicQuery: #cfcatch.message#">
-            <cfset result = queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="RESpgpages_24302" access="public" returntype="query">
+<cffunction output="false" name="RESpgpages_24302" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 a.appname, c.compname, p.pgname, f.fname, f.required_yn, f.num_min, f.num_max,
                 a.appId, a.appName, a.appDescription, a.appLogoName, a.colorTopBar, a.colorLeftSideBar,
@@ -397,21 +397,21 @@
                 f.results_yn = <cfqueryparam value="y" cfsqltype="CF_SQL_CHAR">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getDynamicQueryResults: #cfcatch.message# Query: #cfcatch.detail#">
-            <cfthrow message="An error occurred while retrieving query results." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELpgpages_24303" access="public" returntype="query">
+<cffunction output="false" name="SELpgpages_24303" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT f.fname, f.ftype 
             FROM pgpages p 
             INNER JOIN pgcomps c ON c.compID = p.compID 
@@ -421,21 +421,21 @@
               AND f.updatename = <cfqueryparam value="ID" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getPgFields: #cfcatch.message# - Query: #cfcatch.detail#">
+        
+            
             <cfreturn queryNew("fname,ftype")>
-        </cfcatch>
-    </cftry>
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELpgpages_24304" access="public" returntype="query">
+<cffunction output="false" name="SELpgpages_24304" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 a.appname, c.compname, p.pgname, f.fname, f.required_yn, f.num_min, f.num_max, 
                 a.appId, a.appName, a.appDescription, a.appLogoName, a.colorTopBar, a.colorLeftSideBar, 
@@ -452,21 +452,21 @@
             AND f.add_yn = <cfqueryparam value="y" cfsqltype="CF_SQL_CHAR">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" type="error" text="Error executing query in getDynamicQueryResults: #cfcatch.message#">
-            <cfthrow message="An error occurred while retrieving data." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELpgpages_24305" access="public" returntype="query">
+<cffunction output="false" name="SELpgpages_24305" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 a.appname, c.compname, p.pgname, f.fname, f.num_min, f.num_max, 
                 f.required_yn, a.appId, a.appName, a.appDescription, a.appLogoName, 
@@ -490,20 +490,20 @@
                 AND f.update_yn = <cfqueryparam value="y" cfsqltype="CF_SQL_CHAR">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getDynamicQueryResults: #cfcatch.message#">
-            <cfthrow message="Error executing query." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="RESpgpages_24652" access="public" returntype="query">
+<cffunction output="false" name="RESpgpages_24652" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
     <cfset var result = "">
 
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 f.fname, f.fieldid, f.pgid, f.ftype, f.ftypefull, 
                 f.update_yn, f.updatename, f.updatetype, f.fkey, 
@@ -530,21 +530,21 @@
                 f.displayOrder
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getDynamicQueryResults: #cfcatch.message#">
-            <cfset result = queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="SELpgpages_24653" access="public" returntype="query">
+<cffunction output="false" name="SELpgpages_24653" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 f.fname, 
                 f2.fname AS fnameb, 
@@ -573,21 +573,21 @@
                 AND f.fkey <> ''
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getDynamicQueryResults: #cfcatch.message#">
-            <cfthrow message="An error occurred while executing the query." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="RESpgpages_24739" access="public" returntype="query">
+<cffunction output="false" name="RESpgpages_24739" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 f.fname, 
                 f.fieldid, 
@@ -625,20 +625,20 @@
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getDynamicQueryResults: #cfcatch.message#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
 
 
-<cffunction name="getDynamicQueryx" access="public" returntype="query">
+<cffunction output="false" name="getDynamicQueryx" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
     <cfset var result = "">
 
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 f.fname, 
                 f2.fname AS fnameb, 
@@ -667,22 +667,22 @@
                 AND f.fkey <> ''
         </cfquery>
 
-        <cfcatch type="any">
-            <cflog text="Error executing dynamic query: #cfcatch.message#" file="application">
-            <cfthrow type="DatabaseError" message="An error occurred while executing the query." detail="#cfcatch.message#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 
     <cfreturn result>
 </cffunction>
 
 
-<cffunction name="RESpgpages_24777" access="public" returntype="query">
+<cffunction output="false" name="RESpgpages_24777" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 f.fname, f.fieldid, f.pgid, f.ftype, f.ftypefull, f.update_yn, 
                 f.updatename, f.updatetype, f.fkey, f.det_cols, 
@@ -711,19 +711,19 @@
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getDynamicQueryResults: #cfcatch.message# Query: #cfcatch.detail#">
-            <cfthrow message="An error occurred while retrieving the data." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="SELpgpages_24778" access="public" returntype="query">
+<cffunction output="false" name="SELpgpages_24778" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 f.fname, 
                 f2.fname AS fnameb, 
@@ -752,23 +752,23 @@
                 AND f.fkey <> ''
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getDynamicQueryResults: #cfcatch.message# Query: #cfcatch.detail#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
 
-    <cffunction name="getPageDetails" access="public" returntype="struct" output="false" hint="Fetch page details by page ID or URL">
+    <cffunction output="false" name="getPageDetails" access="public" returntype="struct"  hint="Fetch page details by page ID or URL">
         <cfargument name="pgid" type="string" required="false" default="">
         <cfargument name="pgDir" type="string" required="false" default="">
 
         <cfset var page = {}>
 
         <cfif NOT Len(arguments.pgid) AND NOT Len(arguments.pgDir)>
-            <cfthrow type="InvalidArgument" message="Either pgid or pgDir must be provided.">
+            
         </cfif>
 
         <cfquery result="result" name="qPageDetails" >
@@ -837,7 +837,7 @@
         <cfreturn page>
     </cffunction>
 
-    <cffunction name="getPageLinksByLocation" access="public" returntype="struct" output="false" hint="Fetch top and bottom CSS/JS links for the given page">
+    <cffunction output="false" name="getPageLinksByLocation" access="public" returntype="struct"  hint="Fetch top and bottom CSS/JS links for the given page">
         <cfargument name="pgid" type="string" required="true" hint="Page ID to fetch links for">
         <cfargument name="version" type="string" required="true" hint="Version to append to the URL as a cache-busting parameter">
 
@@ -882,7 +882,7 @@
     </cffunction>
 
      <!--- Function to get script_include links for a page --->
-    <cffunction name="getIncludeLinks" access="public" returntype="array" output="false" hint="Fetch script_include links for the given page">
+    <cffunction output="false" name="getIncludeLinks" access="public" returntype="array"  hint="Fetch script_include links for the given page">
         <cfargument name="pgid" type="numeric" required="true" hint="Page ID to fetch include links for">
 
         <!--- Initialize an empty array to store the include links --->
@@ -911,7 +911,7 @@
     </cffunction>
 
  <!--- Function to retrieve a select list of active pages --->
-    <cffunction name="pages_sel" access="remote" returntype="query" output="false" hint="Get a select list of active pages.">
+    <cffunction output="false" name="pages_sel" access="remote" returntype="query"  hint="Get a select list of active pages.">
         <cfquery result="result" name="pages">
             SELECT 
                 p.pgid AS ID,

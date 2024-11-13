@@ -1,6 +1,6 @@
-<cfcomponent displayname="ItemTypeService" hint="Handles operations for ItemType table" output="false"> 
+<cfcomponent displayname="ItemTypeService" hint="Handles operations for ItemType table" > 
 
-<cffunction name="getValueTypesByCategory" access="public" returntype="struct">
+<cffunction output="false" name="getValueTypesByCategory" access="public" returntype="struct">
     <cfargument name="catid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="false" default="">
 
@@ -38,7 +38,7 @@
 
 
 
-<cffunction name="SELitemTypesByCategoryAndUser" access="public" returntype="struct">
+<cffunction output="false" name="SELitemTypesByCategoryAndUser" access="public" returntype="struct">
     <!--- This function retrieves distinct value types based on user and category IDs. --->
     <cfargument name="new_catid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
@@ -69,7 +69,7 @@
     <cfreturn resultStruct>
 </cffunction>
 
-<cffunction name="SELitemTypesByCategory_4" access="public" returntype="struct">
+<cffunction output="false" name="SELitemTypesByCategory_4" access="public" returntype="struct">
 
     <cfset var resultStruct = structNew()>
 
@@ -96,7 +96,7 @@
 
 
 
-<cffunction name="SELitemtypes" access="public" returntype="query">
+<cffunction output="false" name="SELitemtypes" access="public" returntype="query">
     <cfargument name="catId" type="numeric" required="true">
     <cfargument name="excludeTypeId" type="numeric" required="true">
     
@@ -113,7 +113,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELitemtypes_24462" access="public" returntype="query">
+<cffunction output="false" name="SELitemtypes_24462" access="public" returntype="query">
     <cfargument name="typeid" type="numeric" required="false">
     <cfargument name="valuetype" type="string" required="false">
     <cfargument name="typeicon" type="string" required="false">

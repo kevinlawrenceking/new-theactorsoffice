@@ -1,6 +1,6 @@
-<cfcomponent displayname="AuditionAgeRangeXRefService" hint="Handles operations for AuditionAgeRangeXRef table" output="false">
+<cfcomponent displayname="AuditionAgeRangeXRefService" hint="Handles operations for AuditionAgeRangeXRef table" >
 
-    <cffunction name="SELaudageranges_audtion_xref" access="public" returntype="query">
+    <cffunction output="false" name="SELaudageranges_audtion_xref" access="public" returntype="query">
         <cfargument name="audroleid" type="numeric" required="true">
         <cfargument name="new_rangeid" type="numeric" required="true">
         <cfset var result = "">
@@ -15,7 +15,7 @@
         <cfreturn result>
     </cffunction>
 
-    <cffunction name="DELaudageranges_audtion_xref" access="public" returntype="void">
+    <cffunction output="false" name="DELaudageranges_audtion_xref" access="public" returntype="void">
         <cfargument name="new_audroleid" type="numeric" required="true">
 
         <cfquery result="result">
@@ -24,7 +24,7 @@
         </cfquery>
     </cffunction>
 
-    <cffunction name="INSaudageranges_audtion_xref" access="public" returntype="void">
+    <cffunction output="false" name="INSaudageranges_audtion_xref" access="public" returntype="numeric">
         <cfargument name="new_rangeid" type="numeric" required="true">
         <cfargument name="new_audroleid" type="numeric" required="true">
 
@@ -35,9 +35,10 @@
                 <cfqueryparam value="#arguments.new_audroleid#" cfsqltype="CF_SQL_INTEGER">
             )
         </cfquery>
+         <cfreturn result.generatedKey>
     </cffunction>
 
-    <cffunction name="INSaudageranges_audtion_xref_24502" access="public" returntype="void">
+    <cffunction output="false" name="INSaudageranges_audtion_xref_24502" access="public" returntype="numeric">
         <cfargument name="new_audRoleID" type="numeric" required="true">
         <cfargument name="new_rangeid" type="numeric" required="true">
 
@@ -48,9 +49,10 @@
                 <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_rangeid#" null="#NOT len(trim(arguments.new_rangeid))#">
             )
         </cfquery>
+        <cfreturn result.generatedKey>
     </cffunction>
 
-    <cffunction name="UPDaudageranges_audtion_xref" access="public" returntype="void">
+    <cffunction output="false" name="UPDaudageranges_audtion_xref" access="public" returntype="void">
         <cfargument name="new_audRoleID" type="numeric" required="true">
         <cfargument name="new_rangeid" type="numeric" required="true">
         <cfargument name="new_id" type="numeric" required="true">

@@ -1,5 +1,5 @@
-<cfcomponent displayname="TicketTestUserService" hint="Handles operations for TicketTestUser table" output="false"> 
-<cffunction name="SELtickettestusers" access="public" returntype="query">
+<cfcomponent displayname="TicketTestUserService" hint="Handles operations for TicketTestUser table" > 
+<cffunction output="false" name="SELtickettestusers" access="public" returntype="query">
     <cfargument name="recid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     
@@ -14,7 +14,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="INStickettestusers" access="public" returntype="void">
+<cffunction output="false" name="INStickettestusers" access="public" returntype="numeric">
     <cfargument name="new_ticketid" type="numeric" required="true">
     <cfargument name="new_userid" type="numeric" required="true">
     <cfargument name="new_teststatus" type="string" required="true">
@@ -29,8 +29,9 @@
             <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_rejectnotes#" />
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="UPDtickettestusers" access="public" returntype="void">
+<cffunction output="false" name="UPDtickettestusers" access="public" returntype="void">
     <cfargument name="new_teststatus" type="string" required="true">
     <cfargument name="new_rejectnotes" type="string" required="true">
     <cfargument name="testid" type="numeric" required="true">
@@ -44,7 +45,7 @@
             id = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.testid#" />
     </cfquery>
 </cffunction>
-<cffunction name="SELtickettestusers_24474" access="public" returntype="query">
+<cffunction output="false" name="SELtickettestusers_24474" access="public" returntype="query">
     <cfargument name="ticketId" type="numeric" required="true">
     <cfargument name="userId" type="numeric" required="true">
 
@@ -69,7 +70,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="SELtickettestusers_24475" access="public" returntype="query">
+<cffunction output="false" name="SELtickettestusers_24475" access="public" returntype="query">
     <cfargument name="recid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     

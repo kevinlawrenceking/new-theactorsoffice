@@ -1,8 +1,8 @@
 
-<cfcomponent displayname="AuditionMediaService" hint="Handles operations for AuditionMedia table" output="false"> 
+<cfcomponent displayname="AuditionMediaService" hint="Handles operations for AuditionMedia table" > 
 
     <!--- Function to select headshots based on user ID --->
-    <cffunction name="GetHeadshots" access="public" returntype="query" output="false" hint="Retrieve headshots for a specific user ID.">
+    <cffunction output="false" name="GetHeadshots" access="public" returntype="query"  hint="Retrieve headshots for a specific user ID.">
         <cfargument name="userid" type="numeric" required="yes" hint="ID of the user to retrieve headshots for.">
 
         <!--- Query to fetch headshots --->
@@ -40,14 +40,14 @@
         <cfreturn headshots_sel>
     </cffunction>
 
-<cffunction name="SELaudmedia" access="public" returntype="query">
+<cffunction output="false" name="SELaudmedia" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     <cfargument name="mediatypeid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT * 
             FROM audmedia m 
             INNER JOIN audmedia_auditions_xref x ON x.mediaid = m.mediaid 
@@ -57,20 +57,20 @@
             AND m.isdeleted IS FALSE
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getAudMedia: #cfcatch.message#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELaudmedia_23799" access="public" returntype="query">
+<cffunction output="false" name="SELaudmedia_23799" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
     
     <cfset var result = "">
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 m.mediaid, 
                 m.mediatypeid, 
@@ -90,55 +90,55 @@
             WHERE m.eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER">
             AND m.isdeleted = <cfqueryparam value="false" cfsqltype="CF_SQL_BIT">
         </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getMediaByEventId: #cfcatch.message#">
-            <cfthrow>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="UPDaudmedia" access="public" returntype="void">
+<cffunction output="false" name="UPDaudmedia" access="public" returntype="void">
     <cfargument name="mediaid" type="numeric" required="true">
     
-    <cftry>
-        <cfquery result="result" datasource="abod">
+    
+        <cfquery result="result" >
             UPDATE audmedia 
             SET isdeleted = 1 
             WHERE mediaid = <cfqueryparam value="#arguments.mediaid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating audmedia: #cfcatch.message# Query: UPDATE audmedia SET isdeleted = 1 WHERE mediaid = #arguments.mediaid#">
-            <cfthrow message="An error occurred while updating the audmedia record." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="DETaudmedia" access="public" returntype="query">
+<cffunction output="false" name="DETaudmedia" access="public" returntype="query">
     <cfargument name="mediaid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT * 
             FROM audmedia 
             WHERE mediaid = <cfqueryparam value="#arguments.mediaid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getMediaById: #cfcatch.message# Query: SELECT * FROM audmedia WHERE mediaid = #arguments.mediaid#">
-            <cfthrow message="An error occurred while retrieving media data." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="DETaudmedia_24113" access="public" returntype="query">
+<cffunction output="false" name="DETaudmedia_24113" access="public" returntype="query">
     <cfargument name="mediaid" type="numeric" required="true">
     <cfset var result = "">
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 m.mediaid, 
                 m.mediatypeid, 
@@ -158,14 +158,14 @@
             WHERE 
                 m.mediaid = <cfqueryparam value="#arguments.mediaid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getMediaDetails: #cfcatch.message#">
-            <cfthrow message="An error occurred while retrieving media details." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     <cfreturn result>
 </cffunction>
-<cffunction name="SELaudmedia_24249" access="public" returntype="query">
+<cffunction output="false" name="SELaudmedia_24249" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_audcatid" type="numeric" required="true">
     <cfargument name="rangestart" type="date" required="true">
@@ -173,8 +173,8 @@
 
     <cfset var result = "">
 
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 COUNT(x.audprojectid) AS totals, 
                 m.medianame AS label, 
@@ -209,15 +209,15 @@
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getAuditionsData: #cfcatch.message#" />
-            <cfthrow message="An error occurred while fetching auditions data." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="INSaudmedia" access="public" returntype="void">
+<cffunction output="false" name="INSaudmedia" access="public" returntype="numeric">
     <cfargument name="new_mediaTypeID" type="numeric" required="true">
-    <cfargument name="new_mediaURL" type="string" required="true">
+    <cfargument name="new_mediaURL" type="string"  required="true" default="#trim(new_mediaURL)#">
     <cfargument name="new_mediaName" type="string" required="true">
     <cfargument name="new_mediaFilename" type="string" required="true">
     <cfargument name="new_mediaExt" type="string" required="true">
@@ -225,8 +225,7 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_isshare" type="boolean" required="true">
 
-    <cftry>
-        <cfquery result="result" datasource="#abod#" name="insertResult">
+        <cfquery result="result" name="insertResult">
             INSERT INTO audmedia (
                 mediaTypeID, 
                 mediaURL, 
@@ -247,19 +246,15 @@
                 <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isshare#" null="#NOT len(trim(arguments.new_isshare))#">
             )
         </cfquery>
-        <cfcatch>
-            <cflog file="application" text="Error inserting into audmedia: #cfcatch.message#, SQL: #insertResult.sql#, Parameters: #serializeJSON(arguments)#">
-            <cfthrow message="Database error occurred while inserting into audmedia." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+       <cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="SELaudmedia_24569" access="public" returntype="query">
+<cffunction output="false" name="SELaudmedia_24569" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 m.mediaid, 
                 m.mediatypeid, 
@@ -287,22 +282,22 @@
             AND t.mediaType <> 'Headshot'
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getMediaDetails: #cfcatch.message#">
-            <cfset result = queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELaudmedia_24570" access="public" returntype="query">
+<cffunction output="false" name="SELaudmedia_24570" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="audprojectid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 m.mediaid, 
                 m.mediatypeid, 
@@ -352,13 +347,13 @@
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getMediaData: #cfcatch.message# Query: #cfcatch.detail#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="UPDaudmedia_24571" access="public" returntype="void">
+<cffunction output="false" name="UPDaudmedia_24571" access="public" returntype="void">
     <cfargument name="new_mediaTypeID" type="numeric" required="true">
     <cfargument name="new_mediaURL" type="string" required="true">
     <cfargument name="new_mediaName" type="string" required="true">
@@ -369,8 +364,7 @@
     <cfargument name="new_isShare" type="boolean" required="true">
     <cfargument name="new_mediaID" type="numeric" required="true">
 
-    <cftry>
-        <cfquery result="result" datasource="#application.dsn#">
+        <cfquery result="result">
             UPDATE audmedia 
             SET 
                 mediaTypeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_mediaTypeID#" null="#NOT len(trim(arguments.new_mediaTypeID))#">,
@@ -386,19 +380,15 @@
             WHERE 
                 mediaID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_mediaID#">
         </cfquery>
-    <cfcatch>
-        <cflog file="errorLogFile" text="Error updating audmedia: #cfcatch.message#. Query: #cfcatch.detail#">
-        <cfthrow message="Error updating audmedia." detail="#cfcatch.message#">
-    </cfcatch>
-    </cftry>
+
 </cffunction>
-<cffunction name="SELaudmedia_24572" access="public" returntype="query">
+<cffunction output="false" name="SELaudmedia_24572" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 m.mediaid, 
                 m.mediatypeid, 
@@ -427,19 +417,19 @@
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getMediaDetails: #cfcatch.message# Query: #cfcatch.detail#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="SELaudmedia_24573" access="public" returntype="query">
+<cffunction output="false" name="SELaudmedia_24573" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 m.mediaid, 
                 m.mediatypeid, 
@@ -469,20 +459,20 @@
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getMediaDetails: #cfcatch.message#">
-            <cfthrow message="An error occurred while fetching media details." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="SELaudmedia_24665" access="public" returntype="query">
+<cffunction output="false" name="SELaudmedia_24665" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="audprojectid" type="numeric" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 m.mediaid, 
                 m.mediatypeid, 
@@ -513,21 +503,21 @@
                 m.mediaName
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getMediaDetails: #cfcatch.message#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="SELaudmedia_24666" access="public" returntype="query">
+<cffunction output="false" name="SELaudmedia_24666" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 m.mediaid, 
                 m.mediatypeid, 
@@ -558,19 +548,19 @@
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getMediaDetails: #cfcatch.message#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="DETaudmedia_24676" access="public" returntype="query">
+<cffunction output="false" name="DETaudmedia_24676" access="public" returntype="query">
     <cfargument name="mediaid" type="numeric" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 m.mediaid, 
                 m.mediatypeid, 
@@ -599,20 +589,20 @@
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getMediaDetails: #cfcatch.message#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="SELaudmedia_24677" access="public" returntype="query">
+<cffunction output="false" name="SELaudmedia_24677" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="audprojectid" type="numeric" required="true">
 
     <cfset var result = "">
 
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 m.mediaid, 
                 m.mediatypeid, 
@@ -644,19 +634,19 @@
         
         <cfreturn result>
 
-    <cfcatch type="any">
-        <cflog file="application" text="Error in getMediaDetails: #cfcatch.message# Query: #cfcatch.detail#">
-        <cfreturn queryNew("")>
-    </cfcatch>
-    </cftry>
+    
+        
+        
+    
+    
 </cffunction>
-<cffunction name="SELaudmedia_24678" access="public" returntype="query">
+<cffunction output="false" name="SELaudmedia_24678" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 m.mediaid, 
                 m.mediatypeid, 
@@ -687,11 +677,11 @@
                 m.mediaName
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getMediaDetails: #cfcatch.message#">
-            <cfset result = queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction></cfcomponent>

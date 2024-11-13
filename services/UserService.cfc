@@ -1,10 +1,10 @@
-<cfcomponent displayname="UserService" hint="Handles operations for User table" output="false"> 
+<cfcomponent displayname="UserService" hint="Handles operations for User table" > 
 
     <!--- Define the datasource property --->
  
 
     <!--- Function to retrieve user details by user ID --->
-    <cffunction name="GetUserDetails" access="public" returntype="query" output="false">
+    <cffunction output="false" name="GetUserDetails" access="public" returntype="query" >
         <cfargument name="userid" type="numeric" required="yes">
 
         <cfquery result="result" name="details">
@@ -53,13 +53,13 @@
     </cffunction>
 
 
-<cffunction name="SELtaousers" access="public" returntype="query">
+<cffunction output="false" name="SELtaousers" access="public" returntype="query">
     <cfargument name="ticketActive" type="string" required="true">
     
     <cfset var qResult = "">
     
-    <cftry>
-        <cfquery result="result" name="qResult" datasource="abod">
+    
+        <cfquery result="result" name="qResult" >
             SELECT DISTINCT 
                 u.recordname, 
                 u.userrole, 
@@ -75,21 +75,21 @@
                 u.userfirstname
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getActiveUserTickets: #cfcatch.message#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn qResult>
 </cffunction>
-<cffunction name="SELtaousers_23718" access="public" returntype="query">
+<cffunction output="false" name="SELtaousers_23718" access="public" returntype="query">
     <cfargument name="ticketActive" type="string" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT DISTINCT t.tickettype
             FROM taousers u
             INNER JOIN tickets t ON u.userID = t.userid
@@ -97,21 +97,21 @@
             ORDER BY t.tickettype
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getActiveTicketTypes: #cfcatch.message#">
+        
+            
             <cfset result = queryNew("tickettype")>
-        </cfcatch>
-    </cftry>
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELtaousers_23721" access="public" returntype="query">
+<cffunction output="false" name="SELtaousers_23721" access="public" returntype="query">
     <cfargument name="ticketId" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 tu.id, 
                 tu.ticketid, 
@@ -127,15 +127,15 @@
                 tu.ticketid = <cfqueryparam value="#arguments.ticketId#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getTicketTestUsers: #cfcatch.message#" type="error">
+        
+            
             <cfset result = queryNew("id,ticketid,userid,recordname,teststatus,rejectnotes")>
-        </cfcatch>
-    </cftry>
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="UPDtaousers" access="public" returntype="void">
+<cffunction output="false" name="UPDtaousers" access="public" returntype="void">
     <cfargument name="view" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
@@ -148,29 +148,29 @@
         <cfset viewTypeId = 2>
     </cfif>
 
-    <cftry>
+    
         <!--- Execute the parameterized query --->
-        <cfquery result="result" datasource="abod">
+        <cfquery result="result" >
             UPDATE taousers 
             SET viewtypeid = <cfqueryparam value="#viewTypeId#" cfsqltype="CF_SQL_INTEGER"> 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
-        <cfcatch type="any">
+        
             <!--- Log error details --->
-            <cflog file="application" type="error" text="Error updating user view type. UserID: #arguments.userid#, Error: #cfcatch.message#">
+            
             <!--- Optionally rethrow or handle the error further --->
-            <cfthrow message="An error occurred while updating the user view type." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+            
+        
+    
 </cffunction>
-<cffunction name="SELtaousers_23842" access="public" returntype="query">
+<cffunction output="false" name="SELtaousers_23842" access="public" returntype="query">
     <cfargument name="select_userid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 u.userid, 
                 u.recordname, 
@@ -186,32 +186,32 @@
             </cfif>
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getUserDetails: #cfcatch.message#">
+        
+            
             <cfset result = queryNew("userid,recordname,userFirstName,userLastName,userEmail,contactid,userRole")>
-        </cfcatch>
-    </cftry>
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="UPDtaousers_23911" access="public" returntype="void">
+<cffunction output="false" name="UPDtaousers_23911" access="public" returntype="void">
     <cfargument name="accessToken" type="string" required="true">
     <cfargument name="userId" type="numeric" required="true">
 
-    <cftry>
-        <cfquery result="result" datasource="abod">
+    
+        <cfquery result="result" >
             UPDATE taousers 
             SET access_token = <cfqueryparam value="#arguments.accessToken#" cfsqltype="CF_SQL_VARCHAR"> 
             WHERE userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error updating user access token: #cfcatch.message# Query: UPDATE taousers SET access_token = ? WHERE userid = ?">
+        
+            
             <cfrethrow>
-        </cfcatch>
-    </cftry>
+        
+    
 </cffunction>
-<cffunction name="UPDtaousers_23945" access="public" returntype="void">
+<cffunction output="false" name="UPDtaousers_23945" access="public" returntype="void">
 
   <cfargument name="new_userfirstname" type="string" required="true">
     <cfargument name="new_userlastname" type="string" required="true">
@@ -242,25 +242,25 @@
     </cfquery>
 
 </cffunction>
-<cffunction name="UPDtaousers_23950" access="public" returntype="void">
+<cffunction output="false" name="UPDtaousers_23950" access="public" returntype="void">
     <cfargument name="new_nletter_link" type="string" required="true">
     <cfargument name="new_nletter_yn" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cftry>
-        <cfquery result="result" datasource="abod">
+    
+        <cfquery result="result" >
             UPDATE taousers 
             SET nletter_link = <cfqueryparam value="#arguments.new_nletter_link#" cfsqltype="CF_SQL_VARCHAR">, 
                 nletter_yn = <cfqueryparam value="#arguments.new_nletter_yn#" cfsqltype="CF_SQL_VARCHAR">
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating user newsletter: #cfcatch.message# Query: #cfcatch.query#">
-            <cfthrow message="An error occurred while updating the user newsletter." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="UPDtaousers_23951" access="public" returntype="void">
+<cffunction output="false" name="UPDtaousers_23951" access="public" returntype="void">
     <cfargument name="calstarttime" type="date" required="true">
     <cfargument name="calendtime" type="date" required="true">
     <cfargument name="defRows" type="numeric" required="true">
@@ -268,8 +268,8 @@
     <cfargument name="defState" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cftry>
-        <cfquery result="result" datasource="abod">
+    
+        <cfquery result="result" >
             UPDATE taousers 
             SET 
                 calstarttime = <cfqueryparam cfsqltype="cf_sql_time" value="#arguments.calstarttime#" />,
@@ -281,73 +281,73 @@
                 userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#" />
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating user details: #cfcatch.message#">
+        
+            
             <cfrethrow>
-        </cfcatch>
-    </cftry>
+        
+    
 </cffunction>
-<cffunction name="SELtaousers_23956" access="public" returntype="query">
+<cffunction output="false" name="SELtaousers_23956" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
 
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT contactid 
             FROM taousers 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getContactIdByUserId: #cfcatch.message#">
+        
+            
             <cfset result = queryNew("contactid")>
-        </cfcatch>
-    </cftry>
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="UPDtaousers_23989" access="public" returntype="void">
+<cffunction output="false" name="UPDtaousers_23989" access="public" returntype="void">
     <cfargument name="accesstoken" type="string" required="true">
     <cfargument name="refreshToken" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cftry>
-        <cfquery result="result" datasource="abod">
+    
+        <cfquery result="result" >
             UPDATE taousers 
             SET access_token = <cfqueryparam value="#arguments.accesstoken#" cfsqltype="CF_SQL_VARCHAR">, 
                 refresh_token = <cfqueryparam value="#arguments.refreshToken#" cfsqltype="CF_SQL_VARCHAR"> 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating user tokens: #cfcatch.message#">
-            <cfthrow message="An error occurred while updating user tokens." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="UPDtaousers_23990" access="public" returntype="void" hint="Updates the access token for a user based on their userid.">
+<cffunction output="false" name="UPDtaousers_23990" access="public" returntype="void" hint="Updates the access token for a user based on their userid.">
     <cfargument name="accessToken" type="string" required="true" hint="The new access token to be set.">
     <cfargument name="userid" type="numeric" required="true" hint="The ID of the user whose access token is to be updated.">
 
-    <cftry>
-        <cfquery result="result" datasource="abod">
+    
+        <cfquery result="result" >
             UPDATE taousers 
             SET access_token = <cfqueryparam value="#arguments.accessToken#" cfsqltype="CF_SQL_VARCHAR"> 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        <cfcatch>
-            <cflog file="application" type="error" text="Error updating access token for userid #arguments.userid#: #cfcatch.message#">
-            <cfthrow message="An error occurred while updating the access token." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="SELtaousers_23998" access="public" returntype="query">
+<cffunction output="false" name="SELtaousers_23998" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 u.userid, 
                 u.recordname, 
@@ -372,55 +372,55 @@
             WHERE u.userid = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch>
-            <cflog file="application" text="Error in getUserDetails: #cfcatch.message#">
-            <cfset result = queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="UPDtaousers_23999" access="public" returntype="void">
+<cffunction output="false" name="UPDtaousers_23999" access="public" returntype="void">
     <cfargument name="userFirstName" type="string" required="true">
     <cfargument name="userId" type="numeric" required="true">
 
-    <cftry>
-        <cfquery result="result" name="updateAvatar" datasource="abod">
+    
+        <cfquery result="result" name="updateAvatar" >
             UPDATE taousers 
             SET avatarname = <cfqueryparam value="#arguments.userFirstName#" cfsqltype="CF_SQL_VARCHAR">
             WHERE userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating user avatar: #cfcatch.message# Query: #cfcatch.query#">
-            <cfthrow message="Error updating user avatar." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="UPDtaousers_24001" access="public" returntype="void">
+<cffunction output="false" name="UPDtaousers_24001" access="public" returntype="void">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cftry>
-        <cfquery result="result" datasource="abod">
+    
+        <cfquery result="result" >
             UPDATE taousers 
             SET contactid = <cfqueryparam value="#arguments.new_contactid#" cfsqltype="CF_SQL_INTEGER">
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating user contact: #cfcatch.message# Query: #cfcatch.query# Parameters: new_contactid=#arguments.new_contactid#, userid=#arguments.userid#">
-            <cfthrow message="An error occurred while updating the user contact." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="SELtaousers_24002" access="public" returntype="query">
+<cffunction output="false" name="SELtaousers_24002" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 u.userid, 
                 u.recordname, 
@@ -445,20 +445,20 @@
             WHERE u.userid = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getUserDetails: #cfcatch.message#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELtaousers_24072" access="public" returntype="query">
+<cffunction output="false" name="SELtaousers_24072" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 u.userid AS new_userid, 
                 u.recordname AS username 
@@ -468,34 +468,34 @@
                 u.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getUserDetails: #cfcatch.message# Query: SELECT u.userid AS new_userid, u.recordname AS username FROM taousers u WHERE u.userid = ? Parameters: #arguments.userid#">
+        
+            
             <cfset result = queryNew("new_userid,username", "integer,varchar")>
-        </cfcatch>
-    </cftry>
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="DETtaousers" access="public" returntype="query">
+<cffunction output="false" name="DETtaousers" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfset var result = "">
 
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT * 
             FROM taousers 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getUserById: #cfcatch.message# Query: SELECT * FROM taousers WHERE userid = #arguments.userid#">
-            <cfthrow message="An error occurred while retrieving the user." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="SELtaousers_24142" access="public" returntype="query">
+<cffunction output="false" name="SELtaousers_24142" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
     
     <cfset var queryResult = "">
@@ -518,22 +518,22 @@
     <cfset sql &= " ORDER BY userid DESC LIMIT 1">
 
     <!--- Execute the query with error handling --->
-    <cftry>
-        <cfquery result="result" name="queryResult" datasource="abod">
+    
+        <cfquery result="result" name="queryResult" >
             #sql#
             <cfloop array="#paramValues#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
             </cfloop>
         </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error executing query: #cfcatch.message# SQL: #sql# Parameters: #serializeJSON(paramValues)#">
+        
+            
             <cfreturn queryNew("userid")> <!--- Return an empty query set --->
-        </cfcatch>
-    </cftry>
+        
+    
 
     <cfreturn queryResult>
 </cffunction>
-<cffunction name="SELtaousers_24158" access="public" returntype="query">
+<cffunction output="false" name="SELtaousers_24158" access="public" returntype="query">
     <cfargument name="recordName" type="string" required="false">
     
     <cfset var result = "">
@@ -550,34 +550,34 @@
     <cfset sql = sql & whereClause & " GROUP BY u.recordname" & orderByClause>
     
     <!--- Execute the query with error handling --->
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             #sql#
             <cfif len(whereClause)>
                 <cfqueryparam value="#arguments.recordName#" cfsqltype="CF_SQL_VARCHAR">
             </cfif>
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error executing getUserRecords: #cfcatch.message# Query: #sql# Parameters: #arguments.recordName#">
+        
+            
             <!--- Return an empty query on error --->
             <cfset result = queryNew("id,name", "integer,varchar")>
-        </cfcatch>
-    </cftry>
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELtaousers_24306" access="public" returntype="query">
+<cffunction output="false" name="SELtaousers_24306" access="public" returntype="query">
     <cfargument name="userIds" type="array" required="true">
     
     <cfset var result = "">
     <cfset var sql = "">
     <cfset var paramList = "">
     
-    <cftry>
+    
         <cfif arrayLen(arguments.userIds) eq 0>
             <!--- Return an empty query if no user IDs are provided --->
-            <cfquery name="result" datasource="abod">
+            <cfquery name="result" >
                 SELECT * FROM taousers WHERE 1=0
             </cfquery>
         <cfelse>
@@ -598,7 +598,7 @@
             <cfset sql &= ")">
             
             <!--- Execute the query --->
-            <cfquery name="result" datasource="abod">
+            <cfquery name="result" >
                 #sql#
                 <!--- Dynamically insert cfqueryparam tags --->
                 #paramList#
@@ -608,25 +608,25 @@
         <!--- Return the result query --->
         <cfreturn result>
 
-    <cfcatch type="any">
+    
         <!--- Log the error details --->
-        <cflog file="application" text="Error in getUsersWithShares: #cfcatch.message# Query: #sql# Parameters: #arguments.userIds#">
+        
         <!--- Return an empty query on error --->
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT * FROM taousers WHERE 1=0
         </cfquery>
         <cfreturn result>
-    </cfcatch>
-    </cftry>
+    
+    
 
 </cffunction>
-<cffunction name="SELtaousers_24432" access="public" returntype="query">
+<cffunction output="false" name="SELtaousers_24432" access="public" returntype="query">
     <cfargument name="select_userid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 users.userid, 
                 users.recordname, 
@@ -642,41 +642,41 @@
             </cfif>
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getUserDetails: #cfcatch.message#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="SELtaousers_24461" access="public" returntype="query">
+<cffunction output="false" name="SELtaousers_24461" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT * 
             FROM taousers 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getUserById: #cfcatch.message# Query: SELECT * FROM taousers WHERE userid = #arguments.userid#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELtaousers_24759" access="public" returntype="query">
+<cffunction output="false" name="SELtaousers_24759" access="public" returntype="query">
     <cfargument name="userEmail" type="string" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 u.userid, 
                 u.userFirstName, 
@@ -689,21 +689,21 @@
                 u.userEmail = <cfqueryparam value="#arguments.userEmail#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getUserByEmail: #cfcatch.message# Query: #cfcatch.detail#">
+        
+            
             <cfset result = queryNew("userid,userFirstName,userLastName,userEmail,userRole")>
-        </cfcatch>
-    </cftry>
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="SELtaousers_24760" access="public" returntype="query">
+<cffunction output="false" name="SELtaousers_24760" access="public" returntype="query">
     <cfargument name="userEmail" type="string" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 u.userid, 
                 u.userFirstName, 
@@ -716,17 +716,17 @@
                 u.userEmail = <cfqueryparam value="#arguments.userEmail#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getUserDetailsByEmail: #cfcatch.message#">
+        
+            
             <cfset result = queryNew("userid,userFirstName,userLastName,userEmail,userRole")>
-        </cfcatch>
-    </cftry>
+        
+    
     
     <cfreturn result>
 </cffunction>
 
     <!--- Function to get user details by ID, including related tables --->
-    <cffunction name="getUserById" access="public" returntype="struct" output="false" hint="Fetch user details by user ID along with related table data">
+    <cffunction output="false" name="getUserById" access="public" returntype="struct"  hint="Fetch user details by user ID along with related table data">
         <cfargument name="userId" type="numeric" required="true">
 
         <!--- Initialize a struct to hold the user data --->

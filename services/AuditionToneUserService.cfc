@@ -1,6 +1,6 @@
-<cfcomponent displayname="AuditionToneUserService" hint="Handles operations for AuditionToneUser table" output="false"> 
+<cfcomponent displayname="AuditionToneUserService" hint="Handles operations for AuditionToneUser table" > 
 
-<cffunction name="INSaudtones_user" access="public" returntype="void">
+<cffunction output="false" name="INSaudtones_user" access="public" returntype="numeric">
     <cfargument name="tone" type="string" required="true">
     <cfargument name="audcatid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
@@ -13,9 +13,10 @@
             <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="SELaudtones_user" access="public" returntype="query">
+<cffunction output="false" name="SELaudtones_user" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_audcatid" type="numeric" required="true">
     

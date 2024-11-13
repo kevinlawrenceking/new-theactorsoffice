@@ -1,5 +1,5 @@
-<cfcomponent displayname="AuditionNetworkService" hint="Handles operations for AuditionNetwork table" output="false"> 
-<cffunction name="INSaudnetworks" access="public" returntype="void">
+<cfcomponent displayname="AuditionNetworkService" hint="Handles operations for AuditionNetwork table" > 
+<cffunction output="false" name="INSaudnetworks" access="public" returntype="numeric">
     <cfargument name="new_network" type="string" required="true">
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
@@ -12,8 +12,9 @@
             <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="UPDaudnetworks" access="public" returntype="void">
+<cffunction output="false" name="UPDaudnetworks" access="public" returntype="void">
     <cfargument name="new_network" type="string" required="true">
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">

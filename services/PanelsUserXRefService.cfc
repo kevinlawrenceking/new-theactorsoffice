@@ -1,5 +1,5 @@
-<cfcomponent displayname="PanelsUserXRefService" hint="Handles operations for PanelsUserXRef table" output="false"> 
-    <cffunction name="DELpgpanels_user_xref" access="public" returntype="void">
+<cfcomponent displayname="PanelsUserXRefService" hint="Handles operations for PanelsUserXRef table" > 
+    <cffunction output="false" name="DELpgpanels_user_xref" access="public" returntype="void">
         <cfargument name="userid" type="numeric" required="true">
 
         <cfquery result="result">
@@ -8,7 +8,7 @@
         </cfquery>
     </cffunction>
 
-    <cffunction name="INSpgpanels_user_xref" access="public" returntype="void">
+    <cffunction output="false" name="INSpgpanels_user_xref" access="public" returntype="numeric">
         <cfargument name="newpnid" type="numeric" required="true">
         <cfargument name="newuserid" type="numeric" required="true">
 
@@ -19,5 +19,6 @@
                 <cfqueryparam value="#arguments.newuserid#" cfsqltype="CF_SQL_INTEGER">
             )
         </cfquery>
+        <cffunction output="false" name="INSnotifications" access="public" returntype="numeric">
     </cffunction>
 </cfcomponent>

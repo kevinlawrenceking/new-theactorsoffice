@@ -1,5 +1,5 @@
-<cfcomponent displayname="ItemTypesUserService" hint="Handles operations for ItemTypesUser table" output="false"> 
-<cffunction name="INSitemtypes_user" access="public" returntype="void">
+<cfcomponent displayname="ItemTypesUserService" hint="Handles operations for ItemTypesUser table" > 
+<cffunction output="false" name="INSitemtypes_user" access="public" returntype="void">
     <cfargument name="customtype" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
@@ -12,7 +12,7 @@
     </cfquery>
 </cffunction>
 
-<cffunction name="SELitemtypes_user" access="public" returntype="query">
+<cffunction output="false" name="SELitemtypes_user" access="public" returntype="query">
     <cfargument name="valuetype" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
@@ -28,7 +28,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="INSitemtypes_user_24464" access="public" returntype="void">
+<cffunction output="false" name="INSitemtypes_user_24464" access="public" returntype="numeric">
     <cfargument name="valuetype" type="string" required="true">
     <cfargument name="typeicon" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
@@ -41,9 +41,10 @@
             <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="SELitemtypes_user_24466" access="public" returntype="query">
+<cffunction output="false" name="SELitemtypes_user_24466" access="public" returntype="query">
     <cfargument name="valuetype" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 

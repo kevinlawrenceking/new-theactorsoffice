@@ -1,5 +1,5 @@
-<cfcomponent displayname="AuditionQuestionTypeService" hint="Handles operations for AuditionQuestionType table" output="false"> 
-<cffunction name="INSaudqtypes" access="public" returntype="void">
+<cfcomponent displayname="AuditionQuestionTypeService" hint="Handles operations for AuditionQuestionType table" > 
+<cffunction output="false" name="INSaudqtypes" access="public" returntype="numeric">
     <cfargument name="new_qtype" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
@@ -10,8 +10,9 @@
             <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#">
         );
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="UPDaudqtypes" access="public" returntype="void">
+<cffunction output="false" name="UPDaudqtypes" access="public" returntype="void">
     <cfargument name="new_qtype" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_qtypeid" type="numeric" required="true">

@@ -1,5 +1,5 @@
-<cfcomponent displayname="TagService" hint="Handles operations for Tag table" output="false"> 
-<cffunction name="SELtags" access="public" returntype="query">
+<cfcomponent displayname="TagService" hint="Handles operations for Tag table" > 
+<cffunction output="false" name="SELtags" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
     <cfset var queryResult = "">
     <cfset var sql = "SELECT * FROM tags">

@@ -1,5 +1,5 @@
-<cfcomponent displayname="GenreAuditionService" hint="Handles operations for GenreAudition table" output="false"> 
-<cffunction name="SELaudgenres_audition_xref" access="public" returntype="query">
+<cfcomponent displayname="GenreAuditionService" hint="Handles operations for GenreAudition table" > 
+<cffunction output="false" name="SELaudgenres_audition_xref" access="public" returntype="query">
     <cfargument name="projectList" type="string" required="true">
     
     <cfset var queryResult = "">
@@ -74,7 +74,7 @@
 </cffunction>
 
 
-<cffunction name="SELaudgenres_audition_xref_24274" access="public" returntype="query">
+<cffunction output="false" name="SELaudgenres_audition_xref_24274" access="public" returntype="query">
     <cfargument name="audgenre" type="string" required="true">
     <cfargument name="audroleid" type="numeric" required="true">
     
@@ -91,7 +91,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="DELaudgenres_audition_xref" access="public" returntype="void">
+<cffunction output="false" name="DELaudgenres_audition_xref" access="public" returntype="void">
     <cfargument name="new_audroleid" type="numeric" required="true">
 
     <cfquery result="result">
@@ -100,7 +100,7 @@
     </cfquery>
 </cffunction>
 
-<cffunction name="INSaudgenres_audition_xref" access="public" returntype="void">
+<cffunction output="false" name="INSaudgenres_audition_xref" access="public" returntype="numeric">
     <cfargument name="new_audgenreid" type="numeric" required="true">
     <cfargument name="new_audroleid" type="numeric" required="true">
 
@@ -111,25 +111,27 @@
             <cfqueryparam value="#arguments.new_audroleid#" cfsqltype="CF_SQL_INTEGER">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="INSaudgenres_audition_xref_24521" access="public" returntype="void">
+<cffunction output="false" name="INSaudgenres_audition_xref_24521" access="public" returntype="numeric">
     <cfargument name="new_audRoleID" type="numeric" required="true">
     <cfargument name="new_audgenreID" type="numeric" required="true">
-        <cfquery result="result" datasource="abod">
+        <cfquery result="result" >
             INSERT INTO audgenres_audition_xref (audRoleID, audgenreID)
             VALUES (
                 <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#" null="#NOT len(trim(arguments.new_audRoleID))#">,
                 <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audgenreID#" null="#NOT len(trim(arguments.new_audgenreID))#">
             )
         </cfquery>
+        <cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="UPDaudgenres_audition_xref" access="public" returntype="void">
+<cffunction output="false" name="UPDaudgenres_audition_xref" access="public" returntype="void">
     <cfargument name="new_audRoleID" type="numeric" required="true">
     <cfargument name="new_audgenreID" type="numeric" required="true">
     <cfargument name="conditionValue" type="any" required="true">
 
-        <cfquery result="result" datasource="abod">
+        <cfquery result="result" >
             UPDATE audgenres_audition_xref 
             SET 
                 audRoleID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#" null="#NOT len(trim(arguments.new_audRoleID))#">, 

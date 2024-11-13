@@ -1,5 +1,5 @@
-<cfcomponent displayname="ComponentService" hint="Handles operations for Component table" output="false"> 
-<cffunction name="SELpgcomps" access="public" returntype="query">
+<cfcomponent displayname="ComponentService" hint="Handles operations for Component table" > 
+<cffunction output="false" name="SELpgcomps" access="public" returntype="query">
     <cfargument name="menuYN" type="string" required="true">
     <cfargument name="compOwner" type="string" required="true">
     <cfargument name="appid" type="string" required="true">
@@ -29,7 +29,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="getPgComps" access="public" returntype="query">
+<cffunction output="false" name="getPgComps" access="public" returntype="query">
     <cfargument name="appID" type="numeric" required="true">
     <cfargument name="compOwner" type="string" required="true">
 

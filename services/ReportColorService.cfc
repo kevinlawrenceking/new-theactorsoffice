@@ -1,5 +1,5 @@
-<cfcomponent displayname="ReportColorService" hint="Handles operations for ReportColor table" output="false"> 
-<cffunction name="SELreportcolors" access="public" returntype="query">
+<cfcomponent displayname="ReportColorService" hint="Handles operations for ReportColor table" > 
+<cffunction output="false" name="SELreportcolors" access="public" returntype="query">
     <cfargument name="colorName" type="string" required="false">
     
     <cfset var result = "">

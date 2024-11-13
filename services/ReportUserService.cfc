@@ -1,5 +1,5 @@
-<cfcomponent displayname="ReportUserService" hint="Handles operations for ReportUser table" output="false"> 
-<cffunction name="SELreports_user" access="public" returntype="query">
+<cfcomponent displayname="ReportUserService" hint="Handles operations for ReportUser table" > 
+<cffunction output="false" name="SELreports_user" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     <cfargument name="reportID" type="numeric" required="true">
     
@@ -15,7 +15,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELreports_user_24232" access="public" returntype="query">
+<cffunction output="false" name="SELreports_user_24232" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_reportid" type="numeric" required="true">
     
@@ -31,7 +31,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELreports_user_24725" access="public" returntype="query">
+<cffunction output="false" name="SELreports_user_24725" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -45,7 +45,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELreports_user_24728" access="public" returntype="query">
+<cffunction output="false" name="SELreports_user_24728" access="public" returntype="query">
     <cfargument name="reportid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="reportname" type="string" required="true">
@@ -63,7 +63,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="INSreports_user" access="public" returntype="void">
+<cffunction output="false" name="INSreports_user" access="public" returntype="numeric">
     <cfargument name="reportid" type="numeric" required="true">
     <cfargument name="reportname" type="string" required="true">
     <cfargument name="reportorderno" type="numeric" required="true">
@@ -92,9 +92,10 @@
             <cfqueryparam value="#arguments.colorid#" cfsqltype="CF_SQL_INTEGER">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="SELreports_user_24733" access="public" returntype="query">
+<cffunction output="false" name="SELreports_user_24733" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     <cfset var result = "">
 
@@ -131,13 +132,13 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELreports_user_24734" access="public" returntype="query">
+<cffunction output="false" name="SELreports_user_24734" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     <cfargument name="reportTypeID" type="numeric" default="4">
 
     <cfset var result = "">
     
-            <cfquery name="result" datasource="abod">
+            <cfquery name="result" >
             SELECT 
                 r.ID, 
                 r.reportid, 
@@ -167,10 +168,10 @@
         
         <cfreturn result>
 </cffunction>
-<cffunction name="SELreports_user_24736" access="public" returntype="query">
+<cffunction output="false" name="SELreports_user_24736" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     <cfset var result = "">
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT i.itemvalueint AS item_13
             FROM reports_user u
             INNER JOIN reportitems i ON i.ID = u.id
@@ -179,13 +180,13 @@
         </cfquery>
     <cfreturn result>
 </cffunction>
-<cffunction name="SELreports_user_24737" access="public" returntype="query">
+<cffunction output="false" name="SELreports_user_24737" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     <cfargument name="reportId" type="numeric" required="true" default="17">
     
     <cfset var result = "">
     
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT i.itemvalueint AS item_17
             FROM reports_user u
             INNER JOIN reportitems i ON i.ID = u.id

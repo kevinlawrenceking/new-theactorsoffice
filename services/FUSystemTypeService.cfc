@@ -1,5 +1,5 @@
-<cfcomponent displayname="FUSystemTypeService" hint="Handles operations for FUSystemType table" output="false"> 
-<cffunction name="SELfusystemtypes" access="public" returntype="query">
+<cfcomponent displayname="FUSystemTypeService" hint="Handles operations for FUSystemType table" > 
+<cffunction output="false" name="SELfusystemtypes" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
     <cfset var queryResult = "">
     <cfset var sql = "SELECT systemtype AS ID, systemtype AS systemname FROM fusystemtypes">

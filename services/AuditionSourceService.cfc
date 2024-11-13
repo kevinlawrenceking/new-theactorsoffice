@@ -1,5 +1,5 @@
-<cfcomponent displayname="AuditionSourceService" hint="Handles operations for AuditionSource table" output="false"> 
-<cffunction name="SELaudsources" access="public" returntype="query">
+<cfcomponent displayname="AuditionSourceService" hint="Handles operations for AuditionSource table" > 
+<cffunction output="false" name="SELaudsources" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
     <cfset var result = "">
     <cfset var sql = "SELECT audsource AS NAME FROM audsources">
@@ -28,7 +28,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELaudsources_24222" access="public" returntype="query">
+<cffunction output="false" name="SELaudsources_24222" access="public" returntype="query">
     <cfargument name="isDeleted" type="boolean" required="false" default="false">
     
     <cfset var result = "">
@@ -48,7 +48,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELaudsources_24359" access="public" returntype="query">
+<cffunction output="false" name="SELaudsources_24359" access="public" returntype="query">
     <cfargument name="audsource" type="string" required="true">
 
     <cfset var result = "">
@@ -63,7 +63,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELaudsources_24371" access="public" returntype="query">
+<cffunction output="false" name="SELaudsources_24371" access="public" returntype="query">
     <cfargument name="audsource" type="string" required="true">
     
     <cfset var result = "">
@@ -78,7 +78,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="INSaudsources" access="public" returntype="void">
+<cffunction output="false" name="INSaudsources" access="public" returntype="numeric">
     <cfargument name="new_audsource" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
@@ -89,9 +89,10 @@
             <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
         );
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="UPDaudsources" access="public" returntype="void">
+<cffunction output="false" name="UPDaudsources" access="public" returntype="void">
     <cfargument name="new_audsource" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_audsourceid" type="numeric" required="true">
@@ -106,7 +107,7 @@
     </cfquery>
 </cffunction>
 
-<cffunction name="SELaudsources_24684" access="public" returntype="query">
+<cffunction output="false" name="SELaudsources_24684" access="public" returntype="query">
     <cfargument name="excludeMyTeam" type="boolean" required="false" default="false">
     
     <cfset var result = "">

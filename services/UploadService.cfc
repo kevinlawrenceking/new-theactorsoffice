@@ -1,13 +1,14 @@
-<cfcomponent displayname="UploadService" hint="Handles operations for Upload table" output="false"> 
-<cffunction name="INSuploads" access="public" returntype="void">
+<cfcomponent displayname="UploadService" hint="Handles operations for Upload table" > 
+<cffunction output="false" name="INSuploads" access="public" returntype="numeric">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfquery result="result">
         INSERT INTO uploads (userid) 
         VALUES (<cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">)
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="DETuploads" access="public" returntype="query">
+<cffunction output="false" name="DETuploads" access="public" returntype="query">
     <cfargument name="uploadid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -19,4 +20,5 @@
     </cfquery>
     
     <cfreturn result>
-</cffunction></cfcomponent>
+</cffunction>
+</cfcomponent>

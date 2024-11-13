@@ -1,5 +1,5 @@
-<cfcomponent displayname="AuditionLocationService" hint="Handles operations for AuditionLocation table" output="false"> 
-<cffunction name="UPDaudlocations" access="public" returntype="void">
+<cfcomponent displayname="AuditionLocationService" hint="Handles operations for AuditionLocation table" > 
+<cffunction output="false" name="UPDaudlocations" access="public" returntype="void">
     <cfargument name="new_userid" type="numeric" required="true">
     <cfargument name="new_eventLocation" type="string" required="true">
     <cfargument name="new_audlocadd1" type="string" required="true">
@@ -26,7 +26,7 @@
     </cfquery>
 </cffunction>
 
-<cffunction name="INSaudlocations" access="public" returntype="void">
+<cffunction output="false" name="INSaudlocations" access="public" returntype="numeric">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="custom" type="string" required="true">
 
@@ -37,9 +37,10 @@
             <cfqueryparam value="#arguments.custom#" cfsqltype="CF_SQL_VARCHAR">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="SELaudlocations" access="public" returntype="query">
+<cffunction output="false" name="SELaudlocations" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">

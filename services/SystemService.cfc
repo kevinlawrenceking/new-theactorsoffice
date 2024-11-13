@@ -1,6 +1,6 @@
-<cfcomponent displayname="SystemService" hint="Handles operations for System table" output="false"> 
+<cfcomponent displayname="SystemService" hint="Handles operations for System table" > 
 
-<cffunction name="SELfusystemtypes" access="public" returntype="query" output="false">
+<cffunction output="false" name="SELfusystemtypes" access="public" returntype="query" >
     <cfquery result="result" name="queryResult">
         SELECT systemtype AS ID, systemtype AS systemname 
         FROM fusystemtypes 
@@ -11,7 +11,7 @@
 
 <
 
-<cffunction name="SELfusystems_23821" access="public" returntype="query">
+<cffunction output="false" name="SELfusystems_23821" access="public" returntype="query">
     <cfargument name="newsystemscope" type="string" required="true">
 
     <cfset var result = "">
@@ -26,7 +26,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELfusystems_23933" access="public" returntype="query">
+<cffunction output="false" name="SELfusystems_23933" access="public" returntype="query">
     <cfargument name="new_userid" type="numeric" required="true">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="new_systemid" type="numeric" required="false">
@@ -47,7 +47,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="DETfusystems" access="public" returntype="query">
+<cffunction output="false" name="DETfusystems" access="public" returntype="query">
     <cfargument name="systemId" type="numeric" required="true">
     <cfset var result = "">
 
@@ -60,7 +60,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELfusystems_23938" access="public" returntype="query">
+<cffunction output="false" name="SELfusystems_23938" access="public" returntype="query">
     <cfargument name="new_systemid" type="numeric" required="true">
     <cfargument name="new_userid" type="numeric" required="true">
     
@@ -90,7 +90,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELfusystems_23944" access="public" returntype="query">
+<cffunction output="false" name="SELfusystems_23944" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -123,13 +123,13 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELfusystems" access="public" returntype="query">
+<cffunction output="false" name="SELfusystems" access="public" returntype="query">
     <cfargument name="new_systemid" type="numeric" required="true">
     <cfargument name="session_userid" type="numeric" required="true">
 
     <cfset var result = "">
     
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 s.systemID, 
                 s.systemName, 
@@ -161,13 +161,13 @@
 </cffunction>
 
 
-<cffunction name="DETfusystems_24029" access="public" returntype="query">
+<cffunction output="false" name="DETfusystems_24029" access="public" returntype="query">
     <cfargument name="id" type="numeric" required="true">
     
     <cfset var result = "">
     
     
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 au.id, 
                 s.systemID, 
@@ -194,14 +194,14 @@
         <cfreturn result>
 
 </cffunction>
-<cffunction name="SELfusystems_24317" access="public" returntype="query">
+<cffunction output="false" name="SELfusystems_24317" access="public" returntype="query">
     <cfargument name="systemtype" type="string" required="true">
     <cfargument name="systemscope" type="string" required="true">
     
     <cfset var result = "">
     
     
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT * 
             FROM fusystems 
             WHERE systemtype = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.systemtype#" />
@@ -212,13 +212,13 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELfusystems_24318" access="public" returntype="query">
+<cffunction output="false" name="SELfusystems_24318" access="public" returntype="query">
     <cfargument name="systemType" type="string" required="true">
     <cfargument name="systemScope" type="string" required="true">
 
     <cfset var result = "">
 
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT *
             FROM fusystems
             WHERE systemtype = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.systemType#" />
@@ -228,12 +228,12 @@
     
     <cfreturn result>
     </cffunction>
-<cffunction name="SELfusystems_24320" access="public" returntype="query">
+<cffunction output="false" name="SELfusystems_24320" access="public" returntype="query">
     <cfargument name="systemIds" type="string" required="true">
     
     <cfset var result = "">
     
-    <cfquery name="result" datasource="abod">
+    <cfquery name="result" >
         SELECT * 
         FROM fusystems 
         WHERE systemid IN (
@@ -246,14 +246,14 @@
 </cffunction>
 
 
-<cffunction name="SELfusystems_24321" access="public" returntype="query">
+<cffunction output="false" name="SELfusystems_24321" access="public" returntype="query">
     <cfargument name="systemID" type="numeric" required="true">
     <cfargument name="userID" type="numeric" required="true">
     
     <cfset var queryResult = "">
     
     
-        <cfquery result="result" name="queryResult" datasource="abod">
+        <cfquery result="result" name="queryResult" >
             SELECT 
                 au.id, 
                 s.systemID, 
@@ -282,13 +282,13 @@
     
     <cfreturn queryResult>
 </cffunction>
-<cffunction name="SELfusystems_24322" access="public" returntype="query">
+<cffunction output="false" name="SELfusystems_24322" access="public" returntype="query">
     <cfargument name="systemID" type="numeric" required="true">
     <cfargument name="userID" type="numeric" required="true">
 
     <cfset var result = "">
     
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT MAX(au.id) AS id, a.actionID, a.actionTitle, a.actionno 
             FROM fusystems s 
             INNER JOIN fuactions a ON s.systemid = a.systemid 
@@ -310,14 +310,14 @@
         <cfreturn result>
 
 </cffunction>
-<cffunction name="SELfusystems_24342" access="public" returntype="query">
+<cffunction output="false" name="SELfusystems_24342" access="public" returntype="query">
     <cfargument name="systemType" type="string" required="true">
     <cfargument name="systemScope" type="string" required="true">
     
     <cfset var result = "">
     
     
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT systemid 
             FROM fusystems 
             WHERE systemtype = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.systemType#" />
@@ -326,14 +326,14 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="SELfusystems_24428" access="public" returntype="query">
+<cffunction output="false" name="SELfusystems_24428" access="public" returntype="query">
     <cfargument name="maint_systemID" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
     
     
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 s.systemID, 
                 s.systemName, 
@@ -363,8 +363,8 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="SELfusystems_24634" access="public" returntype="query">
-    <cfquery result="result" name="queryResult" datasource="abod">
+<cffunction output="false" name="SELfusystems_24634" access="public" returntype="query">
+    <cfquery result="result" name="queryResult" >
         SELECT systemid AS id, systemname 
         FROM fusystems 
         ORDER BY systemname
@@ -372,13 +372,13 @@
     <cfreturn queryResult>
 </cffunction>
 
-<cffunction name="SELfusystems_24750" access="public" returntype="query">
+<cffunction output="false" name="SELfusystems_24750" access="public" returntype="query">
     <cfargument name="systemid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
     
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 s.systemID, 
                 s.systemName, 
@@ -408,14 +408,14 @@
         <cfreturn result>
         
 </cffunction>
-<cffunction name="SELfusystems_24762" access="public" returntype="query">
+<cffunction output="false" name="SELfusystems_24762" access="public" returntype="query">
     <cfargument name="new_systemscope" type="string" required="true">
     <cfargument name="currentid" type="numeric" required="true">
     <cfargument name="session_userid" type="numeric" required="true">
 
     <cfset var result = "">
     
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT * 
             FROM fusystems 
             WHERE systemscope = <cfqueryparam value="#arguments.new_systemscope#" cfsqltype="CF_SQL_VARCHAR"> 
@@ -432,7 +432,7 @@
         <cfreturn result>
         
 </cffunction>
-<cffunction name="SELfusystems_24763" access="public" returntype="query">
+<cffunction output="false" name="SELfusystems_24763" access="public" returntype="query">
     <cfargument name="systemID" type="numeric" required="false">
     <cfargument name="systemName" type="string" required="false">
     
@@ -462,7 +462,7 @@
 
     <!--- Execute the query --->
 
-        <cfquery result="result" name="queryResult" datasource="abod">
+        <cfquery result="result" name="queryResult" >
             #sql#
             <cfloop array="#params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">

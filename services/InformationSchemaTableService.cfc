@@ -1,6 +1,6 @@
 <cfcomponent displayname="InformationSchemaTableService" hint="Handles operations for InformationSchemaTable table" 
-output="false"> 
-<cffunction name="SELinformation_schema" access="public" returntype="query">
+> 
+<cffunction output="false" name="SELinformation_schema" access="public" returntype="query">
     <cfargument name="tableNamePattern" type="string" required="true">
     <cfset var result = "">
 

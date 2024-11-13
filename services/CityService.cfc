@@ -1,6 +1,6 @@
-<cfcomponent displayname="CityService" hint="Handles operations for City table" output="false"> 
+<cfcomponent displayname="CityService" hint="Handles operations for City table" > 
 
-    <cffunction name="SELcities" access="public" returntype="query" output="false">
+    <cffunction output="false" name="SELcities" access="public" returntype="query" >
         
         <cfquery name="result">
             SELECT 

@@ -1,5 +1,5 @@
-<cfcomponent displayname="FilteredQueryService" hint="Handles operations for FilteredQuery table" output="false"> 
-<cffunction name="SELqFiltered" access="public" returntype="query">
+<cfcomponent displayname="FilteredQueryService" hint="Handles operations for FilteredQuery table" > 
+<cffunction output="false" name="SELqFiltered" access="public" returntype="query">
     <cfargument name="sIndexColumn" type="string" required="true">
     <cfargument name="conditions" type="struct" required="false" default="#StructNew()#">
 

@@ -1,5 +1,5 @@
-<cfcomponent displayname="MeetingDurationService" hint="Handles operations for MeetingDuration table" output="false"> 
-<cffunction name="SELmtgdurations" access="public" returntype="query">
+<cfcomponent displayname="MeetingDurationService" hint="Handles operations for MeetingDuration table" > 
+<cffunction output="false" name="SELmtgdurations" access="public" returntype="query">
     <cfargument name="new_durhours" type="numeric" required="true">
     
     <cfset var result = "">
@@ -12,7 +12,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELmtgdurations_24493" access="public" returntype="query">
+<cffunction output="false" name="SELmtgdurations_24493" access="public" returntype="query">
     <cfargument name="new_durhours" type="numeric" required="true">
     
     <cfset var result = "">
@@ -25,7 +25,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELmtgdurations_24655" access="public" returntype="query">
+<cffunction output="false" name="SELmtgdurations_24655" access="public" returntype="query">
     <cfargument name="new_durid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -38,7 +38,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELmtgdurations_24656" access="public" returntype="query">
+<cffunction output="false" name="SELmtgdurations_24656" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
     
     <cfset var queryResult = "">

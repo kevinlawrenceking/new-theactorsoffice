@@ -1,6 +1,6 @@
-<cfcomponent displayname="AuditionAgeRangeService" hint="Handles operations for AuditionAgeRange table" output="false">
+<cfcomponent displayname="AuditionAgeRangeService" hint="Handles operations for AuditionAgeRange table" >
 
-    <cffunction name="SELaudageranges" access="public" returntype="query">
+    <cffunction output="false" name="SELaudageranges" access="public" returntype="query">
         <cfargument name="isDeleted" type="boolean" required="true">
         
         <cfquery name="result">
@@ -13,7 +13,7 @@
         <cfreturn result>
     </cffunction>
 
-    <cffunction name="INSaudageranges" access="public" returntype="void">
+    <cffunction output="false" name="INSaudageranges" access="public" returntype="numeric">
         <cfargument name="new_rangename" type="string" required="true">
         <cfargument name="new_age_min" type="numeric" required="true">
         <cfargument name="new_age_max" type="numeric" required="true">
@@ -30,9 +30,10 @@
                 <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#">
             )
         </cfquery>
+         <cfreturn result.generatedKey>
     </cffunction>
 
-    <cffunction name="UPDaudageranges" access="public" returntype="void">
+    <cffunction output="false" name="UPDaudageranges" access="public" returntype="void">
         <cfargument name="new_rangename" type="string" required="true">
         <cfargument name="new_age_min" type="numeric" required="true">
         <cfargument name="new_age_max" type="numeric" required="true">
@@ -53,7 +54,7 @@
         </cfquery>
     </cffunction>
 
-    <cffunction name="SELaudageranges_24552" access="public" returntype="query">
+    <cffunction output="false" name="SELaudageranges_24552" access="public" returntype="query">
         <cfargument name="audroleid" type="numeric" required="true">
         
         <cfquery name="result">

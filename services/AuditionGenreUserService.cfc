@@ -1,5 +1,5 @@
-<cfcomponent displayname="AuditionGenreUserService" hint="Handles operations for AuditionGenreUser table" output="false"> 
-<cffunction name="SELaudgenres_user" access="public" returntype="query">
+<cfcomponent displayname="AuditionGenreUserService" hint="Handles operations for AuditionGenreUser table" > 
+<cffunction output="false" name="SELaudgenres_user" access="public" returntype="query">
     <cfargument name="audcatid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     
@@ -15,7 +15,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELaudgenres_user_24272" access="public" returntype="query">
+<cffunction output="false" name="SELaudgenres_user_24272" access="public" returntype="query">
     <cfargument name="new_audcatid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     
@@ -31,7 +31,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELaudgenres_user_24273" access="public" returntype="query">
+<cffunction output="false" name="SELaudgenres_user_24273" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_audcatid" type="numeric" required="true">
     
@@ -48,7 +48,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELaudgenres_user_24285" access="public" returntype="query">
+<cffunction output="false" name="SELaudgenres_user_24285" access="public" returntype="query">
     <cfargument name="new_genre" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
@@ -64,7 +64,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="INSaudgenres_user" access="public" returntype="void">
+<cffunction output="false" name="INSaudgenres_user" access="public" returntype="numeric">
     <cfargument name="new_genre" type="string" required="true">
     <cfargument name="new_catid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
@@ -77,9 +77,10 @@
             <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="SELaudgenres_user_24523" access="public" returntype="query">
+<cffunction output="false" name="SELaudgenres_user_24523" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
 

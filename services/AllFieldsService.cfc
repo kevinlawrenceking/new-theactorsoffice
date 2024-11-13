@@ -1,6 +1,6 @@
-<cfcomponent displayname="AllFieldsService" hint="Handles operations for AllFields table" output="false"> 
+<cfcomponent displayname="AllFieldsService" hint="Handles operations for AllFields table" > 
 
-    <cffunction name="getFilteredAllFields" access="public" returntype="query">
+    <cffunction output="false" name="getFilteredAllFields" access="public" returntype="query">
         <cfargument name="keyValue" type="string" required="true">
         <cfargument name="extraValue" type="string" required="true">
         <cfset var queryResult = "">
@@ -15,7 +15,7 @@
         <cfreturn queryResult>
     </cffunction>
 
-    <cffunction name="SELallfields_24310" access="public" returntype="query">
+    <cffunction output="false" name="SELallfields_24310" access="public" returntype="query">
         <cfargument name="keyValue" type="string" required="true">
         <cfset var result = "">
 

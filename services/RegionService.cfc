@@ -1,6 +1,6 @@
-<cfcomponent displayname="RegionService" hint="Handles operations for Region table" output="false"> 
+<cfcomponent displayname="RegionService" hint="Handles operations for Region table" > 
 
-    <cffunction name="GetRegions" access="public" returntype="query" output="false" hint="Retrieve all regions ordered by region name.">
+    <cffunction output="false" name="GetRegions" access="public" returntype="query"  hint="Retrieve all regions ordered by region name.">
         <cfset var regions = "">
         <cfquery result="result" name="regions">
             SELECT 
@@ -15,7 +15,7 @@
         <cfreturn regions>
     </cffunction>
 
-    <cffunction name="SELregions" access="public" returntype="query">
+    <cffunction output="false" name="SELregions" access="public" returntype="query">
         <cfargument name="region_id" type="numeric" required="true">
         <cfset var result = "">
         <cfquery name="result">
@@ -26,7 +26,7 @@
         <cfreturn result>
     </cffunction>
 
-    <cffunction name="SELregions_24170" access="public" returntype="query">
+    <cffunction output="false" name="SELregions_24170" access="public" returntype="query">
         <cfargument name="valueregion" type="string" required="true">
         <cfset var result = "">
         <cfquery name="result">
@@ -37,7 +37,7 @@
         <cfreturn result>
     </cffunction>
 
-    <cffunction name="SELregions_24177" access="public" returntype="query">
+    <cffunction output="false" name="SELregions_24177" access="public" returntype="query">
         <cfargument name="region_id" type="numeric" required="true">
         <cfargument name="old_countryid" type="string" required="true">
         <cfset var result = "">
@@ -50,7 +50,7 @@
         <cfreturn result>
     </cffunction>
 
-    <cffunction name="SELregions_24717" access="public" returntype="query">
+    <cffunction output="false" name="SELregions_24717" access="public" returntype="query">
         <cfargument name="regionID" type="numeric" required="false">
         <cfargument name="regionName" type="string" required="false">
         <cfset var queryResult = "">
@@ -78,7 +78,7 @@
         <cfreturn queryResult>
     </cffunction>
 
-    <cffunction name="SELregions_24721" access="public" returntype="query">
+    <cffunction output="false" name="SELregions_24721" access="public" returntype="query">
         <cfargument name="regionName" type="string" required="true">
         <cfset var result = "">
         <cfquery name="result">

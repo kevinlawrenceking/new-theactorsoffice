@@ -1,6 +1,6 @@
-<cfcomponent displayname="GenderPronounUserService" hint="Handles operations for GenderPronounUser table" output="false"> 
+<cfcomponent displayname="GenderPronounUserService" hint="Handles operations for GenderPronounUser table" > 
 
-<cffunction name="SELgenderpronouns_users" access="public" returntype="query">
+<cffunction output="false" name="SELgenderpronouns_users" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
@@ -14,7 +14,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELgenderpronouns_users_24203" access="public" returntype="query">
+<cffunction output="false" name="SELgenderpronouns_users_24203" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="custom" type="string" required="true">
 
@@ -30,7 +30,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="INSgenderpronouns_users" access="public" returntype="void">
+<cffunction output="false" name="INSgenderpronouns_users" access="public" returntype="numeric">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="custom" type="string" required="true">
 
@@ -44,9 +44,10 @@
             <cfqueryparam value="#arguments.custom#" cfsqltype="CF_SQL_VARCHAR">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="SELgenderpronouns_users_24444" access="public" returntype="query">
+<cffunction output="false" name="SELgenderpronouns_users_24444" access="public" returntype="query">
     <cfargument name="genderpronoun" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
@@ -62,7 +63,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="INSgenderpronouns_users_24445" access="public" returntype="void">
+<cffunction output="false" name="INSgenderpronouns_users_24445" access="public" returntype="numeric">
     <cfargument name="genderpronoun" type="string" required="true">
     <cfargument name="genderpronounplural" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
@@ -75,9 +76,10 @@
             <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="SELgenderpronouns_users_24627" access="public" returntype="query">
+<cffunction output="false" name="SELgenderpronouns_users_24627" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">

@@ -1,6 +1,6 @@
-<cfcomponent displayname="AuditionAnswerService" hint="Handles operations for AuditionAnswer table" output="false">
+<cfcomponent displayname="AuditionAnswerService" hint="Handles operations for AuditionAnswer table" >
 
-    <cffunction name="DELaudanswers" access="public" returntype="void">
+    <cffunction output="false" name="DELaudanswers" access="public" returntype="void">
         <cfargument name="eventid" type="numeric" required="true">
 
         <cfquery result="result">
@@ -9,7 +9,7 @@
         </cfquery>
     </cffunction>
 
-    <cffunction name="INSaudanswers" access="public" returntype="void">
+    <cffunction output="false" name="INSaudanswers" access="public" returntype="numeric">
         <cfargument name="qid" type="numeric" required="true">
         <cfargument name="eventid" type="numeric" required="true">
 
@@ -20,9 +20,10 @@
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.eventid#">
             )
         </cfquery>
+        <cfreturn result.generatedKey>
     </cffunction>
 
-    <cffunction name="UPDaudanswers" access="public" returntype="void">
+    <cffunction output="false" name="UPDaudanswers" access="public" returntype="void">
         <cfargument name="new_qtype" type="string" required="true">
         <cfargument name="new_value" required="true">
         <cfargument name="new_answerID" type="numeric" required="true">
@@ -40,7 +41,7 @@
         </cfquery>
     </cffunction>
 
-    <cffunction name="INSaudanswers_24506" access="public" returntype="void">
+    <cffunction output="false" name="INSaudanswers_24506" access="public" returntype="numeric">
         <cfargument name="new_qID" type="numeric" required="true">
         <cfargument name="new_eventid" type="numeric" required="true">
         <cfargument name="new_aText" type="string" required="true">
@@ -59,9 +60,10 @@
                 <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#">
             )
         </cfquery>
+        <cfreturn result.generatedKey>
     </cffunction>
 
-    <cffunction name="UPDaudanswers_24507" access="public" returntype="void">
+    <cffunction output="false" name="UPDaudanswers_24507" access="public" returntype="void">
         <cfargument name="new_qID" type="numeric" required="true">
         <cfargument name="new_eventid" type="numeric" required="true">
         <cfargument name="new_aText" type="string" required="true">

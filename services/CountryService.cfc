@@ -1,5 +1,5 @@
-<cfcomponent displayname="CountryService" hint="Handles operations for Country table" output="false"> 
-<cffunction name="SELcountries" access="public" returntype="query">
+<cfcomponent displayname="CountryService" hint="Handles operations for Country table" > 
+<cffunction output="false" name="SELcountries" access="public" returntype="query">
     <cfargument name="countryid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -12,7 +12,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELcountries_24169" access="public" returntype="query">
+<cffunction output="false" name="SELcountries_24169" access="public" returntype="query">
     <cfargument name="countryName" type="string" required="true">
     
     <cfset var result = "">
@@ -25,7 +25,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELcountries_24637" access="public" returntype="query">
+<cffunction output="false" name="SELcountries_24637" access="public" returntype="query">
     <cfargument name="countryIds" type="array" required="true">
     
     <cfset var result = "">
@@ -38,7 +38,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="SELcountries_24720" access="public" returntype="query">
+<cffunction output="false" name="SELcountries_24720" access="public" returntype="query">
     <cfargument name="countryName" type="string" required="true">
     
     <cfset var result = "">

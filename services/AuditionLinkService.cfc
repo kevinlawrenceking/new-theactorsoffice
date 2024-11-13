@@ -1,7 +1,7 @@
 Here is the updated ColdFusion component code:
 
-<cfcomponent displayname="AuditionLinkService" hint="Handles operations for AuditionLink table" output="false"> 
-<cffunction name="SELaudlinks" access="public" returntype="query">
+<cfcomponent displayname="AuditionLinkService" hint="Handles operations for AuditionLink table" > 
+<cffunction output="false" name="SELaudlinks" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -15,7 +15,7 @@ Here is the updated ColdFusion component code:
     <cfreturn result>
 </cffunction>
 
-<cffunction name="INSaudlinks" access="public" returntype="void">
+<cffunction output="false" name="INSaudlinks" access="public" returntype="numeric">
     <cfargument name="linkname" type="string" required="true">
     <cfargument name="linkurl" type="string" required="true">
     <cfargument name="audroleid" type="numeric" required="true">
@@ -30,9 +30,10 @@ Here is the updated ColdFusion component code:
             <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.audroleid#" />
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="DETaudlinks" access="public" returntype="query">
+<cffunction output="false" name="DETaudlinks" access="public" returntype="query">
     <cfargument name="linkid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -46,7 +47,7 @@ Here is the updated ColdFusion component code:
     <cfreturn result>
 </cffunction>
 
-<cffunction name="UPDaudlinks" access="public" returntype="void">
+<cffunction output="false" name="UPDaudlinks" access="public" returntype="void">
     <cfargument name="linkid" type="numeric" required="true">
 
     <cfquery result="result">

@@ -1,5 +1,5 @@
-<cfcomponent displayname="SiteTypeUserService" hint="Handles operations for SiteTypeUser table" output="false"> 
-<cffunction name="SELsitetypes_user" access="public" returntype="query">
+<cfcomponent displayname="SiteTypeUserService" hint="Handles operations for SiteTypeUser table" > 
+<cffunction output="false" name="SELsitetypes_user" access="public" returntype="query">
     <cfargument name="sitetypeid" type="numeric" required="true">
 
     <cfset var result = "">
@@ -12,7 +12,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="UPDsitetypes_user" access="public" returntype="void">
+<cffunction output="false" name="UPDsitetypes_user" access="public" returntype="void">
     <cfargument name="sitetypeid" type="numeric" required="true">
 
     <cfquery result="result" name="queryResult">
@@ -21,7 +21,7 @@
         WHERE sitetypeid = <cfqueryparam value="#arguments.sitetypeid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 </cffunction>
-<cffunction name="SELsitetypes_user_24133" access="public" returntype="query">
+<cffunction output="false" name="SELsitetypes_user_24133" access="public" returntype="query">
     <cfargument name="new_sitetypeid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -44,7 +44,7 @@
         
     <cfreturn result>
 </cffunction>
-<cffunction name="UPDsitetypes_user_24134" access="public" returntype="void">
+<cffunction output="false" name="UPDsitetypes_user_24134" access="public" returntype="void">
     <cfargument name="new_sitetypename" type="string" required="true">
     <cfargument name="new_sitetypeid" type="numeric" required="true">
  
@@ -55,7 +55,7 @@
     </cfquery>
 
 </cffunction>
-<cffunction name="SELsitetypes_user_24144" access="public" returntype="query">
+<cffunction output="false" name="SELsitetypes_user_24144" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_sitetypename" type="string" required="true">
     
@@ -70,7 +70,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="INSsitetypes_user" access="public" returntype="void">
+<cffunction output="false" name="INSsitetypes_user" access="public" returntype="numeric">
     <cfargument name="new_siteTypeName" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
@@ -83,8 +83,9 @@
             <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="SELsitetypes_user_24146" access="public" returntype="query">
+<cffunction output="false" name="SELsitetypes_user_24146" access="public" returntype="query">
     <cfargument name="sitetypeid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -97,7 +98,7 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction name="UPDsitetypes_user_24149" access="public" returntype="void">
+<cffunction output="false" name="UPDsitetypes_user_24149" access="public" returntype="void">
     <cfargument name="new_pnid" type="numeric" required="true">
     <cfargument name="new_sitetypeid" type="numeric" required="true">
 
@@ -107,7 +108,7 @@
         WHERE sitetypeid = <cfqueryparam value="#arguments.new_sitetypeid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 </cffunction>
-<cffunction name="SELsitetypes_user_24438" access="public" returntype="query">
+<cffunction output="false" name="SELsitetypes_user_24438" access="public" returntype="query">
     <cfargument name="sitetypename" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
@@ -122,7 +123,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="INSsitetypes_user_24439" access="public" returntype="void">
+<cffunction output="false" name="INSsitetypes_user_24439" access="public" returntype="numeric">
     <cfargument name="siteTypeName" type="string" required="true">
     <cfargument name="siteTypeDescription" type="string" required="true">
     <cfargument name="userId" type="numeric" required="true">
@@ -135,47 +136,39 @@
             <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="SELsitetypes_user_24447" access="public" returntype="query">
+<cffunction output="false" name="SELsitetypes_user_24447" access="public" returntype="query">
     <cfargument name="sitetypename" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+
+        <cfquery name="result" >
             SELECT sitetypeid 
             FROM sitetypes_user 
             WHERE sitetypename = <cfqueryparam value="#arguments.sitetypename#" cfsqltype="CF_SQL_VARCHAR"> 
             AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getSiteTypeId: #cfcatch.message#">
-            <cfset result = queryNew("sitetypeid")>
-        </cfcatch>
-    </cftry>
 
     <cfreturn result>
 </cffunction>
-<cffunction name="SELsitetypes_user_24752" access="public" returntype="query">
+<cffunction output="false" name="SELsitetypes_user_24752" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+
+        <cfquery name="result" >
             SELECT sitetypeid, sitetypename, sitetypedescription, pntitle
             FROM sitetypes_user
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
             ORDER BY sitetypename
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getSiteTypesByUserId: #cfcatch.message# Query: SELECT sitetypeid, sitetypename, sitetypedescription, pntitle FROM sitetypes_user WHERE userid = ? ORDER BY sitetypename Parameters: #arguments.userid#">
-            <cfset result = queryNew("sitetypeid,sitetypename,sitetypedescription,pntitle")>
-        </cfcatch>
-    </cftry>
 
     <cfreturn result>
-</cffunction></cfcomponent>
+</cffunction>
+</cfcomponent>

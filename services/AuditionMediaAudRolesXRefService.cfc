@@ -1,5 +1,5 @@
-<cfcomponent displayname="AuditionMediaAudRolesXRefService" hint="Handles operations for AuditionMediaAudRolesXRef table" output="false"> 
-<cffunction name="INSaudmedia_audroles_xref" access="public" returntype="void">
+<cfcomponent displayname="AuditionMediaAudRolesXRefService" hint="Handles operations for AuditionMediaAudRolesXRef table" > 
+<cffunction output="false" name="INSaudmedia_audroles_xref" access="public" returntype="numeric">
     <cfargument name="new_mediaid" type="numeric" required="true">
     <cfargument name="new_audroleid" type="numeric" required="true">
     <cfargument name="new_mediaAudroleDescript" type="string" required="false" default="">
@@ -14,8 +14,9 @@
             <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="UPDaudmedia_audroles_xref" access="public" returntype="void">
+<cffunction output="false" name="UPDaudmedia_audroles_xref" access="public" returntype="void">
     <cfargument name="new_mediaid" required="true" type="numeric">
     <cfargument name="new_audroleid" required="true" type="numeric">
     <cfargument name="new_mediaAudroleDescript" required="true" type="string">

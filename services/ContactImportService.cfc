@@ -1,6 +1,6 @@
-<cfcomponent displayname="ContactImportService" hint="Handles operations for ContactImport table" output="false"> 
+<cfcomponent displayname="ContactImportService" hint="Handles operations for ContactImport table" > 
 
-    <cffunction name="getImportsByUserID" access="public" returntype="query" output="false" hint="Retrieve import data for a specific user.">
+    <cffunction output="false" name="getImportsByUserID" access="public" returntype="query"  hint="Retrieve import data for a specific user.">
         <cfargument name="userid" type="numeric" required="true" hint="The ID of the user to fetch import data for.">
         
         <cfquery result="result" name="imports">
@@ -31,7 +31,7 @@
         <cfreturn imports>
     </cffunction>
 
-    <cffunction name="SELcontactsimport_24668" access="public" returntype="query">
+    <cffunction output="false" name="SELcontactsimport_24668" access="public" returntype="query">
         <cfargument name="userid" type="numeric" required="true">
     
         <cfset var result = "">
@@ -60,7 +60,7 @@
         <cfreturn result>
     </cffunction>
 
-    <cffunction name="INScontactsimport" access="public" returntype="void">
+    <cffunction output="false" name="INScontactsimport" access="public" returntype="numeric">
         <cfargument name="importData" type="struct" required="true">
         <cfargument name="newUploadId" type="numeric" required="true">
 
@@ -82,6 +82,7 @@
         <cfquery result="result" name="insertQuery">
             #sql#
         </cfquery>
+        <cfreturn result.generatedKey>
     </cffunction>
 
 </cfcomponent>

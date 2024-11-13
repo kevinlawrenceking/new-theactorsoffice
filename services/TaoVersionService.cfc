@@ -129,7 +129,7 @@
         <cfreturn result>
     </cffunction>
     
-    <cffunction name = "INStaoversions" access = "public" returntype = "void">
+    <cffunction name = "INStaoversions" access = "public" returntype = "numeric">
         <cfargument name = "new_major" type = "numeric" required = "true"/>
         <cfargument name = "new_minor" type = "numeric" required = "true"/>
         <cfargument name = "new_patch" type = "numeric" required = "true"/>
@@ -143,11 +143,12 @@
         <cfargument name = "new_releasetime" type = "string" required = "false"/>
         <cfargument name = "new_hoursavail" type = "numeric" required = "false"/>
     
-        <cfquery result="result" datasource = "#abodName#">
+        <cfquery result="result" >
             INSERT INTO taoversions (
             major, minor, patch, versionstatus, versiontype, version, build,
             reviewDate, releaseDate, reviewtime, releasetime, hoursavail
-            ) VALUES (<cfqueryparam cfsqltype = "cf_sql_integer" value = "#arguments.new_major#"/>
+            ) VALUES
+             (<cfqueryparam cfsqltype = "cf_sql_integer" value = "#arguments.new_major#"/>
             ,<cfqueryparam cfsqltype = "cf_sql_integer" value = "#arguments.new_minor#"/>
             ,<cfqueryparam cfsqltype = "cf_sql_integer" value = "#arguments.new_patch#"/>
             ,<cfqueryparam cfsqltype = "cf_sql_varchar" value = "#arguments.new_versionstatus#"/>
@@ -187,7 +188,7 @@
             </cfif>
             )
         </cfquery>
-        <cflog text = "[INFO] Successfully inserted new TAO version."/>
+<cfreturn result.generatedKey>
     
     </cffunction>
     

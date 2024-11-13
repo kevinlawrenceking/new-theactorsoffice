@@ -1,5 +1,5 @@
-<cfcomponent displayname="EventTypesUserService" hint="Handles operations for EventTypesUser table" output="false"> 
-<cffunction name="DETeventtypes_user" access="public" returntype="query">
+<cfcomponent displayname="EventTypesUserService" hint="Handles operations for EventTypesUser table" > 
+<cffunction output="false" name="DETeventtypes_user" access="public" returntype="query">
     <cfargument name="id" type="numeric" required="true">
     
     <cfset var result = "">
@@ -13,7 +13,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="UPDeventtypes_user" access="public" returntype="void">
+<cffunction output="false" name="UPDeventtypes_user" access="public" returntype="void">
     <cfargument name="id" type="numeric" required="true">
     <cfargument name="new_eventtypecolor" type="string" required="true">
     <cfargument name="deletelink" type="boolean" required="false" default=false>
@@ -43,7 +43,7 @@
     </cfquery>
 </cffunction>
 
-<cffunction name="SELeventtypes_user" access="public" returntype="query">
+<cffunction output="false" name="SELeventtypes_user" access="public" returntype="query">
     <cfargument name="eventTypeName" type="string" required="true">
     <cfargument name="userId" type="numeric" required="true">
 
@@ -59,7 +59,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="INSeventtypes_user" access="public" returntype="void">
+<cffunction output="false" name="INSeventtypes_user" access="public" returntype="void">
     <cfargument name="eventTypeName" type="string" required="true">
     <cfargument name="eventtypedescription" type="string" required="true">
     <cfargument name="eventtypecolor" type="string" required="true">
@@ -78,7 +78,7 @@
     </cfquery>
 </cffunction>
 
-<cffunction name="SELeventtypes_user_24484" access="public" returntype="query">
+<cffunction output="false" name="SELeventtypes_user_24484" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="isAuditionModule" type="boolean" required="true">
 
@@ -97,7 +97,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELeventtypes_user_24486" access="public" returntype="query">
+<cffunction output="false" name="SELeventtypes_user_24486" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfset var result = "">
     
@@ -111,7 +111,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELeventtypes_user_24619" access="public" returntype="query">
+<cffunction output="false" name="SELeventtypes_user_24619" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     
     <cfset var result = "">
@@ -135,7 +135,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELeventtypes_user_24661" access="public" returntype="query">
+<cffunction output="false" name="SELeventtypes_user_24661" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">

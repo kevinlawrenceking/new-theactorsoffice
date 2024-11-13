@@ -1,5 +1,5 @@
-<cfcomponent displayname="AuditionUnionService" hint="Handles operations for AuditionUnion table" output="false"> 
-<cffunction name="SELaudunions" access="public" returntype="query">
+<cfcomponent displayname="AuditionUnionService" hint="Handles operations for AuditionUnion table" > 
+<cffunction output="false" name="SELaudunions" access="public" returntype="query">
     <cfargument name="new_countryid" type="string" required="false" default="">
     <cfargument name="new_audcatid" type="numeric" required="false" default=0>
 
@@ -48,7 +48,7 @@
     <cfreturn queryResult>
 </cffunction>
 
-<cffunction name="INSaudunions" access="public" returntype="void">
+<cffunction output="false" name="INSaudunions" access="public" returntype="numeric">
     <cfargument name="new_unionName" type="string" required="true">
     <cfargument name="new_countryid" type="string" required="true">
     <cfargument name="new_audCatID" type="numeric" required="true">
@@ -63,9 +63,10 @@
             <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="UPDaudunions" access="public" returntype="void">
+<cffunction output="false" name="UPDaudunions" access="public" returntype="void">
     <cfargument name="new_unionName" type="string" required="true">
     <cfargument name="new_countryid" type="string" required="true">
     <cfargument name="new_audCatID" type="numeric" required="true">

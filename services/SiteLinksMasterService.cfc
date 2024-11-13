@@ -1,5 +1,5 @@
-<cfcomponent displayname="SiteLinksMasterService" hint="Handles operations for SiteLinksMaster table" output="false"> 
-<cffunction name="SELsitelinks_master" access="public" returntype="query">
+<cfcomponent displayname="SiteLinksMasterService" hint="Handles operations for SiteLinksMaster table" > 
+<cffunction output="false" name="SELsitelinks_master" access="public" returntype="query">
     <cfargument name="siteTypeId" type="numeric" required="false">
     <cfset var result = "">
         <cfquery name="result">

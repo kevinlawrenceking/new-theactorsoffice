@@ -1,5 +1,5 @@
-<cfcomponent displayname="AuditionCallbackTypeService" hint="Handles operations for AuditionCallbackType table" output="false"> 
-<cffunction name="SELaudcallbacktypes" access="public" returntype="query">
+<cfcomponent displayname="AuditionCallbackTypeService" hint="Handles operations for AuditionCallbackType table" > 
+<cffunction output="false" name="SELaudcallbacktypes" access="public" returntype="query">
     <cfargument name="audcatid" type="numeric" required="true">
 
     <cfset var result = "">
@@ -20,7 +20,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="SELaudcallbacktypes_24509" access="public" returntype="query">
+<cffunction output="false" name="SELaudcallbacktypes_24509" access="public" returntype="query">
     <cfargument name="audcatid" type="numeric" required="true">
 
     <cfset var result = "">

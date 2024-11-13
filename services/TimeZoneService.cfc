@@ -1,5 +1,5 @@
-<cfcomponent displayname="TimeZoneService" hint="Handles operations for TimeZone table" output="false"> 
-<cffunction name="SELtimezones" access="public" returntype="query">
+<cfcomponent displayname="TimeZoneService" hint="Handles operations for TimeZone table" > 
+<cffunction output="false" name="SELtimezones" access="public" returntype="query">
     <cfargument name="filters" type="struct" required="false" default="#structNew()#">
     <cfset var queryResult = "">
     <cfset var sql = "SELECT tzid, gmt, tzname, utchouroffset FROM timezones">
@@ -46,7 +46,7 @@
     <!--- Return the query result --->
     <cfreturn queryResult>
 </cffunction>
-<cffunction name="SELtimezones_24770" access="public" returntype="query">
+<cffunction output="false" name="SELtimezones_24770" access="public" returntype="query">
     <cfargument name="tzGeneral" type="string" required="false" default="">
     <cfset var result = "">
     

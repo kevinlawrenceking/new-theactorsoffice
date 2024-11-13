@@ -1,5 +1,5 @@
-<cfcomponent displayname="ReportItemService" hint="Handles operations for ReportItem table" output="false"> 
-<cffunction name="INSreportitems" access="public" returntype="void">
+<cfcomponent displayname="ReportItemService" hint="Handles operations for ReportItem table" > 
+<cffunction output="false" name="INSreportitems" access="public" returntype="numeric">
     <cfargument name="itemLabel" type="string" required="true">
     <cfargument name="itemOrderNo" type="numeric" required="true">
     <cfargument name="itemValueInt" type="numeric" required="true">
@@ -19,9 +19,10 @@
             <cfqueryparam cfsqltype="cf_sql_integer" value="#session.userid#" />
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="SELreportitems" access="public" returntype="query">
+<cffunction output="false" name="SELreportitems" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="reportid" type="numeric" required="true">
 
@@ -49,7 +50,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELreportitems_24225" access="public" returntype="query">
+<cffunction output="false" name="SELreportitems_24225" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="reportid" type="numeric" required="true">
 
@@ -67,7 +68,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELreportitems_24226" access="public" returntype="query">
+<cffunction output="false" name="SELreportitems_24226" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="reportid" type="numeric" required="true">
 
@@ -84,7 +85,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELreportitems_24227" access="public" returntype="query">
+<cffunction output="false" name="SELreportitems_24227" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="reportid" type="numeric" required="true">
     <cfargument name="itemdataset" type="string" required="true">
@@ -110,7 +111,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="DELreportitems" access="public" returntype="void">
+<cffunction output="false" name="DELreportitems" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfquery result="result">
@@ -119,7 +120,7 @@
     </cfquery>
 </cffunction>
 
-<cffunction name="INSreportitems_24233" access="public" returntype="void">
+<cffunction output="false" name="INSreportitems_24233" access="public" returntype="numeric">
     <cfargument name="newLabel" type="string" required="true">
     <cfargument name="itemOrderNo" type="numeric" required="true">
     <cfargument name="newID" type="numeric" required="true">
@@ -138,25 +139,26 @@
             <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userID#" />
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="UPDreportitems" access="public" returntype="void">
+<cffunction output="false" name="UPDreportitems" access="public" returntype="void">
     <cfargument name="new_itemvalueint" type="numeric" required="true">
     <cfargument name="new_itemid" type="numeric" required="true">
 
-        <cfquery result="result" name="updateQuery" datasource="abod">
+        <cfquery result="result" name="updateQuery" >
             UPDATE reportitems 
             SET itemValueInt = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_itemvalueint#" />
             WHERE itemid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_itemid#" />
         </cfquery>
         
 </cffunction>
-<cffunction name="RESreportitems" access="public" returntype="query">
+<cffunction output="false" name="RESreportitems" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     
     <cfset var result = "">
     
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT *
             FROM reportitems
             WHERE userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">

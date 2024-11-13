@@ -1,5 +1,5 @@
-<cfcomponent displayname="AuditionOpenCallOptionUserService" hint="Handles operations for AuditionOpenCallOptionUser table" output="false"> 
-<cffunction name="SELaudopencalloptions_user" access="public" returntype="query">
+<cfcomponent displayname="AuditionOpenCallOptionUserService" hint="Handles operations for AuditionOpenCallOptionUser table" > 
+<cffunction output="false" name="SELaudopencalloptions_user" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -14,7 +14,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELaudopencalloptions_user_24262" access="public" returntype="query">
+<cffunction output="false" name="SELaudopencalloptions_user_24262" access="public" returntype="query">
     <cfargument name="new_opencallid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -28,7 +28,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELaudopencalloptions_user_24280" access="public" returntype="query">
+<cffunction output="false" name="SELaudopencalloptions_user_24280" access="public" returntype="query">
     <cfargument name="new_opencallname" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
@@ -44,7 +44,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="INSaudopencalloptions_user" access="public" returntype="void">
+<cffunction output="false" name="INSaudopencalloptions_user" access="public" returntype="numeric">
     <cfargument name="new_opencallname" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
@@ -55,5 +55,5 @@
             <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
             <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
         )
-    </cfquery>
+    </cfquery><cfreturn result.generatedKey>
 </cffunction></cfcomponent>

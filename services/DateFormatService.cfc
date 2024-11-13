@@ -1,6 +1,6 @@
-<cfcomponent displayname="DateFormatService" hint="Handles operations for DateFormat table" output="false"> 
+<cfcomponent displayname="DateFormatService" hint="Handles operations for DateFormat table" > 
 
-    <cffunction name="SELdateformats" access="public" returntype="query" output="false">
+    <cffunction output="false" name="SELdateformats" access="public" returntype="query" >
         <!--- Initialize an empty query variable --->
         <cfset var result = "">
 

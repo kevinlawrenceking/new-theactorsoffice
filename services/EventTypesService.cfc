@@ -1,5 +1,5 @@
-<cfcomponent displayname="EventTypesService" hint="Handles operations for EventTypes table" output="false"> 
-<cffunction name="SELeventtypes" access="public" returntype="query">
+<cfcomponent displayname="EventTypesService" hint="Handles operations for EventTypes table" > 
+<cffunction output="false" name="SELeventtypes" access="public" returntype="query">
     <cfargument name="filters" type="struct" required="false" default="#structNew()#">
     <cfset var queryResult = "">
     <cfset var sql = "SELECT eventTypeName, eventtypedescription, eventtypecolor FROM eventtypes">

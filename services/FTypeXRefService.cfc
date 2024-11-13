@@ -1,5 +1,5 @@
-<cfcomponent displayname="FTypeXRefService" hint="Handles operations for FTypeXRef table" output="false"> 
-    <cffunction name="SELftypexref" access="public" returntype="query">
+<cfcomponent displayname="FTypeXRefService" hint="Handles operations for FTypeXRef table" > 
+    <cffunction output="false" name="SELftypexref" access="public" returntype="query">
         <cfargument name="type" type="string" required="true">
 
         <cfset var result = "">

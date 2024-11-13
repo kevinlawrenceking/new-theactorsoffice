@@ -1,5 +1,5 @@
-<cfcomponent displayname="PageAppLinkService" hint="Handles operations for PageAppLink table" output="false"> 
-<cffunction name="SELpgapplinks" access="public" returntype="query">
+<cfcomponent displayname="PageAppLinkService" hint="Handles operations for PageAppLink table" > 
+<cffunction output="false" name="SELpgapplinks" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
     <cfset var result = "">
 
@@ -33,7 +33,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELpgapplinks_24006" access="public" returntype="query">
+<cffunction output="false" name="SELpgapplinks_24006" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
     <cfset var result = "">
 
@@ -60,7 +60,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELpgapplinks_24007" access="public" returntype="query">
+<cffunction output="false" name="SELpgapplinks_24007" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
     
     <cfset var result = "">

@@ -1,5 +1,5 @@
-<cfcomponent displayname="TagsUserService" hint="Handles operations for TagsUser table" output="false"> 
-<cffunction name="SELtags_user" access="public" returntype="query">
+<cfcomponent displayname="TagsUserService" hint="Handles operations for TagsUser table" > 
+<cffunction output="false" name="SELtags_user" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfset var result = "">
     
@@ -15,7 +15,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELtags_user_23804" access="public" returntype="query">
+<cffunction output="false" name="SELtags_user_23804" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     <cfset var result = "">
 
@@ -29,7 +29,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELtags_user_23844" access="public" returntype="query">
+<cffunction output="false" name="SELtags_user_23844" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfset var result = "">
 
@@ -43,7 +43,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELtags_user_24047" access="public" returntype="query">
+<cffunction output="false" name="SELtags_user_24047" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="tagtypes" type="string" required="false" default="">
     <cfset var result = "">
@@ -61,7 +61,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELtags_user_24063" access="public" returntype="query">
+<cffunction output="false" name="SELtags_user_24063" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfset var result = "">
 
@@ -75,7 +75,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELtags_user_24324" access="public" returntype="query">
+<cffunction output="false" name="SELtags_user_24324" access="public" returntype="query">
     <cfargument name="new_valuetext" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
@@ -91,7 +91,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="INStags_user" access="public" returntype="void">
+<cffunction output="false" name="INStags_user" access="public" returntype="numeric">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_valuetext" type="string" required="true">
 
@@ -105,9 +105,10 @@
             <cfqueryparam value="1" cfsqltype="CF_SQL_BIT">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="SELtags_user_24328" access="public" returntype="query">
+<cffunction output="false" name="SELtags_user_24328" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -122,7 +123,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="UPDtags_user" access="public" returntype="void">
+<cffunction output="false" name="UPDtags_user" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="tagname" type="string" required="true">
 
@@ -135,7 +136,7 @@
     </cfquery>
 </cffunction>
 
-<cffunction name="SELtags_user_24341" access="public" returntype="query">
+<cffunction output="false" name="SELtags_user_24341" access="public" returntype="query">
     <cfargument name="new_contactid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -156,14 +157,14 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELtags_user_24457" access="public" returntype="query">
+<cffunction output="false" name="SELtags_user_24457" access="public" returntype="query">
     <cfargument name="tagname" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
     
     
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT * 
             FROM tags_user 
             WHERE tagname = <cfqueryparam value="#arguments.tagname#" cfsqltype="CF_SQL_VARCHAR"> 
@@ -173,13 +174,13 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="INStags_user_24458" access="public" returntype="void">
+<cffunction output="false" name="INStags_user_24458" access="public" returntype="numeric">
     <cfargument name="tagname" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="tagtype" type="string" required="true">
 
     
-        <cfquery result="result" datasource="abod">
+        <cfquery result="result" >
             INSERT INTO tags_user (tagname, userid, tagtype)
             VALUES (
                 <cfqueryparam value="#arguments.tagname#" cfsqltype="CF_SQL_VARCHAR">,
@@ -187,13 +188,13 @@
                 <cfqueryparam value="#arguments.tagtype#" cfsqltype="CF_SQL_VARCHAR">
             )
         </cfquery>
-
+<cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="UPDtags_user_24459" access="public" returntype="void">
+<cffunction output="false" name="UPDtags_user_24459" access="public" returntype="void">
     <cfargument name="select_userid" type="numeric" required="true">
     
     
-        <cfquery result="result" datasource="abod" name="updateQuery">
+        <cfquery result="result"  name="updateQuery">
             UPDATE tags_user 
             SET IsTeam = 1 
             WHERE userid = <cfqueryparam value="#arguments.select_userid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -205,7 +206,7 @@
         </cfquery>
         
 </cffunction>
-<cffunction name="UPDtags_user_24460" access="public" returntype="void">
+<cffunction output="false" name="UPDtags_user_24460" access="public" returntype="void">
     <cfargument name="select_userid" type="numeric" required="true">
     
     <cfset var sql = "">
@@ -225,7 +226,7 @@
         
         <cfset arrayAppend(params, {value=arguments.select_userid, cfsqltype="CF_SQL_INTEGER"})>
         
-        <cfquery result="result" name="updateQuery" datasource="abod">
+        <cfquery result="result" name="updateQuery" >
             #sql#
             <cfloop array="#params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
@@ -233,12 +234,12 @@
         </cfquery>
 
 </cffunction>
-<cffunction name="SELtags_user_24765" access="public" returntype="query">
+<cffunction output="false" name="SELtags_user_24765" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     <cfset var queryResult = "">
     
     
-        <cfquery result="result" name="queryResult" datasource="abod">
+        <cfquery result="result" name="queryResult" >
             SELECT tagname 
             FROM tags_user 
             WHERE userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 

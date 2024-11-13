@@ -1,5 +1,5 @@
-<cfcomponent displayname="FUActionService" hint="Handles operations for FUAction table" output="false"> 
-<cffunction name="SELfuactions" access="public" returntype="query">
+<cfcomponent displayname="FUActionService" hint="Handles operations for FUAction table" > 
+<cffunction output="false" name="SELfuactions" access="public" returntype="query">
     <cfargument name="target_id_system" type="numeric" required="true">
     
     <cfset var result = "">
@@ -17,7 +17,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELfuactions_24453" access="public" returntype="query">
+<cffunction output="false" name="SELfuactions_24453" access="public" returntype="query">
     <cfargument name="actionId" type="numeric" required="false">
     <cfargument name="actionDaysNo" type="numeric" required="false">
     <cfargument name="actionDaysRecurring" type="numeric" required="false">

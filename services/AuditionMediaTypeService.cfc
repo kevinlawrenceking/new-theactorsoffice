@@ -1,5 +1,5 @@
-<cfcomponent displayname="AuditionMediaTypeService"  output="false"> 
-<cffunction name="SELaudmediatypes" access="public" returntype="query">
+<cfcomponent displayname="AuditionMediaTypeService"  > 
+<cffunction output="false" name="SELaudmediatypes" access="public" returntype="query">
     <cfargument name="mediaTypeIds" type="array" required="true">
     
     <cfset var result = "">
@@ -18,7 +18,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELaudmediatypes_23753" access="public" returntype="query">
+<cffunction output="false" name="SELaudmediatypes_23753" access="public" returntype="query">
     <cfargument name="mediaTypeIds" type="array" required="true">
     
     <cfset var result = "">
@@ -64,7 +64,7 @@ function getMediaTypes(required array mediaTypeIds) {
 }
 </cfscript>
 
-<cffunction name="SELaudmediatypes_24067" access="public" returntype="query">
+<cffunction output="false" name="SELaudmediatypes_24067" access="public" returntype="query">
     <cfargument name="src" type="string" required="false" default="">
     
     <cfset var queryResult = "">
@@ -88,7 +88,7 @@ function getMediaTypes(required array mediaTypeIds) {
     <cfreturn queryResult>
 </cffunction>
 
-<cffunction name="SELaudmediatypes_24198" access="public" returntype="query">
+<cffunction output="false" name="SELaudmediatypes_24198" access="public" returntype="query">
     <cfargument name="src" type="string" required="true">
     
     <cfset var queryResult = "">
@@ -123,7 +123,7 @@ function getMediaTypes(required array mediaTypeIds) {
     <cfreturn queryResult>
 </cffunction>
 
-<cffunction name="INSaudmediatypes" access="public" returntype="void" output="false">
+<cffunction output="false" name="INSaudmediatypes" access="public" returntype="void" >
     <cfargument name="new_mediaType" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
@@ -136,7 +136,7 @@ function getMediaTypes(required array mediaTypeIds) {
     </cfquery>
 </cffunction>
 
-<cffunction name="UPDaudmediatypes" access="public" returntype="void">
+<cffunction output="false" name="UPDaudmediatypes" access="public" returntype="void">
     <cfargument name="new_mediaType" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_mediaTypeID" type="numeric" required="true">

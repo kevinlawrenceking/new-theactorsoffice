@@ -1,5 +1,5 @@
-<cfcomponent displayname="ItemCategoryService" hint="Handles operations for ItemCategory table" output="false"> 
-<cffunction name="SELitemcategory" access="public" returntype="query">
+<cfcomponent displayname="ItemCategoryService" hint="Handles operations for ItemCategory table" > 
+<cffunction output="false" name="SELitemcategory" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
     
     <cfset var queryResult = "">
@@ -34,7 +34,7 @@
     <cfreturn queryResult>
 </cffunction>
 
-<cffunction name="DETitemcategory" access="public" returntype="query">
+<cffunction output="false" name="DETitemcategory" access="public" returntype="query">
     <cfargument name="catid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -48,7 +48,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELitemcategory_24039" access="public" returntype="query">
+<cffunction output="false" name="SELitemcategory_24039" access="public" returntype="query">
     <cfargument name="new_catid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     
@@ -68,7 +68,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELitemcategory_24465" access="public" returntype="query">
+<cffunction output="false" name="SELitemcategory_24465" access="public" returntype="query">
     <cfargument name="catidList" type="array" required="false" default="#ArrayNew(1)#">
     <cfset var result = "">
     
@@ -92,7 +92,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELitemcategory_24621" access="public" returntype="query">
+<cffunction output="false" name="SELitemcategory_24621" access="public" returntype="query">
     <cfargument name="catArea_UCB" type="string" required="true">
     
     <cfset var result = "">
@@ -117,7 +117,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELitemcategory_24722" access="public" returntype="query">
+<cffunction output="false" name="SELitemcategory_24722" access="public" returntype="query">
     <cfargument name="new_catid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     

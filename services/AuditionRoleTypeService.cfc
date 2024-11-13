@@ -1,6 +1,6 @@
-<cfcomponent displayname="AuditionRoleTypeService" hint="Handles operations for AuditionRoleType table" output="false"> 
+<cfcomponent displayname="AuditionRoleTypeService" hint="Handles operations for AuditionRoleType table" > 
 
-<cffunction name="SELaudroletypes" access="public" returntype="query">
+<cffunction output="false" name="SELaudroletypes" access="public" returntype="query">
     <cfargument name="audcatid" type="numeric" required="true">
     
     <cfset var result = "">
@@ -15,7 +15,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="INSaudroletypes" access="public" returntype="void">
+<cffunction output="false" name="INSaudroletypes" access="public" returntype="numeric">
     <cfargument name="new_audroletype" type="string" required="true">
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
@@ -28,9 +28,10 @@
             <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="UPDaudroletypes" access="public" returntype="void">
+<cffunction output="false" name="UPDaudroletypes" access="public" returntype="void">
     <cfargument name="new_audroletype" type="string" required="true">
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">

@@ -1,6 +1,6 @@
-<cfcomponent displayname="AuditionMediaXRefService" hint="Handles operations for AuditionMediaXRef table" output="false"> 
+<cfcomponent displayname="AuditionMediaXRefService" hint="Handles operations for AuditionMediaXRef table" > 
 
-<cffunction name="INSaudmedia_auditions_xref" access="public" returntype="void">
+<cffunction output="false" name="INSaudmedia_auditions_xref" access="public" returntype="numeric">
     <cfargument name="new_mediaid" type="numeric" required="true">
     <cfargument name="audprojectid" type="numeric" required="true">
 
@@ -11,9 +11,10 @@
             <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="DELaudmedia_auditions_xref" access="public" returntype="void">
+<cffunction output="false" name="DELaudmedia_auditions_xref" access="public" returntype="void">
     <cfargument name="mediaid" type="numeric" required="true">
     <cfargument name="audprojectid" type="numeric" required="true">
 
@@ -24,7 +25,7 @@
     </cfquery>
 </cffunction>
 
-<cffunction name="INSaudmedia_auditions_xref_24153" access="public" returntype="void">
+<cffunction output="false" name="INSaudmedia_auditions_xref_24153" access="public" returntype="numeric">
     <cfargument name="mediaid" type="numeric" required="true">
     <cfargument name="audprojectid" type="numeric" required="true">
 
@@ -35,9 +36,10 @@
             <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="SELaudmedia_auditions_xref" access="public" returntype="query">
+<cffunction output="false" name="SELaudmedia_auditions_xref" access="public" returntype="query">
     <cfargument name="new_mediaID" type="numeric" required="true">
     <cfargument name="audprojectid" type="numeric" required="true">
 
@@ -53,7 +55,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="INSaudmedia_auditions_xref_24568" access="public" returntype="void">
+<cffunction output="false" name="INSaudmedia_auditions_xref_24568" access="public" returntype="numeric">
     <cfargument name="audprojectid" type="numeric" required="true">
     <cfargument name="new_mediaID" type="numeric" required="true">
 
@@ -64,6 +66,7 @@
             <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_mediaID#" null="#NOT len(trim(arguments.new_mediaID))#">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
 </cfcomponent>

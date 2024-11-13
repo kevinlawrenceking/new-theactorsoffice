@@ -1,6 +1,6 @@
-<cfcomponent displayname="ExportItemService" hint="Handles operations for ExportItem table" output="false"> 
+<cfcomponent displayname="ExportItemService" hint="Handles operations for ExportItem table" > 
 
-<cffunction name="INSexportitems" access="public" returntype="void">
+<cffunction output="false" name="INSexportitems" access="public" returntype="void">
     <cfargument name="new_exportid" type="numeric" required="true">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="new_FirstName" type="string" required="false" default="">
@@ -25,7 +25,7 @@
     <cfargument name="new_contactBirthday" type="date" required="false">
     <cfargument name="new_Website" type="string" required="false">
 
-        <cfquery result="result" datasource="#application.datasource#">
+        <cfquery result="result">
             INSERT INTO exportitems (
                 exportid, contactid, FirstName, LastName, Tag1, Tag2, Tag3, BusinessEmail, PersonalEmail,
                 WorkPhone, MobilePhone, HomePhone, Company, Address, Address2, City, State, Zip, Country,
@@ -68,12 +68,12 @@
      
 </cffunction>
 
-<cffunction name="SELexportitems" access="public" returntype="query">
+<cffunction output="false" name="SELexportitems" access="public" returntype="query">
     <cfargument name="exportID" type="numeric" required="true">
     
     <cfset var result = "">
     
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 contactid AS ID, 
                 FirstName, 

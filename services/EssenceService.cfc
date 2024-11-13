@@ -1,5 +1,5 @@
-<cfcomponent displayname="EssenceService" hint="Handles operations for Essence table" output="false"> 
-<cffunction name="SELessences" access="public" returntype="query">
+<cfcomponent displayname="EssenceService" hint="Handles operations for Essence table" > 
+<cffunction output="false" name="SELessences" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     <cfset var result = "">
     <cfquery name="result">
@@ -11,7 +11,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="UPDessences" access="public" returntype="void">
+<cffunction output="false" name="UPDessences" access="public" returntype="void">
     <cfargument name="new_essenceid" type="numeric" required="true">
     <cfquery result="result">
         UPDATE essences
@@ -20,7 +20,7 @@
     </cfquery>
 </cffunction>
 
-<cffunction name="INSessences" access="public" returntype="void">
+<cffunction output="false" name="INSessences" access="public" returntype="numeric">
     <cfargument name="new_essenceName" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
     <cfquery result="result">
@@ -30,9 +30,10 @@
             <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="DETessences" access="public" returntype="query">
+<cffunction output="false" name="DETessences" access="public" returntype="query">
     <cfargument name="essenceid" type="numeric" required="true">
     <cfset var result = "">
     <cfquery name="result">
@@ -43,7 +44,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="UPDessences_24181" access="public" returntype="void">
+<cffunction output="false" name="UPDessences_24181" access="public" returntype="void">
     <cfargument name="new_essenceName" type="string" required="true">
     <cfargument name="isdeleted" type="boolean" required="true">
     <cfargument name="essenceid" type="numeric" required="true">
@@ -55,7 +56,7 @@
     </cfquery>
 </cffunction>
 
-<cffunction name="SELessences_24270" access="public" returntype="query">
+<cffunction output="false" name="SELessences_24270" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfset var result = "">
     <cfquery name="result">
@@ -68,7 +69,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELessences_24282" access="public" returntype="query">
+<cffunction output="false" name="SELessences_24282" access="public" returntype="query">
     <cfargument name="new_essence" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
     <cfset var result = "">
@@ -82,7 +83,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="INSessences_24283" access="public" returntype="void">
+<cffunction output="false" name="INSessences_24283" access="public" returntype="numeric">
     <cfargument name="new_essence" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
     <cfquery result="result">
@@ -93,9 +94,10 @@
             0
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="SELessences_24658" access="public" returntype="query">
+<cffunction output="false" name="SELessences_24658" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfset var result = "">
     <cfquery name="result">

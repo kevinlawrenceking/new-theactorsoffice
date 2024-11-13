@@ -1,11 +1,11 @@
-<cfcomponent displayname="AuditionRoleService" hint="Handles operations for AuditionRole table" output="false"> 
-<cffunction name="SELaudroles" access="public" returntype="query">
+<cfcomponent displayname="AuditionRoleService" hint="Handles operations for AuditionRole table" > 
+<cffunction output="false" name="SELaudroles" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 r.audroleid, 
                 r.audprojectid, 
@@ -37,13 +37,13 @@
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getAudRoleDetails: #cfcatch.message# Query: #cfcatch.Detail#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="INSaudroles" access="public" returntype="void">
+<cffunction output="false" name="INSaudroles" access="public" returntype="numeric">
     <cfargument name="new_audRoleName" type="string" required="true">
     <cfargument name="new_audprojectID" type="numeric" required="true">
     <cfargument name="new_audRoleTypeID" type="numeric" required="true">
@@ -56,8 +56,7 @@
     <cfargument name="new_isDeleted" type="boolean" required="false" default=false>
     <cfargument name="isdirect" type="boolean" required="false" default=false>
 
-    <cftry>
-        <cfquery result="result" datasource="#application.datasource#">
+        <cfquery result="result" >
             INSERT INTO audroles (
                 audRoleName, 
                 audprojectID, 
@@ -84,37 +83,31 @@
                 <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.isdirect#">
             )
         </cfquery>
-        <cfcatch>
-            <cflog file="applicationLogFileName"
-                   text="[insertAudRole] Error: #cfcatch.message# - Detail: #cfcatch.detail#"
-                   type="error">
-            <!--- Handle error appropriately --->
-        </cfcatch>
-    </cftry>
+<cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="UPDaudroles" access="public" returntype="void">
+<cffunction output="false" name="UPDaudroles" access="public" returntype="void">
     <cfargument name="audroleid" type="numeric" required="true">
 
-    <cftry>
-        <cfquery result="result" datasource="abod">
+    
+        <cfquery result="result" >
             UPDATE audroles
             SET isbooked = 1
             WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating audroles: #cfcatch.message# Query: UPDATE audroles SET isbooked = 1 WHERE audroleid = #arguments.audroleid#">
-            <cfthrow>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="SELaudroles_23809" access="public" returntype="query">
+<cffunction output="false" name="SELaudroles_23809" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 c.audcatname, 
                 c.audcatid, 
@@ -141,13 +134,13 @@
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getAudRoleDetails: #cfcatch.message# Query: #cfcatch.detail#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="UPDaudroles_23810" access="public" returntype="void">
+<cffunction output="false" name="UPDaudroles_23810" access="public" returntype="void">
     <cfargument name="new_audroleid" type="numeric" required="true">
     <cfargument name="new_incometypeid" type="numeric" required="false">
     <cfargument name="new_payrate" type="numeric" required="false">
@@ -186,60 +179,55 @@
     <cfset sql &= " WHERE audroleid = ?">
     <cfset arrayAppend(params, { value=arguments.new_audroleid, cfsqltype="CF_SQL_INTEGER" })>
 
-    <cftry>
-        <cfquery result="result" datasource="#abod#" name="updateQuery">
+        <cfquery result="result">
             #sql#
             <cfloop array="#params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
             </cfloop>
         </cfquery>
-        <cfcatch>
-            <cflog file="application" text="Error updating audroles: #cfcatch.message#, SQL: #sql#, Params: #serializeJSON(params)#">
-            <!--- Handle error appropriately --->
-        </cfcatch>
-    </cftry>
+
 </cffunction>
-<cffunction name="UPDaudroles_23813" access="public" returntype="void">
+<cffunction output="false" name="UPDaudroles_23813" access="public" returntype="void">
     <cfargument name="statusField" type="string" required="true">
     <cfargument name="newAudRoleId" type="numeric" required="true">
 
-    <cftry>
-        <cfquery result="result" datasource="abod">
+    
+        <cfquery result="result" >
             UPDATE audroles 
             SET #arguments.statusField# = <cfqueryparam value="0" cfsqltype="CF_SQL_INTEGER"> 
             WHERE audroleid = <cfqueryparam value="#arguments.newAudRoleId#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating audroles status: #cfcatch.message#">
-            <cfthrow message="Database update failed." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="UPDaudroles_23814" access="public" returntype="void">
+<cffunction output="false" name="UPDaudroles_23814" access="public" returntype="void">
     <cfargument name="statusField" type="string" required="true">
     <cfargument name="newAudroleId" type="numeric" required="true">
 
-    <cftry>
-        <cfquery result="result" name="updateQuery" datasource="abod">
+    
+        <cfquery result="result" name="updateQuery" >
             UPDATE audroles
             SET #arguments.statusField# = <cfqueryparam value="1" cfsqltype="CF_SQL_BIT">
             WHERE audroleid = <cfqueryparam value="#arguments.newAudroleId#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in updateAudrolesStatus: #cfcatch.message# Query: #cfcatch.detail#">
-            <cfthrow message="Database error occurred while updating audroles status." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="SELaudroles_23851" access="public" returntype="query">
+<cffunction output="false" name="SELaudroles_23851" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 r.audroleid, 
                 r.audprojectid, 
@@ -272,21 +260,21 @@
             WHERE r.audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getAudRoleDetails: #cfcatch.message#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="DETaudroles" access="public" returntype="query">
+<cffunction output="false" name="DETaudroles" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 r.audroleid, 
                 r.audprojectid, 
@@ -313,19 +301,19 @@
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getAudRoles: #cfcatch.message# Query: #cfcatch.detail#">
-            <cfthrow message="An error occurred while retrieving roles." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="DETaudroles_24086" access="public" returntype="query">
+<cffunction output="false" name="DETaudroles_24086" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 r.audroleid, 
                 r.audprojectid, 
@@ -352,19 +340,19 @@
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getAudRoleDetails: #cfcatch.message#">
-            <cfthrow message="An error occurred while fetching role details." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="DETaudroles_24090" access="public" returntype="query">
+<cffunction output="false" name="DETaudroles_24090" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 r.audroleid, 
                 r.audprojectid, 
@@ -402,19 +390,19 @@
         
         <cfreturn result>
         
-    <cfcatch type="any">
-        <cflog file="application" text="Error in getRoleDetails: #cfcatch.message# Query: #cfcatch.detail#">
-        <cfreturn queryNew("")>
-    </cfcatch>
-    </cftry>
+    
+        
+        
+    
+    
 </cffunction>
-<cffunction name="DETaudroles_24122" access="public" returntype="query">
+<cffunction output="false" name="DETaudroles_24122" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 r.audroleid, 
                 r.audprojectid, 
@@ -447,61 +435,61 @@
             WHERE r.audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getRoleDetails: #cfcatch.message# Query: #cfcatch.detail#">
+        
+            
             <cfset result = queryNew("audroleid,audprojectid,auddialectid,audRoleName,charDescription,holdStartDate,holdEndDate,audroletype,audroletypeid,auddialect,audsource,audsourceid,contactid,payrate,netincome,buyout,incometype,iscallback,isredirect,ispin,isbooked,contactname")>
-        </cfcatch>
-    </cftry>
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="UPDaudroles_24126" access="public" returntype="void" output="false">
+<cffunction output="false" name="UPDaudroles_24126" access="public" returntype="void" >
     <cfargument name="audroleid" type="numeric" required="true">
 
-    <cftry>
-        <cfquery result="result" datasource="abod">
+    
+        <cfquery result="result" >
             UPDATE audroles
             SET isdeleted = 1
             WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating audroles: #cfcatch.message# Query: UPDATE audroles SET isdeleted = 1 WHERE audroleid = #arguments.audroleid#">
-            <cfthrow message="An error occurred while updating the record." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="SELaudroles_24165" access="public" returntype="query">
+<cffunction output="false" name="SELaudroles_24165" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="submitsiteid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT *
             FROM audroles
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
             AND submitsiteid = <cfqueryparam value="#arguments.submitsiteid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getAudRoles: #cfcatch.message# Query: SELECT * FROM audroles WHERE userid = ? AND submitsiteid = ? Parameters: userid=#arguments.userid#, submitsiteid=#arguments.submitsiteid#">
-            <cfthrow>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="UPDaudroles_24260" access="public" returntype="void">
+<cffunction output="false" name="UPDaudroles_24260" access="public" returntype="void">
     <cfargument name="new_iscallback" type="boolean" required="true">
     <cfargument name="new_isredirect" type="boolean" required="true">
     <cfargument name="new_ispin" type="boolean" required="true">
     <cfargument name="new_isbooked" type="boolean" required="true">
     <cfargument name="audroleid" type="numeric" required="true">
 
-    <cftry>
-        <cfquery result="result" datasource="abod">
+    
+        <cfquery result="result" >
             UPDATE audroles
             SET iscallback = <cfqueryparam value="#arguments.new_iscallback#" cfsqltype="CF_SQL_BIT">,
                 isredirect = <cfqueryparam value="#arguments.new_isredirect#" cfsqltype="CF_SQL_BIT">,
@@ -509,13 +497,13 @@
                 isbooked = <cfqueryparam value="#arguments.new_isbooked#" cfsqltype="CF_SQL_BIT">
             WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        <cfcatch>
-            <cflog file="application" text="Error updating audroles: #cfcatch.message#">
-            <cfthrow message="An error occurred while updating the record.">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="UPDaudroles_24299" access="public" returntype="void" output="false">
+<cffunction output="false" name="UPDaudroles_24299" access="public" returntype="void" >
     <cfargument name="new_audRoleName" type="string" required="true">
     <cfargument name="new_opencallid" type="numeric" required="true">
     <cfargument name="new_audRoleTypeID" type="numeric" required="true">
@@ -527,8 +515,8 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_audRoleID" type="numeric" required="true">
 
-    <cftry>
-        <cfquery result="result" datasource="#application.datasource#" name="updateQuery">
+    
+        <cfquery result="result" " name="updateQuery">
             UPDATE audroles 
             SET 
                 audRoleName = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audRoleName#" maxlength="500" null="#NOT len(trim(arguments.new_audRoleName))#">,
@@ -547,13 +535,13 @@
             WHERE 
                 audRoleID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#">
         </cfquery>
-        <cfcatch>
-            <cflog file="applicationLog" text="[Error] Failed to update audroles: #cfcatch.message#. Query: #updateQuery.sql#. Parameters: #serializeJSON(arguments)#">
+        
+            
             <!--- Handle error appropriately --->
-        </cfcatch>
-    </cftry>
+        
+    
 </cffunction>
-<cffunction name="INSaudroles_24372" access="public" returntype="void">
+<cffunction output="false" name="INSaudroles_24372" access="public" returntype="numeric">
     <cfargument name="new_audRoleName" type="string" required="true">
     <cfargument name="new_audprojectID" type="numeric" required="true">
     <cfargument name="new_charDescription" type="string" required="false" default="">
@@ -565,8 +553,7 @@
     <cfargument name="ispin" type="boolean" required="false" default=false>
     <cfargument name="isredirect" type="boolean" required="false" default=false>
 
-    <cftry>
-        <cfquery result="result" datasource="#application.datasource#">
+        <cfquery result="result">
             INSERT INTO audroles (
                 audRoleName, 
                 audprojectID, 
@@ -591,36 +578,31 @@
                 <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.isredirect#" null="#NOT len(trim(arguments.isredirect))#">
             )
         </cfquery>
-        <cfcatch>
-            <cflog file="application_errors.log"
-                   text="[insertAudRole] Error: #cfcatch.message#, Detail: #cfcatch.detail#, Query: INSERT INTO audroles...">
-            <cfthrow message="[insertAudRole] Database operation failed." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+<cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="UPDaudroles_24542" access="public" returntype="void">
+<cffunction output="false" name="UPDaudroles_24542" access="public" returntype="void">
     <cfargument name="audsourceid" type="numeric" required="true">
     
-    <cftry>
-        <cfquery result="result" datasource="abod">
+    
+        <cfquery result="result" >
             UPDATE audroles 
             SET submitsiteid = NULL, contactid = NULL, opencallid = NULL 
             WHERE audsourceid = <cfqueryparam value="#arguments.audsourceid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating audroles: #cfcatch.message# Query: #cfcatch.query#">
-            <cfthrow message="An error occurred while updating the database.">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="DETaudroles_24544" access="public" returntype="query">
+<cffunction output="false" name="DETaudroles_24544" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 r.audroleid, r.audprojectid, r.auddialectid, r.audRoleName, 
                 r.charDescription, r.holdStartDate, r.holdEndDate, rt.audroletype, 
@@ -641,15 +623,15 @@
             WHERE r.audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="cf_sql_integer">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getAudRoles: #cfcatch.message#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="INSaudroles_24593" access="public" returntype="void">
+<cffunction output="false" name="INSaudroles_24593" access="public" returntype="numeric">
     <cfargument name="new_audRoleName" type="string" required="true">
     <cfargument name="new_audprojectID" type="numeric" required="true">
     <cfargument name="new_audRoleTypeID" type="numeric" required="true">
@@ -665,8 +647,7 @@
     <cfargument name="ispin" type="boolean" required="true">
     <cfargument name="isredirect" type="boolean" required="true">
 
-    <cftry>
-        <cfquery result="result" datasource="#application.datasource#">
+        <cfquery result="result">
             INSERT INTO audroles (
                 audRoleName, 
                 audprojectID, 
@@ -703,14 +684,9 @@
                 <cfqueryparam cfsqltype="#iif(len(trim(arguments.isredirect)), 'CF_SQL_BIT', 'CF_SQL_BIT')#" value="#arguments.isredirect#">
             )
         </cfquery>
-        <cflog file="application_log" text="[INFO] Inserted new record into audroles table. User ID: #arguments.new_userid#."/>
-    <cfcatch>
-        <cflog file="error_log" text="[ERROR] Failed to insert record into audroles table. Error: #cfcatch.message#. User ID: #arguments.new_userid#. Query: #cffunctionname#. Parameters: #serializejson(arguments)#"/>
-        <!--- Handle error appropriately --->
-    </cfcatch>
-    </cftry>
+<cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="UPDaudroles_24594" access="public" returntype="void">
+<cffunction output="false" name="UPDaudroles_24594" access="public" returntype="void">
     <cfargument name="new_audRoleName" type="string" required="true">
     <cfargument name="new_audprojectID" type="numeric" required="true">
     <cfargument name="new_audRoleTypeID" type="numeric" required="true">
@@ -723,8 +699,8 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_audRoleID" type="numeric" required="true">
 
-    <cftry>
-        <cfquery result="result" datasource="#application.datasource#">
+    
+        <cfquery result="result">
             UPDATE audroles 
             SET 
                 audRoleName = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audRoleName)#" maxlength="500" null="#NOT len(trim(arguments.new_audRoleName))#">,
@@ -740,9 +716,9 @@
             WHERE 
                 audRoleID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#">
         </cfquery>
-        <cfcatch>
-            <cflog file="applicationLog" text="[Error] updateAudRoles failed: #cfcatch.message#, Query: #cfcatch.detail#">
+        
+            
             <!--- Handle error as needed --->
-        </cfcatch>
-    </cftry>
+        
+    
 </cffunction></cfcomponent>

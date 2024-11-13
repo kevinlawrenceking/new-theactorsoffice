@@ -1,6 +1,6 @@
-<cfcomponent displayname="EventService" hint="Handles operations for Event table" output="false"> 
+<cfcomponent displayname="EventService" hint="Handles operations for Event table" > 
 
-<cffunction name="eventresults" access="public" returntype="struct">
+<cffunction output="false" name="eventresults" access="public" returntype="struct">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="currentid" type="numeric" required="false" default="">
  
@@ -55,7 +55,7 @@
 
 
 
-<cffunction name="INSevents" access="public" returntype="void">
+<cffunction output="false" name="INSevents" access="public" returntype="numeric">
     <cfargument name="eventTitle" type="string" required="true">
     <cfargument name="eventTypeName" type="string" required="true">
     <cfargument name="eventDescription" type="string" required="true">
@@ -104,8 +104,8 @@
     <cfset sql &= values>
 
     <!--- Execute the query --->
-    <cftry>
-        <cfquery result="result" datasource="#application.datasource#" name="insertEventQuery">
+
+        <cfquery result="result" " name="insertEventQuery">
             #sql#
             <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.eventTitle#"/>
             <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.eventTypeName#"/>
@@ -136,87 +136,70 @@
             <!--- Required parameter --->
             <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#"/>
         </cfquery>
-
-        <!--- Error handling --->
-        <cfcatch type="any">
-            <!--- Log the error details --->
-            <cflog file="applicationLog"
-                   text="[insertEvent] Error: #cfcatch.message#, SQL: #sql#, Arguments: #serializeJSON(arguments)#"
-                   type="error">
-
-            <!--- Rethrow the error to be handled by calling code if necessary --->
-            <rethrow/>
-        </cfcatch>
-    </cftry>
+<cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="UPDevents" access="public" returntype="void">
+<cffunction output="false" name="UPDevents" access="public" returntype="void">
     <cfargument name="newStartTime" type="string" required="true">
     
     <cfset var queryResult = "">
-    
-    <cftry>
-        <cfquery result="result" name="queryResult" datasource="abod">
+
+        <cfquery result="result" name="queryResult" >
             UPDATE events 
             SET eventstarttime = <cfqueryparam value="#arguments.newStartTime#" cfsqltype="CF_SQL_TIME">
             WHERE eventstarttime IS NULL
         </cfquery>
-        
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating event start time: #cfcatch.message#">
-            <cfthrow message="An error occurred while updating the event start time." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+    
 </cffunction>
-<cffunction name="UPDevents_23725" access="public" returntype="void">
+<cffunction output="false" name="UPDevents_23725" access="public" returntype="void">
     <cfargument name="eventStartTime" type="date" required="true">
     
-    <cftry>
-        <cfquery result="result" name="updateQuery" datasource="abod">
+    
+        <cfquery result="result" name="updateQuery" >
             UPDATE events 
             SET eventstoptime = TIME( (ADDTIME(TIME(eventstarttime), TIME('01:00:00'))) % (TIME('24:00:00')))
             WHERE eventstarttime = <cfqueryparam value="#arguments.eventStartTime#" cfsqltype="CF_SQL_TIME">
             AND eventstoptime IS NULL
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating event stop time: #cfcatch.message#">
-        </cfcatch>
-    </cftry>
+        
+            
+        
+    
 </cffunction>
-<cffunction name="UPDevents_23726" access="public" returntype="void">
+<cffunction output="false" name="UPDevents_23726" access="public" returntype="void">
     <cfargument name="eventStart" type="date" required="true">
     
-    <cftry>
-        <cfquery result="result" name="updateQuery" datasource="abod">
+    
+        <cfquery result="result" name="updateQuery" >
             UPDATE events 
             SET eventstop = <cfqueryparam value="#arguments.eventStart#" cfsqltype="CF_SQL_TIMESTAMP">
             WHERE eventstop IS NULL 
             AND eventstart IS NOT NULL
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating eventstop: #cfcatch.message#; SQL: #cfcatch.Sql#; Data: #arguments.eventStart#">
-            <cfthrow message="Error updating eventstop" detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="UPDevents_23731" access="public" returntype="void">
+<cffunction output="false" name="UPDevents_23731" access="public" returntype="void">
     <cfargument name="eventid" type="numeric" required="true">
 
-    <cftry>
-        <cfquery result="result" datasource="abod">
+    
+        <cfquery result="result" >
             UPDATE events_tbl 
             SET isdeleted = 1 
             WHERE eventid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.eventid#" />
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating event: #cfcatch.message#; Event ID: #arguments.eventid#" type="error"/>
-            <cfthrow message="An error occurred while updating the event." detail="#cfcatch.detail#"/>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="UPDevents_23733" access="public" returntype="void">
+<cffunction output="false" name="UPDevents_23733" access="public" returntype="void">
     <cfargument name="eventTitle" type="string" required="true">
     <cfargument name="eventTypeName" type="string" required="true">
     <cfargument name="eventDescription" type="string" required="true">
@@ -228,8 +211,8 @@
     <cfargument name="endRecur" type="date" required="false" default="">
     <cfargument name="eventid" type="numeric" required="true">
 
-    <cftry>
-        <cfquery result="result" datasource="#application.datasource#">
+    
+        <cfquery result="result">
             UPDATE events 
             SET 
                 eventTitle = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.eventTitle#" />,
@@ -260,22 +243,19 @@
             WHERE 
                 eventid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.eventid#" />
         </cfquery>
-    <cfcatch>
-        <cflog file="application_errors.log"
-               text="[Error] Failed to update event. Event ID: #arguments.eventid#. Error: #cfcatch.message#"
-               type="error">
-        <!--- Handle error gracefully --->
-    </cfcatch>
-    </cftry>
+    
+
+    
+    
 </cffunction>
-<cffunction name="RESevents" access="public" returntype="query">
+<cffunction output="false" name="RESevents" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     <cfargument name="eventid" type="numeric" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 a.eventid AS recid, 
                 'Date' AS head1, 
@@ -303,20 +283,20 @@
               AND a.audstepid <> 4
             ORDER BY a.eventStart
         </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getFilteredEvents: #cfcatch.message#">
+        
+            
             <cfset result = queryNew("recid,head1,head2,head3,head4,head5,audstepid,col1,col2,col3,col4,col5,audstep")>
-        </cfcatch>
-    </cftry>
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="UPDevents_23762" access="public" returntype="void">
+<cffunction output="false" name="UPDevents_23762" access="public" returntype="void">
     <cfargument name="eventTitle" type="string" required="true">
     <cfargument name="projName" type="string" required="true">
 
-    <cftry>
-        <cfquery result="result" name="updateQuery" datasource="abod">
+    
+        <cfquery result="result" name="updateQuery" >
             UPDATE events_tbl e
             INNER JOIN audroles r ON r.audroleid = e.audroleid
             INNER JOIN audprojects p ON p.audprojectid = r.audprojectid
@@ -325,19 +305,19 @@
             WHERE e.eventtitle != <cfqueryparam value="#arguments.projName#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating event titles: #cfcatch.message#">
-            <cfthrow message="An error occurred while updating event titles." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="SELevents" access="public" returntype="query">
+<cffunction output="false" name="SELevents" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT DISTINCT 
                 p.contactid, 
                 c.contactfullname, 
@@ -363,19 +343,19 @@
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getEventDetails: #cfcatch.message#">
+        
+            
             <cfreturn queryNew("contactid, contactfullname, userid, eventStart")>
-        </cfcatch>
-    </cftry>
+        
+    
 </cffunction>
-<cffunction name="SELevents_23785" access="public" returntype="query">
+<cffunction output="false" name="SELevents_23785" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT *
             FROM events
             WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
@@ -383,21 +363,21 @@
             AND audstepid = <cfqueryparam value="2" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getEvents: #cfcatch.message# Query: SELECT * FROM events WHERE audroleid = ? AND isdeleted = 0 AND audstepid = 2 Parameters: #arguments.audroleid#">
+        
+            
             <cfset result = queryNew("","")>
-        </cfcatch>
-    </cftry>
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELevents_23786" access="public" returntype="query">
+<cffunction output="false" name="SELevents_23786" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT * 
             FROM events 
             WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -405,21 +385,21 @@
             AND audstepid = <cfqueryparam value="3" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getEvents: #cfcatch.message#; Query: SELECT * FROM events WHERE audroleid = ?, isdeleted = 0, audstepid = 3; Parameters: audroleid=#arguments.audroleid#">
+        
+            
             <cfset result = queryNew("","")>
-        </cfcatch>
-    </cftry>
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELevents_23787" access="public" returntype="query">
+<cffunction output="false" name="SELevents_23787" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT *
             FROM events
             WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
@@ -427,20 +407,20 @@
             AND audstepid = <cfqueryparam value="4" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getEvents: #cfcatch.message# - Query: SELECT * FROM events WHERE audroleid = ?, isdeleted = 0, audstepid = 4">
-            <cfset result = queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELevents_23788" access="public" returntype="query">
+<cffunction output="false" name="SELevents_23788" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT * 
             FROM events 
             WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -448,36 +428,36 @@
             AND audstepid = <cfqueryparam value="5" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getEvents: #cfcatch.message# Query: SELECT * FROM events WHERE audroleid = #arguments.audroleid# AND isdeleted = 0 AND audstepid = 5">
-            <cfset result = queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELevents_23789" access="public" returntype="query">
+<cffunction output="false" name="SELevents_23789" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT * 
             FROM events e 
             INNER JOIN audroles r ON r.audroleid = e.audroleid 
             WHERE r.audprojectid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.audprojectid#">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getEventsByProject: #cfcatch.message#" type="error">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="INSevents_23790" access="public" returntype="void">
+<cffunction output="false" name="INSevents_23790" access="public" returntype="numeric">
     <cfargument name="new_eventtitle" type="string" required="true">
     <cfargument name="new_eventdescription" type="string" required="true">
     <cfargument name="new_userid" type="numeric" required="true">
@@ -494,8 +474,7 @@
     <cfargument name="new_trackmileage" type="boolean" required="false">
     <cfargument name="new_audlocid" type="numeric" required="true">
 
-    <cftry>
-        <cfquery result="result" datasource="#abod#" name="insertEventQuery">
+        <cfquery result="result"  name="insertEventQuery">
             INSERT INTO events_tbl (
                 eventtitle, 
                 eventdescription, 
@@ -530,21 +509,15 @@
                 <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audlocid#">
             )
         </cfquery>
-        <cfcatch>
-            <cflog file="/path/to/logfile.log"
-                   text="[insertEvent] Error: #cfcatch.message#, Detail: #cfcatch.detail#, Query: INSERT INTO events_tbl ... with parameters: #serializeJSON(arguments)#"
-                   type = "error"/>
-            <!--- Optionally rethrow or handle the error further --->
-        </cfcatch>
-    </cftry>
+     <cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="SELevents_23803" access="public" returntype="query">
+<cffunction output="false" name="SELevents_23803" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT DISTINCT 
                 CONCAT(
                     DATE_FORMAT(e.eventstart, '%m/%d/%Y'), 
@@ -569,35 +542,35 @@
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getDistinctEventDetails: #cfcatch.message#">
+        
+            
             <cfreturn queryNew("col1")>
-        </cfcatch>
-    </cftry>
+        
+    
 </cffunction>
-<cffunction name="UPDevents_23860" access="public" returntype="void">
+<cffunction output="false" name="UPDevents_23860" access="public" returntype="void">
     <cfargument name="recid" type="numeric" required="true">
     
-    <cftry>
-        <cfquery result="result" datasource="abod">
+    
+        <cfquery result="result" >
             UPDATE events 
             SET isdeleted = 1 
             WHERE eventid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" type="error" text="Error updating event isdeleted status: #cfcatch.message# Query: UPDATE events SET isdeleted = 1 WHERE eventid = #arguments.recid#">
-            <cfthrow>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="SELevents_24012" access="public" returntype="query">
+<cffunction output="false" name="SELevents_24012" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 p.audprojectID, 
                 MIN(a.eventStart) AS new_projDate 
@@ -620,21 +593,21 @@
                 p.audprojectID
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getProjectDates: #cfcatch.message#">
+        
+            
             <cfset result = queryNew("audprojectID,new_projDate", "integer,date")>
-        </cfcatch>
-    </cftry>
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="SELevents_24014" access="public" returntype="query">
+<cffunction output="false" name="SELevents_24014" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 p.audprojectID, 
                 MAX(a.eventStart) AS new_projDate 
@@ -656,19 +629,19 @@
                 p.audprojectID
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getUpdatedProjectDates: #cfcatch.message#">
-            <cfthrow message="An error occurred while retrieving project dates." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="UPDevents_24018" access="public" returntype="void">
+<cffunction output="false" name="UPDevents_24018" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cftry>
-        <cfquery result="result" name="updateQuery" datasource="abod">
+    
+        <cfquery result="result" name="updateQuery" >
             UPDATE events 
             SET isdeleted = 1 
             WHERE isdeleted = 0 
@@ -676,12 +649,12 @@
             AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" type="error" text="Error updating events: #cfcatch.message# Query: #cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+        
+    
 </cffunction>
-<cffunction name="INSevents_24096" access="public" returntype="void">
+<cffunction output="false" name="INSevents_24096" access="public" returntype="numeric">
     <cfargument name="new_userid" type="numeric" required="yes">
     <cfargument name="new_audRoleID" type="numeric" required="yes">
     <cfargument name="new_audTypeID" type="numeric" required="yes">
@@ -696,8 +669,7 @@
     <cfargument name="new_trackmileage" type="boolean" required="no">
     <cfargument name="new_audlocid" type="numeric" required="yes">
 
-    <cftry>
-        <cfquery result="result" datasource="#application.datasource#">
+        <cfquery result="result">
             INSERT INTO events_tbl (
                 userid, audRoleID, audTypeID, audLocation, eventStart, eventStartTime, eventStopTime, 
                 audplatformID, audStepID, parkingDetails, workwithcoach, trackmileage, audlocid, isdeleted
@@ -718,50 +690,38 @@
                 <cfqueryparam cfsqltype="CF_SQL_BIT" value=1 />
             )
         </cfquery>
-        <cfcatch>
-            <cflog file="application_errors.log"
-                   text="[insertEvent] Error: #cfcatch.message#; Details: #serializeJSON(cfcatch)#"
-                   type="error">
-            <!--- Handle error appropriately --->
-        </cfcatch>
-    </cftry>
+       <cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="UPDevents_24104" access="public" returntype="void">
+<cffunction output="false" name="UPDevents_24104" access="public" returntype="void">
     <cfargument name="new_eventid" type="numeric" required="true">
 
-    <cftry>
-        <cfquery result="result" datasource="abod">
+        <cfquery result="result" >
             UPDATE events_tbl 
             SET isdeleted = 0 
             WHERE eventid = <cfqueryparam value="#arguments.new_eventid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating event: #cfcatch.message# Query: UPDATE events_tbl SET isdeleted = 0 WHERE eventid = #arguments.new_eventid#">
-            <cfthrow message="An error occurred while updating the event." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
 </cffunction>
-<cffunction name="SELevents_24105" access="public" returntype="query">
+<cffunction output="false" name="SELevents_24105" access="public" returntype="query">
     <cfargument name="new_eventid" type="numeric" required="true">
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT eventid, eventstart, eventstarttime, eventstoptime
             FROM events
             WHERE eventid = <cfqueryparam value="#arguments.new_eventid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getEventDetails: #cfcatch.message# - Query: SELECT eventid, eventstart, eventstarttime, eventstoptime FROM events WHERE eventid = #arguments.new_eventid#">
+        
+            
             <cfset result = queryNew("eventid,eventstart,eventstarttime,eventstoptime", "integer,date,time,time")>
-        </cfcatch>
-    </cftry>
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="UPDevents_24108" access="public" returntype="void">
+<cffunction output="false" name="UPDevents_24108" access="public" returntype="void">
     <cfargument name="eventId" type="numeric" required="true">
     <cfargument name="newEventStart" type="string" required="false" default="">
     <cfargument name="newEventStartTime" type="string" required="false" default="">
@@ -791,135 +751,135 @@
     <cfset sql &= " WHERE eventid = ?">
     <cfset arrayAppend(params, {value=arguments.eventId, cfsqltype="CF_SQL_INTEGER"})>
 
-    <cftry>
-        <cfquery result="result" datasource="abod">
+    
+        <cfquery result="result" >
             #sql#
             <cfloop array="#params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
             </cfloop>
         </cfquery>
-        <cfcatch>
-            <cflog file="application" text="Error updating event: #cfcatch.message# Query: #sql# Parameters: #serializeJSON(params)#">
-            <cfthrow message="Error updating event." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="DETevents" access="public" returntype="query">
+<cffunction output="false" name="DETevents" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT *
             FROM events
             WHERE eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getEventById: #cfcatch.message# Query: SELECT * FROM events WHERE eventid = #arguments.eventid#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="UPDevents_24118" access="public" returntype="void">
+<cffunction output="false" name="UPDevents_24118" access="public" returntype="void">
     <cfargument name="eventid" type="numeric" required="true">
 
-    <cftry>
-        <cfquery result="result" datasource="abod">
+    
+        <cfquery result="result" >
             UPDATE events
             SET isdeleted = 1
             WHERE eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating event: #cfcatch.message# Query: UPDATE events SET isdeleted = 1 WHERE eventid = #arguments.eventid#">
-            <cfthrow>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="UPDevents_24119" access="public" returntype="void">
+<cffunction output="false" name="UPDevents_24119" access="public" returntype="void">
     <cfargument name="eventid" type="numeric" required="true">
 
-    <cftry>
-        <cfquery result="result" name="updateQuery" datasource="abod">
+    
+        <cfquery result="result" name="updateQuery" >
             UPDATE events_tbl 
             SET isdeleted = 1 
             WHERE eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" type="error" text="Error updating event isdeleted status. Event ID: #arguments.eventid#. Error: #cfcatch.message#">
-            <cfthrow message="An error occurred while updating the event." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="SELevents_24123" access="public" returntype="query">
+<cffunction output="false" name="SELevents_24123" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT eventid 
             FROM events 
             WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getEventIdsByAudRoleId: #cfcatch.message#">
+        
+            
             <cfset result = queryNew("eventid")>
-        </cfcatch>
-    </cftry>
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="UPDevents_24124" access="public" returntype="void" output="false">
+<cffunction output="false" name="UPDevents_24124" access="public" returntype="void" >
     <cfargument name="new_eventid" type="numeric" required="true">
 
-    <cftry>
-        <cfquery result="result" datasource="abod">
+    
+        <cfquery result="result" >
             UPDATE events_tbl 
             SET isdeleted = 1 
             WHERE eventid = <cfqueryparam value="#arguments.new_eventid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
-        <cfcatch type="any">
-            <cflog file="application" type="error" text="Error updating event: #cfcatch.message# Query: UPDATE events_tbl SET isdeleted = 1 WHERE eventid = #arguments.new_eventid#">
-            <cfthrow message="An error occurred while updating the event." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="SELevents_24379" access="public" returntype="query">
+<cffunction output="false" name="SELevents_24379" access="public" returntype="query">
     <cfargument name="eventtypename" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT * FROM events 
             WHERE eventtypename = <cfqueryparam value="#arguments.eventtypename#" cfsqltype="CF_SQL_VARCHAR"> 
             AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getEvents: #cfcatch.message# Query: SELECT * FROM events WHERE eventtypename = ? AND userid = ? Parameters: #arguments.eventtypename#, #arguments.userid#">
-            <cfset result = queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="DETevents_24487" access="public" returntype="query">
+<cffunction output="false" name="DETevents_24487" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 e.eventID, 
                 e.eventID AS recid, 
@@ -943,19 +903,19 @@
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getEventById: #cfcatch.message# Query: SELECT ... WHERE eventid = #arguments.eventid#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="DETevents_24492" access="public" returntype="query">
+<cffunction output="false" name="DETevents_24492" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 e.eventID, 
                 e.eventID AS recid, 
@@ -978,21 +938,21 @@
             WHERE e.eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getEventDetails: #cfcatch.message#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELevents_24527" access="public" returntype="query">
+<cffunction output="false" name="SELevents_24527" access="public" returntype="query">
     <cfargument name="new_eventid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 ad.eventLocation, 
                 ad.audlocadd1, 
@@ -1014,13 +974,13 @@
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getEventDetails: #cfcatch.message#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="INSevents_24528" access="public" returntype="void">
+<cffunction output="false" name="INSevents_24528" access="public" returntype="numeric">
     <cfargument name="new_projname" type="string" required="true">
     <cfargument name="new_projDescription" type="string" required="true">
     <cfargument name="eventLocation" type="string" required="true">
@@ -1030,8 +990,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_eventid" type="numeric" required="true">
 
-    <cftry>
-        <cfquery result="result" datasource="#application.datasource#">
+        <cfquery result="result">
             INSERT INTO events (
                 eventTitle, 
                 eventTypeName, 
@@ -1066,33 +1025,29 @@
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_eventid#" />
             )
         </cfquery>
-        <cflog file="application.log" text="Event inserted successfully." type="information">
-    <cfcatch type="any">
-        <cflog file="application.log" text="#cfcatch.message#" type="error">
-        <!--- Handle error appropriately --->
-    </cfcatch>
-    </cftry>
+<cfreturn result.generatedKey>
+
 </cffunction>
-<cffunction name="UPDevents_24530" access="public" returntype="void">
+<cffunction output="false" name="UPDevents_24530" access="public" returntype="void">
     <cfargument name="eventStartTime" type="string" required="true">
     
     <cfset var queryResult = "">
     
-    <cftry>
-        <cfquery result="result" name="queryResult" datasource="abod">
+    
+        <cfquery result="result" name="queryResult" >
             UPDATE events 
             SET eventstoptime = TIME((ADDTIME(TIME(eventstarttime), TIME('01:00:00'))) % (TIME('24:00:00')))
             WHERE eventstarttime = <cfqueryparam value="#arguments.eventStartTime#" cfsqltype="CF_SQL_TIME">
             AND eventstoptime IS NULL
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating event stop time: #cfcatch.message#">
-            <cflog file="application" text="Query: #cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="UPDevents_24540" access="public" returntype="void">
+<cffunction output="false" name="UPDevents_24540" access="public" returntype="void">
     <cfargument name="new_eventLocation" type="string" required="true">
     <cfargument name="new_audlocadd1" type="string" required="true">
     <cfargument name="new_audlocadd2" type="string" required="true">
@@ -1101,8 +1056,8 @@
     <cfargument name="new_audzip" type="string" required="true">
     <cfargument name="new_eventid" type="numeric" required="true">
 
-    <cftry>
-        <cfquery result="result" datasource="abod">
+    
+        <cfquery result="result" >
             UPDATE events 
             SET 
                 eventLocation = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_eventLocation)#" maxlength="500" null="#NOT len(trim(arguments.new_eventLocation))#">,
@@ -1114,19 +1069,19 @@
             WHERE 
                 eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">
         </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating event location: #cfcatch.message#" />
+        
+            
             <cfrethrow />
-        </cfcatch>
-    </cftry>
+        
+    
 </cffunction>
-<cffunction name="SELevents_24546" access="public" returntype="query">
+<cffunction output="false" name="SELevents_24546" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 a.eventid, 
                 a.eventStart, 
@@ -1155,18 +1110,18 @@
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getEventDetails: #cfcatch.message#">
+        
+            
             <cfreturn queryNew("eventid,eventStart,eventstarttime,col2,col3,audtype,audlocation,col5,audstep,workwithcoach")>
-        </cfcatch>
-    </cftry>
+        
+    
 </cffunction>
-<cffunction name="SELevents_24547" access="public" returntype="query">
+<cffunction output="false" name="SELevents_24547" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 a.eventid, 
                 p.projname AS col2, 
@@ -1194,15 +1149,15 @@
                 a.eventStart
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getEventDetails: #cfcatch.message#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="INSevents_24555" access="public" returntype="void">
+<cffunction output="false" name="INSevents_24555" access="public" returntype="numeric">
     <cfargument name="new_userid" type="numeric" required="true">
     <cfargument name="new_audRoleID" type="numeric" required="true">
     <cfargument name="new_audTypeID" type="numeric" required="true">
@@ -1216,8 +1171,7 @@
     <cfargument name="new_workwithcoach" type="boolean" required="true">
     <cfargument name="new_trackmileage" type="boolean" required="true">
 
-    <cftry>
-        <cfquery result="result" datasource="#abod#" name="insertEventQuery">
+        <cfquery result="result"  name="insertEventQuery">
             INSERT INTO events_tbl (
                 userid, audRoleID, audTypeID, audLocation, eventStart, 
                 eventStartTime, eventStopTime, audplatformID, audStepID, 
@@ -1237,15 +1191,9 @@
                 <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_trackmileage#" null="#NOT len(trim(arguments.new_trackmileage))#">
             )
         </cfquery>
-        <cfcatch>
-            <cflog file="applicationLogFileName"
-                   text="[insertEvent] Error: #cfcatch.message#, Detail: #cfcatch.detail#, Query: #insertEventQuery.sql#, Parameters: #serializeJSON(arguments)#"
-                   type="error">
-            <!--- Handle error appropriately --->
-        </cfcatch>
-    </cftry>
+<cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="UPDevents_24556" access="public" returntype="void">
+<cffunction output="false" name="UPDevents_24556" access="public" returntype="void">
     <cfargument name="new_eventLocation" type="string" required="true">
     <cfargument name="new_audlocadd1" type="string" required="true">
     <cfargument name="new_audlocadd2" type="string" required="true">
@@ -1254,8 +1202,8 @@
     <cfargument name="new_audzip" type="string" required="true">
     <cfargument name="new_eventid" type="numeric" required="true">
 
-    <cftry>
-        <cfquery result="result" datasource="abod">
+    
+        <cfquery result="result" >
             UPDATE events
             SET eventLocation = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_eventLocation)#" maxlength="500" null="#NOT len(trim(arguments.new_eventLocation))#">,
                 audlocadd1 = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audlocadd1)#" maxlength="500" null="#NOT len(trim(arguments.new_audlocadd1))#">,
@@ -1265,13 +1213,13 @@
                 audzip = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audzip)#" maxlength="10" null="#NOT len(trim(arguments.new_audzip))#">
             WHERE eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">
         </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating event location: #cfcatch.message#" />
+        
+            
             <cfrethrow />
-        </cfcatch>
-    </cftry>
+        
+    
 </cffunction>
-<cffunction name="UPDevents_24557" access="public" returntype="void">
+<cffunction output="false" name="UPDevents_24557" access="public" returntype="void">
     <cfargument name="new_userid" type="numeric" required="true">
     <cfargument name="new_audRoleID" type="numeric" required="true">
     <cfargument name="new_audTypeID" type="numeric" required="true">
@@ -1295,7 +1243,7 @@
     <cfargument name="new_isDeleted" type="boolean" required="false">
     <cfargument name="new_eventid" type="numeric" required=true>
 
-        <cfquery result="result" datasource="#application.datasource#">
+        <cfquery result="result">
             UPDATE events_tbl 
             SET 
                 userid = <cfqueryparam cfsqltype="#getSQLType(arguments.new_userid)#"
@@ -1336,7 +1284,7 @@
                 eventid = ? 
         </cfquery>
         </cffunction>
-<cffunction name="UPDevents_24558" access="public" returntype="void">
+<cffunction output="false" name="UPDevents_24558" access="public" returntype="void">
     <cfargument name="new_eventid" type="numeric" required="true">
     <cfargument name="eventStart" type="date" required="false" default="">
     <cfargument name="eventStartTime" type="string" required="false" default="">
@@ -1345,7 +1293,7 @@
     <cfset var sql = "">
     <cfset var params = []>
     
-    <cftry>
+    
         <cfset sql = "UPDATE events SET eventid = ?">
         <cfset arrayAppend(params, {value=arguments.new_eventid, cfsqltype="CF_SQL_INTEGER"})>
         
@@ -1367,26 +1315,26 @@
         <cfset sql &= " WHERE eventid = ?">
         <cfset arrayAppend(params, {value=arguments.new_eventid, cfsqltype="CF_SQL_INTEGER"})>
         
-        <cfquery result="result" datasource="abod">
+        <cfquery result="result" >
             #sql#
             <cfloop array="#params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
             </cfloop>
         </cfquery>
         
-    <cfcatch type="any">
-        <cflog file="application" text="Error updating event: #cfcatch.message# - SQL: #sql# - Params: #serializeJSON(params)#">
-    </cfcatch>
-    </cftry>
+    
+        
+    
+    
 </cffunction>
-<cffunction name="SELevents_24597" access="public" returntype="query">
+<cffunction output="false" name="SELevents_24597" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     <cfargument name="focusid" type="numeric" default="0">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 a.eventid, 
                 a.eventStart, 
@@ -1408,19 +1356,19 @@
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getEventDetails: #cfcatch.message# Query: #cfcatch.detail#">
-            <cfthrow message="An error occurred while retrieving event details." detail="#cfcatch.message#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="SELevents_24618" access="public" returntype="query">
+<cffunction output="false" name="SELevents_24618" access="public" returntype="query">
     <cfargument name="sessionUserId" type="numeric" required="true">
     <cfargument name="currentId" type="numeric" required="false">
     
     <cfset var result = "">
 
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 e.eventID, 
                 e.eventID AS recid, 
@@ -1458,14 +1406,14 @@
         <cfreturn result>
         
 </cffunction>
-<cffunction name="SELevents_24659" access="public" returntype="query">
+<cffunction output="false" name="SELevents_24659" access="public" returntype="query">
     <cfargument name="sessionUserID" type="numeric" required="true">
     <cfargument name="currentID" type="numeric" required="false">
 
     <cfset var queryResult = "">
     
-    <cftry>
-        <cfquery result="result" name="queryResult" datasource="abod">
+    
+        <cfquery result="result" name="queryResult" >
             SELECT 
                 e.eventID, 
                 e.eventID AS recid, 
@@ -1504,22 +1452,22 @@
             </cfif>
         </cfquery>
 
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getEventDetails: #cfcatch.message#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 
     <cfreturn queryResult>
 </cffunction>
-<cffunction name="RESevents_24660" access="public" returntype="query">
+<cffunction output="false" name="RESevents_24660" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     <cfargument name="currentID" type="numeric" required="false">
     
     <cfset var queryResult = "">
     
-    <cftry>
-        <cfquery result="result" name="queryResult" datasource="abod">
+    
+        <cfquery result="result" name="queryResult" >
             SELECT 
                 e.eventID, 
                 e.eventID AS recid, 
@@ -1558,21 +1506,21 @@
             ORDER BY e.eventstart DESC
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getEventDetails: #cfcatch.message# - Query: #cfcatch.detail#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn queryResult>
 </cffunction>
-<cffunction name="DETevents_24675" access="public" returntype="query">
+<cffunction output="false" name="DETevents_24675" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 e.eventlocation AS same_eventLocation, 
                 e.audlocadd1 AS same_audlocadd1, 
@@ -1598,20 +1546,20 @@
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getEventDetails: #cfcatch.message#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="SELevents_24686" access="public" returntype="query">
+<cffunction output="false" name="SELevents_24686" access="public" returntype="query">
     <cfargument name="sessionUserId" type="numeric" required="true">
     <cfargument name="contactId" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 e.eventID, 
                 e.eventID AS recid, 
@@ -1632,20 +1580,20 @@
         
         <cfreturn result>
         
-        <cfcatch>
-            <cflog file="application" text="Error in getEvents function: #cfcatch.message# - Query: #cfcatch.detail#">
+        
+            
             <cfreturn queryNew("eventID,recid,eventTitle,eventStart,eventStartTime", "integer,integer,varchar,timestamp,time")>
-        </cfcatch>
-    </cftry>
+        
+    
 </cffunction>
-<cffunction name="SELevents_24695" access="public" returntype="query">
+<cffunction output="false" name="SELevents_24695" access="public" returntype="query">
     <cfargument name="sessionUserID" type="numeric" required="true">
     <cfargument name="contactID" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 e.eventID, 
                 e.eventID AS recid, 
@@ -1664,11 +1612,11 @@
                 )
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getEventDetails: #cfcatch.message#">
+        
+            
             <cfset result = queryNew("eventID, recid, eventTitle, eventStart, eventStartTime")>
-        </cfcatch>
-    </cftry>
+        
+    
 
     <cfreturn result>
 </cffunction></cfcomponent>

@@ -1,6 +1,6 @@
-<cfcomponent displayname="AttachmentService" hint="Handles operations for Attachment table" output="false">
+<cfcomponent displayname="AttachmentService" hint="Handles operations for Attachment table" >
 
-    <cffunction name="INSattachments" access="public" returntype="void">
+    <cffunction output="false" name="INSattachments" access="public" returntype="numeric">
         <cfargument name="attachname" type="string" required="true">
         <cfargument name="attachfilename" type="string" required="true">
         <cfargument name="noteid" type="numeric" required="true">
@@ -15,9 +15,10 @@
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.noteid#" />
             )
         </cfquery>
+         <cfreturn result.generatedKey>
     </cffunction>
 
-    <cffunction name="DETattachments" access="public" returntype="query">
+    <cffunction output="false" name="DETattachments" access="public" returntype="query">
         <cfargument name="attachid" type="numeric" required="true">
         <cfset var result = "">
 
@@ -30,7 +31,7 @@
         <cfreturn result>
     </cffunction>
 
-    <cffunction name="UPDattachments" access="public" returntype="void">
+    <cffunction output="false" name="UPDattachments" access="public" returntype="void">
         <cfargument name="attachid" type="numeric" required="true">
 
         <cfquery result="result">
@@ -40,7 +41,7 @@
         </cfquery>
     </cffunction>
 
-    <cffunction name="SELattachments" access="public" returntype="query">
+    <cffunction output="false" name="SELattachments" access="public" returntype="query">
         <cfargument name="new_noteid" type="numeric" required="true">
         <cfset var result = "">
 

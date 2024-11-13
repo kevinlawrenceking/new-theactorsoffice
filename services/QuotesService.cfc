@@ -1,6 +1,6 @@
-<cfcomponent displayname="QuotesService" output="false"> 
+<cfcomponent displayname="QuotesService" > 
 
-    <cffunction name="getQuoteOfTheDay" access="public" returntype="query" output="false">
+    <cffunction output="false" name="getQuoteOfTheDay" access="public" returntype="query" >
         
         <cfset todayMonth = dateFormat(Now(), "MM")>
         <cfset todayDay = dateFormat(Now(), "dd")>

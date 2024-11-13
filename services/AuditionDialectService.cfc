@@ -1,5 +1,5 @@
-<cfcomponent displayname="AuditionDialectService" hint="Handles operations for AuditionDialect table" output="false"> 
-<cffunction name="INSauddialects" access="public" returntype="void">
+<cfcomponent displayname="AuditionDialectService" hint="Handles operations for AuditionDialect table" > 
+<cffunction output="false" name="INSauddialects" access="public" returntype="numeric">
     <cfargument name="new_auddialect" type="string" required="true">
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
@@ -12,9 +12,10 @@
             <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="UPDauddialects" access="public" returntype="void">
+<cffunction output="false" name="UPDauddialects" access="public" returntype="void">
     <cfargument name="new_auddialect" type="string" required="true">
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">

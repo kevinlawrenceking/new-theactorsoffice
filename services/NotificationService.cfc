@@ -1,6 +1,6 @@
-<cfcomponent displayname="NotificationService" hint="Handles operations for Notification table" output="false"> 
+<cfcomponent displayname="NotificationService" hint="Handles operations for Notification table" > 
 
-    <cffunction name="SELfunotifications_24711" access="public" returntype="query">
+    <cffunction output="false" name="SELfunotifications_24711" access="public" returntype="query">
         <cfargument name="currentid" type="numeric" required="true">
         
         <cfquery result="result" name="notsall">
@@ -16,7 +16,7 @@
         <cfreturn notsall>
     </cffunction>
 
-    <cffunction name="SELfunotifications_24706" access="public" returntype="query">
+    <cffunction output="false" name="SELfunotifications_24706" access="public" returntype="query">
         <cfargument name="currentid" type="numeric" required="true">
         <cfargument name="sysActiveSuid" type="numeric" required="true">
         <cfargument name="userid" type="numeric" required="true">
@@ -80,7 +80,7 @@
         <cfreturn notsActive>
     </cffunction>
 
-<cffunction name="SELfunotifications_24709" access="public" returntype="query">
+<cffunction output="false" name="SELfunotifications_24709" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     <cfset var result = "">
 
@@ -123,7 +123,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="INSnotifications" access="public" returntype="void">
+<cffunction output="false" name="INSnotifications" access="public" returntype="numeric">
     <cfargument name="new_contactname" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="contactid" type="numeric" required="true">
@@ -147,9 +147,10 @@
             <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
         )
     </cfquery>
+    <cffunction output="false" name="INSnotifications" access="public" returntype="numeric">
 </cffunction>
 
-<cffunction name="INSnotifications_23830" access="public" returntype="void">
+<cffunction output="false" name="INSnotifications_23830" access="public" returntype="numeric">
     <cfargument name="new_contactname" type="string" required="true">
     <cfargument name="contactid" type="numeric" required="true">
 
@@ -172,9 +173,10 @@
             <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
         )
     </cfquery>
+    <cffunction output="false" name="INSnotifications" access="public" returntype="numeric">
 </cffunction>
 
-<cffunction name="INSnotifications_23937" access="public" returntype="void">
+<cffunction output="false" name="INSnotifications_23937" access="public" returntype="numeric">
     <cfargument name="new_contactname" type="string" required="true">
     <cfargument name="new_userid" type="numeric" required="true">
     <cfargument name="new_contactid" type="numeric" required="true">
@@ -201,9 +203,9 @@
             <cfqueryparam value="#arguments.sunotes#" cfsqltype="CF_SQL_LONGVARCHAR">
         )
     </cfquery>
-</cffunction>
 
-<cffunction name="UPDnotifications" access="public" returntype="void">
+
+<cffunction output="false" name="UPDnotifications" access="public" returntype="void">
     <cfargument name="notificationId" type="numeric" required="true">
 
     <cfquery result="result" name="updateQuery">
@@ -213,33 +215,24 @@
     </cfquery>
 </cffunction>
 
-<cffunction name="UPDnotifications_24009" access="public" returntype="void">
+<cffunction output="false" name="UPDnotifications_24009" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
-    
-    <cftry>
-        <cfquery result="result" datasource="abod">
+
+        <cfquery result="result" >
             UPDATE notifications 
             SET trash = 1 
             WHERE userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#"> 
             AND trash = 0
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating notifications: #cfcatch.message#">
-            <cfthrow message="An error occurred while updating notifications." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
 </cffunction>
 
-<cffunction name="getRemindersTotal" access="public" returntype="numeric">
+<cffunction output="false" name="getRemindersTotal" access="public" returntype="numeric">
     <cfargument name="userID" type="numeric" required="true">
     <cfset var remindersTotal = 0>
-    
-    <cftry>
-        <!-- Get the current date formatted as yyyy-mm-dd -->
         <cfset var currentStartDate = DateFormat(Now(), 'yyyy-mm-dd')>
 
-        <cfquery result="result" name="reminders" datasource="abod">
+        <cfquery result="result" name="reminders" >
             SELECT count(*) AS reminderstotal
             FROM funotifications n
             INNER JOIN fusystemusers f ON f.suID = n.suID
@@ -256,25 +249,19 @@
             AND n.notstatus = 'Pending'
         </cfquery>
 
-        <!-- Set the result from the query -->
-        <cfset remindersTotal = reminders.reminderstotal>
 
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getRemindersTotal: #cfcatch.message#">
-        </cfcatch>
-    </cftry>
+        <cfset remindersTotal = reminders.reminderstotal>
 
     <cfreturn remindersTotal>
 </cffunction>
 
 
 
-<cffunction name="SELnotifications" access="public" returntype="query">
+<cffunction output="false" name="SELnotifications" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     <cfset var result = "">
-    
-    <cftry>
-        <cfquery name="result" datasource="abod">
+
+        <cfquery name="result" >
             SELECT 
                 n.ID, 
                 n.notiftitle, 
@@ -292,22 +279,17 @@
                 AND n.trash = 0
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getUnreadNotifications: #cfcatch.message#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
     
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELfunotifications_24639" access="public" returntype="query">
+<cffunction output="false" name="SELfunotifications_24639" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>5
-        <cfquery name="result" datasource="abod">
+
+        <cfquery name="result" >
             SELECT count(*) as nots_total
             FROM funotifications n
             INNER JOIN fusystemusers f ON f.suID = n.suID
@@ -324,23 +306,18 @@
             AND n.notstatus = <cfqueryparam value="Pending" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getNotificationCount: #cfcatch.message# Query: #cfcatch.detail#">
-            <cfthrow message="Error executing query in getNotificationCount." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
-    
+
     <cfreturn result>
 </cffunction>
 
 
 
-<cffunction name="SELnotifications_24351" access="public" returntype="query">
+<cffunction output="false" name="SELnotifications_24351" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+
+        <cfquery name="result" >
             SELECT 
                 n.ID, 
                 n.notiftitle, 
@@ -362,16 +339,10 @@
             ORDER BY 
                 n.notiftimestamp DESC
         </cfquery>
-        
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getNotifications: #cfcatch.message#">
-            <cfset result = queryNew("ID, notiftitle, notiftimestamp, recordname, subtitle, notifurl, contactid, read, trash")>
-        </cfcatch>
-    </cftry>
 
     <cfreturn result>
 </cffunction>
-    <cffunction name="getNotificationsByBatchlist" access="public" returntype="query" output="false" hint="Fetch notifications by batchlist">
+    <cffunction output="false" name="getNotificationsByBatchlist" access="public" returntype="query"  hint="Fetch notifications by batchlist">
         <cfargument name="batchlist" type="string" required="true" hint="Comma-separated list of notification IDs"/>
 
         <cfquery result="result" name="qNotifications" >

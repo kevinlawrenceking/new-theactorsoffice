@@ -1,5 +1,5 @@
-<cfcomponent displayname="AuditionEssenceXRefService" hint="Handles operations for AuditionEssenceXRef table" output="false"> 
-<cffunction name="SELaudessences_audtion_xref" access="public" returntype="query">
+<cfcomponent displayname="AuditionEssenceXRefService" hint="Handles operations for AuditionEssenceXRef table" > 
+<cffunction output="false" name="SELaudessences_audtion_xref" access="public" returntype="query">
     <cfargument name="essencename" type="string" required="true">
     <cfargument name="audroleid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
@@ -19,7 +19,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="DELaudessences_audtion_xref" access="public" returntype="void">
+<cffunction output="false" name="DELaudessences_audtion_xref" access="public" returntype="void">
     <cfargument name="new_audroleid" type="numeric" required="true">
 
     <cfquery result="result">
@@ -28,7 +28,7 @@
     </cfquery>
 </cffunction>
 
-<cffunction name="INSaudessences_audtion_xref" access="public" returntype="void">
+<cffunction output="false" name="INSaudessences_audtion_xref" access="public" returntype="numeric">
     <cfargument name="new_essenceid" type="numeric" required="true">
     <cfargument name="new_audroleid" type="numeric" required="true">
 
@@ -39,4 +39,5 @@
             <cfqueryparam value="#arguments.new_audroleid#" cfsqltype="CF_SQL_INTEGER">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction></cfcomponent>

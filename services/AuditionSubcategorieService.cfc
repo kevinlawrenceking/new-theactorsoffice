@@ -1,5 +1,5 @@
-<cfcomponent displayname="AuditionSubcategorieService" hint="Handles operations for AuditionSubcategorie table" output="false"> 
-<cffunction name="SELaudsubcategories" access="public" returntype="query">
+<cfcomponent displayname="AuditionSubcategorieService" hint="Handles operations for AuditionSubcategorie table" > 
+<cffunction output="false" name="SELaudsubcategories" access="public" returntype="query">
     <cfargument name="new_audcatid" type="numeric" required="true">
     <cfargument name="audsubcatname" type="string" required="true">
 
@@ -14,7 +14,7 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction name="INSaudsubcategories" access="public" returntype="void">
+<cffunction output="false" name="INSaudsubcategories" access="public" returntype="numeric">
     <cfargument name="new_audSubCatName" type="string" required="true">
     <cfargument name="new_audCatId" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
@@ -27,8 +27,9 @@
             <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#" />
         );
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="UPDaudsubcategories" access="public" returntype="void">
+<cffunction output="false" name="UPDaudsubcategories" access="public" returntype="void">
     <cfargument name="new_audSubCatName" type="string" required="true">
     <cfargument name="new_audCatId" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">

@@ -1,6 +1,6 @@
-<cfcomponent displayname="SiteLinksService" output="false" hint="Handles site links retrieval for specific panels.">
+<cfcomponent displayname="SiteLinksService"  hint="Handles site links retrieval for specific panels.">
 
-    <cffunction name="getSiteLinksByPanelId" access="public" returntype="query" output="false" hint="Retrieve site links for a specific panel ID.">
+    <cffunction output="false" name="getSiteLinksByPanelId" access="public" returntype="query"  hint="Retrieve site links for a specific panel ID.">
         <cfargument name="panelId" type="numeric" required="true" hint="The panel ID (pnid) for which to retrieve site links.">
 
         <cfquery result="result" name="mylinks_user">
@@ -22,7 +22,7 @@
         <cfreturn mylinks_user>
     </cffunction>
 
-    <cffunction name="getAllUrlsByPanelId" access="public" returntype="string" output="false" hint="Retrieve all URLs for a specific panel for the 'Open All' button.">
+    <cffunction output="false" name="getAllUrlsByPanelId" access="public" returntype="string"  hint="Retrieve all URLs for a specific panel for the 'Open All' button.">
         <cfargument name="panelId" type="numeric" required="true" hint="The panel ID for which to retrieve all URLs.">
 
         <cfquery result="result" name="allUrls">
@@ -35,7 +35,7 @@
         <cfreturn allUrls.siteurl_list>
     </cffunction>
 
-    <cffunction name="getLinkDetailsById" access="public" returntype="query" output="false" hint="Retrieve link details for a specific link ID.">
+    <cffunction output="false" name="getLinkDetailsById" access="public" returntype="query"  hint="Retrieve link details for a specific link ID.">
         <cfargument name="linkId" type="numeric" required="true" hint="The ID of the link to retrieve details for.">
 
         <cfquery result="result" name="linkdetails">
@@ -57,7 +57,7 @@
         <cfreturn linkdetails>
     </cffunction>
 
-    <cffunction name="updateSiteLinkDetails" access="public" returntype="void" output="false" hint="Check for duplicate sitenames and update site link details">
+    <cffunction output="false" name="updateSiteLinkDetails" access="public" returntype="void"  hint="Check for duplicate sitenames and update site link details">
         <cfargument name="new_id" type="numeric" required="true" hint="ID of the site link to update">
         <cfargument name="userid" type="numeric" required="true" hint="User ID">
         <cfargument name="new_sitename" type="string" required="true" hint="New site name to check for duplicates">
@@ -89,7 +89,7 @@
     </cffunction>
 
  <!--- Function to update sitelinks_user table dynamically based on passed variables --->
-    <cffunction name="updateSiteLink" access="public" returntype="void" output="false" hint="Updates the sitelinks_user table dynamically based on available arguments.">
+    <cffunction output="false" name="updateSiteLink" access="public" returntype="void"  hint="Updates the sitelinks_user table dynamically based on available arguments.">
         <cfargument name="new_id" type="numeric" required="true" hint="ID of the site link to update">
         <cfargument name="new_sitename" type="string" required="false" hint="New site name">
         <cfargument name="new_siteurl" type="string" required="false" hint="New site URL">
@@ -132,7 +132,7 @@
     </cffunction>
 
 <!--- Function to get sitetypeid and sitetypename for a specific panel ID (pnid) --->
-<cffunction name="getSiteTypeDetailsByPanelId" access="public" returntype="struct" output="false" hint="Retrieve the sitetypeid and sitetypename for a specific panel ID (pnid).">
+<cffunction output="false" name="getSiteTypeDetailsByPanelId" access="public" returntype="struct"  hint="Retrieve the sitetypeid and sitetypename for a specific panel ID (pnid).">
     <cfargument name="new_pnid" type="numeric" required="true" hint="The panel ID (pnid) for which to retrieve sitetypeid and sitetypename.">
     
     <!--- Query to retrieve sitetypeid and sitetypename --->

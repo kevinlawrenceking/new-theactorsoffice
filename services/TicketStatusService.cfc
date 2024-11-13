@@ -1,5 +1,5 @@
-<cfcomponent displayname="TicketStatusService" hint="Handles operations for TicketStatus table" output="false"> 
-<cffunction name="SELticketstatuses" access="public" returntype="query">
+<cfcomponent displayname="TicketStatusService" hint="Handles operations for TicketStatus table" > 
+<cffunction output="false" name="SELticketstatuses" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
     <cfset var result = "">
     <cfset var sql = "SELECT ticketstatus AS id, ticketstatus AS name FROM ticketstatuses">
@@ -34,7 +34,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELticketstatuses_24766" access="public" returntype="query">
+<cffunction output="false" name="SELticketstatuses_24766" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
     <cfset var queryResult = "">
     <cfset var sql = "SELECT ticketstatus AS name FROM ticketstatuses">
@@ -63,7 +63,7 @@
     <cfreturn queryResult>
 </cffunction>
 
-<cffunction name="SELticketstatuses_24781" access="public" returntype="query">
+<cffunction output="false" name="SELticketstatuses_24781" access="public" returntype="query">
     <cfargument name="status" type="string" required="false">
     
     <cfset var result = "">

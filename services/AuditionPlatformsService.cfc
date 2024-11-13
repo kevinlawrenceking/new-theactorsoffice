@@ -1,5 +1,5 @@
-<cfcomponent displayname="AuditionPlatformsService" hint="Handles operations for AuditionPlatforms table" output="false"> 
-<cffunction name="INSaudplatforms" access="public" returntype="void">
+<cfcomponent displayname="AuditionPlatformsService" hint="Handles operations for AuditionPlatforms table" > 
+<cffunction output="false" name="INSaudplatforms" access="public" returntype="numeric">
     <cfargument name="new_audplatform" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
@@ -10,8 +10,9 @@
             <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="UPDaudplatforms" access="public" returntype="void">
+<cffunction output="false" name="UPDaudplatforms" access="public" returntype="void">
     <cfargument name="new_audplatform" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_audplatformid" type="numeric" required="true">

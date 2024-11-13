@@ -1,5 +1,5 @@
-<cfcomponent displayname="GenderPronounService" hint="Handles operations for GenderPronoun table" output="false"> 
-<cffunction name="SELgenderpronouns" access="public" returntype="query">
+<cfcomponent displayname="GenderPronounService" hint="Handles operations for GenderPronoun table" > 
+<cffunction output="false" name="SELgenderpronouns" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
     <cfset var result = "">
     <cfset var sql = "SELECT genderpronoun, genderpronounplural FROM genderpronouns">

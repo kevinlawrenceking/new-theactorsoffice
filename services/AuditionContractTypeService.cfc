@@ -1,5 +1,5 @@
-<cfcomponent displayname="AuditionContractTypeService" hint="Handles operations for AuditionContractType table" output="false"> 
-<cffunction name="INSaudcontracttypes" access="public" returntype="void">
+<cfcomponent displayname="AuditionContractTypeService" hint="Handles operations for AuditionContractType table" > 
+<cffunction output="false" name="INSaudcontracttypes" access="public" returntype="numeric">
     <cfargument name="new_contracttype" type="string" required="true">
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
@@ -12,8 +12,9 @@
             <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="UPDaudcontracttypes" access="public" returntype="void">
+<cffunction output="false" name="UPDaudcontracttypes" access="public" returntype="void">
     <cfargument name="new_contracttype" type="string" required="true">
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">

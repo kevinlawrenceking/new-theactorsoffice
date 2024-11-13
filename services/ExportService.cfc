@@ -1,14 +1,15 @@
-<cfcomponent displayname="ExportService" hint="Handles operations for Export table" output="false"> 
-    <cffunction name="INSexports" access="public" returntype="void">
+<cfcomponent displayname="ExportService" hint="Handles operations for Export table" > 
+    <cffunction output="false" name="INSexports" access="public" returntype="numeric">
         <cfargument name="userid" type="numeric" required="true">
 
         <cfquery result="result" name="insertQuery">
             INSERT INTO exports (userid) 
             VALUES (<cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">)
         </cfquery>
+        <cfreturn result.generatedKey>
     </cffunction>
 
-    <cffunction name="UPDexports" access="public" returntype="void">
+    <cffunction output="false" name="UPDexports" access="public" returntype="void">
         <cfargument name="exportID" type="numeric" required="true">
         <cfargument name="status" type="string" required="true">
 

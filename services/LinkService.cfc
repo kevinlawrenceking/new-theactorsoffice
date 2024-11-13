@@ -1,6 +1,6 @@
-<cfcomponent displayname="LinkService" hint="Handles operations for Link table" output="false"> 
+<cfcomponent displayname="LinkService" hint="Handles operations for Link table" > 
 
-<cffunction name="getLinksByNoteId" access="public" returntype="struct">
+<cffunction output="false" name="getLinksByNoteId" access="public" returntype="struct">
     <!--- Define required arguments --->
     <cfargument name="noteid" type="numeric" required="true">
 
@@ -28,7 +28,7 @@
 
 
 
-<cffunction name="INSlinks" access="public" returntype="void">
+<cffunction output="false" name="INSlinks" access="public" returntype="numeric">
     <cfargument name="linkname" type="string" required="true">
     <cfargument name="linkurl" type="string" required="true">
     <cfargument name="noteid" type="numeric" required="true">
@@ -44,9 +44,10 @@
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.noteid#" />
             )
         </cfquery>
+        <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="SELlinks" access="public" returntype="query">
+<cffunction output="false" name="SELlinks" access="public" returntype="query">
     <cfargument name="linkid" type="numeric" required="true">
 
     <cfset var result = "">
@@ -61,7 +62,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="UPDlinks" access="public" returntype="void" hint="Updates the isdeleted field for a given linkid">
+<cffunction output="false" name="UPDlinks" access="public" returntype="void" hint="Updates the isdeleted field for a given linkid">
     <cfargument name="linkid" type="numeric" required="true" hint="The ID of the link to update">
 
     <cfquery result="result">
@@ -71,7 +72,7 @@
     </cfquery>
 </cffunction>
 
-<cffunction name="SELlinks_23981" access="public" returntype="query">
+<cffunction output="false" name="SELlinks_23981" access="public" returntype="query">
     <cfargument name="new_noteid" type="numeric" required="true">
     
     <cfset var result = "">

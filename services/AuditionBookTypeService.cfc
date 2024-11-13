@@ -1,5 +1,5 @@
-<cfcomponent displayname="AuditionBookTypeService" hint="Handles operations for AuditionBookType table" output="false"> 
-<cffunction name="SELaudbooktypes" access="public" returntype="query">
+<cfcomponent displayname="AuditionBookTypeService" hint="Handles operations for AuditionBookType table" > 
+<cffunction output="false" name="SELaudbooktypes" access="public" returntype="query">
     <cfargument name="audbooktypeid" type="numeric" required="false">
     <cfset var result = "">
 

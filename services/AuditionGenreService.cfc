@@ -1,5 +1,5 @@
-<cfcomponent displayname="AuditionGenreService" hint="Handles operations for AuditionGenre table" output="false"> 
-<cffunction name="INSaudgenres" access="public" returntype="void">
+<cfcomponent displayname="AuditionGenreService" hint="Handles operations for AuditionGenre table" > 
+<cffunction output="false" name="INSaudgenres" access="public" returntype="numeric">
     <cfargument name="new_audgenre" type="string" required="true">
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
@@ -12,9 +12,10 @@
             <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT arguments.new_isDeleted#">
         )
     </cfquery>
+<cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="UPDaudgenres" access="public" returntype="void">
+<cffunction output="false" name="UPDaudgenres" access="public" returntype="void">
     <cfargument name="new_audgenre" type="string" required="true">
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">

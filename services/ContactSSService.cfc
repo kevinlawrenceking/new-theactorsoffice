@@ -1,5 +1,5 @@
-<cfcomponent displayname="ContactSSService" hint="Handles operations for ContactSS table" output="false"> 
-<cffunction name="SELcontacts_ss" access="public" returntype="query">
+<cfcomponent displayname="ContactSSService" hint="Handles operations for ContactSS table" > 
+<cffunction output="false" name="SELcontacts_ss" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     
     <cfset var result = "">
@@ -14,7 +14,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELcontacts_ss_23946" access="public" returntype="query">
+<cffunction output="false" name="SELcontacts_ss_23946" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="topsearch_myteam" type="string" required="true">
 

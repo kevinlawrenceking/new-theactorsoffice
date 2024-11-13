@@ -1,11 +1,11 @@
-<cfcomponent displayname="AuditionProjectService" hint="Handles operations for AuditionProject table" output="false"> 
-<cffunction name="DETaudprojects" access="public" returntype="query">
+<cfcomponent displayname="AuditionProjectService" hint="Handles operations for AuditionProject table" > 
+<cffunction output="false" name="DETaudprojects" access="public" returntype="query">
     <cfargument name="eventId" type="numeric" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 pr.audprojectid AS recid, 
                 ad.eventid, 
@@ -55,21 +55,21 @@
             WHERE ad.eventid = <cfqueryparam value="#arguments.eventId#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getEventDetails: #cfcatch.message#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="SELaudprojects" access="public" returntype="query">
+<cffunction output="false" name="SELaudprojects" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT DISTINCT 
                 c.contactfullname AS cd, 
                 c.contactid 
@@ -85,21 +85,21 @@
                 c.contactfullname
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getContactDetailsByUserId: #cfcatch.message#">
+        
+            
             <cfreturn queryNew("cd,contactid", "varchar,int")>
-        </cfcatch>
-    </cftry>
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELaudprojects_23795" access="public" returntype="query">
+<cffunction output="false" name="SELaudprojects_23795" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT DISTINCT i.valueCompany 
             FROM audprojects p 
             INNER JOIN contactdetails c ON c.contactid = p.contactid 
@@ -109,21 +109,21 @@
             ORDER BY i.valueCompany
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getDistinctValueCompany: #cfcatch.message#">
+        
+            
             <cfset result = queryNew("valueCompany")>
-        </cfcatch>
-    </cftry>
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="DETaudprojects_23811" access="public" returntype="query">
+<cffunction output="false" name="DETaudprojects_23811" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 a.audprojectid, 
                 a.projname, 
@@ -148,36 +148,36 @@
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getProjectDetails: #cfcatch.message# Query: #cfcatch.detail#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="UPDaudprojects" access="public" returntype="void">
+<cffunction output="false" name="UPDaudprojects" access="public" returntype="void">
     <cfargument name="new_audSubCatID" type="numeric" required="true">
     <cfargument name="new_audprojectID" type="numeric" required="true">
 
-    <cftry>
-        <cfquery result="result" datasource="abod">
+    
+        <cfquery result="result" >
             UPDATE audprojects 
             SET audSubCatID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audSubCatID#" null="#NOT len(trim(arguments.new_audSubCatID))#">
             WHERE audprojectID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audprojectID#">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating audprojects: #cfcatch.message# - Query: UPDATE audprojects SET audSubCatID = ? WHERE audprojectID = ? - Parameters: new_audSubCatID=#arguments.new_audSubCatID#, new_audprojectID=#arguments.new_audprojectID#">
-            <cfthrow>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="SELaudprojects_23961" access="public" returntype="query">
+<cffunction output="false" name="SELaudprojects_23961" access="public" returntype="query">
     <cfargument name="mediaid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT DISTINCT p.audprojectid
             FROM audprojects p
             INNER JOIN audmedia_auditions_xref x ON p.audprojectID = x.audprojectid
@@ -185,22 +185,22 @@
             AND x.mediaid = <cfqueryparam value="#arguments.mediaid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getDistinctAudProjectIds: #cfcatch.message# Query: SELECT DISTINCT p.audprojectid FROM audprojects p INNER JOIN audmedia_auditions_xref x ON p.audprojectID = x.audprojectid WHERE p.isdeleted = 0 AND x.mediaid = ? Parameters: mediaid=#arguments.mediaid#">
-            <cfthrow message="An error occurred while fetching the data." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="UPDaudprojects_24011" access="public" returntype="void">
+<cffunction output="false" name="UPDaudprojects_24011" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="audprojectids" type="array" required="true">
 
     <cfset var local = {}>
 
-    <cftry>
-        <cfquery result="result" name="updateQuery" datasource="abod">
+    
+        <cfquery result="result" name="updateQuery" >
             UPDATE audprojects 
             SET projdate = NULL 
             WHERE isdeleted <> 1 
@@ -216,52 +216,52 @@
                 )
             )
         </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating audprojects: #cfcatch.message#">
-            <cflog file="application" text="Query: #cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="UPDaudprojects_24013" access="public" returntype="void">
+<cffunction output="false" name="UPDaudprojects_24013" access="public" returntype="void">
     <cfargument name="new_projdate" type="date" required="true">
     <cfargument name="audprojectID" type="numeric" required="true">
 
-    <cftry>
-        <cfquery result="result" datasource="abod">
+    
+        <cfquery result="result" >
             UPDATE audprojects 
             SET projdate = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_projdate#"/> 
             WHERE audprojectid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.audprojectID#"/>
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating audprojects: #cfcatch.message#" />
+        
+            
             <cfrethrow />
-        </cfcatch>
-    </cftry>
+        
+    
 </cffunction>
-<cffunction name="UPDaudprojects_24015" access="public" returntype="void">
+<cffunction output="false" name="UPDaudprojects_24015" access="public" returntype="void">
     <cfargument name="new_projdate" type="date" required="true">
     <cfargument name="audprojectID" type="numeric" required="true">
 
-    <cftry>
-        <cfquery result="result" datasource="abod">
+    
+        <cfquery result="result" >
             UPDATE audprojects 
             SET projdate = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_projdate#"/> 
             WHERE audprojectid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.audprojectID#"/>
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating project date: #cfcatch.message#" />
+        
+            
             <cfrethrow />
-        </cfcatch>
-    </cftry>
+        
+    
 </cffunction>
-<cffunction name="SELaudprojects_24016" access="public" returntype="query">
+<cffunction output="false" name="SELaudprojects_24016" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 p.audprojectID, 
                 CAST(p.audprojectdate AS DATE) AS new_projDate 
@@ -273,54 +273,54 @@
                 AND p.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getAudProjects: #cfcatch.message#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="UPDaudprojects_24017" access="public" returntype="void">
+<cffunction output="false" name="UPDaudprojects_24017" access="public" returntype="void">
     <cfargument name="new_projdate" type="date" required="true">
     <cfargument name="audprojectID" type="numeric" required="true">
 
-    <cftry>
-        <cfquery result="result" datasource="abod">
+    
+        <cfquery result="result" >
             UPDATE audprojects 
             SET projdate = <cfqueryparam value="#arguments.new_projdate#" cfsqltype="cf_sql_date"/>
             WHERE audprojectid = <cfqueryparam value="#arguments.audprojectID#" cfsqltype="cf_sql_integer"/>
         </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating project date: #cfcatch.message#">
+        
+            
             <cfrethrow>
-        </cfcatch>
-    </cftry>
+        
+    
 </cffunction>
-<cffunction name="UPDaudprojects_24019" access="public" returntype="void">
+<cffunction output="false" name="UPDaudprojects_24019" access="public" returntype="void">
     <cfargument name="projDate" type="string" required="true">
     
-    <cftry>
-        <cfquery result="result" name="updateQuery" datasource="abod">
+    
+        <cfquery result="result" name="updateQuery" >
             UPDATE audprojects p
             INNER JOIN auditionsimport i ON i.audprojectid = p.audprojectid
             SET p.projdate = <cfqueryparam value="#arguments.projDate#" cfsqltype="CF_SQL_DATE">
             WHERE STR_TO_DATE(i.projdate, '%Y-%m-%d') IS NOT NULL
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in updateProjectDates: #cfcatch.message#">
-            <cfthrow>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="SELaudprojects_24062" access="public" returntype="query">
+<cffunction output="false" name="SELaudprojects_24062" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT DISTINCT e.eventid, e.eventstart
             FROM audprojects p 
             INNER JOIN audroles r ON r.audprojectID = p.audprojectID 
@@ -332,40 +332,40 @@
             AND p.isdeleted = 0
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getDistinctEvents: #cfcatch.message#" />
+        
+            
             <cfset result = queryNew("eventid,eventstart","integer,date")>
-        </cfcatch>
-    </cftry>
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELaudprojects_24085" access="public" returntype="query">
+<cffunction output="false" name="SELaudprojects_24085" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT projname, projdescription, contactid
             FROM audprojects
             WHERE audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getProjectDetails: #cfcatch.message# Query: SELECT projname, projdescription, contactid FROM audprojects WHERE audprojectid = #arguments.audprojectid#">
-            <cfthrow message="Database query failed." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="DETaudprojects_24089" access="public" returntype="query">
+<cffunction output="false" name="DETaudprojects_24089" access="public" returntype="query">
     <cfargument name="audprojectID" type="numeric" required="true">
     <cfset var result = "">
 
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 proj.audprojectID, 
                 r.audroleid, 
@@ -392,21 +392,21 @@
             LEFT OUTER JOIN audunions un ON proj.unionID = un.unionID
             WHERE proj.audprojectID = <cfqueryparam value="#arguments.audprojectID#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getProjectDetails: #cfcatch.message#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="SELaudprojects_24097" access="public" returntype="query">
+<cffunction output="false" name="SELaudprojects_24097" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 ad.eventid, 
                 a4.audroleid, 
@@ -462,21 +462,21 @@
             WHERE ad.eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getEventDetails: #cfcatch.message#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="DETaudprojects_24106" access="public" returntype="query">
+<cffunction output="false" name="DETaudprojects_24106" access="public" returntype="query">
     <cfargument name="new_eventid" type="numeric" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 pr.audprojectid AS recid, 
                 ad.eventid, 
@@ -526,21 +526,21 @@
             WHERE ad.eventid = <cfqueryparam value="#arguments.new_eventid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getEventDetails: #cfcatch.message#" />
-            <cfset result = queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="DETaudprojects_24107" access="public" returntype="query">
+<cffunction output="false" name="DETaudprojects_24107" access="public" returntype="query">
     <cfargument name="audprojectID" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 proj.audprojectID, 
                 r.audroleid, 
@@ -570,37 +570,37 @@
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getProjectDetails: #cfcatch.message# Query: #cfcatch.detail#">
-            <cfthrow message="An error occurred while retrieving project details." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="UPDaudprojects_24125" access="public" returntype="void">
+<cffunction output="false" name="UPDaudprojects_24125" access="public" returntype="void">
     <cfargument name="audprojectid" type="numeric" required="true">
     
-    <cftry>
-        <cfquery result="result" datasource="abod">
+    
+        <cfquery result="result" >
             UPDATE audprojects 
             SET isdeleted = 1 
             WHERE audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating audprojects: #cfcatch.message# Query: UPDATE audprojects SET isdeleted = 1 WHERE audprojectid = #arguments.audprojectid#">
-            <cfthrow>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="SELaudprojects_24230" access="public" returntype="query">
+<cffunction output="false" name="SELaudprojects_24230" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_rangestart" type="date" required="true">
     <cfargument name="new_rangeend" type="date" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT count(p.audprojectID) as totals, 
                    'Number of Callbacks' as label, 
                    'Auditions' as itemDataset 
@@ -616,21 +616,21 @@
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getCallbacksData: #cfcatch.message# - Query: #result.SQL#" />
-            <cfthrow message="An error occurred while retrieving callback data." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="SELaudprojects_24236" access="public" returntype="query">
+<cffunction output="false" name="SELaudprojects_24236" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 count(p.audprojectID) as totals, 
                 'Number of Redirects' as label, 
@@ -650,21 +650,21 @@
         
         <cfreturn result>
 
-    <cfcatch type="any">
-        <cflog file="application" text="Error in getRedirectsData: #cfcatch.message# Query: SELECT count(p.audprojectID) as totals, 'Number of Redirects' as label, 'Auditions' as itemDataset FROM audprojects p INNER JOIN audroles r ON p.audprojectID = r.audprojectID WHERE r.isdeleted = 0 AND p.isDeleted = 0 AND r.isredirect = 1 AND p.userid = #arguments.userid# AND p.projdate >= #arguments.rangestart# AND p.projdate <= #arguments.rangeend#">
+    
+        = #arguments.rangestart# AND p.projdate <= #arguments.rangeend#">
         <cfreturn queryNew("totals,label,itemDataset", "integer,varchar,varchar")>
-    </cfcatch>
-    </cftry>
+    
+    
 </cffunction>
-<cffunction name="SELaudprojects_24237" access="public" returntype="query">
+<cffunction output="false" name="SELaudprojects_24237" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 count(p.audprojectID) as totals, 
                 'Number of Pins/Avails' as label, 
@@ -682,23 +682,23 @@
                 AND p.projdate <= <cfqueryparam value="#arguments.rangeend#" cfsqltype="CF_SQL_DATE">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getAuditionPinsCount: #cfcatch.message# Query: SELECT count(p.audprojectID) as totals, 'Number of Pins/Avails' as label, 'Auditions' as itemDataset FROM audprojects p INNER JOIN audroles r ON p.audprojectID = r.audprojectID WHERE r.isdeleted IS FALSE AND p.isDeleted IS FALSE AND r.ispin = 1 AND p.userid = #arguments.userid# AND p.projdate >= #arguments.rangestart# AND p.projdate <= #arguments.rangeend#">
+        
+            = #arguments.rangestart# AND p.projdate <= #arguments.rangeend#">
             <cfset result = queryNew("totals,label,itemDataset", "integer,varchar,varchar")>
-        </cfcatch>
-    </cftry>
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="SELaudprojects_24238" access="public" returntype="query">
+<cffunction output="false" name="SELaudprojects_24238" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 count(p.audprojectID) as totals, 
                 'Number of Auditions' as label, 
@@ -715,23 +715,23 @@
                 AND p.projdate <= <cfqueryparam value="#arguments.rangeend#" cfsqltype="CF_SQL_DATE">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getAuditionData: #cfcatch.message# Query: #cfcatch.Detail#">
+        
+            
             <cfreturn queryNew("totals,label,itemDataset", "integer,varchar,varchar")>
-        </cfcatch>
-    </cftry>
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="SELaudprojects_24239" access="public" returntype="query">
+<cffunction output="false" name="SELaudprojects_24239" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 count(p.audprojectID) as totals, 
                 'Number of Bookings' as label, 
@@ -749,23 +749,23 @@
                 AND p.projdate <= <cfqueryparam value="#arguments.rangeend#" cfsqltype="CF_SQL_DATE">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getAuditionBookings: #cfcatch.message# Query: SELECT count(p.audprojectID) as totals, 'Number of Bookings' as label, 'Auditions' as itemDataset FROM audprojects p INNER JOIN audroles r ON p.audprojectID = r.audprojectID WHERE r.isdeleted IS FALSE AND p.isDeleted IS FALSE AND r.isbooked = 1 AND p.userid = #arguments.userid# AND p.projdate >= #arguments.rangestart# AND p.projdate <= #arguments.rangeend#">
+        
+            = #arguments.rangestart# AND p.projdate <= #arguments.rangeend#">
             <cfreturn queryNew("totals,label,itemDataset", "integer,varchar,varchar")>
-        </cfcatch>
-    </cftry>
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="SELaudprojects_24240" access="public" returntype="query">
+<cffunction output="false" name="SELaudprojects_24240" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 count(p.audprojectid) as totals, 
                 c.audcatname as label, 
@@ -792,21 +792,21 @@
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getAuditionData: #cfcatch.message#">
+        
+            
             <cfreturn queryNew("totals,label,itemDataset", "integer,varchar,varchar")>
-        </cfcatch>
-    </cftry>
+        
+    
 </cffunction>
-<cffunction name="SELaudprojects_24241" access="public" returntype="query">
+<cffunction output="false" name="SELaudprojects_24241" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 count(p.audprojectid) as totals, 
                 e.essencename as label, 
@@ -833,21 +833,21 @@
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getAuditionData: #cfcatch.message# Query: #result.sql#">
-            <cfthrow message="An error occurred while retrieving audition data." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="SELaudprojects_24242" access="public" returntype="query">
+<cffunction output="false" name="SELaudprojects_24242" access="public" returntype="query">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 count(p.audprojectid) as totals, 
                 IFNULL(s.audsource, 'Unknown') as label, 
@@ -870,11 +870,11 @@
                 label
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getAuditionData: #cfcatch.message# Query: #result.sql#">
+        
+            
             <cfset result = queryNew("totals,label,itemDataset")>
-        </cfcatch>
-    </cftry>
+        
+    
 
     <cfreturn result>
 </cffunction>
@@ -924,15 +924,15 @@ function getAuditionData(struct rangeselected, numeric userid) {
 }
 </cfscript>
 
-<cffunction name="SELaudprojects_24244" access="public" returntype="query">
+<cffunction output="false" name="SELaudprojects_24244" access="public" returntype="query">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 count(p.audprojectid) as totals, 
                 IFNULL(ss.submitsitename, 'Unknown') as label, 
@@ -960,21 +960,21 @@ function getAuditionData(struct rangeselected, numeric userid) {
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getAuditionData: #cfcatch.message#">
-            <cfthrow message="An error occurred while retrieving audition data." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="SELaudprojects_24245" access="public" returntype="query">
+<cffunction output="false" name="SELaudprojects_24245" access="public" returntype="query">
     <cfargument name="rangeStart" type="date" required="true">
     <cfargument name="rangeEnd" type="date" required="true">
     <cfargument name="userId" type="numeric" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 count(p.audprojectid) as totals, 
                 IFNULL(c.recordname, 'Unknown') as label, 
@@ -998,23 +998,23 @@ function getAuditionData(struct rangeselected, numeric userid) {
             ORDER BY label
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getAuditionData: #cfcatch.message# Query: #cfcatch.detail#">
+        
+            
             <cfreturn queryNew("totals,label,itemDataset")>
-        </cfcatch>
-    </cftry>
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="SELaudprojects_24246" access="public" returntype="query">
+<cffunction output="false" name="SELaudprojects_24246" access="public" returntype="query">
     <cfargument name="rangeStart" type="date" required="true">
     <cfargument name="rangeEnd" type="date" required="true">
     <cfargument name="userId" type="numeric" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 COUNT(p.audprojectid) AS totals, 
                 IFNULL(o.opencallname, 'Unknown') AS label, 
@@ -1040,11 +1040,11 @@ function getAuditionData(struct rangeselected, numeric userid) {
                 label
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getAuditionData: #cfcatch.message# Query: #cfcatch.detail#">
+        
+            
             <cfreturn queryNew("totals,label,itemDataset", "integer,varchar,varchar")>
-        </cfcatch>
-    </cftry>
+        
+    
 
     <cfreturn result>
 </cffunction>
@@ -1096,14 +1096,14 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
 }
 </cfscript>
 
-<cffunction name="SELaudprojects_24248" access="public" returntype="query">
+<cffunction output="false" name="SELaudprojects_24248" access="public" returntype="query">
     <cfargument name="new_audsourceid" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="rangeselected" type="struct" required="true">
 
     <cfset var result = "">
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT count(p.audprojectid) as totals, 'Non-Union' as label, 'Auditions' as itemDataset
             FROM audprojects p
             INNER JOIN audroles r ON p.audprojectID = r.audprojectID
@@ -1141,21 +1141,21 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
             ORDER BY label
         </cfquery>
         <cfreturn result>
-    <cfcatch type="any">
-        <cflog file="application" text="Error in getAuditionCounts: #cfcatch.message#" />
+    
+        
         <cfrethrow />
-    </cfcatch>
-    </cftry>
+    
+    
 </cffunction>
-<cffunction name="SELaudprojects_24250" access="public" returntype="query">
+<cffunction output="false" name="SELaudprojects_24250" access="public" returntype="query">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 count(r.audroleid) AS totals, 
                 a.rangename AS label, 
@@ -1184,13 +1184,13 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getAuditionData: #cfcatch.message#; Query: #result.sql#; Parameters: rangestart=#arguments.rangestart#, rangeend=#arguments.rangeend#, userid=#arguments.userid#">
+        
+            
             <cfreturn queryNew("totals,label,itemDataset", "integer,varchar,varchar")>
-        </cfcatch>
-    </cftry>
+        
+    
 </cffunction>
-<cffunction name="SELaudprojects_24251" access="public" returntype="query">
+<cffunction output="false" name="SELaudprojects_24251" access="public" returntype="query">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
     <cfargument name="userid" type="numeric" required="true">
@@ -1198,8 +1198,8 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 count(r.audroleid) AS totals, 
                 g.audgenre AS label, 
@@ -1229,18 +1229,18 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
         
         <cfreturn result>
 
-    <cfcatch type="any">
-        <cflog file="application" text="Error in getAuditionData: #cfcatch.message#">
-        <cfthrow message="Error executing query in getAuditionData." detail="#cfcatch.detail#">
-    </cfcatch>
-    </cftry>
+    
+        
+        
+    
+    
 </cffunction>
-<cffunction name="SELaudprojects_24353" access="public" returntype="query">
+<cffunction output="false" name="SELaudprojects_24353" access="public" returntype="query">
     <cfargument name="projname" type="string" required="true">
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT *
             FROM audprojects
             WHERE projname = <cfqueryparam value="#arguments.projname#" cfsqltype="CF_SQL_VARCHAR">
@@ -1248,15 +1248,15 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
             AND isdeleted = <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getAudProjects: #cfcatch.message# Query: SELECT * FROM audprojects WHERE projname = ? AND userid = ? AND isdeleted = 0 Parameters: #arguments.projname#, #session.userid#, 0">
-            <cfthrow message="An error occurred while retrieving projects." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="INSaudprojects" access="public" returntype="void">
+<cffunction output="false" name="INSaudprojects" access="public" returntype="numeric">
     <cfargument name="new_projName" type="string" required="true">
     <cfargument name="new_projDescription" type="string" required="false" default="">
     <cfargument name="new_audSubCatID" type="numeric" required="false">
@@ -1265,8 +1265,8 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     <cfargument name="new_contactid" type="numeric" required="false">
     <cfargument name="new_projdate" type="date" required="true">
 
-    <cftry>
-        <cfquery result="result" datasource="abod">
+
+        <cfquery result="result" >
             INSERT INTO audprojects (
                 projName,
                 projDescription,
@@ -1287,19 +1287,15 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
                 <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.new_projdate#" />
             )
         </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error inserting into audprojects: #cfcatch.message#">
-            <cfrethrow>
-        </cfcatch>
-    </cftry>
+<cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="SELaudprojects_24500" access="public" returntype="query">
+<cffunction output="false" name="SELaudprojects_24500" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 a4.audroleid, 
                 a.projName, 
@@ -1326,21 +1322,21 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
             WHERE ad.eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getAudProjectDetails: #cfcatch.message#">
-            <cfthrow message="An error occurred while fetching project details." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="DETaudprojects_24543" access="public" returntype="query">
+<cffunction output="false" name="DETaudprojects_24543" access="public" returntype="query">
     <cfargument name="audprojectID" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 proj.audprojectID, 
                 r.audroleid, 
@@ -1372,19 +1368,19 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getProjectDetails: #cfcatch.message# Query: #cfcatch.detail#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="SELaudprojects_24550" access="public" returntype="query">
+<cffunction output="false" name="SELaudprojects_24550" access="public" returntype="query">
     <cfargument name="audprojectID" type="numeric" required="true">
 
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 p.audprojectid, 
                 p.contactid 
@@ -1398,21 +1394,21 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
                 AND p.audprojectID = <cfqueryparam value="#arguments.audprojectID#" cfsqltype="cf_sql_integer">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getAudProjectDetails: #cfcatch.message# Query: SELECT p.audprojectid, p.contactid FROM audprojects p INNER JOIN audroles r ON r.audprojectID = p.audprojectID WHERE p.isdeleted IS FALSE AND r.isdeleted IS FALSE AND p.audprojectID = #arguments.audprojectID#">
-            <cfthrow message="An error occurred while fetching project details." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="DETaudprojects_24553" access="public" returntype="query">
+<cffunction output="false" name="DETaudprojects_24553" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 a4.audroleid, 
                 a.projName, 
@@ -1439,21 +1435,21 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
             WHERE ad.eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getAudProjectDetails: #cfcatch.message#">
-            <cfthrow message="Error retrieving project details." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="DETaudprojects_24554" access="public" returntype="query">
+<cffunction output="false" name="DETaudprojects_24554" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT 
                 a.audprojectid, 
                 a.projname, 
@@ -1482,20 +1478,20 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getAudProjectDetails: #cfcatch.message#">
-            <cfthrow message="An error occurred while retrieving project details.">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="SELaudprojects_24559" access="public" returntype="query">
+<cffunction output="false" name="SELaudprojects_24559" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="sel_coname" type="string" required="true">
     
     <cfset var result = "">
     
-    <cftry>
-        <cfquery name="result" datasource="abod">
+    
+        <cfquery name="result" >
             SELECT DISTINCT c.contactid
             FROM audprojects p
             INNER JOIN contactdetails c ON c.contactid = p.contactid
@@ -1504,15 +1500,15 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
             AND i.valueCompany = <cfqueryparam value="#arguments.sel_coname#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getDistinctContactIds: #cfcatch.message#">
+        
+            
             <cfset result = queryNew("contactid", "integer")>
-        </cfcatch>
-    </cftry>
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="RESaudprojects" access="public" returntype="query">
+<cffunction output="false" name="RESaudprojects" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="byimport" type="string" required="false" default="">
     <cfargument name="sel_contactid" type="string" required="false" default="%">
@@ -1527,7 +1523,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     
     <cfset var result = "">
     
-        <cfquery name="result" datasource="#abod#">
+        <cfquery name="result" >
             SELECT 
                 p.audprojectid AS recid, 
                 p.audprojectid, 
@@ -1625,23 +1621,9 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
         <!--- Return the query result --->
         <cfreturn result>
         
-        <!--- Error handling --->
- 
-          <!--- Log the error --->
-          <cflog file="#yourLogFile#" text="#cfcatch.message#" />
-          <!--- Return an empty query --->
-          <cfdump var="#cfcatch#" />
-          <!--- Optional: Re-throw the error if needed --->
-          <!--- cfthrow --->
-
-          <!--- Return an empty query object on error --->
-          <cfinvoke component="_emptyQueryComponent_" method="_emptyQueryMethod_" returnvariable="_emptyQuery_"/>
-          <!--- Assuming _emptyQueryComponent_ and _emptyQueryMethod_ are defined to return an empty query structure --->
-          <!--- Return the empty query --->
-          <return _emptyQuery_ />
  
     </cffunction>
-<cffunction name="INSaudprojects_24585" access="public" returntype="void">
+<cffunction output="false" name="INSaudprojects_24585" access="public" returntype="numeric">
     <cfargument name="new_projName" type="string" required="true">
     <cfargument name="new_projDescription" type="string" required="true">
     <cfargument name="new_userid" type="numeric" required="true">
@@ -1655,7 +1637,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     <cfargument name="new_contactid" type="numeric" required="false">
 
  
-        <cfquery result="result" datasource="#application.datasource#">
+        <cfquery result="result">
             INSERT INTO audprojects (
                 projName, 
                 projDescription, 
@@ -1686,9 +1668,9 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
                 </cfif>
             );
         </cfquery>
-
+<cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="UPDaudprojects_24586" access="public" returntype="void">
+<cffunction output="false" name="UPDaudprojects_24586" access="public" returntype="void">
     <cfargument name="new_projName" type="string" required="true">
     <cfargument name="new_projDescription" type="string" required="true">
     <cfargument name="new_unionID" type="numeric" required="true">
@@ -1699,7 +1681,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     <cfargument name="new_audprojectID" type="numeric" required="true">
 
 
-        <cfquery result="result" datasource="#application.datasource#">
+        <cfquery result="result">
             UPDATE audprojects 
             SET 
                 projName = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_projName#" maxlength="500" null="#NOT len(trim(arguments.new_projName))#">,
@@ -1714,13 +1696,13 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
         </cfquery>
       
 </cffunction>
-<cffunction name="DETaudprojects_24716" access="public" returntype="query">
+<cffunction output="false" name="DETaudprojects_24716" access="public" returntype="query">
     <cfargument name="audprojectID" type="numeric" required="true">
 
     <cfset var result = "">
     
 
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 proj.audprojectID, 
                 proj.projName, 

@@ -1,5 +1,5 @@
-<cfcomponent displayname="AuditionTypeService" hint="Handles operations for AuditionType table" output="false"> 
-<cffunction name="SELaudtypes" access="public" returntype="query">
+<cfcomponent displayname="AuditionTypeService" hint="Handles operations for AuditionType table" > 
+<cffunction output="false" name="SELaudtypes" access="public" returntype="query">
     <cfargument name="audcatid" type="string" required="true">
     <cfset var result = "">
         <cfquery name="result">
@@ -18,7 +18,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELaudtypes_23793" access="public" returntype="query">
+<cffunction output="false" name="SELaudtypes_23793" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfset var result = "">
         <cfquery name="result">
@@ -36,7 +36,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELaudtypes_24082" access="public" returntype="query">
+<cffunction output="false" name="SELaudtypes_24082" access="public" returntype="query">
     <cfargument name="new_audcatid" type="numeric" required="true">
     <cfset var result = "">
         <cfquery name="result">
@@ -75,7 +75,7 @@ function getAudtypes(new_audcatid) {
 }
 </cfscript>
 
-<cffunction name="SELaudtypes_24231" access="public" returntype="query">
+<cffunction output="false" name="SELaudtypes_24231" access="public" returntype="query">
     <cfargument name="audstepIds" type="array" required="true">
     <cfset var result = "">
         <cfquery name="result">
@@ -101,7 +101,7 @@ function getAudtypes(new_audcatid) {
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELaudtypes_24234" access="public" returntype="query">
+<cffunction output="false" name="SELaudtypes_24234" access="public" returntype="query">
     <cfargument name="audstepid" type="numeric" required="true">
     <cfargument name="new_audtypeid" type="numeric" required="true">
     <cfargument name="rangestart" type="date" required="true">
@@ -127,7 +127,7 @@ function getAudtypes(new_audcatid) {
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELaudtypes_24526" access="public" returntype="query">
+<cffunction output="false" name="SELaudtypes_24526" access="public" returntype="query">
     <cfargument name="new_audtypeid" type="numeric" required="true">
     <cfset var result = "">
         <cfquery name="result">
@@ -138,12 +138,12 @@ function getAudtypes(new_audcatid) {
     <cfreturn result>
 </cffunction>
 
-<cffunction name="INSaudtypes" access="public" returntype="void">
+<cffunction output="false" name="INSaudtypes" access="public" returntype="numeric">
     <cfargument name="new_audtype" type="string" required="true">
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
-        <cfquery result="result" datasource="abod">
+        <cfquery result="result" >
             INSERT INTO audtypes (audtype, audCatid, isDeleted)
             VALUES (
                 <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audtype#" maxlength="100" null="#NOT len(trim(arguments.new_audtype))#">,
@@ -151,14 +151,14 @@ function getAudtypes(new_audcatid) {
                 <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
             )
         </cfquery>
-
+<cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="SELaudtypes_24608" access="public" returntype="query">
+<cffunction output="false" name="SELaudtypes_24608" access="public" returntype="query">
     <cfargument name="isDeleted" type="boolean" required="true">
     
     <cfset var result = "">
     
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result" >
             SELECT 
                 audtypeid AS id, 
                 audtype AS name, 
@@ -174,13 +174,13 @@ function getAudtypes(new_audcatid) {
     
     <cfreturn result>
 </cffunction>
-<cffunction name="UPDaudtypes" access="public" returntype="void">
+<cffunction output="false" name="UPDaudtypes" access="public" returntype="void">
     <cfargument name="new_audtype" type="string" required="true">
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_audtypeid" type="numeric" required="true">
 
-        <cfquery result="result" datasource="abod">
+        <cfquery result="result" >
             UPDATE audtypes 
             SET 
                 audtype = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audtype)#" maxlength="100" null="#NOT len(trim(arguments.new_audtype))#">,

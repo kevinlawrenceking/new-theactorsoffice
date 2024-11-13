@@ -1,8 +1,8 @@
 Here is the refined and standardized ColdFusion component code:
 
-<cfcomponent displayname="AuditionQuestionUserService" hint="Handles operations for AuditionQuestionUser table" output="false"> 
+<cfcomponent displayname="AuditionQuestionUserService" hint="Handles operations for AuditionQuestionUser table" > 
 
-<cffunction name="SELaudquestions_user" access="public" returntype="query">
+<cffunction output="false" name="SELaudquestions_user" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfset var result = "">
     <cfquery name="result">
@@ -13,7 +13,7 @@ Here is the refined and standardized ColdFusion component code:
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELaudquestions_user_24078" access="public" returntype="query">
+<cffunction output="false" name="SELaudquestions_user_24078" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfset var result = "">
     <cfquery name="result">
@@ -24,7 +24,7 @@ Here is the refined and standardized ColdFusion component code:
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELaudquestions_user_24501" access="public" returntype="query">
+<cffunction output="false" name="SELaudquestions_user_24501" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
     <cfset var result = "">
     <cfquery name="result">
@@ -55,7 +55,7 @@ Here is the refined and standardized ColdFusion component code:
     <cfreturn result>
 </cffunction>
 
-<cffunction name="INSaudquestions_user" access="public" returntype="void">
+<cffunction output="false" name="INSaudquestions_user" access="public" returntype="numeric">
     <cfargument name="new_qTypeID" type="numeric" required="true">
     <cfargument name="new_qtext" type="string" required="true">
     <cfargument name="new_qorder" type="numeric" required="true">
@@ -71,9 +71,10 @@ Here is the refined and standardized ColdFusion component code:
             <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="UPDaudquestions_user" access="public" returntype="void">
+<cffunction output="false" name="UPDaudquestions_user" access="public" returntype="void">
     <cfargument name="new_qTypeID" type="numeric" required="true">
     <cfargument name="new_qtext" type="string" required="true">
     <cfargument name="new_qorder" type="numeric" required="true">

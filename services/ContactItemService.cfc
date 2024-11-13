@@ -1,5 +1,5 @@
-<cfcomponent displayname="ContactItemService" hint="Handles operations for ContactItem table" output="false"> 
-<cffunction name="itemsByCatActive" access="public" returntype="struct">
+<cfcomponent displayname="ContactItemService" hint="Handles operations for ContactItem table" > 
+<cffunction output="false" name="itemsByCatActive" access="public" returntype="struct">
     <!--- Define required arguments --->
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="valueCategory" type="string" required="true">
@@ -49,7 +49,7 @@
 
 
    <!--- Function to retrieve active categories --->
-    <cffunction name="getActiveCategories" access="remote" returntype="query" output="false" hint="Get a list of active categories.">
+    <cffunction output="false" name="getActiveCategories" access="remote" returntype="query"  hint="Get a list of active categories.">
         <cfquery result="result" name="ActiveCategories">
             SELECT 'Relationship' AS valueCategory, 'fe-users' AS caticon,'text' AS catFieldSet, 0 AS catid, 0 AS finalorder
             UNION
@@ -68,7 +68,7 @@
     </cffunction>
     
     <!--- Function to retrieve inactive categories --->
-    <cffunction name="getInactiveCategories" access="remote" returntype="query" output="false" hint="Get a list of inactive categories.">
+    <cffunction output="false" name="getInactiveCategories" access="remote" returntype="query"  hint="Get a list of inactive categories.">
         <cfquery result="result" name="InactiveCategories">
             SELECT 'Relationship' AS valueCategory, 'fe-users' AS caticon,'text' AS catFieldSet, 0 AS catid, 0 AS finalorder
             UNION
@@ -89,7 +89,7 @@
 
 
 
-<cffunction name="SELfindscope_24712" access="public" returntype="string">
+<cffunction output="false" name="SELfindscope_24712" access="public" returntype="string">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     
@@ -116,11 +116,11 @@
     <cfreturn findscope.new_systemscope[1]>
 </cffunction>
 
-<cffunction name="SELcontactitems" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems" access="public" returntype="query">
     <cfargument name="contactId" type="numeric" required="true">
     <cfset var result = "">
     
-    <cftry>
+    
         <cfquery name="result" >
             SELECT 
                 contactid, 
@@ -135,20 +135,20 @@
                 AND valuetext <> ''
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getContactItems: #cfcatch.message#">
+        
+            
             <cfset result = queryNew("contactid,itemid,tag,valuetext")>
-        </cfcatch>
-    </cftry>
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="SELcontactitems_23758" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_23758" access="public" returntype="query">
     <cfargument name="contactID" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
+    
         <cfquery name="result" >
             SELECT contactitems.valueText AS phone
             FROM contactitems
@@ -159,20 +159,20 @@
             LIMIT 1
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getActivePhone: #cfcatch.message# Query: SELECT contactitems.valueText AS phone FROM contactitems WHERE contactitems.valueCategory = 'Phone' AND contactitems.contactID = #arguments.contactID# AND contactitems.itemStatus = 'Active' ORDER BY contactitems.primary_YN DESC LIMIT 1">
+        
+            
             <cfreturn queryNew("phone", "varchar")>
-        </cfcatch>
-    </cftry>
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELcontactitems_23759" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_23759" access="public" returntype="query">
     <cfargument name="contactID" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
+    
         <cfquery name="result" >
             SELECT contactitems.valueText AS email
             FROM contactitems
@@ -183,19 +183,18 @@
             LIMIT 1
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getActiveEmail: #cfcatch.message#">
+        
+            
             <cfset result = queryNew("email", "varchar")>
-        </cfcatch>
-    </cftry>
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="INScontactitems" access="public" returntype="void">
+<cffunction output="false" name="INScontactitems" access="public" returntype="numeric">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="cdtype" type="string" required="true">
 
-    <cftry>
         <cfquery result="result" >
             INSERT INTO CONTACTITEMS (CONTACTID, VALUETYPE, VALUECATEGORY, VALUETEXT, ITEMSTATUS)
             VALUES (
@@ -206,17 +205,12 @@
                 <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
             )
         </cfquery>
-        <cfcatch>
-            <cflog file="application" text="Error in insertContactItem: #cfcatch.message#">
-            <cfthrow message="Database error occurred while inserting contact item.">
-        </cfcatch>
-    </cftry>
+        <cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="INScontactitems_23771" access="public" returntype="void">
+<cffunction output="false" name="INScontactitems_23771" access="public" returntype="numeric">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="cdco" type="string" required="true">
 
-    <cftry>
         <cfquery result="result" >
             INSERT INTO CONTACTITEMS (CONTACTID, VALUETYPE, VALUECATEGORY, ValueCompany, ITEMSTATUS)
             VALUES (
@@ -227,17 +221,13 @@
                 <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
             )
         </cfquery>
-    <cfcatch type="any">
-        <cflog file="application" text="Error inserting contact item: #cfcatch.message#">
-        <cfthrow message="Database error occurred while inserting contact item." detail="#cfcatch.detail#">
-    </cfcatch>
-    </cftry>
+<cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="SELcontactitems_23840" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_23840" access="public" returntype="query">
     <cfargument name="currentid" type="numeric" required="true">
     <cfset var result = "">
     
-    <cftry>
+    
         <cfquery name="result" >
             SELECT i.itemid, c.catid, c.valuecategory
             FROM contactitems i
@@ -245,19 +235,19 @@
             WHERE contactid = <cfqueryparam value="#arguments.currentid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getContactItems: #cfcatch.message# Query: SELECT i.itemid, c.catid, c.valuecategory FROM contactitems i INNER JOIN itemcategory c ON c.valuecategory = i.valuecategory WHERE contactid = #arguments.currentid#">
+        
+            
             <cfset result = queryNew("itemid, catid, valuecategory", "integer, integer, varchar")>
-        </cfcatch>
-    </cftry>
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELcontactitems_23855" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_23855" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">
     <cfset var result = "">
     
-    <cftry>
+    
         <cfquery name="result" >
             SELECT contactid, itemid, `contactitems`.`valueText` AS tag
             FROM contactitems
@@ -266,20 +256,20 @@
             AND valuecategory = <cfqueryparam value="Tag" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getContactItems: #cfcatch.message# Query: SELECT contactid, itemid, `contactitems`.`valueText` AS tag FROM contactitems WHERE contactid = #arguments.contactid# AND valuetext <> 'My Team' AND valuecategory = 'Tag'">
-            <cfthrow>
-        </cfcatch>
-    </cftry>
+        
+             'My Team' AND valuecategory = 'Tag'">
+            
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="DETcontactitems" access="public" returntype="query">
+<cffunction output="false" name="DETcontactitems" access="public" returntype="query">
     <cfargument name="itemid" type="numeric" required="true">
     
     <cfset var queryResult = "">
     
-    <cftry>
+    
         <cfquery result="result" name="queryResult" >
             SELECT 
                 i.itemid, 
@@ -291,18 +281,18 @@
                 i.itemid = <cfqueryparam value="#arguments.itemid#" cfsqltype="cf_sql_integer">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getContactItems: #cfcatch.message# Query: SELECT i.itemid, i.contactid, i.valueText FROM contactitems i WHERE i.itemid = ? Parameters: #arguments.itemid#">
-            <cfthrow message="An error occurred while retrieving contact items." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn queryResult>
 </cffunction>
-<cffunction name="SELcontactitems_23889" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_23889" access="public" returntype="query">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfset var queryResult = "">
-    <cftry>
+    
         <cfquery result="result" name="queryResult" >
             SELECT valuetext AS new_website 
             FROM contactitems 
@@ -311,17 +301,17 @@
             AND itemstatus = <cfqueryparam cfsqltype="cf_sql_varchar" value="Active" />
             AND valuecategory = <cfqueryparam cfsqltype="cf_sql_varchar" value="URL" />
         </cfquery>
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getNewWebsite: #cfcatch.message# Query: SELECT valuetext AS new_website FROM contactitems WHERE valuetype = 'Company Website' AND contactid = #arguments.new_contactid# AND itemstatus = 'Active' AND valuecategory = 'URL'" />
-            <cfthrow message="An error occurred while fetching the new website." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     <cfreturn queryResult>
 </cffunction>
-<cffunction name="SELcontactitems_23890" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_23890" access="public" returntype="query">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfset var result = "">
-    <cftry>
+    
         <cfquery name="result" >
             SELECT valuetext AS new_businessEmail 
             FROM contactitems 
@@ -330,17 +320,17 @@
             AND itemstatus = <cfqueryparam cfsqltype="cf_sql_varchar" value="Active" /> 
             AND valuecategory = <cfqueryparam cfsqltype="cf_sql_varchar" value="Email" />
         </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getBusinessEmail: #cfcatch.message#" />
+        
+            
             <cfset result = queryNew("new_businessEmail", "varchar")>
-        </cfcatch>
-    </cftry>
+        
+    
     <cfreturn result>
 </cffunction>
-<cffunction name="SELcontactitems_23891" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_23891" access="public" returntype="query">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfset var result = "">
-    <cftry>
+    
         <cfquery name="result" >
             SELECT valuetext AS new_PersonalEmail
             FROM contactitems
@@ -349,18 +339,18 @@
             AND itemstatus = <cfqueryparam cfsqltype="cf_sql_varchar" value="Active" />
             AND valuecategory = <cfqueryparam cfsqltype="cf_sql_varchar" value="Email" />
         </cfquery>
-        <cfcatch>
-            <cflog file="errorLog" text="Error in getPersonalEmail: #cfcatch.message#" type="error">
-            <cfthrow message="An error occurred while retrieving the personal email." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     <cfreturn result>
 </cffunction>
-<cffunction name="SELcontactitems_23892" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_23892" access="public" returntype="query">
     <cfargument name="contactId" type="numeric" required="true">
     <cfset var result = "">
     
-    <cftry>
+    
         <cfquery name="result" >
             SELECT valuecompany AS new_Company
             FROM contactitems
@@ -368,20 +358,20 @@
             AND itemstatus = <cfqueryparam cfsqltype="cf_sql_varchar" value="Active" />
             AND valuecategory = <cfqueryparam cfsqltype="cf_sql_varchar" value="Company" />
         </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getCompanyByContactId: #cfcatch.message#">
+        
+            
             <cfset result = queryNew("new_Company", "varchar")>
-        </cfcatch>
-    </cftry>
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="SELcontactitems_23893" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_23893" access="public" returntype="query">
     <cfargument name="new_contactid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
+    
         <cfquery name="result" >
             SELECT valuetext AS new_WorkPhone
             FROM contactitems
@@ -391,20 +381,20 @@
             AND valuecategory = <cfqueryparam cfsqltype="cf_sql_varchar" value="Phone" />
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getWorkPhone: #cfcatch.message# Query: SELECT valuetext AS new_WorkPhone FROM contactitems WHERE valuetype = 'Work' AND contactid = #arguments.new_contactid# AND itemstatus = 'Active' AND valuecategory = 'Phone'">
-            <cfthrow message="An error occurred while retrieving work phone." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELcontactitems_23894" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_23894" access="public" returntype="query">
     <cfargument name="new_contactid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
+    
         <cfquery name="result" >
             SELECT valuetext AS new_mobilePhone 
             FROM contactitems 
@@ -414,19 +404,19 @@
             AND valuecategory = <cfqueryparam cfsqltype="cf_sql_varchar" value="Phone" />
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getNewMobilePhone: #cfcatch.message#">
-            <cfthrow message="Error retrieving mobile phone data.">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELcontactitems_23895" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_23895" access="public" returntype="query">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfset var queryResult = "">
     
-    <cftry>
+    
         <cfquery result="result" name="queryResult" >
             SELECT valuetext AS new_homePhone 
             FROM contactitems 
@@ -436,20 +426,20 @@
             AND valuecategory = <cfqueryparam cfsqltype="cf_sql_varchar" value="Phone" />
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getNewHomePhone: #cfcatch.message#">
-            <cfthrow message="Database query failed." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 
     <cfreturn queryResult>
 </cffunction>
-<cffunction name="SELcontactitems_23896" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_23896" access="public" returntype="query">
     <cfargument name="new_contactid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
+    
         <cfquery name="result" >
             SELECT 
                 valuestreetaddress AS new_address, 
@@ -466,19 +456,19 @@
                 AND valuecategory = <cfqueryparam cfsqltype="cf_sql_varchar" value="Address" />
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getBusinessAddress: #cfcatch.message#">
+        
+            
             <cfreturn queryNew("new_address,new_address2,new_city,new_state,new_zip","varchar,varchar,varchar,varchar,varchar")>
-        </cfcatch>
-    </cftry>
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELcontactitems_23897" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_23897" access="public" returntype="query">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfset var result = "">
     
-    <cftry>
+    
         <cfquery name="result" >
             SELECT 
                 valuestreetaddress AS new_address, 
@@ -495,20 +485,20 @@
                 AND valuecategory = <cfqueryparam cfsqltype="cf_sql_varchar" value="Address" />
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getContactAddress: #cfcatch.message#">
+        
+            
             <cfreturn queryNew("new_address,new_address2,new_city,new_state,new_zip,new_country")>
-        </cfcatch>
-    </cftry>
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELcontactitems_23898" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_23898" access="public" returntype="query">
     <cfargument name="contactID" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
+    
         <cfquery name="result" >
             SELECT valuetext AS tag
             FROM contactitems
@@ -517,41 +507,41 @@
             AND contactID = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.contactID#" />
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getContactTags: #cfcatch.message#">
+        
+            
             <cfset result = queryNew("tag", "varchar")>
-        </cfcatch>
-    </cftry>
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="DETcontactitems_23910" access="public" returntype="query">
+<cffunction output="false" name="DETcontactitems_23910" access="public" returntype="query">
     <cfargument name="itemid" type="numeric" required="true">
     
     <cfset var queryResult = "">
     
-    <cftry>
+    
         <cfquery result="result" name="queryResult" >
             SELECT i.itemid, i.valueText
             FROM contactitems i
             WHERE i.itemid = <cfqueryparam value="#arguments.itemid#" cfsqltype="cf_sql_integer">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getContactItems: #cfcatch.message#">
+        
+            
             <cfreturn queryNew("itemid,valueText", "integer,varchar")>
-        </cfcatch>
-    </cftry>
+        
+    
     
     <cfreturn queryResult>
 </cffunction>
-<cffunction name="REScontactitems" access="public" returntype="query">
+<cffunction output="false" name="REScontactitems" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="uploadid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
+    
         <cfquery name="result" >
             SELECT 
                 d.contactid, 
@@ -583,11 +573,11 @@
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getActiveContacts: #cfcatch.message# Query: #cfcatch.detail#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
 <cfscript>
 function getContactDetails(required numeric uploadid) {
@@ -631,10 +621,9 @@ function getContactDetails(required numeric uploadid) {
 }
 </cfscript>
 
-<cffunction name="INScontactitems_23947" access="public" returntype="void">
+<cffunction output="false" name="INScontactitems_23947" access="public" returntype="numeric">
     <cfargument name="new_contactid" type="numeric" required="true">
     
-    <cftry>
         <cfquery result="result" name="insertQuery" >
             INSERT INTO contactitems (
                 contactid, 
@@ -653,54 +642,37 @@ function getContactDetails(required numeric uploadid) {
             )
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error inserting contact item: #cfcatch.message#">
-            <cfthrow message="Error inserting contact item." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+<cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="SELcontactitems_23948" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_23948" access="public" returntype="query">
     <cfargument name="deletecontactid" type="numeric" required="true">
     
     <cfset var result = "">
-    
-    <cftry>
+
         <cfquery name="result" >
             SELECT itemid 
             FROM contactitems 
             WHERE contactid = <cfqueryparam value="#arguments.deletecontactid#" cfsqltype="CF_SQL_INTEGER"> 
             AND valuetext = <cfqueryparam value="My Team" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
-        
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getContactItemsByContactId: #cfcatch.message#" type="error">
-            <cfset result = queryNew("itemid")>
-        </cfcatch>
-    </cftry>
     
     <cfreturn result>
 </cffunction>
-<cffunction name="UPDcontactitems" access="public" returntype="void">
+<cffunction output="false" name="UPDcontactitems" access="public" returntype="void">
     <cfargument name="new_itemid" type="numeric" required="true">
 
-    <cftry>
         <cfquery result="result" >
             UPDATE contactitems_tbl 
             SET isdeleted = 1 
             WHERE itemid = <cfqueryparam value="#arguments.new_itemid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating contact item: #cfcatch.message# Query: UPDATE contactitems_tbl SET isdeleted = 1 WHERE itemid = #arguments.new_itemid#">
-            <cfthrow>
-        </cfcatch>
-    </cftry>
 </cffunction>
-<cffunction name="UPDcontactitems_23952" access="public" returntype="void">
+<cffunction output="false" name="UPDcontactitems_23952" access="public" returntype="void">
     <cfargument name="itemid" type="numeric" required="true">
     <cfargument name="contactid" type="numeric" required="true">
 
-    <cftry>
+    
         <cfquery result="result" name="updateQuery" >
             UPDATE contactitems 
             SET isDeleted = 1 
@@ -708,16 +680,16 @@ function getContactDetails(required numeric uploadid) {
             AND contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating contact items: #cfcatch.message# Query: UPDATE contactitems SET isDeleted = 1 WHERE itemid = #arguments.itemid# AND contactid = #arguments.contactid#">
-            <cfthrow>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="UPDcontactitems_23953" access="public" returntype="void">
+<cffunction output="false" name="UPDcontactitems_23953" access="public" returntype="void">
     <cfargument name="currentid" type="numeric" required="true">
     
-    <cftry>
+    
         <cfquery result="result" >
             UPDATE contactitems 
             SET isDeleted = 1 
@@ -725,19 +697,19 @@ function getContactDetails(required numeric uploadid) {
             AND itemstatus = <cfqueryparam value="Pending" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating contact items: #cfcatch.message# Query: UPDATE contactitems SET isDeleted = 1 WHERE contactid = #arguments.currentid# AND itemstatus = 'Pending'">
-            <cfthrow>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="SELcontactitems_23954" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_23954" access="public" returntype="query">
     <cfargument name="currentid" type="numeric" required="true">
     <cfargument name="valuecategory" type="string" required="true">
 
     <cfset var result = "">
 
-    <cftry>
+    
         <cfquery name="result" >
             SELECT itemid 
             FROM contactitems 
@@ -745,20 +717,19 @@ function getContactDetails(required numeric uploadid) {
             AND valueCategory = <cfqueryparam value="#arguments.valuecategory#" cfsqltype="CF_SQL_VARCHAR"> 
             AND itemStatus = 'Pending'
         </cfquery>
-        <cfcatch>
-            <cflog file="application" text="Error in getPendingContactItems: #cfcatch.message#">
-            <cfthrow message="Database query error" detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="INScontactitems_23955" access="public" returntype="void">
+<cffunction output="false" name="INScontactitems_23955" access="public" returntype="numeric">
     <cfargument name="contactID" type="numeric" required="true">
     <cfargument name="valueTypeDef" type="string" required="true">
     <cfargument name="valuecategory" type="string" required="true">
 
-    <cftry>
         <cfquery result="result" >
             INSERT INTO contactitems (contactID, valueType, valuecategory, itemStatus) 
             VALUES (
@@ -769,17 +740,12 @@ function getContactDetails(required numeric uploadid) {
             )
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in insertContactItem: #cfcatch.message#">
-            <cfthrow>
-        </cfcatch>
-    </cftry>
 </cffunction>
-<cffunction name="SELcontactitems_23962" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_23962" access="public" returntype="query">
     <cfargument name="contactId" type="numeric" required="true">
     <cfset var result = "">
     
-    <cftry>
+
         <cfquery name="result" >
             SELECT 
                 contactid, 
@@ -794,19 +760,13 @@ function getContactDetails(required numeric uploadid) {
                 AND valuecategory = <cfqueryparam value="Tag" cfsqltype="CF_SQL_VARCHAR">
                 AND valuetext <> <cfqueryparam value="My Rep Team" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
-        
-        <cfcatch type="any">
-            <cflog text="Error in getContactItems: #cfcatch.message# - Query: SELECT contactid, itemid, concat(' <span class=''badge badge-blue''>', contactitems.valueText, '</span>') as tag, contactitems.valuetext FROM contactitems WHERE contactid = ? AND valuetext <> 'My Team' AND valuecategory = 'Tag' AND valuetext <> 'My Rep Team'" type="error">
-            <cfset result = queryNew("contactid,itemid,tag,valuetext", "integer,integer,varchar,varchar")>
-        </cfcatch>
-    </cftry>
 
     <cfreturn result>
 </cffunction>
-<cffunction name="SELcontactitems_23963" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_23963" access="public" returntype="query">
     <cfargument name="contactID" type="numeric" required="true">
     <cfset var result = "">
-    <cftry>
+
         <cfquery name="result" >
             SELECT contactitems.valueText AS phone
             FROM contactitems
@@ -816,19 +776,15 @@ function getContactDetails(required numeric uploadid) {
             ORDER BY contactitems.primary_YN DESC
             LIMIT 1
         </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getActivePhone: #cfcatch.message# Query: #cfcatch.detail#">
-            <cfset result = queryNew("phone", "varchar")>
-        </cfcatch>
-    </cftry>
+    
     <cfreturn result>
 </cffunction>
-<cffunction name="SELcontactitems_23964" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_23964" access="public" returntype="query">
     <cfargument name="contactID" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
+    
         <cfquery name="result" >
             SELECT contactitems.valueText AS email
             FROM contactitems
@@ -839,20 +795,20 @@ function getContactDetails(required numeric uploadid) {
             LIMIT 1
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getActiveEmail: #cfcatch.message# Query: SELECT contactitems.valueText AS email FROM contactitems WHERE contactitems.valueCategory = 'Email' AND contactitems.contactID = #arguments.contactID# AND contactitems.itemStatus = 'Active' ORDER BY contactitems.primary_YN DESC LIMIT 1. Error: #cfcatch.detail#">
-            <cfthrow message="Error retrieving email." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELcontactitems_24040" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_24040" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
+    
         <cfquery name="result" >
             SELECT DISTINCT i.valueCompany AS new_valuecompany 
             FROM contactitems i 
@@ -865,15 +821,15 @@ function getContactDetails(required numeric uploadid) {
             ORDER BY i.valuecompany
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getDistinctValueCompany: #cfcatch.message# - Query: #cfcatch.Detail#">
+        
+            
             <cfset result = queryNew("new_valuecompany", "varchar")>
-        </cfcatch>
-    </cftry>
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="INScontactitems_24043" access="public" returntype="numeric">
+<cffunction output="false" name="INScontactitems_24043" access="public" returntype="numeric">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="valuetype" type="string" required="true">
     <cfargument name="valueCategory" type="string" required="true">
@@ -889,7 +845,7 @@ function getContactDetails(required numeric uploadid) {
         </cfquery>
   <cfreturn result.generatedKey>      
 </cffunction>
-<cffunction name="UPDcontactitems_24046" access="public" returntype="void">
+<cffunction output="false" name="UPDcontactitems_24046" access="public" returntype="void">
     <cfargument name="valuetext" type="string" required="true">
     <cfargument name="catid" type="string" required="true">
     <cfargument name="valuecompany" type="string" required="false" default="">
@@ -904,7 +860,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="itemdate" type="date" required="false">
     <cfargument name="itemid" type="numeric" required="true">
 
-    <cftry>
+    
         <cfquery result="result"  name="updateQuery">
             UPDATE contactitems
             SET valuetext = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.valuetext)#">
@@ -928,21 +884,14 @@ function getContactDetails(required numeric uploadid) {
             </cfif>
             WHERE itemid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.itemid#">
         </cfquery>
-        <!--- Log success or any other necessary actions --->
-    <cfcatch>
-        <!--- Log error details --->
-        <cflog file="applicationLogFileName"
-               text="[Error] Updating contactitems failed: #cfcatch.message# - Query: #updateQuery.sql# - Parameters: #serializeJSON(arguments)#">
-        <!--- Optionally rethrow or handle the error --->
-        <!--- cfthrow; --->
-    </cfcatch>
-    </cftry>
+
+    
+    
 </cffunction>
-<cffunction name="INScontactitems_24049" access="public" returntype="void">
+<cffunction output="false" name="INScontactitems_24049" access="public" returntype="numeric">
     <cfargument name="contactID" type="numeric" required="true">
     <cfargument name="tag" type="string" required="true">
 
-    <cftry>
         <cfquery result="result" >
             INSERT INTO CONTACTITEMS (CONTACTID, VALUETYPE, VALUECATEGORY, VALUETEXT, ITEMSTATUS) 
             VALUES (
@@ -953,17 +902,12 @@ function getContactDetails(required numeric uploadid) {
                 <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
             )
         </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error in insertContactItem: #cfcatch.message#">
-            <cfthrow message="An error occurred while inserting contact item." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+<cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="INScontactitems_24050" access="public" returntype="void">
+<cffunction output="false" name="INScontactitems_24050" access="public" returntype="numeric">
     <cfargument name="contactID" type="numeric" required="true">
     <cfargument name="workEmail" type="string" required="true">
 
-    <cftry>
         <cfquery result="result" >
             INSERT INTO CONTACTITEMS (CONTACTID, VALUETYPE, VALUECATEGORY, VALUETEXT, ITEMSTATUS)
             VALUES (
@@ -974,18 +918,12 @@ function getContactDetails(required numeric uploadid) {
                 <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
             )
         </cfquery>
-        
-        <cfcatch type="any">
-            <cflog file="application" text="Error in insertContactItem: #cfcatch.message# Query: INSERT INTO CONTACTITEMS (CONTACTID, VALUETYPE, VALUECATEGORY, VALUETEXT, ITEMSTATUS) VALUES (#arguments.contactID#, 'Business', 'Email', '#arguments.workEmail#', 'Active')" />
-            <cfthrow message="Error inserting contact item." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+    <cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="INScontactitems_24051" access="public" returntype="void">
+<cffunction output="false" name="INScontactitems_24051" access="public" returntype="numeric">
     <cfargument name="contactID" type="numeric" required="true">
     <cfargument name="workPhone" type="string" required="true">
 
-    <cftry>
         <cfquery result="result" >
             INSERT INTO CONTACTITEMS (CONTACTID, VALUETYPE, VALUECATEGORY, VALUETEXT, ITEMSTATUS)
             VALUES (
@@ -996,14 +934,9 @@ function getContactDetails(required numeric uploadid) {
                 <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
             )
         </cfquery>
-        
-        <cfcatch type="any">
-            <cflog file="application" text="Error in insertContactItem: #cfcatch.message#">
-            <cfthrow message="Error inserting contact item." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        <cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="INScontactitems_24052" access="public" returntype="void">
+<cffunction output="false" name="INScontactitems_24052" access="public" returntype="numeric">
     <cfargument name="CONTACTID" type="numeric" required="true">
     <cfargument name="Company" type="string" required="true">
 
@@ -1017,14 +950,13 @@ function getContactDetails(required numeric uploadid) {
                 <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
             )
         </cfquery>
-
+<cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="INScontactitems_24057" access="public" returntype="void">
+<cffunction output="false" name="INScontactitems_24057" access="public" returntype="numeric">
     <cfargument name="contactID" type="numeric" required="true">
     <cfargument name="company" type="string" required="true">
 
-    <cftry>
-        <cfquery result="result" >
+  <cfquery result="result" >
             INSERT INTO CONTACTITEMS (CONTACTID, VALUETYPE, VALUECATEGORY, valuecompany, ITEMSTATUS)
             VALUES (
                 <cfqueryparam value="#arguments.contactID#" cfsqltype="CF_SQL_INTEGER">,
@@ -1034,14 +966,9 @@ function getContactDetails(required numeric uploadid) {
                 <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
             )
         </cfquery>
-        
-        <cfcatch type="any">
-            <cflog file="application" text="Error inserting contact item: #cfcatch.message#">
-            <cfthrow message="An error occurred while inserting contact item." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+<cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="INScontactitems_24058" access="public" returntype="void">
+<cffunction output="false" name="INScontactitems_24058" access="public" returntype="numeric">
     <cfargument name="CONTACTID" type="numeric" required="true">
     <cfargument name="Company_new" type="string" required="true">
  
@@ -1055,14 +982,14 @@ function getContactDetails(required numeric uploadid) {
                 <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
             )
         </cfquery>
-      
+      <cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="SELcontactitems_24064" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_24064" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
+    
         <cfquery name="result" >
             SELECT DISTINCT i.valueCompany AS new_valuecompany
             FROM contactitems i
@@ -1075,20 +1002,20 @@ function getContactDetails(required numeric uploadid) {
             ORDER BY i.valuecompany
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getDistinctValueCompany: #cfcatch.message#">
+        
+            
             <cfset result = queryNew("new_valuecompany", "varchar")>
-        </cfcatch>
-    </cftry>
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="DETcontactitems_24168" access="public" returntype="query">
+<cffunction output="false" name="DETcontactitems_24168" access="public" returntype="query">
     <cfargument name="itemid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
+    
         <cfquery name="result" >
             SELECT 
                 i.itemid, i.contactid, i.valueType, i.valueCategory, i.valueText, 
@@ -1106,13 +1033,13 @@ function getContactDetails(required numeric uploadid) {
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getContactItems: #cfcatch.message#">
-            <cfthrow message="An error occurred while retrieving contact items." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="UPDcontactitems_24178" access="public" returntype="void">
+<cffunction output="false" name="UPDcontactitems_24178" access="public" returntype="void">
     <cfargument name="valuetext" type="string" required="false">
     <cfargument name="valuetype" type="string" required="false">
     <cfargument name="catid" type="string" required="true">
@@ -1184,23 +1111,23 @@ function getContactDetails(required numeric uploadid) {
 </cfquery>
 </cffunction>
 
-<cffunction name="UPDcontactitems_24179" access="public" returntype="void">
+<cffunction output="false" name="UPDcontactitems_24179" access="public" returntype="void">
     <cfargument name="valuetype" type="string" required="true">
     <cfargument name="itemid" type="numeric" required="true">
 
-    <cftry>
+    
         <cfquery result="result" >
             UPDATE contactitems 
             SET valuetype = <cfqueryparam value="#arguments.valuetype#" cfsqltype="CF_SQL_VARCHAR">
             WHERE itemid = <cfqueryparam value="#arguments.itemid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" type="error" text="Error updating contact item: #cfcatch.message# Query: UPDATE contactitems SET valuetype = ? WHERE itemid = ? Parameters: valuetype=#arguments.valuetype#, itemid=#arguments.itemid#">
-            <cfthrow>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="SELcontactitems_24207" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_24207" access="public" returntype="query">
     <cfargument name="ContactID" type="numeric" required="true">
     <cfargument name="new_tagname" type="string" required="true">
 
@@ -1220,12 +1147,12 @@ function getContactDetails(required numeric uploadid) {
 
     <cfreturn result>
 </cffunction>
-<cffunction name="SELcontactitems_24313" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_24313" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
+    
         <cfquery name="result" >
             SELECT * 
             FROM contactitems 
@@ -1235,21 +1162,21 @@ function getContactDetails(required numeric uploadid) {
             AND itemstatus = <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getActiveCastingDirectors: #cfcatch.message#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELcontactitems_24314" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_24314" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
+    
         <cfquery name="result" >
             SELECT *
             FROM contactitems
@@ -1264,34 +1191,33 @@ function getContactDetails(required numeric uploadid) {
             )
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getActiveContactTags: #cfcatch.message# Query: #cfcatch.detail#">
-            <cfreturn queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="DELcontactitems" access="public" returntype="void">
+<cffunction output="false" name="DELcontactitems" access="public" returntype="void">
     <cfargument name="contactid" type="numeric" required="true">
 
-    <cftry>
+    
         <cfquery result="result" >
             DELETE FROM contactitems
             WHERE valuecategory = <cfqueryparam value="Tag" cfsqltype="CF_SQL_VARCHAR">
             AND contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error in deleteContactItemsByTag: #cfcatch.message#">
-            <cfthrow message="An error occurred while deleting contact items." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="INScontactitems_24327" access="public" returntype="void">
+<cffunction output="false" name="INScontactitems_24327" access="public" returntype="numeric">
     <cfargument name="contactID" type="numeric" required="true">
     <cfargument name="newValueText" type="string" required="true">
 
-    <cftry>
         <cfquery result="result" name="insertQuery" >
             INSERT INTO CONTACTITEMS (CONTACTID, VALUETYPE, VALUECATEGORY, VALUETEXT, ITEMSTATUS)
             VALUES (
@@ -1302,20 +1228,16 @@ function getContactDetails(required numeric uploadid) {
                 <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
             )
         </cfquery>
-        
-        <cfcatch type="any">
-            <cflog file="application" text="Error in insertContactItem: #cfcatch.message# Query: #cfcatch.detail#">
-            <cfthrow message="An error occurred while inserting contact item." detail="#cfcatch.message#">
-        </cfcatch>
-    </cftry>
+        <cfreturn result.generatedKey>
+
 </cffunction>
-<cffunction name="SELcontactitems_24329" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_24329" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="tagname" type="string" required="true">
 
     <cfset var result = "">
     
-    <cftry>
+    
         <cfquery name="result" >
             SELECT *
             FROM contactitems
@@ -1328,21 +1250,21 @@ function getContactDetails(required numeric uploadid) {
             AND valueText = <cfqueryparam value="#left(arguments.tagname, 40)#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getContactItemsByTag: #cfcatch.message# - Query: #cfcatch.detail#">
-            <cfset result = queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="SELcontactitems_24347" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_24347" access="public" returntype="query">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="new_tagname" type="string" required="true">
 
     <cfset var result = "">
     
-    <cftry>
+    
         <cfquery name="result" >
             SELECT * 
             FROM CONTACTITEMS 
@@ -1352,19 +1274,18 @@ function getContactDetails(required numeric uploadid) {
             AND itemstatus = <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getActiveContactItemsByTag: #cfcatch.message#">
-            <cfset result = queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="INScontactitems_24348" access="public" returntype="void">
+<cffunction output="false" name="INScontactitems_24348" access="public" returntype="numeric">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="new_tagname" type="string" required="true">
 
-    <cftry>
         <cfquery result="result" >
             INSERT INTO CONTACTITEMS (CONTACTID, VALUETYPE, VALUECATEGORY, VALUETEXT, ITEMSTATUS)
             VALUES (
@@ -1375,17 +1296,13 @@ function getContactDetails(required numeric uploadid) {
                 <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
             )
         </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error inserting contact item: #cfcatch.message#">
-            <cfthrow message="Error inserting contact item." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+<cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="UPDCONTACTITEMS_24349" access="public" returntype="void">
+<cffunction output="false" name="UPDCONTACTITEMS_24349" access="public" returntype="void">
     <cfargument name="itemid" type="numeric" required="true">
     <cfargument name="new_currentStartDate" type="string" required="true">
 
-    <cftry>
+    
         <cfquery result="result" name="updateQuery" >
             UPDATE CONTACTITEMS_tbl 
             SET isdeleted = 1, 
@@ -1393,17 +1310,16 @@ function getContactDetails(required numeric uploadid) {
             WHERE itemid = <cfqueryparam value="#arguments.itemid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error updating CONTACTITEMS_tbl: #cfcatch.message# Query: #cfcatch.detail#">
-            <cfthrow message="An error occurred while updating the contact items." detail="#cfcatch.message#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="INScontactitems_24404" access="public" returntype="void">
+<cffunction output="false" name="INScontactitems_24404" access="public" returntype="numeric">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="new_tag1" type="string" required="true">
 
-    <cftry>
         <cfquery result="result" >
             INSERT INTO contactitems (contactid, valueType, valueCategory, valueText, itemstatus)
             VALUES (
@@ -1414,18 +1330,13 @@ function getContactDetails(required numeric uploadid) {
                 <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
             )
         </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error in insertContactItem: #cfcatch.message#; Query: INSERT INTO contactitems (contactid, valueType, valueCategory, valueText, itemstatus) VALUES (#arguments.contactid#, 'Tags', 'tag', '#arguments.new_tag1#', 'Active')">
-            <cfthrow>
-        </cfcatch>
-    </cftry>
+<cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="INScontactitems_24406" access="public" returntype="void">
+<cffunction output="false" name="INScontactitems_24406" access="public" returntype="numeric" >
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="new_tag2" type="string" required="true">
 
-    <cftry>
-        <cfquery result="result" >
+   <cfquery result="result" >
             INSERT INTO contactitems (contactid, valueType, valueCategory, valueText, itemstatus) 
             VALUES (
                 <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">,
@@ -1435,18 +1346,12 @@ function getContactDetails(required numeric uploadid) {
                 <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
             )
         </cfquery>
-        
-        <cfcatch type="any">
-            <cflog file="application" type="error" text="Error inserting contact item: #cfcatch.message#">
-            <cfrethrow>
-        </cfcatch>
-    </cftry>
+        <cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="INScontactitems_24408" access="public" returntype="void" output="false">
+<cffunction output="false" name="INScontactitems_24408" access="public" returntype="numeric" >
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="new_tag3" type="string" required="true">
 
-    <cftry>
         <cfquery result="result" >
             INSERT INTO contactitems (contactid, valueType, valueCategory, valueText, itemstatus) 
             VALUES (
@@ -1458,17 +1363,12 @@ function getContactDetails(required numeric uploadid) {
             )
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in insertContactItem: #cfcatch.message# - Query: INSERT INTO contactitems (contactid, valueType, valueCategory, valueText, itemstatus) VALUES (#arguments.contactid#, 'Tags', 'tag', #arguments.new_tag3#, 'Active')">
-            <cfthrow message="An error occurred while inserting the contact item." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+<cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="INScontactitems_24410" access="public" returntype="void" hint="Inserts a new contact item into the database.">
+<cffunction output="false" name="INScontactitems_24410" access="public" returntype="numeric" hint="Inserts a new contact item into the database.">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="business_email" type="string" required="true">
 
-    <cftry>
         <cfquery result="result" >
             INSERT INTO contactitems (contactid, valueType, valueCategory, valueText, itemstatus)
             VALUES (
@@ -1479,18 +1379,12 @@ function getContactDetails(required numeric uploadid) {
                 <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
             )
         </cfquery>
-        
-        <cfcatch type="any">
-            <cflog file="application" text="Error inserting contact item: #cfcatch.message#">
-            <cfthrow message="An error occurred while inserting the contact item." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        <cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="INScontactitems_24412" access="public" returntype="void">
+<cffunction output="false" name="INScontactitems_24412" access="public" returntype="numeric">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="personal_email" type="string" required="true">
 
-    <cftry>
         <cfquery result="result" >
             INSERT INTO contactitems (contactid, valueType, valueCategory, valueText, itemstatus)
             VALUES (
@@ -1501,17 +1395,13 @@ function getContactDetails(required numeric uploadid) {
                 <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
             )
         </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error in insertContactItem: #cfcatch.message#">
-            <cfrethrow>
-        </cfcatch>
-    </cftry>
+       <cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="INScontactitems_24414" access="public" returntype="void">
+<cffunction output="false" name="INScontactitems_24414" access="public" returntype="numeric">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="work_phone" type="string" required="true">
 
-    <cftry>
+
         <cfquery result="result" >
             INSERT INTO contactitems (contactid, valueType, valueCategory, valueText, itemstatus)
             VALUES (
@@ -1523,17 +1413,13 @@ function getContactDetails(required numeric uploadid) {
             )
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in insertContactItem: #cfcatch.message#; Query: INSERT INTO contactitems (contactid, valueType, valueCategory, valueText, itemstatus) VALUES (#arguments.contactid#, 'Work', 'Phone', '#arguments.work_phone#', 'Active')">
-            <cfthrow>
-        </cfcatch>
-    </cftry>
+   <cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="INScontactitems_24416" access="public" returntype="void">
+<cffunction output="false" name="INScontactitems_24416" access="public" returntype="numeric">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="mobile_phone" type="string" required="true">
 
-    <cftry>
+    
         <cfquery result="result" >
             INSERT INTO contactitems (contactid, valueType, valueCategory, valueText, itemstatus)
             VALUES (
@@ -1544,18 +1430,12 @@ function getContactDetails(required numeric uploadid) {
                 <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
             )
         </cfquery>
-        
-        <cfcatch type="any">
-            <cflog file="application" text="Error in insertContactItem: #cfcatch.message#">
-            <cfthrow message="An error occurred while inserting the contact item." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+      <cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="INScontactitems_24418" access="public" returntype="void">
+<cffunction output="false" name="INScontactitems_24418" access="public" returntype="numeric">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="home_phone" type="string" required="true">
 
-    <cftry>
         <cfquery result="result" >
             INSERT INTO contactitems (contactid, valueType, valueCategory, valueText, itemstatus)
             VALUES (
@@ -1566,17 +1446,12 @@ function getContactDetails(required numeric uploadid) {
                 <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
             )
         </cfquery>
-    <cfcatch type="any">
-        <cflog file="application" text="Error in insertContactItem: #cfcatch.message#">
-        <cfrethrow>
-    </cfcatch>
-    </cftry>
+<cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="INScontactitems_24420" access="public" returntype="void">
+<cffunction output="false" name="INScontactitems_24420" access="public" returntype="numeric">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="company" type="string" required="true">
 
-    <cftry>
         <cfquery result="result" >
             INSERT INTO contactitems (contactid, valueType, valueCategory, valuecompany, itemstatus)
             VALUES (
@@ -1587,19 +1462,12 @@ function getContactDetails(required numeric uploadid) {
                 <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
             )
         </cfquery>
-    <cfcatch type="any">
-        <cflog file="application" text="Error in insertContactItem: #cfcatch.message#">
-        <cflog file="application" text="Query Error: #cfcatch.detail#">
-        <cflog file="application" text="Parameters: contactid=#arguments.contactid#, company=#arguments.company#">
-        <cfthrow message="Database error occurred while inserting contact item.">
-    </cfcatch>
-    </cftry>
+<cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="INScontactitems_24422" access="public" returntype="void">
+<cffunction output="false" name="INScontactitems_24422" access="public" returntype="numeric">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="website" type="string" required="true">
 
-    <cftry>
         <cfquery result="result" >
             INSERT INTO contactitems (contactid, valueType, valueCategory, valuetext, itemstatus)
             VALUES (
@@ -1610,18 +1478,13 @@ function getContactDetails(required numeric uploadid) {
                 <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
             )
         </cfquery>
-    <cfcatch type="any">
-        <cflog file="application" text="Error inserting contact item: #cfcatch.message#">
-        <cfthrow message="Error inserting contact item." detail="#cfcatch.detail#">
-    </cfcatch>
-    </cftry>
+<cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="INScontactitems_24424" access="public" returntype="void">
+<cffunction output="false" name="INScontactitems_24424" access="public" returntype="numeric">
     <cfargument name="address" type="struct" required="true">
 
     <cfset var queryResult = "">
     
-    <cftry>
         <cfquery result="result" name="queryResult" >
             INSERT INTO contactitems (
                 contactid, 
@@ -1647,19 +1510,14 @@ function getContactDetails(required numeric uploadid) {
                 <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
             )
         </cfquery>
-        
-        <cfcatch type="any">
-            <cflog file="application" text="Error in insertContactItem: #cfcatch.message# Query: #cfcatch.detail#">
-            <cfthrow message="Database error occurred while inserting contact item." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        <cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="SELcontactitems_24620" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_24620" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
     
-    <cftry>
+    
         <cfquery name="result" >
             SELECT 
                 ci.contactid AS id, 
@@ -1681,18 +1539,18 @@ function getContactDetails(required numeric uploadid) {
         
         <cfreturn result>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getContactItemsWithTags: #cfcatch.message# Query: SELECT ci.contactid AS id, concat(c.recordname, ' (', ti.tagname, ')') AS name FROM contactitems ci INNER JOIN contactdetails c ON c.contactid = ci.contactid INNER JOIN tags_user ti ON ti.tagname = ci.valuetext WHERE ci.valuecategory = 'Tag' AND ti.userid = #arguments.userid# AND c.userid = #arguments.userid# AND ti.IsCasting = 1 ORDER BY c.recordname">
-            <cfthrow message="An error occurred while retrieving contact items with tags." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 </cffunction>
-<cffunction name="SELcontactitems_24657" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_24657" access="public" returntype="query">
     <cfargument name="currentid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
+    
         <cfquery name="result" >
             SELECT valueText AS email
             FROM contactitems
@@ -1702,20 +1560,20 @@ function getContactDetails(required numeric uploadid) {
             ORDER BY primary_yn DESC
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getActiveEmails: #cfcatch.message#; Query: SELECT valueText AS email FROM contactitems WHERE valueCategory = 'Email' AND contactID = #arguments.currentid# AND itemstatus = 'Active' ORDER BY primary_yn DESC;">
+        
+            
             <cfset result = queryNew("email")>
-        </cfcatch>
-    </cftry>
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELcontactitems_24663" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_24663" access="public" returntype="query">
     <cfargument name="currentid" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
+    
         <cfquery name="result" >
             SELECT i.valueCompany 
             FROM contactitems i 
@@ -1729,20 +1587,20 @@ function getContactDetails(required numeric uploadid) {
             LIMIT 1
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getActiveCompany: #cfcatch.message# - Query: SELECT i.valueCompany FROM contactitems i INNER JOIN itemcategory c ON c.valueCategory = i.valuecategory WHERE i.contactID = ? AND c.valuecategory = 'Company' AND i.itemstatus = 'Active' AND i.valuecompany <> '' AND i.valuecompany IS NOT null ORDER BY i.valuetext LIMIT 1">
+        
+             '' AND i.valuecompany IS NOT null ORDER BY i.valuetext LIMIT 1">
             <cfreturn queryNew("valueCompany")>
-        </cfcatch>
-    </cftry>
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELcontactitems_24671" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_24671" access="public" returntype="query">
     <cfargument name="contactID" type="numeric" required="true">
     
     <cfset var result = "">
     
-    <cftry>
+    
         <cfquery name="result" >
             SELECT 
                 i.itemID, 
@@ -1770,21 +1628,21 @@ function getContactDetails(required numeric uploadid) {
             AND i.itemStatus = 'Active'
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getActiveContactItems: #cfcatch.message#">
-            <cfset result = queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELcontactitems_24672" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_24672" access="public" returntype="query">
     <cfargument name="currentid" type="numeric" required="true">
     <cfargument name="catArea_UCB" type="string" required="true">
 
     <cfset var result = "">
     
-    <cftry>
+    
         <cfquery name="result" >
             SELECT 
                 i.itemID, i.valueType, i.valueCategory, i.valuetext, 
@@ -1803,22 +1661,22 @@ function getContactDetails(required numeric uploadid) {
                 AND c.catArea_UCB IN ('B', <cfqueryparam value="#arguments.catArea_UCB#" cfsqltype="CF_SQL_VARCHAR">)
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getContactItems: #cfcatch.message#">
-            <cfset result = queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELcontactitems_24673" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_24673" access="public" returntype="query">
     <cfargument name="currentid" type="numeric" required="true">
     <cfargument name="activeCategoriesValueCategory" type="string" required="true">
     <cfargument name="catArea_UCB" type="string" required="true">
 
     <cfset var result = "">
     
-    <cftry>
+    
         <cfquery name="result" >
             SELECT 
                 i.itemID, i.valueType, i.valueCategory, i.valuetext, i.valueCompany, 
@@ -1839,19 +1697,19 @@ function getContactDetails(required numeric uploadid) {
             ORDER BY 
                 i.valuetext
         </cfquery>
-        <cfcatch type="any">
-            <cflog file="errorLog" text="Error in getActiveContactItems: #cfcatch.message#">
+        
+            
             <cfset result = queryNew("itemID,valueType,valueCategory,valuetext,valueCompany,valuedepartment,valuetitle,valueStreetAddress,valueExtendedAddress,valueCity,valueRegion,itemDate,itemNotes,itemStatus,itemCreationDate,itemLastUpdated,valueCountry,catfieldset,caticon,valuepostalcode,primary_yn")>
-        </cfcatch>
-    </cftry>
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="SELcontactitems_24682" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_24682" access="public" returntype="query">
     <cfargument name="userContactID" type="numeric" required="true">
     <cfset var result = "">
     
-    <cftry>
+    
         <cfquery name="result" >
             SELECT 
                 i.valuetext, 
@@ -1870,20 +1728,20 @@ function getContactDetails(required numeric uploadid) {
                 i.valuetype
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getContactItems: #cfcatch.message#">
+        
+            
             <cfset result = queryNew("valuetext, valuetype, typeIcon, valuecategory")>
-        </cfcatch>
-    </cftry>
+        
+    
     
     <cfreturn result>
 </cffunction>
-<cffunction name="SELcontactitems_24714" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_24714" access="public" returntype="query">
     <cfargument name="currentid" type="numeric" required="true">
 
     <cfset var result = "">
     
-    <cftry>
+    
         <cfquery name="result" >
             SELECT valueText as phonenumber 
             FROM contactitems 
@@ -1893,21 +1751,21 @@ function getContactDetails(required numeric uploadid) {
             ORDER BY primary_yn DESC
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getActivePhoneNumbers: #cfcatch.message#">
+        
+            
             <cfset result = queryNew("phonenumber", "varchar")>
-        </cfcatch>
-    </cftry>
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="SELcontactitems_24715" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_24715" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
     <cfset var result = "">
     
-    <cftry>
+    
         <cfquery name="result" >
             SELECT 
                 i.valuetext, 
@@ -1926,20 +1784,20 @@ function getContactDetails(required numeric uploadid) {
                 AND t.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getSocialProfileItems: #cfcatch.message#">
+        
+            
             <cfreturn queryNew("valuetext, valuetype, typeIcon")>
-        </cfcatch>
-    </cftry>
+        
+    
 
     <cfreturn result>
 </cffunction>
-<cffunction name="DETcontactitems_24719" access="public" returntype="query">
+<cffunction output="false" name="DETcontactitems_24719" access="public" returntype="query">
     <cfargument name="itemid" type="numeric" required="true">
 
     <cfset var queryResult = "">
     
-    <cftry>
+    
         <cfquery result="result" name="queryResult" >
             SELECT 
                 i.itemid, i.contactid, i.valueType, i.valueCategory, i.valueText, 
@@ -1955,18 +1813,18 @@ function getContactDetails(required numeric uploadid) {
                 i.itemid = <cfqueryparam value="#arguments.itemid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getContactItemDetails: #cfcatch.message#">
-            <cfthrow message="An error occurred while fetching contact item details." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
 
     <cfreturn queryResult>
 </cffunction>
-<cffunction name="SELcontactitems_24761" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_24761" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">
     <cfset var result = "">
-    <cftry>
+    
         <cfquery name="result" >
             SELECT * 
             FROM contactitems 
@@ -1980,19 +1838,19 @@ function getContactDetails(required numeric uploadid) {
                 AND tagtype = <cfqueryparam value="C" cfsqltype="CF_SQL_CHAR">
             )
         </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getActiveContactTags: #cfcatch.message#">
-            <cfset result = queryNew("")>
-        </cfcatch>
-    </cftry>
+        
+            
+            
+        
+    
     <cfreturn result>
 </cffunction>
-<cffunction name="SELcontactitems_24764" access="public" returntype="query">
+<cffunction output="false" name="SELcontactitems_24764" access="public" returntype="query">
     <cfargument name="ContactID" type="numeric" required="true">
 
     <cfset var result = "">
     
-    <cftry>
+    
         <cfquery name="result" >
             SELECT 
                 CONCAT("<span class='badge badge-blue' style='font-size: 12px; font-weight: 500;'>", valueText, "</span>") AS valuetext, 
@@ -2007,11 +1865,11 @@ function getContactDetails(required numeric uploadid) {
                 valuetext
         </cfquery>
         
-        <cfcatch type="any">
-            <cflog file="application" text="Error in getActiveContactTags: #cfcatch.message#">
+        
+            
             <cfset result = queryNew("valuetext, tag")>
-        </cfcatch>
-    </cftry>
+        
+    
 
     <cfreturn result>
 </cffunction></cfcomponent>

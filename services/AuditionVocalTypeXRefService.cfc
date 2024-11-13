@@ -1,6 +1,6 @@
-<cfcomponent displayname="AuditionVocalTypeXRefService" hint="Handles operations for AuditionVocalTypeXRef table" output="false"> 
+<cfcomponent displayname="AuditionVocalTypeXRefService" hint="Handles operations for AuditionVocalTypeXRef table" > 
 
-<cffunction name="SELaudvocaltypes_audition_xref" access="public" returntype="query">
+<cffunction output="false" name="SELaudvocaltypes_audition_xref" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     <cfargument name="new_vocaltypeid" type="numeric" required="true">
     
@@ -16,7 +16,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="DELaudvocaltypes_audition_xref" access="public" returntype="void">
+<cffunction output="false" name="DELaudvocaltypes_audition_xref" access="public" returntype="void">
     <cfargument name="audroleid" type="numeric" required="true">
 
     <cfquery result="result">
@@ -25,7 +25,7 @@
     </cfquery>
 </cffunction>
 
-<cffunction name="INSaudvocaltypes_audition_xref" access="public" returntype="void">
+<cffunction output="false" name="INSaudvocaltypes_audition_xref" access="public" returntype="numeric">
     <cfargument name="new_vocaltypeid" type="numeric" required="true">
     <cfargument name="new_audroleid" type="numeric" required="true">
 
@@ -36,9 +36,10 @@
             <cfqueryparam value="#arguments.new_audroleid#" cfsqltype="CF_SQL_INTEGER">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="INSaudvocaltypes_audition_xref_24613" access="public" returntype="void">
+<cffunction output="false" name="INSaudvocaltypes_audition_xref_24613" access="public" returntype="numeric">
     <cfargument name="new_audRoleID" type="numeric" required="true">
     <cfargument name="new_vocaltypeid" type="numeric" required="true">
 
@@ -49,9 +50,10 @@
             <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_vocaltypeid#" null="#NOT len(trim(arguments.new_vocaltypeid))#">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="UPDaudvocaltypes_audition_xref" access="public" returntype="void" output="false">
+<cffunction output="false" name="UPDaudvocaltypes_audition_xref" access="public" returntype="void" >
     <cfargument name="new_audRoleID" type="numeric" required="true">
     <cfargument name="new_vocaltypeid" type="numeric" required="true">
     <cfargument name="new_id" type="numeric" required="true">

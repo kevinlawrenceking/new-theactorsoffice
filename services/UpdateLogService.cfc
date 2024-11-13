@@ -1,5 +1,5 @@
-<cfcomponent displayname="UpdateLogService" hint="Handles operations for UpdateLog table" output="false"> 
-<cffunction name="INSupdatelog" access="public" returntype="void">
+<cfcomponent displayname="UpdateLogService" hint="Handles operations for UpdateLog table" > 
+<cffunction output="false" name="INSupdatelog" access="public" returntype="numeric">
     <cfargument name="oldvalue" type="string" required="true">
     <cfargument name="newvalue" type="string" required="true">
     <cfargument name="recordname" type="string" required="true">
@@ -23,8 +23,9 @@
             <cfqueryparam value="#arguments.updatedetails#" cfsqltype="CF_SQL_VARCHAR">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
-<cffunction name="RESupdatelog" access="public" returntype="query">
+<cffunction output="false" name="RESupdatelog" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     
     <cfset var result = "">
@@ -60,4 +61,5 @@
     </cfquery>
     
     <cfreturn result>
-</cffunction></cfcomponent>
+</cffunction>
+</cfcomponent>

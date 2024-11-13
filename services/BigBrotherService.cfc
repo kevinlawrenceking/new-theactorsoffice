@@ -1,5 +1,5 @@
-<cfcomponent displayname="BigBrotherService" hint="Handles operations for BigBrother table" output="false"> 
-<cffunction name="INSbigbrother" access="public" returntype="void">
+<cfcomponent displayname="BigBrotherService" hint="Handles operations for BigBrother table" > 
+<cffunction output="false" name="INSbigbrother" access="public" returntype="numeric">
     <cfargument name="pgid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="remote_addr" type="string" required="true">
@@ -22,9 +22,10 @@
             <cfqueryparam value="Y" cfsqltype="cf_sql_varchar">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction name="RESbigbrother" access="public" returntype="query">
+<cffunction output="false" name="RESbigbrother" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     <cfset var result = "">
 

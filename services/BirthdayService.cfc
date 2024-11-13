@@ -1,5 +1,5 @@
-<cfcomponent displayname="BirthdaysService" output="false" hint="List of contactbirthdays">
-    <cffunction name="getBirthdaysForDashboard" access="public" returntype="query" output="false" hint="Retrieves upcoming birthdays for a specific user">
+<cfcomponent displayname="BirthdaysService"  hint="List of contactbirthdays">
+    <cffunction output="false" name="getBirthdaysForDashboard" access="public" returntype="query"  hint="Retrieves upcoming birthdays for a specific user">
         <!-- Arguments -->
         <cfargument name="userid" type="numeric" required="true" hint="The user ID to retrieve birthdays for">
         <cfargument name="daysLimit" type="numeric" required="false" default="15" hint="The number of days ahead to check for birthdays">

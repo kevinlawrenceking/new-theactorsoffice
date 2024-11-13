@@ -1,6 +1,6 @@
-<cfcomponent displayname="AuditionNetworkUserService" hint="Handles operations for AuditionNetworkUser table" output="false"> 
+<cfcomponent displayname="AuditionNetworkUserService" hint="Handles operations for AuditionNetworkUser table" > 
 
-    <cffunction name="INSaudnetworks_user" access="public" returntype="void">
+    <cffunction output="false" name="INSaudnetworks_user" access="public" returntype="numeric">
 
         <cfargument name="CustomNetwork" type="string" required="true">
         <cfargument name="audcatid" type="numeric" required="true">
@@ -14,5 +14,6 @@
                 <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
             )
         </cfquery>
+        <cfreturn result.generatedKey>
     </cffunction>
 </cfcomponent>
