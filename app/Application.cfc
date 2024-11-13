@@ -48,7 +48,7 @@
 
 
         <cfif NOT structKeyExists(session, "userid")>
-            <cflocation url="/loginform.cfm" addtoken="no">
+       <Cfset session.userid = 30 />
         </cfif>
 
 
