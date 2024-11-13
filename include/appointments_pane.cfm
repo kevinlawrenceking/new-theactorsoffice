@@ -114,71 +114,76 @@
                     </cfoutput>
 
                     <cfset cardclass="" />
-                    <!--- Set target ID for the first event --->
+              
+              <Cfouput>
                     <cfif #eventresults.eventresults.currentrow# is "1">
-                        <cfoutput>
+                    
                             <cfset target_id="#new_eventid#" />
-                        </cfoutput>
+                     
                     </cfif>
 
                     <!--- Determine if the current event matches the target ID for collapse behavior --->
                     <cfif #new_eventID# is "#target_id#">
-                        <cfset header_aria_exanded="true" />
+                        <cfset header_aria_expanded="true" />
                         <cfset collapse_show = "collapse show" />
                     </cfif>
 
                     <cfif #new_eventID# is not "#target_id#">
-                        <cfset header_aria_exanded="false" />
+                        <cfset header_aria_expanded="false" />
                         <cfset collapse_show = "collapse" />
                     </cfif>
 
+                    <Cfset heading_system = "heading_system_" & eventresults.eventresults.currentrow />
+                    <Cfset collapse_system = "collapse_system_" & eventresults.eventresults.currentrow />
+
                     <div class="card mb-1" style="width:100%;">
-                        <div class="card-header" id="heading_system_<cfoutput>#eventresults.eventresults.currentrow#</cfoutput>">
+                        <div class="card-header" id="">
                             <h5 class="m-0 align-middle" style="width:100%;">
                                 <a class="text-dark collapsed" data-bs-toggle="collapse" 
-                                   href="#collapse_system_<cfoutput>#eventresults.eventresults.currentrow#</cfoutput>" 
-                                   aria-expanded="<cfoutput>#header_aria_exanded#</cfoutput>">
-                                    <cfoutput>
-                                        <strong>#dateformat('#eventresults.eventresults.col3#','short')#</strong> - 
-                                        #timeformat('#eventresults.eventresults.eventStartTime#','short')# 
+                                   href="#heading_system_#" 
+                                   aria-expanded="#header_aria_expanded#">
+                           
+                               <strong>#dateformat(eventresults.eventresults.col3, 'short')#</strong> - 
+#timeformat(eventresults.eventresults.eventStartTime, 'short')# 
                                         <i class="fe-menu"></i>
-                                    </cfoutput>
+                            
                                     <span class="badge badge-sm badge-blue badge-pill float-end" style="font-size:.7em;">
-                                        <cfoutput>#eventresults.eventresults.col5#</cfoutput>
+                                     #eventresults.eventresults.col5#
                                     </span>
                                 </a>
                             </h5>
                         </div>
 
-                        <div id="collapse_system_<cfoutput>#eventresults.eventresults.currentrow#</cfoutput>" 
-                             class="<cfoutput>#collapse_show#</cfoutput>" 
-                             aria-labelledby="collapse_system_<cfoutput>#eventresults.eventresults.currentrow#</cfoutput>" 
-                             data-bs-parent="#accordion_systems">
+                        <div id="collapse_system_#eventresults.eventresults.currentrow#" 
+                             class="#collapse_show#" 
+                             aria-labelledby="#collapse_system#" 
+                             data-bs-parent="##accordion_systems">
                             <div class="card-body">
-                                <cfoutput>
+        
                                     <h5>#eventresults.eventresults.col1# 
                                         <a title="Edit" href="/app/appoint-update/?eventid=#eventresults.eventresults.eventid#&returnurl=contact&rcontactid=#currentid#">
                                             <i class="mdi mdi-square-edit-outline"></i>
                                         </a>
                                     </h5>
-                                </cfoutput>
+
                                 <cfif #eventresults.eventresults.col2# is not "">
                                     <h6>Location</h6>
-                                    <p><cfoutput>#eventresults.eventresults.col2#</cfoutput></p>
+                                    <p>#eventresults.eventresults.col2#</p>
                                 </cfif>
 
                                 <cfif #eventresults.eventresults.eventDescription# is not "">
                                     <h6>Description</h6>
-                                    <p><cfoutput>#eventresults.eventresults.eventDescription#</cfoutput></p>
+                                    <p>#eventresults.eventresults.eventDescription#</p>
                                 </cfif>
                             </div>
                         </div>
                     </div>
+                    </cfoutput>
                 </cfloop>
             </div>
         </div>
     </div>
 </div>
 
-<!--- Include script name for further processing --->
+
 <cfset script_name_include="/include/#ListLast(GetCurrentTemplatePath(), " \")#" />
