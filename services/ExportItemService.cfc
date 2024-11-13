@@ -25,7 +25,7 @@
     <cfargument name="new_contactBirthday" type="date" required="false">
     <cfargument name="new_Website" type="string" required="false">
 
-        <cfquery datasource="#application.datasource#">
+        <cfquery result="result" datasource="#application.datasource#">
             INSERT INTO exportitems (
                 exportid, contactid, FirstName, LastName, Tag1, Tag2, Tag3, BusinessEmail, PersonalEmail,
                 WorkPhone, MobilePhone, HomePhone, Company, Address, Address2, City, State, Zip, Country,

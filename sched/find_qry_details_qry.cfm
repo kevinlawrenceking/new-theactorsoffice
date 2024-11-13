@@ -1,4 +1,4 @@
-<Cfquery name="getFilesWithBlankDetails" datasource="abod">
+<cfquery result="result" name="getFilesWithBlankDetails" datasource="abod">
 SELECT id, `path`, `filename`,qry_no FROM tao_files
 WHERE (qry_details IS NULL OR qry_details = '') 
 AND path = '/include/qry' and qry_no > 0 and status <> 'deleted'
@@ -30,7 +30,7 @@ ORDER BY `tao_files`.`qry_no` DESC
             <cfset cleanQuery = REReplace(strippedQueryBlock, "[\s]+", " ", "ALL")>
             
             <!--- Insert the cleaned query into the database ---> 
-            <cfquery datasource="abod">
+            <cfquery result="result" datasource="abod">
                 UPDATE tao_files
                 SET qry_details = <cfqueryparam value="#cleanQuery#" cfsqltype="cf_sql_varchar">
                 WHERE id = <cfqueryparam value="#getFilesWithBlankDetails.id#" cfsqltype="cf_sql_integer">

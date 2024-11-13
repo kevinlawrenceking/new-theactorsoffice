@@ -2,7 +2,7 @@
     <cffunction name="INSexports" access="public" returntype="void">
         <cfargument name="userid" type="numeric" required="true">
 
-        <cfquery name="insertQuery">
+        <cfquery result="result" name="insertQuery">
             INSERT INTO exports (userid) 
             VALUES (<cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">)
         </cfquery>

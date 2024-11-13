@@ -5,7 +5,7 @@
         <cfset todayMonth = dateFormat(Now(), "MM")>
         <cfset todayDay = dateFormat(Now(), "dd")>
         
-        <cfquery name="quoteOfTheDay">
+        <cfquery result="result" name="quoteOfTheDay">
             SELECT 
                 quotename, 
                 quoteauthor
@@ -21,7 +21,7 @@
         
         <cfif quoteOfTheDay.recordcount eq 0>
             
-            <cfquery name="randomQuote">
+            <cfquery result="result" name="randomQuote">
                 SELECT 
                     id,
                     quotename, 

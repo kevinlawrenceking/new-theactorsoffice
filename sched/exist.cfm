@@ -1,5 +1,5 @@
 <!--- Select files that have exactly one query --->
-<cfquery name="getFiles" datasource="abod">
+<cfquery result="result" name="getFiles" datasource="abod">
     SELECT id, filename, path
     FROM tao_files
     WHERE qry_removed_yn = 1
@@ -68,7 +68,7 @@
                 <cfset tableName = trim(tableName)>
 
                 <!--- Update the database with the query details --->
-                <cfquery datasource="abod">
+                <cfquery result="result" datasource="abod">
                     UPDATE tao_files
                     SET qry_details = <cfqueryparam value="#qryDetails#" cfsqltype="cf_sql_varchar">,
                         qry_table = <cfqueryparam value="#tableName#" cfsqltype="cf_sql_varchar">,

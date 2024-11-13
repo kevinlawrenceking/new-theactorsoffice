@@ -217,7 +217,7 @@
     <cfargument name="sitetypeid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             INSERT INTO sitelinks_user_tbl (siteName, siteURL, siteicon, siteTypeid, userid)
             VALUES (
                 <cfqueryparam value="#arguments.sitename#" cfsqltype="CF_SQL_VARCHAR">,

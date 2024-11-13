@@ -78,7 +78,7 @@ function getMediaTypes(required array mediaTypeIds) {
     
     <cfset sqlQuery &= " ORDER BY mediatype">
 
-    <cfquery name="queryResult">
+    <cfquery result="result" name="queryResult">
         #sqlQuery#
         <cfloop array="#params#" index="param">
             <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
@@ -113,7 +113,7 @@ function getMediaTypes(required array mediaTypeIds) {
         <cfset arrayAppend(params, {value=1, cfsqltype='CF_SQL_BIT'})>
     </cfif>
 
-    <cfquery name="queryResult">
+    <cfquery result="result" name="queryResult">
         #sqlQuery#
         <cfloop array="#params#" index="param">
             <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">

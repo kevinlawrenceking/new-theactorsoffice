@@ -13,6 +13,6 @@
     new_isDeleted = new_isDeleted,
     new_audRoleID = new_audRoleID
 )>
-<cfquery datasource="#application.datasource#">
+<cfquery result="result" datasource="#application.datasource#">
     UPDATE database SET isfetch = 1 WHERE condition
 </cfquery>

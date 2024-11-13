@@ -83,7 +83,7 @@
     <cfset arrayAppend(paramList, {value=arguments.newSystemId, cfsqltype="CF_SQL_INTEGER"})>
 
     <!--- Execute the query --->
-    <cfquery name="updateQuery">
+    <cfquery result="result" name="updateQuery">
         #sql#
         <cfloop array="#paramList#" index="param">
             <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
@@ -194,7 +194,7 @@
     <cfargument name="suid" type="numeric" required="true">
 
     
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE fusystemusers 
             SET isdeleted = 1 
             WHERE suid = <cfqueryparam value="#arguments.suid#" cfsqltype="CF_SQL_INTEGER">
@@ -242,7 +242,7 @@
     <cfargument name="new_contactid" type="numeric" required="true">
     
     
-        <cfquery name="updateQuery" datasource="abod">
+        <cfquery result="result" name="updateQuery" datasource="abod">
             UPDATE fusystemusers_tbl 
             SET isdeleted = 1, sunotes = 'Deleted via batch update' 
             WHERE contactID = <cfqueryparam value="#arguments.new_contactid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -277,7 +277,7 @@
     <cfargument name="suStartDate" type="date" required="true">
 
     
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             INSERT INTO fuSystemUsers (systemID, contactID, userID, suStartDate)
             VALUES (
                 <cfqueryparam value="#arguments.maint_systemID#" cfsqltype="CF_SQL_INTEGER">,
@@ -296,7 +296,7 @@
     <cfargument name="suStartDate" type="date" required="true">
 
     
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             INSERT INTO fuSystemUsers (systemID, contactID, userID, suStartDate)
             VALUES (
                 <cfqueryparam value="#arguments.systemID#" cfsqltype="CF_SQL_INTEGER">,

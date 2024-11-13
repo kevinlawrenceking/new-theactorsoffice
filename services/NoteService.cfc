@@ -5,7 +5,7 @@
     <cfargument name="newnoteDetails" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             INSERT INTO noteslog (userid, contactid, noteDetails) 
             VALUES (
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#" />, 
@@ -23,7 +23,7 @@
     <cfargument name="noteid" type="numeric" required="true" hint="ID of the note to delete">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             DELETE FROM noteslog 
             WHERE noteid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.noteid#" />
         </cfquery>
@@ -38,7 +38,7 @@
     <cfargument name="noteId" type="numeric" required="true">
     
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             DELETE FROM noteslog 
             WHERE noteid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.noteId#" />
         </cfquery>
@@ -55,7 +55,7 @@
     <cfargument name="noteDetails" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             INSERT INTO noteslog (userid, contactid, eventid, noteDetails, ispublic)
             VALUES (
                 <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
@@ -95,7 +95,7 @@
     <cfargument name="recid" type="numeric" required="true">
     
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE noteslog_tbl 
             SET isdeleted = 1 
             WHERE noteid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
@@ -117,7 +117,7 @@
     <cfargument name="notedetailshtml" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             INSERT INTO noteslog (userid, contactid, noteDetails, isPublic, audprojectid, notedetailshtml)
             VALUES (
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#" />,
@@ -150,7 +150,7 @@
         <cfset arrayAppend(params, {value=arguments.noteDetailsHtml, cfsqltype="CF_SQL_LONGVARCHAR"})>
         <cfset arrayAppend(params, {value='%' & arguments.noteDetailsHtml & '%', cfsqltype="CF_SQL_LONGVARCHAR"})>
         
-        <cfquery name="updateQuery" datasource="abod">
+        <cfquery result="result" name="updateQuery" datasource="abod">
             #sql#
             <cfloop array="#params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
@@ -171,7 +171,7 @@
     <cfargument name="notedetailshtml" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             INSERT INTO noteslog (userid, contactid, noteDetails, isPublic, eventid, notedetailshtml)
             VALUES (
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#" />,
@@ -196,7 +196,7 @@
     <cfargument name="eventid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             INSERT INTO noteslog (userid, contactid, noteDetails, isPublic, eventid) 
             VALUES (
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#" />,
@@ -219,7 +219,7 @@
     <cfargument name="noteid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE noteslog 
             SET 
                 noteDetails = <cfqueryparam cfsqltype="cf_sql_longvarchar" value="#LEFT(trim(arguments.noteDetails),2000)#">,
@@ -240,7 +240,7 @@
     <cfargument name="noteid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE noteslog 
             SET 
                 noteDetails = <cfqueryparam cfsqltype="cf_sql_longvarchar" value="#LEFT(trim(arguments.noteDetails),2000)#">,
@@ -333,7 +333,7 @@
     <cfargument name="eventid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             INSERT INTO noteslog (userid, contactid, noteDetails, isPublic, eventid) 
             VALUES (
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#" />,
@@ -355,7 +355,7 @@
     <cfargument name="new_audprojectid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             INSERT INTO noteslog (userid, noteDetails, isPublic, audprojectid, contactid) 
             VALUES (
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#" />,
@@ -400,7 +400,7 @@
     <cfargument name="noteDetails" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             INSERT INTO noteslog (userid, contactid, noteDetails, ispublic) 
             VALUES (
                 <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,

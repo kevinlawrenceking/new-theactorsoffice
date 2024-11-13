@@ -66,7 +66,7 @@
         ORDER BY p.projdate DESC
     ">
     
-    <cfquery name="queryResult">
+    <cfquery result="result" name="queryResult">
         #sql#
     </cfquery>
     
@@ -116,7 +116,7 @@
 <cffunction name="INSaudgenres_audition_xref_24521" access="public" returntype="void">
     <cfargument name="new_audRoleID" type="numeric" required="true">
     <cfargument name="new_audgenreID" type="numeric" required="true">
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             INSERT INTO audgenres_audition_xref (audRoleID, audgenreID)
             VALUES (
                 <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#" null="#NOT len(trim(arguments.new_audRoleID))#">,
@@ -129,7 +129,7 @@
     <cfargument name="new_audgenreID" type="numeric" required="true">
     <cfargument name="conditionValue" type="any" required="true">
 
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE audgenres_audition_xref 
             SET 
                 audRoleID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#" null="#NOT len(trim(arguments.new_audRoleID))#">, 

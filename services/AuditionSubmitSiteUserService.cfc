@@ -138,7 +138,7 @@
     <cfargument name="new_submitsiteid" type="numeric" required="true">
 
 
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE audsubmitsites_user 
             SET catlist = <cfqueryparam value="#arguments.new_catlist#" cfsqltype="CF_SQL_VARCHAR">
             WHERE submitsiteid = <cfqueryparam value="#arguments.new_submitsiteid#" cfsqltype="CF_SQL_INTEGER">
@@ -150,7 +150,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_catid" type="string" required="true">
 
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             INSERT INTO audsubmitsites_user_tbl (submitsiteName, userid, catlist)
             VALUES (
                 <cfqueryparam value="#trim(arguments.new_submitsitename)#" cfsqltype="CF_SQL_VARCHAR">,

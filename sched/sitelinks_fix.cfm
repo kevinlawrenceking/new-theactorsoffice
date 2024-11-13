@@ -2,13 +2,13 @@
         xx
        
         
-         <cfquery  name="u"  >
+         <cfquery result="result"  name="u"  >
       select * from taousers
         </cfquery>
 
     <cfloop query="u">
 
-        <cfquery  name="xs"  >
+        <cfquery result="result"  name="xs"  >
    SELECT * 
  
  

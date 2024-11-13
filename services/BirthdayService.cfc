@@ -6,7 +6,7 @@
         <cfargument name="maxRows" type="numeric" required="false" default="10" hint="The maximum number of rows to return">
 
         <!-- Query to retrieve the upcoming birthdays -->
-        <cfquery name="birthdays" maxrows="#arguments.maxRows#">
+        <cfquery result="result" name="birthdays" maxrows="#arguments.maxRows#">
             SELECT  
                 datediff(d.contactbirthday, curdate()) as daysuntil,   
                 d.contactfullname AS col1,

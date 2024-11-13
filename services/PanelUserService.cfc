@@ -183,7 +183,7 @@
     <cfset var queryResult = "">
     
     <cftry>
-        <cfquery name="queryResult" datasource="abod">
+        <cfquery result="result" name="queryResult" datasource="abod">
             INSERT INTO pgpanels_user_tbl (
                 userid, 
                 pnTitle, 
@@ -239,7 +239,7 @@
     <cfargument name="select_userid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             INSERT INTO pgpanels_user (
                 pnTitle, 
                 pnFilename, 

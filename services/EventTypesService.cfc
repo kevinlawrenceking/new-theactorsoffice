@@ -20,7 +20,7 @@
     </cfif>
 
     <!--- Execute the query --->
-    <cfquery name="queryResult">
+    <cfquery result="result" name="queryResult">
         #sql#
         <cfloop array="#paramValues#" index="param">
             <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">

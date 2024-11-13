@@ -13,7 +13,7 @@
     
     
 
-    <cfquery  name="update">
+    <cfquery result="result"  name="update">
         update taousers
         set nletter_link = '#new_nletter_link#'
         ,nletter_yn = '#new_nletter_yn#'

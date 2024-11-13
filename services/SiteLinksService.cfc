@@ -3,7 +3,7 @@
     <cffunction name="getSiteLinksByPanelId" access="public" returntype="query" output="false" hint="Retrieve site links for a specific panel ID.">
         <cfargument name="panelId" type="numeric" required="true" hint="The panel ID (pnid) for which to retrieve site links.">
 
-        <cfquery name="mylinks_user">
+        <cfquery result="result" name="mylinks_user">
             SELECT 
                 s.id,
                 s.id as new_id,
@@ -25,7 +25,7 @@
     <cffunction name="getAllUrlsByPanelId" access="public" returntype="string" output="false" hint="Retrieve all URLs for a specific panel for the 'Open All' button.">
         <cfargument name="panelId" type="numeric" required="true" hint="The panel ID for which to retrieve all URLs.">
 
-        <cfquery name="allUrls">
+        <cfquery result="result" name="allUrls">
             SELECT GROUP_CONCAT(s.siteurl ORDER BY s.siteurl ASC SEPARATOR ', ') AS siteurl_list
             FROM sitetypes_user t
             INNER JOIN sitelinks_user s ON t.sitetypeid = s.siteTypeid
@@ -38,7 +38,7 @@
     <cffunction name="getLinkDetailsById" access="public" returntype="query" output="false" hint="Retrieve link details for a specific link ID.">
         <cfargument name="linkId" type="numeric" required="true" hint="The ID of the link to retrieve details for.">
 
-        <cfquery name="linkdetails">
+        <cfquery result="result" name="linkdetails">
             SELECT 
                 id, 
                 siteName, 
@@ -70,7 +70,7 @@
             <cfset corrected_new_siteurl = "https://" & new_siteurl />
         </cfif>
 
-        <cfquery name="duplicateCount">
+        <cfquery result="result" name="duplicateCount">
             SELECT COUNT(*) AS duplicateCount
             FROM sitelinks_user
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer">
@@ -78,7 +78,7 @@
             AND id <> <cfqueryparam value="#arguments.new_id#" cfsqltype="cf_sql_integer">
         </cfquery>
 
-        <cfquery name="updateSiteLink">
+        <cfquery result="result" name="updateSiteLink">
             UPDATE sitelinks_user
             SET 
                 siteurl = <cfqueryparam value="#corrected_new_siteurl#" cfsqltype="cf_sql_varchar">,
@@ -101,7 +101,7 @@
         <cfargument name="new_siteicon_url" type="string" required="false" hint="New site icon URL">
 
         <!--- Query to update sitelinks_user with conditional updates --->
-        <cfquery name="updateSiteLink">
+        <cfquery result="result" name="updateSiteLink">
             UPDATE sitelinks_user
             SET siteName = <cfqueryparam value="#arguments.new_sitename#" cfsqltype="cf_sql_varchar">
               
@@ -136,7 +136,7 @@
     <cfargument name="new_pnid" type="numeric" required="true" hint="The panel ID (pnid) for which to retrieve sitetypeid and sitetypename.">
     
     <!--- Query to retrieve sitetypeid and sitetypename --->
-    <cfquery name="siteTypeQuery">
+    <cfquery result="result" name="siteTypeQuery">
         SELECT su.sitetypeid, su.sitetypename, p.pntitle
         FROM sitetypes_user su
         INNER JOIN pgpanels_user p ON su.pnid = p.pnid

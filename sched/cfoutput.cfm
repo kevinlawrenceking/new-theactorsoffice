@@ -18,7 +18,7 @@
 </cfscript>
 
 <!--- Query the database for files with path='/include' --->
-<cfquery name="getIncludeFiles" datasource="abod">
+<cfquery result="result" name="getIncludeFiles" datasource="abod">
     SELECT id, `path`, `filename`, qry_no
     FROM tao_files
     WHERE path = '/include'
@@ -54,7 +54,7 @@
         
         <!--- Update qry_no in the database --->
         <cftry>
-            <cfquery datasource="abod">
+            <cfquery result="result" datasource="abod">
                 UPDATE tao_files
                 SET qry_no = <cfqueryparam value="#difference#" cfsqltype="cf_sql_integer">
                 WHERE id = <cfqueryparam value="#getIncludeFiles.id#" cfsqltype="cf_sql_integer">

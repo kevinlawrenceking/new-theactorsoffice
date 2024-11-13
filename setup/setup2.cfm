@@ -9,7 +9,7 @@
 
 
 
-<cfquery name="Del" >
+<cfquery result="result" name="Del" >
 UPDATE taousers_tbl set isdeleted = 1 where customerid =
 <cfqueryparam value="#id#" cfsqltype="cf_sql_integer" />
 </cfquery >
@@ -44,7 +44,7 @@ VALUES (
     <cfinclude template="/sched/user_setup_core.cfm" />
 
 
-<cfquery name="update" >
+<cfquery result="result" name="update" >
     UPDATE thrivecart
     set status =
     <cfqueryparam cfsqltype="cf_sql_varchar" value="Completed" />

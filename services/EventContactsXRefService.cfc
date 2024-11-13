@@ -70,7 +70,7 @@
     <cfargument name="audProjectID" type="numeric" required="true">
     <cfargument name="audStepID" type="numeric" required="true">
 
-    <cfquery name="qryInsertEventContactsXref">
+    <cfquery result="result" name="qryInsertEventContactsXref">
         INSERT INTO eventcontactsxref (eventid, contactid)
         SELECT DISTINCT e.eventid, c.contactid
         FROM audprojects p
@@ -98,7 +98,7 @@
         <cfreturn>
     </cfif>
 
-    <cfquery name="deleteQuery">
+    <cfquery result="result" name="deleteQuery">
         DELETE FROM eventcontactsxref 
         WHERE eventid NOT IN (
             SELECT eventid FROM events
@@ -159,7 +159,7 @@ function deleteEventContactsXref(required numeric audStepId) {
     <cfargument name="eventNumber" type="numeric" required="true">
     <cfargument name="contactID" type="numeric" required="true">
 
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             INSERT IGNORE INTO eventcontactsxref (eventid, contactid)
             VALUES (
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.eventNumber#" />,
@@ -197,7 +197,7 @@ function deleteEventContactsXref(required numeric audStepId) {
     <cfargument name="new_eventid" type="numeric" required="true">
     <cfargument name="new_contactid" type="numeric" required="true">
 
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             INSERT INTO eventcontactsxref (eventid, contactid)
             VALUES (
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_eventid#" />,
@@ -210,7 +210,7 @@ function deleteEventContactsXref(required numeric audStepId) {
     <cfargument name="deletecontactid" type="numeric" required="true">
     <cfargument name="audprojectid" type="numeric" required="true">
 
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE eventcontactsxref_tbl x
             INNER JOIN events e ON x.eventid = e.eventid
             INNER JOIN audroles r ON r.audRoleID = e.audroleid

@@ -25,7 +25,7 @@
 
     <cfset var queryResult = "">
 
-    <cfquery name="queryResult">
+    <cfquery result="result" name="queryResult">
         UPDATE audmedia_audroles_xref 
         SET 
             mediaid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_mediaid#" null="#NOT len(trim(arguments.new_mediaid))#">,

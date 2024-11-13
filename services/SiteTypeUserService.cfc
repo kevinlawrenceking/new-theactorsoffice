@@ -15,7 +15,7 @@
 <cffunction name="UPDsitetypes_user" access="public" returntype="void">
     <cfargument name="sitetypeid" type="numeric" required="true">
 
-    <cfquery name="queryResult">
+    <cfquery result="result" name="queryResult">
         UPDATE sitetypes_user_tbl 
         SET isdeleted = 1 
         WHERE sitetypeid = <cfqueryparam value="#arguments.sitetypeid#" cfsqltype="CF_SQL_INTEGER">
@@ -48,7 +48,7 @@
     <cfargument name="new_sitetypename" type="string" required="true">
     <cfargument name="new_sitetypeid" type="numeric" required="true">
  
-    <cfquery >
+    <cfquery result="result" >
         UPDATE sitetypes_user 
         SET sitetypename = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_sitetypename#" />
         WHERE sitetypeid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_sitetypeid#" />

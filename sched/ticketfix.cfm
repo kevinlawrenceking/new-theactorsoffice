@@ -1,6 +1,6 @@
 
 
-<cfquery datasource="abod" name="x">
+<cfquery result="result" datasource="abod" name="x">
 SELECT * FROM tickets WHERE verid = 7 AND ticketstatus = 'Implemented'
  
 </cfquery>
@@ -8,7 +8,7 @@ SELECT * FROM tickets WHERE verid = 7 AND ticketstatus = 'Implemented'
 
 <cfloop query="x">
     
-    <cfquery name="add" datasource="abo">
+    <cfquery result="result" name="add" datasource="abo">
         INSERT INTO tickets (pgid,ticketName,ticketdetails,tickettype,userid,ticketactive,ticketstring,verid,ticketresponse,ticketcreateddate,ticketstatus,tickettype,environ,ticketpriority,esthours)
         Values (
         <cfqueryparam value="#x.pgid#" cfsqltype="cf_sql_integer" />

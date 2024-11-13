@@ -23,7 +23,7 @@
     
 
 
-<cfquery  name="z" maxrows="10">
+<cfquery result="result"  name="z" maxrows="10">
     SELECT * FROM taousers where userstatus = 'active' AND issetup IS NOT true
     </cfquery>
 
@@ -33,7 +33,7 @@
     
 <cfinclude template="user_setup.cfm" />
     
- <cfquery  name="update">
+ <cfquery result="result"  name="update">
     update taousers set issetup = 1 where userid = #select_userid# 
     </cfquery>   
     

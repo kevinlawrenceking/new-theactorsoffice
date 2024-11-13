@@ -4,7 +4,7 @@
     <cfset var queryResult = "">
     
     <cftry>
-        <cfquery name="queryResult" datasource="abod">
+        <cfquery result="result" name="queryResult" datasource="abod">
             SELECT DISTINCT p.pgid, p.pgname 
             FROM taousers u 
             INNER JOIN tickets t ON u.userID = t.userid 
@@ -771,7 +771,7 @@
             <cfthrow type="InvalidArgument" message="Either pgid or pgDir must be provided.">
         </cfif>
 
-        <cfquery name="qPageDetails" >
+        <cfquery result="result" name="qPageDetails" >
             SELECT
                 a.appname, p.allowdelete_yn, p.allowupdate_yn, p.allowadd_yn, p.allowdetails_yn,
                 a.appAuthor, c.compname, p.pgname, a.appId, a.appDescription,
@@ -844,7 +844,7 @@
              <cfset var links = { top_links = "", bottom_links = "" }>
 
    
-    <cfquery name="qPageLinks">
+    <cfquery result="result" name="qPageLinks">
             SELECT
                 CASE 
                     WHEN l.linktype = 'css' THEN 
@@ -889,7 +889,7 @@
         <cfset var includeLinksArray = []>
 
         <!--- Query to fetch the script_include links --->
-        <cfquery name="includeLinks">
+        <cfquery result="result" name="includeLinks">
             SELECT l.linkurl
             FROM pgapplinks l
             INNER JOIN pgplugins p ON p.pluginName = l.pluginname
@@ -912,7 +912,7 @@
 
  <!--- Function to retrieve a select list of active pages --->
     <cffunction name="pages_sel" access="remote" returntype="query" output="false" hint="Get a select list of active pages.">
-        <cfquery name="pages">
+        <cfquery result="result" name="pages">
             SELECT 
                 p.pgid AS ID,
                 p.pgname AS name

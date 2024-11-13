@@ -38,7 +38,7 @@
     <cfaborT></cfoutput>
 
 <!--- Query to fetch the necessary details from tao_files and functions ---> 
-<cfquery name="getInsertFunctions" datasource="abod">
+<cfquery result="result" name="getInsertFunctions" datasource="abod">
     SELECT t.id, f.id as function_id, f.function_name, f.component_id, f.qry_type, 
            f.returntype, f.hint, c.component_name, c.related_table, 
            t.qry_table, t.qry_details, t.qry_name
@@ -52,7 +52,7 @@
 <cfloop query="getInsertFunctions">
 
     <!--- Get the table metadata to generate the insert query ---> 
-    <cfquery name="getTableMetadata" datasource="abod">
+    <cfquery result="result" name="getTableMetadata" datasource="abod">
         SELECT COLUMN_NAME, DATA_TYPE, COLUMN_DEFAULT
         FROM information_schema.columns
         WHERE table_schema = 'new_development'
@@ -100,14 +100,14 @@
     </cfsavecontent>
 
     <!--- Update the function_code field in the functions table ---> 
-    <cfquery datasource="abod">
+    <cfquery result="result" datasource="abod">
         UPDATE functions
         SET function_code = <cfqueryparam value="#generatedInsertFunction#" cfsqltype="cf_sql_longvarchar">
         WHERE id = <cfqueryparam value="#getInsertFunctions.function_id#" cfsqltype="cf_sql_integer">
     </cfquery>
 
     <!--- Mark the isfetch flag as 1 in tao_files ---> 
-    <cfquery datasource="abod">
+    <cfquery result="result" datasource="abod">
         UPDATE tao_files
         SET isfetch = 1
         WHERE id = <cfqueryparam value="#getInsertFunctions.id#" cfsqltype="cf_sql_integer">

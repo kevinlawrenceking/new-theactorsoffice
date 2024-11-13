@@ -3,7 +3,7 @@
 
 <cfloop query="fileList">
     <!--- Check if the file already exists in tao_files --->
-    <cfquery name="checkFileExists" datasource="abod">
+    <cfquery result="result" name="checkFileExists" datasource="abod">
         SELECT id
         FROM tao_files
         WHERE filename = <cfqueryparam value="#fileList.name#" cfsqltype="cf_sql_varchar">
@@ -12,7 +12,7 @@
 
     <!--- If file doesn't exist in the database, insert it --->
     <cfif checkFileExists.recordcount EQ 0>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             INSERT INTO tao_files (
                 filename,
                 status,

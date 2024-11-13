@@ -3,7 +3,7 @@
     <cffunction name="getImportsByUserID" access="public" returntype="query" output="false" hint="Retrieve import data for a specific user.">
         <cfargument name="userid" type="numeric" required="true" hint="The ID of the user to fetch import data for.">
         
-        <cfquery name="imports">
+        <cfquery result="result" name="imports">
             SELECT 
                 u.uploadid,
                 u.`timestamp`,
@@ -79,7 +79,7 @@
 
         <cfset sql &= ") VALUES (" & values & ")">
 
-        <cfquery name="insertQuery">
+        <cfquery result="result" name="insertQuery">
             #sql#
         </cfquery>
     </cffunction>

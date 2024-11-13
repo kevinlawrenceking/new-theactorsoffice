@@ -3,7 +3,7 @@
 <cfparam name="recover" default="" />
 <cfparam name="uuid" default="" />
 
-<cfquery name="U" >
+<cfquery result="result" name="U" >
 SELECT th.id
 ,th.CustomerFirst
 ,th.CustomerLast

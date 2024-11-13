@@ -5,7 +5,7 @@
         <cfargument name="extraValue" type="string" required="true">
         <cfset var queryResult = "">
 
-        <cfquery name="queryResult">
+        <cfquery result="result" name="queryResult">
             SELECT * 
             FROM allfields 
             WHERE [key] <> <cfqueryparam value="#arguments.keyValue#" cfsqltype="CF_SQL_VARCHAR">

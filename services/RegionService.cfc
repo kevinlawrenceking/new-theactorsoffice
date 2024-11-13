@@ -2,7 +2,7 @@
 
     <cffunction name="GetRegions" access="public" returntype="query" output="false" hint="Retrieve all regions ordered by region name.">
         <cfset var regions = "">
-        <cfquery name="regions">
+        <cfquery result="result" name="regions">
             SELECT 
                 countryid, 
                 region_id, 
@@ -69,7 +69,7 @@
             <cfset sql &= " WHERE " & arrayToList(conditions, " AND ")>
         </cfif>
         <cfset sql &= " ORDER BY regionname">
-        <cfquery name="queryResult">
+        <cfquery result="result" name="queryResult">
             #sql#
             <cfloop array="#params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">

@@ -1,4 +1,4 @@
-         <cfquery name="sitelinks" datasource="abod">
+         <cfquery result="result" name="sitelinks" datasource="abod">
     SELECT id, siteicon 
     FROM sitelinks_user 
     WHERE isdeleted = 0
@@ -16,7 +16,7 @@
         <!--- Check if the file exists --->
         <cfif NOT fileExists(siteiconPath)>
             <!--- If the file doesn't exist, update the record to "unknown.png" --->
-             <cfquery datasource="abod">
+             <cfquery result="result" datasource="abod">
                 UPDATE sitelinks_user 
                 SET siteicon = 'unknown.png' 
                 WHERE id = <cfqueryparam value="#siteLinks.id#" cfsqltype="cf_sql_integer">

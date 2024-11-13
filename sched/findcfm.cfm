@@ -1,4 +1,4 @@
-<cfquery name="getColumns" datasource="abod">
+<cfquery result="result" name="getColumns" datasource="abod">
     SELECT TABLE_NAME, COLUMN_NAME 
     FROM INFORMATION_SCHEMA.COLUMNS 
     WHERE TABLE_SCHEMA = 'new_development'

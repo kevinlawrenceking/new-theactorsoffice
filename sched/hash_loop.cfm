@@ -4,7 +4,7 @@
 
 
 
-<cfquery name="getUsers" datasource="abo" >
+<cfquery result="result" name="getUsers" datasource="abo" >
   SELECT * FROM taousers_tbl
 </cfquery>
 
@@ -12,7 +12,7 @@
   <cfset new_passwordSalt = hash(generateSecretKey("AES"),"SHA-512")>
 
     
-  <cfquery name="setHashedPassword" datasource="abo" >
+  <cfquery result="result" name="setHashedPassword" datasource="abo" >
     UPDATE taousers_tbl
     SET
       passwordHash = <cfqueryparam cfsqltype="char" value="#hash(userPassword & new_passwordSalt,'SHA-512')#">,

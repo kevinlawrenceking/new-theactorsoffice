@@ -6,7 +6,7 @@
  
 
     <!-- Query for event results -->
-    <cfquery name="eventresults">
+    <cfquery result="result" name="eventresults">
         SELECT 
             e.eventID,
             e.eventID AS recid,
@@ -105,7 +105,7 @@
 
     <!--- Execute the query --->
     <cftry>
-        <cfquery datasource="#application.datasource#" name="insertEventQuery">
+        <cfquery result="result" datasource="#application.datasource#" name="insertEventQuery">
             #sql#
             <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.eventTitle#"/>
             <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.eventTypeName#"/>
@@ -155,7 +155,7 @@
     <cfset var queryResult = "">
     
     <cftry>
-        <cfquery name="queryResult" datasource="abod">
+        <cfquery result="result" name="queryResult" datasource="abod">
             UPDATE events 
             SET eventstarttime = <cfqueryparam value="#arguments.newStartTime#" cfsqltype="CF_SQL_TIME">
             WHERE eventstarttime IS NULL
@@ -171,7 +171,7 @@
     <cfargument name="eventStartTime" type="date" required="true">
     
     <cftry>
-        <cfquery name="updateQuery" datasource="abod">
+        <cfquery result="result" name="updateQuery" datasource="abod">
             UPDATE events 
             SET eventstoptime = TIME( (ADDTIME(TIME(eventstarttime), TIME('01:00:00'))) % (TIME('24:00:00')))
             WHERE eventstarttime = <cfqueryparam value="#arguments.eventStartTime#" cfsqltype="CF_SQL_TIME">
@@ -187,7 +187,7 @@
     <cfargument name="eventStart" type="date" required="true">
     
     <cftry>
-        <cfquery name="updateQuery" datasource="abod">
+        <cfquery result="result" name="updateQuery" datasource="abod">
             UPDATE events 
             SET eventstop = <cfqueryparam value="#arguments.eventStart#" cfsqltype="CF_SQL_TIMESTAMP">
             WHERE eventstop IS NULL 
@@ -204,7 +204,7 @@
     <cfargument name="eventid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE events_tbl 
             SET isdeleted = 1 
             WHERE eventid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.eventid#" />
@@ -229,7 +229,7 @@
     <cfargument name="eventid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="#application.datasource#">
+        <cfquery result="result" datasource="#application.datasource#">
             UPDATE events 
             SET 
                 eventTitle = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.eventTitle#" />,
@@ -316,7 +316,7 @@
     <cfargument name="projName" type="string" required="true">
 
     <cftry>
-        <cfquery name="updateQuery" datasource="abod">
+        <cfquery result="result" name="updateQuery" datasource="abod">
             UPDATE events_tbl e
             INNER JOIN audroles r ON r.audroleid = e.audroleid
             INNER JOIN audprojects p ON p.audprojectid = r.audprojectid
@@ -495,7 +495,7 @@
     <cfargument name="new_audlocid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="#abod#" name="insertEventQuery">
+        <cfquery result="result" datasource="#abod#" name="insertEventQuery">
             INSERT INTO events_tbl (
                 eventtitle, 
                 eventdescription, 
@@ -579,7 +579,7 @@
     <cfargument name="recid" type="numeric" required="true">
     
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE events 
             SET isdeleted = 1 
             WHERE eventid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
@@ -668,7 +668,7 @@
     <cfargument name="userid" type="numeric" required="true">
 
     <cftry>
-        <cfquery name="updateQuery" datasource="abod">
+        <cfquery result="result" name="updateQuery" datasource="abod">
             UPDATE events 
             SET isdeleted = 1 
             WHERE isdeleted = 0 
@@ -697,7 +697,7 @@
     <cfargument name="new_audlocid" type="numeric" required="yes">
 
     <cftry>
-        <cfquery datasource="#application.datasource#">
+        <cfquery result="result" datasource="#application.datasource#">
             INSERT INTO events_tbl (
                 userid, audRoleID, audTypeID, audLocation, eventStart, eventStartTime, eventStopTime, 
                 audplatformID, audStepID, parkingDetails, workwithcoach, trackmileage, audlocid, isdeleted
@@ -730,7 +730,7 @@
     <cfargument name="new_eventid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE events_tbl 
             SET isdeleted = 0 
             WHERE eventid = <cfqueryparam value="#arguments.new_eventid#" cfsqltype="CF_SQL_INTEGER">
@@ -792,7 +792,7 @@
     <cfset arrayAppend(params, {value=arguments.eventId, cfsqltype="CF_SQL_INTEGER"})>
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             #sql#
             <cfloop array="#params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
@@ -828,7 +828,7 @@
     <cfargument name="eventid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE events
             SET isdeleted = 1
             WHERE eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER">
@@ -844,7 +844,7 @@
     <cfargument name="eventid" type="numeric" required="true">
 
     <cftry>
-        <cfquery name="updateQuery" datasource="abod">
+        <cfquery result="result" name="updateQuery" datasource="abod">
             UPDATE events_tbl 
             SET isdeleted = 1 
             WHERE eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER">
@@ -880,7 +880,7 @@
     <cfargument name="new_eventid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE events_tbl 
             SET isdeleted = 1 
             WHERE eventid = <cfqueryparam value="#arguments.new_eventid#" cfsqltype="CF_SQL_INTEGER">
@@ -1031,7 +1031,7 @@
     <cfargument name="new_eventid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="#application.datasource#">
+        <cfquery result="result" datasource="#application.datasource#">
             INSERT INTO events (
                 eventTitle, 
                 eventTypeName, 
@@ -1079,7 +1079,7 @@
     <cfset var queryResult = "">
     
     <cftry>
-        <cfquery name="queryResult" datasource="abod">
+        <cfquery result="result" name="queryResult" datasource="abod">
             UPDATE events 
             SET eventstoptime = TIME((ADDTIME(TIME(eventstarttime), TIME('01:00:00'))) % (TIME('24:00:00')))
             WHERE eventstarttime = <cfqueryparam value="#arguments.eventStartTime#" cfsqltype="CF_SQL_TIME">
@@ -1102,7 +1102,7 @@
     <cfargument name="new_eventid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE events 
             SET 
                 eventLocation = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_eventLocation)#" maxlength="500" null="#NOT len(trim(arguments.new_eventLocation))#">,
@@ -1217,7 +1217,7 @@
     <cfargument name="new_trackmileage" type="boolean" required="true">
 
     <cftry>
-        <cfquery datasource="#abod#" name="insertEventQuery">
+        <cfquery result="result" datasource="#abod#" name="insertEventQuery">
             INSERT INTO events_tbl (
                 userid, audRoleID, audTypeID, audLocation, eventStart, 
                 eventStartTime, eventStopTime, audplatformID, audStepID, 
@@ -1255,7 +1255,7 @@
     <cfargument name="new_eventid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE events
             SET eventLocation = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_eventLocation)#" maxlength="500" null="#NOT len(trim(arguments.new_eventLocation))#">,
                 audlocadd1 = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audlocadd1)#" maxlength="500" null="#NOT len(trim(arguments.new_audlocadd1))#">,
@@ -1295,7 +1295,7 @@
     <cfargument name="new_isDeleted" type="boolean" required="false">
     <cfargument name="new_eventid" type="numeric" required=true>
 
-        <cfquery datasource="#application.datasource#">
+        <cfquery result="result" datasource="#application.datasource#">
             UPDATE events_tbl 
             SET 
                 userid = <cfqueryparam cfsqltype="#getSQLType(arguments.new_userid)#"
@@ -1367,7 +1367,7 @@
         <cfset sql &= " WHERE eventid = ?">
         <cfset arrayAppend(params, {value=arguments.new_eventid, cfsqltype="CF_SQL_INTEGER"})>
         
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             #sql#
             <cfloop array="#params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
@@ -1465,7 +1465,7 @@
     <cfset var queryResult = "">
     
     <cftry>
-        <cfquery name="queryResult" datasource="abod">
+        <cfquery result="result" name="queryResult" datasource="abod">
             SELECT 
                 e.eventID, 
                 e.eventID AS recid, 
@@ -1519,7 +1519,7 @@
     <cfset var queryResult = "">
     
     <cftry>
-        <cfquery name="queryResult" datasource="abod">
+        <cfquery result="result" name="queryResult" datasource="abod">
             SELECT 
                 e.eventID, 
                 e.eventID AS recid, 

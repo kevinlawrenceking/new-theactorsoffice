@@ -5,7 +5,7 @@
     <cfargument name="noteid" type="numeric" required="true">
 
     <!--- Query to fetch links based on note ID --->
-    <cfquery name="links">
+    <cfquery result="result" name="links">
         SELECT
             linkid,
             linkname,
@@ -34,7 +34,7 @@
     <cfargument name="noteid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     
-        <cfquery name="insertLinkQuery">
+        <cfquery result="result" name="insertLinkQuery">
             INSERT INTO links (linkname, linkurl, isdeleted, userid, noteid) 
             VALUES (
                 <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.linkname#" />, 

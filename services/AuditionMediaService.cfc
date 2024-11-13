@@ -6,7 +6,7 @@
         <cfargument name="userid" type="numeric" required="yes" hint="ID of the user to retrieve headshots for.">
 
         <!--- Query to fetch headshots --->
-        <cfquery name="headshots_sel">
+        <cfquery result="result" name="headshots_sel">
             SELECT 
                 m.mediaid,
                 m.mediatypeid,
@@ -102,7 +102,7 @@
     <cfargument name="mediaid" type="numeric" required="true">
     
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE audmedia 
             SET isdeleted = 1 
             WHERE mediaid = <cfqueryparam value="#arguments.mediaid#" cfsqltype="CF_SQL_INTEGER">
@@ -226,7 +226,7 @@
     <cfargument name="new_isshare" type="boolean" required="true">
 
     <cftry>
-        <cfquery datasource="#abod#" name="insertResult">
+        <cfquery result="result" datasource="#abod#" name="insertResult">
             INSERT INTO audmedia (
                 mediaTypeID, 
                 mediaURL, 
@@ -370,7 +370,7 @@
     <cfargument name="new_mediaID" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="#application.dsn#">
+        <cfquery result="result" datasource="#application.dsn#">
             UPDATE audmedia 
             SET 
                 mediaTypeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_mediaTypeID#" null="#NOT len(trim(arguments.new_mediaTypeID))#">,

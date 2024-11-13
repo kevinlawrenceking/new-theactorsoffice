@@ -1,7 +1,7 @@
 <cfcomponent displayname="SystemService" hint="Handles operations for System table" output="false"> 
 
 <cffunction name="SELfusystemtypes" access="public" returntype="query" output="false">
-    <cfquery name="queryResult">
+    <cfquery result="result" name="queryResult">
         SELECT systemtype AS ID, systemtype AS systemname 
         FROM fusystemtypes 
         ORDER BY systemtype
@@ -253,7 +253,7 @@
     <cfset var queryResult = "">
     
     
-        <cfquery name="queryResult" datasource="abod">
+        <cfquery result="result" name="queryResult" datasource="abod">
             SELECT 
                 au.id, 
                 s.systemID, 
@@ -364,7 +364,7 @@
     <cfreturn result>
 </cffunction>
 <cffunction name="SELfusystems_24634" access="public" returntype="query">
-    <cfquery name="queryResult" datasource="abod">
+    <cfquery result="result" name="queryResult" datasource="abod">
         SELECT systemid AS id, systemname 
         FROM fusystems 
         ORDER BY systemname
@@ -462,7 +462,7 @@
 
     <!--- Execute the query --->
 
-        <cfquery name="queryResult" datasource="abod">
+        <cfquery result="result" name="queryResult" datasource="abod">
             #sql#
             <cfloop array="#params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">

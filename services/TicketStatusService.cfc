@@ -53,7 +53,7 @@
     </cfif>
 
     <!--- Execute query --->
-    <cfquery name="queryResult">
+    <cfquery result="result" name="queryResult">
         #sql##whereClause#
         <cfloop array="#paramList#" index="param">
             <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">

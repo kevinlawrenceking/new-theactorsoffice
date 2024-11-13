@@ -17,7 +17,7 @@
  
 
   
-<cfquery name="FindModalTitle" >
+<cfquery result="result" name="FindModalTitle" >
     SELECT p.pgTitle,
     c.compname
     FROM pgpages p
@@ -36,7 +36,7 @@
     <cfset valuecols=9 />
 
 
-    <cfquery name="find" >
+    <cfquery result="result" name="find" >
         Select recordname
         FROM #rpg_compTable#
         Where #Fid# = #recid#
@@ -83,7 +83,7 @@
 
             <cfif #RPGUpdate.update_yn# is "Y">
 
-                <cfquery name="FindValue" >
+                <cfquery result="result" name="FindValue" >
                     Select #RPGUpdate.fname# as fvalue
                     FROM #rpg_compTable#
                     Where #Fid# = #recid#
@@ -223,7 +223,7 @@
 
                     <cfelseif #RPGUpdate.updatetype# is "select_id">
                         
-                <cfquery name="FindValue" >
+                <cfquery result="result" name="FindValue" >
                     Select #RPGUpdate.fname# as fvalue
                     FROM #rpg_compTable#
                     Where #Fid# = #recid#
@@ -231,7 +231,7 @@
                         
                  
 
-                        <cfquery name="selects" >
+                        <cfquery result="result" name="selects" >
                             select #rpgupdate.fname# as value, recordname as text from #RPgupdate.tableSelect# order by recordname
                         </cfquery>
                         
@@ -271,7 +271,7 @@
               
                     <cfelseif #RPGUpdate.updatetype# is "select_distinct">
                         
-                <cfquery name="FindValue" >
+                <cfquery result="result" name="FindValue" >
                     Select #RPGUpdate.fname# as fvalue
                     FROM #rpg_compTable#
                     Where #Fid# = #recid#
@@ -279,7 +279,7 @@
                         
                         <cfoutput>#rpgupdate.tableselect#</cfoutput>
 
-                        <cfquery name="selects" >
+                        <cfquery result="result" name="selects" >
                             select #rpgupdate.fname# as value, recordname as text from #RPgupdate.tableSelect# order by recordname
                         </cfquery>
                         
@@ -314,7 +314,7 @@
 
          <cfelseif #RPGUpdate.updatetype# is "select_fieldvalue">
              
-                     <cfquery name="FindValue" >
+                     <cfquery result="result" name="FindValue" >
                     Select #RPGUpdate.fname# as fvalue
                     FROM #rpg_compTable#
                     Where #Fid# = #recid#
@@ -322,7 +322,7 @@
              
              
 
-                        <cfquery name="selects" >
+                        <cfquery result="result" name="selects" >
                             select fieldvalue as value, fieldtext as text from #RPgupdate.tableSelect# order by fieldtext
                         </cfquery>
                         <cfoutput>
@@ -372,7 +372,7 @@
                             
                             <cfelseif #RPGUpdate.updatetype# is "select">
 
-                                <cfquery name="selects" >
+                                <cfquery result="result" name="selects" >
                                     select recordname as value, recordname as text from #RPgupdate.tableSelect# order by recordname
                                 </cfquery>
                                 <cfoutput>

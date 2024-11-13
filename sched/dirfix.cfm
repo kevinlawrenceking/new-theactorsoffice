@@ -1,6 +1,6 @@
 
 
-<cfquery  name="update">
+<cfquery result="result"  name="update">
     update `pgfiles`
     set filestatus =
     <cfqueryparam cfsqltype="cf_sql_varchar" value="Missing" />
@@ -42,7 +42,7 @@
  
 
                 
-                <cfquery  name="find">    
+                <cfquery result="result"  name="find">    
                  update `pg#prefix#s`
                     set #prefix#status = 'Found'
             where id = '#id#' and #prefix#status <> 'Confirmed'

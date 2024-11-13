@@ -5,7 +5,7 @@
 <cfset use_path = "/include" />
 <cfset qry_path = "/include/qry" />
 
-<cfquery name="getFiles" datasource="abod" maxrows="3">
+<cfquery result="result" name="getFiles" datasource="abod" maxrows="3">
     SELECT id, `path`, `filename`
     FROM tao_files
     WHERE path = '/include'
@@ -61,7 +61,7 @@
                     <cfset newQueryFilePath = "#path_save##qry_path#/#newQueryFilename#" />
                     <cffile action="write" file="#newQueryFilePath#" output="#fullQueryBlock#" />
                     <cftransaction>
-                        <cfquery datasource="abod">
+                        <cfquery result="result" datasource="abod">
                             INSERT INTO tao_files (
                                 `filename`,
                                 `status`,
@@ -79,7 +79,7 @@
                                 0, 1, <cfqueryparam value="#getFiles.id#" cfsqltype="cf_sql_varchar" />
                             )
                         </cfquery>
-                        <cfquery datasource="abod">
+                        <cfquery result="result" datasource="abod">
                             UPDATE tao_files
                             SET qry_extract_yn = 1
                             WHERE id = <cfqueryparam value="#getFiles.id#" cfsqltype="cf_sql_integer" />
@@ -97,7 +97,7 @@
         </cfloop>
 
         <cfif queryFound eq false>
-            <cfquery datasource="abod">
+            <cfquery result="result" datasource="abod">
                 UPDATE tao_files
                 SET qry_extract_yn = 1
                 WHERE id = <cfqueryparam value="#getFiles.id#" cfsqltype="cf_sql_integer" />

@@ -4,7 +4,7 @@
     <cfargument name="excludedRangeIds" type="array" required="true">
     <cfset var qryResult = "">
 
-    <cfquery name="qryResult">
+    <cfquery result="result" name="qryResult">
         SELECT rangeid, rangename, rangestart, rangeend
         FROM reportranges
         WHERE rangeid NOT IN (

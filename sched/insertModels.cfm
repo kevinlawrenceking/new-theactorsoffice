@@ -1,4 +1,4 @@
-<cfquery name="getDistinctTables" datasource="abod">
+<cfquery result="result" name="getDistinctTables" datasource="abod">
     SELECT DISTINCT qry_table 
     FROM tao_files 
     WHERE qry_table IS NOT NULL;
@@ -8,7 +8,7 @@
   
     
     <!--- Insert into components table --->
-    <cfquery datasource="abod">
+    <cfquery result="result" datasource="abod">
         INSERT INTO models (tableName)
         VALUES (
           

@@ -1,4 +1,4 @@
-    <cfquery name="getFilesWithComments" datasource="abod">
+    <cfquery result="result" name="getFilesWithComments" datasource="abod">
     SELECT id, qry_details
     FROM tao_files
     WHERE qry_details LIKE '%--- %'
@@ -9,7 +9,7 @@
     <cfset cleanQryDetails = REReplace(getFilesWithComments.qry_details, "--- (.*?) ---", "", "ALL")>
 
     <!--- Update the tao_files table with the cleaned qry_details --->
-    <cfquery datasource="abod">
+    <cfquery result="result" datasource="abod">
         UPDATE tao_files
         SET qry_details = <cfqueryparam value="#TRIM(cleanQryDetails)#" cfsqltype="cf_sql_longvarchar">
         WHERE id = <cfqueryparam value="#getFilesWithComments.id#" cfsqltype="cf_sql_integer">

@@ -63,7 +63,7 @@
     <cfset sql &= " ORDER BY durid">
 
     <!--- Execute the query --->
-    <cfquery name="queryResult">
+    <cfquery result="result" name="queryResult">
         #sql#
         <cfloop array="#params#" index="param">
             <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">

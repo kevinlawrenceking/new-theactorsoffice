@@ -134,7 +134,7 @@
 
 
 
-    <cfquery  name="C"  >
+    <cfquery result="result"  name="C"  >
         SELECT contactid,recordname
         from contactdetails
         where userid = #u.userid#
@@ -278,7 +278,7 @@
     
         
         
-        <cfquery  name="users"  >
+        <cfquery result="result"  name="users"  >
 select userid from taousers 
              <cfif #select_userid# is not "0">
             where userid = #select_userid#
@@ -292,7 +292,7 @@ select userid from taousers
 
 <cfset newuserid = users.userid />
 
-<cfquery  name="panels"  >
+<cfquery result="result"  name="panels"  >
 select pnid from pgpanels
 </cfquery>
 
@@ -300,12 +300,12 @@ select pnid from pgpanels
 
 <cfset newpnid = panels.pnid />
     
-    <cfquery  name="Find"  >
+    <cfquery result="result"  name="Find"  >
     Select * from pgpanels_user_xref where pnid = #newpnid# and userid = #newuserid#
     </cfquery>
     
     <cfif #find.recordcount# is "0">
-<cfquery  name="insert"  >
+<cfquery result="result"  name="insert"  >
 Insert into pgpanels_user_xref (pnid,userid) values (#newpnid#,#newuserid#)
 </cfquery>
 <cfif #dbug# is "Y">
@@ -330,28 +330,28 @@ Insert into pgpanels_user_xref (pnid,userid) values (#newpnid#,#newuserid#)
     
     
     
-    <cfquery  name="u"  >
+    <cfquery result="result"  name="u"  >
         SELECT * from taousers     <cfif #select_userid# is not "0">
         where userid = #select_userid#</cfif>
     </cfquery>
 
     <cfloop query="u">
 
-        <cfquery  name="x"  >
+        <cfquery result="result"  name="x"  >
             SELECT sitetypename,sitetypedescription from sitetypes_master
         </cfquery>
 
 
         <cfloop query="x">
             
-            <cfquery  name="find"  >
+            <cfquery result="result"  name="find"  >
             Select * from sitetypes_user 
             where sitetypename = '#x.sitetypename#' and userid = #u.userid#
             </cfquery>
             
             <cfif #find.recordcount# is "0">
             
-                <cfquery  name="insert"  >
+                <cfquery result="result"  name="insert"  >
                     
                     INSERT INTO `sitetypes_user` (`siteTypeName`, `siteTypeDescription`, `userid`) 
                     VALUES ('#x.sitetypename#','#x.sitetypedescription#',#u.userid#);
@@ -391,7 +391,7 @@ Insert into pgpanels_user_xref (pnid,userid) values (#newpnid#,#newuserid#)
         
         
         
-<cfquery  name="u"  >
+<cfquery result="result"  name="u"  >
         SELECT * from taousers 
         <cfif #select_userid# is not "0">
     where userid = #select_userid#
@@ -400,7 +400,7 @@ Insert into pgpanels_user_xref (pnid,userid) values (#newpnid#,#newuserid#)
 
     <cfloop query="u">
 
-        <cfquery  name="x"  >
+        <cfquery result="result"  name="x"  >
             SELECT 
 
 s.id
@@ -417,7 +417,7 @@ ORDER BY s.sitename
 
         <cfloop query="x">
             
-            <cfquery  name="find"  >
+            <cfquery result="result"  name="find"  >
                 Select sitetypeid from sitetypes_user 
                 where sitetypename = '#x.sitetypename#' and userid = #u.userid#
 
@@ -427,12 +427,12 @@ ORDER BY s.sitename
                 
                 <cfset new_sitetypeid = find.sitetypeid />
                 
-                      <cfquery  name="find2"  >
+                      <cfquery result="result"  name="find2"  >
             Select * from sitelinks_user_tbl where sitename = '#x.sitename#' and userid = #u.userid#
                 </cfquery>
                 
                 <cfif #find2.recordcount# is "0">
-                <cfquery  name="insert"  >
+                <cfquery result="result"  name="insert"  >
                     
                     INSERT INTO `sitelinks_user_tbl` (`siteName`,`siteURL`,`siteicon`,`siteTypeid`,`userid`) 
                     VALUES ('#x.sitename#','#x.siteurl#','#x.siteicon#', #new_sitetypeid#, #u.userid#);
@@ -494,13 +494,13 @@ ORDER BY s.sitename
         
         
         
-                <cfquery  name="u"  >
+                <cfquery result="result"  name="u"  >
         SELECT * from taousers  
         </cfquery>
 
     <cfloop query="u">
 
-        <cfquery  name="x"  >
+        <cfquery result="result"  name="x"  >
         SELECT eventTypeName
 ,eventtypedescription
 ,eventtypecolor
@@ -510,7 +510,7 @@ ORDER BY s.sitename
         <cfloop query="x">
             
             
-            <cfquery  name="find"  >
+            <cfquery result="result"  name="find"  >
             SELECT eventTypeName
             ,eventtypedescription
             ,eventtypecolor
@@ -520,7 +520,7 @@ ORDER BY s.sitename
             
             <cfif #find.recordcount# is "0">
             
-                <cfquery  name="insert"  >
+                <cfquery result="result"  name="insert"  >
                     INSERT INTO `eventtypes_user` (`eventTypeName`,`eventtypedescription`,`eventtypecolor`,`userid`) 
                     VALUES ('#x.eventTypeName#', '#x.eventtypedescription#','#x.eventtypecolor#', #u.userid#);
                 </cfquery>
@@ -544,13 +544,13 @@ ORDER BY s.sitename
         
         
     
-     <cfquery    name="u"  >
+     <cfquery result="result"    name="u"  >
         SELECT * from taousers     
     </cfquery>
 
     <cfloop query="u">
 
-         <cfquery  name="x"  >
+         <cfquery result="result"  name="x"  >
             SELECT toneid,
 tone,
 audcatid,
@@ -561,14 +561,14 @@ isDeleted
 
         <cfloop query="x">
             
-             <cfquery  name="find"  >
+             <cfquery result="result"  name="find"  >
             Select * from audtones_user
             where tone = '#x.tone#' and userid = #u.userid#
             </cfquery>
             
             <cfif #find.recordcount# is "0">
             
-                 <cfquery  name="insert"  >
+                 <cfquery result="result"  name="insert"  >
                     
                     INSERT INTO `audtones_user` (`tone`, `audcatid`, `userid`) 
                     VALUES ('#x.tone#','#x.audcatid#',#u.userid#);
@@ -612,27 +612,27 @@ isDeleted
         
         
         
-        <cfquery  name="u"  >
+        <cfquery result="result"  name="u"  >
         SELECT * from taousers  where userid = #select_userid#
     </cfquery>
 
     <cfloop query="u">
 
-        <cfquery  name="x"  >
+        <cfquery result="result"  name="x"  >
         SELECT * FROM tags
         </cfquery>
 
 
         <cfloop query="x">
             
-            <cfquery  name="find"  >
+            <cfquery result="result"  name="find"  >
             Select * from tags_user 
             where tagname = '#x.tagname#' and userid = #u.userid#
             </cfquery>
             
             <cfif #find.recordcount# is "0">
             
-                <cfquery  name="insert"  >
+                <cfquery result="result"  name="insert"  >
                     
                     INSERT INTO `tags_user` (`tagname`,  `userid`) 
                     VALUES ('#x.tagname#',#u.userid#);
@@ -655,7 +655,7 @@ isDeleted
         
         
         
-        <cfquery  name="update_tags"  >
+        <cfquery result="result"  name="update_tags"  >
         UPDATE tags_user 
             SET IsTeam = 1 
             WHERE userid = #select_userid# and tagname IN (
@@ -665,27 +665,27 @@ isDeleted
         
         
         
-        <cfquery  name="u"  >
+        <cfquery result="result"  name="u"  >
         SELECT * from taousers  where userid = #select_userid#
     </cfquery>
 
     <cfloop query="u">
 
-        <cfquery  name="x"  >
+        <cfquery result="result"  name="x"  >
       SELECT typeid,valuetype,typeicon FROM itemtypes
         </cfquery>
 
 
         <cfloop query="x">
             
-            <cfquery  name="find"  >
+            <cfquery result="result"  name="find"  >
             Select * from itemtypes_user 
             where valuetype = '#x.valuetype#' and userid = #u.userid#
             </cfquery>
             
             <cfif #find.recordcount# is "0">
             
-                <cfquery  name="insert"  >
+                <cfquery result="result"  name="insert"  >
                     
                     INSERT INTO `itemtypes_user` (`valuetype`, `typeicon`, `userid`) 
                     VALUES ('#x.valuetype#','#x.typeicon#',#u.userid#);
@@ -715,7 +715,7 @@ isDeleted
         
         
         
-        <cfquery  name="u"  >
+        <cfquery result="result"  name="u"  >
         SELECT * from taousers where userid = #select_userid#
     </cfquery>
 
@@ -723,7 +723,7 @@ isDeleted
         
         <cfset new_userid = u.userid />
         
-          <cfquery  name="x"  >
+          <cfquery result="result"  name="x"  >
 SELECT DISTINCT c.catid,i.valuetype
 FROM itemcategory c
 
@@ -743,7 +743,7 @@ ORDER BY c.catid,i.valuetype
             
     
             
-            <cfquery  name="find"  >
+            <cfquery result="result"  name="find"  >
             Select typeid from itemtypes_user
             where valuetype = '#x.valuetype#' and userid = #new_userid#
             </cfquery>
@@ -752,7 +752,7 @@ ORDER BY c.catid,i.valuetype
             
             
             
-                  <cfquery  name="check"  >
+                  <cfquery result="result"  name="check"  >
         select * from itemcatxref_user where userid = #new_userid# and typeid = #new_typeid# and catid = #new_catid#
             </cfquery>
             
@@ -761,7 +761,7 @@ ORDER BY c.catid,i.valuetype
             
             <cfif #check.recordcount# is "0">
             
-                <cfquery  name="insert"  >
+                <cfquery result="result"  name="insert"  >
                     
                     INSERT INTO `itemcatxref_user` (`typeid`, `catid`, `userid`) 
                     VALUES (#new_typeid#,#new_catid#,#new_userid#);

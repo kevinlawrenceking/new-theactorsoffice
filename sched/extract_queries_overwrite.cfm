@@ -1,4 +1,4 @@
-<cfquery name="getFilesWithMultipleQueries" datasource="abod">
+<cfquery result="result" name="getFilesWithMultipleQueries" datasource="abod">
     SELECT id, `path`, `filename`,qry_no
     FROM tao_files
     WHERE status <> 'deleted'
@@ -71,7 +71,7 @@
         </cfif>
 
         <!--- Update the database to mark the file as processed --->
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE tao_files
             SET qry_extract_yn = 1
             WHERE id = <cfqueryparam value="#getFilesWithMultipleQueries.id#" cfsqltype="cf_sql_integer">

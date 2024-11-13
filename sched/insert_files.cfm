@@ -28,7 +28,7 @@
             
             <!--- Try to insert each file into the database --->
             <cftry>
-                <cfquery datasource="abod">
+                <cfquery result="result" datasource="abod">
                     INSERT INTO tao_files (`filename`, `status`, `path`, `updated_timestamp`)
                     VALUES (
                         <cfqueryparam value="#filename#" cfsqltype="cf_sql_varchar" maxlength="255">,
@@ -69,7 +69,7 @@
             
             <!--- Try to insert each file into the database --->
             <cftry>
-                <cfquery datasource="abod">
+                <cfquery result="result" datasource="abod">
                     INSERT INTO tao_files (`filename`, `status`, `path`, `updated_timestamp`)
                     VALUES (
                         <cfqueryparam value="#filename#" cfsqltype="cf_sql_varchar" maxlength="255">,

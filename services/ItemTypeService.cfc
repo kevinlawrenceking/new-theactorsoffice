@@ -6,7 +6,7 @@
 
     <cfset var result = structNew()>
 
-    <cfquery name="types" >
+    <cfquery result="result" name="types" >
         SELECT DISTINCT i.valuetype
         FROM 
             <cfif arguments.catid eq 4>
@@ -46,7 +46,7 @@
     <cfset var resultStruct = structNew()>
 
     <!--- Query to get distinct value types for a given category and user --->
-    <cfquery name="types" >
+    <cfquery result="result" name="types" >
         SELECT DISTINCT 
             i.valuetype
         FROM 
@@ -73,7 +73,7 @@
 
     <cfset var resultStruct = structNew()>
 
-    <cfquery name="types">
+    <cfquery result="result" name="types">
         SELECT 
             i.valuetype
         FROM 
@@ -140,7 +140,7 @@
 
     <!--- Execute query only if there are conditions to prevent unfiltered queries --->
     <cfif arrayLen(whereClause) gt 0>
-        <cfquery name="queryResult">
+        <cfquery result="result" name="queryResult">
             SELECT typeid, valuetype, typeicon
             FROM itemtypes
             WHERE #arrayToList(whereClause, " AND ")#
@@ -151,7 +151,7 @@
         </cfquery>
     <cfelse>
         <!--- Return an empty query if no conditions are provided --->
-        <cfquery name="queryResult" dbtype="query">
+        <cfquery result="result" name="queryResult" dbtype="query">
             SELECT typeid, valuetype, typeicon
             WHERE 1=0
         </cfquery>

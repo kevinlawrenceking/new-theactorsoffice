@@ -23,7 +23,7 @@
     <cfset sql &= " ORDER BY tickettype">
 
     <!--- Execute query without error handling --->
-    <cfquery name="queryResult">
+    <cfquery result="result" name="queryResult">
         #sql#
         <cfloop array="#paramList#" index="param">
             <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">

@@ -75,7 +75,7 @@
     <cfargument name="datalabel" type="string" required="true">
     <cfargument name="colorid" type="numeric" required="true">
 
-    <cfquery name="insertQuery">
+    <cfquery result="result" name="insertQuery">
         INSERT INTO reports_user 
         (reportid, reportname, reportorderno, reporttypeid, reportdescription, userid, colmd, colxl, datalabel, colorid) 
         VALUES 

@@ -1,4 +1,4 @@
-      <cfquery name="getReplacementFiles" datasource="abod">
+      <cfquery result="result" name="getReplacementFiles" datasource="abod">
     SELECT b.id AS bad_id, b.filename AS bad_filename, b.parents, b.replacement_id, 
            g.id AS good_id, g.filename AS good_filename
     FROM tao_files b 
@@ -16,7 +16,7 @@
     
         
         <!--- Get the parent file details --->
-        <cfquery name="getParentFile" datasource="abod">
+        <cfquery result="result" name="getParentFile" datasource="abod">
             SELECT id, path, filename
             FROM tao_files
             WHERE id = <cfqueryparam value="#parentID#" cfsqltype="cf_sql_integer">

@@ -1,6 +1,6 @@
                 
 
-<cfquery  name="events">
+<cfquery result="result"  name="events">
                     SELECT distinct e.eventid,e.eventtitle,e.eventstop,u.recordname,u.userid,d.contactid
                     FROM events e
                     INNER JOIN eventcontactsxref x ON x.eventid = e.eventid
@@ -24,7 +24,7 @@
 
                             <cfset new_eventstop=events.eventstop />
 
-                            <cfquery  name="fu">
+                            <cfquery result="result"  name="fu">
                                 SELECT distinct i.contactid, d.recordname, 1 as new_systemid
                                 FROM
                                 contactitems i
@@ -71,7 +71,7 @@
                                 <cfset new_contactname=fu.recordname />
                                 <cfset new_systemid=fu.new_systemid />
 
-                                <cfquery  name="find_fu">
+                                <cfquery result="result"  name="find_fu">
                                     SELECT su.suid
                                     FROM fusystems s
                                     INNER JOIN fusystemusers su ON su.systemID = s.systemid
@@ -108,11 +108,11 @@
 
                                     <cfset NewSUID=result.generatedkey />
 
-                                    <cfquery  name="CompleteTargetSystems">
+                                    <cfquery result="result"  name="CompleteTargetSystems">
                                         UPDATE fusystemusers set sustatus = 'Completed' WHERE userid = #new_userid# AND systemid IN (5,6) AND contactid = #new_contactid#;
                                     </cfquery>
 
-                                    <cfquery  name="sudetails">
+                                    <cfquery result="result"  name="sudetails">
                                         select * from fusystems where systemid = #new_systemid#
 
                                     </cfquery>
@@ -126,7 +126,7 @@
 
                                     <cfset Newnotification=result.generatedkey>
 
-                                        <cfquery  name="addDaysNo">
+                                        <cfquery result="result"  name="addDaysNo">
                                             SELECT
                                             s.systemID
                                             ,s.systemName
@@ -163,7 +163,7 @@
                                         <cfif #adddaysno.isunique# is "1">
 
 
-                                            <cfquery  name="checkUnique">
+                                            <cfquery result="result"  name="checkUnique">
                                                 SELECT d.contactid from
                                                 contactdetails d
                                                 where d.#adddaysno.uniquename# = 'Y'

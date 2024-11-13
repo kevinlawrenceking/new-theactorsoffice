@@ -21,7 +21,7 @@
 <Cfset to_email="kevinking7135@gmail.com" />
  
 
-<cfquery  name="U" datasource="#dsn#">
+<cfquery result="result"  name="U" datasource="#dsn#">
     SELECT th.id
     ,th.CustomerFirst
     ,th.CustomerLast
@@ -49,7 +49,7 @@
         <cfset new_planName="#u.planName#" />
     </cfoutput>
 
-    <cfquery  name="update" datasource="#dsn#">
+    <cfquery result="result"  name="update" datasource="#dsn#">
         UPDATE thrivecart
         set uuid =
         <cfqueryparam cfsqltype="cf_sql_varchar" value="#new_uuid#" />
@@ -98,7 +98,7 @@
         </HTML>
     </cfmail>
 
-    <cfquery  name="update" datasource="#dsn#">
+    <cfquery result="result"  name="update" datasource="#dsn#">
         UPDATE thrivecart
         set status =
         <cfqueryparam cfsqltype="cf_sql_varchar" value="Emailed" />

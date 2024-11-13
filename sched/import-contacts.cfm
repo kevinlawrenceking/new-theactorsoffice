@@ -1,5 +1,5 @@
 <cfparam name="total_records" default="0"/>
-<cfquery  name="x"      >
+<cfquery result="result"  name="x"      >
 Select * from contactsimport where status = 'Pending'
 </cfquery>
 
@@ -8,7 +8,7 @@ Select * from contactsimport where status = 'Pending'
 
 <cfset new_id = x.id />
 
-<cfquery  name="finduser"      >
+<cfquery result="result"  name="finduser"      >
 Select * from taousers where useremail = '#trim(x.userEmail)#'
 </cfquery>
 
@@ -16,7 +16,7 @@ Select * from taousers where useremail = '#trim(x.userEmail)#'
     
     <cfset new_userid = finduser.userid />
     
-    <cfquery  name="findcontact"      >
+    <cfquery result="result"  name="findcontact"      >
     Select * from contactdetails where contactfullname = '#trim(x.fname)# #trim(x.lname)#' and contactStatus = 'Active' 
     and userid = #new_userid#
     </cfquery>
@@ -33,7 +33,7 @@ Select * from taousers where useremail = '#trim(x.userEmail)#'
          <cfset contactid=result.generated_key />
         
         
-        <cfquery  name="update"  >
+        <cfquery result="result"  name="update"  >
         UPDATE contactdetails
         SET contactstatus = 'Working'        
         <cfif #x.contactMeetingLoc# is not "">
@@ -245,7 +245,7 @@ Select * from taousers where useremail = '#trim(x.userEmail)#'
        <CFSET NEW_SYSTEMTYPE = "Targeted List" />
        
     
-        <cfquery  name="findscope"    >   
+        <cfquery result="result"  name="findscope"    >   
 SELECT * FROM contactitems WHERE valuecategory = 'Tag' AND valuetext = 'Casting Director' AND contactid = #contactid# AND itemstatus = 'Active'
 </cfquery>
 
@@ -259,7 +259,7 @@ SELECT * FROM contactitems WHERE valuecategory = 'Tag' AND valuetext = 'Casting 
 </cfif>       
            
     
-                 <cfquery  name="FindSystem"    >  
+                 <cfquery result="result"  name="FindSystem"    >  
             
             Select * from fusystems where systemtype = <cfqueryparam cfsqltype="cf_sql_varchar" value="#new_systemtype#" /> and systemscope = <cfqueryparam cfsqltype="cf_sql_varchar" value="#new_systemscope#" />
             </cfquery>
@@ -286,7 +286,7 @@ SELECT * FROM contactitems WHERE valuecategory = 'Tag' AND valuetext = 'Casting 
        <CFSET NEW_SYSTEMTYPE = "Maintenance List" />
        
     
-        <cfquery  name="findscope"    >   
+        <cfquery result="result"  name="findscope"    >   
 SELECT * FROM contactitems WHERE valuecategory = 'Tag' AND valuetext = 'Casting Director' AND contactid = #contactid# AND itemstatus = 'Active'
 </cfquery>
 
@@ -300,7 +300,7 @@ SELECT * FROM contactitems WHERE valuecategory = 'Tag' AND valuetext = 'Casting 
 </cfif>       
            
     
-                 <cfquery  name="FindSystem"    >  
+                 <cfquery result="result"  name="FindSystem"    >  
             
             Select * from fusystems where systemtype = <cfqueryparam cfsqltype="cf_sql_varchar" value="#new_systemtype#" /> and systemscope = <cfqueryparam cfsqltype="cf_sql_varchar" value="#new_systemscope#" />
             </cfquery>
@@ -325,21 +325,21 @@ SELECT * FROM contactitems WHERE valuecategory = 'Tag' AND valuetext = 'Casting 
 <cfinclude template="folder_setup.cfm" />
                
                
-                    <cfquery  name="update"  >
+                    <cfquery result="result"  name="update"  >
         UPDATE contactdetails
         SET contactstatus = 'Active' where contactid = #contactid#
 
         </cfquery>
                
         
-           <cfquery  name="update"  >
+           <cfquery result="result"  name="update"  >
         update contactsimport
         set status = 'Completed'
         where id = #new_id#
         </cfquery>
         
         <cfelse>
-         <cfquery  name="update"  >
+         <cfquery result="result"  name="update"  >
         update contactsimport
         set status = 'Duplicate'
         where id = #new_id#

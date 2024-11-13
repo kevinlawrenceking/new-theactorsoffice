@@ -5,16 +5,16 @@
 <CFINCLUDE template="remote_load.cfm" />
 <cfif #userid# is "">
     <cfif #isdefined('userid')#>
-        <cfquery name="default" > select left(passwordhash,10) as default_u,userid from taousers where userid = #userid# </cfquery>
+        <cfquery result="result" name="default" > select left(passwordhash,10) as default_u,userid from taousers where userid = #userid# </cfquery>
         <cfelse> Invalid. <cfabort> `
     </cfif>
     <cfelse>
-        <cfquery name="default" > select left(passwordhash,10) as default_u,userid from taousers where left(passwordhash,10) = '#u#' </cfquery>
+        <cfquery result="result" name="default" > select left(passwordhash,10) as default_u,userid from taousers where left(passwordhash,10) = '#u#' </cfquery>
 </cfif>
 <cfset u=default.default_u />
 <cfinclude template="pgload.cfm" />
 <cfset new_userid=default.userid />
-<cfquery name="shares" >
+<cfquery result="result" name="shares" >
 SELECT `contactid`,`Name`,`Company`,`Title`,`Audition`,`WhereMet`,`WhenMet`,`NotesLog`,`userid`,`u`
 FROM sharez where userid = #userid#
 </cfquery>

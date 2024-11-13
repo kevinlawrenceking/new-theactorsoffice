@@ -24,7 +24,7 @@
 
     <cfset var queryResult = "">
     
-    <cfquery name="queryResult">
+    <cfquery result="result" name="queryResult">
         SELECT actionid, actiondaysno, actiondaysrecurring
         FROM fuactions
         WHERE 1=1

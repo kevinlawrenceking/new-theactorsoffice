@@ -8,7 +8,7 @@
     <cfset cal_root_url="https://#host#.theactorsoffice.com/calendar/" />
 </cfoutput>
 
-<cfquery  name="U">
+<cfquery result="result"  name="U">
     SELECT
     u.userid
     ,u.recordname
@@ -67,7 +67,7 @@
     <cfparam name="CALSCALE" default="Gregorian" />
     <cfparam name="utcHourOffset" default="Gregorian" />
     <cfparam name="location" default="" />
-    <cfquery  name="eventItem">
+    <cfquery result="result"  name="eventItem">
         SELECT
         e.eventID
         ,e.eventID as recid
@@ -100,7 +100,7 @@
         <cfset tzid=tzid />
     </cfif>
 
-    <cfquery  name="tzdetails">
+    <cfquery result="result"  name="tzdetails">
         SELECT tzid,gmt,tzname,utchouroffset FROM timezones
         where tzid = '#tzid#'
     </cfquery>

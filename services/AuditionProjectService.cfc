@@ -159,7 +159,7 @@
     <cfargument name="new_audprojectID" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE audprojects 
             SET audSubCatID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audSubCatID#" null="#NOT len(trim(arguments.new_audSubCatID))#">
             WHERE audprojectID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audprojectID#">
@@ -200,7 +200,7 @@
     <cfset var local = {}>
 
     <cftry>
-        <cfquery name="updateQuery" datasource="abod">
+        <cfquery result="result" name="updateQuery" datasource="abod">
             UPDATE audprojects 
             SET projdate = NULL 
             WHERE isdeleted <> 1 
@@ -227,7 +227,7 @@
     <cfargument name="audprojectID" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE audprojects 
             SET projdate = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_projdate#"/> 
             WHERE audprojectid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.audprojectID#"/>
@@ -244,7 +244,7 @@
     <cfargument name="audprojectID" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE audprojects 
             SET projdate = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_projdate#"/> 
             WHERE audprojectid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.audprojectID#"/>
@@ -286,7 +286,7 @@
     <cfargument name="audprojectID" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE audprojects 
             SET projdate = <cfqueryparam value="#arguments.new_projdate#" cfsqltype="cf_sql_date"/>
             WHERE audprojectid = <cfqueryparam value="#arguments.audprojectID#" cfsqltype="cf_sql_integer"/>
@@ -301,7 +301,7 @@
     <cfargument name="projDate" type="string" required="true">
     
     <cftry>
-        <cfquery name="updateQuery" datasource="abod">
+        <cfquery result="result" name="updateQuery" datasource="abod">
             UPDATE audprojects p
             INNER JOIN auditionsimport i ON i.audprojectid = p.audprojectid
             SET p.projdate = <cfqueryparam value="#arguments.projDate#" cfsqltype="CF_SQL_DATE">
@@ -580,7 +580,7 @@
     <cfargument name="audprojectid" type="numeric" required="true">
     
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE audprojects 
             SET isdeleted = 1 
             WHERE audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
@@ -1266,7 +1266,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     <cfargument name="new_projdate" type="date" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             INSERT INTO audprojects (
                 projName,
                 projDescription,
@@ -1655,7 +1655,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     <cfargument name="new_contactid" type="numeric" required="false">
 
  
-        <cfquery datasource="#application.datasource#">
+        <cfquery result="result" datasource="#application.datasource#">
             INSERT INTO audprojects (
                 projName, 
                 projDescription, 
@@ -1699,7 +1699,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     <cfargument name="new_audprojectID" type="numeric" required="true">
 
 
-        <cfquery datasource="#application.datasource#">
+        <cfquery result="result" datasource="#application.datasource#">
             UPDATE audprojects 
             SET 
                 projName = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_projName#" maxlength="500" null="#NOT len(trim(arguments.new_projName))#">,

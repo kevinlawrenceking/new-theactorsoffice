@@ -7,7 +7,7 @@
     <cffunction name="GetUserDetails" access="public" returntype="query" output="false">
         <cfargument name="userid" type="numeric" required="yes">
 
-        <cfquery name="details">
+        <cfquery result="result" name="details">
             SELECT 
                 u.viewtypeid, 
                 tz.tzgeneral,
@@ -59,7 +59,7 @@
     <cfset var qResult = "">
     
     <cftry>
-        <cfquery name="qResult" datasource="abod">
+        <cfquery result="result" name="qResult" datasource="abod">
             SELECT DISTINCT 
                 u.recordname, 
                 u.userrole, 
@@ -150,7 +150,7 @@
 
     <cftry>
         <!--- Execute the parameterized query --->
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE taousers 
             SET viewtypeid = <cfqueryparam value="#viewTypeId#" cfsqltype="CF_SQL_INTEGER"> 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
@@ -199,7 +199,7 @@
     <cfargument name="userId" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE taousers 
             SET access_token = <cfqueryparam value="#arguments.accessToken#" cfsqltype="CF_SQL_VARCHAR"> 
             WHERE userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
@@ -226,7 +226,7 @@
     <cfargument name="userid" type="numeric" required="true">
 
 
-           <cfquery >
+           <cfquery result="result" >
         UPDATE taousers 
         SET userfirstname = <cfqueryparam value="#arguments.new_userfirstname#" cfsqltype="CF_SQL_VARCHAR">,
             userlastname = <cfqueryparam value="#arguments.new_userlastname#" cfsqltype="CF_SQL_VARCHAR">,
@@ -248,7 +248,7 @@
     <cfargument name="userid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE taousers 
             SET nletter_link = <cfqueryparam value="#arguments.new_nletter_link#" cfsqltype="CF_SQL_VARCHAR">, 
                 nletter_yn = <cfqueryparam value="#arguments.new_nletter_yn#" cfsqltype="CF_SQL_VARCHAR">
@@ -269,7 +269,7 @@
     <cfargument name="userid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE taousers 
             SET 
                 calstarttime = <cfqueryparam cfsqltype="cf_sql_time" value="#arguments.calstarttime#" />,
@@ -312,7 +312,7 @@
     <cfargument name="userid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE taousers 
             SET access_token = <cfqueryparam value="#arguments.accesstoken#" cfsqltype="CF_SQL_VARCHAR">, 
                 refresh_token = <cfqueryparam value="#arguments.refreshToken#" cfsqltype="CF_SQL_VARCHAR"> 
@@ -330,7 +330,7 @@
     <cfargument name="userid" type="numeric" required="true" hint="The ID of the user whose access token is to be updated.">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE taousers 
             SET access_token = <cfqueryparam value="#arguments.accessToken#" cfsqltype="CF_SQL_VARCHAR"> 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
@@ -385,7 +385,7 @@
     <cfargument name="userId" type="numeric" required="true">
 
     <cftry>
-        <cfquery name="updateAvatar" datasource="abod">
+        <cfquery result="result" name="updateAvatar" datasource="abod">
             UPDATE taousers 
             SET avatarname = <cfqueryparam value="#arguments.userFirstName#" cfsqltype="CF_SQL_VARCHAR">
             WHERE userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
@@ -402,7 +402,7 @@
     <cfargument name="userid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE taousers 
             SET contactid = <cfqueryparam value="#arguments.new_contactid#" cfsqltype="CF_SQL_INTEGER">
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
@@ -519,7 +519,7 @@
 
     <!--- Execute the query with error handling --->
     <cftry>
-        <cfquery name="queryResult" datasource="abod">
+        <cfquery result="result" name="queryResult" datasource="abod">
             #sql#
             <cfloop array="#paramValues#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
@@ -733,7 +733,7 @@
         <cfset var user = {}>
 
         <!--- SQL Query to join all related tables and select all fields --->
-        <cfquery name="qUserDetails" >
+        <cfquery result="result" name="qUserDetails" >
             SELECT
                 u.*,  -- All fields from taousers
                 t.*,  -- All fields from timezones

@@ -8,6 +8,6 @@
     new_buyout = new_buyout,
     new_paycycleid = new_paycycleid
 )>
-<cfquery datasource="#abod#">
+<cfquery result="result" datasource="#abod#">
     UPDATE audlocations_ins SET isfetch = 1 WHERE id = 58;
 </cfquery>

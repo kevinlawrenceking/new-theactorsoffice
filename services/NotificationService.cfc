@@ -3,7 +3,7 @@
     <cffunction name="SELfunotifications_24711" access="public" returntype="query">
         <cfargument name="currentid" type="numeric" required="true">
         
-        <cfquery name="notsall">
+        <cfquery result="result" name="notsall">
             SELECT
                 n.notID
             FROM funotifications n
@@ -22,7 +22,7 @@
         <cfargument name="userid" type="numeric" required="true">
         <cfargument name="hide_completed" type="string" required="true">
         
-        <cfquery name="notsActive">
+        <cfquery result="result" name="notsActive">
             SELECT
                 n.notID,
                 n.actionID,
@@ -206,7 +206,7 @@
 <cffunction name="UPDnotifications" access="public" returntype="void">
     <cfargument name="notificationId" type="numeric" required="true">
 
-    <cfquery name="updateQuery">
+    <cfquery result="result" name="updateQuery">
         UPDATE notifications 
         SET `read` = 1 
         WHERE id = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.notificationId#">
@@ -217,7 +217,7 @@
     <cfargument name="userid" type="numeric" required="true">
     
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE notifications 
             SET trash = 1 
             WHERE userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#"> 
@@ -239,7 +239,7 @@
         <!-- Get the current date formatted as yyyy-mm-dd -->
         <cfset var currentStartDate = DateFormat(Now(), 'yyyy-mm-dd')>
 
-        <cfquery name="reminders" datasource="abod">
+        <cfquery result="result" name="reminders" datasource="abod">
             SELECT count(*) AS reminderstotal
             FROM funotifications n
             INNER JOIN fusystemusers f ON f.suID = n.suID
@@ -374,7 +374,7 @@
     <cffunction name="getNotificationsByBatchlist" access="public" returntype="query" output="false" hint="Fetch notifications by batchlist">
         <cfargument name="batchlist" type="string" required="true" hint="Comma-separated list of notification IDs"/>
 
-        <cfquery name="qNotifications" >
+        <cfquery result="result" name="qNotifications" >
             SELECT n.notID
             FROM funotifications n
             WHERE n.notid IN (#arguments.batchlist#)

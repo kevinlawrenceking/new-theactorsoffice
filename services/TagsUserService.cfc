@@ -179,7 +179,7 @@
     <cfargument name="tagtype" type="string" required="true">
 
     
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             INSERT INTO tags_user (tagname, userid, tagtype)
             VALUES (
                 <cfqueryparam value="#arguments.tagname#" cfsqltype="CF_SQL_VARCHAR">,
@@ -193,7 +193,7 @@
     <cfargument name="select_userid" type="numeric" required="true">
     
     
-        <cfquery datasource="abod" name="updateQuery">
+        <cfquery result="result" datasource="abod" name="updateQuery">
             UPDATE tags_user 
             SET IsTeam = 1 
             WHERE userid = <cfqueryparam value="#arguments.select_userid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -225,7 +225,7 @@
         
         <cfset arrayAppend(params, {value=arguments.select_userid, cfsqltype="CF_SQL_INTEGER"})>
         
-        <cfquery name="updateQuery" datasource="abod">
+        <cfquery result="result" name="updateQuery" datasource="abod">
             #sql#
             <cfloop array="#params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
@@ -238,7 +238,7 @@
     <cfset var queryResult = "">
     
     
-        <cfquery name="queryResult" datasource="abod">
+        <cfquery result="result" name="queryResult" datasource="abod">
             SELECT tagname 
             FROM tags_user 
             WHERE userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 

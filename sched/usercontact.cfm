@@ -4,7 +4,7 @@
 
 
 
-<cfquery name="loginQuery" datasource="abod" >
+<cfquery result="result" name="loginQuery" datasource="abod" >
   SELECT * FROM taousers_tbl
 </cfquery>       
 <cfloop query="loginQuery">
@@ -17,7 +17,7 @@
     
             <cfset new_contactid = result.generatedkey />
     
-            <cfquery name="InsertContact"  datasource="abod" >  
+            <cfquery result="result" name="InsertContact"  datasource="abod" >  
             update taousers
             set contactid = #new_contactid#
             where userid = #loginQuery.userid#

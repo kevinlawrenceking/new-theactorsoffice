@@ -1,4 +1,4 @@
-<cfquery name="tables" datasource="abod">
+<cfquery result="result" name="tables" datasource="abod">
     SELECT t.id, t.qry_table 
     FROM tao_files t
     WHERE t.qry_table IS NOT NULL 
@@ -13,7 +13,7 @@
     <cfset new_id = tables.id />
 
     <!--- Fetch Column Details for the Current Table --->
-    <cfquery name="getColumnDetails" datasource="abod">
+    <cfquery result="result" name="getColumnDetails" datasource="abod">
         SELECT 
             c.COLUMN_NAME,                          
             c.DATA_TYPE,                            
@@ -58,7 +58,7 @@
 
     <!--- Check if column data is not empty before updating --->
     <cfif len(trim(generatedColumnData))>
-        <cfquery name="update" datasource="abod">
+        <cfquery result="result" name="update" datasource="abod">
             UPDATE tao_files   
             SET tableschema = <cfqueryparam value="#generatedColumnData#" cfsqltype="CF_SQL_LONGVARCHAR">
             WHERE id = <cfqueryparam value="#new_id#" cfsqltype="CF_SQL_INTEGER">

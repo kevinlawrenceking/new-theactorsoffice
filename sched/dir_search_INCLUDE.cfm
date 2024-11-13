@@ -36,7 +36,7 @@
             <cfset PARENTID = ListDeleteAt(ID, ListLen(ID, "/"), "/")>
  
 
-        <cfquery  name="find">
+        <cfquery result="result"  name="find">
             select Id from `pg#prefix#s`
             where #prefix#name =
             
@@ -46,7 +46,7 @@
 
         <cfif #find.recordcount# is "0">
 
-            <cfquery  name="insert">
+            <cfquery result="result"  name="insert">
                 INSERT INTO `pg#prefix#s` (`#prefix#Name`,`#prefix#Directory`, `#prefix#status`, `#prefix#size`, `#prefix#DateLastModified`, `#prefix#Ext`, `ID`,`PARENTID`)
 
                 VALUES
@@ -72,7 +72,7 @@
             <cfelse>
                 <cfset id=find.ID />
 
-                <cfquery  name="update">
+                <cfquery result="result"  name="update">
                     UPDATE `pg#prefix#s`
 
                     set `#prefix#Name` =

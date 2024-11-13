@@ -1,7 +1,7 @@
 <cfset userid = url.userid>
 <cfset searchTerm = url.searchTerm>
 
-<cfquery name="tagData">
+<cfquery result="result" name="tagData">
     SELECT tagname AS col1, tagname as id
     FROM tags_user
     WHERE userid = <cfqueryparam value="#userid#" cfsqltype="cf_sql_integer">
@@ -9,7 +9,7 @@
     ORDER BY tagname
 </cfquery>
 
-<cfquery name="contactData">
+<cfquery result="result" name="contactData">
     SELECT recordname AS col1, contactid as id
     FROM contactdetails
     WHERE userid = <cfqueryparam value="#userid#" cfsqltype="cf_sql_integer">
@@ -17,7 +17,7 @@
     ORDER BY recordname
 </cfquery>
 
-<cfquery name="appointmentData">
+<cfquery result="result" name="appointmentData">
     SELECT e.eventid as id, CONCAT(DATE_FORMAT(e.eventstart, '%m/%d/%Y'), ": ", c.recordname, " - ", e.eventtitle) AS col1
     FROM events e
     INNER JOIN eventtypes_user t ON t.eventtypename = e.eventtypename

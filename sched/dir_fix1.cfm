@@ -1,6 +1,6 @@
 
 
-<cfquery  name="pgitems">
+<cfquery result="result"  name="pgitems">
 SELECT DISTINCT PARENTID AS id FROM pgfiles WHERE PARENTID NOT IN (SELECT ID FROM pgfiles)
 AND PARENTID <> ''
 ORDER BY LENGTH(PARENTID) desc
@@ -44,7 +44,7 @@ ORDER BY LENGTH(PARENTID) desc
                    select Id from `pgDIRs`
             where id = '#id#'<cfabort>
                   </Cfoutput>
-         <cfquery  name="find">
+         <cfquery result="result"  name="find">
             select Id from `pgDIRs`
             where id =
             
@@ -53,7 +53,7 @@ ORDER BY LENGTH(PARENTID) desc
 
         <cfif #find.recordcount# is "0">
 
-            <cfquery  name="insert">
+            <cfquery result="result"  name="insert">
                 INSERT INTO `pgDIRs` (`DIRName`,`DIRDirectory`, `DIRstatus`, `DIRsize`, `DIRDateLastModified`, `DIRExt`, `ID`,`PARENTID`,`dirstatus`)
 
                 VALUES

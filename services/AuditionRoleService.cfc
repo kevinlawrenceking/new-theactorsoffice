@@ -57,7 +57,7 @@
     <cfargument name="isdirect" type="boolean" required="false" default=false>
 
     <cftry>
-        <cfquery datasource="#application.datasource#">
+        <cfquery result="result" datasource="#application.datasource#">
             INSERT INTO audroles (
                 audRoleName, 
                 audprojectID, 
@@ -96,7 +96,7 @@
     <cfargument name="audroleid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE audroles
             SET isbooked = 1
             WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
@@ -187,7 +187,7 @@
     <cfset arrayAppend(params, { value=arguments.new_audroleid, cfsqltype="CF_SQL_INTEGER" })>
 
     <cftry>
-        <cfquery datasource="#abod#" name="updateQuery">
+        <cfquery result="result" datasource="#abod#" name="updateQuery">
             #sql#
             <cfloop array="#params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
@@ -204,7 +204,7 @@
     <cfargument name="newAudRoleId" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE audroles 
             SET #arguments.statusField# = <cfqueryparam value="0" cfsqltype="CF_SQL_INTEGER"> 
             WHERE audroleid = <cfqueryparam value="#arguments.newAudRoleId#" cfsqltype="CF_SQL_INTEGER">
@@ -221,7 +221,7 @@
     <cfargument name="newAudroleId" type="numeric" required="true">
 
     <cftry>
-        <cfquery name="updateQuery" datasource="abod">
+        <cfquery result="result" name="updateQuery" datasource="abod">
             UPDATE audroles
             SET #arguments.statusField# = <cfqueryparam value="1" cfsqltype="CF_SQL_BIT">
             WHERE audroleid = <cfqueryparam value="#arguments.newAudroleId#" cfsqltype="CF_SQL_INTEGER">
@@ -459,7 +459,7 @@
     <cfargument name="audroleid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE audroles
             SET isdeleted = 1
             WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
@@ -501,7 +501,7 @@
     <cfargument name="audroleid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE audroles
             SET iscallback = <cfqueryparam value="#arguments.new_iscallback#" cfsqltype="CF_SQL_BIT">,
                 isredirect = <cfqueryparam value="#arguments.new_isredirect#" cfsqltype="CF_SQL_BIT">,
@@ -528,7 +528,7 @@
     <cfargument name="new_audRoleID" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="#application.datasource#" name="updateQuery">
+        <cfquery result="result" datasource="#application.datasource#" name="updateQuery">
             UPDATE audroles 
             SET 
                 audRoleName = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audRoleName#" maxlength="500" null="#NOT len(trim(arguments.new_audRoleName))#">,
@@ -566,7 +566,7 @@
     <cfargument name="isredirect" type="boolean" required="false" default=false>
 
     <cftry>
-        <cfquery datasource="#application.datasource#">
+        <cfquery result="result" datasource="#application.datasource#">
             INSERT INTO audroles (
                 audRoleName, 
                 audprojectID, 
@@ -602,7 +602,7 @@
     <cfargument name="audsourceid" type="numeric" required="true">
     
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE audroles 
             SET submitsiteid = NULL, contactid = NULL, opencallid = NULL 
             WHERE audsourceid = <cfqueryparam value="#arguments.audsourceid#" cfsqltype="CF_SQL_INTEGER">
@@ -666,7 +666,7 @@
     <cfargument name="isredirect" type="boolean" required="true">
 
     <cftry>
-        <cfquery datasource="#application.datasource#">
+        <cfquery result="result" datasource="#application.datasource#">
             INSERT INTO audroles (
                 audRoleName, 
                 audprojectID, 
@@ -724,7 +724,7 @@
     <cfargument name="new_audRoleID" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="#application.datasource#">
+        <cfquery result="result" datasource="#application.datasource#">
             UPDATE audroles 
             SET 
                 audRoleName = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audRoleName)#" maxlength="500" null="#NOT len(trim(arguments.new_audRoleName))#">,

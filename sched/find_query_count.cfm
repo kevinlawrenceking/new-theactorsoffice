@@ -8,7 +8,7 @@
         <cfset fileContent = fileRead(fullFilePath)>
 
         <!--- Count the number of <cfquery> blocks --->
-        <cfset cfqueryCount = ListLen(fileContent, "<cfquery ")>
+        <cfset cfqueryCount = ListLen(fileContent, "<cfquery result="result" ")>
 
         <!--- Output the file name and number of queries found --->
         <cfoutput>
@@ -17,7 +17,7 @@
         </cfoutput>
 
         <!--- Update the number of queries in tao_files --->
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE tao_files
             SET qry_no = <cfqueryparam value="#cfqueryCount#" cfsqltype="cf_sql_integer">
             WHERE filename = <cfqueryparam value="#fileList.name#" cfsqltype="cf_sql_varchar">

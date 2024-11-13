@@ -143,7 +143,7 @@
         <cfargument name = "new_releasetime" type = "string" required = "false"/>
         <cfargument name = "new_hoursavail" type = "numeric" required = "false"/>
     
-        <cfquery datasource = "#abodName#">
+        <cfquery result="result" datasource = "#abodName#">
             INSERT INTO taoversions (
             major, minor, patch, versionstatus, versiontype, version, build,
             reviewDate, releaseDate, reviewtime, releasetime, hoursavail
@@ -239,7 +239,7 @@
         <cfset sql &= " WHERE verid = ?">
         <cfset arrayAppend(params, arguments.verid)>
     
-        <cfquery datasource = "#application.datasource#" name = "updateQuery">#sql#
+        <cfquery result="result" datasource = "#application.datasource#" name = "updateQuery">#sql#
             <cfsilent>
                 <!--- Loop through parameters and bind them --->
                 <cfloop from = 1 to = #arrayLen(params)# index = i>

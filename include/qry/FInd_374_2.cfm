@@ -5,6 +5,6 @@
     eventStartTime=eventStartTime,
     eventStopTime=eventStopTime
 )>
-<cfquery datasource="abod">
+<cfquery result="result" datasource="abod">
     UPDATE database SET isfetch = 1 WHERE fileName = 'FInd_374_2.cfm'
 </cfquery>

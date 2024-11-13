@@ -5,7 +5,7 @@
 
     <cfset var queryResult = "">
     
-    <cfquery name="queryResult">
+    <cfquery result="result" name="queryResult">
         INSERT INTO audcontacts_auditions_xref (contactid, audprojectid, xrefnotes)
         SELECT DISTINCT x.contactid, r.audprojectid, 'Was missing - audition_check.cfm' AS xrefnotes
         FROM eventcontactsxref x
@@ -59,7 +59,7 @@ function getAuditionContacts(required numeric audprojectid, required numeric new
     <cfargument name="audprojectid" type="numeric" required="true">
     <cfargument name="contactid" type="numeric" required="true">
 
-    <cfquery name="qryInsert">
+    <cfquery result="result" name="qryInsert">
         INSERT IGNORE INTO audcontacts_auditions_xref 
         SET 
             audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">, 
@@ -117,7 +117,7 @@ function getAuditionContacts(required numeric audprojectid, required numeric new
     <cfargument name="audprojectid" type="numeric" required="true">
     <cfargument name="deletecontactid" type="numeric" required="true">
 
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             DELETE FROM audcontacts_auditions_xref 
             WHERE audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="cf_sql_integer"> 
             AND contactid = <cfqueryparam value="#arguments.deletecontactid#" cfsqltype="cf_sql_integer">
@@ -128,7 +128,7 @@ function getAuditionContacts(required numeric audprojectid, required numeric new
     <cfargument name="audprojectid" type="numeric" required="true">
     <cfargument name="contactid" type="numeric" required="true">
 
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             INSERT IGNORE INTO audcontacts_auditions_xref 
             SET audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="cf_sql_integer">, 
                 contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_integer">

@@ -24,13 +24,13 @@
     
 
     
-     <cfquery    name="u"  >
+     <cfquery result="result"    name="u"  >
         SELECT * from taousers     
     </cfquery>
 
     <cfloop query="u">
 
-         <cfquery  name="x"  >
+         <cfquery result="result"  name="x"  >
             SELECT toneid,
 tone,
 audcatid,
@@ -40,14 +40,14 @@ isDeleted
 
         <cfloop query="x">
             
-             <cfquery  name="find"  >
+             <cfquery result="result"  name="find"  >
             Select * from audtones_user
             where tone = '#x.tone#' and userid = #u.userid#
             </cfquery>
             
             <cfif #find.recordcount# is "0">
             
-                 <cfquery  name="insert"  >
+                 <cfquery result="result"  name="insert"  >
                     
                     INSERT INTO `audtones_user` (`toneid`,`tone`, `audcatid`, `userid`) 
                     VALUES (#x.toneid#,'#x.tone#','#x.audcatid#',#u.userid#);

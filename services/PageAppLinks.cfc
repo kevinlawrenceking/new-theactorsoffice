@@ -3,7 +3,7 @@
     <cffunction name="GetPageAppLinks" access="public" returntype="query" output="false">
         <cfargument name="pgid" type="numeric" required="yes">
 
-        <cfquery name="FindLinksT">
+        <cfquery result="result" name="FindLinksT">
             SELECT 
                 l.linkid, 
                 l.linkurl, 

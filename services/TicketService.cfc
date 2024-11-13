@@ -16,7 +16,7 @@
     <cfargument name="new_esthours" type="numeric" required="false">
 
     <cftry>
-        <cfquery datasource="#abod#" name="updateTicketQuery">
+        <cfquery result="result" datasource="#abod#" name="updateTicketQuery">
             UPDATE tickets SET 
                 ticketname = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_ticketname#">,
                 ticketdetails = <cfqueryparam cfsqltype="cf_sql_longvarchar" value="#arguments.new_ticketdetails#">,
@@ -75,7 +75,7 @@
 
     <!--- Execute the query within a try/catch block for error handling --->
     <cftry>
-        <cfquery name="queryResult" datasource="abod">
+        <cfquery result="result" name="queryResult" datasource="abod">
             #sql#
             <cfloop array="#paramList#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
@@ -134,7 +134,7 @@
     <cfargument name="recid" type="numeric" required="true" hint="The ID of the ticket to update.">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE tickets_tbl 
             SET ticketstatus = <cfqueryparam value="Closed" cfsqltype="CF_SQL_VARCHAR">, 
                 isdeleted = <cfqueryparam value="1" cfsqltype="CF_SQL_BIT">
@@ -258,7 +258,7 @@
     <cfargument name="new_ticketid" type="numeric" required="true" hint="The ID of the ticket to update.">
     
     <cftry>
-        <cfquery name="updateStatus" datasource="abod">
+        <cfquery result="result" name="updateStatus" datasource="abod">
             UPDATE tickets 
             SET ticketstatus = <cfqueryparam value="Tested - Success" cfsqltype="CF_SQL_VARCHAR">
             WHERE ticketid = <cfqueryparam value="#arguments.new_ticketid#" cfsqltype="CF_SQL_INTEGER">
@@ -274,7 +274,7 @@
     <cfargument name="new_ticketid" type="numeric" required="true">
 
     <cftry>
-        <cfquery name="updateQuery" datasource="abod">
+        <cfquery result="result" name="updateQuery" datasource="abod">
             UPDATE tickets 
             SET ticketstatus = <cfqueryparam value="Tested - Bug" cfsqltype="CF_SQL_VARCHAR"> 
             WHERE ticketid = <cfqueryparam value="#arguments.new_ticketid#" cfsqltype="CF_SQL_INTEGER">
@@ -344,7 +344,7 @@
     <cfargument name="qstring" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             INSERT INTO tickets (
                 pgid, verid, ticketName, ticketdetails, tickettype, userid, ticketactive, ticketstring
             ) VALUES (
@@ -483,7 +483,7 @@
     <cfargument name="ticketid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="#abod#" name="updateQuery">
+        <cfquery result="result" datasource="#abod#" name="updateQuery">
             UPDATE tickets 
             SET 
                 ticketname = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_ticketname#" />,
@@ -568,7 +568,7 @@
     <cfargument name="recid" type="numeric" required="true">
     
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE tickets 
             SET ticketCompletedDate = <cfqueryparam value="#now()#" cfsqltype="cf_sql_timestamp" />, 
                 complete_email = <cfqueryparam value="1" cfsqltype="cf_sql_bit" />
@@ -640,7 +640,7 @@
     <cfargument name="userLastName" type="string" required="true">
 
     <cftry>
-        <cfquery name="updateTicket" datasource="abod">
+        <cfquery result="result" name="updateTicket" datasource="abod">
             UPDATE tickets
             SET ticketstatus = <cfqueryparam value="Closed" cfsqltype="cf_sql_varchar">,
                 ticketcompleteddate = CURDATE(),
@@ -661,7 +661,7 @@
     <cfargument name="recid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE tickets 
             SET ticketCompletedDate = <cfqueryparam value="#now()#" cfsqltype="cf_sql_timestamp">,
                 ticketstatus = <cfqueryparam value="Completed" cfsqltype="cf_sql_varchar">,
@@ -686,7 +686,7 @@
     <cfargument name="status" type="string" required="true" default="Pass">
     
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE tickets 
             SET ticketstatus = <cfqueryparam value="#arguments.status#" cfsqltype="cf_sql_varchar" />
             WHERE ticketid = <cfqueryparam value="#arguments.ticketId#" cfsqltype="cf_sql_integer" />
@@ -704,7 +704,7 @@
     <cfargument name="new_ticketpriority" type="string" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE tickets
             <cfif arguments.new_verid is "NULL">
                 SET verid = NULL, ticketstatus = 'Pending'
@@ -783,7 +783,7 @@
     <cfset var resultQuery = "">
     
     <cftry>
-        <cfquery name="resultQuery" datasource="abod">
+        <cfquery result="result" name="resultQuery" datasource="abod">
             SELECT 
                 v.major, 
                 v.minor, 
@@ -833,7 +833,7 @@
     <cfset var queryResult = "">
     
     <cftry>
-        <cfquery name="queryResult" datasource="abod">
+        <cfquery result="result" name="queryResult" datasource="abod">
             SELECT 
                 'ID' AS head1, 
                 'Details' AS head2, 

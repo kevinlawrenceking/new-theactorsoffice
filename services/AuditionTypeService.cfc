@@ -143,7 +143,7 @@ function getAudtypes(new_audcatid) {
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             INSERT INTO audtypes (audtype, audCatid, isDeleted)
             VALUES (
                 <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audtype#" maxlength="100" null="#NOT len(trim(arguments.new_audtype))#">,
@@ -180,7 +180,7 @@ function getAudtypes(new_audcatid) {
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_audtypeid" type="numeric" required="true">
 
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             UPDATE audtypes 
             SET 
                 audtype = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audtype)#" maxlength="100" null="#NOT len(trim(arguments.new_audtype))#">,

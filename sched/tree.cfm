@@ -1,6 +1,6 @@
 
 
-<cfquery  name="ParentFolder">
+<cfquery result="result"  name="ParentFolder">
 select * from pgdirs order by length(id) ASC
 </cfquery>
    
@@ -13,7 +13,7 @@ select * from pgdirs order by length(id) ASC
 
   
         
-            <cfquery  name="Files">
+            <cfquery result="result"  name="Files">
     select * from pgfiles where parentid = '#ParentFolder.id#' and fileext = 'cfm'
     </cfquery>
      

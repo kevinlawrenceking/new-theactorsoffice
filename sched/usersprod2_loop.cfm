@@ -4,7 +4,7 @@
 
 
 
-<cfquery name="x" datasource="abo" >
+<cfquery result="result" name="x" datasource="abo" >
   SELECT * FROM taousers_tbl
 </cfquery>
 
@@ -12,7 +12,7 @@
  
 
     
-  <cfquery name="setHashedPassword" datasource="abod" >
+  <cfquery result="result" name="setHashedPassword" datasource="abod" >
     UPDATE taousers_tbl
     SET
       isDeleted = #x.Isdeleted#

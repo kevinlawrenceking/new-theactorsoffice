@@ -100,7 +100,7 @@
     <cffile action="copy" source="#defaultAvatarUrl#" destination="#userAvatarPath#" />
 </cfif>
 
-<cfquery datasource="#dsn#" name="C">
+<cfquery result="result" datasource="#dsn#" name="C">
     SELECT contactid, recordname
     FROM contactdetails
     WHERE userid = <cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">
@@ -126,7 +126,7 @@
 </cfloop>
 
 
-<cfquery datasource="#dsn#" name="update_tags">
+<cfquery result="result" datasource="#dsn#" name="update_tags">
     UPDATE tags_user
     SET IsTeam = 1
     WHERE userid = <cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER"> and tagname IN (
@@ -135,7 +135,7 @@
 
 <cfset n=0 />
 
-<cfquery datasource="#dsn#" name="x">
+<cfquery result="result" datasource="#dsn#" name="x">
     SELECT auddialectid,
     auddialect,
     audcatid,
@@ -146,7 +146,7 @@
 
 <cfloop query="x">
 
-    <cfquery datasource="#dsn#" name="find">
+    <cfquery result="result" datasource="#dsn#" name="find">
         Select * from auddialects_user
         where auddialect = '#x.auddialect#' and userid = <cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
@@ -160,7 +160,7 @@
             </cfif>
         </cfoutput>
 
-        <cfquery datasource="#dsn#" name="insert">
+        <cfquery result="result" datasource="#dsn#" name="insert">
             INSERT INTO auddialects_user (auddialect, audcatid, userid)
             VALUES ('#x.auddialect#','#x.audcatid#',<cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">);
         </cfquery>
@@ -173,7 +173,7 @@
 
 <cfset n=0 />
 
-<cfquery datasource="#dsn#" name="x">
+<cfquery result="result" datasource="#dsn#" name="x">
     select audgenreid,
     audgenre,
     audcatid,
@@ -183,7 +183,7 @@
 </cfquery>
 
 <cfloop query="x">
-    <cfquery datasource="#dsn#" name="find">
+    <cfquery result="result" datasource="#dsn#" name="find">
         Select * from audgenres_user
         where audgenre = '#x.audgenre#' and userid = <cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
@@ -196,7 +196,7 @@
             </cfif>
         </cfoutput>
 
-        <cfquery datasource="#dsn#" name="insert">
+        <cfquery result="result" datasource="#dsn#" name="insert">
             INSERT INTO audgenres_user (audgenre, audcatid, userid)
             VALUES ('#x.audgenre#','#x.audcatid#',<cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">);
         </cfquery>
@@ -211,7 +211,7 @@
 
 <cfset n=0 />
 
-<cfquery datasource="#dsn#" name="x">
+<cfquery result="result" datasource="#dsn#" name="x">
     select networkid,
     network,
     audcatid,
@@ -221,7 +221,7 @@
 </cfquery>
 
 <cfloop query="x">
-    <cfquery datasource="#dsn#" name="find">
+    <cfquery result="result" datasource="#dsn#" name="find">
         Select * from audnetworks_user
         where network = '#x.network#' and userid = <cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
@@ -234,7 +234,7 @@
             </cfif>
         </cfoutput>
 
-        <cfquery datasource="#dsn#" name="insert">
+        <cfquery result="result" datasource="#dsn#" name="insert">
             INSERT INTO audnetworks_user (network, audcatid, userid)
             VALUES ('#x.network#','#x.audcatid#',<cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">);
         </cfquery>
@@ -249,12 +249,12 @@
 
 <cfset n=0 />
 
-<cfquery datasource="#dsn#" name="x">
+<cfquery result="result" datasource="#dsn#" name="x">
     select opencallname FROM audopencalloptions WHERE isdeleted = <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
 </cfquery>
 
 <cfloop query="x">
-    <cfquery datasource="#dsn#" name="find">
+    <cfquery result="result" datasource="#dsn#" name="find">
         select opencallname
         FROM audopencalloptions_user
         where opencallname = '#x.opencallname#' and userid = <cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">
@@ -268,7 +268,7 @@
             </cfif>
         </cfoutput>
 
-        <cfquery datasource="#dsn#" name="insert">
+        <cfquery result="result" datasource="#dsn#" name="insert">
             INSERT INTO audopencalloptions_user (opencallname, userid)
             VALUES ('#x.opencallname#', <cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">);
         </cfquery>
@@ -281,7 +281,7 @@
 
 <cfset n=0 />
 
-<cfquery datasource="#dsn#" name="x">
+<cfquery result="result" datasource="#dsn#" name="x">
     select audplatformid,
     audplatform,
     isDeleted
@@ -289,7 +289,7 @@
 </cfquery>
 
 <cfloop query="x">
-    <cfquery datasource="#dsn#" name="find">
+    <cfquery result="result" datasource="#dsn#" name="find">
         Select * from audplatforms_user
         where audplatform = '#x.audplatform#' and userid = <cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
@@ -302,7 +302,7 @@
             </cfif>
         </cfoutput>
 
-        <cfquery datasource="#dsn#" name="insert">
+        <cfquery result="result" datasource="#dsn#" name="insert">
             INSERT INTO audplatforms_user (audplatform, userid)
             VALUES ('#x.audplatform#',<cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">);
         </cfquery>
@@ -317,12 +317,12 @@
 
 <cfset n=0 />
 
-<cfquery datasource="#dsn#" name="x">
+<cfquery result="result" datasource="#dsn#" name="x">
     SELECT * FROM audquestions_default where isdeleted = <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
 </cfquery>
 
 <cfloop query="x">
-    <cfquery datasource="#dsn#" name="find">
+    <cfquery result="result" datasource="#dsn#" name="find">
         Select * from audquestions_user
         where isdeleted is false and qorder = #x.qorder# and userid = <cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
@@ -335,7 +335,7 @@
             </cfif>
         </cfoutput>
 
-        <cfquery datasource="#dsn#" name="insert">
+        <cfquery result="result" datasource="#dsn#" name="insert">
             INSERT INTO audquestions_user (qtypeid, qtext, qorder, userid)
             VALUES (#x.qtypeid#, '#x.qtext#', #x.qorder#, <cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">);
         </cfquery>
@@ -348,12 +348,12 @@
 
 <cfset n=0 />
 
-<cfquery datasource="#dsn#" name="x">
+<cfquery result="result" datasource="#dsn#" name="x">
     SELECT submitsitename,catlist FROM audsubmitsites
 </cfquery>
 
 <cfloop query="x">
-    <cfquery datasource="#dsn#" name="find">
+    <cfquery result="result" datasource="#dsn#" name="find">
         Select * from audsubmitsites_user
         where submitsitename = '#x.submitsitename#' and userid = <cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
@@ -366,7 +366,7 @@
             </cfif>
         </cfoutput>
 
-        <cfquery datasource="#dsn#" name="insert">
+        <cfquery result="result" datasource="#dsn#" name="insert">
             INSERT INTO audsubmitsites_user (submitsitename, catlist, userid)
             VALUES ('#x.submitsitename#','#x.catlist#',<cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">);
         </cfquery>
@@ -379,7 +379,7 @@
 
 <cfset n=0 />
 
-<cfquery datasource="#dsn#" name="x">
+<cfquery result="result" datasource="#dsn#" name="x">
     select toneid,
     tone,
     audcatid,
@@ -389,7 +389,7 @@
 </cfquery>
 
 <cfloop query="x">
-    <cfquery datasource="#dsn#" name="find">
+    <cfquery result="result" datasource="#dsn#" name="find">
         Select * from audtones_user
         where tone = '#x.tone#' and userid = <cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
@@ -402,7 +402,7 @@
             </cfif>
         </cfoutput>
 
-        <cfquery datasource="#dsn#" name="insert">
+        <cfquery result="result" datasource="#dsn#" name="insert">
             INSERT INTO audtones_user (tone, audcatid, userid)
             VALUES ('#x.tone#','#x.audcatid#',<cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">);
         </cfquery>
@@ -415,7 +415,7 @@
 
 <cfset n=0 />
 
-<cfquery datasource="#dsn#" name="x">
+<cfquery result="result" datasource="#dsn#" name="x">
     select eventTypeName,
     eventtypedescription,
     eventtypecolor
@@ -424,7 +424,7 @@
 </cfquery>
 
 <cfloop query="x">
-    <cfquery datasource="#dsn#" name="find">
+    <cfquery result="result" datasource="#dsn#" name="find">
         select eventTypeName,
         eventtypedescription,
         eventtypecolor
@@ -440,7 +440,7 @@
             </cfif>
         </cfoutput>
 
-        <cfquery datasource="#dsn#" name="insert">
+        <cfquery result="result" datasource="#dsn#" name="insert">
             INSERT INTO eventtypes_user (eventTypeName, eventtypedescription, eventtypecolor, userid)
             VALUES ('#x.eventTypeName#', '#x.eventtypedescription#', '#x.eventtypecolor#', <cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">);
         </cfquery>
@@ -453,12 +453,12 @@
 
 <cfset n=0 />
 
-<cfquery datasource="#dsn#" name="x">
+<cfquery result="result" datasource="#dsn#" name="x">
     SELECT genderpronoun, genderpronounplural FROM genderpronouns where isdeleted = <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
 </cfquery>
 
 <cfloop query="x">
-    <cfquery datasource="#dsn#" name="find">
+    <cfquery result="result" datasource="#dsn#" name="find">
         Select * from genderpronouns_users
         where genderpronoun = '#x.genderpronoun#' and userid = <cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
@@ -471,7 +471,7 @@
             </cfif>
         </cfoutput>
 
-        <cfquery datasource="#dsn#" name="insert">
+        <cfquery result="result" datasource="#dsn#" name="insert">
             INSERT INTO genderpronouns_users (genderpronoun, genderpronounplural, userid)
             VALUES ('#x.genderpronoun#','#x.genderpronounplural#',<cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">);
         </cfquery>
@@ -484,12 +484,12 @@
 
 <cfset n=0 />
 
-<cfquery datasource="#dsn#" name="x">
+<cfquery result="result" datasource="#dsn#" name="x">
     select typeid, valuetype, typeicon FROM itemtypes
 </cfquery>
 
 <cfloop query="x">
-    <cfquery datasource="#dsn#" name="find">
+    <cfquery result="result" datasource="#dsn#" name="find">
         Select * from itemtypes_user
         where valuetype = '#x.valuetype#' and userid = <cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
@@ -502,7 +502,7 @@
             </cfif>
         </cfoutput>
 
-        <cfquery datasource="#dsn#" name="insert">
+        <cfquery result="result" datasource="#dsn#" name="insert">
             INSERT INTO itemtypes_user (valuetype, typeicon, userid)
             VALUES ('#x.valuetype#', '#x.typeicon#', <cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">);
         </cfquery>
@@ -515,7 +515,7 @@
 
 <cfset n=0 />
 
-<cfquery datasource="#dsn#" name="x">
+<cfquery result="result" datasource="#dsn#" name="x">
     select DISTINCT c.catid, i.valuetype
     FROM itemcategory c
     inner join itemcatxref x ON x.catid = c.catid
@@ -527,14 +527,14 @@
 <cfloop query="x">
     <cfset new_catid=x.catid />
 
-    <cfquery datasource="#dsn#" name="find">
+    <cfquery result="result" datasource="#dsn#" name="find">
         Select typeid from itemtypes_user
         where valuetype = '#x.valuetype#' and userid = <cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 
     <cfset new_typeid=find.typeid />
 
-    <cfquery datasource="#dsn#" name="check">
+    <cfquery result="result" datasource="#dsn#" name="check">
         select * from itemcatxref_user where userid = <cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER"> and typeid = #new_typeid# and catid = #new_catid#
     </cfquery>
 
@@ -546,7 +546,7 @@
             </cfif>
         </cfoutput>
 
-        <cfquery datasource="#dsn#" name="insert">
+        <cfquery result="result" datasource="#dsn#" name="insert">
             INSERT INTO itemcatxref_user (typeid, catid, userid)
             VALUES (#new_typeid#, #new_catid#, <cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">);
         </cfquery>
@@ -559,12 +559,12 @@
 
 <cfset n=0 />
 
-<cfquery datasource="#dsn#" name="x">
+<cfquery result="result" datasource="#dsn#" name="x">
     SELECT * FROM pgpanels_master
 </cfquery>
 
 <cfloop query="x">
-    <cfquery datasource="#dsn#" name="find">
+    <cfquery result="result" datasource="#dsn#" name="find">
         SELECT * FROM pgpanels_user where userid = <cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER"> and pnFilename = '#x.pnFilename#' and isdeleted = <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
     </cfquery>
 
@@ -576,7 +576,7 @@
             </cfif>
         </cfoutput>
 
-        <cfquery datasource="#dsn#" name="insert">
+        <cfquery result="result" datasource="#dsn#" name="insert">
             INSERT INTO pgpanels_user (userid, pnTitle, pnFilename, pnOrderNo, pnColXl, pnColMd, pnDescription, IsVisible)
             VALUES (#select_userid#, '#x.pntitle#', '#x.pnfilename#', #x.pnOrderNo#, #x.pnColXl#, #x.pnColMd#, '#x.pnDescription#', 1);
         </cfquery>
@@ -585,12 +585,12 @@
 
 <cfset n=0 />
 
-<cfquery datasource="#dsn#" name="x">
+<cfquery result="result" datasource="#dsn#" name="x">
     SELECT * FROM tags
 </cfquery>
 
 <cfloop query="x">
-    <cfquery datasource="#dsn#" name="find">
+    <cfquery result="result" datasource="#dsn#" name="find">
         Select * from tags_user
         where tagname = '#x.tagname#' and userid = <cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
@@ -603,7 +603,7 @@
             </cfif>
         </cfoutput>
 
-        <cfquery datasource="#dsn#" name="insert">
+        <cfquery result="result" datasource="#dsn#" name="insert">
             INSERT INTO tags_user (tagname, userid)
             VALUES ('#x.tagname#', <cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">);
         </cfquery>
@@ -614,12 +614,12 @@
     </cfif>
 </cfloop>
 
-<cfquery datasource="#dsn#" name="x">
+<cfquery result="result" datasource="#dsn#" name="x">
     SELECT tagname, isteam, iscasting, tagtype FROM tags
 </cfquery>
 
 <cfloop query="x">
-    <cfquery datasource="#dsn#" name="insert">
+    <cfquery result="result" datasource="#dsn#" name="insert">
         update tags_user
         set isteam = #x.isteam#, iscasting = #x.iscasting#, tagtype = '#x.tagtype#'
         where tagname = '#x.tagname#'
@@ -628,12 +628,12 @@
 
 <Cfset n=0 />
 
-<cfquery datasource="#dsn#" name="x">
+<cfquery result="result" datasource="#dsn#" name="x">
     select sitetypename, sitetypedescription from sitetypes_master
 </cfquery>
 
 <cfloop query="x">
-    <cfquery datasource="#dsn#" name="find">
+    <cfquery result="result" datasource="#dsn#" name="find">
         Select * from sitetypes_user
         where sitetypename = '#x.sitetypename#' and userid = <cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
@@ -646,7 +646,7 @@
             </cfif>
         </cfoutput>
 
-        <cfquery datasource="#dsn#" name="insert">
+        <cfquery result="result" datasource="#dsn#" name="insert">
             INSERT INTO sitetypes_user (siteTypeName, siteTypeDescription, userid)
             VALUES ('#x.sitetypename#', '#x.sitetypedescription#', <cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">);
         </cfquery>
@@ -659,7 +659,7 @@
 
 <cfset n=0 />
 
-<cfquery datasource="#dsn#" name="x">
+<cfquery result="result" datasource="#dsn#" name="x">
     SELECT
         s.id,
         s.sitename,
@@ -675,7 +675,7 @@
 </cfquery>
 
 <cfloop query="x">
-    <cfquery datasource="#dsn#" name="find">
+    <cfquery result="result" datasource="#dsn#" name="find">
         SELECT sitetypeid
         FROM sitetypes_user
         WHERE sitetypename = <cfqueryparam value="#x.sitetypename#" cfsqltype="CF_SQL_VARCHAR">
@@ -705,7 +705,7 @@
             </cfoutput>
         </cfif>
 
-        <cfquery datasource="#dsn#" name="find2">
+        <cfquery result="result" datasource="#dsn#" name="find2">
             SELECT *
             FROM sitelinks_user
             WHERE sitename = <cfqueryparam value="#x.sitename#" cfsqltype="CF_SQL_VARCHAR">
@@ -726,7 +726,7 @@
                 </cfoutput>
             </cfif>
 
-            <cfquery datasource="#dsn#" name="insert">
+            <cfquery result="result" datasource="#dsn#" name="insert">
                 INSERT INTO sitelinks_user_tbl (siteName, siteURL, siteicon, siteTypeid, userid)
                 VALUES (
                     <cfqueryparam value="#x.sitename#" cfsqltype="CF_SQL_VARCHAR">,
@@ -750,7 +750,7 @@
 
 
 
-<cfquery datasource="#dsn#" name="x">
+<cfquery result="result" datasource="#dsn#" name="x">
     SELECT sitetypeid, sitetypename, sitetypedescription from sitetypes_user where userid = <cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">
 </cfquery>
 
@@ -760,7 +760,7 @@
         <cfset new_sitetypeid = x.sitetypeid />
     </cfoutput>
 
-    <cfquery name="Findtotal" maxrows="1" datasource="#dsn#">
+    <cfquery result="result" name="Findtotal" maxrows="1" datasource="#dsn#">
         Select p.pnOrderno + 1 as new_pnOrderNo
         from pgpanels_user p 
         where p.userid = <cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">
@@ -774,7 +774,7 @@
 
     <cfset new_pnid = PN.generated_key />
 
-    <cfquery name="add" datasource="#dsn#"> 
+    <cfquery result="result" name="add" datasource="#dsn#"> 
         update sitetypes_user
         set pnid = <cfqueryparam value="#new_pnid#" cfsqltype="CF_SQL_INTEGER"> where sitetypeid = <cfqueryparam value="#new_sitetypeid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>

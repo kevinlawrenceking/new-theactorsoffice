@@ -14,7 +14,7 @@
         <cfset whereClause &= arrayToList(paramList, " AND ")>
     </cfif>
 
-    <cfquery name="queryResult">
+    <cfquery result="result" name="queryResult">
         #sql##whereClause#
         <cfloop collection="#arguments.conditions#" item="key">
             <cfqueryparam value="#arguments.conditions[key]#" cfsqltype="#determineSQLType(key)#">

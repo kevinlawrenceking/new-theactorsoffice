@@ -1,5 +1,5 @@
 <!--- Query to get distinct table names from tao_files --->
-<cfquery name="getDistinctTables" datasource="abod">
+<cfquery result="result" name="getDistinctTables" datasource="abod">
     SELECT DISTINCT qry_table
     FROM tao_files
     WHERE qry_table IS NOT NULL 
@@ -11,7 +11,7 @@
 <cfloop query="getDistinctTables">
 
     <!--- Query to get table schema from information_schema --->
-    <cfquery name="getTableSchema" datasource="abod">
+    <cfquery result="result" name="getTableSchema" datasource="abod">
         SELECT COLUMN_NAME, DATA_TYPE, COLUMN_DEFAULT, IS_NULLABLE, CHARACTER_MAXIMUM_LENGTH
         FROM information_schema.COLUMNS
         WHERE TABLE_SCHEMA = 'new_development' 
@@ -51,7 +51,7 @@
     <cfset createScriptContent = Left(createScriptContent, Len(createScriptContent) - 2) & "\n);">
 
     <!--- Insert the table name and schema into the tao_tables table --->
-    <cfquery datasource="abod">
+    <cfquery result="result" datasource="abod">
         INSERT INTO tao_tables (qry_table, create_script)
         VALUES (
             <cfqueryparam value="#getDistinctTables.qry_table#" cfsqltype="cf_sql_varchar" maxlength="255">,

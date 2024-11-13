@@ -15,7 +15,7 @@
     
 <!--- Data set after filtering --->
 
- <cfquery datasource="#dsn#" name="qFiltered" >
+ <cfquery result="result" datasource="#dsn#" name="qFiltered" >
 SELECT contactid,col1,col2,col2b,col3,col4,col5,userid, hlink 
     from #contacts_table#
     
@@ -102,7 +102,7 @@ AND
 </cfquery>
  
 <!--- Total data set length --->
-<cfquery datasource="#dsn#" dbtype="query" name="qCount">
+<cfquery result="result" datasource="#dsn#" dbtype="query" name="qCount">
 SELECT COUNT(#sIndexColumn#) as total
 FROM   qFiltered
 </cfquery>

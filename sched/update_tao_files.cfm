@@ -3,7 +3,7 @@
 
 <cfloop query="qryFiles">
 
-    <cfquery name="checkFileExists" datasource="abod">
+    <cfquery result="result" name="checkFileExists" datasource="abod">
         SELECT id
         FROM tao_files
         WHERE filename = <cfqueryparam value="#qryFiles.name#" cfsqltype="cf_sql_varchar">
@@ -13,7 +13,7 @@
  
     <cfif checkFileExists.recordcount EQ 0>
   
-        <cfquery datasource="abod">
+        <cfquery result="result" datasource="abod">
             INSERT INTO tao_files (parent_id,filename, `path`, status, qry_removed_yn, qry_extract_yn, qry_no)
             VALUES (0,
                 <cfqueryparam value="#qryFiles.name#" cfsqltype="cf_sql_varchar">,
