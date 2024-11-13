@@ -55,8 +55,8 @@
             </cfif>
         </cfif>
 
-        <cfif isdefined('userid')> 
-        defined!<Cfabort>
+        <cfif isdefined('session.userid')> 
+    
             <cfscript>
                 baseMediaPath = "C:\home\theactorsoffice.com\media-" & this.datasource;
                 baseMediaUrl = "/media-" & this.datasource;
@@ -108,6 +108,7 @@
                 session.userAvatarPath = session.userMediaPath & "\avatar.jpg";
                 session.userAvatarUrl = session.userMediaUrl & "/avatar.jpg";
             </cfscript>
+            <Cfelse>not defined!<cfabort>
         </cfif>
 
         <cfreturn true>
