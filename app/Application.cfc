@@ -42,72 +42,76 @@
         <cfreturn true />
     </cffunction>
 
-   <cffunction name="OnRequestStart" returntype="boolean" output="false">
-    <cfargument name="targetPage" required="true" type="string">
+    <cffunction name="OnRequestStart" returntype="boolean" output="false">
+        <cfargument name="targetPage" required="true" type="string">
 
-
-
-        <cfif NOT structKeyExists(session, "userid")>
-       <Cfset session.userid = 30 />
+        <cfif isDefined('u')>
+            <cfset session.userid = u />
         </cfif>
 
+        <cfif NOT isDefined('session.userid')>
+            <cfif NOT isDefined('pwpass')>
+                <cflocation url="/loginform.cfm" addtoken="no">
+            </cfif>
+        </cfif>
 
-    <!-- Initialize paths if the user is logged in -->
-    <cfif structKeyExists(session, "userid")>
-        <cfscript>
-            baseMediaPath = "C:\home\theactorsoffice.com\media-" & this.datasource;
-            baseMediaUrl = "/media-" & this.datasource;
+        <cfif isdefined('session.userid')> 
+    
+            <cfscript>
+                baseMediaPath = "C:\home\theactorsoffice.com\media-" & this.datasource;
+                baseMediaUrl = "/media-" & this.datasource;
 
-            application.imagesPath = baseMediaPath & "\images";
-            application.imagesUrl = baseMediaUrl & "/images";
+                application.imagesPath = baseMediaPath & "\images";
+                application.imagesUrl = baseMediaUrl & "/images";
 
-            application.datesPath = application.imagesPath & "\dates";
-            application.datesUrl = application.imagesUrl & "/dates";
+                application.datesPath = application.imagesPath & "\dates";
+                application.datesUrl = application.imagesUrl & "/dates";
 
-            application.defaultsPath = application.imagesPath & "\defaults";
-            application.defaultsUrl = application.imagesUrl & "/defaults";
+                application.defaultsPath = application.imagesPath & "\defaults";
+                application.defaultsUrl = application.imagesUrl & "/defaults";
 
-            application.defaultAvatarUrl = application.defaultsUrl & "/avatar.jpg";
+                application.defaultAvatarUrl = application.defaultsUrl & "/avatar.jpg";
 
-            application.emailImagesPath = application.imagesPath & "\email";
-            application.emailImagesUrl = application.imagesUrl & "/email";
+                application.emailImagesPath = application.imagesPath & "\email";
+                application.emailImagesUrl = application.imagesUrl & "/email";
 
-            application.filetypesPath = application.imagesPath & "\filetypes";
-            application.filetypesUrl = application.imagesUrl & "/filetypes";
+                application.filetypesPath = application.imagesPath & "\filetypes";
+                application.filetypesUrl = application.imagesUrl & "/filetypes";
 
-            application.retinaIconsPath = application.imagesPath & "\retina-circular-icons";
-            application.retinaIconsUrl = application.imagesUrl & "/retina-circular-icons";
+                application.retinaIconsPath = application.imagesPath & "\retina-circular-icons";
+                application.retinaIconsUrl = application.imagesUrl & "/retina-circular-icons";
 
-            application.retinaIcons14Path = application.retinaIconsPath & "\14";
-            application.retinaIcons14Url = application.retinaIconsUrl & "/14";
+                application.retinaIcons14Path = application.retinaIconsPath & "\14";
+                application.retinaIcons14Url = application.retinaIconsUrl & "/14";
 
-            application.retinaIcons32Path = application.retinaIconsPath & "\32";
-            application.retinaIcons32Url = application.retinaIconsUrl & "/32";
+                application.retinaIcons32Path = application.retinaIconsPath & "\32";
+                application.retinaIcons32Url = application.retinaIconsUrl & "/32";
 
-            session.userMediaPath = baseMediaPath & "\users\" & session.userid;
-            session.userMediaUrl = baseMediaUrl & "/users/" & session.userid;
+                session.userMediaPath = baseMediaPath & "\users\" & session.userID;
+                session.userMediaUrl = baseMediaUrl & "/users/" & session.userID;
 
-            session.userCalendarPath = session.userMediaPath;
-            session.userCalendarUrl = "https://" & host & ".theactorsoffice.com/" & session.userMediaUrl;
+                session.userCalendarPath = session.userMediaPath;
+                session.userCalendarUrl = "https://" & host & ".theactorsoffice.com/" & session.userMediaUrl;
 
-            session.userContactsPath = session.userMediaPath & "\contacts";
-            session.userContactsUrl = session.userMediaUrl & "/contacts";
+                session.userContactsPath = session.userMediaPath & "\contacts";
+                session.userContactsUrl = session.userMediaUrl & "/contacts";
 
-            session.userImportsPath = session.userMediaPath & "\imports";
-            session.userImportsUrl = session.userMediaUrl & "/imports";
+                session.userImportsPath = session.userMediaPath & "\imports";
+                session.userImportsUrl = session.userMediaUrl & "/imports";
 
-            session.userExportsPath = session.userMediaPath & "\exports";
-            session.userExportsUrl = session.userMediaUrl & "/exports";
+                session.userExportsPath = session.userMediaPath & "\exports";
+                session.userExportsUrl = session.userMediaUrl & "/exports";
 
-            session.userSharePath = session.userMediaPath & "\share";
-            session.userShareUrl = session.userMediaUrl & "/share";
+                session.userSharePath = session.userMediaPath & "\share";
+                session.userShareUrl = session.userMediaUrl & "/share";
 
-            session.userAvatarPath = session.userMediaPath & "\avatar.jpg";
-            session.userAvatarUrl = session.userMediaUrl & "/avatar.jpg";
-        </cfscript>
-    </cfif>
+                session.userAvatarPath = session.userMediaPath & "\avatar.jpg";
+                session.userAvatarUrl = session.userMediaUrl & "/avatar.jpg";
+            </cfscript>
+            <Cfelse>not defined!<cfabort>
+        </cfif>
 
-    <cfreturn true>
-</cffunction>
+        <cfreturn true>
+    </cffunction>
 
 </cfcomponent>
