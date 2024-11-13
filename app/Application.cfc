@@ -56,6 +56,7 @@
         </cfif>
 
         <cfif isdefined('userid')> 
+        defined!<Cfabort>
             <cfscript>
                 baseMediaPath = "C:\home\theactorsoffice.com\media-" & this.datasource;
                 baseMediaUrl = "/media-" & this.datasource;
