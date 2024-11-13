@@ -878,7 +878,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="valuetype" type="string" required="true">
     <cfargument name="valueCategory" type="string" required="true">
 
-    <cftry>
+
         <cfquery >
             INSERT INTO contactitems (contactid, valuetype, itemStatus, valueCategory)
             VALUES (
@@ -888,11 +888,7 @@ function getContactDetails(required numeric uploadid) {
                 <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.valueCategory#" />
             )
         </cfquery>
-        <cfcatch type="any">
-            <cflog file="application" text="Error inserting contact item: #cfcatch.message# - Query: INSERT INTO contactitems (contactid, valuetype, itemStatus, valueCategory) VALUES (#arguments.contactid#, #trim(arguments.valuetype)#, 'Active', #arguments.valueCategory#)" />
-            <cfthrow message="Error inserting contact item." detail="#cfcatch.detail#">
-        </cfcatch>
-    </cftry>
+
 </cffunction>
 <cffunction name="UPDcontactitems_24046" access="public" returntype="void">
     <cfargument name="valuetext" type="string" required="true">
