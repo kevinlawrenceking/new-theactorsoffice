@@ -42,10 +42,11 @@ login query = 1!<BR>
         <!--- Redirect to the user's status URL --->
         <cflocation url="#loginQuery.status_url#" addtoken="false" />
     <cfelse>
+    <Cfoutput>Invalid password, redirect to login with error message</cfoutput><Cfabort>
         <!--- Invalid password, redirect to login with error message --->
         <cflocation url="/loginform.cfm?pwrong=Y" addtoken="false" />
     </cfif>
-<cfelse>
+<cfelse><Cfoutput>login recordcount: #loginQuery.recordcount#</cfoutput><Cfabort>
     <!--- No matching user found, redirect to login with error message --->
     <cflocation url="/loginform.cfm?pwrong=Y" addtoken="false" />
 </cfif>
