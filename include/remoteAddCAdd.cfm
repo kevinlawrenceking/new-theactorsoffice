@@ -18,7 +18,6 @@
 </cfif>
 
 <cfinclude template="/include/qry/add_199_3.cfm" />
-<cfset itemid = result.generatedkey />
 
 <cfparam name="new_countryname" default="" />
 <cfparam name="new_regionname" default="" />
