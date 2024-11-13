@@ -15,13 +15,13 @@ ORDER BY `tao_files`.`qry_no` DESC
         <!--- Read the file content ---> 
         <cfset fileContent = fileRead(fullFilePath)>
         
-        <!--- Find the <cfquery> block ---> 
+        <!--- Find the <cfquery result="result"> block ---> 
         <cfset startQuery = REFindNoCase("<cfquery\b[^>]*>", fileContent)>
         <cfset endQuery = REFindNoCase("</cfquery>", fileContent)>
         
         <!--- Ensure valid start and end of the query ---> 
         <cfif startQuery GT 0 AND endQuery GT startQuery>
-            <!--- Remove the <cfquery> and </cfquery> tags ---> 
+            <!--- Remove the <cfquery result="result"> and </cfquery> tags ---> 
             <cfset queryStart = FindNoCase(">", fileContent, startQuery)>
             <cfset strippedQueryBlock = trim(mid(fileContent, queryStart + 1, endQuery - (queryStart + 1)))>
                 <cfoutput>

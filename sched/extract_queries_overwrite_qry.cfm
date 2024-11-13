@@ -85,7 +85,7 @@ SELECT * FROM `tao_files` WHERE path = '/include/qry' and qry_no > 1
         <!--- Read the content of the file --->
         <cfset fileContent = ToString(fileRead(fullFilePath))>
 
-        <!--- Count the number of <cfquery> blocks --->
+        <!--- Count the number of <cfquery result="result"> blocks --->
         <cfset qryCount = ArrayLen(REMatchNoCase("<cfquery\b[^>]*>", fileContent))>
 
         <!--- Update the tao_files table with the qry_count (qry_no) --->

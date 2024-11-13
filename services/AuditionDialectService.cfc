@@ -4,7 +4,7 @@
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO auddialects (auddialect, audCatid, isDeleted) 
         VALUES (
             <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_auddialect#" maxlength="100" null="#NOT len(trim(arguments.new_auddialect))#">,
@@ -20,7 +20,7 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_auddialectid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         UPDATE auddialects 
         SET 
             auddialect = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_auddialect)#" maxlength="100" null="#NOT len(trim(arguments.new_auddialect))#" />, 

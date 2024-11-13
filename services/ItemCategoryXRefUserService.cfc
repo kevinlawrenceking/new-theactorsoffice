@@ -4,7 +4,7 @@
     <cfargument name="catid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO itemcatxref_user (typeid, catid, userid, IsCustom) 
         VALUES (
             <cfqueryparam value="#arguments.new_typeid#" cfsqltype="CF_SQL_INTEGER">,
@@ -38,7 +38,7 @@
     <cfargument name="new_catid" type="numeric" required="true">
     <cfargument name="select_userid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO itemcatxref_user (typeid, catid, userid)
         VALUES (
             <cfqueryparam value="#arguments.new_typeid#" cfsqltype="CF_SQL_INTEGER">,

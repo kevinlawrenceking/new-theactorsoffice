@@ -5,7 +5,7 @@
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="new_suStartDate" type="date" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO fuSystemUsers (systemID, contactID, userID, suStartDate, suNotes)
         VALUES (
             <cfqueryparam value="#arguments.new_systemid#" cfsqltype="CF_SQL_INTEGER">,
@@ -20,7 +20,7 @@
 <cffunction name="UPDfusystemusers" access="public" returntype="void">
     <cfargument name="suid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         UPDATE fusystemusers
         SET suStatus = <cfqueryparam value="Completed" cfsqltype="CF_SQL_VARCHAR">
         WHERE suid = <cfqueryparam value="#arguments.suid#" cfsqltype="CF_SQL_INTEGER">
@@ -98,7 +98,7 @@
     <cfargument name="suStartDate" type="date" required="true">
     <cfargument name="sunotes" type="string" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO fuSystemUsers (systemID, contactID, userID, suStartDate, sunotes)
         VALUES (
             <cfqueryparam value="#arguments.new_systemid#" cfsqltype="CF_SQL_INTEGER">,
@@ -114,7 +114,7 @@
     <cfargument name="new_userid" type="numeric" required="true">
     <cfargument name="new_contactid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         UPDATE fusystemusers 
         SET sustatus = 'Completed' 
         WHERE userid = <cfqueryparam value="#arguments.new_userid#" cfsqltype="CF_SQL_INTEGER"> 

@@ -24,7 +24,7 @@
 
 <cffunction name="UPDpgpanels_user" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
-    <cfquery>
+    <cfquery result="result">
         UPDATE pgpanels_user 
         SET isvisible = 0 
         WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
@@ -52,7 +52,7 @@
     ">
 
     <!--- Execute the query with parameter binding --->
-    <cfquery>
+    <cfquery result="result">
         #sql#
         <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
@@ -60,7 +60,7 @@
 
 <cffunction name="UPDpgpanels_user_23886" access="public" returntype="void">
     <cfargument name="pnid" type="numeric" required="true">
-    <cfquery>
+    <cfquery result="result">
         UPDATE pgpanels_user
         SET isdeleted = 1
         WHERE pnid = <cfqueryparam value="#arguments.pnid#" cfsqltype="CF_SQL_INTEGER">
@@ -69,7 +69,7 @@
 
 <cffunction name="UPDpgpanels_user_24135" access="public" returntype="void">
     <cfargument name="pnid" type="numeric" required="true">
-    <cfquery>
+    <cfquery result="result">
         UPDATE pgpanels_user
         SET isvisible = <cfqueryparam value="#arguments.isvisible#" cfsqltype="CF_SQL_BIT">
         WHERE pnid = <cfqueryparam value="#arguments.pnid#" cfsqltype="CF_SQL_INTEGER">
@@ -102,7 +102,7 @@
     <cfargument name="correctTitle" type="string" required="true">
     <cfargument name="pnid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         UPDATE pgpanels_user 
         SET pntitle = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.correctTitle#" /> 
         WHERE pnid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.pnid#" />
@@ -129,7 +129,7 @@
     <cfargument name="new_pnOrderNo" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO pgpanels_user (
             pnTitle, 
             pnFilename, 

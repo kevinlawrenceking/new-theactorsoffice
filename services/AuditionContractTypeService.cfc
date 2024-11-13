@@ -4,7 +4,7 @@
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO audcontracttypes (contracttype, audCatid, isDeleted)
         VALUES (
             <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_contracttype#" maxlength="100" null="#NOT len(trim(arguments.new_contracttype))#">,
@@ -19,7 +19,7 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_contracttypeid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         UPDATE audcontracttypes 
         SET 
             contracttype = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_contracttype#" maxlength="100" null="#NOT len(trim(arguments.new_contracttype))#">,

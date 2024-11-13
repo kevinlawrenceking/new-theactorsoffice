@@ -74,7 +74,7 @@
     <cfargument name="new_siteTypeName" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO sitetypes_user_tbl (siteTypeName, siteTypeDescription, userid, IsDeleted) 
         VALUES (
             <cfqueryparam value="#arguments.new_siteTypeName#" cfsqltype="CF_SQL_VARCHAR">,
@@ -101,7 +101,7 @@
     <cfargument name="new_pnid" type="numeric" required="true">
     <cfargument name="new_sitetypeid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         UPDATE sitetypes_user
         SET pnid = <cfqueryparam value="#arguments.new_pnid#" cfsqltype="CF_SQL_INTEGER">
         WHERE sitetypeid = <cfqueryparam value="#arguments.new_sitetypeid#" cfsqltype="CF_SQL_INTEGER">
@@ -127,7 +127,7 @@
     <cfargument name="siteTypeDescription" type="string" required="true">
     <cfargument name="userId" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO sitetypes_user (siteTypeName, siteTypeDescription, userid) 
         VALUES (
             <cfqueryparam value="#arguments.siteTypeName#" cfsqltype="CF_SQL_VARCHAR">,

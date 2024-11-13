@@ -18,7 +18,7 @@
     <cfargument name="new_vocaltype" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO audvocaltypes (vocaltype, isDeleted)
         VALUES (
             <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_vocaltype)#" maxlength="100">,
@@ -32,7 +32,7 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_vocaltypeid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         UPDATE audvocaltypes 
         SET vocaltype = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_vocaltype#" maxlength="100">,
             isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#">

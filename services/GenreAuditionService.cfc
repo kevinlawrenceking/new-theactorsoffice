@@ -94,7 +94,7 @@
 <cffunction name="DELaudgenres_audition_xref" access="public" returntype="void">
     <cfargument name="new_audroleid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         DELETE FROM audgenres_audition_xref
         WHERE audroleid = <cfqueryparam value="#arguments.new_audroleid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
@@ -104,7 +104,7 @@
     <cfargument name="new_audgenreid" type="numeric" required="true">
     <cfargument name="new_audroleid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO audgenres_audition_xref (audgenreid, audroleid)
         VALUES (
             <cfqueryparam value="#arguments.new_audgenreid#" cfsqltype="CF_SQL_INTEGER">,

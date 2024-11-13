@@ -3,7 +3,7 @@
     <cffunction name="DELaudanswers" access="public" returntype="void">
         <cfargument name="eventid" type="numeric" required="true">
 
-        <cfquery>
+        <cfquery result="result">
             DELETE FROM audanswers
             WHERE eventid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.eventid#">
         </cfquery>
@@ -13,7 +13,7 @@
         <cfargument name="qid" type="numeric" required="true">
         <cfargument name="eventid" type="numeric" required="true">
 
-        <cfquery>
+        <cfquery result="result">
             INSERT INTO audanswers (qid, eventid)
             VALUES (
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.qid#">,
@@ -27,7 +27,7 @@
         <cfargument name="new_value" required="true">
         <cfargument name="new_answerID" type="numeric" required="true">
 
-        <cfquery>
+        <cfquery result="result">
             UPDATE audanswers SET 
             <cfif arguments.new_qtype eq "text">
                 aText = <cfqueryparam cfsqltype="CF_SQL_LONGVARCHAR" value="#arguments.new_value#" null="#NOT len(trim(arguments.new_value))#">
@@ -48,7 +48,7 @@
         <cfargument name="new_aMemo" type="string" required="true">
         <cfargument name="new_isDeleted" type="boolean" required="true">
 
-        <cfquery>
+        <cfquery result="result">
             INSERT INTO audanswers (qID, eventid, aText, aRating, aMemo, isDeleted)
             VALUES (
                 <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_qID#">,
@@ -70,7 +70,7 @@
         <cfargument name="new_isDeleted" type="boolean" required="true">
         <cfargument name="new_answerID" type="numeric" required="true">
 
-        <cfquery>
+        <cfquery result="result">
             UPDATE audanswers 
             SET 
                 qID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_qID#">,

@@ -20,7 +20,7 @@
     <cfargument name="CustomPlatform" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO audPlatforms_user_tbl (audPlatform, userid) 
         VALUES (
             <cfqueryparam value="#arguments.CustomPlatform#" cfsqltype="CF_SQL_VARCHAR">, 

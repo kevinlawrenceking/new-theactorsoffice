@@ -7,7 +7,7 @@
     <cfif fileExists(fullFilePath)>
         <cfset fileContent = fileRead(fullFilePath)>
 
-        <!--- Count the number of <cfquery> blocks --->
+        <!--- Count the number of <cfquery result="result"> blocks --->
         <cfset cfqueryCount = ListLen(fileContent, "<cfquery result="result" ")>
 
         <!--- Output the file name and number of queries found --->

@@ -64,7 +64,7 @@
 <cffunction name="UPDlinks" access="public" returntype="void" hint="Updates the isdeleted field for a given linkid">
     <cfargument name="linkid" type="numeric" required="true" hint="The ID of the link to update">
 
-    <cfquery>
+    <cfquery result="result">
         UPDATE links_tbl
         SET isdeleted = 1
         WHERE linkid = <cfqueryparam value="#arguments.linkid#" cfsqltype="CF_SQL_INTEGER">

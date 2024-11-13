@@ -20,7 +20,7 @@
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO audroletypes (audroletype, audCatid, isDeleted)
         VALUES (
             <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audroletype#" maxlength="100">,
@@ -36,7 +36,7 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_audroletypeid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         UPDATE audroletypes 
         SET 
             audroletype = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audroletype)#" maxlength="100">,

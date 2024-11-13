@@ -4,7 +4,7 @@
     <cfargument name="fileName" type="string" required="true">
     <cfargument name="id" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         UPDATE sitelinks_user 
         SET siteicon = <cfqueryparam value="#arguments.fileName#" cfsqltype="cf_sql_varchar"> 
         WHERE id = <cfqueryparam value="#arguments.id#" cfsqltype="cf_sql_integer">
@@ -29,7 +29,7 @@
     <cfargument name="new_siteicon" type="string" required="true" hint="New site icon value."/>
     <cfargument name="id" type="numeric" required="true" hint="User ID."/>
 
-    <cfquery>
+    <cfquery result="result">
         UPDATE sitelinks_user 
         SET siteicon = <cfqueryparam value="#arguments.new_siteicon#" cfsqltype="CF_SQL_VARCHAR">
         WHERE id = <cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">
@@ -39,7 +39,7 @@
 <cffunction name="UPDsitelinks_user_23883" access="public" returntype="void">
     <cfargument name="new_id" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         UPDATE sitelinks_user_tbl 
         SET isdeleted = 1 
         WHERE id = <cfqueryparam value="#arguments.new_id#" cfsqltype="CF_SQL_INTEGER">
@@ -49,7 +49,7 @@
 <cffunction name="UPDsitelinks_user_23930" access="public" returntype="void">
     <cfargument name="new_id" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         UPDATE sitelinks_user_tbl
         SET isdeleted = 0
         WHERE id = <cfqueryparam value="#arguments.new_id#" cfsqltype="CF_SQL_INTEGER">

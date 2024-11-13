@@ -9,7 +9,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="updatedetails" type="string" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO updatelog (
             oldValue, NewValue, recordname, updatename, recid, compid, userid, updatedetails
         ) VALUES (

@@ -5,7 +5,7 @@
     <cfargument name="audcatid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO audtones_user (tone, audcatid, userid)
         VALUES (
             <cfqueryparam value="#arguments.tone#" cfsqltype="CF_SQL_VARCHAR">,

@@ -48,7 +48,7 @@
     <cfargument name="new_opencallname" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO audopencalloptions_user (opencallname, userid, isdeleted)
         VALUES (
             <cfqueryparam value="#arguments.new_opencallname#" cfsqltype="CF_SQL_VARCHAR">,

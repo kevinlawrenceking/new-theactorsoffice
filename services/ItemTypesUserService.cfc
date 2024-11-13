@@ -3,7 +3,7 @@
     <cfargument name="customtype" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO itemtypes_user (valuetype, userid)
         VALUES (
             <cfqueryparam value="#arguments.customtype#" cfsqltype="CF_SQL_VARCHAR">,
@@ -33,7 +33,7 @@
     <cfargument name="typeicon" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO itemtypes_user (valuetype, typeicon, userid) 
         VALUES (
             <cfqueryparam value="#arguments.valuetype#" cfsqltype="CF_SQL_VARCHAR">,

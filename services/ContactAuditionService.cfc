@@ -22,7 +22,7 @@
     <cfargument name="audprojectid" type="numeric" required="true">
     <cfargument name="new_contactid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT IGNORE INTO audcontacts_auditions_xref 
         SET audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">, 
             xrefNotes = <cfqueryparam value="audition-add2.cfm" cfsqltype="CF_SQL_VARCHAR">, 
@@ -48,7 +48,7 @@ function getAuditionContacts(required numeric audprojectid, required numeric new
     <cfargument name="audprojectid" type="numeric" required="true" hint="The ID of the project." />
     <cfargument name="old_contactid" type="numeric" required="true" hint="The ID of the contact to be deleted." />
 
-    <cfquery>
+    <cfquery result="result">
         DELETE FROM audcontacts_auditions_xref
         WHERE audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
         AND contactid = <cfqueryparam value="#arguments.old_contactid#" cfsqltype="CF_SQL_INTEGER">
@@ -70,7 +70,7 @@ function getAuditionContacts(required numeric audprojectid, required numeric new
 <cffunction name="DELaudcontacts_auditions_xref_24127" access="public" returntype="void">
     <cfargument name="audprojectid" type="numeric" required="true">
     
-    <cfquery>
+    <cfquery result="result">
         DELETE FROM audcontacts_auditions_xref 
         WHERE audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
@@ -80,7 +80,7 @@ function getAuditionContacts(required numeric audprojectid, required numeric new
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="new_audprojectid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO audcontacts_auditions_xref (contactid, audprojectid)
         VALUES (
             <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contactid#">,
@@ -93,7 +93,7 @@ function getAuditionContacts(required numeric audprojectid, required numeric new
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="new_audprojectid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         UPDATE audcontacts_auditions_xref 
         SET 
             contactid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contactid#">, 
@@ -106,7 +106,7 @@ function getAuditionContacts(required numeric audprojectid, required numeric new
 <cffunction name="DELaudcontacts_auditions_xref_24545" access="public" returntype="void">
     <cfargument name="audprojectid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         DELETE FROM audcontacts_auditions_xref 
         WHERE audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="cf_sql_integer"> 
         AND xrefNotes = <cfqueryparam value="Referral" cfsqltype="cf_sql_varchar">

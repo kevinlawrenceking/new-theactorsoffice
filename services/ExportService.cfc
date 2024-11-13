@@ -12,7 +12,7 @@
         <cfargument name="exportID" type="numeric" required="true">
         <cfargument name="status" type="string" required="true">
 
-        <cfquery>
+        <cfquery result="result">
             UPDATE exports
             SET exportstatus = <cfqueryparam value="#arguments.status#" cfsqltype="CF_SQL_VARCHAR">
             WHERE exportid = <cfqueryparam value="#arguments.exportID#" cfsqltype="CF_SQL_INTEGER">

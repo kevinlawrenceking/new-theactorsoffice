@@ -61,7 +61,7 @@ Here is the refined and standardized ColdFusion component code:
     <cfargument name="new_qorder" type="numeric" required="true">
     <cfargument name="new_userid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO audquestions_user (qTypeID, qtext, qorder, userid, isDeleted)
         VALUES (
             <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_qTypeID#" null="#NOT len(trim(arguments.new_qTypeID))#">,
@@ -80,7 +80,7 @@ Here is the refined and standardized ColdFusion component code:
     <cfargument name="new_userid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_qID" type="numeric" required="true">
-    <cfquery>
+    <cfquery result="result">
         UPDATE audquestions_user 
         SET 
             qTypeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_qTypeID#" null="#NOT len(trim(arguments.new_qTypeID))#" />,

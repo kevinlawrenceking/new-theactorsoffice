@@ -4,7 +4,7 @@
     <cfargument name="new_eventid" type="numeric" required="true">
     <cfargument name="new_contactid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO eventcontactsxref (eventid, contactid)
         VALUES (
             <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_eventid#"/>,
@@ -32,7 +32,7 @@
 <cffunction name="UPDeventcontactsxref" access="public" returntype="void">
     <cfargument name="eventid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         UPDATE eventcontactsxref 
         SET isdeleted = 1 
         WHERE eventid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.eventid#" />
@@ -43,7 +43,7 @@
     <cfargument name="eventid" type="numeric" required="true">
     <cfargument name="new_contactid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO eventcontactsxref (eventid, contactid)
         VALUES (
             <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.eventid#" />,

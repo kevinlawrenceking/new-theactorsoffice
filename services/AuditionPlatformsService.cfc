@@ -3,7 +3,7 @@
     <cfargument name="new_audplatform" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO audplatforms (audplatform, isDeleted)
         VALUES (
             <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audplatform)#" maxlength="100" null="#NOT len(trim(arguments.new_audplatform))#">,
@@ -16,7 +16,7 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_audplatformid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         UPDATE audplatforms 
         SET 
             audplatform = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audplatform#" maxlength="100" null="#NOT len(trim(arguments.new_audplatform))#">,

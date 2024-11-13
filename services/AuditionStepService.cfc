@@ -57,7 +57,7 @@
 <cffunction name="INSaudsteps" access="public" returntype="void">
     <cfargument name="new_audstep" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
-        <cfquery>
+        <cfquery result="result">
             INSERT INTO audsteps (audstep, isDeleted)
             VALUES (
                 <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audstep#" maxlength="100" null="#NOT len(trim(arguments.new_audstep))#">,
@@ -69,7 +69,7 @@
     <cfargument name="new_audstep" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_audstepid" type="numeric" required="true">
-        <cfquery>
+        <cfquery result="result">
             UPDATE audsteps 
             SET 
                 audstep = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audstep#" maxlength="100" null="#NOT len(trim(arguments.new_audstep))#">, 

@@ -8,7 +8,7 @@
     <cfargument name="script_name_include" type="string" required="true">
     <cfargument name="contactid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO bigbrother (
             pgid, userid, remote_addr, query_string, remote_host, script_name, contactid, isInclude
         ) VALUES (

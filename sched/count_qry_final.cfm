@@ -7,7 +7,7 @@
     <cfif fileExists(fullFilePath)>
         <cfset fileContent = fileRead(fullFilePath)>
 
-        <!--- Count the number of <cfquery> blocks --->
+        <!--- Count the number of <cfquery result="result"> blocks --->
         <cfset cfqueryCount = REFindNoCaseCount("<cfquery result="result" ", fileContent)>
 
         <!--- Output the file name and number of queries found --->
@@ -39,7 +39,7 @@
     <cfif fileExists(fullFilePath)>
         <cfset fileContent = fileRead(fullFilePath)>
 
-        <!--- Count the number of <cfquery> blocks --->
+        <!--- Count the number of <cfquery result="result"> blocks --->
         <cfset cfqueryCount = REFindNoCaseCount("<cfquery result="result" ", fileContent)>
 
         <!--- Output the file name and number of queries found --->

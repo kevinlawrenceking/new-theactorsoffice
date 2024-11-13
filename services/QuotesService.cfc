@@ -35,7 +35,7 @@
             </cfquery>
 
             <cfif randomQuote.recordcount gt 0>
-                <cfquery>
+                <cfquery result="result">
                     UPDATE quotes 
                     SET 
                         quotedate = <cfqueryparam cfsqltype="cf_sql_date" value="#dateFormat(Now(),'yyyy-MM-dd')#">,

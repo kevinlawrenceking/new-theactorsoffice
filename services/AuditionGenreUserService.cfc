@@ -69,7 +69,7 @@
     <cfargument name="new_catid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO audgenres_user (audgenre, audcatid, userid)
         VALUES (
             <cfqueryparam value="#arguments.new_genre#" cfsqltype="CF_SQL_VARCHAR">,

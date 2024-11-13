@@ -2,7 +2,7 @@
 <cffunction name="INSuploads" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO uploads (userid) 
         VALUES (<cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">)
     </cfquery>

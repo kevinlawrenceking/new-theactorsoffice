@@ -13,7 +13,7 @@
 
 <cffunction name="UPDessences" access="public" returntype="void">
     <cfargument name="new_essenceid" type="numeric" required="true">
-    <cfquery>
+    <cfquery result="result">
         UPDATE essences
         SET isdeleted = 1
         WHERE essenceid = <cfqueryparam value="#arguments.new_essenceid#" cfsqltype="CF_SQL_INTEGER">
@@ -23,7 +23,7 @@
 <cffunction name="INSessences" access="public" returntype="void">
     <cfargument name="new_essenceName" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO essences (essenceName, userID)
         VALUES (
             <cfqueryparam value="#arguments.new_essenceName#" cfsqltype="CF_SQL_VARCHAR">,
@@ -47,7 +47,7 @@
     <cfargument name="new_essenceName" type="string" required="true">
     <cfargument name="isdeleted" type="boolean" required="true">
     <cfargument name="essenceid" type="numeric" required="true">
-    <cfquery>
+    <cfquery result="result">
         UPDATE essences 
         SET essenceName = <cfqueryparam value="#arguments.new_essenceName#" cfsqltype="CF_SQL_VARCHAR">, 
             isDeleted = <cfqueryparam value="#arguments.isdeleted#" cfsqltype="CF_SQL_BIT">
@@ -85,7 +85,7 @@
 <cffunction name="INSessences_24283" access="public" returntype="void">
     <cfargument name="new_essence" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO essences (essenceName, userid, isdeleted)
         VALUES (
             <cfqueryparam value="#arguments.new_essence#" cfsqltype="CF_SQL_VARCHAR">,

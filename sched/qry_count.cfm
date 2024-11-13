@@ -26,7 +26,7 @@
 
         <!--- Ensure that both start and end of the query are valid --->
         <cfif startQuery GT 0 AND endQuery GT startQuery>
-            <!--- Extract the SQL portion by removing the <cfquery> and </cfquery> tags --->
+            <!--- Extract the SQL portion by removing the <cfquery result="result"> and </cfquery> tags --->
             <cfset queryStart = FindNoCase(">", fileContent, startQuery)>
             <cfif queryStart GT 0>
                 <cfset strippedQueryBlock = trim(mid(fileContent, queryStart + 1, endQuery - (queryStart + 1)))>

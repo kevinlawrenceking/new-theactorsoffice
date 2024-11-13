@@ -5,7 +5,7 @@
     <cfargument name="new_mediaAudroleDescript" type="string" required="false" default="">
     <cfargument name="new_isDeleted" type="boolean" required="false" default=false>
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO audmedia_audroles_xref (mediaid, audroleid, mediaAudroleDescript, isDeleted)
         VALUES (
             <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_mediaid#" null="#NOT len(trim(arguments.new_mediaid))#">,

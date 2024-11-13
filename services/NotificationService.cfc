@@ -128,7 +128,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="contactid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO notifications (
             subtitle, 
             userid, 
@@ -153,7 +153,7 @@
     <cfargument name="new_contactname" type="string" required="true">
     <cfargument name="contactid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO notifications (
             subtitle, 
             userid, 
@@ -180,7 +180,7 @@
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="sunotes" type="string" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO notifications (
             subtitle,
             userid,

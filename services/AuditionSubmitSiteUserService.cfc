@@ -30,7 +30,7 @@
     <cfargument name="new_submitsitename" type="string" required="true">
     <cfargument name="sortedCatList" type="string" required="false" default="">
     <cfargument name="submitsiteid" type="numeric" required="true">
-    <cfquery>
+    <cfquery result="result">
         UPDATE audsubmitsites_user 
         SET submitsitename = <cfqueryparam value="#arguments.new_submitsitename#" cfsqltype="CF_SQL_VARCHAR">,
             isDeleted = <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
@@ -47,7 +47,7 @@
     <cfargument name="new_submitsitename" type="string" required="true">
     <cfargument name="sortedCatList" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO audsubmitsites_user (submitsitename, catlist, userid)
         VALUES (
             <cfqueryparam value="#arguments.new_submitsitename#" cfsqltype="CF_SQL_VARCHAR">,
@@ -89,7 +89,7 @@
         <cfset arrayAppend(params, {value=arguments.sortedCatList, cfsqltype='CF_SQL_VARCHAR'})>
     </cfif>
     <cfset arrayAppend(params, {value=arguments.submitsiteid, cfsqltype='CF_SQL_INTEGER'})>
-    <cfquery>
+    <cfquery result="result">
         #sql#
         <cfloop array="#params#" index="param">
             <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">

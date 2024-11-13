@@ -10,7 +10,7 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_audlocid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         UPDATE audlocations 
         SET 
             userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_userid#" null="#NOT len(trim(arguments.new_userid))#">,
@@ -30,7 +30,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="custom" type="string" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO audlocations (userid, eventLocation) 
         VALUES (
             <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">, 

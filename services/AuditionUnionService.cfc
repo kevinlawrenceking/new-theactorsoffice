@@ -54,7 +54,7 @@
     <cfargument name="new_audCatID" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO audunions (unionName, countryid, audCatID, isDeleted)
         VALUES (
             <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_unionName#" maxlength="100" null="#NOT len(trim(arguments.new_unionName))#">,
@@ -72,7 +72,7 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_unionID" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         UPDATE audunions
         SET 
             unionName = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_unionName)#" maxlength="100" null="#NOT len(trim(arguments.new_unionName))#">,

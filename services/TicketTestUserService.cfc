@@ -20,7 +20,7 @@
     <cfargument name="new_teststatus" type="string" required="true">
     <cfargument name="new_rejectnotes" type="string" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO tickettestusers (ticketid, userid, teststatus, rejectNotes)
         VALUES (
             <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_ticketid#" />,
@@ -35,7 +35,7 @@
     <cfargument name="new_rejectnotes" type="string" required="true">
     <cfargument name="testid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         UPDATE tickettestusers 
         SET 
             teststatus = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_teststatus#" />, 

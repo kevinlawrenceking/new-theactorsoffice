@@ -20,7 +20,7 @@
         <cfargument name="new_age_group" type="string" required="true">
         <cfargument name="new_isDeleted" type="boolean" required="true">
         
-        <cfquery>
+        <cfquery result="result">
             INSERT INTO audageranges (rangename, age_min, age_max, age_group, isDeleted)
             VALUES (
                 <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_rangename)#" maxlength="100">,
@@ -40,7 +40,7 @@
         <cfargument name="new_isDeleted" type="boolean" required="true">
         <cfargument name="new_rangeid" type="numeric" required="true">
         
-        <cfquery>
+        <cfquery result="result">
             UPDATE audageranges 
             SET 
                 rangename = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_rangename#" maxlength="100">,

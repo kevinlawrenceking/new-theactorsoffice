@@ -695,7 +695,7 @@ function getContactRecordName(new_contactid) {
     <cfargument name="refer_contact_id" type="numeric" required="false">
     
   *
-    <cfquery>
+    <cfquery result="result">
         UPDATE contactdetails 
         SET contactfullname = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.contactfullname)#">,
             contactPronoun = 

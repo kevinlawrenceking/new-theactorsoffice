@@ -97,7 +97,7 @@
 
     <cfset var trimmedValueText = left(arguments.new_valuetext, 40)>
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO tags_user (userid, tagname, IsCustom)
         VALUES (
             <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
@@ -126,7 +126,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="tagname" type="string" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         UPDATE tags_user_tbl 
         SET isdeleted = 1 
         WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 

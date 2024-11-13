@@ -6,7 +6,7 @@
     <cfargument name="ID" type="numeric" required="true">
     <cfargument name="itemDataset" type="string" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO reportitems 
         (itemLabel, itemOrderNo, itemValueInt, ID, itemDataset, userid) 
         VALUES 
@@ -113,7 +113,7 @@
 <cffunction name="DELreportitems" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         DELETE FROM reportitems
         WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
@@ -126,7 +126,7 @@
     <cfargument name="newItemDataSet" type="string" required="true">
     <cfargument name="userID" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO reportitems 
         (itemLabel, itemOrderNo, itemValueInt, ID, itemDataset, userid) 
         VALUES (

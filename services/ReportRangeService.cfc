@@ -23,7 +23,7 @@
     <cfargument name="new_rangeend" type="date" required="true">
     <cfargument name="current_rangeid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         UPDATE reportranges 
         SET rangestart = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_rangestart#" />, 
             rangeend = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_rangeend#" />
@@ -36,7 +36,7 @@
     <cfargument name="customStart" type="date" required="true">
     <cfargument name="customEnd" type="date" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         UPDATE reportranges 
         SET rangestart = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.customStart#" />, 
             rangeend = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.customEnd#" />

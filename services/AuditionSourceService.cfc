@@ -82,7 +82,7 @@
     <cfargument name="new_audsource" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO audsources (audsource, isDeleted)
         VALUES (
             <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audsource)#" maxlength="100" null="#NOT len(trim(arguments.new_audsource))#">,
@@ -96,7 +96,7 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_audsourceid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         UPDATE audsources 
         SET 
             audsource = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audsource)#" maxlength="100" null="#NOT len(trim(arguments.new_audsource))#">,

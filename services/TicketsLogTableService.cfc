@@ -4,7 +4,7 @@
     <cfargument name="new_ticketid" type="numeric" required="true">
     <cfargument name="new_ticketstatus" type="string" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO ticketslog_tbl (tlogDetails, userID, ticketid, ticketstatus)
         VALUES (
             <cfqueryparam value="#arguments.new_tlogDetails#" cfsqltype="cf_sql_varchar" />,

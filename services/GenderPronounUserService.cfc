@@ -34,7 +34,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="custom" type="string" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO genderpronouns_users_tbl (userid, isDeleted, isCustom, genderpronoun, genderpronounPlural)
         VALUES (
             <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
@@ -67,7 +67,7 @@
     <cfargument name="genderpronounplural" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO genderpronouns_users (genderpronoun, genderpronounplural, userid)
         VALUES (
             <cfqueryparam value="#arguments.genderpronoun#" cfsqltype="CF_SQL_VARCHAR">,

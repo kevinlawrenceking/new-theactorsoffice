@@ -4,7 +4,7 @@
     <cfargument name="new_catid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO auddialects_user_tbl (auddialect, audcatid, userid)
         VALUES (
             <cfqueryparam value="#arguments.CustomDialect#" cfsqltype="CF_SQL_VARCHAR">,

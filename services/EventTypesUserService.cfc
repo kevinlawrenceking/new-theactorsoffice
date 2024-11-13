@@ -35,7 +35,7 @@
     <cfset sql &= " WHERE id = ?">
     <cfset arrayAppend(params, {value=arguments.id, cfsqltype="CF_SQL_INTEGER"})>
 
-    <cfquery>
+    <cfquery result="result">
         #sql#
         <cfloop array="#params#" index="param">
             <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
@@ -65,7 +65,7 @@
     <cfargument name="eventtypecolor" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO eventtypes_user 
             (eventTypeName, eventtypedescription, eventtypecolor, userid) 
         VALUES 

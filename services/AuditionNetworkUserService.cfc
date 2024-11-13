@@ -6,7 +6,7 @@
         <cfargument name="audcatid" type="numeric" required="true">
         <cfargument name="userid" type="numeric" required="true">
 
-        <cfquery>
+        <cfquery result="result">
             INSERT INTO audnetworks_user_tbl (network, audcatid, userid)
             VALUES (
                 <cfqueryparam value="#arguments.CustomNetwork#" cfsqltype="CF_SQL_VARCHAR">,

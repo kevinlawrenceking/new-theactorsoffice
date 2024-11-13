@@ -16,7 +16,7 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_qtypeid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         UPDATE audqtypes 
         SET 
             qtype = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_qtype#" maxlength="100" null="#NOT len(trim(arguments.new_qtype))#">, 

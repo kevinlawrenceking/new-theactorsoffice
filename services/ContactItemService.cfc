@@ -1130,7 +1130,7 @@ function getContactDetails(required numeric uploadid) {
     <cfargument name="deleteitem" type="boolean" required="false" default=false>
     <cfargument name="itemid" type="numeric" required="true">
 
-   <cfquery>
+   <cfquery result="result">
     UPDATE contactitems 
     SET 
         <!--- Only include valuetext if provided --->

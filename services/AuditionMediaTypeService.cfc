@@ -127,7 +127,7 @@ function getMediaTypes(required array mediaTypeIds) {
     <cfargument name="new_mediaType" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         INSERT INTO audmediatypes (mediaType, isDeleted)
         VALUES (
             <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaType#" maxlength="100" null="#NOT len(trim(arguments.new_mediaType))#">,
@@ -141,7 +141,7 @@ function getMediaTypes(required array mediaTypeIds) {
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_mediaTypeID" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result">
         UPDATE audmediatypes 
         SET 
             mediaType = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaType#" maxlength="100" null="#NOT len(trim(arguments.new_mediaType))#">,
