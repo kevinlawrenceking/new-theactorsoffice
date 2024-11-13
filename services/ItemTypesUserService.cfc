@@ -1,5 +1,5 @@
 <cfcomponent displayname="ItemTypesUserService" hint="Handles operations for ItemTypesUser table" > 
-<cffunction output="false" name="INSitemtypes_user" access="public" returntype="void">
+<cffunction output="false" name="INSitemtypes_user" access="public" returntype="numeric">
     <cfargument name="customtype" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
@@ -10,6 +10,7 @@
             <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         )
     </cfquery>
+        <cfreturn result.generatedKey>
 </cffunction>
 
 <cffunction output="false" name="SELitemtypes_user" access="public" returntype="query">
