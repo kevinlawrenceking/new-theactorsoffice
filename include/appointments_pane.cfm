@@ -45,7 +45,11 @@
         <cfloop query="eventresults.eventresults">
             <cfinclude template="/include/qry/finall_20_1.cfm" />
             <cfoutput>
-            <tr role="row" class="#iif(currentrow mod 2 eq 0, 'Even', 'Odd')#">
+       <cfif currentrow mod 2 eq 0>
+    <tr role="row" class="Even">
+<cfelse>
+    <tr role="row" class="Odd">
+</cfif>
                 <td>
                     <!--- Details link --->
                     <cfif isdefined("xxxxxx")>
@@ -92,6 +96,7 @@
                     </cfif>
                 </td>
             </tr>
+            </cfoutput>
             </cfloop>
     </tbody>
 </table>
