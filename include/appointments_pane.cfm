@@ -31,11 +31,11 @@
         <!--- Render the table header with column names --->
         <tr><Cfoutput>
             <th>Action</th>
-            <th>#head1#</th>
-            <th>#head2#</th>
-            <th>#head3#</th>
+            <th>Appointment</th>
+            <th>Location</th>
+            <th>Date</th>
             <th>Time</th>
-            <th>#head5#</th>
+            <th>Type</th>
             <th></th>
        </cfoutput> </tr>
     </thead>
