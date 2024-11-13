@@ -45,6 +45,11 @@
    <cffunction name="OnRequestStart" returntype="boolean" output="false">
     <cfargument name="targetPage" required="true" type="string">
 
+    <!-- Skip session check on login page -->
+
+        <cfif NOT structKeyExists(session, "userid")>
+            <cflocation url="/loginform.cfm" addtoken="no">
+        </cfif>
 
 
     <!-- Initialize paths if the user is logged in -->
