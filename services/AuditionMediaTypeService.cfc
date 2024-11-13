@@ -149,4 +149,5 @@ function getMediaTypes(required array mediaTypeIds) {
         WHERE 
             mediaTypeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_mediaTypeID#">
     </cfquery>
-</cffunction></cfcomponent>
+</cffunction>
+</cfcomponent>

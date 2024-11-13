@@ -468,4 +468,5 @@
         </cfquery>
 
     <cfreturn queryResult>
-</cffunction></cfcomponent>
+</cffunction>
+</cfcomponent>

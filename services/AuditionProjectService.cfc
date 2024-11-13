@@ -1734,4 +1734,5 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
         
         <cfreturn result>
     
-</cffunction></cfcomponent>
+</cffunction>
+</cfcomponent>

@@ -44,4 +44,5 @@
         WHERE 
             audSubCatId = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audSubCatId#">
     </cfquery>
-</cffunction></cfcomponent>
+</cffunction>
+</cfcomponent>

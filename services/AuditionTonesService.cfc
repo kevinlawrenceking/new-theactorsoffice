@@ -29,4 +29,5 @@
         WHERE 
             toneid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_toneid#">
     </cfquery>
-</cffunction></cfcomponent>
+</cffunction>
+</cfcomponent>

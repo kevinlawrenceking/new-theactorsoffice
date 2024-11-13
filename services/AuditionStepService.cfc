@@ -78,4 +78,5 @@
             WHERE 
                 audstepid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audstepid#">
         </cfquery>
-</cffunction></cfcomponent>
+</cffunction>
+</cfcomponent>

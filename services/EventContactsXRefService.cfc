@@ -223,4 +223,5 @@ function deleteEventContactsXref(required numeric audStepId) {
             AND p.audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="cf_sql_integer">
         </cfquery>
         
-</cffunction></cfcomponent>
+</cffunction>
+</cfcomponent>

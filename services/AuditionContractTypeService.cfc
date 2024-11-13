@@ -29,4 +29,5 @@
         WHERE 
             contracttypeid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contracttypeid#">
     </cfquery>
-</cffunction></cfcomponent>
+</cffunction>
+</cfcomponent>

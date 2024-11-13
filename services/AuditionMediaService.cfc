@@ -684,4 +684,5 @@
     
     
     <cfreturn result>
-</cffunction></cfcomponent>
+</cffunction>
+</cfcomponent>

@@ -13,4 +13,5 @@
             ORDER BY s.sitename
         </cfquery>
     <cfreturn result>
-</cffunction></cfcomponent>
+</cffunction>
+</cfcomponent>

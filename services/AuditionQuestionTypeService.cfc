@@ -25,4 +25,5 @@
         WHERE 
             qtypeid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_qtypeid#">
     </cfquery>
-</cffunction></cfcomponent>
+</cffunction>
+</cfcomponent>

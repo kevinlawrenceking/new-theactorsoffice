@@ -56,4 +56,5 @@
             <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
         )
     </cfquery><cfreturn result.generatedKey>
-</cffunction></cfcomponent>
+</cffunction>
+</cfcomponent>

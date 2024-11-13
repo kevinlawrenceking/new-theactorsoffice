@@ -29,4 +29,5 @@
         WHERE 
             networkid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_networkid#">
     </cfquery>
-</cffunction></cfcomponent>
+</cffunction>
+</cfcomponent>

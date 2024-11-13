@@ -13,4 +13,5 @@
             <cfqueryparam value="#arguments.new_ticketstatus#" cfsqltype="cf_sql_varchar" />
         )
     </cfquery>
-</cffunction></cfcomponent>
+</cffunction>
+</cfcomponent>

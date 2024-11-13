@@ -29,4 +29,5 @@
     <!--- Return the result --->
     <cfreturn queryResult>
 
-</cffunction></cfcomponent>
+</cffunction>
+</cfcomponent>

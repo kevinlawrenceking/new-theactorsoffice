@@ -138,4 +138,5 @@
             WHERE someColumn = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.conditionValue#">
         </cfquery>
 
-</cffunction></cfcomponent>
+</cffunction>
+</cfcomponent>

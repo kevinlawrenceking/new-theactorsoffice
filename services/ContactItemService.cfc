@@ -1867,4 +1867,5 @@ function getContactDetails(required numeric uploadid) {
     
 
     <cfreturn result>
-</cffunction></cfcomponent>
+</cffunction>
+</cfcomponent>

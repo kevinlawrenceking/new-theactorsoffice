@@ -25,4 +25,5 @@
         WHERE 
             audplatformid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audplatformid#">
     </cfquery>
-</cffunction></cfcomponent>
+</cffunction>
+</cfcomponent>

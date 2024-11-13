@@ -1276,4 +1276,5 @@ function getContactRecordName(new_contactid) {
     
     
     <cfreturn result>
-</cffunction></cfcomponent>
+</cffunction>
+</cfcomponent>

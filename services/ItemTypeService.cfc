@@ -154,4 +154,5 @@
     <!--- Return the result set --->
     <cfreturn queryResult>
 
-</cffunction></cfcomponent>
+</cffunction>
+</cfcomponent>

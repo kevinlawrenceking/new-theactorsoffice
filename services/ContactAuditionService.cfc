@@ -136,4 +136,5 @@ function getAuditionContacts(required numeric audprojectid, required numeric new
                 contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_integer">
         </cfquery>
         >
-</cffunction></cfcomponent>
+</cffunction>
+</cfcomponent>
