@@ -147,8 +147,7 @@
             <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
         )
     </cfquery>
-    <cffunction output="false" name="INSnotifications" access="public" returntype="numeric">
-</cffunction>
+
 
 <cffunction output="false" name="INSnotifications_23830" access="public" returntype="numeric">
     <cfargument name="new_contactname" type="string" required="true">
@@ -173,8 +172,7 @@
             <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
         )
     </cfquery>
-    <cffunction output="false" name="INSnotifications" access="public" returntype="numeric">
-</cffunction>
+ 
 
 <cffunction output="false" name="INSnotifications_23937" access="public" returntype="numeric">
     <cfargument name="new_contactname" type="string" required="true">
