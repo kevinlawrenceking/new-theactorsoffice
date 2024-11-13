@@ -1,4 +1,4 @@
-<cfquery result="result"   name="z"  >
+<cfquery  name="z"  >
 SELECT contactid,contactbirthday FROM contactdetails WHERE contactbirthday IS not null
 </cfquery>  
 <cfloop query="z">
@@ -7,10 +7,10 @@ SELECT contactid,contactbirthday FROM contactdetails WHERE contactbirthday IS no
 <cfset new_contactbirthday = "#z.contactbirthday#" />
 </cfoutput>       
 <Cfif #isdate(new_contactbirthday)# is "false">
-    <cfquery result="result"   name="update"  >   
+    <cfquery  name="update"  >   
     update contactdetails
     set contactbirthday = NULL  
-    where contactid = <cfquery result="result" param cfsqltype="cf_sql_integer" value="#newest_contactid#" />
+    where contactid = <cfqueryparam cfsqltype="cf_sql_integer" value="#newest_contactid#" />
     </cfquery>
     <cfoutput>
     (#newest_contactid#) #new_contactbirthday# is not a valid date - deleted.
@@ -27,10 +27,10 @@ SELECT contactid,contactbirthday FROM contactdetails WHERE contactbirthday IS no
     </cfif>
     </cfoutput>            
     <cfif #dateformat(z.contactbirthday)# is not "#dateformat(final_birthday)#">
-        <cfquery result="result"   name="update"  >   
+        <cfquery  name="update"  >   
         update contactdetails
-        set contactbirthday = <cfquery result="result" param cfsqltype="cf_sql_date" value="#dateformat(final_birthday)#" />
-        where contactid = <cfquery result="result" param cfsqltype="cf_sql_integer" value="#newest_contactid#" />
+        set contactbirthday = <cfqueryparam cfsqltype="cf_sql_date" value="#dateformat(final_birthday)#" />
+        where contactid = <cfqueryparam cfsqltype="cf_sql_integer" value="#newest_contactid#" />
         </cfquery>   
         <cfoutput>
         (#newest_contactid#) Birthday changed from "#dateformat(z.contactbirthday)#" to  "#dateformat(final_birthday)#"
@@ -48,14 +48,14 @@ SELECT contactid,contactbirthday FROM contactdetails WHERE contactbirthday IS no
     
     
     
-    <cfquery result="result"   name="getUsers"  >
+    <cfquery  name="getUsers"  >
   SELECT * FROM taousers
 </cfquery>
 <cfloop query="getUsers">
-  <cfquery result="result"   name="setPasswordHash"   >
+  <cfquery  name="setPasswordHash"   >
     UPDATE taousers
-    SET passwordHash = <cfquery result="result" param cfsqltype="char" value="#hash(Password,’SHA’)#">
-    WHERE (userID = <cfquery result="result" param cfsqltype="integer" value="#userID#">
+    SET passwordHash = <cfqueryparam cfsqltype="char" value="#hash(Password,’SHA’)#">
+    WHERE (userID = <cfqueryparam cfsqltype="integer" value="#userID#">
   </cfquery>
 </cfloop>
             

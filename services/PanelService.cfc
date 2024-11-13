@@ -13,7 +13,7 @@
         FROM pgpanels 
         WHERE pnid IN (
             <cfloop array="#arguments.newpnids#" index="pnid">
-                <cfquery result="result" param value="#pnid#" cfsqltype="CF_SQL_INTEGER" list="true">
+                <cfqueryparam value="#pnid#" cfsqltype="CF_SQL_INTEGER" list="true">
             </cfloop>
         )
     </cfquery>

@@ -1,6 +1,6 @@
                 
 
-<cfquery result="result"   name="events">
+<cfquery  name="events">
                     SELECT distinct e.eventid,e.eventtitle,e.eventstop,u.recordname,u.userid,d.contactid
                     FROM events e
                     INNER JOIN eventcontactsxref x ON x.eventid = e.eventid
@@ -24,7 +24,7 @@
 
                             <cfset new_eventstop=events.eventstop />
 
-                            <cfquery result="result"   name="fu">
+                            <cfquery  name="fu">
                                 SELECT distinct i.contactid, d.recordname, 1 as new_systemid
                                 FROM
                                 contactitems i
@@ -71,7 +71,7 @@
                                 <cfset new_contactname=fu.recordname />
                                 <cfset new_systemid=fu.new_systemid />
 
-                                <cfquery result="result"   name="find_fu">
+                                <cfquery  name="find_fu">
                                     SELECT su.suid
                                     FROM fusystems s
                                     INNER JOIN fusystemusers su ON su.systemID = s.systemid
@@ -108,11 +108,11 @@
 
                                     <cfset NewSUID=result.generatedkey />
 
-                                    <cfquery result="result"   name="CompleteTargetSystems">
+                                    <cfquery  name="CompleteTargetSystems">
                                         UPDATE fusystemusers set sustatus = 'Completed' WHERE userid = #new_userid# AND systemid IN (5,6) AND contactid = #new_contactid#;
                                     </cfquery>
 
-                                    <cfquery result="result"   name="sudetails">
+                                    <cfquery  name="sudetails">
                                         select * from fusystems where systemid = #new_systemid#
 
                                     </cfquery>
@@ -126,7 +126,7 @@
 
                                     <cfset Newnotification=result.generatedkey>
 
-                                        <cfquery result="result"   name="addDaysNo">
+                                        <cfquery  name="addDaysNo">
                                             SELECT
                                             s.systemID
                                             ,s.systemName
@@ -163,7 +163,7 @@
                                         <cfif #adddaysno.isunique# is "1">
 
 
-                                            <cfquery result="result"   name="checkUnique">
+                                            <cfquery  name="checkUnique">
                                                 SELECT d.contactid from
                                                 contactdetails d
                                                 where d.#adddaysno.uniquename# = 'Y'
@@ -198,11 +198,11 @@
                                                     INSERT INTO funotifications (actionid,userid,suID,notstartdate,notnotes)
                                                     VALUES (
                                                     
-                                                    <cfquery result="result" param cfsqltype="cf_sql_integer" value="#new_actionid#" />,
-                                                    <cfquery result="result" param cfsqltype="cf_sql_integer" value="#new_userid#" />,
-                                                    <cfquery result="result" param cfsqltype="cf_sql_integer" value="#NewSuid#" />,
-                                                 <cfquery result="result" param cfsqltype="cf_sql_date" value="#notstartdate#" />,
-                                               <cfquery result="result" param cfsqltype="cf_sql_varchar" value="events_completed_wo_system" />
+                                                    <cfqueryparam cfsqltype="cf_sql_integer" value="#new_actionid#" />,
+                                                    <cfqueryparam cfsqltype="cf_sql_integer" value="#new_userid#" />,
+                                                    <cfqueryparam cfsqltype="cf_sql_integer" value="#NewSuid#" />,
+                                                 <cfqueryparam cfsqltype="cf_sql_date" value="#notstartdate#" />,
+                                               <cfqueryparam cfsqltype="cf_sql_varchar" value="events_completed_wo_system" />
 
                                                     )
                                                 </cfquery>
@@ -212,12 +212,12 @@
                                                     <cfquery  name="addNotification" result="result">
                                                         INSERT INTO funotifications (actionid,userid,suID,notstartdate,notstatus,notnotes)
                                                         VALUES (
-                                                        <cfquery result="result" param cfsqltype="cf_sql_integer" value="#new_actionid#" />,
-                                                    <cfquery result="result" param cfsqltype="cf_sql_integer" value="#new_userid#" />,
-                                                    <cfquery result="result" param cfsqltype="cf_sql_integer" value="#NewSuid#" />,
-                                                 <cfquery result="result" param cfsqltype="cf_sql_date" value="#notstartdate#" />,
-                                                        <cfquery result="result" param cfsqltype="cf_sql_varchar" value="Pending" />,
-                                                        <cfquery result="result" param cfsqltype="cf_sql_varchar" value="events_completed_wo_system" />
+                                                        <cfqueryparam cfsqltype="cf_sql_integer" value="#new_actionid#" />,
+                                                    <cfqueryparam cfsqltype="cf_sql_integer" value="#new_userid#" />,
+                                                    <cfqueryparam cfsqltype="cf_sql_integer" value="#NewSuid#" />,
+                                                 <cfqueryparam cfsqltype="cf_sql_date" value="#notstartdate#" />,
+                                                        <cfqueryparam cfsqltype="cf_sql_varchar" value="Pending" />,
+                                                        <cfqueryparam cfsqltype="cf_sql_varchar" value="events_completed_wo_system" />
                                                         )
                                                     </cfquery>
 

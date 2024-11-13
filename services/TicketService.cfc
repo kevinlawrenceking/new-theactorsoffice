@@ -16,30 +16,30 @@
     <cfargument name="new_esthours" type="numeric" required="false">
 
     <cftry>
-        <cfquery result="result"  datasource="#abod#" name="updateTicketQuery">
+        <cfquery datasource="#abod#" name="updateTicketQuery">
             UPDATE tickets SET 
-                ticketname = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.new_ticketname#">,
-                ticketdetails = <cfquery result="result" param cfsqltype="cf_sql_longvarchar" value="#arguments.new_ticketdetails#">,
-                ticketresponse = <cfquery result="result" param cfsqltype="cf_sql_longvarchar" value="#arguments.new_ticketresponse#">,
-                ticketStatus = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.new_ticketStatus#">,
-                ticketType = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.new_ticketType#">,
-                testingscript = <cfquery result="result" param cfsqltype="cf_sql_longvarchar" value="#arguments.new_testingscript#">,
-                patchNote = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.new_patchNote#">,
-                environ = <cfquery result="result" param cfsqltype="cf_sql_char" value="#arguments.new_environ#">,
-                ticketPriority = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.new_ticketPriority#">
+                ticketname = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_ticketname#">,
+                ticketdetails = <cfqueryparam cfsqltype="cf_sql_longvarchar" value="#arguments.new_ticketdetails#">,
+                ticketresponse = <cfqueryparam cfsqltype="cf_sql_longvarchar" value="#arguments.new_ticketresponse#">,
+                ticketStatus = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_ticketStatus#">,
+                ticketType = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_ticketType#">,
+                testingscript = <cfqueryparam cfsqltype="cf_sql_longvarchar" value="#arguments.new_testingscript#">,
+                patchNote = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_patchNote#">,
+                environ = <cfqueryparam cfsqltype="cf_sql_char" value="#arguments.new_environ#">,
+                ticketPriority = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_ticketPriority#">
             <cfif isNumeric(arguments.new_userid) AND arguments.new_userid NEQ "">
-                , userid = <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.new_userid#">
+                , userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_userid#">
             </cfif>
             <cfif isNumeric(arguments.new_verid) AND arguments.new_verid NEQ "">
-                , verid = <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.new_verid#">
+                , verid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_verid#">
             </cfif>
             <cfif isNumeric(arguments.new_pgid) AND arguments.new_pgid NEQ "">
-                , pgid = <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.new_pgid#">
+                , pgid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_pgid#">
             </cfif>
             <cfif isNumeric(arguments.new_esthours) AND arguments.new_esthours NEQ "">
-                , esthours = <cfquery result="result" param cfsqltype="cf_sql_float" value="#decimalformat(arguments.new_esthours)#">
+                , esthours = <cfqueryparam cfsqltype="cf_sql_float" value="#decimalformat(arguments.new_esthours)#">
             </cfif>
-            WHERE ticketid = <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.ticketid#">
+            WHERE ticketid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.ticketid#">
         </cfquery>
         <!--- Add any additional logic here if needed --->
         
@@ -75,10 +75,10 @@
 
     <!--- Execute the query within a try/catch block for error handling --->
     <cftry>
-        <cfquery result="result"  name="queryResult" datasource="abod">
+        <cfquery name="queryResult" datasource="abod">
             #sql#
             <cfloop array="#paramList#" index="param">
-                <cfquery result="result" param value="#param.value#" cfsqltype="#param.cfsqltype#">
+                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
             </cfloop>
         </cfquery>
         <cfcatch type="any">
@@ -117,9 +117,9 @@
         
         <cfquery name="result" datasource="abod">
             #sql#
-            <cfquery result="result" param value="#arguments.verid#" cfsqltype="CF_SQL_INTEGER">
-            <cfquery result="result" param value="#arguments.col6#" cfsqltype="CF_SQL_DECIMAL">
-            <cfquery result="result" param value="#arguments.verid#" cfsqltype="CF_SQL_INTEGER">
+            <cfqueryparam value="#arguments.verid#" cfsqltype="CF_SQL_INTEGER">
+            <cfqueryparam value="#arguments.col6#" cfsqltype="CF_SQL_DECIMAL">
+            <cfqueryparam value="#arguments.verid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfreturn result>
@@ -134,11 +134,11 @@
     <cfargument name="recid" type="numeric" required="true" hint="The ID of the ticket to update.">
 
     <cftry>
-        <cfquery result="result"  datasource="abod">
+        <cfquery datasource="abod">
             UPDATE tickets_tbl 
-            SET ticketstatus = <cfquery result="result" param value="Closed" cfsqltype="CF_SQL_VARCHAR">, 
-                isdeleted = <cfquery result="result" param value="1" cfsqltype="CF_SQL_BIT">
-            WHERE ticketid = <cfquery result="result" param value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
+            SET ticketstatus = <cfqueryparam value="Closed" cfsqltype="CF_SQL_VARCHAR">, 
+                isdeleted = <cfqueryparam value="1" cfsqltype="CF_SQL_BIT">
+            WHERE ticketid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -189,8 +189,8 @@
             FROM tickets t
             INNER JOIN taousers u ON u.userid = t.userid
             INNER JOIN pgpages p ON p.pgid = t.pgid
-            WHERE t.verid = <cfquery result="result" param value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
-            AND t.patchnote <> <cfquery result="result" param value="" cfsqltype="CF_SQL_VARCHAR">
+            WHERE t.verid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
+            AND t.patchnote <> <cfqueryparam value="" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
         
         <cfcatch type="any">
@@ -243,7 +243,7 @@
             FROM tickets t
             INNER JOIN taousers u ON u.userid = t.userid
             INNER JOIN pgpages p ON p.pgid = t.pgid
-            WHERE t.ticketid = <cfquery result="result" param value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE t.ticketid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -258,10 +258,10 @@
     <cfargument name="new_ticketid" type="numeric" required="true" hint="The ID of the ticket to update.">
     
     <cftry>
-        <cfquery result="result"  name="updateStatus" datasource="abod">
+        <cfquery name="updateStatus" datasource="abod">
             UPDATE tickets 
-            SET ticketstatus = <cfquery result="result" param value="Tested - Success" cfsqltype="CF_SQL_VARCHAR">
-            WHERE ticketid = <cfquery result="result" param value="#arguments.new_ticketid#" cfsqltype="CF_SQL_INTEGER">
+            SET ticketstatus = <cfqueryparam value="Tested - Success" cfsqltype="CF_SQL_VARCHAR">
+            WHERE ticketid = <cfqueryparam value="#arguments.new_ticketid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -274,10 +274,10 @@
     <cfargument name="new_ticketid" type="numeric" required="true">
 
     <cftry>
-        <cfquery result="result"  name="updateQuery" datasource="abod">
+        <cfquery name="updateQuery" datasource="abod">
             UPDATE tickets 
-            SET ticketstatus = <cfquery result="result" param value="Tested - Bug" cfsqltype="CF_SQL_VARCHAR"> 
-            WHERE ticketid = <cfquery result="result" param value="#arguments.new_ticketid#" cfsqltype="CF_SQL_INTEGER">
+            SET ticketstatus = <cfqueryparam value="Tested - Bug" cfsqltype="CF_SQL_VARCHAR"> 
+            WHERE ticketid = <cfqueryparam value="#arguments.new_ticketid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -324,7 +324,7 @@
             FROM tickets t
             INNER JOIN taousers u ON u.userid = t.userid
             INNER JOIN pgpages p ON p.pgid = t.pgid
-            WHERE t.ticketid = <cfquery result="result" param value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE t.ticketid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -344,18 +344,18 @@
     <cfargument name="qstring" type="string" required="true">
 
     <cftry>
-        <cfquery result="result"  datasource="abod">
+        <cfquery datasource="abod">
             INSERT INTO tickets (
                 pgid, verid, ticketName, ticketdetails, tickettype, userid, ticketactive, ticketstring
             ) VALUES (
-                <cfquery result="result" param value="0" cfsqltype="cf_sql_integer">,
-                <cfquery result="result" param value="#arguments.new_verid#" cfsqltype="cf_sql_integer">,
-                <cfquery result="result" param value="#arguments.new_ticketName#" cfsqltype="cf_sql_varchar">,
-                <cfquery result="result" param value="#arguments.new_ticketdetails#" cfsqltype="cf_sql_varchar">,
-                <cfquery result="result" param value="#arguments.new_tickettype#" cfsqltype="cf_sql_varchar">,
-                <cfquery result="result" param value="#arguments.new_userid#" cfsqltype="cf_sql_integer">,
-                <cfquery result="result" param value="Y" cfsqltype="cf_sql_varchar">,
-                <cfquery result="result" param value="#arguments.qstring#" cfsqltype="cf_sql_varchar">
+                <cfqueryparam value="0" cfsqltype="cf_sql_integer">,
+                <cfqueryparam value="#arguments.new_verid#" cfsqltype="cf_sql_integer">,
+                <cfqueryparam value="#arguments.new_ticketName#" cfsqltype="cf_sql_varchar">,
+                <cfqueryparam value="#arguments.new_ticketdetails#" cfsqltype="cf_sql_varchar">,
+                <cfqueryparam value="#arguments.new_tickettype#" cfsqltype="cf_sql_varchar">,
+                <cfqueryparam value="#arguments.new_userid#" cfsqltype="cf_sql_integer">,
+                <cfqueryparam value="Y" cfsqltype="cf_sql_varchar">,
+                <cfqueryparam value="#arguments.qstring#" cfsqltype="cf_sql_varchar">
             )
         </cfquery>
         <cfcatch type="any">
@@ -407,7 +407,7 @@
             FROM tickets t
             INNER JOIN taousers u ON u.userid = t.userid
             INNER JOIN pgpages p ON p.pgid = t.pgid
-            WHERE t.ticketid = <cfquery result="result" param value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE t.ticketid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -458,7 +458,7 @@
             FROM tickets t
             INNER JOIN taousers u ON u.userid = t.userid
             INNER JOIN pgpages p ON p.pgid = t.pgid
-            WHERE t.ticketid = <cfquery result="result" param value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE t.ticketid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -483,26 +483,26 @@
     <cfargument name="ticketid" type="numeric" required="true">
 
     <cftry>
-        <cfquery result="result"  datasource="#abod#" name="updateQuery">
+        <cfquery datasource="#abod#" name="updateQuery">
             UPDATE tickets 
             SET 
-                ticketname = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.new_ticketname#" />,
-                testingscript = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.new_testingscript#" />,
-                ticketType = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.new_ticketType#" />,
-                ticketStatus = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.new_ticketStatus#" />,
+                ticketname = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_ticketname#" />,
+                testingscript = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_testingscript#" />,
+                ticketType = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_ticketType#" />,
+                ticketStatus = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_ticketStatus#" />,
                 verid = 
                     <cfif arguments.new_verid is "NULL"> 
                         NULL, ticketstatus = 'Pending' 
                     <cfelse> 
-                        <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.new_verid#" /> 
+                        <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_verid#" /> 
                     </cfif>,
-                pgid = <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.new_pgid#" />,
-                customtestpagename = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.new_customtestpagename#" />,
-                customtestpagelink = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.new_customtestpagelink#" />,
-                ticketPriority = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.new_ticketPriority#" />,
-                esthours = <cfquery result="result" param cfsqltype="cf_sql_float" value="#numberformat(arguments.new_esthours, '9.99')#" />
+                pgid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_pgid#" />,
+                customtestpagename = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_customtestpagename#" />,
+                customtestpagelink = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_customtestpagelink#" />,
+                ticketPriority = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_ticketPriority#" />,
+                esthours = <cfqueryparam cfsqltype="cf_sql_float" value="#numberformat(arguments.new_esthours, '9.99')#" />
             WHERE 
-                ticketid = <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.ticketid#" />
+                ticketid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.ticketid#" />
         </cfquery>
         <!--- Add any additional logic here if needed --->
     <cfcatch>
@@ -553,7 +553,7 @@
             INNER JOIN taousers u ON u.userid = t.userid
             INNER JOIN pgpages p ON p.pgid = t.pgid
             LEFT JOIN taoversions v ON v.verid = t.verid
-            WHERE t.ticketid = <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.ticketid#" />
+            WHERE t.ticketid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.ticketid#" />
         </cfquery>
         
         <cfreturn result>
@@ -568,11 +568,11 @@
     <cfargument name="recid" type="numeric" required="true">
     
     <cftry>
-        <cfquery result="result"  datasource="abod">
+        <cfquery datasource="abod">
             UPDATE tickets 
-            SET ticketCompletedDate = <cfquery result="result" param value="#now()#" cfsqltype="cf_sql_timestamp" />, 
-                complete_email = <cfquery result="result" param value="1" cfsqltype="cf_sql_bit" />
-            WHERE ticketid = <cfquery result="result" param value="#arguments.recid#" cfsqltype="cf_sql_integer" />
+            SET ticketCompletedDate = <cfqueryparam value="#now()#" cfsqltype="cf_sql_timestamp" />, 
+                complete_email = <cfqueryparam value="1" cfsqltype="cf_sql_bit" />
+            WHERE ticketid = <cfqueryparam value="#arguments.recid#" cfsqltype="cf_sql_integer" />
         </cfquery>
         
         <cfcatch type="any">
@@ -623,7 +623,7 @@
             FROM tickets t
             INNER JOIN taousers u ON u.userid = t.userid
             INNER JOIN pgpages p ON p.pgid = t.pgid
-            WHERE t.ticketid = <cfquery result="result" param value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE t.ticketid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfreturn result>
@@ -640,12 +640,12 @@
     <cfargument name="userLastName" type="string" required="true">
 
     <cftry>
-        <cfquery result="result"  name="updateTicket" datasource="abod">
+        <cfquery name="updateTicket" datasource="abod">
             UPDATE tickets
-            SET ticketstatus = <cfquery result="result" param value="Closed" cfsqltype="cf_sql_varchar">,
+            SET ticketstatus = <cfqueryparam value="Closed" cfsqltype="cf_sql_varchar">,
                 ticketcompleteddate = CURDATE(),
-                ticketresponse = <cfquery result="result" param value="Closed by #arguments.userFirstName# #arguments.userLastName#" cfsqltype="cf_sql_varchar">
-            WHERE ticketid = <cfquery result="result" param value="#arguments.ticketId#" cfsqltype="cf_sql_integer">
+                ticketresponse = <cfqueryparam value="Closed by #arguments.userFirstName# #arguments.userLastName#" cfsqltype="cf_sql_varchar">
+            WHERE ticketid = <cfqueryparam value="#arguments.ticketId#" cfsqltype="cf_sql_integer">
         </cfquery>
         
         <cfcatch>
@@ -661,15 +661,15 @@
     <cfargument name="recid" type="numeric" required="true">
 
     <cftry>
-        <cfquery result="result"  datasource="abod">
+        <cfquery datasource="abod">
             UPDATE tickets 
-            SET ticketCompletedDate = <cfquery result="result" param value="#now()#" cfsqltype="cf_sql_timestamp">,
-                ticketstatus = <cfquery result="result" param value="Completed" cfsqltype="cf_sql_varchar">,
-                ticketresponse = <cfquery result="result" param value="#arguments.ticketresponse#" cfsqltype="cf_sql_varchar">,
-                verid = <cfquery result="result" param value="#arguments.next_verid#" cfsqltype="cf_sql_integer">,
-                patchnote = <cfquery result="result" param value="#arguments.patchnote#" cfsqltype="cf_sql_varchar">,
+            SET ticketCompletedDate = <cfqueryparam value="#now()#" cfsqltype="cf_sql_timestamp">,
+                ticketstatus = <cfqueryparam value="Completed" cfsqltype="cf_sql_varchar">,
+                ticketresponse = <cfqueryparam value="#arguments.ticketresponse#" cfsqltype="cf_sql_varchar">,
+                verid = <cfqueryparam value="#arguments.next_verid#" cfsqltype="cf_sql_integer">,
+                patchnote = <cfqueryparam value="#arguments.patchnote#" cfsqltype="cf_sql_varchar">,
                 complete_email = 1
-            WHERE ticketid = <cfquery result="result" param value="#arguments.recid#" cfsqltype="cf_sql_integer">
+            WHERE ticketid = <cfqueryparam value="#arguments.recid#" cfsqltype="cf_sql_integer">
         </cfquery>
         
         <!--- Log successful update --->
@@ -686,10 +686,10 @@
     <cfargument name="status" type="string" required="true" default="Pass">
     
     <cftry>
-        <cfquery result="result"  datasource="abod">
+        <cfquery datasource="abod">
             UPDATE tickets 
-            SET ticketstatus = <cfquery result="result" param value="#arguments.status#" cfsqltype="cf_sql_varchar" />
-            WHERE ticketid = <cfquery result="result" param value="#arguments.ticketId#" cfsqltype="cf_sql_integer" />
+            SET ticketstatus = <cfqueryparam value="#arguments.status#" cfsqltype="cf_sql_varchar" />
+            WHERE ticketid = <cfqueryparam value="#arguments.ticketId#" cfsqltype="cf_sql_integer" />
         </cfquery>
         
         <cfcatch type="any">
@@ -704,15 +704,15 @@
     <cfargument name="new_ticketpriority" type="string" required="true">
 
     <cftry>
-        <cfquery result="result"  datasource="abod">
+        <cfquery datasource="abod">
             UPDATE tickets
             <cfif arguments.new_verid is "NULL">
                 SET verid = NULL, ticketstatus = 'Pending'
             <cfelse>
-                SET verid = <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.new_verid#" />
+                SET verid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_verid#" />
             </cfif>
-            , ticketpriority = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.new_ticketpriority#" />
-            WHERE ticketid = <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.ticketid#" />
+            , ticketpriority = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_ticketpriority#" />
+            WHERE ticketid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.ticketid#" />
         </cfquery>
         
         <cfcatch type="any">
@@ -730,7 +730,7 @@
         <cfquery name="result" datasource="abod">
             SELECT ticketstatus AS new_ticketstatus
             FROM tickets
-            WHERE ticketid = <cfquery result="result" param value="#arguments.ticketid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE ticketid = <cfqueryparam value="#arguments.ticketid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
         <cfcatch type="any">
@@ -762,7 +762,7 @@
             WHERE 
                 1=1
             <cfif structKeyExists(arguments, "verid")>
-                AND v.verid = <cfquery result="result" param value="#arguments.verid#" cfsqltype="CF_SQL_INTEGER">
+                AND v.verid = <cfqueryparam value="#arguments.verid#" cfsqltype="CF_SQL_INTEGER">
             </cfif>
             ORDER BY 
                 v.major, v.minor, v.patch, v.build
@@ -783,7 +783,7 @@
     <cfset var resultQuery = "">
     
     <cftry>
-        <cfquery result="result"  name="resultQuery" datasource="abod">
+        <cfquery name="resultQuery" datasource="abod">
             SELECT 
                 v.major, 
                 v.minor, 
@@ -795,8 +795,8 @@
             FROM 
                 taoversions v 
             WHERE 
-                v.verid <> <cfquery result="result" param value="#arguments.verid#" cfsqltype="CF_SQL_INTEGER"> 
-                AND ((v.hoursavail) - IFNULL((SELECT SUM(esthours) FROM tickets t WHERE verid = v.verid), 0) - <cfquery result="result" param value="#arguments.col6#" cfsqltype="CF_SQL_DECIMAL"> >= 0) 
+                v.verid <> <cfqueryparam value="#arguments.verid#" cfsqltype="CF_SQL_INTEGER"> 
+                AND ((v.hoursavail) - IFNULL((SELECT SUM(esthours) FROM tickets t WHERE verid = v.verid), 0) - <cfqueryparam value="#arguments.col6#" cfsqltype="CF_SQL_DECIMAL"> >= 0) 
                 AND v.versionstatus = 'Pending'
             UNION
             SELECT 
@@ -810,7 +810,7 @@
             FROM 
                 taoversions v 
             WHERE 
-                v.verid = <cfquery result="result" param value="#arguments.verid#" cfsqltype="CF_SQL_INTEGER">
+                v.verid = <cfqueryparam value="#arguments.verid#" cfsqltype="CF_SQL_INTEGER">
             ORDER BY major, minor, patch
         </cfquery>
         
@@ -833,7 +833,7 @@
     <cfset var queryResult = "">
     
     <cftry>
-        <cfquery result="result"  name="queryResult" datasource="abod">
+        <cfquery name="queryResult" datasource="abod">
             SELECT 
                 'ID' AS head1, 
                 'Details' AS head2, 
@@ -861,22 +861,22 @@
             LEFT JOIN taoversions v ON v.verid = t.verid
             WHERE t.ticketActive = 'Y'
             <cfif len(arguments.select_userid)>
-                AND t.userid = <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.select_userid#"/>
+                AND t.userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.select_userid#"/>
             </cfif>
             <cfif len(arguments.select_ticketstatus)>
-                AND t.ticketstatus = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.select_ticketstatus#"/>
+                AND t.ticketstatus = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.select_ticketstatus#"/>
             </cfif>
             <cfif len(arguments.select_ticketpriority)>
-                AND t.ticketpriority = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.select_ticketpriority#"/>
+                AND t.ticketpriority = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.select_ticketpriority#"/>
             </cfif>
             <cfif len(arguments.select_tickettype)>
-                AND t.tickettype = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.select_tickettype#"/>
+                AND t.tickettype = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.select_tickettype#"/>
             </cfif>
             <cfif len(arguments.select_pgid)>
-                AND p.pgid = <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.select_pgid#"/>
+                AND p.pgid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.select_pgid#"/>
             </cfif>
             <cfif len(arguments.select_verid)>
-                AND t.verid = <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.select_verid#"/>
+                AND t.verid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.select_verid#"/>
             </cfif>
             ORDER BY t.ticketCreatedDate DESC
         </cfquery>
@@ -908,7 +908,7 @@
             WHERE 
                 1=1
             <cfif structKeyExists(arguments, "verid")>
-                AND v.verid = <cfquery result="result" param value="#arguments.verid#" cfsqltype="CF_SQL_INTEGER">
+                AND v.verid = <cfqueryparam value="#arguments.verid#" cfsqltype="CF_SQL_INTEGER">
             </cfif>
             ORDER BY 
                 v.major, v.minor, v.patch, v.build
@@ -960,7 +960,7 @@
             INNER JOIN taousers_tbl u ON u.userid = t.userid
             INNER JOIN pgpages p ON p.pgid = t.pgid
             LEFT JOIN taoversions v ON v.verid = t.verid
-            WHERE t.ticketid = <cfquery result="result" param value="#arguments.recID#" cfsqltype="CF_SQL_INTEGER">
+            WHERE t.ticketid = <cfqueryparam value="#arguments.recID#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfreturn result>
@@ -1004,7 +1004,7 @@
             INNER JOIN taoversions v ON v.verid = t.verid
             WHERE t.ticketstatus IN (
                 <cfloop array="#arguments.statusList#" index="status">
-                    <cfquery result="result" param value="#status#" cfsqltype="CF_SQL_VARCHAR" list="true">
+                    <cfqueryparam value="#status#" cfsqltype="CF_SQL_VARCHAR" list="true">
                     <cfif NOT isLastArrayElement()>,</cfif>
                 </cfloop>
             )
@@ -1045,7 +1045,7 @@
                 (SELECT COUNT(*) FROM tickets WHERE verid = v.verid) AS total_tickets,
                 (SELECT SUM(esthours) FROM tickets WHERE verid = v.verid) AS total_hours
             FROM taoversions v
-            WHERE v.verid = <cfquery result="result" param value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE v.verid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -1082,7 +1082,7 @@
                 (SELECT COUNT(*) FROM tickets WHERE verid = v.verid) AS total_tickets,
                 (SELECT SUM(esthours) FROM tickets WHERE verid = v.verid) AS total_hours
             FROM taoversions v
-            WHERE v.verid = <cfquery result="result" param value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE v.verid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
         <cfcatch type="any">
@@ -1129,7 +1129,7 @@
             INNER JOIN 
                 taoversions v ON v.verid = t.verid
             WHERE 
-                t.verid = <cfquery result="result" param value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
+                t.verid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
             ORDER BY 
                 t.ticketid DESC
         </cfquery>
@@ -1190,7 +1190,7 @@
         <cfquery name="result" datasource="abod">
             #sql#
             <cfloop array="#params#" index="param">
-                <cfquery result="result" param value="#param.value#" cfsqltype="#param.cfsqltype#">
+                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
             </cfloop>
         </cfquery>
 

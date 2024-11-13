@@ -7,7 +7,7 @@
     <cfquery name="result">
         SELECT durid AS new_durid
         FROM mtgdurations
-        WHERE durhours = <cfquery result="result" param value="#arguments.new_durhours#" cfsqltype="CF_SQL_INTEGER">
+        WHERE durhours = <cfqueryparam value="#arguments.new_durhours#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
     
     <cfreturn result>
@@ -20,7 +20,7 @@
     <cfquery name="result">
         SELECT durid AS new_durid
         FROM mtgdurations
-        WHERE durhours = <cfquery result="result" param value="#arguments.new_durhours#" cfsqltype="CF_SQL_INTEGER">
+        WHERE durhours = <cfqueryparam value="#arguments.new_durhours#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
     
     <cfreturn result>
@@ -33,7 +33,7 @@
     <cfquery name="result">
         SELECT durid, durhours, durhours * 3600 AS durseconds, durname
         FROM mtgdurations
-        WHERE durid = <cfquery result="result" param value="#arguments.new_durid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE durid = <cfqueryparam value="#arguments.new_durid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
     
     <cfreturn result>
@@ -63,10 +63,10 @@
     <cfset sql &= " ORDER BY durid">
 
     <!--- Execute the query --->
-    <cfquery result="result"  name="queryResult">
+    <cfquery name="queryResult">
         #sql#
         <cfloop array="#params#" index="param">
-            <cfquery result="result" param value="#param.value#" cfsqltype="#param.cfsqltype#">
+            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
         </cfloop>
     </cfquery>
 

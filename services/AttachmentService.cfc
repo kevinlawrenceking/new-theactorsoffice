@@ -5,14 +5,14 @@
         <cfargument name="attachfilename" type="string" required="true">
         <cfargument name="noteid" type="numeric" required="true">
         
-        <cfquery result="result" >
+        <cfquery>
             INSERT INTO attachments (attachname, attachfilename, isdeleted, userid, noteid) 
             VALUES (
-                <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.attachname#" />,
-                <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.attachfilename#" />,
-                <cfquery result="result" param cfsqltype="cf_sql_integer" value="0" />,
-                <cfquery result="result" param cfsqltype="cf_sql_integer" value="#userid#" />,
-                <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.noteid#" />
+                <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.attachname#" />,
+                <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.attachfilename#" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="0" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#userid#" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.noteid#" />
             )
         </cfquery>
     </cffunction>
@@ -24,7 +24,7 @@
         <cfquery name="result">
             SELECT attachid, noteid, attachname, attachfilename
             FROM attachments
-            WHERE attachid = <cfquery result="result" param value="#arguments.attachid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE attachid = <cfqueryparam value="#arguments.attachid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
         <cfreturn result>
@@ -33,10 +33,10 @@
     <cffunction name="UPDattachments" access="public" returntype="void">
         <cfargument name="attachid" type="numeric" required="true">
 
-        <cfquery result="result" >
+        <cfquery>
             UPDATE attachments
             SET isdeleted = 1
-            WHERE attachid = <cfquery result="result" param value="#arguments.attachid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE attachid = <cfqueryparam value="#arguments.attachid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
     </cffunction>
 
@@ -47,7 +47,7 @@
         <cfquery name="result">
             SELECT attachid, noteid, attachname, attachfilename, userid
             FROM attachments
-            WHERE noteid = <cfquery result="result" param value="#arguments.new_noteid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE noteid = <cfqueryparam value="#arguments.new_noteid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
         <cfreturn result>

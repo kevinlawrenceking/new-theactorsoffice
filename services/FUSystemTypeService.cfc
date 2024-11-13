@@ -21,10 +21,10 @@
     <cfset sql &= whereClause & " ORDER BY systemtype">
 
     <!--- Execute the query without error handling --->
-    <cfquery result="result"  name="queryResult">
+    <cfquery name="queryResult">
         #sql#
         <cfloop array="#paramList#" index="param">
-            <cfquery result="result" param value="#param.value#" cfsqltype="#param.cfsqltype#">
+            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
         </cfloop>
     </cfquery>
 

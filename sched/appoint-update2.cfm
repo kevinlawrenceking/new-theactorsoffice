@@ -58,8 +58,8 @@
 <cfinclude template="/include/qry/update_618_1.cfm" /> 
 
 
-<cfquery result="result"   name="d"      >
-update eventcontactsxref set isdeleted = 1 where eventid = <cfquery result="result" param cfsqltype="cf_sql_integer" value="#eventid#" />
+<cfquery  name="d"      >
+update eventcontactsxref set isdeleted = 1 where eventid = <cfqueryparam cfsqltype="cf_sql_integer" value="#eventid#" />
 </cfquery>
 
         
@@ -75,7 +75,7 @@ update eventcontactsxref set isdeleted = 1 where eventid = <cfquery result="resu
     <cfif #isnumeric(relationship)# is "YES">
      
     
-    <cfquery result="result"   name="FIND"      >
+    <cfquery  name="FIND"      >
     Select * from contactdetails where userid = #userid# and contactid = #relationship#
     </cfquery>
         

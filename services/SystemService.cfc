@@ -1,7 +1,7 @@
 <cfcomponent displayname="SystemService" hint="Handles operations for System table" output="false"> 
 
 <cffunction name="SELfusystemtypes" access="public" returntype="query" output="false">
-    <cfquery result="result"  name="queryResult">
+    <cfquery name="queryResult">
         SELECT systemtype AS ID, systemtype AS systemname 
         FROM fusystemtypes 
         ORDER BY systemtype
@@ -19,8 +19,8 @@
     <cfquery name="result">
         SELECT s.systemid
         FROM fusystems s
-        WHERE s.systemtype = <cfquery result="result" param value="Maintenance List" cfsqltype="CF_SQL_VARCHAR">
-        AND s.systemscope = <cfquery result="result" param value="#arguments.newsystemscope#" cfsqltype="CF_SQL_VARCHAR">
+        WHERE s.systemtype = <cfqueryparam value="Maintenance List" cfsqltype="CF_SQL_VARCHAR">
+        AND s.systemscope = <cfqueryparam value="#arguments.newsystemscope#" cfsqltype="CF_SQL_VARCHAR">
     </cfquery>
     
     <cfreturn result>
@@ -37,11 +37,11 @@
         SELECT su.suid 
         FROM fusystems s 
         INNER JOIN fusystemusers su ON su.systemID = s.systemid 
-        WHERE su.suStatus = <cfquery result="result" param value="Active" cfsqltype="CF_SQL_VARCHAR"> 
-        AND su.userid = <cfquery result="result" param value="#arguments.new_userid#" cfsqltype="CF_SQL_INTEGER"> 
-        AND su.contactid = <cfquery result="result" param value="#arguments.new_contactid#" cfsqltype="CF_SQL_INTEGER"> 
-        AND (s.systemid = <cfquery result="result" param value="#arguments.new_systemid#" cfsqltype="CF_SQL_INTEGER" null="#not structKeyExists(arguments, 'new_systemid')#"> 
-             OR s.systemid IN (<cfquery result="result" param value="3,4" cfsqltype="CF_SQL_INTEGER" list="true">))
+        WHERE su.suStatus = <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR"> 
+        AND su.userid = <cfqueryparam value="#arguments.new_userid#" cfsqltype="CF_SQL_INTEGER"> 
+        AND su.contactid = <cfqueryparam value="#arguments.new_contactid#" cfsqltype="CF_SQL_INTEGER"> 
+        AND (s.systemid = <cfqueryparam value="#arguments.new_systemid#" cfsqltype="CF_SQL_INTEGER" null="#not structKeyExists(arguments, 'new_systemid')#"> 
+             OR s.systemid IN (<cfqueryparam value="3,4" cfsqltype="CF_SQL_INTEGER" list="true">))
     </cfquery>
     
     <cfreturn result>
@@ -54,7 +54,7 @@
     <cfquery name="result">
         SELECT *
         FROM fusystems
-        WHERE systemid = <cfquery result="result" param value="#arguments.systemId#" cfsqltype="CF_SQL_INTEGER">
+        WHERE systemid = <cfqueryparam value="#arguments.systemId#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 
     <cfreturn result>
@@ -79,8 +79,8 @@
         INNER JOIN 
             actionusers au ON au.actionid = a.actionid 
         WHERE 
-            a.systemID = <cfquery result="result" param value="#arguments.new_systemid#" cfsqltype="CF_SQL_INTEGER"> 
-            AND au.userid = <cfquery result="result" param value="#arguments.new_userid#" cfsqltype="CF_SQL_INTEGER"> 
+            a.systemID = <cfqueryparam value="#arguments.new_systemid#" cfsqltype="CF_SQL_INTEGER"> 
+            AND au.userid = <cfqueryparam value="#arguments.new_userid#" cfsqltype="CF_SQL_INTEGER"> 
             AND au.actionDaysNo IS NOT NULL 
             AND a.actionID IS NOT NULL 
         ORDER BY 
@@ -116,7 +116,7 @@
         FROM fusystems s
         INNER JOIN fuactions a ON s.systemid = a.systemid
         INNER JOIN actionusers au ON au.actionid = a.actionid
-        WHERE au.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE au.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         ORDER BY a.actionNo
     </cfquery>
     
@@ -151,8 +151,8 @@
             FROM fusystems s
             INNER JOIN fuactions a ON s.systemid = a.systemid
             INNER JOIN actionusers au ON au.actionid = a.actionid
-            WHERE s.systemID = <cfquery result="result" param value="#arguments.new_systemid#" cfsqltype="CF_SQL_INTEGER">
-            AND au.userid = <cfquery result="result" param value="#arguments.session_userid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE s.systemID = <cfqueryparam value="#arguments.new_systemid#" cfsqltype="CF_SQL_INTEGER">
+            AND au.userid = <cfqueryparam value="#arguments.session_userid#" cfsqltype="CF_SQL_INTEGER">
             ORDER BY a.actionNo
         </cfquery>
         
@@ -188,7 +188,7 @@
             FROM fusystems s
             INNER JOIN fuactions a ON s.systemid = a.systemid
             INNER JOIN actionusers au ON au.actionid = a.actionid
-            WHERE au.id = <cfquery result="result" param value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">
+            WHERE au.id = <cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfreturn result>
@@ -204,8 +204,8 @@
         <cfquery name="result" datasource="abod">
             SELECT * 
             FROM fusystems 
-            WHERE systemtype = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.systemtype#" />
-            AND systemscope = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.systemscope#" />
+            WHERE systemtype = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.systemtype#" />
+            AND systemscope = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.systemscope#" />
         </cfquery>
         
 
@@ -221,8 +221,8 @@
         <cfquery name="result" datasource="abod">
             SELECT *
             FROM fusystems
-            WHERE systemtype = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.systemType#" />
-            AND systemscope = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.systemScope#" />
+            WHERE systemtype = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.systemType#" />
+            AND systemscope = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.systemScope#" />
         </cfquery>
 
     
@@ -237,7 +237,7 @@
         SELECT * 
         FROM fusystems 
         WHERE systemid IN (
-            <cfquery result="result" param value="#arguments.systemIds#" cfsqltype="CF_SQL_INTEGER" list="true">
+            <cfqueryparam value="#arguments.systemIds#" cfsqltype="CF_SQL_INTEGER" list="true">
         )
         ORDER BY FIELD(systemid, #arguments.systemIds#)
     </cfquery>
@@ -253,7 +253,7 @@
     <cfset var queryResult = "">
     
     
-        <cfquery result="result"  name="queryResult" datasource="abod">
+        <cfquery name="queryResult" datasource="abod">
             SELECT 
                 au.id, 
                 s.systemID, 
@@ -274,8 +274,8 @@
             FROM fusystems s
             INNER JOIN fuactions a ON s.systemid = a.systemid
             INNER JOIN actionusers au ON au.actionid = a.actionid
-            WHERE a.systemID = <cfquery result="result" param value="#arguments.systemID#" cfsqltype="CF_SQL_INTEGER">
-            AND au.userid = <cfquery result="result" param value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
+            WHERE a.systemID = <cfqueryparam value="#arguments.systemID#" cfsqltype="CF_SQL_INTEGER">
+            AND au.userid = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
             ORDER BY a.actionNo
         </cfquery>
         
@@ -293,16 +293,16 @@
             FROM fusystems s 
             INNER JOIN fuactions a ON s.systemid = a.systemid 
             INNER JOIN actionusers_tbl au ON au.actionid = a.actionid 
-            WHERE a.systemID = <cfquery result="result" param value="#arguments.systemID#" cfsqltype="CF_SQL_INTEGER"> 
-            AND au.userid = <cfquery result="result" param value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER"> 
+            WHERE a.systemID = <cfqueryparam value="#arguments.systemID#" cfsqltype="CF_SQL_INTEGER"> 
+            AND au.userid = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER"> 
             AND au.isdeleted = 1 
             AND a.actionid NOT IN (
                 SELECT a.actionID 
                 FROM fusystems s 
                 INNER JOIN fuactions a ON s.systemid = a.systemid 
                 INNER JOIN actionusers au ON au.actionid = a.actionid 
-                WHERE a.systemID = <cfquery result="result" param value="#arguments.systemID#" cfsqltype="CF_SQL_INTEGER"> 
-                AND au.userid = <cfquery result="result" param value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
+                WHERE a.systemID = <cfqueryparam value="#arguments.systemID#" cfsqltype="CF_SQL_INTEGER"> 
+                AND au.userid = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
             ) 
             GROUP BY a.actionID, a.actionTitle, a.actionno 
             ORDER BY a.actionno
@@ -320,8 +320,8 @@
         <cfquery name="result" datasource="abod">
             SELECT systemid 
             FROM fusystems 
-            WHERE systemtype = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.systemType#" />
-            AND SystemScope = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.systemScope#" />
+            WHERE systemtype = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.systemType#" />
+            AND SystemScope = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.systemScope#" />
         </cfquery>
 
     <cfreturn result>
@@ -354,9 +354,9 @@
             FROM fusystems s
             INNER JOIN fuactions a ON s.systemid = a.systemid
             INNER JOIN actionusers au ON au.actionid = a.actionid
-            WHERE a.systemID = <cfquery result="result" param value="#arguments.maint_systemID#" cfsqltype="CF_SQL_INTEGER">
+            WHERE a.systemID = <cfqueryparam value="#arguments.maint_systemID#" cfsqltype="CF_SQL_INTEGER">
             AND au.actionDaysNo IS NOT NULL
-            AND au.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            AND au.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
             ORDER BY a.actionNo
         </cfquery>
         
@@ -364,7 +364,7 @@
     <cfreturn result>
 </cffunction>
 <cffunction name="SELfusystems_24634" access="public" returntype="query">
-    <cfquery result="result"  name="queryResult" datasource="abod">
+    <cfquery name="queryResult" datasource="abod">
         SELECT systemid AS id, systemname 
         FROM fusystems 
         ORDER BY systemname
@@ -400,8 +400,8 @@
             FROM fusystems s
             INNER JOIN fuactions a ON s.systemid = a.systemid
             INNER JOIN actionusers au ON au.actionid = a.actionid
-            WHERE s.systemID = <cfquery result="result" param value="#arguments.systemid#" cfsqltype="CF_SQL_INTEGER">
-            AND au.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE s.systemID = <cfqueryparam value="#arguments.systemid#" cfsqltype="CF_SQL_INTEGER">
+            AND au.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
             ORDER BY a.actionNo
         </cfquery>
         
@@ -418,13 +418,13 @@
         <cfquery name="result" datasource="abod">
             SELECT * 
             FROM fusystems 
-            WHERE systemscope = <cfquery result="result" param value="#arguments.new_systemscope#" cfsqltype="CF_SQL_VARCHAR"> 
+            WHERE systemscope = <cfqueryparam value="#arguments.new_systemscope#" cfsqltype="CF_SQL_VARCHAR"> 
               AND systemid NOT IN (
                   SELECT systemid 
                   FROM fusystemusers 
-                  WHERE contactID = <cfquery result="result" param value="#arguments.currentid#" cfsqltype="CF_SQL_INTEGER"> 
-                    AND userID = <cfquery result="result" param value="#arguments.session_userid#" cfsqltype="CF_SQL_INTEGER"> 
-                    AND suStatus = <cfquery result="result" param value='Active' cfsqltype='CF_SQL_VARCHAR'>
+                  WHERE contactID = <cfqueryparam value="#arguments.currentid#" cfsqltype="CF_SQL_INTEGER"> 
+                    AND userID = <cfqueryparam value="#arguments.session_userid#" cfsqltype="CF_SQL_INTEGER"> 
+                    AND suStatus = <cfqueryparam value='Active' cfsqltype='CF_SQL_VARCHAR'>
               ) 
             ORDER BY FIELD(systemtype, 'Targeted List', 'Follow Up', 'Maintenance List')
         </cfquery>
@@ -462,10 +462,10 @@
 
     <!--- Execute the query --->
 
-        <cfquery result="result"  name="queryResult" datasource="abod">
+        <cfquery name="queryResult" datasource="abod">
             #sql#
             <cfloop array="#params#" index="param">
-                <cfquery result="result" param value="#param.value#" cfsqltype="#param.cfsqltype#">
+                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
             </cfloop>
         </cfquery>
 

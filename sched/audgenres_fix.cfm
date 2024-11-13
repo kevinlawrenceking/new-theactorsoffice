@@ -23,13 +23,13 @@
     
 
     
-     <cfquery result="result"     name="u"  >
+     <cfquery    name="u"  >
         SELECT * from taousers     
     </cfquery>
 
     <cfloop query="u">
 
-         <cfquery result="result"   name="x"  >
+         <cfquery  name="x"  >
             SELECT audgenreid,
 audgenre,
 audcatid,
@@ -39,14 +39,14 @@ isDeleted
 
         <cfloop query="x">
             
-             <cfquery result="result"   name="find"  >
+             <cfquery  name="find"  >
             Select * from audgenres_user
             where audgenre = '#x.audgenre#' and audcatid = #x.audcatid# and userid = #u.userid#
             </cfquery>
             
             <cfif #find.recordcount# is "0">
             
-                 <cfquery result="result"   name="insert"  >
+                 <cfquery  name="insert"  >
                     
                     INSERT INTO `audgenres_user` (`audgenre`, `audcatid`, `userid`) 
                     VALUES ('#x.audgenre#','#x.audcatid#',#u.userid#);
@@ -85,7 +85,7 @@ isDeleted
         
         
         
-              <cfquery result="result"   name="z"  >
+              <cfquery  name="z"  >
         
         SELECT g.audgenre,u.audgenre,x.audroleid,x.audgenreid AS old_audgenreid, u.audgenreid AS NEW_audgenreid
 
@@ -99,7 +99,7 @@ WHERE g.audgenre = u.audgenre
         <cfloop query="z">
         
             
-              <cfquery result="result"   name="update"  >
+              <cfquery  name="update"  >
                   UPDATE audgenres_audition_xref set audgenreid = #z.new_audgenreid# where audroleid = #z.audroleid# and audgenreid = #z.old_audgenreid#
             </cfquery>
         

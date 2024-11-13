@@ -9,18 +9,18 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="updatedetails" type="string" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         INSERT INTO updatelog (
             oldValue, NewValue, recordname, updatename, recid, compid, userid, updatedetails
         ) VALUES (
-            <cfquery result="result" param value="#arguments.oldvalue#" cfsqltype="CF_SQL_VARCHAR">,
-            <cfquery result="result" param value="#arguments.newvalue#" cfsqltype="CF_SQL_VARCHAR">,
-            <cfquery result="result" param value="#arguments.recordname#" cfsqltype="CF_SQL_VARCHAR">,
-            <cfquery result="result" param value="#arguments.updatename#" cfsqltype="CF_SQL_VARCHAR">,
-            <cfquery result="result" param value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">,
-            <cfquery result="result" param value="#arguments.compid#" cfsqltype="CF_SQL_INTEGER">,
-            <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
-            <cfquery result="result" param value="#arguments.updatedetails#" cfsqltype="CF_SQL_VARCHAR">
+            <cfqueryparam value="#arguments.oldvalue#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfqueryparam value="#arguments.newvalue#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfqueryparam value="#arguments.recordname#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfqueryparam value="#arguments.updatename#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="#arguments.compid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="#arguments.updatedetails#" cfsqltype="CF_SQL_VARCHAR">
         )
     </cfquery>
 </cffunction>
@@ -55,7 +55,7 @@
         FROM updatelog u
         INNER JOIN taousers t ON t.userid = u.userid
         INNER JOIN pgcomps p ON p.compid = u.compid
-        WHERE u.userid = <cfquery result="result" param value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
+        WHERE u.userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
         ORDER BY u.updateid DESC
     </cfquery>
     

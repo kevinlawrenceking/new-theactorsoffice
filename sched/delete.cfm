@@ -1,4 +1,4 @@
-<cfquery result="result"  name="getDeletedFiles" datasource="abod">    
+<Cfquery name="getDeletedFiles" datasource="abod">    
 SELECT `id`, `filename`, `path`
     FROM `tao_files`
     WHERE `status` = 'deleted' and path='/include/qry'
@@ -28,10 +28,10 @@ DESTINATIONFILEPATH: #destinationFilePath#<br>
         <cfoutput>Moved file: #filename# to #destinationFilePath#<br></cfoutput>
 <cfoutput>path: /extracted/deleted#path#<br></cfoutput>
  
-        <cfquery result="result"  name="move" datasource="abod">    
+        <Cfquery name="move" datasource="abod">    
            UPDATE `tao_files`
            SET path = '/extracted/deleted#path#'
-           WHERE `id` = <cfquery result="result" param value="#getDeletedFiles.id#" cfsqltype="cf_sql_integer">
+           WHERE `id` = <cfqueryparam value="#getDeletedFiles.id#" cfsqltype="cf_sql_integer">
         </cfquery>
 
     <cfelse>

@@ -8,7 +8,7 @@
     <cfquery name="result">
         SELECT error_msg 
         FROM auditionsimport_error 
-        WHERE id = <cfquery result="result" param value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">
+        WHERE id = <cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
     
     <cfreturn result>
@@ -18,11 +18,11 @@
     <cfargument name="id" type="numeric" required="true">
     <cfargument name="errorMsg" type="string" default="Duplicate project">
 
-    <cfquery result="result" >
+    <cfquery>
         INSERT INTO auditionsimport_error (id, error_msg)
         VALUES (
-            <cfquery result="result" param value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">,
-            <cfquery result="result" param value="#arguments.errorMsg#" cfsqltype="CF_SQL_VARCHAR">
+            <cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="#arguments.errorMsg#" cfsqltype="CF_SQL_VARCHAR">
         )
     </cfquery>
 </cffunction>
@@ -31,11 +31,11 @@
     <cfargument name="id" type="numeric" required="true">
     <cfargument name="errorMsg" type="string" default="Missing project name">
 
-    <cfquery result="result" >
+    <cfquery>
         INSERT INTO auditionsimport_error (id, error_msg)
         VALUES (
-            <cfquery result="result" param value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">,
-            <cfquery result="result" param value="#arguments.errorMsg#" cfsqltype="CF_SQL_VARCHAR">
+            <cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="#arguments.errorMsg#" cfsqltype="CF_SQL_VARCHAR">
         )
     </cfquery>
 </cffunction>
@@ -44,11 +44,11 @@
     <cfargument name="id" type="numeric" required="true">
     <cfargument name="errorMsg" type="string" default="Missing Role name">
 
-    <cfquery result="result" >
+    <cfquery>
         INSERT INTO auditionsimport_error (id, error_msg) 
         VALUES (
-            <cfquery result="result" param value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">, 
-            <cfquery result="result" param value="#arguments.errorMsg#" cfsqltype="CF_SQL_VARCHAR">
+            <cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">, 
+            <cfqueryparam value="#arguments.errorMsg#" cfsqltype="CF_SQL_VARCHAR">
         )
     </cfquery>
 </cffunction>
@@ -57,11 +57,11 @@
     <cfargument name="id" type="numeric" required="true">
     <cfargument name="errorMsg" type="string" default="Invalid Category">
 
-    <cfquery result="result" >
+    <cfquery>
         INSERT INTO auditionsimport_error (id, error_msg)
         VALUES (
-            <cfquery result="result" param value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">,
-            <cfquery result="result" param value="#arguments.errorMsg#" cfsqltype="CF_SQL_VARCHAR">
+            <cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="#arguments.errorMsg#" cfsqltype="CF_SQL_VARCHAR">
         )
     </cfquery>
 </cffunction>
@@ -70,11 +70,11 @@
     <cfargument name="id" type="numeric" required="true">
     <cfargument name="errorMsg" type="string" default="Invalid Source">
 
-    <cfquery result="result" >
+    <cfquery>
         INSERT INTO auditionsimport_error (id, error_msg)
         VALUES (
-            <cfquery result="result" param value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">,
-            <cfquery result="result" param value="#arguments.errorMsg#" cfsqltype="CF_SQL_VARCHAR">
+            <cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="#arguments.errorMsg#" cfsqltype="CF_SQL_VARCHAR">
         )
     </cfquery>
 </cffunction>

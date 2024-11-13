@@ -6,7 +6,7 @@
         <cfquery name="result">
             SELECT rangeid, rangename 
             FROM audageranges 
-            WHERE isdeleted = <cfquery result="result" param value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
+            WHERE isdeleted = <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
             ORDER BY rangeid
         </cfquery>
 
@@ -20,14 +20,14 @@
         <cfargument name="new_age_group" type="string" required="true">
         <cfargument name="new_isDeleted" type="boolean" required="true">
         
-        <cfquery result="result" >
+        <cfquery>
             INSERT INTO audageranges (rangename, age_min, age_max, age_group, isDeleted)
             VALUES (
-                <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_rangename)#" maxlength="100">,
-                <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_age_min#">,
-                <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_age_max#">,
-                <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_age_group)#" maxlength="45">,
-                <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#">
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_rangename)#" maxlength="100">,
+                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_age_min#">,
+                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_age_max#">,
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_age_group)#" maxlength="45">,
+                <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#">
             )
         </cfquery>
     </cffunction>
@@ -40,16 +40,16 @@
         <cfargument name="new_isDeleted" type="boolean" required="true">
         <cfargument name="new_rangeid" type="numeric" required="true">
         
-        <cfquery result="result" >
+        <cfquery>
             UPDATE audageranges 
             SET 
-                rangename = <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_rangename#" maxlength="100">,
-                age_min = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_age_min#">,
-                age_max = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_age_max#">,
-                age_group = <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_age_group#" maxlength="45">,
-                isDeleted = <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#">
+                rangename = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_rangename#" maxlength="100">,
+                age_min = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_age_min#">,
+                age_max = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_age_max#">,
+                age_group = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_age_group#" maxlength="45">,
+                isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#">
             WHERE 
-                rangeid = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_rangeid#">
+                rangeid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_rangeid#">
         </cfquery>
     </cffunction>
 
@@ -60,7 +60,7 @@
             SELECT g.rangename, g.rangeid 
             FROM audageranges g 
             INNER JOIN audageranges_audtion_xref x ON x.rangeid = g.rangeid 
-            WHERE x.audroleid = <cfquery result="result" param value="#arguments.audroleid#" cfsqltype="cf_sql_integer"> 
+            WHERE x.audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="cf_sql_integer"> 
             ORDER BY g.rangeid
         </cfquery>
 

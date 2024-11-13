@@ -31,12 +31,12 @@
         INNER JOIN 
             fuActionLinks l ON l.actionlinkid = a.actionlinkid
         WHERE 
-            f.contactID = <cfquery result="result" param value="#arguments.currentid#" cfsqltype="CF_SQL_INTEGER"> AND
-            f.suid = <cfquery result="result" param value="#arguments.sysActiveSuid#" cfsqltype="CF_SQL_INTEGER"> AND
-            au.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> AND
-            (n.notstartdate IS NULL OR DATE(n.notstartdate) >= <cfquery result="result" param value="#DateFormat(Now(),'yyyy-mm-dd')#" cfsqltype="CF_SQL_DATE">) AND
-            n.notstatus = <cfquery result="result" param value="Pending" cfsqltype="CF_SQL_VARCHAR"> AND
-            ns.notstatus = <cfquery result="result" param value="Future" cfsqltype="CF_SQL_VARCHAR">
+            f.contactID = <cfqueryparam value="#arguments.currentid#" cfsqltype="CF_SQL_INTEGER"> AND
+            f.suid = <cfqueryparam value="#arguments.sysActiveSuid#" cfsqltype="CF_SQL_INTEGER"> AND
+            au.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> AND
+            (n.notstartdate IS NULL OR DATE(n.notstartdate) >= <cfqueryparam value="#DateFormat(Now(),'yyyy-mm-dd')#" cfsqltype="CF_SQL_DATE">) AND
+            n.notstatus = <cfqueryparam value="Pending" cfsqltype="CF_SQL_VARCHAR"> AND
+            ns.notstatus = <cfqueryparam value="Future" cfsqltype="CF_SQL_VARCHAR">
     </cfquery>
     
     <cfreturn result>

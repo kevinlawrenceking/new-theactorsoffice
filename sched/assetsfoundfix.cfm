@@ -1,6 +1,6 @@
 
 
-<cfquery result="result"   name="x">
+<cfquery  name="x">
 SELECT DISTINCT pgdir FROM pgpages WHERE pgdir <> '';
 </cfquery>
 
@@ -8,7 +8,7 @@ SELECT DISTINCT pgdir FROM pgpages WHERE pgdir <> '';
     <cfloop query="x">
  
         
-        <cfquery result="result"   name="update">
+        <cfquery  name="update">
             update pgfiles
             set filestatus = 'Confirmed'
             where id = '/app/#x.pgdir#/index.cfm'

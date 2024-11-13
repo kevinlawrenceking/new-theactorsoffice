@@ -4,11 +4,11 @@
     <cfargument name="new_mediaid" type="numeric" required="true">
     <cfargument name="audprojectid" type="numeric" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         INSERT INTO audmedia_auditions_xref (mediaid, audprojectid)
         VALUES (
-            <cfquery result="result" param value="#arguments.new_mediaid#" cfsqltype="CF_SQL_INTEGER">,
-            <cfquery result="result" param value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
+            <cfqueryparam value="#arguments.new_mediaid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
         )
     </cfquery>
 </cffunction>
@@ -17,10 +17,10 @@
     <cfargument name="mediaid" type="numeric" required="true">
     <cfargument name="audprojectid" type="numeric" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         DELETE FROM audmedia_auditions_xref
-        WHERE mediaid = <cfquery result="result" param value="#arguments.mediaid#" cfsqltype="CF_SQL_INTEGER">
-        AND audprojectid = <cfquery result="result" param value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE mediaid = <cfqueryparam value="#arguments.mediaid#" cfsqltype="CF_SQL_INTEGER">
+        AND audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 </cffunction>
 
@@ -28,11 +28,11 @@
     <cfargument name="mediaid" type="numeric" required="true">
     <cfargument name="audprojectid" type="numeric" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         INSERT INTO audmedia_auditions_xref (mediaid, audprojectid)
         VALUES (
-            <cfquery result="result" param value="#arguments.mediaid#" cfsqltype="CF_SQL_INTEGER">,
-            <cfquery result="result" param value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
+            <cfqueryparam value="#arguments.mediaid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
         )
     </cfquery>
 </cffunction>
@@ -46,8 +46,8 @@
     <cfquery name="result">
         SELECT * 
         FROM audmedia_auditions_xref 
-        WHERE mediaid = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_mediaID#" null="#NOT len(trim(arguments.new_mediaID))#"> 
-        AND audprojectid = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.audprojectid#" null="#NOT len(trim(arguments.audprojectid))#">
+        WHERE mediaid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_mediaID#" null="#NOT len(trim(arguments.new_mediaID))#"> 
+        AND audprojectid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.audprojectid#" null="#NOT len(trim(arguments.audprojectid))#">
     </cfquery>
 
     <cfreturn result>
@@ -57,11 +57,11 @@
     <cfargument name="audprojectid" type="numeric" required="true">
     <cfargument name="new_mediaID" type="numeric" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         INSERT INTO audmedia_auditions_xref (audprojectid, mediaid)
         VALUES (
-            <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.audprojectid#" null="#NOT len(trim(arguments.audprojectid))#">,
-            <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_mediaID#" null="#NOT len(trim(arguments.new_mediaID))#">
+            <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.audprojectid#" null="#NOT len(trim(arguments.audprojectid))#">,
+            <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_mediaID#" null="#NOT len(trim(arguments.new_mediaID))#">
         )
     </cfquery>
 </cffunction>

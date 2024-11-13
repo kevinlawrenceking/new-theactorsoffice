@@ -26,7 +26,7 @@
     <cfquery name="result">
         #sql#
         <cfloop array="#paramList#" index="param">
-            <cfquery result="result" param value="#param.value#" cfsqltype="#param.cfsqltype#">
+            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
         </cfloop>
     </cfquery>
 

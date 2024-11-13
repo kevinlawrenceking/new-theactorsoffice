@@ -9,7 +9,7 @@
         WHERE isdeleted = 0
         AND audbooktypeid <> 0
         <cfif structKeyExists(arguments, "audbooktypeid")>
-            AND audbooktypeid = <cfquery result="result" param value="#arguments.audbooktypeid#" cfsqltype="CF_SQL_INTEGER">
+            AND audbooktypeid = <cfqueryparam value="#arguments.audbooktypeid#" cfsqltype="CF_SQL_INTEGER">
         </cfif>
     </cfquery>
 

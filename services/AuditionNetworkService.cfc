@@ -4,12 +4,12 @@
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         INSERT INTO audnetworks (network, audCatid, isDeleted)
         VALUES (
-            <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_network#" maxlength="100" null="#NOT len(trim(arguments.new_network))#">,
-            <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audCatid#" null="#NOT len(trim(arguments.new_audCatid))#">,
-            <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+            <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_network#" maxlength="100" null="#NOT len(trim(arguments.new_network))#">,
+            <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audCatid#" null="#NOT len(trim(arguments.new_audCatid))#">,
+            <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
         )
     </cfquery>
 </cffunction>
@@ -19,13 +19,13 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_networkid" type="numeric" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         UPDATE audnetworks 
         SET 
-            network = <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_network#" maxlength="100" null="#NOT len(trim(arguments.new_network))#">,
-            audCatid = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audCatid#" null="#NOT len(trim(arguments.new_audCatid))#">,
-            isDeleted = <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+            network = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_network#" maxlength="100" null="#NOT len(trim(arguments.new_network))#">,
+            audCatid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audCatid#" null="#NOT len(trim(arguments.new_audCatid))#">,
+            isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
         WHERE 
-            networkid = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_networkid#">
+            networkid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_networkid#">
     </cfquery>
 </cffunction></cfcomponent>

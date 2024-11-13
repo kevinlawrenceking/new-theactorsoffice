@@ -10,7 +10,7 @@
         WHERE actionid IN (
             SELECT actionid 
             FROM fuactions 
-            WHERE systemid = <cfquery result="result" param value="#arguments.target_id_system#" cfsqltype="CF_SQL_INTEGER">
+            WHERE systemid = <cfqueryparam value="#arguments.target_id_system#" cfsqltype="CF_SQL_INTEGER">
         )
     </cfquery>
     
@@ -24,18 +24,18 @@
 
     <cfset var queryResult = "">
     
-    <cfquery result="result"  name="queryResult">
+    <cfquery name="queryResult">
         SELECT actionid, actiondaysno, actiondaysrecurring
         FROM fuactions
         WHERE 1=1
         <cfif structKeyExists(arguments, "actionId")>
-            AND actionid = <cfquery result="result" param value="#arguments.actionId#" cfsqltype="CF_SQL_INTEGER">
+            AND actionid = <cfqueryparam value="#arguments.actionId#" cfsqltype="CF_SQL_INTEGER">
         </cfif>
         <cfif structKeyExists(arguments, "actionDaysNo")>
-            AND actiondaysno = <cfquery result="result" param value="#arguments.actionDaysNo#" cfsqltype="CF_SQL_INTEGER">
+            AND actiondaysno = <cfqueryparam value="#arguments.actionDaysNo#" cfsqltype="CF_SQL_INTEGER">
         </cfif>
         <cfif structKeyExists(arguments, "actionDaysRecurring")>
-            AND actiondaysrecurring = <cfquery result="result" param value="#arguments.actionDaysRecurring#" cfsqltype="CF_SQL_INTEGER">
+            AND actiondaysrecurring = <cfqueryparam value="#arguments.actionDaysRecurring#" cfsqltype="CF_SQL_INTEGER">
         </cfif>
     </cfquery>
 

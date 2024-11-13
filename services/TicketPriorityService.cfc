@@ -19,10 +19,10 @@
     <cfset sql &= orderByClause>
 
     <!--- Execute the query --->
-    <cfquery result="result"  name="queryResult">
+    <cfquery name="queryResult">
         #sql#
         <cfloop collection="#arguments.conditions#" item="key">
-            <cfquery result="result" param value="#arguments.conditions[key]#" cfsqltype="CF_SQL_VARCHAR" />
+            <cfqueryparam value="#arguments.conditions[key]#" cfsqltype="CF_SQL_VARCHAR" />
         </cfloop>
     </cfquery>
 

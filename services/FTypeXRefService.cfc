@@ -7,7 +7,7 @@
         <cfquery name="result">
             SELECT cfparam 
             FROM ftypexref_tbl 
-            WHERE ftypefull = <cfquery result="result" param value="#arguments.type#" cfsqltype="CF_SQL_VARCHAR">
+            WHERE ftypefull = <cfqueryparam value="#arguments.type#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
 
         <cfreturn result>

@@ -6,17 +6,17 @@
     <cfargument name="ID" type="numeric" required="true">
     <cfargument name="itemDataset" type="string" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         INSERT INTO reportitems 
         (itemLabel, itemOrderNo, itemValueInt, ID, itemDataset, userid) 
         VALUES 
         (
-            <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.itemLabel#" />,
-            <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.itemOrderNo#" />,
-            <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.itemValueInt#" />,
-            <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.ID#" />,
-            <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.itemDataset#" />,
-            <cfquery result="result" param cfsqltype="cf_sql_integer" value="#session.userid#" />
+            <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.itemLabel#" />,
+            <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.itemOrderNo#" />,
+            <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.itemValueInt#" />,
+            <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.ID#" />,
+            <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.itemDataset#" />,
+            <cfqueryparam cfsqltype="cf_sql_integer" value="#session.userid#" />
         )
     </cfquery>
 </cffunction>
@@ -41,9 +41,9 @@
         INNER JOIN 
             reports_user r ON r.id = i.id 
         WHERE 
-            i.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+            i.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
         AND 
-            r.reportid = <cfquery result="result" param value="#arguments.reportid#" cfsqltype="CF_SQL_INTEGER">
+            r.reportid = <cfqueryparam value="#arguments.reportid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 
     <cfreturn result>
@@ -59,8 +59,8 @@
         SELECT DISTINCT i.itemdataset
         FROM reportitems i
         INNER JOIN reports_user r ON r.id = i.id
-        WHERE i.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
-        AND r.reportid = <cfquery result="result" param value="#arguments.reportid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE i.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        AND r.reportid = <cfqueryparam value="#arguments.reportid#" cfsqltype="CF_SQL_INTEGER">
         ORDER BY i.itemdataset
     </cfquery>
 
@@ -77,8 +77,8 @@
         SELECT DISTINCT i.itemlabel
         FROM reportitems i
         INNER JOIN reports_user r ON r.id = i.id
-        WHERE i.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
-        AND r.reportid = <cfquery result="result" param value="#arguments.reportid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE i.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        AND r.reportid = <cfqueryparam value="#arguments.reportid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 
     <cfreturn result>
@@ -100,9 +100,9 @@
         INNER JOIN 
             reports_user r ON r.id = i.id 
         WHERE 
-            i.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
-            AND r.reportid = <cfquery result="result" param value="#arguments.reportid#" cfsqltype="CF_SQL_INTEGER"> 
-            AND i.itemDataset = <cfquery result="result" param value="#arguments.itemdataset#" cfsqltype="CF_SQL_VARCHAR"> 
+            i.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+            AND r.reportid = <cfqueryparam value="#arguments.reportid#" cfsqltype="CF_SQL_INTEGER"> 
+            AND i.itemDataset = <cfqueryparam value="#arguments.itemdataset#" cfsqltype="CF_SQL_VARCHAR"> 
         ORDER BY 
             i.itemlabel
     </cfquery>
@@ -113,9 +113,9 @@
 <cffunction name="DELreportitems" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         DELETE FROM reportitems
-        WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 </cffunction>
 
@@ -126,16 +126,16 @@
     <cfargument name="newItemDataSet" type="string" required="true">
     <cfargument name="userID" type="numeric" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         INSERT INTO reportitems 
         (itemLabel, itemOrderNo, itemValueInt, ID, itemDataset, userid) 
         VALUES (
-            <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.newLabel#" />,
-            <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.itemOrderNo#" />,
-            <cfquery result="result" param cfsqltype="cf_sql_integer" value="0" />,
-            <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.newID#" />,
-            <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.newItemDataSet#" />,
-            <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.userID#" />
+            <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.newLabel#" />,
+            <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.itemOrderNo#" />,
+            <cfqueryparam cfsqltype="cf_sql_integer" value="0" />,
+            <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.newID#" />,
+            <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.newItemDataSet#" />,
+            <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userID#" />
         )
     </cfquery>
 </cffunction>
@@ -144,10 +144,10 @@
     <cfargument name="new_itemvalueint" type="numeric" required="true">
     <cfargument name="new_itemid" type="numeric" required="true">
 
-        <cfquery result="result"  name="updateQuery" datasource="abod">
+        <cfquery name="updateQuery" datasource="abod">
             UPDATE reportitems 
-            SET itemValueInt = <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.new_itemvalueint#" />
-            WHERE itemid = <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.new_itemid#" />
+            SET itemValueInt = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_itemvalueint#" />
+            WHERE itemid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_itemid#" />
         </cfquery>
         
 </cffunction>
@@ -159,7 +159,7 @@
         <cfquery name="result" datasource="abod">
             SELECT *
             FROM reportitems
-            WHERE userid = <cfquery result="result" param value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
+            WHERE userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
     

@@ -8,8 +8,8 @@
     <cfquery name="result">
         SELECT audroletypeid AS id, audroletype AS name
         FROM audroletypes
-        WHERE audcatid = <cfquery result="result" param value="#arguments.audcatid#" cfsqltype="CF_SQL_INTEGER">
-        AND isdeleted = <cfquery result="result" param value="false" cfsqltype="CF_SQL_BIT">
+        WHERE audcatid = <cfqueryparam value="#arguments.audcatid#" cfsqltype="CF_SQL_INTEGER">
+        AND isdeleted = <cfqueryparam value="false" cfsqltype="CF_SQL_BIT">
     </cfquery>
     
     <cfreturn result>
@@ -20,12 +20,12 @@
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         INSERT INTO audroletypes (audroletype, audCatid, isDeleted)
         VALUES (
-            <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audroletype#" maxlength="100">,
-            <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audCatid#">,
-            <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#">
+            <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audroletype#" maxlength="100">,
+            <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audCatid#">,
+            <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#">
         )
     </cfquery>
 </cffunction>
@@ -36,14 +36,14 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_audroletypeid" type="numeric" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         UPDATE audroletypes 
         SET 
-            audroletype = <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audroletype)#" maxlength="100">,
-            audCatid = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audCatid#">,
-            isDeleted = <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#">
+            audroletype = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audroletype)#" maxlength="100">,
+            audCatid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audCatid#">,
+            isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#">
         WHERE 
-            audroletypeid = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audroletypeid#">
+            audroletypeid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audroletypeid#">
     </cfquery>
 </cffunction>
 

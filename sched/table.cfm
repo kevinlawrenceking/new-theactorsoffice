@@ -1,4 +1,4 @@
-<cfquery result="result"  name="getColumnDetails" datasource="abod">
+<cfquery name="getColumnDetails" datasource="abod">
     SELECT 
         c.COLUMN_NAME,                          -- The name of the column
         c.DATA_TYPE,                            -- The data type of the column

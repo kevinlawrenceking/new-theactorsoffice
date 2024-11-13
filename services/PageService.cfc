@@ -4,12 +4,12 @@
     <cfset var queryResult = "">
     
     <cftry>
-        <cfquery result="result"  name="queryResult" datasource="abod">
+        <cfquery name="queryResult" datasource="abod">
             SELECT DISTINCT p.pgid, p.pgname 
             FROM taousers u 
             INNER JOIN tickets t ON u.userID = t.userid 
             INNER JOIN pgpages p ON p.pgid = t.pgid 
-            WHERE t.ticketactive = <cfquery result="result" param value="#arguments.ticketActive#" cfsqltype="CF_SQL_CHAR"> 
+            WHERE t.ticketactive = <cfqueryparam value="#arguments.ticketActive#" cfsqltype="CF_SQL_CHAR"> 
             ORDER BY p.pgname
         </cfquery>
         
@@ -30,8 +30,8 @@
             SELECT *
             FROM pgpages p
             INNER JOIN pgcomps c ON c.compID = p.compid
-            WHERE p.parentpgid = <cfquery result="result" param value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER">
-            AND p.pgfilename = <cfquery result="result" param value="results.cfm" cfsqltype="CF_SQL_VARCHAR">
+            WHERE p.parentpgid = <cfqueryparam value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER">
+            AND p.pgfilename = <cfqueryparam value="results.cfm" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
         <cfcatch>
             <cflog file="errorLog" text="Error in getPgPagesResults: #cfcatch.message# Query: SELECT * FROM pgpages p INNER JOIN pgcomps c ON c.compID = p.compid WHERE p.parentpgid = ? AND p.pgfilename = 'results.cfm' Parameters: pgid=#arguments.pgid#">
@@ -51,9 +51,9 @@
         <cfquery name="result" datasource="abod">
             SELECT pgid, pgdir
             FROM pgpages
-            WHERE compid = <cfquery result="result" param value="#arguments.compid#" cfsqltype="CF_SQL_INTEGER">
-            AND pgid <> <cfquery result="result" param value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER">
-            AND pgfilename = <cfquery result="result" param value="results.cfm" cfsqltype="CF_SQL_VARCHAR">
+            WHERE compid = <cfqueryparam value="#arguments.compid#" cfsqltype="CF_SQL_INTEGER">
+            AND pgid <> <cfqueryparam value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER">
+            AND pgfilename = <cfqueryparam value="results.cfm" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
         
         <cfcatch type="any">
@@ -75,7 +75,7 @@
             FROM pgpages p 
             INNER JOIN pgcomps c ON c.compID = p.compID 
             INNER JOIN pgapps a ON a.appID = c.appid 
-            WHERE p.pgid = <cfquery result="result" param value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE p.pgid = <cfqueryparam value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -103,7 +103,7 @@
             FROM pgpages p
             INNER JOIN pgcomps c ON c.compID = p.compID
             INNER JOIN pgapps a ON a.appID = c.appid
-            WHERE p.pgid = <cfquery result="result" param value="#arguments.ref_pgid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE p.pgid = <cfqueryparam value="#arguments.ref_pgid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfreturn result>
@@ -122,7 +122,7 @@
         <cfquery name="result" datasource="abod">
             SELECT pgdir 
             FROM pgpages 
-            WHERE pgid = <cfquery result="result" param value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE pgid = <cfqueryparam value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -151,7 +151,7 @@
             LEFT JOIN pgfields f2 ON f.fkey = f2.fieldid 
             LEFT JOIN pgpages p2 ON p2.pgid = f2.pgid 
             LEFT JOIN pgcomps c2 ON c2.compid = p2.compid 
-            WHERE p.pgid = <cfquery result="result" param value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE p.pgid = <cfqueryparam value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER">
             AND f.results_yn = 'Y'
             ORDER BY f.displayOrder
         </cfquery>
@@ -187,7 +187,7 @@
             INNER JOIN 
                 pgapps a ON a.appID = c.appid 
             WHERE 
-                p.pgDir = <cfquery result="result" param value="#trim(arguments.thispage)#" cfsqltype="CF_SQL_VARCHAR">
+                p.pgDir = <cfqueryparam value="#trim(arguments.thispage)#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
         
         <cfcatch type="any">
@@ -225,7 +225,7 @@
             INNER JOIN 
                 pgfields f ON f.pgid = p.pgid
             WHERE 
-                p.pgDir = <cfquery result="result" param value="#trim(arguments.thispage)#" cfsqltype="CF_SQL_VARCHAR">
+                p.pgDir = <cfqueryparam value="#trim(arguments.thispage)#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
         
         <cfcatch>
@@ -245,7 +245,7 @@
         <cfquery name="result" datasource="abod">
             SELECT pgdir
             FROM pgpages
-            WHERE pgid = <cfquery result="result" param value="#arguments.details_pgid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE pgid = <cfqueryparam value="#arguments.details_pgid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -266,7 +266,7 @@
             SELECT p.pgid AS ID, p.pgname AS name
             FROM pgpages p
             INNER JOIN pgcomps c ON c.compid = p.compid
-            WHERE c.compactive = <cfquery result="result" param value="#arguments.compactive#" cfsqltype="CF_SQL_CHAR">
+            WHERE c.compactive = <cfqueryparam value="#arguments.compactive#" cfsqltype="CF_SQL_CHAR">
             ORDER BY p.pgname
         </cfquery>
         
@@ -288,9 +288,9 @@
         <cfquery name="result" datasource="abod">
             SELECT pgid, pgdir 
             FROM pgpages 
-            WHERE compid = <cfquery result="result" param value="#arguments.compid#" cfsqltype="CF_SQL_INTEGER"> 
-            AND pgid <> <cfquery result="result" param value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER"> 
-            AND pgfilename = <cfquery result="result" param value="details.cfm" cfsqltype="CF_SQL_VARCHAR">
+            WHERE compid = <cfqueryparam value="#arguments.compid#" cfsqltype="CF_SQL_INTEGER"> 
+            AND pgid <> <cfqueryparam value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER"> 
+            AND pgfilename = <cfqueryparam value="details.cfm" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
         <cfcatch type="any">
             <cflog file="errorLog" text="Error in getPgPagesDetails: #cfcatch.message# Query: SELECT pgid, pgdir FROM pgpages WHERE compid = #arguments.compid# AND pgid <> #arguments.pgid# AND pgfilename = 'details.cfm'">
@@ -321,7 +321,7 @@
             INNER JOIN 
                 pgapps a ON a.appID = c.appid
             WHERE 
-                p.pgid = <cfquery result="result" param value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER">
+                p.pgid = <cfqueryparam value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfreturn result>
@@ -353,8 +353,8 @@
             INNER JOIN pgcomps c ON c.compID = p.compID
             INNER JOIN pgapps a ON a.appID = c.appid
             LEFT JOIN pgfields f ON f.pgid = p.pgid
-            WHERE p.pgid = <cfquery result="result" param value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER">
-            AND f.update_yn = <cfquery result="result" param value="y" cfsqltype="CF_SQL_CHAR">
+            WHERE p.pgid = <cfqueryparam value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER">
+            AND f.update_yn = <cfqueryparam value="y" cfsqltype="CF_SQL_CHAR">
         </cfquery>
         
         <cfcatch>
@@ -392,9 +392,9 @@
             LEFT JOIN 
                 pgfields f ON f.pgid = p.pgid
             WHERE 
-                p.pgid = <cfquery result="result" param value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER">
+                p.pgid = <cfqueryparam value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER">
             AND 
-                f.results_yn = <cfquery result="result" param value="y" cfsqltype="CF_SQL_CHAR">
+                f.results_yn = <cfqueryparam value="y" cfsqltype="CF_SQL_CHAR">
         </cfquery>
         
         <cfcatch type="any">
@@ -417,8 +417,8 @@
             INNER JOIN pgcomps c ON c.compID = p.compID 
             INNER JOIN pgapps a ON a.appID = c.appid 
             LEFT JOIN pgfields f ON f.pgid = p.pgid 
-            WHERE p.pgid = <cfquery result="result" param value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER"> 
-              AND f.updatename = <cfquery result="result" param value="ID" cfsqltype="CF_SQL_VARCHAR">
+            WHERE p.pgid = <cfqueryparam value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER"> 
+              AND f.updatename = <cfqueryparam value="ID" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
         
         <cfcatch type="any">
@@ -448,8 +448,8 @@
             INNER JOIN pgcomps c ON c.compID = p.compID 
             INNER JOIN pgapps a ON a.appID = c.appid 
             LEFT JOIN pgfields f ON f.pgid = p.pgid 
-            WHERE p.pgid = <cfquery result="result" param value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER"> 
-            AND f.add_yn = <cfquery result="result" param value="y" cfsqltype="CF_SQL_CHAR">
+            WHERE p.pgid = <cfqueryparam value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER"> 
+            AND f.add_yn = <cfqueryparam value="y" cfsqltype="CF_SQL_CHAR">
         </cfquery>
         
         <cfcatch type="any">
@@ -486,8 +486,8 @@
             LEFT JOIN 
                 pgfields f ON f.pgid = p.pgid
             WHERE 
-                p.pgid = <cfquery result="result" param value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER"> 
-                AND f.update_yn = <cfquery result="result" param value="y" cfsqltype="CF_SQL_CHAR">
+                p.pgid = <cfqueryparam value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER"> 
+                AND f.update_yn = <cfqueryparam value="y" cfsqltype="CF_SQL_CHAR">
         </cfquery>
         
         <cfcatch type="any">
@@ -524,8 +524,8 @@
             LEFT JOIN 
                 pgcomps c2 ON c2.compid = p2.compid
             WHERE 
-                p.pgid = <cfquery result="result" param value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER"> 
-                AND f.details_yn = <cfquery result="result" param value="Y" cfsqltype="CF_SQL_CHAR">
+                p.pgid = <cfqueryparam value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER"> 
+                AND f.details_yn = <cfqueryparam value="Y" cfsqltype="CF_SQL_CHAR">
             ORDER BY 
                 f.displayOrder
         </cfquery>
@@ -568,8 +568,8 @@
             LEFT JOIN 
                 pgcomps c2 ON c2.compid = p2.compid
             WHERE 
-                p.pgid = <cfquery result="result" param value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER"> 
-                AND f.details_yn = <cfquery result="result" param value="Y" cfsqltype="CF_SQL_CHAR"> 
+                p.pgid = <cfqueryparam value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER"> 
+                AND f.details_yn = <cfqueryparam value="Y" cfsqltype="CF_SQL_CHAR"> 
                 AND f.fkey <> ''
         </cfquery>
         
@@ -616,9 +616,9 @@
             LEFT JOIN 
                 pgcomps c2 ON c2.compid = p2.compid
             WHERE 
-                p.pgid = <cfquery result="result" param value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER"> 
+                p.pgid = <cfqueryparam value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER"> 
             AND 
-                f.results_yn = <cfquery result="result" param value="Y" cfsqltype="CF_SQL_CHAR">
+                f.results_yn = <cfqueryparam value="Y" cfsqltype="CF_SQL_CHAR">
             ORDER BY 
                 f.displayOrder
         </cfquery>
@@ -662,7 +662,7 @@
             LEFT JOIN 
                 pgcomps c2 ON c2.compid = p2.compid 
             WHERE 
-                p.pgid = <cfquery result="result" param value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER">
+                p.pgid = <cfqueryparam value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER">
                 AND f.results_yn = 'Y' 
                 AND f.fkey <> ''
         </cfquery>
@@ -703,8 +703,8 @@
             LEFT JOIN 
                 pgcomps c2 ON c2.compid = p2.compid
             WHERE 
-                p.pgid = <cfquery result="result" param value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER">
-                AND f.update_yn = <cfquery result="result" param value="Y" cfsqltype="CF_SQL_CHAR">
+                p.pgid = <cfqueryparam value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER">
+                AND f.update_yn = <cfqueryparam value="Y" cfsqltype="CF_SQL_CHAR">
             ORDER BY 
                 f.displayOrder
         </cfquery>
@@ -747,8 +747,8 @@
             LEFT JOIN 
                 pgcomps c2 ON c2.compid = p2.compid
             WHERE 
-                p.pgid = <cfquery result="result" param value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER"> 
-                AND f.details_yn = <cfquery result="result" param value="Y" cfsqltype="CF_SQL_CHAR"> 
+                p.pgid = <cfqueryparam value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER"> 
+                AND f.details_yn = <cfqueryparam value="Y" cfsqltype="CF_SQL_CHAR"> 
                 AND f.fkey <> ''
         </cfquery>
         
@@ -771,7 +771,7 @@
             <cfthrow type="InvalidArgument" message="Either pgid or pgDir must be provided.">
         </cfif>
 
-        <cfquery result="result"  name="qPageDetails" >
+        <cfquery name="qPageDetails" >
             SELECT
                 a.appname, p.allowdelete_yn, p.allowupdate_yn, p.allowadd_yn, p.allowdetails_yn,
                 a.appAuthor, c.compname, p.pgname, a.appId, a.appDescription,
@@ -786,9 +786,9 @@
             INNER JOIN pgapps a ON a.appID = c.appid
             WHERE 
             <cfif Len(arguments.pgid)>
-                p.pgid = <cfquery result="result" param value="#arguments.pgid#" cfsqltype="cf_sql_varchar">
+                p.pgid = <cfqueryparam value="#arguments.pgid#" cfsqltype="cf_sql_varchar">
             <cfelse>
-                p.pgDir = <cfquery result="result" param value="#trim(arguments.pgDir)#" cfsqltype="cf_sql_varchar">
+                p.pgDir = <cfqueryparam value="#trim(arguments.pgDir)#" cfsqltype="cf_sql_varchar">
                 AND p.isdef = 1
             </cfif>
         </cfquery>
@@ -844,16 +844,16 @@
              <cfset var links = { top_links = "", bottom_links = "" }>
 
    
-    <cfquery result="result"  name="qPageLinks">
+    <cfquery name="qPageLinks">
             SELECT
                 CASE 
                     WHEN l.linktype = 'css' THEN 
-                        CONCAT('<link href="', l.linkurl, '?ver=6', <cfquery result="result" param value="#arguments.version#" cfsqltype="cf_sql_varchar">, '" ', 
+                        CONCAT('<link href="', l.linkurl, '?ver=6', <cfqueryparam value="#arguments.version#" cfsqltype="cf_sql_varchar">, '" ', 
                                IF(l.rel IS NOT NULL, CONCAT('rel="', l.rel, '" '), ''), 
                                IF(l.hrefid IS NOT NULL, CONCAT('id="', l.hrefid, '" '), ''), 
                                'type="text/css" />')
                     WHEN l.linktype = 'script' THEN 
-                        CONCAT('<script src="', l.linkurl, '?ver=6', <cfquery result="result" param value="#arguments.version#" cfsqltype="cf_sql_varchar">, '"></script>')
+                        CONCAT('<script src="', l.linkurl, '?ver=6', <cfqueryparam value="#arguments.version#" cfsqltype="cf_sql_varchar">, '"></script>')
                     ELSE ''
                 END AS link_html,
                 l.linkloc_tb 
@@ -861,7 +861,7 @@
             INNER JOIN pgplugins p ON p.pluginName = l.pluginname
             INNER JOIN pgpagespluginsxref x ON x.pluginid = p.pluginid
             INNER JOIN pgpages g ON g.pgid = x.pgid
-            WHERE g.pgid = <cfquery result="result" param value="#arguments.pgid#" cfsqltype="cf_sql_integer">
+            WHERE g.pgid = <cfqueryparam value="#arguments.pgid#" cfsqltype="cf_sql_integer">
             AND l.IsDeleted = 0
             ORDER BY l.link_no ASC
         </cfquery>
@@ -889,13 +889,13 @@
         <cfset var includeLinksArray = []>
 
         <!--- Query to fetch the script_include links --->
-        <cfquery result="result"  name="includeLinks">
+        <cfquery name="includeLinks">
             SELECT l.linkurl
             FROM pgapplinks l
             INNER JOIN pgplugins p ON p.pluginName = l.pluginname
             INNER JOIN pgpagespluginsxref x ON x.pluginid = p.pluginid
             INNER JOIN pgpages g ON g.pgid = x.pgid
-            WHERE g.pgid = <cfquery result="result" param value="#arguments.pgid#" cfsqltype="cf_sql_integer">
+            WHERE g.pgid = <cfqueryparam value="#arguments.pgid#" cfsqltype="cf_sql_integer">
             AND l.IsDeleted = 0
             AND l.linktype = 'script_include'
             ORDER BY l.link_no ASC
@@ -912,7 +912,7 @@
 
  <!--- Function to retrieve a select list of active pages --->
     <cffunction name="pages_sel" access="remote" returntype="query" output="false" hint="Get a select list of active pages.">
-        <cfquery result="result"  name="pages">
+        <cfquery name="pages">
             SELECT 
                 p.pgid AS ID,
                 p.pgname AS name

@@ -3,7 +3,7 @@
     <cffunction name="GetPageAppLinks" access="public" returntype="query" output="false">
         <cfargument name="pgid" type="numeric" required="yes">
 
-        <cfquery result="result"  name="FindLinksT">
+        <cfquery name="FindLinksT">
             SELECT 
                 l.linkid, 
                 l.linkurl, 
@@ -20,7 +20,7 @@
                 INNER JOIN pgpagespluginsxref x ON x.pluginid = p.pluginid 
                 INNER JOIN pgpages g ON g.pgid = x.pgid 
             WHERE 
-                g.pgid = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.pgid#"> 
+                g.pgid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.pgid#"> 
                 AND l.linkloc_tb = 't' 
             ORDER BY 
                 l.link_no
@@ -41,7 +41,7 @@
             INNER JOIN pgplugins p ON p.pluginName = l.pluginname
             INNER JOIN pgpagespluginsxref x ON x.pluginid = p.pluginid
             INNER JOIN pgpages g ON g.pgid = x.pgid
-            WHERE g.pgid = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.pgid#">
+            WHERE g.pgid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.pgid#">
               AND l.linkloc_tb = 'b'
               AND l.linkname NOT LIKE '%calendar - custom%'
               AND l.linktype <> 'css'

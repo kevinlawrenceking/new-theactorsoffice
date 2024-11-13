@@ -1,5 +1,5 @@
 <cfparam name="total_records" default="0"/>
-<cfquery result="result"   name="x"      >
+<cfquery  name="x"      >
 Select * from contactsimport where status = 'Pending'
 </cfquery>
 
@@ -8,7 +8,7 @@ Select * from contactsimport where status = 'Pending'
 
 <cfset new_id = x.id />
 
-<cfquery result="result"   name="finduser"      >
+<cfquery  name="finduser"      >
 Select * from taousers where useremail = '#trim(x.userEmail)#'
 </cfquery>
 
@@ -16,7 +16,7 @@ Select * from taousers where useremail = '#trim(x.userEmail)#'
     
     <cfset new_userid = finduser.userid />
     
-    <cfquery result="result"   name="findcontact"      >
+    <cfquery  name="findcontact"      >
     Select * from contactdetails where contactfullname = '#trim(x.fname)# #trim(x.lname)#' and contactStatus = 'Active' 
     and userid = #new_userid#
     </cfquery>
@@ -33,7 +33,7 @@ Select * from taousers where useremail = '#trim(x.userEmail)#'
          <cfset contactid=result.generated_key />
         
         
-        <cfquery result="result"   name="update"  >
+        <cfquery  name="update"  >
         UPDATE contactdetails
         SET contactstatus = 'Working'        
         <cfif #x.contactMeetingLoc# is not "">
@@ -41,19 +41,19 @@ Select * from taousers where useremail = '#trim(x.userEmail)#'
             </cfif>
     
            <cfif #x.contactMeetingDate# is not "">
-           ,contactMeetingDate =  <cfquery result="result" param cfsqltype="cf_sql_date" value="#x.contactMeetingDate#" /> 
+           ,contactMeetingDate =  <cfqueryparam cfsqltype="cf_sql_date" value="#x.contactMeetingDate#" /> 
             </cfif>
          
             <cfif #x.birthday_month# is not "0">
                 <cfset new_birthday_mm = numberformat(x.birthday_month,'99') />
                 
-            ,birthday_mm =  <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#new_birthday_mm#" /> 
+            ,birthday_mm =  <cfqueryparam cfsqltype="cf_sql_varchar" value="#new_birthday_mm#" /> 
             </cfif>
             
             <cfif #x.birthday_day# is not "0">
                 <cfset new_birthday_dd = numberformat(x.birthday_day,'99') />
                 
-            ,birthday_dd =  <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#new_birthday_dd#" /> 
+            ,birthday_dd =  <cfqueryparam cfsqltype="cf_sql_varchar" value="#new_birthday_dd#" /> 
             </cfif>
         
 
@@ -74,11 +74,11 @@ Select * from taousers where useremail = '#trim(x.userEmail)#'
                 <cfquery  name="add"   result="result" >
                 INSERT INTO contactitems (contactid,valuetype,itemStatus,valueCategory,valuetext)
                 VALUES (
-                <cfquery result="result" param cfsqltype="cf_sql_integer" value="#new_contactid#" /> 
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(new_valuetype)#" />
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="Active" /> 
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(new_valuecategory)#" />    
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(new_valuetext)#" />    
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#new_contactid#" /> 
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(new_valuetype)#" />
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="Active" /> 
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(new_valuecategory)#" />    
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(new_valuetext)#" />    
                     )
                 </cfquery>
         </CFIF>
@@ -96,11 +96,11 @@ Select * from taousers where useremail = '#trim(x.userEmail)#'
                 <cfquery  name="add"   result="result" >
                 INSERT INTO contactitems (contactid,valuetype,itemStatus,valueCategory,valuetext)
                 VALUES (
-                <cfquery result="result" param cfsqltype="cf_sql_integer" value="#new_contactid#" /> 
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(new_valuetype)#" />
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="Active" /> 
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(new_valuecategory)#" />    
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(new_valuetext)#" />    
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#new_contactid#" /> 
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(new_valuetype)#" />
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="Active" /> 
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(new_valuecategory)#" />    
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(new_valuetext)#" />    
                     )
                 </cfquery>
             
@@ -116,11 +116,11 @@ Select * from taousers where useremail = '#trim(x.userEmail)#'
                 <cfquery  name="add"   result="result" >
                 INSERT INTO contactitems (contactid,valuetype,itemStatus,valueCategory,valuetext)
                 VALUES (
-                <cfquery result="result" param cfsqltype="cf_sql_integer" value="#new_contactid#" /> 
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(new_valuetype)#" />
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="Active" /> 
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(new_valuecategory)#" />    
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(new_valuetext)#" />    
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#new_contactid#" /> 
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(new_valuetype)#" />
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="Active" /> 
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(new_valuecategory)#" />    
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(new_valuetext)#" />    
                     )
                 </cfquery>
             
@@ -137,11 +137,11 @@ Select * from taousers where useremail = '#trim(x.userEmail)#'
                 <cfquery  name="add"   result="result" >
                 INSERT INTO contactitems (contactid,valuetype,itemStatus,valueCategory,valuetext)
                 VALUES (
-                <cfquery result="result" param cfsqltype="cf_sql_integer" value="#new_contactid#" /> 
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(new_valuetype)#" />
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="Active" /> 
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(new_valuecategory)#" />    
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(new_valuetext)#" />    
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#new_contactid#" /> 
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(new_valuetype)#" />
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="Active" /> 
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(new_valuecategory)#" />    
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(new_valuetext)#" />    
                     )
                 </cfquery>
             
@@ -157,11 +157,11 @@ Select * from taousers where useremail = '#trim(x.userEmail)#'
                 <cfquery  name="add"   result="result" >
                 INSERT INTO contactitems (contactid,valuetype,itemStatus,valueCategory,valuetext)
                 VALUES (
-                <cfquery result="result" param cfsqltype="cf_sql_integer" value="#new_contactid#" /> 
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(new_valuetype)#" />
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="Active" /> 
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(new_valuecategory)#" />    
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(new_valuetext)#" />    
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#new_contactid#" /> 
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(new_valuetype)#" />
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="Active" /> 
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(new_valuecategory)#" />    
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(new_valuetext)#" />    
                     )
                 </cfquery>
             
@@ -178,11 +178,11 @@ Select * from taousers where useremail = '#trim(x.userEmail)#'
                 <cfquery  name="add"   result="result" >
                 INSERT INTO contactitems (contactid,valuetype,itemStatus,valueCategory,valuetext)
                 VALUES (
-                <cfquery result="result" param cfsqltype="cf_sql_integer" value="#new_contactid#" /> 
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(new_valuetype)#" />
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="Active" /> 
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(new_valuecategory)#" />    
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(new_valuetext)#" />    
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#new_contactid#" /> 
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(new_valuetype)#" />
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="Active" /> 
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(new_valuecategory)#" />    
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(new_valuetext)#" />    
                     )
                 </cfquery>
             
@@ -199,12 +199,12 @@ Select * from taousers where useremail = '#trim(x.userEmail)#'
                 <cfquery  name="add"   result="result" >
                 INSERT INTO contactitems (contactid,valuetype,itemStatus,valueCategory,valuetext)
                 VALUES (
-                <cfquery result="result" param cfsqltype="cf_sql_integer" value="#new_contactid#" /> 
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(new_valuetype)#" />
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="Active" /> 
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(new_valuecategory)#" />    
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#new_contactid#" /> 
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(new_valuetype)#" />
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="Active" /> 
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(new_valuecategory)#" />    
                 
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(new_valuetext)#" />    
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(new_valuetext)#" />    
 
                     
                     
@@ -224,16 +224,16 @@ Select * from taousers where useremail = '#trim(x.userEmail)#'
                 <cfquery  name="add"   result="result" >
                 INSERT INTO contactitems (contactid,valuetype,itemStatus,valueCategory,valueStreetAddress,valueExtendedAddress,valueCity,valueRegion,valueCountry,valuePostalCode)
                 VALUES (
-                <cfquery result="result" param cfsqltype="cf_sql_integer" value="#new_contactid#" /> 
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(new_valuetype)#" />
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="Active" /> 
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(new_valuecategory)#" />    
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(x.address)#" />   
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(x.address_second)#" />   
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(x.city)#" />   
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(x.state)#" />  
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(x.country)#" />   
-                ,<cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(x.zip)#" />   
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#new_contactid#" /> 
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(new_valuetype)#" />
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="Active" /> 
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(new_valuecategory)#" />    
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(x.address)#" />   
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(x.address_second)#" />   
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(x.city)#" />   
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(x.state)#" />  
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(x.country)#" />   
+                ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(x.zip)#" />   
                     )
                 </cfquery>
             
@@ -245,7 +245,7 @@ Select * from taousers where useremail = '#trim(x.userEmail)#'
        <CFSET NEW_SYSTEMTYPE = "Targeted List" />
        
     
-        <cfquery result="result"   name="findscope"    >   
+        <cfquery  name="findscope"    >   
 SELECT * FROM contactitems WHERE valuecategory = 'Tag' AND valuetext = 'Casting Director' AND contactid = #contactid# AND itemstatus = 'Active'
 </cfquery>
 
@@ -259,9 +259,9 @@ SELECT * FROM contactitems WHERE valuecategory = 'Tag' AND valuetext = 'Casting 
 </cfif>       
            
     
-                 <cfquery result="result"   name="FindSystem"    >  
+                 <cfquery  name="FindSystem"    >  
             
-            Select * from fusystems where systemtype = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#new_systemtype#" /> and systemscope = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#new_systemscope#" />
+            Select * from fusystems where systemtype = <cfqueryparam cfsqltype="cf_sql_varchar" value="#new_systemtype#" /> and systemscope = <cfqueryparam cfsqltype="cf_sql_varchar" value="#new_systemscope#" />
             </cfquery>
             
             
@@ -286,7 +286,7 @@ SELECT * FROM contactitems WHERE valuecategory = 'Tag' AND valuetext = 'Casting 
        <CFSET NEW_SYSTEMTYPE = "Maintenance List" />
        
     
-        <cfquery result="result"   name="findscope"    >   
+        <cfquery  name="findscope"    >   
 SELECT * FROM contactitems WHERE valuecategory = 'Tag' AND valuetext = 'Casting Director' AND contactid = #contactid# AND itemstatus = 'Active'
 </cfquery>
 
@@ -300,9 +300,9 @@ SELECT * FROM contactitems WHERE valuecategory = 'Tag' AND valuetext = 'Casting 
 </cfif>       
            
     
-                 <cfquery result="result"   name="FindSystem"    >  
+                 <cfquery  name="FindSystem"    >  
             
-            Select * from fusystems where systemtype = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#new_systemtype#" /> and systemscope = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#new_systemscope#" />
+            Select * from fusystems where systemtype = <cfqueryparam cfsqltype="cf_sql_varchar" value="#new_systemtype#" /> and systemscope = <cfqueryparam cfsqltype="cf_sql_varchar" value="#new_systemscope#" />
             </cfquery>
             
             
@@ -325,21 +325,21 @@ SELECT * FROM contactitems WHERE valuecategory = 'Tag' AND valuetext = 'Casting 
 <cfinclude template="folder_setup.cfm" />
                
                
-                    <cfquery result="result"   name="update"  >
+                    <cfquery  name="update"  >
         UPDATE contactdetails
         SET contactstatus = 'Active' where contactid = #contactid#
 
         </cfquery>
                
         
-           <cfquery result="result"   name="update"  >
+           <cfquery  name="update"  >
         update contactsimport
         set status = 'Completed'
         where id = #new_id#
         </cfquery>
         
         <cfelse>
-         <cfquery result="result"   name="update"  >
+         <cfquery  name="update"  >
         update contactsimport
         set status = 'Duplicate'
         where id = #new_id#

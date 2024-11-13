@@ -52,7 +52,7 @@
     
         <cfquery name = "local.result">#local.queryString#
             <cfloop array = "#local.params#" index = "param">
-                <cfquery result="result" param value = "#param.value#" cfsqltype = "#param.cfsqltype#">
+                <cfqueryparam value = "#param.value#" cfsqltype = "#param.cfsqltype#">
             </cfloop>
         </cfquery>
     
@@ -83,7 +83,7 @@
             SELECT CONCAT(v.major, '.', v.minor, '.', v.patch, '.', v.version, '.', v.build) AS 
             old_findname
             FROM taoversions v
-            WHERE v.verid = <cfquery result="result" param value = "#arguments.old_verid#" 
+            WHERE v.verid = <cfqueryparam value = "#arguments.old_verid#" 
                       cfsqltype = "CF_SQL_INTEGER">
         </cfquery>
     
@@ -99,7 +99,7 @@
             SELECT CONCAT(v.major, '.', v.minor, '.', v.patch, '.', v.version, '.', v.build) AS 
             new_findname
             FROM taoversions v
-            WHERE v.verid = <cfquery result="result" param value = "#arguments.new_verid#" 
+            WHERE v.verid = <cfqueryparam value = "#arguments.new_verid#" 
                       cfsqltype = "CF_SQL_INTEGER">
         </cfquery>
     
@@ -118,12 +118,12 @@
         <cfquery name = "result">
             SELECT *
             FROM taoversions
-            WHERE major = <cfquery result="result" param value = "#arguments.new_major#" cfsqltype = "CF_SQL_INTEGER">
-            AND minor = <cfquery result="result" param value = "#arguments.new_minor#" cfsqltype = "CF_SQL_INTEGER">
-            AND patch = <cfquery result="result" param value = "#arguments.new_patch#" cfsqltype = "CF_SQL_INTEGER">
-            AND version = <cfquery result="result" param value = "#arguments.new_version#" 
+            WHERE major = <cfqueryparam value = "#arguments.new_major#" cfsqltype = "CF_SQL_INTEGER">
+            AND minor = <cfqueryparam value = "#arguments.new_minor#" cfsqltype = "CF_SQL_INTEGER">
+            AND patch = <cfqueryparam value = "#arguments.new_patch#" cfsqltype = "CF_SQL_INTEGER">
+            AND version = <cfqueryparam value = "#arguments.new_version#" 
                       cfsqltype = "CF_SQL_VARCHAR">
-            AND build = <cfquery result="result" param value = "#arguments.new_build#" cfsqltype = "CF_SQL_INTEGER">
+            AND build = <cfqueryparam value = "#arguments.new_build#" cfsqltype = "CF_SQL_INTEGER">
         </cfquery>
     
         <cfreturn result>
@@ -143,44 +143,44 @@
         <cfargument name = "new_releasetime" type = "string" required = "false"/>
         <cfargument name = "new_hoursavail" type = "numeric" required = "false"/>
     
-        <cfquery result="result"  datasource = "#abodName#">
+        <cfquery datasource = "#abodName#">
             INSERT INTO taoversions (
             major, minor, patch, versionstatus, versiontype, version, build,
             reviewDate, releaseDate, reviewtime, releasetime, hoursavail
-            ) VALUES (<cfquery result="result" param cfsqltype = "cf_sql_integer" value = "#arguments.new_major#"/>
-            ,<cfquery result="result" param cfsqltype = "cf_sql_integer" value = "#arguments.new_minor#"/>
-            ,<cfquery result="result" param cfsqltype = "cf_sql_integer" value = "#arguments.new_patch#"/>
-            ,<cfquery result="result" param cfsqltype = "cf_sql_varchar" value = "#arguments.new_versionstatus#"/>
-            ,<cfquery result="result" param cfsqltype = "cf_sql_varchar" value = "#arguments.new_versiontype#"/>
-            ,<cfquery result="result" param cfsqltype = "cf_sql_integer" value = "#arguments.new_version#"/>
-            ,<cfquery result="result" param cfsqltype = "cf_sql_integer" value = "#arguments.new_build#"/>
+            ) VALUES (<cfqueryparam cfsqltype = "cf_sql_integer" value = "#arguments.new_major#"/>
+            ,<cfqueryparam cfsqltype = "cf_sql_integer" value = "#arguments.new_minor#"/>
+            ,<cfqueryparam cfsqltype = "cf_sql_integer" value = "#arguments.new_patch#"/>
+            ,<cfqueryparam cfsqltype = "cf_sql_varchar" value = "#arguments.new_versionstatus#"/>
+            ,<cfqueryparam cfsqltype = "cf_sql_varchar" value = "#arguments.new_versiontype#"/>
+            ,<cfqueryparam cfsqltype = "cf_sql_integer" value = "#arguments.new_version#"/>
+            ,<cfqueryparam cfsqltype = "cf_sql_integer" value = "#arguments.new_build#"/>
             ,
             <cfif arguments.new_reviewDate neq "">
-                <cfquery result="result" param cfsqltype = "cf_sql_date" value = "#arguments.new_reviewDate#"/>
+                <cfqueryparam cfsqltype = "cf_sql_date" value = "#arguments.new_reviewDate#"/>
             <cfelse>
                 NULL 
             </cfif>
             ,
             <cfif arguments.new_releaseDate neq "">
-                <cfquery result="result" param cfsqltype = "cf_sql_date" value = "#arguments.new_releaseDate#"/>
+                <cfqueryparam cfsqltype = "cf_sql_date" value = "#arguments.new_releaseDate#"/>
             <cfelse>
                 NULL 
             </cfif>
             ,
             <cfif arguments.new_reviewtime neq "">
-                <cfquery result="result" param cfsqltype = "cf_sql_time" value = "#arguments.new_reviewtime#"/>
+                <cfqueryparam cfsqltype = "cf_sql_time" value = "#arguments.new_reviewtime#"/>
             <cfelse>
                 NULL 
             </cfif>
             ,
             <cfif arguments.new_releasetime neq "">
-                <cfquery result="result" param cfsqltype = "cf_sql_time" value = "#arguments.new_releasetime#"/>
+                <cfqueryparam cfsqltype = "cf_sql_time" value = "#arguments.new_releasetime#"/>
             <cfelse>
                 NULL 
             </cfif>
             ,
             <cfif arguments.new_hoursavail neq "">
-                <cfquery result="result" param cfsqltype = "cf_sql_float" 
+                <cfqueryparam cfsqltype = "cf_sql_float" 
                               value = "#numberformat(arguments.new_hoursavail,'9.99')#"/>
             <cfelse>
                 NULL 
@@ -239,11 +239,11 @@
         <cfset sql &= " WHERE verid = ?">
         <cfset arrayAppend(params, arguments.verid)>
     
-        <cfquery result="result"  datasource = "#application.datasource#" name = "updateQuery">#sql#
+        <cfquery datasource = "#application.datasource#" name = "updateQuery">#sql#
             <cfsilent>
                 <!--- Loop through parameters and bind them --->
                 <cfloop from = 1 to = #arrayLen(params)# index = i>
-                    <cfquery result="result" param value = "#params[i]#" cfsqltype = "#getSQLType(params[i])#"/>
+                    <cfqueryparam value = "#params[i]#" cfsqltype = "#getSQLType(params[i])#"/>
                 </cfloop>
             </cfsilent>
         </cfquery>

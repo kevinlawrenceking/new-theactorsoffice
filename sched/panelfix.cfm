@@ -1,6 +1,6 @@
 <cfparam name="select_userid"  default = "792" />
             
-               <cfquery result="result"   name="x" datasource="abo">
+               <cfquery  name="x" datasource="abo">
         SELECT sitetypeid,sitetypename,sitetypedescription from sitetypes_user where userid = #select_userid#
     </cfquery>
             
@@ -14,7 +14,7 @@
             
             
     
-    <cfquery result="result"  name="Findtotal"   maxrows="1" datasource="abo">  
+    <cfquery name="Findtotal"   maxrows="1" datasource="abo">  
      Select p.pnOrderno + 1 as new_pnOrderNo
         
         from pgpanels_user p 
@@ -30,7 +30,7 @@
     </cfquery>    
 
     <cfset new_pnid = PN.generated_key />
-      <cfquery result="result"  name="add" datasource="abo"> 
+      <cfquery name="add" datasource="abo"> 
     update sitetypes_user
     set pnid = #new_pnid# where sitetypeid = #new_sitetypeid#
                </cfquery>

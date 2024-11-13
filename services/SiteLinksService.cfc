@@ -3,7 +3,7 @@
     <cffunction name="getSiteLinksByPanelId" access="public" returntype="query" output="false" hint="Retrieve site links for a specific panel ID.">
         <cfargument name="panelId" type="numeric" required="true" hint="The panel ID (pnid) for which to retrieve site links.">
 
-        <cfquery result="result"  name="mylinks_user">
+        <cfquery name="mylinks_user">
             SELECT 
                 s.id,
                 s.id as new_id,
@@ -15,7 +15,7 @@
                 t.pntitle
             FROM sitetypes_user t
             INNER JOIN sitelinks_user s ON t.sitetypeid = s.siteTypeid
-            WHERE t.pnid = <cfquery result="result" param value="#arguments.panelId#" cfsqltype="cf_sql_integer">
+            WHERE t.pnid = <cfqueryparam value="#arguments.panelId#" cfsqltype="cf_sql_integer">
             ORDER BY s.sitename
         </cfquery>
 
@@ -25,11 +25,11 @@
     <cffunction name="getAllUrlsByPanelId" access="public" returntype="string" output="false" hint="Retrieve all URLs for a specific panel for the 'Open All' button.">
         <cfargument name="panelId" type="numeric" required="true" hint="The panel ID for which to retrieve all URLs.">
 
-        <cfquery result="result"  name="allUrls">
+        <cfquery name="allUrls">
             SELECT GROUP_CONCAT(s.siteurl ORDER BY s.siteurl ASC SEPARATOR ', ') AS siteurl_list
             FROM sitetypes_user t
             INNER JOIN sitelinks_user s ON t.sitetypeid = s.siteTypeid
-            WHERE t.pnid = <cfquery result="result" param value="#arguments.panelId#" cfsqltype="cf_sql_integer">
+            WHERE t.pnid = <cfqueryparam value="#arguments.panelId#" cfsqltype="cf_sql_integer">
         </cfquery>
 
         <cfreturn allUrls.siteurl_list>
@@ -38,7 +38,7 @@
     <cffunction name="getLinkDetailsById" access="public" returntype="query" output="false" hint="Retrieve link details for a specific link ID.">
         <cfargument name="linkId" type="numeric" required="true" hint="The ID of the link to retrieve details for.">
 
-        <cfquery result="result"  name="linkdetails">
+        <cfquery name="linkdetails">
             SELECT 
                 id, 
                 siteName, 
@@ -51,7 +51,7 @@
                 ver, 
                 siteicon_url 
             FROM sitelinks_user 
-            WHERE id = <cfquery result="result" param value="#arguments.linkId#" cfsqltype="cf_sql_integer">
+            WHERE id = <cfqueryparam value="#arguments.linkId#" cfsqltype="cf_sql_integer">
         </cfquery>
 
         <cfreturn linkdetails>
@@ -70,21 +70,21 @@
             <cfset corrected_new_siteurl = "https://" & new_siteurl />
         </cfif>
 
-        <cfquery result="result"  name="duplicateCount">
+        <cfquery name="duplicateCount">
             SELECT COUNT(*) AS duplicateCount
             FROM sitelinks_user
-            WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="cf_sql_integer">
-            AND sitename = <cfquery result="result" param value="#arguments.new_sitename#" cfsqltype="cf_sql_varchar">
-            AND id <> <cfquery result="result" param value="#arguments.new_id#" cfsqltype="cf_sql_integer">
+            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer">
+            AND sitename = <cfqueryparam value="#arguments.new_sitename#" cfsqltype="cf_sql_varchar">
+            AND id <> <cfqueryparam value="#arguments.new_id#" cfsqltype="cf_sql_integer">
         </cfquery>
 
-        <cfquery result="result"  name="updateSiteLink">
+        <cfquery name="updateSiteLink">
             UPDATE sitelinks_user
             SET 
-                siteurl = <cfquery result="result" param value="#corrected_new_siteurl#" cfsqltype="cf_sql_varchar">,
-                isdeleted = <cfquery result="result" param value="#deletelink#" cfsqltype="cf_sql_bit">,
-                sitename = <cfquery result="result" param value="#new_sitename#" cfsqltype="cf_sql_varchar">
-            WHERE id = <cfquery result="result" param value="#new_id#" cfsqltype="cf_sql_integer">
+                siteurl = <cfqueryparam value="#corrected_new_siteurl#" cfsqltype="cf_sql_varchar">,
+                isdeleted = <cfqueryparam value="#deletelink#" cfsqltype="cf_sql_bit">,
+                sitename = <cfqueryparam value="#new_sitename#" cfsqltype="cf_sql_varchar">
+            WHERE id = <cfqueryparam value="#new_id#" cfsqltype="cf_sql_integer">
         </cfquery>
     </cffunction>
 
@@ -101,32 +101,32 @@
         <cfargument name="new_siteicon_url" type="string" required="false" hint="New site icon URL">
 
         <!--- Query to update sitelinks_user with conditional updates --->
-        <cfquery result="result"  name="updateSiteLink">
+        <cfquery name="updateSiteLink">
             UPDATE sitelinks_user
-            SET siteName = <cfquery result="result" param value="#arguments.new_sitename#" cfsqltype="cf_sql_varchar">
+            SET siteName = <cfqueryparam value="#arguments.new_sitename#" cfsqltype="cf_sql_varchar">
               
                 <cfif structKeyExists(arguments, "new_siteurl")>
-                    ,siteURL = <cfquery result="result" param value="#arguments.new_siteurl#" cfsqltype="cf_sql_varchar">
+                    ,siteURL = <cfqueryparam value="#arguments.new_siteurl#" cfsqltype="cf_sql_varchar">
                 </cfif>
                 <cfif structKeyExists(arguments, "new_siteicon")>
-                    ,siteicon = <cfquery result="result" param value="#arguments.new_siteicon#" cfsqltype="cf_sql_varchar">
+                    ,siteicon = <cfqueryparam value="#arguments.new_siteicon#" cfsqltype="cf_sql_varchar">
                 </cfif>
                 <cfif structKeyExists(arguments, "new_sitetypeid")>
-                    ,siteTypeid = <cfquery result="result" param value="#arguments.new_sitetypeid#" cfsqltype="cf_sql_integer">
+                    ,siteTypeid = <cfqueryparam value="#arguments.new_sitetypeid#" cfsqltype="cf_sql_integer">
                 </cfif>
                 <cfif structKeyExists(arguments, "new_iscustom")>
-                    ,IsCustom = <cfquery result="result" param value="#arguments.new_iscustom#" cfsqltype="cf_sql_bit">
+                    ,IsCustom = <cfqueryparam value="#arguments.new_iscustom#" cfsqltype="cf_sql_bit">
                 </cfif>
                 <cfif structKeyExists(arguments, "deletelink")>
-                    ,IsDeleted = <cfquery result="result" param value="#arguments.deletelink#" cfsqltype="cf_sql_bit">
+                    ,IsDeleted = <cfqueryparam value="#arguments.deletelink#" cfsqltype="cf_sql_bit">
                 </cfif>
                 <cfif structKeyExists(arguments, "ver")>
-                    ,ver = <cfquery result="result" param value="#arguments.ver#" cfsqltype="cf_sql_integer">
+                    ,ver = <cfqueryparam value="#arguments.ver#" cfsqltype="cf_sql_integer">
                 </cfif>
                 <cfif structKeyExists(arguments, "new_siteicon_url")>
-                    ,siteicon_url = <cfquery result="result" param value="#arguments.new_siteicon_url#" cfsqltype="cf_sql_varchar">
+                    ,siteicon_url = <cfqueryparam value="#arguments.new_siteicon_url#" cfsqltype="cf_sql_varchar">
                 </cfif>
-            WHERE id = <cfquery result="result" param value="#arguments.new_id#" cfsqltype="cf_sql_integer">
+            WHERE id = <cfqueryparam value="#arguments.new_id#" cfsqltype="cf_sql_integer">
         </cfquery>
 
     </cffunction>
@@ -136,11 +136,11 @@
     <cfargument name="new_pnid" type="numeric" required="true" hint="The panel ID (pnid) for which to retrieve sitetypeid and sitetypename.">
     
     <!--- Query to retrieve sitetypeid and sitetypename --->
-    <cfquery result="result"  name="siteTypeQuery">
+    <cfquery name="siteTypeQuery">
         SELECT su.sitetypeid, su.sitetypename, p.pntitle
         FROM sitetypes_user su
         INNER JOIN pgpanels_user p ON su.pnid = p.pnid
-        WHERE su.pnid = <cfquery result="result" param value="#arguments.new_pnid#" cfsqltype="cf_sql_integer">
+        WHERE su.pnid = <cfqueryparam value="#arguments.new_pnid#" cfsqltype="cf_sql_integer">
         LIMIT 1
     </cfquery>
 

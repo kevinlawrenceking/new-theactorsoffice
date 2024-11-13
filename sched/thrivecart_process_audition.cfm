@@ -20,7 +20,7 @@
     <cfset information_schema = "new_development" />
 </cfif>
 
-<cfquery result="result"   name="U" datasource="#dsn#">
+<cfquery  name="U" datasource="#dsn#">
     SELECT th.id,u.userid,u.recordname,th.purchasedate,u.useremail
 
     FROM thrivecart th
@@ -43,7 +43,7 @@
  
     </cfoutput>
 
-    <cfquery result="result"   name="update" datasource="#dsn#">
+    <cfquery  name="update" datasource="#dsn#">
         UPDATE thrivecart
         set STATUS = 'Completed'
          
@@ -81,7 +81,7 @@
 
         </HTML>
     </cfmail>
-    <cfquery result="result"   name="update" datasource="#dsn#">
+    <cfquery  name="update" datasource="#dsn#">
         UPDATE taousers
         set isAuditionModule = 1
          

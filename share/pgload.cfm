@@ -52,7 +52,7 @@
 </cfif>
 
 <!--- Fetch page data --->
-<cfquery result="result"  name="FindPage">
+<cfquery name="FindPage">
     SELECT
         a.appname, a.appAuthor, c.compname, p.pgname,
         a.appId, a.appDescription, a.appLogoName,
@@ -71,7 +71,7 @@
 
 <cfif FindPage.RecordCount EQ 1>
     <!--- Fetch related links and components --->
-    <cfquery result="result"  name="FindLinksT">
+    <cfquery name="FindLinksT">
         SELECT
             l.linkid, l.linkurl, l.linkname, l.linktype,
             l.link_no, l.linkloc_tb, l.pluginname,
@@ -84,7 +84,7 @@
         ORDER BY l.link_no
     </cfquery>
 
-    <cfquery result="result"  name="FindLinksB">
+    <cfquery name="FindLinksB">
         SELECT
             l.linkid, l.linkurl, l.linkname, l.linktype,
             l.link_no, l.linkloc_tb, l.pluginname,
@@ -99,7 +99,7 @@
         ORDER BY l.link_no
     </cfquery>
 
-    <cfquery result="result"  name="FindLinksExtra">
+    <cfquery name="FindLinksExtra">
         SELECT DISTINCT l.pluginname
         FROM pgapplinks l
         INNER JOIN pgplugins p ON p.pluginName = l.pluginname

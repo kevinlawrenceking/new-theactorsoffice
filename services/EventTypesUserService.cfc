@@ -7,7 +7,7 @@
     <cfquery name="result">
         SELECT *
         FROM eventtypes_user
-        WHERE id = <cfquery result="result" param value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">
+        WHERE id = <cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
     
     <cfreturn result>
@@ -35,10 +35,10 @@
     <cfset sql &= " WHERE id = ?">
     <cfset arrayAppend(params, {value=arguments.id, cfsqltype="CF_SQL_INTEGER"})>
 
-    <cfquery result="result" >
+    <cfquery>
         #sql#
         <cfloop array="#params#" index="param">
-            <cfquery result="result" param value="#param.value#" cfsqltype="#param.cfsqltype#">
+            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
         </cfloop>
     </cfquery>
 </cffunction>
@@ -52,8 +52,8 @@
     <cfquery name="result">
         SELECT eventTypeName, eventtypedescription, eventtypecolor
         FROM eventtypes_user
-        WHERE eventTypeName = <cfquery result="result" param value="#arguments.eventTypeName#" cfsqltype="CF_SQL_VARCHAR">
-        AND userid = <cfquery result="result" param value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
+        WHERE eventTypeName = <cfqueryparam value="#arguments.eventTypeName#" cfsqltype="CF_SQL_VARCHAR">
+        AND userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 
     <cfreturn result>
@@ -65,15 +65,15 @@
     <cfargument name="eventtypecolor" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         INSERT INTO eventtypes_user 
             (eventTypeName, eventtypedescription, eventtypecolor, userid) 
         VALUES 
             (
-                <cfquery result="result" param value="#arguments.eventTypeName#" cfsqltype="CF_SQL_VARCHAR">,
-                <cfquery result="result" param value="#arguments.eventtypedescription#" cfsqltype="CF_SQL_VARCHAR">,
-                <cfquery result="result" param value="#arguments.eventtypecolor#" cfsqltype="CF_SQL_VARCHAR">,
-                <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+                <cfqueryparam value="#arguments.eventTypeName#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.eventtypedescription#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.eventtypecolor#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
             )
     </cfquery>
 </cffunction>
@@ -87,7 +87,7 @@
     <cfquery name="result">
         SELECT eventtypename 
         FROM eventtypes_user 
-        WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER" />
+        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER" />
         <cfif arguments.isAuditionModule>
             AND eventtypename <> 'Audition'
         </cfif>
@@ -104,7 +104,7 @@
     <cfquery name="result">
         SELECT eventtypename 
         FROM eventtypes_user 
-        WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
         ORDER BY eventtypename
     </cfquery>
     
@@ -127,7 +127,7 @@
         FROM 
             eventtypes_user 
         WHERE 
-            userid = <cfquery result="result" param value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 
+            userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 
         ORDER BY 
             eventtypename
     </cfquery>
@@ -151,7 +151,7 @@
         FROM 
             eventtypes_user 
         WHERE 
-            userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+            userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
         ORDER BY 
             eventtypename
     </cfquery>

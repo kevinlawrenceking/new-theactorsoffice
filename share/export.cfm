@@ -5,7 +5,7 @@
 </cfoutput>
 
 
-<cfquery result="result"  name="shares"  >	
+<cfquery name="shares"  >	
 SELECT 
 	`d`.`recordname` AS `Name`
 	,`ci_company`.`valueCompany` AS `Company`
@@ -76,7 +76,7 @@ left(`u`.`passwordHash`, 10) ='#u#' AND
 GROUP BY `d`.`contactID` 
 </cfquery>
 
-<cfquery result="result"  name="x"  >	
+<cfquery name="x"  >	
 select * from taousers 
 where left(passwordhash,10) = '#U#'
 </cfquery>	   

@@ -7,7 +7,7 @@
     <cfquery name="result">
         SELECT countryid, countryname
         FROM countries
-        WHERE countryid = <cfquery result="result" param value="#arguments.countryid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE countryid = <cfqueryparam value="#arguments.countryid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
     
     <cfreturn result>
@@ -20,7 +20,7 @@
     <cfquery name="result">
         SELECT * 
         FROM countries 
-        WHERE countryname = <cfquery result="result" param value="#arguments.countryName#" cfsqltype="CF_SQL_VARCHAR">
+        WHERE countryname = <cfqueryparam value="#arguments.countryName#" cfsqltype="CF_SQL_VARCHAR">
     </cfquery>
     
     <cfreturn result>
@@ -46,7 +46,7 @@
     <cfquery name="result">
         SELECT * 
         FROM countries 
-        WHERE countryname = <cfquery result="result" param value="#arguments.countryName#" cfsqltype="CF_SQL_VARCHAR">
+        WHERE countryname = <cfqueryparam value="#arguments.countryName#" cfsqltype="CF_SQL_VARCHAR">
     </cfquery>
     
     <cfreturn result>

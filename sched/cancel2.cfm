@@ -3,7 +3,7 @@
 <cfset cancel_total = 0 />
   <cfset move_total = 0 />  
     
-<cfquery result="result"   name="x">
+<cfquery  name="x">
     SELECT * from taousers where userstatus = 'Cancelling'
 </cfquery>
 <cfoutput><h2>Total Cancellations: #x.recordcount#</h2></cfoutput>
@@ -18,7 +18,7 @@
     
 
     
-    <cfquery result="result"   name="findemail" maxrows="1">
+    <cfquery  name="findemail" maxrows="1">
         SELECT p.planname, t.* FROM thrivecart t  
         inner join paymentplans p on p.basepaymentplanid = t.basepaymentplanid
         
@@ -42,7 +42,7 @@
           
           Moved to plan: #new_planname# (#new_status#)</cfoutput></p>
     
-               <cfquery result="result"   name="update_user">
+               <cfquery  name="update_user">
             update taousers
             set userstatus = 'Active'
                    ,customerid = #new_id#
@@ -63,7 +63,7 @@
             
             #new_username# Cancelled</cfoutput></p>
         
-                  <cfquery result="result"   name="update_user">
+                  <cfquery  name="update_user">
             update taousers_tbl
             set userstatus = 'Cancelled'
                   

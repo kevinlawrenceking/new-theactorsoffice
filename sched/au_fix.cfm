@@ -2,14 +2,14 @@
         
        
 
-         <cfquery result="result"   name="d"  >
+         <cfquery  name="d"  >
         update actionusers_tbl set isdeleted = 1
 </cfquery>
 
 
 
 
-         <cfquery result="result"   name="u"  >
+         <cfquery  name="u"  >
  SELECT max(id) as new_id,actionid,userid
                          FROM actionusers_tbl
                          
@@ -23,7 +23,7 @@
 
     <cfloop query="u">
 
-        <cfquery result="result"   name="xs"  >
+        <cfquery  name="xs"  >
         update actionusers_tbl set isdeleted = 0 where id = #u.new_id#
         </cfquery>
 

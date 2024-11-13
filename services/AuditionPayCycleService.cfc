@@ -8,7 +8,7 @@
         FROM audpaycycles
         WHERE 1=1
         <cfif structKeyExists(arguments, "paycycleid")>
-            AND paycycleid = <cfquery result="result" param value="#arguments.paycycleid#" cfsqltype="CF_SQL_INTEGER">
+            AND paycycleid = <cfqueryparam value="#arguments.paycycleid#" cfsqltype="CF_SQL_INTEGER">
         </cfif>
         ORDER BY paycycle
     </cfquery>
@@ -43,10 +43,10 @@
     <cfset sql &= whereClause & " ORDER BY paycyclename">
 
     <!--- Execute query --->
-    <cfquery result="result"  name="queryResult">
+    <cfquery name="queryResult">
         #sql#
         <cfloop array="#paramList#" index="param">
-            <cfquery result="result" param value="#param.value#" cfsqltype="#param.cfsqltype#">
+            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
         </cfloop>
     </cfquery>
 

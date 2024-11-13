@@ -7,7 +7,7 @@
             FROM audsteps
             WHERE stepinfo1 IS NOT NULL
             <cfif structKeyExists(arguments, "stepinfo1") and len(arguments.stepinfo1)>
-                AND stepinfo1 = <cfquery result="result" param value="#arguments.stepinfo1#" cfsqltype="CF_SQL_VARCHAR">
+                AND stepinfo1 = <cfqueryparam value="#arguments.stepinfo1#" cfsqltype="CF_SQL_VARCHAR">
             </cfif>
         </cfquery>
     <cfreturn result>
@@ -18,7 +18,7 @@
         <cfquery name="result">
             SELECT audstep
             FROM audsteps
-            WHERE audstepid = <cfquery result="result" param value="#arguments.new_audstepid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE audstepid = <cfqueryparam value="#arguments.new_audstepid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
     <cfreturn result>
 </cffunction>
@@ -31,8 +31,8 @@
             WHERE audstepid IN (
                 SELECT audstepid
                 FROM events
-                WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER" />
-                AND isdeleted = <cfquery result="result" param value="0" cfsqltype="CF_SQL_BIT" />
+                WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER" />
+                AND isdeleted = <cfqueryparam value="0" cfsqltype="CF_SQL_BIT" />
             )
             ORDER BY audstep
         </cfquery>
@@ -48,7 +48,7 @@
             FROM 
                 audsteps 
             WHERE 
-                isdeleted = <cfquery result="result" param value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT"> 
+                isdeleted = <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT"> 
             ORDER BY 
                 audstep
         </cfquery>
@@ -57,11 +57,11 @@
 <cffunction name="INSaudsteps" access="public" returntype="void">
     <cfargument name="new_audstep" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
-        <cfquery result="result" >
+        <cfquery>
             INSERT INTO audsteps (audstep, isDeleted)
             VALUES (
-                <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audstep#" maxlength="100" null="#NOT len(trim(arguments.new_audstep))#">,
-                <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audstep#" maxlength="100" null="#NOT len(trim(arguments.new_audstep))#">,
+                <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
             )
         </cfquery>
 </cffunction>
@@ -69,12 +69,12 @@
     <cfargument name="new_audstep" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_audstepid" type="numeric" required="true">
-        <cfquery result="result" >
+        <cfquery>
             UPDATE audsteps 
             SET 
-                audstep = <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audstep#" maxlength="100" null="#NOT len(trim(arguments.new_audstep))#">, 
-                isDeleted = <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#"> 
+                audstep = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audstep#" maxlength="100" null="#NOT len(trim(arguments.new_audstep))#">, 
+                isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#"> 
             WHERE 
-                audstepid = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audstepid#">
+                audstepid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audstepid#">
         </cfquery>
 </cffunction></cfcomponent>

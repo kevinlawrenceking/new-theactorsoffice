@@ -36,64 +36,64 @@
             <cfset PARENTID = ListDeleteAt(ID, ListLen(ID, "/"), "/")>
  
 
-        <cfquery result="result"   name="find">
+        <cfquery  name="find">
             select Id from `pg#prefix#s`
             where #prefix#name =
             
-            <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#Name#" /> and #prefix#directory =
-            <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#Directory#" />
+            <cfqueryparam cfsqltype="cf_sql_varchar" value="#Name#" /> and #prefix#directory =
+            <cfqueryparam cfsqltype="cf_sql_varchar" value="#Directory#" />
         </cfquery>
 
         <cfif #find.recordcount# is "0">
 
-            <cfquery result="result"   name="insert">
+            <cfquery  name="insert">
                 INSERT INTO `pg#prefix#s` (`#prefix#Name`,`#prefix#Directory`, `#prefix#status`, `#prefix#size`, `#prefix#DateLastModified`, `#prefix#Ext`, `ID`,`PARENTID`)
 
                 VALUES
                 (
-                <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#Name#" />
+                <cfqueryparam cfsqltype="cf_sql_varchar" value="#Name#" />
                 ,
-                <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#Directory#" />
+                <cfqueryparam cfsqltype="cf_sql_varchar" value="#Directory#" />
                 ,
-                <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#status#" />
+                <cfqueryparam cfsqltype="cf_sql_varchar" value="#status#" />
                 ,
-                <cfquery result="result" param cfsqltype="cf_sql_integer" value="#size#" />
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#size#" />
                 ,
-                <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#DateLastModified#" />
+                <cfqueryparam cfsqltype="cf_sql_varchar" value="#DateLastModified#" />
                 ,
-                <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#Ext#" />
+                <cfqueryparam cfsqltype="cf_sql_varchar" value="#Ext#" />
                 ,
-                <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#ID#" />
+                <cfqueryparam cfsqltype="cf_sql_varchar" value="#ID#" />
                                 ,
-                <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#PARENTID#" />
+                <cfqueryparam cfsqltype="cf_sql_varchar" value="#PARENTID#" />
                 )
             </cfquery>
 
             <cfelse>
                 <cfset id=find.ID />
 
-                <cfquery result="result"   name="update">
+                <cfquery  name="update">
                     UPDATE `pg#prefix#s`
 
                     set `#prefix#Name` =
-                    <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#Name#" />
+                    <cfqueryparam cfsqltype="cf_sql_varchar" value="#Name#" />
                     , `#prefix#Directory` =
-                    <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#Directory#" />
+                    <cfqueryparam cfsqltype="cf_sql_varchar" value="#Directory#" />
                     , `#prefix#status` =
-                    <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#status#" />
+                    <cfqueryparam cfsqltype="cf_sql_varchar" value="#status#" />
                     , `#prefix#size` =
-                    <cfquery result="result" param cfsqltype="cf_sql_integer" value="#size#" />
+                    <cfqueryparam cfsqltype="cf_sql_integer" value="#size#" />
                     , `#prefix#DateLastModified` =
-                    <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#DateLastModified#" />
+                    <cfqueryparam cfsqltype="cf_sql_varchar" value="#DateLastModified#" />
        
                     , `#prefix#Ext` =
-                    <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#Ext#" />
+                    <cfqueryparam cfsqltype="cf_sql_varchar" value="#Ext#" />
                     
-                    ,`ID` = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#ID#" />
+                    ,`ID` = <cfqueryparam cfsqltype="cf_sql_varchar" value="#ID#" />
  
-                    ,`PARENTID` = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#PARENTID#" />
+                    ,`PARENTID` = <cfqueryparam cfsqltype="cf_sql_varchar" value="#PARENTID#" />
                     
-                    where id = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#id#" />
+                    where id = <cfqueryparam cfsqltype="cf_sql_varchar" value="#id#" />
                 </cfquery>
 
 

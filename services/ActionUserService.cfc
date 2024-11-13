@@ -7,7 +7,7 @@
         <cfset var actions = "">
 
         <!--- Query to fetch user actions --->
-        <cfquery result="result"  name="actions" >
+        <cfquery name="actions" >
             SELECT 
                 au.id,
                 s.systemID,
@@ -30,7 +30,7 @@
                 INNER JOIN fuactions a ON s.systemid = a.systemid
                 INNER JOIN actionusers au ON au.actionid = a.actionid
             WHERE 
-                au.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+                au.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
             ORDER BY 
                 a.actionNo
         </cfquery>
@@ -42,20 +42,20 @@
 <cffunction name="UPDactionusers" access="public" returntype="void" hint="Updates the isdeleted status of a user in the actionusers_tbl">
     <cfargument name="new_id" type="numeric" required="true" hint="ID of the user to be updated">
 
-        <cfquery result="result"  datasource="abod">
+        <cfquery datasource="abod">
             UPDATE actionusers_tbl 
             SET isdeleted = 1 
-            WHERE id = <cfquery result="result" param value="#arguments.new_id#" cfsqltype="CF_SQL_INTEGER">
+            WHERE id = <cfqueryparam value="#arguments.new_id#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 </cffunction>
 
 <cffunction name="UPDactionusers_23923" access="public" returntype="void">
     <cfargument name="new_id" type="numeric" required="true">
 
-        <cfquery result="result"  datasource="abod">
+        <cfquery datasource="abod">
             UPDATE actionusers_tbl 
             SET isdeleted = 0 
-            WHERE id = <cfquery result="result" param value="#arguments.new_id#" cfsqltype="CF_SQL_INTEGER">
+            WHERE id = <cfqueryparam value="#arguments.new_id#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
 </cffunction>
@@ -85,10 +85,10 @@
         <cfset sql &= " WHERE id = ?">
         <cfset arrayAppend(params, {value=arguments.id, cfsqltype="CF_SQL_INTEGER"})>
 
-        <cfquery result="result"  datasource="abod">
+        <cfquery datasource="abod">
             #sql#
             <cfloop array="#params#" index="param">
-                <cfquery result="result" param value="#param.value#" cfsqltype="#param.cfsqltype#">
+                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
             </cfloop>
         </cfquery>
         
@@ -97,14 +97,14 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="target_id_system" type="numeric" required="true">
 
-        <cfquery result="result"  datasource="abod">
+        <cfquery datasource="abod">
             UPDATE actionusers_tbl 
             SET isdeleted = 1 
-            WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
             AND actionid IN (
                 SELECT actionid 
                 FROM fuactions 
-                WHERE systemid = <cfquery result="result" param value="#arguments.target_id_system#" cfsqltype="CF_SQL_INTEGER">
+                WHERE systemid = <cfqueryparam value="#arguments.target_id_system#" cfsqltype="CF_SQL_INTEGER">
             )
         </cfquery>
         
@@ -118,8 +118,8 @@
         <cfquery name="result" datasource="abod">
             SELECT * 
             FROM actionusers 
-            WHERE actionid = <cfquery result="result" param value="#arguments.actionid#" cfsqltype="CF_SQL_INTEGER"> 
-            AND userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE actionid = <cfqueryparam value="#arguments.actionid#" cfsqltype="CF_SQL_INTEGER"> 
+            AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
     
@@ -131,7 +131,7 @@
     <cfargument name="actiondaysno" type="numeric" required="true">
     <cfargument name="actiondaysrecurring" type="string" required="false" default="">
     
-        <cfquery result="result"  datasource="abod">
+        <cfquery datasource="abod">
             INSERT INTO actionusers_tbl (
                 actionid, 
                 userid, 
@@ -139,11 +139,11 @@
                 <cfif arguments.actiondaysrecurring neq "">, actiondaysrecurring</cfif>, 
                 IsDeleted
             ) VALUES (
-                <cfquery result="result" param value="#arguments.actionid#" cfsqltype="CF_SQL_INTEGER">,
-                <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
-                <cfquery result="result" param value="#arguments.actiondaysno#" cfsqltype="CF_SQL_INTEGER">
+                <cfqueryparam value="#arguments.actionid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.actiondaysno#" cfsqltype="CF_SQL_INTEGER">
                 <cfif arguments.actiondaysrecurring neq "">, 
-                    <cfquery result="result" param value="#arguments.actiondaysrecurring#" cfsqltype="CF_SQL_VARCHAR">
+                    <cfqueryparam value="#arguments.actiondaysrecurring#" cfsqltype="CF_SQL_VARCHAR">
                 </cfif>, 
                 0
             )
@@ -159,8 +159,8 @@
         <cfquery name="result" datasource="abod">
             SELECT * 
             FROM actionusers 
-            WHERE actionid = <cfquery result="result" param value="#arguments.actionid#" cfsqltype="CF_SQL_INTEGER"> 
-            AND userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE actionid = <cfqueryparam value="#arguments.actionid#" cfsqltype="CF_SQL_INTEGER"> 
+            AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
             <cflog file="application" text="Error in getActionUsers: #cfcatch.message# Query: SELECT * FROM actionusers WHERE actionid = ? AND userid = ? Parameters: #arguments.actionid#, #arguments.userid#">
@@ -175,15 +175,15 @@
     <cfargument name="actiondaysno" type="numeric" required="true">
     <cfargument name="actiondaysrecurring" type="string" required="false" default="">
 
-        <cfquery result="result"  datasource="abod">
+        <cfquery datasource="abod">
             INSERT INTO actionusers_tbl (actionid, userid, actiondaysno
             <cfif len(arguments.actiondaysrecurring) gt 0>, actiondaysrecurring</cfif>, IsDeleted)
             VALUES (
-                <cfquery result="result" param value="#arguments.actionid#" cfsqltype="CF_SQL_INTEGER">,
-                <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
-                <cfquery result="result" param value="#arguments.actiondaysno#" cfsqltype="CF_SQL_INTEGER">
+                <cfqueryparam value="#arguments.actionid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.actiondaysno#" cfsqltype="CF_SQL_INTEGER">
                 <cfif len(arguments.actiondaysrecurring) gt 0>,
-                    <cfquery result="result" param value="#arguments.actiondaysrecurring#" cfsqltype="CF_SQL_VARCHAR">
+                    <cfqueryparam value="#arguments.actiondaysrecurring#" cfsqltype="CF_SQL_VARCHAR">
                 </cfif>,
                 0
             )

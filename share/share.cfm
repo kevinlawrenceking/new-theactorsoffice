@@ -56,7 +56,7 @@
                 </thead>
                 <cfloop query="shares">
                     
-                    <cfquery result="result"  name="events" >
+                    <cfquery name="events" >
 
 SELECT 
 eventid

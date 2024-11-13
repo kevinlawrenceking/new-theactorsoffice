@@ -7,8 +7,8 @@
     <cfif fileExists(fullFilePath)>
         <cfset fileContent = fileRead(fullFilePath)>
 
-        <!--- Count the number of <cfquery result="result" > blocks --->
-        <cfset cfqueryCount = REFindNoCaseCount("<cfquery result="result"  ", fileContent)>
+        <!--- Count the number of <cfquery> blocks --->
+        <cfset cfqueryCount = REFindNoCaseCount("<cfquery ", fileContent)>
 
         <!--- Output the file name and number of queries found --->
         <cfoutput>
@@ -17,16 +17,16 @@
         </cfoutput>
 
         <!--- Update the number of queries in tao_files --->
-        <cfquery result="result"  datasource="abod">
+        <cfquery datasource="abod">
             UPDATE tao_files
-            SET qry_no = <cfquery result="result" param value="#cfqueryCount#" cfsqltype="cf_sql_integer">
-            WHERE filename = <cfquery result="result" param value="#fileList.name#" cfsqltype="cf_sql_varchar">
+            SET qry_no = <cfqueryparam value="#cfqueryCount#" cfsqltype="cf_sql_integer">
+            WHERE filename = <cfqueryparam value="#fileList.name#" cfsqltype="cf_sql_varchar">
             AND path = '/include/qry'
         </cfquery>
     </cfif>
 </cfloop>
 
-<!--- Function to count the number of occurrences of <cfquery result="result"   --->
+<!--- Function to count the number of occurrences of <cfquery  --->
 <cffunction name="REFindNoCaseCount" returnType="numeric">
     <cfargument name="searchString" required="true">
     <cfargument name="content" required="true">

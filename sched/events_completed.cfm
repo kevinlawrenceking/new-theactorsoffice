@@ -4,21 +4,21 @@
 
     <CFINCLUDE template="remote_load.cfm" />
 
-    <cfquery result="result"   name="future">
+    <cfquery  name="future">
         Select * from funotifications
         WHERE notstartdate > '#dateformat('#now()#','YYYY-MM-dd')#' AND notstatus <> 'Future';
     </cfquery>
 
-    <cfquery result="result"   name="activefix">
+    <cfquery  name="activefix">
         SELECT * FROM funotifications
         WHERE notstartdate < '#dateformat(' #now()#','YYYY-MM-dd')#' AND notstatus='Future' </cfquery>
 
-            <cfquery result="result"   name="upactive">
+            <cfquery  name="upactive">
                 update funotifications
                 set notstatus = 'Active'
                 WHERE notstartdate < '#dateformat(' #now()#','YYYY-MM-dd')#' AND notstatus='Future' </cfquery>
 
-                    <cfquery result="result"   name="c">
+                    <cfquery  name="c">
                         SELECT u.userid, u.recordname,t.canceldate
                         FROM taousers u
 
@@ -32,7 +32,7 @@
 
                             <cfloop query="c">
 
-                                <cfquery result="result"   name="s">
+                                <cfquery  name="s">
                                     update taousers_tbl
                                     set isdeleted = 1
                                     where userid = #c.userid#
@@ -40,7 +40,7 @@
 
                             </cfloop>
 
-                            <cfquery result="result"   name="events">
+                            <cfquery  name="events">
                                 SELECT e.eventid,e.eventtitle,e.eventstop,u.recordname,u.userid
                                 FROM events e
                                 inner join taousers u on e.userid = u.userid
@@ -56,7 +56,7 @@
 
                                         <cfset new_eventstop=events.eventstop />
 
-                                        <cfquery result="result"   name="fu">
+                                        <cfquery  name="fu">
                                             SELECT distinct i.contactid, d.recordname, 1 as new_systemid
                                             FROM
                                             contactitems i
@@ -97,7 +97,7 @@
                                             <cfset new_contactname=fu.recordname />
                                             <cfset new_systemid=fu.new_systemid />
 
-                                            <cfquery result="result"   name="find_fu">
+                                            <cfquery  name="find_fu">
                                                 SELECT su.suid
                                                 FROM fusystems s
                                                 INNER JOIN fusystemusers su ON su.systemID = s.systemid
@@ -134,11 +134,11 @@
 
                                                 <cfset NewSUID=numberformat(result.generatedkey) />
 
-                                                    <cfquery result="result"   name="CompleteTargetSystems">
+                                                    <cfquery  name="CompleteTargetSystems">
                                                         UPDATE fusystemusers set sustatus = 'Completed' WHERE userid = #new_userid# AND systemid IN (5,6) AND contactid = #new_contactid#;
                                                     </cfquery>
 
-                                                    <cfquery result="result"   name="sudetails">
+                                                    <cfquery  name="sudetails">
                                                         select * from fusystems where systemid = #new_systemid#
 
                                                     </cfquery>
@@ -152,7 +152,7 @@
 
                                                     <cfset Newnotification=result.generatedkey>
 
-                                                        <cfquery result="result"   name="addDaysNo">
+                                                        <cfquery  name="addDaysNo">
                                                             SELECT
                                                             s.systemID
                                                             ,s.systemName
@@ -189,7 +189,7 @@
                                                         <cfif #adddaysno.isunique# is "1">
 
 
-                                                            <cfquery result="result"   name="checkUnique">
+                                                            <cfquery  name="checkUnique">
                                                                 SELECT d.contactid from
                                                                 contactdetails d
                                                                 where d.#adddaysno.uniquename# = 'Y'
@@ -243,11 +243,11 @@
 
                                         </cfloop>
 
-                                        <cfquery result="result"   name="update">
+                                        <cfquery  name="update">
                                             update events
                                             set eventstatus = 'Completed'
                                             where eventid =
-                                            <cfquery result="result" param value="#new_eventid#" cfsqltype="cf_sql_integer" />
+                                            <cfqueryparam value="#new_eventid#" cfsqltype="cf_sql_integer" />
                                         </cfquery>
 
                                     </cfloop>
@@ -258,7 +258,7 @@
                                                 
                                                 
                                                                                         
-  <cfquery result="result"   name="uppdate_when" >
+  <cfquery  name="uppdate_when" >
 UPDATE contactdetails cd
 INNER JOIN (
   SELECT x.contactid, MIN(e.eventstop) AS oldest_new_contactmeetingdate
@@ -271,7 +271,7 @@ SET cd.contactmeetingdate = sub.oldest_new_contactmeetingdate
 WHERE cd.contactmeetingdate IS NULL;
 </cfquery>
       
-  <cfquery result="result"   name="uppdate_where" >
+  <cfquery  name="uppdate_where" >
 UPDATE contactdetails cd
 INNER JOIN (
   SELECT x.contactid, e.eventtitle AS oldest_new_contactMeetingLoc, MIN(e.eventstop) AS oldest_new_contactmeetingdate

@@ -23,13 +23,13 @@
     
 
     
-     <cfquery result="result"     name="u"  >
+     <cfquery    name="u"  >
         SELECT * from taousers     
     </cfquery>
 
     <cfloop query="u">
 
-         <cfquery result="result"   name="x"  >
+         <cfquery  name="x"  >
             SELECT networkid,
 network,
 audcatid,
@@ -39,14 +39,14 @@ isDeleted
 
         <cfloop query="x">
             
-             <cfquery result="result"   name="find"  >
+             <cfquery  name="find"  >
             Select * from audnetworks_user
             where network = '#x.network#' and userid = #u.userid#
             </cfquery>
             
             <cfif #find.recordcount# is "0">
             
-                 <cfquery result="result"   name="insert"  >
+                 <cfquery  name="insert"  >
                     
                     INSERT INTO `audnetworks_user` (`network`, `audcatid`, `userid`) 
                     VALUES ('#x.network#','#x.audcatid#',#u.userid#);

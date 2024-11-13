@@ -1,6 +1,6 @@
 <CFINCLUDE template="remote_load.cfm" /> 
 
-<cfquery result="result"   name="z">
+<cfquery  name="z">
 SELECT contactid,contactbirthday FROM contactdetails WHERE contactbirthday IS not null
 </cfquery>
 
@@ -26,11 +26,11 @@ SELECT contactid,contactbirthday FROM contactdetails WHERE contactbirthday IS no
      
      <Cfif #isdate(new_contactbirthday)# is "false">
          
-         <cfquery result="result"   name="update">
+         <cfquery  name="update">
              update contactdetails
              set contactbirthday = NULL
              where contactid =
-             <cfquery result="result" param cfsqltype="cf_sql_integer" value="#newest_contactid#" />
+             <cfqueryparam cfsqltype="cf_sql_integer" value="#newest_contactid#" />
          </cfquery>
          
          <cfoutput>
@@ -63,12 +63,12 @@ SELECT contactid,contactbirthday FROM contactdetails WHERE contactbirthday IS no
                  
              <cfif #dateformat(z.contactbirthday)# is not "#dateformat(final_birthday)#">
                  
-                 <cfquery result="result"   name="update">
+                 <cfquery  name="update">
                      update contactdetails
                      set contactbirthday =
-                     <cfquery result="result" param cfsqltype="cf_sql_date" value="#dateformat(final_birthday)#" />
+                     <cfqueryparam cfsqltype="cf_sql_date" value="#dateformat(final_birthday)#" />
                      where contactid =
-                     <cfquery result="result" param cfsqltype="cf_sql_integer" value="#newest_contactid#" />
+                     <cfqueryparam cfsqltype="cf_sql_integer" value="#newest_contactid#" />
                  </cfquery>
                  
                  <cfoutput>

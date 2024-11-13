@@ -7,7 +7,7 @@
 
     <cfquery name="result">
         #sql#
-        <cfquery result="result" param value="#arguments.sitetypeid#" cfsqltype="CF_SQL_INTEGER">
+        <cfqueryparam value="#arguments.sitetypeid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 
     <cfreturn result>
@@ -15,10 +15,10 @@
 <cffunction name="UPDsitetypes_user" access="public" returntype="void">
     <cfargument name="sitetypeid" type="numeric" required="true">
 
-    <cfquery result="result"  name="queryResult">
+    <cfquery name="queryResult">
         UPDATE sitetypes_user_tbl 
         SET isdeleted = 1 
-        WHERE sitetypeid = <cfquery result="result" param value="#arguments.sitetypeid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE sitetypeid = <cfqueryparam value="#arguments.sitetypeid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 </cffunction>
 <cffunction name="SELsitetypes_user_24133" access="public" returntype="query">
@@ -39,7 +39,7 @@
         LEFT JOIN 
             pgpanels_user p ON p.pnid = s.pnid 
         WHERE 
-            s.sitetypeid = <cfquery result="result" param value="#arguments.new_sitetypeid#" cfsqltype="CF_SQL_INTEGER">
+            s.sitetypeid = <cfqueryparam value="#arguments.new_sitetypeid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
         
     <cfreturn result>
@@ -48,10 +48,10 @@
     <cfargument name="new_sitetypename" type="string" required="true">
     <cfargument name="new_sitetypeid" type="numeric" required="true">
  
-    <cfquery result="result"  >
+    <cfquery >
         UPDATE sitetypes_user 
-        SET sitetypename = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.new_sitetypename#" />
-        WHERE sitetypeid = <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.new_sitetypeid#" />
+        SET sitetypename = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_sitetypename#" />
+        WHERE sitetypeid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_sitetypeid#" />
     </cfquery>
 
 </cffunction>
@@ -64,8 +64,8 @@
     <cfquery name="result">
         SELECT *
         FROM sitetypes_user
-        WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
-        AND sitetypename = <cfquery result="result" param value="#arguments.new_sitetypename#" cfsqltype="CF_SQL_VARCHAR">
+        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        AND sitetypename = <cfqueryparam value="#arguments.new_sitetypename#" cfsqltype="CF_SQL_VARCHAR">
     </cfquery>
     
     <cfreturn result>
@@ -74,13 +74,13 @@
     <cfargument name="new_siteTypeName" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         INSERT INTO sitetypes_user_tbl (siteTypeName, siteTypeDescription, userid, IsDeleted) 
         VALUES (
-            <cfquery result="result" param value="#arguments.new_siteTypeName#" cfsqltype="CF_SQL_VARCHAR">,
-            <cfquery result="result" param value="" cfsqltype="CF_SQL_VARCHAR">,
-            <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
-            <cfquery result="result" param value="0" cfsqltype="CF_SQL_BIT">
+            <cfqueryparam value="#arguments.new_siteTypeName#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfqueryparam value="" cfsqltype="CF_SQL_VARCHAR">,
+            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
         )
     </cfquery>
 </cffunction>
@@ -92,7 +92,7 @@
     <cfquery name="result">
         SELECT *
         FROM sitetypes_user
-        WHERE sitetypeid = <cfquery result="result" param value="#arguments.sitetypeid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE sitetypeid = <cfqueryparam value="#arguments.sitetypeid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
     
     <cfreturn result>
@@ -101,10 +101,10 @@
     <cfargument name="new_pnid" type="numeric" required="true">
     <cfargument name="new_sitetypeid" type="numeric" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         UPDATE sitetypes_user
-        SET pnid = <cfquery result="result" param value="#arguments.new_pnid#" cfsqltype="CF_SQL_INTEGER">
-        WHERE sitetypeid = <cfquery result="result" param value="#arguments.new_sitetypeid#" cfsqltype="CF_SQL_INTEGER">
+        SET pnid = <cfqueryparam value="#arguments.new_pnid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE sitetypeid = <cfqueryparam value="#arguments.new_sitetypeid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 </cffunction>
 <cffunction name="SELsitetypes_user_24438" access="public" returntype="query">
@@ -116,8 +116,8 @@
     <cfquery name="result">
         SELECT * 
         FROM sitetypes_user 
-        WHERE sitetypename = <cfquery result="result" param value="#arguments.sitetypename#" cfsqltype="CF_SQL_VARCHAR"> 
-        AND userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE sitetypename = <cfqueryparam value="#arguments.sitetypename#" cfsqltype="CF_SQL_VARCHAR"> 
+        AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 
     <cfreturn result>
@@ -127,12 +127,12 @@
     <cfargument name="siteTypeDescription" type="string" required="true">
     <cfargument name="userId" type="numeric" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         INSERT INTO sitetypes_user (siteTypeName, siteTypeDescription, userid) 
         VALUES (
-            <cfquery result="result" param value="#arguments.siteTypeName#" cfsqltype="CF_SQL_VARCHAR">,
-            <cfquery result="result" param value="#arguments.siteTypeDescription#" cfsqltype="CF_SQL_VARCHAR">,
-            <cfquery result="result" param value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
+            <cfqueryparam value="#arguments.siteTypeName#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfqueryparam value="#arguments.siteTypeDescription#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
         )
     </cfquery>
 </cffunction>
@@ -146,8 +146,8 @@
         <cfquery name="result" datasource="abod">
             SELECT sitetypeid 
             FROM sitetypes_user 
-            WHERE sitetypename = <cfquery result="result" param value="#arguments.sitetypename#" cfsqltype="CF_SQL_VARCHAR"> 
-            AND userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE sitetypename = <cfqueryparam value="#arguments.sitetypename#" cfsqltype="CF_SQL_VARCHAR"> 
+            AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -167,7 +167,7 @@
         <cfquery name="result" datasource="abod">
             SELECT sitetypeid, sitetypename, sitetypedescription, pntitle
             FROM sitetypes_user
-            WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
             ORDER BY sitetypename
         </cfquery>
         

@@ -6,7 +6,7 @@
 
     <cfset var result = structNew()>
 
-    <cfquery result="result"  name="types" >
+    <cfquery name="types" >
         SELECT DISTINCT i.valuetype
         FROM 
             <cfif arguments.catid eq 4>
@@ -18,12 +18,12 @@
                 INNER JOIN itemtypes_user i ON i.typeid = x.typeid
             </cfif>
         WHERE 
-            x.catid = <cfquery result="result" param value="#arguments.catid#" cfsqltype="cf_sql_integer">
+            x.catid = <cfqueryparam value="#arguments.catid#" cfsqltype="cf_sql_integer">
             <cfif arguments.catid eq 4>
                 AND i.typeid <> 1000
             <cfelse>
-                AND i.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="cf_sql_integer">
-                AND x.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="cf_sql_integer">
+                AND i.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer">
+                AND x.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer">
             </cfif>
         ORDER BY i.valuetype
     </cfquery>
@@ -46,7 +46,7 @@
     <cfset var resultStruct = structNew()>
 
     <!--- Query to get distinct value types for a given category and user --->
-    <cfquery result="result"  name="types" >
+    <cfquery name="types" >
         SELECT DISTINCT 
             i.valuetype
         FROM 
@@ -56,9 +56,9 @@
         INNER JOIN 
             itemtypes_user i ON i.typeid = x.typeid
         WHERE 
-            x.catid = <cfquery result="result" param value="#arguments.new_catid#" cfsqltype="cf_sql_integer">
-            AND i.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="cf_sql_integer">
-            AND x.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="cf_sql_integer">
+            x.catid = <cfqueryparam value="#arguments.new_catid#" cfsqltype="cf_sql_integer">
+            AND i.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer">
+            AND x.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer">
         ORDER BY 
             i.valuetype
     </cfquery>
@@ -73,7 +73,7 @@
 
     <cfset var resultStruct = structNew()>
 
-    <cfquery result="result"  name="types">
+    <cfquery name="types">
         SELECT 
             i.valuetype
         FROM 
@@ -106,8 +106,8 @@
         SELECT i.valuetype
         FROM itemtypes i
         INNER JOIN itemcatxref x ON x.typeid = i.typeid
-        WHERE x.catid = <cfquery result="result" param value="#arguments.catId#" cfsqltype="CF_SQL_INTEGER">
-        AND i.typeid <> <cfquery result="result" param value="#arguments.excludeTypeId#" cfsqltype="CF_SQL_INTEGER">
+        WHERE x.catid = <cfqueryparam value="#arguments.catId#" cfsqltype="CF_SQL_INTEGER">
+        AND i.typeid <> <cfqueryparam value="#arguments.excludeTypeId#" cfsqltype="CF_SQL_INTEGER">
         ORDER BY i.valuetype
     </cfquery>
     
@@ -140,18 +140,18 @@
 
     <!--- Execute query only if there are conditions to prevent unfiltered queries --->
     <cfif arrayLen(whereClause) gt 0>
-        <cfquery result="result"  name="queryResult">
+        <cfquery name="queryResult">
             SELECT typeid, valuetype, typeicon
             FROM itemtypes
             WHERE #arrayToList(whereClause, " AND ")#
             <!--- Bind parameters securely --->
             <cfloop array="#params#" index="param">
-                <cfquery result="result" param value="#param.value#" cfsqltype="#param.cfsqltype#">
+                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
             </cfloop>
         </cfquery>
     <cfelse>
         <!--- Return an empty query if no conditions are provided --->
-        <cfquery result="result"  name="queryResult" dbtype="query">
+        <cfquery name="queryResult" dbtype="query">
             SELECT typeid, valuetype, typeicon
             WHERE 1=0
         </cfquery>

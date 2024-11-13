@@ -61,12 +61,12 @@
         LEFT JOIN audunions un ON (p.`unionID` = un.`unionID`)
         LEFT JOIN audcontracttypes ct ON (p.`contractTypeID` = ct.contracttypeid)
         LEFT JOIN auddialects_user di ON (r.`audDialectID` = di.auddialectid)
-        WHERE p.audprojectid IN (<cfquery result="result" param value="#arguments.projectList#" cfsqltype="CF_SQL_VARCHAR" list="true">)
+        WHERE p.audprojectid IN (<cfqueryparam value="#arguments.projectList#" cfsqltype="CF_SQL_VARCHAR" list="true">)
         GROUP BY r.audroleid, p.projname, s.audsource, rt.audroletype, r.iscallback, r.isredirect, r.ispin, r.isbooked
         ORDER BY p.projdate DESC
     ">
     
-    <cfquery result="result"  name="queryResult">
+    <cfquery name="queryResult">
         #sql#
     </cfquery>
     
@@ -84,8 +84,8 @@
         SELECT *
         FROM audgenres_audition_xref x
         INNER JOIN audgenres_user g ON g.audgenreid = x.audgenreid
-        WHERE g.audgenre = <cfquery result="result" param value="#arguments.audgenre#" cfsqltype="CF_SQL_VARCHAR">
-        AND x.audroleid = <cfquery result="result" param value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE g.audgenre = <cfqueryparam value="#arguments.audgenre#" cfsqltype="CF_SQL_VARCHAR">
+        AND x.audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
     
     <cfreturn result>
@@ -94,9 +94,9 @@
 <cffunction name="DELaudgenres_audition_xref" access="public" returntype="void">
     <cfargument name="new_audroleid" type="numeric" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         DELETE FROM audgenres_audition_xref
-        WHERE audroleid = <cfquery result="result" param value="#arguments.new_audroleid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE audroleid = <cfqueryparam value="#arguments.new_audroleid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 </cffunction>
 
@@ -104,11 +104,11 @@
     <cfargument name="new_audgenreid" type="numeric" required="true">
     <cfargument name="new_audroleid" type="numeric" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         INSERT INTO audgenres_audition_xref (audgenreid, audroleid)
         VALUES (
-            <cfquery result="result" param value="#arguments.new_audgenreid#" cfsqltype="CF_SQL_INTEGER">,
-            <cfquery result="result" param value="#arguments.new_audroleid#" cfsqltype="CF_SQL_INTEGER">
+            <cfqueryparam value="#arguments.new_audgenreid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="#arguments.new_audroleid#" cfsqltype="CF_SQL_INTEGER">
         )
     </cfquery>
 </cffunction>
@@ -116,11 +116,11 @@
 <cffunction name="INSaudgenres_audition_xref_24521" access="public" returntype="void">
     <cfargument name="new_audRoleID" type="numeric" required="true">
     <cfargument name="new_audgenreID" type="numeric" required="true">
-        <cfquery result="result"  datasource="abod">
+        <cfquery datasource="abod">
             INSERT INTO audgenres_audition_xref (audRoleID, audgenreID)
             VALUES (
-                <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#" null="#NOT len(trim(arguments.new_audRoleID))#">,
-                <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audgenreID#" null="#NOT len(trim(arguments.new_audgenreID))#">
+                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#" null="#NOT len(trim(arguments.new_audRoleID))#">,
+                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audgenreID#" null="#NOT len(trim(arguments.new_audgenreID))#">
             )
         </cfquery>
 </cffunction>
@@ -129,12 +129,12 @@
     <cfargument name="new_audgenreID" type="numeric" required="true">
     <cfargument name="conditionValue" type="any" required="true">
 
-        <cfquery result="result"  datasource="abod">
+        <cfquery datasource="abod">
             UPDATE audgenres_audition_xref 
             SET 
-                audRoleID = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#" null="#NOT len(trim(arguments.new_audRoleID))#">, 
-                audgenreID = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audgenreID#" null="#NOT len(trim(arguments.new_audgenreID))#"> 
-            WHERE someColumn = <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.conditionValue#">
+                audRoleID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#" null="#NOT len(trim(arguments.new_audRoleID))#">, 
+                audgenreID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audgenreID#" null="#NOT len(trim(arguments.new_audgenreID))#"> 
+            WHERE someColumn = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.conditionValue#">
         </cfquery>
 
 

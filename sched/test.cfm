@@ -1,7 +1,7 @@
  
 
 <!--- Query to fetch all components from the database --->
-<cfquery result="result"  name="x" datasource="abod" >
+<cfquery name="x" datasource="abod" >
     SELECT function_name,function_code_final
     FROM functions where function_code_final is not null
 </cfquery>

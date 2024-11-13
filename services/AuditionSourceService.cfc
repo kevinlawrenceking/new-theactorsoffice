@@ -21,7 +21,7 @@
     <cfquery name="result">
         #sql##whereClause#
         <cfloop array="#paramList#" index="param">
-            <cfquery result="result" param value="#param.value#" cfsqltype="#param.cfsqltype#">
+            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
         </cfloop>
     </cfquery>
 
@@ -42,7 +42,7 @@
     
     <cfquery name="result">
         #sql#
-        <cfquery result="result" param value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
+        <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
     </cfquery>
     
     <cfreturn result>
@@ -57,7 +57,7 @@
         SELECT *
         FROM audsources
         WHERE isdeleted = 0
-        AND audsource = <cfquery result="result" param value="#arguments.audsource#" cfsqltype="CF_SQL_VARCHAR">
+        AND audsource = <cfqueryparam value="#arguments.audsource#" cfsqltype="CF_SQL_VARCHAR">
     </cfquery>
 
     <cfreturn result>
@@ -71,8 +71,8 @@
     <cfquery name="result">
         SELECT *
         FROM audsources
-        WHERE audsource = <cfquery result="result" param value="#arguments.audsource#" cfsqltype="CF_SQL_VARCHAR">
-        AND isdeleted = <cfquery result="result" param value="0" cfsqltype="CF_SQL_BIT">
+        WHERE audsource = <cfqueryparam value="#arguments.audsource#" cfsqltype="CF_SQL_VARCHAR">
+        AND isdeleted = <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
     </cfquery>
     
     <cfreturn result>
@@ -82,11 +82,11 @@
     <cfargument name="new_audsource" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         INSERT INTO audsources (audsource, isDeleted)
         VALUES (
-            <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audsource)#" maxlength="100" null="#NOT len(trim(arguments.new_audsource))#">,
-            <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+            <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audsource)#" maxlength="100" null="#NOT len(trim(arguments.new_audsource))#">,
+            <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
         );
     </cfquery>
 </cffunction>
@@ -96,13 +96,13 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_audsourceid" type="numeric" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         UPDATE audsources 
         SET 
-            audsource = <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audsource)#" maxlength="100" null="#NOT len(trim(arguments.new_audsource))#">,
-            isDeleted = <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+            audsource = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audsource)#" maxlength="100" null="#NOT len(trim(arguments.new_audsource))#">,
+            isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
         WHERE 
-            audsourceid = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audsourceid#">
+            audsourceid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audsourceid#">
     </cfquery>
 </cffunction>
 
@@ -116,7 +116,7 @@
         FROM audsources
         WHERE 1=1
         <cfif arguments.excludeMyTeam>
-            AND audsource <> <cfquery result="result" param value="My Team" cfsqltype="CF_SQL_VARCHAR">
+            AND audsource <> <cfqueryparam value="My Team" cfsqltype="CF_SQL_VARCHAR">
         </cfif>
         ORDER BY audsource
     </cfquery>

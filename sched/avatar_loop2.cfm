@@ -7,7 +7,7 @@
 <cfset apiEndpoint = "https://avatarapi.com/v2/api.aspx">
 <cfset provider = "Microsoft,Google">
 
-<cfquery result="result"  name="x"  maxrows="1000">
+<cfquery name="x"  maxrows="1000">
 SELECT distinct
 d.contactid,
 d.contactfullname,
@@ -82,7 +82,7 @@ ORDER BY d.contactid
                 <a href="https://app.theactorsoffice.com/app/contact/?contactid=#x.contactid#"> LINK</a>
             </cfoutput>
 
-            <cfquery result="result"  name="update"  >
+            <cfquery name="update"  >
 update contactitems set avatar_yn = 'Y' where itemid = #x.itemid# 
 </cfquery>
 
@@ -95,7 +95,7 @@ update contactitems set avatar_yn = 'Y' where itemid = #x.itemid#
             No avatar found. Ignoring.
         </cfoutput>
 
-        <cfquery result="result"  name="update"  >
+        <cfquery name="update"  >
 update contactitems set avatar_yn = 'X' where itemid = #x.itemid# 
 </cfquery>
 

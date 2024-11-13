@@ -7,7 +7,7 @@ output="false">
     <cfquery name="result">
         SELECT table_name AS new_comptable
         FROM information_schema.tables
-        WHERE TABLE_NAME LIKE <cfquery result="result" param value="#arguments.tableNamePattern#" cfsqltype="CF_SQL_VARCHAR">
+        WHERE TABLE_NAME LIKE <cfqueryparam value="#arguments.tableNamePattern#" cfsqltype="CF_SQL_VARCHAR">
     </cfquery>
 
     <cfreturn result>

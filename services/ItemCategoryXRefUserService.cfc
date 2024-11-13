@@ -4,13 +4,13 @@
     <cfargument name="catid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         INSERT INTO itemcatxref_user (typeid, catid, userid, IsCustom) 
         VALUES (
-            <cfquery result="result" param value="#arguments.new_typeid#" cfsqltype="CF_SQL_INTEGER">,
-            <cfquery result="result" param value="#arguments.catid#" cfsqltype="CF_SQL_INTEGER">,
-            <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
-            <cfquery result="result" param value="1" cfsqltype="CF_SQL_BIT">
+            <cfqueryparam value="#arguments.new_typeid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="#arguments.catid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="1" cfsqltype="CF_SQL_BIT">
         )
     </cfquery>
 </cffunction>
@@ -25,9 +25,9 @@
     <cfquery name="result">
         SELECT *
         FROM itemcatxref_user
-        WHERE userid = <cfquery result="result" param value="#arguments.select_userid#" cfsqltype="CF_SQL_INTEGER">
-        AND typeid = <cfquery result="result" param value="#arguments.new_typeid#" cfsqltype="CF_SQL_INTEGER">
-        AND catid = <cfquery result="result" param value="#arguments.new_catid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE userid = <cfqueryparam value="#arguments.select_userid#" cfsqltype="CF_SQL_INTEGER">
+        AND typeid = <cfqueryparam value="#arguments.new_typeid#" cfsqltype="CF_SQL_INTEGER">
+        AND catid = <cfqueryparam value="#arguments.new_catid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 
     <cfreturn result>
@@ -38,12 +38,12 @@
     <cfargument name="new_catid" type="numeric" required="true">
     <cfargument name="select_userid" type="numeric" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         INSERT INTO itemcatxref_user (typeid, catid, userid)
         VALUES (
-            <cfquery result="result" param value="#arguments.new_typeid#" cfsqltype="CF_SQL_INTEGER">,
-            <cfquery result="result" param value="#arguments.new_catid#" cfsqltype="CF_SQL_INTEGER">,
-            <cfquery result="result" param value="#arguments.select_userid#" cfsqltype="CF_SQL_INTEGER">
+            <cfqueryparam value="#arguments.new_typeid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="#arguments.new_catid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="#arguments.select_userid#" cfsqltype="CF_SQL_INTEGER">
         )
     </cfquery>
 </cffunction></cfcomponent>

@@ -2,7 +2,7 @@
 <cfset fileList = directoryList(qryDir, false, "files")>
 
 <!--- Fetch the filenames from the database --->
-<cfquery result="result"  name="getDbFiles" datasource="abod">
+<cfquery name="getDbFiles" datasource="abod">
     SELECT filename
     FROM tao_files
     WHERE path = '/include/qry'
@@ -30,12 +30,12 @@
 <cfloop array="#missingFiles#" index="file">
 
 
-    <cfquery result="result"  datasource="abod">
+    <cfquery datasource="abod">
         INSERT INTO tao_files (filename, status, path, updated_timestamp)
         VALUES (
-            <cfquery result="result" param value="#file#" cfsqltype="cf_sql_varchar" maxlength="255">,
-            <cfquery result="result" param value="existing" cfsqltype="cf_sql_varchar" maxlength="20">,
-            <cfquery result="result" param value="/include/qry" cfsqltype="cf_sql_varchar" maxlength="255">,
+            <cfqueryparam value="#file#" cfsqltype="cf_sql_varchar" maxlength="255">,
+            <cfqueryparam value="existing" cfsqltype="cf_sql_varchar" maxlength="20">,
+            <cfqueryparam value="/include/qry" cfsqltype="cf_sql_varchar" maxlength="255">,
             NOW()
         );
     </cfquery>

@@ -7,8 +7,8 @@
     <cfquery name="result">
         SELECT fname 
         FROM pgfields 
-        WHERE pgid = <cfquery result="result" param value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER"> 
-        AND updatename = <cfquery result="result" param value="ID" cfsqltype="CF_SQL_VARCHAR">
+        WHERE pgid = <cfqueryparam value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER"> 
+        AND updatename = <cfqueryparam value="ID" cfsqltype="CF_SQL_VARCHAR">
     </cfquery>
 
     <cfreturn result>
@@ -21,8 +21,8 @@
     <cfquery name="result">
         SELECT *
         FROM pgfields
-        WHERE pgid = <cfquery result="result" param value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER">
-        AND updatename = <cfquery result="result" param value="ID" cfsqltype="CF_SQL_VARCHAR">
+        WHERE pgid = <cfqueryparam value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER">
+        AND updatename = <cfqueryparam value="ID" cfsqltype="CF_SQL_VARCHAR">
     </cfquery>
 
     <cfreturn result>
@@ -37,8 +37,8 @@
     <cfquery name="result">
         SELECT * 
         FROM pgfields 
-        WHERE pgid = <cfquery result="result" param value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER"> 
-        AND updatename = <cfquery result="result" param value="#arguments.updatename#" cfsqltype="CF_SQL_VARCHAR">
+        WHERE pgid = <cfqueryparam value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER"> 
+        AND updatename = <cfqueryparam value="#arguments.updatename#" cfsqltype="CF_SQL_VARCHAR">
     </cfquery>
 
     <cfreturn result>

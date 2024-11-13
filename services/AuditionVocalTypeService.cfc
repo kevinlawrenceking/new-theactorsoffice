@@ -7,7 +7,7 @@
     <cfquery name="result">
         SELECT vocaltypeid, vocaltype 
         FROM audvocaltypes 
-        WHERE isdeleted = <cfquery result="result" param value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
+        WHERE isdeleted = <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
         ORDER BY vocaltype
     </cfquery>
     
@@ -18,11 +18,11 @@
     <cfargument name="new_vocaltype" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         INSERT INTO audvocaltypes (vocaltype, isDeleted)
         VALUES (
-            <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_vocaltype)#" maxlength="100">,
-            <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#">
+            <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_vocaltype)#" maxlength="100">,
+            <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#">
         )
     </cfquery>
 </cffunction>
@@ -32,11 +32,11 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_vocaltypeid" type="numeric" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         UPDATE audvocaltypes 
-        SET vocaltype = <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_vocaltype#" maxlength="100">,
-            isDeleted = <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#">
-        WHERE vocaltypeid = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_vocaltypeid#">
+        SET vocaltype = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_vocaltype#" maxlength="100">,
+            isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#">
+        WHERE vocaltypeid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_vocaltypeid#">
     </cfquery>
 </cffunction>
 </cfcomponent>

@@ -5,7 +5,7 @@
     <cfargument name="noteid" type="numeric" required="true">
 
     <!--- Query to fetch links based on note ID --->
-    <cfquery result="result"  name="links">
+    <cfquery name="links">
         SELECT
             linkid,
             linkname,
@@ -15,7 +15,7 @@
         FROM
             links
         WHERE
-            noteid = <cfquery result="result" param value="#arguments.noteid#" cfsqltype="cf_sql_integer">
+            noteid = <cfqueryparam value="#arguments.noteid#" cfsqltype="cf_sql_integer">
     </cfquery>
 
     <!--- Create a struct to hold query and record count --->
@@ -34,14 +34,14 @@
     <cfargument name="noteid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     
-        <cfquery result="result"  name="insertLinkQuery">
+        <cfquery name="insertLinkQuery">
             INSERT INTO links (linkname, linkurl, isdeleted, userid, noteid) 
             VALUES (
-                <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.linkname#" />, 
-                <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.linkurl#" />, 
-                <cfquery result="result" param cfsqltype="cf_sql_integer" value="0" />, 
-                <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.userid#" />, 
-                <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.noteid#" />
+                <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.linkname#" />, 
+                <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.linkurl#" />, 
+                <cfqueryparam cfsqltype="cf_sql_integer" value="0" />, 
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#" />, 
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.noteid#" />
             )
         </cfquery>
 </cffunction>
@@ -55,7 +55,7 @@
         SELECT n.eventid 
         FROM links l 
         INNER JOIN noteslog n ON n.noteid = l.noteid 
-        WHERE linkid = <cfquery result="result" param value="#arguments.linkid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE linkid = <cfqueryparam value="#arguments.linkid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 
     <cfreturn result>
@@ -64,10 +64,10 @@
 <cffunction name="UPDlinks" access="public" returntype="void" hint="Updates the isdeleted field for a given linkid">
     <cfargument name="linkid" type="numeric" required="true" hint="The ID of the link to update">
 
-    <cfquery result="result" >
+    <cfquery>
         UPDATE links_tbl
         SET isdeleted = 1
-        WHERE linkid = <cfquery result="result" param value="#arguments.linkid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE linkid = <cfqueryparam value="#arguments.linkid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 </cffunction>
 
@@ -79,7 +79,7 @@
     <cfquery name="result">
         SELECT linkid, linkname, linkurl, userid, noteid
         FROM links
-        WHERE noteid = <cfquery result="result" param value="#arguments.new_noteid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE noteid = <cfqueryparam value="#arguments.new_noteid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
     
     <cfreturn result>

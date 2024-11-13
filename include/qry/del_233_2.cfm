@@ -1,6 +1,6 @@
 <cfset suidList = []>
 
-<cfquery result="result"  name="suidQuery" datasource="abod">
+<cfquery name="suidQuery" datasource="abod">
     SELECT suid FROM fusystemusers
 </cfquery>
 
@@ -11,7 +11,7 @@
 <cfset notificationService = createObject("component", "services.NotificationService")>
 <cfset notificationService.UPDfunotifications_24130(suidList=suidList)>
 
-<cfquery result="result"  name="updateFetchStatus" datasource="abod">
+<cfquery name="updateFetchStatus" datasource="abod">
     UPDATE funotifications_tbl 
     SET isfetch = 1 
     WHERE isdeleted = 1

@@ -15,7 +15,7 @@
         FROM 
             pgpanels_user p
         WHERE 
-            p.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            p.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         ORDER BY 
             p.pnorderno
     </cfquery>
@@ -24,10 +24,10 @@
 
 <cffunction name="UPDpgpanels_user" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
-    <cfquery result="result" >
+    <cfquery>
         UPDATE pgpanels_user 
         SET isvisible = 0 
-        WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 </cffunction>
 
@@ -52,27 +52,27 @@
     ">
 
     <!--- Execute the query with parameter binding --->
-    <cfquery result="result" >
+    <cfquery>
         #sql#
-        <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 </cffunction>
 
 <cffunction name="UPDpgpanels_user_23886" access="public" returntype="void">
     <cfargument name="pnid" type="numeric" required="true">
-    <cfquery result="result" >
+    <cfquery>
         UPDATE pgpanels_user
         SET isdeleted = 1
-        WHERE pnid = <cfquery result="result" param value="#arguments.pnid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE pnid = <cfqueryparam value="#arguments.pnid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 </cffunction>
 
 <cffunction name="UPDpgpanels_user_24135" access="public" returntype="void">
     <cfargument name="pnid" type="numeric" required="true">
-    <cfquery result="result" >
+    <cfquery>
         UPDATE pgpanels_user
-        SET isvisible = <cfquery result="result" param value="#arguments.isvisible#" cfsqltype="CF_SQL_BIT">
-        WHERE pnid = <cfquery result="result" param value="#arguments.pnid#" cfsqltype="CF_SQL_INTEGER">
+        SET isvisible = <cfqueryparam value="#arguments.isvisible#" cfsqltype="CF_SQL_BIT">
+        WHERE pnid = <cfqueryparam value="#arguments.pnid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 </cffunction>
 
@@ -91,7 +91,7 @@
         LEFT JOIN 
             sitetypes_user s ON s.pnid = p.pnid
         WHERE 
-            p.userid = <cfquery result="result" param value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 
+            p.userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 
             AND p.pntitle <> s.pntitle
     </cfquery>
     
@@ -102,10 +102,10 @@
     <cfargument name="correctTitle" type="string" required="true">
     <cfargument name="pnid" type="numeric" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         UPDATE pgpanels_user 
-        SET pntitle = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.correctTitle#" /> 
-        WHERE pnid = <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.pnid#" />
+        SET pntitle = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.correctTitle#" /> 
+        WHERE pnid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.pnid#" />
     </cfquery>
 </cffunction>
 
@@ -117,7 +117,7 @@
     <cfquery name="result">
         SELECT p.pnOrderno + 1 AS new_pnOrderNo
         FROM pgpanels_user p
-        WHERE p.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE p.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         ORDER BY p.pnOrderno DESC
     </cfquery>
     
@@ -129,7 +129,7 @@
     <cfargument name="new_pnOrderNo" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         INSERT INTO pgpanels_user (
             pnTitle, 
             pnFilename, 
@@ -141,15 +141,15 @@
             IsVisible, 
             userid
         ) VALUES (
-            <cfquery result="result" param value="#arguments.new_pnTitle#" cfsqltype="CF_SQL_VARCHAR">,
-            <cfquery result="result" param value="mylinks_user.cfm" cfsqltype="CF_SQL_VARCHAR">,
-            <cfquery result="result" param value="#arguments.new_pnOrderNo#" cfsqltype="CF_SQL_INTEGER">,
-            <cfquery result="result" param value="3" cfsqltype="CF_SQL_INTEGER">,
-            <cfquery result="result" param value="3" cfsqltype="CF_SQL_INTEGER">,
-            <cfquery result="result" param value="" cfsqltype="CF_SQL_VARCHAR">,
-            <cfquery result="result" param value="0" cfsqltype="CF_SQL_BIT">,
-            <cfquery result="result" param value="1" cfsqltype="CF_SQL_BIT">,
-            <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            <cfqueryparam value="#arguments.new_pnTitle#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfqueryparam value="mylinks_user.cfm" cfsqltype="CF_SQL_VARCHAR">,
+            <cfqueryparam value="#arguments.new_pnOrderNo#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="3" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="3" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="" cfsqltype="CF_SQL_VARCHAR">,
+            <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">,
+            <cfqueryparam value="1" cfsqltype="CF_SQL_BIT">,
+            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         )
     </cfquery>
 </cffunction>
@@ -164,8 +164,8 @@
         <cfquery name="result" datasource="abod">
             SELECT *
             FROM pgpanels_user
-            WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
-            AND pnFilename = <cfquery result="result" param value="#arguments.pnFilename#" cfsqltype="CF_SQL_VARCHAR">
+            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            AND pnFilename = <cfqueryparam value="#arguments.pnFilename#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
         
         <cfcatch type="any">
@@ -183,7 +183,7 @@
     <cfset var queryResult = "">
     
     <cftry>
-        <cfquery result="result"  name="queryResult" datasource="abod">
+        <cfquery name="queryResult" datasource="abod">
             INSERT INTO pgpanels_user_tbl (
                 userid, 
                 pnTitle, 
@@ -194,14 +194,14 @@
                 pnDescription, 
                 IsVisible
             ) VALUES (
-                <cfquery result="result" param value="#arguments.select_userid#" cfsqltype="CF_SQL_INTEGER">,
-                <cfquery result="result" param value="#arguments.m.pntitle#" cfsqltype="CF_SQL_VARCHAR">,
-                <cfquery result="result" param value="#arguments.m.pnfilename#" cfsqltype="CF_SQL_VARCHAR">,
-                <cfquery result="result" param value="#arguments.m.pnOrderNo#" cfsqltype="CF_SQL_INTEGER">,
-                <cfquery result="result" param value="#arguments.m.pnColXl#" cfsqltype="CF_SQL_INTEGER">,
-                <cfquery result="result" param value="#arguments.m.pnColMd#" cfsqltype="CF_SQL_INTEGER">,
-                <cfquery result="result" param value="#arguments.m.pnDescription#" cfsqltype="CF_SQL_VARCHAR">,
-                <cfquery result="result" param value="1" cfsqltype="CF_SQL_BIT">
+                <cfqueryparam value="#arguments.select_userid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.m.pntitle#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.m.pnfilename#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.m.pnOrderNo#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.m.pnColXl#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.m.pnColMd#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.m.pnDescription#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="1" cfsqltype="CF_SQL_BIT">
             )
         </cfquery>
         
@@ -221,7 +221,7 @@
         <cfquery name="result" datasource="abod">
             SELECT p.pnOrderno + 1 AS new_pnOrderNo
             FROM pgpanels_user p
-            WHERE p.userid = <cfquery result="result" param value="#arguments.select_userid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE p.userid = <cfqueryparam value="#arguments.select_userid#" cfsqltype="CF_SQL_INTEGER">
             ORDER BY p.pnOrderno DESC
         </cfquery>
         
@@ -239,7 +239,7 @@
     <cfargument name="select_userid" type="numeric" required="true">
 
     <cftry>
-        <cfquery result="result"  datasource="abod">
+        <cfquery datasource="abod">
             INSERT INTO pgpanels_user (
                 pnTitle, 
                 pnFilename, 
@@ -251,15 +251,15 @@
                 IsVisible, 
                 userid
             ) VALUES (
-                <cfquery result="result" param value="#arguments.new_pnTitle#" cfsqltype="CF_SQL_VARCHAR">,
-                <cfquery result="result" param value="mylinks_user.cfm" cfsqltype="CF_SQL_VARCHAR">,
-                <cfquery result="result" param value="#arguments.new_pnOrderNo#" cfsqltype="CF_SQL_INTEGER">,
-                <cfquery result="result" param value="3" cfsqltype="CF_SQL_INTEGER">,
-                <cfquery result="result" param value="3" cfsqltype="CF_SQL_INTEGER">,
-                <cfquery result="result" param value="" cfsqltype="CF_SQL_VARCHAR">,
-                <cfquery result="result" param value="0" cfsqltype="CF_SQL_BIT">,
-                <cfquery result="result" param value="1" cfsqltype="CF_SQL_BIT">,
-                <cfquery result="result" param value="#arguments.select_userid#" cfsqltype="CF_SQL_INTEGER">
+                <cfqueryparam value="#arguments.new_pnTitle#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="mylinks_user.cfm" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.new_pnOrderNo#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="3" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="3" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">,
+                <cfqueryparam value="1" cfsqltype="CF_SQL_BIT">,
+                <cfqueryparam value="#arguments.select_userid#" cfsqltype="CF_SQL_INTEGER">
             )
         </cfquery>
     <cfcatch type="any">
@@ -284,8 +284,8 @@
             FROM 
                 pgpanels_user p
             WHERE 
-                p.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
-                AND p.isvisible = <cfquery result="result" param value="1" cfsqltype="CF_SQL_BIT">
+                p.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+                AND p.isvisible = <cfqueryparam value="1" cfsqltype="CF_SQL_BIT">
             ORDER BY 
                 p.pnorderno
         </cfquery>
@@ -310,7 +310,7 @@
             FROM 
                 pgpanels_user p 
             WHERE 
-                p.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+                p.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
             ORDER BY 
                 pnOrderno
         </cfquery>

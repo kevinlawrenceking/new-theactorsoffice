@@ -1,4 +1,4 @@
-<cfquery result="result"  name="getFilesWithMultipleQueries" datasource="abod">
+<cfquery name="getFilesWithMultipleQueries" datasource="abod">
 SELECT * FROM `tao_files` WHERE path = '/include/qry' and qry_no > 1
 </cfquery>
 
@@ -18,7 +18,7 @@ SELECT * FROM `tao_files` WHERE path = '/include/qry' and qry_no > 1
 
         <cfloop condition="counter LTE getFilesWithMultipleQueries.qry_no">
             <!--- Find the start and end of the cfquery block --->
-            <cfset startQuery = REFindNoCase("<cfquery result="result" \b[^>]*>", fileContent, startPos)>
+            <cfset startQuery = REFindNoCase("<cfquery\b[^>]*>", fileContent, startPos)>
             <cfset endQuery = REFindNoCase("</cfquery>", fileContent, startPos)>
 
             <!--- Check if both the start and end are valid --->
@@ -64,15 +64,15 @@ SELECT * FROM `tao_files` WHERE path = '/include/qry' and qry_no > 1
         </cfif>
 
         <!--- Update the database to mark the file as processed --->
-        <cfquery result="result"  datasource="abod">
+        <cfquery datasource="abod">
             UPDATE tao_files
             SET qry_extract_yn = 1
-            WHERE id = <cfquery result="result" param value="#getFilesWithMultipleQueries.id#" cfsqltype="cf_sql_integer">
+            WHERE id = <cfqueryparam value="#getFilesWithMultipleQueries.id#" cfsqltype="cf_sql_integer">
         </cfquery>
     </cfif>
 </cfloop>
 
-<cfquery result="result"  name="getAllIncludeFiles" datasource="abod">
+<cfquery name="getAllIncludeFiles" datasource="abod">
     SELECT id, `filename`, `path`
     FROM tao_files
     WHERE path = '/include/qry'
@@ -85,14 +85,14 @@ SELECT * FROM `tao_files` WHERE path = '/include/qry' and qry_no > 1
         <!--- Read the content of the file --->
         <cfset fileContent = ToString(fileRead(fullFilePath))>
 
-        <!--- Count the number of <cfquery result="result" > blocks --->
-        <cfset qryCount = ArrayLen(REMatchNoCase("<cfquery result="result" \b[^>]*>", fileContent))>
+        <!--- Count the number of <cfquery> blocks --->
+        <cfset qryCount = ArrayLen(REMatchNoCase("<cfquery\b[^>]*>", fileContent))>
 
         <!--- Update the tao_files table with the qry_count (qry_no) --->
-        <cfquery result="result"  datasource="abod">
+        <cfquery datasource="abod">
             UPDATE tao_files
-            SET qry_no = <cfquery result="result" param value="#qryCount#" cfsqltype="cf_sql_integer">
-            WHERE id = <cfquery result="result" param value="#getAllIncludeFiles.id#" cfsqltype="cf_sql_integer">
+            SET qry_no = <cfqueryparam value="#qryCount#" cfsqltype="cf_sql_integer">
+            WHERE id = <cfqueryparam value="#getAllIncludeFiles.id#" cfsqltype="cf_sql_integer">
         </cfquery>
 
         <!--- Output the result for debugging (optional) --->

@@ -4,12 +4,12 @@
     <cfargument name="excludedRangeIds" type="array" required="true">
     <cfset var qryResult = "">
 
-    <cfquery result="result"  name="qryResult">
+    <cfquery name="qryResult">
         SELECT rangeid, rangename, rangestart, rangeend
         FROM reportranges
         WHERE rangeid NOT IN (
             <cfloop array="#arguments.excludedRangeIds#" index="rangeId">
-                <cfquery result="result" param value="#rangeId#" cfsqltype="CF_SQL_INTEGER" />
+                <cfqueryparam value="#rangeId#" cfsqltype="CF_SQL_INTEGER" />
                 <cfif rangeId neq arrayLen(arguments.excludedRangeIds)>,</cfif>
             </cfloop>
         )
@@ -23,11 +23,11 @@
     <cfargument name="new_rangeend" type="date" required="true">
     <cfargument name="current_rangeid" type="numeric" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         UPDATE reportranges 
-        SET rangestart = <cfquery result="result" param cfsqltype="cf_sql_date" value="#arguments.new_rangestart#" />, 
-            rangeend = <cfquery result="result" param cfsqltype="cf_sql_date" value="#arguments.new_rangeend#" />
-        WHERE rangeid = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.current_rangeid#" />
+        SET rangestart = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_rangestart#" />, 
+            rangeend = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_rangeend#" />
+        WHERE rangeid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.current_rangeid#" />
     </cfquery>
 
 </cffunction>
@@ -36,10 +36,10 @@
     <cfargument name="customStart" type="date" required="true">
     <cfargument name="customEnd" type="date" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         UPDATE reportranges 
-        SET rangestart = <cfquery result="result" param cfsqltype="cf_sql_date" value="#arguments.customStart#" />, 
-            rangeend = <cfquery result="result" param cfsqltype="cf_sql_date" value="#arguments.customEnd#" />
+        SET rangestart = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.customStart#" />, 
+            rangeend = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.customEnd#" />
         WHERE rangename = 'Custom'
     </cfquery>
 
@@ -53,7 +53,7 @@
     <cfquery name="result">
         SELECT rangeid, rangename, rangestart, rangeend
         FROM reportranges
-        WHERE rangeid = <cfquery result="result" param value="#arguments.new_rangeid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE rangeid = <cfqueryparam value="#arguments.new_rangeid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
     
     <cfreturn result>

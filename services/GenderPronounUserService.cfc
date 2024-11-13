@@ -8,7 +8,7 @@
     <cfquery name="result">
         SELECT genderPronoun
         FROM genderpronouns_users
-        WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 
     <cfreturn result>
@@ -23,8 +23,8 @@
     <cfquery name="result">
         SELECT * 
         FROM genderpronouns_users 
-        WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
-        AND genderPronoun = <cfquery result="result" param value="#arguments.custom#" cfsqltype="CF_SQL_VARCHAR">
+        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+        AND genderPronoun = <cfqueryparam value="#arguments.custom#" cfsqltype="CF_SQL_VARCHAR">
     </cfquery>
 
     <cfreturn result>
@@ -34,14 +34,14 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="custom" type="string" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         INSERT INTO genderpronouns_users_tbl (userid, isDeleted, isCustom, genderpronoun, genderpronounPlural)
         VALUES (
-            <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
-            <cfquery result="result" param value="0" cfsqltype="CF_SQL_BIT">,
-            <cfquery result="result" param value="1" cfsqltype="CF_SQL_BIT">,
-            <cfquery result="result" param value="#arguments.custom#" cfsqltype="CF_SQL_VARCHAR">,
-            <cfquery result="result" param value="#arguments.custom#" cfsqltype="CF_SQL_VARCHAR">
+            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">,
+            <cfqueryparam value="1" cfsqltype="CF_SQL_BIT">,
+            <cfqueryparam value="#arguments.custom#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfqueryparam value="#arguments.custom#" cfsqltype="CF_SQL_VARCHAR">
         )
     </cfquery>
 </cffunction>
@@ -55,8 +55,8 @@
     <cfquery name="result">
         SELECT * 
         FROM genderpronouns_users 
-        WHERE genderpronoun = <cfquery result="result" param value="#arguments.genderpronoun#" cfsqltype="CF_SQL_VARCHAR"> 
-        AND userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE genderpronoun = <cfqueryparam value="#arguments.genderpronoun#" cfsqltype="CF_SQL_VARCHAR"> 
+        AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 
     <cfreturn result>
@@ -67,12 +67,12 @@
     <cfargument name="genderpronounplural" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         INSERT INTO genderpronouns_users (genderpronoun, genderpronounplural, userid)
         VALUES (
-            <cfquery result="result" param value="#arguments.genderpronoun#" cfsqltype="CF_SQL_VARCHAR">,
-            <cfquery result="result" param value="#arguments.genderpronounplural#" cfsqltype="CF_SQL_VARCHAR">,
-            <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            <cfqueryparam value="#arguments.genderpronoun#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfqueryparam value="#arguments.genderpronounplural#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         )
     </cfquery>
 </cffunction>
@@ -85,7 +85,7 @@
     <cfquery name="result">
         SELECT genderPronoun
         FROM genderpronouns_users
-        WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 
     <cfreturn result>

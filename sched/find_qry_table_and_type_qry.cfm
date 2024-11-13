@@ -1,4 +1,4 @@
-  <cfquery result="result"  name="getFilesWithMissingTableType" datasource="abod">
+  <Cfquery name="getFilesWithMissingTableType" datasource="abod">
   
     SELECT id, `path`, `filename`, qry_details
     FROM tao_files
@@ -45,11 +45,11 @@
     <cfset tableName = trim(tableName)>
 
     <!--- Insert the qry_table and qry_type into the database ---> 
-    <cfquery result="result"  datasource="abod">
+    <cfquery datasource="abod">
         UPDATE tao_files
-        SET qry_table = <cfquery result="result" param value="#tableName#" cfsqltype="cf_sql_varchar">,
-            qry_type = <cfquery result="result" param value="#qryType#" cfsqltype="cf_sql_varchar">
-        WHERE id = <cfquery result="result" param value="#getFilesWithMissingTableType.id#" cfsqltype="cf_sql_integer">
+        SET qry_table = <cfqueryparam value="#tableName#" cfsqltype="cf_sql_varchar">,
+            qry_type = <cfqueryparam value="#qryType#" cfsqltype="cf_sql_varchar">
+        WHERE id = <cfqueryparam value="#getFilesWithMissingTableType.id#" cfsqltype="cf_sql_integer">
     </cfquery>
 
     <!--- Output the result for each file ---> 

@@ -65,7 +65,7 @@
 
 </cfoutput>
 
-<cfquery result="result"   name="U"  >
+<cfquery  name="U"  >
     SELECT
     u.userid
     ,u.recordname
@@ -211,7 +211,7 @@
 
 
 
-    <cfquery result="result"   name="C"  >
+    <cfquery  name="C"  >
         SELECT contactid,recordname
         from contactdetails
         where userid = #u.userid#

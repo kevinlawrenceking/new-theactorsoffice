@@ -8,8 +8,8 @@
     <cfquery name="result">
         SELECT *
         FROM audgenres_user
-        WHERE audcatid = <cfquery result="result" param value="#arguments.audcatid#" cfsqltype="CF_SQL_INTEGER">
-        AND userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE audcatid = <cfqueryparam value="#arguments.audcatid#" cfsqltype="CF_SQL_INTEGER">
+        AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
     
     <cfreturn result>
@@ -24,8 +24,8 @@
     <cfquery name="result">
         SELECT * 
         FROM audgenres_user 
-        WHERE audcatid = <cfquery result="result" param value="#arguments.new_audcatid#" cfsqltype="CF_SQL_INTEGER"> 
-          AND userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE audcatid = <cfqueryparam value="#arguments.new_audcatid#" cfsqltype="CF_SQL_INTEGER"> 
+          AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
     
     <cfreturn result>
@@ -40,8 +40,8 @@
     <cfquery name="result">
         SELECT audgenreid, audgenre, audcatid
         FROM audgenres_user
-        WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
-        AND audcatid = <cfquery result="result" param value="#arguments.new_audcatid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        AND audcatid = <cfqueryparam value="#arguments.new_audcatid#" cfsqltype="CF_SQL_INTEGER">
         ORDER BY audgenre
     </cfquery>
     
@@ -57,8 +57,8 @@
     <cfquery name="result">
         SELECT audgenreid
         FROM audgenres_user
-        WHERE audgenre = <cfquery result="result" param value="#arguments.new_genre#" cfsqltype="CF_SQL_VARCHAR">
-        AND userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE audgenre = <cfqueryparam value="#arguments.new_genre#" cfsqltype="CF_SQL_VARCHAR">
+        AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
     
     <cfreturn result>
@@ -69,12 +69,12 @@
     <cfargument name="new_catid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         INSERT INTO audgenres_user (audgenre, audcatid, userid)
         VALUES (
-            <cfquery result="result" param value="#arguments.new_genre#" cfsqltype="CF_SQL_VARCHAR">,
-            <cfquery result="result" param value="#arguments.new_catid#" cfsqltype="CF_SQL_INTEGER">,
-            <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            <cfqueryparam value="#arguments.new_genre#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfqueryparam value="#arguments.new_catid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         )
     </cfquery>
 </cffunction>
@@ -89,8 +89,8 @@
         SELECT g.audgenre 
         FROM audgenres_user g 
         INNER JOIN audgenres_audition_xref x ON x.audgenreID = g.audgenreID 
-        WHERE x.audroleid = <cfquery result="result" param value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER"> 
-        AND g.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+        WHERE x.audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER"> 
+        AND g.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
         ORDER BY g.audgenre
     </cfquery>
 

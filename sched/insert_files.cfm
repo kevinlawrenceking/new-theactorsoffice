@@ -28,12 +28,12 @@
             
             <!--- Try to insert each file into the database --->
             <cftry>
-                <cfquery result="result"  datasource="abod">
+                <cfquery datasource="abod">
                     INSERT INTO tao_files (`filename`, `status`, `path`, `updated_timestamp`)
                     VALUES (
-                        <cfquery result="result" param value="#filename#" cfsqltype="cf_sql_varchar" maxlength="255">,
-                        <cfquery result="result" param value="existing" cfsqltype="cf_sql_varchar" maxlength="20">,
-                        <cfquery result="result" param value="#use_path#" cfsqltype="cf_sql_varchar" maxlength="255">,
+                        <cfqueryparam value="#filename#" cfsqltype="cf_sql_varchar" maxlength="255">,
+                        <cfqueryparam value="existing" cfsqltype="cf_sql_varchar" maxlength="20">,
+                        <cfqueryparam value="#use_path#" cfsqltype="cf_sql_varchar" maxlength="255">,
                         NOW()
                     );
                 </cfquery>
@@ -69,12 +69,12 @@
             
             <!--- Try to insert each file into the database --->
             <cftry>
-                <cfquery result="result"  datasource="abod">
+                <cfquery datasource="abod">
                     INSERT INTO tao_files (`filename`, `status`, `path`, `updated_timestamp`)
                     VALUES (
-                        <cfquery result="result" param value="#filename#" cfsqltype="cf_sql_varchar" maxlength="255">,
-                        <cfquery result="result" param value="existing" cfsqltype="cf_sql_varchar" maxlength="20">,
-                        <cfquery result="result" param value="#qry_path#" cfsqltype="cf_sql_varchar" maxlength="255">,
+                        <cfqueryparam value="#filename#" cfsqltype="cf_sql_varchar" maxlength="255">,
+                        <cfqueryparam value="existing" cfsqltype="cf_sql_varchar" maxlength="20">,
+                        <cfqueryparam value="#qry_path#" cfsqltype="cf_sql_varchar" maxlength="255">,
                         NOW()
                     );
                 </cfquery>

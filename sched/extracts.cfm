@@ -5,7 +5,7 @@
 <cfset use_path = "/include" />
 <cfset qry_path = "/include/qry" />
 
-<cfquery result="result"  name="getFiles" datasource="abod" maxrows="3">
+<cfquery name="getFiles" datasource="abod" maxrows="3">
     SELECT id, `path`, `filename`
     FROM tao_files
     WHERE path = '/include'
@@ -32,7 +32,7 @@
 
         <cfloop condition="#found#">
             <!--- Update to improved regex to handle attributes, line breaks, and spacing in cfquery --->
-            <cfset startQuery = REFindNoCase("(?i)<cfquery result="result" (\s+[^>]*)?>", fileContent, startPos) />
+            <cfset startQuery = REFindNoCase("(?i)<cfquery(\s+[^>]*)?>", fileContent, startPos) />
             <cfset endQuery = REFindNoCase("(?i)</cfquery>", fileContent, startPos) />
 
             <cfif startQuery GT 0 AND endQuery GT startQuery>
@@ -61,7 +61,7 @@
                     <cfset newQueryFilePath = "#path_save##qry_path#/#newQueryFilename#" />
                     <cffile action="write" file="#newQueryFilePath#" output="#fullQueryBlock#" />
                     <cftransaction>
-                        <cfquery result="result"  datasource="abod">
+                        <cfquery datasource="abod">
                             INSERT INTO tao_files (
                                 `filename`,
                                 `status`,
@@ -72,17 +72,17 @@
                                 `parents`
                             )
                             VALUES (
-                                <cfquery result="result" param value="#newQueryFilename#" cfsqltype="cf_sql_varchar" maxlength="255">,
-                                <cfquery result="result" param value="new" cfsqltype="cf_sql_varchar" maxlength="20" />,
-                                <cfquery result="result" param value="#qry_path#" cfsqltype="cf_sql_varchar" maxlength="255" />,
+                                <cfqueryparam value="#newQueryFilename#" cfsqltype="cf_sql_varchar" maxlength="255">,
+                                <cfqueryparam value="new" cfsqltype="cf_sql_varchar" maxlength="20" />,
+                                <cfqueryparam value="#qry_path#" cfsqltype="cf_sql_varchar" maxlength="255" />,
                                 NOW(),
-                                0, 1, <cfquery result="result" param value="#getFiles.id#" cfsqltype="cf_sql_varchar" />
+                                0, 1, <cfqueryparam value="#getFiles.id#" cfsqltype="cf_sql_varchar" />
                             )
                         </cfquery>
-                        <cfquery result="result"  datasource="abod">
+                        <cfquery datasource="abod">
                             UPDATE tao_files
                             SET qry_extract_yn = 1
-                            WHERE id = <cfquery result="result" param value="#getFiles.id#" cfsqltype="cf_sql_integer" />
+                            WHERE id = <cfqueryparam value="#getFiles.id#" cfsqltype="cf_sql_integer" />
                         </cfquery>
                     </cftransaction>
                     <cfset cfIncludeTag = '<cfinclude template="#qry_path#/#newQueryFilename#" />'>
@@ -97,10 +97,10 @@
         </cfloop>
 
         <cfif queryFound eq false>
-            <cfquery result="result"  datasource="abod">
+            <cfquery datasource="abod">
                 UPDATE tao_files
                 SET qry_extract_yn = 1
-                WHERE id = <cfquery result="result" param value="#getFiles.id#" cfsqltype="cf_sql_integer" />
+                WHERE id = <cfqueryparam value="#getFiles.id#" cfsqltype="cf_sql_integer" />
             </cfquery>
         </cfif>
 

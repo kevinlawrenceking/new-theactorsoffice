@@ -2,18 +2,18 @@
 <cfparam name="j_username" default="" />
  
 
-<cfquery result="result"  name="insert">
+<cfquery name="insert">
     INSERT INTO loggins (u, p, REMOTE_ADDR, HTTP_USER_AGENT) 
     VALUES (
-        <cfquery result="result" param value="#j_username#" cfsqltype="cf_sql_varchar" />, 
-        <cfquery result="result" param value="#j_password#" cfsqltype="cf_sql_varchar" />,
-        <cfquery result="result" param value="#cgi.REMOTE_ADDR#" cfsqltype="cf_sql_varchar" />, 
-        <cfquery result="result" param value="#cgi.HTTP_USER_AGENT#" cfsqltype="cf_sql_varchar" />
+        <cfqueryparam value="#j_username#" cfsqltype="cf_sql_varchar" />, 
+        <cfqueryparam value="#j_password#" cfsqltype="cf_sql_varchar" />,
+        <cfqueryparam value="#cgi.REMOTE_ADDR#" cfsqltype="cf_sql_varchar" />, 
+        <cfqueryparam value="#cgi.HTTP_USER_AGENT#" cfsqltype="cf_sql_varchar" />
     );
 </cfquery>
 
 <!--- Query to authenticate the user --->
-<cfquery result="result"  name="loginQuery" maxrows="1">
+<cfquery name="loginQuery" maxrows="1">
     SELECT 
         u.userid,
         u.passwordHash,
@@ -24,7 +24,7 @@
     INNER JOIN 
         userstatuses us ON us.userstatus = u.userstatus
     WHERE 
-        u.userEmail = <cfquery result="result" param value="#j_username#" cfsqltype="cf_sql_varchar" />
+        u.userEmail = <cfqueryparam value="#j_username#" cfsqltype="cf_sql_varchar" />
 </cfquery>
   <cfoutput>#loginQuery.recordcount#</cfoutput><cfabort>
 <!--- Check if the user exists --->

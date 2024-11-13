@@ -7,7 +7,7 @@
     <cfquery name="result">
         SELECT *
         FROM sitetypes_master
-        WHERE sitetypename = <cfquery result="result" param value="#arguments.sitetypename#" cfsqltype="CF_SQL_VARCHAR">
+        WHERE sitetypename = <cfqueryparam value="#arguments.sitetypename#" cfsqltype="CF_SQL_VARCHAR">
     </cfquery>
     
     <cfreturn result>
@@ -33,10 +33,10 @@
     </cfif>
 
     <!--- Execute the query --->
-    <cfquery result="result"  name="queryResult">
+    <cfquery name="queryResult">
         #sql#
         <cfloop array="#paramList#" index="param">
-            <cfquery result="result" param value="#param.value#" cfsqltype="#param.cfsqltype#">
+            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
         </cfloop>
     </cfquery>
 

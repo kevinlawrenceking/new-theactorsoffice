@@ -1,4 +1,4 @@
-<cfquery result="result"  name="tables" datasource="abod">
+<cfquery name="tables" datasource="abod">
     SELECT t.id, t.qry_view 
     FROM tao_files t
     WHERE t.qry_table IS NOT NULL 
@@ -13,7 +13,7 @@
     <cfset new_id = tables.id />
 
     <!--- Fetch Column Details for the Current Table --->
-    <cfquery result="result"  name="getColumnDetails" datasource="abod">
+    <cfquery name="getColumnDetails" datasource="abod">
         SELECT 
             c.COLUMN_NAME,                          
             c.DATA_TYPE,                            
@@ -27,7 +27,7 @@
             new_development.cfqueryparam_matrix m ON c.DATA_TYPE = m.DATA_TYPE
         WHERE 
             c.table_schema = 'new_development'   -- Replace with your actual database name
-            AND c.table_name = <cfquery result="result" param value="#new_view#" cfsqltype="cf_sql_varchar">   
+            AND c.table_name = <cfqueryparam value="#new_view#" cfsqltype="cf_sql_varchar">   
         ORDER BY 
             c.ORDINAL_POSITION;
     </cfquery>
@@ -57,10 +57,10 @@
 
     <!--- Check if column data is not empty before updating --->
     <cfif len(trim(generatedColumnData))>
-        <cfquery result="result"  name="update" datasource="abod">
+        <cfquery name="update" datasource="abod">
             UPDATE tao_files   
-            SET tableschema = <cfquery result="result" param value="#generatedColumnData#" cfsqltype="CF_SQL_LONGVARCHAR">
-            WHERE id = <cfquery result="result" param value="#new_id#" cfsqltype="CF_SQL_INTEGER">
+            SET tableschema = <cfqueryparam value="#generatedColumnData#" cfsqltype="CF_SQL_LONGVARCHAR">
+            WHERE id = <cfqueryparam value="#new_id#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
     </cfif>
 

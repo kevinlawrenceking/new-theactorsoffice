@@ -5,7 +5,7 @@
         <cfargument name="contactid" type="numeric" required="true">
         <cfargument name="userid" type="numeric" required="true">
         
-        <cfquery result="result"  name="ru">
+        <cfquery name="ru">
             SELECT 
                 fc.suID,
                 fc.contactid,
@@ -21,8 +21,8 @@
                 s.recordname
             FROM fusystemusers fc 
             INNER JOIN fusystems s ON s.systemID = fc.systemID
-            WHERE fc.contactID = <cfquery result="result" param value="#arguments.contactid#" cfsqltype="cf_sql_integer">
-              AND fc.userID = <cfquery result="result" param value="#arguments.userid#" cfsqltype="cf_sql_integer">
+            WHERE fc.contactID = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_integer">
+              AND fc.userID = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer">
               AND fc.sustatus = 'Active'
         </cfquery>
         
@@ -119,11 +119,11 @@
 
         <!--- Execute query --->
         <cftry>
-            <cfquery result="result"  name="qFiltered" >
+            <cfquery name="qFiltered" >
                 #sql#
                 <!--- Bind parameters --->
                 <cfloop array="#paramList#" index="param">
-                    <cfquery result="result" param value="#param.value#" cfsqltype="#param.cfsqltype#">
+                    <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
                 </cfloop>
             </cfquery>
             <!--- Return the query result --->
@@ -144,7 +144,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="compid" type="numeric" required="true">
 
-    <cfquery result="result"  name="updates" >
+    <cfquery name="updates" >
         SELECT 
             d.contactid,
             'Name' AS head1,
@@ -158,9 +158,9 @@
             ON u.recid = d.contactid
         WHERE 
             d.contactStatus = 'Active' 
-            AND d.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+            AND d.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
             AND u.userid = d.userid
-            AND u.compid = <cfquery result="result" param value="#arguments.compid#" cfsqltype="CF_SQL_INTEGER">
+            AND u.compid = <cfqueryparam value="#arguments.compid#" cfsqltype="CF_SQL_INTEGER">
         GROUP BY 
             d.contactfullname
     </cfquery>
@@ -180,8 +180,8 @@
         <cfquery name="result" >
             SELECT d.contactid
             FROM contactdetails d
-            WHERE d.[#arguments.addDaysNoUniqueName#] = <cfquery result="result" param value="Y" cfsqltype="CF_SQL_CHAR">
-            AND d.contactid = <cfquery result="result" param value="#arguments.newContactId#" cfsqltype="CF_SQL_INTEGER">
+            WHERE d.[#arguments.addDaysNoUniqueName#] = <cfqueryparam value="Y" cfsqltype="CF_SQL_CHAR">
+            AND d.contactid = <cfqueryparam value="#arguments.newContactId#" cfsqltype="CF_SQL_INTEGER">
             LIMIT 1
         </cfquery>
         
@@ -202,7 +202,7 @@
             SELECT * 
             FROM contactdetails d 
             WHERE recordname <> '' 
-              AND userid = <cfquery result="result" param value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 
+              AND userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 
             ORDER BY d.contactfullname
         </cfquery>
         
@@ -224,8 +224,8 @@
         <cfquery name="result" >
             SELECT *
             FROM contactdetails
-            WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
-            AND contactid = <cfquery result="result" param value="#arguments.relationship#" cfsqltype="CF_SQL_INTEGER">
+            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            AND contactid = <cfqueryparam value="#arguments.relationship#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -241,11 +241,11 @@
     <cfargument name="contactFullName" type="string" required="true">
 
     <cftry>
-        <cfquery result="result"  >
+        <cfquery >
             INSERT INTO contactdetails (userid, contactFullName) 
             VALUES (
-                <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">, 
-                <cfquery result="result" param value="#arguments.contactFullName#" cfsqltype="CF_SQL_VARCHAR">
+                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">, 
+                <cfqueryparam value="#arguments.contactFullName#" cfsqltype="CF_SQL_VARCHAR">
             )
         </cfquery>
         <cfcatch type="any">
@@ -259,11 +259,11 @@
     <cfargument name="cdfullname" type="string" required="true">
 
     <cftry>
-        <cfquery result="result"  >
+        <cfquery >
             INSERT INTO contactdetails (userid, contactFullName) 
             VALUES (
-                <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
-                <cfquery result="result" param value="#arguments.cdfullname#" cfsqltype="CF_SQL_VARCHAR">
+                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.cdfullname#" cfsqltype="CF_SQL_VARCHAR">
             );
         </cfquery>
         
@@ -278,11 +278,11 @@
     <cfargument name="contactfullname" type="string" required="true">
 
     <cftry>
-        <cfquery result="result"  >
+        <cfquery >
             INSERT INTO contactdetails (userid, contactfullname) 
             VALUES (
-                <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">, 
-                <cfquery result="result" param value="#arguments.contactfullname#" cfsqltype="CF_SQL_VARCHAR">
+                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">, 
+                <cfqueryparam value="#arguments.contactfullname#" cfsqltype="CF_SQL_VARCHAR">
             )
         </cfquery>
         
@@ -301,7 +301,7 @@
             SELECT contactid, contactbirthday 
             FROM contactdetails 
             WHERE contactbirthday IS NOT NULL 
-            AND contactid = <cfquery result="result" param value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
+            AND contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -317,10 +317,10 @@
     <cfargument name="New_contactid" type="numeric" required="true">
 
     <cftry>
-        <cfquery result="result"  >
+        <cfquery >
             UPDATE contactdetails 
-            SET contactbirthday = <cfquery result="result" param cfsqltype="cf_sql_date" value="#arguments.final_birthday#" />
-            WHERE contactid = <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.New_contactid#" />
+            SET contactbirthday = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.final_birthday#" />
+            WHERE contactid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.New_contactid#" />
         </cfquery>
         
         <cfcatch type="any">
@@ -334,10 +334,10 @@
     <cfargument name="contactid" type="numeric" required="true">
 
     <cftry>
-        <cfquery result="result"  >
+        <cfquery >
             UPDATE contactdetails
-            SET #arguments.uniquename# = <cfquery result="result" param value="Y" cfsqltype="CF_SQL_CHAR">
-            WHERE contactid = <cfquery result="result" param value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
+            SET #arguments.uniquename# = <cfqueryparam value="Y" cfsqltype="CF_SQL_CHAR">
+            WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -351,11 +351,11 @@
     <cfargument name="contactfullname" type="string" default="Unknown">
 
     <cftry>
-        <cfquery result="result"  >
+        <cfquery >
             INSERT INTO contactdetails (userid, contactfullname) 
             VALUES (
-                <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
-                <cfquery result="result" param value="#arguments.contactfullname#" cfsqltype="CF_SQL_VARCHAR">
+                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.contactfullname#" cfsqltype="CF_SQL_VARCHAR">
             )
         </cfquery>
         <cfcatch>
@@ -374,9 +374,9 @@
         <cfquery name="result" >
             SELECT contactid, recordname 
             FROM contactdetails 
-            WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
             <cfif arguments.select_contactid neq 0>
-                AND contactid = <cfquery result="result" param value="#arguments.select_contactid#" cfsqltype="CF_SQL_INTEGER">
+                AND contactid = <cfqueryparam value="#arguments.select_contactid#" cfsqltype="CF_SQL_INTEGER">
             </cfif>
             ORDER BY contactid
         </cfquery>
@@ -411,10 +411,10 @@
         <cfset sql = sql & ")">
 
         <!--- Execute the query with parameterized inputs --->
-        <cfquery result="result"  name="queryResult" >
+        <cfquery name="queryResult" >
             #sql#
             <cfloop array="#arguments.idList#" index="id">
-                <cfquery result="result" param value="#id#" cfsqltype="CF_SQL_INTEGER">
+                <cfqueryparam value="#id#" cfsqltype="CF_SQL_INTEGER">
             </cfloop>
         </cfquery>
 
@@ -444,9 +444,9 @@
             FROM 
                 contactdetails d
             WHERE 
-                d.contactStatus = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="Active"> 
-                AND d.userid = <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.userId#"> 
-                AND d.contactid IN (<cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.idList#" list="true">)
+                d.contactStatus = <cfqueryparam cfsqltype="cf_sql_varchar" value="Active"> 
+                AND d.userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userId#"> 
+                AND d.contactid IN (<cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.idList#" list="true">)
         </cfquery>
         
         <cfcatch type="any">
@@ -470,7 +470,7 @@
             AND contactfullname IS NOT NULL 
             AND contactfullname <> 'NULL' 
             AND contactfullname <> ' ' 
-            AND contactfullname LIKE <cfquery result="result" param value="#arguments.searchTerm#%" cfsqltype="cf_sql_varchar">
+            AND contactfullname LIKE <cfqueryparam value="#arguments.searchTerm#%" cfsqltype="cf_sql_varchar">
             
             UNION
             
@@ -480,7 +480,7 @@
             AND recordname IS NOT NULL 
             AND recordname <> 'NULL' 
             AND recordname <> ' ' 
-            AND recordname LIKE <cfquery result="result" param value="#arguments.searchTerm#%" cfsqltype="cf_sql_varchar">
+            AND recordname LIKE <cfqueryparam value="#arguments.searchTerm#%" cfsqltype="cf_sql_varchar">
             
             ORDER BY contactfullname
             LIMIT 10
@@ -503,7 +503,7 @@
         <cfquery name="result" >
             SELECT recordname 
             FROM contactdetails 
-            WHERE contactid = <cfquery result="result" param value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -551,8 +551,8 @@ function getContactRecordName(new_contactid) {
         <cfquery name="result" >
             SELECT d.contactid 
             FROM contactdetails d 
-            WHERE d.#arguments.addDaysNoUniqueName# = <cfquery result="result" param value="Y" cfsqltype="CF_SQL_CHAR"> 
-            AND d.contactid = <cfquery result="result" param value="#arguments.contactId#" cfsqltype="CF_SQL_INTEGER"> 
+            WHERE d.#arguments.addDaysNoUniqueName# = <cfqueryparam value="Y" cfsqltype="CF_SQL_CHAR"> 
+            AND d.contactid = <cfqueryparam value="#arguments.contactId#" cfsqltype="CF_SQL_INTEGER"> 
             LIMIT 1
         </cfquery>
         
@@ -572,12 +572,12 @@ function getContactRecordName(new_contactid) {
     <cfset var fullName = "#arguments.userFirstName# #arguments.userLastName#">
 
     <cftry>
-        <cfquery result="result"   name="insertQuery">
+        <cfquery  name="insertQuery">
             INSERT INTO contactdetails (ContactFullName, userid, user_yn)
             VALUES (
-                <cfquery result="result" param value="#fullName#" cfsqltype="CF_SQL_VARCHAR">,
-                <cfquery result="result" param value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">,
-                <cfquery result="result" param value="Y" cfsqltype="CF_SQL_CHAR">
+                <cfqueryparam value="#fullName#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="Y" cfsqltype="CF_SQL_CHAR">
             )
         </cfquery>
         <cfcatch>
@@ -591,11 +591,11 @@ function getContactRecordName(new_contactid) {
     <cfargument name="contactfullname" type="string" required="true">
 
     <cftry>
-        <cfquery result="result"  >
+        <cfquery >
             INSERT INTO contactdetails_tbl (userid, contactfullname)
             VALUES (
-                <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
-                <cfquery result="result" param value="#TRIM(arguments.contactfullname)#" cfsqltype="CF_SQL_VARCHAR">
+                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#TRIM(arguments.contactfullname)#" cfsqltype="CF_SQL_VARCHAR">
             )
         </cfquery>
         <cfcatch type="any">
@@ -613,7 +613,7 @@ function getContactRecordName(new_contactid) {
         <cfquery name="result" >
             SELECT *
             FROM contactdetails
-            WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
             ORDER BY contactfullname
         </cfquery>
         
@@ -646,13 +646,13 @@ function getContactRecordName(new_contactid) {
         <cfif structKeyExists(arguments, "referContactId") and isNumeric(arguments.referContactId)>, refer_contact_id</cfif>
         <cfif structKeyExists(arguments, "contactMeetingDate") and isDate(arguments.contactMeetingDate)>, contactmeetingdate</cfif>
     ) VALUES (
-        <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
-        <cfquery result="result" param value="#arguments.contactFullName#" cfsqltype="CF_SQL_VARCHAR">,
-        <cfquery result="result" param value="#arguments.contactMeetingLoc#" cfsqltype="CF_SQL_VARCHAR">,
-        <cfquery result="result" param value="#arguments.contactPronoun#" cfsqltype="CF_SQL_VARCHAR">
-        <cfif structKeyExists(arguments, "contactBirthday") and isDate(arguments.contactBirthday)>, <cfquery result="result" param value="#arguments.contactBirthday#" cfsqltype="CF_SQL_DATE"></cfif>
-        <cfif structKeyExists(arguments, "referContactId") and isNumeric(arguments.referContactId)>, <cfquery result="result" param value="#arguments.referContactId#" cfsqltype="CF_SQL_INTEGER"></cfif>
-        <cfif structKeyExists(arguments, "contactMeetingDate") and isDate(arguments.contactMeetingDate)>, <cfquery result="result" param value="#arguments.contactMeetingDate#" cfsqltype="CF_SQL_DATE"></cfif>
+        <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+        <cfqueryparam value="#arguments.contactFullName#" cfsqltype="CF_SQL_VARCHAR">,
+        <cfqueryparam value="#arguments.contactMeetingLoc#" cfsqltype="CF_SQL_VARCHAR">,
+        <cfqueryparam value="#arguments.contactPronoun#" cfsqltype="CF_SQL_VARCHAR">
+        <cfif structKeyExists(arguments, "contactBirthday") and isDate(arguments.contactBirthday)>, <cfqueryparam value="#arguments.contactBirthday#" cfsqltype="CF_SQL_DATE"></cfif>
+        <cfif structKeyExists(arguments, "referContactId") and isNumeric(arguments.referContactId)>, <cfqueryparam value="#arguments.referContactId#" cfsqltype="CF_SQL_INTEGER"></cfif>
+        <cfif structKeyExists(arguments, "contactMeetingDate") and isDate(arguments.contactMeetingDate)>, <cfqueryparam value="#arguments.contactMeetingDate#" cfsqltype="CF_SQL_DATE"></cfif>
     )
 
     </cfquery>
@@ -672,7 +672,7 @@ function getContactRecordName(new_contactid) {
         <cfquery name="result" >
             SELECT * 
             FROM contactdetails 
-            WHERE contactid = <cfquery result="result" param value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -695,25 +695,25 @@ function getContactRecordName(new_contactid) {
     <cfargument name="refer_contact_id" type="numeric" required="false">
     
   *
-    <cfquery result="result" >
+    <cfquery>
         UPDATE contactdetails 
-        SET contactfullname = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(arguments.contactfullname)#">,
+        SET contactfullname = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.contactfullname)#">,
             contactPronoun = 
                 <cfif arguments.contactPronoun is "custom">
-                    <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(arguments.custom)#">
+                    <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.custom)#">
                 <cfelse>
-                    <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(arguments.contactPronoun)#">
+                    <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.contactPronoun)#">
                 </cfif>,
-            contactmeetingloc = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#trim(arguments.contactmeetingloc)#">
+            contactmeetingloc = <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.contactmeetingloc)#">
             
             <!--- Conditionally update contactbirthday if it has a value --->
             <cfif not isNull(arguments.contactbirthday) and len(trim(arguments.contactbirthday))>
-                , contactbirthday = <cfquery result="result" param cfsqltype="cf_sql_date" value="#arguments.contactbirthday#">
+                , contactbirthday = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.contactbirthday#">
             </cfif>
             
             <!--- Conditionally update contactmeetingdate if it has a value --->
             <cfif not isNull(arguments.contactmeetingdate) and len(trim(arguments.contactmeetingdate))>
-                , contactmeetingdate = <cfquery result="result" param cfsqltype="cf_sql_date" value="#arguments.contactmeetingdate#">
+                , contactmeetingdate = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.contactmeetingdate#">
             </cfif>
             
             <!--- Mark as deleted if deleteitem is true --->
@@ -723,10 +723,10 @@ function getContactRecordName(new_contactid) {
             
             <!--- Conditionally update refer_contact_id if it has a value --->
             <cfif Len(trim(arguments.refer_contact_id))>
-                , refer_contact_id = <cfquery result="result" param value="#arguments.refer_contact_id#" cfsqltype="cf_sql_integer">
+                , refer_contact_id = <cfqueryparam value="#arguments.refer_contact_id#" cfsqltype="cf_sql_integer">
             </cfif>
             
-        WHERE contactid = <cfquery result="result" param value="#arguments.contactid#" cfsqltype="cf_sql_integer">
+        WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_integer">
     </cfquery>
 </cffunction>
 
@@ -739,7 +739,7 @@ function getContactRecordName(new_contactid) {
         <cfquery name="result" >
             SELECT contactid, recordname
             FROM contactdetails
-            WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
             AND recordname <> ''
             ORDER BY recordname
         </cfquery>
@@ -761,7 +761,7 @@ function getContactRecordName(new_contactid) {
         <cfquery name="result" >
             SELECT * 
             FROM contactdetails 
-            WHERE contactid = <cfquery result="result" param value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -782,8 +782,8 @@ function getContactRecordName(new_contactid) {
         <cfquery name="result" >
             SELECT * 
             FROM contactdetails 
-            WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
-            AND recordname = <cfquery result="result" param value="#arguments.referral#" cfsqltype="CF_SQL_VARCHAR">
+            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+            AND recordname = <cfqueryparam value="#arguments.referral#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
         <cfcatch>
             <cflog file="application" text="Error in getContactDetails: #cfcatch.message#">
@@ -798,11 +798,11 @@ function getContactRecordName(new_contactid) {
     <cfargument name="contactfullname" type="string" required="true">
 
     <cftry>
-        <cfquery result="result"  >
+        <cfquery >
             INSERT INTO contactdetails (userid, contactfullname) 
             VALUES (
-                <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
-                <cfquery result="result" param value="#arguments.contactfullname#" cfsqltype="CF_SQL_VARCHAR">
+                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.contactfullname#" cfsqltype="CF_SQL_VARCHAR">
             )
         </cfquery>
         <cfcatch type="any">
@@ -825,7 +825,7 @@ function getContactRecordName(new_contactid) {
             FROM contactdetails d
             WHERE d.contactid IN (
                 <cfloop list="#arguments.idList#" index="id">
-                    <cfquery result="result" param value="#id#" cfsqltype="CF_SQL_INTEGER" />
+                    <cfqueryparam value="#id#" cfsqltype="CF_SQL_INTEGER" />
                     <cfif id neq arrayLast(arguments.idList)>,</cfif>
                 </cfloop>
             )
@@ -848,8 +848,8 @@ function getContactRecordName(new_contactid) {
         <cfquery name="result" >
             SELECT * 
             FROM contactdetails 
-            WHERE contactfullname = <cfquery result="result" param value="#arguments.cdfullname#" cfsqltype="CF_SQL_VARCHAR"> 
-            AND userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE contactfullname = <cfqueryparam value="#arguments.cdfullname#" cfsqltype="CF_SQL_VARCHAR"> 
+            AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -869,8 +869,8 @@ function getContactRecordName(new_contactid) {
         <cfquery name="result" >
             SELECT *
             FROM contactdetails
-            WHERE contactfullname = <cfquery result="result" param value="#arguments.fname# #arguments.lname#" cfsqltype="CF_SQL_VARCHAR">
-            AND userid = <cfquery result="result" param value="#session.userid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE contactfullname = <cfqueryparam value="#arguments.fname# #arguments.lname#" cfsqltype="CF_SQL_VARCHAR">
+            AND userid = <cfqueryparam value="#session.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -916,12 +916,12 @@ function getContactRecordName(new_contactid) {
         <cfset valuesStr &= ")">
 
         <!--- Execute the query --->
-        <cfquery result="result"  name="insertQuery" >
+        <cfquery name="insertQuery" >
             #queryStr# #valuesStr#
-            <cfquery result="result" param value="#arguments.x.fname# #arguments.x.lname#" cfsqltype="CF_SQL_VARCHAR">
-            <cfquery result="result" param value="#session.userid#" cfsqltype="CF_SQL_INTEGER">
+            <cfqueryparam value="#arguments.x.fname# #arguments.x.lname#" cfsqltype="CF_SQL_VARCHAR">
+            <cfqueryparam value="#session.userid#" cfsqltype="CF_SQL_INTEGER">
             <cfloop array="#params#" index="param">
-                <cfquery result="result" param value="#param.value#" cfsqltype="#param.cfsqltype#">
+                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
             </cfloop>
         </cfquery>
 
@@ -941,9 +941,9 @@ function getContactRecordName(new_contactid) {
         <cfquery name="result" >
             SELECT contactid, recordname
             FROM contactdetails
-            WHERE userid = <cfquery result="result" param value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
+            WHERE userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
             <cfif arguments.selectContactId neq 0>
-                AND contactid = <cfquery result="result" param value="#arguments.selectContactId#" cfsqltype="CF_SQL_INTEGER">
+                AND contactid = <cfqueryparam value="#arguments.selectContactId#" cfsqltype="CF_SQL_INTEGER">
             </cfif>
             ORDER BY contactid
         </cfquery>
@@ -969,8 +969,8 @@ function getContactRecordName(new_contactid) {
             FROM 
                 contactdetails d 
             WHERE 
-                d.contactStatus = <cfquery result="result" param value="Active" cfsqltype="CF_SQL_VARCHAR"> 
-                AND d.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+                d.contactStatus = <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR"> 
+                AND d.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
             ORDER BY 
                 d.contactfullname
         </cfquery>
@@ -999,7 +999,7 @@ function getContactRecordName(new_contactid) {
             INNER JOIN 
                 audcontacts_auditions_xref x ON x.contactid = d.contactid 
             WHERE 
-                x.audprojectid = <cfquery result="result" param value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER"> 
+                x.audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER"> 
             ORDER BY 
                 d.recordname
         </cfquery>
@@ -1027,11 +1027,11 @@ function getContactRecordName(new_contactid) {
             FROM 
                 contactdetails d 
             WHERE 
-                d.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+                d.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
                 AND d.contactid NOT IN (
                     SELECT contactid 
                     FROM audcontacts_auditions_xref 
-                    WHERE audprojectid = <cfquery result="result" param value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
+                    WHERE audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
                 )  
             ORDER BY 
                 d.recordname
@@ -1050,11 +1050,11 @@ function getContactRecordName(new_contactid) {
     <cfargument name="cdfullname" type="string" required="true">
 
     <cftry>
-        <cfquery result="result"  >
+        <cfquery >
             INSERT INTO contactdetails (userid, cdco) 
             VALUES (
-                <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">, 
-                <cfquery result="result" param value="#arguments.cdfullname#" cfsqltype="CF_SQL_VARCHAR">
+                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">, 
+                <cfqueryparam value="#arguments.cdfullname#" cfsqltype="CF_SQL_VARCHAR">
             )
         </cfquery>
 
@@ -1079,7 +1079,7 @@ function getContactRecordName(new_contactid) {
             FROM 
                 contactdetails d 
             WHERE 
-                d.userid = <cfquery result="result" param value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 
+                d.userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 
                 AND d.contactbirthday IS NOT NULL 
                 AND datediff(d.contactbirthday, curdate()) < 15 
             ORDER BY 
@@ -1125,7 +1125,7 @@ function getContactRecordName(new_contactid) {
     FROM contactdetails d
     INNER JOIN taousers u ON u.userid = d.userid
     LEFT JOIN contactdetails d2 ON d.refer_contact_id = d2.contactid  
-    WHERE d.contactID = <cfquery result="result" param value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
+    WHERE d.contactID = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
 </cfquery>
 
         
@@ -1158,7 +1158,7 @@ function getContactRecordName(new_contactid) {
                 d.contactPronoun
             FROM contactdetails d
             INNER JOIN taousers u ON u.userid = d.userid
-            WHERE d.contactID = <cfquery result="result" param value="#arguments.refer_contact_id#" cfsqltype="CF_SQL_INTEGER">
+            WHERE d.contactID = <cfqueryparam value="#arguments.refer_contact_id#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch>
@@ -1182,7 +1182,7 @@ function getContactRecordName(new_contactid) {
                 contactdetails d 
             WHERE 
                 d.contactstatus = 'Active' 
-                AND d.userid = <cfquery result="result" param value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 
+                AND d.userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 
             ORDER BY 
                 d.contactfullname
         </cfquery>
@@ -1222,7 +1222,7 @@ function getContactRecordName(new_contactid) {
                 d.contactPronoun
             FROM contactdetails d
             INNER JOIN taousers u ON u.userid = d.userid
-            WHERE d.contactID = <cfquery result="result" param value="#arguments.refer_contact_id#" cfsqltype="CF_SQL_INTEGER">
+            WHERE d.contactID = <cfqueryparam value="#arguments.refer_contact_id#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -1253,9 +1253,9 @@ function getContactRecordName(new_contactid) {
                 updatelog u ON u.recid = d.contactid 
             WHERE 
                 d.contactStatus = 'Active' 
-                AND d.userid = <cfquery result="result" param value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 
+                AND d.userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 
                 AND u.userid = d.userid 
-                AND u.compid = <cfquery result="result" param value="#arguments.compId#" cfsqltype="CF_SQL_INTEGER"> 
+                AND u.compid = <cfqueryparam value="#arguments.compId#" cfsqltype="CF_SQL_INTEGER"> 
             GROUP BY 
                 d.contactfullname
         </cfquery>
@@ -1283,13 +1283,13 @@ function getContactRecordName(new_contactid) {
             INNER JOIN 
                 taousers u ON u.userid = d.userid 
             WHERE 
-                u.userid = <cfquery result="result" param value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 
-                AND d.contactStatus = <cfquery result="result" param value="Active" cfsqltype="CF_SQL_VARCHAR"> 
+                u.userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 
+                AND d.contactStatus = <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR"> 
                 AND d.contactid IN (
                     SELECT contactid 
                     FROM contactitems 
-                    WHERE valuetext = <cfquery result="result" param value="My Team" cfsqltype="CF_SQL_VARCHAR"> 
-                    AND valuecategory = <cfquery result="result" param value="Tag" cfsqltype="CF_SQL_VARCHAR">
+                    WHERE valuetext = <cfqueryparam value="My Team" cfsqltype="CF_SQL_VARCHAR"> 
+                    AND valuecategory = <cfqueryparam value="Tag" cfsqltype="CF_SQL_VARCHAR">
                 ) 
             ORDER BY 
                 d.contactfullname
@@ -1327,7 +1327,7 @@ function getContactRecordName(new_contactid) {
                 d.socialmedia_yn
             FROM contactdetails d
             INNER JOIN taousers u ON u.userid = d.userid
-            WHERE d.contactID = <cfquery result="result" param value="#arguments.rcontactid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE d.contactID = <cfqueryparam value="#arguments.rcontactid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">

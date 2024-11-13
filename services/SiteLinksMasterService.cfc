@@ -8,7 +8,7 @@
             INNER JOIN sitetypes_master t ON t.sitetypeid = s.siteTypeid
             WHERE 1=1
             <cfif structKeyExists(arguments, "siteTypeId") AND len(arguments.siteTypeId)>
-                AND s.siteTypeid = <cfquery result="result" param value="#arguments.siteTypeId#" cfsqltype="CF_SQL_INTEGER">
+                AND s.siteTypeid = <cfqueryparam value="#arguments.siteTypeId#" cfsqltype="CF_SQL_INTEGER">
             </cfif>
             ORDER BY s.sitename
         </cfquery>

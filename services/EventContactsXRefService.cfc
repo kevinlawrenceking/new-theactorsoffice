@@ -4,11 +4,11 @@
     <cfargument name="new_eventid" type="numeric" required="true">
     <cfargument name="new_contactid" type="numeric" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         INSERT INTO eventcontactsxref (eventid, contactid)
         VALUES (
-            <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.new_eventid#"/>,
-            <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.new_contactid#"/>
+            <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_eventid#"/>,
+            <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_contactid#"/>
         )
     </cfquery>
 </cffunction>
@@ -22,8 +22,8 @@
     <cfquery name="result">
         SELECT * 
         FROM eventcontactsxref 
-        WHERE contactID = <cfquery result="result" param value="#arguments.ContactID#" cfsqltype="CF_SQL_INTEGER"> 
-        AND eventid = <cfquery result="result" param value="#arguments.EventID#" cfsqltype="CF_SQL_INTEGER">
+        WHERE contactID = <cfqueryparam value="#arguments.ContactID#" cfsqltype="CF_SQL_INTEGER"> 
+        AND eventid = <cfqueryparam value="#arguments.EventID#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 
     <cfreturn result>
@@ -32,10 +32,10 @@
 <cffunction name="UPDeventcontactsxref" access="public" returntype="void">
     <cfargument name="eventid" type="numeric" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         UPDATE eventcontactsxref 
         SET isdeleted = 1 
-        WHERE eventid = <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.eventid#" />
+        WHERE eventid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.eventid#" />
     </cfquery>
 </cffunction>
 
@@ -43,11 +43,11 @@
     <cfargument name="eventid" type="numeric" required="true">
     <cfargument name="new_contactid" type="numeric" required="true">
 
-    <cfquery result="result" >
+    <cfquery>
         INSERT INTO eventcontactsxref (eventid, contactid)
         VALUES (
-            <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.eventid#" />,
-            <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.new_contactid#" />
+            <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.eventid#" />,
+            <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_contactid#" />
         )
     </cfquery>
 </cffunction>
@@ -60,7 +60,7 @@
     <cfquery name="result">
         SELECT *
         FROM eventcontactsxref
-        WHERE eventid = <cfquery result="result" param value="#arguments.eventId#" cfsqltype="CF_SQL_INTEGER">
+        WHERE eventid = <cfqueryparam value="#arguments.eventId#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 
     <cfreturn result>
@@ -70,7 +70,7 @@
     <cfargument name="audProjectID" type="numeric" required="true">
     <cfargument name="audStepID" type="numeric" required="true">
 
-    <cfquery result="result"  name="qryInsertEventContactsXref">
+    <cfquery name="qryInsertEventContactsXref">
         INSERT INTO eventcontactsxref (eventid, contactid)
         SELECT DISTINCT e.eventid, c.contactid
         FROM audprojects p
@@ -83,7 +83,7 @@
           AND c.IsDeleted = 0 
           AND e.isdeleted = 0 
           AND r.isdeleted = 0 
-          AND e.audstepid <> <cfquery result="result" param value="#arguments.audStepID#" cfsqltype="CF_SQL_INTEGER">
+          AND e.audstepid <> <cfqueryparam value="#arguments.audStepID#" cfsqltype="CF_SQL_INTEGER">
           AND ecx.eventid IS NULL;
     </cfquery>
 </cffunction>
@@ -98,14 +98,14 @@
         <cfreturn>
     </cfif>
 
-    <cfquery result="result"  name="deleteQuery">
+    <cfquery name="deleteQuery">
         DELETE FROM eventcontactsxref 
         WHERE eventid NOT IN (
             SELECT eventid FROM events
         )
         AND eventid NOT IN (
             <cfloop array="#arguments.eventIds#" index="eventId">
-                <cfquery result="result" param value="#eventId#" cfsqltype="CF_SQL_INTEGER" list="true">
+                <cfqueryparam value="#eventId#" cfsqltype="CF_SQL_INTEGER" list="true">
             </cfloop>
         )
     </cfquery>
@@ -148,8 +148,8 @@ function deleteEventContactsXref(required numeric audStepId) {
     <cfquery name="result">
         SELECT * 
         FROM eventcontactsxref 
-        WHERE eventid = <cfquery result="result" param value="#arguments.eventNumber#" cfsqltype="cf_sql_integer"> 
-          AND contactid = <cfquery result="result" param value="#arguments.contactID#" cfsqltype="cf_sql_integer">
+        WHERE eventid = <cfqueryparam value="#arguments.eventNumber#" cfsqltype="cf_sql_integer"> 
+          AND contactid = <cfqueryparam value="#arguments.contactID#" cfsqltype="cf_sql_integer">
     </cfquery>
     
     <cfreturn result>
@@ -159,11 +159,11 @@ function deleteEventContactsXref(required numeric audStepId) {
     <cfargument name="eventNumber" type="numeric" required="true">
     <cfargument name="contactID" type="numeric" required="true">
 
-        <cfquery result="result"  datasource="abod">
+        <cfquery datasource="abod">
             INSERT IGNORE INTO eventcontactsxref (eventid, contactid)
             VALUES (
-                <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.eventNumber#" />,
-                <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.contactID#" />
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.eventNumber#" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.contactID#" />
             )
         </cfquery>
 </cffunction>
@@ -174,7 +174,7 @@ function deleteEventContactsXref(required numeric audStepId) {
         <cfquery name="result" datasource="abod">
             SELECT *
             FROM eventcontactsxref
-            WHERE eventid = <cfquery result="result" param value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER" />
+            WHERE eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER" />
         </cfquery>
     
     <cfreturn result>
@@ -188,7 +188,7 @@ function deleteEventContactsXref(required numeric audStepId) {
             SELECT *
             FROM eventcontactsxref x
             INNER JOIN contactdetails c ON x.contactid = c.contactid
-            WHERE x.eventid = <cfquery result="result" param value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER" />
+            WHERE x.eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER" />
         </cfquery>
     
     <cfreturn result>
@@ -197,11 +197,11 @@ function deleteEventContactsXref(required numeric audStepId) {
     <cfargument name="new_eventid" type="numeric" required="true">
     <cfargument name="new_contactid" type="numeric" required="true">
 
-        <cfquery result="result"  datasource="abod">
+        <cfquery datasource="abod">
             INSERT INTO eventcontactsxref (eventid, contactid)
             VALUES (
-                <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.new_eventid#" />,
-                <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.new_contactid#" />
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_eventid#" />,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_contactid#" />
             )
         </cfquery>
 
@@ -210,14 +210,14 @@ function deleteEventContactsXref(required numeric audStepId) {
     <cfargument name="deletecontactid" type="numeric" required="true">
     <cfargument name="audprojectid" type="numeric" required="true">
 
-        <cfquery result="result"  datasource="abod">
+        <cfquery datasource="abod">
             UPDATE eventcontactsxref_tbl x
             INNER JOIN events e ON x.eventid = e.eventid
             INNER JOIN audroles r ON r.audRoleID = e.audroleid
             INNER JOIN audprojects p ON r.audprojectid = p.audprojectid
             SET x.isdeleted = 1
-            WHERE x.contactid = <cfquery result="result" param value="#arguments.deletecontactid#" cfsqltype="cf_sql_integer">
-            AND p.audprojectid = <cfquery result="result" param value="#arguments.audprojectid#" cfsqltype="cf_sql_integer">
+            WHERE x.contactid = <cfqueryparam value="#arguments.deletecontactid#" cfsqltype="cf_sql_integer">
+            AND p.audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="cf_sql_integer">
         </cfquery>
         
 </cffunction></cfcomponent>

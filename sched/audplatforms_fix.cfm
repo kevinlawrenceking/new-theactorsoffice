@@ -23,13 +23,13 @@
     
 
     
-     <cfquery result="result"     name="u"  >
+     <cfquery    name="u"  >
         SELECT * from taousers     
     </cfquery>
 
     <cfloop query="u">
 
-         <cfquery result="result"   name="x"  >
+         <cfquery  name="x"  >
             SELECT audplatformid,
 audplatform,
 isDeleted
@@ -38,14 +38,14 @@ isDeleted
 
         <cfloop query="x">
             
-             <cfquery result="result"   name="find"  >
+             <cfquery  name="find"  >
             Select * from audplatforms_user
             where audplatform = '#x.audplatform#' and userid = #u.userid#
             </cfquery>
             
             <cfif #find.recordcount# is "0">
             
-                 <cfquery result="result"   name="insert"  >
+                 <cfquery  name="insert"  >
                     
                     INSERT INTO `audplatforms_user` (`audplatform`, `userid`) 
                     VALUES ('#x.audplatform#',#u.userid#);
