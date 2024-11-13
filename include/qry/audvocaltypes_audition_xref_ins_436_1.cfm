@@ -4,6 +4,3 @@
     new_vocaltypeid = new_vocaltypeid,
     new_id = new_id
 )>
-<cfquery result="result" datasource="abod">
-    UPDATE some_table SET isfetch = 1 WHERE some_condition
-</cfquery>

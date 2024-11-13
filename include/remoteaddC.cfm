@@ -45,18 +45,18 @@
                 <input type="hidden" name="valuetype" value="#types.valuetype#" />
             </cfoutput>
         <cfelse>
-            <div class="form-group col-md-6">
-                <label for="valuetext">Type<span class="text-danger">*</span></label>
-                <select id="valueType" name="valueType" class="form-control" data-parsley-required 
-                        data-parsley-error-message="Type is required" onchange="showDiv('hidden_div', this)">
-                    <option value=""></option>
-                    <cfoutput query="types">
-                        <option value="#types.valuetype#" <cfif types.valuetype eq details.valuetypedef>selected</cfif>>
-                            <cfif types.valuetype eq "Custom">*Add New Type<cfelse>#types.valuetype#</cfif>
-                        </option>
-                    </cfoutput>
-                </select>
-            </div>
+          <div class="form-group col-md-6">
+    <label for="valuetext">Type<span class="text-danger">*</span></label>
+    <select id="valueType" name="valueType" class="form-control" data-parsley-required="true" 
+            data-parsley-error-message="Type is required" onchange="showDiv('hidden_div', this)">
+        <option value=""></option>
+        <cfoutput query="types">
+            <option value="#types.valuetype#" <cfif types.valuetype eq details.valuetypedef>selected</cfif>>
+                <cfif types.valuetype eq "Custom">*Add New Type<cfelse>#types.valuetype#</cfif>
+            </option>
+        </cfoutput>
+    </select>
+</div>
         </cfif>
 
         <div id="hidden_div" class="form-group col-md-6"  style="display: none;">
