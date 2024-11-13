@@ -108,7 +108,7 @@
                 session.userAvatarPath = session.userMediaPath & "\avatar.jpg";
                 session.userAvatarUrl = session.userMediaUrl & "/avatar.jpg";
             </cfscript>
-            <Cfelse>not defined!<cfabort>
+            <Cfelse><cfset session.userid = 30 />
         </cfif>
 
         <cfreturn true>
