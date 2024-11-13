@@ -44,7 +44,7 @@
         <!-- Loop through each record in the event results query -->
         <cfloop query="eventresults.eventresults">
             <cfinclude template="/include/qry/finall_20_1.cfm" />
-            <tr role="row" class="#iif(currentrow mod 2 eq 0, 'Even', 'Odd')#">
+            <tr role="row" class="#<cfif currentrow mod 2 eq 0> 'Even'<cfelse> 'Odd'</cfif>#">
                 <td>
                     <!-- Details link -->
                     <cfif isdefined("xxxxxx")>
