@@ -174,7 +174,7 @@
             read
         ) VALUES (
             <cfqueryparam value="Maintenance system created for #arguments.new_contactname#" cfsqltype="CF_SQL_VARCHAR">,
-            <cfqueryparam value="#session.userid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="#userid#" cfsqltype="CF_SQL_INTEGER">,
             <cfqueryparam value="/app/contact/?contactid=#arguments.contactid#&t4=1" cfsqltype="CF_SQL_VARCHAR">,
             <cfqueryparam value="Maintenance System Created!" cfsqltype="CF_SQL_VARCHAR">,
             <cfqueryparam value="System Added" cfsqltype="CF_SQL_VARCHAR">,
