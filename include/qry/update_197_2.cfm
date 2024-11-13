@@ -5,6 +5,6 @@
     sortedCatList = sortedCatList,
     submitsiteid = find.submitsiteid
 )>
-<cfquery datasource="abod">
+<cfquery result="result"  datasource="abod">
     UPDATE some_table SET isfetch = 1 WHERE some_condition
 </cfquery>

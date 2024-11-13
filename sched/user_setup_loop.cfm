@@ -1,7 +1,7 @@
 
 
 
-<cfquery  name="U" maxrows="50">
+<cfquery result="result"   name="U" maxrows="50">
     select  
     u.userid
     ,u.recordname
@@ -22,7 +22,7 @@
     <cfinclude template="user_setup_core.cfm" />
 
     
-    <cfquery  name="Update">
+    <cfquery result="result"   name="Update">
     update taousers set issetup = 1 where userid = #select_userid#
     </cfquery>
              

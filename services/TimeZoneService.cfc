@@ -36,10 +36,10 @@
     <cfset sql &= " ORDER BY utcHourOffset">
 
     <!--- Execute the query --->
-    <cfquery name="queryResult">
+    <cfquery result="result"  name="queryResult">
         #sql#
         <cfloop array="#params#" index="param">
-            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+            <cfquery result="result" param value="#param.value#" cfsqltype="#param.cfsqltype#">
         </cfloop>
     </cfquery>
 
@@ -55,7 +55,7 @@
             FROM timezones
             WHERE 1=1
             <cfif len(trim(arguments.tzGeneral))>
-                AND tzgeneral = <cfqueryparam value="#arguments.tzGeneral#" cfsqltype="CF_SQL_VARCHAR">
+                AND tzgeneral = <cfquery result="result" param value="#arguments.tzGeneral#" cfsqltype="CF_SQL_VARCHAR">
             </cfif>
             ORDER BY gmt
         </cfquery>

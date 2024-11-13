@@ -7,7 +7,7 @@
     <cfquery name="result">
         SELECT opencallid, opencallname
         FROM audopencalloptions_user
-        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         ORDER BY opencallname
     </cfquery>
     
@@ -22,7 +22,7 @@
     <cfquery name="result">
         SELECT opencallid, opencallname
         FROM audopencalloptions_user
-        WHERE opencallid = <cfqueryparam value="#arguments.new_opencallid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE opencallid = <cfquery result="result" param value="#arguments.new_opencallid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
     
     <cfreturn result>
@@ -37,8 +37,8 @@
     <cfquery name="result">
         SELECT *
         FROM audopencalloptions_user
-        WHERE opencallname = <cfqueryparam value="#arguments.new_opencallname#" cfsqltype="CF_SQL_VARCHAR">
-        AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE opencallname = <cfquery result="result" param value="#arguments.new_opencallname#" cfsqltype="CF_SQL_VARCHAR">
+        AND userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 
     <cfreturn result>
@@ -48,12 +48,12 @@
     <cfargument name="new_opencallname" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result" >
         INSERT INTO audopencalloptions_user (opencallname, userid, isdeleted)
         VALUES (
-            <cfqueryparam value="#arguments.new_opencallname#" cfsqltype="CF_SQL_VARCHAR">,
-            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
-            <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
+            <cfquery result="result" param value="#arguments.new_opencallname#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfquery result="result" param value="0" cfsqltype="CF_SQL_BIT">
         )
     </cfquery>
 </cffunction></cfcomponent>

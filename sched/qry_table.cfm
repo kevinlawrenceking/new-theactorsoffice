@@ -1,5 +1,5 @@
 <!--- Query to select records with UNKNOWN qry_table --->
-<cfquery name="getUnknownTableRecords" datasource="abod">
+<cfquery result="result"  name="getUnknownTableRecords" datasource="abod">
     SELECT id, qry_details, qry_table, qry_type
     FROM tao_files
     WHERE qry_extract_yn = 1
@@ -40,10 +40,10 @@
     <cfset tableName = trim(tableName)>
 
     <!--- Update the record in tao_files with the new qry_table value --->
-    <cfquery datasource="abod">
+    <cfquery result="result"  datasource="abod">
         UPDATE tao_files
-        SET qry_table = <cfqueryparam value="#tableName#" cfsqltype="cf_sql_varchar">
-        WHERE id = <cfqueryparam value="#getUnknownTableRecords.id#" cfsqltype="cf_sql_integer">
+        SET qry_table = <cfquery result="result" param value="#tableName#" cfsqltype="cf_sql_varchar">
+        WHERE id = <cfquery result="result" param value="#getUnknownTableRecords.id#" cfsqltype="cf_sql_integer">
     </cfquery>
 
 </cfloop>

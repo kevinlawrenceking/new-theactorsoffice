@@ -5,12 +5,12 @@
     <cfargument name="audcatid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result" >
         INSERT INTO audtones_user (tone, audcatid, userid)
         VALUES (
-            <cfqueryparam value="#arguments.tone#" cfsqltype="CF_SQL_VARCHAR">,
-            <cfqueryparam value="#arguments.audcatid#" cfsqltype="CF_SQL_INTEGER">,
-            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            <cfquery result="result" param value="#arguments.tone#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfquery result="result" param value="#arguments.audcatid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         )
     </cfquery>
 </cffunction>
@@ -30,8 +30,8 @@
         FROM 
             audtones_user a 
         WHERE 
-            userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
-            AND audcatid = <cfqueryparam value="#arguments.new_audcatid#" cfsqltype="CF_SQL_INTEGER"> 
+            userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+            AND audcatid = <cfquery result="result" param value="#arguments.new_audcatid#" cfsqltype="CF_SQL_INTEGER"> 
         ORDER BY 
             a.tone
     </cfquery>

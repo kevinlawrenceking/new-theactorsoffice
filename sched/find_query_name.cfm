@@ -1,4 +1,4 @@
-<cfquery name="getFiles" datasource="abod">
+<cfquery result="result"  name="getFiles" datasource="abod">
     SELECT `id`, `path`, `filename`
     FROM `tao_files`
     WHERE `qry_no` = 1 AND qry_name IS NULL
@@ -33,10 +33,10 @@
             <cfoutput>Extracted query name: #extractedQueryName#<br/></cfoutput>
 
             <!--- Update the database with the extracted query name --->
-            <cfquery datasource="abod">
+            <cfquery result="result"  datasource="abod">
                 UPDATE tao_files
-                SET qry_name = <cfqueryparam value="#extractedQueryName#" cfsqltype="cf_sql_varchar" maxlength="255">
-                WHERE id = <cfqueryparam value="#getFiles.id#" cfsqltype="cf_sql_integer">
+                SET qry_name = <cfquery result="result" param value="#extractedQueryName#" cfsqltype="cf_sql_varchar" maxlength="255">
+                WHERE id = <cfquery result="result" param value="#getFiles.id#" cfsqltype="cf_sql_integer">
             </cfquery>
         <cfelse>
             <cfoutput>No query name found for file: #filename#<br/></cfoutput>

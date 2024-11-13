@@ -1,7 +1,7 @@
 <CFINCLUDE template="remote_load.cfm" />
 
  
-<cfquery name="details" >
+<cfquery result="result"  name="details" >
 SELECT `Name`,`Company`,`Title`,`WhereMet`,`WhenMet`,`NotesLog`
 FROM sharez where contactid = '#contactid#'
 </cfquery>
@@ -19,7 +19,7 @@ FROM sharez where contactid = '#contactid#'
     
     </cfoutput>
 
-<cfquery name="events" >
+<cfquery result="result"  name="events" >
 SELECT distinct p.projdate AS col1,
        p.projname AS col2,
        s.audstep AS col3
@@ -45,7 +45,7 @@ AND x.contactid = #contactid#
 
     
 
-<cfquery name="auditionz" >
+<cfquery result="result"  name="auditionz" >
     SELECT 
 p.audprojectid AS recid
     ,p.audprojectid

@@ -7,6 +7,6 @@
     new_userid = new_userid,
     qstring = qstring
 )>
-<cfquery datasource="abod">
+<cfquery result="result"  datasource="abod">
     UPDATE database_table SET isfetch = 1 WHERE condition
 </cfquery>

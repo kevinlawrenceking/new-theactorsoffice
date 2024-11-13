@@ -15,14 +15,14 @@
     
 <!--- Data set after filtering --->
 
- <cfquery datasource="#dsn#" name="qFiltered" >
+ <cfquery result="result"  datasource="#dsn#" name="qFiltered" >
 SELECT contactid,col1,col2,col2b,col3,col4,col5,userid, hlink 
     from #contacts_table#
     
 
     
     
-	WHERE userid = <Cfqueryparam value="#userid#" cfsqltype="CF_SQL_INTEGER" />	
+	WHERE userid = <cfquery result="result" param value="#userid#" cfsqltype="CF_SQL_INTEGER" />	
     
 
 
@@ -64,7 +64,7 @@ AND
     <cfif thisColumn neq listFirst(listColumns)>
     OR
     </cfif>
-    #thisColumn# LIKE <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="%#trim(search)#%" />   
+    #thisColumn# LIKE <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="%#trim(search)#%" />   
     </cfloop>
     )
         
@@ -102,7 +102,7 @@ AND
 </cfquery>
  
 <!--- Total data set length --->
-<cfquery datasource="#dsn#" dbtype="query" name="qCount">
+<cfquery result="result"  datasource="#dsn#" dbtype="query" name="qCount">
 SELECT COUNT(#sIndexColumn#) as total
 FROM   qFiltered
 </cfquery>

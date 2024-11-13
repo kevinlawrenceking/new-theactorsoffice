@@ -19,7 +19,7 @@
     <cfset instruct = "An email has been sent to you with instructions on how to reset your password." />
     <cfset header = "Email Sent" />
     
-    <cfquery name="find" >
+    <cfquery result="result"  name="find" >
     Select * from taousers where useremail = '#email#'
     </cfquery>
     
@@ -27,8 +27,8 @@
     
         <cfset recover = CreateUUID()/>
     
-        <cfquery name="update" >
-        update taousers set recover = <cfqueryparam value="#recover#" cfsqltype="cf_sql_varchar" />
+        <cfquery result="result"  name="update" >
+        update taousers set recover = <cfquery result="result" param value="#recover#" cfsqltype="cf_sql_varchar" />
         where useremail = '#email#'
         </cfquery> 
         

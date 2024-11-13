@@ -37,7 +37,7 @@
 <body>
  
     <!--- Query to get the total number of records --->
-    <cfquery name="totalRecords" datasource="abod">
+    <cfquery result="result"  name="totalRecords" datasource="abod">
         SELECT COUNT(*) AS totalCount
    FROM  functions f
     INNER JOIN components c ON c.id = f.component_id
@@ -46,7 +46,7 @@
     </cfquery>
 
     <!--- Query to get the number of completed records --->
-    <cfquery name="completedRecords" datasource="abod">
+    <cfquery result="result"  name="completedRecords" datasource="abod">
         SELECT COUNT(*) AS completedCount
    FROM  functions f
     INNER JOIN components c ON c.id = f.component_id

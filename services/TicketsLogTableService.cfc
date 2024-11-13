@@ -4,13 +4,13 @@
     <cfargument name="new_ticketid" type="numeric" required="true">
     <cfargument name="new_ticketstatus" type="string" required="true">
 
-    <cfquery>
+    <cfquery result="result" >
         INSERT INTO ticketslog_tbl (tlogDetails, userID, ticketid, ticketstatus)
         VALUES (
-            <cfqueryparam value="#arguments.new_tlogDetails#" cfsqltype="cf_sql_varchar" />,
-            <cfqueryparam value="#session.userid#" cfsqltype="cf_sql_integer" />,
-            <cfqueryparam value="#arguments.new_ticketid#" cfsqltype="cf_sql_integer" />,
-            <cfqueryparam value="#arguments.new_ticketstatus#" cfsqltype="cf_sql_varchar" />
+            <cfquery result="result" param value="#arguments.new_tlogDetails#" cfsqltype="cf_sql_varchar" />,
+            <cfquery result="result" param value="#session.userid#" cfsqltype="cf_sql_integer" />,
+            <cfquery result="result" param value="#arguments.new_ticketid#" cfsqltype="cf_sql_integer" />,
+            <cfquery result="result" param value="#arguments.new_ticketstatus#" cfsqltype="cf_sql_varchar" />
         )
     </cfquery>
 </cffunction></cfcomponent>

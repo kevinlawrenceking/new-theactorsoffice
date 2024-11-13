@@ -3,16 +3,16 @@
 
 <cfloop query="fileList">
     <!--- Check if the file already exists in tao_files --->
-    <cfquery name="checkFileExists" datasource="abod">
+    <cfquery result="result"  name="checkFileExists" datasource="abod">
         SELECT id
         FROM tao_files
-        WHERE filename = <cfqueryparam value="#fileList.name#" cfsqltype="cf_sql_varchar">
+        WHERE filename = <cfquery result="result" param value="#fileList.name#" cfsqltype="cf_sql_varchar">
         AND path = '/include'
     </cfquery>
 
     <!--- If file doesn't exist in the database, insert it --->
     <cfif checkFileExists.recordcount EQ 0>
-        <cfquery datasource="abod">
+        <cfquery result="result"  datasource="abod">
             INSERT INTO tao_files (
                 filename,
                 status,
@@ -24,15 +24,15 @@
                 qry_type,
                 parent_id
             ) VALUES (
-                <cfqueryparam value="#fileList.name#" cfsqltype="cf_sql_varchar">,
-                <cfqueryparam value="new" cfsqltype="cf_sql_varchar">,
-                <cfqueryparam value="/include" cfsqltype="cf_sql_varchar">,
-                <cfqueryparam value="1" cfsqltype="cf_sql_tinyint">,
-                <cfqueryparam value="0" cfsqltype="cf_sql_tinyint">,
-                <cfqueryparam value="" cfsqltype="cf_sql_varchar">,
-                <cfqueryparam value="" cfsqltype="cf_sql_varchar">,
-                <cfqueryparam value="UNKNOWN" cfsqltype="cf_sql_varchar">,
-                <cfqueryparam value="0" cfsqltype="cf_sql_integer">
+                <cfquery result="result" param value="#fileList.name#" cfsqltype="cf_sql_varchar">,
+                <cfquery result="result" param value="new" cfsqltype="cf_sql_varchar">,
+                <cfquery result="result" param value="/include" cfsqltype="cf_sql_varchar">,
+                <cfquery result="result" param value="1" cfsqltype="cf_sql_tinyint">,
+                <cfquery result="result" param value="0" cfsqltype="cf_sql_tinyint">,
+                <cfquery result="result" param value="" cfsqltype="cf_sql_varchar">,
+                <cfquery result="result" param value="" cfsqltype="cf_sql_varchar">,
+                <cfquery result="result" param value="UNKNOWN" cfsqltype="cf_sql_varchar">,
+                <cfquery result="result" param value="0" cfsqltype="cf_sql_integer">
             )
         </cfquery>
 

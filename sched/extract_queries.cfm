@@ -1,4 +1,4 @@
-<cfquery name="getFilesWithMultipleQueries" datasource="abod">
+<cfquery result="result"  name="getFilesWithMultipleQueries" datasource="abod">
     SELECT id, `path`, `filename`,qry_no
     FROM tao_files
     WHERE status <> 'deleted'
@@ -25,7 +25,7 @@
 
         <cfloop condition="counter LTE getFilesWithMultipleQueries.qry_no">
             <!--- Find the start and end of the cfquery block --->
-            <cfset startQuery = REFindNoCase("<cfquery\b[^>]*>", fileContent, startPos)>
+            <cfset startQuery = REFindNoCase("<cfquery result="result" \b[^>]*>", fileContent, startPos)>
             <cfset endQuery = REFindNoCase("</cfquery>", fileContent, startPos)>
 
             <!--- Check if both the start and end are valid --->
@@ -71,10 +71,10 @@
         </cfif>
 
         <!--- Update the database to mark the file as processed --->
-        <cfquery datasource="abod">
+        <cfquery result="result"  datasource="abod">
             UPDATE tao_files
             SET qry_extract_yn = 1
-            WHERE id = <cfqueryparam value="#getFilesWithMultipleQueries.id#" cfsqltype="cf_sql_integer">
+            WHERE id = <cfquery result="result" param value="#getFilesWithMultipleQueries.id#" cfsqltype="cf_sql_integer">
         </cfquery>
     </cfif>
 </cfloop>

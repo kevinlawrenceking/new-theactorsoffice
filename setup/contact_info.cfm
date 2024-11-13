@@ -126,7 +126,7 @@
 </cfif>
 
 
-<cfquery  name="cu">
+<cfquery result="result"   name="cu">
     SELECT i.itemid, c.catid, c.valuecategory FROM contactitems i INNER JOIN itemcategory c ON c.valuecategory = i.valuecategory WHERE contactid = #currentid#
 </cfquery>
 
@@ -175,7 +175,7 @@
 
 </cfloop>
 
-<cfquery  name="c">
+<cfquery result="result"   name="c">
     SELECT * FROM itemcategory
 </cfquery>
 

@@ -8,7 +8,7 @@ Here is the refined and standardized ColdFusion component code:
     <cfquery name="result">
         SELECT * 
         FROM audquestions_user 
-        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
     <cfreturn result>
 </cffunction>
@@ -19,7 +19,7 @@ Here is the refined and standardized ColdFusion component code:
     <cfquery name="result">
         SELECT *
         FROM audquestions_user
-        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
     <cfreturn result>
 </cffunction>
@@ -46,7 +46,7 @@ Here is the refined and standardized ColdFusion component code:
         INNER JOIN 
             audqtypes qt ON qt.qtypeid = q.qtypeid
         WHERE 
-            a.eventid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.eventid#"> 
+            a.eventid = <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.eventid#"> 
             AND a.isdeleted IS FALSE 
             AND q.isDeleted IS false
         ORDER BY 
@@ -61,14 +61,14 @@ Here is the refined and standardized ColdFusion component code:
     <cfargument name="new_qorder" type="numeric" required="true">
     <cfargument name="new_userid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
-    <cfquery>
+    <cfquery result="result" >
         INSERT INTO audquestions_user (qTypeID, qtext, qorder, userid, isDeleted)
         VALUES (
-            <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_qTypeID#" null="#NOT len(trim(arguments.new_qTypeID))#">,
-            <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_qtext#" maxlength="500" null="#NOT len(trim(arguments.new_qtext))#">,
-            <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_qorder#" null="#NOT len(trim(arguments.new_qorder))#">,
-            <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_userid#" null="#NOT len(trim(arguments.new_userid))#">,
-            <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+            <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_qTypeID#" null="#NOT len(trim(arguments.new_qTypeID))#">,
+            <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_qtext#" maxlength="500" null="#NOT len(trim(arguments.new_qtext))#">,
+            <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_qorder#" null="#NOT len(trim(arguments.new_qorder))#">,
+            <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_userid#" null="#NOT len(trim(arguments.new_userid))#">,
+            <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
         )
     </cfquery>
 </cffunction>
@@ -80,16 +80,16 @@ Here is the refined and standardized ColdFusion component code:
     <cfargument name="new_userid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_qID" type="numeric" required="true">
-    <cfquery>
+    <cfquery result="result" >
         UPDATE audquestions_user 
         SET 
-            qTypeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_qTypeID#" null="#NOT len(trim(arguments.new_qTypeID))#" />,
-            qtext = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_qtext#" maxlength="500" null="#NOT len(trim(arguments.new_qtext))#" />,
-            qorder = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_qorder#" null="#NOT len(trim(arguments.new_qorder))#" />,
-            userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_userid#" null="#NOT len(trim(arguments.new_userid))#" />,
-            isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#" />
+            qTypeID = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_qTypeID#" null="#NOT len(trim(arguments.new_qTypeID))#" />,
+            qtext = <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_qtext#" maxlength="500" null="#NOT len(trim(arguments.new_qtext))#" />,
+            qorder = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_qorder#" null="#NOT len(trim(arguments.new_qorder))#" />,
+            userid = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_userid#" null="#NOT len(trim(arguments.new_userid))#" />,
+            isDeleted = <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#" />
         WHERE 
-            qID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_qID#" />
+            qID = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_qID#" />
     </cfquery>
 </cffunction>
 

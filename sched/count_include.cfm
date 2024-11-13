@@ -1,4 +1,4 @@
-<cfquery name="getAllIncludeFiles" datasource="abod">
+<cfquery result="result"  name="getAllIncludeFiles" datasource="abod">
     SELECT id, `filename`, `path`
     FROM tao_files
     WHERE path = '/include'
@@ -12,13 +12,13 @@
         <cfset fileContent = ToString(fileRead(fullFilePath))>
 
 
-        <cfset qryCount = ArrayLen(REMatchNoCase("<cfquery\b[^>]*>", fileContent))>
+        <cfset qryCount = ArrayLen(REMatchNoCase("<cfquery result="result" \b[^>]*>", fileContent))>
 
 
-        <cfquery datasource="abod">
+        <cfquery result="result"  datasource="abod">
             UPDATE tao_files
-            SET qry_no = <cfqueryparam value="#qryCount#" cfsqltype="cf_sql_integer">
-            WHERE id = <cfqueryparam value="#getAllIncludeFiles.id#" cfsqltype="cf_sql_integer">
+            SET qry_no = <cfquery result="result" param value="#qryCount#" cfsqltype="cf_sql_integer">
+            WHERE id = <cfquery result="result" param value="#getAllIncludeFiles.id#" cfsqltype="cf_sql_integer">
         </cfquery>
 
   

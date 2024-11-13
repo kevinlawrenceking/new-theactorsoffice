@@ -1,11 +1,11 @@
 
 
-<cfquery  name="na">
+<cfquery result="result"   name="na">
     UPDATE thrivecart_cancel SET STATUS = 'N/A' WHERE basepaymentplanid NOT IN (SELECT basepaymentplanid FROM paymentplans)
 </cfquery>
 
 
-<cfquery  name="x">
+<cfquery result="result"   name="x">
     SELECT * from thrivecart_cancel where status = 'Pending'
 </cfquery>
 <cfoutput>#x.recordcount#</cfoutput>
@@ -16,7 +16,7 @@
     <cfset thrivecart_cancel_canceldate=x.canceldate />
     
 
-    <cfquery  name="Find">
+    <cfquery result="result"   name="Find">
         SELECT * from thrivecart where invoiceid = '#thrivecart_cancel_invoiceid#'
     </cfquery>
 
@@ -42,7 +42,7 @@
             </cfoutput>
         
         
-        <cfquery  name="FindUser" maxrows="1">
+        <cfquery result="result"   name="FindUser" maxrows="1">
             SELECT * from taousers where customerid = #thrivecart_id#
         </cfquery>
 
@@ -56,17 +56,17 @@
             
             <cfset thrivecart_invoiceid=find.invoiceid />
 
-            <cfquery  name="update_thrivecart">
+            <cfquery result="result"   name="update_thrivecart">
             UPDATE thrivecart
             SET STATUS = 'Cancelled'
-            ,canceldate = <cfqueryparam cfsqltype="cf_sql_timestamp" value="#thrivecart_cancel_canceldate#" />
+            ,canceldate = <cfquery result="result" param cfsqltype="cf_sql_timestamp" value="#thrivecart_cancel_canceldate#" />
             WHERE id = #thrivecart_id#
             </cfquery>
             <cfoutput>
             <p>[#thrivecart_id#] Thrivecart status set to CANCELLED, canceldate set to #thrivecart_cancel_canceldate#</p>
             </cfoutput>
             
-            <cfquery  name="update_thrivecart_cancel">
+            <cfquery result="result"   name="update_thrivecart_cancel">
             UPDATE thrivecart_cancel
             SET STATUS = 'Cancelled'
             WHERE id = #thrivecart_cancel_id#
@@ -77,7 +77,7 @@
             </cfoutput>
             
             
-            <cfquery  name="update_user">
+            <cfquery result="result"   name="update_user">
             update taousers
             set userstatus = 'Cancelling'
             where userid = #new_userid#
@@ -102,7 +102,7 @@
         
         
         
-   <cfquery  name="Y">       
+   <cfquery result="result"   name="Y">       
 SELECT u.userid as new_userid,u.*,t.canceldate FROM thrivecart t INNER JOIN thrivecart_cancel c ON t.InvoiceID = c.invoiceid
 INNER JOIN taousers u ON u.customerid = t.id
 WHERE c.canceldate <= CURRENT_DATE()  AND u.userstatus <> 'Cancelled'
@@ -110,7 +110,7 @@ WHERE c.canceldate <= CURRENT_DATE()  AND u.userstatus <> 'Cancelled'
         
         <cfloop query="Y">
         
-           <cfquery  name="update">    
+           <cfquery result="result"   name="update">    
                
                update taousers
                set userstatus = 'Cancelled',

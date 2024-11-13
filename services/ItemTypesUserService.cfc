@@ -3,11 +3,11 @@
     <cfargument name="customtype" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result" >
         INSERT INTO itemtypes_user (valuetype, userid)
         VALUES (
-            <cfqueryparam value="#arguments.customtype#" cfsqltype="CF_SQL_VARCHAR">,
-            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            <cfquery result="result" param value="#arguments.customtype#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         )
     </cfquery>
 </cffunction>
@@ -21,8 +21,8 @@
     <cfquery name="result">
         SELECT *
         FROM itemtypes_user
-        WHERE valuetype = <cfqueryparam value="#arguments.valuetype#" cfsqltype="CF_SQL_VARCHAR">
-        AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE valuetype = <cfquery result="result" param value="#arguments.valuetype#" cfsqltype="CF_SQL_VARCHAR">
+        AND userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 
     <cfreturn result>
@@ -33,12 +33,12 @@
     <cfargument name="typeicon" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result" >
         INSERT INTO itemtypes_user (valuetype, typeicon, userid) 
         VALUES (
-            <cfqueryparam value="#arguments.valuetype#" cfsqltype="CF_SQL_VARCHAR">,
-            <cfqueryparam value="#arguments.typeicon#" cfsqltype="CF_SQL_VARCHAR">,
-            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            <cfquery result="result" param value="#arguments.valuetype#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfquery result="result" param value="#arguments.typeicon#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         )
     </cfquery>
 </cffunction>
@@ -52,8 +52,8 @@
     <cfquery name="result">
         SELECT typeid
         FROM itemtypes_user
-        WHERE valuetype = <cfqueryparam value="#arguments.valuetype#" cfsqltype="CF_SQL_VARCHAR">
-        AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE valuetype = <cfquery result="result" param value="#arguments.valuetype#" cfsqltype="CF_SQL_VARCHAR">
+        AND userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 
     <cfreturn result>

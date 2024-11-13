@@ -2,7 +2,7 @@
 
 
 
-<cfquery name="x"  >
+<cfquery result="result"  name="x"  >
 SELECT  d.contactid
  ,min(su.sustartdate) AS new_dateadded
 
@@ -26,10 +26,10 @@ ORDER BY d.contactid
     
     <cfset new_dateadded = x.new_dateadded />
    
-    <cfquery name="setHashedPassword"  >
+    <cfquery result="result"  name="setHashedPassword"  >
     UPDATE contactdetails_tbl
-    SET dateadded = <cfqueryparam cfsqltype="cf_sql_date" value="#new_dateadded#" />
-    WHERE contactid = <cfqueryparam cfsqltype="integer" value="#new_contactid#" />
+    SET dateadded = <cfquery result="result" param cfsqltype="cf_sql_date" value="#new_dateadded#" />
+    WHERE contactid = <cfquery result="result" param cfsqltype="integer" value="#new_contactid#" />
     </cfquery>
     
     <cfoutput>
@@ -40,7 +40,7 @@ ORDER BY d.contactid
 </cfloop>
       
 
-<cfquery name="y"  >
+<cfquery result="result"  name="y"  >
 SELECT  d.contactid
  ,min(e.eventstart) AS new_dateadded
 
@@ -68,10 +68,10 @@ ORDER BY d.contactid
     
     <cfset new_dateadded = y.new_dateadded />
    
-    <cfquery name="setHashedPassword"  >
+    <cfquery result="result"  name="setHashedPassword"  >
     UPDATE contactdetails_tbl
-    SET dateadded = <cfqueryparam cfsqltype="cf_sql_date" value="#new_dateadded#" />
-    WHERE contactid = <cfqueryparam cfsqltype="integer" value="#new_contactid#" />
+    SET dateadded = <cfquery result="result" param cfsqltype="cf_sql_date" value="#new_dateadded#" />
+    WHERE contactid = <cfquery result="result" param cfsqltype="integer" value="#new_contactid#" />
     </cfquery>
     
     <cfoutput>

@@ -24,10 +24,10 @@
     <cfset sql &= " ORDER BY validOrderColumn">
 
     <!--- Execute the query without error handling --->
-    <cfquery name="queryResult">
+    <cfquery result="result"  name="queryResult">
         #sql#
         <cfloop array="#parameters#" index="param">
-            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+            <cfquery result="result" param value="#param.value#" cfsqltype="#param.cfsqltype#">
         </cfloop>
     </cfquery>
 

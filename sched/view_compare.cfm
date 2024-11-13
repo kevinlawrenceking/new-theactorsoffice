@@ -1,4 +1,4 @@
-<cfquery name="find_table" datasource="abod" >
+<cfquery result="result"  name="find_table" datasource="abod" >
 SELECT qry_table 
 FROM tao_files 
 WHERE qry_view IS NULL AND qry_type = 'sel' AND qry_source = 'view' AND qry_table IS NOT null
@@ -9,7 +9,7 @@ LIMIT 1;
 <Cfloop query="find_table">
 
 
-<cfquery name="x" datasource="abod" >
+<cfquery result="result"  name="x" datasource="abod" >
 SELECT id,qry_details,qry_table 
 FROM  tao_files 
 WHERE qry_type = 'sel' 

@@ -1,4 +1,4 @@
-<Cfquery name="getFilesWithBlankDetails" datasource="abod">
+<cfquery result="result"  name="getFilesWithBlankDetails" datasource="abod">
 SELECT id, `path`, `filename`,qry_no FROM tao_files
 WHERE (qry_details IS NULL OR qry_details = '') 
 AND path = '/include/qry' and qry_no > 0 and status <> 'deleted'
@@ -15,13 +15,13 @@ ORDER BY `tao_files`.`qry_no` DESC
         <!--- Read the file content ---> 
         <cfset fileContent = fileRead(fullFilePath)>
         
-        <!--- Find the <cfquery> block ---> 
-        <cfset startQuery = REFindNoCase("<cfquery\b[^>]*>", fileContent)>
+        <!--- Find the <cfquery result="result" > block ---> 
+        <cfset startQuery = REFindNoCase("<cfquery result="result" \b[^>]*>", fileContent)>
         <cfset endQuery = REFindNoCase("</cfquery>", fileContent)>
         
         <!--- Ensure valid start and end of the query ---> 
         <cfif startQuery GT 0 AND endQuery GT startQuery>
-            <!--- Remove the <cfquery> and </cfquery> tags ---> 
+            <!--- Remove the <cfquery result="result" > and </cfquery> tags ---> 
             <cfset queryStart = FindNoCase(">", fileContent, startQuery)>
             <cfset strippedQueryBlock = trim(mid(fileContent, queryStart + 1, endQuery - (queryStart + 1)))>
                 <cfoutput>
@@ -30,10 +30,10 @@ ORDER BY `tao_files`.`qry_no` DESC
             <cfset cleanQuery = REReplace(strippedQueryBlock, "[\s]+", " ", "ALL")>
             
             <!--- Insert the cleaned query into the database ---> 
-            <cfquery datasource="abod">
+            <cfquery result="result"  datasource="abod">
                 UPDATE tao_files
-                SET qry_details = <cfqueryparam value="#cleanQuery#" cfsqltype="cf_sql_varchar">
-                WHERE id = <cfqueryparam value="#getFilesWithBlankDetails.id#" cfsqltype="cf_sql_integer">
+                SET qry_details = <cfquery result="result" param value="#cleanQuery#" cfsqltype="cf_sql_varchar">
+                WHERE id = <cfquery result="result" param value="#getFilesWithBlankDetails.id#" cfsqltype="cf_sql_integer">
             </cfquery>
             
             <!--- Output confirmation ---> 

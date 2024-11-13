@@ -7,7 +7,7 @@
         <cfquery name="result">
             SELECT * 
             FROM accounts 
-            WHERE id = <cfqueryparam value="#arguments.accountID#" cfsqltype="CF_SQL_INTEGER">
+            WHERE id = <cfquery result="result" param value="#arguments.accountID#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
  
         <cfreturn result>

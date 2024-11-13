@@ -6,6 +6,6 @@
     ID = new_id,
     itemDataset = new_itemDataSet
 )>
-<cfquery datasource="abod">
+<cfquery result="result"  datasource="abod">
     UPDATE reportitems SET isfetch = 1 WHERE some_condition_here
 </cfquery>

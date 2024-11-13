@@ -1,4 +1,4 @@
-<cfquery name="getAllIncludeFiles" datasource="abod">
+<cfquery result="result"  name="getAllIncludeFiles" datasource="abod">
     SELECT id, `filename`, `path`
     FROM tao_files
     WHERE path = '/include/qry'
@@ -11,14 +11,14 @@
         <!--- Read the content of the file --->
         <cfset fileContent = ToString(fileRead(fullFilePath))>
 
-        <!--- Count the number of <cfquery> blocks --->
-        <cfset qryCount = ArrayLen(REMatchNoCase("<cfquery\b[^>]*>", fileContent))>
+        <!--- Count the number of <cfquery result="result" > blocks --->
+        <cfset qryCount = ArrayLen(REMatchNoCase("<cfquery result="result" \b[^>]*>", fileContent))>
 
         <!--- Update the tao_files table with the qry_count (qry_no) --->
-        <cfquery datasource="abod">
+        <cfquery result="result"  datasource="abod">
             UPDATE tao_files
-            SET qry_no = <cfqueryparam value="#qryCount#" cfsqltype="cf_sql_integer">
-            WHERE id = <cfqueryparam value="#getAllIncludeFiles.id#" cfsqltype="cf_sql_integer">
+            SET qry_no = <cfquery result="result" param value="#qryCount#" cfsqltype="cf_sql_integer">
+            WHERE id = <cfquery result="result" param value="#getAllIncludeFiles.id#" cfsqltype="cf_sql_integer">
         </cfquery>
 
         <!--- Output the result for debugging (optional) --->

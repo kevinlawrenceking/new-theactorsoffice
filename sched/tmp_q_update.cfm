@@ -2,20 +2,20 @@
         
         
         
-         <cfquery  name="u"  >
+         <cfquery result="result"   name="u"  >
         SELECT * from taousers 
     </cfquery>
 
     <cfloop query="u">
 
-         <cfquery  name="x"  >
+         <cfquery result="result"   name="x"  >
         SELECT * FROM audquestions_default where isdeleted = 0
         </cfquery>
 
 
         <cfloop query="x">
             
-             <cfquery  name="find"  >
+             <cfquery result="result"   name="find"  >
             Select * from audquestions_user
             where isdeleted is false and qorder = #x.qorder# and userid = #u.userid#
             </cfquery>
@@ -28,7 +28,7 @@
                     VALUES (#x.qtypeid#,  '#x.qtext#', #x.qorder#, #u.userid#);
                 </cfoutput><cfabort>
             
-                 <cfquery  name="insert"  >
+                 <cfquery result="result"   name="insert"  >
                     
                     INSERT INTO `audquestions_user   (`qtypeid`,  `qtext`, `qorder`, `userid`) 
                     VALUES (#x.qtypeid#,  '#x.qtext#', #x.qorder#, #u.userid#);

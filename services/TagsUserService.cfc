@@ -6,9 +6,9 @@
     <cfquery name="result">
         SELECT tagid AS id, tagname AS name
         FROM tags_user
-        WHERE iscasting = <cfqueryparam value="1" cfsqltype="CF_SQL_BIT">
-        AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
-        AND isdeleted = <cfqueryparam value="0" cfsqltype="CF_SQL_INTEGER">
+        WHERE iscasting = <cfquery result="result" param value="1" cfsqltype="CF_SQL_BIT">
+        AND userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        AND isdeleted = <cfquery result="result" param value="0" cfsqltype="CF_SQL_INTEGER">
         ORDER BY tagname
     </cfquery>
     
@@ -22,7 +22,7 @@
     <cfquery name="result">
         SELECT tagname AS col1
         FROM tags_user
-        WHERE userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
+        WHERE userid = <cfquery result="result" param value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
         ORDER BY tagname
     </cfquery>
     
@@ -36,7 +36,7 @@
     <cfquery name="result">
         SELECT tagid, tagname 
         FROM tags_user 
-        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+        WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
         ORDER BY tagname
     </cfquery>
     
@@ -51,9 +51,9 @@
     <cfquery name="result">
         SELECT * 
         FROM tags_user 
-        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         <cfif arguments.tagtypes eq "team">
-            AND isteam = <cfqueryparam value="1" cfsqltype="CF_SQL_BIT">
+            AND isteam = <cfquery result="result" param value="1" cfsqltype="CF_SQL_BIT">
         </cfif>
         ORDER BY tagname
     </cfquery>
@@ -68,7 +68,7 @@
     <cfquery name="result">
         SELECT *
         FROM tags_user
-        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         ORDER BY tagname
     </cfquery>
     
@@ -84,8 +84,8 @@
     <cfquery name="result">
         SELECT *
         FROM tags_user
-        WHERE tagname = <cfqueryparam value="#left(arguments.new_valuetext, 40)#" cfsqltype="CF_SQL_VARCHAR">
-          AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE tagname = <cfquery result="result" param value="#left(arguments.new_valuetext, 40)#" cfsqltype="CF_SQL_VARCHAR">
+          AND userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 
     <cfreturn result>
@@ -97,12 +97,12 @@
 
     <cfset var trimmedValueText = left(arguments.new_valuetext, 40)>
 
-    <cfquery>
+    <cfquery result="result" >
         INSERT INTO tags_user (userid, tagname, IsCustom)
         VALUES (
-            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
-            <cfqueryparam value="#trimmedValueText#" cfsqltype="CF_SQL_VARCHAR">,
-            <cfqueryparam value="1" cfsqltype="CF_SQL_BIT">
+            <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfquery result="result" param value="#trimmedValueText#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfquery result="result" param value="1" cfsqltype="CF_SQL_BIT">
         )
     </cfquery>
 </cffunction>
@@ -115,8 +115,8 @@
     <cfquery name="result">
         SELECT *
         FROM tags_user
-        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
-        AND iscustom = <cfqueryparam value="1" cfsqltype="CF_SQL_BIT">
+        WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        AND iscustom = <cfquery result="result" param value="1" cfsqltype="CF_SQL_BIT">
     </cfquery>
     
     <cfreturn result>
@@ -126,12 +126,12 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="tagname" type="string" required="true">
 
-    <cfquery>
+    <cfquery result="result" >
         UPDATE tags_user_tbl 
         SET isdeleted = 1 
-        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+        WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
         AND iscustom = 1 
-        AND tagname = <cfqueryparam value="#left(arguments.tagname, 40)#" cfsqltype="CF_SQL_VARCHAR">
+        AND tagname = <cfquery result="result" param value="#left(arguments.tagname, 40)#" cfsqltype="CF_SQL_VARCHAR">
     </cfquery>
 </cffunction>
 
@@ -146,11 +146,11 @@
         INNER JOIN taousers u ON u.userid = tu.userid 
         INNER JOIN contactdetails d ON d.userid = u.userid 
         INNER JOIN contactitems i ON i.contactID = d.contactid 
-        WHERE i.valuecategory = <cfqueryparam value="Tag" cfsqltype="CF_SQL_VARCHAR"> 
-          AND i.valuetype = <cfqueryparam value="Tags" cfsqltype="CF_SQL_VARCHAR"> 
-          AND tu.tagtype = <cfqueryparam value="C" cfsqltype="CF_SQL_CHAR"> 
+        WHERE i.valuecategory = <cfquery result="result" param value="Tag" cfsqltype="CF_SQL_VARCHAR"> 
+          AND i.valuetype = <cfquery result="result" param value="Tags" cfsqltype="CF_SQL_VARCHAR"> 
+          AND tu.tagtype = <cfquery result="result" param value="C" cfsqltype="CF_SQL_CHAR"> 
           AND tu.tagname = i.valuetext 
-          AND d.contactid = <cfqueryparam value="#arguments.new_contactid#" cfsqltype="CF_SQL_INTEGER">
+          AND d.contactid = <cfquery result="result" param value="#arguments.new_contactid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
     
     <cfreturn result>
@@ -166,8 +166,8 @@
         <cfquery name="result" datasource="abod">
             SELECT * 
             FROM tags_user 
-            WHERE tagname = <cfqueryparam value="#arguments.tagname#" cfsqltype="CF_SQL_VARCHAR"> 
-            AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE tagname = <cfquery result="result" param value="#arguments.tagname#" cfsqltype="CF_SQL_VARCHAR"> 
+            AND userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
 
@@ -179,12 +179,12 @@
     <cfargument name="tagtype" type="string" required="true">
 
     
-        <cfquery datasource="abod">
+        <cfquery result="result"  datasource="abod">
             INSERT INTO tags_user (tagname, userid, tagtype)
             VALUES (
-                <cfqueryparam value="#arguments.tagname#" cfsqltype="CF_SQL_VARCHAR">,
-                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
-                <cfqueryparam value="#arguments.tagtype#" cfsqltype="CF_SQL_VARCHAR">
+                <cfquery result="result" param value="#arguments.tagname#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfquery result="result" param value="#arguments.tagtype#" cfsqltype="CF_SQL_VARCHAR">
             )
         </cfquery>
 
@@ -193,14 +193,14 @@
     <cfargument name="select_userid" type="numeric" required="true">
     
     
-        <cfquery datasource="abod" name="updateQuery">
+        <cfquery result="result"  datasource="abod" name="updateQuery">
             UPDATE tags_user 
             SET IsTeam = 1 
-            WHERE userid = <cfqueryparam value="#arguments.select_userid#" cfsqltype="CF_SQL_INTEGER"> 
+            WHERE userid = <cfquery result="result" param value="#arguments.select_userid#" cfsqltype="CF_SQL_INTEGER"> 
             AND tagname IN (
                 SELECT tagname 
                 FROM tags 
-                WHERE isteam = <cfqueryparam value="1" cfsqltype="CF_SQL_BIT">
+                WHERE isteam = <cfquery result="result" param value="1" cfsqltype="CF_SQL_BIT">
             )
         </cfquery>
         
@@ -225,10 +225,10 @@
         
         <cfset arrayAppend(params, {value=arguments.select_userid, cfsqltype="CF_SQL_INTEGER"})>
         
-        <cfquery name="updateQuery" datasource="abod">
+        <cfquery result="result"  name="updateQuery" datasource="abod">
             #sql#
             <cfloop array="#params#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+                <cfquery result="result" param value="#param.value#" cfsqltype="#param.cfsqltype#">
             </cfloop>
         </cfquery>
 
@@ -238,10 +238,10 @@
     <cfset var queryResult = "">
     
     
-        <cfquery name="queryResult" datasource="abod">
+        <cfquery result="result"  name="queryResult" datasource="abod">
             SELECT tagname 
             FROM tags_user 
-            WHERE userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 
+            WHERE userid = <cfquery result="result" param value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 
             ORDER BY tagname
         </cfquery>
     

@@ -13,7 +13,7 @@
 </cfif>
 
 <!--- Run a query to activate users based on some condition --->
-<cfquery name="fix" datasource="#dsn#"> 
+<cfquery result="result"  name="fix" datasource="#dsn#"> 
     SELECT u.userID  
     FROM taousers u
     INNER JOIN thrivecart t ON t.id = u.customerid
@@ -22,8 +22,8 @@
 </cfquery> 
 
 <cfloop query="fix">
-    <cfquery name="fix2" datasource="#dsn#"> 
-        UPDATE taousers SET userstatus = 'active' WHERE userid = <cfqueryparam value="#fix.userid#" cfsqltype="CF_SQL_INTEGER">
+    <cfquery result="result"  name="fix2" datasource="#dsn#"> 
+        UPDATE taousers SET userstatus = 'active' WHERE userid = <cfquery result="result" param value="#fix.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery> 
 </cfloop>
 

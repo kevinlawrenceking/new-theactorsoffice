@@ -8,6 +8,6 @@
     new_audzip = trim(new_audzip),
     new_eventid = new_eventid
 )>
-<cfquery datasource="abod">
-    UPDATE events SET isfetch = 1 WHERE eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#new_eventid#">
+<cfquery result="result"  datasource="abod">
+    UPDATE events SET isfetch = 1 WHERE eventid = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#new_eventid#">
 </cfquery>

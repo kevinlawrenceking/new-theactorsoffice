@@ -7,7 +7,7 @@
 <cfset qry_path = "/include/qry">
 
  
-<cfquery name="getFiles" datasource="abod" maxrows="3">
+<cfquery result="result"  name="getFiles" datasource="abod" maxrows="3">
     SELECT id, `path`, `filename`
     FROM tao_files
     WHERE path = '/include'

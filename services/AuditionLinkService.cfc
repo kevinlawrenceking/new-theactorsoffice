@@ -9,7 +9,7 @@ Here is the updated ColdFusion component code:
     <cfquery name="result">
         SELECT * 
         FROM audlinks 
-        WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE audroleid = <cfquery result="result" param value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
     
     <cfreturn result>
@@ -20,14 +20,14 @@ Here is the updated ColdFusion component code:
     <cfargument name="linkurl" type="string" required="true">
     <cfargument name="audroleid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result" >
         INSERT INTO audlinks_tbl (linkname, linkurl, isdeleted, userid, audroleid)
         VALUES (
-            <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.linkname#" />,
-            <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.linkurl#" />,
-            <cfqueryparam cfsqltype="cf_sql_integer" value="0" />,
-            <cfqueryparam cfsqltype="cf_sql_integer" value="#session.userid#" />,
-            <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.audroleid#" />
+            <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.linkname#" />,
+            <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.linkurl#" />,
+            <cfquery result="result" param cfsqltype="cf_sql_integer" value="0" />,
+            <cfquery result="result" param cfsqltype="cf_sql_integer" value="#session.userid#" />,
+            <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.audroleid#" />
         )
     </cfquery>
 </cffunction>
@@ -40,7 +40,7 @@ Here is the updated ColdFusion component code:
     <cfquery name="result">
         SELECT * 
         FROM audlinks 
-        WHERE linkid = <cfqueryparam value="#arguments.linkid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE linkid = <cfquery result="result" param value="#arguments.linkid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
     
     <cfreturn result>
@@ -49,11 +49,11 @@ Here is the updated ColdFusion component code:
 <cffunction name="UPDaudlinks" access="public" returntype="void">
     <cfargument name="linkid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result" >
         UPDATE audlinks 
         SET isdeleted = 1 
-        WHERE linkid = <cfqueryparam value="#arguments.linkid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE linkid = <cfquery result="result" param value="#arguments.linkid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 </cffunction></cfcomponent>
 
-In this updated code, I have removed the `datasource` attribute from all `<cfquery>` tags and removed all `cftry` and `cfcatch` blocks as per your instructions. I did not find any coding errors or overly complicated expressions, so no further changes were made.
+In this updated code, I have removed the `datasource` attribute from all `<cfquery result="result" >` tags and removed all `cftry` and `cfcatch` blocks as per your instructions. I did not find any coding errors or overly complicated expressions, so no further changes were made.

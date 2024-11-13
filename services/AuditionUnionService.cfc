@@ -37,10 +37,10 @@
     <cfset sql &= whereClause & " ORDER BY u.unionname">
 
     <!--- Execute the query --->
-    <cfquery name="queryResult">
+    <cfquery result="result"  name="queryResult">
         #sql#
         <cfloop array="#params#" index="param">
-            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+            <cfquery result="result" param value="#param.value#" cfsqltype="#param.cfsqltype#">
         </cfloop>
     </cfquery>
 
@@ -54,13 +54,13 @@
     <cfargument name="new_audCatID" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
-    <cfquery>
+    <cfquery result="result" >
         INSERT INTO audunions (unionName, countryid, audCatID, isDeleted)
         VALUES (
-            <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_unionName#" maxlength="100" null="#NOT len(trim(arguments.new_unionName))#">,
-            <cfqueryparam cfsqltype="CF_SQL_CHAR" value="#arguments.new_countryid#" null="#NOT len(trim(arguments.new_countryid))#">,
-            <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audCatID#" null="#NOT len(trim(arguments.new_audCatID))#">,
-            <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+            <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_unionName#" maxlength="100" null="#NOT len(trim(arguments.new_unionName))#">,
+            <cfquery result="result" param cfsqltype="CF_SQL_CHAR" value="#arguments.new_countryid#" null="#NOT len(trim(arguments.new_countryid))#">,
+            <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audCatID#" null="#NOT len(trim(arguments.new_audCatID))#">,
+            <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
         )
     </cfquery>
 </cffunction>
@@ -72,15 +72,15 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_unionID" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result" >
         UPDATE audunions
         SET 
-            unionName = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_unionName)#" maxlength="100" null="#NOT len(trim(arguments.new_unionName))#">,
-            countryid = <cfqueryparam cfsqltype="CF_SQL_CHAR" value="#trim(arguments.new_countryid)#" null="#NOT len(trim(arguments.new_countryid))#">,
-            audCatID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audCatID#" null="#NOT len(trim(arguments.new_audCatID))#">,
-            isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+            unionName = <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_unionName)#" maxlength="100" null="#NOT len(trim(arguments.new_unionName))#">,
+            countryid = <cfquery result="result" param cfsqltype="CF_SQL_CHAR" value="#trim(arguments.new_countryid)#" null="#NOT len(trim(arguments.new_countryid))#">,
+            audCatID = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audCatID#" null="#NOT len(trim(arguments.new_audCatID))#">,
+            isDeleted = <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
         WHERE 
-            unionID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_unionID#">
+            unionID = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_unionID#">
     </cfquery>
 </cffunction>
 </cfcomponent>

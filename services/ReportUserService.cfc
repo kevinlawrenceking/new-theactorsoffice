@@ -8,8 +8,8 @@
     <cfquery name="result">
         SELECT r.ID as new_iD
         FROM reports_user r
-        WHERE r.userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userID#" />
-        AND r.reportid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.reportID#" />
+        WHERE r.userid = <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.userID#" />
+        AND r.reportid = <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.reportID#" />
     </cfquery>
     
     <cfreturn result>
@@ -24,8 +24,8 @@
     <cfquery name="result">
         SELECT r.ID as new_iD
         FROM reports_user r
-        WHERE r.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
-        AND r.reportid = <cfqueryparam value="#arguments.new_reportid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE r.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        AND r.reportid = <cfquery result="result" param value="#arguments.new_reportid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 
     <cfreturn result>
@@ -39,7 +39,7 @@
     <cfquery name="result">
         SELECT * 
         FROM reports_user 
-        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
     
     <cfreturn result>
@@ -55,9 +55,9 @@
     <cfquery name="result">
         SELECT reportid, reportname, reportorderno, reporttypeid, reportdescription, colorid
         FROM reports_user
-        WHERE reportid = <cfqueryparam value="#arguments.reportid#" cfsqltype="CF_SQL_INTEGER">
-        AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
-        AND reportname = <cfqueryparam value="#arguments.reportname#" cfsqltype="CF_SQL_VARCHAR">
+        WHERE reportid = <cfquery result="result" param value="#arguments.reportid#" cfsqltype="CF_SQL_INTEGER">
+        AND userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        AND reportname = <cfquery result="result" param value="#arguments.reportname#" cfsqltype="CF_SQL_VARCHAR">
     </cfquery>
 
     <cfreturn result>
@@ -75,21 +75,21 @@
     <cfargument name="datalabel" type="string" required="true">
     <cfargument name="colorid" type="numeric" required="true">
 
-    <cfquery name="insertQuery">
+    <cfquery result="result"  name="insertQuery">
         INSERT INTO reports_user 
         (reportid, reportname, reportorderno, reporttypeid, reportdescription, userid, colmd, colxl, datalabel, colorid) 
         VALUES 
         (
-            <cfqueryparam value="#arguments.reportid#" cfsqltype="CF_SQL_INTEGER">,
-            <cfqueryparam value="#arguments.reportname#" cfsqltype="CF_SQL_VARCHAR">,
-            <cfqueryparam value="#arguments.reportorderno#" cfsqltype="CF_SQL_INTEGER">,
-            <cfqueryparam value="#arguments.reporttypeid#" cfsqltype="CF_SQL_INTEGER">,
-            <cfqueryparam value="#arguments.reportdescription#" cfsqltype="CF_SQL_VARCHAR">,
-            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
-            <cfqueryparam value="#arguments.colmd#" cfsqltype="CF_SQL_INTEGER">,
-            <cfqueryparam value="#arguments.colxl#" cfsqltype="CF_SQL_INTEGER">,
-            <cfqueryparam value="#arguments.datalabel#" cfsqltype="CF_SQL_VARCHAR">,
-            <cfqueryparam value="#arguments.colorid#" cfsqltype="CF_SQL_INTEGER">
+            <cfquery result="result" param value="#arguments.reportid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfquery result="result" param value="#arguments.reportname#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfquery result="result" param value="#arguments.reportorderno#" cfsqltype="CF_SQL_INTEGER">,
+            <cfquery result="result" param value="#arguments.reporttypeid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfquery result="result" param value="#arguments.reportdescription#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfquery result="result" param value="#arguments.colmd#" cfsqltype="CF_SQL_INTEGER">,
+            <cfquery result="result" param value="#arguments.colxl#" cfsqltype="CF_SQL_INTEGER">,
+            <cfquery result="result" param value="#arguments.datalabel#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfquery result="result" param value="#arguments.colorid#" cfsqltype="CF_SQL_INTEGER">
         )
     </cfquery>
 </cffunction>
@@ -121,9 +121,9 @@
         INNER JOIN 
             reportcolors c ON c.colorid = r.colorid
         WHERE 
-            r.userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 
+            r.userid = <cfquery result="result" param value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 
         AND 
-            t.reporttypeid <> <cfqueryparam value="4" cfsqltype="CF_SQL_INTEGER">
+            t.reporttypeid <> <cfquery result="result" param value="4" cfsqltype="CF_SQL_INTEGER">
         ORDER BY 
             r.reportorderno
     </cfquery>
@@ -158,8 +158,8 @@
             INNER JOIN 
                 reportitems i ON i.id = r.id
             WHERE 
-                r.userid = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER"> 
-                AND t.reporttypeid = <cfqueryparam value="#arguments.reportTypeID#" cfsqltype="CF_SQL_INTEGER"> 
+                r.userid = <cfquery result="result" param value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER"> 
+                AND t.reporttypeid = <cfquery result="result" param value="#arguments.reportTypeID#" cfsqltype="CF_SQL_INTEGER"> 
                 AND i.userid = r.userid
             ORDER BY 
                 r.reportorderno
@@ -174,8 +174,8 @@
             SELECT i.itemvalueint AS item_13
             FROM reports_user u
             INNER JOIN reportitems i ON i.ID = u.id
-            WHERE u.userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
-            AND u.reportid = <cfqueryparam value="13" cfsqltype="CF_SQL_INTEGER">
+            WHERE u.userid = <cfquery result="result" param value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
+            AND u.reportid = <cfquery result="result" param value="13" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
     <cfreturn result>
 </cffunction>
@@ -189,8 +189,8 @@
             SELECT i.itemvalueint AS item_17
             FROM reports_user u
             INNER JOIN reportitems i ON i.ID = u.id
-            WHERE u.userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
-            AND u.reportid = <cfqueryparam value="#arguments.reportId#" cfsqltype="CF_SQL_INTEGER">
+            WHERE u.userid = <cfquery result="result" param value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
+            AND u.reportid = <cfquery result="result" param value="#arguments.reportId#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
     
     <cfreturn result>

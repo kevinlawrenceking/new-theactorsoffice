@@ -7,7 +7,7 @@
     <cffunction name="GetUserDetails" access="public" returntype="query" output="false">
         <cfargument name="userid" type="numeric" required="yes">
 
-        <cfquery name="details">
+        <cfquery result="result"  name="details">
             SELECT 
                 u.viewtypeid, 
                 tz.tzgeneral,
@@ -46,7 +46,7 @@
                 LEFT JOIN countries c ON c.countryid = r.countryid
                 LEFT JOIN timezones tz ON tz.tzid = u.tzid
             WHERE 
-                u.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
+                u.userid = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
         </cfquery>
 
         <cfreturn details>
@@ -59,7 +59,7 @@
     <cfset var qResult = "">
     
     <cftry>
-        <cfquery name="qResult" datasource="abod">
+        <cfquery result="result"  name="qResult" datasource="abod">
             SELECT DISTINCT 
                 u.recordname, 
                 u.userrole, 
@@ -69,7 +69,7 @@
             INNER JOIN 
                 tickets t ON u.userID = t.userid 
             WHERE 
-                t.ticketactive = <cfqueryparam value="#arguments.ticketActive#" cfsqltype="CF_SQL_CHAR">
+                t.ticketactive = <cfquery result="result" param value="#arguments.ticketActive#" cfsqltype="CF_SQL_CHAR">
             ORDER BY 
                 u.userlastname, 
                 u.userfirstname
@@ -93,7 +93,7 @@
             SELECT DISTINCT t.tickettype
             FROM taousers u
             INNER JOIN tickets t ON u.userID = t.userid
-            WHERE t.ticketactive = <cfqueryparam value="#arguments.ticketActive#" cfsqltype="CF_SQL_CHAR">
+            WHERE t.ticketactive = <cfquery result="result" param value="#arguments.ticketActive#" cfsqltype="CF_SQL_CHAR">
             ORDER BY t.tickettype
         </cfquery>
         
@@ -124,7 +124,7 @@
             INNER JOIN 
                 taousers u ON u.userid = tu.userid
             WHERE 
-                tu.ticketid = <cfqueryparam value="#arguments.ticketId#" cfsqltype="CF_SQL_INTEGER">
+                tu.ticketid = <cfquery result="result" param value="#arguments.ticketId#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -150,10 +150,10 @@
 
     <cftry>
         <!--- Execute the parameterized query --->
-        <cfquery datasource="abod">
+        <cfquery result="result"  datasource="abod">
             UPDATE taousers 
-            SET viewtypeid = <cfqueryparam value="#viewTypeId#" cfsqltype="CF_SQL_INTEGER"> 
-            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            SET viewtypeid = <cfquery result="result" param value="#viewTypeId#" cfsqltype="CF_SQL_INTEGER"> 
+            WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
         <cfcatch type="any">
@@ -182,7 +182,7 @@
             FROM 
                 taousers u
             <cfif arguments.select_userid neq 0>
-                WHERE u.userid = <cfqueryparam value="#arguments.select_userid#" cfsqltype="CF_SQL_INTEGER">
+                WHERE u.userid = <cfquery result="result" param value="#arguments.select_userid#" cfsqltype="CF_SQL_INTEGER">
             </cfif>
         </cfquery>
         
@@ -199,10 +199,10 @@
     <cfargument name="userId" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result"  datasource="abod">
             UPDATE taousers 
-            SET access_token = <cfqueryparam value="#arguments.accessToken#" cfsqltype="CF_SQL_VARCHAR"> 
-            WHERE userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
+            SET access_token = <cfquery result="result" param value="#arguments.accessToken#" cfsqltype="CF_SQL_VARCHAR"> 
+            WHERE userid = <cfquery result="result" param value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -226,19 +226,19 @@
     <cfargument name="userid" type="numeric" required="true">
 
 
-           <cfquery >
+           <cfquery result="result"  >
         UPDATE taousers 
-        SET userfirstname = <cfqueryparam value="#arguments.new_userfirstname#" cfsqltype="CF_SQL_VARCHAR">,
-            userlastname = <cfqueryparam value="#arguments.new_userlastname#" cfsqltype="CF_SQL_VARCHAR">,
-            avatarname = <cfqueryparam value="#arguments.new_avatarname#" cfsqltype="CF_SQL_VARCHAR">,
-            useremail = <cfqueryparam value="#arguments.new_useremail#" cfsqltype="CF_SQL_VARCHAR">,
-            add1 = <cfqueryparam value="#arguments.add1#" cfsqltype="CF_SQL_VARCHAR">,
-            add2 = <cfqueryparam value="#arguments.add2#" cfsqltype="CF_SQL_VARCHAR">,
-            city = <cfqueryparam value="#arguments.city#" cfsqltype="CF_SQL_VARCHAR">,
-            zip = <cfqueryparam value="#arguments.zip#" cfsqltype="CF_SQL_VARCHAR">,
-            region_id = <cfqueryparam value="#arguments.region_id#" cfsqltype="CF_SQL_INTEGER">,
-            countryid = <cfqueryparam value="#arguments.countryid#" cfsqltype="CF_SQL_VARCHAR">
-        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        SET userfirstname = <cfquery result="result" param value="#arguments.new_userfirstname#" cfsqltype="CF_SQL_VARCHAR">,
+            userlastname = <cfquery result="result" param value="#arguments.new_userlastname#" cfsqltype="CF_SQL_VARCHAR">,
+            avatarname = <cfquery result="result" param value="#arguments.new_avatarname#" cfsqltype="CF_SQL_VARCHAR">,
+            useremail = <cfquery result="result" param value="#arguments.new_useremail#" cfsqltype="CF_SQL_VARCHAR">,
+            add1 = <cfquery result="result" param value="#arguments.add1#" cfsqltype="CF_SQL_VARCHAR">,
+            add2 = <cfquery result="result" param value="#arguments.add2#" cfsqltype="CF_SQL_VARCHAR">,
+            city = <cfquery result="result" param value="#arguments.city#" cfsqltype="CF_SQL_VARCHAR">,
+            zip = <cfquery result="result" param value="#arguments.zip#" cfsqltype="CF_SQL_VARCHAR">,
+            region_id = <cfquery result="result" param value="#arguments.region_id#" cfsqltype="CF_SQL_INTEGER">,
+            countryid = <cfquery result="result" param value="#arguments.countryid#" cfsqltype="CF_SQL_VARCHAR">
+        WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 
 </cffunction>
@@ -248,11 +248,11 @@
     <cfargument name="userid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result"  datasource="abod">
             UPDATE taousers 
-            SET nletter_link = <cfqueryparam value="#arguments.new_nletter_link#" cfsqltype="CF_SQL_VARCHAR">, 
-                nletter_yn = <cfqueryparam value="#arguments.new_nletter_yn#" cfsqltype="CF_SQL_VARCHAR">
-            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            SET nletter_link = <cfquery result="result" param value="#arguments.new_nletter_link#" cfsqltype="CF_SQL_VARCHAR">, 
+                nletter_yn = <cfquery result="result" param value="#arguments.new_nletter_yn#" cfsqltype="CF_SQL_VARCHAR">
+            WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         <cfcatch type="any">
             <cflog file="application" text="Error updating user newsletter: #cfcatch.message# Query: #cfcatch.query#">
@@ -269,16 +269,16 @@
     <cfargument name="userid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result"  datasource="abod">
             UPDATE taousers 
             SET 
-                calstarttime = <cfqueryparam cfsqltype="cf_sql_time" value="#arguments.calstarttime#" />,
-                calendtime = <cfqueryparam cfsqltype="cf_sql_time" value="#arguments.calendtime#" />,
-                defRows = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.defRows#" />,
-                defCountry = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.defCountry#" />,
-                defState = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.defState#" />
+                calstarttime = <cfquery result="result" param cfsqltype="cf_sql_time" value="#arguments.calstarttime#" />,
+                calendtime = <cfquery result="result" param cfsqltype="cf_sql_time" value="#arguments.calendtime#" />,
+                defRows = <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.defRows#" />,
+                defCountry = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.defCountry#" />,
+                defState = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.defState#" />
             WHERE 
-                userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#" />
+                userid = <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.userid#" />
         </cfquery>
         
         <cfcatch type="any">
@@ -296,7 +296,7 @@
         <cfquery name="result" datasource="abod">
             SELECT contactid 
             FROM taousers 
-            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         <cfcatch type="any">
             <cflog file="application" text="Error in getContactIdByUserId: #cfcatch.message#">
@@ -312,11 +312,11 @@
     <cfargument name="userid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result"  datasource="abod">
             UPDATE taousers 
-            SET access_token = <cfqueryparam value="#arguments.accesstoken#" cfsqltype="CF_SQL_VARCHAR">, 
-                refresh_token = <cfqueryparam value="#arguments.refreshToken#" cfsqltype="CF_SQL_VARCHAR"> 
-            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            SET access_token = <cfquery result="result" param value="#arguments.accesstoken#" cfsqltype="CF_SQL_VARCHAR">, 
+                refresh_token = <cfquery result="result" param value="#arguments.refreshToken#" cfsqltype="CF_SQL_VARCHAR"> 
+            WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -330,10 +330,10 @@
     <cfargument name="userid" type="numeric" required="true" hint="The ID of the user whose access token is to be updated.">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result"  datasource="abod">
             UPDATE taousers 
-            SET access_token = <cfqueryparam value="#arguments.accessToken#" cfsqltype="CF_SQL_VARCHAR"> 
-            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            SET access_token = <cfquery result="result" param value="#arguments.accessToken#" cfsqltype="CF_SQL_VARCHAR"> 
+            WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         <cfcatch>
             <cflog file="application" type="error" text="Error updating access token for userid #arguments.userid#: #cfcatch.message#">
@@ -369,7 +369,7 @@
                 u.customerid
             FROM taousers u
             LEFT JOIN timezones t ON t.tzid = u.tzid
-            WHERE u.userid = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
+            WHERE u.userid = <cfquery result="result" param value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch>
@@ -385,10 +385,10 @@
     <cfargument name="userId" type="numeric" required="true">
 
     <cftry>
-        <cfquery name="updateAvatar" datasource="abod">
+        <cfquery result="result"  name="updateAvatar" datasource="abod">
             UPDATE taousers 
-            SET avatarname = <cfqueryparam value="#arguments.userFirstName#" cfsqltype="CF_SQL_VARCHAR">
-            WHERE userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
+            SET avatarname = <cfquery result="result" param value="#arguments.userFirstName#" cfsqltype="CF_SQL_VARCHAR">
+            WHERE userid = <cfquery result="result" param value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -402,10 +402,10 @@
     <cfargument name="userid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result"  datasource="abod">
             UPDATE taousers 
-            SET contactid = <cfqueryparam value="#arguments.new_contactid#" cfsqltype="CF_SQL_INTEGER">
-            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            SET contactid = <cfquery result="result" param value="#arguments.new_contactid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -442,7 +442,7 @@
                 u.customerid
             FROM taousers u
             LEFT JOIN timezones t ON t.tzid = u.tzid
-            WHERE u.userid = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
+            WHERE u.userid = <cfquery result="result" param value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -465,7 +465,7 @@
             FROM 
                 taousers u 
             WHERE 
-                u.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+                u.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -484,7 +484,7 @@
         <cfquery name="result" datasource="abod">
             SELECT * 
             FROM taousers 
-            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -519,10 +519,10 @@
 
     <!--- Execute the query with error handling --->
     <cftry>
-        <cfquery name="queryResult" datasource="abod">
+        <cfquery result="result"  name="queryResult" datasource="abod">
             #sql#
             <cfloop array="#paramValues#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+                <cfquery result="result" param value="#param.value#" cfsqltype="#param.cfsqltype#">
             </cfloop>
         </cfquery>
         <cfcatch type="any">
@@ -554,7 +554,7 @@
         <cfquery name="result" datasource="abod">
             #sql#
             <cfif len(whereClause)>
-                <cfqueryparam value="#arguments.recordName#" cfsqltype="CF_SQL_VARCHAR">
+                <cfquery result="result" param value="#arguments.recordName#" cfsqltype="CF_SQL_VARCHAR">
             </cfif>
         </cfquery>
         
@@ -591,7 +591,7 @@
                     <cfset sql &= ", ">
                 </cfif>
                 <!--- Append cfqueryparam for each userId --->
-                <cfset paramList &= "<cfqueryparam value='#arguments.userIds[i]#' cfsqltype='CF_SQL_INTEGER'>,">
+                <cfset paramList &= "<cfquery result="result" param value='#arguments.userIds[i]#' cfsqltype='CF_SQL_INTEGER'>,">
             </cfloop>
             
             <!--- Close the IN clause --->
@@ -638,7 +638,7 @@
             FROM 
                 taousers users
             <cfif arguments.select_userid neq 0>
-                WHERE users.userid = <cfqueryparam value="#arguments.select_userid#" cfsqltype="CF_SQL_INTEGER">
+                WHERE users.userid = <cfquery result="result" param value="#arguments.select_userid#" cfsqltype="CF_SQL_INTEGER">
             </cfif>
         </cfquery>
         
@@ -659,7 +659,7 @@
         <cfquery name="result" datasource="abod">
             SELECT * 
             FROM taousers 
-            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -686,7 +686,7 @@
             FROM 
                 taousers u
             WHERE 
-                u.userEmail = <cfqueryparam value="#arguments.userEmail#" cfsqltype="CF_SQL_VARCHAR">
+                u.userEmail = <cfquery result="result" param value="#arguments.userEmail#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
         
         <cfcatch type="any">
@@ -713,7 +713,7 @@
             FROM 
                 taousers u 
             WHERE 
-                u.userEmail = <cfqueryparam value="#arguments.userEmail#" cfsqltype="CF_SQL_VARCHAR">
+                u.userEmail = <cfquery result="result" param value="#arguments.userEmail#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
         
         <cfcatch type="any">
@@ -733,7 +733,7 @@
         <cfset var user = {}>
 
         <!--- SQL Query to join all related tables and select all fields --->
-        <cfquery name="qUserDetails" >
+        <cfquery result="result"  name="qUserDetails" >
             SELECT
                 u.*,  -- All fields from taousers
                 t.*,  -- All fields from timezones
@@ -781,7 +781,7 @@
             INNER JOIN products pr ON pr.BaseProductId = tc.BaseProductId
             LEFT JOIN regions r ON u.region_id = r.region_id
             LEFT JOIN countries c ON u.countryid = c.countryid
-            WHERE u.userid = <cfqueryparam value="#arguments.userId#" cfsqltype="cf_sql_integer">
+            WHERE u.userid = <cfquery result="result" param value="#arguments.userId#" cfsqltype="cf_sql_integer">
         </cfquery>
 
         <!--- Map query result to a struct --->

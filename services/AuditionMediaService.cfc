@@ -6,7 +6,7 @@
         <cfargument name="userid" type="numeric" required="yes" hint="ID of the user to retrieve headshots for.">
 
         <!--- Query to fetch headshots --->
-        <cfquery name="headshots_sel">
+        <cfquery result="result"  name="headshots_sel">
             SELECT 
                 m.mediaid,
                 m.mediatypeid,
@@ -29,7 +29,7 @@
             LEFT JOIN 
                 exttypes e ON e.mediaext = m.mediaext
             WHERE 
-                m.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+                m.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
                 AND m.isdeleted IS FALSE 
                 AND t.ismaterial = 1 
                 AND m.isshare = 1
@@ -51,9 +51,9 @@
             SELECT * 
             FROM audmedia m 
             INNER JOIN audmedia_auditions_xref x ON x.mediaid = m.mediaid 
-            WHERE x.audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER"> 
+            WHERE x.audprojectid = <cfquery result="result" param value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER"> 
             AND m.isdeleted IS FALSE 
-            AND m.mediatypeid = <cfqueryparam value="#arguments.mediatypeid#" cfsqltype="CF_SQL_INTEGER"> 
+            AND m.mediatypeid = <cfquery result="result" param value="#arguments.mediatypeid#" cfsqltype="CF_SQL_INTEGER"> 
             AND m.isdeleted IS FALSE
         </cfquery>
         
@@ -87,8 +87,8 @@
                 m.isImage
             FROM audmedia m
             INNER JOIN audmediatypes t ON t.mediaTypeID = m.mediatypeid
-            WHERE m.eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER">
-            AND m.isdeleted = <cfqueryparam value="false" cfsqltype="CF_SQL_BIT">
+            WHERE m.eventid = <cfquery result="result" param value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER">
+            AND m.isdeleted = <cfquery result="result" param value="false" cfsqltype="CF_SQL_BIT">
         </cfquery>
         <cfcatch type="any">
             <cflog file="application" text="Error in getMediaByEventId: #cfcatch.message#">
@@ -102,10 +102,10 @@
     <cfargument name="mediaid" type="numeric" required="true">
     
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result"  datasource="abod">
             UPDATE audmedia 
             SET isdeleted = 1 
-            WHERE mediaid = <cfqueryparam value="#arguments.mediaid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE mediaid = <cfquery result="result" param value="#arguments.mediaid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -123,7 +123,7 @@
         <cfquery name="result" datasource="abod">
             SELECT * 
             FROM audmedia 
-            WHERE mediaid = <cfqueryparam value="#arguments.mediaid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE mediaid = <cfquery result="result" param value="#arguments.mediaid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -156,7 +156,7 @@
             INNER JOIN 
                 audmediatypes t ON t.mediaTypeID = m.mediatypeid
             WHERE 
-                m.mediaid = <cfqueryparam value="#arguments.mediaid#" cfsqltype="CF_SQL_INTEGER">
+                m.mediaid = <cfquery result="result" param value="#arguments.mediaid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         <cfcatch type="any">
             <cflog file="application" text="Error in getMediaDetails: #cfcatch.message#">
@@ -195,10 +195,10 @@
             WHERE 
                 m.isdeleted IS false 
                 AND x.audprojectid <> 0 
-                AND p.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#"> 
-                AND s.audcatid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audcatid#"> 
-                AND p.projdate >= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangestart#"> 
-                AND p.projdate <= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangeend#">
+                AND p.userid = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#"> 
+                AND s.audcatid = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audcatid#"> 
+                AND p.projdate >= <cfquery result="result" param cfsqltype="CF_SQL_DATE" value="#arguments.rangestart#"> 
+                AND p.projdate <= <cfquery result="result" param cfsqltype="CF_SQL_DATE" value="#arguments.rangeend#">
             GROUP BY 
                 m.medianame, t.mediatype, s.audcatid
             HAVING 
@@ -226,7 +226,7 @@
     <cfargument name="new_isshare" type="boolean" required="true">
 
     <cftry>
-        <cfquery datasource="#abod#" name="insertResult">
+        <cfquery result="result"  datasource="#abod#" name="insertResult">
             INSERT INTO audmedia (
                 mediaTypeID, 
                 mediaURL, 
@@ -237,14 +237,14 @@
                 isDeleted, 
                 isshare
             ) VALUES (
-                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_mediaTypeID#" null="#NOT len(trim(arguments.new_mediaTypeID))#">,
-                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaURL#" null="#NOT len(trim(arguments.new_mediaURL))#">,
-                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaName#" null="#NOT len(trim(arguments.new_mediaName))#">,
-                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaFilename#" maxlength="200" null="#NOT len(trim(arguments.new_mediaFilename))#">,
-                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaExt#" maxlength="5" null="#NOT len(trim(arguments.new_mediaExt))#">,
-                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_userid#" null="#NOT len(trim(arguments.new_userid))#">,
-                <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">,
-                <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isshare#" null="#NOT len(trim(arguments.new_isshare))#">
+                <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_mediaTypeID#" null="#NOT len(trim(arguments.new_mediaTypeID))#">,
+                <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaURL#" null="#NOT len(trim(arguments.new_mediaURL))#">,
+                <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaName#" null="#NOT len(trim(arguments.new_mediaName))#">,
+                <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaFilename#" maxlength="200" null="#NOT len(trim(arguments.new_mediaFilename))#">,
+                <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaExt#" maxlength="5" null="#NOT len(trim(arguments.new_mediaExt))#">,
+                <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_userid#" null="#NOT len(trim(arguments.new_userid))#">,
+                <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">,
+                <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isshare#" null="#NOT len(trim(arguments.new_isshare))#">
             )
         </cfquery>
         <cfcatch>
@@ -281,7 +281,7 @@
             INNER JOIN audmedia_auditions_xref x ON x.mediaid = m.mediaid
             INNER JOIN audmediatypes t ON t.mediaTypeID = m.mediatypeid
             LEFT JOIN exttypes e ON e.mediaext = m.mediaext
-            WHERE x.audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE x.audprojectid = <cfquery result="result" param value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
             AND m.isdeleted IS FALSE
             AND x.audprojectid <> 0
             AND t.mediaType <> 'Headshot'
@@ -326,7 +326,7 @@
             LEFT JOIN 
                 exttypes e ON e.mediaext = m.mediaext
             WHERE 
-                m.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+                m.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
                 AND m.isdeleted IS FALSE
                 AND t.mediaType <> 'Headshot'
                 AND m.isshare = 1
@@ -342,7 +342,7 @@
                     LEFT JOIN 
                         exttypes e ON e.mediaext = m.mediaext
                     WHERE 
-                        x.audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER"> 
+                        x.audprojectid = <cfquery result="result" param value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER"> 
                         AND m.isdeleted IS FALSE
                         AND x.audprojectid <> 0
                 )
@@ -370,21 +370,21 @@
     <cfargument name="new_mediaID" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="#application.dsn#">
+        <cfquery result="result"  datasource="#application.dsn#">
             UPDATE audmedia 
             SET 
-                mediaTypeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_mediaTypeID#" null="#NOT len(trim(arguments.new_mediaTypeID))#">,
-                mediaURL = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaURL#" null="#NOT len(trim(arguments.new_mediaURL))#">,
-                mediaName = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaName#" null="#NOT len(trim(arguments.new_mediaName))#">,
+                mediaTypeID = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_mediaTypeID#" null="#NOT len(trim(arguments.new_mediaTypeID))#">,
+                mediaURL = <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaURL#" null="#NOT len(trim(arguments.new_mediaURL))#">,
+                mediaName = <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaName#" null="#NOT len(trim(arguments.new_mediaName))#">,
                 <cfif structKeyExists(arguments, "new_mediaFilename")>
-                    mediaFilename = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaFilename#" maxlength="200" null="#NOT len(trim(arguments.new_mediaFilename))#">,
-                    mediaExt = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaExt#" maxlength="3" null="#NOT len(trim(arguments.new_mediaExt))#">,
+                    mediaFilename = <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaFilename#" maxlength="200" null="#NOT len(trim(arguments.new_mediaFilename))#">,
+                    mediaExt = <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaExt#" maxlength="3" null="#NOT len(trim(arguments.new_mediaExt))#">,
                 </cfif>
-                userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_userid#" null="#NOT len(trim(arguments.new_userid))#">,
-                isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">,
-                isShare = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isShare#" null="#NOT len(trim(arguments.new_isShare))#">
+                userid = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_userid#" null="#NOT len(trim(arguments.new_userid))#">,
+                isDeleted = <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">,
+                isShare = <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isShare#" null="#NOT len(trim(arguments.new_isShare))#">
             WHERE 
-                mediaID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_mediaID#">
+                mediaID = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_mediaID#">
         </cfquery>
     <cfcatch>
         <cflog file="errorLogFile" text="Error updating audmedia: #cfcatch.message#. Query: #cfcatch.detail#">
@@ -420,7 +420,7 @@
             INNER JOIN audmedia_auditions_xref x ON x.mediaid = m.mediaid
             INNER JOIN audmediatypes t ON t.mediaTypeID = m.mediatypeid
             LEFT JOIN exttypes e ON e.mediaext = m.mediaext
-            WHERE x.audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE x.audprojectid = <cfquery result="result" param value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
               AND m.isdeleted IS FALSE
               AND x.audprojectid <> 0
         </cfquery>
@@ -461,7 +461,7 @@
             INNER JOIN audmedia_auditions_xref x ON x.mediaid = m.mediaid
             INNER JOIN audmediatypes t ON t.mediaTypeID = m.mediatypeid
             LEFT JOIN exttypes e ON e.mediaext = m.mediaext
-            WHERE x.audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER"> 
+            WHERE x.audprojectid = <cfquery result="result" param value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER"> 
               AND m.isdeleted IS FALSE 
               AND x.audprojectid <> 0 
               AND t.mediatypeid = 1
@@ -503,11 +503,11 @@
             LEFT JOIN 
                 exttypes e ON e.mediaext = m.mediaext
             WHERE 
-                m.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
-                AND m.isdeleted = <cfqueryparam value="false" cfsqltype="CF_SQL_BIT"> 
-                AND m.mediatypeid = <cfqueryparam value="1" cfsqltype="CF_SQL_INTEGER">
+                m.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+                AND m.isdeleted = <cfquery result="result" param value="false" cfsqltype="CF_SQL_BIT"> 
+                AND m.mediatypeid = <cfquery result="result" param value="1" cfsqltype="CF_SQL_INTEGER">
                 AND mediaid NOT IN (
-                    SELECT mediaid FROM audmedia_auditions_xref WHERE audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
+                    SELECT mediaid FROM audmedia_auditions_xref WHERE audprojectid = <cfquery result="result" param value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
                 )
             ORDER BY 
                 m.mediaName
@@ -549,9 +549,9 @@
             LEFT JOIN 
                 exttypes e ON e.mediaext = m.mediaext
             WHERE 
-                m.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
-                AND m.isdeleted = <cfqueryparam value="false" cfsqltype="CF_SQL_BIT"> 
-                AND m.mediatypeid = <cfqueryparam value="1" cfsqltype="CF_SQL_INTEGER">
+                m.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+                AND m.isdeleted = <cfquery result="result" param value="false" cfsqltype="CF_SQL_BIT"> 
+                AND m.mediatypeid = <cfquery result="result" param value="1" cfsqltype="CF_SQL_INTEGER">
             ORDER BY 
                 m.mediaName
         </cfquery>
@@ -594,7 +594,7 @@
             LEFT JOIN 
                 exttypes e ON e.mediaext = m.mediaext
             WHERE 
-                m.mediaid = <cfqueryparam value="#arguments.mediaid#" cfsqltype="CF_SQL_INTEGER">
+                m.mediaid = <cfquery result="result" param value="#arguments.mediaid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfreturn result>
@@ -634,11 +634,11 @@
             LEFT JOIN 
                 exttypes e ON e.mediaext = m.mediaext
             WHERE 
-                m.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
-                AND m.isdeleted = <cfqueryparam value="false" cfsqltype="CF_SQL_BIT">
-                AND t.ismaterial = <cfqueryparam value="1" cfsqltype="CF_SQL_INTEGER">
+                m.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+                AND m.isdeleted = <cfquery result="result" param value="false" cfsqltype="CF_SQL_BIT">
+                AND t.ismaterial = <cfquery result="result" param value="1" cfsqltype="CF_SQL_INTEGER">
                 AND mediaid NOT IN (
-                    SELECT mediaid FROM audmedia_auditions_xref WHERE audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
+                    SELECT mediaid FROM audmedia_auditions_xref WHERE audprojectid = <cfquery result="result" param value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
                 )
         </cfquery>
         
@@ -679,7 +679,7 @@
             LEFT JOIN 
                 exttypes e ON e.mediaext = m.mediaext
             WHERE 
-                m.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+                m.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
                 AND m.isdeleted IS false 
                 AND t.ismaterial = 1 
                 AND m.isshare = 1

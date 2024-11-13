@@ -5,15 +5,15 @@
         <cfset todayMonth = dateFormat(Now(), "MM")>
         <cfset todayDay = dateFormat(Now(), "dd")>
         
-        <cfquery name="quoteOfTheDay">
+        <cfquery result="result"  name="quoteOfTheDay">
             SELECT 
                 quotename, 
                 quoteauthor
             FROM 
                 quotes 
             WHERE 
-                quoteMonth = <cfqueryparam cfsqltype="cf_sql_varchar" value="#todayMonth#">
-                AND quoteDay = <cfqueryparam cfsqltype="cf_sql_varchar" value="#todayDay#">
+                quoteMonth = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#todayMonth#">
+                AND quoteDay = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#todayDay#">
             ORDER BY 
                 quotedate DESC
             LIMIT 1
@@ -21,7 +21,7 @@
         
         <cfif quoteOfTheDay.recordcount eq 0>
             
-            <cfquery name="randomQuote">
+            <cfquery result="result"  name="randomQuote">
                 SELECT 
                     id,
                     quotename, 
@@ -35,13 +35,13 @@
             </cfquery>
 
             <cfif randomQuote.recordcount gt 0>
-                <cfquery>
+                <cfquery result="result" >
                     UPDATE quotes 
                     SET 
-                        quotedate = <cfqueryparam cfsqltype="cf_sql_date" value="#dateFormat(Now(),'yyyy-MM-dd')#">,
-                        quoteMonth = <cfqueryparam cfsqltype="cf_sql_varchar" value="#todayMonth#">,
-                        quoteDay = <cfqueryparam cfsqltype="cf_sql_varchar" value="#todayDay#">
-                    WHERE id = <cfqueryparam cfsqltype="cf_sql_integer" value="#randomQuote.id#">
+                        quotedate = <cfquery result="result" param cfsqltype="cf_sql_date" value="#dateFormat(Now(),'yyyy-MM-dd')#">,
+                        quoteMonth = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#todayMonth#">,
+                        quoteDay = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#todayDay#">
+                    WHERE id = <cfquery result="result" param cfsqltype="cf_sql_integer" value="#randomQuote.id#">
                 </cfquery>
 
                 <cfreturn randomQuote>

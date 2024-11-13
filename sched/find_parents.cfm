@@ -1,4 +1,4 @@
- <cfquery name="getQryFilesWithoutParents" datasource="abod">
+ <cfquery result="result"  name="getQryFilesWithoutParents" datasource="abod">
     SELECT id, `filename`, `path`
     FROM tao_files
     WHERE `path` = '/include/qry'
@@ -11,7 +11,7 @@
     <cfset parentIds = "">
 
     <!--- Now loop through all files in /include and look for this query filename via cfinclude --->
-    <cfquery name="getIncludeFiles" datasource="abod">
+    <cfquery result="result"  name="getIncludeFiles" datasource="abod">
         SELECT id, `filename`, `path`
         FROM tao_files
         WHERE `path` = '/include'
@@ -39,10 +39,10 @@
     </cfloop>
  
     <cfif len(parentIds) GT 0>
-        <cfquery datasource="abod">
+        <cfquery result="result"  datasource="abod">
             UPDATE tao_files
-            SET parents = <cfqueryparam value="#parentIds#" cfsqltype="cf_sql_varchar">
-            WHERE id = <cfqueryparam value="#getQryFilesWithoutParents.id#" cfsqltype="cf_sql_integer">
+            SET parents = <cfquery result="result" param value="#parentIds#" cfsqltype="cf_sql_varchar">
+            WHERE id = <cfquery result="result" param value="#getQryFilesWithoutParents.id#" cfsqltype="cf_sql_integer">
         </cfquery>
 
         <cfoutput>

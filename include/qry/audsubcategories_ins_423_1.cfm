@@ -5,8 +5,8 @@
     new_isDeleted = new_isDeleted,
     new_audSubCatId = new_audSubCatId
 )>
-<cfquery name="updateStatus" datasource="abod">
+<cfquery result="result"  name="updateStatus" datasource="abod">
     UPDATE audsubcategories 
     SET isfetch = 1 
-    WHERE audSubCatId = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#new_audSubCatId#">
+    WHERE audSubCatId = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#new_audSubCatId#">
 </cfquery>

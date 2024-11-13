@@ -6,7 +6,7 @@
         <cfquery name="result">
             SELECT *
             FROM shares
-            WHERE userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
+            WHERE userid = <cfquery result="result" param value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
         <cfreturn result>

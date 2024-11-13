@@ -16,7 +16,7 @@
           
           
           
-       <CFQUERY name="bro_add" datasource="abo" >
+       <CFQUERY RESULT="RESULT"  name="bro_add" datasource="abo" >
 		select * from bigbrother where script_name = '/include/#name#'
           </CFQUERY>
           

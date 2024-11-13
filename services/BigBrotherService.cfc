@@ -8,18 +8,18 @@
     <cfargument name="script_name_include" type="string" required="true">
     <cfargument name="contactid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result" >
         INSERT INTO bigbrother (
             pgid, userid, remote_addr, query_string, remote_host, script_name, contactid, isInclude
         ) VALUES (
-            <cfqueryparam value="#arguments.pgid#" cfsqltype="cf_sql_integer">,
-            <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer">,
-            <cfqueryparam value="#arguments.remote_addr#" cfsqltype="cf_sql_varchar">,
-            <cfqueryparam value="#arguments.query_string#" cfsqltype="cf_sql_varchar">,
-            <cfqueryparam value="#arguments.remote_host#" cfsqltype="cf_sql_varchar">,
-            <cfqueryparam value="#arguments.script_name_include#" cfsqltype="cf_sql_varchar">,
-            <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_integer">,
-            <cfqueryparam value="Y" cfsqltype="cf_sql_varchar">
+            <cfquery result="result" param value="#arguments.pgid#" cfsqltype="cf_sql_integer">,
+            <cfquery result="result" param value="#arguments.userid#" cfsqltype="cf_sql_integer">,
+            <cfquery result="result" param value="#arguments.remote_addr#" cfsqltype="cf_sql_varchar">,
+            <cfquery result="result" param value="#arguments.query_string#" cfsqltype="cf_sql_varchar">,
+            <cfquery result="result" param value="#arguments.remote_host#" cfsqltype="cf_sql_varchar">,
+            <cfquery result="result" param value="#arguments.script_name_include#" cfsqltype="cf_sql_varchar">,
+            <cfquery result="result" param value="#arguments.contactid#" cfsqltype="cf_sql_integer">,
+            <cfquery result="result" param value="Y" cfsqltype="cf_sql_varchar">
         )
     </cfquery>
 </cffunction>
@@ -50,7 +50,7 @@
         INNER JOIN taousers u ON u.userid = b.userid
         LEFT JOIN pgpages p ON p.pgid = b.pgid
         LEFT JOIN contactdetails c ON c.contactid = b.contactid
-        WHERE u.userid <> <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
+        WHERE u.userid <> <cfquery result="result" param value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
         ORDER BY id DESC
     </cfquery>
 

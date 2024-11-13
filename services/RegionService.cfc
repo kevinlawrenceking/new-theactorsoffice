@@ -2,7 +2,7 @@
 
     <cffunction name="GetRegions" access="public" returntype="query" output="false" hint="Retrieve all regions ordered by region name.">
         <cfset var regions = "">
-        <cfquery name="regions">
+        <cfquery result="result"  name="regions">
             SELECT 
                 countryid, 
                 region_id, 
@@ -21,7 +21,7 @@
         <cfquery name="result">
             SELECT regionname 
             FROM regions 
-            WHERE region_id = <cfqueryparam value="#arguments.region_id#" cfsqltype="CF_SQL_INTEGER">
+            WHERE region_id = <cfquery result="result" param value="#arguments.region_id#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         <cfreturn result>
     </cffunction>
@@ -32,7 +32,7 @@
         <cfquery name="result">
             SELECT region_id 
             FROM regions 
-            WHERE regionname = <cfqueryparam value="#arguments.valueregion#" cfsqltype="CF_SQL_VARCHAR">
+            WHERE regionname = <cfquery result="result" param value="#arguments.valueregion#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
         <cfreturn result>
     </cffunction>
@@ -44,8 +44,8 @@
         <cfquery name="result">
             SELECT regionname 
             FROM regions 
-            WHERE region_id = <cfqueryparam value="#arguments.region_id#" cfsqltype="CF_SQL_INTEGER"> 
-            AND countryid = <cfqueryparam value="#arguments.old_countryid#" cfsqltype="CF_SQL_VARCHAR">
+            WHERE region_id = <cfquery result="result" param value="#arguments.region_id#" cfsqltype="CF_SQL_INTEGER"> 
+            AND countryid = <cfquery result="result" param value="#arguments.old_countryid#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
         <cfreturn result>
     </cffunction>
@@ -69,10 +69,10 @@
             <cfset sql &= " WHERE " & arrayToList(conditions, " AND ")>
         </cfif>
         <cfset sql &= " ORDER BY regionname">
-        <cfquery name="queryResult">
+        <cfquery result="result"  name="queryResult">
             #sql#
             <cfloop array="#params#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+                <cfquery result="result" param value="#param.value#" cfsqltype="#param.cfsqltype#">
             </cfloop>
         </cfquery>
         <cfreturn queryResult>
@@ -84,7 +84,7 @@
         <cfquery name="result">
             SELECT region_id
             FROM regions
-            WHERE regionname = <cfqueryparam value="#arguments.regionName#" cfsqltype="CF_SQL_VARCHAR">
+            WHERE regionname = <cfquery result="result" param value="#arguments.regionName#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
         <cfreturn result>
     </cffunction>

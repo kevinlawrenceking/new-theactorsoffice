@@ -1,4 +1,4 @@
-<cfquery name="getAllIncludeFiles" datasource="abod">
+<cfquery result="result"  name="getAllIncludeFiles" datasource="abod">
     SELECT id, `filename`, `path`
     FROM tao_files
     WHERE path = '/include/qry'
@@ -18,10 +18,10 @@
         <cfset includeCount = ArrayLen(REMatchNoCase("<cfinclude\b[^>]*>", fileContent))>
 
         <!--- Update the tao_files.no_includes column with the count --->
-        <cfquery datasource="abod">
+        <cfquery result="result"  datasource="abod">
             UPDATE tao_files
-            SET no_includes = <cfqueryparam value="#includeCount#" cfsqltype="cf_sql_integer">
-            WHERE id = <cfqueryparam value="#getAllIncludeFiles.id#" cfsqltype="cf_sql_integer">
+            SET no_includes = <cfquery result="result" param value="#includeCount#" cfsqltype="cf_sql_integer">
+            WHERE id = <cfquery result="result" param value="#getAllIncludeFiles.id#" cfsqltype="cf_sql_integer">
         </cfquery>
 
         <!--- Output the filename and number of <cfinclude> tags found --->

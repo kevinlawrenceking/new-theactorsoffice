@@ -1,6 +1,6 @@
  
 
-<cfquery datasource="abo" name="x" maxrows="10">
+<cfquery result="result"  datasource="abo" name="x" maxrows="10">
 SELECT id,sitename,siteurl,siteicon FROM sitelinks_user 
 WHERE iscustom = 1 
 AND siteicon = 'not found' 
@@ -61,7 +61,7 @@ AND siteicon = 'not found'
             
             <!--- Update Record --->
             <cfset new_siteicon = "custom_#id#.png">
-            <cfquery datasource="abo" name="update">
+            <cfquery result="result"  datasource="abo" name="update">
                 update sitelinks_user 
                 set siteicon = '#new_siteicon#'
                 where id = #id#
@@ -71,7 +71,7 @@ AND siteicon = 'not found'
         </cfif>
     <cfelse>
         <!--- No .ico found in the source code. Update the database accordingly --->
-        <cfquery datasource="abo" name="update">
+        <cfquery result="result"  datasource="abo" name="update">
             update sitelinks_user 
             set siteicon = 'unknown.png'
             where id = #id#

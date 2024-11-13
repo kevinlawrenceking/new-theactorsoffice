@@ -9,8 +9,8 @@
     <cfquery name="result">
         SELECT audplatformid 
         FROM audPlatforms_user_tbl 
-        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
-        AND audplatform = <cfqueryparam value="#arguments.CustomPlatform#" cfsqltype="CF_SQL_VARCHAR">
+        WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+        AND audplatform = <cfquery result="result" param value="#arguments.CustomPlatform#" cfsqltype="CF_SQL_VARCHAR">
     </cfquery>
     
     <cfreturn result>
@@ -20,11 +20,11 @@
     <cfargument name="CustomPlatform" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result" >
         INSERT INTO audPlatforms_user_tbl (audPlatform, userid) 
         VALUES (
-            <cfqueryparam value="#arguments.CustomPlatform#" cfsqltype="CF_SQL_VARCHAR">, 
-            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            <cfquery result="result" param value="#arguments.CustomPlatform#" cfsqltype="CF_SQL_VARCHAR">, 
+            <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         )
     </cfquery>
 </cffunction>
@@ -37,7 +37,7 @@
     <cfquery name="result">
         SELECT audplatformid AS ID, audplatform AS NAME
         FROM audplatforms_user
-        WHERE userid = <cfqueryparam value="#arguments.new_userid#" cfsqltype="cf_sql_integer" />
+        WHERE userid = <cfquery result="result" param value="#arguments.new_userid#" cfsqltype="cf_sql_integer" />
         ORDER BY audplatform
     </cfquery>
     

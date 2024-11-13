@@ -8,8 +8,8 @@
     <cfquery name="result">
         SELECT * 
         FROM tickettestusers 
-        WHERE ticketid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER"> 
-          AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE ticketid = <cfquery result="result" param value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER"> 
+          AND userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
     
     <cfreturn result>
@@ -20,13 +20,13 @@
     <cfargument name="new_teststatus" type="string" required="true">
     <cfargument name="new_rejectnotes" type="string" required="true">
 
-    <cfquery>
+    <cfquery result="result" >
         INSERT INTO tickettestusers (ticketid, userid, teststatus, rejectNotes)
         VALUES (
-            <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_ticketid#" />,
-            <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_userid#" />,
-            <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_teststatus#" />,
-            <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_rejectnotes#" />
+            <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.new_ticketid#" />,
+            <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.new_userid#" />,
+            <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.new_teststatus#" />,
+            <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.new_rejectnotes#" />
         )
     </cfquery>
 </cffunction>
@@ -35,13 +35,13 @@
     <cfargument name="new_rejectnotes" type="string" required="true">
     <cfargument name="testid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result" >
         UPDATE tickettestusers 
         SET 
-            teststatus = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_teststatus#" />, 
-            rejectnotes = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_rejectnotes#" />
+            teststatus = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.new_teststatus#" />, 
+            rejectnotes = <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#arguments.new_rejectnotes#" />
         WHERE 
-            id = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.testid#" />
+            id = <cfquery result="result" param cfsqltype="cf_sql_integer" value="#arguments.testid#" />
     </cfquery>
 </cffunction>
 <cffunction name="SELtickettestusers_24474" access="public" returntype="query">
@@ -63,8 +63,8 @@
         INNER JOIN 
             taousers u ON u.userid = tu.userid 
         WHERE 
-            tu.ticketid = <cfqueryparam value="#arguments.ticketId#" cfsqltype="CF_SQL_INTEGER"> 
-            AND tu.userid <> <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
+            tu.ticketid = <cfquery result="result" param value="#arguments.ticketId#" cfsqltype="CF_SQL_INTEGER"> 
+            AND tu.userid <> <cfquery result="result" param value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 
     <cfreturn result>
@@ -88,8 +88,8 @@
         INNER JOIN 
             taousers u ON u.userid = tu.userid 
         WHERE 
-            tu.ticketid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER"> 
-            AND tu.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            tu.ticketid = <cfquery result="result" param value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER"> 
+            AND tu.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
     
     <cfreturn result>

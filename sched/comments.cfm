@@ -1,6 +1,6 @@
 <!--- Step 1: Select records where qry_details starts with a comment --->
 
-<cfquery name="getCommentedQueries" datasource="abod">
+<cfquery result="result"  name="getCommentedQueries" datasource="abod">
     SELECT id, qry_details
     FROM tao_files
     WHERE qry_details LIKE '<!-%'
@@ -23,10 +23,10 @@
 
         <!--- Step 4: Update the qry_details in the database with the cleaned string --->
 
-        <cfquery datasource="abod">
+        <cfquery result="result"  datasource="abod">
             UPDATE tao_files
-            SET qry_details = <cfqueryparam value="#cleanQryDetails#" cfsqltype="cf_sql_varchar">
-            WHERE id = <cfqueryparam value="#getCommentedQueries.id#" cfsqltype="cf_sql_integer">
+            SET qry_details = <cfquery result="result" param value="#cleanQryDetails#" cfsqltype="cf_sql_varchar">
+            WHERE id = <cfquery result="result" param value="#getCommentedQueries.id#" cfsqltype="cf_sql_integer">
         </cfquery>
 
         <!--- Output success for debugging purposes --->

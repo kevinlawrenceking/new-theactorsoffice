@@ -4,7 +4,7 @@
 
 
 
-<cfquery name="x" datasource="abo" >
+<cfquery result="result"  name="x" datasource="abo" >
   SELECT * FROM taousers_tbl
 </cfquery>
 
@@ -12,11 +12,11 @@
  
 
     
-  <cfquery name="setHashedPassword" datasource="abod" >
+  <cfquery result="result"  name="setHashedPassword" datasource="abod" >
     UPDATE taousers_tbl
     SET
       isDeleted = #x.Isdeleted#
-    WHERE userID = <cfqueryparam cfsqltype="integer" value="#x.userID#">
+    WHERE userID = <cfquery result="result" param cfsqltype="integer" value="#x.userID#">
   </cfquery>
 </cfloop>
       

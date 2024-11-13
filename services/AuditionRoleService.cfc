@@ -32,7 +32,7 @@
             LEFT OUTER JOIN auddialects di ON (r.audDialectID = di.auddialectid)
             LEFT OUTER JOIN audsources s ON (r.audsourceid = s.audsourceid)
             LEFT OUTER JOIN incometypes i ON (i.incometypeid = r.incometypeid)
-            WHERE r.audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE r.audroleid = <cfquery result="result" param value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfreturn result>
@@ -57,7 +57,7 @@
     <cfargument name="isdirect" type="boolean" required="false" default=false>
 
     <cftry>
-        <cfquery datasource="#application.datasource#">
+        <cfquery result="result"  datasource="#application.datasource#">
             INSERT INTO audroles (
                 audRoleName, 
                 audprojectID, 
@@ -71,17 +71,17 @@
                 isDeleted, 
                 isBooked
             ) VALUES (
-                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audRoleName#" maxlength="500">,
-                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audprojectID#">,
-                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleTypeID#">,
-                <cfqueryparam cfsqltype="CF_SQL_LONGVARCHAR" value="#arguments.new_charDescription#" null="#NOT len(trim(arguments.new_charDescription))#">,
-                <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.new_holdStartDate#" null="#NOT len(trim(arguments.new_holdStartDate))#">,
-                <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.new_holdEndDate#" null="#NOT len(trim(arguments.new_holdEndDate))#">,
-                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audDialectID#" null="#NOT len(trim(arguments.new_audDialectID))#">,
-                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audSourceID#" null="#NOT len(trim(arguments.new_audSourceID))#">,
-                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_userid#">,
-                <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#">,
-                <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.isdirect#">
+                <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audRoleName#" maxlength="500">,
+                <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audprojectID#">,
+                <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleTypeID#">,
+                <cfquery result="result" param cfsqltype="CF_SQL_LONGVARCHAR" value="#arguments.new_charDescription#" null="#NOT len(trim(arguments.new_charDescription))#">,
+                <cfquery result="result" param cfsqltype="CF_SQL_DATE" value="#arguments.new_holdStartDate#" null="#NOT len(trim(arguments.new_holdStartDate))#">,
+                <cfquery result="result" param cfsqltype="CF_SQL_DATE" value="#arguments.new_holdEndDate#" null="#NOT len(trim(arguments.new_holdEndDate))#">,
+                <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audDialectID#" null="#NOT len(trim(arguments.new_audDialectID))#">,
+                <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audSourceID#" null="#NOT len(trim(arguments.new_audSourceID))#">,
+                <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_userid#">,
+                <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#">,
+                <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.isdirect#">
             )
         </cfquery>
         <cfcatch>
@@ -96,10 +96,10 @@
     <cfargument name="audroleid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result"  datasource="abod">
             UPDATE audroles
             SET isbooked = 1
-            WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE audroleid = <cfquery result="result" param value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -136,7 +136,7 @@
             LEFT OUTER JOIN 
                 audpaycycles pc ON pc.paycycleid = r.paycycleid
             WHERE 
-                r.audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
+                r.audroleid = <cfquery result="result" param value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfreturn result>
@@ -187,10 +187,10 @@
     <cfset arrayAppend(params, { value=arguments.new_audroleid, cfsqltype="CF_SQL_INTEGER" })>
 
     <cftry>
-        <cfquery datasource="#abod#" name="updateQuery">
+        <cfquery result="result"  datasource="#abod#" name="updateQuery">
             #sql#
             <cfloop array="#params#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+                <cfquery result="result" param value="#param.value#" cfsqltype="#param.cfsqltype#">
             </cfloop>
         </cfquery>
         <cfcatch>
@@ -204,10 +204,10 @@
     <cfargument name="newAudRoleId" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result"  datasource="abod">
             UPDATE audroles 
-            SET #arguments.statusField# = <cfqueryparam value="0" cfsqltype="CF_SQL_INTEGER"> 
-            WHERE audroleid = <cfqueryparam value="#arguments.newAudRoleId#" cfsqltype="CF_SQL_INTEGER">
+            SET #arguments.statusField# = <cfquery result="result" param value="0" cfsqltype="CF_SQL_INTEGER"> 
+            WHERE audroleid = <cfquery result="result" param value="#arguments.newAudRoleId#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
         <cfcatch type="any">
@@ -221,10 +221,10 @@
     <cfargument name="newAudroleId" type="numeric" required="true">
 
     <cftry>
-        <cfquery name="updateQuery" datasource="abod">
+        <cfquery result="result"  name="updateQuery" datasource="abod">
             UPDATE audroles
-            SET #arguments.statusField# = <cfqueryparam value="1" cfsqltype="CF_SQL_BIT">
-            WHERE audroleid = <cfqueryparam value="#arguments.newAudroleId#" cfsqltype="CF_SQL_INTEGER">
+            SET #arguments.statusField# = <cfquery result="result" param value="1" cfsqltype="CF_SQL_BIT">
+            WHERE audroleid = <cfquery result="result" param value="#arguments.newAudroleId#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -269,7 +269,7 @@
             LEFT OUTER JOIN essences e ON (r.essenceID = e.essenceID)
             LEFT OUTER JOIN audsources s ON (r.audsourceid = s.audsourceid)
             LEFT OUTER JOIN incometypes i ON (i.incometypeid = r.incometypeid)
-            WHERE r.audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE r.audroleid = <cfquery result="result" param value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -308,7 +308,7 @@
             LEFT OUTER JOIN audsources s ON (r.audsourceid = s.audsourceid)
             INNER JOIN audprojects proj ON proj.audprojectid = proj.audprojectid
             INNER JOIN audsubcategories subcat ON (proj.audSubCatID = subcat.audSubCatId)
-            WHERE r.audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE r.audroleid = <cfquery result="result" param value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfreturn result>
@@ -347,7 +347,7 @@
             LEFT OUTER JOIN audsources s ON (r.audsourceid = s.audsourceid)
             INNER JOIN audprojects proj ON proj.audprojectid = proj.audprojectid
             INNER JOIN audsubcategories subcat ON (proj.audSubCatID = subcat.audSubCatId)
-            WHERE r.audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE r.audroleid = <cfquery result="result" param value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfreturn result>
@@ -397,7 +397,7 @@
             LEFT OUTER JOIN incometypes i ON i.incometypeid = r.incometypeid
             LEFT OUTER JOIN contactdetails c ON c.contactid = r.contactid
             LEFT OUTER JOIN audpaycycles p ON p.paycycleid = r.paycycleid
-            WHERE r.audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE r.audroleid = <cfquery result="result" param value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfreturn result>
@@ -444,7 +444,7 @@
             LEFT OUTER JOIN audsources s ON (r.audsourceid = s.audsourceid)
             LEFT OUTER JOIN incometypes i ON (i.incometypeid = r.incometypeid)
             LEFT OUTER JOIN contactdetails c ON (c.contactid = r.contactid)
-            WHERE r.audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE r.audroleid = <cfquery result="result" param value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -459,10 +459,10 @@
     <cfargument name="audroleid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result"  datasource="abod">
             UPDATE audroles
             SET isdeleted = 1
-            WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE audroleid = <cfquery result="result" param value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -481,8 +481,8 @@
         <cfquery name="result" datasource="abod">
             SELECT *
             FROM audroles
-            WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
-            AND submitsiteid = <cfqueryparam value="#arguments.submitsiteid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            AND submitsiteid = <cfquery result="result" param value="#arguments.submitsiteid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -501,13 +501,13 @@
     <cfargument name="audroleid" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result"  datasource="abod">
             UPDATE audroles
-            SET iscallback = <cfqueryparam value="#arguments.new_iscallback#" cfsqltype="CF_SQL_BIT">,
-                isredirect = <cfqueryparam value="#arguments.new_isredirect#" cfsqltype="CF_SQL_BIT">,
-                ispin = <cfqueryparam value="#arguments.new_ispin#" cfsqltype="CF_SQL_BIT">,
-                isbooked = <cfqueryparam value="#arguments.new_isbooked#" cfsqltype="CF_SQL_BIT">
-            WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
+            SET iscallback = <cfquery result="result" param value="#arguments.new_iscallback#" cfsqltype="CF_SQL_BIT">,
+                isredirect = <cfquery result="result" param value="#arguments.new_isredirect#" cfsqltype="CF_SQL_BIT">,
+                ispin = <cfquery result="result" param value="#arguments.new_ispin#" cfsqltype="CF_SQL_BIT">,
+                isbooked = <cfquery result="result" param value="#arguments.new_isbooked#" cfsqltype="CF_SQL_BIT">
+            WHERE audroleid = <cfquery result="result" param value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         <cfcatch>
             <cflog file="application" text="Error updating audroles: #cfcatch.message#">
@@ -528,24 +528,24 @@
     <cfargument name="new_audRoleID" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="#application.datasource#" name="updateQuery">
+        <cfquery result="result"  datasource="#application.datasource#" name="updateQuery">
             UPDATE audroles 
             SET 
-                audRoleName = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audRoleName#" maxlength="500" null="#NOT len(trim(arguments.new_audRoleName))#">,
-                opencallid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_opencallid#" null="#NOT len(trim(arguments.new_opencallid))#">,
-                audRoleTypeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleTypeID#" null="#NOT len(trim(arguments.new_audRoleTypeID))#">,
-                charDescription = <cfqueryparam cfsqltype="CF_SQL_LONGVARCHAR" value="#arguments.new_charDescription#" null="#NOT len(trim(arguments.new_charDescription))#">,
-                audDialectID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audDialectID#" null="#NOT len(trim(arguments.new_audDialectID))#">,
-                audSourceID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audSourceID#" null="#NOT len(trim(arguments.new_audSourceID))#">,
+                audRoleName = <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audRoleName#" maxlength="500" null="#NOT len(trim(arguments.new_audRoleName))#">,
+                opencallid = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_opencallid#" null="#NOT len(trim(arguments.new_opencallid))#">,
+                audRoleTypeID = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleTypeID#" null="#NOT len(trim(arguments.new_audRoleTypeID))#">,
+                charDescription = <cfquery result="result" param cfsqltype="CF_SQL_LONGVARCHAR" value="#arguments.new_charDescription#" null="#NOT len(trim(arguments.new_charDescription))#">,
+                audDialectID = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audDialectID#" null="#NOT len(trim(arguments.new_audDialectID))#">,
+                audSourceID = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audSourceID#" null="#NOT len(trim(arguments.new_audSourceID))#">,
                 <cfif len(trim(arguments.new_contactid))>
-                    contactid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contactid#" null="#NOT len(trim(arguments.new_contactid))#">,
+                    contactid = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contactid#" null="#NOT len(trim(arguments.new_contactid))#">,
                 </cfif>
                 <cfif len(trim(arguments.new_submitsiteid))>
-                    submitsiteid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_submitsiteid#" null="#NOT len(trim(arguments.new_submitsiteid))#">,
+                    submitsiteid = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_submitsiteid#" null="#NOT len(trim(arguments.new_submitsiteid))#">,
                 </cfif>
-                isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+                isDeleted = <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
             WHERE 
-                audRoleID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#">
+                audRoleID = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#">
         </cfquery>
         <cfcatch>
             <cflog file="applicationLog" text="[Error] Failed to update audroles: #cfcatch.message#. Query: #updateQuery.sql#. Parameters: #serializeJSON(arguments)#">
@@ -566,7 +566,7 @@
     <cfargument name="isredirect" type="boolean" required="false" default=false>
 
     <cftry>
-        <cfquery datasource="#application.datasource#">
+        <cfquery result="result"  datasource="#application.datasource#">
             INSERT INTO audroles (
                 audRoleName, 
                 audprojectID, 
@@ -579,16 +579,16 @@
                 ispin, 
                 isredirect
             ) VALUES (
-                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audRoleName#" maxlength="500">,
-                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audprojectID#">,
-                <cfqueryparam cfsqltype="CF_SQL_LONGVARCHAR" value="#arguments.new_charDescription#" null="#NOT len(trim(arguments.new_charDescription))#">,
-                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audSourceID#" null="#NOT len(trim(arguments.new_audSourceID))#">,
-                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">,
-                <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">,
-                <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.isbooked#" null="#NOT len(trim(arguments.isbooked))#">,
-                <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.isCallback#" null="#NOT len(trim(arguments.isCallback))#">,
-                <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.ispin#" null="#NOT len(trim(arguments.ispin))#">,
-                <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.isredirect#" null="#NOT len(trim(arguments.isredirect))#">
+                <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audRoleName#" maxlength="500">,
+                <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audprojectID#">,
+                <cfquery result="result" param cfsqltype="CF_SQL_LONGVARCHAR" value="#arguments.new_charDescription#" null="#NOT len(trim(arguments.new_charDescription))#">,
+                <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audSourceID#" null="#NOT len(trim(arguments.new_audSourceID))#">,
+                <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">,
+                <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">,
+                <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.isbooked#" null="#NOT len(trim(arguments.isbooked))#">,
+                <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.isCallback#" null="#NOT len(trim(arguments.isCallback))#">,
+                <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.ispin#" null="#NOT len(trim(arguments.ispin))#">,
+                <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.isredirect#" null="#NOT len(trim(arguments.isredirect))#">
             )
         </cfquery>
         <cfcatch>
@@ -602,10 +602,10 @@
     <cfargument name="audsourceid" type="numeric" required="true">
     
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result"  datasource="abod">
             UPDATE audroles 
             SET submitsiteid = NULL, contactid = NULL, opencallid = NULL 
-            WHERE audsourceid = <cfqueryparam value="#arguments.audsourceid#" cfsqltype="CF_SQL_INTEGER">
+            WHERE audsourceid = <cfquery result="result" param value="#arguments.audsourceid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
         <cfcatch type="any">
@@ -638,7 +638,7 @@
             LEFT JOIN contactdetails c ON c.contactid = r.contactid
             LEFT JOIN audpaycycles p ON p.paycycleid = r.paycycleid
             LEFT JOIN audopencalloptions_user o ON o.opencallid = r.opencallid
-            WHERE r.audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="cf_sql_integer">
+            WHERE r.audroleid = <cfquery result="result" param value="#arguments.audroleid#" cfsqltype="cf_sql_integer">
         </cfquery>
         
         <cfcatch type="any">
@@ -666,7 +666,7 @@
     <cfargument name="isredirect" type="boolean" required="true">
 
     <cftry>
-        <cfquery datasource="#application.datasource#">
+        <cfquery result="result"  datasource="#application.datasource#">
             INSERT INTO audroles (
                 audRoleName, 
                 audprojectID, 
@@ -683,24 +683,24 @@
                 ispin, 
                 isredirect
             ) VALUES (
-                <cfqueryparam cfsqltype="#iif(len(trim(arguments.new_audRoleName)), 'CF_SQL_VARCHAR', 'CF_SQL_VARCHAR')#" value="#arguments.new_audRoleName#" maxlength="500">,
-                <cfqueryparam cfsqltype="#iif(len(trim(arguments.new_audprojectID)), 'CF_SQL_INTEGER', 'CF_SQL_INTEGER')#" value="#arguments.new_audprojectID#">,
-                <cfqueryparam cfsqltype="#iif(len(trim(arguments.new_audRoleTypeID)), 'CF_SQL_INTEGER', 'CF_SQL_INTEGER')#" value="#arguments.new_audRoleTypeID#">,
-                <cfqueryparam cfsqltype="#iif(len(trim(arguments.new_charDescription)), 'CF_SQL_LONGVARCHAR', 'CF_SQL_LONGVARCHAR')#" value="#arguments.new_charDescription#">,
-                <cfqueryparam cfsqltype="#iif(len(trim(arguments.new_holdStartDate)), 'CF_SQL_DATE', 'CF_SQL_DATE')#" value="#arguments.new_holdStartDate#">,
-                <cfqueryparam cfsqltype="#iif(len(trim(arguments.new_holdEndDate)), 'CF_SQL_DATE', 'CF_SQL_DATE')#" value="#arguments.new_holdEndDate#">,
+                <cfquery result="result" param cfsqltype="#iif(len(trim(arguments.new_audRoleName)), 'CF_SQL_VARCHAR', 'CF_SQL_VARCHAR')#" value="#arguments.new_audRoleName#" maxlength="500">,
+                <cfquery result="result" param cfsqltype="#iif(len(trim(arguments.new_audprojectID)), 'CF_SQL_INTEGER', 'CF_SQL_INTEGER')#" value="#arguments.new_audprojectID#">,
+                <cfquery result="result" param cfsqltype="#iif(len(trim(arguments.new_audRoleTypeID)), 'CF_SQL_INTEGER', 'CF_SQL_INTEGER')#" value="#arguments.new_audRoleTypeID#">,
+                <cfquery result="result" param cfsqltype="#iif(len(trim(arguments.new_charDescription)), 'CF_SQL_LONGVARCHAR', 'CF_SQL_LONGVARCHAR')#" value="#arguments.new_charDescription#">,
+                <cfquery result="result" param cfsqltype="#iif(len(trim(arguments.new_holdStartDate)), 'CF_SQL_DATE', 'CF_SQL_DATE')#" value="#arguments.new_holdStartDate#">,
+                <cfquery result="result" param cfsqltype="#iif(len(trim(arguments.new_holdEndDate)), 'CF_SQL_DATE', 'CF_SQL_DATE')#" value="#arguments.new_holdEndDate#">,
                 <cfif len(trim(arguments.new_audDialectID))>
-                    <cfqueryparam cfsqltype="#iif(len(trim(arguments.new_audDialectID)), 'CF_SQL_INTEGER', 'CF_SQL_INTEGER')#" value="#arguments.new_audDialectID#">,
+                    <cfquery result="result" param cfsqltype="#iif(len(trim(arguments.new_audDialectID)), 'CF_SQL_INTEGER', 'CF_SQL_INTEGER')#" value="#arguments.new_audDialectID#">,
                 </cfif>
                 <cfif len(trim(arguments.new_audSourceID))>
-                    <cfqueryparam cfsqltype="#iif(len(trim(arguments.new_audSourceID)), 'CF_SQL_INTEGER', 'CF_SQL_INTEGER')#" value="#arguments.new_audSourceID#">,
+                    <cfquery result="result" param cfsqltype="#iif(len(trim(arguments.new_audSourceID)), 'CF_SQL_INTEGER', 'CF_SQL_INTEGER')#" value="#arguments.new_audSourceID#">,
                 </cfif>
-                <cfqueryparam cfsqltype="#iif(len(trim(arguments.new_userid)), 'CF_SQL_INTEGER', 'CF_SQL_INTEGER')#" value="#arguments.new_userid#">,
-                <cfqueryparam cfsqltype="#iif(len(trim(arguments.new_isDeleted)), 'CF_SQL_BIT', 'CF_SQL_BIT')#" value="#arguments.new_isDeleted#">,
-                <cfqueryparam cfsqltype="#iif(len(trim(arguments.isbooked)), 'CF_SQL_BIT', 'CF_SQL_BIT')#" value="#arguments.isbooked#">,
-                <cfqueryparam cfsqltype="#iif(len(trim(arguments.isCallback)), 'CF_SQL_BIT', 'CF_SQL_BIT')#" value="#arguments.isCallback#">,
-                <cfqueryparam cfsqltype="#iif(len(trim(arguments.ispin)), 'CF_SQL_BIT', 'CF_SQL_BIT')#" value="#arguments.ispin#">,
-                <cfqueryparam cfsqltype="#iif(len(trim(arguments.isredirect)), 'CF_SQL_BIT', 'CF_SQL_BIT')#" value="#arguments.isredirect#">
+                <cfquery result="result" param cfsqltype="#iif(len(trim(arguments.new_userid)), 'CF_SQL_INTEGER', 'CF_SQL_INTEGER')#" value="#arguments.new_userid#">,
+                <cfquery result="result" param cfsqltype="#iif(len(trim(arguments.new_isDeleted)), 'CF_SQL_BIT', 'CF_SQL_BIT')#" value="#arguments.new_isDeleted#">,
+                <cfquery result="result" param cfsqltype="#iif(len(trim(arguments.isbooked)), 'CF_SQL_BIT', 'CF_SQL_BIT')#" value="#arguments.isbooked#">,
+                <cfquery result="result" param cfsqltype="#iif(len(trim(arguments.isCallback)), 'CF_SQL_BIT', 'CF_SQL_BIT')#" value="#arguments.isCallback#">,
+                <cfquery result="result" param cfsqltype="#iif(len(trim(arguments.ispin)), 'CF_SQL_BIT', 'CF_SQL_BIT')#" value="#arguments.ispin#">,
+                <cfquery result="result" param cfsqltype="#iif(len(trim(arguments.isredirect)), 'CF_SQL_BIT', 'CF_SQL_BIT')#" value="#arguments.isredirect#">
             )
         </cfquery>
         <cflog file="application_log" text="[INFO] Inserted new record into audroles table. User ID: #arguments.new_userid#."/>
@@ -724,21 +724,21 @@
     <cfargument name="new_audRoleID" type="numeric" required="true">
 
     <cftry>
-        <cfquery datasource="#application.datasource#">
+        <cfquery result="result"  datasource="#application.datasource#">
             UPDATE audroles 
             SET 
-                audRoleName = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audRoleName)#" maxlength="500" null="#NOT len(trim(arguments.new_audRoleName))#">,
-                audprojectID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audprojectID#" null="#NOT len(trim(arguments.new_audprojectID))#">,
-                audRoleTypeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleTypeID#" null="#NOT len(trim(arguments.new_audRoleTypeID))#">,
-                charDescription = <cfqueryparam cfsqltype="CF_SQL_LONGVARCHAR" value="#trim(arguments.new_charDescription)#" null="#NOT len(trim(arguments.new_charDescription))#">,
-                holdStartDate = <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.new_holdStartDate#" null="#NOT len(trim(arguments.new_holdStartDate))#">,
-                holdEndDate = <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.new_holdEndDate#" null="#NOT len(trim(arguments.new_holdEndDate))#">,
-                audDialectID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audDialectID#" null="#NOT len(trim(arguments.new_audDialectID))#">,
-                audSourceID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audSourceID#" null="#NOT len(trim(arguments.new_audSourceID))#">,
-                userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_userid#" null="#NOT len(trim(arguments.new_userid))#">,
-                isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+                audRoleName = <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audRoleName)#" maxlength="500" null="#NOT len(trim(arguments.new_audRoleName))#">,
+                audprojectID = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audprojectID#" null="#NOT len(trim(arguments.new_audprojectID))#">,
+                audRoleTypeID = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleTypeID#" null="#NOT len(trim(arguments.new_audRoleTypeID))#">,
+                charDescription = <cfquery result="result" param cfsqltype="CF_SQL_LONGVARCHAR" value="#trim(arguments.new_charDescription)#" null="#NOT len(trim(arguments.new_charDescription))#">,
+                holdStartDate = <cfquery result="result" param cfsqltype="CF_SQL_DATE" value="#arguments.new_holdStartDate#" null="#NOT len(trim(arguments.new_holdStartDate))#">,
+                holdEndDate = <cfquery result="result" param cfsqltype="CF_SQL_DATE" value="#arguments.new_holdEndDate#" null="#NOT len(trim(arguments.new_holdEndDate))#">,
+                audDialectID = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audDialectID#" null="#NOT len(trim(arguments.new_audDialectID))#">,
+                audSourceID = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audSourceID#" null="#NOT len(trim(arguments.new_audSourceID))#">,
+                userid = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_userid#" null="#NOT len(trim(arguments.new_userid))#">,
+                isDeleted = <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
             WHERE 
-                audRoleID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#">
+                audRoleID = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#">
         </cfquery>
         <cfcatch>
             <cflog file="applicationLog" text="[Error] updateAudRoles failed: #cfcatch.message#, Query: #cfcatch.detail#">

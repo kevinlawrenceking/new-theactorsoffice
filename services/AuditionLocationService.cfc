@@ -10,19 +10,19 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_audlocid" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result" >
         UPDATE audlocations 
         SET 
-            userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_userid#" null="#NOT len(trim(arguments.new_userid))#">,
-            eventLocation = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_eventLocation#" maxlength="500" null="#NOT len(trim(arguments.new_eventLocation))#">,
-            audlocadd1 = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audlocadd1#" maxlength="500" null="#NOT len(trim(arguments.new_audlocadd1))#">,
-            audlocadd2 = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audlocadd2#" maxlength="500" null="#NOT len(trim(arguments.new_audlocadd2))#">,
-            audcity = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audcity#" maxlength="500" null="#NOT len(trim(arguments.new_audcity))#">,
-            region_id = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_region_id#" null="#NOT len(trim(arguments.new_region_id))#">,
-            audzip = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audzip#" maxlength="50" null="#NOT len(trim(arguments.new_audzip))#">,
-            isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+            userid = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_userid#" null="#NOT len(trim(arguments.new_userid))#">,
+            eventLocation = <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_eventLocation#" maxlength="500" null="#NOT len(trim(arguments.new_eventLocation))#">,
+            audlocadd1 = <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audlocadd1#" maxlength="500" null="#NOT len(trim(arguments.new_audlocadd1))#">,
+            audlocadd2 = <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audlocadd2#" maxlength="500" null="#NOT len(trim(arguments.new_audlocadd2))#">,
+            audcity = <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audcity#" maxlength="500" null="#NOT len(trim(arguments.new_audcity))#">,
+            region_id = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_region_id#" null="#NOT len(trim(arguments.new_region_id))#">,
+            audzip = <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audzip#" maxlength="50" null="#NOT len(trim(arguments.new_audzip))#">,
+            isDeleted = <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
         WHERE 
-            audlocid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audlocid#">
+            audlocid = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audlocid#">
     </cfquery>
 </cffunction>
 
@@ -30,11 +30,11 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="custom" type="string" required="true">
 
-    <cfquery>
+    <cfquery result="result" >
         INSERT INTO audlocations (userid, eventLocation) 
         VALUES (
-            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">, 
-            <cfqueryparam value="#arguments.custom#" cfsqltype="CF_SQL_VARCHAR">
+            <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">, 
+            <cfquery result="result" param value="#arguments.custom#" cfsqltype="CF_SQL_VARCHAR">
         )
     </cfquery>
 </cffunction>
@@ -47,7 +47,7 @@
     <cfquery name="result">
         SELECT l.audlocid AS ID, l.eventLocation AS Name 
         FROM audlocations l 
-        WHERE l.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+        WHERE l.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
         ORDER BY l.eventLocation
     </cfquery>
     

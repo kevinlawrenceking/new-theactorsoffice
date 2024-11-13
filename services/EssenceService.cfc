@@ -6,28 +6,28 @@
         SELECT *
         FROM essences e
         INNER JOIN audessences_audtion_xref x ON x.essenceid = e.essenceid
-        WHERE x.audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE x.audroleid = <cfquery result="result" param value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
     <cfreturn result>
 </cffunction>
 
 <cffunction name="UPDessences" access="public" returntype="void">
     <cfargument name="new_essenceid" type="numeric" required="true">
-    <cfquery>
+    <cfquery result="result" >
         UPDATE essences
         SET isdeleted = 1
-        WHERE essenceid = <cfqueryparam value="#arguments.new_essenceid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE essenceid = <cfquery result="result" param value="#arguments.new_essenceid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 </cffunction>
 
 <cffunction name="INSessences" access="public" returntype="void">
     <cfargument name="new_essenceName" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
-    <cfquery>
+    <cfquery result="result" >
         INSERT INTO essences (essenceName, userID)
         VALUES (
-            <cfqueryparam value="#arguments.new_essenceName#" cfsqltype="CF_SQL_VARCHAR">,
-            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            <cfquery result="result" param value="#arguments.new_essenceName#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         )
     </cfquery>
 </cffunction>
@@ -38,7 +38,7 @@
     <cfquery name="result">
         SELECT *
         FROM essences
-        WHERE essenceid = <cfqueryparam value="#arguments.essenceid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE essenceid = <cfquery result="result" param value="#arguments.essenceid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
     <cfreturn result>
 </cffunction>
@@ -47,11 +47,11 @@
     <cfargument name="new_essenceName" type="string" required="true">
     <cfargument name="isdeleted" type="boolean" required="true">
     <cfargument name="essenceid" type="numeric" required="true">
-    <cfquery>
+    <cfquery result="result" >
         UPDATE essences 
-        SET essenceName = <cfqueryparam value="#arguments.new_essenceName#" cfsqltype="CF_SQL_VARCHAR">, 
-            isDeleted = <cfqueryparam value="#arguments.isdeleted#" cfsqltype="CF_SQL_BIT">
-        WHERE essenceid = <cfqueryparam value="#arguments.essenceid#" cfsqltype="CF_SQL_INTEGER">
+        SET essenceName = <cfquery result="result" param value="#arguments.new_essenceName#" cfsqltype="CF_SQL_VARCHAR">, 
+            isDeleted = <cfquery result="result" param value="#arguments.isdeleted#" cfsqltype="CF_SQL_BIT">
+        WHERE essenceid = <cfquery result="result" param value="#arguments.essenceid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 </cffunction>
 
@@ -61,7 +61,7 @@
     <cfquery name="result">
         SELECT essenceid, essencename
         FROM essences
-        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         AND isdeleted = 0
         ORDER BY essencename
     </cfquery>
@@ -75,8 +75,8 @@
     <cfquery name="result">
         SELECT essenceid AS new_essenceid
         FROM essences
-        WHERE essencename = <cfqueryparam value="#arguments.new_essence#" cfsqltype="CF_SQL_VARCHAR">
-        AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE essencename = <cfquery result="result" param value="#arguments.new_essence#" cfsqltype="CF_SQL_VARCHAR">
+        AND userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         AND isdeleted = 0
     </cfquery>
     <cfreturn result>
@@ -85,11 +85,11 @@
 <cffunction name="INSessences_24283" access="public" returntype="void">
     <cfargument name="new_essence" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
-    <cfquery>
+    <cfquery result="result" >
         INSERT INTO essences (essenceName, userid, isdeleted)
         VALUES (
-            <cfqueryparam value="#arguments.new_essence#" cfsqltype="CF_SQL_VARCHAR">,
-            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfquery result="result" param value="#arguments.new_essence#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
             0
         )
     </cfquery>
@@ -106,7 +106,7 @@
         FROM 
             essences e 
         WHERE 
-            e.userID = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+            e.userID = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
             AND isdeleted = 0
         ORDER BY 
             e.essencename

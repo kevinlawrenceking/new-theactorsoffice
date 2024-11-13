@@ -1,6 +1,6 @@
 <!--- Step 1: Select records where qry_table is blank --->
 
-<cfquery name="getBlankTableQueries" datasource="abod">
+<cfquery result="result"  name="getBlankTableQueries" datasource="abod">
     SELECT id, qry_details, qry_table, qry_type
     FROM tao_files
     WHERE qry_extract_yn = 1
@@ -21,10 +21,10 @@
         <cfset tableName = trim(tableName)>
 
         <!--- Step 4: Update the qry_table in the database with the found table name --->
-        <cfquery datasource="abod">
+        <cfquery result="result"  datasource="abod">
             UPDATE tao_files
-            SET qry_table = <cfqueryparam value="#tableName#" cfsqltype="cf_sql_varchar">
-            WHERE id = <cfqueryparam value="#getBlankTableQueries.id#" cfsqltype="cf_sql_integer">
+            SET qry_table = <cfquery result="result" param value="#tableName#" cfsqltype="cf_sql_varchar">
+            WHERE id = <cfquery result="result" param value="#getBlankTableQueries.id#" cfsqltype="cf_sql_integer">
         </cfquery>
 
         <!--- Output success for debugging purposes --->

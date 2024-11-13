@@ -5,6 +5,6 @@
     select_userid = select_userid
 )>
 <!--- Update the database to set isfetch = 1 --->
-<cfquery datasource="abod">
+<cfquery result="result"  datasource="abod">
     UPDATE your_table_name SET isfetch = 1 WHERE your_condition
 </cfquery>

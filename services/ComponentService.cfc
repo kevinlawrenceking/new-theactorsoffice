@@ -18,9 +18,9 @@
             FROM 
                 pgcomps c 
             WHERE 
-                c.menuYN = <cfqueryparam value="#arguments.menuYN#" cfsqltype="CF_SQL_CHAR"> 
-                AND c.compOwner = <cfqueryparam value="#arguments.compOwner#" cfsqltype="CF_SQL_CHAR"> 
-            AND c.appid IN (<cfqueryparam value="#arguments.appid#" cfsqltype="CF_SQL_VARCHAR">) 
+                c.menuYN = <cfquery result="result" param value="#arguments.menuYN#" cfsqltype="CF_SQL_CHAR"> 
+                AND c.compOwner = <cfquery result="result" param value="#arguments.compOwner#" cfsqltype="CF_SQL_CHAR"> 
+            AND c.appid IN (<cfquery result="result" param value="#arguments.appid#" cfsqltype="CF_SQL_VARCHAR">) 
 
             ORDER BY 
                 c.menuOrder
@@ -49,8 +49,8 @@
                     pgcomps c 
                 WHERE 
                     c.menuYN = 'Y' 
-                    AND c.compOwner = <cfqueryparam value="#arguments.compOwner#" cfsqltype="CF_SQL_CHAR"> 
-                    AND c.appid = <cfqueryparam value="#arguments.appID#" cfsqltype="CF_SQL_INTEGER"> 
+                    AND c.compOwner = <cfquery result="result" param value="#arguments.compOwner#" cfsqltype="CF_SQL_CHAR"> 
+                    AND c.appid = <cfquery result="result" param value="#arguments.appID#" cfsqltype="CF_SQL_INTEGER"> 
                 ORDER BY 
                     c.menuOrder
             </cfquery>

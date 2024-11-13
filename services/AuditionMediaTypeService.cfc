@@ -9,7 +9,7 @@
         FROM audmediatypes 
         WHERE mediatypeid IN (
             <cfloop array="#arguments.mediaTypeIds#" index="mediaTypeId">
-                <cfqueryparam value="#mediaTypeId#" cfsqltype="CF_SQL_INTEGER" />
+                <cfquery result="result" param value="#mediaTypeId#" cfsqltype="CF_SQL_INTEGER" />
                 <cfif arrayLen(arguments.mediaTypeIds) GT 1 AND mediaTypeId NEq arrayLast(arguments.mediaTypeIds)>,</cfif>
             </cfloop>
         )
@@ -28,7 +28,7 @@
         FROM audmediatypes
         WHERE mediatypeid IN (
             <cfloop array="#arguments.mediaTypeIds#" index="id">
-                <cfqueryparam value="#id#" cfsqltype="CF_SQL_INTEGER" />
+                <cfquery result="result" param value="#id#" cfsqltype="CF_SQL_INTEGER" />
                 <cfif id neq arrayLast(arguments.mediaTypeIds)>,</cfif>
             </cfloop>
         )
@@ -78,10 +78,10 @@ function getMediaTypes(required array mediaTypeIds) {
     
     <cfset sqlQuery &= " ORDER BY mediatype">
 
-    <cfquery name="queryResult">
+    <cfquery result="result"  name="queryResult">
         #sqlQuery#
         <cfloop array="#params#" index="param">
-            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+            <cfquery result="result" param value="#param.value#" cfsqltype="#param.cfsqltype#">
         </cfloop>
     </cfquery>
     
@@ -113,10 +113,10 @@ function getMediaTypes(required array mediaTypeIds) {
         <cfset arrayAppend(params, {value=1, cfsqltype='CF_SQL_BIT'})>
     </cfif>
 
-    <cfquery name="queryResult">
+    <cfquery result="result"  name="queryResult">
         #sqlQuery#
         <cfloop array="#params#" index="param">
-            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+            <cfquery result="result" param value="#param.value#" cfsqltype="#param.cfsqltype#">
         </cfloop>
     </cfquery>
 
@@ -127,11 +127,11 @@ function getMediaTypes(required array mediaTypeIds) {
     <cfargument name="new_mediaType" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
-    <cfquery>
+    <cfquery result="result" >
         INSERT INTO audmediatypes (mediaType, isDeleted)
         VALUES (
-            <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaType#" maxlength="100" null="#NOT len(trim(arguments.new_mediaType))#">,
-            <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+            <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaType#" maxlength="100" null="#NOT len(trim(arguments.new_mediaType))#">,
+            <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
         )
     </cfquery>
 </cffunction>
@@ -141,12 +141,12 @@ function getMediaTypes(required array mediaTypeIds) {
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_mediaTypeID" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result" >
         UPDATE audmediatypes 
         SET 
-            mediaType = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaType#" maxlength="100" null="#NOT len(trim(arguments.new_mediaType))#">,
-            isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+            mediaType = <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaType#" maxlength="100" null="#NOT len(trim(arguments.new_mediaType))#">,
+            isDeleted = <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
         WHERE 
-            mediaTypeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_mediaTypeID#">
+            mediaTypeID = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_mediaTypeID#">
     </cfquery>
 </cffunction></cfcomponent>

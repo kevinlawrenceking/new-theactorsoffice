@@ -24,10 +24,10 @@
     <cfset sql &= whereClause>
 
     <!--- Execute the query --->
-    <cfquery name="queryResult">
+    <cfquery result="result"  name="queryResult">
         #sql#
         <cfloop array="#params#" index="param">
-            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+            <cfquery result="result" param value="#param.value#" cfsqltype="#param.cfsqltype#">
         </cfloop>
     </cfquery>
 
@@ -42,7 +42,7 @@
     <cfquery name="result">
         SELECT * 
         FROM itemcategory 
-        WHERE catid = <cfqueryparam value="#arguments.catid#" cfsqltype="cf_sql_integer">
+        WHERE catid = <cfquery result="result" param value="#arguments.catid#" cfsqltype="cf_sql_integer">
     </cfquery>
     
     <cfreturn result>
@@ -59,9 +59,9 @@
         FROM itemcategory c 
         INNER JOIN itemcatxref_user x ON x.catid = c.catid 
         INNER JOIN itemtypes_user i ON i.typeid = x.typeid 
-        WHERE x.catid = <cfqueryparam value="#arguments.new_catid#" cfsqltype="cf_sql_integer"> 
-        AND i.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer"> 
-        AND x.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer"> 
+        WHERE x.catid = <cfquery result="result" param value="#arguments.new_catid#" cfsqltype="cf_sql_integer"> 
+        AND i.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="cf_sql_integer"> 
+        AND x.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="cf_sql_integer"> 
         ORDER BY valuetype
     </cfquery>
     
@@ -81,7 +81,7 @@
         <cfif ArrayLen(arguments.catidList) GT 0>
             AND c.catid IN (
                 <cfloop from="1" to="#ArrayLen(arguments.catidList)#" index="i">
-                    <cfqueryparam value="#arguments.catidList[i]#" cfsqltype="CF_SQL_INTEGER">
+                    <cfquery result="result" param value="#arguments.catidList[i]#" cfsqltype="CF_SQL_INTEGER">
                     <cfif i LT ArrayLen(arguments.catidList)>,</cfif>
                 </cfloop>
             )
@@ -109,7 +109,7 @@
         FROM 
             itemcategory i 
         WHERE 
-            i.catArea_UCB IN ('B', <cfqueryparam value="#arguments.catArea_UCB#" cfsqltype="CF_SQL_VARCHAR">) 
+            i.catArea_UCB IN ('B', <cfquery result="result" param value="#arguments.catArea_UCB#" cfsqltype="CF_SQL_VARCHAR">) 
         ORDER BY 
             catOrder
     </cfquery>
@@ -128,9 +128,9 @@
         FROM itemcategory c
         INNER JOIN itemcatxref_user x ON x.catid = c.catid
         INNER JOIN itemtypes_user i ON i.typeid = x.typeid
-        WHERE x.catid = <cfqueryparam value="#arguments.new_catid#" cfsqltype="CF_SQL_INTEGER">
-        AND i.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
-        AND x.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE x.catid = <cfquery result="result" param value="#arguments.new_catid#" cfsqltype="CF_SQL_INTEGER">
+        AND i.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        AND x.userid = <cfquery result="result" param value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         ORDER BY valuetype
     </cfquery>
     

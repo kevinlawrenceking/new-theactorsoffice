@@ -16,19 +16,19 @@
 </cfif>
 
 
-    <cfquery  name="update">
+    <cfquery result="result"   name="update">
         update taousers
         set calstarttime =
-        <cfqueryparam cfsqltype="cf_sql_time" value="#calstarttime#" />
+        <cfquery result="result" param cfsqltype="cf_sql_time" value="#calstarttime#" />
         ,calendtime =
-        <cfqueryparam cfsqltype="cf_sql_time" value="#calendtime#" />
+        <cfquery result="result" param cfsqltype="cf_sql_time" value="#calendtime#" />
         ,defRows =
-        <cfqueryparam cfsqltype="cf_sql_integer" value="#defRows#" />
+        <cfquery result="result" param cfsqltype="cf_sql_integer" value="#defRows#" />
         ,viewtypeid =
-        <cfqueryparam cfsqltype="cf_sql_integer" value="#viewtypeid#" />
+        <cfquery result="result" param cfsqltype="cf_sql_integer" value="#viewtypeid#" />
 
         ,tzid =
-        <cfqueryparam cfsqltype="cf_sql_varchar" value="#tzid#" />
+        <cfquery result="result" param cfsqltype="cf_sql_varchar" value="#tzid#" />
         where userid = #userid#
     </cfquery>
 

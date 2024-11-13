@@ -8,8 +8,8 @@
     <cfquery name="result">
         SELECT * 
         FROM audsubcategories 
-        WHERE audcatid = <cfqueryparam value="#arguments.new_audcatid#" cfsqltype="CF_SQL_INTEGER"> 
-        AND audsubcatname = <cfqueryparam value="#arguments.audsubcatname#" cfsqltype="CF_SQL_VARCHAR">
+        WHERE audcatid = <cfquery result="result" param value="#arguments.new_audcatid#" cfsqltype="CF_SQL_INTEGER"> 
+        AND audsubcatname = <cfquery result="result" param value="#arguments.audsubcatname#" cfsqltype="CF_SQL_VARCHAR">
     </cfquery>
 
     <cfreturn result>
@@ -19,12 +19,12 @@
     <cfargument name="new_audCatId" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
-    <cfquery>
+    <cfquery result="result" >
         INSERT INTO audsubcategories (audSubCatName, audCatId, isDeleted)
         VALUES (
-            <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audSubCatName#" maxlength="100" null="#NOT len(trim(arguments.new_audSubCatName))#" />,
-            <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audCatId#" null="#NOT len(trim(arguments.new_audCatId))#" />,
-            <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#" />
+            <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audSubCatName#" maxlength="100" null="#NOT len(trim(arguments.new_audSubCatName))#" />,
+            <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audCatId#" null="#NOT len(trim(arguments.new_audCatId))#" />,
+            <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#" />
         );
     </cfquery>
 </cffunction>
@@ -34,13 +34,13 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_audSubCatId" type="numeric" required="true">
 
-    <cfquery>
+    <cfquery result="result" >
         UPDATE audsubcategories 
         SET 
-            audSubCatName = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audSubCatName)#" maxlength="100" null="#NOT len(trim(arguments.new_audSubCatName))#">,
-            audCatId = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audCatId#" null="#NOT len(trim(arguments.new_audCatId))#">,
-            isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+            audSubCatName = <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audSubCatName)#" maxlength="100" null="#NOT len(trim(arguments.new_audSubCatName))#">,
+            audCatId = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audCatId#" null="#NOT len(trim(arguments.new_audCatId))#">,
+            isDeleted = <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
         WHERE 
-            audSubCatId = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audSubCatId#">
+            audSubCatId = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audSubCatId#">
     </cfquery>
 </cffunction></cfcomponent>

@@ -15,12 +15,12 @@
 
     <!--- Try to insert each file into the database --->
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result"  datasource="abod">
             INSERT INTO tao_files (`filename`, `status`, `path`, `updated_timestamp`)
             VALUES (
-                <cfqueryparam value="#fname#" cfsqltype="cf_sql_varchar" maxlength="255">,
-                <cfqueryparam value="existing" cfsqltype="cf_sql_varchar" maxlength="20">,
-                <cfqueryparam value="/include" cfsqltype="cf_sql_varchar" maxlength="255">,
+                <cfquery result="result" param value="#fname#" cfsqltype="cf_sql_varchar" maxlength="255">,
+                <cfquery result="result" param value="existing" cfsqltype="cf_sql_varchar" maxlength="20">,
+                <cfquery result="result" param value="/include" cfsqltype="cf_sql_varchar" maxlength="255">,
                 NOW()
             );
         </cfquery>
@@ -39,12 +39,12 @@
     <cfset fname = listLast(f, "/")>
 
     <cftry>
-        <cfquery datasource="abod">
+        <cfquery result="result"  datasource="abod">
             INSERT INTO tao_files (`filename`, `status`, `path`, `updated_timestamp`)
             VALUES (
-                <cfqueryparam value="#fname#" cfsqltype="cf_sql_varchar" maxlength="255">,
-                <cfqueryparam value="existing" cfsqltype="cf_sql_varchar" maxlength="20">,
-                <cfqueryparam value="/include/qry" cfsqltype="cf_sql_varchar" maxlength="255">,
+                <cfquery result="result" param value="#fname#" cfsqltype="cf_sql_varchar" maxlength="255">,
+                <cfquery result="result" param value="existing" cfsqltype="cf_sql_varchar" maxlength="20">,
+                <cfquery result="result" param value="/include/qry" cfsqltype="cf_sql_varchar" maxlength="255">,
                 NOW()
             );
         </cfquery>

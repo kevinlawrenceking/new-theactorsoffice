@@ -1,6 +1,6 @@
 <cfparam name="mr" default="3" />
 
-<cfquery name="getFiles" datasource="abod" maxrows="#mr#">
+<cfquery result="result"  name="getFiles" datasource="abod" maxrows="#mr#">
     SELECT id, `path`, `filename`
     FROM tao_files
     WHERE filename = 'account_info.cfm'
@@ -24,7 +24,7 @@
 
         <!--- Loop through the content and find queries --->
         <cfloop condition="startPos LTE len(fileContent)">
-            <cfset startQuery = REFindNoCase("<cfquery\b[^>]*>", fileContent, startPos)>
+            <cfset startQuery = REFindNoCase("<cfquery result="result" \b[^>]*>", fileContent, startPos)>
             <cfset endQuery = REFindNoCase("</cfquery>", fileContent, startPos)>
 
             <!--- Ensure that both start and end of the query are valid --->
@@ -73,7 +73,7 @@
                     <cfset qryNameSanitized = REReplace(qryName, "[^a-zA-Z0-9_]", "", "ALL")>
 
                     <!--- Generate new query filename --->
-                    <cfquery name="getNextId" datasource="abod">
+                    <cfquery result="result"  name="getNextId" datasource="abod">
                         SELECT IFNULL(MAX(id), 0) + 1 AS nextId FROM tao_files
                     </cfquery>
 
@@ -213,7 +213,7 @@
                     <cfset qryDetails = REReplace(qryDetails, "[\s]+", " ", "ALL")>
 
                     <!--- Insert into database --->
-                    <cfquery datasource="abod">
+                    <cfquery result="result"  datasource="abod">
                         INSERT INTO tao_files (
                             filename,
                             status,
@@ -226,16 +226,16 @@
                             parent_id,
                             qry_no
                         ) VALUES (
-                            <cfqueryparam value="#newQueryFilename#" cfsqltype="cf_sql_varchar">,
-                            <cfqueryparam value="new" cfsqltype="cf_sql_varchar">,
-                            <cfqueryparam value="/include/qry" cfsqltype="cf_sql_varchar">,
-                            <cfqueryparam value="1" cfsqltype="cf_sql_tinyint">,
-                            <cfqueryparam value="1" cfsqltype="cf_sql_tinyint">,
-                            <cfqueryparam value="#qryDetails#" cfsqltype="cf_sql_varchar">,
-                            <cfqueryparam value="#tableName#" cfsqltype="cf_sql_varchar">,
-                            <cfqueryparam value="#qry_Type#" cfsqltype="cf_sql_varchar">,
-                            <cfqueryparam value="#getFiles.id#" cfsqltype="cf_sql_integer">,
-                            <cfqueryparam value="1" cfsqltype="cf_sql_integer">
+                            <cfquery result="result" param value="#newQueryFilename#" cfsqltype="cf_sql_varchar">,
+                            <cfquery result="result" param value="new" cfsqltype="cf_sql_varchar">,
+                            <cfquery result="result" param value="/include/qry" cfsqltype="cf_sql_varchar">,
+                            <cfquery result="result" param value="1" cfsqltype="cf_sql_tinyint">,
+                            <cfquery result="result" param value="1" cfsqltype="cf_sql_tinyint">,
+                            <cfquery result="result" param value="#qryDetails#" cfsqltype="cf_sql_varchar">,
+                            <cfquery result="result" param value="#tableName#" cfsqltype="cf_sql_varchar">,
+                            <cfquery result="result" param value="#qry_Type#" cfsqltype="cf_sql_varchar">,
+                            <cfquery result="result" param value="#getFiles.id#" cfsqltype="cf_sql_integer">,
+                            <cfquery result="result" param value="1" cfsqltype="cf_sql_integer">
                         )
                     </cfquery>
                 </cfif>
@@ -250,10 +250,10 @@
         <cffile action="write" file="#newMainFilePath#" output="#fileContent#">
 
         <!--- Mark file as processed --->
-        <cfquery datasource="abod">
+        <cfquery result="result"  datasource="abod">
             UPDATE tao_files
             SET qry_extract_yn = 1
-            WHERE id = <cfqueryparam value="#getFiles.id#" cfsqltype="cf_sql_integer">
+            WHERE id = <cfquery result="result" param value="#getFiles.id#" cfsqltype="cf_sql_integer">
         </cfquery>
 
         <!--- Output result based on whether queries were processed --->

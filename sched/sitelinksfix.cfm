@@ -5,7 +5,7 @@
 <cfset dsn = "abo" />
 <cfset dbug = "Y"  />
 
-<cfquery datasource="#dsn#" name="z" maxrows="5">
+<cfquery result="result"  datasource="#dsn#" name="z" maxrows="5">
     select * from taousers where userid = #select_userid#  
 </cfquery>
 
@@ -21,13 +21,13 @@
 
 <cfset n=0 />
 
-<cfquery datasource="#dsn#" name="x">
+<cfquery result="result"  datasource="#dsn#" name="x">
     select sitetypename,sitetypedescription from sitetypes_master
 </cfquery>
 
 <cfloop query="x">
 
-    <cfquery datasource="#dsn#" name="find">
+    <cfquery result="result"  datasource="#dsn#" name="find">
         Select * from sitetypes_user
         where sitetypename = '#x.sitetypename#' and userid = #select_userid#
     </cfquery>
@@ -46,7 +46,7 @@
                 <h3>SiteTypes</h3>
             </cfif>
         </cfoutput>
-        <cfquery datasource="#dsn#" name="insert">
+        <cfquery result="result"  datasource="#dsn#" name="insert">
             INSERT INTO `sitetypes_user` (`siteTypeName`, `siteTypeDescription`, `userid`)
             VALUES ('#x.sitetypename#','#x.sitetypedescription#',#select_userid#);
         </cfquery>
@@ -71,7 +71,7 @@
 
 
 
-<cfquery datasource="#dsn#" name="x">
+<cfquery result="result"  datasource="#dsn#" name="x">
     select
     s.id
     ,s.sitename
@@ -85,7 +85,7 @@
 
 <cfloop query="x">
 
-    <cfquery datasource="#dsn#" name="find">
+    <cfquery result="result"  datasource="#dsn#" name="find">
         Select sitetypeid from sitetypes_user
         where sitetypename = '#x.sitetypename#' and userid = #select_userid#
     </cfquery>
@@ -109,7 +109,7 @@
         <cfif #dbug# is "y">
         <cfoutput><h3>new_sitetypeid: #new_sitetypeid#</h3></cfoutput>
     </cfif>
-        <cfquery datasource="#dsn#" name="find2">
+        <cfquery result="result"  datasource="#dsn#" name="find2">
             Select * from sitelinks_user where sitename = '#x.sitename#' and userid = #select_userid#
         </cfquery>
         
@@ -129,7 +129,7 @@
                 VALUES ('#x.sitename#','#x.siteurl#','#x.siteicon#', #new_sitetypeid#, #select_userid#)<br/></cfoutput>
             
         </cfif>
-            <cfquery datasource="#dsn#" name="insert">
+            <cfquery result="result"  datasource="#dsn#" name="insert">
                 INSERT INTO `sitelinks_user_tbl` (`siteName`,`siteURL`,`siteicon`,`siteTypeid`,`userid`)
                 VALUES ('#x.sitename#','#x.siteurl#','#x.siteicon#', #new_sitetypeid#, #select_userid#)
             </cfquery>
@@ -147,7 +147,7 @@
 </cfloop>
 
 
-        <cfquery datasource="#dsn#" name="update">
+        <cfquery result="result"  datasource="#dsn#" name="update">
             update taousers set imdbid = 0 where userid = #select_userid#
         </cfquery>
     

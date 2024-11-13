@@ -8,7 +8,7 @@
  <cfset default_avatar_data = FileReadBinary(default_avatar_filename)>
 <cfset default_avatar_hash = Hash(default_avatar_data, "MD5")>
 
-<cfquery name="x"  maxrows="1000">
+<cfquery result="result"  name="x"  maxrows="1000">
 SELECT distinct
 d.contactid,
 d.contactfullname,
@@ -36,7 +36,7 @@ ORDER BY d.contactid
 [#default_avatar_hash#]<BR>
 [#contact_avatar_hash#]<BR></cfoutput>
         <cfif  default_avatar_hash neq contact_avatar_hash>
-<cfquery name="update"  >
+<cfquery result="result"  name="update"  >
 update contactitems set avatar_yn = 'Y' where itemid = #x.itemid# 
 </cfquery>
 
@@ -71,7 +71,7 @@ update contactitems set avatar_yn = 'Y' where itemid = #x.itemid#
        #x.contactfullname#: Gravatar exists and has been saved.<BR>
     </cfoutput>
 
-        <cfquery name="update"  >
+        <cfquery result="result"  name="update"  >
 update contactitems set avatar_yn = 'Y' where itemid = #x.itemid# 
 </cfquery>
 
@@ -82,7 +82,7 @@ update contactitems set avatar_yn = 'Y' where itemid = #x.itemid#
     <span style="color:red;">    #x.contactfullname#: No Gravatar found. Ignoring.</span><BR>
     </cfoutput>
 
-     <cfquery name="update"  >
+     <cfquery result="result"  name="update"  >
 update contactitems set avatar_yn = 'N' where itemid = #x.itemid# 
 </cfquery>
 

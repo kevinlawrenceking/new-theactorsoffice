@@ -2,7 +2,7 @@
  <cfparam name="check" default="N" />
 
  <Cfif #check# is "Y">
-     <cfquery  name="z">
+     <cfquery result="result"   name="z">
          SELECT id,sitename,siteurl,siteicon FROM sitelinks_user WHERE iscustom = 1 AND siteicon <> 'unknown.png'
      </cfquery>
 
@@ -21,7 +21,7 @@
              <!--- File exists and is an image, do nothing --->
              <cfelse>
 
-                 <cfquery  name="update">
+                 <cfquery result="result"   name="update">
                      UPDATE sitelinks_user set siteicon = 'unknown.png' where id = #z.id#
                  </cfquery>
                  <cfoutput>#id# removed!<BR></cfoutput>
@@ -31,7 +31,7 @@
  </cfif>
 
 
- <cfquery  name="x" maxrows="50">
+ <cfquery result="result"   name="x" maxrows="50">
      SELECT id,sitename,siteurl,siteicon FROM sitelinks_user WHERE iscustom = 1 AND siteicon = 'unknown.png'
  </cfquery>
 
@@ -159,7 +159,7 @@
                                  </cfloop>
 
                              </cfif>
-                             <cfquery  name="update">
+                             <cfquery result="result"   name="update">
                                  update sitelinks_user
                                  set siteicon = '#filename#'
                                  where id = #id#
@@ -167,7 +167,7 @@
 
                              <cfif #dsn# is "abo">
 
-                                 <cfquery datasource="abod" name="update">
+                                 <cfquery result="result"  datasource="abod" name="update">
                                      update sitelinks_user
                                      set siteicon = '#filename#'
                                      where siteurl = '#siteurl#'
@@ -177,7 +177,7 @@
 
                              <cfif #dsn# is "abod">
 
-                                 <cfquery datasource="abo" name="update">
+                                 <cfquery result="result"  datasource="abo" name="update">
                                      update sitelinks_user
                                      set siteicon = '#filename#'
                                      where siteurl = '#siteurl#'

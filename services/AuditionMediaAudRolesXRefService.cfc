@@ -5,13 +5,13 @@
     <cfargument name="new_mediaAudroleDescript" type="string" required="false" default="">
     <cfargument name="new_isDeleted" type="boolean" required="false" default=false>
 
-    <cfquery>
+    <cfquery result="result" >
         INSERT INTO audmedia_audroles_xref (mediaid, audroleid, mediaAudroleDescript, isDeleted)
         VALUES (
-            <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_mediaid#" null="#NOT len(trim(arguments.new_mediaid))#">,
-            <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audroleid#" null="#NOT len(trim(arguments.new_audroleid))#">,
-            <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaAudroleDescript#" maxlength="500" null="#NOT len(trim(arguments.new_mediaAudroleDescript))#">,
-            <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+            <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_mediaid#" null="#NOT len(trim(arguments.new_mediaid))#">,
+            <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audroleid#" null="#NOT len(trim(arguments.new_audroleid))#">,
+            <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaAudroleDescript#" maxlength="500" null="#NOT len(trim(arguments.new_mediaAudroleDescript))#">,
+            <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
         )
     </cfquery>
 </cffunction>
@@ -25,14 +25,14 @@
 
     <cfset var queryResult = "">
 
-    <cfquery name="queryResult">
+    <cfquery result="result"  name="queryResult">
         UPDATE audmedia_audroles_xref 
         SET 
-            mediaid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_mediaid#" null="#NOT len(trim(arguments.new_mediaid))#">,
-            audroleid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audroleid#" null="#NOT len(trim(arguments.new_audroleid))#">,
-            mediaAudroleDescript = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaAudroleDescript#" maxlength="500" null="#NOT len(trim(arguments.new_mediaAudroleDescript))#">,
-            isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+            mediaid = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_mediaid#" null="#NOT len(trim(arguments.new_mediaid))#">,
+            audroleid = <cfquery result="result" param cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audroleid#" null="#NOT len(trim(arguments.new_audroleid))#">,
+            mediaAudroleDescript = <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaAudroleDescript#" maxlength="500" null="#NOT len(trim(arguments.new_mediaAudroleDescript))#">,
+            isDeleted = <cfquery result="result" param cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
         WHERE 
-            #arguments.conditionColumn# = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.conditionValue#">
+            #arguments.conditionColumn# = <cfquery result="result" param cfsqltype="CF_SQL_VARCHAR" value="#arguments.conditionValue#">
     </cfquery>
 </cffunction></cfcomponent>

@@ -10,7 +10,7 @@
 
 
 
-<cfquery  name="relationships">
+<cfquery result="result"   name="relationships">
     select * from contactdetails d where recordname <> '' and userid = #session.userid# order by d.contactfullname
 </cfquery>
 

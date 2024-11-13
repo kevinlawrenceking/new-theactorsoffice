@@ -5,11 +5,11 @@
         <cfargument name="extraValue" type="string" required="true">
         <cfset var queryResult = "">
 
-        <cfquery name="queryResult">
+        <cfquery result="result"  name="queryResult">
             SELECT * 
             FROM allfields 
-            WHERE [key] <> <cfqueryparam value="#arguments.keyValue#" cfsqltype="CF_SQL_VARCHAR">
-            AND [extra] <> <cfqueryparam value="#arguments.extraValue#" cfsqltype="CF_SQL_VARCHAR">
+            WHERE [key] <> <cfquery result="result" param value="#arguments.keyValue#" cfsqltype="CF_SQL_VARCHAR">
+            AND [extra] <> <cfquery result="result" param value="#arguments.extraValue#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
 
         <cfreturn queryResult>
@@ -22,7 +22,7 @@
         <cfquery name="result">
             SELECT *
             FROM allfields
-            WHERE [key] = <cfqueryparam value="#arguments.keyValue#" cfsqltype="CF_SQL_VARCHAR">
+            WHERE [key] = <cfquery result="result" param value="#arguments.keyValue#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
 
         <cfreturn result>
