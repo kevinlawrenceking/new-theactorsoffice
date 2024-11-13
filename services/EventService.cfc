@@ -1068,7 +1068,7 @@
         </cfquery>
         
             
-            <cfrethrow />
+            
         
     
 </cffunction>
@@ -1212,7 +1212,7 @@
         </cfquery>
         
             
-            <cfrethrow />
+            
         
     
 </cffunction>

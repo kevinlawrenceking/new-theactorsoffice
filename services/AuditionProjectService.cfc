@@ -235,7 +235,7 @@
         
         
             
-            <cfrethrow />
+            
         
     
 </cffunction>
@@ -252,7 +252,7 @@
         
         
             
-            <cfrethrow />
+            
         
     
 </cffunction>
@@ -1143,7 +1143,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
         <cfreturn result>
     
         
-        <cfrethrow />
+        
     
     
 </cffunction>
