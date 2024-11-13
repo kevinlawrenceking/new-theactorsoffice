@@ -148,7 +148,7 @@
         )
     </cfquery>
 
-
+</cffunction>
 <cffunction output="false" name="INSnotifications_23830" access="public" returntype="numeric">
     <cfargument name="new_contactname" type="string" required="true">
     <cfargument name="contactid" type="numeric" required="true">
