@@ -41,7 +41,11 @@
 <cfset cleanData = REReplace(eventDescription, "[^a-zA-Z0-9,.!? ]", "", "ALL")>
 <cfset eventDescription = Left(cleanData, 5000)>
 <!--- Now insert 'cleanData' into your database --->
-
+<cfif NOT isDate(endRecur)>
+    <cfset endRecur = JavaCast("null", "")>
+</cfif>
+<Cfoutput>
+endrecur: [#endrecur#]</cfoutput><cfabort>
 <cfinclude template="/include/qry/add_14_1.cfm" />
 <cfinclude template="/include/qry/t_14_2.cfm" />
 <cfinclude template="/include/qry/tt_14_3.cfm" />
