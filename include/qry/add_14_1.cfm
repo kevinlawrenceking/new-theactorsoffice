@@ -14,6 +14,8 @@
     eventStartTime = eventStartTime,
     new_eventStopTime = new_eventStopTime,
     dow = dow,
+    <cfif NOT isDate(endRecur)>
     endRecur = endRecur,
+    </cfif>
     userid = userid
 ) />
