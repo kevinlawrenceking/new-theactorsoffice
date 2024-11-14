@@ -39,27 +39,12 @@
         <cfif notstartdate lte currentStartDate>
             <!--- Include the query to add a notification --->
             <cfinclude template="/include/qry/addNotification_326_1.cfm" />
-            <cfoutput>
-                <cfset add_count = add_count + 1 />
-            </cfoutput>
-        
-
-            <!--- Update notification if more than one notification is added --->
-            <cfif add_count gt 1>
-                <cfinclude template="/include/qry/updateNotification.cfm" />
-            </cfif>
+     
         <cfelse>
-            <!--- Include the query to add a notification for future dates --->
-            <cfinclude template="/include/qry/addNotification.cfm" />
-            <cfoutput>
-                <cfset add_count = add_count + 1 />
-            </cfoutput>
-            <cfset new_notid = result.generatedkey />
 
-            <!--- Update notification if more than one notification is added --->
-            <cfif add_count gt 1>
-                <cfinclude template="/include/qry/updateNotification.cfm" />
-            </cfif>
+            <!--- Include the query to add a notification for future dates --->
+          <cfinclude template="/include/qry/addNotification_326_1.cfm" />
+          
         </cfif>
     </cfif>
 </cfloop>
