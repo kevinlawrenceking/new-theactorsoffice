@@ -74,7 +74,7 @@
 
 <cffunction name="SELdurations" access="public" returntype="query" output="false">
     <cfquery name="durationsQuery">
-        SELECT durid, durhours, durname 
+        SELECT durid, durhours, durname, durseconds
         FROM mtgdurations 
         ORDER BY durid
     </cfquery>
