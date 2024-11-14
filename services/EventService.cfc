@@ -184,7 +184,7 @@
             eventDescription = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.eventDescription#" />,
             eventLocation = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.eventLocation#" />
             
-            <!-- Conditionally update optional date fields -->
+ 
             <cfif isDate(arguments.eventStart)>,
                 eventStart = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.eventStart#" />,
                 eventStop = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.eventStart#" />
