@@ -688,8 +688,8 @@ function getContactRecordName(new_contactid) {
     <cfargument name="contactbirthday" type="any" required="false" default="">
     <cfargument name="contactmeetingdate" type="any" required="false" default="">
     <cfargument name="contactmeetingloc" type="string" required="false" default="">
-    <cfargument name="deleteitem" type="boolean" required="false" default=false>
-    <cfargument name="refer_contact_id" type="numeric" required="false">
+    <cfargument name="deleteitem" type="numeric" required="false" default=false>
+    <cfargument name="refer_contact_id"  required="false">
     
   *
     <cfquery result="result">
