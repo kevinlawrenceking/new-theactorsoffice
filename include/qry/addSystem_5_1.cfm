@@ -1,6 +1,6 @@
 <cfset systemUserService = createObject("component", "services.SystemUserService")>
-<cfset NewSUID = systemUserService.INSfusystemusers(
-    new_systemid = new_systemid,
-    new_contactid = new_contactid,
-    new_suStartDate = new_suStartDate
+<cfset NewSUID = systemUserService.INSfusystemusers_24477(
+    systemid = systemid,
+    contactid = contactid,
+    suStartDate = suStartDate
 )>
