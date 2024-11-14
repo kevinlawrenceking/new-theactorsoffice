@@ -217,8 +217,6 @@
     <cfargument name="userID" type="numeric" required="true">
     <cfargument name="eventID" type="numeric" required="true">
     
-    
-
         <cfquery name="result" >
             SELECT 
                 n.noteID, 
@@ -243,7 +241,6 @@
             ORDER BY 
                 n.noteTimestamp DESC
         </cfquery>
-        
     
     <cfreturn result>
 </cffunction>

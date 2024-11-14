@@ -1,6 +1,11 @@
 <!--- This ColdFusion page displays event details, including attendees and notes, and manages tab expansion for better user experience. --->
 
-<cfinclude template="/include/qry/notesevent.cfm" />
+<cfparam name="eventid" default="0" /> <!--- Set default value for event ID --->
+<cfparam name="updatenoteid" default="0" /> <!--- Set default value for update note ID --->
+
+<cfinclude template="/include/qry/notesEvent_180_1.cfm" /> <!--- Include template for event notes --->
+
+<cfinclude template="/include/qry/notesContactDetails_180_2.cfm" /> <!--- Include template for contact details --->
 
 <cfparam name="rcontactid" default="0" />
 <cfparam name="returnurl" default="0" />
