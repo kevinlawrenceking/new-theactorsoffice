@@ -60,14 +60,17 @@
     <cfargument name="eventTypeName" type="string" required="true">
     <cfargument name="eventDescription" type="string" required="true">
     <cfargument name="eventLocation" type="string" required="true">
-    <cfargument name="eventStart" type="date" required="false" default="#JavaCast('null', '')#">
-    <cfargument name="eventStartTime" type="time" required="false" default="#JavaCast('null', '')#">
-    <cfargument name="eventStopTime" type="time" required="false" default="#JavaCast('null', '')#">
+    <cfargument name="eventStart" type="date" required="false">
+    <cfargument name="eventStartTime" type="time" required="false">
+    <cfargument name="eventStopTime" type="time" required="false">
     <cfargument name="dow" type="string" required="false" default="">
-    <cfargument name="endRecur" type="date" required="false" >
+    <cfargument name="endRecur" required="false"> <!-- Remove type="date" to prevent the initial error -->
     <cfargument name="userid" type="numeric" required="true">
 
-
+    <!-- Check if endRecur is a valid date or set it to null -->
+    <cfif not isDate(arguments.endRecur)>
+        <cfset arguments.endRecur = JavaCast("null", "")>
+    </cfif>
 
     <cfquery name="insertEventQuery" result="insertResult">
         INSERT INTO events_tbl (
@@ -98,6 +101,7 @@
     <!--- Return the primary key of the newly inserted record --->
     <cfreturn insertResult.generatedKey>
 </cffunction>
+
 
 <cffunction output="false" name="UPDevents" access="public" returntype="void">
     <cfargument name="newStartTime" type="string" required="true">
