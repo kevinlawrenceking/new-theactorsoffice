@@ -59,18 +59,21 @@
     </cfif>
     <cfset sql &= " ORDER BY #orderColumn# #orderDir#">
 
-<!-- Add this right before the query execution -->
+<!-- Ensure paramList has at least three parameters -->
+<cfif arrayLen(paramList) lt 3>
+    <cfset paramList.append({value="", cfsqltype="CF_SQL_VARCHAR"})> <!-- Or use a value appropriate for your case -->
+</cfif>
+
 
     <!--- Execute the query --->
     <cfquery result="result" name="qFiltered">
         #sql#
         <!--- Bind parameters only if they exist --->
         <cfif arrayLen(paramList) gt 0>
-        <Cfset x = 0>
+ 
             <cfloop array="#paramList#" index="param">
-            <Cfset x = #x# + 1 />
-            <cfif x neq 3>
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#"></cfif>
+     
+                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
             </cfloop>
         </cfif>
     </cfquery>
