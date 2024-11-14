@@ -121,7 +121,7 @@
             <ul class="nav nav-pills navtab-bg nav-justified p-1" role="tablist">
                 <li class="nav-item" role="presentation">
                     <a href="##role" data-bs-toggle="tab" aria-expanded="#tab1_expand#" class="nav-link <cfif #tab1_expand# is 'true'> active</cfif>" role="tab">
-                        Attendees <cfif #Attendees.recordcount# is not "0"> (#Attendees.recordcount#)</cfif> 
+                        Attendees <cfif #attendeesCount# is not "0"> (#attendeesCount#)</cfif> 
                     </a>
                 </li>
                 <li class="nav-item" role="presentation">
