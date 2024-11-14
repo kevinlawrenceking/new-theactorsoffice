@@ -53,6 +53,8 @@
 </cffunction>
 
 
+
+
 <cffunction output="false" name="INSevents" access="public" returntype="numeric">
     <cfargument name="eventTitle" type="string" required="true">
     <cfargument name="eventTypeName" type="string" required="true">
