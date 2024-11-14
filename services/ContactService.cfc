@@ -1,5 +1,76 @@
 <cfcomponent displayname="ContactService" hint="Handles operations for Contact table" > 
 
+<cffunction output="false" name="getFilteredContactsByEvent" access="public" returntype="query">
+    <!--- Define required arguments --->
+    <cfargument name="contacts_table" type="string" required="true">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="eventid" type="numeric" required="true">
+    <cfargument name="search" type="string" required="false" default="">
+    <cfargument name="listColumns" type="string" required="false" default="">
+    <cfargument name="formOrderColumn" type="string" required="false" default="">
+    <cfargument name="formOrderDir" type="string" required="false" default="asc">
+
+    <!--- Declare local variables --->
+    <cfset var qFiltered = "">
+    <cfset var sql = "">
+    <cfset var paramList = []>
+    <cfset var allowedOrderColumns = {
+        "1": "col1",
+        "2": "col2",
+        "3": "col3",
+        "4": "col4",
+        "5": "col5"
+    }>
+    <cfset var orderColumn = "">
+    <cfset var orderDir = "asc">
+    <cfset var i = 0>
+
+    <!--- Build SQL query with required parameters --->
+    <cfset sql = "SELECT contactid, col1, col2, col3, col4, col5, userid, hlink 
+                  FROM #arguments.contacts_table# 
+                  WHERE userid = ? 
+                  AND contactid IN (SELECT contactid FROM eventcontactsxref WHERE eventid = ?)">
+    
+    <cfset paramList.append({value=arguments.userid, cfsqltype="CF_SQL_INTEGER"})>
+    <cfset paramList.append({value=arguments.eventid, cfsqltype="CF_SQL_INTEGER"})>
+
+    <!--- Add search filter if provided --->
+    <cfif len(trim(arguments.search))>
+        <cfset sql &= " AND (">
+        <cfloop list="#arguments.listColumns#" index="thisColumn">
+            <cfif i gt 0>
+                <cfset sql &= " OR ">
+            </cfif>
+            <cfset sql &= "#thisColumn# LIKE ?">
+            <cfset paramList.append({value="%" & trim(arguments.search) & "%", cfsqltype="CF_SQL_VARCHAR"})>
+            <cfset i++>
+        </cfloop>
+        <cfset sql &= " )">
+    </cfif>
+
+    <!--- Add ORDER BY clause if applicable --->
+    <cfif structKeyExists(allowedOrderColumns, arguments.formOrderColumn)>
+        <cfset orderColumn = allowedOrderColumns[arguments.formOrderColumn]>
+        <cfif arguments.formOrderDir eq "desc">
+            <cfset orderDir = "DESC">
+        </cfif>
+        <cfset sql &= " ORDER BY #orderColumn# #orderDir#">
+    </cfif>
+
+    <!--- Execute the query --->
+    <cfquery result="result" name="qFiltered">
+        #sql#
+        <!--- Bind parameters --->
+        <cfloop array="#paramList#" index="param">
+            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+        </cfloop>
+    </cfquery>
+
+    <!--- Return the query result --->
+    <cfreturn qFiltered>
+</cffunction>
+
+
 <cffunction name="getContactCount" access="public" returntype="numeric" output="false">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="relationship" type="numeric" required="true">
