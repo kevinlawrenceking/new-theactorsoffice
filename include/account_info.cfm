@@ -91,7 +91,7 @@
             </cfloop>
         </select>
     </div>
-
+<Cfoutput>
     <!--- End Time Selection --->
     <div class="form-group col-md-6">
         <label for="calendtime">End Time<span class="text-danger">*</span></label>
