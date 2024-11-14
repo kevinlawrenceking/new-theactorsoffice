@@ -190,7 +190,89 @@
                         </div>
 
                         <!--- Recurring appointment options --->
-                        <div class="form-group col-md-12">
-                            <label for="eventStopTime">Recurring every:</label>
-                            <div id="checkboxes">
-                                <input type="checkbox
+                      <div class="form-group col-md-12">    
+        <label for="eventStopTime">Recurring every:</label>
+<div id="checkboxes">
+    <input type="checkbox" name="dow" value="1"  autocomplete="off"  onchange="showDiv('hidden_div', this)"> Monday
+    &nbsp;<input type="checkbox" name="dow" value="2"  onchange="showDiv('hidden_div', this)"> Tuesday
+    &nbsp; <input type="checkbox" name="dow" value="3"  onchange="showDiv('hidden_div', this)"> Wednesday
+     &nbsp;<input type="checkbox" name="dow" value="4"  onchange="showDiv('hidden_div', this)"> Thursday
+    &nbsp; <input type="checkbox" name="dow" value="5"  onchange="showDiv('hidden_div', this)"> Friday
+    &nbsp; <input type="checkbox" name="dow" value="6"  onchange="showDiv('hidden_div', this)"> Saturday
+    &nbsp; <input type="checkbox" name="dow" value="0"  onchange="showDiv('hidden_div', this)"> Sunday
+</div>
+     </div>
+     
+       
+     
+             <div class="form-group col-md-6"  id="hidden_div">
+                 <label for="eventStart">Recurring Until:</label>
+                 <input class="form-control" id="endRecur" name="endRecur" type="date"  >
+                
+             </div> 
+    
+    
+     
+     
+
+         </div>
+ 
+                         
+                 
+                     <div class="row mt-2">
+                         <div class="col-6">
+                
+                         </div>
+                         <div class="col-6 text-right">
+                      <a href="javascript:history.go(-1)"><button type="button" class="btn btn-light mr-1 btn-sm" data-bs-dismiss="modal">Back</button></a>
+                             <button type="submit" class="btn btn-primary btn-sm waves-effect waves-light" id="btn-save-event">Add</button>
+                         </div>
+                     </div>
+                 </form>
+              </div>
+         </div>
+         
+    </div>
+    
+
+        <script>      
+ $(document).ready(function() {
+    $(".parsley-examples").parsley()
+});
+ </script>  
+   
+
+
+
+<script>                       
+        function showDiv(divId, element)
+{
+    var checked = document.querySelectorAll('input:checked');
+    if (checked.length === 0) {
+document.getElementById(divId).style.display = 'none';
+
+} else {
+document.getElementById(divId).style.display = 'block';
+        $("#divId").prop('required', true);
+}
+}
+</script> 
+    
+
+ <script>
+$('select[name=eventStartTime]').on("change",function(){
+    var theSelectedIndex = $(this)[0].selectedIndex;
+    $.each($('select[name=eventStopTime] option'), function(){
+        var endOptionIndex = $(this).index();
+        if (endOptionIndex < theSelectedIndex){
+           $(this).attr('disabled','disabled');
+        } else{
+           $(this).removeAttr('disabled').prop('selected', true);
+           return false;
+        }
+    });
+});
+</script>
+
+
+<cfset script_name_include="/include/#ListLast(GetCurrentTemplatePath(), "\")#" /><cfinclude template="/include/bigbrotherinclude.cfm" /> 
