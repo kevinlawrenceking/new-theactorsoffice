@@ -1,5 +1,5 @@
-<!--- Create an instance of the MtgDurationsService component --->
-<cfset mtgDurationsService = createObject("component", "services.MtgDurationsService")>
+<!--- Create an instance of the MtgDurationService component --->
+<cfset mtgDurationService = createObject("component", "services.MtgDurationService")>
 
 <!--- Call the SELdurations function to fetch all durations --->
-<cfset durations = mtgDurationsService.SELdurations()>
+<cfset durations = mtgDurationService.SELdurations()>
