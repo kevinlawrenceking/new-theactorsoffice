@@ -52,6 +52,7 @@
     <cfreturn resultStruct>
 </cffunction>
 
+
 <cffunction output="false" name="INSevents" access="public" returntype="numeric">
     <cfargument name="eventTitle" type="string" required="true">
     <cfargument name="eventTypeName" type="string" required="true">
@@ -63,7 +64,7 @@
     <cfargument name="dow" type="string" required="false" default="">
     <cfargument name="endRecur" type="date" required="false" default="#JavaCast('null', '')#">
     <cfargument name="userid" type="numeric" required="true">
-
+<cfoutput>[#endRecur#]</cfoutput><cfabort>
     <cfquery name="insertEventQuery" result="insertResult">
         INSERT INTO events_tbl (
             eventTitle,
