@@ -11,6 +11,7 @@
 <cfinclude template="/include/qry/relationships_13_1.cfm" />
 <cfinclude template="/include/qry/durations.cfm" />
 
+<cfinclude template="/include/qry/eventtypes_user_443_2.cfm" /
 <div class="row">
     <div class="col-xl-6 col-lg-8 col-md-12">
         <div class="card">
@@ -82,8 +83,8 @@
                             <label for="eventTypeName">Type<span class="text-danger">*</span></label>
                             <select class="form-control" name="eventTypeName" id="eventTypeName" data-parsley-required data-parsley-error-message="Type is required">
                                 <option value=""></option>
-                                <cfoutput query="types">
-                                    <option value="#types.eventtypename#">#types.eventtypename#</option>
+                                <cfoutput query="eventtypes_user">
+                                    <option value="#eventtypes_user.eventtypename#">#eventtypes_user.eventtypename#</option>
                                 </cfoutput>
                             </select>
                         </div>
