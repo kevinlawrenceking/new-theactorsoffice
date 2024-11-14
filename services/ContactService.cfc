@@ -59,10 +59,6 @@
 
     <cfset sql &= " ORDER BY #orderColumn# #orderDir#">
 
-<!-- Ensure paramList has at least three parameters -->
-<cfif arrayLen(paramList) lt 3>
-    <cfset paramList.append({value="", cfsqltype="CF_SQL_VARCHAR"})> <!-- Or use a value appropriate for your case -->
-</cfif>
 
     <!--- Execute the query --->
     <cfquery result="result" name="qFiltered">
