@@ -1,5 +1,21 @@
 <cfcomponent displayname="ContactService" hint="Handles operations for Contact table" > 
 
+<cffunction name="getContactCount" access="public" returntype="numeric" output="false">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="relationship" type="numeric" required="true">
+
+    <cfquery name="findContact">
+        SELECT COUNT(*) AS recordCount
+        FROM contactdetails
+        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        AND contactid = <cfqueryparam value="#arguments.relationship#" cfsqltype="CF_SQL_INTEGER">
+    </cfquery>
+
+    <cfreturn findContact.recordCount>
+</cffunction>
+
+
+
     <cffunction output="false" name="ru" access="public" returntype="query">
         <cfargument name="contactid" type="numeric" required="true">
         <cfargument name="userid" type="numeric" required="true">
@@ -149,7 +165,7 @@
             MAX(u.updatetimestamp) AS col2
         FROM 
             contactdetails d
-        INNER JOIN 
+        LEFT JOIN 
             updatelog u 
             ON u.recid = d.contactid
         WHERE 
