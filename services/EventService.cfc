@@ -64,7 +64,7 @@
     <cfargument name="eventStartTime" type="time" required="false" default="#JavaCast('null', '')#">
     <cfargument name="eventStopTime" type="time" required="false" default="#JavaCast('null', '')#">
     <cfargument name="dow" type="string" required="false" default="">
-    <cfargument name="endRecur" type="date" required="false" default="#JavaCast('null', '')#">
+    <cfargument name="endRecur" type="date" required="false" >
     <cfargument name="userid" type="numeric" required="true">
 
     <cfif NOT isDate(arguments.endRecur)>
