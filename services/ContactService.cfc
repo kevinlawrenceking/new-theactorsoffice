@@ -1,13 +1,12 @@
 <cfcomponent displayname="ContactService" hint="Handles operations for Contact table" > 
 
 <cffunction output="false" name="getFilteredContactsByEvent" access="public" returntype="query">
-    <!--- Define required arguments --->
     <cfargument name="contacts_table" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="eventid" type="numeric" required="true">
     <cfargument name="search" type="string" required="false" default="">
-    <cfargument name="listColumns" type="string" required="false" default="">
-    <cfargument name="formOrderColumn" type="string" required="false" default="">
+    <cfargument name="listColumns" type="string" required="false" default="col1,col2,col3">
+    <cfargument name="formOrderColumn" type="string" required="false" default="1">
     <cfargument name="formOrderDir" type="string" required="false" default="asc">
 
     <!--- Declare local variables --->
@@ -34,7 +33,7 @@
     <cfset paramList.append({value=arguments.userid, cfsqltype="CF_SQL_INTEGER"})>
     <cfset paramList.append({value=arguments.eventid, cfsqltype="CF_SQL_INTEGER"})>
 
-    <!--- Add search filter if provided --->
+    <!--- Add search filter if provided ---> 
     <cfif len(trim(arguments.search))>
         <cfset sql &= " AND (">
         <cfloop list="#arguments.listColumns#" index="thisColumn">
@@ -57,11 +56,9 @@
         <cfset sql &= " ORDER BY #orderColumn# #orderDir#">
     </cfif>
 
-
     <!--- Execute the query --->
     <cfquery result="result" name="qFiltered">
         #sql#
-        <!--- Bind parameters --->
         <cfloop array="#paramList#" index="param">
             <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
         </cfloop>
