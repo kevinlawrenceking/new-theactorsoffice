@@ -1,10 +1,12 @@
 <cfcomponent displayname="NotificationService" hint="Handles operations for Notification table" > 
 
-<cffunction name="deleteOrphanedNotifications" access="public" returntype="void" hint="Marks orphaned notifications as deleted.">
+<cffunction name="fetchNotifications" access="public" returntype="void" hint="Marks orphaned notifications as deleted.">
+   <cfargument name="userid" type="numeric" required="true">
     <cfquery name="del" >
        UPDATE funotifications_tbl 
         SET isdeleted = 1 
         WHERE isdeleted = 0  
+          AND userID = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer">
         AND suid NOT IN (SELECT suid FROM fusystemusers)
     </cfquery>
 </cffunction>
