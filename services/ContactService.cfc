@@ -56,6 +56,8 @@
         </cfif>
         <cfset sql &= " ORDER BY #orderColumn# #orderDir#">
     </cfif>
+<cfdump var="#paramList#">
+<cfabort>
 
     <!--- Execute the query --->
     <cfquery result="result" name="qFiltered">
