@@ -197,14 +197,28 @@
 
 <script>
     function showDiv(divId, element) {
-        var checked = document.querySelectorAll('input:checked');
+        // Check if any checkboxes are checked to determine visibility of div
+        var checked = document.querySelectorAll('#checkboxes input[type="checkbox"]:checked');
+        
+        // Show or hide the div based on whether any checkboxes are checked
         if (checked.length === 0) {
             document.getElementById(divId).style.display = 'none';
+            // Clear the endRecur field if no day is selected
+            document.getElementById('endRecur').value = ""; 
         } else {
             document.getElementById(divId).style.display = 'block';
         }
     }
+
+    // Ensure the hidden_div is displayed if event details already contain a recurring end date
+    document.addEventListener("DOMContentLoaded", function() {
+        var endRecur = "#endRecurDisplay#";
+        if (endRecur !== "") {
+            document.getElementById('hidden_div').style.display = 'block';
+        }
+    });
 </script>
+
 
 <script>
     $('select[name=eventStartTime]').on("change", function() {

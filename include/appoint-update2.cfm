@@ -4,6 +4,11 @@
 <cfparam name="eventstarttime" default="" />     
 <cfparam name="dow" default="" />     
 
+<!--- Adjust endRecur date if provided --->
+ <cfif structKeyExists(variables, "endRecur") and isDate(variables.endRecur)>,
+    <cfset endRecur = dateAdd('d', 1, endRecur) />
+</cfif>
+
 <!--- Check if event start time is provided --->
 <cfif #eventStartTIme# is not "">
 

@@ -165,54 +165,63 @@
     
 </cffunction>
 <cffunction output="false" name="UPDevents_23733" access="public" returntype="void">
-    <cfargument name="eventTitle" type="string" required="true">
-    <cfargument name="eventTypeName" type="string" required="true">
-    <cfargument name="eventDescription" type="string" required="true">
-    <cfargument name="eventLocation" type="string" required="true">
-    <cfargument name="eventStart" type="date" required="false" default="">
-    <cfargument name="eventStartTime" type="string" required="false" default="">
-    <cfargument name="dow" type="string" required="false" default="">
-    <cfargument name="eventStopTime" type="time" required="false" default="">
-    <cfargument name="endRecur" type="date" required="false" default="">
-    <cfargument name="eventid" type="numeric" required="true">
+    <cfargument name="eventTitle" required="true">
+    <cfargument name="eventTypeName" required="true">
+    <cfargument name="eventDescription" required="true">
+    <cfargument name="eventLocation" required="true">
+    <cfargument name="eventStart" required="false" default="#JavaCast('null', '')#">
+    <cfargument name="eventStartTime" required="false" default="#JavaCast('null', '')#">
+    <cfargument name="dow" required="false" default="#JavaCast('null', '')#">
+    <cfargument name="eventStopTime" required="false" default="#JavaCast('null', '')#">
+    <cfargument name="endRecur" required="false" default="#JavaCast('null', '')#">
+    <cfargument name="eventid" required="true">
 
-    
-        <cfquery result="result">
-            UPDATE events 
-            SET 
-                eventTitle = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.eventTitle#" />,
-                eventTypeName = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.eventTypeName#" />,
-                eventDescription = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.eventDescription#" />,
-                eventLocation = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.eventLocation#" />
-                <cfif arguments.eventStart neq "">,
-                    eventStart = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.eventStart#" />,
-                    eventStop = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.eventStart#" />
-                </cfif>
-                <cfif arguments.eventStartTime neq "">,
-                    eventStartTime = '#arguments.eventStartTime#'
-                </cfif>
-                <cfif arguments.dow neq "">,
-                    dow = '#arguments.dow#'
-                <cfelse>,
-                    dow = NULL
-                </cfif>
-                <cfif arguments.eventStopTime neq "">,
-                    eventStopTime = <cfqueryparam cfsqltype="cf_sql_time" value="#arguments.eventStopTime#" />
-                </cfif>
-                <cfif arguments.endRecur neq "" and arguments.dow neq "">,
-                    endRecur = dateAdd('d', 1, arguments.endRecur),
-                    endRecur = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.endRecur#" />
-                <cfelse>,
-                    endRecur = NULL
-                </cfif>
-            WHERE 
-                eventid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.eventid#" />
-        </cfquery>
-    
-
-    
-    
+    <cfquery result="result">
+        UPDATE events 
+        SET 
+            eventTitle = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.eventTitle#" />,
+            eventTypeName = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.eventTypeName#" />,
+            eventDescription = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.eventDescription#" />,
+            eventLocation = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.eventLocation#" />
+            
+            <!-- Conditionally update optional date fields -->
+            <cfif isDate(arguments.eventStart)>,
+                eventStart = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.eventStart#" />,
+                eventStop = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.eventStart#" />
+            <cfelse>,
+                eventStart = NULL,
+                eventStop = NULL
+            </cfif>
+            
+            <cfif len(arguments.eventStartTime)>,
+                eventStartTime = <cfqueryparam cfsqltype="cf_sql_time" value="#arguments.eventStartTime#" />
+            <cfelse>,
+                eventStartTime = NULL
+            </cfif>
+            
+            <cfif len(arguments.dow)>,
+                dow = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.dow#" />
+            <cfelse>,
+                dow = NULL
+            </cfif>
+            
+            <cfif isDate(arguments.eventStopTime)>,
+                eventStopTime = <cfqueryparam cfsqltype="cf_sql_time" value="#arguments.eventStopTime#" />
+            <cfelse>,
+                eventStopTime = NULL
+            </cfif>
+            
+            <cfif isDate(arguments.endRecur) and len(arguments.dow)>,
+                endRecur = <cfqueryparam cfsqltype="cf_sql_date" value="#dateAdd('d', 1, arguments.endRecur)#" />
+            <cfelse>,
+                endRecur = NULL
+            </cfif>
+        
+        WHERE 
+            eventid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.eventid#" />
+    </cfquery>
 </cffunction>
+
 <cffunction output="false" name="RESevents" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     <cfargument name="eventid" type="numeric" required="true">

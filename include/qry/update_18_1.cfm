@@ -1,4 +1,8 @@
 <cfset eventService = createObject("component", "services.EventService")>
+<cfif NOT isDate(endRecur)>
+    <cfset endRecur = JavaCast("null", "")>
+</cfif>
+
 <cfset eventService.UPDevents_23733(
     eventTitle = eventTitle,
     eventTypeName = eventTypeName,
