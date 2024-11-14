@@ -50,12 +50,19 @@
         <cfset sql &= "">
     </cfif>
 
-<!--- Add ORDER BY clause if applicable --->
+<!--- Ensure there is only one ORDER BY clause --->
 <cfif structKeyExists(allowedOrderColumns, arguments.formOrderColumn)>
+    <!--- Define the order column and direction --->
     <cfset orderColumn = allowedOrderColumns[arguments.formOrderColumn]>
     <cfset orderDir = arguments.formOrderDir eq "desc" ? "DESC" : "ASC">
+
+    <!--- Remove any existing ORDER BY clause to avoid duplication --->
+    <cfset sql = replace(sql, "ORDER BY", "", "all")>
+
+    <!--- Append a single ORDER BY clause --->
     <cfset sql &= " ORDER BY " & orderColumn & " " & orderDir>
 </cfif>
+
 
     <cfset sql &= " ORDER BY #orderColumn# #orderDir#">
 
