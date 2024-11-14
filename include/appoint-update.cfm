@@ -2,7 +2,7 @@
 
 <cfparam name="reventid" default="0" />
 <cfparam name="rcontactid" default="0" />
-
+<cfinclude template="/include/qry/eventdetails_334_3.cfm" />
 <cfinclude template="/include/qry/durations.cfm" />
 
 <style>
