@@ -93,6 +93,7 @@
     <!--- Return the primary key of the newly inserted record --->
     <cfreturn insertResult.generatedKey>
 </cffunction>
+
 <cffunction output="false" name="UPDevents" access="public" returntype="void">
     <cfargument name="newStartTime" type="string" required="true">
     
@@ -832,8 +833,6 @@
     <cfargument name="eventid" type="numeric" required="true">
     
     
-    
-    
         <cfquery name="result" >
             SELECT 
                 e.eventID, 
@@ -858,11 +857,6 @@
         
         <cfreturn result>
         
-        
-            
-            
-        
-    
 </cffunction>
 <cffunction output="false" name="DETevents_24492" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
