@@ -1,5 +1,10 @@
 <cfset eventService = createObject("component", "services.EventService")>
 
+<!-- Ensure endRecur is a valid date or set it to null if not -->
+<cfif NOT isDate(endRecur)>
+    <cfset endRecur = JavaCast("null", "")>
+</cfif>
+
 <cfset new_eventid = eventService.INSevents(
     eventTitle = eventTitle,
     eventTypeName = eventTypeName,
