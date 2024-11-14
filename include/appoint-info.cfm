@@ -6,6 +6,7 @@
 <cfinclude template="/include/qry/eventdetails_334_3.cfm" />
 <cfinclude template="/include/qry/notesEvent_180_1.cfm" /> <!--- Include template for event notes --->
 
+<cfinclude template="/include/qry/attendees_336_5.cfm" />
 <cfinclude template="/include/qry/notesContactDetails_180_2.cfm" /> <!--- Include template for contact details --->
 
 <cfparam name="rcontactid" default="0" />
