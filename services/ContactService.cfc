@@ -6,7 +6,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="eventid" type="numeric" required="true">
     <cfargument name="search" type="string" required="false" default="">
-    <cfargument name="listColumns" type="string" required="false" default="col1,col2,col3">
+    <cfargument name="listColumns" type="string" required="false" default="col1,col2">
     <cfargument name="formOrderColumn" type="string" required="false" default="1">
     <cfargument name="formOrderDir" type="string" required="false" default="asc">
 
