@@ -1,10 +1,5 @@
 <cfcomponent displayname="SystemUserService" hint="Handles operations for SystemUser table" > 
 
-<cfquery  name="addSystem"    result="result">
-INSERT INTO fuSystemUsers (systemID,contactID,userID,suStartDate)
-VALUES ('#systemID#',#contactID#,#userid#,'#suStartDate#')
-</cfquery> 
-
 
 
 <cffunction output="false" name="INSfusystemusers" access="public" returntype="numeric">
