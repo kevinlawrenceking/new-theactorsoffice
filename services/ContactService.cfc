@@ -60,7 +60,7 @@
     <cfset sql &= " ORDER BY #orderColumn# #orderDir#">
 
 <!-- Add this right before the query execution -->
-<cfoutput><cfdump var="#paramList#"></cfoutput><cfabort>
+
     <!--- Execute the query --->
     <cfquery result="result" name="qFiltered">
         #sql#
