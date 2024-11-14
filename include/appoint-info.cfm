@@ -86,7 +86,7 @@
                         <cfif #eventdetails.eventlocation# is not "">
                             <br><i class="fe-map-pin"></i> #eventdetails.eventlocation#
                         </cfif>
-                    </cfoutput>
+               
                 </p>
                 <p class="mt-1 mb-0 text-muted font-16">
                     <a href="/app/appoint-update/?eventid=#session.new_eventid#&returnurl=appoint" title="Update Tag" data-bs-original-title="Edit Appointment">
@@ -98,7 +98,7 @@
     </div>
 
     <cfset h5style = "font-size:0.875rem;font-weight: 500;text-align:left;margin-bottom:0;" />
-
+ 
     <div class="col-md-9 col-sm-6 col-xs-12">
         <div class="card h-100">
             <div class="card-body">
@@ -110,7 +110,7 @@
         </div>
     </div>
 </div>
-
+</cfoutput>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 
