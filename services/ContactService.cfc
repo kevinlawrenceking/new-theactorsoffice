@@ -172,7 +172,7 @@
     
     
         <cfquery name="result" >
-            SELECT d.contactid
+            SELECT d.contactid,
             FROM contactdetails d
             WHERE d.[#arguments.addDaysNoUniqueName#] = <cfqueryparam value="Y" cfsqltype="CF_SQL_CHAR">
             AND d.contactid = <cfqueryparam value="#arguments.newContactId#" cfsqltype="CF_SQL_INTEGER">
@@ -193,18 +193,14 @@
     
     
         <cfquery name="result" >
-            SELECT * 
+            SELECT d.contactid, d.recordname
             FROM contactdetails d 
             WHERE recordname <> '' 
               AND userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 
             ORDER BY d.contactfullname
         </cfquery>
         
-        
-            
-            <cfset result = queryNew("contactfullname")>
-        
-    
+
     
     <cfreturn result>
 </cffunction>
