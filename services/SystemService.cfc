@@ -1,5 +1,40 @@
 <cfcomponent displayname="SystemService" hint="Handles operations for System table" > 
 
+<cffunction name="addNotification" access="public" returntype="numeric">
+    <!--- Define arguments --->
+    <cfargument name="actionID" type="numeric" required="true">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="suID" type="numeric" required="true">
+    <cfargument name="notstartdate" type="date" required="false" default="">
+    <cfargument name="add_count" type="numeric" required="true">
+    
+    <!--- Declare local variables --->
+    <cfset var new_notid = 0>
+
+    <!--- Execute the query with conditional date based on add_count --->
+    <cfquery name="addNotification" result="result">
+        INSERT INTO funotifications (actionid, userid, suID, notstartdate, notstatus)
+        VALUES (
+            <cfqueryparam value="#arguments.actionID#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="#arguments.suID#" cfsqltype="CF_SQL_INTEGER">,
+            <cfif arguments.add_count gt 1>
+                NULL
+            <cfelse>
+                <cfqueryparam value="#DateFormat(arguments.notstartdate, 'yyyy-mm-dd')#" cfsqltype="CF_SQL_DATE">
+            </cfif>,
+            'Pending'
+        )
+    </cfquery>
+
+    <!--- Capture the generated key for the new notification --->
+    <cfset new_notid = result.generatedkey>
+
+    <!--- Return the primary key of the newly inserted record --->
+    <cfreturn new_notid>
+</cffunction>
+
+
 <cffunction output="false" name="SELfusystemtypes" access="public" returntype="query" >
     <cfquery result="result" name="queryResult">
         SELECT systemtype AS ID, systemtype AS systemname 
