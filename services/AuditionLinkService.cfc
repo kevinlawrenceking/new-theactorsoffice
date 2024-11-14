@@ -57,5 +57,3 @@ Here is the updated ColdFusion component code:
     </cfquery>
 </cffunction>
 </cfcomponent>
-
-In this updated code, I have removed the `datasource` attribute from all `<cfquery result="result">` tags and removed all `cftry` and `cfcatch` blocks as per your instructions. I did not find any coding errors or overly complicated expressions, so no further changes were made.
