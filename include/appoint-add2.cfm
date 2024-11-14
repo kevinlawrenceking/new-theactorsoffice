@@ -11,7 +11,7 @@
 <cfparam name="endRecur" default=""/>
 
 <!--- Adjust endRecur date if provided --->
- <cfif structKeyExists(arguments, "endRecur") and isDate(arguments.endRecur)>,
+ <cfif structKeyExists(variables, "endRecur") and isDate(variables.endRecur)>,
     <cfset endRecur = dateAdd('d', 1, endRecur) />
 </cfif>
 
