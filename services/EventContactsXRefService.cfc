@@ -182,19 +182,19 @@ function deleteEventContactsXref(required numeric audStepId) {
     
     <cfreturn result>
 </cffunction>
-<cffunction output="false" name="SELeventcontactsxref_24499" access="public" returntype="query">
+<cffunction output="false" name="SELeventcontactsxref_24499" access="public" returntype="struct">
     <cfargument name="eventid" type="numeric" required="true">
     
+    <cfquery name="result">
+        SELECT * FROM event_contacts_xref
+        WHERE eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER">
+    </cfquery>
     
-
-        <cfquery name="result" >
-            SELECT *
-            FROM eventcontactsxref x
-            INNER JOIN contactdetails c ON x.contactid = c.contactid
-            WHERE x.eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER" />
-        </cfquery>
+    <cfset var returnStruct = structNew()>
+    <cfset returnStruct.query = result>
+    <cfset returnStruct.recordCount = result.recordCount>
     
-    <cfreturn result>
+    <cfreturn returnStruct>
 </cffunction>
 <cffunction output="false" name="INSeventcontactsxref_24532" access="public" returntype="numeric">
     <cfargument name="new_eventid" type="numeric" required="true">

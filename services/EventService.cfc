@@ -828,40 +828,42 @@
     
     <cfreturn result>
 </cffunction>
-<cffunction output="false" name="DETevents_24487" access="public" returntype="struct">
+<cffunction output="false" name="DETevents_24487" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
     
-    <!--- Execute the query --->
-    <cfquery name="result">
-        SELECT 
-            e.eventID, 
-            e.eventID AS recid, 
-            e.eventTitle, 
-            e.eventDescription, 
-            e.eventLocation, 
-            e.eventStatus, 
-            e.eventCreation, 
-            e.eventStart, 
-            e.eventStop, 
-            e.eventTypeName, 
-            e.userid, 
-            e.eventStartTime, 
-            e.eventStopTime, 
-            e.contactid, 
-            e.dow, 
-            e.endRecur
-        FROM events e
-        WHERE e.eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER">
-    </cfquery>
     
-    <!--- Build the return structure with query and recordcount --->
-    <cfset var returnStruct = structNew()>
-    <cfset returnStruct.query = result>
-    <cfset returnStruct.recordCount = result.recordCount>
-
-    <cfreturn returnStruct>
+    
+    
+        <cfquery name="result" >
+            SELECT 
+                e.eventID, 
+                e.eventID AS recid, 
+                e.eventTitle, 
+                e.eventDescription, 
+                e.eventLocation, 
+                e.eventStatus, 
+                e.eventCreation, 
+                e.eventStart, 
+                e.eventStop, 
+                e.eventTypeName, 
+                e.userid, 
+                e.eventStartTime, 
+                e.eventStopTime, 
+                e.contactid, 
+                e.dow, 
+                e.endRecur
+            FROM events e
+            WHERE e.eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfreturn result>
+        
+        
+            
+            
+        
+    
 </cffunction>
-
 <cffunction output="false" name="DETevents_24492" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
     
