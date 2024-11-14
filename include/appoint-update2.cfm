@@ -10,7 +10,7 @@
     <!--- Include duration calculation template --->
 <cfinclude template="/include/qry/durations.cfm" />
 
-    <cfset new_durseconds = duration.durseconds />
+    <cfset new_durseconds = s.durseconds />
     
     <cfset eventStopTime = "#DateAdd("s","#eventStartTIme#","#new_durseconds#")#" />
 
