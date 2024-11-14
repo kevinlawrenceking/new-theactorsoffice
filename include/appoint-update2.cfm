@@ -8,7 +8,7 @@
 <cfif #eventStartTIme# is not "">
 
     <!--- Include duration calculation template --->
-    <cfinclude template="/include/qry/duration.cfm" />
+<cfinclude template="/include/qry/durations.cfm" />
 
     <cfset new_durseconds = duration.durseconds />
     
