@@ -63,7 +63,12 @@
 <cfif arrayLen(paramList) lt 3>
     <cfset paramList.append({value="", cfsqltype="CF_SQL_VARCHAR"})> <!-- Or use a value appropriate for your case -->
 </cfif>
-
+<cfif arrayLen(paramList) lt 4>
+    <cfset paramList.append({value="", cfsqltype="CF_SQL_VARCHAR"})> <!-- Or use a value appropriate for your case -->
+</cfif>
+<cfif arrayLen(paramList) lt 5>
+    <cfset paramList.append({value="", cfsqltype="CF_SQL_VARCHAR"})> <!-- Or use a value appropriate for your case -->
+</cfif>
 
     <!--- Execute the query --->
     <cfquery result="result" name="qFiltered">
