@@ -69,7 +69,7 @@
           <input type="hidden" name="t4" value="1"/>
 
          
-<cfoutput>
+
     <!--- Start and End times for the loop --->
 <cfset startTime = createTime(5, 0, 0)>
 <cfset endTime = createTime(23, 45, 0)>
@@ -78,14 +78,14 @@
     <!--- Start Time Selection --->
     <div class="form-group col-md-6">
         <label for="calstarttime">Start Time<span class="text-danger">*</span></label>
-        <select class="form-control" name="calstarttime" id="calstarttime">
+        <select class="form-control" name="calstarttime" id="calstarttime"><cfoutput>
             <cfloop from="#startTime#" to="#endTime#" step="#createTimeSpan(0, 0, 15, 0)#" index="timeSlot">
                 <cfset formattedTime = timeFormat(timeSlot, "HH:mm:ss")>
                 <cfset displayTime = timeFormat(timeSlot, "h:mm tt")>
                 <option value="#formattedTime#" <cfif timeFormat(details.calstarttime) EQ formattedTime>selected</cfif>>
                     #displayTime#
                 </option>
-            </cfloop>
+            </cfloop></cfoutput>
         </select>
     </div>
 
