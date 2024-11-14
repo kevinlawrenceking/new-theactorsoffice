@@ -38,7 +38,7 @@
         <!--- Check if the calculated start date is less than or equal to the current date --->
         <cfif notstartdate lte currentStartDate>
             <!--- Include the query to add a notification --->
-            <cfinclude template="/include/qry/addNotification.cfm" />
+            <cfinclude template="/include/qry/addNotification_326_1.cfm" />
             <cfoutput>
                 <cfset add_count = add_count + 1 />
             </cfoutput>
