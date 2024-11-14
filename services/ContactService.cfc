@@ -44,7 +44,7 @@
         </cfloop>
         <cfset sql &= ")">
     </cfif>
-
+<Cfparam name="ordercolumn" default="ASC" />
     <!--- Add ORDER BY clause if applicable --->
     <cfif structKeyExists(allowedOrderColumns, arguments.formOrderColumn)>
         <cfset orderColumn = allowedOrderColumns[arguments.formOrderColumn]>
