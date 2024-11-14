@@ -68,7 +68,7 @@
         <cfif arrayLen(paramList) gt 0>
         <Cfset x = 0>
             <cfloop array="#paramList#" index="param">
-            <Cfset x = x + 1 />
+            <Cfset x = #x# + 1 />
             <cfif x neq 3>
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#"></cfif>
             </cfloop>
