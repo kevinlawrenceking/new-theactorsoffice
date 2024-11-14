@@ -35,16 +35,18 @@
     <!--- Add search filter if provided --->
     <cfif len(trim(arguments.search))>
         <cfset sql &= " AND (">
+        <cfset var i = 0>
         <cfloop list="#arguments.listColumns#" index="thisColumn">
-            <cfif listFirst(arguments.listColumns) neq thisColumn>
+            <cfif i gt 0>
                 <cfset sql &= " OR ">
             </cfif>
             <cfset sql &= "#thisColumn# LIKE ?">
             <cfset paramList.append({value="%" & trim(arguments.search) & "%", cfsqltype="CF_SQL_VARCHAR"})>
+            <cfset i++>
         </cfloop>
         <cfset sql &= ")">
     </cfif>
-<Cfparam name="ordercolumn" default="ASC" />
+
     <!--- Add ORDER BY clause if applicable --->
     <cfif structKeyExists(allowedOrderColumns, arguments.formOrderColumn)>
         <cfset orderColumn = allowedOrderColumns[arguments.formOrderColumn]>
@@ -57,6 +59,7 @@
     <!--- Execute the query --->
     <cfquery result="result" name="qFiltered">
         #sql#
+        <!--- Bind parameters only if they exist --->
         <cfloop array="#paramList#" index="param">
             <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
         </cfloop>
@@ -65,6 +68,7 @@
     <!--- Return the query result --->
     <cfreturn qFiltered>
 </cffunction>
+
 
     <cffunction output="false" name="ru" access="public" returntype="query">
         <cfargument name="contactid" type="numeric" required="true">
