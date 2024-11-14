@@ -6,7 +6,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="eventid" type="numeric" required="true">
     <cfargument name="search" type="string" required="false" default="">
-    <cfargument name="listColumns" type="string" required="false" default="col1,col2">
+    <cfargument name="listColumns" type="string" required="false" default="col1,col2,col3">
     <cfargument name="formOrderColumn" type="string" required="false" default="1">
     <cfargument name="formOrderDir" type="string" required="false" default="asc">
 
@@ -45,6 +45,9 @@
             <cfset i++>
         </cfloop>
         <cfset sql &= ")">
+    <cfelse>
+        <!-- Ensure no search params added if search is empty -->
+        <cfset sql &= "">
     </cfif>
 
     <!--- Add ORDER BY clause if applicable --->
@@ -60,14 +63,17 @@
     <cfquery result="result" name="qFiltered">
         #sql#
         <!--- Bind parameters only if they exist --->
-        <cfloop array="#paramList#" index="param">
-            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-        </cfloop>
+        <cfif arrayLen(paramList) gt 0>
+            <cfloop array="#paramList#" index="param">
+                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+            </cfloop>
+        </cfif>
     </cfquery>
 
     <!--- Return the query result --->
     <cfreturn qFiltered>
 </cffunction>
+
 
 
     <cffunction output="false" name="ru" access="public" returntype="query">
