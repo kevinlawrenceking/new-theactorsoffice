@@ -46,7 +46,6 @@
     <cfset var whereClauses = []>
     <cfset var params = []>
     
-    <!--- Build WHERE clause dynamically --->
     <cfloop collection="#arguments.conditions#" item="key">
         <cfif listFindNoCase("durid,durhours,durname", key)>
             <cfset arrayAppend(whereClauses, "#key# = ?")>
@@ -72,4 +71,14 @@
 
     <cfreturn queryResult>
 </cffunction>
+
+<cffunction name="SELdurations" access="public" returntype="query" output="false">
+    <cfquery name="durationsQuery">
+        SELECT durid, durhours, durname 
+        FROM mtgdurations 
+        ORDER BY durid
+    </cfquery>
+    <cfreturn durationsQuery>
+</cffunction>
+
 </cfcomponent>
