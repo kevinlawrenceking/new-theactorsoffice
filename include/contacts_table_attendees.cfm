@@ -8,7 +8,7 @@
 <table id="<cfoutput>#contacts_table#</cfoutput>" style="width:100%;" class="table display dt-responsive nowrap w-100 table-striped" role="grid">
     <thead>
         <tr>
-            <th></th>
+     
             <th>Name</th>
             <th>Tags</th>
             <th>Company</th>
@@ -19,8 +19,10 @@
     <tbody>
         <cfoutput query="qFiltered">
             <tr>
-                <td>#contactid#</td>
-                <td>#col1#</td> <!-- Assuming "Name" -->
+              
+                <td>
+                <a href="/app/contact/?contactid=#contactid#">#col1#</a>
+                </td> <!-- Assuming "Name" -->
                 <td>#col2#</td> <!-- Assuming "Tags" -->
                 <td>#col3#</td> <!-- Assuming "Company" -->
                 <td>#col4#</td> <!-- Assuming "Phone" -->
