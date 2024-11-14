@@ -74,7 +74,7 @@
 
 <cffunction name="SELdurations" access="public" returntype="query" output="false">
     <cfquery name="durationsQuery">
-        SELECT durid, durhours, durname, durseconds
+        SELECT durid, durhours, durname, (COALESCE(durhours, 0) * 3600) AS durseconds
         FROM mtgdurations 
         ORDER BY durid
     </cfquery>
