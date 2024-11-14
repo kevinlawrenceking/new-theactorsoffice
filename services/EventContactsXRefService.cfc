@@ -186,7 +186,7 @@ function deleteEventContactsXref(required numeric audStepId) {
     <cfargument name="eventid" type="numeric" required="true">
     
     <cfquery name="result">
-        SELECT * FROM event_contacts_xref
+        SELECT * FROM eventcontactsxref
         WHERE eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
     
