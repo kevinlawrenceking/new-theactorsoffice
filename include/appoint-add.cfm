@@ -177,20 +177,23 @@
    
 
 
-
 <script>                       
-        function showDiv(divId, element)
-{
-    var checked = document.querySelectorAll('input:checked');
-    if (checked.length === 0) {
-document.getElementById(divId).style.display = 'none';
+    function showDiv(divId, element) {
+        var checked = document.querySelectorAll('input[name="dow"]:checked');
+        var hiddenDiv = document.getElementById(divId);
+        
+        if (checked.length === 0) {
+            hiddenDiv.style.display = 'none';
+            // Clear endRecur value when hiding the div
+            document.getElementById("endRecur").value = "";
+            $("#endRecur").prop('required', false);
+        } else {
+            hiddenDiv.style.display = 'block';
+            $("#endRecur").prop('required', true); // Set required when shown
+        }
+    }
+</script>
 
-} else {
-document.getElementById(divId).style.display = 'block';
-        $("#divId").prop('required', true);
-}
-}
-</script> 
     
 
  <script>
