@@ -66,6 +66,11 @@
     <cfargument name="dow" type="string" required="false" default="">
     <cfargument name="endRecur" type="date" required="false" default="#JavaCast('null', '')#">
     <cfargument name="userid" type="numeric" required="true">
+
+    <cfif NOT isDate(arguments.endRecur)>
+    <cfset arguments.endRecur = JavaCast("null", "")>
+</cfif>
+
     <cfquery name="insertEventQuery" result="insertResult">
         INSERT INTO events_tbl (
             eventTitle,
