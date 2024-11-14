@@ -2,88 +2,26 @@
 
 
 <cffunction output="false" name="getFilteredContactsByEvent" access="public" returntype="query">
+    <!--- Define required arguments --->
     <cfargument name="contacts_table" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="eventid" type="numeric" required="true">
-    <cfargument name="search" type="string" required="false" default="">
-    <cfargument name="listColumns" type="string" required="false" default="col1,col2,col3">
-    <cfargument name="formOrderColumn" type="string" required="false" default="1">
-    <cfargument name="formOrderDir" type="string" required="false" default="asc">
 
-    <!--- Declare local variables --->
-    <cfset var sql = "">
-    <cfset var paramList = []>
-    <cfset var allowedOrderColumns = {
-        "1": "col1",
-        "2": "col2",
-        "3": "col3",
-        "4": "col4",
-        "5": "col5"
-    }>
-    <cfset var orderColumn = "col1">
-    <cfset var orderDir = "asc">
-
-    <!--- Build SQL query with required parameters --->
-    <cfset sql = "SELECT contactid, col1, col2, col3, col4, col5, userid, hlink 
-                  FROM #arguments.contacts_table# 
-                  WHERE userid = ? 
-                  AND contactid IN (SELECT contactid FROM eventcontactsxref WHERE eventid = ?)">
-    
-    <cfset paramList.append({value=arguments.userid, cfsqltype="CF_SQL_INTEGER"})>
-    <cfset paramList.append({value=arguments.eventid, cfsqltype="CF_SQL_INTEGER"})>
-
-    <!--- Add search filter if provided --->
-    <cfif len(trim(arguments.search))>
-        <cfset sql &= " AND (">
-        <cfset var i = 0>
-        <cfloop list="#arguments.listColumns#" index="thisColumn">
-            <cfif i gt 0>
-                <cfset sql &= " OR ">
-            </cfif>
-            <cfset sql &= "#thisColumn# LIKE ?">
-            <cfset paramList.append({value="%" & trim(arguments.search) & "%", cfsqltype="CF_SQL_VARCHAR"})>
-            <cfset i++>
-        </cfloop>
-        <cfset sql &= ")">
-    <cfelse>
-        <!-- Ensure no search params added if search is empty -->
-        <cfset sql &= "">
-    </cfif>
-
-<!--- Ensure there is only one ORDER BY clause --->
-<cfif structKeyExists(allowedOrderColumns, arguments.formOrderColumn)>
-    <!--- Define the order column and direction --->
-    <cfset orderColumn = allowedOrderColumns[arguments.formOrderColumn]>
-    <cfset orderDir = arguments.formOrderDir eq "desc" ? "DESC" : "ASC">
-
-    <!--- Remove any existing ORDER BY clause to avoid duplication --->
-    <cfset sql = replace(sql, "ORDER BY", "", "all")>
-
-    <!--- Append a single ORDER BY clause --->
-    <cfset sql &= " ORDER BY " & orderColumn & " " & orderDir>
-</cfif>
-
-
-    <cfset sql &= " ORDER BY #orderColumn# #orderDir#">
-
-
-    <!--- Execute the query --->
-    <cfquery result="result" name="qFiltered">
-        #sql#
-        <!--- Bind parameters only if they exist --->
-        <cfif arrayLen(paramList) gt 0>
- 
-            <cfloop array="#paramList#" index="param">
-     
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-            </cfloop>
-        </cfif>
+    <!--- Execute the query with only userid and eventid parameters --->
+    <cfquery name="qFiltered" result="result">
+        SELECT contactid, col1, col2, col3, col4, col5, userid, hlink
+        FROM #arguments.contacts_table#
+        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        AND contactid IN (
+            SELECT contactid
+            FROM eventcontactsxref
+            WHERE eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER">
+        )
     </cfquery>
 
     <!--- Return the query result --->
     <cfreturn qFiltered>
 </cffunction>
-
 
 
     <cffunction output="false" name="ru" access="public" returntype="query">
