@@ -57,83 +57,41 @@
     <cfargument name="eventTypeName" type="string" required="true">
     <cfargument name="eventDescription" type="string" required="true">
     <cfargument name="eventLocation" type="string" required="true">
-    <cfargument name="eventStart" type="date" required="false" default="">
-    <cfargument name="eventStartTime" type="time" required="false" default="">
-    <cfargument name="new_eventStopTime" type="time" required="false" default="">
+    <cfargument name="eventStart" type="date" required="false" default="#JavaCast('null', '')#">
+    <cfargument name="eventStartTime" type="time" required="false" default="#JavaCast('null', '')#">
+    <cfargument name="eventStopTime" type="time" required="false" default="#JavaCast('null', '')#">
     <cfargument name="dow" type="string" required="false" default="">
-    <cfargument name="endRecur" type="date" required="false" default="">
+    <cfargument name="endRecur" type="date" required="false" default="#JavaCast('null', '')#">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfset var sql = "INSERT INTO events_tbl (eventTitle, eventTypeName, eventDescription, eventLocation">
-    <cfset var values = "VALUES (?, ?, ?, ?">
-    
-    <!--- Add optional fields dynamically --->
-    <cfif arguments.eventStart neq "">
-        <cfset sql &= ", eventStart">
-        <cfset values &= ", ?">
-    </cfif>
-    
-    <cfif arguments.eventStartTime neq "">
-        <cfset sql &= ", eventStartTime">
-        <cfset values &= ", ?">
-    </cfif>
-    
-    <cfif arguments.new_eventStopTime neq "">
-        <cfset sql &= ", eventStopTime">
-        <cfset values &= ", ?">
-    </cfif>
-    
-    <cfif arguments.dow neq "">
-        <cfset sql &= ", dow">
-        <cfset values &= ", ?">
-    </cfif>
-    
-    <cfif arguments.endRecur neq "" and arguments.dow neq "">
-        <cfset sql &= ", endRecur">
-        <cfset values &= ", ?">
-    </cfif>
+    <cfquery name="insertEventQuery" result="insertResult">
+        INSERT INTO events_tbl (
+            eventTitle,
+            eventTypeName,
+            eventDescription,
+            eventLocation,
+            userid
+            <cfif structKeyExists(arguments, "eventStart") and isDate(arguments.eventStart)>, eventStart</cfif>
+            <cfif structKeyExists(arguments, "eventStartTime")>, eventStartTime</cfif>
+            <cfif structKeyExists(arguments, "eventStopTime")>, eventStopTime</cfif>
+            <cfif structKeyExists(arguments, "dow") and len(arguments.dow) gt 0>, dow</cfif>
+            <cfif structKeyExists(arguments, "endRecur") and isDate(arguments.endRecur)>, endRecur</cfif>
+        ) VALUES (
+            <cfqueryparam value="#arguments.eventTitle#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfqueryparam value="#arguments.eventTypeName#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfqueryparam value="#arguments.eventDescription#" cfsqltype="CF_SQL_LONGVARCHAR">,
+            <cfqueryparam value="#arguments.eventLocation#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            <cfif structKeyExists(arguments, "eventStart") and isDate(arguments.eventStart)>, <cfqueryparam value="#arguments.eventStart#" cfsqltype="CF_SQL_DATE"></cfif>
+            <cfif structKeyExists(arguments, "eventStartTime")>, <cfqueryparam value="#arguments.eventStartTime#" cfsqltype="CF_SQL_TIME"></cfif>
+            <cfif structKeyExists(arguments, "eventStopTime")>, <cfqueryparam value="#arguments.eventStopTime#" cfsqltype="CF_SQL_TIME"></cfif>
+            <cfif structKeyExists(arguments, "dow") and len(arguments.dow) gt 0>, <cfqueryparam value="#arguments.dow#" cfsqltype="CF_SQL_VARCHAR"></cfif>
+            <cfif structKeyExists(arguments, "endRecur") and isDate(arguments.endRecur)>, <cfqueryparam value="#arguments.endRecur#" cfsqltype="CF_SQL_DATE"></cfif>
+        )
+    </cfquery>
 
-    <!--- Close the SQL statement --->
-    <cfset sql &= ", userid) ">
-    <cfset values &= ", ?)">
-
-    <!--- Combine SQL and values --->
-    <cfset sql &= values>
-
-    <!--- Execute the query --->
-
-        <cfquery result="result" name="insertEventQuery">
-            #sql#
-            <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.eventTitle#"/>
-            <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.eventTypeName#"/>
-            <cfqueryparam cfsqltype="CF_SQL_LONGVARCHAR" value="#arguments.eventDescription#"/>
-            <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.eventLocation#"/>
-            
-            <!--- Bind optional parameters --->
-            <cfif arguments.eventStart neq "">
-                <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.eventStart#"/>
-            </cfif>
-            
-            <cfif arguments.eventStartTime neq "">
-                <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.eventStartTime#"/>
-            </cfif>
-            
-            <cfif arguments.new_eventStopTime neq "">
-                <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.new_eventStopTime#"/>
-            </cfif>
-            
-            <cfif arguments.dow neq "">
-                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.dow#"/>
-            </cfif>
-            
-            <cfif arguments.endRecur neq "" and arguments.dow neq "">
-                <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.endRecur#"/>
-            </cfif>
-
-            <!--- Required parameter --->
-            <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#"/>
-        </cfquery>
-<cfreturn result.generatedKey>
+    <!--- Return the primary key of the newly inserted record --->
+    <cfreturn insertResult.generatedKey>
 </cffunction>
 <cffunction output="false" name="UPDevents" access="public" returntype="void">
     <cfargument name="newStartTime" type="string" required="true">
