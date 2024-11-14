@@ -50,13 +50,13 @@
         <cfset sql &= "">
     </cfif>
 
-    <!--- Add ORDER BY clause if applicable --->
-    <cfif structKeyExists(allowedOrderColumns, arguments.formOrderColumn)>
-        <cfset orderColumn = allowedOrderColumns[arguments.formOrderColumn]>
-        <cfif arguments.formOrderDir eq "desc">
-            <cfset orderDir = "DESC">
-        </cfif>
-    </cfif>
+<!--- Add ORDER BY clause if applicable --->
+<cfif structKeyExists(allowedOrderColumns, arguments.formOrderColumn)>
+    <cfset orderColumn = allowedOrderColumns[arguments.formOrderColumn]>
+    <cfset orderDir = arguments.formOrderDir eq "desc" ? "DESC" : "ASC">
+    <cfset sql &= " ORDER BY " & orderColumn & " " & orderDir>
+</cfif>
+
     <cfset sql &= " ORDER BY #orderColumn# #orderDir#">
 
 <!-- Ensure paramList has at least three parameters -->
