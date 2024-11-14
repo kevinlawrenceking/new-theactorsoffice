@@ -10,7 +10,7 @@
 
 <!--- Include the query to add a system user record --->
 <cfinclude template="/include/qry/addSystem_5_1.cfm" />
-<cfset NewSUID = result.generatedkey />
+
 
 <!--- Include the query to select actions --->
 <cfinclude template="/include/qry/selectActions.cfm" />
