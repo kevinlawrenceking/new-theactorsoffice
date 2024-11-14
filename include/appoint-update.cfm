@@ -103,8 +103,8 @@
                         <div class="form-group col-md-6">
                             <label for="eventTypeName">Type</label>
                             <select class="form-control" name="eventTypeName" autocomplete="off" id="eventTypeName">
-                                <cfoutput query="types">
-                                    <option value="#types.eventtypename#" <cfif #types.eventtypename# is "#eventdetails.eventtypename#"> selected</cfif> >#types.eventtypename#</option>
+                                <cfoutput query="eventtypes_user">
+                                    <option value="#eventtypes_user.eventtypename#" <cfif #eventtypes_user.eventtypename# is "#eventdetails.eventtypename#"> selected</cfif> >#eventtypes_user.eventtypename#</option>
                                 </cfoutput>
                             </select>
                             <div class="invalid-feedback">
