@@ -9,7 +9,7 @@
 )>
 --->
 
-<cfset new_notid = addNotification(
+<cfset new_notid = SystemService.addNotification(
     actionID = addDaysNo.actionID,
     userid = userid,
     suID = NewSuid,
