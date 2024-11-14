@@ -22,7 +22,7 @@
     <!--- Check if the day is unique --->
     <cfif addDaysNo.isunique is "1">
         <!--- Include the query to check for unique contacts --->
-        <cfinclude template="/include/qry/checkUniqueContact.cfm" />
+        <cfinclude template="/include/qry/checkUnique_157_8.cfm" />
 
         <!--- If a unique contact is found, set add_action to "N" --->
         <cfif checkUnique.recordcount is "1">
