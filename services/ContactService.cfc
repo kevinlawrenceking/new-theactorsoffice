@@ -1,4 +1,19 @@
 <cfcomponent displayname="ContactService" hint="Handles operations for Contact table" > 
+<cffunction name="getContactCount" access="public" returntype="numeric">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="relationship" type="numeric" required="true">
+
+    <!--- Query to get the count of contacts based on userid and relationship --->
+    <cfquery name="qCount">
+        SELECT COUNT(contactid) AS totalCount
+        FROM contactdetails
+        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        AND contactid = <cfqueryparam value="#arguments.relationship#" cfsqltype="CF_SQL_INTEGER">
+    </cfquery>
+
+    <!--- Return the count result --->
+    <cfreturn qCount.totalCount>
+</cffunction>
 
 
 <cffunction output="false" name="getFilteredContactsByEvent" access="public" returntype="query">
