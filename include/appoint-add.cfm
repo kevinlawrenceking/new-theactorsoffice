@@ -101,9 +101,9 @@
     <cfloop condition="startTime LTE endTime">
         <cfset timeString = timeFormat(startTime, "HH:mm:ss")>
         <cfset displayTime = timeFormat(startTime, "h:mm tt")>
-        
+        <cfoutput>
         <option value="#timeString#" <cfif timeString EQ new_calstarttime>selected</cfif>>#displayTime#</option>
-        
+        </cfoutput>
         <cfset startTime = dateAdd("n", 15, startTime)>
     </cfloop>
 </select>
