@@ -65,6 +65,7 @@
     <!--- Return the query result --->
     <cfreturn qFiltered>
 </cffunction>
+
     <cffunction output="false" name="ru" access="public" returntype="query">
         <cfargument name="contactid" type="numeric" required="true">
         <cfargument name="userid" type="numeric" required="true">
