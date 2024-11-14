@@ -78,14 +78,17 @@
     <!--- Start Time Selection --->
     <div class="form-group col-md-6">
         <label for="calstarttime">Start Time<span class="text-danger">*</span></label>
-        <select class="form-control" name="calstarttime" id="calstarttime"><cfoutput>
+        <select class="form-control" name="calstarttime" id="calstarttime">
             <cfloop from="#startTime#" to="#endTime#" step="#createTimeSpan(0, 0, 15, 0)#" index="timeSlot">
-                <cfset formattedTime = timeFormat(timeSlot, "HH:mm:ss")>
+                      <cfset formattedTime = timeFormat(timeSlot, "HH:mm:ss")>
                 <cfset displayTime = timeFormat(timeSlot, "h:mm tt")>
+            <cfoutput>
+      
                 <option value="#formattedTime#" <cfif timeFormat(details.calstarttime) EQ formattedTime>selected</cfif>>
                     #displayTime#
                 </option>
-            </cfloop></cfoutput>
+                </cfoutput>
+            </cfloop>
         </select>
     </div>
 
