@@ -42,7 +42,7 @@
             <cfoutput>
                 <cfset add_count = add_count + 1 />
             </cfoutput>
-            <cfset new_notid = result.generatedkey />
+        
 
             <!--- Update notification if more than one notification is added --->
             <cfif add_count gt 1>
