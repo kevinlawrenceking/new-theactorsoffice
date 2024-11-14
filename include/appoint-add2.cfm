@@ -47,7 +47,7 @@
 <cfinclude template="/include/qry/tt_14_3.cfm" />
 <cfinclude template="/include/qry/dd_14_4.cfm" />
 
-<cfset new_eventid = result.generatedkey />
+
 
 <!--- Loop through relationships and process each one --->
 <cfloop list="#relationships#" index="relationship">
