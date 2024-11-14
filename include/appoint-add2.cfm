@@ -27,7 +27,7 @@
 
 <!--- Calculate new event stop time if event start time is provided --->
 <cfif #eventStartTime# is not "">
-    <cfinclude template="/include/qry/duration.cfm" />
+    <cfinclude template="/include/qry/duration_467_1.cfm" />
     <cfset new_durseconds = duration.durseconds />
     <cfset new_eventStopTime = "#timeformat(DateAdd("s", "#new_durseconds#", "#eventStartTime#"), 'HH:MM:SS')#" />
 
