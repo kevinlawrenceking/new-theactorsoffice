@@ -4,7 +4,7 @@
 <cfparam name="rcontactid" default="0" />
 <cfinclude template="/include/qry/eventdetails_334_3.cfm" />
 <cfinclude template="/include/qry/durations.cfm" />
-
+<cfinclude template="/include/qry/relationships_13_1.cfm" />
 <style>
     <cfif #eventdetails.dow# is "">
         #hidden_div {
