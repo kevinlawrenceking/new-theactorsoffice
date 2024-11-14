@@ -13,7 +13,7 @@
 
 
 <!--- Include the query to select actions --->
-<cfinclude template="/include/qry/selectActions.cfm" />
+<cfinclude template="/include/qry/addDaysNo_528_1.cfm" />
 
 <!--- Loop through the addDaysNo query to process actions --->
 <cfloop query="addDaysNo">
