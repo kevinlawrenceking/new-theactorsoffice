@@ -11,7 +11,6 @@
     <cfargument name="formOrderDir" type="string" required="false" default="asc">
 
     <!--- Declare local variables --->
-    <cfset var qFiltered = "">
     <cfset var sql = "">
     <cfset var paramList = []>
     <cfset var allowedOrderColumns = {
@@ -21,9 +20,8 @@
         "4": "col4",
         "5": "col5"
     }>
-    <cfset var orderColumn = "">
+    <cfset var orderColumn = "col1">
     <cfset var orderDir = "asc">
-    <cfset var i = 0>
 
     <!--- Build SQL query with required parameters --->
     <cfset sql = "SELECT contactid, col1, col2, col3, col4, col5, userid, hlink 
@@ -34,18 +32,17 @@
     <cfset paramList.append({value=arguments.userid, cfsqltype="CF_SQL_INTEGER"})>
     <cfset paramList.append({value=arguments.eventid, cfsqltype="CF_SQL_INTEGER"})>
 
-    <!--- Add search filter if provided ---> 
+    <!--- Add search filter if provided --->
     <cfif len(trim(arguments.search))>
         <cfset sql &= " AND (">
         <cfloop list="#arguments.listColumns#" index="thisColumn">
-            <cfif i gt 0>
+            <cfif listFirst(arguments.listColumns) neq thisColumn>
                 <cfset sql &= " OR ">
             </cfif>
             <cfset sql &= "#thisColumn# LIKE ?">
             <cfset paramList.append({value="%" & trim(arguments.search) & "%", cfsqltype="CF_SQL_VARCHAR"})>
-            <cfset i++>
         </cfloop>
-        <cfset sql &= " )">
+        <cfset sql &= ")">
     </cfif>
 
     <!--- Add ORDER BY clause if applicable --->
@@ -54,8 +51,8 @@
         <cfif arguments.formOrderDir eq "desc">
             <cfset orderDir = "DESC">
         </cfif>
-        <cfset sql &= " ORDER BY #orderColumn# #orderDir#">
     </cfif>
+    <cfset sql &= " ORDER BY #orderColumn# #orderDir#">
 
     <!--- Execute the query --->
     <cfquery result="result" name="qFiltered">
@@ -68,8 +65,6 @@
     <!--- Return the query result --->
     <cfreturn qFiltered>
 </cffunction>
-
-
     <cffunction output="false" name="ru" access="public" returntype="query">
         <cfargument name="contactid" type="numeric" required="true">
         <cfargument name="userid" type="numeric" required="true">
