@@ -11,9 +11,12 @@
 <cfparam name="BYTAG" default="" type="string" />
 
 <!--- Check if search value is provided --->
-<cfif len(form["search[value]"]) gt 0>
+
+
+<cfif structKeyExists(form, "search[value]") and len(form["search[value]"]) gt 0>
     <cfset search = form["search[value]"]>
 </cfif>
+
 
 <!--- Data set after filtering --->
 <cfinclude template="/include/qry/qFiltered_77_1.cfm" />
