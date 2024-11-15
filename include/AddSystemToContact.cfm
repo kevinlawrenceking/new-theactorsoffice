@@ -12,8 +12,7 @@
     </cfoutput>
 </cfif>
 
-<!--- NewSUID: new fuSystemUsers record --->            
-<cfset NewSUID = result.generatedkey />
+
 
 <!--- Determine action items needed for new system --->  
 <cfinclude template="/include/qry/addDaysNo_5_2.cfm" />
