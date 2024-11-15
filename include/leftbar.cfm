@@ -35,11 +35,19 @@
                     <li>
                         <a href="/app/#menuItemsU.compDir#/">
                             <i data-feather="#menuitemsU.compicon#"></i>
-                            <span>#menuItemsCount# #menuItemsU.compName# </span>
+                            <span>#menuItemsU.compName# </span>
                         </a>
                     </li>
 
                 </Cfoutput>
+
+                           <li>
+                        <a href="/app/auditions/">
+                            <i data-feather="<i data-feather="film"></i>"></i>
+                            <span>Auditions </span>
+                        </a>
+                    </li>
+
 
                 <cfif #userrole# is "Administrator">
 
