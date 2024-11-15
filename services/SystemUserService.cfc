@@ -206,6 +206,8 @@
         
 
 </cffunction>
+
+
 <cffunction output="false" name="SELfusystemusers_24343" access="public" returntype="query">
     <cfargument name="contactID" type="numeric" required="true">
 

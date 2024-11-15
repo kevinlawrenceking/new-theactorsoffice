@@ -1,6 +1,16 @@
 <cfcomponent displayname="NotificationService" hint="Handles operations for Notification table" > 
 
-<cffunction name="fetchNotifications" access="public" returntype="void" hint="Marks orphaned notifications as deleted.">
+<cffunction  output="false" name="UPDfunotifications_24316" access="public" returntype="void">
+    <cfargument name="suid" type="numeric" required="true">
+    
+    <cfquery  name="close2">
+        UPDATE funotifications
+        SET isdeleted = 1
+        WHERE suid = <cfqueryparam value="#arguments.suid#" cfsqltype="CF_SQL_INTEGER">
+    </cfquery>
+</cffunction>
+
+<cffunction  output="false" name="fetchNotifications" access="public" returntype="void" hint="Marks orphaned notifications as deleted.">
    <cfargument name="userid" type="numeric" required="true">
     <cfquery name="del" >
        UPDATE funotifications_tbl 

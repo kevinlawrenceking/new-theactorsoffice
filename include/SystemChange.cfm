@@ -7,13 +7,14 @@
 <cfinclude template="/include/qry/findscope_294_3.cfm" />
 
 <!--- Determine new system scope based on findscope record count --->
+<!--- Part aa --->
 <cfif findscope.recordcount is 1>
     <cfset new_systemscope = "Casting Director">
 <cfelse>
     <cfset new_systemscope = "Industry">
 </cfif>
 
-
+<!--- Part bb--->
 <!--- Determine old system type based on suid --->
 <cfif suid neq "0">
     <cfset old_systemtype = reldetails.systemtype>
@@ -21,8 +22,7 @@
     <cfset old_systemtype = "None">
 </cfif>
 
-
-<!--- Check if old system type is different from new system type --->
+<!--- Part c--->
 <cfif old_systemtype neq new_systemtype>
 
     <!--- Close existing system if old system type is not "None" --->
@@ -31,17 +31,27 @@
         <cfinclude template="/include/qry/close2_294_5.cfm" />
     </cfif>
 
-    <!--- Process new system type if it is not "None" --->
+<!--- part d --->
     <cfif new_systemtype neq "None">
         <cfinclude template="/include/qry/FindSystem_294_6.cfm" />
         <cfinclude template="/include/qry/FindSystemOld_294_7.cfm" />
 
         <!--- Check if there is exactly one record in findsystem --->
         <cfif findsystem.recordcount is 1>
-            <cfset systemid = findsystem.systemid ?: 0 />
-            <cfset systemid_old = findsystemold.systemid ?: 0 />
+          <cfif len(trim(findsystem.systemid))>
+    <cfset systemid = findsystem.systemid>
+<cfelse>
+    <cfset systemid = 0>
+</cfif>
 
-            <!--- Check if systemid is 3 and systemid_old is not 3 --->
+<cfif len(trim(findsystemold.systemid))>
+    <cfset systemid_old = findsystemold.systemid>
+<cfelse>
+    <cfset systemid_old = 0>
+</cfif>
+
+
+            <!--- part K--->
             <cfif systemid is 3 and systemid_old neq 3>
                 <cfinclude template="/include/qry/InsertNote_294_8.cfm" />
             </cfif>
