@@ -804,32 +804,25 @@ function getContactRecordName(new_contactid) {
 
 </cffunction>
 <cffunction output="false" name="DETcontactdetails_24340" access="public" returntype="query">
-    <cfargument name="idList" type="array" required="true">
+    <cfargument name="idList" type="string" required="true">
     
-    
-    <cfif arrayLen(arguments.idList) eq 0>
+
+    <cfif len(trim(arguments.idList)) eq 0 or arguments.idList eq "0">
         <cfreturn queryNew("contactid,recordname")>
     </cfif>
 
-    
-        <cfquery name="result" >
-            SELECT contactid, recordname
-            FROM contactdetails d
-            WHERE d.contactid IN (
-                <cfloop list="#arguments.idList#" index="id">
-                    <cfqueryparam value="#id#" cfsqltype="CF_SQL_INTEGER" />
-                    <cfif id neq arrayLast(arguments.idList)>,</cfif>
-                </cfloop>
-            )
-        </cfquery>
-        
-            
-            <cfreturn queryNew("contactid,recordname")>
-        
-    
+
+    <cfquery name="result">
+        SELECT contactid, recordname
+        FROM contactdetails d
+        WHERE d.contactid IN (
+            <cfqueryparam value="#arguments.idList#" cfsqltype="CF_SQL_INTEGER" list="true">
+        )
+    </cfquery>
 
     <cfreturn result>
 </cffunction>
+
 <cffunction output="false" name="SELcontactdetails_24364" access="public" returntype="query">
     <cfargument name="cdfullname" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
