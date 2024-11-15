@@ -243,20 +243,25 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction output="false" name="UPDfusystemusers_24345" access="public" returntype="void">
+
+<cffunction output="false" name="UPDfusystemusers_24345" access="public" returntype="numeric">
     <cfargument name="new_contactid" type="numeric" required="true">
+
+    <!--- Run the update query --->
+    <cfquery result="result" name="updateQuery">
+        UPDATE fusystemusers_tbl
+        SET isdeleted = 1, sunotes = 'Deleted via batch update'
+        WHERE contactID = <cfqueryparam value="#arguments.new_contactid#" cfsqltype="CF_SQL_INTEGER">
+        AND suStatus = <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
+        AND isdeleted = <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
+    </cfquery>
     
+    <!--- Return the RecordCount to indicate the number of rows affected --->
     
-        <cfquery result="result" name="updateQuery" >
-            UPDATE fusystemusers_tbl 
-            SET isdeleted = 1, sunotes = 'Deleted via batch update' 
-            WHERE contactID = <cfqueryparam value="#arguments.new_contactid#" cfsqltype="CF_SQL_INTEGER"> 
-            AND suStatus = <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR"> 
-            AND isdeleted = <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
-        </cfquery>
-        
-    
+    <cfreturn result.RecordCount>
 </cffunction>
+
+
 <cffunction output="false" name="SELfusystemusers_24426" access="public" returntype="query">
     <cfargument name="maint_contactid" type="numeric" required="true">
     <cfargument name="maint_systemid" type="numeric" required="true">

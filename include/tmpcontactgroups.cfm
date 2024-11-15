@@ -158,13 +158,13 @@
                 <!--- resultsqryUpdateCell is the total systems deleted --->
                 <!--- add resultsqryUpdateCell to the current delete count --->
                 <cfoutput>
-                    <cfset no_deleted = #no_deleted# + #resultqryUpdateCell.RecordCount# />
+                    <cfset no_deleted = #no_deleted# + #updatedRecordCount# />
                 </cfoutput>
 
                 <!--- Debug output for total deleted systems --->
                 <cfif #dbug# is "Y">
                     <cfoutput>
-                        <p>Total contact system's deleted: #resultqryUpdateCell.RecordCount#</p>
+                        <p>Total contact system's deleted: #updatedRecordCount#</p>
                         <p>no_deleted: #no_deleted#</p>
                     </cfoutput>
                 </cfif>
