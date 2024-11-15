@@ -6,7 +6,7 @@
         <cfargument name="suID" type="numeric" required="true" hint="The suID for the notification">
         <cfargument name="notStartDate" type="date" required="true" hint="The start date of the notification">
 
-        <!-- Define local variable for query result -->
+        <!--- Define local variable for query result --->
         <cfset var result = structNew()>
 
         <cfquery  name="addNotificationQuery" result="result">
@@ -20,7 +20,7 @@
             )
         </cfquery>
 
-        <!-- Return the query result -->
+        <!--- Return the query result --->
         <cfreturn result>
     </cffunction>
 

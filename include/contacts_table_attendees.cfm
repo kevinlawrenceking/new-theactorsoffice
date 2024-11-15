@@ -22,11 +22,11 @@
               
                 <td>
                 <a href="/app/contact/?contactid=#contactid#">#col1#</a>
-                </td> <!-- Assuming "Name" -->
-                <td>#col2#</td> <!-- Assuming "Tags" -->
-                <td>#col3#</td> <!-- Assuming "Company" -->
-                <td>#col4#</td> <!-- Assuming "Phone" -->
-                <td>#col5#</td> <!-- Assuming "Email" -->
+                </td> <!--- Assuming "Name" --->
+                <td>#col2#</td> <!--- Assuming "Tags" --->
+                <td>#col3#</td> <!--- Assuming "Company" --->
+                <td>#col4#</td> <!--- Assuming "Phone" --->
+                <td>#col5#</td> <!--- Assuming "Email" --->
             </tr>
         </cfoutput>
     </tbody>

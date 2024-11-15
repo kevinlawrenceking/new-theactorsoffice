@@ -2858,7 +2858,7 @@
     // MOMENTS
 
     // keepLocalTime = true means only change the timezone, without
-    // affecting the local hour. So 5:31:26 +0300 --[utcOffset(2, true)]-->
+    // affecting the local hour. So 5:31:26 +0300 --[utcOffset(2, true)]--->
     // 5:31:26 +0200 It is possible that 5:31:26 doesn't exist with offset
     // +0200, so we adjust the time as needed, to be valid.
     //

@@ -351,7 +351,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!--- end card-->
+                                <!--- end card --->
                             </cfoutput>
 
                             <cfif #i# is "3">
@@ -497,11 +497,11 @@
                         </SCRIPT>
                     </cfif>
                 </div>
-                <!--- end card body-->
+                <!--- end card body --->
             </div>
             <!--- end card --->
         </div>
-        <!--- end col-->
+        <!--- end col --->
     </div>
 
     <cfif #isexport# is "Y">

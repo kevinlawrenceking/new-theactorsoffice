@@ -64,10 +64,10 @@
     <cfargument name="eventStartTime" type="time" required="false">
     <cfargument name="eventStopTime" type="time" required="false">
     <cfargument name="dow" type="string" required="false" default="">
-    <cfargument name="endRecur" required="false"> <!-- Remove type="date" to prevent the initial error -->
+    <cfargument name="endRecur" required="false"> <!--- Remove type="date" to prevent the initial error --->
     <cfargument name="userid" type="numeric" required="true">
 
-    <!-- Check if endRecur is a valid date or set it to null -->
+    <!--- Check if endRecur is a valid date or set it to null --->
     <cfif not isDate(arguments.endRecur)>
         <cfset arguments.endRecur = JavaCast("null", "")>
     </cfif>
