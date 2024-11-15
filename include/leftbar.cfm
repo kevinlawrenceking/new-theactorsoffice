@@ -35,7 +35,7 @@
                     <li>
                         <a href="/app/#menuItemsU.compDir#/">
                             <i data-feather="#menuitemsU.compicon#"></i>
-                            <span> #menuItemsU.compName# </span>
+                            <span>#menuItemsCount# #menuItemsU.compName# </span>
                         </a>
                     </li>
 

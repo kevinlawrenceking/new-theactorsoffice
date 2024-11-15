@@ -4,3 +4,4 @@
     compOwner="U",
     appid="1,2"
 )>
+<cfset menuItemsCount = menuItemsU.recordCount>
