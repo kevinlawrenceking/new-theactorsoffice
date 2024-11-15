@@ -275,14 +275,14 @@
     <cfargument name="isPublic" type="boolean" required="true">
     <cfargument name="eventid" type="numeric" required="true">
 
-    
+ 
         <cfquery result="result" >
             INSERT INTO noteslog (userid, contactid, noteDetails, isPublic, eventid) 
             VALUES (
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#" />,
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.contactid#" />,
                 <cfqueryparam cfsqltype="cf_sql_longvarchar" value="#arguments.noteDetails#" />,
-                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.isPublic ? 1 : 0#" />,
+                <cfqueryparam cfsqltype="cf_sql_bit" value="#arguments.isPublic#" />,
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.eventid#" />
             )
         </cfquery>
@@ -290,7 +290,7 @@
             
             
         
-    
+       <cfreturn result.generatedKey>
 </cffunction>
 <cffunction output="false" name="INSnoteslog_24373" access="public" returntype="numeric">
     <cfargument name="userid" type="numeric" required="true">
