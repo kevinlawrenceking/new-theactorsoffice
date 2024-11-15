@@ -16,8 +16,12 @@
         AND x.contactid = <cfqueryparam value="#arguments.contactId#" cfsqltype="CF_SQL_INTEGER">
         AND e.audstepid <> <cfqueryparam value="#arguments.audStepId#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
-    <cfreturn result.generatedKey>
+    
+    <!--- Return the total number of records inserted --->
+    <cfreturn result.recordCount>
 </cffunction>
+
+
 
 <cffunction output="false" name="INSaudcontacts_auditions_xref_23780" access="public" returntype="void">
     <cfargument name="audprojectid" type="numeric" required="true">
@@ -29,6 +33,7 @@
             xrefNotes = <cfqueryparam value="audition-add2.cfm" cfsqltype="CF_SQL_VARCHAR">, 
             contactid = <cfqueryparam value="#arguments.new_contactid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
+        <cfreturn result.generatedKey>
 </cffunction>
 
 <cfscript>
