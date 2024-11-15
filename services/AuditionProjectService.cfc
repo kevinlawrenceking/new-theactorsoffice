@@ -195,33 +195,24 @@
 </cffunction>
 <cffunction output="false" name="UPDaudprojects_24011" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
-    <cfargument name="audprojectids" type="array" required="true">
+    <cfargument name="audprojectids" type="string" required="true"> <!-- Expecting a comma-delimited list of integers -->
 
-    <cfset var local = {}>
-
-    
-        <cfquery result="result" name="updateQuery" >
-            UPDATE audprojects 
-            SET projdate = NULL 
-            WHERE isdeleted <> 1 
-            AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
-            AND audprojectid IN (
-                SELECT r.audprojectid 
-                FROM audroles r 
-                INNER JOIN events e ON e.audRoleID = r.audroleid
-                WHERE r.audprojectid IN (
-                    <cfloop array="#arguments.audprojectids#" index="local.id">
-                        <cfqueryparam value="#local.id#" cfsqltype="CF_SQL_INTEGER" list="true">
-                    </cfloop>
-                )
+    <cfquery result="result" name="updateQuery">
+        UPDATE audprojects 
+        SET projdate = NULL 
+        WHERE isdeleted <> 1 
+        AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
+        AND audprojectid IN (
+            SELECT r.audprojectid 
+            FROM audroles r 
+            INNER JOIN events e ON e.audRoleID = r.audroleid
+            WHERE r.audprojectid IN (
+                <cfqueryparam value="#arguments.audprojectids#" cfsqltype="CF_SQL_INTEGER" list="true">
             )
-        </cfquery>
-        
-            
-            
-        
-    
+        )
+    </cfquery>
 </cffunction>
+
 <cffunction output="false" name="UPDaudprojects_24013" access="public" returntype="void">
     <cfargument name="new_projdate" type="date" required="true">
     <cfargument name="audprojectID" type="numeric" required="true">
