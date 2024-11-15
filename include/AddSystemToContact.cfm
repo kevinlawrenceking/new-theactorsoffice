@@ -1,10 +1,4 @@
-<!--- This ColdFusion page handles the addition of system users and their associated action items. --->
 
-<!--- Variables IN:
-        new_systemid
-        new_contactid
-        new_suStartDate
---->
 <cfinclude template="/include/qry/addSystem_5_1.cfm" />
 
 <cfoutput>
