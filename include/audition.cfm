@@ -357,4 +357,976 @@
                                 <cfinclude template="/include/qry/Redirect_check_29_6.cfm" />
                                 <cfif #rolecheck.isRedirect# is "1">
                                     <input class="form-check-input form-check-input-Redirect" type="checkbox" id="new_isRedirect" name="new_isRedirect" value="1" <cfif #rolecheck.isRedirect# is "1"> checked </cfif>
-                                    <cfif #Redirect_check.recordcount# is not "0"> onclick="return false;" <cfelse> data-bs-toggle="modal" data-bs-target="##StatusCancel3" </cf
+                                   <cfif #Redirect_check.recordcount# is not "0"> onclick="return false;"
+                                <cfelse>
+                       
+              data-bs-toggle="modal" data-bs-target="##StatusCancel3"  
+
+                            </cfif> />
+
+                            <cfelse>
+
+                                <input class="form-check-input form-check-input-Redirect" type="checkbox" data-bs-toggle="modal" data-bs-target="##StatusConfirm3" id="new_isRedirect" name="new_isRedirect" value="1" <cfif #rolecheck.isRedirect# is "1"> checked </cfif>
+
+                                <cfif #Redirect_check.recordcount# is not "0"> onclick="return false;"</cfif> />
+
+                                </cfif>
+
+                                <label class="form-check-label" for="new_isRedirect">Redirect </label>
+
+                                <cfif #rolecheck.isRedirect# is "1">
+
+                                    <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##auditionadd_Redirect" data-bs-placement="top" title="Add Redirect appointment" data-bs-original-title="Add Redirect"><i class="fe-plus-circle"></i></a>
+
+                                </cfif>
+    </cfif>
+    
+                        </div><!-- end form-check -->
+
+
+
+
+
+
+
+
+
+
+                        <div class="form-switch col-md-3 col-sm-6 col-xs-6">
+<cfif #projectdetails.isdirect# is "0">
+                            <cfquery name="Pin_check" datasource="#dsn#">
+                                SELECT * FROM events WHERE audroleid = #audroleid# AND isdeleted = 0 AND audstepid = 4
+                            </cfquery>
+
+                            <cfif #rolecheck.isPin# is "1">
+
+                                <input class="form-check-input form-check-input-Pin" type="checkbox" id="new_isPin" name="new_isPin" value="1" <cfif #rolecheck.isPin# is "1"> checked
+                            </cfif>
+
+                            <cfif #Pin_check.recordcount# is not "0"> onclick="return false;"
+                                <cfelse>
+ 
+                      data-bs-toggle="modal" data-bs-target="##StatusCancel4"  
+
+                            </cfif> />
+
+                            <cfelse>
+
+                                <input class="form-check-input form-check-input-Pin" type="checkbox" data-bs-toggle="modal" data-bs-target="##StatusConfirm4" id="new_isPin" name="new_isPin" value="1" <cfif #rolecheck.isPin# is "1"> checked </cfif>
+
+                                <cfif #Pin_check.recordcount# is not "0"> onclick="return false;"</cfif> />
+
+                                </cfif>
+
+                                <label class="form-check-label" for="new_isPin">Pin/Avail </label>
+
+                            </cfif>
+
+                        </div><!-- end form-check -->
+
+
+                        <div class="form-switch col-md-3 col-sm-6 col-xs-6">
+
+                            <cfquery name="Booked_check" datasource="#dsn#">
+                                SELECT * FROM events WHERE audroleid = #audroleid# AND isdeleted = 0 AND audstepid = 5
+                            </cfquery>
+
+<cfif #Booked_check.recordcount# is not "0"> 
+ <a href="" data-bs-target="##RemoveBook" data-bs-toggle="modal"></cfif>
+
+                            <cfif #rolecheck.isBooked# is "1">
+
+                                <input class="form-check-input form-check-input-Booked" type="checkbox" id="new_isBooked" name="new_isBooked" value="1" <cfif #rolecheck.isBooked# is "1"> checked
+                            </cfif>
+
+                            <cfif #Booked_check.recordcount# is not "0"> 
+                            
+                             disabled="disabled"  
+                                <cfelse>
+
+                     data-bs-toggle="modal" data-bs-target="##StatusCancel5" 
+
+                            </cfif> />
+
+                            <cfelse>
+
+                                <input class="form-check-input form-check-input-Booked" type="checkbox" data-bs-toggle="modal" data-bs-target="##StatusConfirm5" id="new_isBooked" name="new_isBooked" value="1" <cfif #rolecheck.isBooked# is "1"> checked </cfif>
+
+                                <cfif #Booked_check.recordcount# is not "0"> onclick="return false;"</cfif> />
+
+                                </cfif>
+
+                                <label class="form-check-label" for="new_isBooked">Booked </label>
+
+                                <cfif #rolecheck.isBooked# is "1">
+
+                                    <a href="javascript:;"  data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##auditionadd_Booking" data-bs-placement="top" title="Add Booked appointment" data-bs-original-title="Add Booked"><i class="fe-plus-circle"></i></a>
+
+                                </cfif>
+<cfif #Booked_check.recordcount# is not "0"> </a></cfif>
+                        </div><!-- end form-check -->
+
+
+
+
+                    </cfoutput>
+
+                </div>
+            </div>
+
+        </center>
+    </div>
+
+</form>
+
+<div class="row">
+
+
+    <div class="col-md-6 col-xs-6 col-xs-12">
+
+        <div class="card h-100 ribbon-box">
+
+            <cfif #roledetails.isbooked# is "1">
+
+                <div class="ribbon-two ribbon-two-success"><span>Booked</span></div>
+            </cfif>
+
+            <Center>
+
+                <h4 class="card-header text-nowrap " style="color:white;background-color: #406E8E;margin:0!important;padding:15px!important;">
+                    <cfoutput>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                    
+                            Appointments
+
+                        
+
+                    
+
+
+                    </cfoutput>
+
+
+                </h4>
+
+
+
+            </Center>
+            
+ 
+
+            <div class="card-body">
+                
+                <cfif #projectdetails.isdirect# is "1">
+                    
+                           <p>Direct Booking</p> 
+                                
+                                 <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="#auditionadd_Booking" data-bs-placement="top" title="Add Booking  appointment" data-bs-original-title="Add Booking appointment"><i class="fe-plus-circle"></i> Add booking appointment</a>
+                </cfif>
+
+    
+                    
+                    <cfif #events.recordcount# is "0">
+                        
+                        <cfoutput>
+                                <script>
+            $(document).ready(function() {
+                $("##auditionadd_audition").on("show.bs.modal", function(event) {
+                    // Place the returned HTML into the selected element
+                    $(this).find(".modal-body").load("/include/remoteaudupdateform.cfm?NEW_AUDSUBCATID=#new_audsubcatid#&audcatid=#audcatid#&pgaction=add&audstepid=1&secid=#secid#&audprojectid=#audprojectid#&rpgid=184&details_pgid=176&pgdir=audition&userid=#userid#");
+                });
+            });
+
+        </script>
+                            
+                            
+                                    <div id="auditionadd_audition" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: ##f3f7f9;">
+                        <h4 class="modal-title" id="standard-modalLabel">Appointment Add</h4>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true"><i class="mdi mdi-close-thick"></i></button>
+                    </div>
+                    <div class="modal-body">
+
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+                            
+                            
+                            
+                </cfoutput>        
+                        
+                        <cfif #projectDetails.isdirect# is "0">
+                    
+                     <P>You currently have no appointments for this project.</P>   
+                        
+                        <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="#auditionadd_audition" data-bs-placement="top" title="Add Audition  appointment" data-bs-original-title="Add Audition"><i class="fe-plus-circle"></i> Add appointment</a>
+                 
+                    </cfif>
+                   
+ <cfelse>
+               
+                    <table id="basic-datatable" class="table dt-responsive w-100 table-striped" role="grid">
+
+                        <thead>
+
+                            <cfif (events.CurrentRow MOD 2)>
+
+                                <Cfset rowtype="Odd" />
+
+                            </cfif>
+
+                            <cfif NOT (events.CurrentRow MOD 2)>
+
+                                <Cfset rowtype="Even" />
+
+                            </cfif>
+
+                            <tr class="#rowtype#">
+                                <th width="75">Action</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Stage</th>
+                                <th>Type</th>
+                             <th>Assessment</th>
+ 
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <cfloop query="events">
+
+                                <cfoutput>
+        <script>
+    $(document).ready(function() {
+        $("##remoteUpdateAnswer_#events.eventid#").on("show.bs.modal", function(event) {
+            // Place the returned HTML into the selected element
+            $(this).find(".modal-body").load("/include/remoteassform.cfm?eventid=#events.eventid#&audprojectid=#audprojectid#");
+        });
+    });
+
+</script>
+
+
+       <div id="remoteUpdateAnswer_#events.eventid#" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" aria-hidden="true">
+
+            <div class="modal-dialog">
+
+                <div class="modal-content">
+
+                    <div class="modal-header" style="background-color: ##f3f7f9;">
+
+                        <h4 class="modal-title" id="standard-modalLabel"><strong>#events.audstep#: </strong>#dateformat(events.eventStart,'long')#: Personal Assessment</h4>
+
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true"><i class="mdi mdi-close-thick"></i>
+
+                        </button>
+
+                    </div>
+
+                    <div class="modal-body">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+                                    <script>
+                                        $(document).ready(function() {
+                                            $("##remoteDeleteAud#events.eventid#").on("show.bs.modal", function(event) {
+                                                // Place the returned HTML into the selected element
+                                                $(this).find(".modal-body").load("/include/remoteDeleteFormAud.cfm?eventid=#events.eventid#&audprojectid=#audprojectid#&audroleid=#audroleid#&rpgid=175&pgaction=update");
+                                            });
+                                        });
+
+                                    </script>
+
+                                    <div id="remoteDeleteAud#events.eventid#" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+
+                                        <div class="modal-dialog">
+
+                                            <div class="modal-content">
+
+                                                <div class="modal-header" style="background-color: red;">
+
+                                                    <h4 class="modal-title">Delete Audition</h4>
+
+                                                    <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true"><i class="mdi mdi-close-thick"></i></button>
+
+                                                </div>
+
+                                                <div class="modal-body"></div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+
+
+
+
+
+
+
+
+                                    <tr>
+
+                                        <td style="word-break: break-all;">
+
+
+
+
+
+
+                                            <a title="Edit" href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##auditionupdate_#events.eventid#">
+
+                                                <i class="mdi mdi-square-edit-outline mr-1"></i>
+                                            </a>
+
+                                  
+
+                                            <a title="Delete Audition" href="DeleteModal.cfm?rpgid=175" data-bs-toggle="modal" data-bs-target="##remoteDeleteAud#events.eventid#">
+
+                                                <i class="fe-trash-2"></i>
+
+                                            </a>
+<cfif #events.eventid# is not "" and #isdefined('sdfdfsdfdsf')#>
+       <a title="Edit" href="/app/appoint/?eventid=#events.eventid#&returnurl=calendar-appoint">
+
+                                                <i class="mdi mdi-calendar mr-1"></i>
+                                            </a>
+
+</cfif>
+
+
+                                        </td>
+
+
+                                        <td class="dt-nowrap">
+                                            <a title="View Details" href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##auditionDetails_#events.eventid#"> #DateFormat('#events.eventStart#','mm-dd-yy')#</a>
+                                        </td>
+                                               <td class="dt-nowrap">
+                                                   <a title="View Details" href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##auditionDetails_#events.eventid#">  #timeformat(events.eventStartTime,'short')#</a>
+                                        </td>
+
+                                        <td class="dt-nowrap">   <a title="View Details" href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##auditionDetails_#events.eventid#">#events.audstep#</a></td>
+
+                                        <td  class="dt-nowrap">   <a title="View Details" href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##auditionDetails_#events.eventid#">#events.audtype#</a> <cfif #events.workwithcoach# is "1"><BR>(coached)</cfif>    </td>
+                                        
+ <TD  class="dt-nowrap"><center>
+<cfif events.eventstart lte now()>
+ <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateAnswer_#events.eventid#" toggle="tooltip" data-bs-placement="top" title="Update Answer" data-bs-original-title="Update Answer">
+
+                                                      <i class="mdi mdi-square-edit-outline"></i> 
+
+                                                  </a> 
+</cfif>
+</center>
+                                            </td>
+
+
+                                    </tr>
+
+
+
+                                </cfoutput>
+
+                            </cfloop>
+
+                        </tbody>
+
+                    </table>
+
+     </cfif>
+
+
+
+<cfoutput>
+
+
+ <script>
+                                    $(document).ready(function() {
+                                        $("##remoteDeleteFormAudproject#audprojectid#").on("show.bs.modal", function(event) {
+                                            // Place the returned HTML into the selected element
+                                            $(this).find(".modal-body").load("/include/remoteDeleteFormAudproject.cfm?audprojectid=#audprojectid#");
+                                        });
+                                    });
+
+                                </script>
+
+                                <div id="remoteDeleteFormAudproject#audprojectid#" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+
+                                    <div class="modal-dialog">
+
+                                        <div class="modal-content">
+
+                                            <div class="modal-header" style="background-color: red;">
+
+                                                <h4 class="modal-title">Delete Audition Project</h4>
+
+                                                <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true"><i class="mdi mdi-close-thick"></i></button>
+
+                                            </div>
+
+                                            <div class="modal-body"></div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+
+
+
+
+
+
+
+
+             
+                       
+
+
+
+                            </cfoutput>
+                        </div>
+
+
+         
+
+
+
+
+
+            </div>
+        </div>
+
+
+
+    <cfoutput>
+
+        <cfset h5style="font-size:0.875rem;font-weight: 500;text-align:left;margin-bottom:0;" />
+
+    </cfoutput>
+
+    <div class="col-md-6 col-xs-6 col-xs-12">
+
+        <div class="card h-100">
+
+
+            <Center>
+
+                <h4 class="card-header text-nowrap" style="color:white;background-color: #406E8E;margin:0!important;padding:15px!important;">
+                    <cfoutput>Project Details</cfoutput>
+                </h4>
+
+
+
+            </Center>
+            <Cfoutput>
+                <div class="card-body">
+
+                    <div class="row" style="margin: auto;">
+                        
+                       <h4 class="px-1 d-flex text-nowrap">   
+                           
+                       
+                           
+                           <span class="ms-auto"> 
+                               
+                          <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##projectupdate" data-bs-placement="top" title="Update Project" data-bs-original-title="Update Project">   <i class="mdi mdi-square-edit-outline"></i> </a>
+                          
+                               
+                                </span>
+                               
+                               
+
+                       </h4>
+                        
+ 
+                        <div class="p-1 d-flex text-nowrap"><strong>Project: </strong> #projectdetails.projName# </div>
+
+
+
+
+
+                        <div class="col-md-12 col-lg-12  col-xl-6 p-1 text-nowrap"><strong>Category: </strong><a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##catupdate" data-bs-placement="top" title="Update Category" data-bs-original-title="Update Category">#projectdetails.audCatName# - #projectdetails.audSubCatName#</a></div>
+
+                        <div class="col-md-12 col-lg-12 p-1 text-nowrap"><strong>Casting Director: </strong>#projectdetails.castingfullname#</div>
+
+                        <cfif #audunions_sel.recordcount# is not "0">
+                            <div class="col-md-12 col-lg-12 p-1 text-nowrap"><strong>Union Status: </strong>#projectdetails.unionName#</div>
+                        </cfif>
+                        <cfif #audcontracttypes_sel.recordcount# is not "0">
+                            <div class="col-md-12 col-lg-12 p-1 text-nowrap"><strong>Contract Type: </strong>#projectdetails.contracttype#</div>
+                        </cfif>
+                        
+                        
+                        <cfif #audnetworks_user_sel.recordcount# is not "0">
+                            <div class="col-md-12 col-lg-12 p-1 text-nowrap"><strong>Network: </strong>#projectdetails.network#</div>
+                        </cfif>
+           
+                        
+                        <cfif #audtones_user_sel.recordcount# is not "0">
+                            <div class="col-md-12 col-lg-12 p-1 text-nowrap"><strong>Style / Format: </strong>#projectdetails.tone#</div>
+                        </cfif>
+
+                        <div class="col-md-12 p-1"><strong>Project Description / Logline: </strong>#projectdetails.projDescription#</div>
+
+
+
+
+
+
+
+
+                    </div>
+
+
+
+
+
+
+
+
+
+
+                </div>
+            </Cfoutput>
+        </div>
+
+    </div>
+
+</div>
+<p>&nbsp;</p>
+
+
+
+<cfif #istab# is "N">
+
+    <div class="card">
+
+        <div class="btn-group col-md-12">
+
+            <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                <Cfoutput>#sec_det.pgtitle#</Cfoutput>
+                <i class="fe-menu"></i>
+
+            </button>
+            <div class="dropdown-menu">
+
+                <cfloop query="options">
+                    <cfoutput>
+                        <a class="dropdown-item" href="/app/audition/?audprojectid=#audprojectid#&secid=#options.pgid#">#options.pgtitle#</a>
+                    </cfoutput>
+                </cfloop>
+
+            </div>
+        </div><!-- /btn-group -->
+
+
+
+
+        <div class="card-body">
+
+
+
+            <cfif #secid# is "176">
+                <cfinclude template="/include/aud_role_pane.cfm" />
+            </cfif>
+
+
+            <cfif #secid# is "175">
+                <cfinclude template="/include/aud_rel_pane.cfm" />
+            </cfif>
+
+                  <cfif #secid# is "196">
+                <cfinclude template="/include/aud_head_pane.cfm" />
+            </cfif>
+
+            <cfif #secid# is "177">
+                <cfinclude template="/include/aud_mat_pane.cfm" />
+            </cfif>
+
+            <cfif #secid# is "178">
+                <cfinclude template="/include/aud_notes_pane.cfm" />
+            </cfif>
+
+            <cfif #secid# is "179">
+                <cfinclude template="/include/aud_ques_pane.cfm" />
+            </cfif>
+
+            <cfif #secid# is "180">
+                <cfinclude template="/include/aud_call_pane.cfm" />
+            </cfif>
+            <cfif #roledetails.isbooked# is "1">
+                <cfif #secid# is "181">
+                    <cfinclude template="/include/aud_book_pane.cfm" />
+                </cfif>
+            </cfif>
+        </div>
+    </div>
+
+
+
+</cfif>
+
+
+
+<cfif #istab# is "Y">
+
+    <cfif #secid# is "176">
+        <cfset role_active="active">
+            <cfelse>
+                <cfset role_active="">
+    </cfif>
+    <cfif #secid# is "175">
+        <cfset rel_active="active">
+            <cfelse>
+                <cfset rel_active="">
+    </cfif>
+
+      <cfif #secid# is "196">
+        <cfset head_active="active">
+            <cfelse>
+                <cfset head_active="">
+    </cfif>
+
+
+
+    <cfif #secid# is "177">
+        <cfset mat_active="active">
+            <cfelse>
+                <cfset mat_active="">
+    </cfif>
+    <cfif #secid# is "178">
+        <cfset notes_active="active">
+            <cfelse>
+                <cfset notes_active="">
+    </cfif>
+    <cfif #secid# is "179">
+        <cfset ques_active="active">
+            <cfelse>
+                <cfset ques_active="">
+    </cfif>
+    <cfif #secid# is "180">
+        <cfset call_active="active">
+            <cfelse>
+                <cfset call_active="">
+    </cfif>
+    <cfif #secid# is "181">
+        <cfset book_active="active">
+            <cfelse>
+                <cfset book_active="">
+    </cfif>
+
+    <cfif #secid# is "176">
+        <cfset role_showactive="show active">
+            <cfelse>
+                <cfset role_showactive="">
+    </cfif>
+    <cfif #secid# is "175">
+        <cfset rel_showactive="show active">
+            <cfelse>
+                <cfset rel_showactive="">
+    </cfif>
+
+      <cfif #secid# is "196">
+        <cfset head_showactive="show active">
+            <cfelse>
+                <cfset head_showactive="">
+    </cfif>
+
+
+
+    <cfif #secid# is "177">
+        <cfset mat_showactive="show active">
+            <cfelse>
+                <cfset mat_showactive="">
+    </cfif>
+    <cfif #secid# is "178">
+        <cfset notes_showactive="show active">
+            <cfelse>
+                <cfset notes_showactive="">
+    </cfif>
+    <cfif #secid# is "179">
+        <cfset ques_showactive="show active">
+            <cfelse>
+                <cfset ques_showactive="">
+    </cfif>
+    <cfif #secid# is "180">
+        <cfset call_showactive="show active">
+            <cfelse>
+                <cfset call_showactive="">
+    </cfif>
+    <cfif #secid# is "181">
+        <cfset book_showactive="show active">
+            <cfelse>
+                <cfset book_showactive="">
+    </cfif>
+
+
+
+  
+
+    <div class="card" class="p-3">
+
+        <ul class="nav nav-pills navtab-bg nav-justified p-1" role="tablist">
+
+
+            <li class="nav-item" role="presentation">
+                <a href="#role" data-bs-toggle="tab" aria-expanded="true" class="nav-link <Cfoutput>#role_active#</Cfoutput>" role="tab">
+                    Role
+                </a>
+            </li>
+
+            <li class="nav-item" role="presentation">
+                <a href="#rel" data-bs-toggle="tab" aria-expanded="false" class="nav-link <Cfoutput>#rel_active#</Cfoutput>" role="tab" tabindex="-1">
+                    Relationships
+                </a>
+            </li>
+
+
+            <li class="nav-item" role="presentation">
+                <a href="#head" data-bs-toggle="tab" aria-expanded="false" class="nav-link <Cfoutput>#head_active#</Cfoutput>" tabindex="-1" role="tab">
+                    Headshots
+                </a>
+            </li>
+
+
+            <li class="nav-item" role="presentation">
+                <a href="#mat" data-bs-toggle="tab" aria-expanded="false" class="nav-link <Cfoutput>#mat_active#</Cfoutput>" tabindex="-1" role="tab">
+                    Materials
+                </a>
+            </li>
+
+
+
+            <li class="nav-item" role="presentation">
+                <a href="#notes" data-bs-toggle="tab" aria-expanded="false" class="nav-link <Cfoutput>#notes_active#</Cfoutput>" tabindex="-1" role="tab">
+                    Notes
+                </a>
+            </li>
+<cfif #isdefined('sdfsdfsdff')#>
+            <cfquery name="questions_check" datasource="#dsn#" >
+    select *
+	 from events e
+	 inner join audroles r on r.audroleid = e.audroleid
+	 WHERE r.audprojectid = <cfqueryparam cfsqltype="cf_sql_integer" value="#audprojectid#"> 
+</cfquery>
+
+
+     <cfif #questions_check.recordcount# is not "0">
+            <li class="nav-item" role="presentation">
+                <a href="#ques" data-bs-toggle="tab" aria-expanded="false" class="nav-link <Cfoutput>#ques_active#</Cfoutput>" tabindex="-1" role="tab">
+                    Assessment
+                </a>
+            </li>
+
+            </cfif>
+   </cfif>
+    
+            <cfif #roledetails.isbooked# is "1">
+                <li class="nav-item" role="presentation">
+                    <a href="#book" data-bs-toggle="tab" aria-expanded="false" class="nav-link <Cfoutput>#book_active#</Cfoutput>" tabindex="-1" role="tab">
+                        Booking
+                    </a>
+                </li>
+
+            </cfif>
+
+
+
+
+        </ul>
+
+
+
+
+        <div class="tab-content p-0">
+
+            <div class="tab-pane <cfoutput>#role_showactive#</cfoutput>" id="role" role="tabpanel">
+
+                <div class="p-3">
+
+                    <cfinclude template="/include/aud_role_pane.cfm" />
+
+                </div>
+
+            </div>
+
+            <div class="tab-pane <cfoutput>#rel_showactive#</cfoutput>" id="rel" role="tabpanel">
+
+                <div class="p-3">
+
+                    <cfinclude template="/include/aud_rel_pane.cfm" />
+
+                </div>
+
+            </div>
+
+
+
+       <div class="tab-pane <cfoutput>#head_showactive#</cfoutput>" id="head" role="tabpanel">
+
+                <div class="p-3">
+
+                    <cfinclude template="/include/aud_head_pane.cfm" />
+
+                </div>
+
+            </div>
+
+
+
+
+
+            <div class="tab-pane <cfoutput>#mat_showactive#</cfoutput>" id="mat" role="tabpanel">
+
+                <div class="p-3">
+
+                    <cfinclude template="/include/aud_mat_pane.cfm" />
+
+                </div>
+
+            </div>
+
+
+            <div class="tab-pane <cfoutput>#notes_showactive#</cfoutput>" id="notes" role="tabpanel">
+
+                <div class="p-3">
+
+                    <cfinclude template="/include/aud_notes_pane.cfm" />
+
+                </div>
+
+            </div>
+
+
+<cfif #isdefined('sdfsdfsdff')#>
+
+            <div class="tab-pane <cfoutput>#ques_showactive#</cfoutput>" id="ques" role="tabpanel">
+
+                <div class="p-3">
+
+                    <cfinclude template="/include/aud_ques_pane.cfm" />
+
+                </div>
+
+            </div>
+    
+</cfif>
+
+
+
+
+            <div class="tab-pane <cfoutput>#call_showactive#</cfoutput>" id="call" role="tabpanel">
+
+                <div class="p-3">
+
+                    <cfinclude template="/include/aud_call_pane.cfm" />
+
+                </div>
+
+            </div>
+
+
+
+            <div class="tab-pane <cfoutput>#book_showactive#</cfoutput>" id="book" role="tabpanel">
+
+                <div class="p-3">
+
+                    <cfinclude template="/include/aud_book_pane.cfm" />
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+                </div>
+
+
+
+</cfif>
+ <div id="RemoveBook" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" aria-hidden="true">
+
+            <div class="modal-dialog">
+
+                <div class="modal-content">
+
+                    <div class="modal-header" style="background-color: ##f3f7f9;">
+
+                        <h4 class="modal-title" id="standard-modalLabel">Warning</h4>
+
+                   
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true"><i class="mdi mdi-close-thick"></i>
+
+                        </button>
+
+                    </div>
+
+                    <div class="modal-body">
+     <p>You have to remove any booked appointments you have before you can change the booked status of this audition</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+<script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    var bookedCheckbox = document.getElementById('new_isBooked');
+
+    bookedCheckbox.addEventListener('click', function(event) {
+        var isBooked = <cfoutput>#rolecheck.isBooked#</cfoutput>;
+        var bookedCheckRecordCount = <cfoutput>#Booked_check.recordcount#</cfoutput>;
+
+        if (isBooked === "1" && bookedCheckRecordCount !== 0 && !this.checked) {
+            event.preventDefault(); // Prevent unchecking
+            $('#RemoveBook').modal('show'); // Show the modal
+        }
+    });
+});
+</script>
