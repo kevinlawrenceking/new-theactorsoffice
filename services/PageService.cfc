@@ -15,7 +15,7 @@
         
         
             
-            <cfreturn queryNew("pgid,pgname", "integer,varchar")>
+            
         
     
 
@@ -58,7 +58,7 @@
         
         
              #arguments.pgid# AND pgfilename = 'results.cfm'">
-            <cfreturn queryNew("pgid,pgdir", "integer,varchar")>
+            
         
     
 
@@ -422,7 +422,7 @@
         
         
             
-            <cfreturn queryNew("fname,ftype")>
+            
         
     
     

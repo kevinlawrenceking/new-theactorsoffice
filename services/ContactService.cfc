@@ -170,7 +170,7 @@
             <!--- Log the error --->
             
             <!--- Return an empty query --->
-            <cfreturn queryNew("contactid,col1,col2,col2b,col3,col4,col5,userid,hlink", "integer,varchar,varchar,varchar,varchar,varchar,varchar,integer,varchar")>
+            
         
         
     </cffunction>
@@ -392,7 +392,7 @@
         
         
             
-            <cfreturn queryNew("contactid,recordname", "integer,varchar")>
+            
         
     
 
@@ -808,7 +808,7 @@ function getContactRecordName(new_contactid) {
     
 
     <cfif len(trim(arguments.idList)) eq 0 or arguments.idList eq "0">
-        <cfreturn queryNew("contactid,recordname")>
+        
     </cfif>
 
 
@@ -1230,7 +1230,7 @@ function getContactRecordName(new_contactid) {
         
         
             
-            <cfreturn queryNew("contactid,head1,head2,col1,col2")>
+            
         
     
     

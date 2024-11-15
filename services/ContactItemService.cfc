@@ -157,7 +157,7 @@
         
         
             
-            <cfreturn queryNew("phone", "varchar")>
+            
         
     
     
@@ -452,7 +452,7 @@
         
         
             
-            <cfreturn queryNew("new_address,new_address2,new_city,new_state,new_zip","varchar,varchar,varchar,varchar,varchar")>
+            
         
     
     
@@ -481,7 +481,7 @@
         
         
             
-            <cfreturn queryNew("new_address,new_address2,new_city,new_state,new_zip,new_country")>
+            
         
     
     
@@ -523,7 +523,7 @@
         
         
             
-            <cfreturn queryNew("itemid,valueText", "integer,varchar")>
+            
         
     
     
@@ -1581,7 +1581,7 @@ function getContactDetails(required numeric uploadid) {
         
         
              '' AND i.valuecompany IS NOT null ORDER BY i.valuetext LIMIT 1">
-            <cfreturn queryNew("valueCompany")>
+            
         
     
     
@@ -1778,7 +1778,7 @@ function getContactDetails(required numeric uploadid) {
         
         
             
-            <cfreturn queryNew("valuetext, valuetype, typeIcon")>
+            
         
     
 

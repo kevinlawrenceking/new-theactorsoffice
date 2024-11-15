@@ -715,7 +715,7 @@
 
         
             
-            <cfreturn queryNew("new_ticketstatus", "varchar")>
+            
         
     
 

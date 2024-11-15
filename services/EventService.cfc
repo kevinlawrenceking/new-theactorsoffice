@@ -319,7 +319,7 @@
         
         
             
-            <cfreturn queryNew("contactid, contactfullname, userid, eventStart")>
+            
         
     
 </cffunction>
@@ -518,7 +518,7 @@
         
         
             
-            <cfreturn queryNew("col1")>
+            
         
     
 </cffunction>
@@ -1079,7 +1079,7 @@
         
         
             
-            <cfreturn queryNew("eventid,eventStart,eventstarttime,col2,col3,audtype,audlocation,col5,audstep,workwithcoach")>
+            
         
     
 </cffunction>
@@ -1549,7 +1549,7 @@
         
         
             
-            <cfreturn queryNew("eventID,recid,eventTitle,eventStart,eventStartTime", "integer,integer,varchar,timestamp,time")>
+            
         
     
 </cffunction>

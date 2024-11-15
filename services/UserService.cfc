@@ -517,7 +517,7 @@
         </cfquery>
         
             
-            <cfreturn queryNew("userid")> <!--- Return an empty query set --->
+             <!--- Return an empty query set --->
         
     
 

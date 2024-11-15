@@ -87,7 +87,7 @@
         
         
             
-            <cfreturn queryNew("cd,contactid", "varchar,int")>
+            
         
     
     
@@ -643,7 +643,7 @@
 
     
         = #arguments.rangestart# AND p.projdate <= #arguments.rangeend#">
-        <cfreturn queryNew("totals,label,itemDataset", "integer,varchar,varchar")>
+        
     
     
 </cffunction>
@@ -708,7 +708,7 @@
         
         
             
-            <cfreturn queryNew("totals,label,itemDataset", "integer,varchar,varchar")>
+            
         
     
 
@@ -742,7 +742,7 @@
         
         
             = #arguments.rangestart# AND p.projdate <= #arguments.rangeend#">
-            <cfreturn queryNew("totals,label,itemDataset", "integer,varchar,varchar")>
+            
         
     
 
@@ -785,7 +785,7 @@
         
         
             
-            <cfreturn queryNew("totals,label,itemDataset", "integer,varchar,varchar")>
+            
         
     
 </cffunction>
@@ -991,7 +991,7 @@ function getAuditionData(struct rangeselected, numeric userid) {
         
         
             
-            <cfreturn queryNew("totals,label,itemDataset")>
+            
         
     
 
@@ -1033,7 +1033,7 @@ function getAuditionData(struct rangeselected, numeric userid) {
         
         
             
-            <cfreturn queryNew("totals,label,itemDataset", "integer,varchar,varchar")>
+            
         
     
 
@@ -1177,7 +1177,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
         
         
             
-            <cfreturn queryNew("totals,label,itemDataset", "integer,varchar,varchar")>
+            
         
     
 </cffunction>

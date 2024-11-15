@@ -5,7 +5,7 @@
     
 
     <cfif arrayLen(arguments.newpnids) eq 0>
-        <cfreturn queryNew("pnid", "integer")>
+        
     </cfif>
 
     <cfquery name="result">
