@@ -43,7 +43,7 @@
 
                            <li>
                         <a href="/app/auditions/">
-                            <i data-feather="<i data-feather="film"></i>"></i>
+                            <i data-feather="<i data-feather="film"></i>
                             <span>Auditions </span>
                         </a>
                     </li>
