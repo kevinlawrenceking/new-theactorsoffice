@@ -2,10 +2,13 @@
 <cffunction output="false" name="SELaudgenres_audition_xref" access="public" returntype="query">
     <cfargument name="projectList" type="string" required="true">
     
-    <cfset var queryResult = "">
-    <cfset var sql = "">
-    
-    <cfset sql = "
+    <!--- Validate input to ensure projectList is not empty --->
+    <cfif len(trim(arguments.projectList)) EQ 0>
+        <cfthrow message="Project list cannot be empty." />
+    </cfif>
+
+    <!--- Execute the query --->
+    <cfquery name="queryResult" result="result">
         SELECT 
             p.audprojectid AS recid,
             p.projdate AS Date,
@@ -61,17 +64,17 @@
         LEFT JOIN audunions un ON (p.`unionID` = un.`unionID`)
         LEFT JOIN audcontracttypes ct ON (p.`contractTypeID` = ct.contracttypeid)
         LEFT JOIN auddialects_user di ON (r.`audDialectID` = di.auddialectid)
-        WHERE p.audprojectid IN (<cfqueryparam value="#arguments.projectList#" cfsqltype="CF_SQL_VARCHAR" list="true">)
+        WHERE p.audprojectid IN (
+            <cfqueryparam value="#arguments.projectList#" cfsqltype="CF_SQL_INTEGER" list="true">
+        )
         GROUP BY r.audroleid, p.projname, s.audsource, rt.audroletype, r.iscallback, r.isredirect, r.ispin, r.isbooked
         ORDER BY p.projdate DESC
-    ">
-    
-    <cfquery result="result" name="queryResult">
-        #sql#
     </cfquery>
-    
+
+    <!--- Return the query result --->
     <cfreturn queryResult>
 </cffunction>
+
 
 <cffunction output="false" name="SELaudgenres_audition_xref_24274" access="public" returntype="query">
     <cfargument name="audgenre" type="string" required="true">
