@@ -505,4 +505,4 @@
     </div>
 
     <cfif #isexport# is "Y">
-        <cfinclude template="/include/qry/export_ac_31_6.cfm"
+        <cfinclude template="/include/qry/export_ac_31_6.cfm">
