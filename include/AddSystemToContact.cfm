@@ -34,7 +34,7 @@
         
         <!--- if recordcount is 1, the action has been completed. Don't add action.  --->  
         <cfif #checkunique.recordcount# is "1">
-            <cfset #add_action# = "N" />
+            <cfset add_action = "N" />
             <cfoutput>
                 #adddaysno.actionid# - #adddaysno.actiontitle# not added
                 <br>
