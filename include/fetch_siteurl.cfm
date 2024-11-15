@@ -4,29 +4,18 @@
     
     <!--- Check if site URL is submitted --->
     <cfif structKeyExists(form, "siteurl")>
-        <cfset connect = createObject("java", "java.sql.DriverManager").getConnection("jdbc:mysql://www.theactorsoffice.com/actorsbusinessoffice", "kingk436", "Rimshot323!")>
-        
-        <!--- Prepare SQL query to check for existing site URL for the user --->
-        <cfset query = "SELECT * FROM sitelinks_user WHERE userid = #userID# AND siteurl = '#trim(form.siteurl)#'">
-        
-        <cfset statement = connect.prepareStatement(query)>
-        <cfset resultSet = statement.executeQuery()>
-        
-        <!--- Count the number of rows returned --->
-        <cfset total_row = 0>
-        <cfif resultSet.next()>
-            <cfset total_row = total_row + 1>
-        </cfif>
+        <!--- Use CFQUERY to check for existing site URL for the user --->
+        <cfquery name="checkSiteUrl" datasource="#dsn#">
+            SELECT COUNT(*) AS total_row
+            FROM sitelinks_user
+            WHERE userid = <cfqueryparam value="#userID#" cfsqltype="CF_SQL_INTEGER">
+            AND siteurl = <cfqueryparam value="#trim(form.siteurl)#" cfsqltype="CF_SQL_VARCHAR">
+        </cfquery>
         
         <!--- Check if no records were found --->
-        <cfif total_row EQ 0>
+        <cfif checkSiteUrl.total_row EQ 0>
             <cfset output = { "success" = true }>
             <cfoutput>#serializeJSON(output)#</cfoutput>
         </cfif>
-        
-        <!--- Close the database connection --->
-        <cfset resultSet.close()>
-        <cfset statement.close()>
-        <cfset connect.close()>
     </cfif>
 </cfif>

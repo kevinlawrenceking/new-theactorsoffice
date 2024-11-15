@@ -5,25 +5,16 @@
 </cfif>
 
 <cfif structKeyExists(form, "email")>
-    <!--- Establish a database connection --->
-    <cfset connect = createObject("java", "java.sql.DriverManager").getConnection("jdbc:mysql://www.theactorsoffice.com/actorsbusinessoffice", "kingk436", "Rimshot323!")>
+    <!--- Query to check for existing emails --->
+    <cfquery name="emailCheck" datasource="#dsn#">
+        SELECT COUNT(*) AS total_row
+        FROM taousers
+        WHERE userid <> <cfqueryparam value="#userID#" cfsqltype="CF_SQL_INTEGER">
+        AND useremail = <cfqueryparam value="#trim(form.email)#" cfsqltype="CF_SQL_VARCHAR">
+    </cfquery>
 
-    <!--- Prepare the SQL query to check for existing emails --->
-    <cfset query = "SELECT * FROM taousers WHERE userid <> #userID# AND useremail = '#trim(form.email)#'">
-    
-    <cfset statement = connect.prepareStatement(query)>
-    
-    <!--- Execute the query --->
-    <cfset resultSet = statement.executeQuery()>
-    
-    <!--- Count the number of rows returned --->
-    <cfset total_row = 0>
-    <cfloop while="resultSet.next()">
-        <cfset total_row = total_row + 1>
-    </cfloop>
-
-    <cfif total_row EQ 0>
-        <!--- Prepare the output response --->
+    <!--- Check if no matching emails were found --->
+    <cfif emailCheck.total_row EQ 0>
         <cfset output = { "success" = true }>
         <cfoutput>#serializeJSON(output)#</cfoutput>
     </cfif>

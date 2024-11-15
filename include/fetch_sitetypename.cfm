@@ -5,22 +5,16 @@
 <!--- Check if the site type name is posted --->
 <cfif structKeyExists(form, "sitetypename")>
 
-    <!--- Establish a database connection --->
-    <cfset connect = createObject("java", "java.sql.DriverManager").getConnection("jdbc:mysql://www.theactorsoffice.com/actorsbusinessoffice", "kingk436", "Rimshot323!")>
-
-    <!--- Prepare the SQL query to check for the site type --->
-    <cfset query = "SELECT * FROM sitetypes_user WHERE userid = #userID# AND sitetypename = '#trim(form.sitetypename)#'">
-
-    <cfset statement = connect.prepareStatement(query)>
-
-    <!--- Execute the query --->
-    <cfset resultSet = statement.executeQuery()>
-
-    <!--- Get the total number of rows returned --->
-    <cfset total_row = resultSet.getMetaData().getColumnCount()>
+    <!--- Query the database to check for the site type name --->
+    <cfquery name="checkSiteType" datasource="#dsn#">
+        SELECT COUNT(*) AS total_row
+        FROM sitetypes_user
+        WHERE userid = <cfqueryparam value="#userID#" cfsqltype="CF_SQL_INTEGER">
+        AND sitetypename = <cfqueryparam value="#trim(form.sitetypename)#" cfsqltype="CF_SQL_VARCHAR">
+    </cfquery>
 
     <!--- Check if no rows were returned --->
-    <cfif total_row EQ 0>
+    <cfif checkSiteType.total_row EQ 0>
         <cfset output = { "success" = true }>
         <cfoutput>#serializeJSON(output)#</cfoutput>
     </cfif>

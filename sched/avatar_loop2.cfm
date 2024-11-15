@@ -1,11 +1,6 @@
  
 
   
- <!--- Your AvatarAPI username and password (use environment variables for security) --->
-<cfset username = "kevinking7135">
-<cfset password = "Rimshot323!">
-<cfset apiEndpoint = "https://avatarapi.com/v2/api.aspx">
-<cfset provider = "Microsoft,Google">
 
 <cfquery result="result" name="x"  maxrows="1000">
 SELECT distinct
