@@ -1,6 +1,6 @@
 <cfcomponent displayname="NotificationService" hint="Handles operations for Notification table" > 
 
-<cffunction name="addNotification" access="public" returntype="struct" output="false" hint="Adds a notification to the database">
+<cffunction name="INSfunotifications" access="public" returntype="struct" output="false" hint="Adds a notification to the database">
         <cfargument name="actionID" type="numeric" required="true" hint="The action ID for the notification">
         <cfargument name="userID" type="numeric" required="true" hint="The ID of the user">
         <cfargument name="suID" type="numeric" required="true" hint="The suID for the notification">
