@@ -210,12 +210,12 @@
     
     
     
-        <cfquery name="result" >
+        <cfquery name="result" maxrows="1">
             SELECT d.contactid,
             FROM contactdetails d
             WHERE d.#arguments.addDaysNoUniqueName# = <cfqueryparam value="Y" cfsqltype="CF_SQL_CHAR">
             AND d.contactid = <cfqueryparam value="#arguments.newContactId#" cfsqltype="CF_SQL_INTEGER">
-            LIMIT 1
+        
         </cfquery>
         
         
