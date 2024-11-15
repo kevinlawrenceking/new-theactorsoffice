@@ -7,10 +7,20 @@
 <cfinclude template="/include/qry/findscope_294_3.cfm" />
 
 <!--- Determine new system scope based on findscope record count --->
-<cfset new_systemscope = iif(findscope.recordcount is 1, "Casting Director", "Industry") />
+<cfif findscope.recordcount is 1>
+    <cfset new_systemscope = "Casting Director">
+<cfelse>
+    <cfset new_systemscope = "Industry">
+</cfif>
+
 
 <!--- Determine old system type based on suid --->
-<cfset old_systemtype = iif(suid neq "0", reldetails.systemtype, "None") />
+<cfif suid neq "0">
+    <cfset old_systemtype = reldetails.systemtype>
+<cfelse>
+    <cfset old_systemtype = "None">
+</cfif>
+
 
 <!--- Check if old system type is different from new system type --->
 <cfif old_systemtype neq new_systemtype>
