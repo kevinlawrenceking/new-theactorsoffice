@@ -1,5 +1,29 @@
 <cfcomponent displayname="NotificationService" hint="Handles operations for Notification table" > 
 
+<cffunction name="addNotification" access="public" returntype="struct" output="false" hint="Adds a notification to the database">
+        <cfargument name="actionID" type="numeric" required="true" hint="The action ID for the notification">
+        <cfargument name="userID" type="numeric" required="true" hint="The ID of the user">
+        <cfargument name="suID" type="numeric" required="true" hint="The suID for the notification">
+        <cfargument name="notStartDate" type="date" required="true" hint="The start date of the notification">
+
+        <!-- Define local variable for query result -->
+        <cfset var result = structNew()>
+
+        <cfquery  name="addNotificationQuery" result="result">
+            INSERT INTO funotifications (actionid, userid, suID, notstartdate, notstatus)
+            VALUES (
+                <cfqueryparam value="#arguments.actionID#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.suID#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#DateFormat(arguments.notStartDate, 'yyyy-mm-dd')#" cfsqltype="CF_SQL_DATE">,
+                <cfqueryparam value="Pending" cfsqltype="CF_SQL_VARCHAR">
+            )
+        </cfquery>
+
+        <!-- Return the query result -->
+        <cfreturn result>
+    </cffunction>
+
 <cffunction  output="false" name="UPDfunotifications_24316" access="public" returntype="void">
     <cfargument name="suid" type="numeric" required="true">
     
