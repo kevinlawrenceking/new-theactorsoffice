@@ -1,4 +1,4 @@
-<CFINCLUDE template="/include/projdate_fix_user.cfm" />
+<!--- ignore for now <CFINCLUDE template="/include/projdate_fix_user.cfm" /> --->
 <cfparam name="sel_audcatid" default="%" />
 <cfparam name="SEL_AUDSTEPID" default="0" />
 
