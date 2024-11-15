@@ -1,4 +1,4 @@
-<cfset componentPath = "/services/ExportItemService.cfc">
+<cfset componentPath = "/services/ExportItemService">
 <cfset exportItemService = createObject("component", componentPath)>
 
 <cfset exportItemService.INSexportitems(

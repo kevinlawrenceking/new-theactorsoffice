@@ -1,4 +1,4 @@
-<cfset componentPath = "/services/AuditionLocationService.cfc">
+<cfset componentPath = "/services/AuditionLocationService">
 <cfset auditionLocationService = createObject("component", componentPath)>
 <cfset auditionLocationService.UPDaudlocations(
     new_userid = new_userid,

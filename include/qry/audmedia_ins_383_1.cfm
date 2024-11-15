@@ -1,4 +1,4 @@
-<cfset componentPath = "/services/AuditionMediaService.cfc">
+<cfset componentPath = "/services/AuditionMediaService">
 <cfset audMediaService = createObject("component", componentPath)>
 <cfset audMediaService.INSaudmedia(
     new_mediaTypeID = new_mediaTypeID,

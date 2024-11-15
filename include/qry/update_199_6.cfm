@@ -1,4 +1,4 @@
-<cfset componentPath = "/services/ContactItemService.cfc">
+<cfset componentPath = "/services/ContactItemService">
 <cfset contactItemService = createObject("component", componentPath)>
 <cfset contactItemService.UPDcontactitems_24046(
     valuetext = trim(valuetext),

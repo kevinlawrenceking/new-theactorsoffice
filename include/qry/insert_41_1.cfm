@@ -1,3 +1,3 @@
-<cfset componentPath = "/services/AuditionAnswerService.cfc">
+<cfset componentPath = "/services/AuditionAnswerService">
 <cfset auditionAnswerService = createObject("component", componentPath)>
 <cfset auditionAnswerService.DELaudanswers(eventid=eventid)>

@@ -1,4 +1,4 @@
-<cfset componentPath = "/services/AuditionDialectService.cfc">
+<cfset componentPath = "/services/AuditionDialectService">
 <cfset dialectService = createObject("component", componentPath)>
 
 <cfset dialectService.UPDauddialects(

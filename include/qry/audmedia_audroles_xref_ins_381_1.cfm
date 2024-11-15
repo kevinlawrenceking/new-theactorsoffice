@@ -1,4 +1,4 @@
-<cfset componentPath = "/services/AuditionMediaAudRolesXRefService.cfc">
+<cfset componentPath = "/services/AuditionMediaAudRolesXRefService">
 <cfset componentInstance = createObject("component", componentPath)>
 <cfset componentInstance.INSaudmedia_audroles_xref(
     new_mediaid = new_mediaid,

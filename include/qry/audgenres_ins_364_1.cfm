@@ -1,4 +1,4 @@
-<cfset componentPath = "/services/AuditionGenreService.cfc">
+<cfset componentPath = "/services/AuditionGenreService">
 <cfset auditionGenreService = createObject("component", componentPath)>
 <cfset auditionGenreService.UPDaudgenres(
     new_audgenre = new_audgenre,

@@ -1,4 +1,4 @@
-<cfset componentPath = "/services/AuditionQuestionsDefaultService.cfc">
+<cfset componentPath = "/services/AuditionQuestionsDefaultService">
 <cfset auditionQuestionsService = createObject("component", componentPath)>
 <cfset auditionQuestionsService.INSaudquestions_default(
     new_qTypeID = new_qTypeID,

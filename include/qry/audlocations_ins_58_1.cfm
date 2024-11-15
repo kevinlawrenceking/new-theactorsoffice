@@ -1,4 +1,4 @@
-<cfset componentPath = "/services/AuditionRoleService.cfc">
+<cfset componentPath = "/services/AuditionRoleService">
 <cfset auditionRoleService = createObject("component", componentPath)>
 <cfset auditionRoleService.UPDaudroles_23810(
     new_audroleid = new_audroleid,

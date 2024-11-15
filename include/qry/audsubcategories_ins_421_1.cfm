@@ -1,4 +1,4 @@
-<cfset componentPath = "/services/AuditionSubcategorieService.cfc">
+<cfset componentPath = "/services/AuditionSubcategorieService">
 <cfset componentInstance = createObject("component", componentPath)>
 <cfset componentInstance.INSaudsubcategories(
     new_audSubCatName = new_audSubCatName,

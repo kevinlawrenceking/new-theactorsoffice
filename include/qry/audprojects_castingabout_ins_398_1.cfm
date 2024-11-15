@@ -1,4 +1,4 @@
-<cfset componentPath = "/services/AuditionProjectsCastingAboutService.cfc">
+<cfset componentPath = "/services/AuditionProjectsCastingAboutService">
 <cfset componentInstance = createObject("component", componentPath)>
 <cfset componentInstance.UPDaudprojects_castingabout(
     new_projName = new_projName,

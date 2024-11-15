@@ -1,4 +1,4 @@
-<cfset componentPath = "/services/AuditionContractTypeService.cfc">
+<cfset componentPath = "/services/AuditionContractTypeService">
 <cfset auditionContractTypeService = createObject("component", componentPath)>
 <cfset auditionContractTypeService.INSaudcontracttypes(
     new_contracttype = new_contracttype,

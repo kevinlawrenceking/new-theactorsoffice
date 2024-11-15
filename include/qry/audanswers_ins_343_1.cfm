@@ -1,4 +1,4 @@
-<cfset componentPath = "/services/AuditionAnswerService.cfc">
+<cfset componentPath = "/services/AuditionAnswerService">
 <cfset auditionAnswerService = createObject("component", componentPath)>
 <cfset auditionAnswerService.UPDaudanswers_24507(
     new_qID = new_qID,
