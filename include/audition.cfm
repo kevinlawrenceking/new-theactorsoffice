@@ -962,41 +962,22 @@
 
         <div class="card-body">
 
+            <cfset includeTemplates = {
+    "176": "/include/aud_role_pane.cfm",
+    "175": "/include/aud_rel_pane.cfm",
+    "196": "/include/aud_head_pane.cfm",
+    "177": "/include/aud_mat_pane.cfm",
+    "178": "/include/aud_notes_pane.cfm",
+    "179": "/include/aud_ques_pane.cfm",
+    "180": "/include/aud_call_pane.cfm",
+    "181": roledetails.isbooked eq "1" ? "/include/aud_book_pane.cfm" : ""
+} />
 
+<cfif structKeyExists(includeTemplates, secid) and len(includeTemplates[secid])>
+    <cfinclude template="#includeTemplates[secid]#" />
+</cfif>
 
-            <cfif #secid# is "176">
-                <cfinclude template="/include/aud_role_pane.cfm" />
-            </cfif>
-
-
-            <cfif #secid# is "175">
-                <cfinclude template="/include/aud_rel_pane.cfm" />
-            </cfif>
-
-                  <cfif #secid# is "196">
-                <cfinclude template="/include/aud_head_pane.cfm" />
-            </cfif>
-
-            <cfif #secid# is "177">
-                <cfinclude template="/include/aud_mat_pane.cfm" />
-            </cfif>
-
-            <cfif #secid# is "178">
-                <cfinclude template="/include/aud_notes_pane.cfm" />
-            </cfif>
-
-            <cfif #secid# is "179">
-                <cfinclude template="/include/aud_ques_pane.cfm" />
-            </cfif>
-
-            <cfif #secid# is "180">
-                <cfinclude template="/include/aud_call_pane.cfm" />
-            </cfif>
-            <cfif #roledetails.isbooked# is "1">
-                <cfif #secid# is "181">
-                    <cfinclude template="/include/aud_book_pane.cfm" />
-                </cfif>
-            </cfif>
+            
         </div>
     </div>
 
@@ -1006,97 +987,68 @@
 
 
 
-<cfif #istab# is "Y">
+<cfif istab is "Y">
+    <!--- Define mappings for active and show active states --->
+    <cfset activeStates = {
+        "176": {active: "active", showactive: "show active"},
+        "175": {active: "active", showactive: "show active"},
+        "196": {active: "active", showactive: "show active"},
+        "177": {active: "active", showactive: "show active"},
+        "178": {active: "active", showactive: "show active"},
+        "179": {active: "active", showactive: "show active"},
+        "180": {active: "active", showactive: "show active"},
+        "181": {active: "active", showactive: "show active"}
+    } />
 
-    <cfif #secid# is "176">
-        <cfset role_active="active">
-            <cfelse>
-                <cfset role_active="">
-    </cfif>
-    <cfif #secid# is "175">
-        <cfset rel_active="active">
-            <cfelse>
-                <cfset rel_active="">
-    </cfif>
+    <!--- Initialize all variables to blank --->
+    <cfset role_active = "" />
+    <cfset rel_active = "" />
+    <cfset head_active = "" />
+    <cfset mat_active = "" />
+    <cfset notes_active = "" />
+    <cfset ques_active = "" />
+    <cfset call_active = "" />
+    <cfset book_active = "" />
 
-      <cfif #secid# is "196">
-        <cfset head_active="active">
-            <cfelse>
-                <cfset head_active="">
-    </cfif>
+    <cfset role_showactive = "" />
+    <cfset rel_showactive = "" />
+    <cfset head_showactive = "" />
+    <cfset mat_showactive = "" />
+    <cfset notes_showactive = "" />
+    <cfset ques_showactive = "" />
+    <cfset call_showactive = "" />
+    <cfset book_showactive = "" />
 
-
-
-    <cfif #secid# is "177">
-        <cfset mat_active="active">
-            <cfelse>
-                <cfset mat_active="">
+    <!--- Dynamically assign values based on secid --->
+    <cfif structKeyExists(activeStates, secid)>
+        <cfset activeKey = activeStates[secid] />
+        <cfif secid eq "176">
+            <cfset role_active = activeKey.active />
+            <cfset role_showactive = activeKey.showactive />
+        <cfelseif secid eq "175">
+            <cfset rel_active = activeKey.active />
+            <cfset rel_showactive = activeKey.showactive />
+        <cfelseif secid eq "196">
+            <cfset head_active = activeKey.active />
+            <cfset head_showactive = activeKey.showactive />
+        <cfelseif secid eq "177">
+            <cfset mat_active = activeKey.active />
+            <cfset mat_showactive = activeKey.showactive />
+        <cfelseif secid eq "178">
+            <cfset notes_active = activeKey.active />
+            <cfset notes_showactive = activeKey.showactive />
+        <cfelseif secid eq "179">
+            <cfset ques_active = activeKey.active />
+            <cfset ques_showactive = activeKey.showactive />
+        <cfelseif secid eq "180">
+            <cfset call_active = activeKey.active />
+            <cfset call_showactive = activeKey.showactive />
+        <cfelseif secid eq "181">
+            <cfset book_active = activeKey.active />
+            <cfset book_showactive = activeKey.showactive />
+        </cfif>
     </cfif>
-    <cfif #secid# is "178">
-        <cfset notes_active="active">
-            <cfelse>
-                <cfset notes_active="">
-    </cfif>
-    <cfif #secid# is "179">
-        <cfset ques_active="active">
-            <cfelse>
-                <cfset ques_active="">
-    </cfif>
-    <cfif #secid# is "180">
-        <cfset call_active="active">
-            <cfelse>
-                <cfset call_active="">
-    </cfif>
-    <cfif #secid# is "181">
-        <cfset book_active="active">
-            <cfelse>
-                <cfset book_active="">
-    </cfif>
-
-    <cfif #secid# is "176">
-        <cfset role_showactive="show active">
-            <cfelse>
-                <cfset role_showactive="">
-    </cfif>
-    <cfif #secid# is "175">
-        <cfset rel_showactive="show active">
-            <cfelse>
-                <cfset rel_showactive="">
-    </cfif>
-
-      <cfif #secid# is "196">
-        <cfset head_showactive="show active">
-            <cfelse>
-                <cfset head_showactive="">
-    </cfif>
-
-
-
-    <cfif #secid# is "177">
-        <cfset mat_showactive="show active">
-            <cfelse>
-                <cfset mat_showactive="">
-    </cfif>
-    <cfif #secid# is "178">
-        <cfset notes_showactive="show active">
-            <cfelse>
-                <cfset notes_showactive="">
-    </cfif>
-    <cfif #secid# is "179">
-        <cfset ques_showactive="show active">
-            <cfelse>
-                <cfset ques_showactive="">
-    </cfif>
-    <cfif #secid# is "180">
-        <cfset call_showactive="show active">
-            <cfelse>
-                <cfset call_showactive="">
-    </cfif>
-    <cfif #secid# is "181">
-        <cfset book_showactive="show active">
-            <cfelse>
-                <cfset book_showactive="">
-    </cfif>
+</cfif>
 
 
 
