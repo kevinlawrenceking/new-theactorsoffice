@@ -402,9 +402,9 @@
 
                         <div class="form-switch col-md-3 col-sm-6 col-xs-6">
 <cfif #projectdetails.isdirect# is "0">
-                            <cfquery name="Pin_check" datasource="#dsn#">
-                                SELECT * FROM events WHERE audroleid = #audroleid# AND isdeleted = 0 AND audstepid = 4
-                            </cfquery>
+
+<cfinclude template="/include/qry/Pin_check_29_7.cfm" />
+                          
 
                             <cfif #rolecheck.isPin# is "1">
 
