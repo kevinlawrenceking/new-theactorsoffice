@@ -101,9 +101,9 @@
     </cfoutput>
 </cfif>
 
-<Cfif #detect.ismobile()# is "true">
-    <cfset istab="N" />
-</Cfif>
+<!--- removing mobile for now <Cfif #detect.ismobile()# is "true"> 
+    <cfset istab="Y" />
+</Cfif> --->
 
 <cfset new_audcatid=numberformat(projectDetails.audcatid) />
 <cfset audcatid=numberformat(projectDetails.audcatid) />
