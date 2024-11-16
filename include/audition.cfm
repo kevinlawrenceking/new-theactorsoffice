@@ -126,49 +126,59 @@
                     </div>
                     <div class="modal-body">
                         <div class="row" style="margin: auto;">
-                            <Cfif #auditiondetails.eventStart# is not "">
+                            <!-- Open cfif for eventStart -->
+                            <cfif auditiondetails.eventStart is not "">
                                 <h4 class="px-1 d-flex text-nowrap">
-                                    <img src="#application.datesUrl#/#DateFormat('#auditiondetails.eventStart#','yyyy-mm-dd')#.png" style="max-width:75px;" alt="...">
+                                    <img src="#application.datesUrl#/#DateFormat(auditiondetails.eventStart, 'yyyy-mm-dd')#.png" style="max-width:75px;" alt="...">
                                 </h4>
-                            </Cfif>
-                            <div class="col-md-12 p-1"><strong>Time: </strong>#timeformat(auditiondetails.eventStartTime)# <cfif #auditiondetails.eventStopTime# is not "">- #timeformat(auditiondetails.eventStopTime)#</cfif></div>
+                            </cfif>
+                            <div class="col-md-12 p-1"><strong>Time: </strong>#timeformat(auditiondetails.eventStartTime)# 
+                                <!-- Open cfif for eventStopTime -->
+                                <cfif auditiondetails.eventStopTime is not "">- #timeformat(auditiondetails.eventStopTime)#</cfif>
+                            </div>
                             <div class="col-md-12 p-1"><strong> Stage: </strong>#auditiondetails.audstep#</div>
-                            <cfif #auditionDetails.audstepid# is "2">
+                            <!-- Callback Type -->
+                            <cfif auditionDetails.audstepid is "2">
                                 <div class="col-md-12 p-1"><strong>Callback Type: </strong>#auditionDetails.callbacktype#</div>
                             </cfif>
-                            <div class="col-md-12 p-1"><strong> Type: </strong><button type="button" class="btn btn-xs btn-soft-secondary rounded-pill waves-effect">#auditiondetails.audtype#</button></div>
-                            <cfif #auditiondetails.audstepid# is "5">
+                            <!-- Booking Type -->
+                            <div class="col-md-12 p-1"><strong> Type: </strong>
+                                <button type="button" class="btn btn-xs btn-soft-secondary rounded-pill waves-effect">#auditiondetails.audtype#</button>
+                            </div>
+                            <cfif auditiondetails.audstepid is "5">
                                 <div class="col-md-12 p-1"><strong>Booking Type: </strong>#auditiondetails.audbooktype#</div>
                             </cfif>
-                            <cfif #auditiondetails.audtype# is "online">
+                            <!-- Platform -->
+                            <cfif auditiondetails.audtype is "online">
                                 <div class="col-md-12 p-1"><strong> Platform: </strong>#auditiondetails.audplatform#</div>
                             </cfif>
+                            <!-- Coach -->
                             <div class="col-md-12 p-1"><strong> Worked with Coach: </strong>
-                                <cfif #auditiondetails.workwithcoach# is "1">Yes<cfelse>No</cfif>
+                                <cfif auditiondetails.workwithcoach is "1">Yes<cfelse>No</cfif>
                             </div>
-                            <cfif #auditiondetails.audtype# is "In Person">
+                            <!-- In-Person Details -->
+                            <cfif auditiondetails.audtype is "In Person">
                                 <div class="col-md-12 p-1"><strong>Parking Details: </strong>#auditiondetails.parkingdetails#</div>
-                            </cfif>
-                            <cfif #auditiondetails.audtype# is "In Person">
                                 <div class="col-md-12 p-1"><strong> Track Mileage: </strong>
-                                    <cfif #auditiondetails.trackmileage# is "1">Yes<cfelse>No</cfif>
+                                    <cfif auditiondetails.trackmileage is "1">Yes<cfelse>No</cfif>
                                 </div>
-                                <cfif #auditiondetails.audtype# is "In Person">
-                                    <div class="col-md-12 p-1"><strong>Parking Details: </strong>#auditiondetails.parkingdetails#</div>
-                                </cfif>
                             </cfif>
-                            <cfif #auditiondetails.islocation# is "true">
-                                <div class="col-md-12 p-1"><strong>Location: </strong>#auditionDetails.eventLocation#<cfif #auditionDetails.eventLocation# is not "" and #auditionDetails.audlocadd1# is not "">, #auditionDetails.audlocadd1#</cfif>
-                                    <cfif #auditionDetails.audlocadd2# is not "">, #auditionDetails.audlocadd2#</cfif>
-                                    <cfif #auditionDetails.audcity# is not "">, #auditionDetails.audcity#</cfif>
-                                    <cfif #auditionDetails.regionname# is not ""> , #auditionDetails.regionname#</cfif>
-                                    <cfif #auditionDetails.audzip# is not ""> , #auditionDetails.audzip#</cfif>
-                                    <cfif #auditionDetails.countryname# is not "" and #auditiondetails.countryname# is not "United States">#auditionDetails.countryname#</cfif>
-                                </div>
-                                <cfelse>
-                                    <cfif #auditiondetails.audtype# is "online">
-                                        <div class="col-md-12 p-1"><strong>Zoom Link: </strong>#auditiondetails.audLocation# </div>
+                            <!-- Location -->
+                            <cfif auditiondetails.islocation is "true">
+                                <div class="col-md-12 p-1"><strong>Location: </strong>#auditionDetails.eventLocation# 
+                                    <cfif auditionDetails.eventLocation is not "" and auditionDetails.audlocadd1 is not "">, #auditionDetails.audlocadd1#</cfif>
+                                    <cfif auditionDetails.audlocadd2 is not "">, #auditionDetails.audlocadd2#</cfif>
+                                    <cfif auditionDetails.audcity is not "">, #auditionDetails.audcity#</cfif>
+                                    <cfif auditionDetails.regionname is not ""> , #auditionDetails.regionname#</cfif>
+                                    <cfif auditionDetails.audzip is not ""> , #auditionDetails.audzip#</cfif>
+                                    <cfif auditionDetails.countryname is not "" and auditiondetails.countryname is not "United States">
+                                        #auditionDetails.countryname#
                                     </cfif>
+                                </div>
+                            <cfelse>
+                                <!-- Online Zoom -->
+                                <cfif auditiondetails.audtype is "online">
+                                    <div class="col-md-12 p-1"><strong>Zoom Link: </strong>#auditiondetails.audLocation# </div>
                                 </cfif>
                             </cfif>
                         </div>
@@ -176,16 +186,13 @@
                 </div>
             </div>
         </div>
-
         <script>
             $(document).ready(function() {
                 $("##auditionupdate_#events.eventid#").on("show.bs.modal", function(event) {
-                    
                     $(this).find(".modal-body").load("/include/remoteaudupdateform.cfm?secid=#secid#&eventid=#events.eventid#&audcatid=#audcatid#&audprojectid=#audprojectid#&rpgid=175&details_pgid=176&pgdir=audition&userid=#userid#");
                 });
             });
         </script>
-
         <div id="auditionupdate_#events.eventid#" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -199,6 +206,7 @@
         </div>
     </cfoutput>
 </cfloop>
+
 
 <cfoutput query="projectdetails">
     <script>

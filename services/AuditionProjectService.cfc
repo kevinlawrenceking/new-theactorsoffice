@@ -3,8 +3,6 @@
     <cfargument name="eventId" type="numeric" required="true">
 
     
-    
-    
         <cfquery name="result" >
             SELECT 
                 pr.audprojectid AS recid, 
