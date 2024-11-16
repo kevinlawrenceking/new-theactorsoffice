@@ -106,13 +106,3 @@
         T4: #t4#<BR>
     </cfoutput>
 </cfsavecontent>
-
-<!--- Output debug information if defined --->
-<Cfif #isdefined('dbufg')#>
-    <cfoutput>
-        #varcheck#<BR>
-        #varif#<BR>
-        var after: #varafter# #tab1_expand#
-    </cfoutput>
-    <cfabort />
-</Cfif>

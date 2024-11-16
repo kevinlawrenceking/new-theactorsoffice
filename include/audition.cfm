@@ -435,10 +435,8 @@
 
                         <div class="form-switch col-md-3 col-sm-6 col-xs-6">
 
-                            <cfquery name="Booked_check" datasource="#dsn#">
-                                SELECT * FROM events WHERE audroleid = #audroleid# AND isdeleted = 0 AND audstepid = 5
-                            </cfquery>
-
+<cfinclude  template="/include/Booked_check_29_8.cfm" />
+                       
 <cfif #Booked_check.recordcount# is not "0"> 
  <a href="" data-bs-target="##RemoveBook" data-bs-toggle="modal"></cfif>
 
@@ -720,13 +718,6 @@
                                                 <i class="fe-trash-2"></i>
 
                                             </a>
-<cfif #events.eventid# is not "" and #isdefined('sdfdfsdfdsf')#>
-       <a title="Edit" href="/app/appoint/?eventid=#events.eventid#&returnurl=calendar-appoint">
-
-                                                <i class="mdi mdi-calendar mr-1"></i>
-                                            </a>
-
-</cfif>
 
 
                                         </td>
@@ -1092,24 +1083,7 @@
                     Notes
                 </a>
             </li>
-<cfif #isdefined('sdfsdfsdff')#>
-            <cfquery name="questions_check" datasource="#dsn#" >
-    select *
-	 from events e
-	 inner join audroles r on r.audroleid = e.audroleid
-	 WHERE r.audprojectid = <cfqueryparam cfsqltype="cf_sql_integer" value="#audprojectid#"> 
-</cfquery>
 
-
-     <cfif #questions_check.recordcount# is not "0">
-            <li class="nav-item" role="presentation">
-                <a href="#ques" data-bs-toggle="tab" aria-expanded="false" class="nav-link <Cfoutput>#ques_active#</Cfoutput>" tabindex="-1" role="tab">
-                    Assessment
-                </a>
-            </li>
-
-            </cfif>
-   </cfif>
     
             <cfif #roledetails.isbooked# is "1">
                 <li class="nav-item" role="presentation">
@@ -1186,24 +1160,6 @@
                 </div>
 
             </div>
-
-
-<cfif #isdefined('sdfsdfsdff')#>
-
-            <div class="tab-pane <cfoutput>#ques_showactive#</cfoutput>" id="ques" role="tabpanel">
-
-                <div class="p-3">
-
-                    <cfinclude template="/include/aud_ques_pane.cfm" />
-
-                </div>
-
-            </div>
-    
-</cfif>
-
-
-
 
             <div class="tab-pane <cfoutput>#call_showactive#</cfoutput>" id="call" role="tabpanel">
 

@@ -94,12 +94,12 @@
                                     </cfif>
                                     <cfif #eventdetails.eventStopTime# is not ""> - #timeformat(eventdetails.eventStopTime,'short')# </cfif>
                                     <cfif #eventdetails.eventlocation# is not ""> <br><i class="fe-map-pin"></i> #eventdetails.eventlocation# </cfif>
-                                </cfoutput>
+                          
                                 <h4 class="mt-0 mb-0">
-                                    <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="#remoteUpdateName" data-bs-placement="top" title="Update Contact" data-bs-original-title="Update Contact"></a>
+                                    <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateName" data-bs-placement="top" title="Update Contact" data-bs-original-title="Update Contact"></a>
                                 </h4>
                                 <p class="mt-1 mb-0 text-muted font-16">
-                                    <cfoutput>
+                              
                                         <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateTag" data-bs-placement="top" title="Update Tag" data-bs-original-title="Update Tag">
                                             <span class="badge badge-blue" style="font-size: 12px; font-weight: 500;">#eventdetails.eventtypename#</span>
                                         </a>
@@ -138,14 +138,7 @@
                                 </cfif>
                             </a>
                         </li>
-                        <cfif #isdefined('blahblah')#>
-                            <li class="nav-item">
-                                <a href="##links" data-bs-toggle="tab" aria-expanded="#tab3_expand#" class="nav-link<cfif #tab3_expand# is 'true'> active</cfif>">Links</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="##attachments" data-bs-toggle="tab" aria-expanded="#tab4_expand#" class="nav-link<cfif #tab4_expand# is 'true'> active</cfif>">Attachments</a>
-                            </li>
-                        </cfif>
+               
                     </cfoutput>
                 </ul>
 

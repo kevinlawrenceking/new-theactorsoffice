@@ -18,9 +18,7 @@
                 <div class="card-body">
                     <h4 class="header-title">
                         <cfoutput> #pgHeading#: #details.recordname#</cfoutput>
-                        <cfif #isdefined('hh')#>
-                            <span class="small right"> <cfoutput>(#pgid#) </cfoutput></span>
-                        </cfif>
+                      
                     </h4>
 
                     <div class="d-flex justify-content-between">

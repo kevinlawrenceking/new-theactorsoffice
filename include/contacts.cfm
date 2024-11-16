@@ -191,36 +191,7 @@
                     </cfoutput>
                 </cfif>
                           
-                          
-                          <cfif  #isdefined('dsffds')#>
-                                <div class="container responsive-tabs">
-           
-
-                    <span class="ml-auto text-nowrap" >
-                            <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal"  class="text-reset font-18 py-1 px-2 d-inline-block" data-bs-target="#remoteAddName" data-bs-placement="top" title="Add Relationship" data-bs-original-title="Add Relationship">
-                
-                            <i class="fe-user-plus"></i>
-                        </a>
-                        
-                        <a href="" class="text-reset font-18 py-1 px-2 d-inline-block" title="Add Tag to selected" id="buttontt" data-bs-toggle="modal" data-bs-target="#exampleModal4">
-                            <i class="mdi mdi-tag-plus"></i>
-                        </a>
-
-                        <a href="" class="text-reset font-18 py-1 px-2 d-inline-block" title="Add System to selected" id="buttonx" data-bs-toggle="modal" data-bs-target="#exampleModal3">
-                            <i class="mdi mdi-checkbox-multiple-marked"></i>
-                        </a>
-
-                        <a href="" class="text-reset font-18 py-1 px-2 d-inline-block" title="Search tag" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-                            <i class="mdi mdi-tag-plus-outline"></i>
-                        </a>
-
-
-                        <a href="/app/contacts-import/" target="import" class="text-reset font-18 py-1 px-2 d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Import Relationships" data-bs-original-title="Import Relationships">
-                            <i class="fe-upload"></i>
-                        </a>
-                    </span>
-                </div>
-</cfif>
+  
 <div class="container responsive-tabs">
         <ul class="nav nav-pills navtab-bg nav-justified p-1" role="tablist">
             

@@ -73,9 +73,7 @@
                 <div class="card-body">
                     <h4 class="header-title">
                         <cfoutput> #details.vername# - #details.versiontype#</cfoutput>
-                        <cfif #isdefined('hh')#>
-                            <span class="small right"> <cfoutput>(#pgid#) </cfoutput></span>
-                        </cfif>
+                   
                     </h4>
                     
                     <div class="d-flex justify-content-between">
@@ -227,17 +225,10 @@
                                     </cfif>
 
                                     <tr class="#rowtype#">
-                                        <cfif #isdefined('ddd')#>  
-                                            <th>Action</th>
-                                        </cfif>
+                                        
                                         <th>#head1#</th>
                                         <th>#head2#</th>
-                                        <cfif #isdefined('safddfs')#>     
-                                            <th>#head3#</th>
-                                        </cfif>
-                                        <cfif #isdefined('safddfs')#>   
-                                            <th>#head4#</th>
-                                        </cfif> 
+                                    
                                         <th>#head45#</th>
                                         <th>#head5#</th>
                                         <th>#head6#</th> 
@@ -287,40 +278,14 @@
                                     </script>
                                     
                                     <tr>
-                                        <cfif #isdefined('ddd')#>
-                                            <td>
-                                                <a href="remoteverticketupdate.cfm?recid=#results.recid#" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##myModal#results.recid#">
-                                                    <i class="mdi mdi-square-edit-outline"></i>
-                                                </a>
-                                                <cfif #isdefined('sfadfdss00000')#>
-                                                    <span style="text-align:right;">
-                                                        <A href="/include/deleteticket.cfm?recid=#results.recid#">
-                                                            <i class="mdi mdi-trash-can-outline mr-1"></i>
-                                                        </A>
-                                                    </span>
-                                                </cfif>
-                                                <cfif #results.col45# is "Implemented">
-                                                    &nbsp;&nbsp;
-                                                    <span style="text-align:right;">
-                                                        <A style="text-align:right;" href="/app/testing/?recid=#results.recid#&oldverid=#details.verid#">
-                                                            <i class="mdi mdi-bug-check-outline"></i>
-                                                        </A>
-                                                    </span> 
-                                                </cfif>                
-                                            </td>
-                                        </cfif>                       
+                                                 
                                         
                                         <TD>
                                             <A href="/app/admin-support-details/?recid=#results.recid#&oldverid=#details.verid#" title="#results.col4# - #results.col5#">#results.recid#</A>
                                         </TD>
                                         
                                         <td>#results.col2#</td>
-                                        <cfif #isdefined('safddfs')#>
-                                            <td>#results.col3#</td>
-                                        </cfif> 
-                                        <cfif #isdefined('safddfs')#>
-                                            <td>#results.col4#</td>
-                                        </cfif>
+                                
                                         
                                         <td>#results.col45#</td>
                                         <form class="px-3 col-md-12" id="updatever#results.recid#" method="post" action="/include/updatetickver2.cfm">

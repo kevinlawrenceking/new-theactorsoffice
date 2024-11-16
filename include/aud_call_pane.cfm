@@ -14,11 +14,6 @@
                     <div class="col-lg-4">
                         <div class="card ribbon-box">
 
-                            <!--- Check if 'ssfdd' is defined and display the booked ribbon if true --->
-                            <cfif #isdefined('ssfdd')#>
-                                <div class="ribbon-two ribbon-two-success"><span>Booked</span></div>
-                            </cfif>
-
                             <div class="card-header d-flex">
                                 <center>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#DateFormat("#results.col1#","mm-dd-yy")#</center>
                                 <span class="ms-auto text-muted">#results.col4#</span>

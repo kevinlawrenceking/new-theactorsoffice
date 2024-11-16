@@ -92,13 +92,7 @@
                 <div class="card-body">
                     <h5>Step One: Import Template</h5>    
                     <p>Download the <A href="/include/ImportTemplate2.xlsx" target="new"><strong><i class="fe-upload"></i> Import Template</strong></A> to copy and paste all the contacts you'd like to import. <strong>Imports must be in this format.</strong></p>
-                    
-                    <cfif isDefined('dsfdsfdfs')>
-                        <A href="/include/Sample.xlsx" target="new">
-                            <button class="btn btn-xs btn-primary waves-effect mb-2 waves-light">Download</button>
-                        </A>
-                    </cfif>
-
+                
                     <p></p><p></p><p></p><p></p>
 
                     <h5>Step Two: Upload Template</h5>   

@@ -102,16 +102,6 @@
             </span>
         </h4>
 
-        <!--- Check if the 'dfd' variable is defined --->
-        <cfif #isdefined('dfd')#>
-            <div class="col-md-12">
-                <cfoutput>
-                    <a href="javascript:;" class="btn btn-primary waves-effect waves-light" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##auditionadd" data-bs-placement="top" title="Add Booking Appointment" data-bs-original-title="Add Booking Appointment">
-                        <i class="fe-plus-circle"></i> Add Booking Appointment
-                    </a>
-                </cfoutput>
-            </div>
-        </cfif>
 
         <cfoutput>
             <div class="col-md-12 col-lg-6 col-xl-4 p-1 text-nowrap"><strong>Income Type: </strong>#roledetails.incometype#</div>

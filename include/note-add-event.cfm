@@ -32,26 +32,8 @@
                     
                     <div class="row">
                         <!--- Check if 'seleeectzi' is defined and initialize selectize if true --->
-                        <cfif isDefined('seleeectzi')>
-                            <script>
-                                $(document).ready(function() {
-                                    $("#select-relationship").selectize({
-                                        persist: false,
-                                        createOnBlur: true,
-                                        create: true,
-                                        plugins: ["remove_button"],
-                                        delimiter: ",",
-                                        create: function(input) {
-                                            return {
-                                                value: input,
-                                                text: input,
-                                            };
-                                        },
-                                    });
-                                });
-                            </script>
-                        </cfif>
-                        
+           
+                    
                         <div class="form-group col-md-12">
                             <label for="noteDetails">Note Title<span class="text-danger">*</span></label>
                             <input class="form-control" type="text" name="noteDetails" id="noteDetails" data-parsley-required />

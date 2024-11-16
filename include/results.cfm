@@ -28,11 +28,7 @@
             <div class="card-body">
                 <h4 class="header-title">
                     <cfoutput>#pgHeading#</cfoutput>
-                    <cfif #isdefined('hh')#>
-                        <span class="small right">
-                            <cfoutput>(#pgid#) </cfoutput>
-                        </span>
-                    </cfif>
+                
                 </h4>
                 <cfif #child_yn# is "N">
                     <div class="d-flex justify-content-between">
@@ -42,26 +38,7 @@
                                 <cfoutput>You have <strong>#results.recordcount#</strong> #compname#.</cfoutput>
                             </p>
                         </div>
-                        <cfif #isdefined('blkdfjs')#>
-                            <div class="dropdown float-end">
-                                <a href="#" class="dropdown-toggle arrow-none text-muted" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="mdi mdi-dots-horizontal font-18"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" style="">
-                                    <cfif #findpage.allowadd_yn# is "Y">
-                                        <a href="remoteNewForm.cfm" style="margin-bottom: 10px;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="#remoteNewForm" class="dropdown-item">
-                                            <i class="mdi mdi-square-edit-outline mr-1"></i>Create
-                                        </a>
-                                    </cfif>
-                                    <a href="javascript:void(0);" class="dropdown-item">
-                                        <i class="fe fe-external mr-1"></i>View
-                                    </a>
-                                    <a href="javascript:void(0);" class="dropdown-item">
-                                        <i class="mdi mdi-content-copy mr-1"></i>Export
-                                    </a>
-                                </div>
-                            </div>
-                        </cfif>
+      
                     </div>
                     <cfif #findpage.allowadd_yn# is "Y">
                         <div style="margin-bottom: 30px;">

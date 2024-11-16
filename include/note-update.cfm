@@ -61,25 +61,6 @@
                             </textarea>
                         </div>
 
-                        <cfif isdefined('sdfsdfdsf')>
-                            <div class="col-lg-12">
-                                <div class="form-group mb-3">
-                                    <label for="select-relationship">Relationships<span class="text-danger">*</span></label>
-                                    <select id="select-relationship" name="relationships" autocomplete="off" multiple 
-                                        required data-parsley-required data-parsley-error-message="Relationship is required" 
-                                        class="demo-default selectize-close-btn" style="width: 100%" placeholder="Select a Relationship...">
-                                        <option value="">Select a Relationship...</option>
-                                        <cfloop query="relationships">
-                                            <cfoutput>
-                                                <option value="#relationships.contactid#" 
-                                                    <cfif relationships.contactid is rcontactid>selected</cfif>>#recordname#</option>
-                                            </cfoutput>
-                                        </cfloop>
-                                    </select>
-                                </div>
-                            </div>
-                        </cfif>
-
                         <div class="form-group col-md-6">
                             <label for="eventTypeName">Who can see your note?<span class="text-danger">*</span></label>
                             <select class="form-control" name="isPublic" id="isPublic" 

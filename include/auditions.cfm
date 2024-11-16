@@ -175,17 +175,9 @@
                                 </span>
                             </div>
 
-                            <cfif #isdefined('sdfdsfsdf')#>
-                                <div class="col-lg-4 pb-1">
-                                    <select id="auddate" name="auddate" class="form-control" onchange="this.form.submit()">
-                                        <option value="%" <cfif #auddate# is "%"> selected </cfif>>All Dates</option>
-                                        <option value="future" <cfif #auddate# is "future"> selected </cfif>>Future Dates</option>
-                                        <option value="past" <cfif #auddate# is "past"> selected </cfif>>Past Dates</option>
-                                    </select>
-                                </div>
-                            <cfelse>
+                     
                                 <input type="hidden" name="auddate" value="%"/>
-                            </cfif>
+    
 
                             <cfinclude template="/include/qry/cds_31_4.cfm" />
                             <cfinclude template="/include/qry/cos_31_5.cfm" />
@@ -325,12 +317,6 @@
                                                         <h5 class="card-title">#results.audcatname#</h5>
                                                         <h6>#results.audsubcatname#</h6>
                                                         <h7>Role: TBD</h7>
-                                                    </cfif>
-
-                                                    <cfif #isdefined('sdfdsf')#>
-                                                        <button type="button" class="btn btn-xs btn-soft-secondary rounded-pill waves-effect">
-                                                            #results.col4#
-                                                        </button>
                                                     </cfif>
 
                                                     <p class="card-text">

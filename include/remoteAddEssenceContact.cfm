@@ -28,11 +28,7 @@
         </div>
         <div class="col-6 text-right">
             <!--- Conditional button for going back if variable is defined --->
-            <cfif isdefined('sdfsdf')>
-                <a href="javascript:history.go(-1)">
-                    <button type="button" class="btn btn-light mr-1 btn-sm" data-bs-dismiss="modal">Back</button>
-                </a>
-            </cfif>
+
             <button type="submit" class="btn btn-primary btn-sm waves-effect waves-light" id="btn-save-event">Add</button>
         </div>
     </div>

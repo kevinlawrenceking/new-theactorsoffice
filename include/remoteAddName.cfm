@@ -18,9 +18,7 @@
                data-parsley-required 
                data-parsley-error-message="Valid Name is required" 
                placeholder="Enter Name" autocomplete="off">
-        <cfif #isdefined('sfsfsd')#>
-            <div id="nameResults"></div>
-        </cfif>
+
     </div>
 
     <div class="form-group col-sm-6 mb-6">

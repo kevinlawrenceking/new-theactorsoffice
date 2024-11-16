@@ -99,15 +99,6 @@
                               </cfif>
                               .
 
-                              <cfif #isdefined('df6kj')#>
-                                
-
-                                &nbsp;&nbsp; &nbsp;<A title="Remove Action No #action_user.actionno#" class="pl-1" style="color:red;" href="/include/excludeaction.cfm?ctaction=excludeaction&new_id=#action_user.id#&target_id_system=#mysystems.systemid#">
-                                  <i class="mdi mdi-trash-can-outline"></i>
-                                </A>
-
-                              </cfif>
-
                             </p>
                           </div>
 

@@ -676,51 +676,6 @@ id="item-img-output" />
             
             
             
-            
-            <cfif #isdefined('dsfdsf')#>
-            
-                <div class="py-1 px-3 flex font-22">
-                            
-
-            
-                    
-                        <cfoutput>
-                            
-                            
-                            
-                                  <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateName" data-bs-placement="top" title="Update Contact" data-bs-original-title="Update Contact">
-                                      
-                                      <i class="mdi mdi-square-edit-outline"></i>
-                                      
-                            </a>
-
-
-
-                            <a class="#tool_button#" href="javascript:;" data-bs-toggle="modal" data-bs-target="##remoteDeleteForm#contactid#" title="Delete Relationship">
-
-                                <i class="fe-trash-2"></i>
- 
-                            </a>
-
-                        </cfoutput>
-                
-                </div>
-                
-            
-            
-            
-            
-            </cfif>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
 
             <div class="card-body">
 

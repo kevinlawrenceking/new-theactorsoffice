@@ -73,9 +73,6 @@
                                         <cfelse>Starts in <strong>#action_user.actiondaysno# day<cfif #action_user.actiondaysno# is not "1">s</cfif></strong>
                                         </cfif>
                                         <cfif #numberformat(action_user.actiondaysrecurring)# is not "0">, repeating every <strong>#action_user.actiondaysrecurring# days</strong></cfif>.
-                                        <cfif #isdefined('df6kj')#>
-                                            &nbsp;&nbsp; &nbsp;<a title="Remove Action No #action_user.actionno#" class="pl-1" style="color:red;" href="/include/excludeaction.cfm?ctaction=excludeaction&new_id=#action_user.id#&target_id_system=#mysystems.systemid#"><i class="mdi mdi-trash-can-outline"></i></a>
-                                        </cfif>
                                     </p>
                                 </cfoutput>
                             </div> <!--- (9) --->

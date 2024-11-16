@@ -19,11 +19,7 @@
                 <div class="card-body">
                     <h4 class="header-title">
                         <cfoutput>#pgHeading# for No. #ticketDetails.recid#: #ticketDetails.recordname#</cfoutput>
-                        <cfif isDefined('hh')>
-                            <span class="small right">
-                                <cfoutput>(#pgid#)</cfoutput>
-                            </span>
-                        </cfif>
+                   
                     </h4>
 
                     <div class="d-flex justify-content-between">

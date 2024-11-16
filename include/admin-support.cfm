@@ -124,12 +124,6 @@
                                     <th>Action</th>
                                     <th>#head1#</th>
                                     <th>#head2#</th>
-                                    <cfif #isdefined('safddfs')#>
-                                        <th>#head3#</th>
-                                    </cfif>
-                                    <cfif #isdefined('safddfs')#>
-                                        <th>#head4#</th>
-                                    </cfif>
                                     <th>#head45#</th>
                                     <th>#head5#</th>
                                     <th>#head6#</th>
@@ -162,12 +156,7 @@
 
                                 <tr>
                                     <td>
-                                        <cfif #isdefined('sdfsdf')#>
-                                            <a href="remoteContent.cfm?recid=#results.recid#" data-remote="true" data-toggle="modal" data-target="##myModal#results.recid#">
-                                                <i class="mdi mdi-square-edit-outline"></i>
-                                            </a>
-                                            &nbsp;
-                                        </cfif>
+                    
                                         <A href="/include/deleteticket.cfm?recid=#results.recid#">
                                             <i class="mdi mdi-trash-can-outline mr-1"></i>
                                         </A>
@@ -176,12 +165,7 @@
                                         <A href="/app/admin-support-details/?recid=#results.recid#" title="#results.col4# - #results.col5#">#results.recid#</A>
                                     </td>
                                     <td>#results.col2#</td>
-                                    <cfif #isdefined('safddfs')#>
-                                        <td>#results.col3#</td>
-                                    </cfif>
-                                    <cfif #isdefined('safddfs')#>
-                                        <td>#results.col4#</td>
-                                    </cfif>
+                             
                                     <td>#results.col45#</td>
                                     <form class="px-3 col-md-12" id="updatever#results.recid#" method="post" action="/include/updatetickver2.cfm">
                                         <td>
