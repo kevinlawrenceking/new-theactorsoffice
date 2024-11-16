@@ -1242,7 +1242,7 @@
 
 
 
-</cfif>
+
  <div id="RemoveBook" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" aria-hidden="true">
 
             <div class="modal-dialog">
