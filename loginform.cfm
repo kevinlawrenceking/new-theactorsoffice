@@ -12,7 +12,7 @@
     <cfset information_schema = "new_development" />
 </cfif>
 
-<!--- Run a query to activate users based on some condition --->
+
 <cfquery result="result" name="fix" datasource="#dsn#"> 
     SELECT u.userID  
     FROM taousers u
