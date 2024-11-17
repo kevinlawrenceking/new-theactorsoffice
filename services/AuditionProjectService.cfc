@@ -862,38 +862,7 @@
         
     <cfreturn result>
 </cffunction>
-<cffunction name="getAuditionData" access="public" returntype="query" output="false">
-    <cfargument name="rangeselected" type="struct" required="true">
-    <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery name="result">
-        SELECT 
-            COUNT(p.audprojectid) AS totals, 
-            IFNULL(c.recordname, 'Unknown') AS label, 
-            'Auditions' AS itemDataset 
-        FROM 
-            audprojects p 
-        INNER JOIN 
-            audroles r ON p.audprojectID = r.audprojectID 
-        INNER JOIN 
-            audsources s ON s.audsourceid = r.audsourceid 
-        LEFT JOIN 
-            contactdetails c ON c.contactid = r.contactid 
-        WHERE 
-            r.isdeleted IS FALSE 
-            AND p.isDeleted IS FALSE 
-            AND p.projdate >= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangeselected.rangestart#">
-            AND p.projdate <= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangeselected.rangeend#">
-            AND p.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
-            AND s.audsourceid = 1 
-        GROUP BY 
-            label 
-        ORDER BY 
-            label
-    </cfquery>
-
-    <cfreturn result>
-</cffunction>
 
 
 <cffunction output="false" name="SELaudprojects_24244" access="public" returntype="query">
