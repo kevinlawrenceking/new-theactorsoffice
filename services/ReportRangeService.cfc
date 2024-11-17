@@ -59,49 +59,54 @@
     <cfreturn result>
 </cffunction>
 
-<cfscript>
-function getReportRanges(required struct params) {
-    var result = queryNew("rangeid, rangename, rangestart, rangeend", "integer,varchar,timestamp,timestamp");
-    var sql = "SELECT rangeid, rangename, rangestart, rangeend FROM reportranges WHERE 1=1";
-    var conditions = [];
-    var paramValues = [];
+<cffunction name="getReportRanges" access="public" returntype="query" output="false">
+    <cfargument name="params" type="struct" required="true">
 
-    var validColumns = ["rangeid", "rangename", "rangestart", "rangeend"];
+    <cfset var result = queryNew("rangeid, rangename, rangestart, rangeend", "integer,varchar,timestamp,timestamp")>
+    <cfset var sql = "SELECT rangeid, rangename, rangestart, rangeend FROM reportranges WHERE 1=1">
+    <cfset var conditions = []>
+    <cfset var paramValues = []>
+    <cfset var validColumns = "rangeid,rangename,rangestart,rangeend">
 
-    for (var key in params) {
-        if (listFindNoCase(validColumns, key)) {
-            arrayAppend(conditions, "#key# = ?");
-            arrayAppend(paramValues, {value=params[key], type=getCFSQLType(key)});
-        }
-    }
 
-    if (arrayLen(conditions) > 0) {
-        sql &= " AND " & arrayToList(conditions, " AND ");
-    } else {
-        return result;
-    }
+    <cfloop collection="#arguments.params#" item="key">
+        <cfif listFindNoCase(validColumns, key)>
+            <cfset arrayAppend(conditions, key & " = ?")>
+            <cfset arrayAppend(paramValues, {value=arguments.params[key], cfsqltype=getCFSQLType(key)})>
+        </cfif>
+    </cfloop>
 
-    result = queryExecute(
-        sql,
-        paramValues
-    );
 
-    return result;
-}
+    <cfif arrayLen(conditions) GT 0>
+        <cfset sql &= " AND " & arrayToList(conditions, " AND ")>
+    <cfelse>
+        <cfreturn result>
+    </cfif>
 
-function getCFSQLType(columnName) {
-    switch (columnName) {
-        case "rangeid":
-            return "CF_SQL_INTEGER";
-        case "rangename":
-            return "CF_SQL_VARCHAR";
-        case "rangestart":
-        case "rangeend":
-            return "CF_SQL_TIMESTAMP";
-        default:
-            return "CF_SQL_VARCHAR";
-    }
-}
-</cfscript>
+
+    <cfquery name="result">
+        #sql#
+        <cfloop array="#paramValues#" index="param">
+            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
+        </cfloop>
+    </cfquery>
+
+    <cfreturn result>
+</cffunction>
+
+<cffunction name="getCFSQLType" access="public" returntype="string" output="false">
+    <cfargument name="columnName" type="string" required="true">
+
+    <cfif arguments.columnName EQ "rangeid">
+        <cfreturn "CF_SQL_INTEGER">
+    <cfelseif arguments.columnName EQ "rangename">
+        <cfreturn "CF_SQL_VARCHAR">
+    <cfelseif arguments.columnName EQ "rangestart" OR arguments.columnName EQ "rangeend">
+        <cfreturn "CF_SQL_TIMESTAMP">
+    <cfelse>
+        <cfreturn "CF_SQL_VARCHAR">
+    </cfif>
+</cffunction>
+
 
 </cfcomponent>

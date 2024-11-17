@@ -109,7 +109,7 @@
         
         
             
-            <cfset result = queryNew("valueCompany")>
+            
         
     
     
@@ -323,7 +323,7 @@
         
         
             
-            <cfset result = queryNew("eventid,eventstart","integer,date")>
+            
         
     
     
@@ -673,7 +673,7 @@
         
         
             = #arguments.rangestart# AND p.projdate <= #arguments.rangeend#">
-            <cfset result = queryNew("totals,label,itemDataset", "integer,varchar,varchar")>
+            
         
     
 
@@ -860,58 +860,41 @@
         </cfquery>
         
         
-            
-            <cfset result = queryNew("totals,label,itemDataset")>
-        
-    
+    <cfreturn result>
+</cffunction>
+<cffunction name="getAuditionData" access="public" returntype="query" output="false">
+    <cfargument name="rangeselected" type="struct" required="true">
+    <cfargument name="userid" type="numeric" required="true">
+
+    <cfquery name="result">
+        SELECT 
+            COUNT(p.audprojectid) AS totals, 
+            IFNULL(c.recordname, 'Unknown') AS label, 
+            'Auditions' AS itemDataset 
+        FROM 
+            audprojects p 
+        INNER JOIN 
+            audroles r ON p.audprojectID = r.audprojectID 
+        INNER JOIN 
+            audsources s ON s.audsourceid = r.audsourceid 
+        LEFT JOIN 
+            contactdetails c ON c.contactid = r.contactid 
+        WHERE 
+            r.isdeleted IS FALSE 
+            AND p.isDeleted IS FALSE 
+            AND p.projdate >= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangeselected.rangestart#">
+            AND p.projdate <= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangeselected.rangeend#">
+            AND p.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
+            AND s.audsourceid = 1 
+        GROUP BY 
+            label 
+        ORDER BY 
+            label
+    </cfquery>
 
     <cfreturn result>
 </cffunction>
-<cfscript>
-function getAuditionData(struct rangeselected, numeric userid) {
-    var result = "";
-    try {
-        var querySQL = "
-            SELECT 
-                count(p.audprojectid) as totals, 
-                IFNULL(c.recordname, 'Unknown') as label, 
-                'Auditions' as itemDataset 
-            FROM 
-                audprojects p 
-            INNER JOIN 
-                audroles r ON p.audprojectID = r.audprojectID 
-            INNER JOIN 
-                audsources s ON s.audsourceid = r.audsourceid 
-            LEFT JOIN 
-                contactdetails c ON c.contactid = r.contactid 
-            WHERE 
-                r.isdeleted IS FALSE 
-                AND p.isDeleted IS FALSE 
-                AND p.projdate >= ? 
-                AND p.projdate <= ? 
-                AND p.userid = ? 
-                AND s.audsourceid = 1 
-            GROUP BY 
-                label 
-            ORDER BY 
-                label";
 
-        result = new Query(
-            sql=querySQL,
-            parameters=[
-                {value=rangeselected.rangestart, cfsqltype="cf_sql_date"},
-                {value=rangeselected.rangeend, cfsqltype="cf_sql_date"},
-                {value=userid, cfsqltype="cf_sql_integer"}
-            ]
-        ).execute().getResult();
-
-    } catch (any e) {
-        cflog(text="Error in getAuditionData: " & e.message & "; SQL: " & querySQL, type="error");
-        throw(e);
-    }
-    return result;
-}
-</cfscript>
 
 <cffunction output="false" name="SELaudprojects_24244" access="public" returntype="query">
     <cfargument name="rangestart" type="date" required="true">
@@ -1037,53 +1020,38 @@ function getAuditionData(struct rangeselected, numeric userid) {
 
     <cfreturn result>
 </cffunction>
-<cfscript>
-function getAuditionsData(userid, rangeselected, new_audcatid) {
-    var result = "";
-    try {
-        var sql = "
-            SELECT 
-                count(p.audprojectid) AS totals, 
-                rt.audroletype AS label, 
-                'Auditions' AS itemDataset 
-            FROM 
-                audprojects p 
-            INNER JOIN 
-                audroles r ON p.audprojectID = r.audprojectID 
-            INNER JOIN 
-                audroletypes rt ON r.audroletypeid = rt.audroletypeid 
-            INNER JOIN 
-                audsubcategories s ON s.audsubcatid = p.audsubcatid 
-            WHERE 
-                r.isdeleted IS FALSE 
-                AND p.isDeleted IS FALSE 
-                AND p.userid = ? 
-                AND p.projdate >= ? 
-                AND p.projdate <= ? 
-                AND s.audcatid = ? 
-            GROUP BY 
-                rt.audroletype 
-            HAVING 
-                rt.audroletype <> 'N/A' 
-            ORDER BY 
-                rt.audroletype";
+<cffunction name="getAuditionData" access="public" returntype="query" output="false">
+    <cfargument name="rangeselected" type="struct" required="true">
+    <cfargument name="userid" type="numeric" required="true">
 
-        result = queryExecute(
-            sql,
-            [
-                {value: userid, cfsqltype: "CF_SQL_INTEGER"},
-                {value: rangeselected.rangestart, cfsqltype: "CF_SQL_DATE"},
-                {value: rangeselected.rangeend, cfsqltype: "CF_SQL_DATE"},
-                {value: new_audcatid, cfsqltype: "CF_SQL_INTEGER"}
-            ]
-        );
-    } catch (any e) {
-        cflog(type="error", text="Error executing query in getAuditionsData: #e.message#");
-        throw(e);
-    }
-    return result;
-}
-</cfscript>
+    <cfquery name="result">
+        SELECT 
+            COUNT(p.audprojectid) AS totals, 
+            IFNULL(c.recordname, 'Unknown') AS label, 
+            'Auditions' AS itemDataset 
+        FROM 
+            audprojects p 
+        INNER JOIN 
+            audroles r ON p.audprojectID = r.audprojectID 
+        INNER JOIN 
+            audsources s ON s.audsourceid = r.audsourceid 
+        LEFT JOIN 
+            contactdetails c ON c.contactid = r.contactid 
+        WHERE 
+            r.isdeleted IS FALSE 
+            AND p.isDeleted IS FALSE 
+            AND p.projdate >= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangeselected.rangestart#">
+            AND p.projdate <= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangeselected.rangeend#">
+            AND p.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
+            AND s.audsourceid = 1 
+        GROUP BY 
+            label 
+        ORDER BY 
+            label
+    </cfquery>
+
+    <cfreturn result>
+</cffunction>
 
 <cffunction output="false" name="SELaudprojects_24248" access="public" returntype="query">
     <cfargument name="new_audsourceid" type="string" required="true">
@@ -1490,7 +1458,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
         
         
             
-            <cfset result = queryNew("contactid", "integer")>
+            
         
     
     

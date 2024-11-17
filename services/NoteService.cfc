@@ -379,7 +379,7 @@
         
         
             
-            <cfset result = queryNew("noteID,noteTimestamp,recid,head1,head2,head3,head4,head5,noteDetails,col1,col2,col4,col5,noteDetailsHTML,userID")>
+            
         
     
     

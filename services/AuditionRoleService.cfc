@@ -437,7 +437,7 @@
         
         
             
-            <cfset result = queryNew("audroleid,audprojectid,auddialectid,audRoleName,charDescription,holdStartDate,holdEndDate,audroletype,audroletypeid,auddialect,audsource,audsourceid,contactid,payrate,netincome,buyout,incometype,iscallback,isredirect,ispin,isbooked,contactname")>
+            
         
     
 

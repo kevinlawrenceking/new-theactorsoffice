@@ -36,19 +36,20 @@
         <cfreturn result.generatedKey>
 </cffunction>
 
-<cfscript>
-function getAuditionContacts(required numeric audprojectid, required numeric new_contactid) {
-    var result = "";
-    result = queryExecute(
-        "SELECT * FROM audcontacts_auditions_xref WHERE audprojectid = ? AND contactid = ?",
-        [
-            {value=arguments.audprojectid, cfsqltype="CF_SQL_INTEGER"},
-            {value=arguments.new_contactid, cfsqltype="CF_SQL_INTEGER"}
-        ]
-    );
-    return result;
-}
-</cfscript>
+<cffunction name="getAuditionContacts" access="public" returntype="query" output="false">
+    <cfargument name="audprojectid" type="numeric" required="true">
+    <cfargument name="new_contactid" type="numeric" required="true">
+
+    <cfquery name="result">
+        SELECT *
+        FROM audcontacts_auditions_xref
+        WHERE audprojectid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.audprojectid#">
+        AND contactid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contactid#">
+    </cfquery>
+
+    <cfreturn result>
+</cffunction>
+
 
 <cffunction output="false" name="DELaudcontacts_auditions_xref" access="public" returntype="void" hint="Deletes a contact from the audcontacts_auditions_xref table based on project and contact IDs.">
     <cfargument name="audprojectid" type="numeric" required="true" hint="The ID of the project." />

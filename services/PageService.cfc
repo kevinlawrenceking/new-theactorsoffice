@@ -80,7 +80,7 @@
         
         
             
-            <cfset result = queryNew("pgTitle, compname", "varchar,varchar")>
+            
         
     
     
@@ -249,7 +249,7 @@
         
         
             
-            <cfset result = queryNew("pgdir")>
+            
         
     
     
@@ -271,7 +271,7 @@
         
         
             
-            <cfset result = queryNew("ID, name")>
+            
         
     
     

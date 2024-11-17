@@ -98,7 +98,7 @@
         
         
             
-            <cfset result = queryNew("tickettype")>
+            
         
     
     
@@ -128,7 +128,7 @@
         
         
             
-            <cfset result = queryNew("id,ticketid,userid,recordname,teststatus,rejectnotes")>
+            
         
     
     
@@ -187,7 +187,7 @@
         
         
             
-            <cfset result = queryNew("userid,recordname,userFirstName,userLastName,userEmail,contactid,userRole")>
+            
         
     
     
@@ -291,7 +291,7 @@
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-            <cfset result = queryNew("contactid")>
+            
         
 
     <cfreturn result>
@@ -460,7 +460,7 @@
         
         
             
-            <cfset result = queryNew("new_userid,username", "integer,varchar")>
+            
         
     
     
@@ -551,7 +551,7 @@
         
             
             <!--- Return an empty query on error --->
-            <cfset result = queryNew("id,name", "integer,varchar")>
+            
         
     
     
@@ -681,7 +681,7 @@
         
         
             
-            <cfset result = queryNew("userid,userFirstName,userLastName,userEmail,userRole")>
+            
         
     
 
@@ -708,7 +708,7 @@
         
         
             
-            <cfset result = queryNew("userid,userFirstName,userLastName,userEmail,userRole")>
+            
         
     
     

@@ -259,7 +259,7 @@
         </cfquery>
         
             
-            <cfset result = queryNew("recid,head1,head2,head3,head4,head5,audstepid,col1,col2,col3,col4,col5,audstep")>
+            
         
     
 
@@ -339,7 +339,7 @@
         
         
             
-            <cfset result = queryNew("","")>
+            
         
     
     
@@ -361,7 +361,7 @@
         
         
             
-            <cfset result = queryNew("","")>
+            
         
     
     
@@ -569,7 +569,7 @@
         
         
             
-            <cfset result = queryNew("audprojectID,new_projDate", "integer,date")>
+            
         
     
 
@@ -689,7 +689,7 @@
         
         
             
-            <cfset result = queryNew("eventid,eventstart,eventstarttime,eventstoptime", "integer,date,time,time")>
+            
         
     
     
@@ -804,7 +804,7 @@
         
         
             
-            <cfset result = queryNew("eventid")>
+            
         
     
     
@@ -1532,7 +1532,7 @@
         
         
             
-            <cfset result = queryNew("eventID, recid, eventTitle, eventStart, eventStartTime")>
+            
         
     
 

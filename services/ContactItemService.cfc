@@ -133,7 +133,7 @@
         
         
             
-            <cfset result = queryNew("contactid,itemid,tag,valuetext")>
+            
         
     
 
@@ -181,7 +181,7 @@
         
         
             
-            <cfset result = queryNew("email", "varchar")>
+            
         
     
     
@@ -316,7 +316,7 @@
         </cfquery>
         
             
-            <cfset result = queryNew("new_businessEmail", "varchar")>
+            
         
     
     <cfreturn result>
@@ -354,7 +354,7 @@
         </cfquery>
         
             
-            <cfset result = queryNew("new_Company", "varchar")>
+            
         
     
 
@@ -503,7 +503,7 @@
         
         
             
-            <cfset result = queryNew("tag", "varchar")>
+            
         
     
     
@@ -568,52 +568,46 @@
         <cfreturn result>
         
         
-            
-            
-        
     
 </cffunction>
-<cfscript>
-function getContactDetails(required numeric uploadid) {
-    var result = queryNew("contactid, head1, head2, head3, head4, head5, head6, status, col1, col2, col3, col4, col5", "integer,varchar,varchar,varchar,varchar,varchar,varchar,varchar,varchar,varchar,varchar,varchar");
-    
-    try {
-        var sql = "
-            SELECT 
-                d.contactid, 
-                'Name' AS head1, 
-                'Tags' AS head2, 
-                'Phone' AS head3, 
-                'Email' AS head4, 
-                'Company' AS head5, 
-                'Status' AS head6, 
-                c.status, 
-                d.contactfullname AS col1,
-                (SELECT GROUP_CONCAT(CONCAT('<span class=''badge badge-blue''>', valueText, '</span>') SEPARATOR ' ') FROM contactitems WHERE valueCategory = 'Tag' AND contactID = d.ContactID AND itemstatus = 'Active' LIMIT 1) AS col2,
-                (SELECT valueText FROM contactitems WHERE valueCategory = 'Phone' AND contactID = d.ContactID AND itemstatus = 'Active' LIMIT 1) AS col3,
-                (SELECT valueText FROM contactitems WHERE valueCategory = 'Email' AND contactID = d.ContactID AND itemstatus = 'Active' LIMIT 1) AS col4,
-                (SELECT valueCompany FROM contactitems WHERE contactID = d.ContactID AND valueCategory = 'Company' AND itemstatus = 'active' LIMIT 1) AS col5
-            FROM 
-                contactdetails d
-            INNER JOIN 
-                contactsimport c ON c.contactid = d.contactid
-            WHERE 
-                c.uploadid = ?
-            ORDER BY 
-                d.contactfullname";
+<cffunction name="getContactDetails" access="public" returntype="query" output="false">
+    <cfargument name="uploadid" type="numeric" required="true">
 
-        result = queryExecute(
-            sql,
-            {uploadid={value=arguments.uploadid, cfsqltype="CF_SQL_INTEGER"}},
-            {}
-        );
-    } catch (any e) {
-        cflog(type="error", text="Error in getContactDetails: #e.message#");
-    }
-    
-    return result;
-}
-</cfscript>
+    <cfquery name="result">
+        SELECT 
+            d.contactid, 
+            'Name' AS head1, 
+            'Tags' AS head2, 
+            'Phone' AS head3, 
+            'Email' AS head4, 
+            'Company' AS head5, 
+            'Status' AS head6, 
+            c.status, 
+            d.contactfullname AS col1,
+            (SELECT GROUP_CONCAT(CONCAT('<span class=''badge badge-blue''>', valueText, '</span>') SEPARATOR ' ') 
+             FROM contactitems 
+             WHERE valueCategory = 'Tag' AND contactID = d.ContactID AND itemstatus = 'Active' LIMIT 1) AS col2,
+            (SELECT valueText 
+             FROM contactitems 
+             WHERE valueCategory = 'Phone' AND contactID = d.ContactID AND itemstatus = 'Active' LIMIT 1) AS col3,
+            (SELECT valueText 
+             FROM contactitems 
+             WHERE valueCategory = 'Email' AND contactID = d.ContactID AND itemstatus = 'Active' LIMIT 1) AS col4,
+            (SELECT valueCompany 
+             FROM contactitems 
+             WHERE contactID = d.ContactID AND valueCategory = 'Company' AND itemstatus = 'active' LIMIT 1) AS col5
+        FROM 
+            contactdetails d
+        INNER JOIN 
+            contactsimport c ON c.contactid = d.contactid
+        WHERE 
+            c.uploadid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.uploadid#">
+        ORDER BY 
+            d.contactfullname
+    </cfquery>
+
+    <cfreturn result>
+</cffunction>
 
 <cffunction output="false" name="INScontactitems_23947" access="public" returntype="numeric">
     <cfargument name="new_contactid" type="numeric" required="true">
@@ -997,7 +991,7 @@ function getContactDetails(required numeric uploadid) {
         
         
             
-            <cfset result = queryNew("new_valuecompany", "varchar")>
+            
         
     
     
@@ -1554,7 +1548,7 @@ function getContactDetails(required numeric uploadid) {
         
         
             
-            <cfset result = queryNew("email")>
+            
         
     
     
@@ -1691,7 +1685,7 @@ function getContactDetails(required numeric uploadid) {
         </cfquery>
         
             
-            <cfset result = queryNew("itemID,valueType,valueCategory,valuetext,valueCompany,valuedepartment,valuetitle,valueStreetAddress,valueExtendedAddress,valueCity,valueRegion,itemDate,itemNotes,itemStatus,itemCreationDate,itemLastUpdated,valueCountry,catfieldset,caticon,valuepostalcode,primary_yn")>
+            
         
     
 
@@ -1722,7 +1716,7 @@ function getContactDetails(required numeric uploadid) {
         
         
             
-            <cfset result = queryNew("valuetext, valuetype, typeIcon, valuecategory")>
+            
         
     
     
@@ -1745,7 +1739,7 @@ function getContactDetails(required numeric uploadid) {
         
         
             
-            <cfset result = queryNew("phonenumber", "varchar")>
+            
         
     
 
@@ -1859,7 +1853,7 @@ function getContactDetails(required numeric uploadid) {
         
         
             
-            <cfset result = queryNew("valuetext, tag")>
+            
         
     
 

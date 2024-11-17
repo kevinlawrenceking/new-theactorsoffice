@@ -114,33 +114,26 @@
     </cfquery>
 </cffunction>
 
-<cfscript>
-function deleteEventContactsXref(required numeric audStepId) {
-    var result = {};
+<cffunction name="deleteEventContactsXref" access="public" returntype="query" output="false">
+    <cfargument name="audStepId" type="numeric" required="true">
 
-    if (!isNumeric(arguments.audStepId)) {
-        throw("Invalid input: audStepId must be numeric.");
-    }
+    <cfif NOT isNumeric(arguments.audStepId)>
+        <cfthrow message="Invalid input: audStepId must be numeric.">
+    </cfif>
 
-    var sql = "
-        DELETE FROM eventcontactsxref 
+    <cfset var result = "">
+
+    <cfquery name="result">
+        DELETE FROM eventcontactsxref
         WHERE eventid IN (
             SELECT eventid 
             FROM events 
-            WHERE audstepid = ?
+            WHERE audstepid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.audStepId#">
         )
-    ";
+    </cfquery>
 
-    result = queryExecute(
-        sql,
-        [
-            {value=arguments.audStepId, cfsqltype="CF_SQL_INTEGER"}
-        ]
-    );
-    
-    return result;
-}
-</cfscript>
+    <cfreturn result>
+</cffunction>
 
 <cffunction output="false" name="SELeventcontactsxref_24060" access="public" returntype="query">
     <cfargument name="eventNumber" type="numeric" required="true">

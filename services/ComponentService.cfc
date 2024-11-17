@@ -55,7 +55,7 @@
                     c.menuOrder
             </cfquery>
         <cfelse>
-            <cfset result = queryNew("compID,compName,compIcon,compOwner,menuYN,compDir,menuOrder")>
+            
         </cfif>
 
     <cfreturn result>

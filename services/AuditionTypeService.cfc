@@ -55,25 +55,26 @@
     <cfreturn result>
 </cffunction>
 
-<cfscript>
-function getAudtypes(new_audcatid) {
-    var queryResult = "";
-    var sql = "SELECT audtypeid AS id, audtype AS name, audcategories FROM audtypes WHERE isdeleted = 0";
-    var params = [];
-    
-    if (len(trim(new_audcatid))) {
-        sql &= " AND audcategories LIKE ?";
-        arrayAppend(params, {value="%#new_audcatid#%", cfsqltype="CF_SQL_VARCHAR"});
-    }
+<cffunction name="getAudtypes" access="public" returntype="query" output="false">
+    <cfargument name="new_audcatid" type="string" required="false">
 
-    queryResult = queryExecute(
-        sql,
-        params
-    );
-    
-    return queryResult;
-}
-</cfscript>
+    <cfquery name="queryResult">
+        SELECT 
+            audtypeid AS id, 
+            audtype AS name, 
+            audcategories 
+        FROM 
+            audtypes 
+        WHERE 
+            isdeleted = 0
+        <cfif len(trim(arguments.new_audcatid))>
+            AND audcategories LIKE <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="%%#arguments.new_audcatid#%%">
+        </cfif>
+    </cfquery>
+
+    <cfreturn queryResult>
+</cffunction>
+
 
 <cffunction output="false" name="SELaudtypes_24231" access="public" returntype="query">
     <cfargument name="audstepIds" type="array" required="true">

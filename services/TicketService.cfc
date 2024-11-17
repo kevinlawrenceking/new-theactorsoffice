@@ -750,7 +750,7 @@
         
         
             
-            <cfset result = queryNew("versiontype,id,name,hoursleft")>
+            
         
     
 
@@ -896,7 +896,7 @@
         
         
             
-            <cfset result = queryNew("versiontype,major,minor,patch,id,alphabeta,name,hoursleft")>
+            
         
     
 
@@ -992,7 +992,7 @@
         
         
             
-            <cfset result = queryNew("head1,head2,head3,head4,head45,head5,head6,head7,col1,recid,col2,col3,col4,col45,col5,col6,col7")>
+            
         
     
     

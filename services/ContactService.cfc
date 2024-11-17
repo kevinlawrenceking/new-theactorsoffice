@@ -220,7 +220,7 @@
         
         
             
-            <cfset result = queryNew("contactid", "integer")>
+            
         
     
 
@@ -320,7 +320,7 @@
         
         
             
-            <cfset result = queryNew("contactid,contactbirthday", "integer,date")>
+            
         
     
     
@@ -497,65 +497,41 @@
         
         <cfreturn result>
         
-        
-            
-            
-        
-    
 </cffunction>
+
 <cffunction output="false" name="SELcontactdetails_23913" access="public" returntype="query">
+
     <cfargument name="contactid" type="numeric" required="true">
-    
-    
-    
-    
+
         <cfquery name="result" >
             SELECT recordname 
             FROM contactdetails 
             WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        
-            
-            
-        
-    
-    
     <cfreturn result>
 </cffunction>
-<cfscript>
-function getContactRecordName(new_contactid) {
-    if (!isNumeric(new_contactid) || new_contactid == 0) {
-        return queryNew("recordname", "varchar");
-    }
 
-    var result = "";
+<cffunction name="getContactRecordName" access="public" returntype="query" output="false">
+    <cfargument name="new_contactid" type="numeric" required="false" default="0">
 
-    try {
-        result = queryExecute(
-            "SELECT recordname FROM contactdetails WHERE contactid = ? AND contactid <> 0",
-            [
-                {value: new_contactid, cfsqltype: "CF_SQL_INTEGER"}
-            ]
-        );
-    } catch (any e) {
-        cflog(
-            file="application",
-            text="Error executing query in getContactRecordName: #e.message#"
-        );
-        result = queryNew("recordname", "varchar");
-    }
+    <cfif NOT isNumeric(arguments.new_contactid) OR arguments.new_contactid EQ 0>
+        <cfreturn queryNew("recordname", "varchar")>
+    </cfif>
 
-    return result;
-}
-</cfscript>
+        <cfquery name="result">
+            SELECT recordname
+            FROM contactdetails
+            WHERE contactid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contactid#">
+            AND contactid <> 0
+        </cfquery>
+
+    <cfreturn result>
+</cffunction>
 
 <cffunction output="false" name="SELcontactdetails_23939" access="public" returntype="query">
     <cfargument name="addDaysNoUniqueName" type="string" required="true">
     <cfargument name="contactId" type="numeric" required="true">
-    
-    
-    
     
         <cfquery name="result" >
             SELECT d.contactid 
@@ -565,14 +541,10 @@ function getContactRecordName(new_contactid) {
             LIMIT 1
         </cfquery>
         
-        
-            
-            
-        
-    
-    
     <cfreturn result>
+
 </cffunction>
+
 <cffunction output="false" name="INScontactdetails_24000" access="public" returntype="numeric">
     <cfargument name="userFirstName" type="string" required="true">
     <cfargument name="userLastName" type="string" required="true">
@@ -743,7 +715,7 @@ function getContactRecordName(new_contactid) {
         
         
             
-            <cfset result = queryNew("contactid,recordname")>
+            
         
     
     
@@ -966,6 +938,9 @@ function getContactRecordName(new_contactid) {
 <cffunction output="false" name="SELcontactdetails_24514" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     
+    
+    
+    
         <cfquery name="result" >
             SELECT DISTINCT 
                 d.contactid, 
@@ -980,7 +955,13 @@ function getContactRecordName(new_contactid) {
             ORDER BY 
                 d.recordname
         </cfquery>
-
+        
+        
+            
+            
+        
+    
+    
     <cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELcontactdetails_24515" access="public" returntype="query">
@@ -1148,7 +1129,7 @@ function getContactRecordName(new_contactid) {
         
         
             
-            <cfset result = queryNew("contactid,col1")>
+            
         
     
 
