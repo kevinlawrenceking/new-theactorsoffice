@@ -1668,29 +1668,29 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     <cfargument name="new_contactid" type="numeric" required="false"  default="0" >
     <cfargument name="new_audprojectID" type="string" required="true">
 
-    <cfset var sql = "UPDATE audprojects SET projName = <cfqueryparam cfsqltype='CF_SQL_VARCHAR' value='#arguments.new_projName#' >">
+    <cfset var sql = "UPDATE audprojects SET projName = <cfqueryparam cfsqltype=#chr(34)#CF_SQL_VARCHAR#chr(34)# value=#chr(34)##arguments.new_projName##chr(34)# >">
     <cfset var params = []>
 
     <cfif len(trim(arguments.new_projDescription))>
-        <cfset sql &= ", projDescription = <cfqueryparam cfsqltype='CF_SQL_LONGVARCHAR' value='#arguments.new_projDescription#'>">
+        <cfset sql &= ", projDescription = <cfqueryparam cfsqltype=#chr(34)#CF_SQL_LONGVARCHAR#chr(34)# value=#chr(34)##arguments.new_projDescription##chr(34)#>">
     </cfif>
     <cfif len(trim(arguments.new_unionID))>
-        <cfset sql &= ", unionID = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_unionID#'>">
+        <cfset sql &= ", unionID = <cfqueryparam cfsqltype=#chr(34)#CF_SQL_INTEGER#chr(34)# value=#chr(34)##arguments.new_unionID##chr(34)#>">
     </cfif>
     <cfif len(trim(arguments.new_networkID))>
-        <cfset sql &= ", networkID = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_networkID#'>">
+        <cfset sql &= ", networkID = <cfqueryparam cfsqltype=#chr(34)#CF_SQL_INTEGER#chr(34)# value=#chr(34)##arguments.new_networkID##chr(34)#>">
     </cfif>
     <cfif len(trim(arguments.new_toneID))>
-        <cfset sql &= ", toneID = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_toneID#'>">
+        <cfset sql &= ", toneID = <cfqueryparam cfsqltype=#chr(34)#CF_SQL_INTEGER#chr(34)# value=#chr(34)##arguments.new_toneID##chr(34)#>">
     </cfif>
     <cfif len(trim(arguments.new_contractTypeID))>
-        <cfset sql &= ", contractTypeID = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_contractTypeID#'>">
+        <cfset sql &= ", contractTypeID = <cfqueryparam cfsqltype=#chr(34)#CF_SQL_INTEGER#chr(34)# value=#chr(34)##arguments.new_contractTypeID##chr(34)#>">
     </cfif>
     <cfif len(trim(arguments.new_contactid)) and arguments.new_contactid neq 0>
-        <cfset sql &= ", contactid = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_contactid#'>">
+        <cfset sql &= ", contactid = <cfqueryparam cfsqltype=#chr(34)#CF_SQL_INTEGER#chr(34)# value=#chr(34)##arguments.new_contactid##chr(34)#>">
     </cfif>
 
-    <cfset sql &= " WHERE audprojectID = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_audprojectID#'>">
+    <cfset sql &= " WHERE audprojectID = <cfqueryparam cfsqltype=#chr(34)#CF_SQL_INTEGER#chr(34)# value=#chr(34)##arguments.new_audprojectID##chr(34)#>">
 
     <cfquery result="result">
         #sql#
