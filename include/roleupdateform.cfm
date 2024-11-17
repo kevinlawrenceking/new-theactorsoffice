@@ -10,6 +10,7 @@
 <cfinclude template="/include/qry/audroletypes_sel.cfm" />
 <cfinclude template="/include/qry/myteam_499_1.cfm" />
 <cfinclude template="/include/qry/auddialects_user_sel_358_1.cfm" />
+<cfinclude template="/include/qry/audsources_sel_499_2.cfm" />
 <script src="/app/assets/js/jquery.chained.js"></script>
 
 <p>Enter the information below and press the update button to continue.</p>
