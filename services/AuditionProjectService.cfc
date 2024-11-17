@@ -1661,58 +1661,42 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
 <cffunction output="false" name="UPDaudprojects_24586" access="public" returntype="void">
     <cfargument name="new_projName" type="string" required="true">
     <cfargument name="new_projDescription" type="string" required="no">
-    <cfargument name="new_unionID" type="numeric" required="no">
-    <cfargument name="new_networkID" type="numeric" required="no">
-    <cfargument name="new_toneID" type="numeric" required="no">
-    <cfargument name="new_contractTypeID" type="numeric" required="no">
-    <cfargument name="new_contactid" type="numeric" required="no">
+    <cfargument name="new_unionID" type="numeric" required="no" default="0">
+    <cfargument name="new_networkID" type="numeric" required="no" default="0">
+    <cfargument name="new_toneID" type="numeric" required="no" default="0">
+    <cfargument name="new_contractTypeID" type="numeric" required="no" default="0">
+    <cfargument name="new_contactid" type="numeric" required="no" default="0">
     <cfargument name="new_audprojectID" type="numeric" required="true">
 
-    <cfset var fields = []>
+    <cfset var sql = "UPDATE audprojects SET projName = <cfqueryparam cfsqltype='CF_SQL_VARCHAR' value='#arguments.new_projName#' >">
     <cfset var params = []>
 
-    <!-- Required field -->
-    <cfset arrayAppend(fields, "projName = ?")>
-    <cfset arrayAppend(params, {value=arguments.new_projName, cfsqltype="CF_SQL_VARCHAR"})>
-
-    <!-- Optional fields -->
-    <cfif structKeyExists(arguments, "new_projDescription") AND len(trim(arguments.new_projDescription))>
-        <cfset arrayAppend(fields, "projDescription = ?")>
-        <cfset arrayAppend(params, {value=arguments.new_projDescription, cfsqltype="CF_SQL_LONGVARCHAR"})>
+    <cfif len(trim(arguments.new_projDescription))>
+        <cfset sql &= ", projDescription = <cfqueryparam cfsqltype='CF_SQL_LONGVARCHAR' value='#arguments.new_projDescription#'>">
     </cfif>
-    <cfif structKeyExists(arguments, "new_unionID") AND isNumeric(arguments.new_unionID)>
-        <cfset arrayAppend(fields, "unionID = ?")>
-        <cfset arrayAppend(params, {value=arguments.new_unionID, cfsqltype="CF_SQL_INTEGER"})>
+    <cfif len(trim(arguments.new_unionID))>
+        <cfset sql &= ", unionID = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_unionID#'>">
     </cfif>
-    <cfif structKeyExists(arguments, "new_networkID") AND isNumeric(arguments.new_networkID)>
-        <cfset arrayAppend(fields, "networkID = ?")>
-        <cfset arrayAppend(params, {value=arguments.new_networkID, cfsqltype="CF_SQL_INTEGER"})>
+    <cfif len(trim(arguments.new_networkID))>
+        <cfset sql &= ", networkID = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_networkID#'>">
     </cfif>
-    <cfif structKeyExists(arguments, "new_toneID") AND isNumeric(arguments.new_toneID)>
-        <cfset arrayAppend(fields, "toneID = ?")>
-        <cfset arrayAppend(params, {value=arguments.new_toneID, cfsqltype="CF_SQL_INTEGER"})>
+    <cfif len(trim(arguments.new_toneID))>
+        <cfset sql &= ", toneID = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_toneID#'>">
     </cfif>
-    <cfif structKeyExists(arguments, "new_contractTypeID") AND isNumeric(arguments.new_contractTypeID)>
-        <cfset arrayAppend(fields, "contractTypeID = ?")>
-        <cfset arrayAppend(params, {value=arguments.new_contractTypeID, cfsqltype="CF_SQL_INTEGER"})>
+    <cfif len(trim(arguments.new_contractTypeID))>
+        <cfset sql &= ", contractTypeID = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_contractTypeID#'>">
     </cfif>
-    <cfif structKeyExists(arguments, "new_contactid") AND isNumeric(arguments.new_contactid)>
-        <cfset arrayAppend(fields, "contactid = ?")>
-        <cfset arrayAppend(params, {value=arguments.new_contactid, cfsqltype="CF_SQL_INTEGER"})>
+    <cfif len(trim(arguments.new_contactid))>
+        <cfset sql &= ", contactid = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_contactid#'>">
     </cfif>
 
-    <!-- Finalize query -->
-    <cfset arrayAppend(params, {value=arguments.new_audprojectID, cfsqltype="CF_SQL_INTEGER"})>
-    <cfset var sql = "UPDATE audprojects SET " & arrayToList(fields, ", ") & " WHERE audprojectID = ?">
+    <cfset sql &= " WHERE audprojectID = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_audprojectID#'>">
 
-    <!-- Execute query -->
     <cfquery result="result">
         #sql#
-        <cfloop array="#params#" index="param">
-            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-        </cfloop>
     </cfquery>
 </cffunction>
+
 
 
 
