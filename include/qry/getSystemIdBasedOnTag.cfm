@@ -7,7 +7,7 @@
 <!--- Check required inputs before proceeding --->
 <cfif isDefined("projectDetails.audprojectdate") AND isDefined("new_contactid")>
     <!--- Fetch the system ID using the service function --->
-    <cfset systemId = ContactService.getSystemIdBasedOnTag(
+    <cfset new_systemId = ContactService.getSystemIdBasedOnTag(
         audprojectDate = projectDetails.audprojectdate,
         new_contactid = new_contactid
     )>
