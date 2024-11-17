@@ -1686,7 +1686,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     <cfif len(trim(arguments.new_contractTypeID))>
         <cfset sql &= ", contractTypeID = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_contractTypeID#'>">
     </cfif>
-    <cfif len(trim(arguments.new_contactid)) and arguements.new_contactid neq 0>
+    <cfif len(trim(arguments.new_contactid)) and arguments.new_contactid neq 0>
         <cfset sql &= ", contactid = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_contactid#'>">
     </cfif>
 
