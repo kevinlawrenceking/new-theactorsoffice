@@ -522,7 +522,7 @@
                 audRoleTypeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleTypeID#">
             </cfif>
 
-                charDescription = <cfqueryparam cfsqltype="CF_SQL_LONGVARCHAR" value="#arguments.new_charDescription#">
+                ,charDescription = <cfqueryparam cfsqltype="CF_SQL_LONGVARCHAR" value="#arguments.new_charDescription#">
 
             <cfif arguments.new_audDialectID neq 0>, 
                 audDialectID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audDialectID#">
