@@ -5,7 +5,7 @@
 
 <cfinclude template="/include/qry/durations.cfm" />
 <cfinclude template="/include/fetchLocationService.cfm" />
-
+<cfinclude template="/include/fetchUsers.cfm" />
 <cfset usercalstarttime = calstarttime />
 <cfset dbug = "N" />
 
