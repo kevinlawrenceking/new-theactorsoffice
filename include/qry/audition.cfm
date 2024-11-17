@@ -44,7 +44,7 @@
  
         
         <cfif DateCompare(projectDetails.audprojectdate, Now()) lt 0>
-          <cfoutput>  <h1>#new_contactid#</ht></cfoutput><cfabort>
+      
              <cfinclude template="/include/qry/getSystemIdBasedOnTag.cfm" />
             
             
