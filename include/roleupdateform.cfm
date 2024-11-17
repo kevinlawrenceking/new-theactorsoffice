@@ -5,7 +5,7 @@
 <!--- Include necessary scripts and templates --->
 <script src="/app/assets/js/selectize.min.js"></script>
 <cfinclude template="/include/qry/audition.cfm" />
-<cfinclude template="/include/qry/auddialects_user_sel.cfm" />
+<cfinclude template="/include/qry/auddialects_user_sel_358_1.cfm" />
 <cfinclude template="/include/qry/essence_sel_470_1.cfm" />
 <cfinclude template="/include/qry/audroletypes_sel.cfm" />
 <cfinclude template="/include/qry/myteam_499_1.cfm" />
