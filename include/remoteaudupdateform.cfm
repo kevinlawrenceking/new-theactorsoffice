@@ -13,7 +13,7 @@
 <cfinclude template="/include/qry/projectDetails_221_1.cfm" />
 <cfset audroleid = projectDetails.audroleid />
 <cfinclude template="/include/qry/roleDetails_221_2.cfm" />
-
+<cfinclude template="/include/qry/locationDetails_492_1.cfm" />
 <Cfoutput>
     <cfset NEW_AUDSUBCATID = "#projectDetails.audsubcatid#" />
 </Cfoutput>

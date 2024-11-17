@@ -1485,8 +1485,6 @@
     <cfargument name="audprojectid" type="numeric" required="true">
     
     
-    
-    
         <cfquery name="result" >
             SELECT 
                 e.eventlocation AS same_eventLocation, 
@@ -1513,11 +1511,6 @@
         
         <cfreturn result>
         
-        
-            
-            
-        
-    
 </cffunction>
 <cffunction output="false" name="SELevents_24686" access="public" returntype="query">
     <cfargument name="sessionUserId" type="numeric" required="true">
