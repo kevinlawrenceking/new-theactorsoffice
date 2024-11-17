@@ -21,7 +21,7 @@
     <cfreturn result.recordCount>
 </cffunction>
 
-<cffunction output="false" name="INSaudcontacts_auditions_xref_2" access="public" returntype="void">
+<cffunction output="false" name="INSaudcontacts_auditions_xref_2" access="public" returntype="numeric">
     <cfargument name="audprojectid" type="numeric" required="true">
     <cfargument name="autocomplete_aud" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
