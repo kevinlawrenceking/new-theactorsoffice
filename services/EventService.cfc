@@ -1206,11 +1206,6 @@
     <cfargument name="new_isDeleted" type="boolean" required="false">
     <cfargument name="new_eventid" type="numeric" required="true">
 
-    <!--- Validate new_audplatformid --->
-    <cfif NOT isNumeric(arguments.new_audplatformid)>
-        <cfset arguments.new_audplatformid = 0> <!--- Or set to NULL if supported --->
-    </cfif>
-
     <cfquery result="result">
         UPDATE events_tbl
         SET
