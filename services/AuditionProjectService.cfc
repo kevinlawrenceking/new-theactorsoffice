@@ -1668,33 +1668,38 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     <cfargument name="new_contactid" type="numeric" required="no">
     <cfargument name="new_audprojectID" type="numeric" required="true">
 
+    <!-- Initialize SQL statement -->
     <cfset var sql = "UPDATE audprojects SET projName = <cfqueryparam cfsqltype='CF_SQL_VARCHAR' value='#arguments.new_projName#' maxlength='500'>">
 
+    <!-- Append fields to SQL if provided -->
     <cfif structKeyExists(arguments, "new_projDescription") AND len(trim(arguments.new_projDescription))>
         <cfset sql &= ", projDescription = <cfqueryparam cfsqltype='CF_SQL_LONGVARCHAR' value='#arguments.new_projDescription#'>">
     </cfif>
-    <cfif structKeyExists(arguments, "new_unionID") AND len(trim(arguments.new_unionID))>
+    <cfif structKeyExists(arguments, "new_unionID") AND isNumeric(arguments.new_unionID)>
         <cfset sql &= ", unionID = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_unionID#'>">
     </cfif>
-    <cfif structKeyExists(arguments, "new_networkID") AND len(trim(arguments.new_networkID))>
+    <cfif structKeyExists(arguments, "new_networkID") AND isNumeric(arguments.new_networkID)>
         <cfset sql &= ", networkID = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_networkID#'>">
     </cfif>
-    <cfif structKeyExists(arguments, "new_toneID") AND len(trim(arguments.new_toneID))>
+    <cfif structKeyExists(arguments, "new_toneID") AND isNumeric(arguments.new_toneID)>
         <cfset sql &= ", toneID = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_toneID#'>">
     </cfif>
-    <cfif structKeyExists(arguments, "new_contractTypeID") AND len(trim(arguments.new_contractTypeID))>
+    <cfif structKeyExists(arguments, "new_contractTypeID") AND isNumeric(arguments.new_contractTypeID)>
         <cfset sql &= ", contractTypeID = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_contractTypeID#'>">
     </cfif>
-    <cfif structKeyExists(arguments, "new_contactid") AND len(trim(arguments.new_contactid))>
+    <cfif structKeyExists(arguments, "new_contactid") AND isNumeric(arguments.new_contactid)>
         <cfset sql &= ", contactid = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_contactid#'>">
     </cfif>
 
+    <!-- Finalize SQL with WHERE clause -->
     <cfset sql &= " WHERE audprojectID = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_audprojectID#'>">
 
+    <!-- Execute the query -->
     <cfquery result="result">
         #sql#
     </cfquery>
 </cffunction>
+
 
 
 <cffunction output="false" name="DETaudprojects_24716" access="public" returntype="query">
