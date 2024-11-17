@@ -1,4 +1,7 @@
 <!--- This ColdFusion page handles the addition of audition relationships and displays existing contacts with their details. --->
+<cfparam name="dbug" default="N" />
+<cfparam name="audprojectid" default="0" />
+
 
 <script>
     $(document).ready(function() {
@@ -16,9 +19,15 @@
 </style>
 
 <cfset modalid="remoteAddContactAud" />
+
 <cfset modaltitle="Add Contact" />
+
 <cfinclude template="/include/modal.cfm" />
-<cfinclude template="/include/qry/audcontacts.cfm" />
+
+<cfinclude template="/include/qry/audcontacts_349_1.cfm" />
+
+<cfinclude template="/include/qry/audcontacts_sel_349_2.cfm" />
+
 
 <h4>Audition Relationships</h4>
 

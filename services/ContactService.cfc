@@ -966,9 +966,6 @@ function getContactRecordName(new_contactid) {
 <cffunction output="false" name="SELcontactdetails_24514" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     
-    
-    
-    
         <cfquery name="result" >
             SELECT DISTINCT 
                 d.contactid, 
@@ -983,13 +980,7 @@ function getContactRecordName(new_contactid) {
             ORDER BY 
                 d.recordname
         </cfquery>
-        
-        
-            
-            <cfset result = queryNew("contactid,contactname,contactStatus")>
-        
-    
-    
+
     <cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELcontactdetails_24515" access="public" returntype="query">
