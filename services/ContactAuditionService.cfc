@@ -86,6 +86,7 @@ function getAuditionContacts(required numeric audprojectid, required numeric new
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="new_audprojectid" type="numeric" required="true">
 
+    <!-- Insert query -->
     <cfquery result="result">
         INSERT INTO audcontacts_auditions_xref (contactid, audprojectid)
         VALUES (
@@ -94,7 +95,10 @@ function getAuditionContacts(required numeric audprojectid, required numeric new
         )
     </cfquery>
 
+    <!-- Return the generated key -->
+    <cfreturn result.generatedKey>
 </cffunction>
+
 
 <cffunction output="false" name="UPDaudcontacts_auditions_xref" access="public" returntype="void">
     <cfargument name="new_contactid" type="numeric" required="true">
