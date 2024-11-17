@@ -1230,50 +1230,28 @@
             eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">
     </cfquery>
 </cffunction>
-
 <cffunction output="false" name="UPDevents_24558" access="public" returntype="void">
     <cfargument name="new_eventid" type="numeric" required="true">
     <cfargument name="eventStart" type="date" required="false" default="">
     <cfargument name="eventStartTime" type="string" required="false" default="">
     <cfargument name="eventStopTime" type="string" required="false" default="">
-    
-    <cfset var sql = "">
-    <cfset var params = []>
-    
-    
-        <cfset sql = "UPDATE events SET eventid = ?">
-        <cfset arrayAppend(params, {value=arguments.new_eventid, cfsqltype="CF_SQL_INTEGER"})>
-        
+
+    <cfquery>
+        UPDATE events
+        SET eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">
         <cfif len(arguments.eventStart)>
-            <cfset sql &= ", eventstart = ?">
-            <cfset arrayAppend(params, {value=arguments.eventStart, cfsqltype="CF_SQL_DATE"})>
+            , eventstart = <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.eventStart#">
         </cfif>
-        
         <cfif len(arguments.eventStartTime)>
-            <cfset sql &= ", eventStartTime = ?">
-            <cfset arrayAppend(params, {value=arguments.eventStartTime, cfsqltype="CF_SQL_TIME"})>
+            , eventStartTime = <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.eventStartTime#">
         </cfif>
-        
         <cfif len(arguments.eventStopTime)>
-            <cfset sql &= ", eventStopTime = ?">
-            <cfset arrayAppend(params, {value=arguments.eventStopTime, cfsqltype="CF_SQL_TIME"})>
+            , eventStopTime = <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.eventStopTime#">
         </cfif>
-        
-        <cfset sql &= " WHERE eventid = ?">
-        <cfset arrayAppend(params, {value=arguments.new_eventid, cfsqltype="CF_SQL_INTEGER"})>
-        
-        <cfquery result="result" >
-            #sql#
-            <cfloop array="#params#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-            </cfloop>
-        </cfquery>
-        
-    
-        
-    
-    
+        WHERE eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">
+    </cfquery>
 </cffunction>
+
 <cffunction output="false" name="SELevents_24597" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     <cfargument name="focusid" type="numeric" default="0">
