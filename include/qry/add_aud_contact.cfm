@@ -6,7 +6,7 @@
 <cfparam name="userid" type="numeric" default="0">
 
 <!--- Call the function to insert into audcontacts_auditions_xref --->
-<cfset resultKey = auditionService.INSaudcontacts_auditions_xref_2(
+<cfset new_contactid = auditionService.INSaudcontacts_auditions_xref_2(
     audprojectid=audprojectid,
     autocomplete_aud=autocomplete_aud,
     userid=userid
