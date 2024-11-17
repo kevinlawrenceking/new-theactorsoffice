@@ -1661,11 +1661,11 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
 <cffunction output="false" name="UPDaudprojects_24586" access="public" returntype="void">
     <cfargument name="new_projName" type="string" required="true">
     <cfargument name="new_projDescription" type="string" required="false" default="">
-    <cfargument name="new_unionID" type="numeric" required="false" default="">
-    <cfargument name="new_networkID" type="numeric" required="false" default="">
-    <cfargument name="new_toneID" type="numeric" required="false" default="">
-    <cfargument name="new_contractTypeID" type="numeric" required="false" default="">
-    <cfargument name="new_contactid" type="numeric" required="false" default="0">
+    <cfargument name="new_unionID" type="string" required="false" default="">
+    <cfargument name="new_networkID" type="string" required="false" default="">
+    <cfargument name="new_toneID" type="string" required="false" default="">
+    <cfargument name="new_contractTypeID" type="string" required="false" default="">
+    <cfargument name="new_contactid" type="string" required="false" default="0">
     <cfargument name="new_audprojectID" type="numeric" required="true">
 
     <!-- Construct the SQL query -->
