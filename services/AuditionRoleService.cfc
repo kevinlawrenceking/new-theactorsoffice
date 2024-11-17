@@ -497,50 +497,51 @@
                 isbooked = <cfqueryparam value="#arguments.new_isbooked#" cfsqltype="CF_SQL_BIT">
             WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-            
-            
-        
-    
+   
 </cffunction>
-<cffunction output="false" name="UPDaudroles_24299" access="public" returntype="void" >
+<cffunction output="false" name="UPDaudroles_24299" access="public" returntype="void">
     <cfargument name="new_audRoleName" type="string" required="true">
-    <cfargument name="new_opencallid" type="numeric" required="true">
-    <cfargument name="new_audRoleTypeID" type="numeric" required="true">
-    <cfargument name="new_charDescription" type="string" required="true">
-    <cfargument name="new_audDialectID" type="numeric" required="true">
-    <cfargument name="new_audSourceID" type="numeric" required="true">
-    <cfargument name="new_contactid" type="numeric" required="false" default="">
-    <cfargument name="new_submitsiteid" type="numeric" required="false" default="">
-    <cfargument name="new_isDeleted" type="boolean" required="true">
+    <cfargument name="new_opencallid" type="numeric" required="false" default=0>
+    <cfargument name="new_audRoleTypeID" type="numeric" required="false" default=0>
+    <cfargument name="new_charDescription" type="string" required="false">
+    <cfargument name="new_audDialectID" type="numeric" required="false" default=0>
+    <cfargument name="new_audSourceID" type="numeric" required="false" default=0>
+    <cfargument name="new_contactid" type="numeric" required="false" default=0>
+    <cfargument name="new_submitsiteid" type="numeric" required="false" default=0>
+    <cfargument name="new_isDeleted" type="boolean" required="true" default=0>
     <cfargument name="new_audRoleID" type="numeric" required="true">
 
-    
-        <cfquery result="result" name="updateQuery">
-            UPDATE audroles 
-            SET 
-                audRoleName = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audRoleName#" maxlength="500" null="#NOT len(trim(arguments.new_audRoleName))#">,
-                opencallid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_opencallid#" null="#NOT len(trim(arguments.new_opencallid))#">,
-                audRoleTypeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleTypeID#" null="#NOT len(trim(arguments.new_audRoleTypeID))#">,
-                charDescription = <cfqueryparam cfsqltype="CF_SQL_LONGVARCHAR" value="#arguments.new_charDescription#" null="#NOT len(trim(arguments.new_charDescription))#">,
-                audDialectID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audDialectID#" null="#NOT len(trim(arguments.new_audDialectID))#">,
-                audSourceID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audSourceID#" null="#NOT len(trim(arguments.new_audSourceID))#">,
-                <cfif len(trim(arguments.new_contactid))>
-                    contactid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contactid#" null="#NOT len(trim(arguments.new_contactid))#">,
-                </cfif>
-                <cfif len(trim(arguments.new_submitsiteid))>
-                    submitsiteid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_submitsiteid#" null="#NOT len(trim(arguments.new_submitsiteid))#">,
-                </cfif>
-                isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
-            WHERE 
-                audRoleID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#">
-        </cfquery>
-        
-            
-            <!--- Handle error appropriately --->
-        
-    
+    <cfquery result="result">
+        UPDATE audroles 
+        SET 
+            audRoleName = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audRoleName#" maxlength="500">
+            <cfif arguments.new_opencallid neq 0>, 
+                opencallid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_opencallid#">
+            </cfif>
+            <cfif arguments.new_audRoleTypeID neq 0>, 
+                audRoleTypeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleTypeID#">
+            </cfif>
+            <cfif len(trim(arguments.new_charDescription))>, 
+                charDescription = <cfqueryparam cfsqltype="CF_SQL_LONGVARCHAR" value="#arguments.new_charDescription#">
+            </cfif>
+            <cfif arguments.new_audDialectID neq 0>, 
+                audDialectID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audDialectID#">
+            </cfif>
+            <cfif arguments.new_audSourceID neq 0>, 
+                audSourceID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audSourceID#">
+            </cfif>
+            <cfif arguments.new_contactid neq 0>, 
+                contactid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contactid#">
+            </cfif>
+            <cfif arguments.new_submitsiteid neq 0>, 
+                submitsiteid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_submitsiteid#">
+            </cfif>
+            , isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#">
+        WHERE 
+            audRoleID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#">
+    </cfquery>
 </cffunction>
+
 <cffunction output="false" name="INSaudroles_24372" access="public" returntype="numeric">
     <cfargument name="new_audRoleName" type="string" required="true">
     <cfargument name="new_audprojectID" type="numeric" required="true">
