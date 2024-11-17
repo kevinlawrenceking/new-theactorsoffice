@@ -503,7 +503,7 @@
     <cfargument name="new_audRoleName" type="string" required="true">
     <cfargument name="new_opencallid" type="numeric" required="false" default=0>
     <cfargument name="new_audRoleTypeID" type="numeric" required="false" default=0>
-    <cfargument name="new_charDescription" type="string" required="false">
+    <cfargument name="new_charDescription" type="string" required="false" default="">
     <cfargument name="new_audDialectID" type="numeric" required="false" default=0>
     <cfargument name="new_audSourceID" type="numeric" required="false" default=0>
     <cfargument name="new_contactid" type="numeric" required="false" default=0>
@@ -521,9 +521,9 @@
             <cfif arguments.new_audRoleTypeID neq 0>, 
                 audRoleTypeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleTypeID#">
             </cfif>
-            <cfif len(trim(arguments.new_charDescription))>, 
+
                 charDescription = <cfqueryparam cfsqltype="CF_SQL_LONGVARCHAR" value="#arguments.new_charDescription#">
-            </cfif>
+
             <cfif arguments.new_audDialectID neq 0>, 
                 audDialectID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audDialectID#">
             </cfif>
