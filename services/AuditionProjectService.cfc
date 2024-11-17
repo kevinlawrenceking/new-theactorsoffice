@@ -1661,12 +1661,12 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
 <cffunction output="false" name="UPDaudprojects_24586" access="public" returntype="void">
     <cfargument name="new_projName" type="string" required="true">
     <cfargument name="new_projDescription" type="string" required="no">
-    <cfargument name="new_unionID" type="numeric" required="no" default="0">
-    <cfargument name="new_networkID" type="numeric" required="no" default="0">
-    <cfargument name="new_toneID" type="numeric" required="no" default="0">
-    <cfargument name="new_contractTypeID" type="numeric" required="no" default="0">
-    <cfargument name="new_contactid" type="numeric" required="no" default="0">
-    <cfargument name="new_audprojectID" type="numeric" required="true">
+    <cfargument name="new_unionID" type="string" required="no" >
+    <cfargument name="new_networkID" type="v" required="no" >
+    <cfargument name="new_toneID" type="string" required="no" >
+    <cfargument name="new_contractTypeID" type="string" required="no" >
+    <cfargument name="new_contactid" type="string" required="no" >
+    <cfargument name="new_audprojectID" type="string" required="true">
 
     <cfset var sql = "UPDATE audprojects SET projName = <cfqueryparam cfsqltype='CF_SQL_VARCHAR' value='#arguments.new_projName#' >">
     <cfset var params = []>
