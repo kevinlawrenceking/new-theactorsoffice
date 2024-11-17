@@ -1669,24 +1669,23 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     <cfargument name="new_audprojectID" type="numeric" required="true">
 
     <cfset var sql = "UPDATE audprojects SET projName = <cfqueryparam cfsqltype='CF_SQL_VARCHAR' value='#arguments.new_projName#' maxlength='500'>">
-    <cfset var params = []>
 
-    <cfif len(trim(arguments.new_projDescription))>
+    <cfif structKeyExists(arguments, "new_projDescription") AND len(trim(arguments.new_projDescription))>
         <cfset sql &= ", projDescription = <cfqueryparam cfsqltype='CF_SQL_LONGVARCHAR' value='#arguments.new_projDescription#'>">
     </cfif>
-    <cfif len(trim(arguments.new_unionID))>
+    <cfif structKeyExists(arguments, "new_unionID") AND len(trim(arguments.new_unionID))>
         <cfset sql &= ", unionID = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_unionID#'>">
     </cfif>
-    <cfif len(trim(arguments.new_networkID))>
+    <cfif structKeyExists(arguments, "new_networkID") AND len(trim(arguments.new_networkID))>
         <cfset sql &= ", networkID = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_networkID#'>">
     </cfif>
-    <cfif len(trim(arguments.new_toneID))>
+    <cfif structKeyExists(arguments, "new_toneID") AND len(trim(arguments.new_toneID))>
         <cfset sql &= ", toneID = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_toneID#'>">
     </cfif>
-    <cfif len(trim(arguments.new_contractTypeID))>
+    <cfif structKeyExists(arguments, "new_contractTypeID") AND len(trim(arguments.new_contractTypeID))>
         <cfset sql &= ", contractTypeID = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_contractTypeID#'>">
     </cfif>
-    <cfif len(trim(arguments.new_contactid))>
+    <cfif structKeyExists(arguments, "new_contactid") AND len(trim(arguments.new_contactid))>
         <cfset sql &= ", contactid = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_contactid#'>">
     </cfif>
 
@@ -1696,6 +1695,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
         #sql#
     </cfquery>
 </cffunction>
+
 
 <cffunction output="false" name="DETaudprojects_24716" access="public" returntype="query">
     <cfargument name="audprojectID" type="numeric" required="true">
