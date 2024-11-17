@@ -1660,29 +1660,43 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
 </cffunction>
 <cffunction output="false" name="UPDaudprojects_24586" access="public" returntype="void">
     <cfargument name="new_projName" type="string" required="true">
-    <cfargument name="new_projDescription" type="string" required="true">
-    <cfargument name="new_unionID" type="numeric" required="true">
-    <cfargument name="new_networkID" type="numeric" required="true">
-    <cfargument name="new_toneID" type="numeric" required="true">
-    <cfargument name="new_contractTypeID" type="numeric" required="true">
-    <cfargument name="new_contactid" type="numeric" required="true">
+    <cfargument name="new_projDescription" type="string" required="no">
+    <cfargument name="new_unionID" type="numeric" required="no">
+    <cfargument name="new_networkID" type="numeric" required="no">
+    <cfargument name="new_toneID" type="numeric" required="no">
+    <cfargument name="new_contractTypeID" type="numeric" required="no">
+    <cfargument name="new_contactid" type="numeric" required="no">
     <cfargument name="new_audprojectID" type="numeric" required="true">
 
-        <cfquery result="result">
-            UPDATE audprojects 
-            SET 
-                projName = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_projName#" maxlength="500" null="#NOT len(trim(arguments.new_projName))#">,
-                projDescription = <cfqueryparam cfsqltype="CF_SQL_LONGVARCHAR" value="#arguments.new_projDescription#" null="#NOT len(trim(arguments.new_projDescription))#">,
-                unionID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_unionID#" null="#NOT len(trim(arguments.new_unionID))#">,
-                networkID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_networkID#" null="#NOT len(trim(arguments.new_networkID))#">,
-                toneID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_toneID#" null="#NOT len(trim(arguments.new_toneID))#">,
-                contractTypeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contractTypeID#" null="#NOT len(trim(arguments.new_contractTypeID))#">,
-                contactid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contactid#" null="#NOT len(trim(arguments.new_contactid))#">
-            WHERE 
-                audprojectID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audprojectID#">
-        </cfquery>
-      
+    <cfset var sql = "UPDATE audprojects SET projName = <cfqueryparam cfsqltype='CF_SQL_VARCHAR' value='#arguments.new_projName#' maxlength='500'>">
+    <cfset var params = []>
+
+    <cfif len(trim(arguments.new_projDescription))>
+        <cfset sql &= ", projDescription = <cfqueryparam cfsqltype='CF_SQL_LONGVARCHAR' value='#arguments.new_projDescription#'>">
+    </cfif>
+    <cfif len(trim(arguments.new_unionID))>
+        <cfset sql &= ", unionID = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_unionID#'>">
+    </cfif>
+    <cfif len(trim(arguments.new_networkID))>
+        <cfset sql &= ", networkID = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_networkID#'>">
+    </cfif>
+    <cfif len(trim(arguments.new_toneID))>
+        <cfset sql &= ", toneID = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_toneID#'>">
+    </cfif>
+    <cfif len(trim(arguments.new_contractTypeID))>
+        <cfset sql &= ", contractTypeID = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_contractTypeID#'>">
+    </cfif>
+    <cfif len(trim(arguments.new_contactid))>
+        <cfset sql &= ", contactid = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_contactid#'>">
+    </cfif>
+
+    <cfset sql &= " WHERE audprojectID = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_audprojectID#'>">
+
+    <cfquery result="result">
+        #sql#
+    </cfquery>
 </cffunction>
+
 <cffunction output="false" name="DETaudprojects_24716" access="public" returntype="query">
     <cfargument name="audprojectID" type="numeric" required="true">
 
