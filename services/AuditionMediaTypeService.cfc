@@ -1,10 +1,7 @@
 <cfcomponent displayname="AuditionMediaTypeService"  > 
 <cffunction output="false" name="SELaudmediatypes" access="public" returntype="query">
     <cfargument name="mediaTypeIds" type="array" required="true">
-    
-    
-    
-    <cfquery name="result">
+  <cfquery name="result">
         SELECT * 
         FROM audmediatypes 
         WHERE mediatypeid IN (
@@ -20,10 +17,7 @@
 
 <cffunction output="false" name="SELaudmediatypes_23753" access="public" returntype="query">
     <cfargument name="mediaTypeIds" type="array" required="true">
-    
-    
-    
-    <cfquery name="result">
+  <cfquery name="result">
         SELECT mediatypeid, mediatype
         FROM audmediatypes
         WHERE mediatypeid IN (
@@ -37,117 +31,88 @@
     <cfreturn result>
 </cffunction>
 
-<cfscript>
-function getMediaTypes(required array mediaTypeIds) {
-    var result = queryNew("mediatypeid, mediatype", "integer,varchar");
-    if (arrayLen(arguments.mediaTypeIds) == 0) {
-        return result;
-    }
-    
-    var sql = "
-        SELECT mediatypeid, mediatype 
-        FROM audmediatypes 
-        WHERE mediatypeid IN (#repeatString('?', arrayLen(arguments.mediaTypeIds), ',')#)
-    ";
-    
-    var queryParams = [];
-    for (var id in arguments.mediaTypeIds) {
-        arrayAppend(queryParams, {value=id, cfsqltype="CF_SQL_INTEGER"});
-    }
+<cffunction name="getMediaTypes" access="public" returntype="query" output="false">
+    <cfargument name="mediaTypeIds" type="array" required="true">
 
-    result = queryExecute(
-        sql,
-        queryParams
-    );
-    
-    return result;
-}
-</cfscript>
+    <!--- Convert the array to a comma-delimited list --->
+    <cfset var mediaTypeList = arrayToList(arguments.mediaTypeIds)>
+
+    <!--- Execute the query --->
+    <cfquery name="result" >
+        SELECT mediatypeid, mediatype
+        FROM audmediatypes
+        WHERE mediatypeid IN (<cfqueryparam value="#mediaTypeList#" cfsqltype="CF_SQL_INTEGER" list="true">)
+    </cfquery>
+
+    <!--- Return the query result --->
+    <cfreturn result>
+</cffunction>
+
+
 
 <cffunction output="false" name="SELaudmediatypes_24067" access="public" returntype="query">
     <cfargument name="src" type="string" required="false" default="">
-    
-    <cfset var queryResult = "">
-    <cfset var sqlQuery = "SELECT mediatypeid, mediatype FROM audmediatypes WHERE mediatype <> ? AND isdeleted = ?">
-    <cfset var params = [ { value="Headshot", cfsqltype="CF_SQL_VARCHAR" }, { value=0, cfsqltype="CF_SQL_BIT" } ]>
-    
-    <cfif arguments.src EQ "account">
-        <cfset sqlQuery &= " AND ismymaterial = ?">
-        <cfset arrayAppend(params, { value=1, cfsqltype="CF_SQL_BIT" })>
-    </cfif>
-    
-    <cfset sqlQuery &= " ORDER BY mediatype">
 
-    <cfquery result="result" name="queryResult">
-        #sqlQuery#
-        <cfloop array="#params#" index="param">
-            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-        </cfloop>
+    <!--- Execute the query --->
+    <cfquery name="queryResult" >
+        SELECT mediatypeid, mediatype 
+        FROM audmediatypes 
+        WHERE mediatype <> 'Headshot' 
+        AND isdeleted = 0
+        <cfif arguments.src EQ "account">
+            AND ismymaterial = 1
+        </cfif>
+        ORDER BY mediatype
     </cfquery>
-    
+
+    <!--- Return the result --->
     <cfreturn queryResult>
 </cffunction>
+
 
 <cffunction output="false" name="SELaudmediatypes_24198" access="public" returntype="query">
     <cfargument name="src" type="string" required="true">
-    
-    <cfset var queryResult = "">
-    <cfset var sqlQuery = "">
-    <cfset var params = []>
-    
-    <cfset sqlQuery = "
-        SELECT 
-            mediatypeid, 
-            mediatype 
-        FROM 
-            audmediatypes 
-        WHERE 
-            mediatype <> ? 
-            AND isdeleted = ?">
-
-    <cfset arrayAppend(params, {value='Headshot', cfsqltype='CF_SQL_VARCHAR'})>
-    <cfset arrayAppend(params, {value=0, cfsqltype='CF_SQL_BIT'})>
-
-    <cfif arguments.src eq "account">
-        <cfset sqlQuery &= " AND ismymaterial = ?">
-        <cfset arrayAppend(params, {value=1, cfsqltype='CF_SQL_BIT'})>
-    </cfif>
-
-    <cfquery result="result" name="queryResult">
-        #sqlQuery#
-        <cfloop array="#params#" index="param">
-            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-        </cfloop>
+    <cfquery name="queryResult" >
+        SELECT mediatypeid, mediatype 
+        FROM audmediatypes 
+        WHERE mediatype <> 'Headshot' 
+        AND isdeleted = 0
+        <cfif arguments.src EQ "account">
+            AND ismymaterial = 1
+        </cfif>
     </cfquery>
-
     <cfreturn queryResult>
 </cffunction>
 
-<cffunction output="false" name="INSaudmediatypes" access="public" returntype="void" >
+
+<cffunction output="false" name="INSaudmediatypes" access="public" returntype="numeric">
     <cfargument name="new_mediaType" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
-
     <cfquery result="result">
         INSERT INTO audmediatypes (mediaType, isDeleted)
         VALUES (
-            <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaType#" maxlength="100" null="#NOT len(trim(arguments.new_mediaType))#">,
-            <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+            <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_mediaType)#">,
+            <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#">
         )
     </cfquery>
+    <cfreturn result.generatedKey>
 </cffunction>
+
 
 <cffunction output="false" name="UPDaudmediatypes" access="public" returntype="void">
     <cfargument name="new_mediaType" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_mediaTypeID" type="numeric" required="true">
 
+    <!--- Update media type in database --->
     <cfquery result="result">
         UPDATE audmediatypes 
         SET 
-            mediaType = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaType#" maxlength="100" null="#NOT len(trim(arguments.new_mediaType))#">,
-            isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+            mediaType = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_mediaType)#">,
+            isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#">
         WHERE 
             mediaTypeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_mediaTypeID#">
     </cfquery>
 </cffunction>
+
 </cfcomponent>
