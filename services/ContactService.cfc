@@ -3,13 +3,13 @@
 <cffunction name="getSystemIdBasedOnTag" access="public" returntype="numeric" output="false">
     <cfargument name="audprojectDate" type="date" required="true">
     <cfargument name="new_contactid" type="numeric" required="true">
-    <cfargument name="dsn" type="string" required="true">
+
 
     <cfset var new_systemid = 0>
 
     <!--- Check if the project date is in the past --->
     <cfif DateCompare(arguments.audprojectDate, Now()) LT 0>
-        <cfquery name="findtag" datasource="#arguments.dsn#" maxrows="1">
+        <cfquery name="findtag"  maxrows="1">
             SELECT * 
             FROM contactdetails d
             JOIN contactitems i ON i.contactid = d.contactid
