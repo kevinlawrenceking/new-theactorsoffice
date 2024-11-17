@@ -424,7 +424,7 @@
 
         <cfinclude template="/include/qry/cities_448_1.cfm"/>
 
-        <cfif #ctaction# is "addmember"><Cfabort>
+        <cfif #ctaction# is "addmember">
 
           <cfinclude template="/include/qry/qry_block_1_3.cfm"/>
 

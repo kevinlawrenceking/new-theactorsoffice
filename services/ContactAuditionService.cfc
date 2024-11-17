@@ -21,6 +21,37 @@
     <cfreturn result.recordCount>
 </cffunction>
 
+<cffunction output="false" name="INSaudcontacts_auditions_xref_2" access="public" returntype="void">
+    <cfargument name="audprojectid" type="numeric" required="true">
+    <cfargument name="autocomplete_aud" type="string" required="true">
+    <cfargument name="userid" type="numeric" required="true">
+
+    <cfset var contactid = 0>
+
+    <!--- Query to fetch contactid --->
+    <cfquery name="contactQuery">
+        SELECT contactid 
+        FROM contacts_ss 
+        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        AND col1 = <cfqueryparam value="#arguments.autocomplete_aud#" cfsqltype="CF_SQL_VARCHAR">
+    </cfquery>
+
+    <!--- If a contactid is found, proceed with the insert --->
+    <cfif contactQuery.recordCount EQ 1>
+        <cfset contactid = contactQuery.contactid>
+
+        <cfquery result="result">
+            INSERT IGNORE INTO audcontacts_auditions_xref 
+            SET audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">, 
+                xrefNotes = <cfqueryparam value="/qry/audition.cfm" cfsqltype="CF_SQL_VARCHAR">, 
+                contactid = <cfqueryparam value="#contactid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+
+        <cfreturn result.generatedKey>
+  </cfif>
+</cffunction>
+
+
 
 
 <cffunction output="false" name="INSaudcontacts_auditions_xref_23780" access="public" returntype="void">

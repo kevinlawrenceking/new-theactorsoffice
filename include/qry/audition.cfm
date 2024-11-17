@@ -34,7 +34,34 @@
     <cfinclude template="/include/qry/delete2_368_8.cfm" />
 </cfif>
 
-<!-- Check for projects and contact id -->
+<cfparam name="events_list" default="">
+
+
+    <cfif #ctaction# is "addmember">
+
+
+<cfinclude template="/include/qry/add_aud_contact.cfm" />
+ 
+        
+        <cfif DateCompare(projectDetails.audprojectdate, Now()) lt 0>
+            
+             <cfinclude template="/include/qry/getSystemIdBasedOnTag.cfm" />
+            
+            
+                  <cfset new_contactid=new_contactid />
+           <cfset new_userid=userid />
+         
+            <cfset new_suStartDate = projectDetails.audprojectdate />
+    
+
+    <cfinclude template="/include/modalansweryes.cfm" />
+            
+            
+        </cfif>
+
+    </cfif>
+
+<!--- Check for projects and contact id --->
 <cfinclude template="/include/qry/cdcheck_368_9.cfm" />
 
 <cfif cdcheck.contactid is "99999999">
@@ -44,4 +71,3 @@
 </cfif>
 
 <cfinclude template="/include/qry/audageranges_audtion_xref_368_11.cfm" />
-

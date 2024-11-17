@@ -1,4 +1,37 @@
 <cfcomponent displayname="ContactService" hint="Handles operations for Contact table" > 
+
+<cffunction name="getSystemIdBasedOnTag" access="public" returntype="numeric" output="false">
+    <cfargument name="audprojectDate" type="date" required="true">
+    <cfargument name="new_contactid" type="numeric" required="true">
+
+
+    <cfset var new_systemid = 0>
+
+    <!--- Check if the project date is in the past --->
+    <cfif DateCompare(arguments.audprojectDate, Now()) LT 0>
+        <cfquery name="findtag"  maxrows="1">
+            SELECT * 
+            FROM contactdetails d
+            JOIN contactitems i ON i.contactid = d.contactid
+            JOIN tags tu ON (CONVERT(tu.tagname USING UTF8) = i.valueText)
+            WHERE 
+                d.contactid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contactid#">
+                AND i.valuecategory = 'Tag'  
+                AND tu.tagtype = 'C'
+        </cfquery>
+
+        <!--- Determine system ID based on tag existence --->
+        <cfif findtag.recordcount EQ 1>
+            <cfset new_systemid = 1>
+        <cfelse>
+            <cfset new_systemid = 2>
+        </cfif>
+    </cfif>
+
+    <cfreturn new_systemid>
+</cffunction>
+
+
 <cffunction name="getContactCount" access="public" returntype="numeric">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="relationship" type="numeric" required="true">
