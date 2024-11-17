@@ -1665,7 +1665,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     <cfargument name="new_networkID" type="v" required="false"  default="" >
     <cfargument name="new_toneID" type="string" required="false"  default="" >
     <cfargument name="new_contractTypeID" type="string" required="false"  default="" >
-    <cfargument name="new_contactid" type="string" required="false"  default="" >
+    <cfargument name="new_contactid" type="numeric" required="false"  default="0" >
     <cfargument name="new_audprojectID" type="string" required="true">
 
     <cfset var sql = "UPDATE audprojects SET projName = <cfqueryparam cfsqltype='CF_SQL_VARCHAR' value='#arguments.new_projName#' >">
@@ -1686,7 +1686,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     <cfif len(trim(arguments.new_contractTypeID))>
         <cfset sql &= ", contractTypeID = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_contractTypeID#'>">
     </cfif>
-    <cfif len(trim(arguments.new_contactid))>
+    <cfif len(trim(arguments.new_contactid)) and arguements.new_contactid neq 0>
         <cfset sql &= ", contactid = <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_contactid#'>">
     </cfif>
 
