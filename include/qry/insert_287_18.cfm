@@ -1,2 +1,2 @@
-<cfset auditionAgeRangeXRefService = createObject("component", "services.AuditionAgeRangeXRefService.cfc") />
-<cfset auditionAgeRangeXRefService.INSaudageranges_audtion_xref(new_rangeid=new_rangeid, new_audroleid=new_audroleid) />
+<cfset AuditionAgeRangeXRefService = createObject("component", "services.AuditionAgeRangeXRefService.cfc") />
+<cfset AuditionAgeRangeXRefService.INSaudageranges_audtion_xref(new_rangeid=new_rangeid, new_audroleid=new_audroleid) />
