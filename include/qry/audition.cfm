@@ -42,7 +42,7 @@
 
 <cfinclude template="/include/qry/add_aud_contact.cfm" />
  
-        
+        <cfoutput>[[#new_contactid#]]</cfoutput><cfabort>
         <cfif DateCompare(projectDetails.audprojectdate, Now()) lt 0>
       
              <cfinclude template="/include/qry/getSystemIdBasedOnTag.cfm" />
