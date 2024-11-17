@@ -435,7 +435,7 @@
 
                         <div class="form-switch col-md-3 col-sm-6 col-xs-6">
 
-<cfinclude  template="/include/Booked_check_29_8.cfm" />
+<cfinclude  template="/include/qry/Booked_check_29_8.cfm" />
                        
 <cfif #Booked_check.recordcount# is not "0"> 
  <a href="" data-bs-target="##RemoveBook" data-bs-toggle="modal"></cfif>
@@ -1185,13 +1185,6 @@
 
 
 
-
-
-
-
-
-
-
         </div>
 
                 </div>
@@ -1226,9 +1219,6 @@
             </div>
 
         </div>
-
-
-
 
 <script>
 
