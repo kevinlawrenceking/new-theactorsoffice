@@ -5,11 +5,6 @@
     <!--- Include the types query template --->
     <cfinclude template="/include/qry/types_42_1.cfm" />
     
-    <!--- Loop through each type to include media type details --->
-    <cfloop query="types">
-        <cfinclude template="/include/qry/find_typesmediatypeid_42_2.cfm" />
-    </cfloop>
-    
     <!--- Loop through each type to create modals for media uploads --->
     <cfloop query="types">
         <cfoutput>

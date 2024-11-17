@@ -1,19 +1,13 @@
 <cfcomponent displayname="AuditionMediaTypeService"  > 
 <cffunction output="false" name="SELaudmediatypes" access="public" returntype="query">
-    <cfargument name="mediaTypeIds" type="array" required="true">
-  <cfquery name="result">
+    <cfquery name="result">
         SELECT * 
         FROM audmediatypes 
-        WHERE mediatypeid IN (
-            <cfloop array="#arguments.mediaTypeIds#" index="mediaTypeId">
-                <cfqueryparam value="#mediaTypeId#" cfsqltype="CF_SQL_INTEGER" />
-                <cfif arrayLen(arguments.mediaTypeIds) GT 1 AND mediaTypeId NEq arrayLast(arguments.mediaTypeIds)>,</cfif>
-            </cfloop>
-        )
+        WHERE mediatypeid IN (9, 10, 11)
     </cfquery>
-
     <cfreturn result>
 </cffunction>
+
 
 <cffunction output="false" name="SELaudmediatypes_23753" access="public" returntype="query">
     <cfargument name="mediaTypeIds" type="array" required="true">
