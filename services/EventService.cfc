@@ -1208,49 +1208,33 @@
     <cfargument name="new_trackmileage" type="boolean" required="false">
     <cfargument name="new_callbacktypeid" type="numeric" required="false">
     <cfargument name="new_isDeleted" type="boolean" required="false">
-    <cfargument name="new_eventid" type="numeric" required=true>
+    <cfargument name="new_eventid" type="numeric" required="true">
 
-        <cfquery result="result">
-            UPDATE events_tbl 
-            SET 
-                userid = <cfqueryparam cfsqltype="#getSQLType(arguments.new_userid)#"
-                                      value="#arguments.new_userid#" null="#NOT len(trim(arguments.new_userid))#" />,
-                audRoleID = <cfqueryparam cfsqltype="#getSQLType(arguments.new_audRoleID)#"
-                                         value="#arguments.new_audRoleID#" null="#NOT len(trim(arguments.new_audRoleID))#" />,
-                audTypeID = <cfqueryparam cfsqltype="#getSQLType(arguments.new_audTypeID)#"
-                                         value="#arguments.new_audTypeID#" null="#NOT len(trim(arguments.new_audTypeID))#" />,
-                audBookTypeID = <cfqueryparam cfsqltype="#getSQLType(arguments.new_audBookTypeID)#"
-                                             value="#arguments.new_audBookTypeID#" null="#NOT len(trim(arguments.new_audBookTypeID))#" />,
-                audLocation = <cfqueryparam cfsqltype="#getSQLType(arguments.new_audLocation)#"
-                                            value="#arguments.new_audLocation#" maxlength=500 null="#NOT len(trim(arguments.new_audLocation))#" />,
-                eventLocation = <cfqueryparam cfsqltype="#getSQLType(arguments.new_eventLocation)#"
-                                              value="#arguments.new_eventLocation#" maxlength=500 null="#NOT len(trim(arguments.new_eventLocation))#" />,
-                audlocadd1 = <cfqueryparam cfsqltype="#getSQLType(arguments.new_audlocadd1)#"
-                                               value="#arguments.new_audlocadd1#" maxlength=500 null="#NOT len(trim(arguments.new_audlocadd1))#" />,
-                audlocadd2 = <cfqueryparam cfsqltype="#getSQLType(arguments.new_audlocadd2)#"
-                                               value="#arguments.new_audlocadd2#" maxlength=500 null="#NOT len(trim(arguments.new_audlocadd2))#" />,
-                audcity = <cfqueryparam cfsqltype="#getSQLType(arguments.new_audcity)#"
-                                            value="#arguments.new_audcity#" maxlength=500 null="#NOT len(trim(arguments.new_audcity))#" />,
-                region_id = <cfqueryparam cfsqltype="#getSQLType(arguments.new_region_id)#"
-                                          value="#arguments.new_region_id#" null="#NOT len(trim(arguments.new_region_id))#" />,
-                audzip = <cfqueryparam cfsqltype="#getSQLType(arguments.new_audzip)#"
-                                            value="#arguments.new_audzip#" maxlength=10 null="#NOT len(trim(arguments.new_audzip))#" />,
-                eventStart = <cfqueryparam cfsqltype="#getSQLType(arguments.new_eventStart)#"
-                                           value="#arguments.new_eventStart#" null="#NOT len(trim(arguments.new_eventStart))#" />,
-                eventStartTime = <cfqueryparam cfsqltype="#getSQLType(arguments.new_eventStartTime)#"
-                                                value="#arguments.new_eventStartTime#" null="#NOT len(trim(arguments.new_eventStartTime))#" />,
-                eventStopTime = <cfqueryparam cfsqltype="#getSQLType(arguments.new_eventStopTime)#"
-                                                value="#arguments.new_eventStopTime#" null="#NOT len(trim(arguments.new_eventStopTime))#" />,
-                audplatformID = <cfqueryparam cfsqltype="#getSQLType(arguments.new_audplatformid)#"
-                                                value="#arguments.new_audplatformid#" null="#NOT len(trim(arguments.new_audplatformid))#" />,
-                audStepID = <cfqueryparam cfsqltype="#getSQLType(arguments.new_audStepID)#"
-                                                value="#arguments.new_audStepID#" null="#NOT len(trim(arguments.new_audStepID))#" />,
-                parkingDetails = <cfqueryparam cfsqltype="<cfdump var='#getSQLType(new_parkingDetails)#'>CF_SQL_LONGVARCHAR</cfdump>"
-                                                 value="<cfdump var='#trim(new_parkingDetails)#'>#trim(new_parkingDetails)#</cfdump>" null="<cfdump var='#not(len(new_parkingDetails))#'>#not(len(new_parkingDetails))#</cfdump>" />
-            WHERE 
-                eventid = ? 
-        </cfquery>
-        </cffunction>
+    <cfquery result="result">
+        UPDATE events_tbl
+        SET
+            userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_userid#" null="#NOT len(trim(arguments.new_userid))#">,
+            audRoleID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#" null="#NOT len(trim(arguments.new_audRoleID))#">,
+            audTypeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audTypeID#" null="#NOT len(trim(arguments.new_audTypeID))#">,
+            audBookTypeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audBookTypeID#" null="#NOT len(trim(arguments.new_audBookTypeID))#">,
+            audLocation = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audLocation)#" maxlength="500" null="#NOT len(trim(arguments.new_audLocation))#">,
+            eventLocation = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_eventLocation)#" maxlength="500" null="#NOT len(trim(arguments.new_eventLocation))#">,
+            audlocadd1 = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audlocadd1)#" maxlength="500" null="#NOT len(trim(arguments.new_audlocadd1))#">,
+            audlocadd2 = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audlocadd2)#" maxlength="500" null="#NOT len(trim(arguments.new_audlocadd2))#">,
+            audcity = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audcity)#" maxlength="500" null="#NOT len(trim(arguments.new_audcity))#">,
+            region_id = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_region_id#" null="#NOT len(trim(arguments.new_region_id))#">,
+            audzip = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audzip)#" maxlength="10" null="#NOT len(trim(arguments.new_audzip))#">,
+            eventStart = <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.new_eventStart#" null="#NOT len(trim(arguments.new_eventStart))#">,
+            eventStartTime = <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.new_eventStartTime#" null="#NOT len(trim(arguments.new_eventStartTime))#">,
+            eventStopTime = <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.new_eventStopTime#" null="#NOT len(trim(arguments.new_eventStopTime))#">,
+            audplatformID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audplatformid#" null="#NOT len(trim(arguments.new_audplatformid))#">,
+            audStepID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audStepID#" null="#NOT len(trim(arguments.new_audStepID))#">,
+            parkingDetails = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_parkingDetails)#" null="#NOT len(trim(arguments.new_parkingDetails))#">
+        WHERE 
+            eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">
+    </cfquery>
+</cffunction>
+
 <cffunction output="false" name="UPDevents_24558" access="public" returntype="void">
     <cfargument name="new_eventid" type="numeric" required="true">
     <cfargument name="eventStart" type="date" required="false" default="">
