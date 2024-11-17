@@ -1671,40 +1671,41 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     <cfset var fields = []>
     <cfset var params = []>
 
-    <!-- Dynamically build the fields and parameters -->
+    <!-- Required field -->
     <cfset arrayAppend(fields, "projName = ?")>
-    <cfset arrayAppend(params, { value=arguments.new_projName, cfsqltype="CF_SQL_VARCHAR" })>
+    <cfset arrayAppend(params, {value=arguments.new_projName, cfsqltype="CF_SQL_VARCHAR"})>
 
+    <!-- Optional fields -->
     <cfif structKeyExists(arguments, "new_projDescription") AND len(trim(arguments.new_projDescription))>
         <cfset arrayAppend(fields, "projDescription = ?")>
-        <cfset arrayAppend(params, { value=arguments.new_projDescription, cfsqltype="CF_SQL_LONGVARCHAR" })>
+        <cfset arrayAppend(params, {value=arguments.new_projDescription, cfsqltype="CF_SQL_LONGVARCHAR"})>
     </cfif>
     <cfif structKeyExists(arguments, "new_unionID") AND isNumeric(arguments.new_unionID)>
         <cfset arrayAppend(fields, "unionID = ?")>
-        <cfset arrayAppend(params, { value=arguments.new_unionID, cfsqltype="CF_SQL_INTEGER" })>
+        <cfset arrayAppend(params, {value=arguments.new_unionID, cfsqltype="CF_SQL_INTEGER"})>
     </cfif>
     <cfif structKeyExists(arguments, "new_networkID") AND isNumeric(arguments.new_networkID)>
         <cfset arrayAppend(fields, "networkID = ?")>
-        <cfset arrayAppend(params, { value=arguments.new_networkID, cfsqltype="CF_SQL_INTEGER" })>
+        <cfset arrayAppend(params, {value=arguments.new_networkID, cfsqltype="CF_SQL_INTEGER"})>
     </cfif>
     <cfif structKeyExists(arguments, "new_toneID") AND isNumeric(arguments.new_toneID)>
         <cfset arrayAppend(fields, "toneID = ?")>
-        <cfset arrayAppend(params, { value=arguments.new_toneID, cfsqltype="CF_SQL_INTEGER" })>
+        <cfset arrayAppend(params, {value=arguments.new_toneID, cfsqltype="CF_SQL_INTEGER"})>
     </cfif>
     <cfif structKeyExists(arguments, "new_contractTypeID") AND isNumeric(arguments.new_contractTypeID)>
         <cfset arrayAppend(fields, "contractTypeID = ?")>
-        <cfset arrayAppend(params, { value=arguments.new_contractTypeID, cfsqltype="CF_SQL_INTEGER" })>
+        <cfset arrayAppend(params, {value=arguments.new_contractTypeID, cfsqltype="CF_SQL_INTEGER"})>
     </cfif>
     <cfif structKeyExists(arguments, "new_contactid") AND isNumeric(arguments.new_contactid)>
         <cfset arrayAppend(fields, "contactid = ?")>
-        <cfset arrayAppend(params, { value=arguments.new_contactid, cfsqltype="CF_SQL_INTEGER" })>
+        <cfset arrayAppend(params, {value=arguments.new_contactid, cfsqltype="CF_SQL_INTEGER"})>
     </cfif>
 
-    <!-- Finalize the query -->
+    <!-- Finalize query -->
+    <cfset arrayAppend(params, {value=arguments.new_audprojectID, cfsqltype="CF_SQL_INTEGER"})>
     <cfset var sql = "UPDATE audprojects SET " & arrayToList(fields, ", ") & " WHERE audprojectID = ?">
-    <cfset arrayAppend(params, { value=arguments.new_audprojectID, cfsqltype="CF_SQL_INTEGER" })>
 
-    <!-- Execute the query -->
+    <!-- Execute query -->
     <cfquery result="result">
         #sql#
         <cfloop array="#params#" index="param">
@@ -1712,6 +1713,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
         </cfloop>
     </cfquery>
 </cffunction>
+
 
 
 
