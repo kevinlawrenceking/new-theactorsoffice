@@ -1669,7 +1669,7 @@ function getAuditionsData(userid, rangeselected, new_audcatid) {
     <cfargument name="new_audprojectID" type="numeric" required="true">
 
     <!-- Initialize SQL statement -->
-    <cfset var sql = "UPDATE audprojects SET projName = <cfqueryparam cfsqltype='CF_SQL_VARCHAR' value='#arguments.new_projName#' maxlength='500'>">
+    <cfset var sql = "UPDATE audprojects SET projName = <cfqueryparam cfsqltype='CF_SQL_VARCHAR' value='#arguments.new_projName#'>">
 
     <!-- Append fields to SQL if provided -->
     <cfif structKeyExists(arguments, "new_projDescription") AND len(trim(arguments.new_projDescription))>
