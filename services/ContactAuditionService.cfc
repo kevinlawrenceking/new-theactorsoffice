@@ -93,7 +93,7 @@ function getAuditionContacts(required numeric audprojectid, required numeric new
             <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audprojectid#">
         )
     </cfquery>
-    <cfreturn result.generatedKey>
+
 </cffunction>
 
 <cffunction output="false" name="UPDaudcontacts_auditions_xref" access="public" returntype="void">
