@@ -31,7 +31,9 @@
 
     <div class="row">
         <div class="form-group col-md-12">
+        <cfoutput>
             <h4>Category: #auditionprojectDetails.audCatName# - #auditionprojectDetails.audSubCatName#</h4>
+        </cfoutput>
         </div>
 
         <cfoutput query="auditionprojectdetails">
