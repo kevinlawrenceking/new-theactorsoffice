@@ -1,5 +1,44 @@
 <cfcomponent displayname="NotificationService" hint="Handles operations for Notification table" > 
 
+<cffunction name="DETfunotifications" access="public" output="false" returntype="query">
+    <cfargument name="notid" type="numeric" required="true">
+
+    <cfquery name="result">
+        SELECT 
+            su.contactid, 
+            su.userid, 
+            n.notid, 
+            s.systemid, 
+            s.systemscope AS newsystemscope, 
+            n.actionid, 
+            su.suID AS newsuid, 
+            au.actionDaysRecurring, 
+            a.uniquename, 
+            a.IsUnique, 
+            u.recordname AS new_contactname
+        FROM 
+            funotifications n
+        INNER JOIN 
+            fusystemusers su ON su.suid = n.suid
+        INNER JOIN 
+            contactdetails c ON c.contactID = su.contactid
+        INNER JOIN 
+            fusystems s ON s.systemID = su.systemID
+        INNER JOIN 
+            actionusers au ON au.actionid = n.actionid
+        INNER JOIN 
+            fuactions a ON a.actionid = au.actionid
+        INNER JOIN 
+            taousers u ON u.userid = n.userid
+        WHERE 
+            n.notID = <cfqueryparam value="#arguments.notid#" cfsqltype="CF_SQL_INTEGER">
+            AND au.userid = n.userid
+    </cfquery>
+
+    <cfreturn result>
+</cffunction>
+
+
 <cffunction name="INSfunotifications" access="public" returntype="struct" output="false" hint="Adds a notification to the database">
         <cfargument name="actionID" type="numeric" required="true" hint="The action ID for the notification">
         <cfargument name="userID" type="numeric" required="true" hint="The ID of the user">
