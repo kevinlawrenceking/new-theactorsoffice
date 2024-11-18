@@ -1,8 +1,26 @@
 <cfcomponent displayname="SystemUserService" hint="Handles operations for SystemUser table" > 
 
-
-
 <cffunction output="false" name="INSfusystemusers" access="public" returntype="numeric">
+    <cfargument name="systemID" type="numeric" required="true">
+    <cfargument name="contactID" type="numeric" required="true">
+    <cfargument name="userID" type="string" required="true">
+    <cfargument name="suStartDate" type="date" required="true">
+
+    
+        <cfquery result="result" >
+            INSERT INTO fuSystemUsers (systemID, contactID, userID, suStartDate)
+            VALUES (
+                <cfqueryparam value="#arguments.systemID#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.contactID#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.suStartDate#" cfsqltype="CF_SQL_DATE">
+            )
+        </cfquery>
+
+    <cfreturn result.generatedKey>
+</cffunction>
+
+<cffunction output="false" name="INSfusystemusers_batch" access="public" returntype="numeric">
     <cfargument name="new_systemid" type="numeric" required="true">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="new_suStartDate" type="date" required="true">
@@ -299,25 +317,7 @@
 <cfreturn result.generatedKey>
     
 </cffunction>
-<cffunction output="false" name="INSfusystemusers" access="public" returntype="numeric">
-    <cfargument name="systemID" type="numeric" required="true">
-    <cfargument name="contactID" type="numeric" required="true">
-    <cfargument name="userID" type="string" required="true">
-    <cfargument name="suStartDate" type="date" required="true">
 
-    
-        <cfquery result="result" >
-            INSERT INTO fuSystemUsers (systemID, contactID, userID, suStartDate)
-            VALUES (
-                <cfqueryparam value="#arguments.systemID#" cfsqltype="CF_SQL_INTEGER">,
-                <cfqueryparam value="#arguments.contactID#" cfsqltype="CF_SQL_INTEGER">,
-                <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_VARCHAR">,
-                <cfqueryparam value="#arguments.suStartDate#" cfsqltype="CF_SQL_DATE">
-            )
-        </cfquery>
-
-    <cfreturn result.generatedKey>
-</cffunction>
 <cffunction output="false" name="SELfusystemusers_24718" access="public" returntype="query">
     <cfargument name="currentid" type="numeric" required="true">
     <cfargument name="sessionUserId" type="numeric" required="true">
