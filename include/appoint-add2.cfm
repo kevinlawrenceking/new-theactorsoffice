@@ -88,7 +88,7 @@
     <cfset new_audStepID = 1 />
     <cfset new_audcatid = 1 />
     <cfset new_audsubcatid = 6 />
-    <cfset new_userid = session.userid />
+    <cfset new_userid = userid />
     <cfset new_audtypeid = "1" />
     <cfset new_projname = "Unknown" />
     <cfset new_audplatformid = 4 />

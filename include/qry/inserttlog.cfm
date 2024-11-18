@@ -4,7 +4,7 @@
     <!--- Outputting the SQL INSERT statement for logging ticket details. --->
     INSERT INTO `ticketslog_tbl` (`tlogDetails`, `userID`, `ticketid`, `ticketstatus`) VALUES
         ( #new_tlogDetails#
-        , #session.userid#
+        , #userid#
         , #new_ticketid#
         , #new_ticketstatus#
         );

@@ -327,7 +327,7 @@
 
 
 <cfquery name="tags">
-    SELECT tagid,tagname FROM tags_user where userid = #session.userid# order by tagname
+    SELECT tagid,tagname FROM tags_user where userid = #userid# order by tagname
 </cfquery>
 
 <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" 

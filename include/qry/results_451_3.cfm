@@ -9,7 +9,7 @@
         contactdetails d
     WHERE 
         d.contactstatus = 'Active'
-        AND d.userid = #session.userid#
+        AND d.userid = #userid#
     ORDER BY 
         d.contactfullname
 </cfquery>

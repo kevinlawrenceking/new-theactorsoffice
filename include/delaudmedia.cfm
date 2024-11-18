@@ -1,5 +1,5 @@
 <!--- This ColdFusion page handles user redirection based on the event ID. --->
-<cfset userid = session.userid />
+<cfset userid = userid />
 
 <cfparam name="eventid" default="0" />
 

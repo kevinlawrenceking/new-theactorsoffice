@@ -22,7 +22,7 @@
             stateSave: false,
             serverSide: true,
             ajax: {
-                url: '/include/contacts_attendees.cfm?eventid=<cfoutput>#eventid#</cfoutput>&contacts_table=<cfoutput>#contacts_table#</cfoutput>&userid=<cfoutput>#session.userid#</cfoutput>',
+                url: '/include/contacts_attendees.cfm?eventid=<cfoutput>#eventid#</cfoutput>&contacts_table=<cfoutput>#contacts_table#</cfoutput>&userid=<cfoutput>#userid#</cfoutput>',
                 type: 'post'
             },
             responsive: {

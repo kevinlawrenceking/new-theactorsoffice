@@ -59,8 +59,8 @@
             <div class="col-md-6">
                 <cfoutput>
                     #devicetype# version. #dateformat('#now()#','YYYY')# 
-                    <!--- Check if session.userid is "30" and if currentStartDate is defined, output the current date --->
-                    <cfif #session.userid# is "30">
+                    <!--- Check if userid is "30" and if currentStartDate is defined, output the current date --->
+                    <cfif #userid# is "30">
                         <cfif #isdefined('currentStartDate')#>
                             current date: #dateformat('#currentstartdate#')#
                         </cfif>

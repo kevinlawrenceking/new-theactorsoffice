@@ -503,7 +503,7 @@
    
         <cfoutput>
 
-          <cfset app_direct="C:\home\theactorsoffice.com\media-#host#\users\#session.userid#\"/>
+          <cfset app_direct="C:\home\theactorsoffice.com\media-#host#\users\#userid#\"/>
           <cfset sub_name_c="#dateformat('#now()#','YYYYMMDD')#"/>
           <cfset sub_name_d="#timeformat('#now()#','HHMMSS')#"/>
           <cfset fileName="xexport_auditions_#sub_name_c##sub_name_d#.xls"/>

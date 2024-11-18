@@ -1,10 +1,9 @@
 <!--- This ColdFusion page handles user media file downloads and ensures the media directory exists before downloading the file. --->
-
-<cfset userid = session.userid />
-
 <cfset currentURL = cgi.server_name />
 
 <cfset host = ListFirst(currentURL, ".") />
+
+<cfinclude template="/include/fetchUsers.cfm" />
 
 <cfinclude template="/include/qry/attachdetails_25_1.cfm" />
 
@@ -18,7 +17,7 @@
 </CFIF>
 
 <!--- Download the media file as binary. --->
-<cfhttp url="#session.userMediaUrl#/#attachdetails.attachfilename#" getAsBinary="yes" />
+<cfhttp url="#userMediaUrl#/#attachdetails.attachfilename#" getAsBinary="yes" />
 
 <!--- Set the header for file download. --->
 <cfheader name="Content-Disposition" value="attachment; filename=#attachdetails.attachfilename#" />

@@ -8,7 +8,7 @@
     FROM 
         tags_user 
     WHERE 
-        userid = #session.userid# 
+        userid = #userid# 
     ORDER BY 
         tagname
 </cfquery>

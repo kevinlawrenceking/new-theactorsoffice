@@ -28,7 +28,7 @@
                     <cfoutput>
                         <input type="hidden" name="returnurl" value="#returnurl#">
                         <input type="hidden" name="rcontactid" value="#rcontactid#">
-                        <input type="hidden" name="userid" value="#session.userid#">
+                        <input type="hidden" name="userid" value="#userid#">
                     </cfoutput>
                     
                     <div class="row">

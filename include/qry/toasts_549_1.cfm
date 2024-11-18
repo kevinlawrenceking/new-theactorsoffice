@@ -10,7 +10,7 @@
     FROM notifications n
     INNER JOIN contactdetails c 
         ON c.contactid = n.contactid
-    WHERE n.userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#session.userid#"> 
+    WHERE n.userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#userid#"> 
       AND n.read = 0
       AND n.trash = 0
 </cfquery>

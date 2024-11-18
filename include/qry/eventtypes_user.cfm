@@ -2,8 +2,8 @@
 <cfparam name="userid" default="0" />
 
 <!--- Check if the session variable for userid is defined --->
-<cfif isdefined('session.userid')>
-    <cfset userid = session.userid />
+<cfif isdefined('userid')>
+    <cfset userid = userid />
 </cfif>
 
 <!--- Query to fetch event types associated with the user --->

@@ -1,6 +1,6 @@
 <!--- This ColdFusion page handles user media uploads and manages the storage of uploaded files. --->
 
-<cfset userid = session.userid />
+<cfset userid = userid />
 
 <cfset currentURL = cgi.server_name />
 <cfset host = ListFirst(currentURL, ".") />
@@ -16,7 +16,7 @@
         destination="#session.userMediaPath#\" 
         nameconflict="MAKEUNIQUE" />
 
-<cfset new_userid = session.userid />
+<cfset new_userid = userid />
 <cfset new_filename = CFFILE.serverfile />
 
 <cfoutput>

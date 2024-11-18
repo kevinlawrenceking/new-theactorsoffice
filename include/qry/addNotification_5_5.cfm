@@ -11,7 +11,7 @@
     )
     VALUES (
         #addDaysNo.actionID#,
-        #session.userid#,
+        #userid#,
         #NewSuid#,
         '#DateFormat(notstartdate, 'yyyy-mm-dd')#',
         'Pending'

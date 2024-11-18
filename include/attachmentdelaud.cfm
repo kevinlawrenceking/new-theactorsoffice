@@ -1,6 +1,6 @@
 <!--- This ColdFusion page handles file deletion based on user input and redirects accordingly. --->
 
-<cfset userid = session.userid />
+<cfset userid = userid />
 
 <cfparam name="rcontactid" default="0" />
 

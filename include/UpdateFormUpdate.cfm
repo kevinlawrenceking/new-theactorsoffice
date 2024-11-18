@@ -18,13 +18,13 @@
 <cfparam name="new_isDeleted" default="0" />
 
 <cfoutput>
-    <cfparam name="userid" default="#session.userid#" />
+    <cfparam name="userid" default="#userid#" />
     <cfparam name="compid" default="#rpg_compid#" />
     <cfparam name="compTable" default="#rpg_comptable#" />
     <cfparam name="recname" default="#fid#" />
     <cfparam name="compName" default="#rpg_compname#" />
     
-    userid: #session.userid#<BR>
+    userid: #userid#<BR>
     compid: #rpg_compid#<BR>
     comptable: #rpg_comptable#<BR>
     recname: #fid#<BR>

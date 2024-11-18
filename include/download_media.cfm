@@ -1,6 +1,6 @@
 <!--- This ColdFusion page handles the retrieval and display of media files for the user. --->
 
-<cfset userid = session.userid /> <!--- Set the user ID from the session --->
+<cfset userid = userid /> <!--- Set the user ID from the session --->
 
 <cfset currentURL = cgi.server_name /> <!--- Get the current server name --->
 

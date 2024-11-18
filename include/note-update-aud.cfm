@@ -25,7 +25,7 @@
                         <input type="hidden" name="audprojectid" value="#audprojectid#">
                         <input type="hidden" name="returnurl" value="#returnurl#">
                         <input type="hidden" name="rcontactid" value="#rcontactid#">
-                        <input type="hidden" name="userid" value="#session.userid#">
+                        <input type="hidden" name="userid" value="#userid#">
                         <input type="hidden" name="noteid" value="#noteid#">
                     </cfoutput>
 

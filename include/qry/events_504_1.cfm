@@ -14,8 +14,8 @@
     ON 
         t.eventtypename = e.eventtypename
     WHERE 
-        e.userid = #session.userid# 
-        AND t.userid = #session.userid#
+        e.userid = #userid# 
+        AND t.userid = #userid#
         AND e.eventid IN (
             SELECT 
                 eventid 

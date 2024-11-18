@@ -117,7 +117,7 @@
         <br>
     </cfoutput>
 
-    <cfset select_userid=session.userid />
+    <cfset select_userid=userid />
     <cfset select_contactid=new_contactid />
     <cfinclude template="/include/folder_setup.cfm" />
 

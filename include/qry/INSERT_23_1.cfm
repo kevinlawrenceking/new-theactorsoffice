@@ -13,7 +13,7 @@
         <cfqueryparam cfsqltype="cf_sql_varchar" value="#attachname#" />,
         <cfqueryparam cfsqltype="cf_sql_varchar" value="#attachfilename#" />,
         <cfqueryparam cfsqltype="cf_sql_integer" value="0" />,
-        <cfqueryparam cfsqltype="cf_sql_integer" value="#session.userid#" />,
+        <cfqueryparam cfsqltype="cf_sql_integer" value="#userid#" />,
         <cfqueryparam cfsqltype="cf_sql_integer" value="#noteid#" />
     )
 </cfquery>

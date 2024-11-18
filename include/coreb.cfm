@@ -148,7 +148,7 @@
                                     </div>
                                     <h4 class="page-title">
                                         <cfoutput>
-                                            <cfif #session.userid# is "30">#pgid# </cfif>#pgHeading# 
+                                            <cfif #userid# is "30">#pgid# </cfif>#pgHeading# 
                                             <A href="" data-toggle="modal" data-target="##custom-modal-diagnostic"></A>
                                             
                                             <cfif #pgid# is "89">

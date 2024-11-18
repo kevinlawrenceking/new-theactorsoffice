@@ -1,6 +1,6 @@
 <!--- This ColdFusion page handles user redirection based on the session user ID and specified parameters. --->
 
-<cfset userid = session.userid/>
+<cfset userid = userid/>
 
 <cfparam name="dir" default="account" />
 <cfparam name="audprojectid" default="0" />

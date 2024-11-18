@@ -21,6 +21,6 @@
         fusystems s ON s.systemID = fc.systemID
     WHERE 
         fc.contactID = #currentid# 
-        AND fc.userID = #session.userid# 
+        AND fc.userID = #userid# 
         AND fc.sustatus = 'Active'
 </cfquery>

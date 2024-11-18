@@ -1,6 +1,6 @@
 <!--- This ColdFusion page handles the import of contact data from a spreadsheet, processes the data, and updates the database accordingly. --->
 
-<cfset userid = session.userid />
+<cfset userid = userid />
 
 <cfset currentURL = cgi.server_name />
 <cfset host = ListFirst(currentURL, ".") />
@@ -59,13 +59,13 @@
         <cfinclude template="/include/birthday_fix.cfm" />
         <cfoutput>result: added - #new_contactid#<BR></cfoutput>
 
-        <cfset select_userid = session.userid />
+        <cfset select_userid = userid />
         <cfset select_contactid = new_contactid />
         <cfinclude template="/include/folder_setup.cfm" />
     </cfif>
 
     <cfif #x.notes# is not ""> 
-        <cfset select_userid = session.userid />
+        <cfset select_userid = userid />
         <cfset select_contactid = new_contactid />
         <cfinclude template="/include/qry/find_note_315_7.cfm" />
         

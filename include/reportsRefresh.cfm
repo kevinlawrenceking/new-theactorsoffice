@@ -9,8 +9,8 @@
 <cfparam name="refreshdata_yn" default="N" />
 
 <!--- Check if the user is logged in and set the user ID. --->
-<cfif #isdefined('session.userid')#>
-    <cfset userid = session.userid />
+<cfif #isdefined('userid')#>
+    <cfset userid = userid />
 </cfif>
 
 <cfoutput>#new_audsourceid#</cfoutput>

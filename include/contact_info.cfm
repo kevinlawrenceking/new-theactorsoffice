@@ -335,7 +335,7 @@
         $(document).ready(function() {
             $("#remoteAdd<cfoutput>C#c.catid#</cfoutput>").on("show.bs.modal", function(event) {
                 
-                $(this).find(".modal-body").load("<cfoutput>/include/remoteAddC.cfm?catid=#c.catid#&userid=#session.userid#&contactid=#currentid#</cfoutput>");
+                $(this).find(".modal-body").load("<cfoutput>/include/remoteAddC.cfm?catid=#c.catid#&userid=#userid#&contactid=#currentid#</cfoutput>");
             });
         });
     </script>
@@ -450,7 +450,7 @@
     $(document).ready(function() {
         $("#remoteUpdateName").on("show.bs.modal", function(event) {
             
-            $(this).find(".modal-body").load("<cfoutput>/include/remoteUpdateName.cfm?contactid=#currentid#&userid=#session.userid#</cfoutput>");
+            $(this).find(".modal-body").load("<cfoutput>/include/remoteUpdateName.cfm?contactid=#currentid#&userid=#userid#</cfoutput>");
         });
     });
 </script>

@@ -5,6 +5,6 @@
     select * 
     from contactdetails d 
     where recordname <> '' 
-      and userid = #session.userid# 
+      and userid = #userid# 
     order by d.contactfullname
 </cfquery>

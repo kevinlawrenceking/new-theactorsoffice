@@ -4,6 +4,6 @@
     <!--- Query to select tag ID and tag name for the logged-in user from the tags_user table. --->
     SELECT tagid, tagname 
     FROM tags_user 
-    WHERE userid = #session.userid# 
+    WHERE userid = #userid# 
     ORDER BY tagname
 </cfquery>

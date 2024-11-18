@@ -6,5 +6,5 @@
     FROM 
         genderpronouns_users 
     WHERE 
-        userid = #session.userid#
+        userid = #userid#
 </cfquery>

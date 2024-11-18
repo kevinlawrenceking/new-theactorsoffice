@@ -1,5 +1,5 @@
 <!--- This ColdFusion page handles user session data and includes necessary query templates for processing audition information. It then redirects the user to a specified URL. --->
-<cfset userid = session.userid />
+<cfset userid = userid />
 
 <!--- Include first query template for audition processing --->
 <cfinclude template="/include/qry/ins_253_1.cfm" />

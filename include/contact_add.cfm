@@ -6,7 +6,7 @@
 <cfset contactid = result.generated_key />
 
 <!--- Set user and contact IDs for session management --->
-<cfset select_userid = session.userid />
+<cfset select_userid = userid />
 <cfset select_contactid = currentid />
 
 <!--- Include folder setup for further processing --->

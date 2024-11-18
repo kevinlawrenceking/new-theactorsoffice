@@ -5,7 +5,7 @@
 <!--- Delete existing user panel references for the current user --->
 <cfinclude template="/include/qry/del_460_1.cfm" />
 
-<cfset newuserid = session.userid />
+<cfset newuserid = userid />
 
 <!--- Check if new panel IDs are provided --->
 <cfif #newpnids# is not "">

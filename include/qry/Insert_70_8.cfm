@@ -14,7 +14,7 @@
     VALUES 
     (
         'Maintenance system created for #new_contactname#', 
-        #session.userid#, 
+        #userid#, 
         '/app/contact/?contactid=#contactid#&t4=1', 
         'Maintenance System Created!',
         'System Added', 

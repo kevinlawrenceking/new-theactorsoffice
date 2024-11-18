@@ -14,7 +14,7 @@
     FROM notifications n
     LEFT JOIN contactdetails c 
         ON c.contactid = n.contactid
-    WHERE n.userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#session.userid#"> 
+    WHERE n.userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#userid#"> 
       AND n.trash = 0
     ORDER BY n.notiftimestamp DESC
 </cfquery>

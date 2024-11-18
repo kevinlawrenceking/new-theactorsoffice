@@ -4,7 +4,7 @@
 
 
 <!--- Fetch birthdays for the dashboard --->
-<cfset birthdays = birthdayService.getBirthdaysForDashboard(session.userid)>
+<cfset birthdays = birthdayService.getBirthdaysForDashboard(userid)>
 
 <!--- Card for Birthdays --->
 <cfoutput>

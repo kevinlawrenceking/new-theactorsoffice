@@ -1,5 +1,5 @@
 <!--- This ColdFusion page handles user session management, retrieves user data, and includes various query templates to display user-related information. --->
-<cfif NOT #isdefined('session.userid')# >
+<cfif NOT #isdefined('userid')# >
     <!--- Redirect to login if user is not defined --->
     <cflocation url="/loginform.cfm" />
 </cfif>
@@ -103,7 +103,7 @@
     <cfset update_type = FindPage.update_type />
     
     <!--- User variables --->
-    <cfset userid = session.userid />
+    <cfset userid = userid />
     <cfset userContactid = FindUser.userContactID />
     <cfset userCalStarttime = FindUser.calstarttime />
     <cfset userCalendtime = FindUser.calendtime />    
