@@ -1,12 +1,14 @@
 <cfloop query="events">
     <cfinclude template="/include/qry/auditionDetails_29_3.cfm" />
     <cfoutput>
-        <div id="auditionDetails_#events.eventid#" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" aria-hidden="true">
+        <div id="auditionDetails_#events.eventid#" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->
+>
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color: ##f3f7f9;">
                         <h4 class="modal-title" id="standard-modalLabel">Appointment Details</h4>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true"><i class="mdi mdi-close-thick"></i></button>
+                        <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->
+><i class="mdi mdi-close-thick"></i></button>
                     </div>
                     <div class="modal-body">
                         <div class="row" style="margin: auto;">
@@ -77,12 +79,14 @@
                 });
             });
         </script>
-        <div id="auditionupdate_#events.eventid#" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" aria-hidden="true">
+        <div id="auditionupdate_#events.eventid#" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->
+>
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color: ##f3f7f9;">
                         <h4 class="modal-title" id="standard-modalLabel">Appointment Update</h4>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true"><i class="mdi mdi-close-thick"></i></button>
+                        <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->
+><i class="mdi mdi-close-thick"></i></button>
                     </div>
                     <div class="modal-body"></div>
                 </div>

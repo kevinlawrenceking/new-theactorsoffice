@@ -13,12 +13,14 @@
 <!--- Loop through the results query to display modals for each record --->
 <cfloop query="results">
     <cfoutput>
-        <div id="approve#results.recid#" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">
+        <div id="approve#results.recid#" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->
+>
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color: ##f3f7f9;">
                         <h4 class="modal-title" id="standard-modalLabel">Testing No. 0000#results.recid# - #results.col4# </h4>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">x</button>
+                        <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->
+>x</button>
                     </div>
                     <div class="modal-body">
                     </div>
@@ -32,12 +34,14 @@
 
 <!--- Output modal for remote ticket update --->
 <cfoutput>
-    <div id="remoteticketupdate" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" aria-hidden="true">
+    <div id="remoteticketupdate" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->
+>
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: ##f3f7f9;">
                     <h4 class="modal-title" id="standard-modalLabel">Version Release</h4>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->
+></button>
                 </div>
                 <div class="modal-body">
                 </div>
@@ -48,12 +52,14 @@
 
 <!--- Output modal for patch notes --->
 <cfoutput>
-    <div id="vermodal" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" aria-hidden="true">
+    <div id="vermodal" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->
+>
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: ##f3f7f9;">
                     <h4 class="modal-title" id="standard-modalLabel">Patch Notes</h4>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->
+></button>
                 </div>
                 <div class="modal-body">
                 </div>
@@ -244,12 +250,14 @@
                                 <cfinclude template="/include/qry/versions_323_2.cfm" />
                                 
                                 <cfoutput>
-                                    <div id="approve#results.recid#" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">
+                                    <div id="approve#results.recid#" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->
+>
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header" style="background-color: ##f3f7f9;">
                                                     <h4 class="modal-title" id="standard-modalLabel">Testing No. 0000#results.recid# - #results.col4# </h4>
-                                                    <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">x</button>
+                                                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->
+>x</button>
                                                 </div>
                                                 <div class="modal-body">
                                                 </div>
@@ -359,12 +367,14 @@
                                         </td>
                                     </tr>
                                     <cfoutput> 
-                                        <div id="myModal#results.recid#" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">
+                                        <div id="myModal#results.recid#" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->
+>
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header" style="background-color: ##f3f7f9;">
                                                         <h4 class="modal-title" id="standard-modalLabel">No. 0000#results.recid# - #results.col4# </h4>
-                                                        <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">x</button>
+                                                        <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->
+>x</button>
                                                     </div>
                                                     <div class="modal-body">
                                                     </div>
@@ -377,12 +387,14 @@
                                 </cfoutput>
                             </cfloop>
                             
-                            <div id="remoteNewForm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">
+                            <div id="remoteNewForm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->
+>
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header" style="background-color: #f3f7f9;">
                                             <h4 class="modal-title" id="standard-modalLabel">Add</h4>
-                                            <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">x</button>
+                                            <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->
+>x</button>
                                         </div>
                                         <div class="modal-body">
                                         </div>

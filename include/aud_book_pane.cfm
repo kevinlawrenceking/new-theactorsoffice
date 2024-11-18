@@ -17,12 +17,14 @@
                 });
             </script>
 
-            <div id="remoteadd#types.mediatypeid#" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" aria-hidden="true">
+            <div id="remoteadd#types.mediatypeid#" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->
+>
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header" style="background-color: ##f3f7f9;">
                             <h4 class="modal-title" id="standard-modalLabel">Upload Media</h4>
-                            <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true"><i class="mdi mdi-close-thick"></i></button>
+                            <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->
+><i class="mdi mdi-close-thick"></i></button>
                         </div>
                         <div class="modal-body">
                         </div>
@@ -52,12 +54,14 @@
                     });
                 });
             </script>
-            <div id="bookupdate" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" aria-hidden="true">
+            <div id="bookupdate" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->
+>
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header" style="background-color: ##f3f7f9;">
                             <h4 class="modal-title" id="standard-modalLabel">Booking Update</h4>
-                            <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true"><i class="mdi mdi-close-thick"></i></button>
+                            <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->
+><i class="mdi mdi-close-thick"></i></button>
                         </div>
                         <div class="modal-body">
                         </div>
@@ -76,12 +80,14 @@
             });
         </script>
         
-        <div id="auditionadd" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" aria-hidden="true">
+        <div id="auditionadd" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->
+>
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color: ##f3f7f9;">
                         <h4 class="modal-title" id="standard-modalLabel">Booking Appointment Add</h4>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true"><i class="mdi mdi-close-thick"></i></button>
+                        <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->
+><i class="mdi mdi-close-thick"></i></button>
                     </div>
                     <div class="modal-body">
                     </div>

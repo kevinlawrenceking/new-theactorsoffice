@@ -29,12 +29,14 @@
     });
 </script>
 
-<div id="remoteAddName" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="remoteAddName" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->
+>
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Add A Relationship</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true"><i class="mdi mdi-close-thick"></i></button>
+                <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->
+><i class="mdi mdi-close-thick"></i></button>
             </div>
             <div class="modal-body">
             </div>
@@ -68,7 +70,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Selected Updated Summary</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true"><i class="mdi mdi-close-thick"></i></button>
+                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->
+><i class="mdi mdi-close-thick"></i></button>
                 </div>
                 <div class="modal-body">
                     <cfif #a# is not "0">
@@ -163,13 +166,15 @@
 
 <cfinclude template="/include/qry/tags_76_1.cfm" />
 
-<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" <!-- aria-hidden="true" removed -->
+>
     <div class="modal-dialog modal-dialog-slideout modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tag Selector</h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">X</span>
+                    <span <!-- aria-hidden="true" removed -->
+>X</span>
                 </button>
             </div>
             <div class="modal-body">
@@ -190,12 +195,14 @@
     </div>
 </div>
 
-<div id="exampleModal3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">
+<div id="exampleModal3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->
+>
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="standard-modalLabel">System Selected Update</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true"><i class="mdi mdi-close-thick"></i></button>
+                <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->
+><i class="mdi mdi-close-thick"></i></button>
             </div>
             <div class="modal-body">
                 <form method="post" class="parsley-examples demo-default selectize-close-btn" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" data-parsley-trigger="keyup" data-parsley-validate="" novalidate="" id="myform" name="myform" action="/include/tmpcontactgroups.cfm" method="POST">
@@ -252,12 +259,14 @@
     </div>
 </div>
 
-<div id="exampleModal4" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" aria-hidden="true">
+<div id="exampleModal4" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->
+>
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="standard-modalLabel">Tag Selected Update</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true"><i class="mdi mdi-close-thick"></i></button>
+                <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->
+><i class="mdi mdi-close-thick"></i></button>
             </div>
             <div class="modal-body">
                 <form method="post" class="parsley-examples demo-default selectize-close-btn" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" data-parsley-trigger="keyup" data-parsley-validate="" novalidate="" id="myformtag" name="myformtag" action="/include/tmpcontacttags.cfm" method="POST">
