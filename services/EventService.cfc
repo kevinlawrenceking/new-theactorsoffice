@@ -697,47 +697,28 @@
 </cffunction>
 <cffunction output="false" name="UPDevents_24108" access="public" returntype="void">
     <cfargument name="eventId" type="numeric" required="true">
-    <cfargument name="newEventStart" type="string" required="false" default="">
-    <cfargument name="newEventStartTime" type="string" required="false" default="">
-    <cfargument name="newEventStopTime" type="string" required="false" default="">
-    
-    <cfset var sql = "">
-    <cfset var params = []>
-    
-    <cfset sql = "UPDATE events SET eventid = ?">
-    <cfset arrayAppend(params, {value=arguments.eventId, cfsqltype="CF_SQL_INTEGER"})>
-    
-    <cfif len(trim(arguments.newEventStart))>
-        <cfset sql &= ", eventstart = ?">
-        <cfset arrayAppend(params, {value=arguments.newEventStart, cfsqltype="CF_SQL_DATE"})>
-    </cfif>
-    
-    <cfif len(trim(arguments.newEventStartTime))>
-        <cfset sql &= ", eventStartTime = ?">
-        <cfset arrayAppend(params, {value=arguments.newEventStartTime, cfsqltype="CF_SQL_TIME"})>
-    </cfif>
-    
-    <cfif len(trim(arguments.newEventStopTime))>
-        <cfset sql &= ", eventstoptime = ?">
-        <cfset arrayAppend(params, {value=arguments.newEventStopTime, cfsqltype="CF_SQL_TIME"})>
-    </cfif>
-    
-    <cfset sql &= " WHERE eventid = ?">
-    <cfset arrayAppend(params, {value=arguments.eventId, cfsqltype="CF_SQL_INTEGER"})>
+    <cfargument name="newEventStart" type="date" required="false" default="">
+    <cfargument name="newEventStartTime" type="time" required="false" default="">
+    <cfargument name="newEventStopTime" type="time" required="false" default="">
 
-    
-        <cfquery result="result" >
-            #sql#
-            <cfloop array="#params#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-            </cfloop>
-        </cfquery>
-        
-            
-            
-        
-    
+    <cfquery>
+        UPDATE events
+        SET 
+            eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.eventId#">
+            <cfif len(trim(arguments.newEventStart))>
+                , eventstart = <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.newEventStart#" null="#NOT len(trim(arguments.newEventStart))#">
+            </cfif>
+            <cfif len(trim(arguments.newEventStartTime))>
+                , eventStartTime = <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.newEventStartTime#" null="#NOT len(trim(arguments.newEventStartTime))#">
+            </cfif>
+            <cfif len(trim(arguments.newEventStopTime))>
+                , eventstoptime = <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.newEventStopTime#" null="#NOT len(trim(arguments.newEventStopTime))#">
+            </cfif>
+        WHERE 
+            eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.eventId#">
+    </cfquery>
 </cffunction>
+
 <cffunction output="false" name="DETevents" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
 
