@@ -133,8 +133,7 @@
             )
         </cfquery>
 
-        <!--- Return the query result --->
-        <cfreturn result>
+        <cfreturn result.generatedKey>
     </cffunction>
 
 <cffunction  output="false" name="UPDfunotifications_24316" access="public" returntype="void">
@@ -306,7 +305,7 @@
             <cfqueryparam value=0 cfsqltype="CF_SQL_BIT">
         )
     </cfquery>
-
+       <cfreturn result.generatedKey>
 </cffunction>
 <cffunction output="false" name="INSnotifications_23830" access="public" returntype="numeric">
     <cfargument name="new_contactname" type="string" required="true">
@@ -331,6 +330,7 @@
             <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
         )
     </cfquery>
+           <cfreturn result.generatedKey>
  </cffunction>
 
 <cffunction output="false" name="INSnotifications_23937" access="public" returntype="numeric">
@@ -360,6 +360,7 @@
             <cfqueryparam value="#arguments.sunotes#" cfsqltype="CF_SQL_LONGVARCHAR">
         )
     </cfquery>
+           <cfreturn result.generatedKey>
 </cffunction>
 <cffunction output="false" name="UPDnotifications" access="public" returntype="void">
     <cfargument name="notificationId" type="numeric" required="true">
