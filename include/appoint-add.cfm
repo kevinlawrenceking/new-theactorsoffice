@@ -193,11 +193,20 @@
                         <div class="form-group col-md-12">
                             <label for="eventStopTime">Recurring every:</label>
                             <div id="checkboxes">
-                                <cfloop from="0" to="6" index="day">
-                                    <cfoutput>
-                                        <input type="checkbox" name="dow" value="#day#" onchange="showDiv('hidden_div', this)"> #dayFormat(day)#
-                                    </cfoutput>
-                                </cfloop>
+                         <cfset daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]>
+
+<cfloop from="0" to="6" index="day">
+    <cfoutput>
+        <input 
+            type="checkbox" 
+            name="dow" 
+            value="#day#" 
+            onchange="showDiv('hidden_div', this)"
+        > 
+        #daysOfWeek[day + 1]#
+    </cfoutput>
+</cfloop>
+
                             </div>
                         </div>
 
