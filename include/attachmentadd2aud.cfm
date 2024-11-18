@@ -33,7 +33,7 @@
 
 <!--- Include the insert query template --->
 <cfinclude template="/include/qry/INSERT_22_1.cfm" />
-<cfset new_uploadid = result.generatedkey />
+
 
 <cfoutput>
     <!--- Set the return URL for redirection after upload --->

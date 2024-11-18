@@ -1,5 +1,5 @@
 <cfset attachmentService = createObject("component", "services.AttachmentService")>
-<cfset attachmentService.INSattachments(
+<cfset new_uploadid = attachmentService.INSattachments(
     attachname = attachname,
     attachfilename = attachfilename,
     noteid = noteid
