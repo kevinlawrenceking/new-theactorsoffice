@@ -456,7 +456,7 @@
                   SELECT systemid 
                   FROM fusystemusers 
                   WHERE contactID = <cfqueryparam value="#arguments.currentid#" cfsqltype="CF_SQL_INTEGER"> 
-                    AND userID = <cfqueryparam value="#arguments.session_userid#" cfsqltype="CF_SQL_INTEGER"> 
+                    AND userID = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
                     AND suStatus = <cfqueryparam value='Active' cfsqltype='CF_SQL_VARCHAR'>
               ) 
             ORDER BY FIELD(systemtype, 'Targeted List', 'Follow Up', 'Maintenance List')
