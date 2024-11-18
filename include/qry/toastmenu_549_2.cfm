@@ -9,7 +9,7 @@
            n.subtitle,
            n.notifurl,
            n.contactid,
-           n.read,
+           n.`read`,
            n.trash
     FROM notifications n
     LEFT JOIN contactdetails c 

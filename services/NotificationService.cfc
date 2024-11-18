@@ -334,7 +334,7 @@
             notifTitle, 
             notifType, 
             contactid, 
-            read
+            `read`
         ) VALUES (
             <cfqueryparam value="Maintenance system created for #arguments.new_contactname#" cfsqltype="CF_SQL_VARCHAR">,
             <cfqueryparam value="#userid#" cfsqltype="CF_SQL_INTEGER">,
@@ -362,7 +362,7 @@
             notifTitle,
             notifType,
             contactid,
-            read,
+            `read`,
             notifdescript
         ) VALUES (
             <cfqueryparam value="Appointment completed. Follow-Up with #arguments.new_contactname#" cfsqltype="CF_SQL_VARCHAR">,
@@ -444,7 +444,7 @@
                 contactdetails c ON c.contactid = n.contactid 
             WHERE 
                 n.userid = <cfqueryparam value="#arguments.userID#" cfsqltype="cf_sql_integer"> 
-                AND n.read = 0 
+                AND n.`read` = 0 
                 AND n.trash = 0
         </cfquery>
         
@@ -493,7 +493,7 @@
                 n.subtitle, 
                 n.notifurl, 
                 n.contactid, 
-                n.read, 
+                n.`read`, 
                 n.trash
             FROM 
                 notifications n
