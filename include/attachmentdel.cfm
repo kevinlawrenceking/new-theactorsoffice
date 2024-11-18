@@ -15,9 +15,9 @@
 </cfoutput>
 
 <!--- Check if the file exists before attempting to delete it. --->
-<cfif FileExists("#session.userMediaPath#\#attachfilename#")>
+<cfif FileExists("#userMediaPath#\#attachfilename#")>
     <cffile action="delete" 
-            file="#session.userMediaPath#\#attachfilename#">
+            file="#userMediaPath#\#attachfilename#">
     
     <cfinclude template="/include/qry/del_25_2.cfm" />
 <cfelse>

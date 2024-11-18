@@ -9,14 +9,14 @@
 <cfset NEW_ISSHARE = TRUE />
 
 <!--- Check if the user media path directory exists, if not, create it. --->
-<cfif not DirectoryExists("#session.userMediaPath#")>
-    <CFDIRECTORY directory="#session.userMediaPath#" action="create">
+<cfif not DirectoryExists("#userMediaPath#")>
+    <CFDIRECTORY directory="#userMediaPath#" action="create">
 </cfif>
 
 <!--- Upload the file to the user's media path. --->
 <cffile action="upload" 
         filefield="form.file" 
-        destination="#session.userMediaPath#\" 
+        destination="#userMediaPath#\" 
         nameconflict="MAKEUNIQUE" />
 
 <cfset new_userid = userid />

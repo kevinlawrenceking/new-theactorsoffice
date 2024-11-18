@@ -35,8 +35,8 @@
         </cfif>
 
         <!--- Create user media directory if it doesn't exist --->
-        <CFIF not DirectoryExists("#session.userMediaPath#")>
-            <CFDIRECTORY directory="#session.userMediaPath#" action="create">
+        <CFIF not DirectoryExists("#userMediaPath#")>
+            <CFDIRECTORY directory="#userMediaPath#" action="create">
             <h3>dir_media_root_user dir created: #session.contactAvatarUrl#</h3>
         </CFIF>
 
@@ -48,7 +48,7 @@
             <p>browser_media_root_user_contacts: #browser_media_root_user_contacts#</p>
         </cfif>
 
-        <cfset dir_media_root_user_contacts = "#session.userMediaPath#\contacts" />
+        <cfset dir_media_root_user_contacts = "#userMediaPath#\contacts" />
 
         <!--- Debug output for contacts media directory --->
         <cfif #dbug# is "Y">
@@ -69,7 +69,7 @@
             <p>browser_media_root_user_imports: #browser_media_root_user_imports#</p>
         </cfif>
 
-        <cfset dir_media_root_user_imports = "#session.userMediaPath#\imports" />
+        <cfset dir_media_root_user_imports = "#userMediaPath#\imports" />
 
         <!--- Debug output for imports media directory --->
         <cfif #dbug# is "Y">
@@ -84,8 +84,8 @@
 
         <!--- Check if user avatar exists, if not, copy default avatar --->
         <cfif NOT fileExists(session.userAvatarPath)>
-            <cffile action="copy" source="#application.defaultAvatarUrl#" destination="#session.userMediaPath#\" />
-            <h3>default avatar moved to: #session.userMediaPath#</h3>
+            <cffile action="copy" source="#application.defaultAvatarUrl#" destination="#userMediaPath#\" />
+            <h3>default avatar moved to: #userMediaPath#</h3>
         </cfif>
     </cfoutput>
 

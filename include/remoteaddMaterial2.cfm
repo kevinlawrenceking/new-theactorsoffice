@@ -6,19 +6,19 @@
 <cfset host = ListFirst(currentURL, ".")/>
 
 <cfoutput>
-    <cfset session.userMediaPath = "#session.userMediaPath#"/>
+    <cfset userMediaPath = "#userMediaPath#"/>
 </cfoutput>
 
 <!--- Check if the user media directory exists, if not, create it --->
-<cfif not DirectoryExists("#session.userMediaPath#")>
-    <cfdirectory directory="#session.userMediaPath#" action="create">
+<cfif not DirectoryExists("#userMediaPath#")>
+    <cfdirectory directory="#userMediaPath#" action="create">
 </cfif>
 
 <!--- Check if a file has been uploaded --->
 <cfif structKeyExists(form, "file") AND len(trim(form.file)) NEQ 0>
     <cffile action="upload" 
             filefield="form.file" 
-            destination="#session.userMediaPath#\" 
+            destination="#userMediaPath#\" 
             nameconflict="MAKEUNIQUE"/>
     
     <cfset new_filename = CFFILE.serverfile/>

@@ -15,11 +15,11 @@
     finduser.recordcount: #FindUser.recordcount#<BR>
     
     <!--- Set user media paths --->
-    <cfset session.userMediaPath = "c:\home\theactorsoffice.com\wwwroot\#host#-subdomain\media-#host#\users\#finduser.userid#" />   
-    <cfset session.userAvatarPath = "#session.userMediaPath#\avatar.jpg" />
+    <cfset userMediaPath = "c:\home\theactorsoffice.com\wwwroot\#host#-subdomain\media-#host#\users\#finduser.userid#" />   
+    <cfset session.userAvatarPath = "#userMediaPath#\avatar.jpg" />
     <cfset session.userMediaUrl = "/media-#host#/users/#finduser.userid#" />  
     <cfset session.contactAvatarUrl = "#Session.userMediaUrl#/avatar.jpg" />
-    <cfset dir_user_imports_loc = "#session.userMediaPath#\imports" />     
+    <cfset dir_user_imports_loc = "#userMediaPath#\imports" />     
     <cfset dir_contact_avatar_loc = "c:\home\theactorsoffice.com\wwwroot\#host#-subdomain\media-#host#\users\#finduser.userid#\contacts\#contactid#" /> 
     <cfset dir_contact_avatar_filename = "#dir_contact_avatar_loc#\avatar.jpg" />
     <cfset browser_contact_avatar_loc = "/media-#host#/users/#finduser.userid#/contacts/#contactid#" />   

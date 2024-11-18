@@ -10,13 +10,13 @@
 <cfinclude template="/include/qry/attachdetails_26_1.cfm" />
 
 <cfoutput>
-    session.userMediaPath
+    userMediaPath
     <cfset attachfilename = "#attachdetails.attachfilename#" />
 </cfoutput>
 
 <!--- Check if the file exists before attempting to delete it. --->
-<cfif FileExists("#session.userMediaPath#\#attachfilename#")>
-    <cffile action="delete" file="#session.userMediaPath#\#attachfilename#">
+<cfif FileExists("#userMediaPath#\#attachfilename#")>
+    <cffile action="delete" file="#userMediaPath#\#attachfilename#">
     
     <cfinclude template="/include/qry/del_25_2.cfm" />
 <cfelse>

@@ -79,10 +79,10 @@
         <cfset dir_media_root_user="#dir_media_root#\users\#users.userid#" />
 
         <cfif #dbugdbug# is "YY">
-            <p>dir_media_root_user: #session.userMediaPath#</p>
+            <p>dir_media_root_user: #userMediaPath#</p>
         </cfif>
 
-        <cfset session.userAvatarPath="#session.userMediaPath#\avatar.jpg" />
+        <cfset session.userAvatarPath="#userMediaPath#\avatar.jpg" />
 
         <cfif #dbugdbug# is "YY">
             <p>session.userAvatarPath: #session.userAvatarPath#</p>
@@ -95,17 +95,17 @@
         </cfif>
 
         <!--- Check if user media directory exists --->
-        <cfif not DirectoryExists("#session.userMediaPath#")>
+        <cfif not DirectoryExists("#userMediaPath#")>
             <cfset userstatus="Fixed" />
 
             <cfif #dbug# is "Y">
                 <cfsavecontent variable="user_output">
                     #user_output#
-                    <p>Directory [#session.userMediaPath#] does not exist. Creating...</p>
+                    <p>Directory [#userMediaPath#] does not exist. Creating...</p>
                 </cfsavecontent>
             </cfif>
 
-            <cfdirectory directory="#session.userMediaPath#" action="create" />
+            <cfdirectory directory="#userMediaPath#" action="create" />
 
             <cfif #dbug# is "Y">
                 <cfsavecontent variable="user_output">
@@ -122,7 +122,7 @@
             <p>browser_media_root_user_contacts: #browser_media_root_user_contacts#</p>
         </cfif>
 
-        <cfset dir_media_root_user_contacts="#session.userMediaPath#\contacts" />
+        <cfset dir_media_root_user_contacts="#userMediaPath#\contacts" />
 
         <cfif #dbugdbug# is "YY">
             <p>dir_media_root_user_contacts: #dir_media_root_user_contacts#</p>
@@ -156,7 +156,7 @@
             <p>browser_media_root_user_imports: #browser_media_root_user_imports#</p>
         </cfif>
 
-        <cfset dir_media_root_user_imports="#session.userMediaPath#\imports" />
+        <cfset dir_media_root_user_imports="#userMediaPath#\imports" />
 
         <cfif #dbugdbug# is "YY">
             <p>dir_media_root_user_imports: #dir_media_root_user_imports#</p>
@@ -186,12 +186,12 @@
         <!--- Check if avatar file exists --->
         <cfif NOT fileExists(session.userAvatarPath)>
             <cfset userstatus="Fixed" />
-            <cffile action="copy" source="#dir_missing_avatar_filename#" destination="#session.userMediaPath#\" />
+            <cffile action="copy" source="#dir_missing_avatar_filename#" destination="#userMediaPath#\" />
 
             <cfif #dbug# is "Y">
                 <cfsavecontent variable="user_output">
                     #user_output#
-                    <p>default avatar moved to: #session.userMediaPath#</p>
+                    <p>default avatar moved to: #userMediaPath#</p>
                 </cfsavecontent>
             </cfif>
         </cfif>

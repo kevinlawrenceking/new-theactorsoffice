@@ -8,12 +8,12 @@
 <cfinclude template="/include/qry/attachdetails_25_1.cfm" />
 
 <cfoutput>
-    session.userMediaPath
+    userMediaPath
 </cfoutput>
 
 <!--- Check if the user media directory exists, if not, create it. --->
-<CFIF not DirectoryExists("#session.userMediaPath#")>
-    <CFDIRECTORY directory="#session.userMediaPath#" action="create" />
+<CFIF not DirectoryExists("#userMediaPath#")>
+    <CFDIRECTORY directory="#userMediaPath#" action="create" />
 </CFIF>
 
 <!--- Download the media file as binary. --->

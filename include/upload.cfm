@@ -10,20 +10,20 @@
 <cfset new_uploadid = result.generatedkey />
 
 <cfoutput>
-    <cfset session.userMediaPath = "C:\home\theactorsoffice.com\wwwroot\#host#-subdomain\media-#host#\users\#userid#" />
+    <cfset userMediaPath = "C:\home\theactorsoffice.com\wwwroot\#host#-subdomain\media-#host#\users\#userid#" />
 </cfoutput>
 
 <!--- Check if the user media path exists, if not, create it --->
-<CFIF not DirectoryExists("#session.userMediaPath#")>
-    <CFDIRECTORY directory="#session.userMediaPath#" action="create">
+<CFIF not DirectoryExists("#userMediaPath#")>
+    <CFDIRECTORY directory="#userMediaPath#" action="create">
 </CFIF>
 
-<cffile action="upload" filefield="form.file" destination="#session.userMediaPath#\" nameconflict="MAKEUNIQUE" />
+<cffile action="upload" filefield="form.file" destination="#userMediaPath#\" nameconflict="MAKEUNIQUE" />
 
 <!--- Read the spreadsheet data into a query object --->
 <cfspreadsheet action="read" 
     sheetname="TAO Import Template" 
-    src="#session.userMediaPath#\#cffile.serverfile#" 
+    src="#userMediaPath#\#cffile.serverfile#" 
     query="importdata" 
     columnnames="FirstName,LastName,Tag1,Tag2,Tag3,BusinessEmail,PersonalEmail,WorkPhone,MobilePhone,HomePhone,Company,Address,Address2,City,State,Zip,Country,contactMeetingDate,contactMeetingLocation,Birthday,website,Notes" 
     headerrow="1" />

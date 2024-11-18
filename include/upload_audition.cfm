@@ -19,20 +19,20 @@
 <cfset new_uploadid = result.generatedkey>
 
 <cfoutput>
-    <cfset session.userMediaPath = "#session.userMediaPath#"/>
+    <cfset userMediaPath = "#userMediaPath#"/>
 </cfoutput>
 
 <!--- Check if the user media path directory exists, if not create it --->
-<cfif not DirectoryExists("#session.userMediaPath#")>
-    <cfdirectory directory="#session.userMediaPath#" action="create">
+<cfif not DirectoryExists("#userMediaPath#")>
+    <cfdirectory directory="#userMediaPath#" action="create">
 </cfif>
 
 <!--- Upload the file to the specified directory --->
-<cffile action="upload" filefield="form.file" destination="#session.userMediaPath#\" 
+<cffile action="upload" filefield="form.file" destination="#userMediaPath#\" 
         nameconflict="MAKEUNIQUE"/>
 
 <!--- Read the spreadsheet data into a query object --->
-<cfspreadsheet action="read" query="importdata" src="#session.userMediaPath#\#cffile.serverfile#" 
+<cfspreadsheet action="read" query="importdata" src="#userMediaPath#\#cffile.serverfile#" 
                columnnames="projDate,projName,audRoleName,audcatsubname,audsource,cdfirstname,cdlastname,callback_yn,redirect_yn,pin_yn,booked_yn,projDescription,charDescription,note" 
                headerrow="1"/>
 

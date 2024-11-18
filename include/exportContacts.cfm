@@ -163,7 +163,7 @@
 <cfinclude template="/include/qry/export_ac_115_15.cfm" />
 
 <cfoutput>
-    <cfset app_direct = "#session.userMediaPath#\" />
+    <cfset app_direct = "#userMediaPath#\" />
     <cfset sub_name_c = "#dateformat('#now()#','YYYYMMDD')#" />
     <cfset sub_name_d = "#timeformat('#now()#','HHMMSS')#" />
     <cfset fileName = "export#sub_name_c##sub_name_d#.xls" />
