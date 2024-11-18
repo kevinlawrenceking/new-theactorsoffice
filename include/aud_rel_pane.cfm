@@ -124,7 +124,7 @@
                                 </cfif>
                             </p>
                             <cfif "#projectDetails.contactid#" is not "#audcontacts.contactid#">
-                                <a href="/app/audition/?audprojectid=#audprojectid#&ctaction=deleteContact&amp;deletecontactid=#audcontacts.contactid#" title="Remove from Audition" style="padding-left:10px;color:dimgrey;">
+                                <a href="/app/audition/?audprojectid=#audprojectid#&ctaction=deleteContact&amp;deletecontactid=#audcontacts.contactid#&sec_id=175" title="Remove from Audition" style="padding-left:10px;color:dimgrey;">
                                     <span><i class="fe-trash-2 font-10 text-muted"></i></span>
                                 </a>
                             </cfif>
