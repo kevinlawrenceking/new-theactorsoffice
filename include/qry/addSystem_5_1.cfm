@@ -3,5 +3,5 @@
     systemid = systemid,
     contactid = contactid,
     userid = userid,
-    suStartDate = new_suStartDate
+    suStartDate = suStartDate
 )>
