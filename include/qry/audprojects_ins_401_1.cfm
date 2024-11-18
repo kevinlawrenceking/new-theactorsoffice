@@ -24,4 +24,4 @@
 </cfif>
 
 <cfset projectService.UPDaudprojects_24586(argumentCollection=projectArgs)>
-<cfset isfetch = 1>
+

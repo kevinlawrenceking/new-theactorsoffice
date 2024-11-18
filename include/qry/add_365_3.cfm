@@ -9,4 +9,3 @@
     userid = cookie.userid,
     new_eventid = new_eventid
 )>
-<cfset isfetch = 1>

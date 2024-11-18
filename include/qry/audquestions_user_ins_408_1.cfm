@@ -7,4 +7,3 @@
     new_isDeleted=new_isDeleted,
     new_qID=new_qID
 )>
-<cfset isfetch = 1>

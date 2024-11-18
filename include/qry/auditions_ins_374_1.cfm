@@ -42,4 +42,4 @@
 
 <!--- Call the function with filtered arguments --->
 <cfset eventService.UPDevents_24557(argumentCollection=eventArguments)>
-<cfset isfetch = 1>
+
