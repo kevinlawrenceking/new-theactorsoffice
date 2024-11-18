@@ -1,6 +1,6 @@
 <!--- This ColdFusion page handles user file uploads and manages user media paths. --->
 
-<cfset userid = session.userid />
+<cfset userid = userid />
 
 <cfset currentURL = cgi.server_name />
 <cfset host = ListFirst(currentURL, ".") />
