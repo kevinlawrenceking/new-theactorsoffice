@@ -1,5 +1,15 @@
 <cfcomponent displayname="NotificationService" hint="Handles operations for Notification table" > 
 
+<cffunction output="false" name="UPDfunotifications_24130" access="public" returntype="void">
+    <cfquery name="result">
+        UPDATE funotifications_tbl 
+        SET isdeleted = 1 
+        WHERE isdeleted = 0 
+        AND suid NOT IN (SELECT suid FROM fusystemusers)
+    </cfquery>
+</cffunction>
+
+
 <cffunction output="false" name="UPDfunotifications_23823" access="public" returntype="void">
     <cfargument name="notid" type="numeric" required="true">
     <cfargument name="notendDate" type="date" required="true">
