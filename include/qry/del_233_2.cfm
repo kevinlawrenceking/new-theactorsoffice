@@ -1,6 +1,6 @@
 <cfset suidList = []>
 
-<cfquery result="result" name="suidQuery" datasource="abod">
+<cfquery result="result" name="suidQuery" >
     SELECT suid FROM fusystemusers
 </cfquery>
 
