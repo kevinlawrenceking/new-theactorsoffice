@@ -1,9 +1,5 @@
 <!--- This ColdFusion page handles user media uploads and manages the media path for the session. --->
 
-<cfset userid = userid/>
-
-<cfset currentURL = cgi.server_name/>
-<cfset host = ListFirst(currentURL, ".")/>
 
 <cfoutput>
     <cfset userMediaPath = "#userMediaPath#"/>
