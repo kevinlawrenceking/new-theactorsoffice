@@ -66,7 +66,8 @@
     });
 </script>
 
-<div id="remoteAddName" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->
+<div id="remoteAddName" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->>
+
 >
 
     <div class="modal-dialog">
@@ -77,7 +78,8 @@
 
                 <h4 class="modal-title">Add A Relationship</h4>
 
-                <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->
+                <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+
 ><i class="mdi mdi-close-thick"></i></button>
 
             </div>
@@ -130,7 +132,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Selected Updated Summary</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->
+                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+
 ><i class="mdi mdi-close-thick"></i></button>
                 </div>
                 <div class="modal-body">
@@ -327,14 +330,16 @@
     SELECT tagid,tagname FROM tags_user where userid = #session.userid# order by tagname
 </cfquery>
 
-<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" <!-- aria-hidden="true" removed -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" <!-- aria-hidden="true" removed -->>
+
 >
     <div class="modal-dialog modal-dialog-slideout modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Tag Selector</h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span <!-- aria-hidden="true" removed -->
+                    <span <!-- aria-hidden="true" removed -->>
+
 >X</span>
                 </button>
             </div>
@@ -361,14 +366,16 @@
     
 <cfinclude template="/include/qry/imports.cfm" />
 
-<div class="modal fade" id="exampleModal22" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" <!-- aria-hidden="true" removed -->
+<div class="modal fade" id="exampleModal22" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" <!-- aria-hidden="true" removed -->>
+
 >
     <div class="modal-dialog modal-dialog-slideout modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Import History</h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span <!-- aria-hidden="true" removed -->
+                    <span <!-- aria-hidden="true" removed -->>
+
 >X</span>
                 </button>
             </div>
@@ -391,13 +398,15 @@
     
     
     
-    <div id="exampleModal5" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->
+    <div id="exampleModal5" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+
 >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="standard-modalLabel">Export Contacts</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->
+                <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+
 ><i class="mdi mdi-close-thick"></i></button>
             </div>
             
@@ -458,13 +467,15 @@ $(document).ready(function() {
     
     
     
-        <div id="exampleModaldelete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->
+        <div id="exampleModaldelete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+
 >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background-color: red";>
                 <h4 class="modal-title" id="standard-modalLabel">Delete Contacts</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->
+                <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+
 ><i class="mdi mdi-close-thick"></i></button>
             </div>
             
@@ -503,13 +514,15 @@ $(document).ready(function() {
     
     
     
-    <div id="exampleModal99" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->
+    <div id="exampleModal99" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+
 >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="standard-modalLabel">System Delete</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->
+                <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+
 ><i class="mdi mdi-close-thick"></i></button>
             </div>
             
@@ -580,13 +593,15 @@ $(document).ready(function() {
     
     
 
-<div id="exampleModal3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->
+<div id="exampleModal3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+
 >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="standard-modalLabel">System Selected Update</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->
+                <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+
 ><i class="mdi mdi-close-thick"></i></button>
             </div>
             
@@ -739,13 +754,15 @@ $(document).ready(function() {
 
     
     
-    <div id="exampleModal4" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->
+    <div id="exampleModal4" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+
 >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="standard-modalLabel">Tag Selected Update</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->
+                <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+
 ><i class="mdi mdi-close-thick"></i></button>
             </div>
 

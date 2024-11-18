@@ -43,7 +43,8 @@
         </cfif>
         
         <!--- Modal for adding follow-up system --->
-        <div id="follow" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->
+        <div id="follow" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->>
+
 >
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -51,7 +52,8 @@
                         <h4 class="modal-title">
                             <cfoutput>Add Follow Up System</cfoutput>
                         </h4>
-                        <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->
+                        <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+
 >
                             <i class="mdi mdi-close-thick"></i>
                         </button>

@@ -220,13 +220,15 @@
                                     </td>
                                 </tr>
                                 <cfoutput>
-                                    <div id="myModal#results.recid#" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->
+                                    <div id="myModal#results.recid#" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+
 >
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header" style="background-color: ##f3f7f9;">
                                                     <h4 class="modal-title" id="standard-modalLabel">No. 0000#results.recid# - #results.tickettype# </h4>
-                                                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->
+                                                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+
 >x</button>
                                                 </div>
                                                 <div class="modal-body"></div>
@@ -238,13 +240,15 @@
                                 </cfoutput>
                             </cfloop>
                             
-                            <div id="remoteNewForm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->
+                            <div id="remoteNewForm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+
 >
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header" style="background-color: ##f3f7f9;">
                                             <h4 class="modal-title" id="standard-modalLabel">Add</h4>
-                                            <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->
+                                            <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+
 >x</button>
                                         </div>
                                         <div class="modal-body"></div>

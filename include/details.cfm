@@ -80,12 +80,14 @@
         <cfinclude template="/include/results.cfm" />
     </cfif>
 
-    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" <!-- aria-hidden="true" removed -->
+    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" <!-- aria-hidden="true" removed -->>
+
 >
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->
+                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+
 >&times;</button>
                     <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
                 </div>

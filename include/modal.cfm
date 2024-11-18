@@ -12,7 +12,8 @@
                     
                     <h4 class="modal-title" id="standard-modalLabel">#modaltitle#</h4>
                     
-                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->
+                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+
 >
                         <i class="mdi mdi-close-thick"></i>
                     </button>

@@ -93,7 +93,8 @@ WHERE th.STATUS = 'Emailed' and th.uuid = '#uuid#'
 	<cfif #pwrong# is "Y">
 	 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span <!-- aria-hidden="true" removed -->
+                                            <span <!-- aria-hidden="true" removed -->>
+
 >&times;</span>
                                         </button>
                                        Incorrect Email Address and Password!

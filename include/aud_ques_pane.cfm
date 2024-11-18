@@ -13,7 +13,8 @@
             });
         </script>
 
-        <div id="remoteUpdateAnswer" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->
+        <div id="remoteUpdateAnswer" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+
 >
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -21,7 +22,8 @@
                         <h4 class="modal-title" id="standard-modalLabel">
                             <strong>#events.audstep#: </strong>#dateformat(events.eventStart,'long')#: Personal Assessment
                         </h4>
-                        <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->
+                        <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+
 >
                             <i class="mdi mdi-close-thick"></i>
                         </button>

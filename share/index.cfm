@@ -199,7 +199,8 @@ $(document).ready(function() {
 
 
 
-        <div id="remoteShareViewC<cfoutput>#shares.contactid#</cfoutput>" class="modal modal-lg fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->
+        <div id="remoteShareViewC<cfoutput>#shares.contactid#</cfoutput>" class="modal modal-lg fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->>
+
 >
 
             <div class="modal-dialog">
@@ -212,7 +213,8 @@ $(document).ready(function() {
 
                         </h4>
 
-                        <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->
+                        <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+
 ><i class="mdi mdi-close-thick"></i></button>
 
                     </div>
