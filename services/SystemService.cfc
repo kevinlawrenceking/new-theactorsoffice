@@ -444,7 +444,7 @@
 <cffunction output="false" name="SELfusystems_24762" access="public" returntype="query">
     <cfargument name="new_systemscope" type="string" required="true">
     <cfargument name="currentid" type="numeric" required="true">
-    <cfargument name="session_userid" type="numeric" required="true">
+    <cfargument name="userid" type="numeric" required="true">
 
     
     
