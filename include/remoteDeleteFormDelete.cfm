@@ -24,6 +24,15 @@
 
 <!--- Include delete query template for specific operation --->
 <cfinclude template="/include/qry/delete_233_1.cfm" />
+<cfset suidList = []>
+
+<cfquery result="result" name="suidQuery" >
+    SELECT suid FROM fusystemusers
+</cfquery>
+
+<cfloop query="suidQuery">
+    <cfset arrayAppend(suidList, suidQuery.suid)>
+</cfloop>
 
 <!--- Check if RPG ID is 40 and include additional delete query if true --->
 <cfif #rpgid# is "40">
