@@ -4,6 +4,6 @@
 
 <!--- Output the noted details HTML from the query results. --->
 <cfoutput>
-    #results.notedetailshtml#
+    #notes.notedetailshtml#
 </cfoutput>
 

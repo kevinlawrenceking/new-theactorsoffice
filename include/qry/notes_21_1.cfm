@@ -1,2 +1,2 @@
 <cfset notesService = createObject("component", "services.NoteService")>
-<cfset notes = notesService.SELnoteslog(noteid=noteid)>
+<cfset notes = notesService.*(noteid=noteid)>
