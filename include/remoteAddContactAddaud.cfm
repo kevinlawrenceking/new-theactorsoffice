@@ -45,7 +45,7 @@
 </cfif>
 
 <cfset select_contactid = contactid />
-<cfset select_userid = session.userid />
+<cfset select_userid = userid />
 <cfinclude template="/include/contactfolder_setup.cfm" />
 
 <!--- Include the query for adding additional contact information --->
