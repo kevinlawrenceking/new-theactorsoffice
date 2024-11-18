@@ -299,7 +299,7 @@
 <cfreturn result.generatedKey>
     
 </cffunction>
-<cffunction output="false" name="INSfusystemusers_24477" access="public" returntype="numeric">
+<cffunction output="false" name="INSfusystemusers" access="public" returntype="numeric">
     <cfargument name="systemID" type="numeric" required="true">
     <cfargument name="contactID" type="numeric" required="true">
     <cfargument name="userID" type="string" required="true">

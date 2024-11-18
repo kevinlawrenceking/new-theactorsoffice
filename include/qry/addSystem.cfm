@@ -1,2 +1,7 @@
-<cfinclude template="/include/qry/addSystem_327_1.cfm" />
-
+<cfset systemUserService = createObject("component", "services.SystemUserService")>
+<cfset result = systemUserService.INSfusystemusers_24477(
+    systemID = systemID,
+    contactID = contactID,
+    userID = userid,
+    suStartDate = suStartDate
+)>
