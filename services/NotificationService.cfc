@@ -1,5 +1,64 @@
 <cfcomponent displayname="NotificationService" hint="Handles operations for Notification table" > 
 
+<cffunction name="SELfunotifications_24713" access="public" output="false" returntype="query">
+    <cfargument name="newsuid" type="numeric" required="true">
+
+    <cfquery name="result">
+        SELECT 
+            n.notID, 
+            n.actionID, 
+            n.userID, 
+            n.suID, 
+            n.notTimeStamp, 
+            n.notStartDate, 
+            n.notEndDate, 
+            n.notStatus, 
+            n.notNotes, 
+            f.systemID, 
+            f.contactID, 
+            f.suTimeStamp, 
+            f.suStartDate, 
+            f.suEndDate, 
+            f.suStatus, 
+            f.suNotes, 
+            a.actionID, 
+            a.actionNo, 
+            a.actionDetails, 
+            a.actionTitle, 
+            a.navToURL, 
+            au.actionDaysNo, 
+            au.actionDaysRecurring, 
+            a.actionNotes, 
+            a.actionInfo, 
+            n.ispastdue, 
+            ns.checktype, 
+            ns.delstart, 
+            ns.delend, 
+            ns.status_color 
+        FROM 
+            funotifications n 
+        INNER JOIN 
+            fusystemusers f ON f.suID = n.suID 
+        INNER JOIN 
+            fuactions a ON a.actionID = n.actionID 
+        INNER JOIN 
+            actionusers au ON a.actionID = au.actionID 
+        INNER JOIN 
+            notstatuses ns ON ns.notstatus = n.notStatus 
+        WHERE 
+            n.suID = <cfqueryparam value="#arguments.newsuid#" cfsqltype="CF_SQL_INTEGER"> 
+            AND au.userID = f.userID 
+            AND n.notStatus = 'Pending' 
+            AND n.notStartDate IS NULL 
+        ORDER BY 
+            au.actionDaysNo, a.actionID
+    </cfquery>
+
+    <cfreturn result>
+</cffunction>
+
+
+
 <cffunction name="UPDfunotifications" access="public" output="false" returntype="void">
     <cfargument name="notid" type="numeric" required="true">
     <cfargument name="notendDate" type="date" required="true">
