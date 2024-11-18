@@ -115,33 +115,17 @@
 <cfreturn result.generatedKey>
 </cffunction>
 <cffunction output="false" name="UPDnoteslog_23967" access="public" returntype="void">
-    <cfargument name="noteDetailsHtml" type="string" required="true">
-    
-    <cfset var sql = "">
-    <cfset var params = []>
-    
-    
-        <cfset sql = "
-            UPDATE noteslog 
-            SET NOTEDETAILSHTML = REPLACE(NOTEDETAILSHTML, ?, '') 
-            WHERE NOTEDETAILSHTML LIKE ?
-        ">
-        
-        <cfset arrayAppend(params, {value=arguments.noteDetailsHtml, cfsqltype="CF_SQL_LONGVARCHAR"})>
-        <cfset arrayAppend(params, {value='%' & arguments.noteDetailsHtml & '%', cfsqltype="CF_SQL_LONGVARCHAR"})>
-        
-        <cfquery result="result" name="updateQuery" >
-            #sql#
-            <cfloop array="#params#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-            </cfloop>
-        </cfquery>
-        
-    
-        
-    
-    
+    <cfquery>
+        UPDATE noteslog 
+        SET NOTEDETAILSHTML = REPLACE(
+            NOTEDETAILSHTML, 
+            '<input type="text" data-formula="e=mc^2" data-link="https://quilljs.com" data-video="Embed URL">', 
+            ''
+        ) 
+        WHERE NOTEDETAILSHTML LIKE '%<input type="text" data-formula="e=mc^2" data-link="https://quilljs.com" data-video="Embed URL">%';
+    </cfquery>
 </cffunction>
+
 <cffunction output="false" name="INSnoteslog_23969" access="public" returntype="numeric">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="contactid" type="numeric" required="true">
