@@ -67,7 +67,7 @@
     
     
         <cfquery name="result" >
-            SELECT noteID,noteDetail,notedetailshtml 
+            SELECT noteID,noteDetails,notedetailshtml 
             FROM noteslog 
             WHERE noteid = <cfqueryparam value="#arguments.noteid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
