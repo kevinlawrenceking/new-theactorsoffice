@@ -295,7 +295,7 @@
             notifTitle, 
             notifType, 
             contactid, 
-            read
+            `read`
         ) VALUES (
             <cfqueryparam value="Maintenance system created for #arguments.new_contactname#" cfsqltype="CF_SQL_VARCHAR">,
             <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
