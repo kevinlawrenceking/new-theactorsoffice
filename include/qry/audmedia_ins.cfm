@@ -28,9 +28,6 @@
 
 <cfinclude template="/include/qry/audmedia_ins_383_1.cfm" />
 
-
-<cfset new_mediaID=result.GENERATEDKEY />
-
 <cfif #audprojectid# is not "">
 
     <cfinclude template="/include/qry/find_383_2.cfm" />
@@ -40,8 +37,6 @@
         <cfinclude template="/include/qry/add_383_3.cfm" />
 
     </cfif>
-
-
 
 </cfif>
 

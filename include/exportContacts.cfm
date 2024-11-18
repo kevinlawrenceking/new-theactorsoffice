@@ -27,7 +27,6 @@
 
 <cfinclude template="/include/qry/AddExport_115_1.cfm" />
 
-<cfset new_exportid = result.generatedkey />
 <cfinclude template="/include/qry/x_115_2.cfm" />
 
 <!--- Loop through the query results to process each contact. --->

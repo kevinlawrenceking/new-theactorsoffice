@@ -23,10 +23,9 @@
 
 <!--- Process new contact if new_contactid is 0 and cdfullname is not empty --->
 <cfif #new_contactid# is "0" and #cdfullname# is not "">
-    <cfinclude template="/include/qry/add_28_1.cfm" />
-    <cfset new_contactid = result.generatedkey />
-    <cfset select_userid = userid />
-    <cfset select_contactid = new_contactid />
+    <cfinclude template="/include/qry/inscontactdetails.cfm" />
+    <cfset select_contactid = contactid />
+    <cfset new_contactid = contactid />
     <cfinclude template="/include/folder_setup.cfm" />
     <cfinclude template="/include/qry/insert_28_2.cfm" />
 
@@ -47,8 +46,8 @@
 
 <!--- Process new contact if new_contactid is 0 and cdfullname is not empty again --->
 <cfif #new_contactid# is "0" and #cdfullname# is not "">
-    <cfinclude template="/include/qry/add_28_4.cfm" />
-    <cfset new_contactid = result.generatedkey />
+    <cfinclude template="/include/qry/insContactDetails.cfm" />
+
     <cfinclude template="/include/qry/insert_28_5.cfm" />
 
     <!--- Insert additional data if cdco is not empty --->
@@ -59,8 +58,8 @@
 
 <!--- Process new contact if new_contactid is 0 and cdco is not empty --->
 <cfif #new_contactid# is "0" and #cdco# is not "">
-    <cfinclude template="/include/qry/add_28_7.cfm" />
-    <cfset new_contactid = result.generatedkey />
+    <cfinclude template="/include/qry/insContactDetails" />
+    <cfset new_contactid = contactid />
     <cfinclude template="/include/qry/insert_28_8.cfm" />
     <cfinclude template="/include/qry/insert_28_3.cfm" />
 </cfif>

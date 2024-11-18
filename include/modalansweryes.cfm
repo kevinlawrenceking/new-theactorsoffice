@@ -21,14 +21,9 @@
 
         <cfinclude template="/include/qry/addSystem_157_3.cfm" />
 
-        <cfset NewSUID = result.generatedkey />
-
         <cfinclude template="/include/qry/CompleteTargetSystems_157_4.cfm" />
         <cfinclude template="/include/qry/sudetails_157_5.cfm" />
         <cfinclude template="/include/qry/Insert_157_6.cfm" />
-
-        <cfset Newnotification = result.generatedkey />
-
         <cfinclude template="/include/qry/addDaysNo_157_7.cfm" />
 
         <cfset add_action = "Y" />

@@ -1,5 +1,5 @@
 <cfset notificationService = createObject("component", "services.NotificationService")>
-<cfset notificationService.INSnotifications_23937(
+<cfset Newnotification = notificationService.INSnotifications_23937(
     new_contactname = new_contactname,
     new_userid = new_userid,
     new_contactid = new_contactid,

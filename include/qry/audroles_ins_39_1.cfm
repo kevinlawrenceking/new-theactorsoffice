@@ -1,5 +1,5 @@
 <cfset auditionRoleService = createObject("component", "services.AuditionRoleService")>
-<cfset auditionRoleService.INSaudroles(
+<cfset new_audRoleID = auditionRoleService.INSaudroles(
     new_audRoleName = new_audRoleName,
     new_audprojectID = new_audprojectID,
     new_audRoleTypeID = new_audRoleTypeID,

@@ -325,20 +325,7 @@
         
 <cfreturn result.generatedKey>
 </cffunction>
-<cffunction output="false" name="INScontactdetails_23775" access="public" returntype="numeric">
-    <cfargument name="userid" type="numeric" required="true">
-    <cfargument name="contactfullname" type="string" required="true">
 
-        <cfquery result="result" >
-            INSERT INTO contactdetails (userid, contactfullname) 
-            VALUES (
-                <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">, 
-                <cfqueryparam value="#arguments.contactfullname#" cfsqltype="CF_SQL_VARCHAR">
-            )
-        </cfquery>
-        
-        <cfreturn result.generatedKey>
-</cffunction>
 <cffunction output="false" name="SELcontactdetails_23806" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">
     

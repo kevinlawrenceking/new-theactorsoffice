@@ -1,5 +1,5 @@
 <cfset contactService = createObject("component", "services.ContactService")>
-<cfset contactService.INScontactdetails_24000(
+<cfset new_contactid = contactService.INScontactdetails_24000(
     userFirstName = finduser.userfirstname,
     userLastName = finduser.userlastname,
     userId = userid

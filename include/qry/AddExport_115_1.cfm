@@ -1,2 +1,2 @@
 <cfset objExportService = createObject("component", "services.ExportService")>
-<cfset objExportService.INSexports(userid=userid)>
+<cfset new_exportid = objExportService.INSexports(userid=userid)>

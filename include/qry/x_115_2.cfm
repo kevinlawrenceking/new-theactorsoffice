@@ -1,5 +1,5 @@
 <cfset contactService = createObject("component", "services.ContactService")>
-<cfset x = contactService.SELcontactdetails_23888(
+<cfset new_exportid = contactService.SELcontactdetails_23888(
     userId = userid,
     idList = idlist
 )>

@@ -10,7 +10,7 @@
 
 <cfif #new_contactid# is "0" and #cdfullname# is not "">
     
-    <cfinclude template="/include/qry/add_367_1.cfm" />
+    <cfinclude template="/include/qry/INScontactdetails.cfm" />
 
     <cfset new_contactid = result.generatedkey />
     

@@ -4,7 +4,6 @@
     <!--- Check if the tone ID is custom and not empty --->
     <cfif #Custom# is not ""> 
         <cfinclude template="/include/qry/insert_277_1.cfm" />
-        <cfset new_toneid = result.generatedkey>
     <cfelse>
         <cfset new_tone_id = old_toneid />
     </cfif>
@@ -14,7 +13,6 @@
     <!--- Check if the network ID is custom and not empty --->
     <cfif #CustomNetwork# is not "">  
         <cfinclude template="/include/qry/insert_277_2.cfm" />
-        <cfset new_networkid = resultz.generatedkey>
     <cfelse>
         <cfset new_networkid = old_networkid />
     </cfif>

@@ -98,7 +98,7 @@
     <!--- Check if contact exists ---> 
     <cfif findcd.recordcount is "0" and cdfirstname is not "">
         <cfoutput>contact not found, adding...<BR></cfoutput>
-        <cfinclude template="/include/qry/add_308_14.cfm" />
+        <cfinclude template="/include/qry/INScontactDetails.cfm" />
         
         <cfset new_contactid=result.generatedkey />
         <cfset select_userid=userid />

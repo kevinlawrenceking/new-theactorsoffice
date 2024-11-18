@@ -44,7 +44,6 @@
 <cfif #FindUser.contactid# is "">
     <!--- Include template to insert contact if contact ID is empty --->
     <cfinclude template="/include/qry/InsertContact_188_3.cfm" />
-    <cfset new_contactid = result.generatedkey>
     <cfinclude template="/include/qry/InsertContact_188_4.cfm" />     
     <cfinclude template="/include/qry/FindUser_188_5.cfm" />
 </cfif>
