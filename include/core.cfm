@@ -90,14 +90,14 @@
     <cfparam name="pgid" default="0" />
 
     <!--- Modal for Support Center --->
-    <div id="z" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+    <div id="z" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
 
 >
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #f3f7f9;">
                     <h4 class="modal-title" id="standard-modalLabel">Support Center</h4>
-                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                    <button type="button" class="close" data-bs-dismiss="modal" 
 
 ></button>
                 </div>
@@ -117,14 +117,14 @@
         });
     </script>
 
-    <div id="remoteSupportForm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+    <div id="remoteSupportForm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
 
 >
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #f3f7f9;">
                     <h4 class="modal-title" id="standard-modalLabel">Support Center</h4>
-                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                    <button type="button" class="close" data-bs-dismiss="modal" 
 
 ></button>
                 </div>

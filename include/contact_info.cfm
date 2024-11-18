@@ -198,7 +198,7 @@
     });
 </script>
 
-<div id="remoteUpdateSUID0" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->>
+<div id="remoteUpdateSUID0" class="modal fade" tabindex="-1" role="dialog" 
 
 >
     <div class="modal-dialog">
@@ -207,7 +207,7 @@
                 <h4 class="modal-title">
                     <cfoutput>Relationship System</cfoutput>
                 </h4>
-                <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
             </div>
@@ -226,14 +226,14 @@
         });
     </script>
 
-    <div id="remoteUpdate<cfoutput>SUID#ru.suid#</cfoutput>" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->>
+    <div id="remoteUpdate<cfoutput>SUID#ru.suid#</cfoutput>" class="modal fade" tabindex="-1" role="dialog" 
 
 >
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Update <cfoutput>Relationship System</cfoutput></h4>
-                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                    <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
                 </div>
@@ -255,7 +255,7 @@
         });
     </script>
 
-    <div id="remoteUpdate<cfoutput>C#cu.itemid#</cfoutput>" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->>
+    <div id="remoteUpdate<cfoutput>C#cu.itemid#</cfoutput>" class="modal fade" tabindex="-1" role="dialog" 
 
 >
         <div class="modal-dialog modal-lg">
@@ -264,7 +264,7 @@
                     <h4 class="modal-title">
                         Update <cfoutput>#cu.valueCategory# Form</cfoutput>
                     </h4>
-                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                    <button type="button" class="close" data-bs-dismiss="modal" 
 
 >
                         <i class="mdi mdi-close-thick"></i>
@@ -278,14 +278,14 @@
 
 <cfloop query="sysactive">
     <cfoutput>
-        <div id="action#sysactive.suid#-modal" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->>
+        <div id="action#sysactive.suid#-modal" class="modal fade" tabindex="-1" role="dialog" 
 
 >
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">#sysactive.recordname#</h4>
-                        <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                        <button type="button" class="close" data-bs-dismiss="modal" 
 
 >x</button>
                     </div>
@@ -310,14 +310,14 @@
             });
         </script>
 
-        <div id="remoteDeleteForm#sysActive.suid#" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->>
+        <div id="remoteDeleteForm#sysActive.suid#" class="modal fade" tabindex="-1" role="dialog" 
 
 >
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color: red;">
                         <h4 class="modal-title">Follow Up System</h4>
-                        <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                        <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
                     </div>
@@ -340,14 +340,14 @@
         });
     </script>
 
-    <div id="remoteAdd<cfoutput>C#c.catid#</cfoutput>" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->>
+    <div id="remoteAdd<cfoutput>C#c.catid#</cfoutput>" class="modal fade" tabindex="-1" role="dialog" 
 
 >
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">New <cfoutput>#c.valueCategory# Form</cfoutput></h4>
-                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                    <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
                 </div>
@@ -366,14 +366,14 @@
     });
 </script>
 
-<div id="remoteUpdateTag" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->>
+<div id="remoteUpdateTag" class="modal fade" tabindex="-1" role="dialog" 
 
 >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Update Tags</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
             </div>
@@ -391,7 +391,7 @@
     });
 </script>
 
-<div id="showmaint" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->>
+<div id="showmaint" class="modal fade" tabindex="-1" role="dialog" 
 
 >
     <div class="modal-dialog modal-sm">
@@ -429,14 +429,14 @@
         });
     </script>
 
-    <div id="remoteDeleteForm#currentid#" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->>
+    <div id="remoteDeleteForm#currentid#" class="modal fade" tabindex="-1" role="dialog" 
 
 >
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: red;">
                     <h4 class="modal-title">#compname#</h4>
-                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                    <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
                 </div>
@@ -455,14 +455,14 @@
     });
 </script>
 
-<div id="remoteUpdateName" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->>
+<div id="remoteUpdateName" class="modal fade" tabindex="-1" role="dialog" 
 
 >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Contact Details</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
             </div>
@@ -477,14 +477,14 @@
     
     <cfloop query="notsactive">
         <cfoutput>
-            <div id="action#notsActive.actionid#-modal" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->>
+            <div id="action#notsActive.actionid#-modal" class="modal fade" tabindex="-1" role="dialog" 
 
 >
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title">#notsActive.actiontitle#</h4>
-                            <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                            <button type="button" class="close" data-bs-dismiss="modal" 
 
 >x</button>
                         </div>
@@ -515,14 +515,14 @@
                 </div>
             </div>
 
-            <div id="actionconfirm#notsActive.actionid#-modal" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->>
+            <div id="actionconfirm#notsActive.actionid#-modal" class="modal fade" tabindex="-1" role="dialog" 
 
 >
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title">#notsActive.actiontitle# Completed</h4>
-                            <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                            <button type="button" class="close" data-bs-dismiss="modal" 
 
 >x</button>
                         </div>

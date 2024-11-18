@@ -141,7 +141,7 @@
         });
     </script>
 
-    <div id="remoteUpdate<cfoutput>C#cu.itemid#</cfoutput>" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->>
+    <div id="remoteUpdate<cfoutput>C#cu.itemid#</cfoutput>" class="modal fade" tabindex="-1" role="dialog" 
 
 >
 
@@ -157,7 +157,7 @@
 
                     </h4>
 
-                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                    <button type="button" class="close" data-bs-dismiss="modal" 
 
 >
 
@@ -194,7 +194,7 @@
         });
     </script>
 
-    <div id="remoteAdd<cfoutput>C#c.catid#</cfoutput>" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->>
+    <div id="remoteAdd<cfoutput>C#c.catid#</cfoutput>" class="modal fade" tabindex="-1" role="dialog" 
 
 >
 
@@ -208,7 +208,7 @@
 
                     </h4>
 
-                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                    <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
 
@@ -236,7 +236,7 @@
     });
 </script>
 
-<div id="remoteUpdateTag" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->>
+<div id="remoteUpdateTag" class="modal fade" tabindex="-1" role="dialog" 
 
 >
 
@@ -248,7 +248,7 @@
 
                 <h4 class="modal-title">Update Tags</h4>
 
-                <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
 
@@ -275,7 +275,7 @@
 </script>
 
 
-<div id="showmaint" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->>
+<div id="showmaint" class="modal fade" tabindex="-1" role="dialog" 
 
 >
 
@@ -321,7 +321,7 @@
 
 <Cfoutput>
 
-    <div id="remoteDeleteForm#currentid#" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->>
+    <div id="remoteDeleteForm#currentid#" class="modal fade" tabindex="-1" role="dialog" 
 
 >
 
@@ -333,7 +333,7 @@
 
                     <h4 class="modal-title">#compname#</h4>
 
-                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                    <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
 
@@ -363,7 +363,7 @@
 
 </script>
 
-<div id="remoteUpdateName" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->>
+<div id="remoteUpdateName" class="modal fade" tabindex="-1" role="dialog" 
 
 >
 
@@ -375,7 +375,7 @@
 
                 <h4 class="modal-title">Contact Details</h4>
 
-                <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
 

@@ -14,7 +14,7 @@
     <Cfoutput>
         <cfset statusfield="is#steps.stepcss#" />
 
-        <div id="StatusConfirm#steps.audstepid#" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->>
+        <div id="StatusConfirm#steps.audstepid#" class="modal fade" tabindex="-1" role="dialog" 
 
 >
             <div class="modal-dialog">
@@ -22,7 +22,7 @@
                     <div class="modal-header" style="background-color: ##f3f7f9;">
                         <h4 class="modal-title">#steps.audstep#</h4>
                         <a href="/include/removestatus.cfm?audprojectid=#audprojectid#&STATUSFIELD=#STATUSFIELD#&new_audroleid=#audroleid#&new_audstepid=#steps.audstepid#">
-                            <button type="button" class="close" <!-- aria-hidden="true" removed -->>
+                            <button type="button" class="close" 
 
 ><i class="mdi mdi-close-thick"></i></button>
                         </a>
@@ -53,7 +53,7 @@
             </div>
         </div>
 
-        <div id="StatusCancel#steps.audstepid#" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->>
+        <div id="StatusCancel#steps.audstepid#" class="modal fade" tabindex="-1" role="dialog" 
 
 >
             <div class="modal-dialog">
@@ -61,7 +61,7 @@
                     <div class="modal-header" style="background-color: red;color:white;">
                         <h4 class="modal-title">Cancel #steps.audstep#</h4>
                         <a href="">
-                            <button type="button" value="Cancel" class="close" <!-- aria-hidden="true" removed -->>
+                            <button type="button" value="Cancel" class="close" 
 
 ><i class="mdi mdi-close-thick"></i></button>
                         </a>
@@ -125,14 +125,14 @@
 <cfloop query="events">
     <cfinclude template="/include/qry/auditionDetails_29_3.cfm" />
     <cfoutput>
-        <div id="auditionDetails_#events.eventid#" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+        <div id="auditionDetails_#events.eventid#" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" 
 
 >
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color: ##f3f7f9;">
                         <h4 class="modal-title" id="standard-modalLabel">Appointment Details</h4>
-                        <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                        <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
                     </div>
@@ -205,14 +205,14 @@
                 });
             });
         </script>
-        <div id="auditionupdate_#events.eventid#" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+        <div id="auditionupdate_#events.eventid#" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" 
 
 >
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color: ##f3f7f9;">
                         <h4 class="modal-title" id="standard-modalLabel">Appointment Update</h4>
-                        <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                        <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
                     </div>
@@ -234,14 +234,14 @@
         });
     </script>
 
-    <div id="remoteDeleteFormAudproject#projectdetails.audprojectid#" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->>
+    <div id="remoteDeleteFormAudproject#projectdetails.audprojectid#" class="modal fade" tabindex="-1" role="dialog" 
 
 >
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: red;">
                     <h4 class="modal-title">Delete Audition Project</h4>
-                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                    <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
                 </div>
@@ -272,14 +272,14 @@
             });
         </script>
 
-        <div id="auditionadd_#findstep.audstep#" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+        <div id="auditionadd_#findstep.audstep#" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" 
 
 >
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color: ##f3f7f9;">
                         <h4 class="modal-title" id="standard-modalLabel">Appointment Add</h4>
-                        <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                        <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
                     </div>
@@ -299,14 +299,14 @@
     });
 </script>
 
-<div id="catupdate" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+<div id="catupdate" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" 
 
 >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #f3f7f9;">
                 <h4 class="modal-title" id="standard-modalLabel">Category Update</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
             </div>
@@ -324,14 +324,14 @@
     });
 </script>
 
-<div id="projectupdate" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+<div id="projectupdate" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" 
 
 >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #f3f7f9;">
                 <h4 class="modal-title" id="standard-modalLabel">Project Update</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
             </div>
@@ -349,14 +349,14 @@
     });
 </script>
 
-<div id="audlocupdate" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+<div id="audlocupdate" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" 
 
 >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #f3f7f9;">
                 <h4 class="modal-title" id="standard-modalLabel">Audition Location Update</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
             </div>
@@ -582,14 +582,14 @@
         </script>
                             
                             
-                                    <div id="auditionadd_audition" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+                                    <div id="auditionadd_audition" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" 
 
 >
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color: ##f3f7f9;">
                         <h4 class="modal-title" id="standard-modalLabel">Appointment Add</h4>
-                        <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                        <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
                     </div>
@@ -665,7 +665,7 @@
 </script>
 
 
-       <div id="remoteUpdateAnswer_#events.eventid#" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+       <div id="remoteUpdateAnswer_#events.eventid#" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" 
 
 >
 
@@ -677,7 +677,7 @@
 
                         <h4 class="modal-title" id="standard-modalLabel"><strong>#events.audstep#: </strong>#dateformat(events.eventStart,'long')#: Personal Assessment</h4>
 
-                        <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                        <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i>
 
@@ -710,7 +710,7 @@
 
                                     </script>
 
-                                    <div id="remoteDeleteAud#events.eventid#" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->>
+                                    <div id="remoteDeleteAud#events.eventid#" class="modal fade" tabindex="-1" role="dialog" 
 
 >
 
@@ -722,7 +722,7 @@
 
                                                     <h4 class="modal-title">Delete Audition</h4>
 
-                                                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                                                    <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
 
@@ -823,7 +823,7 @@
 
                                 </script>
 
-                                <div id="remoteDeleteFormAudproject#audprojectid#" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->>
+                                <div id="remoteDeleteFormAudproject#audprojectid#" class="modal fade" tabindex="-1" role="dialog" 
 
 >
 
@@ -835,7 +835,7 @@
 
                                                 <h4 class="modal-title">Delete Audition Project</h4>
 
-                                                <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                                                <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
 
@@ -1244,7 +1244,7 @@
 
 
 
- <div id="RemoveBook" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+ <div id="RemoveBook" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" 
 
 >
 
@@ -1257,7 +1257,7 @@
                         <h4 class="modal-title" id="standard-modalLabel">Warning</h4>
 
                    
-                        <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                        <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i>
 

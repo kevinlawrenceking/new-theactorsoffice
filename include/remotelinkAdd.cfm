@@ -49,7 +49,7 @@
                         type="submit" style="background-color: #406e8e; border: ##406e8e;">
                     <span id="btn-text">Add</span>
                     <span id="spinner" class="spinner-border spinner-border-sm" role="status" 
-                          <!-- aria-hidden="true" removed -->>
+                          
 
  style="display:none;"></span>
                 </button>

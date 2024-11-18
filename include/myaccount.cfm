@@ -13,14 +13,14 @@
 <cfinclude template="/include/qry/mylinks_159_1.cfm" />
 <cfinclude template="/include/qry/actions_159_2.cfm" />
 
-<div id="remoteUpdateAccountf" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+<div id="remoteUpdateAccountf" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
 
 >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #f3f7f9;">
                 <h4 class="modal-title" id="standard-modalLabel">Account & Security</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
             </div>
@@ -66,14 +66,14 @@
     </div>
 </div>
 
-<div id="remoteUpdateAccount" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+<div id="remoteUpdateAccount" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
 
 >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #f3f7f9;">
                 <h4 class="modal-title" id="standard-modalLabel">Account & Security</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
             </div>
@@ -277,14 +277,14 @@
                         </cfoutput>
 
                         <cfoutput>
-                            <div id="addlink_#sitetypes.sitetypeid#" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+                            <div id="addlink_#sitetypes.sitetypeid#" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" 
 
 >
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header" style="background-color: ##f3f7f9;">
                                             <h4 class="modal-title" id="standard-modalLabel">Add Custom #sitetypes.sitetypename# Link</h4>
-                                            <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                                            <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
                                         </div>
@@ -308,14 +308,14 @@
                         </cfoutput>
 
                         <cfoutput>
-                            <div id="updatelink_#mylinks.id#" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+                            <div id="updatelink_#mylinks.id#" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" 
 
 >
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header" style="background-color: ##f3f7f9;">
                                             <h4 class="modal-title" id="standard-modalLabel">#mylinks.sitetypename# Link Update</h4>
-                                            <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                                            <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
                                         </div>
@@ -339,14 +339,14 @@
                         </cfoutput>
 
                         <cfoutput>
-                            <div id="updateaction_#actions.id#" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+                            <div id="updateaction_#actions.id#" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" 
 
 >
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header" style="background-color: ##f3f7f9;">
                                             <h4 class="modal-title" id="standard-modalLabel">#actions.systemName# Action Update</h4>
-                                            <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                                            <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
                                         </div>
@@ -358,14 +358,14 @@
                     </cfloop>
 
                     <cfoutput>
-                        <div id="addprofile" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+                        <div id="addprofile" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" 
 
 >
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header" style="background-color: ##f3f7f9;">
                                         <h4 class="modal-title" id="standard-modalLabel">Profile Link</h4>
-                                        <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                                        <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
                                     </div>
@@ -407,14 +407,14 @@
                         <div class="col-md-12"></div>
                     </div>
 
-                    <div id="updatecal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+                    <div id="updatecal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
 
 >
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header" style="background-color: ##f3f7f9;">
                                     <h4 class="modal-title" id="standard-modalLabel">Default Settings Update</h4>
-                                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                                    <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
                                 </div>

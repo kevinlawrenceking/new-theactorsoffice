@@ -39,7 +39,7 @@
 
 <cfinclude template="/include/qry/details_1693_1.cfm"/>
 
-<div id="updatecal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+<div id="updatecal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
 
 >
 
@@ -51,7 +51,7 @@
 
         <h4 class="modal-title" id="standard-modalLabel">Default Settings Update</h4>
 
-        <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+        <button type="button" class="close" data-bs-dismiss="modal" 
 
 >
           <i class="mdi mdi-close-thick"></i>
@@ -191,14 +191,14 @@
 <cfset ctaction="view"/>
 </cfif>
 
-<div id="remoteUpdateAccount" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+<div id="remoteUpdateAccount" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
 
 >
 <div class="modal-dialog">
   <div class="modal-content">
     <div class="modal-header" style="background-color: #f3f7f9;">
       <h4 class="modal-title" id="standard-modalLabel">Account & Security</h4>
-      <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+      <button type="button" class="close" data-bs-dismiss="modal" 
 
 >
         <i class="mdi mdi-close-thick"></i>
@@ -373,7 +373,7 @@
           </cfoutput>
 
           <cfoutput>
-            <div id="updateaction_#actions.id#" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+            <div id="updateaction_#actions.id#" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" 
 
 >
 
@@ -385,7 +385,7 @@
 
                     <h4 class="modal-title" id="standard-modalLabel">#actions.systemName# Action Update</h4>
 
-                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                    <button type="button" class="close" data-bs-dismiss="modal" 
 
 >
                       <i class="mdi mdi-close-thick"></i>
@@ -491,14 +491,14 @@ new! <cfabort>
             </cfif>
           </cfif>
 
-          <div id="updatenewsletter" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+          <div id="updatenewsletter" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
 
 >
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header" style="background-color: ##f3f7f9;">
                   <h4 class="modal-title" id="standard-modalLabel">Newsletter Update</h4>
-                  <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                  <button type="button" class="close" data-bs-dismiss="modal" 
 
 >
                     <i class="mdi mdi-close-thick"></i>
@@ -546,7 +546,7 @@ new! <cfabort>
               </div>
             </div>
 
-            <div id="updatecal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+            <div id="updatecal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
 
 >
 
@@ -558,7 +558,7 @@ new! <cfabort>
 
                     <h4 class="modal-title" id="standard-modalLabel">Default Settings Update</h4>
 
-                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                    <button type="button" class="close" data-bs-dismiss="modal" 
 
 >
                       <i class="mdi mdi-close-thick"></i>
@@ -675,14 +675,14 @@ new! <cfabort>
           </div>
           <!--- modal end  --->
 
-          <div id="remoteUpdateAccount" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+          <div id="remoteUpdateAccount" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
 
 >
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header" style="background-color: #f3f7f9;">
                   <h4 class="modal-title" id="standard-modalLabel">Account & Security</h4>
-                  <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                  <button type="button" class="close" data-bs-dismiss="modal" 
 
 >
                     <i class="mdi mdi-close-thick"></i>

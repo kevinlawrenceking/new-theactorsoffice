@@ -62,14 +62,14 @@
     });
 </script>
 
-<div id="remoteAddName" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->>
+<div id="remoteAddName" class="modal fade" tabindex="-1" role="dialog" 
 
 >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Add A Relationship</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
             </div>
@@ -105,7 +105,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Selected Updated Summary</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                    <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
                 </div>
@@ -239,7 +239,7 @@
     <cfinclude template="/include/qry/tags_76_1.cfm" />
 
     <!--- Modal for tag selection --->
-    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" <!-- aria-hidden="true" removed -->>
+    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" 
 
 >
         <div class="modal-dialog modal-dialog-slideout modal-sm" role="document">
@@ -247,7 +247,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Tag Selector</h5>
                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span <!-- aria-hidden="true" removed -->>
+                        <span 
 
 >X</span>
                     </button>
@@ -271,14 +271,14 @@
     </div>
 
     <!--- Modal for system update --->
-    <div id="exampleModal3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+    <div id="exampleModal3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
 
 >
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="standard-modalLabel">System Selected Update</h4>
-                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                    <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
                 </div>
@@ -344,14 +344,14 @@
     </div>
 
     <!--- Modal for tag update --->
-    <div id="exampleModal4" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+    <div id="exampleModal4" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
 
 >
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title" id="standard-modalLabel">Tag Selected Update</h4>
-                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                    <button type="button" class="close" data-bs-dismiss="modal" 
 
 ><i class="mdi mdi-close-thick"></i></button>
                 </div>

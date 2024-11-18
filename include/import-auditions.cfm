@@ -176,7 +176,7 @@
 </div>
 
 <!--- Modal for Fixing Invalid Records --->
-<div class="modal fade" id="fixModal" tabindex="-1" role="dialog" aria-labelledby="fixModalLabel" <!-- aria-hidden="true" removed -->>
+<div class="modal fade" id="fixModal" tabindex="-1" role="dialog" aria-labelledby="fixModalLabel" 
 
 >
     <div class="modal-dialog modal-lg" role="document">
@@ -184,7 +184,7 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="fixModalLabel">Fix Invalid Record</h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span <!-- aria-hidden="true" removed -->>
+                    <span 
 
 >&times;</span>
                 </button>

@@ -13,14 +13,14 @@
 <cfset modaltitle="Select Material" />
 <cfinclude template="/include/modal.cfm" />
 
-<div id="linkmediahelp" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+<div id="linkmediahelp" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" 
 
 >
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #f3f7f9;">
                 <h4 class="modal-title" id="standard-modalLabel">Link Media</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                <button type="button" class="close" data-bs-dismiss="modal" 
 
 >
                     <i class="mdi mdi-close-thick"></i>
@@ -63,14 +63,14 @@
         });
     </script>
 
-    <div id="remoteadd" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+    <div id="remoteadd" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" 
 
 >
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: ##f3f7f9;">
                     <h4 class="modal-title" id="standard-modalLabel">Add Media</h4>
-                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                    <button type="button" class="close" data-bs-dismiss="modal" 
 
 >
                         <i class="mdi mdi-close-thick"></i>
@@ -92,14 +92,14 @@
             });
         });
     </script>
-    <div id="matupdate" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" <!-- aria-hidden="true" removed -->>
+    <div id="matupdate" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" 
 
 >
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: ##f3f7f9;">
                     <h4 class="modal-title" id="standard-modalLabel">Add Link</h4>
-                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                    <button type="button" class="close" data-bs-dismiss="modal" 
 
 >
                         <i class="mdi mdi-close-thick"></i>
@@ -187,14 +187,14 @@
                         });
                     </script>
 
-                    <div id="remoteDeleteaudmedia#audmedia.mediaid#" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->>
+                    <div id="remoteDeleteaudmedia#audmedia.mediaid#" class="modal fade" tabindex="-1" role="dialog" 
 
 >
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header" style="background-color: red;">
                                     <h4 class="modal-title">Delete Material</h4>
-                                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                                    <button type="button" class="close" data-bs-dismiss="modal" 
 
 >
                                         <i class="mdi mdi-close-thick"></i>
@@ -214,14 +214,14 @@
                         });
                     </script>
 
-                    <div id="remoteRemoveaudmedia#audmedia.mediaid#" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->>
+                    <div id="remoteRemoveaudmedia#audmedia.mediaid#" class="modal fade" tabindex="-1" role="dialog" 
 
 >
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header" style="background-color: red;">
                                     <h4 class="modal-title">Remove Material</h4>
-                                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                                    <button type="button" class="close" data-bs-dismiss="modal" 
 
 >
                                         <i class="mdi mdi-close-thick"></i>
@@ -241,14 +241,14 @@
                         });
                     </script>
 
-                    <div id="remoteupdatematerial#audmedia.mediaid#" class="modal fade" tabindex="-1" role="dialog" <!-- aria-hidden="true" removed -->>
+                    <div id="remoteupdatematerial#audmedia.mediaid#" class="modal fade" tabindex="-1" role="dialog" 
 
 >
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h4 class="modal-title">Update Material</h4>
-                                    <button type="button" class="close" data-bs-dismiss="modal" <!-- aria-hidden="true" removed -->>
+                                    <button type="button" class="close" data-bs-dismiss="modal" 
 
 >
                                         <i class="mdi mdi-close-thick"></i>
