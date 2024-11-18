@@ -303,7 +303,7 @@
             <cfqueryparam value="Maintenance System Created!" cfsqltype="CF_SQL_VARCHAR">,
             <cfqueryparam value="System Added" cfsqltype="CF_SQL_VARCHAR">,
             <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">,
-            <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
+            <cfqueryparam value=0 cfsqltype="CF_SQL_BIT">
         )
     </cfquery>
 
