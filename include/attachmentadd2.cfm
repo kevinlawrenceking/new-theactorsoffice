@@ -31,7 +31,7 @@
 <!--- Include the query for inserting the upload record --->
 <cfinclude template="/include/qry/INSERT_22_1.cfm" />
 
-<cfset new_uploadid = result.generatedkey />
+
 
 <cfoutput>
     <!--- Construct the return URL with parameters --->
