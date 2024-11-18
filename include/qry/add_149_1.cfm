@@ -1,5 +1,5 @@
 <cfset linkService = createObject("component", "services.LinkService")>
-<cfset linkService.INSlinks(
+<cfset linkid =  linkService.INSlinks(
     linkname = linkname,
     linkurl = linkurl,
     noteid = noteid,
