@@ -37,7 +37,7 @@
 <!--- Include the media insertion query script. --->
 <cfinclude template="/include/qry/audmedia_ins.cfm" />
 
-<cfset new_uploadid = result.generatedkey />
+<cfset new_uploadid = new_mediaID />
 
 <!--- Redirect to the account page with the new upload ID. --->
 <cflocation url="/app/myaccount/?t8=1&tab8_expand=true&new_uploadid=<cfoutput>#new_uploadid#</cfoutput>" /> 

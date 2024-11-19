@@ -881,6 +881,8 @@
                 e.contactid, 
                 e.dow, 
                 e.endRecur,
+                e.eventstarttime,
+                e.eventstoptime,
                 TRUNCATE(HOUR(TIMEDIFF(e.eventStopTime, e.eventStartTime)), 2) + TRUNCATE(MINUTE(TIMEDIFF(e.eventStopTime, e.eventStartTime)), 2) / 60 AS new_durhours
             FROM events e
             WHERE e.eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER">
