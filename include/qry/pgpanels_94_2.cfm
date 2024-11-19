@@ -1,4 +1,4 @@
-<cfset new_isvisible = listQualify(new_isvisible, "'", ",")>
+
 
 
 <cfset panelUserService = createObject("component", "services.PanelUserService")>
