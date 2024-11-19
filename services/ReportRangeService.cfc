@@ -12,7 +12,6 @@
         <cfset inClause = listQualify(trim(arguments.excludedRangeIds), "'", ",")>
     </cfif>
 
-    <!--- Execute the query. --->
     <cfquery name="qryResult">
         SELECT rangeid, rangename, rangestart, rangeend
         FROM reportranges
