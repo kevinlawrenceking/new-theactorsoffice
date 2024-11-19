@@ -1,7 +1,7 @@
 <!--- This ColdFusion page processes report data based on user input and generates report items. --->
 <cfparam name="new_rangeid" default="1" />
 <cfparam name="anchortag" default="" />
-<cfparam name="customstart" default="" />
+<cfparam name="customstart" default="2022-01-01" />
 <cfparam name="customend" default="" />
 <cfparam name="new_audsourceid" default="0" />
 <cfparam name="new_audsourceidb" default="0" />
