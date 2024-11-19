@@ -11,11 +11,11 @@
         (itemLabel, itemOrderNo, itemValueInt, ID, itemDataset, userid) 
         VALUES 
         (
-            <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.itemLabel#" />
-            <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.itemOrderNo#" />
-            <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.itemValueInt#" />
-            <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.ID#" />
-            <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.itemDataset#" />
+            <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.itemLabel#" />,
+            <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.itemOrderNo#" />,
+            <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.itemValueInt#" />,
+            <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.ID#" />,
+            <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.itemDataset#" />,
             <cfqueryparam cfsqltype="cf_sql_integer" value="#userid#" />
         )
     </cfquery>
