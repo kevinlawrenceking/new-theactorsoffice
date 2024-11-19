@@ -233,7 +233,12 @@
         </div>
     </div>
 
+<style>
+.card-body {
+    padding-bottom: 2rem;
+}
 
+</style>
 <script>
     $(document).ready(function() {
         $(".parsley-examples").parsley();
