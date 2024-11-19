@@ -35,6 +35,7 @@
                 defaultsUrl = imagesUrl & "/defaults";
 
                 defaultAvatarUrl = defaultsUrl & "/avatar.jpg";
+                defaultAvatarPath = defaultsPath & "\avatar.jpg";
 
                 emailImagesPath = imagesPath & "\email";
                 emailImagesUrl = imagesUrl & "/email";
