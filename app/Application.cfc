@@ -55,7 +55,7 @@
             </cfif>
         </cfif>
 <Cfset userid = 30 />
-
+<Cfset session.userid = 30 />
     
             <cfscript>
                 baseMediaPath = "C:\home\theactorsoffice.com\media-" & this.datasource;
