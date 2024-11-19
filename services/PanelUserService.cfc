@@ -30,33 +30,20 @@
         WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 </cffunction>
-
 <cffunction output="false" name="UPDpgpanels_user_23858" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
-    <cfargument name="new_isvisible" type="array" required="true">
+    <cfargument name="new_isvisible" type="string" required="true">
+    <!--- new_isvisible should be a comma-separated string of pnid values --->
 
-    <cfset var sql = "">
-    <cfset var pnidList = "">
-
-    <!--- Validate and prepare the pnidList for SQL IN clause --->
-    <cfif arrayLen(arguments.new_isvisible) gt 0>
-        <cfset pnidList = listQualify(arrayToList(arguments.new_isvisible), "'", ",")>
-    </cfif>
-
-    <!--- Construct the SQL query --->
-    <cfset sql = "
-        UPDATE pgpanels_user 
-        SET isvisible = 1 
-        WHERE userid = ? 
-        AND pnid IN (#pnidList#)
-    ">
-
-    <!--- Execute the query with parameter binding --->
-    <cfquery result="result">
-        #sql#
-        <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+    <!--- Update the pgpanels_user table based on user ID and provided pnid list --->
+    <cfquery>
+        UPDATE pgpanels_user
+        SET isvisible = 1
+        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        AND pnid IN (#arguments.new_isvisible#)
     </cfquery>
 </cffunction>
+
 
 <cffunction output="false" name="UPDpgpanels_user_23886" access="public" returntype="void">
     <cfargument name="pnid" type="numeric" required="true">
