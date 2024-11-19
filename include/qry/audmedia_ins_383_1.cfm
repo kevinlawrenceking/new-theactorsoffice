@@ -1,5 +1,5 @@
-<cfset audMediaService = createObject("component", services.AuditionMediaService)>
-<cfset new_mediaID = audMediaService.INSaudmedia(
+<cfset AuditionMediaService = createObject("component", services.AuditionMediaService)>
+<cfset new_mediaID = AuditionMediaService.INSaudmedia(
     new_mediaTypeID = new_mediaTypeID,
     new_mediaURL = new_mediaURL,
     new_mediaName = new_mediaName,
