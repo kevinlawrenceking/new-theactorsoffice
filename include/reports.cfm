@@ -16,7 +16,7 @@
 <cfset pgcol = 3 />
 <cfparam name="focus_reportid" default="0" />
 <cfparam name="customstart" default="2022-01-01" />
-<cfparam name="customend" default="" />
+<cfparam name="customend" default="2100-12-31" />
 <cfparam name="bookratio" default="0" />
 <cfparam name="anchortag" default="" />
 <cfparam name="new_audsourceid" default="0" />
