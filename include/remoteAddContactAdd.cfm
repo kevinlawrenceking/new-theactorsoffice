@@ -13,8 +13,7 @@
 
 <!--- Include the query to add a new contact --->
 <cfinclude template="/include/qry/add_201_1.cfm" />
-<cfset currentid = result.generated_key />
-<cfset contactid = result.generated_key />
+<cfset currentid = contactid />
 
 <!--- Check if new tags are provided and insert them --->
 <cfif #new_tag# is not "">
