@@ -11,7 +11,7 @@
 <cfinclude template="/include/qry/relationships_13_1.cfm" />
 <cfinclude template="/include/qry/durations.cfm" />
 <cfinclude template="/include/qry/eventtypes_user_443_2.cfm" />
-
+<div class="container">
 <div class="row">
     <div class="col-xl-6 col-lg-8 col-md-12">
         <div class="card">
@@ -232,10 +232,10 @@
             </div>
         </div>
     </div>
-
+</div>
 <style>
 .card-body {
-    padding-bottom: 2rem;
+    padding-bottom: 15rem;
 }
 
 </style>
