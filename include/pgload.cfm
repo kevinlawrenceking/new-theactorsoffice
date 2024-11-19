@@ -9,7 +9,7 @@
 <cfparam name="catArea_UCB" default="C" />
 <cfparam name="contactid" default="0" />
 <cfparam name="userid" default="#userid#" />
-<cfparam name="BROWSER_CONTACT_AVATAR_FILENAME" default="#session.userAvatarUrl#" />
+<cfparam name="BROWSER_CONTACT_AVATAR_FILENAME" default="#userAvatarUrl#" />
 
 <cfscript>
     currentURL = cgi.server_name;
