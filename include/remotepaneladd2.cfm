@@ -15,7 +15,6 @@
         <cfinclude template="/include/qry/add_sitetype_249_2.cfm" />
         
         <!--- Get the generated key for the new site type --->
-        <cfset new_sitetypeid = result.generated_key />
         
         <!--- Include query to find the newly added site type --->
         <cfinclude template="/include/qry/findit_249_3.cfm" />
