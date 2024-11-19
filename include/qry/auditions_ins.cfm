@@ -54,8 +54,6 @@
 </cfif>
 
 <cfinclude template="/include/qry/auditions_ins_373_1.cfm" />
-
-<cfset new_eventid = result.generatedkey>
     
   
     <cfinclude template="/include/qry/update_373_2.cfm" />

@@ -3,7 +3,6 @@
 <cfif #new_audlocid# is "custom">
     <!--- Check if the new audition location ID is custom and include the relevant query. --->
     <cfinclude template="/include/qry/audlocations_ins_218_1.cfm" />
-    <cfset new_audlocid = result.generatedkey />
 </cfif>
 
 <!--- Include the project query to retrieve project details. --->

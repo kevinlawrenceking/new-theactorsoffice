@@ -9,5 +9,5 @@
 <cfinclude template="/include/qry/audgenres_audition_xref_ins_360_1.cfm" />
 
 
-<cfset new_ = result.GENERATEDKEY />
+
 

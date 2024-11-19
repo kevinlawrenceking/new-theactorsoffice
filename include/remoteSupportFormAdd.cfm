@@ -7,7 +7,6 @@
 <!--- Include necessary query templates --->
 <cfinclude template="/include/qry/add_257_1.cfm" />
 <cfinclude template="/include/qry/uu_223_2.cfm" />
-<cfset recid = result.generatedkey>
 
 <cfoutput>
     <cfset new_tlogDetails = "Created the ticket." />

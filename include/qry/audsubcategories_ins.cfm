@@ -6,6 +6,3 @@
 
 <!--- Include the query for inserting subcategories. --->
 <cfinclude template="/include/qry/audsubcategories_ins_421_1.cfm" />
-
-<!--- Set the new subcategory ID from the query result. --->
-<cfset new_audSubCatId = result.GENERATEDKEY />

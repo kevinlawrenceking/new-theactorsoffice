@@ -33,6 +33,3 @@
 
 <!--- Include the template for inserting audit roles. --->
 <cfinclude template="/include/qry/audroles_ins_409_1.cfm" />
-
-<!--- Set the new audit role ID from the result of the insert operation. --->
-<cfset new_audRoleID = result.GENERATEDKEY/>

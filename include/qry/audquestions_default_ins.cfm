@@ -7,5 +7,3 @@
 <!--- Include the template for inserting a new question into the database --->
 <cfinclude template="/include/qry/audquestions_default_ins_405_1.cfm" />
 
-<!--- Set the new question ID from the result of the insert operation --->
-<cfset new_qID = result.GENERATEDKEY />

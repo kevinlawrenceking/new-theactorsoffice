@@ -11,5 +11,3 @@
 <cfinclude template="/include/qry/audnetworks_ins_387_1.cfm" />
 
 
-<cfset new_networkid = result.GENERATEDKEY />
-

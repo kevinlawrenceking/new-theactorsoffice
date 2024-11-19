@@ -18,5 +18,3 @@
 <cfinclude template="/include/qry/audquestions_user_ins_407_1.cfm" />
 <!--- Include the template for inserting user questions --->
 
-<cfset new_qID = result.GENERATEDKEY />
-<!--- Retrieve the generated key for the new question --->

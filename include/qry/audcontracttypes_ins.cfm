@@ -11,5 +11,3 @@
 <cfinclude template="/include/qry/audcontracttypes_ins_352_1.cfm" />
 
 
-<cfset new_contracttypeid = result.GENERATEDKEY />
-

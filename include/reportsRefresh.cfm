@@ -69,7 +69,7 @@
             </cfif>
         </cfoutput>
         <cfinclude template="/include/qry/Insert_ReportItems_282_6.cfm" />
-        <cfset new_itemid = result.GENERATEDKEY />
+
         <cfinclude template="/include/qry/Findit_282_7.cfm" />
 
         <!--- Check if the item exists and set the item value. --->

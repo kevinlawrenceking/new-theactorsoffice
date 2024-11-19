@@ -74,8 +74,6 @@
 
     <cfinclude template="/include/qry/add_365_3.cfm" />
 
-    <cfset new_eventid=result.GENERATEDKEY />
-
     <cfinclude template="/include/qry/t_365_4.cfm" />
 
     <cfinclude template="/include/qry/tt_365_5.cfm" />

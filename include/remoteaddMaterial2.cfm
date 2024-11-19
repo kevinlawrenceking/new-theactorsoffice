@@ -35,7 +35,7 @@
 
 <!--- Include the media insertion query template --->
 <cfinclude template="/include/qry/audmedia_ins.cfm"/>
-<cfset new_uploadid = result.generatedkey>
+<cfset new_uploadid = new_mediaID>
 
 <!--- Redirect based on the source of the upload --->
 <cfif #src# is "account">

@@ -1,2 +1,2 @@
 <cfset uploadService = createObject("component", "services.UploadService")>
-<cfset uploadService.INSuploads(userid=userid)>
+<cfset new_uploadid = uploadService.INSuploads(userid=userid)>

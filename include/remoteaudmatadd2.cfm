@@ -32,7 +32,7 @@
 <!--- Include the media insertion query --->
 <cfinclude template="/include/qry/audmedia_ins.cfm" />
 
-<cfset new_uploadid = result.generatedkey />
+<cfset new_uploadid = new_mediaID />
 
 <cfoutput>
     <!--- Set the return URL after upload --->

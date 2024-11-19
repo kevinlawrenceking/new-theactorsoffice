@@ -13,5 +13,3 @@
 <cfinclude template="/include/qry/audmedia_audroles_xref_ins_381_1.cfm" />
 
 
-<cfset new_ = result.GENERATEDKEY />
-

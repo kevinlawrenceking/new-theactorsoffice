@@ -1,5 +1,5 @@
 <cfset service = createObject("component", "services.AuditionQuestionUserService")>
-<cfset service.INSaudquestions_user(
+<cfset new_qID = service.INSaudquestions_user(
     new_qTypeID = new_qTypeID,
     new_qtext = new_qtext,
     new_qorder = new_qorder,

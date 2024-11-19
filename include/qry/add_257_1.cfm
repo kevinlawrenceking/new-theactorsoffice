@@ -1,5 +1,5 @@
 <cfset ticketService = createObject("component", "services.TicketService")>
-<cfset ticketService.INStickets(
+<cfset recid = ticketService.INStickets(
     new_verid = new_verid,
     new_ticketName = new_ticketName,
     new_ticketdetails = new_ticketdetails,

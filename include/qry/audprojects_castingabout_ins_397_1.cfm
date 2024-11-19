@@ -1,5 +1,5 @@
 <cfset objService = createObject("component", "services.AuditionProjectsCastingAboutService")>
-<cfset objService.INSaudprojects_castingabout(
+<cfset new_ID = objService.INSaudprojects_castingabout(
     new_projName = new_projName,
     new_projtye = new_projtye,
     new_Status1 = new_Status1,

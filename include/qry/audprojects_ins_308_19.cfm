@@ -1,5 +1,5 @@
 <cfset auditionProjectService = createObject("component", "services.AuditionProjectService")>
-<cfset auditionProjectService.INSaudprojects(
+<cfset new_audprojectID = auditionProjectService.INSaudprojects(
     new_projName = new_projName,
     new_projDescription = new_projDescription,
     new_audSubCatID = new_audSubCatID,

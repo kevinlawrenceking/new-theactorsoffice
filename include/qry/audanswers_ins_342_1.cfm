@@ -1,6 +1,6 @@
 <cfset componentPath = "/services/AuditionAnswerService">
 <cfset componentInstance = createObject("component", componentPath)>
-<cfset componentInstance.INSaudanswers_24506(
+<cfset new_answerID = componentInstance.INSaudanswers_24506(
     new_qID = new_qID,
     new_eventid = new_eventid,
     new_aText = new_aText,

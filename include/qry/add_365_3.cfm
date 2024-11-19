@@ -1,5 +1,5 @@
 <cfset eventService = createObject("component", "services.EventService")>
-<cfset eventService.INSevents_24528(
+<cfset new_eventid = eventService.INSevents_24528(
     new_projname = new_projname,
     new_projDescription = new_projDescription,
     eventLocation = eventLocation,

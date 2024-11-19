@@ -1,5 +1,5 @@
 <cfset auditionUnionService = createObject("component", "services.AuditionUnionService")>
-<cfset auditionUnionService.INSaudunions(
+<cfset new_unionID = auditionUnionService.INSaudunions(
     new_unionName = new_unionName,
     new_countryid = new_countryid,
     new_audCatID = new_audCatID,

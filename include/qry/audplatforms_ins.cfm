@@ -5,5 +5,3 @@
 <!--- Include the query for audplatforms --->
 <cfinclude template="/include/qry/audplatforms_ins_393_1.cfm" />
 
-<!--- Set the new audplatform ID from the query result --->
-<cfset new_audplatformid = result.GENERATEDKEY />

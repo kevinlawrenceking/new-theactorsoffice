@@ -7,6 +7,3 @@
 <!--- Insert a new record into the audunions table --->
 <cfinclude template="/include/qry/audunions_ins_432_1.cfm" />
 
-<!--- Retrieve the generated ID of the new union --->
-<cfset new_unionID = result.GENERATEDKEY />
-

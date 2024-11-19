@@ -9,5 +9,3 @@
 <cfinclude template="/include/qry/audcategories_ins_345_1.cfm" />
 
 
-<cfset new_audCatId = result.GENERATEDKEY />
-

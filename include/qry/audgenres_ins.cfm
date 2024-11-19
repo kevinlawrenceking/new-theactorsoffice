@@ -11,5 +11,4 @@
 <cfinclude template="/include/qry/audgenres_ins_362_1.cfm" />
 
 
-<cfset new_audgenreid = result.GENERATEDKEY />
 

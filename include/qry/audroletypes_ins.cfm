@@ -5,6 +5,3 @@
 
 <!--- Include the template for inserting role types --->
 <cfinclude template="/include/qry/audroletypes_ins_412_1.cfm" />
-
-<!--- Set the new role type ID from the result of the included template --->
-<cfset new_audroletypeid = result.GENERATEDKEY />

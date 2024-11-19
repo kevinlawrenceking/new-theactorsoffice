@@ -17,5 +17,3 @@
 <cfinclude template="/include/qry/audanswers_ins_342_1.cfm" />
 
 
-<cfset new_answerID = result.GENERATEDKEY />
-

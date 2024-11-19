@@ -4,6 +4,3 @@
 
 <!--- Include the query template for inserting audit steps --->
 <cfinclude template="/include/qry/audsteps_ins_418_1.cfm" />
-
-<!--- Set the new audit step ID from the query result --->
-<cfset new_audstepid = result.GENERATEDKEY />

@@ -11,5 +11,4 @@
 <cfinclude template="/include/qry/auddialects_ins_355_1.cfm" />
 
 
-<cfset new_auddialectid = result.GENERATEDKEY />
 

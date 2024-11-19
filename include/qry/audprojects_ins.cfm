@@ -22,8 +22,6 @@
 <cfparam name="isdirect" default="0" />
 <!--- Parameter to indicate if the project is direct --->
 <cfinclude template="/include/qry/audprojects_ins_399_1.cfm" />
-<!--- Include the query for inserting new projects --->
-<cfset new_audprojectID = result.GENERATEDKEY />
 <!--- Set the new audience project ID from the result --->
 <cfset audprojectid = new_audprojectid />
 <!--- Assign the new audience project ID to a variable --->

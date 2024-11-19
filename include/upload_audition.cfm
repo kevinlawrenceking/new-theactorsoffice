@@ -16,7 +16,6 @@
 <cfset host = ListFirst(currentURL, ".")/>
 
 <cfinclude template="/include/qry/INSERT_316_1.cfm" />
-<cfset new_uploadid = result.generatedkey>
 
 <cfoutput>
     <cfset userMediaPath = "#userMediaPath#"/>

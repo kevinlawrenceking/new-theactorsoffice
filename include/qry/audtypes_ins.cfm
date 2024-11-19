@@ -5,7 +5,3 @@
 
 <!--- Execute the SQL query to insert a new audio type into the audtypes table --->
 <cfinclude template="/include/qry/audtypes_ins_429_1.cfm" />
-
-<!--- Retrieve the generated key for the newly inserted audio type --->
-<cfset new_audtypeid = result.GENERATEDKEY />
-

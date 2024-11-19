@@ -9,5 +9,3 @@
 <cfinclude template="/include/qry/audmediatypes_ins_378_1.cfm" />
 
 
-<cfset new_mediaTypeID = result.GENERATEDKEY />
-

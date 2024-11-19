@@ -6,6 +6,3 @@
 <!--- Insert a new record into the audvocaltypes_audition_xref table --->
 <cfinclude template="/include/qry/audvocaltypes_audition_xref_ins_435_1.cfm" />
 
-<!--- Retrieve the generated key from the insert operation --->
-<cfset new_ = result.GENERATEDKEY />
-

@@ -1,5 +1,5 @@
 <cfset reportItemService = createObject("component", "services.ReportItemService")>
-<cfset reportItemService.INSreportitems_24233(
+<cfset new_itemid = reportItemService.INSreportitems_24233(
     newLabel = report_4_loop.new_label,
     itemOrderNo = i,
     newID = new_id,

@@ -42,5 +42,3 @@
 <cfinclude template="/include/qry/audprojects_castingabout_ins_397_1.cfm" />
 <!--- Include the template for casting information --->
 
-<cfset new_ID = result.GENERATEDKEY />
-<!--- Set new ID from the result of the included template --->

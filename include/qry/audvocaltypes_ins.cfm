@@ -5,7 +5,3 @@
 
 <!--- Insert a new vocal type into the database. --->
 <cfinclude template="/include/qry/audvocaltypes_ins_437_1.cfm" />
-
-<!--- Retrieve the generated key for the new vocal type. --->
-<cfset new_vocaltypeid = result.GENERATEDKEY />
-

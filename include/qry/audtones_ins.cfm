@@ -6,7 +6,3 @@
 
 <!--- Execute the SQL query to insert a new audio tone into the audtones table. --->
 <cfinclude template="/include/qry/audtones_ins_425_1.cfm" />
-
-<!--- Retrieve the generated key for the newly inserted audio tone. --->
-<cfset new_toneid = result.GENERATEDKEY />
-

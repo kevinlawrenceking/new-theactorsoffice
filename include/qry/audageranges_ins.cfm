@@ -14,6 +14,3 @@
 
 <cfinclude template="/include/qry/audageranges_ins_339_1.cfm" />
 
-
-<cfset new_rangeid = result.GENERATEDKEY />
-

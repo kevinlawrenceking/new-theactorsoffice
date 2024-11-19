@@ -100,7 +100,7 @@
         <cfoutput>contact not found, adding...<BR></cfoutput>
         <cfinclude template="/include/qry/INScontactDetails.cfm" />
         
-        <cfset new_contactid=result.generatedkey />
+        <cfset new_contactid=contactid />
         <cfset select_userid=userid />
         <cfset select_contactid=new_contactid />
         <cfset cdtype="Casting Director" />
@@ -183,8 +183,6 @@
 
     here<BR>
     <cfinclude template="/include/qry/audprojects_ins_308_19.cfm" />
-    
-    <cfset new_audprojectID=result.GENERATEDKEY />
     <cfset audprojectid=new_audprojectid />
     <cfoutput>new audprojectid: #new_audprojectid#<BR/></cfoutput>
 
@@ -200,7 +198,6 @@
     </cfif>
 
     <cfinclude template="/include/qry/audroles_ins_308_21.cfm" />
-    <cfset new_audRoleID=result.GENERATEDKEY />
 
     <cfif x.note is not "">
         <cfinclude template="/include/qry/InsertNote_308_22.cfm" />
