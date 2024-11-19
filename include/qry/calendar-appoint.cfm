@@ -36,7 +36,7 @@
             a.colorkey:focus,
             button.colorkey:hover,
             button.colorkey:focus {
-                background-color: #343a40 !important;
+                background-color: ##343a40 !important;
             }
         </cfoutput>
     </cfloop>

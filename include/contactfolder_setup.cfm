@@ -136,7 +136,7 @@
 
             <!--- Check if contact avatar exists, if not, copy default avatar --->
             <cfif NOT fileExists(dir_contact_avatar_filename)>
-                <cffile action="copy" source="#defaultAvatarUrl#" destination="#dir_media_root_user_contacts_folder#\" />
+                <cffile action="copy" source="#defaultAvatarPath#" destination="#dir_media_root_user_contacts_folder#\" />
                 <h3>default contact avatar moved to: #dir_media_root_user_contacts_folder#</h3>
             </cfif>
         </cfoutput>
