@@ -227,6 +227,7 @@
                             <button type="submit" class="btn btn-primary btn-sm waves-effect waves-light" id="btn-save-event">Add</button>
                         </div>
                     </div>
+                    <div class="row">&nbsp;</div>
                 </form>
             </div>
         </div>
