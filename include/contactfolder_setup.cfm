@@ -26,7 +26,7 @@
         </cfif>
 
         <!--- Set user media root URL --->
-        <cfset browser_media_root_user = "#session.userMediaUrl#" />
+        <cfset browser_media_root_user = "#userMediaUrl#" />
         <cfset session.contactAvatarUrl = "#browser_media_root_user#/avatar.jpg" />
 
         <!--- Debug output for contact avatar URL --->
