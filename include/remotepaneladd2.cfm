@@ -27,9 +27,6 @@
         
         <!--- Include query to add the new PN --->
         <cfinclude template="/include/qry/add_249_5.cfm" />    
-
-        <!--- Get the generated key for the new PN --->
-        <cfset new_pnid = PN.generated_key />
         
         <!--- Include query to add additional information for the new PN --->
         <cfinclude template="/include/qry/add_249_6.cfm" />
