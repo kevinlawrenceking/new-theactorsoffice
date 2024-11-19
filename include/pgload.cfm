@@ -8,7 +8,7 @@
 <cfparam name="usercontactid" default="0" />
 <cfparam name="catArea_UCB" default="C" />
 <cfparam name="contactid" default="0" />
-<cfparam name="userid" default="#userid#" />
+<cfparam name="userid" default="#session.userid#" />
 <cfparam name="BROWSER_CONTACT_AVATAR_FILENAME" default="#userAvatarUrl#" />
 
 <cfscript>
