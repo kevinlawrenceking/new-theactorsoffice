@@ -1,22 +1,28 @@
 <cfcomponent displayname="ReportRangeService" hint="Handles operations for ReportRange table" > 
 
 <cffunction output="false" name="SELreportranges" access="public" returntype="query">
-    <cfargument name="excludedRangeIds" type="array" required="true">
+    <!--- Function to retrieve report ranges excluding specific IDs provided as a comma-separated string. --->
+    <cfargument name="excludedRangeIds" type="string" required="true">
     <cfset var qryResult = "">
 
-    <cfquery result="result" name="qryResult">
+    <!--- Clean and validate the excludedRangeIds input. --->
+    <cfset var inClause = "0"> <!--- Default to exclude nothing if empty. --->
+    <cfif len(trim(arguments.excludedRangeIds))>
+        <!--- Ensure the input is a properly formatted list. --->
+        <cfset inClause = listQualify(trim(arguments.excludedRangeIds), "'", ",")>
+    </cfif>
+
+    <!--- Execute the query. --->
+    <cfquery name="qryResult">
         SELECT rangeid, rangename, rangestart, rangeend
         FROM reportranges
-        WHERE rangeid NOT IN (
-            <cfloop array="#arguments.excludedRangeIds#" index="rangeId">
-                <cfqueryparam value="#rangeId#" cfsqltype="CF_SQL_INTEGER" />
-                <cfif rangeId neq arrayLen(arguments.excludedRangeIds)>,</cfif>
-            </cfloop>
-        )
+        WHERE rangeid NOT IN (#inClause#)
     </cfquery>
 
     <cfreturn qryResult>
 </cffunction>
+
+
 
 <cffunction output="false" name="UPDreportranges" access="public" returntype="void">
     <cfargument name="new_rangestart" type="date" required="true">
