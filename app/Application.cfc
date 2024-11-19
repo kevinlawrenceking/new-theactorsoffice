@@ -55,7 +55,7 @@
             </cfif>
         </cfif>
 <Cfset userid = 30 />
-        <cfif isdefined('abc')> 
+
     
             <cfscript>
                 baseMediaPath = "C:\home\theactorsoffice.com\media-" & this.datasource;
@@ -108,8 +108,7 @@
                 session.userAvatarPath = session.userMediaPath & "\avatar.jpg";
                 session.userAvatarUrl = session.userMediaUrl & "/avatar.jpg";
             </cfscript>
-            <Cfelse><cfset userid = 30 />
-        </cfif>
+         
 
         <cfreturn true>
     </cffunction>
