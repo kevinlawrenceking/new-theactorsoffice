@@ -12,6 +12,9 @@
     <cfset browser_media_root_user_imports = userImportsUrl />
     <cfset dir_media_root_user_imports = "#userMediaPath#\imports" />
 
+
+    
+
     <cfif not directoryExists(dir_media_root_user)>
         <cfdirectory directory="#dir_media_root_user#" action="create">
     </cfif>
