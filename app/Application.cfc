@@ -54,7 +54,7 @@
                 <cflocation url="/loginform.cfm" addtoken="no">
             </cfif>
         </cfif>
-
+<Cfset userid = 30 />
         <cfif isdefined('abc')> 
     
             <cfscript>
