@@ -55,7 +55,7 @@
             </cfif>
         </cfif>
 
-        <cfif isdefined('session.userid')> 
+        <cfif isdefined('abc')> 
     
             <cfscript>
                 baseMediaPath = "C:\home\theactorsoffice.com\media-" & this.datasource;
