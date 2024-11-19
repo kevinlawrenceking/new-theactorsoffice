@@ -3,19 +3,12 @@
 <cffunction output="false" name="SELreportranges" access="public" returntype="query">
     <!--- Function to retrieve report ranges excluding specific IDs provided as a comma-separated string. --->
     <cfargument name="excludedRangeIds" type="string" required="true">
-    <cfset var qryResult = "">
-
-    <!--- Clean and validate the excludedRangeIds input. --->
-    <cfset var inClause = "0"> <!--- Default to exclude nothing if empty. --->
-    <cfif len(trim(arguments.excludedRangeIds))>
-        <!--- Ensure the input is a properly formatted list. --->
-        <cfset inClause = listQualify(trim(arguments.excludedRangeIds), "'", ",")>
-    </cfif>
+ 
 
     <cfquery name="qryResult">
         SELECT rangeid, rangename, rangestart, rangeend
         FROM reportranges
-        WHERE rangeid NOT IN (#inClause#)
+        WHERE rangeid NOT IN (#excludedRangeIds#)
     </cfquery>
 
     <cfreturn qryResult>
