@@ -877,7 +877,7 @@
                 , valueCountry = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_countryname)#">
                 , valuePostalCode = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.valuePostalCode)#">
             </cfif>
-            <cfif isDefined("arguments.itemdate")>
+            <cfif structKeyExists(arguments, "itemdate") AND IsDate(arguments.itemdate)>
                 , itemdate = <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.itemdate#">
             </cfif>
             WHERE itemid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.itemid#">

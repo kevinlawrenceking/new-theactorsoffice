@@ -17,7 +17,7 @@
 <cfif structKeyExists(variables, "new_regionname")><cfset args.new_regionname = trim(new_regionname)></cfif>
 <cfif structKeyExists(variables, "new_countryname")><cfset args.new_countryname = trim(new_countryname)></cfif>
 <cfif structKeyExists(variables, "valuePostalCode")><cfset args.valuePostalCode = trim(valuePostalCode)></cfif>
-<cfif structKeyExists(variables, "itemdate")><cfset args.itemdate = itemdate></cfif>
+<cfif structKeyExists(variables, "itemdate") AND IsDate(itemdate)><cfset args.itemdate = itemdate></cfif>
 
 <!--- Call the function dynamically using the argument collection --->
 <cfset contactItemService.UPDcontactitems_24046(argumentCollection=args)>
