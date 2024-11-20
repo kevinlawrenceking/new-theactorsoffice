@@ -55,7 +55,9 @@
              <option value="Custom" >***ADD NEW***</option>
    
             <cfoutput query="typesResult.types">
+            <Cfif #typesResult.types.valuetype# is not "Custom">
                 <option value="#typesResult.types.valuetype#" <cfif typesResult.types.valuetype eq details.valueType>selected</cfif>>#typesResult.types.valuetype#</option>
+           </cfif>
             </cfoutput>
         </select>
     </div>
