@@ -28,9 +28,10 @@
     <cfset formid = "remoteAddC#new_catid#" />
 </cfoutput>
 
-<form action="/include/remoteAddCAdd.cfm" method="post" class="parsley-examples" id="#formid#"
+<form action="/include/remoteAddCAdd.cfm" method="post" class="parsley-examples" id="#formid#" 
       data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden"
       data-parsley-trigger="keyup" data-parsley-validate>
+    
     <cfoutput>
         <input type="hidden" name="catid" value="#new_catid#">
         <input type="hidden" name="valueCategory" value="#details.valueCategory#">
@@ -45,27 +46,25 @@
                 <input type="hidden" name="valuetype" value="#types.valuetype#" />
             </cfoutput>
         <cfelse>
-            <div class="form-group col-md-6">
-                <label for="valueType">Type<span class="text-danger">*</span></label>
-                <select id="valueType" name="valueType" class="form-control" data-parsley-required="true" 
-                        data-parsley-error-message="Type is required" onchange="toggleCustomField(this)">
-                    <option value=""></option>
-                    <option value="Custom" <cfif types.valuetype eq "Custom">selected</cfif>>***ADD NEW***</option>
-                    <cfoutput query="types">
-                        <option value="#types.valuetype#" <cfif types.valuetype eq details.valuetypedef>selected</cfif>>
-                            #types.valuetype#
-                        </option>
-                    </cfoutput>
-                </select>
-            </div>
+          <div class="form-group col-md-6">
+    <label for="valuetext">Type<span class="text-danger">*</span></label>
+    <select id="valueType" name="valueType" class="form-control" data-parsley-required="true" 
+            data-parsley-error-message="Type is required" onchange="showDiv('hidden_div', this)">
+        <option value=""></option>
+       <cfif types.valuetype eq "Custom"> <option value="Custom"  selected >Custom</option></cfif>
+         <cfif types.valuetype neq "Custom"> <option value="Custom" >***ADD NEW***</option></cfif>
+        <cfoutput query="types">   <cfif types.valuetype neq "Custom">
+            <option value="#types.valuetype#" <cfif types.valuetype eq details.valuetypedef>selected</cfif>>
+                <cfif types.valuetype eq "Custom">*Add New Type<cfelse>#types.valuetype#</cfif>
+            </option></cfif>
+        </cfoutput>
+    </select>
+</div>
         </cfif>
 
-        <div id="hidden_div" class="form-group col-md-6" style="display: none;">
+        <div id="hidden_div" class="form-group col-md-6"  style="display: none;">
             <label for="customtype">Custom Type</label>
-            <input class="form-control" type="text" id="customtype" name="customtype">
-
-
-
+            <input class="form-control" type="text" id="customtype" name="customtype"  data-parsley-required="false">
         </div>
 
         <cfset valuefieldtype = "text">
@@ -230,37 +229,52 @@
 
 </cfif>
 
+    
+  <cfif new_catid is "2">
+<script src="/app/assets/js/jquery.chained.js?ver=13.4"></script>
+<script>
+    $("#region_id").chained("#countryid");
+</script>
+
+</cfif>
+
     <cfif new_catid is "9">
 
 <script>
+    // Toggles the visibility and validation of the custom field based on selected value
     function toggleCustomField(select) {
-        const isCustomSelected = select.value === 'Custom';
-        const customFieldDiv = document.getElementById('hidden_div');
-        const customFieldInput = document.getElementById('customtype');
+        var isCustomSelected = select.value === "Custom"; // Check if "Custom" is selected
+        var customFieldDiv = document.getElementById("hidden_div"); // The container for the custom field
+        var customFieldInput = document.getElementById("customtype"); // The input field for custom type
 
         // Show or hide the custom field
-        customFieldDiv.style.display = isCustomSelected ? 'block' : 'none';
+        customFieldDiv.style.display = isCustomSelected ? "block" : "none";
 
         // Add or remove parsley validation dynamically
         if (isCustomSelected) {
-            customFieldInput.setAttribute('data-parsley-required', 'true');
-            customFieldInput.setAttribute('data-parsley-error-message', 'Custom type is required');
+            customFieldInput.setAttribute("data-parsley-required", "true");
+            customFieldInput.setAttribute("data-parsley-error-message", "Custom Type is required");
         } else {
-            customFieldInput.removeAttribute('data-parsley-required');
-            customFieldInput.removeAttribute('data-parsley-error-message');
+            customFieldInput.removeAttribute("data-parsley-required");
+            customFieldInput.removeAttribute("data-parsley-error-message");
         }
 
-        // Re-validate the form if Parsley is active
+        // Trigger validation update if Parsley is active
         if (window.Parsley) {
-            $(customFieldInput).closest('form').parsley().validate();
+            $(customFieldInput).closest("form").parsley().validate();
         }
     }
 
     // Initialize on page load
-    window.onload = function () {
-        toggleCustomField(document.getElementById('valueType'));
-    };
+    document.addEventListener("DOMContentLoaded", function () {
+        var selectElement = document.getElementById("valueType");
+        if (selectElement) {
+            toggleCustomField(selectElement); // Ensure the initial state is correct
+        }
+    });
 </script>
+
+
 
 
 
