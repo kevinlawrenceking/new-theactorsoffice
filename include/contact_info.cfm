@@ -1256,6 +1256,29 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 </script>
+<script>
+    // Reset form and validation state on modal close
+    $(document).ready(function () {
+        $('.modal').on('hidden.bs.modal', function () {
+            var modalForm = $(this).find("form")[0];
+            if (modalForm) {
+                modalForm.reset();
+                $(modalForm).parsley().reset();
+                $("#hidden_div").hide(); // Hide custom type div
+                $("#special").hide(); // Hide custom company name div
+            }
+        });
+
+        // Attach toggleCustomField and handleCustomTypeValidation on load
+        $("#valueCompany").on("change", function () {
+            toggleCustomField(this);
+        });
+
+        $("#valueType").on("change", function () {
+            handleCustomTypeValidation(this);
+        });
+    });
+</script>
 
 
  
