@@ -207,8 +207,18 @@
     </div>
 </form>
 
-      <cfif new_catid is "2">
+    <cfif new_catid is "2">
+<script src="/app/assets/js/jquery.chained.js?ver=13.4"></script>
+<script>
+    $("#region_id").chained("#countryid");
+</script>
 
+</cfif>
+
+    
+ 
+  <cfif new_catid is "2">
+<script src="/app/assets/js/jquery.chained.js?ver=13.4"></script>
 <script>
     $("#region_id").chained("#countryid");
 </script>
@@ -248,27 +258,6 @@
     };
 </script>
 
-   <script>
-            window.onload = function() {
-           
-                toggleCustomField(document.getElementById('valueCompany'));
-            };
-
-            function toggleCustomField(select) {
-                var isCustomSelected = select.value === 'custom';
-                document.getElementById('special').style.display = isCustomSelected ? 'block' : 'none';
-            }
-        </script>
-
-
-
-
-<script>
-    function showDiv(divId, element) {
-        document.getElementById(divId).style.display = element.value == "Custom" ? 'block' : 'none';
-    }
-</script>
-
 <script>
     // Function to make 'customtype' required if 'Custom' is selected
     function handleCustomTypeValidation(select) {
@@ -305,11 +294,13 @@
 </script>
 
 
-</cfif>
 
 
-        <script>
-    $(document).ready(function() {
-        $(".parsley-examples").parsley();
-    });
+<script>
+    function showDiv(divId, element) {
+        document.getElementById(divId).style.display = element.value == "Custom" ? 'block' : 'none';
+    }
 </script>
+
+
+</cfif>
