@@ -858,7 +858,7 @@
     <cfargument name="itemdate" type="date" required="false">
     <cfargument name="itemid" type="numeric" required="true">
 
-    
+    <cfoutput>#trim(arguments.valueDepartment)#</cfoutput><cfabort>
         <cfquery result="result"  name="updateQuery">
             UPDATE contactitems
             SET valuetext = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.valuetext)#">

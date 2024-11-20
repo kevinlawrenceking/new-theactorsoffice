@@ -8,7 +8,7 @@
 }>
 <!--- Conditionally add defined variables to the structure --->
 <cfif structKeyExists(form, "valuecompany")><cfset args.valuecompany = trim(valuecompany)></cfif>
-<cfif structKeyExists(form, "valueDepartment")>dept!<Cfabort><cfset args.valueDepartment = trim(valueDepartment)></cfif>
+<cfif structKeyExists(form, "valueDepartment")><cfset args.valueDepartment = trim(valueDepartment)></cfif>
 <cfif structKeyExists(form, "valueTitle")><cfset args.valueTitle = trim(valueTitle)></cfif>
 <cfif structKeyExists(form, "valueStreetAddress")><cfset args.valueStreetAddress = trim(valueStreetAddress)></cfif>
 <cfif structKeyExists(form, "valueExtendedAddress")><cfset args.valueExtendedAddress = trim(valueExtendedAddress)></cfif>
