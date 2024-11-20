@@ -279,13 +279,13 @@
         var customFieldInput = document.getElementById("customtype"); // The custom type input field
 
         // Dynamically add or remove the 'required' attribute
-        if (isCustomSelected) {
-            customFieldInput.setAttribute("data-parsley-required", "true");
-            customFieldInput.setAttribute("data-parsley-error-message", "Custom Type is required");
+            if (isCustomSelected) {
+            customFieldInput.setAttribute('data-parsley-required', 'true');
         } else {
-            customFieldInput.removeAttribute("data-parsley-required");
-            customFieldInput.removeAttribute("data-parsley-error-message");
+            customFieldInput.removeAttribute('data-parsley-required');
         }
+
+        
 
         // Update Parsley validation if applicable
         if (window.Parsley) {
