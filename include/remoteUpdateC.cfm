@@ -219,11 +219,31 @@
 
 <script>
     function toggleCustomField(select) {
-        var customField = document.getElementById('special');
-        customField.style.display = select.value === 'custom' ? 'block' : 'none';
+        var isCustomSelected = select.value === 'custom';  
+        var customFieldDiv = document.getElementById('special'); 
+        var customFieldInput = document.getElementById('custom');  
+
+        // Show or hide the custom field
+        customFieldDiv.style.display = isCustomSelected ? 'block' : 'none';
+
+ 
+        if (isCustomSelected) {
+            customFieldInput.setAttribute('data-parsley-required', 'true');
+        } else {
+            customFieldInput.removeAttribute('data-parsley-required');
+        }
+
+ 
+        if (window.Parsley) {
+            customFieldInput
+                .closest('form')  
+                .parsley()
+                .validate();  
+        }
     }
 
-    window.onload = function() {
+    // Initialize on page load
+    window.onload = function () {
         toggleCustomField(document.getElementById('valueCompany'));
     };
 </script>
