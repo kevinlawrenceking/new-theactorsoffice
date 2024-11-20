@@ -49,7 +49,7 @@
           <div class="form-group col-md-6">
     <label for="valuetext">Type<span class="text-danger">*</span></label>
     <select id="valueType" name="valueType" class="form-control" data-parsley-required="true" 
-            data-parsley-error-message="Type is required" onchange="showDiv('hidden_div', this)">
+            data-parsley-error-message="Type is required" onchange="showDiv('hidden_div', this); handleCustomTypeValidation(this);">
         <option value=""></option>
        <cfif types.valuetype eq "Custom"> <option value="Custom"  selected >Custom</option></cfif>
          <cfif types.valuetype neq "Custom"> <option value="Custom" >***ADD NEW***</option></cfif>
@@ -272,6 +272,37 @@
     };
 </script>
 
+<script>
+    // Function to make 'customtype' required if 'Custom' is selected
+    function handleCustomTypeValidation(select) {
+        var isCustomSelected = select.value === "Custom"; // Check if "Custom" is selected
+        var customFieldInput = document.getElementById("customtype"); // The custom type input field
+
+        // Dynamically add or remove the 'required' attribute
+        if (isCustomSelected) {
+            customFieldInput.setAttribute("data-parsley-required", "true");
+            customFieldInput.setAttribute("data-parsley-error-message", "Custom Type is required");
+        } else {
+            customFieldInput.removeAttribute("data-parsley-required");
+            customFieldInput.removeAttribute("data-parsley-error-message");
+        }
+
+        // Update Parsley validation if applicable
+        if (window.Parsley) {
+            $(customFieldInput).closest("form").parsley().validate();
+        }
+    }
+
+    // Attach event listener to the dropdown
+    document.addEventListener("DOMContentLoaded", function () {
+        var valueTypeDropdown = document.getElementById("valueType");
+        if (valueTypeDropdown) {
+            valueTypeDropdown.addEventListener("change", function () {
+                handleCustomTypeValidation(this);
+            });
+        }
+    });
+</script>
 
 
 
