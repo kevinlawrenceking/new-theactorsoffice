@@ -196,7 +196,7 @@
             <cfoutput>
                 <div class="form-group col-md-12" id="special" style="display: none;">
                     <label for="custom">Custom Name</label>
-                    <input class="form-control" type="text" id="custom" name="custom" value="" placeholder="Enter Custom #details.recordname#">
+                    <input class="form-control" type="text" id="custom" name="custom" value="" placeholder="Enter Custom #details.recordname#" data-parsley-required="false">
                 </div>
             </cfoutput>
 
@@ -234,26 +234,35 @@
 
 <script>
     function toggleCustomField(select) {
-        var customField = document.getElementById('special');
-        customField.style.display = select.value === 'custom' ? 'block' : 'none';
+        var isCustomSelected = select.value === 'custom'; // Check if 'custom' is selected
+        var customFieldDiv = document.getElementById('special'); // Div containing the custom input
+        var customFieldInput = document.getElementById('custom'); // Input field for custom name
+
+        // Show or hide the custom field
+        customFieldDiv.style.display = isCustomSelected ? 'block' : 'none';
+
+        // Add or remove the Parsley required attribute dynamically
+        if (isCustomSelected) {
+            customFieldInput.setAttribute('data-parsley-required', 'true');
+        } else {
+            customFieldInput.removeAttribute('data-parsley-required');
+        }
+
+        // Revalidate the form with Parsley to reflect the updated requirement
+        if (window.Parsley) {
+            customFieldInput
+                .closest('form') // Target the form containing the custom input
+                .parsley()
+                .validate(); // Validate the form to update Parsley state
+        }
     }
 
-    window.onload = function() {
+    // Initialize on page load
+    window.onload = function () {
         toggleCustomField(document.getElementById('valueCompany'));
     };
 </script>
 
-   <script>
-            window.onload = function() {
-           
-                toggleCustomField(document.getElementById('valueCompany'));
-            };
-
-            function toggleCustomField(select) {
-                var isCustomSelected = select.value === 'custom';
-                document.getElementById('special').style.display = isCustomSelected ? 'block' : 'none';
-            }
-        </script>
 
 
 
