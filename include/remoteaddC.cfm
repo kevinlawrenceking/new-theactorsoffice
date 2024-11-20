@@ -219,9 +219,7 @@
     </div>
 </form>
 
-<script>
-    $("#region_id").chained("#countryid");
-</script>
+
 
   <cfif new_catid is "2">
 
