@@ -52,7 +52,8 @@
         <label for="valuetext">Type <span class="text-danger">*</span></label>
     <select id="valueType" name="valueType" class="form-control" data-parsley-required="true" 
             data-parsley-error-message="Type is required" onchange="showDiv('hidden_div', this); handleCustomTypeValidation(this);">
-            <option value=""></option>
+             <option value="Custom" >***ADD NEW***</option>
+   
             <cfoutput query="typesResult.types">
                 <option value="#typesResult.types.valuetype#" <cfif typesResult.types.valuetype eq details.valueType>selected</cfif>>#typesResult.types.valuetype#</option>
             </cfoutput>
