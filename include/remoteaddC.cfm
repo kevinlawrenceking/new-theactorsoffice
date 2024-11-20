@@ -268,7 +268,7 @@
     // Function to make 'customtype' required if 'Custom' is selected
     function handleCustomTypeValidation(select) {
         var isCustomSelected = select.value === "Custom"; // Check if "Custom" is selected
-        var customFieldInput = document.getElementById("customtype<cfoutput>#itemid#</cfoutput>"); // The custom type input field
+        var customFieldInput = document.getElementById("customtype<cfoutput>#catid#</cfoutput>"); // The custom type input field
 
         // Dynamically add or remove the 'required' attribute
         if (isCustomSelected) {
