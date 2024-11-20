@@ -279,18 +279,21 @@
         var customFieldInput = document.getElementById("customtype"); // The custom type input field
 
         // Dynamically add or remove the 'required' attribute
-            if (isCustomSelected) {
-            customFieldInput.setAttribute('data-parsley-required', 'true');
+        if (isCustomSelected) {
+            customFieldInput.setAttribute("data-parsley-required", "true");
+            customFieldInput.setAttribute("data-parsley-error-message", "Custom Type is required");
         } else {
-            customFieldInput.removeAttribute('data-parsley-required');
+            customFieldInput.removeAttribute("data-parsley-required");
+            customFieldInput.removeAttribute("data-parsley-error-message");
+
+            // Clear validation state when hiding the field
+            if (window.Parsley) {
+                $(customFieldInput).parsley().reset();
+            }
         }
 
-        
-
-        // Update Parsley validation if applicable
-        if (window.Parsley) {
-            $(customFieldInput).closest("form").parsley().validate();
-        }
+        // Show or hide the input field
+        document.getElementById("hidden_div").style.display = isCustomSelected ? "block" : "none";
     }
 
     // Attach event listener to the dropdown
