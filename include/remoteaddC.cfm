@@ -308,3 +308,17 @@
     }
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Attach reset handler for modals
+    $('.modal').on('hidden.bs.modal', function () {
+        var modalForm = $(this).find("form")[0];
+        if (modalForm) {
+            modalForm.reset(); // Reset all fields
+            $(modalForm).parsley().reset(); // Reset Parsley validation state
+            $("#hidden_div").hide(); // Hide the custom type div
+            $("#special").hide(); // Hide the custom company name div
+        }
+    });
+});
+</script>
