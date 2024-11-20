@@ -9,7 +9,7 @@
 <cfparam name="valuetext" default="" >
 <cfparam name="def_countryid" default="US" />
 <cfparam name="new_countryid" default="US" />
-
+<cfparam name="MINLENGTH " default="1" />
 <cfset new_catid = catid />
 
 <!--- Include fetchLocationService.cfm to get the countries and regions --->
