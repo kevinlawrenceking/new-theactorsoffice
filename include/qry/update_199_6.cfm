@@ -7,13 +7,7 @@
     itemid: itemid
 }>
 
-<Cfoutput>
-catid: #catid#<BR>
-dept: #valueDepartment#<BR>
-title: #valueTitle#<BR>
 
-</cfoutput>
-<Cfabort>
 <!--- Conditionally add defined variables to the structure --->
 <cfif structKeyExists(variables, "valuecompany")><cfset args.valuecompany = trim(valuecompany)></cfif>
 <cfif structKeyExists(variables, "valueDepartment")><cfset args.valueDepartment = trim(valueDepartment)></cfif>
