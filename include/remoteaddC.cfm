@@ -231,7 +231,7 @@
 
 </cfif>
 
-    <cfif new_catid is "9" or new_catid is "1">
+    <cfif new_catid is "9" or new_catid is "10">
 
 <script>
     function toggleCustomField(select) {
