@@ -820,18 +820,29 @@
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="valuetype" type="string" required="true">
     <cfargument name="valueCategory" type="string" required="true">
+    <cfargument name="valueDepartment" type="string" required="false" default="">
+    <cfargument name="valueTitle" type="string" required="false" default="">
+    <cfargument name="catid" type="numeric" required="true" default="0">
 
-        <cfquery result="result" >
-            INSERT INTO contactitems (contactid, valuetype, itemStatus, valueCategory)
-            VALUES (
-                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.contactid#" />,
-                <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valuetype)#" />,
-                <cfqueryparam cfsqltype="cf_sql_varchar" value="Active" />,
-                <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.valueCategory#" />
-            )
-        </cfquery>
-  <cfreturn result.generatedKey>      
+    <cfquery result="result">
+        INSERT INTO contactitems (contactid, valuetype, itemStatus, valueCategory
+            <cfif arguments.catid EQ 9>, valueTitle, valueDepartment</cfif>
+        )
+        VALUES (
+            <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.contactid#" />,
+            <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valuetype)#" />,
+            <cfqueryparam cfsqltype="cf_sql_varchar" value="Active" />,
+            <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.valueCategory#" />
+            <cfif arguments.catid EQ 9>,
+                <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valueTitle)#" />,
+                <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.valueDepartment)#" />
+            </cfif>
+        )
+    </cfquery>
+
+    <cfreturn result.generatedKey>
 </cffunction>
+
 <cffunction output="false" name="UPDcontactitems_24046" access="public" returntype="void">
     <cfargument name="valuetext" type="string" required="true">
     <cfargument name="catid" type="string" required="true">

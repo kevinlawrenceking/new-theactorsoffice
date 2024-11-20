@@ -19,7 +19,7 @@
 
 <cfinclude template="/include/qry/add_199_3.cfm" />
 
-<cfparam name="new_countryname" default="" />
+<cfparam name="new_countryname" default="" />`
 <cfparam name="new_regionname" default="" />
 
 <!--- Check if category ID is "2" for country and region lookup --->
@@ -73,8 +73,8 @@
     </cfif>
 </cfif>
 
-<!---
-<cfinclude template="/include/qry/update_199_6.cfm" /> --->
+
+<cfinclude template="/include/qry/update_199_6.cfm" /> 
 
 <!--- Redirect to contact page with contact ID --->
 <cflocation url="/app/contact/?contactid=#contactid#" />
