@@ -90,7 +90,7 @@
 
                 <div class="form-group col-md-12">
                     <label for="valuefieldtype">#details.recordname#<span class="text-danger">*</span></label>
-                    <input class="form-control" type="#valuefieldtype#" id="valuetext" name="valuetext" value="#details.valuetext#" data-parsley-minlength="#minlength#" data-parsley-minlength-message="Min length #minlength# characters" data-parsley-maxlength="800" data-parsley-maxlength-message="Max length 800 characters" data-parsley-required data-parsley-error-message="Valid #details.recordname# is required" placeholder="Enter #details.recordname#">
+                    <input class="form-control" type="#valuefieldtype#" id="valuetext" name="valuetext" value="#details.valuetext#" data-parsley-required="true" data-parsley-minlength="#minlength#" data-parsley-minlength-message="Min length #minlength# characters" data-parsley-maxlength="800" data-parsley-maxlength-message="Max length 800 characters" data-parsley-required data-parsley-error-message="Valid #details.recordname# is required" placeholder="Enter #details.recordname#">
                 </div>
             </cfoutput>
         </cfif>
@@ -100,7 +100,7 @@
             <cfoutput>
                 <div class="form-group col-md-12">
                     <label for="valuetext">#details.recordname#<span class="text-danger">*</span></label>
-                    <input class="form-control" type="text" id="valuetext" name="valuetext" value="#details.valuetext#" data-parsley-minlength="#minlength#" data-parsley-minlength-message="Min length #minlength# characters" data-parsley-maxlength="800" data-parsley-maxlength-message="Max length 800 characters" data-parsley-required data-parsley-error-message="Valid #details.recordname# is required" placeholder="Enter #details.recordname#">
+                    <input class="form-control" type="text" id="valuetext" name="valuetext" value="#details.valuetext#" data-parsley-minlength="#minlength#" data-parsley-required="true" data-parsley-minlength-message="Min length #minlength# characters" data-parsley-maxlength="800" data-parsley-maxlength-message="Max length 800 characters" data-parsley-required data-parsley-error-message="Valid #details.recordname# is required" placeholder="Enter #details.recordname#">
                 </div>
             </cfoutput>
         </cfif>
