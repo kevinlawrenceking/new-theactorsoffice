@@ -50,7 +50,7 @@
 <cfelse>
     <div class="form-group col-md-6">
         <label for="valuetext">Type <span class="text-danger">*</span></label>
-        <select id="valueType" name="valueType" class="form-control" data-parsley-required data-parsley-error-message="Type is required" onchange="showDiv('hidden_div', this)">
+        <select id="valueType" name="valueType" class="form-control" data-parsley-required data-parsley-error-message="Type is required" onchange="showDiv('hidden_div', this); handleCustomTypeValidation(this);">
             <option value=""></option>
             <cfoutput query="typesResult.types">
                 <option value="#typesResult.types.valuetype#" <cfif typesResult.types.valuetype eq details.valueType>selected</cfif>>#typesResult.types.valuetype#</option>
@@ -247,6 +247,41 @@
     function showDiv(divId, element) {
         document.getElementById(divId).style.display = element.value == "Custom" ? 'block' : 'none';
     }
+</script>
+
+<script>
+    // Function to make 'customtype' required if 'Custom' is selected
+    function handleCustomTypeValidation(select) {
+        var isCustomSelected = select.value === "Custom"; // Check if "Custom" is selected
+        var customFieldInput = document.getElementById("customtype"); // The custom type input field
+
+        // Dynamically add or remove the 'required' attribute
+        if (isCustomSelected) {
+            customFieldInput.setAttribute("data-parsley-required", "true");
+            customFieldInput.setAttribute("data-parsley-error-message", "Custom Type is required");
+        } else {
+            customFieldInput.removeAttribute("data-parsley-required");
+            customFieldInput.removeAttribute("data-parsley-error-message");
+
+            // Clear validation state when hiding the field
+            if (window.Parsley) {
+                $(customFieldInput).parsley().reset();
+            }
+        }
+
+        // Show or hide the input field
+        document.getElementById("hidden_div").style.display = isCustomSelected ? "block" : "none";
+    }
+
+    // Attach event listener to the dropdown
+    document.addEventListener("DOMContentLoaded", function () {
+        var valueTypeDropdown = document.getElementById("valueType");
+        if (valueTypeDropdown) {
+            valueTypeDropdown.addEventListener("change", function () {
+                handleCustomTypeValidation(this);
+            });
+        }
+    });
 </script>
 
 
