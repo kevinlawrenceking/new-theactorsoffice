@@ -221,14 +221,6 @@
 
 
 
-  <cfif new_catid is "2">
-<script src="/app/assets/js/jquery.chained.js?ver=13.4"></script>
-<script>
-    $("#region_id").chained("#countryid");
-</script>
-
-</cfif>
-
     
  
   <cfif new_catid is "2">

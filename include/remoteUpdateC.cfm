@@ -5,7 +5,7 @@
         display: none;
     }
 </style>
-
+           <script src="/app/assets/js/libs/parsleyjs/parsley.min.js?ver=13"></script>
 <cfinclude template="/include/fetchLocationService.cfm" />
 <cfinclude template="/include/qry/details_261_1.cfm" />
 
@@ -64,7 +64,7 @@
 
         <div id="hidden_div" class="form-group col-md-6">
             <label for="customtype">Custom Type</label>
-            <input class="form-control" type="text" id="customtype" name="customtype" placeholder="Add a custom type">
+            <input class="form-control" type="text" id="customtype" name="customtype" placeholder="Add a custom type"   data-parsley-required="false">
         </div>
 
         <cfset valuefieldtype = "text">
@@ -179,7 +179,7 @@
                 <Cfoutput>
                 <div class="form-group col-md-12" id="special" style="display: none;">
                     <label for="custom">Custom Name</label>
-                    <input class="form-control" type="text" id="custom" name="custom" value="" placeholder="Enter Custom #details.recordname#">
+                    <input class="form-control" type="text" id="custom" name="custom" value="" placeholder="Enter Custom #details.recordname#"   data-parsley-required="false">
                 </div>
 
                 <div class="form-group col-md-12">
