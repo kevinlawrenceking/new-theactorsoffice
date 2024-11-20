@@ -97,7 +97,7 @@
                     <label for="valuetext">#details.recordname#<span class="text-danger">*</span></label>
                     <input class="form-control" type="#valuefieldtype#" placeholder="#placeholder#" id="valuetext" 
                            value="#valuetext#" name="valuetext"
-                           data-parsley-maxlength="800" 
+                           data-parsley-maxlength="800"  data-parsley-required="true"
                            data-parsley-maxlength-message="Max length 800 characters"
                            <cfif new_catid neq "4">placeholder="Enter #details.recordname#"</cfif>
                     >
