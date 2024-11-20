@@ -241,39 +241,35 @@
     <cfif new_catid is "9">
 
 <script>
-    // Toggles the visibility and validation of the custom field based on selected value
     function toggleCustomField(select) {
-        var isCustomSelected = select.value === "Custom"; // Check if "Custom" is selected
-        var customFieldDiv = document.getElementById("hidden_div"); // The container for the custom field
-        var customFieldInput = document.getElementById("customtype"); // The input field for custom type
+        var isCustomSelected = select.value === 'custom';  
+        var customFieldDiv = document.getElementById('special'); 
+        var customFieldInput = document.getElementById('custom');  
 
         // Show or hide the custom field
-        customFieldDiv.style.display = isCustomSelected ? "block" : "none";
+        customFieldDiv.style.display = isCustomSelected ? 'block' : 'none';
 
-        // Add or remove parsley validation dynamically
+ 
         if (isCustomSelected) {
-            customFieldInput.setAttribute("data-parsley-required", "true");
-            customFieldInput.setAttribute("data-parsley-error-message", "Custom Type is required");
+            customFieldInput.setAttribute('data-parsley-required', 'true');
         } else {
-            customFieldInput.removeAttribute("data-parsley-required");
-            customFieldInput.removeAttribute("data-parsley-error-message");
+            customFieldInput.removeAttribute('data-parsley-required');
         }
 
-        // Trigger validation update if Parsley is active
+ 
         if (window.Parsley) {
-            $(customFieldInput).closest("form").parsley().validate();
+            customFieldInput
+                .closest('form')  
+                .parsley()
+                .validate();  
         }
     }
 
     // Initialize on page load
-    document.addEventListener("DOMContentLoaded", function () {
-        var selectElement = document.getElementById("valueType");
-        if (selectElement) {
-            toggleCustomField(selectElement); // Ensure the initial state is correct
-        }
-    });
+    window.onload = function () {
+        toggleCustomField(document.getElementById('valueCompany'));
+    };
 </script>
-
 
 
 
