@@ -49,7 +49,7 @@
     <cfoutput><input type="hidden" name="valuetype" value="#typesResult.types.valuetype#" /></cfoutput>
 <cfelse>
     <div class="form-group col-md-6">
-        <label for="valuetext">Type <span class="text-danger">*</span></label>
+        <label for="valueType">Type <span class="text-danger">*</span></label>
     <select id="valueType" name="valueType" class="form-control" data-parsley-required="true" 
             data-parsley-error-message="Type is required" onchange="showDiv('hidden_div', this); handleCustomTypeValidation(this);">
              <option value="Custom" >***ADD NEW***</option>
@@ -89,7 +89,7 @@
                 </cfif>
 
                 <div class="form-group col-md-12">
-                    <label for="valuetext">#details.recordname#<span class="text-danger">*</span></label>
+                    <label for="valuefieldtype">#details.recordname#<span class="text-danger">*</span></label>
                     <input class="form-control" type="#valuefieldtype#" id="valuetext" name="valuetext" value="#details.valuetext#" data-parsley-minlength="#minlength#" data-parsley-minlength-message="Min length #minlength# characters" data-parsley-maxlength="800" data-parsley-maxlength-message="Max length 800 characters" data-parsley-required data-parsley-error-message="Valid #details.recordname# is required" placeholder="Enter #details.recordname#">
                 </div>
             </cfoutput>
@@ -100,7 +100,7 @@
             <cfoutput>
                 <div class="form-group col-md-12">
                     <label for="valuetext">#details.recordname#<span class="text-danger">*</span></label>
-                    <input class="form-control" type="text" id="valuetext" name="valuetext" value="#details.valuetext#" data-parsley-required placeholder="Enter #details.recordname#">
+                    <input class="form-control" type="text" id="valuetext" name="valuetext" value="#details.valuetext#" data-parsley-minlength="#minlength#" data-parsley-minlength-message="Min length #minlength# characters" data-parsley-maxlength="800" data-parsley-maxlength-message="Max length 800 characters" data-parsley-required data-parsley-error-message="Valid #details.recordname# is required" placeholder="Enter #details.recordname#">
                 </div>
             </cfoutput>
         </cfif>
@@ -118,12 +118,12 @@
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label for="valuetext">Town/City</label>
+                    <label for="valuetvalueCityext">Town/City</label>
                     <input class="form-control" type="text" id="valueCity" value="#details.valueCity#" name="valueCity" placeholder="Enter City">
                 </div>
 
                 <div class="form-group col-md-6">
-                    <label for="valuetext">Postal Code</label>
+                    <label for="valuePostalCode">Postal Code</label>
                     <input class="form-control" type="text" id="valuePostalCode" value="#details.valuePostalCode#" name="valuePostalCode" placeholder="Enter Postal Code">
                 </div>
             </cfoutput>
@@ -227,7 +227,7 @@
 
 </cfif>
 
-    <cfif new_catid is "9" or new_catid is "1">
+    <cfif new_catid is "9" or new_catid is "10">
 
 <script>
     function toggleCustomField(select) {

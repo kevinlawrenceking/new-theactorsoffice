@@ -47,7 +47,7 @@
             </cfoutput>
         <cfelse>
           <div class="form-group col-md-6">
-    <label for="valuetext">Type<span class="text-danger">*</span></label>
+    <label for="valueType">Type<span class="text-danger">*</span></label>
     <select id="valueType" name="valueType" class="form-control" data-parsley-required="true" 
             data-parsley-error-message="Type is required" onchange="showDiv('hidden_div', this); handleCustomTypeValidation(this);">
         <option value=""></option>
