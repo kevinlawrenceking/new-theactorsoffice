@@ -63,7 +63,7 @@
 
         <div id="hidden_div" class="form-group col-md-6"  style="display: none;">
             <label for="customtype">Custom Type</label>
-            <input class="form-control" type="text" id="customtype" name="customtype" value="Custom">
+            <input class="form-control" type="text" id="customtype" name="customtype" >
         </div>
 
         <cfset valuefieldtype = "text">
