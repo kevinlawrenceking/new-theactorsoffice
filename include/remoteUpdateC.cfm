@@ -227,8 +227,7 @@
 </script>
 
 </cfif>
-
-    <cfif new_catid is "9" or new_catid is "10"  or new_catid is "5" or new_catid is "1">
+ 
 
 <script>
     function toggleCustomField(select) {
@@ -296,14 +295,9 @@
     });
 </script>
 
-
-
-
+ 
 <script>
     function showDiv(divId, element) {
         document.getElementById(divId).style.display = element.value == "Custom" ? 'block' : 'none';
     }
 </script>
-
-
-</cfif>
