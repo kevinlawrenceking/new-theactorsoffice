@@ -234,26 +234,26 @@
 
 <script>
     function toggleCustomField(select) {
-        var isCustomSelected = select.value === 'custom'; // Check if 'custom' is selected
-        var customFieldDiv = document.getElementById('special'); // Div containing the custom input
-        var customFieldInput = document.getElementById('custom'); // Input field for custom name
+        var isCustomSelected = select.value === 'custom';  
+        var customFieldDiv = document.getElementById('special'); 
+        var customFieldInput = document.getElementById('custom');  
 
         // Show or hide the custom field
         customFieldDiv.style.display = isCustomSelected ? 'block' : 'none';
 
-        // Add or remove the Parsley required attribute dynamically
+ 
         if (isCustomSelected) {
             customFieldInput.setAttribute('data-parsley-required', 'true');
         } else {
             customFieldInput.removeAttribute('data-parsley-required');
         }
 
-        // Revalidate the form with Parsley to reflect the updated requirement
+ 
         if (window.Parsley) {
             customFieldInput
-                .closest('form') // Target the form containing the custom input
+                .closest('form')  
                 .parsley()
-                .validate(); // Validate the form to update Parsley state
+                .validate();  
         }
     }
 
