@@ -211,3 +211,13 @@
     $("#region_id").chained("#countryid");
 </script>
 
+<script>
+    function toggleCustomField(select) {
+        var customField = document.getElementById('special');
+        customField.style.display = select.value === 'custom' ? 'block' : 'none';
+    }
+
+    window.onload = function() {
+        toggleCustomField(document.getElementById('valueCompany'));
+    };
+</script>
