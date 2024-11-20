@@ -50,15 +50,11 @@
                 <select id="valueType" name="valueType" class="form-control" data-parsley-required="true" 
                         data-parsley-error-message="Type is required" onchange="toggleCustomField(this)">
                     <option value=""></option>
+                    <option value="Custom" <cfif types.valuetype eq "Custom">selected</cfif>>***ADD NEW***</option>
                     <cfoutput query="types">
-                        <option value="Custom" <cfif types.valuetype eq "Custom">selected</cfif>>
-                            ***ADD NEW***
+                        <option value="#types.valuetype#" <cfif types.valuetype eq details.valuetypedef>selected</cfif>>
+                            #types.valuetype#
                         </option>
-                        <cfif types.valuetype neq "Custom">
-                            <option value="#types.valuetype#" <cfif types.valuetype eq details.valuetypedef>selected</cfif>>
-                                #types.valuetype#
-                            </option>
-                        </cfif>
                     </cfoutput>
                 </select>
             </div>
