@@ -207,9 +207,15 @@
     </div>
 </form>
 
+      <cfif new_catid is "2">
+
 <script>
     $("#region_id").chained("#countryid");
 </script>
+
+</cfif>
+
+    <cfif new_catid is "9">
 
 <script>
     function toggleCustomField(select) {
@@ -220,4 +226,35 @@
     window.onload = function() {
         toggleCustomField(document.getElementById('valueCompany'));
     };
+</script>
+
+   <script>
+            window.onload = function() {
+           
+                toggleCustomField(document.getElementById('valueCompany'));
+            };
+
+            function toggleCustomField(select) {
+                var isCustomSelected = select.value === 'custom';
+                document.getElementById('special').style.display = isCustomSelected ? 'block' : 'none';
+            }
+        </script>
+
+
+
+
+<script>
+    function showDiv(divId, element) {
+        document.getElementById(divId).style.display = element.value == "Custom" ? 'block' : 'none';
+    }
+</script>
+
+
+</cfif>
+
+
+        <script>
+    $(document).ready(function() {
+        $(".parsley-examples").parsley();
+    });
 </script>
