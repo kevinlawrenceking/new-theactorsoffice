@@ -1,5 +1,6 @@
 <!--- This ColdFusion page handles the form submission for adding new categories and regions, including dynamic fields based on user selection. --->
-
+ 
+                <script src="/app/assets/js/libs/parsleyjs/parsley.min.js?ver=13"></script>
 <cfparam name="placeholder" default="" />
 <cfparam name="userid" default="0" type="integer">
 <cfparam name="new_catid" default="0" type="integer">
