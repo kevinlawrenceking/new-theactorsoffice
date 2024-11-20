@@ -11,7 +11,7 @@
 
 <cfparam name="new_countryid" default="" />
 <cfparam name="new_region_id" default="" />
-
+<cfparam name="MINLENGTH " default="1" />
 <cfinclude template="/include/qry/findcountry_261_2.cfm" />
 
 <!--- Check if a country is found and set the new_countryid accordingly --->
