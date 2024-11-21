@@ -4,7 +4,7 @@
 <cfparam name="updatenoteid" default="0" /> <!--- Set default value for update note ID --->
 
 <cfinclude template="/include/qry/eventdetails_334_3.cfm" />
-<cfinclude template="/include/qry/SELaudnoteslog.cfm" /> <!--- Include template for event notes --->
+<cfinclude template="/include/qry/notesEvent_508_1.cfm" /> <!--- Include template for event notes --->
 
 <cfinclude template="/include/qry/attendees_336_5.cfm" />
 <cfinclude template="/include/qry/notesContactDetails_180_2.cfm" /> <!--- Include template for contact details --->
