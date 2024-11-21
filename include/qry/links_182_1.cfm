@@ -1,6 +1,6 @@
 <cfset auditionLinkService = createObject("component", "services.AuditionLinkService")>
 <cfset auditionLinkService.INSaudlinks(
-    linkname = linkname,
-    linkurl = linkurl,
+    linkname = NotesEvent.linkname,
+    linkurl = NotesEvent.linkurl,
     audroleid = audroleid
 )>
