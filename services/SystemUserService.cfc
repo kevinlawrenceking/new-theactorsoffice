@@ -67,20 +67,14 @@
 </cffunction>
 
 <cffunction output="false" name="SELfusystemusers_23864" access="public" returntype="query">
-    <cfargument name="idlist" type="array" required="true">
+    <cfargument name="idlist" type="string" required="true">
     <cfargument name="new_systemid" type="numeric" required="true">
-
-    
 
     <cfquery name="result">
         SELECT COUNT(*) AS totals
         FROM fusystemusers_tbl
         WHERE isdeleted = <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
-        AND contactid IN (
-            <cfloop array="#arguments.idlist#" index="id">
-                <cfqueryparam value="#id#" cfsqltype="CF_SQL_INTEGER" list="true">
-            </cfloop>
-        )
+        AND contactid IN (#arguments.idlist#)
         AND systemid = <cfqueryparam value="#arguments.new_systemid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 
