@@ -158,7 +158,7 @@
         </cfoutput>
     </cfloop>
 
-
+<script src="/app/assets/js/libs/devbridge-autocomplete/jquery.autocomplete.min.js?ver=0.00127548226092"></script>
   <cfinclude template="/include/autocomplete.cfm" />
 
 
