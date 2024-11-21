@@ -1281,6 +1281,13 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
 
- 
+<script>
+ $('.modal').on('show.bs.modal', function () {
+    var modalId = $(this).attr('id');
+    $(`#${modalId} select[name="valueType"]`).off("change").on("change", function () {
+        handleCustomTypeValidation(this, modalId);
+    });
+});
+</script>
 
 
