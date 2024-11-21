@@ -1,3 +1,4 @@
+<cfset currentURL = cgi.server_name />
 <cfset host = ListFirst(currentURL, ".") />
 <cfinclude template="/include/qry/headshots_sel_unused.cfm" />
 <cfparam name="placeholder" default="" />
