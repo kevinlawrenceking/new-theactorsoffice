@@ -226,7 +226,7 @@
 
           <div class="row">
             <div class="form-group col-md-6">
-              <label for="userFirstName">First Name #details.recordcount#<span class="text-danger">*</span>
+              <label for="userFirstName">First Name [#details.recordcount#]<span class="text-danger">*</span>
               </label>
             </label>
 
