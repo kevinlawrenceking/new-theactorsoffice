@@ -9,7 +9,7 @@ This is  a gest.
     <cfloop query="headshots_sel">
         
         <!--- Check if the media file is an image --->
-        <cfif IsImageFile("#session.userMediaUrl#/#headshots_sel.mediaFileName#/#headshots_sel.mediaFileName#")> 
+        <cfif IsImageFile("#userMediaUrl#/#headshots_sel.mediaFileName#/#headshots_sel.mediaFileName#")> 
             <Cfoutput>
                 
                 <div class="col-sm-12">
