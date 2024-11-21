@@ -9,7 +9,7 @@
     <cfloop query="headshots_sel">
         
         <!--- Check if the media file is an image --->
-        <cfif IsImageFile(https://#host#.theactorsoffice.com/#userMediaUrl#/#headshots_sel.mediaFileName#/#headshots_sel.mediaFileName#")> 
+        <cfif IsImageFile("https://#host#.theactorsoffice.com/#userMediaUrl#/#headshots_sel.mediaFileName#/#headshots_sel.mediaFileName#")> 
             <Cfoutput>
                 
                 <div class="col-sm-12">
