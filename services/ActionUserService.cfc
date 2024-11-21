@@ -65,7 +65,7 @@
     <cfargument name="deleteAction" type="boolean" required="true">
     <cfargument name="actionDaysRecurring" type="string" default="">
 
-    <cfquery name="update" datasource="#dsn#">
+    <cfquery name="update" >
         UPDATE actionusers_tbl
         SET 
             actionDaysNo = <cfqueryparam value="#arguments.actionDaysNo#" cfsqltype="CF_SQL_INTEGER">
