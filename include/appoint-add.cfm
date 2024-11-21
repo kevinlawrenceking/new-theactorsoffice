@@ -17,6 +17,10 @@
     <div class="col-xl-6 col-lg-8 col-md-12">
         <div class="card">
          <!--- card body --->
+
+   <div class="card-body">Test</div>
+
+
         </div>
     </div>
 </div>
