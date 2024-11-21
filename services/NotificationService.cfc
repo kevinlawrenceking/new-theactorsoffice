@@ -1,5 +1,19 @@
 <cfcomponent displayname="NotificationService" hint="Handles operations for Notification table" > 
 
+<cffunction name="UPDfunotifications_24032" access="public" returntype="void" output="false">
+    <cfargument name="new_notstartdate" type="date" required="true">
+    <cfargument name="notid" type="numeric" required="true">
+
+    <cfquery datasource="#dsn#">
+        UPDATE funotifications
+        SET 
+            notstartdate = <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.new_notstartdate#">
+        WHERE 
+            notid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.notid#">
+    </cfquery>
+</cffunction>
+
+
 <cffunction output="false" name="UPDfunotifications_24130" access="public" returntype="void">
     <cfquery name="result">
         UPDATE funotifications_tbl 
