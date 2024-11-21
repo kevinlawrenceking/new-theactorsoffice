@@ -1,5 +1,33 @@
 <cfcomponent displayname="ContactService" hint="Handles operations for Contact table" > 
 
+<cffunction name="addMembers" access="public" returntype="void" output="false">
+    <!--- Arguments required for the function --->
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="topsearch_myteam" type="string" required="true">
+
+    <!--- Perform a single query to find and optionally insert the record --->
+    <cfquery name="addTeamMember">
+        INSERT INTO contactitems (contactid, valuetype, valuecategory, valuetext, itemstatus, primary_yn)
+        SELECT 
+            contactid, 
+            'Tags', 
+            'Tag', 
+            'My Team', 
+            'Active', 
+            'Y'
+        FROM contacts_ss
+        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+          AND col1 = <cfqueryparam value="#arguments.topsearch_myteam#" cfsqltype="CF_SQL_VARCHAR">
+          AND NOT EXISTS (
+              SELECT 1 
+              FROM contactitems 
+              WHERE contactid = contacts_ss.contactid
+                AND valuetext = 'My Team'
+          )
+    </cfquery>
+</cffunction>
+
+
 <cffunction name="getSystemIdBasedOnTag" access="public" returntype="numeric" output="false">
     <cfargument name="audprojectDate" type="date" required="true">
     <cfargument name="new_contactid" type="numeric" required="true">

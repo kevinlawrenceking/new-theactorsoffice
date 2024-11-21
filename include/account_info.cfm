@@ -438,17 +438,9 @@
 
         <cfif #ctaction# is "addmember">
 
-          <cfinclude template="/include/qry/qry_block_1_3.cfm"/>
+          <cfinclude template="/include/qry/addMembers.cfm"/>
 
-          <cfif #findK.recordcount# is "1">
-new! <cfabort>
-            <cfset new_contactid=findk.contactid/>
-            <Cfif #new_contactid# is not "">
-              <cfinclude template="/include/qry/qry_block_1_4.cfm"/>
-
-            </cfif>
-
-          </cfif>
+     
 
           <cfset new_region_id = region_id/>
 
