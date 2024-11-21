@@ -8,7 +8,7 @@
 
 <cfinclude template="/include/qry/attachdetails_109_1.cfm" /> <!--- Include the attachment details template --->
 
-<cfhttp url="#session.userMediaUrl#/#attachdetails.mediafilename#" getAsBinary="yes"/> <!--- Retrieve the media file as binary data --->
+<cfhttp url="#userMediaUrl#/#attachdetails.mediafilename#" getAsBinary="yes"/> <!--- Retrieve the media file as binary data --->
 
 <cfheader name="Content-Disposition" value="inline; filename=#attachdetails.mediafilename#" /> <!--- Set the header for content disposition to inline with the filename --->
 
