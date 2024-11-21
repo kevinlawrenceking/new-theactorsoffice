@@ -1,100 +1,218 @@
-<cfloop query="events">
-    <cfinclude template="/include/qry/auditionDetails_29_3.cfm" />
-    <cfoutput>
-        <div id="auditionDetails_#events.eventid#" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" 
+   <div class="card-body">
 
->
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header" style="background-color: ##f3f7f9;">
-                        <h4 class="modal-title" id="standard-modalLabel">Appointment Details</h4>
-                        <button type="button" class="close" data-bs-dismiss="modal" 
 
-><i class="mdi mdi-close-thick"></i></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row" style="margin: auto;">
-                            <!-- Open cfif for eventStart -->
-                            <cfif auditiondetails.eventStart is not "">
-                                <h4 class="px-1 d-flex text-nowrap">
-                                    <img src="#application.datesUrl#/#DateFormat(auditiondetails.eventStart, 'yyyy-mm-dd')#.png" style="max-width:75px;" alt="...">
-                                </h4>
-                            </cfif>
-                            <div class="col-md-12 p-1"><strong>Time: </strong>#timeformat(auditiondetails.eventStartTime)# 
-                                <!-- Open cfif for eventStopTime -->
-                                <cfif auditiondetails.eventStopTime is not "">- #timeformat(auditiondetails.eventStopTime)#</cfif>
+            
+                <!--- Form for adding an appointment --->
+                <form 
+                    method="post" 
+                    action="/include/appoint-add2.cfm" 
+                    class="parsley-examples" 
+                    name="event-form" 
+                    id="form-event" 
+                    data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" 
+                    data-parsley-trigger="keyup" 
+                    data-parsley-validate>
+                    <cfoutput>
+                        <input type="hidden" name="returnurl" value="#returnurl#">
+                        <input type="hidden" name="rcontactid" value="#rcontactid#">
+                        <input type="hidden" name="userid" value="#userid#">
+                    </cfoutput>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="control-label">Title<span class="text-danger">*</span></label>
+                                <input 
+                                    class="form-control" 
+                                    autocomplete="off" 
+                                    placeholder="Insert Appointment Title" 
+                                    type="text" 
+                                    name="eventTitle" 
+                                    id="eventTitle" 
+                                    data-parsley-minlength="3" 
+                                    data-parsley-minlength-message="Min length 3 characters" 
+                                    data-parsley-maxlength="200" 
+                                    data-parsley-maxlength-message="Max length 200 characters" 
+                                    data-parsley-required 
+                                    data-parsley-error-message="Title is required" />
                             </div>
-                            <div class="col-md-12 p-1"><strong> Stage: </strong>#auditiondetails.audstep#</div>
-                            <!-- Callback Type -->
-                            <cfif auditionDetails.audstepid is "2">
-                                <div class="col-md-12 p-1"><strong>Callback Type: </strong>#auditionDetails.callbacktype#</div>
-                            </cfif>
-                            <!-- Booking Type -->
-                            <div class="col-md-12 p-1"><strong> Type: </strong>
-                                <button type="button" class="btn btn-xs btn-soft-secondary rounded-pill waves-effect">#auditiondetails.audtype#</button>
+                        </div>
+
+                        <script>
+                            $(document).ready(function() {
+                                $("#select-relationship").selectize({
+                                    persist: false,
+                                    createOnBlur: true,
+                                    create: true,
+                                    plugins: ["remove_button"],
+                                    delimiter: ",",
+                                    create: function(input) {
+                                        return {
+                                            value: input,
+                                            text: input,
+                                        };
+                                    },
+                                });
+                            });
+                        </script>
+
+                        <div class="col-lg-12">
+                            <div class="form-group mb-3">
+                                <label for="select-relationship">Relationships<span class="text-danger">*</span></label>
+                                <select 
+                                    id="select-relationship" 
+                                    name="relationships" 
+                                    autocomplete="off" 
+                                    multiple 
+                                    required 
+                                    data-parsley-required 
+                                    data-parsley-error-message="Relationship is required" 
+                                    class="demo-default selectize-close-btn" 
+                                    style="width: 100%" 
+                                    placeholder="Select a Relationship..." 
+                                    value="">
+                                    <option value="">Select a Relationship...</option>
+                                    <cfloop query="relationships">
+                                        <cfoutput>
+                                            <option 
+                                                value="#relationships.contactid#" 
+                                                <cfif "#relationships.contactid#" is "#rcontactid#">selected</cfif>>
+                                                #recordname#
+                                            </option>
+                                        </cfoutput>
+                                    </cfloop>
+                                </select>
                             </div>
-                            <cfif auditiondetails.audstepid is "5">
-                                <div class="col-md-12 p-1"><strong>Booking Type: </strong>#auditiondetails.audbooktype#</div>
-                            </cfif>
-                            <!-- Platform -->
-                            <cfif auditiondetails.audtype is "online">
-                                <div class="col-md-12 p-1"><strong> Platform: </strong>#auditiondetails.audplatform#</div>
-                            </cfif>
-                            <!-- Coach -->
-                            <div class="col-md-12 p-1"><strong> Worked with Coach: </strong>
-                                <cfif auditiondetails.workwithcoach is "1">Yes<cfelse>No</cfif>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="eventDescription">Description</label>
+                            <textarea 
+                                class="form-control" 
+                                type="text" 
+                                id="eventDescription" 
+                                name="eventDescription" 
+                                placeholder="Description" 
+                                rows="4"></textarea>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="eventLocation">Location</label>
+                            <input 
+                                class="form-control" 
+                                type="text" 
+                                id="eventLocation" 
+                                autocomplete="off" 
+                                name="eventLocation" 
+                                placeholder="Location">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="eventStart">Start Date<span class="text-danger">*</span></label>
+                            <input 
+                                id="eventStart" 
+                                class="form-control" 
+                                autocomplete="off" 
+                                name="eventStart" 
+                                type="date" 
+                                data-parsley-required 
+                                data-parsley-error-message="Start Date is required">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="eventTypeName">Type<span class="text-danger">*</span></label>
+                            <select 
+                                class="form-control" 
+                                name="eventTypeName" 
+                                id="eventTypeName" 
+                                data-parsley-required 
+                                data-parsley-error-message="Type is required">
+                                <option value=""></option>
+                                <cfoutput query="eventtypes_user">
+                                    <option value="#eventtypes_user.eventtypename#">#eventtypes_user.eventtypename#</option>
+                                </cfoutput>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="eventStartTime">Start Time<span class="text-danger">*</span></label>
+                            <select 
+                                class="form-control" 
+                                name="eventStartTime" 
+                                autocomplete="off" 
+                                id="eventStartTime" 
+                                data-parsley-required 
+                                data-parsley-error-message="Start Time is required">
+                                <option value="">Select a Start Time</option>
+                                <cfset new_calstarttime = timeformat(calstarttime, "HH:mm:ss")>
+                                <cfset startTime = createDateTime(year(now()), month(now()), day(now()), 5, 0, 0)>
+                                <cfset endTime = createDateTime(year(now()), month(now()), day(now()), 23, 45, 0)>
+                                <cfloop condition="startTime LTE endTime">
+                                    <cfset timeString = timeFormat(startTime, "HH:mm:ss")>
+                                    <cfset displayTime = timeFormat(startTime, "h:mm tt")>
+                                    <cfoutput>
+                                        <option 
+                                            value="#timeString#" 
+                                            <cfif timeString EQ new_calstarttime>selected</cfif>>
+                                            #displayTime#
+                                        </option>
+                                    </cfoutput>
+                                    <cfset startTime = dateAdd("n", 15, startTime)>
+                                </cfloop>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="new_durid">Duration</label>
+                            <select class="form-control" name="new_durid" autocomplete="off" id="new_durid">
+                                <cfoutput query="durations">
+                                    <option 
+                                        value="#durations.durid#" 
+                                        <cfif #durations.durid# is "4">selected</cfif>>
+                                        #durations.durname#
+                                    </option>
+                                </cfoutput>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="noteDetails">Note</label>
+                            <textarea 
+                                class="form-control" 
+                                type="text" 
+                                id="noteDetails" 
+                                name="noteDetails" 
+                                placeholder="Note to be added to Notes Log" 
+                                rows="4"></textarea>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="eventStopTime">Recurring every:</label>
+                            <div id="checkboxes">
+                                <input type="checkbox" name="dow" value="1" autocomplete="off" onchange="showDiv('hidden_div', this)"> Monday
+                                <input type="checkbox" name="dow" value="2" onchange="showDiv('hidden_div', this)"> Tuesday
+                                <input type="checkbox" name="dow" value="3" onchange="showDiv('hidden_div', this)"> Wednesday
+                                <input type="checkbox" name="dow" value="4" onchange="showDiv('hidden_div', this)"> Thursday
+                                <input type="checkbox" name="dow" value="5" onchange="showDiv('hidden_div', this)"> Friday
+                                <input type="checkbox" name="dow" value="6" onchange="showDiv('hidden_div', this)"> Saturday
+                                <input type="checkbox" name="dow" value="0" onchange="showDiv('hidden_div', this)"> Sunday
                             </div>
-                            <!-- In-Person Details -->
-                            <cfif auditiondetails.audtype is "In Person">
-                                <div class="col-md-12 p-1"><strong>Parking Details: </strong>#auditiondetails.parkingdetails#</div>
-                                <div class="col-md-12 p-1"><strong> Track Mileage: </strong>
-                                    <cfif auditiondetails.trackmileage is "1">Yes<cfelse>No</cfif>
-                                </div>
-                            </cfif>
-                            <!-- Location -->
-                            <cfif auditiondetails.islocation is "true">
-                                <div class="col-md-12 p-1"><strong>Location: </strong>#auditionDetails.eventLocation# 
-                                    <cfif auditionDetails.eventLocation is not "" and auditionDetails.audlocadd1 is not "">, #auditionDetails.audlocadd1#</cfif>
-                                    <cfif auditionDetails.audlocadd2 is not "">, #auditionDetails.audlocadd2#</cfif>
-                                    <cfif auditionDetails.audcity is not "">, #auditionDetails.audcity#</cfif>
-                                    <cfif auditionDetails.regionname is not ""> , #auditionDetails.regionname#</cfif>
-                                    <cfif auditionDetails.audzip is not ""> , #auditionDetails.audzip#</cfif>
-                                    <cfif auditionDetails.countryname is not "" and auditiondetails.countryname is not "United States">
-                                        #auditionDetails.countryname#
-                                    </cfif>
-                                </div>
-                            <cfelse>
-                                <!-- Online Zoom -->
-                                <cfif auditiondetails.audtype is "online">
-                                    <div class="col-md-12 p-1"><strong>Zoom Link: </strong>#auditiondetails.audLocation# </div>
-                                </cfif>
-                            </cfif>
+                        </div>
+
+                        <div class="form-group col-md-6" id="hidden_div">
+                            <label for="eventStart">Recurring Until:</label>
+                            <input class="form-control" id="endRecur" name="endRecur" type="date">
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-        <script>
-            $(document).ready(function() {
-                $("##auditionupdate_#events.eventid#").on("show.bs.modal", function(event) {
-                    $(this).find(".modal-body").load("/include/remoteaudupdateform.cfm?secid=#secid#&eventid=#events.eventid#&audcatid=#audcatid#&audprojectid=#audprojectid#&rpgid=175&details_pgid=176&pgdir=audition&userid=#userid#");
-                });
-            });
-        </script>
-        <div id="auditionupdate_#events.eventid#" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" 
 
->
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header" style="background-color: ##f3f7f9;">
-                        <h4 class="modal-title" id="standard-modalLabel">Appointment Update</h4>
-                        <button type="button" class="close" data-bs-dismiss="modal" 
-
-><i class="mdi mdi-close-thick"></i></button>
+                    <div class="row mt-2">
+                        <div class="col-6"></div>
+                        <div class="col-6 text-right">
+                            <a href="javascript:history.go(-1)">
+                                <button type="button" class="btn btn-light mr-1 btn-sm" data-bs-dismiss="modal">Back</button>
+                            </a>
+                            <button type="submit" class="btn btn-primary btn-sm waves-effect waves-light" id="btn-save-event">Add</button>
+                        </div>
                     </div>
-                    <div class="modal-body"></div>
-                </div>
+                    <div class="row">&nbsp;</div>
+                </form>
             </div>
-        </div>
-    </cfoutput>
-</cfloop>
