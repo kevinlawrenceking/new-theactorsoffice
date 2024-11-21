@@ -58,40 +58,29 @@
         </cfquery>
 
 </cffunction>
-<cffunction output="false" name="UPDactionusers_24030" access="public" returntype="void">
-    <cfargument name="actionDaysNo" type="numeric" required="true">
-    <cfargument name="deleteaction" type="string" required="true">
-    <cfargument name="actionDaysRecurring" type="string" required="true">
+
+<cffunction name="UPDactionusers_24030" access="public" returntype="void" output="false">
     <cfargument name="id" type="numeric" required="true">
+    <cfargument name="actionDaysNo" type="numeric" required="true">
+    <cfargument name="deleteAction" type="boolean" required="true">
+    <cfargument name="actionDaysRecurring" type="string" default="">
 
-    <cfset var sql = "">
-    <cfset var params = []>
-
-        <cfset sql = "UPDATE actionusers_tbl SET actionDaysNo = ?">
-        <cfset arrayAppend(params, {value=arguments.actionDaysNo, cfsqltype="CF_SQL_INTEGER"})>
-
-        <cfif arguments.deleteaction eq "1">
-            <cfset sql &= ", isdeleted = 1">
-        </cfif>
-
-        <cfif arguments.actionDaysRecurring neq "0" and arguments.actionDaysRecurring neq "">
-            <cfset sql &= ", actionDaysRecurring = ?">
-            <cfset arrayAppend(params, {value=arguments.actionDaysRecurring, cfsqltype="CF_SQL_VARCHAR"})>
-        <cfelse>
-            <cfset sql &= ", actionDaysRecurring = NULL">
-        </cfif>
-
-        <cfset sql &= " WHERE id = ?">
-        <cfset arrayAppend(params, {value=arguments.id, cfsqltype="CF_SQL_INTEGER"})>
-
-        <cfquery result="result" >
-            #sql#
-            <cfloop array="#params#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-            </cfloop>
-        </cfquery>
-        
+    <cfquery name="update" datasource="#dsn#">
+        UPDATE actionusers_tbl
+        SET 
+            actionDaysNo = <cfqueryparam value="#arguments.actionDaysNo#" cfsqltype="CF_SQL_INTEGER">
+            <cfif arguments.deleteAction>
+                ,isdeleted = 1
+            </cfif>
+            <cfif arguments.actionDaysRecurring neq "0" AND len(trim(arguments.actionDaysRecurring))>
+                ,actionDaysRecurring = <cfqueryparam value="#arguments.actionDaysRecurring#" cfsqltype="CF_SQL_VARCHAR">
+            <cfelse>
+                ,actionDaysRecurring = NULL
+            </cfif>
+        WHERE id = <cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">
+</cfquery>
 </cffunction>
+
 <cffunction output="false" name="UPDactionusers_24254" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="target_id_system" type="numeric" required="true">

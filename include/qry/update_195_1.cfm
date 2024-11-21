@@ -1,7 +1,8 @@
-<cfset actionUserService = createObject("component", "services.ActionUserService")>
-<cfset actionUserService.UPDactionusers_24030(
+
+<cfset ActionUserService = createObject("component", "services.ActionUserService")>
+<cfset ActionUserService.UPDactionusers_24030(
+    id = id,
     actionDaysNo = actionDaysNo,
-    deleteaction = deleteaction,
-    actionDaysRecurring = actionDaysRecurring,
-    id = id
+    deleteAction = deleteaction,
+    actionDaysRecurring = "actionDaysRecurring"
 )>
