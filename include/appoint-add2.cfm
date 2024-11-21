@@ -31,10 +31,7 @@
     <cfset new_durseconds = duration.durseconds />
     <cfset new_eventStopTime = "#timeformat(DateAdd("s", "#new_durseconds#", "#eventStartTime#"), 'HH:MM:SS')#" />
 
-    <cfoutput>
-        new_durseconds: #new_durseconds#<br>
-        new_eventStopTime: #new_eventStopTime#<br>
-    </cfoutput><CfaborT>
+  
 </cfif>
 
 <!--- Clean event description and limit its length --->

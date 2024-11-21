@@ -12,7 +12,7 @@
     eventLocation = eventLocation,
     eventStart = eventStart,
     eventStartTime = eventStartTime,
-    new_eventStopTime = new_eventStopTime,
+    eventStopTime = new_eventStopTime,
     dow = dow,
     endRecur = endRecur,
     userid = userid
