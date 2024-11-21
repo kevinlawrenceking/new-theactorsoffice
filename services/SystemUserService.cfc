@@ -82,29 +82,17 @@
 </cffunction>
 
 <cffunction output="false" name="UPDfusystemusers_23865" access="public" returntype="void">
-    <cfargument name="idList" type="array" required="true">
+    <cfargument name="idList" type="string" required="true">
     <cfargument name="newSystemId" type="numeric" required="true">
 
-    <cfset var sql = "">
-    <cfset var paramList = []>
-
-    <!--- Build the SQL query dynamically --->
-    <cfset sql = "UPDATE fusystemusers_tbl SET isdeleted = 1 WHERE contactid IN (" & ListToPlaceholders(arguments.idList) & ") AND systemid = ?" >
-
-    <!--- Add parameters for cfqueryparam --->
-    <cfloop array="#arguments.idList#" index="id">
-        <cfset arrayAppend(paramList, {value=id, cfsqltype="CF_SQL_INTEGER"})>
-    </cfloop>
-    <cfset arrayAppend(paramList, {value=arguments.newSystemId, cfsqltype="CF_SQL_INTEGER"})>
-
-    <!--- Execute the query --->
-    <cfquery result="result" name="updateQuery">
-        #sql#
-        <cfloop array="#paramList#" index="param">
-            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-        </cfloop>
+    <cfquery>
+        UPDATE fusystemusers_tbl
+        SET isdeleted = 1
+        WHERE contactid IN (#arguments.idList#)
+        AND systemid = <cfqueryparam value="#arguments.newSystemId#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 </cffunction>
+
 
 <cffunction output="false" name="INSfusystemusers_23934" access="public" returntype="numeric">
     <cfargument name="new_systemid" type="numeric" required="true">
