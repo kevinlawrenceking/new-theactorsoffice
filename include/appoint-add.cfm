@@ -247,7 +247,7 @@
         </div>
       </div>
     </div>
-  </div>
+  
 
 <style>
   .card-body {
