@@ -1,4 +1,4 @@
-This is  a gest.
+<cfset host = ListFirst(currentURL, ".") />
 <cfinclude template="/include/qry/headshots_sel_unused.cfm" />
 <cfparam name="placeholder" default="" />
 <cfinclude template="/include/qry/types_45_1.cfm" />
@@ -9,7 +9,7 @@ This is  a gest.
     <cfloop query="headshots_sel">
         
         <!--- Check if the media file is an image --->
-        <cfif IsImageFile("#userMediaUrl#/#headshots_sel.mediaFileName#/#headshots_sel.mediaFileName#")> 
+        <cfif IsImageFile(https://#host#.theactorsoffice.com/#userMediaUrl#/#headshots_sel.mediaFileName#/#headshots_sel.mediaFileName#")> 
             <Cfoutput>
                 
                 <div class="col-sm-12">
