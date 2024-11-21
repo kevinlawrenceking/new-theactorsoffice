@@ -4,7 +4,7 @@
     <cfargument name="new_notstartdate" type="date" required="true">
     <cfargument name="notid" type="numeric" required="true">
 
-    <cfquery datasource="#dsn#">
+    <cfquery >
         UPDATE funotifications
         SET 
             notstartdate = <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.new_notstartdate#">
