@@ -34,7 +34,7 @@
     <cfoutput>
         new_durseconds: #new_durseconds#<br>
         new_eventStopTime: #new_eventStopTime#<br>
-    </cfoutput>
+    </cfoutput><CfaborT>
 </cfif>
 
 <!--- Clean event description and limit its length --->
