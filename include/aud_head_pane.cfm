@@ -13,14 +13,7 @@
 <cfinclude template="/include/modal.cfm" />
 
 <cfoutput>
-    <script>
-        $(document).ready(function() {
-            $("##remoteselectheadshot").on("show.bs.modal", function(event) {
-                <!--- Load headshot selection modal content --->
-                $(this).find(".modal-body").load("/include/remoteselectheadshot.cfm?selected_eventid=#eventid#&eventid=#eventid#&audprojectid=#audprojectid#&secid=196");
-            });
-        });
-    </script>
+
 
     <script>
         $(document).ready(function() {
