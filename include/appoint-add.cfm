@@ -251,7 +251,7 @@
 
 <style>
   .card-body {
-    padding-bottom: 15rem;
+    padding-bottom: 300px !important;
   }
 </style>
 <script>
