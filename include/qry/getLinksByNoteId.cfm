@@ -1,4 +1,4 @@
 <cfset LinkService = createObject("component", "services.LinkService")>
-<cfset LinkService.getLinksByNoteId(
+<cfset links = LinkService.getLinksByNoteId(
     noteid = new_noteid
 )>
