@@ -177,9 +177,9 @@
 <!--- modal-dialog end  --->
 
 </div>
-<!--- modal end  --->
+<!--- modal end 
+<cfinclude template="/include/qry/FindUser_1694_2.cfm"/> --->
 
-<cfinclude template="/include/qry/FindUser_1694_2.cfm"/>
 
 <cfinclude template="/include/qry/dateformats_463_1.cfm"/>
 
