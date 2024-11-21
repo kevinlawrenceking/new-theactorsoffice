@@ -7,9 +7,10 @@
 <cfset host = ListFirst(currentURL, ".") /> <!--- Extract the host from the server name --->
 
 <cfinclude template="/include/qry/attachdetails_109_1.cfm" /> <!--- Include the attachment details template --->
-
+<cfoutput>#userMediaUrl#/#attachdetails.mediafilename#</cfoutput><CfaborT>
 <cfhttp url="#userMediaUrl#/#attachdetails.mediafilename#" getAsBinary="yes"/> <!--- Retrieve the media file as binary data --->
 
-<cfheader name="Content-Disposition" value="inline; filename=#attachdetails.mediafilename#" /> <!--- Set the header for content disposition to inline with the filename --->
 
-<cfcontent type="application/octet-stream" variable="#cfhttp.fileContent#" /> <!--- Output the binary content of the media file --->
+
+<cfheader name="Content-Disposition" value="inline; filename=#attachdetails.mediafilename#" />
+<cfcontent type="application/octet-stream" variable="#cfhttp.fileContent#" > 
