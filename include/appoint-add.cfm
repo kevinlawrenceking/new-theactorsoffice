@@ -248,7 +248,7 @@
       </div>
     </div>
   </div>
-</div>
+
 <style>
   .card-body {
     padding-bottom: 15rem;
