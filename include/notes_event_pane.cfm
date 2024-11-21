@@ -63,7 +63,7 @@
                     <cfset new_noteid=NotesEvent.noteid />
 
                     <!--- Include templates for links and attachments --->
-                    <cfinclude template="/include/qry/links_182_1.cfm" />
+                    <cfinclude template="/include/qry/getLinksByNoteId.cfm" />
                     <cfinclude template="/include/qry/attachments_181_2.cfm" />
 
                     <cfoutput>
