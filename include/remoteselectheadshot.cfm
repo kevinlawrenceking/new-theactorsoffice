@@ -1,4 +1,4 @@
-<!--- This ColdFusion page displays user headshots that are available for selection. --->
+This is  a gest.
 <cfinclude template="/include/qry/headshots_sel_unused.cfm" />
 <cfparam name="placeholder" default="" />
 <cfinclude template="/include/qry/types_45_1.cfm" />
@@ -6,7 +6,7 @@
 <div class="row" />
 
     <!--- Loop through the headshots query to display each headshot if it's an image file --->
-    <cfloop query="headshots_sel">x
+    <cfloop query="headshots_sel">
         
         <!--- Check if the media file is an image --->
         <cfif IsImageFile("#session.userMediaUrl#/#headshots_sel.mediaFileName#/#headshots_sel.mediaFileName#")> 
