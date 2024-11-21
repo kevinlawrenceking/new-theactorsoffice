@@ -6,10 +6,10 @@
 <div class="row" />
 
     <!--- Loop through the headshots query to display each headshot if it's an image file --->
-    <cfloop query="headshots_sel">
+    <cfloop query="headshots_sel">x
         
         <!--- Check if the media file is an image --->
-        <cfif IsImageFile("https://#host#.theactorsoffice.com/media-#host#/users/#userid#/#headshots_sel.mediaFileName#")> 
+        <cfif IsImageFile("#session.userMediaUrl#/#headshots_sel.mediaFileName#/#headshots_sel.mediaFileName#")> 
             <Cfoutput>
                 
                 <div class="col-sm-12">
