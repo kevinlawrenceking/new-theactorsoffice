@@ -7,7 +7,7 @@
 <cfset host = ListFirst(currentURL, ".") /> <!--- Extract the host from the server name --->
 
 <cfinclude template="/include/qry/attachdetails_109_1.cfm" /> <!--- Include the attachment details template --->
-<cfoutput>#userMediaUrl#/#attachdetails.mediafilename#</cfoutput><CfaborT>
+<cfoutput>#userMediaUrl#/#attachdetails.mediafilename#</cfoutput>
 <cfhttp url="#userMediaUrl#/#attachdetails.mediafilename#" getAsBinary="yes"/> <!--- Retrieve the media file as binary data --->
 
 
