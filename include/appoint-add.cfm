@@ -12,7 +12,7 @@
 <cfinclude template="/include/qry/durations.cfm"/>
 <cfinclude template="/include/qry/eventtypes_user_443_2.cfm"/>
 
-<div class="container">
+
   <div class="row">
     <div class="col-xl-6 col-lg-8 col-md-12">
       <div class="card">
