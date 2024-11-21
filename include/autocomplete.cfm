@@ -1,4 +1,5 @@
 <cfquery  name="jsons">
+
             SELECT col1 from contacts_ss WHERE userid = #session.userid# and col1 not like '%#chr(34)#%'
         </cfquery>
         <cfquery  name="jsons_myteam">
