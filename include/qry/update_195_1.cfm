@@ -6,5 +6,5 @@
     id = id,
     actionDaysNo = actionDaysNo,
     deleteAction = deleteaction,
-    actionDaysRecurring = "actionDaysRecurring"
+    actionDaysRecurring = actionDaysRecurring
 )>
