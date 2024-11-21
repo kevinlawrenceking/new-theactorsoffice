@@ -2,11 +2,6 @@
 
 <cfparam name="rcontactid" default="0"/>
 
-<style>
-  #hidden_div {
-    display: none;
-  }
-</style>
 
 <cfinclude template="/include/qry/relationships_13_1.cfm"/>
 <cfinclude template="/include/qry/durations.cfm"/>
@@ -248,11 +243,7 @@
 
   </div>
 
-<style>
-  .card-body {
-    padding-bottom: 300px !important;
-  }
-</style>
+
 <script>
   $(document).ready(function () {
     $(".parsley-examples").parsley();
