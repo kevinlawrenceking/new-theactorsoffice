@@ -33,7 +33,7 @@
                         <div class="form-group col-md-12">
                             <label for="eventDescription">Note<span class="text-danger">*</span></label>
                             <textarea class="form-control" type="text" id="noteDetails" name="noteDetails" placeholder="Write a note..." rows="1" required data-parsley-required data-parsley-error-message="Details are required">
-                                <cfoutput>#note.notedetails#</cfoutput>
+                                <cfoutput>TRIM(#note.notedetails)#</cfoutput>
                             </textarea>
                         </div>
 
