@@ -129,5 +129,6 @@
         });
     });
 </script>
+
 <link rel="stylesheet" href="/app/assets/css/croppie.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.js"></script>
