@@ -1,4 +1,8 @@
-<!--- This ColdFusion page handles the uploading and cropping of user avatars. --->
+
+<!--- Include Croppie CSS and JS --->
+<link rel="stylesheet" href="/app/assets/css/croppie.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.js"></script>
+
 
 <!--- Includes for setting reference variables --->
 <cfinclude template="/include/qry/FindRefPage_136_1.cfm"/>
@@ -41,10 +45,6 @@
     border-color: #D3D3D3;
   }
 </style>
-
-<!--- Include Croppie CSS and JS --->
-<link rel="stylesheet" href="/app/assets/css/croppie.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.js"></script>
 
 <!--- Display Subtitle --->
 <cfoutput>
