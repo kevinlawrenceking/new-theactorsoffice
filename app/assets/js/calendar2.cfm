@@ -1,5 +1,5 @@
     minTime: "<cfoutput>#CalStarttime#</cfoutput>",
-            maxTime: "<cfoutput>#CalEndtime#</cfoutput>",<Cfabort>
+            maxTime: "<cfoutput>#CalEndtime#</cfoutput>",
 
 
     <cfsavecontent variable="events_loop">
