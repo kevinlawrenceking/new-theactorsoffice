@@ -1,8 +1,8 @@
-<!--- This ColdFusion page handles the uploading and cropping of a user's avatar image. --->
-
+<!-- Include necessary queries -->
 <cfinclude template="/include/qry/FindRefPage_135_1.cfm" />
 <cfinclude template="/include/qry/FindRefcontacts_135_2.cfm" />
 
+<!-- Styling for disabled button -->
 <style>
     .btn-success:disabled {
         color: #fff;
@@ -11,17 +11,18 @@
     }
 </style>
 
-
-<cfset dir_contact_avatar_filename = session.userContactsUrl & "/" & contactid & "/avatar.jpg" />
+<!-- Set up dynamic ColdFusion variables -->
 <cfoutput>
-<cfset subtitle = "#FindRefContacts.recordname#" />
+    <!-- Directory and image URL setup -->
+    <cfset dir_contact_avatar_filename = session.userContactsUrl & "/" & contactid & "/avatar.jpg" />
+    <cfset browser_contact_avatar_filename = session.userContactsUrl & "/" & contactid & "/avatar.jpg" />
+    <cfset subtitle = "#FindRefContacts.recordname#" />
     <cfset cookie.return_url = "/app/contact/?contactid=#contactid#" />
-
     <cfset image_url = "#browser_contact_avatar_filename#" />
 </cfoutput>
 
-<!--- Determine picture size based on ref_pgid --->
-<cfif #ref_pgid# is "9">			
+<!-- Determine picture size based on ref_pgid -->
+<cfif ref_pgid is "9">
     <cfset picsize = 200 />
     <cfset inputsize = 200 />
 <cfelse>
@@ -29,15 +30,14 @@
     <cfset inputsize = 300 />
 </cfif>
 
-
-
+<!-- HTML structure for the form -->
 <h4><cfoutput>#subtitle#</cfoutput></h4>
 <div class="row">
     <div id="cont">
         <h5 class="col-md-12" style="padding-bottom:20px;">Avatar has been updated!</h5>
     </div>
     <div id="selectfile">
-        <h5 class="col-md-12" style="padding-bottom:20px;">Select an image on your computer and upload image. Then click Continue.</h5>
+        <h5 class="col-md-12" style="padding-bottom:20px;">Select an image on your computer and upload it. Then click Continue.</h5>
         <div class="col-md-12" style="padding-bottom:20px;">
             <div style="padding-bottom:10px;">
                 <strong>Select a file:</strong>
@@ -47,7 +47,7 @@
     </div>
     <input type="hidden" name="picturebase" id="picturebase" value="">
     <div class="col-md-12">
-        <div id="upload-input" style="width:<cfoutput>#inputsize#</cfoutput>px; height: <cfoutput>#inputsize#</cfoutput>px;"></div>
+        <div id="upload-input" style="width:<cfoutput>#inputsize#</cfoutput>px; height:<cfoutput>#inputsize#</cfoutput>px;"></div>
     </div>
     <div class="col-md-12">
         <br>
@@ -55,80 +55,85 @@
     </div>
 </div>
 
+<!-- JavaScript for handling Croppie and uploads -->
 <script>
-    $(document).ready(function(){
-        // Hide the confirmation message and upload button initially
+    $(document).ready(function () {
+        // Hide confirmation message and upload button initially
         $('#cont').hide();
         $('#uploadbutton').hide();
-        
+
+        // Function to enable and show the upload button
         function showButton() {
-            // Enable and show the upload button
             $('#uploadbutton').attr('disabled', false).show();
         }
 
-        $('input:file').change(function(){
-            // Show the upload button if a file is selected
+        // Show the button if a file is selected
+        $('input:file').change(function () {
             if ($(this).val()) {
                 showButton();
             }
         });
 
-        var existingImage = '<cfoutput>#image_url#</cfoutput>?ver=<cfoutput>#rand()#</cfoutput>';
+        // Use the existing image for initialization
+        const existingImage = '<cfoutput>#image_url#</cfoutput>?ver=<cfoutput>#rand()#</cfoutput>';
         if (existingImage) {
             showButton();
         }
-    });
 
-    var $uploadCrop = $('#upload-input').croppie({
-        enableExif: true,
-        url: '<cfoutput>#image_url#</cfoutput>?ver=<cfoutput>#rand()#</cfoutput>',
-        viewport: {
-            width: <cfoutput>#picsize#</cfoutput>,
-            height: <cfoutput>#picsize#</cfoutput>,
-            type: 'circle'
-        },
-        boundary: {
-            width: <cfoutput>#picsize#</cfoutput>,
-            height: <cfoutput>#picsize#</cfoutput>
-        }
-    });
+        // Initialize Croppie
+        var $uploadCrop = $('#upload-input').croppie({
+            enableExif: true,
+            url: existingImage,
+            viewport: {
+                width: <cfoutput>#picsize#</cfoutput>,
+                height: <cfoutput>#picsize#</cfoutput>,
+                type: 'circle'
+            },
+            boundary: {
+                width: <cfoutput>#picsize#</cfoutput>,
+                height: <cfoutput>#picsize#</cfoutput>
+            }
+        });
 
-    
+        // Handle file input change and bind Croppie
+        $('#upload').on('change', function () {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $uploadCrop.croppie('bind', { url: e.target.result }).then(function () {
+                    console.log('Croppie bind complete');
+                });
+            };
+            reader.readAsDataURL(this.files[0]);
+        });
 
-    $('#upload').on('change', function () { 
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            // Bind the cropped image to the croppie instance
-            $uploadCrop.croppie('bind', {
-                url: e.target.result
-            }).then(function(){
-                console.log('jQuery bind complete');
-            });
-        }
-        reader.readAsDataURL(this.files[0]);
-    });
-
-    $('.upload-result').on('click', function (ev) {
-        // Get the cropped result and upload it
-        $uploadCrop.croppie('result', {
-            type: 'canvas',
-            size: 'viewport'
-        }).then(function (resp) {
-            $.ajax({
-                url: "/include/image_upload-contact2.cfm",
-                type: "POST",
-                data: {"picturebase": resp},
-                success: function (data) {
-                    var html = '<img style="margin: 20px;" src="' + resp + '" /><br><a href="<cfoutput>#cookie.return_url#</cfoutput>"><button type="button" class="btn btn-primary waves-effect mb-2 waves-light">Continue</button></a>';
-                    $("#upload-input").html(html);
-                    $('#uploadbutton').hide();
-                    $('#selectfile').hide();
-                    $('#cont').show();
-                }
+        // Handle the upload result and AJAX submission
+        $('.upload-result').on('click', function () {
+            $uploadCrop.croppie('result', {
+                type: 'canvas',
+                size: 'viewport'
+            }).then(function (resp) {
+                $.ajax({
+                    url: "/include/image_upload-contact2.cfm",
+                    type: "POST",
+                    data: { "picturebase": resp },
+                    success: function () {
+                        $('#upload-input').html(`
+                            <img style="margin: 20px;" src="${resp}" />
+                            <br>
+                            <a href="<cfoutput>#cookie.return_url#</cfoutput>">
+                                <button type="button" class="btn btn-primary waves-effect mb-2 waves-light">Continue</button>
+                            </a>
+                        `);
+                        $('#uploadbutton').hide();
+                        $('#selectfile').hide();
+                        $('#cont').show();
+                    }
+                });
             });
         });
     });
 </script>
 
+<!-- Include Croppie dependencies -->
 <link rel="stylesheet" href="/app/assets/css/croppie.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.js"></script>
