@@ -60,8 +60,8 @@
             plugins: ["bootstrap", "dayGrid", "timeGrid", "list"],
             slotDuration: "00:30:00",
             timeZone: 'America/Los_Angeles',
-            minTime: "<cfoutput>#userCalStarttime#</cfoutput>",
-            maxTime: "<cfoutput>#userCalEndtime#</cfoutput>",
+            minTime: "<cfoutput>#CalStarttime#</cfoutput>",
+            maxTime: "<cfoutput>#CalEndtime#</cfoutput>",
             themeSystem: "bootstrap",
             bootstrapFontAwesome: !1,
             buttonText: {
