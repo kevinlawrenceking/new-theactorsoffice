@@ -93,34 +93,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction output="false" name="UPDaudsubmitsites_user_24167" access="public" returntype="void">
-    <cfargument name="new_submitsitename" type="string" required="true">
-    <cfargument name="isdeleted" type="boolean" required="true">
-    <cfargument name="catlist" type="string" required="false" default="">
-    <cfargument name="sortedCatList" type="string" required="false" default="">
-    <cfargument name="submitsiteid" type="numeric" required="true">
-    <cfset var sql = "">
-    <cfset var params = []>
-    <cfset sql = "
-        UPDATE audsubmitsites_user 
-        SET submitsitename = ?, 
-            isDeleted = ? 
-            #iif(arguments.catlist neq '', ', catlist = ?', ', catlist = NULL')#
-        WHERE submitsiteid = ?
-    ">
-    <cfset arrayAppend(params, {value=arguments.new_submitsitename, cfsqltype='CF_SQL_VARCHAR'})>
-    <cfset arrayAppend(params, {value=arguments.isdeleted, cfsqltype='CF_SQL_BIT'})>
-    <cfif arguments.catlist neq "">
-        <cfset arrayAppend(params, {value=arguments.sortedCatList, cfsqltype='CF_SQL_VARCHAR'})>
-    </cfif>
-    <cfset arrayAppend(params, {value=arguments.submitsiteid, cfsqltype='CF_SQL_INTEGER'})>
-    <cfquery result="result">
-        #sql#
-        <cfloop array="#params#" index="param">
-            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-        </cfloop>
-    </cfquery>
-</cffunction>
+
 
 <cffunction output="false" name="SELaudsubmitsites_user_24265" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
