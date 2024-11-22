@@ -59,6 +59,7 @@
         a.$calendarObj = new FullCalendar.Calendar(a.$calendar[0], {
             plugins: ["bootstrap", "dayGrid", "timeGrid", "list"],
             slotDuration: "00:30:00",
+            contentHeight: 'auto',
             timeZone: 'America/Los_Angeles',
             minTime: "<cfoutput>#CalStarttime#</cfoutput>",
             maxTime: "<cfoutput>#CalEndtime#</cfoutput>",
