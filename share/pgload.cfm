@@ -32,7 +32,7 @@
     <!--- Map user data to local variables --->
     <cfset userid = userData.userId />
     <cfset userContactid = userData.userContactID />
-    <cfset userCalStarttime = userData.calstarttime />
+    <cfset userCalStarttime = userData.calstarttime /><cfoutput>#userCalStarttime#</cfoutput><cfabort>
     <cfset userCalendtime = userData.calendtime />
     <cfset avatarname = userData.avatarname />
     <cfset isbetatester = userData.isBetaTester />
