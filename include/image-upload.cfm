@@ -79,28 +79,35 @@ $(document).ready(function () {
     $('#cont').hide();
     $('#uploadbutton').hide();
 
-    //--- Function to show the upload button ---//
+    // Function to show the upload button
     function showUploadButton() {
         $('#uploadbutton')
             .attr('disabled', false)
             .show();
     }
 
-    //--- Initialize Existing Image and Enable Button ---//
+    // Initialize Existing Image and Enable Button
     const existingImage = "<cfoutput>#image_url#</cfoutput>?ver=<cfoutput>#rand()#</cfoutput>";
     if (existingImage) {
         showUploadButton();
     }
 
-    //--- Initialize Croppie ---//
+    // Initialize Croppie
     var $uploadCrop = $('#upload-input').croppie({
         enableExif: true,
         url: existingImage,
-       <cfoutput> viewport: { width: #picsize#, height: #picsize#, type: 'circle' },
-        boundary: { width: #picsize#, height: #picsize# }</cfoutput>
+        viewport: {
+            width: <cfoutput>#picsize#</cfoutput>, 
+            height: <cfoutput>#picsize#</cfoutput>, 
+            type: 'circle'
+        },
+        boundary: {
+            width: <cfoutput>#picsize#</cfoutput>, 
+            height: <cfoutput>#picsize#</cfoutput>
+        }
     });
 
-    //--- Handle File Input Change ---//
+    // Handle File Input Change
     $('#upload').on('change', function () {
         var reader = new FileReader();
         reader.onload = function (e) {
@@ -109,7 +116,7 @@ $(document).ready(function () {
         reader.readAsDataURL(this.files[0]);
     });
 
-    //--- Handle Croppie Upload Result ---//
+    // Handle Croppie Upload Result
     $('.upload-result').on('click', function () {
         $uploadCrop.croppie('result', { type: 'canvas', size: 'viewport' })
             .then(function (resp) {
@@ -118,7 +125,13 @@ $(document).ready(function () {
                     type: "POST",
                     data: { "picturebase": resp },
                     success: function () {
-                        $('#upload-input').html('<img style="margin: 20px;" src="' + resp + '" alt="User avatar" /><br><a href="<cfoutput>#cookie.return_url#</cfoutput>"><button type="button" class="btn btn-primary waves-effect mb-2 waves-light">Continue</button></a>');
+                        $('#upload-input').html(`
+                            <img style="margin: 20px;" src="${resp}" alt="User avatar" />
+                            <br>
+                            <a href="<cfoutput>#cookie.return_url#</cfoutput>">
+                                <button type="button" class="btn btn-primary waves-effect mb-2 waves-light">Continue</button>
+                            </a>
+                        `);
                         $('#uploadbutton').hide();
                         $('#selectfile').hide();
                         $('#cont').show();
