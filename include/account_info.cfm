@@ -483,60 +483,6 @@
             </cfif>
           </cfif>
 
-          <div id="updatenewsletter" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
-
->
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header" style="background-color: ##f3f7f9;">
-                  <h4 class="modal-title" id="standard-modalLabel">Newsletter Update</h4>
-                  <button type="button" class="close" data-bs-dismiss="modal" 
-
->
-                    <i class="mdi mdi-close-thick"></i>
-                  </button>
-                </div>
-                <div class="modal-body">
-
-                  <form action="/app/myaccount/update_newsletter.cfm" method="post" class="parsley-examples" validate="validate" id="newsletter" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" data-parsley-trigger="keyup" data-parsley-validate="data-parsley-validate">
-
-                    <cfoutput>
-                      <input type="hidden" name="ctaction" value="update_newsletter"/>
-                      <input type="hidden" name="t4" value="1"/>
-
-                      <div class="form-group col-md-3">
-                        <label for="eventTypeName">Newsletter</label>
-                        <select class="form-control" name="new_nletter_yn" id="new_nletter_yn">
-
-                          <option value="N" <cfif #details.nletter_yn# is "N"> Selected </cfif>>No</option>
-
-                          <option value="Y" <cfif #details.nletter_yn# is "Y"> Selected </cfif>>Yes</option>
-
-                        </select>
-                        <div class="invalid-feedback">
-                          Please select Yes or No.
-                        </div>
-
-                      </div>
-
-                      <div class="form-group col-md-12">
-                        <label for="userLastName">Newsletter Link<span class="text-danger">*</span>
-                        </label>
-
-                        <input class="form-control" type="text" id="new_nletter_link" name="new_nletter_link" value="#details.nletter_link#" placeholder="Enter your newsletter link"></div>
-
-                        <div class="form-group text-center col-md-12">
-                          <button class=" btn btn-primary editable-submit btn-sm waves-effect waves-light" type="submit" style="background-color: ##406e8e; border: ##406e8e;">Update</button>
-                        </div>
-                      </cfoutput>
-
-                    </form>
-
-                  </div>
-                </div>
-
-              </div>
-            </div>
 
             <div id="updatecal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
 
