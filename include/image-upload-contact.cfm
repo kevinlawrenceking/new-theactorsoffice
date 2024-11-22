@@ -1,7 +1,7 @@
 <!-- Include necessary queries -->
 <cfinclude template="/include/qry/FindRefPage_135_1.cfm" />
 <cfinclude template="/include/qry/FindRefcontacts_135_2.cfm" />
-<script src="/app/assets/js/vendor.min.js?ver=13"></script>
+
 
 <!-- Styling for disabled button -->
 <style>
