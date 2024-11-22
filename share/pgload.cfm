@@ -1,6 +1,5 @@
 <CFINCLUDE template="remote_load.cfm" />
-  <cfoutput>Not found!</cfoutput>
-    <cfabort>
+
 <!--- Default Parameters --->
 <cfparam name="u" default="434F6AD485112F73A9" />
 <cfparam name="pgaction" default="view" />
@@ -33,7 +32,7 @@
     <!--- Map user data to local variables --->
     <cfset userid = userData.userId />
     <cfset userContactid = userData.userContactID />
-    <cfset userCalStarttime = userData.calstarttime /><cfoutput>#userCalStarttime#</cfoutput><cfabort>
+    <cfset userCalStarttime = userData.calstarttime />
     <cfset userCalendtime = userData.calendtime />
     <cfset avatarname = userData.avatarname />
     <cfset isbetatester = userData.isBetaTester />
