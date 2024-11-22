@@ -22,13 +22,13 @@
         <cfset image_url = "#browser_contact_avatar_filename#" />
     <cfelseif #ref_pgid# is "7">
         <cfset subtitle = "#userFirstName# #userLastName#" />
-        <cfset image_url = "#session.contactAvatarUrl#" />
-        <cfset cookie.uploadDir = "#session.userAvatarPath#" />
+        <cfset image_url = "#contactAvatarUrl#" />
+        <cfset cookie.uploadDir = "#userAvatarPath#" />
         <cfset cookie.return_url = "/app/myaccount/" />
     <cfelseif #ref_pgid# is "9">
         <cfset subtitle = "#userFirstName# #userLastName#" />
-        <cfset image_url = "#session.contactAvatarUrl#" />
-        <cfset cookie.uploadDir = "#session.userAvatarPath#" />
+        <cfset image_url = "#contactAvatarUrl#" />
+        <cfset cookie.uploadDir = "#userAvatarPath#" />
         <cfset cookie.return_url = "/app/setup/" />
     </cfif>
 </cfoutput>
