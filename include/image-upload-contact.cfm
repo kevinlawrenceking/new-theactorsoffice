@@ -60,47 +60,50 @@
 </div>
 
 <!--- JavaScript for handling Croppie and uploads --->
-<script>
-    $(document).ready(function () {
-        // Hide confirmation message and upload button initially
-        $('#cont').hide();
-        $('#uploadbutton').hide();
 
-        // Function to enable and show the upload button
-        function showButton() {
-            $('#uploadbutton').attr('disabled', false).show();
-        }
 
-        // Show the button if a file is selected
-        $('input:file').change(function () {
-            if ($(this).val()) {
-                showButton();
+
+  <script>
+          $(document).ready(function () {
+            $('#cont').hide();
+            $('#uploadbutton').hide();
+
+            //--- Function to show the upload button ---//
+            function showButton() {
+              $('#uploadbutton')
+                .attr('disabled', false)
+                .show();
             }
-        });
 
-        // Use the existing image for initialization
-        const existingImage = '<cfoutput>#image_url#</cfoutput>?ver=<cfoutput>#rand()#</cfoutput>';
-        if (existingImage) {
-            showButton();
-        }
+            //--- Change event for file input ---//
+            $('input:file').change(function () {
+              if ($(this).val()) {
+                showButton();
+              }
+            });
 
-        // Initialize Croppie
-        var $uploadCrop = $('#upload-input').croppie({
+            var existingImage = '<cfoutput>#image_url#</cfoutput>?ver=<cfoutput>#rand()#</cfoutput>';
+            if (existingImage) {
+              showButton();
+            }
+          });
+
+          var $uploadCrop = $('#upload-input').croppie({
             enableExif: true,
-            url: existingImage,
+            url: '<cfoutput>#image_url#</cfoutput>?ver=<cfoutput>#rand()#</cfoutput>',
             viewport: {
-                width: <cfoutput>#picsize#</cfoutput>,
-                height: <cfoutput>#picsize#</cfoutput>,
-                type: 'circle'
+              width: <cfoutput>#picsize#</cfoutput>,
+              height: <cfoutput>#picsize#</cfoutput>,
+              type: 'circle'
             },
             boundary: {
-                width: <cfoutput>#picsize#</cfoutput>,
-                height: <cfoutput>#picsize#</cfoutput>
+              width: <cfoutput>#picsize#</cfoutput>,
+              height: <cfoutput>#picsize#</cfoutput>
             }
-        });
+          });
 
-        // Handle file input change and bind Croppie
-        $('#upload').on('change', function () {
+          //--- Change event for the upload input ---//
+      $('#upload').on('change', function () {
             var reader = new FileReader();
             reader.onload = function (e) {
                 $uploadCrop.croppie('bind', { url: e.target.result }).then(function () {
@@ -110,32 +113,36 @@
             reader.readAsDataURL(this.files[0]);
         });
 
-        // Handle the upload result and AJAX submission
-        $('.upload-result').on('click', function () {
-            $uploadCrop.croppie('result', {
+
+          //--- Click event for the upload result button ---//
+          $('.upload-result').on('click', function (ev) {
+            $uploadCrop
+              .croppie('result', {
                 type: 'canvas',
                 size: 'viewport'
-            }).then(function (resp) {
+              })
+              .then(function (resp) {
                 $.ajax({
-                    url: "/include/image_upload-contact2.cfm",
-                    type: "POST",
-                    data: { "picturebase": resp },
-                    success: function () {
-                        $('#upload-input').html(`
-                            <img style="margin: 20px;" src="${resp}" />
-                            <br>
-                            <a href="<cfoutput>#cookie.return_url#</cfoutput>">
-                                <button type="button" class="btn btn-primary waves-effect mb-2 waves-light">Continue</button>
-                            </a>
-                        `);
-                        $('#uploadbutton').hide();
-                        $('#selectfile').hide();
-                        $('#cont').show();
-                    }
+                  url: "/include/image_upload-contact2.cfm",
+                  type: "POST",
+                  data: {
+                    "picturebase": resp
+                  },
+                  success: function (data) {
+                    var html = '<img style="margin: 20px;" src="' + resp + '" /><br><a href="<cfoutput>#cookie.return_url#</cfoutput>"><button type="button" class="btn btn-primary waves-effect mb-2 waves-light">Continue</button></a>';
+                    $("#upload-input").html(html);
+                    $('#uploadbutton').hide();
+                    $('#selectfile').hide();
+                    $('#cont').show();
+                  }
                 });
-            });
-        });
-    });
-</script>
+              });
+          });
+        </script>
+
+
+
+
+
 
 
