@@ -2,7 +2,7 @@
 
 <cfinclude template="/include/qry/FindRefPage_136_1.cfm" />
 <cfinclude template="/include/qry/FindRefcontacts_135_2.cfm" />
-
+<
 <style>
     .btn-success:disabled {
         color: #fff;
@@ -12,7 +12,7 @@
 </style>
 
 <cfoutput>
-    <!--- Check the reference page ID and set variables accordingly --->
+
     <cfif #ref_pgid# is "3">
         <cfset cookie.uploadDir = "#dir_contact_avatar_filename#" />
         <cfset cookie.return_url = "/app/contact/?contactid=#contactid#" />
@@ -20,17 +20,22 @@
         <cfset browser_contact_avatar_loc = "/media-#host#/users/#userid#/contacts/#contactid#" />
         <cfset browser_contact_avatar_filename = "#browser_contact_avatar_loc#/avatar.jpg" />
         <cfset image_url = "#browser_contact_avatar_filename#" />
+
+
     <cfelseif #ref_pgid# is "7">
         <cfset subtitle = "#userFirstName# #userLastName#" />
-        <cfset image_url = "#contactAvatarUrl#" />
-        <cfset cookie.uploadDir = "#userAvatarPath#" />
+        <cfset image_url = "#session.userAvatarUrl#" />
+        <cfset cookie.uploadDir = "#session.userAvatarPath#" />
         <cfset cookie.return_url = "/app/myaccount/" />
+
     <cfelseif #ref_pgid# is "9">
         <cfset subtitle = "#userFirstName# #userLastName#" />
-        <cfset image_url = "#contactAvatarUrl#" />
-        <cfset cookie.uploadDir = "#userAvatarPath#" />
+        <cfset image_url = "#session.contactAvatarUrl#" />
+        <cfset cookie.uploadDir = "#session.userAvatarPath#" />
         <cfset cookie.return_url = "/app/setup/" />
+
     </cfif>
+
 </cfoutput>
 
 <!--- Set picture size based on reference page ID --->
