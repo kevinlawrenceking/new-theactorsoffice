@@ -49,7 +49,7 @@
 <!--- Display Subtitle --->
 <cfoutput>
     <h4>#subtitle#</h4>
-</cfoutput>
+
 
 <!--- Image Upload Form --->
 <div class="row">
@@ -71,6 +71,7 @@
         </div>
     </div>
 </div>
+</cfoutput>
 
 <!--- JavaScript to Handle Croppie and File Upload --->
 <script>
