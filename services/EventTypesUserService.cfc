@@ -12,36 +12,30 @@
     
     <cfreturn result>
 </cffunction>
-
 <cffunction output="false" name="UPDeventtypes_user" access="public" returntype="void">
     <cfargument name="id" type="numeric" required="true">
     <cfargument name="new_eventtypecolor" type="string" required="true">
-    <cfargument name="deletelink" type="boolean" required="false" default=false>
-    <cfargument name="new_iscustom" type="boolean" required="false" default=false>
-    <cfargument name="new_eventtypename" type="string" required="false">
+    <cfargument name="deletelink" type="boolean" required="false" default="false">
+    <cfargument name="new_iscustom" type="boolean" required="false" default="false">
+    <cfargument name="new_eventtypename" type="string" required="false" default="">
 
-    <cfset var sql = "UPDATE eventtypes_user SET eventtypecolor = ?">
-    <cfset var params = [{value=arguments.new_eventtypecolor, cfsqltype="CF_SQL_VARCHAR"}]>
-
-    <cfif arguments.deletelink>
-        <cfset sql &= ", isdeleted = 1">
-    </cfif>
-
-    <cfif arguments.new_iscustom>
-        <cfset sql &= ", eventtypename = ?">
-        <cfset arrayAppend(params, {value=arguments.new_eventtypename, cfsqltype="CF_SQL_VARCHAR"})>
-    </cfif>
-
-    <cfset sql &= " WHERE id = ?">
-    <cfset arrayAppend(params, {value=arguments.id, cfsqltype="CF_SQL_INTEGER"})>
-
-    <cfquery result="result">
-        #sql#
-        <cfloop array="#params#" index="param">
-            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-        </cfloop>
+    <cfquery name="update" >
+        UPDATE eventtypes_user
+        SET 
+            eventtypecolor = <cfqueryparam value="#arguments.new_eventtypecolor#" cfsqltype="cf_sql_varchar">
+            
+            <cfif arguments.deletelink>
+                ,isdeleted = 1
+            </cfif>
+            
+            <cfif arguments.new_iscustom>
+                ,eventtypename = <cfqueryparam value="#arguments.new_eventtypename#" cfsqltype="cf_sql_varchar">
+            </cfif>
+            
+        WHERE id = <cfqueryparam value="#arguments.id#" cfsqltype="cf_sql_integer">
     </cfquery>
 </cffunction>
+
 
 <cffunction output="false" name="SELeventtypes_user" access="public" returntype="query">
     <cfargument name="eventTypeName" type="string" required="true">
