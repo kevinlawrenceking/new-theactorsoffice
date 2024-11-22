@@ -73,41 +73,33 @@
 </div>
 </cfoutput>
 
-<!--- JavaScript to Handle Croppie and File Upload --->
+<!-- JavaScript for Croppie -->
 <script>
 $(document).ready(function () {
+    // Hide initial elements
     $('#cont').hide();
     $('#uploadbutton').hide();
 
-    // Function to show the upload button
-    function showUploadButton() {
-        $('#uploadbutton')
-            .attr('disabled', false)
-            .show();
+    // Show the upload button
+    function showButton() {
+        $('#uploadbutton').attr('disabled', false).show();
     }
 
-    // Initialize Existing Image and Enable Button
-    const existingImage = "<cfoutput>#image_url#</cfoutput>?ver=<cfoutput>#rand()#</cfoutput>";
+    // Initialize existing image
+    const existingImage = '/media-abod/users/30/avatar.jpg?ver=0.946080825807';
     if (existingImage) {
-        showUploadButton();
+        showButton();
     }
 
     // Initialize Croppie
     var $uploadCrop = $('#upload-input').croppie({
         enableExif: true,
         url: existingImage,
-        viewport: {
-            width: <cfoutput>#picsize#</cfoutput>, 
-            height: <cfoutput>#picsize#</cfoutput>, 
-            type: 'circle'
-        },
-        boundary: {
-            width: <cfoutput>#picsize#</cfoutput>, 
-            height: <cfoutput>#picsize#</cfoutput>
-        }
+        viewport: { width: 200, height: 200, type: 'circle' },
+        boundary: { width: 300, height: 300 }
     });
 
-    // Handle File Input Change
+    // Handle file input change
     $('#upload').on('change', function () {
         var reader = new FileReader();
         reader.onload = function (e) {
@@ -116,28 +108,27 @@ $(document).ready(function () {
         reader.readAsDataURL(this.files[0]);
     });
 
-    // Handle Croppie Upload Result
+    // Handle upload result
     $('.upload-result').on('click', function () {
-        $uploadCrop.croppie('result', { type: 'canvas', size: 'viewport' })
-            .then(function (resp) {
-                $.ajax({
-                    url: "/include/image_upload2.cfm",
-                    type: "POST",
-                    data: { "picturebase": resp },
-                    success: function () {
-                        $('#upload-input').html(`
-                            <img style="margin: 20px;" src="${resp}" alt="User avatar" />
-                            <br>
-                            <a href="<cfoutput>#cookie.return_url#</cfoutput>">
-                                <button type="button" class="btn btn-primary waves-effect mb-2 waves-light">Continue</button>
-                            </a>
-                        `);
-                        $('#uploadbutton').hide();
-                        $('#selectfile').hide();
-                        $('#cont').show();
-                    }
-                });
+        $uploadCrop.croppie('result', { type: 'canvas', size: 'viewport' }).then(function (resp) {
+            $.ajax({
+                url: "/include/image_upload-contact2.cfm",
+                type: "POST",
+                data: { "picturebase": resp },
+                success: function () {
+                    $('#upload-input').html(`
+                        <img style="margin: 20px;" src="${resp}" />
+                        <br>
+                        <a href="/app/contact/?contactid=131221">
+                            <button type="button" class="btn btn-primary waves-effect mb-2 waves-light">Continue</button>
+                        </a>
+                    `);
+                    $('#uploadbutton').hide();
+                    $('#selectfile').hide();
+                    $('#cont').show();
+                }
             });
+        });
     });
 });
 </script>
