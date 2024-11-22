@@ -1,5 +1,29 @@
 <cfcomponent displayname="AuditionSubmitSiteUserService" hint="Handles operations for AuditionSubmitSiteUser table" > 
 
+<cffunction name="UPDaudsubmitsites_user_24167" access="public" returntype="void" output="false">
+
+    <cfargument name="submitsiteid" type="numeric" required="true">
+    <cfargument name="new_submitsitename" type="string" required="true">
+    <cfargument name="isdeleted" type="boolean" required="true">
+    <cfargument name="catlist" type="string" required="false" default="">
+
+
+    <cfquery>
+        UPDATE `audsubmitsites_user`
+        SET submitsitename = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_submitsitename#">,
+            isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.isdeleted#">
+        <cfif len(arguments.catlist)>
+            ,catlist = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.catlist#">
+        <cfelse>
+            ,catlist = NULL
+        </cfif>
+        WHERE submitsiteid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.submitsiteid#">
+    </cfquery>
+</cffunction>
+
+
+
+
 <cffunction output="false" name="SELaudsubmitsites_user" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     
