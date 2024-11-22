@@ -96,8 +96,8 @@ $(document).ready(function () {
     var $uploadCrop = $('#upload-input').croppie({
         enableExif: true,
         url: existingImage,
-        viewport: { width: #picsize#, height: #picsize#, type: 'circle' },
-        boundary: { width: #picsize#, height: #picsize# }
+       <cfoutput> viewport: { width: #picsize#, height: #picsize#, type: 'circle' },
+        boundary: { width: #picsize#, height: #picsize# }</cfoutput>
     });
 
     //--- Handle File Input Change ---//
