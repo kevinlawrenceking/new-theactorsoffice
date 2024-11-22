@@ -1,9 +1,9 @@
-<!-- Include necessary queries -->
+<!--- Include necessary queries --->
 <cfinclude template="/include/qry/FindRefPage_135_1.cfm" />
 <cfinclude template="/include/qry/FindRefcontacts_135_2.cfm" />
 
 
-<!-- Styling for disabled button -->
+<!--- Styling for disabled button --->
 <style>
     .btn-success:disabled {
         color: #fff;
@@ -12,9 +12,9 @@
     }
 </style>
 
-<!-- Set up dynamic ColdFusion variables -->
+<!--- Set up dynamic ColdFusion variables --->
 <cfoutput>
-    <!-- Directory and image URL setup -->
+    <!--- Directory and image URL setup --->
     <cfset dir_contact_avatar_filename = session.userContactsUrl & "/" & contactid & "/avatar.jpg" />
     <cfset browser_contact_avatar_filename = session.userContactsUrl & "/" & contactid & "/avatar.jpg" />
     <cfset subtitle = "#FindRefContacts.recordname#" />
@@ -22,7 +22,7 @@
     <cfset image_url = "#browser_contact_avatar_filename#" />
 </cfoutput>
 
-<!-- Determine picture size based on ref_pgid -->
+<!--- Determine picture size based on ref_pgid --->
 <cfif ref_pgid is "9">
     <cfset picsize = 200 />
     <cfset inputsize = 200 />
@@ -31,7 +31,10 @@
     <cfset inputsize = 300 />
 </cfif>
 
-<!-- HTML structure for the form -->
+<link rel="stylesheet" href="/app/assets/css/croppie.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.js"></script>
+
+
 <h4><cfoutput>#subtitle#</cfoutput></h4>
 <div class="row">
     <div id="cont">
@@ -56,7 +59,7 @@
     </div>
 </div>
 
-<!-- JavaScript for handling Croppie and uploads -->
+<!--- JavaScript for handling Croppie and uploads --->
 <script>
     $(document).ready(function () {
         // Hide confirmation message and upload button initially
@@ -135,6 +138,6 @@
     });
 </script>
 
-<!-- Include Croppie dependencies -->
+<!--- Include Croppie dependencies --->
 <link rel="stylesheet" href="/app/assets/css/croppie.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.js"></script>
