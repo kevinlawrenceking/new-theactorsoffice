@@ -104,7 +104,15 @@ function() {
 }();
 </script>
     
-    
+    <script>
+    #calendar-container {
+    position: relative;
+    padding-bottom: 20px; /* Add spacing to avoid overlap */
+    overflow: hidden;
+    height: calc(100vh - 100px); /* Adjust based on your layout */
+}
+
+</cfif>
     
     
  
