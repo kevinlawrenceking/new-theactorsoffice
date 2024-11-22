@@ -12,7 +12,7 @@
 </style>
 
 
-<cfset dir_contact_avatar_filename session.userContactsUrl & "/" & contactid & "/avatar.jpg" />
+<cfset dir_contact_avatar_filename = session.userContactsUrl & "/" & contactid & "/avatar.jpg" />
 <cfoutput>
 
     <cfset cookie.return_url = "/app/contact/?contactid=#contactid#" />
