@@ -1,5 +1,5 @@
 <cfcomponent output="false">
-    <cfquery result="result" name="findit" >
+    <cfquery result="result" datsource="abo" name="findit" >
         SELECT verid 
         FROM taoversions  
         ORDER BY isactive DESC, verid DESC 
