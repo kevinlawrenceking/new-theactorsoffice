@@ -11,13 +11,12 @@
     }
 </style>
 
+
+<cfset dir_contact_avatar_filename session.userContactsUrl & "/" & contactid & "/avatar.jpg" />
 <cfoutput>
-    <!--- Set cookies for upload directory and return URL --->
-    <cfset cookie.uploadDir_Contact = "#dir_contact_avatar_filename#" /> 
+
     <cfset cookie.return_url = "/app/contact/?contactid=#contactid#" />
-    <cfset subtitle = "#FindRefContacts.recordname#" />
-    <cfset browser_contact_avatar_loc = "/media-#host#/users/#userid#/contacts/#contactid#" />
-    <cfset browser_contact_avatar_filename = "#browser_contact_avatar_loc#/avatar.jpg" />
+
     <cfset image_url = "#browser_contact_avatar_filename#" />
 </cfoutput>
 

@@ -2,6 +2,17 @@
 
 <cfset pictureImg = imageReadBase64(form.picturebase)>
 
+<cfoutput>
+
+   <cfset cookie.uploadDir = "#dir_contact_avatar_filename#" />
+        <cfset cookie.return_url = "/app/contact/?contactid=#contactid#" />
+        <cfset subtitle = "#FindRefContacts.recordname#" />
+        <cfset browser_contact_avatar_loc = "/media-#host#/users/#userid#/contacts/#contactid#" />
+        <cfset browser_contact_avatar_filename = "#browser_contact_avatar_loc#/avatar.jpg" />
+        <cfset image_url = "#browser_contact_avatar_filename#" />
+
+
+</cfoutput>
 <!--- Save the image to the specified directory --->
 <cfimage 
     source="#pictureImg#"
