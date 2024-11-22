@@ -1,5 +1,34 @@
 <cfcomponent displayname="NotificationService" hint="Handles operations for Notification table" > 
 
+<cffunction name="removenotdups" access="public" returntype="void" output="false">
+    <cfquery name="findDuplicates">
+        SELECT 
+            MIN(notid) AS new_notid,
+            actionid,
+            userid,
+            suid
+        FROM 
+            funotifications
+        GROUP BY 
+            actionid, userid, suid
+        HAVING 
+            COUNT(*) > 1
+        ORDER BY 
+            actionid, userid, suid
+    </cfquery>
+
+    <cfloop query="findDuplicates">
+        <cfquery>
+            UPDATE funotifications_tbl
+            SET isdeleted = 1
+            WHERE notid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#findDuplicates.new_notid#">
+        </cfquery>
+    </cfloop>
+</cffunction>
+
+
+
+
 <cffunction name="UPDfunotifications_24032" access="public" returntype="void" output="false">
     <cfargument name="new_notstartdate" type="date" required="true">
     <cfargument name="notid" type="numeric" required="true">

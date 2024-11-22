@@ -2,12 +2,8 @@
 
 <cfinclude template="/include/qry/x_283_1.cfm" />
 
-<!--- Loop through the 'x' query to include related templates. --->
-<cfloop query="x">
-    <cfinclude template="/include/qry/rr_283_2.cfm" />
-</cfloop>
-
 <cfinclude template="/include/qry/de_283_3.cfm" />
+
 <cfinclude template="/include/qry/uu_223_2.cfm" />
 
 <!--- Loop through the 'u' query to include additional templates and process 'xs' queries. --->

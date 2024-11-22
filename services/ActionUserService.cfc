@@ -1,5 +1,72 @@
 <cfcomponent displayname="ActionUserService" hint="Handles operations for ActionUser table" > 
 
+<cffunction name="updateActionUsers" access="public" returntype="void" output="false">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="target_id_system" type="numeric" required="true">
+    
+    <!--- Step 1: Delete existing action users for the user and target system --->
+    <cfquery name="deleteActionUsers">
+        UPDATE actionusers_tbl
+        SET isdeleted = 1
+        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+        AND actionid IN (
+            SELECT actionid
+            FROM fuactions
+            WHERE systemid = <cfqueryparam value="#arguments.target_id_system#" cfsqltype="CF_SQL_INTEGER">
+        )
+    </cfquery>
+
+    <!--- Step 2: Fetch user details --->
+    <cfquery name="userDetails">
+        SELECT * 
+        FROM taousers
+        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+    </cfquery>
+
+    <!--- Ensure user exists before proceeding --->
+    <cfif userDetails.recordcount GT 0>
+        <!--- Step 3: Fetch actions for the target system --->
+        <cfquery name="actionsForSystem">
+            SELECT actionid, actiondaysno, actiondaysrecurring
+            FROM fuactions
+            WHERE systemid = <cfqueryparam value="#arguments.target_id_system#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+
+        <!--- Step 4: Loop through actions and insert missing records --->
+        <cfloop query="actionsForSystem">
+            <!--- Check if the user already has the action --->
+            <cfquery name="existingActionUser">
+                SELECT 1
+                FROM actionusers_tbl
+                WHERE actionid = <cfqueryparam value="#actionsForSystem.actionid#" cfsqltype="CF_SQL_INTEGER">
+                AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            </cfquery>
+
+            <!--- If the action-user record does not exist, insert it --->
+            <cfif existingActionUser.recordcount EQ 0>
+                <cfquery name="insertActionUser">
+                    INSERT INTO actionusers_tbl (
+                        actionid,
+                        userid,
+                        actiondaysno
+                        <cfif actionsForSystem.actiondaysrecurring IS NOT "">, actiondaysrecurring</cfif>,
+                        isdeleted
+                    )
+                    VALUES (
+                        <cfqueryparam value="#actionsForSystem.actionid#" cfsqltype="CF_SQL_INTEGER">,
+                        <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+                        <cfqueryparam value="#actionsForSystem.actiondaysno#" cfsqltype="CF_SQL_INTEGER">
+                        <cfif actionsForSystem.actiondaysrecurring IS NOT "">, <cfqueryparam value="#actionsForSystem.actiondaysrecurring#" cfsqltype="CF_SQL_INTEGER"></cfif>,
+                        0
+                    )
+                </cfquery>
+            </cfif>
+        </cfloop>
+    </cfif>
+</cffunction>
+
+
+
    <cffunction output="false" name="GetUserActions" access="public" returntype="query"  hint="Retrieve actions for a specific user ID.">
         <cfargument name="userid" type="numeric" required="yes" hint="ID of the user to retrieve actions for.">
 
