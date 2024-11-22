@@ -111,8 +111,7 @@ function() {
     overflow: hidden;
     height: calc(100vh - 100px); /* Adjust based on your layout */
 }
-
-</cfif>
+</script>
     
     
  
