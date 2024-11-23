@@ -32,8 +32,8 @@
   <cfset image_url="#browser_contact_avatar_filename#"/>
    <cfset cookie.image_url="#browser_contact_avatar_filename#"/>
  
-  <cfset cookie.return_url="/app/contact/"/>
-  <cfset return_url="/app/contact/"/>
+  <cfset cookie.return_url="/app/contact/?contactid=#contactid#"/>
+  <cfset return_url="/app/contact/?contactid=#contactid#"/>
 
 
   browser_contact_avatar_filename: #browser_contact_avatar_filename#<BR>
@@ -113,7 +113,7 @@
                 }
               });
 
-              var existingImage = '<cfoutput>#image_url#</cfoutput>?ver=<cfoutput>#rand()#</cfoutput>';
+              var existingImage = '<cfoutput>#image_url#</cfoutput>?ver=<cfoutput>#rand()#&cookie.contactid#</cfoutput>';
               if (existingImage) {
                 showButton();
               }
