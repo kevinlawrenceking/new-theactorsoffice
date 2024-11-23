@@ -49,7 +49,6 @@
             cookie.image_url: #cookie.image_url#<BR>
 
 
-<Cfabort>
 
 
 
