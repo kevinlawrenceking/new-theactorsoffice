@@ -49,17 +49,20 @@
     <cffunction name="onRequestStart" returntype="boolean" output="false">
         <cfargument name="targetPage" required="true" type="string">
 
+             <cfif isdefined('U')>
+            <cfset session.userid = U />
+            </cfif>
+
         <!-- Check if the user is authenticated -->
         <cfif NOT structKeyExists(session, "userid") AND NOT ListFindNoCase(arguments.targetPage, "loginform.cfm,login2.cfm")>
           
-            <cfif isdefined('U')>
-            <cfset session.userid = #U# />
-            <cfelse>
+       
+         
 
           
             <cflocation url="/loginform.cfm" addToken="false">
             </cfif>
-        </cfif>
+       
 
         <!-- Configure application paths and session variables if authenticated -->
         <cfif structKeyExists(session, "userid")>
