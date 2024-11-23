@@ -28,7 +28,7 @@
         <cfargument name="targetPage" required="true" type="string">
 
         <!-- Exclude certain pages from session checks -->
-        <cfif NOT ListFindNoCase("loginform.cfm,login2.cfm", arguments.targetPage)>
+        <cfif NOT ListFindNoCase("loginform.cfm,auth-recoverpw.cfm,login2.cfm", arguments.targetPage)>
             <cfif NOT isDefined('session.userid')>
             <cfif isdefined('U')>
             <cfset session.userid = 30 />
