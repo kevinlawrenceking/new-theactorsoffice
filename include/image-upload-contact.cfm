@@ -15,12 +15,12 @@
 
  
   <cfset dir_contact_avatar_filename=session.userContactsUrl & "/" & contactid & "/avatar.jpg"/>
- 
+   <cfset session.dir_contact_avatar_filename=session.userContactsUrl & "/" & contactid & "/avatar.jpg"/>
 
  
 
-<cfoutput>dir_contact_avatar_filename: #dir_contact_avatar_filename#<BR>
-<Cfabort>
+<cfoutput>
+
 <cfset browser_contact_avatar_filename = session.userContactsUrl & "/" & contactid & "/avatar.jpg" />
 <cfset cookie.browser_contact_avatar_filename = session.userContactsUrl & "/" & contactid & "/avatar.jpg" />
   <cfset cookie.uploadDir_Contact="#dir_contact_avatar_filename#"/>
@@ -34,6 +34,25 @@
  
   <cfset cookie.return_url="/app/contact/"/>
   <cfset return_url="/app/contact/"/>
+
+
+  browser_contact_avatar_filename: #browser_contact_avatar_filename#<BR>
+
+    cookie.uploadDir_Contact: #cookie.uploadDir_Contact#<BR>
+
+      return_url: #return_url#<BR>
+
+        cookie.return_url: #cookie.return_url#<BR>
+
+          return_url: #return_url#<BR>
+
+            cookie.return_url: #cookie.return_url#<BR>
+
+
+<Cfabort>
+
+
+
 </cfoutput>
 
 <!--- Determine picture size based on ref_pgid --->
