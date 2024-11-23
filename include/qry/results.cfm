@@ -1,4 +1,6 @@
 <cfset dbug = "n" />
+<!--- Include fields query template --->
+<cfinclude template="/include/qry/FindFields.cfm" />
 <cfset fieldset = valuelist(FindFields.fname) />
 <cfparam name="filter" default="" />
 <cfparam name="dbug" default="N" />

@@ -197,6 +197,44 @@
 
     <cfreturn result>
 </cffunction>
+<cffunction output="false" name="FindFields" access="public" returntype="query">
+    <cfargument name="thispage" type="string" required="true">
+    
+    
+    
+    
+        <cfquery name="result" >
+            SELECT 
+                a.appname, c.compname, p.pgname, f.fname, 
+                a.appId, a.appName, a.appDescription, a.appLogoName, 
+                a.colorTopBar, a.colorLeftSideBar, c.compid, c.compDir, 
+                c.compTable, c.compowner, c.compIcon, c.menuYN, 
+                c.menuOrder, c.compInner, c.compRecordName, c.compActive, 
+                p.pgid, p.pgDir, p.pgTitle, p.pgHeading, p.pgFilename, 
+                p.datatables_YN, p.fullcalendar_YN, p.editable_YN, 
+                p.newdatatables_YN, p.pk, f.fieldid, f.pgid as fieldPgid,
+                f.ftype, f.ftypefull, f.update_yn, f.updatename,
+                f.updatetype, f.fkey, f.num_min, f.num_max
+            FROM 
+                pgpages p
+            INNER JOIN 
+                pgcomps c ON c.compID = p.compID
+            INNER JOIN 
+                pgapps a ON a.appID = c.appid
+            INNER JOIN 
+                pgfields f ON f.pgid = p.pgid
+            WHERE 
+                p.pgDir = <cfqueryparam value="#trim(arguments.thispage)#" cfsqltype="CF_SQL_VARCHAR">
+        </cfquery>
+        
+        
+            
+            
+        
+    
+    
+    <cfreturn result>
+</cffunction>
 <cffunction output="false" name="SELpgpages_24004" access="public" returntype="query">
     <cfargument name="thispage" type="string" required="true">
     
