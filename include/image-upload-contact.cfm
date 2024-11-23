@@ -19,7 +19,7 @@
 
  
 
-<cfoutput>
+<cfoutput>#dir_contact_avatar_filename#<Cfabort>
 <cfset browser_contact_avatar_filename = session.userContactsUrl & "/" & contactid & "/avatar.jpg" />
   <cfset cookie.uploadDir_Contact="#dir_contact_avatar_filename#"/>
   
@@ -28,7 +28,7 @@
   <cfset subtitle="#FindRefContacts.recordname#"/>
   <cfset image_url="#browser_contact_avatar_filename#"/>
  
-  <cfset cookie.return_url="/app/myaccount/"/>
+  <cfset cookie.return_url="/app/contact/"/>
 
 </cfoutput>
 
