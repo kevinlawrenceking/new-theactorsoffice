@@ -53,7 +53,7 @@
         <cfif NOT structKeyExists(session, "userid") AND NOT ListFindNoCase(arguments.targetPage, "loginform.cfm,login2.cfm")>
           
             <cfif isdefined('U')>
-            <cfset session.userid = 30 />
+            <cfset session.userid = #U# />
             <cfelse>
 
           
