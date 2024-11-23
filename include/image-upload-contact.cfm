@@ -81,7 +81,6 @@
         </div>
         <input type="file" id="upload"></div>
       </div>
-      <form>
         <input type="hidden" name="picturebase" id="picturebase" value="">
           <div class="col-md-12">
             <div id="upload-input" style="width:<cfoutput>#inputsize#</cfoutput>px; height:<cfoutput>#inputsize#</cfoutput>px;"></div>
