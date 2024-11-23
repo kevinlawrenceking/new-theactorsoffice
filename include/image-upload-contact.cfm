@@ -113,7 +113,7 @@
                 }
               });
 
-              var existingImage = '<cfoutput>#image_url#</cfoutput>?ver=<cfoutput>#rand()#&contactid=#cookie.contactid#</cfoutput>';
+              var existingImage = '<cfoutput>#image_url#</cfoutput>?ver=<cfoutput>#rand()#&contactid=#contactid#</cfoutput>';
               if (existingImage) {
                 showButton();
               }
