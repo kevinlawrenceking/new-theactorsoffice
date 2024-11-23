@@ -27,7 +27,7 @@
     
         <cfset recover = CreateUUID()/>
     
-        <cfquery result="result" name="update" >
+        <cfquery result="result" name="update" datasource="abod">
         update taousers set recover = <cfqueryparam value="#recover#" cfsqltype="cf_sql_varchar" />
         where useremail = '#email#'
         </cfquery> 
