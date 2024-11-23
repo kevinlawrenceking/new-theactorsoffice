@@ -44,9 +44,9 @@
 
         cookie.return_url: #cookie.return_url#<BR>
 
-          return_url: #return_url#<BR>
+          image_url: #image_url#<BR>
 
-            cookie.return_url: #cookie.return_url#<BR>
+            cookie.image_url: #cookie.image_url#<BR>
 
 
 <Cfabort>
