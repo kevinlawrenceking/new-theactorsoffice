@@ -10,7 +10,7 @@
     overwrite="true"
     action="write">
 </cfimage>
-
+<cfoutput>#cookie.uploadDir_Contact#</cfoutput><cfabort>
 <!--- Gather diagnostic information for email --->
 <cfoutput>
     <cfsavecontent variable="diagnostics">
