@@ -2,9 +2,9 @@
 
 <cffunction name="SELaudcategories" access="public" returntype="query">
     <cfargument name="new_audsubcatid" type="numeric" required="true">
-    <cfset var result = "">
 
-    <cfquery  result="result">
+    <cfset var queryResult = "" />
+   <cfquery name="queryResult">
         SELECT 
             c.audcatid, 
             c.audcatname, 
@@ -18,7 +18,7 @@
             s.audsubcatid = <cfqueryparam value="#arguments.new_audsubcatid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 
-    <cfreturn result>
+    <cfreturn queryResult>  
 </cffunction>
 
 <cffunction name="SELaudcategories_23908" access="public" returntype="query">
