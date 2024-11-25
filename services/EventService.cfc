@@ -650,7 +650,7 @@
         <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_userid#'>, ">
 
 
-    <cfif isNumeric(arguments.new_audRoleID)>
+    <cfif arguments.new_audRoleID is not "">
         <cfset local.columnList &= "audRoleID, ">
         <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_audRoleID#'>, ">
     </cfif>
