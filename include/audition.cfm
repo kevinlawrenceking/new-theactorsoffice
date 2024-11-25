@@ -575,7 +575,7 @@
             $(document).ready(function() {
                 $("##auditionadd_audition").on("show.bs.modal", function(event) {
                     // Place the returned HTML into the selected element
-                    $(this).find(".modal-body").load("/include/remoteaudupdateform.cfm?NEW_AUDSUBCATID=#new_audsubcatid#&audcatid=#audcatid#&pgaction=add&audstepid=1&secid=#secid#&audprojectid=#audprojectid#&rpgid=184&details_pgid=176&pgdir=audition&userid=#userid#");
+                    $(this).find(".modal-body").load("/include/remoteaudupdateform.cfm?NEW_AUDSUBCATID=#new_audsubcatid#&new_userid=#userid#&audcatid=#audcatid#&pgaction=add&audstepid=1&secid=#secid#&audprojectid=#audprojectid#&rpgid=184&details_pgid=176&pgdir=audition&userid=#userid#");
                 });
             });
 

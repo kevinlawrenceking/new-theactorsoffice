@@ -18,7 +18,7 @@
     datasource="#datasourceName#"
     setclientcookies="true"
 >
-<cfset userid = 30 />
+
 
 <cfif isDefined('userid')>
 <cfscript>
