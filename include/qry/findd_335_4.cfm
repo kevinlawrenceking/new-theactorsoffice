@@ -1,5 +1,5 @@
 <cfset meetingDurationService = createObject("component", "services.MeetingDurationService") />
-<Cfif eventdetails.new_hours eq "">
+<Cfif eventdetails.new_durhours eq "">
     <cfset new_durhours = 1 />
 <Cfelse>
 <cfset new_durhours = eventdetails.new_hours />
