@@ -25,7 +25,21 @@
 <div class="col-xl-6 col-lg-8 col-md-12">
     <div class="card">
         <div class="card-body">
-            <div class="row">
+           <form 
+                    method="post" 
+                    action="/include/appoint-add2.cfm" 
+                    class="parsley-examples" 
+                    name="event-form" 
+                    id="form-event" 
+                    data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" 
+                    data-parsley-trigger="keyup" 
+                    data-parsley-validate>
+                    <cfoutput>
+                        <input type="hidden" name="returnurl" value="#returnurl#">
+                        <input type="hidden" name="rcontactid" value="#rcontactid#">
+                        <input type="hidden" name="userid" value="#userid#">
+                    </cfoutput>
+                    <div class="row">
                 <div class="col-12">
                     <div class="form-group">
                     </div>
@@ -60,6 +74,7 @@
                 <div class="col-6 text-right">
                 </div>
             </div>
+              </form>
             <div style="margin-bottom:100px;"></div>
         </div>
     </div>
