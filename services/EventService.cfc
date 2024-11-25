@@ -633,51 +633,94 @@
     <cfargument name="new_eventStopTime" type="string" required="yes">
     <cfargument name="new_audplatformid" type="numeric" required="yes">
     <cfargument name="new_audStepID" type="numeric" required="yes">
-    <cfargument name="new_parkingDetails" type="string" required="no" default="">
-    <cfargument name="new_workwithcoach" type="boolean" required="no" default="">
-    <cfargument name="new_trackmileage" type="boolean" required="no" default="">
+    <cfargument name="new_parkingDetails" type="string" required="no">
+    <cfargument name="new_workwithcoach" type="boolean" required="no">
+    <cfargument name="new_trackmileage" type="boolean" required="no">
     <cfargument name="new_audlocid" type="numeric" required="yes">
 
-    <!--- Local Variables for NULL Checks --->
-    <cfset local.null_userid = NOT len(trim(arguments.new_userid))>
-    <cfset local.null_audRoleID = NOT len(trim(arguments.new_audRoleID))>
-    <cfset local.null_audTypeID = NOT len(trim(arguments.new_audTypeID))>
-    <cfset local.null_audLocation = NOT len(trim(arguments.new_audLocation))>
-    <cfset local.null_eventStart = NOT len(trim(arguments.new_eventStart))>
-    <cfset local.null_eventStartTime = NOT len(trim(arguments.new_eventStartTime))>
-    <cfset local.null_eventStopTime = NOT len(trim(arguments.new_eventStopTime))>
-    <cfset local.null_audplatformid = NOT len(trim(arguments.new_audplatformid))>
-    <cfset local.null_audStepID = NOT len(trim(arguments.new_audStepID))>
-    <cfset local.null_parkingDetails = NOT len(trim(arguments.new_parkingDetails))>
-    <cfset local.null_workwithcoach = NOT len(trim(arguments.new_workwithcoach))>
-    <cfset local.null_trackmileage = NOT len(trim(arguments.new_trackmileage))>
-    <cfset local.null_audlocid = NOT len(trim(arguments.new_audlocid))>
+    <!--- Initialize dynamic query strings --->
+    <cfset local.columnList = "">
+    <cfset local.valueList = "">
 
-    <!--- Insert Query --->
+    <!--- Validate and add columns dynamically --->
+    <cfif isNumeric(arguments.new_userid)>
+        <cfset local.columnList &= "userid, ">
+        <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_userid#'>, ">
+    </cfif>
+
+    <cfif isNumeric(arguments.new_audRoleID)>
+        <cfset local.columnList &= "audRoleID, ">
+        <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_audRoleID#'>, ">
+    </cfif>
+
+    <cfif isNumeric(arguments.new_audTypeID)>
+        <cfset local.columnList &= "audTypeID, ">
+        <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_audTypeID#'>, ">
+    </cfif>
+
+    <cfif len(trim(arguments.new_audLocation))>
+        <cfset local.columnList &= "audLocation, ">
+        <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_VARCHAR' value='#arguments.new_audLocation#' maxlength='500'>, ">
+    </cfif>
+
+    <cfif isDate(arguments.new_eventStart)>
+        <cfset local.columnList &= "eventStart, ">
+        <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_DATE' value='#arguments.new_eventStart#'>, ">
+    </cfif>
+
+    <cfif len(trim(arguments.new_eventStartTime))>
+        <cfset local.columnList &= "eventStartTime, ">
+        <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_TIME' value='#arguments.new_eventStartTime#'>, ">
+    </cfif>
+
+    <cfif len(trim(arguments.new_eventStopTime))>
+        <cfset local.columnList &= "eventStopTime, ">
+        <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_TIME' value='#arguments.new_eventStopTime#'>, ">
+    </cfif>
+
+    <cfif isNumeric(arguments.new_audplatformid)>
+        <cfset local.columnList &= "audplatformID, ">
+        <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_audplatformid#'>, ">
+    </cfif>
+
+    <cfif isNumeric(arguments.new_audStepID)>
+        <cfset local.columnList &= "audStepID, ">
+        <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_audStepID#'>, ">
+    </cfif>
+
+    <cfif len(trim(arguments.new_parkingDetails))>
+        <cfset local.columnList &= "parkingDetails, ">
+        <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_LONGVARCHAR' value='#arguments.new_parkingDetails#'>, ">
+    </cfif>
+
+    <cfif isBoolean(arguments.new_workwithcoach)>
+        <cfset local.columnList &= "workwithcoach, ">
+        <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_BIT' value='#arguments.new_workwithcoach#'>, ">
+    </cfif>
+
+    <cfif isBoolean(arguments.new_trackmileage)>
+        <cfset local.columnList &= "trackmileage, ">
+        <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_BIT' value='#arguments.new_trackmileage#'>, ">
+    </cfif>
+
+    <cfif isNumeric(arguments.new_audlocid)>
+        <cfset local.columnList &= "audlocid, ">
+        <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_audlocid#'>, ">
+    </cfif>
+
+    <!--- Always include isdeleted column --->
+    <cfset local.columnList &= "isdeleted">
+    <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_BIT' value='1'>">
+
+    <!--- Execute the query --->
     <cfquery result="result">
-        INSERT INTO events_tbl (
-            userid, audRoleID, audTypeID, audLocation, eventStart, eventStartTime, eventStopTime, 
-            audplatformID, audStepID, parkingDetails, workwithcoach, trackmileage, audlocid, isdeleted
-        ) VALUES (
-            <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_userid#" null="#local.null_userid#" />,
-            <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#" null="#local.null_audRoleID#" />,
-            <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audTypeID#" null="#local.null_audTypeID#" />,
-            <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audLocation#" maxlength="500" null="#local.null_audLocation#" />,
-            <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.new_eventStart#" null="#local.null_eventStart#" />,
-            <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.new_eventStartTime#" null="#local.null_eventStartTime#" />,
-            <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.new_eventStopTime#" null="#local.null_eventStopTime#" />,
-            <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audplatformid#" null="#local.null_audplatformid#" />,
-            <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audStepID#" null="#local.null_audStepID#" />,
-            <cfqueryparam cfsqltype="CF_SQL_LONGVARCHAR" value="#arguments.new_parkingDetails#" null="#local.null_parkingDetails#" />,
-            <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_workwithcoach#" null="#local.null_workwithcoach#" />,
-            <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_trackmileage#" null="#local.null_trackmileage#" />,
-            <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audlocid#" null="#local.null_audlocid#" />,
-            <cfqueryparam cfsqltype="CF_SQL_BIT" value="1" />
-        )
+        INSERT INTO events_tbl (#local.columnList#)
+        VALUES (#local.valueList#)
     </cfquery>
 
     <cfreturn result.generatedKey>
 </cffunction>
+
 
 <cffunction output="false" name="UPDevents_24104" access="public" returntype="void">
     <cfargument name="new_eventid" type="numeric" required="true">
