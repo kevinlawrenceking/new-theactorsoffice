@@ -4,7 +4,7 @@
     <cfargument name="new_audsubcatid" type="numeric" required="true">
     <cfset var result = "">
 
-    <cfquery name="result">
+    <cfquery  result="result">
         SELECT 
             c.audcatid, 
             c.audcatname, 
@@ -29,7 +29,7 @@
     <cfset var whereClause = "">
     <cfset var params = []>
     
-    <!--- Build WHERE clause dynamically if parameters are provided --->
+
     <cfif structKeyExists(arguments, "audcatid")>
         <cfset whereClause = " WHERE s.audcatid = ?">
         <cfset arrayAppend(params, {value=arguments.audcatid, cfsqltype="CF_SQL_INTEGER"})>
@@ -39,7 +39,7 @@
     <cfset sql = sql & whereClause & " ORDER BY c.audcatname, s.audsubcatname">
 
     <!--- Execute the query with error handling --->
-    <cfquery name="result">
+    <cfquery  result="result">
         #sql#
         <cfloop array="#params#" index="param">
             <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
@@ -51,7 +51,7 @@
 
 <cffunction name="SELaudcategories_24033" access="public" returntype="query" output="false">
 
-    <cfquery name="categories">
+    <cfquery name="categories" result="result">
         SELECT audcatid, audcatname
         FROM audcategories
         WHERE isdeleted = 0
@@ -66,7 +66,7 @@
     
     <cfset var result = "">
 
-    <cfquery name="result">
+    <cfquery  result="result">
         SELECT audcatid 
         FROM audcategories 
         WHERE audcatname = <cfqueryparam value="#arguments.audcatname#" cfsqltype="CF_SQL_VARCHAR">
@@ -78,9 +78,9 @@
 <cffunction name="SELaudcategories_24367" access="public" returntype="query">
     <cfargument name="audcatname" type="string" required="true">
     
-    <cfset var result = "">
+ 
 
-    <cfquery name="result">
+    <cfquery   result="result">
         SELECT s.audsubcatid 
         FROM audcategories c 
         INNER JOIN audsubcategories s ON s.audcatid = c.audcatid 
@@ -97,7 +97,7 @@
     
     <cfset var result = "">
 
-    <cfquery name="result">
+    <cfquery name="result" result="result">
         SELECT *
         FROM audcategories
         WHERE audcatname = <cfqueryparam value="#arguments.audcatname#" cfsqltype="CF_SQL_VARCHAR">
@@ -112,7 +112,7 @@
 
     <cfset var result = "">
 
-    <cfquery name="result">
+    <cfquery name="result" result="result">
         SELECT 
             ac.audcatname AS category, 
             aisc.audsubcatname AS subcategory 
@@ -135,7 +135,7 @@
     
     <cfset var result = "">
 
-    <cfquery name="result">
+    <cfquery name="result" result="result">
         SELECT s.audsubcatid AS new_audsubcatid
         FROM audcategories c
         INNER JOIN audsubcategories s ON s.audcatid = c.audcatid
@@ -151,14 +151,14 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
 
-        <cfquery datasource="abod">
+        <cfquery   result="result">
             INSERT INTO audcategories (audCatName, isDeleted)
             VALUES (
                 <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audCatName#" maxlength="100" null="#NOT len(trim(arguments.new_audCatName))#">,
                 <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
             )
         </cfquery>
-        
+         <cfreturn result.generatedKey>
 </cffunction>
 <cffunction name="UPDaudcategories" access="public" returntype="void">
     <cfargument name="new_audCatName" type="string" required="true">
@@ -166,7 +166,7 @@
     <cfargument name="new_audCatId" type="numeric" required="true">
 
 
-        <cfquery datasource="abod">
+        <cfquery  >
             UPDATE audcategories
             SET 
                 audCatName = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audCatName#" maxlength="100" null="#NOT len(trim(arguments.new_audCatName))#">,
@@ -182,14 +182,14 @@
     <cfset var result = "" />
     
     
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result"  >
             SELECT audcatid, audcatname
             FROM audcategories
             WHERE isdeleted = <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
             ORDER BY audcatname
         </cfquery>
         
-            <cfset result = queryNew("audcatid,audcatname")>
+
         
     
 
@@ -200,7 +200,7 @@
     
     <cfset var result = "">
     
-        <cfquery name="result" datasource="abod">
+        <cfquery name="result"  >
             SELECT a.audcatid, a.audcatname
             FROM audcategories a
             WHERE a.isDeleted = <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
@@ -208,7 +208,7 @@
         </cfquery>
         
 
-            <cfreturn queryNew("")>
+   
         
     
     <cfreturn result>
