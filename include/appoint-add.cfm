@@ -9,8 +9,11 @@
 <cfinclude template="/include/qry/eventtypes_user_443_2.cfm"/>
 
 
-    <div class="container mt-5">
-        <div class="col-xl-6 col-lg-8 col-md-12 mx-auto">
+
+
+
+    <div class="container">
+        <div class="col-xl-6 col-lg-8 col-md-12">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title mb-4">Test Form</h5>
@@ -65,7 +68,6 @@
             </div>
         </div>
     </div>
-
 
 
 
