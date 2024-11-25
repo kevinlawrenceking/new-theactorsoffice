@@ -201,7 +201,7 @@
         <script>
             $(document).ready(function() {
                 $("##auditionupdate_#events.eventid#").on("show.bs.modal", function(event) {
-                    $(this).find(".modal-body").load("/include/remoteaudupdateform.cfm?secid=#secid#&eventid=#events.eventid#&audcatid=#audcatid#&audprojectid=#audprojectid#&rpgid=175&details_pgid=176&pgdir=audition&userid=#userid#");
+                    $(this).find(".modal-body").load("/include/remoteaudupdateform.cfm?secid=#secid#&eventid=#events.eventid#&audcatid=#audcatid#&audprojectid=#audprojectid#&rpgid=175&details_pgid=176&pgdir=audition&userid=#userid#&new_userid=#userid#");
                 });
             });
         </script>
