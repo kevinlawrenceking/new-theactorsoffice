@@ -1,4 +1,7 @@
 <cfset eventService = createObject("component", "services.EventService")>
+<Cfif new_audTypeID eq "">
+    <cfset new_audTypeID = 1 />
+</cfif>
 <cfset eventService.INSevents_24096(
     new_userid=new_userid,
     new_audRoleID=new_audRoleID,
