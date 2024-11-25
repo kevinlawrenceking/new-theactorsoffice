@@ -116,19 +116,10 @@
 
           <script>
     function handleSelectChange(element) {
-        // Show or hide 'hidden_divs'
         document.getElementById('hidden_divs').style.display = element.value == 2 ? 'block' : 'none';
-
-        // Show or hide 'hidden_divss'
         document.getElementById('hidden_divss').style.display = element.value == 1 ? 'block' : 'none';
-
-        // Show or hide 'hidedirectbooking'
         document.getElementById('hidedirectbooking').style.display = element.value == 23 ? 'none' : 'block';
-
-        // Show or hide 'hidden_divsss'
         document.getElementById('hidden_divsss').style.display = element.value == 0 ? 'block' : 'none';
-
-        // Additional logic, if needed
         console.log("Value: ", element.value, "Type: ", typeof element.value);
     }
 </script>
