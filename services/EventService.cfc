@@ -624,8 +624,6 @@
         
 </cffunction>
 <cffunction output="false" name="INSevents_24096" access="public" returntype="numeric">
-
-
     <cfargument name="new_userid" type="string" required="yes">
     <cfargument name="new_audRoleID" type="numeric" required="no">
     <cfargument name="new_audTypeID" type="numeric" required="no">
@@ -640,119 +638,87 @@
     <cfargument name="new_trackmileage" type="boolean" required="no">
     <cfargument name="new_audlocid" type="numeric" required="no">
 
-    <!--- Initialize dynamic query strings --->
-    <cfset local.columnList = "">
-    <cfset local.valueList = "">
+    <!--- Initialize column and queryparam lists --->
+    <cfset local.columnList = []>
+    <cfset local.paramList = []>
 
-    <!--- Validate and add columns dynamically --->
+    <!--- Add required and optional arguments dynamically --->
+    <cfset arrayAppend(local.columnList, "userid")>
+    <cfset arrayAppend(local.paramList, "<cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_userid#'>")>
 
-        <cfset local.columnList &= "userid, ">
-        <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_userid#'>, ">
-
-
-<cfif structKeyExists(arguments, "new_audRoleID") AND arguments.new_audRoleID IS NOT "">
-    <cfset local.columnList &= "audRoleID, ">
-    <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_audRoleID#'>, ">
-</cfif>
-
-<cfif structKeyExists(arguments, "new_audTypeID") AND arguments.new_audTypeID IS NOT "">
-        <cfset local.columnList &= "audTypeID, ">
-        <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_audTypeID#'>, ">
+    <cfif isNumeric(arguments.new_audRoleID)>
+        <cfset arrayAppend(local.columnList, "audRoleID")>
+        <cfset arrayAppend(local.paramList, "<cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_audRoleID#'>")>
     </cfif>
 
-<cfif structKeyExists(arguments, "new_audLocation") AND arguments.new_audLocation IS NOT "">
-        <cfset local.columnList &= "audLocation, ">
-        <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_VARCHAR' value='#arguments.new_audLocation#' maxlength='500'>, ">
+    <cfif isNumeric(arguments.new_audTypeID)>
+        <cfset arrayAppend(local.columnList, "audTypeID")>
+        <cfset arrayAppend(local.paramList, "<cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_audTypeID#'>")>
     </cfif>
 
-<cfif structKeyExists(arguments, "new_eventStart") AND arguments.new_eventStart IS NOT "">
-        <cfset local.columnList &= "eventStart, ">
-        <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_DATE' value='#arguments.new_eventStart#'>, ">
+    <cfif len(trim(arguments.new_audLocation))>
+        <cfset arrayAppend(local.columnList, "audLocation")>
+        <cfset arrayAppend(local.paramList, "<cfqueryparam cfsqltype='CF_SQL_VARCHAR' value='#arguments.new_audLocation#' maxlength='500'>")>
     </cfif>
 
-   <cfif structKeyExists(arguments, "new_eventStartTime") AND arguments.new_eventStartTime IS NOT "">
-        <cfset local.columnList &= "eventStartTime, ">
-        <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_TIME' value='#arguments.new_eventStartTime#'>, ">
+    <cfif isDate(arguments.new_eventStart)>
+        <cfset arrayAppend(local.columnList, "eventStart")>
+        <cfset arrayAppend(local.paramList, "<cfqueryparam cfsqltype='CF_SQL_DATE' value='#arguments.new_eventStart#'>")>
     </cfif>
 
-    <cfif structKeyExists(arguments, "new_eventStopTime") AND arguments.new_eventStopTime IS NOT "">
-        <cfset local.columnList &= "eventStopTime, ">
-        <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_TIME' value='#arguments.new_eventStopTime#'>, ">
+    <cfif len(trim(arguments.new_eventStartTime))>
+        <cfset arrayAppend(local.columnList, "eventStartTime")>
+        <cfset arrayAppend(local.paramList, "<cfqueryparam cfsqltype='CF_SQL_TIME' value='#arguments.new_eventStartTime#'>")>
     </cfif>
 
- <cfif structKeyExists(arguments, "new_audplatformid") AND arguments.new_audplatformid IS NOT "">
-        <cfset local.columnList &= "audplatformID, ">
-        <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_audplatformid#'>, ">
+    <cfif len(trim(arguments.new_eventStopTime))>
+        <cfset arrayAppend(local.columnList, "eventStopTime")>
+        <cfset arrayAppend(local.paramList, "<cfqueryparam cfsqltype='CF_SQL_TIME' value='#arguments.new_eventStopTime#'>")>
     </cfif>
 
-    <cfif structKeyExists(arguments, "new_audStepID") AND arguments.new_audStepID IS NOT "">
-        <cfset local.columnList &= "audStepID, ">
-        <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_audStepID#'>, ">
+    <cfif isNumeric(arguments.new_audplatformid)>
+        <cfset arrayAppend(local.columnList, "audplatformID")>
+        <cfset arrayAppend(local.paramList, "<cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_audplatformid#'>")>
     </cfif>
 
-<cfif structKeyExists(arguments, "new_parkingDetails") AND arguments.new_parkingDetails IS NOT "">
-        <cfset local.columnList &= "parkingDetails, ">
-        <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_LONGVARCHAR' value='#arguments.new_parkingDetails#'>, ">
-    </cfif>
-    
-    <cfif structKeyExists(arguments, "new_workwithcoach") AND arguments.new_workwithcoach IS NOT "">
-        <cfset local.columnList &= "workwithcoach, ">
-        <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_BIT' value='#arguments.new_workwithcoach#'>, ">
+    <cfif isNumeric(arguments.new_audStepID)>
+        <cfset arrayAppend(local.columnList, "audStepID")>
+        <cfset arrayAppend(local.paramList, "<cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_audStepID#'>")>
     </cfif>
 
-    <cfif structKeyExists(arguments, "new_trackmileage") AND arguments.new_trackmileage IS NOT "">
-        <cfset local.columnList &= "trackmileage, ">
-        <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_BIT' value='#arguments.new_trackmileage#'>, ">
+    <cfif len(trim(arguments.new_parkingDetails))>
+        <cfset arrayAppend(local.columnList, "parkingDetails")>
+        <cfset arrayAppend(local.paramList, "<cfqueryparam cfsqltype='CF_SQL_LONGVARCHAR' value='#arguments.new_parkingDetails#'>")>
     </cfif>
 
-    <cfif structKeyExists(arguments, "new_audlocid") AND arguments.new_audlocid IS NOT "">
-        <cfset local.columnList &= "audlocid, ">
-        <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_audlocid#'>, ">
+    <cfif isBoolean(arguments.new_workwithcoach)>
+        <cfset arrayAppend(local.columnList, "workwithcoach")>
+        <cfset arrayAppend(local.paramList, "<cfqueryparam cfsqltype='CF_SQL_BIT' value='#arguments.new_workwithcoach#'>")>
+    </cfif>
+
+    <cfif isBoolean(arguments.new_trackmileage)>
+        <cfset arrayAppend(local.columnList, "trackmileage")>
+        <cfset arrayAppend(local.paramList, "<cfqueryparam cfsqltype='CF_SQL_BIT' value='#arguments.new_trackmileage#'>")>
+    </cfif>
+
+    <cfif isNumeric(arguments.new_audlocid)>
+        <cfset arrayAppend(local.columnList, "audlocid")>
+        <cfset arrayAppend(local.paramList, "<cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_audlocid#'>")>
     </cfif>
 
     <!--- Always include isdeleted column --->
-    <cfset local.columnList &= "isdeleted">
-    <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_BIT' value='1'>">
+    <cfset arrayAppend(local.columnList, "isdeleted")>
+    <cfset arrayAppend(local.paramList, "<cfqueryparam cfsqltype='CF_SQL_BIT' value='1'>")>
 
-    <!--- Execute the query --->
+    <!--- Execute the query directly with concatenated params --->
     <cfquery result="result">
-        INSERT INTO events_tbl (#local.columnList#)
-        VALUES (#local.valueList#)
+        INSERT INTO events_tbl (#arrayToList(local.columnList)#)
+        VALUES (#arrayToList(local.paramList)#)
     </cfquery>
 
     <cfreturn result.generatedKey>
 </cffunction>
 
-
-<cffunction output="false" name="UPDevents_24104" access="public" returntype="void">
-    <cfargument name="new_eventid" type="numeric" required="true">
-
-        <cfquery result="result" >
-            UPDATE events_tbl 
-            SET isdeleted = 0 
-            WHERE eventid = <cfqueryparam value="#arguments.new_eventid#" cfsqltype="CF_SQL_INTEGER">
-        </cfquery>
-        
-</cffunction>
-<cffunction output="false" name="SELevents_24105" access="public" returntype="query">
-    <cfargument name="new_eventid" type="numeric" required="true">
-    
-    
-    
-        <cfquery name="result" >
-            SELECT eventid, eventstart, eventstarttime, eventstoptime
-            FROM events
-            WHERE eventid = <cfqueryparam value="#arguments.new_eventid#" cfsqltype="CF_SQL_INTEGER">
-        </cfquery>
-        
-        
-            
-            
-        
-    
-    
-    <cfreturn result>
-</cffunction>
 <cffunction output="false" name="UPDevents_24108" access="public" returntype="void">
     <cfargument name="eventId" type="numeric" required="true">
     <cfargument name="newEventStart" type="date" required="false" default="">
