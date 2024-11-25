@@ -3,8 +3,8 @@
     <cfset new_audTypeID = 1 />
 </cfif>
 
-<cfsavecontent variable="arguments">
-new_userid=new_userid
+<cfsavecontent variable="arguments"><Cfoutput>
+new_userid=#new_userid##
     <cfif new_audroleid neq "">, new_audRoleID=#new_audRoleID#</cfif>
     <cfif new_audTypeID neq "">, new_audTypeID=#new_audTypeID#</cfif>
     <cfif new_audLocation neq "">, new_audLocation=#new_audLocation#</cfif>
@@ -17,6 +17,6 @@ new_userid=new_userid
     <cfif new_workwithcoach neq "">, new_workwithcoach=#new_workwithcoach#</cfif>
     <cfif new_trackmileage neq "">, new_trackmileage=#new_trackmileage#</cfif>
     <cfif new_audlocid neq "">, new_audlocid=#new_audlocid#</cfif>
- </cfsavecontent>   
-<Cfoutput>INSevents_24096(#arguments#)</cfoutput><Cfabort>
+ </cfoutput></cfsavecontent>   
+<Cfoutput>INSevents_24096(#trim(arguments)#)</cfoutput><Cfabort>
 <cfset eventService.INSevents_24096(arguments)>
