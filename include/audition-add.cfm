@@ -3,6 +3,7 @@
 <cfparam name="rcontactid" default="0"/> <!--- Set default value for rcontactid --->
 <cfparam name="isdirect" default="0"/> <!--- Set default value for isdirect --->
 
+<cfparam name="userCalStarttime" default=""/>
 <style>
   /* Styles for hidden divs */
   #hidden_divs {
