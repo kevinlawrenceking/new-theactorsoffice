@@ -650,10 +650,10 @@
         <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_userid#'>, ">
 
 
-    <cfif arguments.new_audRoleID is not "">
-        <cfset local.columnList &= "audRoleID, ">
-        <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_audRoleID#'>, ">
-    </cfif>
+<cfif structKeyExists(arguments, "new_audRoleID") AND arguments.new_audRoleID IS NOT "">
+    <cfset local.columnList &= "audRoleID, ">
+    <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_audRoleID#'>, ">
+</cfif>
 
     <cfif isNumeric(arguments.new_audTypeID)>
         <cfset local.columnList &= "audTypeID, ">
