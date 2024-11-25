@@ -2,11 +2,7 @@
 
 <cfparam name="rcontactid" default="0"/>
 
-<style>
-  #hidden_div {
-    display: none;
-  }
-</style>
+
 
 <cfinclude template="/include/qry/relationships_13_1.cfm"/>
 <cfinclude template="/include/qry/durations.cfm"/>
@@ -246,54 +242,7 @@
     </div>
 </div>
 </div>
-<script>
-  $(document).ready(function () {
-    $(".parsley-examples").parsley();
-  });
 
-  function showDiv(divId, element) {
-    var checked = document.querySelectorAll('input[name="dow"]:checked');
-    var hiddenDiv = document.getElementById(divId);
-
-    if (checked.length === 0) {
-      hiddenDiv.style.display = 'none';
-      document.getElementById("endRecur").value = "";
-      $("#endRecur").prop('required', false);
-    } else {
-      hiddenDiv.style.display = 'block';
-      $("#endRecur").prop('required', true);
-    }
-  }
-
-  $('select[name=eventStartTime]').on("change", function () {
-    var theSelectedIndex = $(this)[0].selectedIndex;
-    $.each($('select[name=eventStopTime] option'), function () {
-      var endOptionIndex = $(this).index();
-      if (endOptionIndex < theSelectedIndex) {
-        $(this).attr('disabled', 'disabled');
-      } else {
-        $(this).removeAttr('disabled').prop('selected', true);
-        return false;
-      }
-    });
-  });
-
-  $(document).ready(function() {
-    $("#select-relationship").selectize({
-      persist: false,
-      createOnBlur: true,
-      create: true,
-      plugins: ["remove_button"],
-      delimiter: ",",
-      create: function(input) {
-        return {
-          value: input,
-          text: input,
-        };
-      },
-    });
-  });
-</script>
 
 <cfset script_name_include="/include/#ListLast(GetCurrentTemplatePath(), '\')#"/>
 <cfinclude template="/include/bigbrotherinclude.cfm"/>
