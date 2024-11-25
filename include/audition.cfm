@@ -567,7 +567,6 @@
                 </cfif>
 
     
-                    
                     <cfif #events.recordcount# is "0">
                         
                         <cfoutput>
