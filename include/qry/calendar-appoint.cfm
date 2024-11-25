@@ -4,9 +4,4 @@
 
 <cfinclude template="/include/qry/eventtypes_user_443_2.cfm" />
 
-<style>
-    .fc-title {
-        white-space: normal;
-    }
-</style>
 
