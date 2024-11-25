@@ -625,18 +625,18 @@
 </cffunction>
 <cffunction output="false" name="INSevents_24096" access="public" returntype="numeric">
     <cfargument name="new_userid" type="numeric" required="yes">
-    <cfargument name="new_audRoleID" type="numeric" required="yes">
-    <cfargument name="new_audTypeID" type="numeric" required="yes">
-    <cfargument name="new_audLocation" type="string" required="yes">
-    <cfargument name="new_eventStart" type="date" required="yes">
-    <cfargument name="new_eventStartTime" type="string" required="yes">
-    <cfargument name="new_eventStopTime" type="string" required="yes">
-    <cfargument name="new_audplatformid" type="numeric" required="yes">
-    <cfargument name="new_audStepID" type="numeric" required="yes">
+    <cfargument name="new_audRoleID" type="numeric" required="no">
+    <cfargument name="new_audTypeID" type="numeric" required="no">
+    <cfargument name="new_audLocation" type="string" required="no">
+    <cfargument name="new_eventStart" type="date" required="no">
+    <cfargument name="new_eventStartTime" type="string" required="no">
+    <cfargument name="new_eventStopTime" type="string" required="no">
+    <cfargument name="new_audplatformid" type="numeric" required="no">
+    <cfargument name="new_audStepID" type="numeric" required="no">
     <cfargument name="new_parkingDetails" type="string" required="no">
     <cfargument name="new_workwithcoach" type="boolean" required="no">
     <cfargument name="new_trackmileage" type="boolean" required="no">
-    <cfargument name="new_audlocid" type="numeric" required="yes">
+    <cfargument name="new_audlocid" type="numeric" required="no">
 
     <!--- Initialize dynamic query strings --->
     <cfset local.columnList = "">
