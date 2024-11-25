@@ -59,8 +59,7 @@
     <cfparam name="new_trackmileage" default="0" />
 
     <cfinclude template="/include/qry/auditions_ins_221_8.cfm" />
-<cfdump var="#result#" label="Result Debugging" />
-<cfabort>
+<cfset eventid = result />
 </cfif>
 
 <cfset dbug = "N" />
