@@ -4,29 +4,24 @@
 
 <cfinclude template="/include/qry/eventtypes_user_443_2.cfm" />
 
-
 <style>
-    #topbox {
-        display: flex;
-        flex-flow: row wrap;
-    }
 
-    .alignleft {
-        width: 25%;
-        text-align: left;
-    }
+    <!--- Loop through event types to apply color styles. --->
+    <cfloop query="eventtypes_user">
+        <cfoutput>
+            .colorkey-#eventtypes_user.id# {
+                background-color: #eventtypes_user.eventtypecolor# !important;
+            }
 
-    .aligncenter {
-        width: 50%;
-        text-align: center;
-    }
-
-    .alignright {
-        width: 25%;
-        text-align: right;
-    }
-
-
+            a.colorkey:hover,
+            a.colorkey:focus,
+            button.colorkey:hover,
+            button.colorkey:focus {
+                background-color: ##343a40 !important;
+            }
+        </cfoutput>
+    </cfloop>
+</style>
 
 <style>
     .fc-event-time,
@@ -39,3 +34,4 @@
         white-space: normal;
     }
 </style>
+
