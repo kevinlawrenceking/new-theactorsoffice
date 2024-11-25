@@ -7,241 +7,67 @@
 <cfinclude template="/include/qry/relationships_13_1.cfm"/>
 <cfinclude template="/include/qry/durations.cfm"/>
 <cfinclude template="/include/qry/eventtypes_user_443_2.cfm"/>
-<div class="row">
-<div class="col-xl-6 col-lg-8 col-md-12">
-    <div class="card">
-        <div class="card-body">
-            <form 
-                method="post" 
-                action="/include/appoint-add2.cfm" 
-                class="parsley-examples" 
-                name="event-form" 
-                id="form-event" 
-                data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" 
-                data-parsley-trigger="keyup" 
-                data-parsley-validate>
-                
-                <cfoutput>
-                    <input type="hidden" name="returnurl" value="#returnurl#">
-                    <input type="hidden" name="rcontactid" value="#rcontactid#">
-                    <input type="hidden" name="userid" value="#userid#">
-                </cfoutput>
 
-                <div class="row">
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label class="control-label">Title<span class="text-danger">*</span></label>
-                            <input 
-                                class="form-control" 
-                                autocomplete="off" 
-                                placeholder="Insert Appointment Title" 
-                                type="text" 
-                                name="eventTitle" 
-                                id="eventTitle" 
-                                data-parsley-minlength="3" 
-                                data-parsley-minlength-message="Min length 3 characters" 
-                                data-parsley-maxlength="200" 
-                                data-parsley-maxlength-message="Max length 200 characters" 
-                                data-parsley-required 
-                                data-parsley-error-message="Title is required" />
-                        </div>
-                    </div>
-                    
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="select-relationship">Relationships<span class="text-danger">*</span></label>
-                            <select 
-                                id="select-relationship" 
-                                name="relationships" 
-                                autocomplete="off" 
-                                multiple 
-                                required 
-                                data-parsley-required 
-                                data-parsley-error-message="Relationship is required" 
-                                class="demo-default selectize-close-btn" 
-                                style="width: 100%" 
-                                placeholder="Select a Relationship..." 
-                                value="">
-                                <option value="">Select a Relationship...</option>
-                                <cfloop query="relationships">
-                                    <cfoutput>
-                                        <option 
-                                            value="#relationships.contactid#" 
-                                            <cfif "#relationships.contactid#" is "#rcontactid#">selected</cfif>>
-                                            #recordname#
-                                        </option>
-                                    </cfoutput>
-                                </cfloop>
-                            </select>
-                        </div>
-                    </div>
 
-                    
-                        <div class="form-group col-md-12">
-                            <label for="eventDescription">Description</label>
-                            <textarea 
-                                class="form-control" 
-                                type="text" 
-                                id="eventDescription" 
-                                name="eventDescription" 
-                                placeholder="Description" 
-                                rows="4"></textarea>
+    <div class="container mt-5">
+        <div class="col-xl-6 col-lg-8 col-md-12 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">Test Form</h5>
+                    <form method="post" action="/test-submit.cfm">
+                        <!-- Input Fields -->
+                        <div class="mb-3">
+                            <label for="input1" class="form-label">Label 1</label>
+                            <input type="text" class="form-control" id="input1" name="input1" placeholder="Enter value for Label 1">
                         </div>
-
-                        <div class="form-group col-md-12">
-                            <label for="eventLocation">Location</label>
-                            <input 
-                                class="form-control" 
-                                type="text" 
-                                id="eventLocation" 
-                                autocomplete="off" 
-                                name="eventLocation" 
-                                placeholder="Location">
+                        <div class="mb-3">
+                            <label for="input2" class="form-label">Label 2</label>
+                            <input type="text" class="form-control" id="input2" name="input2" placeholder="Enter value for Label 2">
                         </div>
-
-                        
-                        <div class="form-group col-md-12">
-                            <label for="eventDescription">Description</label>
-                            <textarea 
-                                class="form-control" 
-                                type="text" 
-                                id="eventDescription" 
-                                name="eventDescription" 
-                                placeholder="Description" 
-                                rows="4"></textarea>
+                        <div class="mb-3">
+                            <label for="input3" class="form-label">Label 3</label>
+                            <input type="text" class="form-control" id="input3" name="input3" placeholder="Enter value for Label 3">
                         </div>
-
-                        <div class="form-group col-md-12">
-                            <label for="eventLocation">Location</label>
-                            <input 
-                                class="form-control" 
-                                type="text" 
-                                id="eventLocation" 
-                                autocomplete="off" 
-                                name="eventLocation" 
-                                placeholder="Location">
+                        <div class="mb-3">
+                            <label for="input4" class="form-label">Label 4</label>
+                            <input type="text" class="form-control" id="input4" name="input4" placeholder="Enter value for Label 4">
                         </div>
-
-                        
-                        <div class="form-group col-md-12">
-                            <label for="eventDescription">Description</label>
-                            <textarea 
-                                class="form-control" 
-                                type="text" 
-                                id="eventDescription" 
-                                name="eventDescription" 
-                                placeholder="Description" 
-                                rows="4"></textarea>
+                        <div class="mb-3">
+                            <label for="input5" class="form-label">Label 5</label>
+                            <input type="text" class="form-control" id="input5" name="input5" placeholder="Enter value for Label 5">
                         </div>
-
-                        <div class="form-group col-md-12">
-                            <label for="eventLocation">Location</label>
-                            <input 
-                                class="form-control" 
-                                type="text" 
-                                id="eventLocation" 
-                                autocomplete="off" 
-                                name="eventLocation" 
-                                placeholder="Location">
+                        <div class="mb-3">
+                            <label for="input6" class="form-label">Label 6</label>
+                            <input type="text" class="form-control" id="input6" name="input6" placeholder="Enter value for Label 6">
                         </div>
-
-                        
-                        <div class="form-group col-md-12">
-                            <label for="eventDescription">Description</label>
-                            <textarea 
-                                class="form-control" 
-                                type="text" 
-                                id="eventDescription" 
-                                name="eventDescription" 
-                                placeholder="Description" 
-                                rows="4"></textarea>
+                        <div class="mb-3">
+                            <label for="input7" class="form-label">Label 7</label>
+                            <input type="text" class="form-control" id="input7" name="input7" placeholder="Enter value for Label 7">
                         </div>
-
-                        <div class="form-group col-md-12">
-                            <label for="eventLocation">Location</label>
-                            <input 
-                                class="form-control" 
-                                type="text" 
-                                id="eventLocation" 
-                                autocomplete="off" 
-                                name="eventLocation" 
-                                placeholder="Location">
+                        <div class="mb-3">
+                            <label for="input8" class="form-label">Label 8</label>
+                            <input type="text" class="form-control" id="input8" name="input8" placeholder="Enter value for Label 8">
                         </div>
-
-                        
-                        <div class="form-group col-md-12">
-                            <label for="eventDescription">Description</label>
-                            <textarea 
-                                class="form-control" 
-                                type="text" 
-                                id="eventDescription" 
-                                name="eventDescription" 
-                                placeholder="Description" 
-                                rows="4"></textarea>
+                        <div class="mb-3">
+                            <label for="input9" class="form-label">Label 9</label>
+                            <input type="text" class="form-control" id="input9" name="input9" placeholder="Enter value for Label 9">
                         </div>
-
-                        <div class="form-group col-md-12">
-                            <label for="eventLocation">Location</label>
-                            <input 
-                                class="form-control" 
-                                type="text" 
-                                id="eventLocation" 
-                                autocomplete="off" 
-                                name="eventLocation" 
-                                placeholder="Location">
+                        <div class="mb-3">
+                            <label for="input10" class="form-label">Label 10</label>
+                            <input type="text" class="form-control" id="input10" name="input10" placeholder="Enter value for Label 10">
                         </div>
-
-                        
-                        <div class="form-group col-md-12">
-                            <label for="eventDescription">Description</label>
-                            <textarea 
-                                class="form-control" 
-                                type="text" 
-                                id="eventDescription" 
-                                name="eventDescription" 
-                                placeholder="Description" 
-                                rows="4"></textarea>
+                        <!-- Submit Button -->
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
-
-                        <div class="form-group col-md-12">
-                            <label for="eventLocation">Location</label>
-                            <input 
-                                class="form-control" 
-                                type="text" 
-                                id="eventLocation" 
-                                autocomplete="off" 
-                                name="eventLocation" 
-                                placeholder="Location">
-                        </div>
-
-                    <div class="col-12">
-                        <div class="form-group">
-                            <div id="checkboxes"></div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6" id="hidden_div">
-                        <div class="form-group">
-                            <label for="endRecur">Recurring Until:</label>
-                            <input class="form-control" id="endRecur" name="endRecur" type="date">
-                        </div>
-                    </div>
+                    </form>
                 </div>
-
-                <div class="row mt-2">
-                    <div class="col-6"></div>
-                    <div class="col-6 text-right">
-                        <a href="javascript:history.go(-1)">
-                            <button type="button" class="btn btn-light mr-1 btn-sm" data-bs-dismiss="modal">Back</button>
-                        </a>
-                        <button type="submit" class="btn btn-primary btn-sm waves-effect waves-light" id="btn-save-event">Add</button>
-                    </div>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
-</div>
-</div>
+
+
+
 
 
 <cfset script_name_include="/include/#ListLast(GetCurrentTemplatePath(), '\')#"/>
