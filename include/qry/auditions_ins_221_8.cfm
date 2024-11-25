@@ -4,7 +4,7 @@
 </cfif>
 
 <cfsavecontent variable="arguments">
-new_userid=new_userid
+new_userid=userid
     <cfif new_audroleid neq "">, new_audRoleID=new_audRoleID</cfif>
     <cfif new_audTypeID neq "">, new_audTypeID=new_audTypeID</cfif>
     <cfif new_audLocation neq "">, new_audLocation=new_audLocation</cfif>
