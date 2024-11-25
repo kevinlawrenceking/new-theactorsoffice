@@ -114,36 +114,25 @@
               <input class="form-control" type="text" id="new_projDescription" data-parsley-required="data-parsley-required" data-parsley-="data-parsley-" name="new_projDescription" error-message="Project Description is required" placeholder="Project Description">
             </div>
 
-            <script>
-              function showDivss(divId, element) {
-                document.getElementById(divId).style.display = element.value == 1 ? 'block' : 'none';
-              }
-            </script>
+          <script>
+    function handleSelectChange(element) {
+        // Show or hide 'hidden_divs'
+        document.getElementById('hidden_divs').style.display = element.value == 2 ? 'block' : 'none';
 
-            <script>
-              function showDivs(divId, element) {
-                document.getElementById(divId).style.display = element.value == 2 ? 'block' : 'none';
-              }
-            </script>
+        // Show or hide 'hidden_divss'
+        document.getElementById('hidden_divss').style.display = element.value == 1 ? 'block' : 'none';
 
-            <script>
-              function showDivsss(divId, element) {
-                document.getElementById(divId).style.display = element.value == 0 ? 'block' : 'none';
-              }
-            </script>
+        // Show or hide 'hidedirectbooking'
+        document.getElementById('hidedirectbooking').style.display = element.value == 23 ? 'none' : 'block';
 
-            <script>
-              function showDivssss(divId, element) {
-                console.log("Value: ", element.value, "Type: ", typeof element.value); 
-                document.getElementById(divId).style.display = element.value == '0' ? 'none' : 'block';
-              }
-            </script>
+        // Show or hide 'hidden_divsss'
+        document.getElementById('hidden_divsss').style.display = element.value == 0 ? 'block' : 'none';
 
-            <script>
-              function showdirectbooking(divId, element) {
-                document.getElementById(divId).style.display = element.value == 23 ? 'none' : 'block';
-              }
-            </script>
+        // Additional logic, if needed
+        console.log("Value: ", element.value, "Type: ", typeof element.value);
+    }
+</script>
+
 
             <div class="form-group col-md-6 col-sm-12">
               <label for="new_audrolename">Role Name<span class="text-danger">*</span></label>
@@ -238,12 +227,19 @@
                     <input type="hidden" name="" value=""/>
                   <cfelse>
                     <label for="audtypeid">Type<span class="text-danger">*</span></label>
-                    <select id="audtypeid" name="new_audtypeid" class="form-control" data-parsley-required="data-parsley-required" data-parsley-error-message="Type is required" onChange="showDivs('hidden_divs', this); showDivss('hidden_divss', this); showdirectbooking('hidedirectbooking', this);">
-                      <option value="">--</option>
-                      <cfoutput query="audtypes_sel">
-                        <option value="#audtypes_sel.id#">#audtypes_sel.name#</option>
-                      </cfoutput>
-                    </select>
+           <select 
+    id="audtypeid" 
+    name="new_audtypeid" 
+    class="form-control" 
+    data-parsley-required="data-parsley-required" 
+    data-parsley-error-message="Type is required" 
+    onChange="handleSelectChange(this);">
+    <option value="">--</option>
+    <cfoutput query="audtypes_sel">
+        <option value="#audtypes_sel.id#">#audtypes_sel.name#</option>
+    </cfoutput>
+</select>
+
                   </cfif>
                 </div>
 
