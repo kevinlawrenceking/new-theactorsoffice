@@ -44,20 +44,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
-                                <label class="control-label">Title<span class="text-danger">*</span></label>
-                                <input 
-                                    class="form-control" 
-                                    autocomplete="off" 
-                                    placeholder="Insert Appointment Title" 
-                                    type="text" 
-                                    name="eventTitle" 
-                                    id="eventTitle" 
-                                    data-parsley-minlength="3" 
-                                    data-parsley-minlength-message="Min length 3 characters" 
-                                    data-parsley-maxlength="200" 
-                                    data-parsley-maxlength-message="Max length 200 characters" 
-                                    data-parsley-required 
-                                    data-parsley-error-message="Title is required" />
+                               
                             </div>
                         </div>
 
@@ -65,30 +52,7 @@
 
                         <div class="col-lg-12">
                             <div class="form-group mb-3">
-                                <label for="select-relationship">Relationships<span class="text-danger">*</span></label>
-                                <select 
-                                    id="select-relationship" 
-                                    name="relationships" 
-                                    autocomplete="off" 
-                                    multiple 
-                                    required 
-                                    data-parsley-required 
-                                    data-parsley-error-message="Relationship is required" 
-                                    class="demo-default selectize-close-btn" 
-                                    style="width: 100%" 
-                                    placeholder="Select a Relationship..." 
-                                    value="">
-                                    <option value="">Select a Relationship...</option>
-                                    <cfloop query="relationships">
-                                        <cfoutput>
-                                            <option 
-                                                value="#relationships.contactid#" 
-                                                <cfif "#relationships.contactid#" is "#rcontactid#">selected</cfif>>
-                                                #recordname#
-                                            </option>
-                                        </cfoutput>
-                                    </cfloop>
-                                </select>
+                               
                             </div>
                         </div>
 
