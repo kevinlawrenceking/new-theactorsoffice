@@ -150,8 +150,66 @@
     <cfargument name="new_audCatName" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
-    <cfquery>
-        INSERT INTO audcategories (audCatName, isDeleted)
-        VALUES (
-            <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audCatName#" maxlength="100" null="#NOT len(trim(arguments.new_audCatName))#">,
-            <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments
+
+        <cfquery datasource="abod">
+            INSERT INTO audcategories (audCatName, isDeleted)
+            VALUES (
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audCatName#" maxlength="100" null="#NOT len(trim(arguments.new_audCatName))#">,
+                <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+            )
+        </cfquery>
+        
+</cffunction>
+<cffunction name="UPDaudcategories" access="public" returntype="void">
+    <cfargument name="new_audCatName" type="string" required="true">
+    <cfargument name="new_isDeleted" type="boolean" required="true">
+    <cfargument name="new_audCatId" type="numeric" required="true">
+
+
+        <cfquery datasource="abod">
+            UPDATE audcategories
+            SET 
+                audCatName = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audCatName#" maxlength="100" null="#NOT len(trim(arguments.new_audCatName))#">,
+                isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">
+            WHERE 
+                audCatId = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audCatId#">
+        </cfquery>
+
+</cffunction>
+<cffunction name="SELaudcategories_24735" access="public" returntype="query">
+    <cfargument name="isDeleted" type="boolean" required="false" default=false>
+
+    <cfset var result = "" />
+    
+    
+        <cfquery name="result" datasource="abod">
+            SELECT audcatid, audcatname
+            FROM audcategories
+            WHERE isdeleted = <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
+            ORDER BY audcatname
+        </cfquery>
+        
+            <cfset result = queryNew("audcatid,audcatname")>
+        
+    
+
+    <cfreturn result>
+</cffunction>
+<cffunction name="SELaudcategories_24744" access="public" returntype="query">
+    <cfargument name="isDeleted" type="boolean" required="true">
+    
+    <cfset var result = "">
+    
+        <cfquery name="result" datasource="abod">
+            SELECT a.audcatid, a.audcatname
+            FROM audcategories a
+            WHERE a.isDeleted = <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
+            ORDER BY a.audcatname
+        </cfquery>
+        
+
+            <cfreturn queryNew("")>
+        
+    
+    <cfreturn result>
+</cffunction></cfcomponent>
