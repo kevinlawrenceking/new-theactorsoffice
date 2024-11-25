@@ -198,6 +198,9 @@
                 </div>
             </div>
         </div>
+    
+
+    
         <script>
             $(document).ready(function() {
                 $("##auditionupdate_#events.eventid#").on("show.bs.modal", function(event) {
