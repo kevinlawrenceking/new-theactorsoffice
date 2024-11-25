@@ -56,27 +56,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group col-md-12">
-                            <label for="eventDescription">Description</label>
-                            <textarea 
-                                class="form-control" 
-                                type="text" 
-                                id="eventDescription" 
-                                name="eventDescription" 
-                                placeholder="Description" 
-                                rows="4"></textarea>
-                        </div>
-
-                        <div class="form-group col-md-12">
-                            <label for="eventLocation">Location</label>
-                            <input 
-                                class="form-control" 
-                                type="text" 
-                                id="eventLocation" 
-                                autocomplete="off" 
-                                name="eventLocation" 
-                                placeholder="Location">
-                        </div>
 
                         <div class="form-group col-md-6">
                             <label for="eventStart">Start Date<span class="text-danger">*</span></label>
