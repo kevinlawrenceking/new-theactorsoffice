@@ -61,23 +61,7 @@
                             </div>
                         </div>
 
-                        <script>
-                            $(document).ready(function() {
-                                $("#select-relationship").selectize({
-                                    persist: false,
-                                    createOnBlur: true,
-                                    create: true,
-                                    plugins: ["remove_button"],
-                                    delimiter: ",",
-                                    create: function(input) {
-                                        return {
-                                            value: input,
-                                            text: input,
-                                        };
-                                    },
-                                });
-                            });
-                        </script>
+                    
 
                         <div class="col-lg-12">
                             <div class="form-group mb-3">

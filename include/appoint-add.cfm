@@ -42,6 +42,21 @@
                     <div class="row">
                 <div class="col-12">
                     <div class="form-group">
+
+                     <label class="control-label">Title<span class="text-danger">*</span></label>
+                                <input 
+                                    class="form-control" 
+                                    autocomplete="off" 
+                                    placeholder="Insert Appointment Title" 
+                                    type="text" 
+                                    name="eventTitle" 
+                                    id="eventTitle" 
+                                    data-parsley-minlength="3" 
+                                    data-parsley-minlength-message="Min length 3 characters" 
+                                    data-parsley-maxlength="200" 
+                                    data-parsley-maxlength-message="Max length 200 characters" 
+                                    data-parsley-required 
+                                    data-parsley-error-message="Title is required" />
                     </div>
                 </div>
                 <div class="col-lg-12">
@@ -122,6 +137,24 @@
     });
   });
 </script>
+
+    <script>
+                            $(document).ready(function() {
+                                $("#select-relationship").selectize({
+                                    persist: false,
+                                    createOnBlur: true,
+                                    create: true,
+                                    plugins: ["remove_button"],
+                                    delimiter: ",",
+                                    create: function(input) {
+                                        return {
+                                            value: input,
+                                            text: input,
+                                        };
+                                    },
+                                });
+                            });
+                        </script>
 
 <cfset script_name_include="/include/#ListLast(GetCurrentTemplatePath(), '\')#"/>
 <cfinclude template="/include/bigbrotherinclude.cfm"/>
