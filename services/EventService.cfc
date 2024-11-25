@@ -624,6 +624,8 @@
         
 </cffunction>
 <cffunction output="false" name="INSevents_24096" access="public" returntype="numeric">
+
+
     <cfargument name="new_userid" type="numeric" required="yes">
     <cfargument name="new_audRoleID" type="numeric" required="no">
     <cfargument name="new_audTypeID" type="numeric" required="no">
@@ -643,10 +645,10 @@
     <cfset local.valueList = "">
 
     <!--- Validate and add columns dynamically --->
-    <cfif isNumeric(arguments.new_userid)>
+
         <cfset local.columnList &= "userid, ">
         <cfset local.valueList &= "<cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_userid#'>, ">
-    </cfif>
+
 
     <cfif isNumeric(arguments.new_audRoleID)>
         <cfset local.columnList &= "audRoleID, ">
