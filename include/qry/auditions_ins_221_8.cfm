@@ -18,5 +18,6 @@ new_userid=#new_userid#
     <cfif new_trackmileage neq "">, new_trackmileage=#new_trackmileage#</cfif>
     <cfif new_audlocid neq "">, new_audlocid=#new_audlocid#</cfif>
  </cfoutput></cfsavecontent>   
-<Cfoutput>INSevents_24096(#trim(arguments)#)</cfoutput><Cfabort>
-<cfset eventService.INSevents_24096(arguments)>
+ <cfoutput>
+<cfset eventService.INSevents_24096(#arguments#)>
+</cfoutput>
