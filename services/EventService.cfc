@@ -626,7 +626,7 @@
 <cffunction output="false" name="INSevents_24096" access="public" returntype="numeric">
 
 
-    <cfargument name="new_userid" type="numeric" required="yes">
+    <cfargument name="new_userid" type="string" required="yes">
     <cfargument name="new_audRoleID" type="numeric" required="no">
     <cfargument name="new_audTypeID" type="numeric" required="no">
     <cfargument name="new_audLocation" type="string" required="no">
