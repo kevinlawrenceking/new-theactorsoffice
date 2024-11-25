@@ -5,3 +5,37 @@
 <cfinclude template="/include/qry/eventtypes_user_443_2.cfm" />
 
 
+<style>
+    #topbox {
+        display: flex;
+        flex-flow: row wrap;
+    }
+
+    .alignleft {
+        width: 25%;
+        text-align: left;
+    }
+
+    .aligncenter {
+        width: 50%;
+        text-align: center;
+    }
+
+    .alignright {
+        width: 25%;
+        text-align: right;
+    }
+
+
+
+<style>
+    .fc-event-time,
+    .fc-event-title {
+        padding: 0 1px;
+        white-space: nowrap;
+    }
+
+    .fc-title {
+        white-space: normal;
+    }
+</style>
