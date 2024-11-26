@@ -6,7 +6,7 @@
     <cfargument name="new_eventStartTime" type="string" required="false" default="00:00:00">
     <cfargument name="new_eventStopTime" type="string" required="false" default="00:00:00">
 
-    <cfquery datasource="#dsn#">
+    <cfquery>
         UPDATE events e
         JOIN (
             SELECT eventid
