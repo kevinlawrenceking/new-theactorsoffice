@@ -1561,56 +1561,38 @@
     <cfargument name="isdirect" type="string" required="false">
     <cfargument name="new_contactid" type="numeric" required="false">
 
-    <!-- Initialize column and value arrays -->
-    <cfset local.columns = []>
-    <cfset local.values = []>
-
-    <!-- Required arguments -->
-    <cfset arrayAppend(local.columns, "projName")>
-    <cfset arrayAppend(local.values, "<cfqueryparam cfsqltype='CF_SQL_VARCHAR' value='#arguments.new_projName#' maxlength='500'>")>
-
-    <cfset arrayAppend(local.columns, "projDescription")>
-    <cfset arrayAppend(local.values, "<cfqueryparam cfsqltype='CF_SQL_LONGVARCHAR' value='#arguments.new_projDescription#'>")>
-
-    <!-- Conditional arguments -->
-    <cfif structKeyExists(arguments, "new_userid") AND arguments.new_userid NEQ 0>
-        <cfset arrayAppend(local.columns, "userid")>
-        <cfset arrayAppend(local.values, "<cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_userid#'>")>
-    </cfif>
-
-    <cfif structKeyExists(arguments, "new_audSubCatID") AND arguments.new_audSubCatID NEQ 0>
-        <cfset arrayAppend(local.columns, "audSubCatID")>
-        <cfset arrayAppend(local.values, "<cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_audSubCatID#'>")>
-    </cfif>
-
-    <cfif structKeyExists(arguments, "new_isDeleted")>
-        <cfset arrayAppend(local.columns, "isDeleted")>
-        <cfset arrayAppend(local.values, "<cfqueryparam cfsqltype='CF_SQL_BIT' value='#arguments.new_isDeleted#'>")>
-    </cfif>
-
-    <cfif structKeyExists(arguments, "isdirect")>
-        <cfset arrayAppend(local.columns, "isDirect")>
-        <cfset arrayAppend(local.values, "<cfqueryparam cfsqltype='CF_SQL_BIT' value='#arguments.isdirect#'>")>
-    </cfif>
-
-    <cfif structKeyExists(arguments, "new_contactid") AND arguments.new_contactid NEQ 0>
-        <cfset arrayAppend(local.columns, "contactid")>
-        <cfset arrayAppend(local.values, "<cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_contactid#'>")>
-    </cfif>
-
-    <!-- Execute query -->
     <cfquery result="result">
         INSERT INTO audprojects (
-            #arrayToList(local.columns)#
-        )
-        VALUES (
-            #arrayToList(local.values)#
+            projName,
+            projDescription
+            <cfif structKeyExists(arguments, "new_userid") AND arguments.new_userid NEQ 0>, userid</cfif>
+            <cfif structKeyExists(arguments, "new_audSubCatID") AND arguments.new_audSubCatID NEQ 0>, audSubCatID</cfif>
+            <cfif structKeyExists(arguments, "new_unionID") AND arguments.new_unionID NEQ 0>, unionID</cfif>
+            <cfif structKeyExists(arguments, "new_networkID") AND arguments.new_networkID NEQ 0>, networkID</cfif>
+            <cfif structKeyExists(arguments, "new_toneID") AND arguments.new_toneID NEQ 0>, toneID</cfif>
+            <cfif structKeyExists(arguments, "new_contractTypeID") AND arguments.new_contractTypeID NEQ 0>, contractTypeID</cfif>
+            <cfif structKeyExists(arguments, "new_isDeleted")>, isDeleted</cfif>
+            <cfif structKeyExists(arguments, "isdirect")>, isDirect</cfif>
+            <cfif structKeyExists(arguments, "new_contactid") AND arguments.new_contactid NEQ 0>, contactid</cfif>
+        ) VALUES (
+            <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_projName#" maxlength="500">,
+            <cfqueryparam cfsqltype="CF_SQL_LONGVARCHAR" value="#arguments.new_projDescription#">
+            <cfif structKeyExists(arguments, "new_userid") AND arguments.new_userid NEQ 0>, <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_userid#"></cfif>
+            <cfif structKeyExists(arguments, "new_audSubCatID") AND arguments.new_audSubCatID NEQ 0>, <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audSubCatID#"></cfif>
+            <cfif structKeyExists(arguments, "new_unionID") AND arguments.new_unionID NEQ 0>, <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_unionID#"></cfif>
+            <cfif structKeyExists(arguments, "new_networkID") AND arguments.new_networkID NEQ 0>, <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_networkID#"></cfif>
+            <cfif structKeyExists(arguments, "new_toneID") AND arguments.new_toneID NEQ 0>, <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_toneID#"></cfif>
+            <cfif structKeyExists(arguments, "new_contractTypeID") AND arguments.new_contractTypeID NEQ 0>, <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contractTypeID#"></cfif>
+            <cfif structKeyExists(arguments, "new_isDeleted")>, <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#"></cfif>
+            <cfif structKeyExists(arguments, "isdirect")>, <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.isdirect#"></cfif>
+            <cfif structKeyExists(arguments, "new_contactid") AND arguments.new_contactid NEQ 0>, <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contactid#"></cfif>
         )
     </cfquery>
 
     <!-- Return the generated key -->
     <cfreturn result.generatedKey>
 </cffunction>
+
 
 
 
