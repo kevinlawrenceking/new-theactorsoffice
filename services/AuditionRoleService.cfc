@@ -632,10 +632,11 @@
     
     <cfreturn result>
 </cffunction>
+
 <cffunction output="false" name="INSaudroles_24593" access="public" returntype="numeric">
     <cfargument name="new_audRoleName" type="string" required="true">
     <cfargument name="new_audprojectID" type="numeric" required="true">
-    <cfargument name="new_audRoleTypeID" type="numeric" required="true">
+    <cfargument name="new_audRoleTypeID" type="numeric" required="false">
     <cfargument name="new_charDescription" type="string" required="false">
     <cfargument name="new_holdStartDate" type="date" required="false">
     <cfargument name="new_holdEndDate" type="date" required="false">
@@ -648,45 +649,55 @@
     <cfargument name="ispin" type="boolean" required="true">
     <cfargument name="isredirect" type="boolean" required="true">
 
-        <cfquery result="result">
-            INSERT INTO audroles (
-                audRoleName, 
-                audprojectID, 
-                audRoleTypeID, 
-                charDescription, 
-                holdStartDate, 
-                holdEndDate,
-                <cfif len(trim(arguments.new_audDialectID))>audDialectID,</cfif>
-                <cfif len(trim(arguments.new_audSourceID))>audSourceID,</cfif>
-                userid, 
-                isDeleted, 
-                isBooked, 
-                isCallback, 
-                ispin, 
-                isredirect
-            ) VALUES (
-                <cfqueryparam cfsqltype="#iif(len(trim(arguments.new_audRoleName)), 'CF_SQL_VARCHAR', 'CF_SQL_VARCHAR')#" value="#arguments.new_audRoleName#" maxlength="500">,
-                <cfqueryparam cfsqltype="#iif(len(trim(arguments.new_audprojectID)), 'CF_SQL_INTEGER', 'CF_SQL_INTEGER')#" value="#arguments.new_audprojectID#">,
-                <cfqueryparam cfsqltype="#iif(len(trim(arguments.new_audRoleTypeID)), 'CF_SQL_INTEGER', 'CF_SQL_INTEGER')#" value="#arguments.new_audRoleTypeID#">,
-                <cfqueryparam cfsqltype="#iif(len(trim(arguments.new_charDescription)), 'CF_SQL_LONGVARCHAR', 'CF_SQL_LONGVARCHAR')#" value="#arguments.new_charDescription#">,
-                <cfqueryparam cfsqltype="#iif(len(trim(arguments.new_holdStartDate)), 'CF_SQL_DATE', 'CF_SQL_DATE')#" value="#arguments.new_holdStartDate#">,
-                <cfqueryparam cfsqltype="#iif(len(trim(arguments.new_holdEndDate)), 'CF_SQL_DATE', 'CF_SQL_DATE')#" value="#arguments.new_holdEndDate#">,
-                <cfif len(trim(arguments.new_audDialectID))>
-                    <cfqueryparam cfsqltype="#iif(len(trim(arguments.new_audDialectID)), 'CF_SQL_INTEGER', 'CF_SQL_INTEGER')#" value="#arguments.new_audDialectID#">,
-                </cfif>
-                <cfif len(trim(arguments.new_audSourceID))>
-                    <cfqueryparam cfsqltype="#iif(len(trim(arguments.new_audSourceID)), 'CF_SQL_INTEGER', 'CF_SQL_INTEGER')#" value="#arguments.new_audSourceID#">,
-                </cfif>
-                <cfqueryparam cfsqltype="#iif(len(trim(arguments.new_userid)), 'CF_SQL_INTEGER', 'CF_SQL_INTEGER')#" value="#arguments.new_userid#">,
-                <cfqueryparam cfsqltype="#iif(len(trim(arguments.new_isDeleted)), 'CF_SQL_BIT', 'CF_SQL_BIT')#" value="#arguments.new_isDeleted#">,
-                <cfqueryparam cfsqltype="#iif(len(trim(arguments.isbooked)), 'CF_SQL_BIT', 'CF_SQL_BIT')#" value="#arguments.isbooked#">,
-                <cfqueryparam cfsqltype="#iif(len(trim(arguments.isCallback)), 'CF_SQL_BIT', 'CF_SQL_BIT')#" value="#arguments.isCallback#">,
-                <cfqueryparam cfsqltype="#iif(len(trim(arguments.ispin)), 'CF_SQL_BIT', 'CF_SQL_BIT')#" value="#arguments.ispin#">,
-                <cfqueryparam cfsqltype="#iif(len(trim(arguments.isredirect)), 'CF_SQL_BIT', 'CF_SQL_BIT')#" value="#arguments.isredirect#">
-            )
-        </cfquery>
-<cfreturn result.generatedKey>
+    <cfquery result="result">
+        INSERT INTO audroles (
+            audRoleName,
+            audprojectID,
+            <cfif arguments.new_audRoleTypeID NEQ 0>audRoleTypeID,</cfif>
+            charDescription,
+            <cfif arguments.new_holdStartDate NEQ CreateDate(1970, 1, 1)>holdStartDate,</cfif>
+            <cfif arguments.new_holdEndDate NEQ CreateDate(1970, 1, 1)>holdEndDate,</cfif>
+            <cfif arguments.new_audDialectID NEQ 0>audDialectID,</cfif>
+            <cfif arguments.new_audSourceID NEQ 0>audSourceID,</cfif>
+            userid,
+            isDeleted,
+            isBooked,
+            isCallback,
+            ispin,
+            isredirect
+        ) VALUES (
+            <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audRoleName#" maxlength="500">,
+            <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audprojectID#">,
+            <cfif arguments.new_audRoleTypeID NEQ 0>
+                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleTypeID#">,
+            </cfif>
+            <cfqueryparam cfsqltype="CF_SQL_LONGVARCHAR" value="#arguments.new_charDescription#">,
+            <cfif arguments.new_holdStartDate NEQ CreateDate(1970, 1, 1)>
+                <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.new_holdStartDate#">,
+            </cfif>
+            <cfif arguments.new_holdEndDate NEQ CreateDate(1970, 1, 1)>
+                <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.new_holdEndDate#">,
+            </cfif>
+            <cfif arguments.new_audDialectID NEQ 0>
+                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audDialectID#">,
+            </cfif>
+            <cfif arguments.new_audSourceID NEQ 0>
+                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audSourceID#">,
+            </cfif>
+            <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_userid#">,
+            <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#">,
+            <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.isbooked#">,
+            <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.isCallback#">,
+            <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.ispin#">,
+            <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.isredirect#">
+        )
+    </cfquery>
+
+    <cfreturn result.generatedKey>
 </cffunction>
+
+
+
 <cffunction output="false" name="UPDaudroles_24594" access="public" returntype="void">
     <cfargument name="new_audRoleName" type="string" required="true">
     <cfargument name="new_audprojectID" type="numeric" required="true">
