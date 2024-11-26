@@ -366,8 +366,9 @@
 
                                       <label for="audplatformid">
                                         Audition Platform<span class="text-danger">
-                                            *</span></label>
-                                      <select id="audplatformid"  data-parsley-error-message="Platform is required" name="new_audplatformid" class="form-control" onchange="if (this.value=='CustomPlatform'){this.form['CustomPlatform'].style.visibility='visible',this.form['CustomPlatform'].required=true} else {this.form['CustomPlatform'].style.visibility='hidden',this.form['CustomPlatform'].required=false};">
+                                          *</span>
+                                      </label>
+                                      <select id="audplatformid" data-parsley-error-message="Platform is required" name="new_audplatformid" class="form-control" onchange="if (this.value=='CustomPlatform'){this.form['CustomPlatform'].style.visibility='visible',this.form['CustomPlatform'].required=true} else {this.form['CustomPlatform'].style.visibility='hidden',this.form['CustomPlatform'].required=false};">
 
                                         <option value="">
                                           --</option>
@@ -387,7 +388,7 @@
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                      <input class="form-control" required="false" type="text" id="CustomPlatform" name="CustomPlatform" value=""  data-parsley-error-message="Platform is required"  placeholder="Enter a Custom Platform" style="visibility:hidden;"></div>
+                                      <input class="form-control" required="false" type="text" id="CustomPlatform" name="CustomPlatform" value="" data-parsley-error-message="Platform is required" placeholder="Enter a Custom Platform" style="visibility:hidden;"></div>
 
                                     </div>
 

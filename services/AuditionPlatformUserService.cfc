@@ -27,7 +27,7 @@
             <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         )
     </cfquery>
-    <cfreturn result.generatedKey>
+    <cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="SELaudplatforms_user_24582" access="public" returntype="query">
