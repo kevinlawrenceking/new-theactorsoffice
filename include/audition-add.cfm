@@ -119,7 +119,6 @@
         document.getElementById('hidden_divs').style.display = element.value == 2 ? 'block' : 'none';
         document.getElementById('hidden_divss').style.display = element.value == 1 ? 'block' : 'none';
         document.getElementById('hidedirectbooking').style.display = element.value == 23 ? 'none' : 'block';
-        document.getElementById('hidden_divsss').style.display = element.value == 0 ? 'block' : 'none';
         console.log("Value: ", element.value, "Type: ", typeof element.value);
     }
 </script>
