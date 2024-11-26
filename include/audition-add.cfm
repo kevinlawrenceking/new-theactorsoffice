@@ -387,7 +387,7 @@
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                      <input class="form-control" required="false" type="text" id="CustomPlatform" name="CustomPlatform" value="" placeholder="Enter a Custom Platform" style="visibility:hidden;"></div>
+                                      <input class="form-control" required="false" type="text" id="CustomPlatform" name="CustomPlatform" value=""  data-parsley-error-message="Platform is required"  placeholder="Enter a Custom Platform" style="visibility:hidden;"></div>
 
                                     </div>
 
