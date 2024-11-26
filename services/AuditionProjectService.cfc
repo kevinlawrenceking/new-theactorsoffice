@@ -1551,49 +1551,73 @@
 <cffunction output="false" name="INSaudprojects_24585" access="public" returntype="numeric">
     <cfargument name="new_projName" type="string" required="true">
     <cfargument name="new_projDescription" type="string" required="false">
-        <cfargument name="new_userid" type="string" required="false">
-        <cfargument name="new_audSubCatID" type="string" required="false">
-        <cfargument name="new_unionID" type="string" required="false">
-        <cfargument name="new_networkID" type="string" required="false">
-        <cfargument name="new_toneID" type="string" required="false">
-        <cfargument name="new_contractTypeID" type="string" required="false">
-        <cfargument name="new_isDeleted" type="string" required="false">
-        <cfargument name="isdirect" type="string" required="false">
-        <cfargument name="new_contactid" type="numeric" required="false">
- 
-        <cfquery result="result">
-            INSERT INTO audprojects (
-                projName, 
-                projDescription, 
-                userid, 
-                audSubCatID, 
-                unionID, 
-                networkID, 
-                toneID, 
-                contractTypeID, 
-                isDeleted, 
-                IsDirect
-                <cfif structKeyExists(arguments, "new_contactid") and len(trim(arguments.new_contactid))>
-                    , contactid
-                </cfif>
-            ) VALUES (
-                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_projName#" maxlength="500">,
-                <cfqueryparam cfsqltype="CF_SQL_LONGVARCHAR" value="#arguments.new_projDescription#">,
-                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_userid#">,
-                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audSubCatID#">,
-                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_unionID#">,
-                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_networkID#">,
-                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_toneID#">,
-                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contractTypeID#">,
-                <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#">,
-                <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.isdirect#">
-                <cfif structKeyExists(arguments, "new_contactid") and len(trim(arguments.new_contactid))>
-                    , <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contactid#">
-                </cfif>
-            );
-        </cfquery>
-<cfreturn result.generatedKey>
+    <cfargument name="new_userid" type="numeric" required="false">
+    <cfargument name="new_audSubCatID" type="numeric" required="false">
+    <cfargument name="new_unionID" type="numeric" required="false">
+    <cfargument name="new_networkID" type="numeric" required="false">
+    <cfargument name="new_toneID" type="numeric" required="false">
+    <cfargument name="new_contractTypeID" type="numeric" required="false">
+    <cfargument name="new_isDeleted" type="string" required="false">
+    <cfargument name="isdirect" type="string" required="false">
+    <cfargument name="new_contactid" type="numeric" required="false">
+
+    <cfset local.columns = "projName, projDescription">
+    <cfset local.values = "<cfqueryparam cfsqltype='CF_SQL_VARCHAR' value='#arguments.new_projName#' maxlength='500'>, <cfqueryparam cfsqltype='CF_SQL_LONGVARCHAR' value='#arguments.new_projDescription#'>">
+
+    <cfif structKeyExists(arguments, "new_userid") AND arguments.new_userid NEQ 0>
+        <cfset local.columns &= ", userid">
+        <cfset local.values &= ", <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_userid#'>">
+    </cfif>
+
+    <cfif structKeyExists(arguments, "new_audSubCatID") AND arguments.new_audSubCatID NEQ 0>
+        <cfset local.columns &= ", audSubCatID">
+        <cfset local.values &= ", <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_audSubCatID#'>">
+    </cfif>
+
+    <cfif structKeyExists(arguments, "new_unionID") AND arguments.new_unionID NEQ 0>
+        <cfset local.columns &= ", unionID">
+        <cfset local.values &= ", <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_unionID#'>">
+    </cfif>
+
+    <cfif structKeyExists(arguments, "new_networkID") AND arguments.new_networkID NEQ 0>
+        <cfset local.columns &= ", networkID">
+        <cfset local.values &= ", <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_networkID#'>">
+    </cfif>
+
+    <cfif structKeyExists(arguments, "new_toneID") AND arguments.new_toneID NEQ 0>
+        <cfset local.columns &= ", toneID">
+        <cfset local.values &= ", <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_toneID#'>">
+    </cfif>
+
+    <cfif structKeyExists(arguments, "new_contractTypeID") AND arguments.new_contractTypeID NEQ 0>
+        <cfset local.columns &= ", contractTypeID">
+        <cfset local.values &= ", <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_contractTypeID#'>">
+    </cfif>
+
+    <cfif structKeyExists(arguments, "new_isDeleted")>
+        <cfset local.columns &= ", isDeleted">
+        <cfset local.values &= ", <cfqueryparam cfsqltype='CF_SQL_BIT' value='#arguments.new_isDeleted#'>">
+    </cfif>
+
+    <cfif structKeyExists(arguments, "isdirect")>
+        <cfset local.columns &= ", isDirect">
+        <cfset local.values &= ", <cfqueryparam cfsqltype='CF_SQL_BIT' value='#arguments.isdirect#'>">
+    </cfif>
+
+    <cfif structKeyExists(arguments, "new_contactid") AND arguments.new_contactid NEQ 0>
+        <cfset local.columns &= ", contactid">
+        <cfset local.values &= ", <cfqueryparam cfsqltype='CF_SQL_INTEGER' value='#arguments.new_contactid#'>">
+    </cfif>
+
+    <cfquery result="result">
+        INSERT INTO audprojects (#local.columns#)
+        VALUES (#local.values#)
+    </cfquery>
+
+    <!-- Return the generated key -->
+    <cfreturn result.generatedKey>
 </cffunction>
+
 <cffunction output="false" name="UPDaudprojects_24586" access="public" returntype="void">
     <cfargument name="new_projName" type="string" required="true">
     <cfargument name="new_projDescription" type="string" required="false" default="">
