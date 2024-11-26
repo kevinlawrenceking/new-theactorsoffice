@@ -2,23 +2,22 @@
 
 <cfparam name="rcontactid" default="0"/> <!--- Set default value for rcontactid --->
 <cfparam name="isdirect" default="0"/> <!--- Set default value for isdirect --->
-
 <cfparam name="userCalStarttime" default=""/>
 <style>
   /* Styles for hidden divs */
-  #hidden_divs {
+  #hiddenSelfTape {
     display: none;
   }
 
-  #hidden_divss {
+  #hiddenLocation {
     display: none;
   }
 
-  #hidden_divsss {
+  #hiddenAddLocation {
     display: none;
   }
 
-  #hidden_divssss {
+  #hiddenCasting {
     display: none;
   }
 
@@ -116,8 +115,8 @@
 
           <script>
     function handleSelectChange(element) {
-        document.getElementById('hidden_divs').style.display = element.value == 2 ? 'block' : 'none';
-        document.getElementById('hidden_divss').style.display = element.value == 1 ? 'block' : 'none';
+        document.getElementById('hiddenSelfTape').style.display = element.value == 2 ? 'block' : 'none';
+        document.getElementById('hiddenLocation').style.display = element.value == 1 ? 'block' : 'none';
         document.getElementById('hidedirectbooking').style.display = element.value == 23 ? 'none' : 'block';
         console.log("Value: ", element.value, "Type: ", typeof element.value);
     }
@@ -125,7 +124,7 @@
           <script>
     function handleSelectChangeCasting(element) {
 
-        document.getElementById('hidden_divsss').style.display = element.value == 0 ? 'block' : 'none';
+        document.getElementById('hiddenAddLocation').style.display = element.value == 0 ? 'block' : 'none';
         console.log("Value: ", element.value, "Type: ", typeof element.value);
     }
 </script>
@@ -164,7 +163,7 @@
               </select>
             </div>
 
-            <div id="hidden_divssss">
+            <div id="hiddenCasting">
               <div class="row">
                 <fieldset>
                   <legend>Add New Casting</legend>
@@ -315,7 +314,7 @@
                                   </select>
                                 </div>
 
-                                <div id="hidden_divs">
+                                <div id="hiddenSelfTape">
                                   <div class="form-group col-md-12">
                                     <label for="new_eventStart">
                                       Zoom Link (optional)</label>
@@ -350,7 +349,7 @@
 
                                     </div>
 
-                                    <div id="hidden_divss">
+                                    <div id="hiddenLocation">
 
                                       <div class="form-group col-md-12">
                                         <label for="projName">
@@ -451,7 +450,7 @@
 
                                               </div>
 
-                                          <div id="hidden_divsss">
+                                          <div id="hiddenAddLocation">
                                             <fieldset>
                                               <legend>
                                                 Add New Location</legend>
