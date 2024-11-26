@@ -1550,17 +1550,16 @@
     </cffunction>
 <cffunction output="false" name="INSaudprojects_24585" access="public" returntype="numeric">
     <cfargument name="new_projName" type="string" required="true">
-    <cfargument name="new_projDescription" type="string" required="true">
-    <cfargument name="new_userid" type="numeric" required="true">
-    <cfargument name="new_audSubCatID" type="numeric" required="true">
-    <cfargument name="new_unionID" type="numeric" required="true">
-    <cfargument name="new_networkID" type="numeric" required="true">
-    <cfargument name="new_toneID" type="numeric" required="true">
-    <cfargument name="new_contractTypeID" type="numeric" required="true">
-    <cfargument name="new_isDeleted" type="boolean" required="true">
-    <cfargument name="isdirect" type="boolean" required="true">
-    <cfargument name="new_contactid" type="numeric" required="false">
-
+    <cfargument name="new_projDescription" type="string" required="false">
+        <cfargument name="new_userid" type="string" required="false">
+        <cfargument name="new_audSubCatID" type="string" required="false">
+        <cfargument name="new_unionID" type="string" required="false">
+        <cfargument name="new_networkID" type="string" required="false">
+        <cfargument name="new_toneID" type="string" required="false">
+        <cfargument name="new_contractTypeID" type="string" required="false">
+        <cfargument name="new_isDeleted" type="string" required="false">
+        <cfargument name="isdirect" type="string" required="false">
+        <cfargument name="new_contactid" type="string" required="false">
  
         <cfquery result="result">
             INSERT INTO audprojects (
