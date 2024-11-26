@@ -1559,7 +1559,7 @@
         <cfargument name="new_contractTypeID" type="string" required="false">
         <cfargument name="new_isDeleted" type="string" required="false">
         <cfargument name="isdirect" type="string" required="false">
-        <cfargument name="new_contactid" type="string" required="false">
+        <cfargument name="new_contactid" type="int" required="false">
  
         <cfquery result="result">
             INSERT INTO audprojects (
