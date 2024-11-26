@@ -15,7 +15,7 @@
 
 <!-- Optional currentid -->
 <cfif NOT structKeyExists(variables, "currentid") OR NOT isNumeric(currentid)>
-    <cfset currentid = "">
+    <cfset currentid = "0">
 </cfif>
 
 <!-- Call the RESevents function -->
