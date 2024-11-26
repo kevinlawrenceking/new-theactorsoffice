@@ -225,37 +225,60 @@
     </cfquery>
   </cffunction>
 
-  <cffunction output="false" name="RESevents" access="public" returntype="query">
+<cffunction output="false" name="RESevents" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     <cfargument name="eventid" type="numeric" required="true">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="currentid" type="numeric" required="false" default="">
 
-    <cfquery name="result" >
-      SELECT
-      a.eventid AS recid,
-      'Date' AS head1,
-      'Project' AS head2,
-      'Source' AS head3,
-      'Type' AS head4,
-      'Role' AS head5,
-      a.audstepid,
-      a.eventStart AS col1,
-      p.projname AS col2,
-      s.audsourceid AS col3,
-      t.audtype AS col4,
-      rt.audroletype AS col5,
-      st.audstep
-      FROM events a
-      LEFT JOIN audroles r ON r.audroleid = a.audroleid
-      LEFT JOIN audprojects p ON p.audprojectID = r.audprojectID
-      LEFT JOIN audsources s ON s.audSourceID = r.audSourceID
-      LEFT JOIN audtypes t ON t.audtypeid = a.audtypeid
-      LEFT JOIN audroletypes rt ON rt.audroletypeid = r.audroletypeid
-      LEFT JOIN audsteps st ON st.audstepid = a.audstepid
-      WHERE a.isdeleted = 0
-      AND r.audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
-      
+    <cfquery name="result">
+        SELECT
+            a.eventid AS recid,
+            'Date' AS head1,
+            'Project' AS head2,
+            'Source' AS head3,
+            'Type' AS head4,
+            'Role' AS head5,
+            a.audstepid,
+            a.eventStart AS col1,
+            p.projname AS col2,
+            s.audsourceid AS col3,
+            t.audtype AS col4,
+            rt.audroletype AS col5,
+            st.audstep
+        FROM 
+            events a
+        LEFT JOIN 
+            audroles r ON r.audroleid = a.audroleid
+        LEFT JOIN 
+            audprojects p ON p.audprojectID = r.audprojectID
+        LEFT JOIN 
+            audsources s ON s.audSourceID = r.audSourceID
+        LEFT JOIN 
+            audtypes t ON t.audtypeid = a.audtypeid
+        LEFT JOIN 
+            audroletypes rt ON rt.audroletypeid = r.audroletypeid
+        LEFT JOIN 
+            audsteps st ON st.audstepid = a.audstepid
+        WHERE 
+            a.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
+            AND r.audroleid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.audroleid#">
+            <cfif arguments.currentid NEQ "">
+                AND a.eventid IN (
+                    SELECT eventid 
+                    FROM eventcontactsxref 
+                    WHERE contactid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.currentid#">
+                )
+            </cfif>
+        ORDER BY 
+            a.eventStart DESC
+    </cfquery>
 
-      AND a.eventid< 4="4" <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER"> AND="AND" a.audstepid="a.audstepid" <> ORDER="ORDER" BY="BY" a.eventStart="a.eventStart" </cfquery> <cfreturn result> </cffunction> <cffunction output="false" name="UPDevents_23762" access="public" returntype="void">
+    <cfreturn result>
+</cffunction>
+
+       
+       <cffunction output="false" name="UPDevents_23762" access="public" returntype="void">
     <cfargument name="eventTitle" type="string" required="true">
     <cfargument name="projName" type="string" required="true">
 
