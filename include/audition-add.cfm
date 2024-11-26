@@ -391,11 +391,7 @@
 
 </div>
 
-
-                                            <script>
-                                              $("#new_region_id").chained("#countryid");
-                                            </script>
-
+ 
 <div class="row">
                                             <div class="form-group col-md-6">
                                               <label for="countryid">
@@ -592,3 +588,15 @@
     </div>
   </div>
 </div>
+       <script>
+                                        $("#region_id").chained("#countryid");
+                                      </script>
+                                      <script>
+                                        $("#audtypeid").chained("#audcatid");
+                                      </script>
+                                      <script>
+                                        $("#new_audroletypeid").chained("#audcatid");
+                                      </script>
+                                      <script>
+                                        $("#new_audsubcatid").chained("#audcatid");
+                                      </script>
