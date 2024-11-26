@@ -6,27 +6,27 @@
     <cfargument name="new_eventStartTime" type="string" required="false" default="00:00:00">
     <cfargument name="new_eventStopTime" type="string" required="false" default="00:00:00">
 
-    <cfquery >
-        UPDATE events
+    <cfquery datasource="#dsn#">
+        UPDATE events e
+        JOIN (
+            SELECT eventid
+            FROM events
+            WHERE eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">
+        ) temp ON e.eventid = temp.eventid
         SET 
             <cfif arguments.new_eventStart NEQ "1970-01-01">
-                eventstart = <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.new_eventStart#">,
+                e.eventstart = <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.new_eventStart#">,
             </cfif>
             <cfif arguments.new_eventStartTime NEQ "00:00:00">
-                eventstarttime = <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.new_eventStartTime#">,
+                e.eventstarttime = <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.new_eventStartTime#">,
             </cfif>
             <cfif arguments.new_eventStopTime NEQ "00:00:00">
-                eventstoptime = <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.new_eventStopTime#">,
+                e.eventstoptime = <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.new_eventStopTime#">,
             </cfif>
-            eventid = eventid
-        WHERE eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">
-        AND EXISTS (
-            SELECT 1 
-            FROM events 
-            WHERE eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">
-        )
+            e.eventid = e.eventid
     </cfquery>
 </cffunction>
+
 
 
 
