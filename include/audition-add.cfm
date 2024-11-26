@@ -391,7 +391,6 @@
 
 </div>
 
-                                            <script src="/app/assets/js/jquery.chained.js?ver=1.9.7.4"></script>
 
                                             <script>
                                               $("#new_region_id").chained("#countryid");
