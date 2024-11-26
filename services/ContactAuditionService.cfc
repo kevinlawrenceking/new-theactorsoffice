@@ -65,7 +65,7 @@
             xrefNotes = <cfqueryparam value="audition-add2.cfm" cfsqltype="CF_SQL_VARCHAR">, 
             contactid = <cfqueryparam value="#arguments.new_contactid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
-        <cfreturn result.generatedKey>
+
 </cffunction>
 
 <cffunction name="getAuditionContacts" access="public" returntype="query" output="false">
