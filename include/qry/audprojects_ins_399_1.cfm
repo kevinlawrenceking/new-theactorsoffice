@@ -10,5 +10,4 @@
     new_contractTypeID = new_contractTypeID,
     new_isDeleted = new_isDeleted,
     isdirect = isdirect,
-    new_contactid = new_contactid)
-)>
+    new_contactid = new_contactid) />
