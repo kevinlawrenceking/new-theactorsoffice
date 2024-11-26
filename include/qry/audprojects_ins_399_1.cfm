@@ -11,7 +11,7 @@
     new_contractTypeID = new_contractTypeID,
     new_isDeleted = new_isDeleted,
     isdirect = isdirect
-     <cfif structKeyExists(variables, "new_contactid") and isnumeric(new_contactid)> ,new_contactid = new_contactid</cfif>
+     <cfif structKeyExists(arguments, "new_contactid") and len(trim(arguments.new_contactid))>,new_contactid = new_contactid</cfif>
     
     
     ) />
