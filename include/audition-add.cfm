@@ -365,8 +365,9 @@
                                     <div class="form-group col-md-12">
 
                                       <label for="audplatformid">
-                                        Audition Platform</label>
-                                      <select id="audplatformid" name="new_audplatformid" class="form-control" onchange="if (this.value=='CustomPlatform'){this.form['CustomPlatform'].style.visibility='visible',this.form['CustomPlatform'].required=true} else {this.form['CustomPlatform'].style.visibility='hidden',this.form['CustomPlatform'].required=false};">
+                                        Audition Platform<span class="text-danger">
+                                            *</span></label>
+                                      <select id="audplatformid"  data-parsley-error-message="Platform is required" name="new_audplatformid" class="form-control" onchange="if (this.value=='CustomPlatform'){this.form['CustomPlatform'].style.visibility='visible',this.form['CustomPlatform'].required=true} else {this.form['CustomPlatform'].style.visibility='hidden',this.form['CustomPlatform'].required=false};">
 
                                         <option value="">
                                           --</option>
@@ -442,7 +443,7 @@
                                           <div class="row">
                                             <div class="form-group col-md-6">
                                               <label for="countryid">
-                                                Country<span class="text-danger"></span>
+                                                Country
                                               </label>
 
                                               <select id="countryid" class="form-control" name="countryid">
