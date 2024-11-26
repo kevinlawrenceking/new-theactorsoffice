@@ -1130,28 +1130,43 @@
     <cfargument name="new_workwithcoach" type="boolean" required="true">
     <cfargument name="new_trackmileage" type="boolean" required="true">
 
-        <cfquery result="result"  name="insertEventQuery">
-            INSERT INTO events_tbl (
-                userid, audRoleID, audTypeID, audLocation, eventStart,
-                eventStartTime, eventStopTime, audplatformID, audStepID,
-                parkingDetails, workwithcoach, trackmileage
-            ) VALUES (
-                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_userid#" null="#NOT len(trim(arguments.new_userid))#">,
-                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#" null="#NOT len(trim(arguments.new_audRoleID))#">,
-                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audTypeID#" null="#NOT len(trim(arguments.new_audTypeID))#">,
-                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audLocation#" maxlength="500" null="#NOT len(trim(arguments.new_audLocation))#">,
-                <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.new_eventStart#" null="#NOT len(trim(arguments.new_eventStart))#">,
-                <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.new_eventStartTime#" null="#NOT len(trim(arguments.new_eventStartTime))#">,
-                <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.new_eventStopTime#" null="#NOT len(trim(arguments.new_eventStopTime))#">,
-                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audplatformid#" null="#NOT len(trim(arguments.new_audplatformid))#">,
-                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audStepID#" null="#NOT len(trim(arguments.new_audStepID))#">,
-                <cfqueryparam cfsqltype="CF_SQL_LONGVARCHAR" value="#arguments.new_parkingDetails#" null="#NOT len(trim(arguments.new_parkingDetails))#">,
-                <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_workwithcoach#" null="#NOT len(trim(arguments.new_workwithcoach))#">,
-                <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_trackmileage#" null="#NOT len(trim(arguments.new_trackmileage))#">
-            )
-        </cfquery>
-<cfreturn result.generatedKey>
-</cffunction> <cffunction output="false" name="UPDevents_24556" access="public" returntype="void">
+    <cfquery result="result" name="insertEventQuery">
+        INSERT INTO events_tbl (
+            userid
+            <cfif arguments.new_audRoleID NEQ 0>, audRoleID</cfif>
+            <cfif arguments.new_audTypeID NEQ 0>, audTypeID</cfif>
+            <cfif len(trim(arguments.new_audLocation))>, audLocation</cfif>
+            <cfif arguments.new_eventStart NEQ "1970-01-01">, eventStart</cfif>
+            <cfif arguments.new_eventStartTime NEQ "00:00:00">, eventStartTime</cfif>
+            <cfif arguments.new_eventStopTime NEQ "00:00:00">, eventStopTime</cfif>
+            <cfif arguments.new_audplatformid NEQ 0>, audplatformID</cfif>
+            <cfif arguments.new_audStepID NEQ 0>, audStepID</cfif>
+            <cfif len(trim(arguments.new_parkingDetails))>, parkingDetails</cfif>
+            <cfif isBoolean(arguments.new_workwithcoach)>, workwithcoach</cfif>
+            <cfif isBoolean(arguments.new_trackmileage)>, trackmileage</cfif>
+        ) VALUES (
+            <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_userid#">
+            <cfif arguments.new_audRoleID NEQ 0>, <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#"></cfif>
+            <cfif arguments.new_audTypeID NEQ 0>, <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audTypeID#"></cfif>
+            <cfif len(trim(arguments.new_audLocation))>, <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audLocation#" maxlength="500"></cfif>
+            <cfif arguments.new_eventStart NEQ "1970-01-01">, <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.new_eventStart#"></cfif>
+            <cfif arguments.new_eventStartTime NEQ "00:00:00">, <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.new_eventStartTime#"></cfif>
+            <cfif arguments.new_eventStopTime NEQ "00:00:00">, <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.new_eventStopTime#"></cfif>
+            <cfif arguments.new_audplatformid NEQ 0>, <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audplatformid#"></cfif>
+            <cfif arguments.new_audStepID NEQ 0>, <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audStepID#"></cfif>
+            <cfif len(trim(arguments.new_parkingDetails))>, <cfqueryparam cfsqltype="CF_SQL_LONGVARCHAR" value="#arguments.new_parkingDetails#"></cfif>
+            <cfif isBoolean(arguments.new_workwithcoach)>, <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_workwithcoach#"></cfif>
+            <cfif isBoolean(arguments.new_trackmileage)>, <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_trackmileage#"></cfif>
+        )
+    </cfquery>
+
+    <cfreturn result.generatedKey>
+</cffunction>
+
+
+
+
+<cffunction output="false" name="UPDevents_24556" access="public" returntype="void">
     <cfargument name="new_eventLocation" type="string" required="true">
     <cfargument name="new_audlocadd1" type="string" required="true">
     <cfargument name="new_audlocadd2" type="string" required="true">

@@ -1,4 +1,18 @@
 <cfset eventService = createObject("component", "services.EventService")>
+
+<!--- Default handling for integers --->
+<cfif NOT len(trim(new_audRoleID))><cfset new_audRoleID = 0></cfif>
+<cfif NOT len(trim(new_audTypeID))><cfset new_audTypeID = 0></cfif>
+<cfif NOT len(trim(new_audplatformid))><cfset new_audplatformid = 0></cfif>
+<cfif NOT len(trim(new_audStepID))><cfset new_audStepID = 0></cfif>
+
+<!--- Default handling for dates --->
+<cfif NOT len(trim(new_eventStart))><cfset new_eventStart = "1970-01-01"></cfif>
+
+<!--- Default handling for times --->
+<cfif NOT len(trim(new_eventStartTime))><cfset new_eventStartTime = "00:00:00"></cfif>
+<cfif NOT len(trim(new_eventStopTime))><cfset new_eventStopTime = "00:00:00"></cfif>
+
 <cfset new_eventid = eventService.INSevents_24555(
     new_userid = new_userid,
     new_audRoleID = new_audRoleID,
@@ -12,4 +26,4 @@
     new_parkingDetails = new_parkingDetails,
     new_workwithcoach = new_workwithcoach,
     new_trackmileage = new_trackmileage
-) />
+)>
