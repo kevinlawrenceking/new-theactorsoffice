@@ -123,6 +123,16 @@
         console.log("Value: ", element.value, "Type: ", typeof element.value);
     }
 </script>
+          <script>
+    function handleSelectChangeCasting(element) {
+
+        document.getElementById('hidden_divsss').style.display = element.value == 0 ? 'block' : 'none';
+        console.log("Value: ", element.value, "Type: ", typeof element.value);
+    }
+</script>
+
+
+
 
 
             <div class="form-group col-md-6 col-sm-12">
@@ -146,7 +156,7 @@
 
             <div class="form-group col-md-12">
               <label for="new_contactid">Casting Director</label>
-              <select id="new_contactid" class="form-control" name="new_contactid" onChange="handleSelectChange(this);">
+              <select id="new_contactid" class="form-control" name="new_contactid"  onChange="handleSelectChangeCasting(this);">
                 <option value="">--</option>
                 <option value="0">***ADD NEW***</option>
                 <cfoutput query="castingdirectors_sel">
