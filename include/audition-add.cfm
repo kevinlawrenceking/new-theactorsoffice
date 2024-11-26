@@ -412,6 +412,10 @@
 
                                         
 
+                                            <script>
+                                              $("#new_region_id").chained("#countryid");
+                                            </script>
+
 
 
 
