@@ -1,5 +1,18 @@
 <cfcomponent displayname="EventService" hint="Handles operations for Event table">
 
+<cffunction name="UPDevents_24104" access="public" returntype="void" output="false">
+    <cfargument name="new_eventid" type="numeric" required="true">
+
+    <cfquery>
+        UPDATE events_tbl 
+        SET isdeleted = 0 
+        WHERE eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">
+    </cfquery>
+</cffunction>
+
+
+
+
   <cffunction output="false" name="eventresults" access="public" returntype="struct">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="currentid" type="numeric" required="false" default="">
