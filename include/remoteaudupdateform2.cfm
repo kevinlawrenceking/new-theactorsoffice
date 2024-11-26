@@ -19,7 +19,7 @@
 <!--- Include additional queries for auditions and event activation --->
 <cfinclude template="/include/qry/auditions_upd.cfm" />
 <cfinclude template="/include/qry/activate_222_3.cfm" />
-<cfinclude template="/include/qry/FindEvent_222_4.cfm" />
+
 <cfinclude template="/include/qry/auditionDetails_222_5.cfm" />
 <cfinclude template="/include/qry/projectDetails_222_6.cfm" />
 
@@ -34,15 +34,9 @@
 <cfset new_projname = projectDetails.projName />
 <cfset new_projDescription = projectDetails.projDescription />
 
-<!--- Check if an event record exists and update if necessary --->
-<cfif #FindEvent.recordcount# is "1">
-    <cfinclude template="/include/qry/updateEvent_222_7.cfm" />
-</cfif>
+<cfinclude template="/include/qry/FindEvent_222_4.cfm" />
 
-<!--- Handle case where no event record is found --->
-<cfif #findEvent.recordcount# is "0">
-    <!--- Additional logic can be added here if needed --->
-</cfif>
+
 
 <!--- Prepare return URL for redirection --->
 <cfoutput>

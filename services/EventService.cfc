@@ -1,20 +1,24 @@
 <cfcomponent displayname="EventService" hint="Handles operations for Event table">
 
-
 <cffunction name="SELevents_24105" access="public" returntype="void" output="false">
     <cfargument name="new_eventid" type="numeric" required="true">
     <cfargument name="new_eventStart" type="date" required="false" default="">
-    <cfargument name="new_eventStartTime" type="string" required="false" default="">
-    <cfargument name="new_eventStopTime" type="string" required="false" default="">
+    <cfargument name="new_eventStartTime" type="string" required="false" default="00:00:00">
+    <cfargument name="new_eventStopTime" type="string" required="false" default="00:00:00">
 
-    <!-- Select and update in one query -->
-    <cfquery datasource="#dsn#">
-        <!-- Check if the event exists -->
+    <cfquery >
         UPDATE events
         SET 
-            eventstart = <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.new_eventStart#" null="#NOT len(trim(arguments.new_eventStart))#">,
-            eventstarttime = <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.new_eventStartTime#" null="#NOT len(trim(arguments.new_eventStartTime))#">,
-            eventstoptime = <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.new_eventStopTime#" null="#NOT len(trim(arguments.new_eventStopTime))#">
+            <cfif arguments.new_eventStart NEQ "1970-01-01">
+                eventstart = <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.new_eventStart#">,
+            </cfif>
+            <cfif arguments.new_eventStartTime NEQ "00:00:00">
+                eventstarttime = <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.new_eventStartTime#">,
+            </cfif>
+            <cfif arguments.new_eventStopTime NEQ "00:00:00">
+                eventstoptime = <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.new_eventStopTime#">,
+            </cfif>
+            eventid = eventid
         WHERE eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">
         AND EXISTS (
             SELECT 1 
@@ -23,6 +27,7 @@
         )
     </cfquery>
 </cffunction>
+
 
 
 
