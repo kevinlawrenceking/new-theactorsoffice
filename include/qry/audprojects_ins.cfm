@@ -21,7 +21,7 @@
 <!--- Parameter for contact ID --->
 <cfparam name="isdirect" default="0" />
 <!--- Parameter to indicate if the project is direct --->
-<cfinclude template="/include/qry/p.cfm" />
+<cfinclude template="/include/qry/audprojects_ins_399_1.cfm" />
 <!--- Set the new audience project ID from the result --->
 <cfset audprojectid = new_audprojectid />
 <!--- Assign the new audience project ID to a variable --->
