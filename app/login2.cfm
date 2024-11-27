@@ -26,7 +26,7 @@
     WHERE 
         u.userEmail = <cfqueryparam value="#j_username#" cfsqltype="cf_sql_varchar" />
 </cfquery>
-
+<Cfoutput>Here</cfoutput><Cfabort>
 <!--- Check if the user exists --->
 <cfif loginQuery.recordcount eq 1>
     <!--- Hash the provided password with the stored salt 
