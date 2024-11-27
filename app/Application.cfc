@@ -61,8 +61,12 @@
 
           
             <cflocation url="/loginform.cfm" addToken="false"></cfif>
-            </cfif>
-               <Cfif not isdefined('userid') <cflocation url="/loginform.cfm" addToken="false"></cfif>
+      <!--- Check if userid is defined, if not, redirect to the login form --->
+<cfif NOT isDefined("userid")>
+    <cflocation url="/loginform.cfm" addToken="false">
+</cfif>
+      </cfif>
+      
 
         <!--- Configure application paths and session variables if authenticated --->
         <cfif structKeyExists(session, "userid")>
