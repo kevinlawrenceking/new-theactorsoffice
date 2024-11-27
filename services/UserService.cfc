@@ -568,11 +568,11 @@
         <cfif arrayLen(arguments.userIds) eq 0>
             <!--- Return an empty query if no user IDs are provided --->
             <cfquery name="result" >
-                SELECT * FROM taousers WHERE 1=0
+                select userID,userFirstName,userLastName,userEmail,userRole,recordname,contactid,IsDeleted,nletter_yn,nletter_link,calStartTime,calEndTime,calSlotDuration,avatarName,IsBetaTester,defRows,defCountry,defState,tzid,customerid,userstatus,recover,passwordHash,passwordSalt,userPassword,isAudition,viewtypeid,add1,add2,city,regionid,zip,isAuditionModule,imdbid,isSetup,countryid,def_regionid,access_token,refresh_token,dateFormatID,datePrefID,region_id from taousers WHERE 1=0
             </cfquery>
         <cfelse>
             <!--- Construct the SQL query with parameterized inputs --->
-            <cfset sql = "SELECT * FROM taousers WHERE userid IN (">
+            <cfset sql = "select userID,userFirstName,userLastName,userEmail,userRole,recordname,contactid,IsDeleted,nletter_yn,nletter_link,calStartTime,calEndTime,calSlotDuration,avatarName,IsBetaTester,defRows,defCountry,defState,tzid,customerid,userstatus,recover,passwordHash,passwordSalt,userPassword,isAudition,viewtypeid,add1,add2,city,regionid,zip,isAuditionModule,imdbid,isSetup,countryid,def_regionid,access_token,refresh_token,dateFormatID,datePrefID,region_id from taousers WHERE userid IN (">
             
             <!--- Loop through userIds to create parameter placeholders --->
             <cfloop index="i" from="1" to="#arrayLen(arguments.userIds)#">
@@ -603,7 +603,7 @@
         
         <!--- Return an empty query on error --->
         <cfquery name="result" >
-            SELECT * FROM taousers WHERE 1=0
+            select userID,userFirstName,userLastName,userEmail,userRole,recordname,contactid,IsDeleted,nletter_yn,nletter_link,calStartTime,calEndTime,calSlotDuration,avatarName,IsBetaTester,defRows,defCountry,defState,tzid,customerid,userstatus,recover,passwordHash,passwordSalt,userPassword,isAudition,viewtypeid,add1,add2,city,regionid,zip,isAuditionModule,imdbid,isSetup,countryid,def_regionid,access_token,refresh_token,dateFormatID,datePrefID,region_id from taousers WHERE 1=0
         </cfquery>
         <cfreturn result>
     

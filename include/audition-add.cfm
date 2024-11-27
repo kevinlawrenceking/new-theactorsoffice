@@ -53,8 +53,7 @@
 <!--- Include location service --->
 <cfinclude template="/include/qry/audplatforms_user_sel.cfm"/>
 <!--- Include user selected audition platforms --->
-<cfinclude template="/include/fetchLocationService.cfm"/>
-<!--- Include location service again --->
+
 <cfinclude template="/include/qry/cities_448_1.cfm"/>
 <!--- Include cities query --->
 <cfinclude template="/include/qry/cat_27_1.cfm"/>

@@ -98,7 +98,7 @@
     <cfset var result = "">
 
     <cfquery name="result" result="result">
-        SELECT *
+        SELECT audCatId,audCatName,isDeleted,recordname
         FROM audcategories
         WHERE audcatname = <cfqueryparam value="#arguments.audcatname#" cfsqltype="CF_SQL_VARCHAR">
         AND isdeleted = <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">

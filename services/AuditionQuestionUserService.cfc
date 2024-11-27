@@ -6,8 +6,9 @@ Here is the refined and standardized ColdFusion component code:
     <cfargument name="userid" type="numeric" required="true">
     
     <cfquery name="result">
-        SELECT * 
-        FROM audquestions_user 
+        SELECT qid,qTypeID,qtext,qorder,userid,isDeleted
+FROM audquestions_user
+ 
         WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
     <cfreturn result>
@@ -17,8 +18,8 @@ Here is the refined and standardized ColdFusion component code:
     <cfargument name="userid" type="numeric" required="true">
     
     <cfquery name="result">
-        SELECT *
-        FROM audquestions_user
+          SELECT qid,qTypeID,qtext,qorder,userid,isDeleted
+FROM audquestions_user
         WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
     <cfreturn result>

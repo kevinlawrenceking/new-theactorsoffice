@@ -6,7 +6,7 @@
         
 
         <cfquery name="result">
-            SELECT * 
+            SELECT id,audRoleID,rangeid 
             FROM audageranges_audtion_xref 
             WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER"> 
             AND rangeid = <cfqueryparam value="#arguments.new_rangeid#" cfsqltype="CF_SQL_INTEGER">
