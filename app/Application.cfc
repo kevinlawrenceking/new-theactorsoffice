@@ -62,7 +62,7 @@
           
             <cflocation url="/loginform.cfm" addToken="false"></cfif>
             </cfif>
-       
+               <Cfif not isdefined('userid') <cflocation url="/loginform.cfm" addToken="false"></cfif>
 
         <!--- Configure application paths and session variables if authenticated --->
         <cfif structKeyExists(session, "userid")>
