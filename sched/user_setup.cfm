@@ -20,7 +20,7 @@
         
  
 
-        <cfset browser_media_root_user="#session.userMediaUrl#" />
+        <cfset browser_media_root_user="#usermediaurl#" />
 
         <cfif #dbug# is "Y">
 
