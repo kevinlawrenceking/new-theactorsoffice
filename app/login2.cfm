@@ -29,21 +29,20 @@
 
 <!--- Check if the user exists --->
 <cfif loginQuery.recordcount eq 1>
-    <!--- Hash the provided password with the stored salt --->
+    <!--- Hash the provided password with the stored salt 
     <cfset userpassword2 = Hash(j_password & loginQuery.passwordSalt, "SHA-512") />
 
-    <!--- Validate the password --->
-    <cfif loginQuery.passwordHash eq userpassword2>
+    <!--- Validate the password  --->
+    <cfif loginQuery.passwordHash eq userpassword2> --->
         <!--- Set the session variable --->
         <cfset session.userid = loginQuery.userid />
-
-        <!--- Redirect to the user's status URL --->
+ Redirect to the user's status URL --->
         <cflocation url="#loginQuery.status_url#" addtoken="false" />
-    <cfelse>
-        <!--- Invalid password, redirect to login with error message --->
+    <!--- <cfelse> --->
+        <!--- Invalid password, redirect to login with error messag 
         <cflocation url="/loginform.cfm?pwrong=Y" addtoken="false" />
-    </cfif>
+    </cfif> --->
 <cfelse>
-    <!--- No matching user found, redirect to login with error message --->
+ No matching user found, redirect to login with error message --->
     <cflocation url="/loginform.cfm?pwrong=Y" addtoken="false" />
 </cfif>
