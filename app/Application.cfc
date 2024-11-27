@@ -60,7 +60,7 @@
          
 
           
-            <cflocation url="/loginform.cfm" addToken="false">
+            <cflocation url="/loginformz.cfm" addToken="false">
             </cfif>
        
 
