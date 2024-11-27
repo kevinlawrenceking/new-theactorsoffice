@@ -6,7 +6,7 @@
     }
 </style>
            <script src="/app/assets/js/libs/parsleyjs/parsley.min.js?ver=13"></script>
-<cfinclude template="/include/fetchLocationService.cfm" />
+<cfinclude template="/include/qry/fetchLocationService.cfm" />
 <cfinclude template="/include/qry/details_261_1.cfm" />
 
 <cfparam name="new_countryid" default="" />

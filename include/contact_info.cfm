@@ -1,6 +1,6 @@
 <!--- This ColdFusion page handles the contact details, including fetching related data, managing modals for updates, and displaying contact information. --->
 
-<cfinclude template="/include/fetchLocationService.cfm" />
+<cfinclude template="/include/qry/fetchLocationService.cfm" />
 <cfparam name="suID" default="7" />
 <cfparam name="recid" default="0" />
 <cfparam name="t2" default="0" />
@@ -162,7 +162,7 @@
 <cfinclude template="/include/qry/emailcheck_469_1.cfm" />
 <cfinclude template="/include/qry/phonecheck_515_1.cfm" />
 <!--- <cfinclude template="/include/qry/rels.cfm" /> --->
-<cfinclude template="/include/fetchContactItems.cfm" />
+<cfinclude template="/include/qry/fetchcontactitems.cfm" />
 <cfinclude template="/include/qry/findcompany_476_1.cfm" />
 <cfinclude template="/include/qry/notesRelationship_509_1.cfm" />
 

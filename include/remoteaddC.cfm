@@ -13,7 +13,7 @@
 <cfset new_catid = catid />
 
 <!--- Include fetchLocationService.cfm to get the countries and regions --->
-<cfinclude template="/include/fetchLocationService.cfm" />
+<cfinclude template="/include/qry/fetchLocationService.cfm" />
 
 <cfinclude template="/include/qry/details_198_1.cfm" />
 

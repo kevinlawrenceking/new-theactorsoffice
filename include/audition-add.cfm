@@ -49,7 +49,7 @@
 <cfset dbug="N"/>
 <!--- Initialize debug variable --->
 
-<cfinclude template="/include/fetchLocationService.cfm"/>
+<cfinclude template="/include/qry/fetchLocationService.cfm"/>
 <!--- Include location service --->
 <cfinclude template="/include/qry/audplatforms_user_sel.cfm"/>
 <!--- Include user selected audition platforms --->

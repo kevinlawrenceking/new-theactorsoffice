@@ -4,8 +4,8 @@
 <cfparam name="old_callbacktypeid" default="0" />
 
 <cfinclude template="/include/qry/durations.cfm" />
-<cfinclude template="/include/fetchLocationService.cfm" />
-<cfinclude template="/include/fetchUsers.cfm" />
+<cfinclude template="/include/qry/fetchLocationService.cfm" />
+<cfinclude template="/include/qry/fetchusers.cfm" />
 <cfset usercalstarttime = calstarttime />
 <cfset dbug = "N" />
 

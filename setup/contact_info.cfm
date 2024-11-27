@@ -115,7 +115,7 @@
 
 <cfinclude template="/include/qry/rels.cfm" />
 
-<cfinclude template="/include/fetchContactItems.cfm">
+<cfinclude template="/include/qry/fetchcontactitems.cfm">
 
 <cfinclude template="/include/qry/tagFriendCheck.cfm" />
 

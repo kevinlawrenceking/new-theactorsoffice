@@ -1,6 +1,6 @@
 <!--- This ColdFusion page handles user file uploads and manages user media paths. --->
 
-<cfinclude template="/include/fetchUsers.cfm" />
+<cfinclude template="/include/qry/fetchusers.cfm" />
 
 <cfset currentURL = cgi.server_name />
 <cfset host = ListFirst(currentURL, ".") />
