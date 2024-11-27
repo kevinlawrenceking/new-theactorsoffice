@@ -1,5 +1,5 @@
 <cfparam name="u" default="" />
-<cfset session.userid = 0 />
+<cfset userid = 0 />
 <CFPARAM name="refresh_yn" default="N" />
 <cfparam name="NEW_USERID" default="0" />
 <CFINCLUDE template="remote_load.cfm" />

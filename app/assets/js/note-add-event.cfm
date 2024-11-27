@@ -6,7 +6,7 @@
 
 
 <cfquery result="result"  name="relationships">
-    select * from contactdetails d where recordname <> '' and userid = #session.userid# order by d.contactfullname
+    select * from contactdetails d where recordname <> '' and userid = #userid# order by d.contactfullname
 </cfquery>
 
 
@@ -31,7 +31,7 @@
                         <input type="hidden" name="rcontactid" value="#contactid#">
                         <input type="hidden" name="reventid" value="#reventid#">
                         
-                        <input type="hidden" name="userid" value="#session.userid#">
+                        <input type="hidden" name="userid" value="#userid#">
                         
                         
                     </cfoutput>

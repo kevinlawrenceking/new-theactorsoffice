@@ -7,7 +7,7 @@
 <cfparam name="header" default="Password Recovery" />
 <cfparam name="instruct"   default="We'll send you an email with instructions to reset your password." />
 
-<cfif IsDefined("session.userid")>
+<cfif IsDefined("userid")>
 
     <cfcookie name="userid" value = "#Now()#" Expires="now" domain=".theactorsoffice.com">
 

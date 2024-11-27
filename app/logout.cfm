@@ -1,4 +1,4 @@
-<cfif #isdefined('session.userid')# > 
+<cfif #isdefined('userid')# > 
     
  <cfset StructDelete(Session, "userid")>
      
