@@ -30,8 +30,8 @@
                         <!--- Avatar and Contact Link --->
                         <div class="col-md-2 col-lg-2" style="margin-top:7px;margin-left:7px;">
                             <a href="/app/contact/?contactid=#birthdays.contactid#&t1=1" title="#birthdays.col1#">
-                                <cfif isImageFile("#session.userContactsUrl#/#birthdays.contactid#/avatar.jpg")>
-                                    <img src="#session.userContactsUrl#/#birthdays.contactid#/avatar.jpg" class="img-fluid" alt="#birthdays.col1#" style="width: 30px;" />
+                                <cfif isImageFile("#userContactsUrl#/#birthdays.contactid#/avatar.jpg")>
+                                    <img src="#userContactsUrl#/#birthdays.contactid#/avatar.jpg" class="img-fluid" alt="#birthdays.col1#" style="width: 30px;" />
                                 <cfelse>
                                     <img src="#application.defaultAvatarUrl#" class="img-fluid" alt="#birthdays.col1#" style="width: 30px;" />
                                 </cfif>

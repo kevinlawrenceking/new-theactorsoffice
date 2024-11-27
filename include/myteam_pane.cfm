@@ -45,7 +45,7 @@
                             <cfset contact_avatar_filename = "#session.userContactsPath#\#myteam.contactid#\avatar.jpg" />
                             <!--- Check if the contact has an avatar image --->
                             <cfif isimagefile(contact_avatar_filename)>
-                                <img src="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg?ver=#rand()#" class="rounded-circle img-thumbnail avatar-xl" alt="profile-image">
+                                <img src="#userContactsUrl#/#myteam.contactid#/avatar.jpg?ver=#rand()#" class="rounded-circle img-thumbnail avatar-xl" alt="profile-image">
                             <cfelse>
                                 <img src="#application.defaultAvatarUrl#" class="rounded-circle img-thumbnail avatar-xl" alt="profile-image">
                             </cfif>

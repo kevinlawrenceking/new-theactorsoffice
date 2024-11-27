@@ -658,7 +658,7 @@
 <cfoutput>
                             
 
-<centeR><img src="#session.userContactsUrl#/#currentid#/avatar.jpg" 
+<centeR><img src="#userContactsUrl#/#currentid#/avatar.jpg" 
 class="mr-3 rounded-circle gambar img-responsive img-thumbnail" style="max-width:180px;width:100%" alt="profile-image" 
 id="item-img-output" />     
 

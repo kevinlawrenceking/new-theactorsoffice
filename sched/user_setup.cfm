@@ -58,7 +58,7 @@
 
         </CFIF>
 
-        <cfset browser_media_root_user_contacts="#session.userContactsUrl#" />
+        <cfset browser_media_root_user_contacts="#userContactsUrl#" />
 
         <cfif #dbug# is "Y">
 
