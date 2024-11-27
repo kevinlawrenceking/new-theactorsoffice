@@ -14,19 +14,19 @@
 <!--- Set up dynamic ColdFusion variables --->
 
  
-  <cfset dir_contact_avatar_filename=session.userContactsUrl & "/" & contactid & "/avatar.jpg"/>
-   <cfset session.dir_contact_avatar_filename=session.userContactsUrl & "/" & contactid & "/avatar.jpg"/>
+  <cfset dir_contact_avatar_filename=USERCONTACTSURL & "/" & contactid & "/avatar.jpg"/>
+   <cfset session.dir_contact_avatar_filename=USERCONTACTSURL & "/" & contactid & "/avatar.jpg"/>
 
  
 
 <cfoutput>
 
-<cfset browser_contact_avatar_filename = session.userContactsUrl & "/" & contactid & "/avatar.jpg" />
-<cfset cookie.browser_contact_avatar_filename = session.userContactsUrl & "/" & contactid & "/avatar.jpg" />
+<cfset browser_contact_avatar_filename = USERCONTACTSURL & "/" & contactid & "/avatar.jpg" />
+<cfset cookie.browser_contact_avatar_filename = USERCONTACTSURL & "/" & contactid & "/avatar.jpg" />
   <cfset cookie.uploadDir_Contact="#dir_contact_avatar_filename#"/>
   
-  <cfset dir_contact_avatar_filename=session.userContactsUrl & "/" & contactid & "/avatar.jpg"/>
-  <cfset cookie.dir_contact_avatar_filename=session.userContactsUrl & "/" & contactid & "/avatar.jpg"/>
+  <cfset dir_contact_avatar_filename=USERCONTACTSURL & "/" & contactid & "/avatar.jpg"/>
+  <cfset cookie.dir_contact_avatar_filename=USERCONTACTSURL & "/" & contactid & "/avatar.jpg"/>
 
   <cfset subtitle="#FindRefContacts.recordname#"/>
   <cfset image_url="#browser_contact_avatar_filename#"/>
