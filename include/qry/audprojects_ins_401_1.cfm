@@ -1,6 +1,6 @@
 <cfset AuditionProjectService = createObject("component", "services.AuditionProjectService")>
 
-<!-- Default handling for fetch variables -->
+<!--- Default handling for fetch variables --->
 <cfif NOT len(trim(new_projName))><cfset new_projName = ""></cfif>
 <cfif NOT len(trim(new_projDescription))><cfset new_projDescription = ""></cfif>
 <cfif NOT len(trim(new_unionID))><cfset new_unionID = 0></cfif>
@@ -9,7 +9,7 @@
 <cfif NOT len(trim(new_contractTypeID))><cfset new_contractTypeID = 0></cfif>
 <cfif NOT len(trim(new_contactid))><cfset new_contactid = 0></cfif>
 
-<!-- Call the function -->
+<!--- Call the function --->
 <cfset AuditionProjectService.UPDaudprojects_24586(
     new_projName = new_projName,
     new_projDescription = new_projDescription,
