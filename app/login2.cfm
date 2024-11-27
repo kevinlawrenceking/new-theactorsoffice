@@ -1,7 +1,7 @@
 <cfparam name="j_password" default="" />
 <cfparam name="j_username" default="" />
  
-
+here><Cfabort>
 <cfquery result="result" name="insert">
     INSERT INTO loggins (u, p, REMOTE_ADDR, HTTP_USER_AGENT) 
     VALUES (
@@ -26,7 +26,7 @@
     WHERE 
         u.userEmail = <cfqueryparam value="#j_username#" cfsqltype="cf_sql_varchar" />
 </cfquery>
-<Cfoutput>Here</cfoutput><Cfabort>
+<Cfoutput>Here</cfoutput>
 <!--- Check if the user exists --->
 <cfif loginQuery.recordcount eq 1>
     <!--- Hash the provided password with the stored salt 
