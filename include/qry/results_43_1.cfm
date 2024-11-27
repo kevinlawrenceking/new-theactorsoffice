@@ -1,6 +1,6 @@
 <cfset eventService = createObject("component", "services.EventService")>
 
-<!-- Ensure required variables are defined -->
+<!--- Ensure required variables are defined --->
 <cfif NOT structKeyExists(variables, "audroleid") OR NOT isNumeric(audroleid)>
     <cfset audroleid = 0>
 </cfif>
@@ -13,12 +13,12 @@
     <cfset userid = 0>
 </cfif>
 
-<!-- Optional currentid -->
+<!--- Optional currentid --->
 <cfif NOT structKeyExists(variables, "currentid") OR NOT isNumeric(currentid)>
     <cfset currentid = "0">
 </cfif>
 
-<!-- Call the RESevents function -->
+<!--- Call the RESevents function --->
 <cfset results = eventService.RESevents(
     audroleid = audroleid,
     eventid = eventid,

@@ -119,7 +119,7 @@
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="new_audprojectid" type="numeric" required="true">
 
-    <!-- Insert query -->
+    <!--- Insert query --->
     <cfquery result="result">
         INSERT INTO audcontacts_auditions_xref (contactid, audprojectid)
         VALUES (
@@ -128,7 +128,7 @@
         )
     </cfquery>
 
-    <!-- Return the generated key -->
+    <!--- Return the generated key --->
     <cfreturn result.generatedKey>
 </cffunction>
 

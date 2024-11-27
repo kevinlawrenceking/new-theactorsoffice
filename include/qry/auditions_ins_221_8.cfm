@@ -2,10 +2,10 @@
 
 <cfset dynamicArgs = structNew()>
 
-<!-- Always include required arguments -->
+<!--- Always include required arguments --->
 <cfset dynamicArgs.new_userid = new_userid>
 
-<!-- Conditionally add optional arguments -->
+<!--- Conditionally add optional arguments --->
 <cfif isNumeric(new_audRoleID)>
     <cfset dynamicArgs.new_audRoleID = new_audRoleID>
 </cfif>
@@ -43,5 +43,5 @@
     <cfset dynamicArgs.new_audlocid = new_audlocid>
 </cfif>
 
-<!-- Call the function with argumentCollection -->
+<!--- Call the function with argumentCollection --->
 <cfset result = eventService.INSevents_24096(argumentCollection=dynamicArgs)>

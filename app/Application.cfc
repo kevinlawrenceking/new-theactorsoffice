@@ -1,6 +1,6 @@
 
             <cfcomponent output="false">
-    <!-- Query to determine version -->
+    <!--- Query to determine version --->
     <cfquery result="result" name="findit" datasource="abo">
         SELECT verid 
         FROM taoversions  
@@ -10,7 +10,7 @@
 
     <cfset current_ver = findit.verid />
 
-    <!-- Determine the host and configure application-specific settings -->
+    <!--- Determine the host and configure application-specific settings --->
     <cfset host = ListFirst(cgi.server_name, ".") />
 
     <cfif host eq "app" or host eq "uat">
@@ -39,13 +39,13 @@
         this.errorTemplateNotFound = "404.cfm";
     </cfscript>
 
-    <!-- Application start logic -->
+    <!--- Application start logic --->
     <cffunction name="onApplicationStart" returntype="boolean" output="false">
         <cfset dsn = application.dsn />
         <cfreturn true />
     </cffunction>
 
-    <!-- Request start logic -->
+    <!--- Request start logic --->
     <cffunction name="onRequestStart" returntype="boolean" output="false">
         <cfargument name="targetPage" required="true" type="string">
 
@@ -53,7 +53,7 @@
             <cfset session.userid = U />
             </cfif>
 
-        <!-- Check if the user is authenticated -->
+        <!--- Check if the user is authenticated --->
         <cfif NOT structKeyExists(session, "userid") AND NOT ListFindNoCase(arguments.targetPage, "loginform.cfm,login2.cfm")>
           
        
@@ -64,7 +64,7 @@
             </cfif>
        
 
-        <!-- Configure application paths and session variables if authenticated -->
+        <!--- Configure application paths and session variables if authenticated --->
         <cfif structKeyExists(session, "userid")>
             <cfscript>
                 baseMediaPath = "C:\home\theactorsoffice.com\media-" & this.datasource;
@@ -122,7 +122,7 @@
         <cfreturn true />
     </cffunction>
 
-    <!-- Event to handle unauthenticated requests -->
+    <!--- Event to handle unauthenticated requests --->
     <cffunction name="onRequest" returntype="void" output="true">
         <cfargument name="targetPage" required="true" type="string">
         <cfinclude template="#arguments.targetPage#">

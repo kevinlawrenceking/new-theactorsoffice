@@ -1,6 +1,6 @@
 <cfset auditionRoleService = createObject("component", "services.AuditionRoleService")>
 
-<!-- Handle empty numeric fields -->
+<!--- Handle empty numeric fields --->
 <cfif new_audRoleTypeID EQ "">
     <cfset new_audRoleTypeID = 0>
 </cfif>
@@ -11,7 +11,7 @@
     <cfset new_audSourceID = 0>
 </cfif>
 
-<!-- Handle empty date fields -->
+<!--- Handle empty date fields --->
 <cfif NOT isDate(new_holdStartDate)>
     <cfset new_holdStartDate = "1970-01-01">
 </cfif>
@@ -19,7 +19,7 @@
     <cfset new_holdEndDate = "1970-01-01">
 </cfif>
 
-<!-- Call the function -->
+<!--- Call the function --->
 <cfset new_audRoleID = auditionRoleService.INSaudroles_24593(
     new_audRoleName = new_audRoleName,
     new_audprojectID = new_audprojectID,

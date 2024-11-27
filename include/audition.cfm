@@ -138,44 +138,44 @@
                     </div>
                     <div class="modal-body">
                         <div class="row" style="margin: auto;">
-                            <!-- Open cfif for eventStart -->
+                            <!--- Open cfif for eventStart --->
                             <cfif auditiondetails.eventStart is not "">
                                 <h4 class="px-1 d-flex text-nowrap">
                                     <img src="#application.datesUrl#/#DateFormat(auditiondetails.eventStart, 'yyyy-mm-dd')#.png" style="max-width:75px;" alt="...">
                                 </h4>
                             </cfif>
                             <div class="col-md-12 p-1"><strong>Time: </strong>#timeformat(auditiondetails.eventStartTime)# 
-                                <!-- Open cfif for eventStopTime -->
+                                <!--- Open cfif for eventStopTime --->
                                 <cfif auditiondetails.eventStopTime is not "">- #timeformat(auditiondetails.eventStopTime)#</cfif>
                             </div>
                             <div class="col-md-12 p-1"><strong> Stage: </strong>#auditiondetails.audstep#</div>
-                            <!-- Callback Type -->
+                            <!--- Callback Type --->
                             <cfif auditionDetails.audstepid is "2">
                                 <div class="col-md-12 p-1"><strong>Callback Type: </strong>#auditionDetails.callbacktype#</div>
                             </cfif>
-                            <!-- Booking Type -->
+                            <!--- Booking Type --->
                             <div class="col-md-12 p-1"><strong> Type: </strong>
                                 <button type="button" class="btn btn-xs btn-soft-secondary rounded-pill waves-effect">#auditiondetails.audtype#</button>
                             </div>
                             <cfif auditiondetails.audstepid is "5">
                                 <div class="col-md-12 p-1"><strong>Booking Type: </strong>#auditiondetails.audbooktype#</div>
                             </cfif>
-                            <!-- Platform -->
+                            <!--- Platform --->
                             <cfif auditiondetails.audtype is "online">
                                 <div class="col-md-12 p-1"><strong> Platform: </strong>#auditiondetails.audplatform#</div>
                             </cfif>
-                            <!-- Coach -->
+                            <!--- Coach --->
                             <div class="col-md-12 p-1"><strong> Worked with Coach: </strong>
                                 <cfif auditiondetails.workwithcoach is "1">Yes<cfelse>No</cfif>
                             </div>
-                            <!-- In-Person Details -->
+                            <!--- In-Person Details --->
                             <cfif auditiondetails.audtype is "In Person">
                                 <div class="col-md-12 p-1"><strong>Parking Details: </strong>#auditiondetails.parkingdetails#</div>
                                 <div class="col-md-12 p-1"><strong> Track Mileage: </strong>
                                     <cfif auditiondetails.trackmileage is "1">Yes<cfelse>No</cfif>
                                 </div>
                             </cfif>
-                            <!-- Location -->
+                            <!--- Location --->
                             <cfif auditiondetails.islocation is "true">
                                 <div class="col-md-12 p-1"><strong>Location: </strong>#auditionDetails.eventLocation# 
                                     <cfif auditionDetails.eventLocation is not "" and auditionDetails.audlocadd1 is not "">, #auditionDetails.audlocadd1#</cfif>
@@ -188,7 +188,7 @@
                                     </cfif>
                                 </div>
                             <cfelse>
-                                <!-- Online Zoom -->
+                                <!--- Online Zoom --->
                                 <cfif auditiondetails.audtype is "online">
                                     <div class="col-md-12 p-1"><strong>Zoom Link: </strong>#auditiondetails.audLocation# </div>
                                 </cfif>
@@ -428,7 +428,7 @@
                                 </cfif>
     </cfif>
     
-                        </div><!-- end form-check -->
+                        </div><!--- end form-check --->
 
 
 
@@ -469,7 +469,7 @@
 
                             </cfif>
 
-                        </div><!-- end form-check -->
+                        </div><!--- end form-check --->
 
 
                         <div class="form-switch col-md-3 col-sm-6 col-xs-6">
@@ -509,7 +509,7 @@
 
                                 </cfif>
 <cfif #Booked_check.recordcount# is not "0"> </a></cfif>
-                        </div><!-- end form-check -->
+                        </div><!--- end form-check --->
 
 
 
@@ -1000,7 +1000,7 @@
                 </cfloop>
 
             </div>
-        </div><!-- /btn-group -->
+        </div><!--- /btn-group --->
 
 
 

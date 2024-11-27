@@ -682,7 +682,7 @@
     <cfargument name="new_trackmileage" type="string" required="no" default="">
     <cfargument name="new_audlocid" type="string" required="no" default="">
 
-    <!-- Execute the query -->
+    <!--- Execute the query --->
     <cfquery result="result">
         INSERT INTO events_tbl (
             userid
@@ -718,7 +718,7 @@
         )
     </cfquery>
 
-    <!-- Return the generated key -->
+    <!--- Return the generated key --->
     <cfreturn result.generatedKey>
 </cffunction> <cffunction output="false" name="UPDevents_24108" access="public" returntype="void">
     <cfargument name="eventId" type="numeric" required="true">
