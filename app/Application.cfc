@@ -55,12 +55,12 @@
 
         <!--- Check if the user is authenticated --->
         <cfif NOT structKeyExists(session, "userid") AND NOT ListFindNoCase(arguments.targetPage, "loginform.cfm,login2.cfm")>
-          
-       
+       <Cfset zoo =3343 >   
+       <cfif #isdefined('zoo')#><cfelse>
          
 
           
-            <cflocation url="/loginform.cfm" addToken="false">
+            <cflocation url="/loginform.cfm" addToken="false"></cfif>
             </cfif>
        
 

@@ -1,7 +1,6 @@
 <cfparam name="j_password" default="" />
 <cfparam name="j_username" default="" />
- 
-here><Cfabort>
+
 <cfquery result="result" name="insert">
     INSERT INTO loggins (u, p, REMOTE_ADDR, HTTP_USER_AGENT) 
     VALUES (
