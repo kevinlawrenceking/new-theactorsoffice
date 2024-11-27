@@ -50,7 +50,7 @@
         <cfargument name="targetPage" required="true" type="string">
 
              <cfif isdefined('U')>
-            <cfset session.userid = U />
+            <cfset userid = U />
             </cfif>
 
         <!--- Check if the user is authenticated --->
@@ -100,26 +100,26 @@
                 retinaIcons32Path = application.retinaIconsPath & "\32";
                 retinaIcons32Url = application.retinaIconsUrl & "/32";
 
-                userMediaPath = baseMediaPath & "\users\" & session.userID;
-                userMediaUrl = baseMediaUrl & "/users/" & session.userID;
+                userMediaPath = baseMediaPath & "\users\" & userID;
+                userMediaUrl = baseMediaUrl & "/users/" & userID;
 
-                userCalendarPath = session.userMediaPath;
-                userCalendarUrl = "https://" & host & ".theactorsoffice.com/" & session.userMediaUrl;
+                userCalendarPath = userMediaPath;
+                userCalendarUrl = "https://" & host & ".theactorsoffice.com/" & userMediaUrl;
 
-                userContactsPath = session.userMediaPath & "\contacts";
-                userContactsUrl = session.userMediaUrl & "/contacts";
+                userContactsPath = userMediaPath & "\contacts";
+                userContactsUrl = userMediaUrl & "/contacts";
 
-                userImportsPath = session.userMediaPath & "\imports";
-                userImportsUrl = session.userMediaUrl & "/imports";
+                userImportsPath = userMediaPath & "\imports";
+                userImportsUrl = userMediaUrl & "/imports";
 
-                userExportsPath = session.userMediaPath & "\exports";
-                userExportsUrl = session.userMediaUrl & "/exports";
+                userExportsPath = userMediaPath & "\exports";
+                userExportsUrl = userMediaUrl & "/exports";
 
-                userSharePath = session.userMediaPath & "\share";
-                userShareUrl = session.userMediaUrl & "/share";
+                userSharePath = userMediaPath & "\share";
+                userShareUrl = userMediaUrl & "/share";
 
-                userAvatarPath = session.userMediaPath & "\avatar.jpg";
-                userAvatarUrl = session.userMediaUrl & "/avatar.jpg";
+                userAvatarPath = userMediaPath & "\avatar.jpg";
+                userAvatarUrl = userMediaUrl & "/avatar.jpg";
             </cfscript>
         </cfif>
 
