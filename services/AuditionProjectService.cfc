@@ -1,4 +1,46 @@
 <cfcomponent displayname="AuditionProjectService" hint="Handles operations for AuditionProject table" > 
+
+<cffunction name="UPDaudprojects_24586" access="public" returntype="void" output="false">
+    <!--- Arguments with default handling --->
+    <cfargument name="new_projName" type="string" required="false" default="">
+    <cfargument name="new_projDescription" type="string" required="false" default="">
+    <cfargument name="new_unionID" type="numeric" required="false" default="0">
+    <cfargument name="new_networkID" type="numeric" required="false" default="0">
+    <cfargument name="new_toneID" type="numeric" required="false" default="0">
+    <cfargument name="new_contractTypeID" type="numeric" required="false" default="0">
+    <cfargument name="new_contactid" type="numeric" required="false" default="0">
+    <cfargument name="new_audprojectID" type="numeric" required="true">
+
+    <!--- Build the update query dynamically --->
+    <cfquery >
+        UPDATE audprojects
+        SET
+            projName = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_projName#" maxlength="500" null="#NOT len(trim(arguments.new_projName))#">
+            <cfif len(trim(arguments.new_projDescription))>,
+                projDescription = <cfqueryparam cfsqltype="CF_SQL_LONGVARCHAR" value="#arguments.new_projDescription#">
+            </cfif>
+            <cfif arguments.new_unionID NEQ 0>,
+                unionID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_unionID#">
+            </cfif>
+            <cfif arguments.new_networkID NEQ 0>,
+                networkID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_networkID#">
+            </cfif>
+            <cfif arguments.new_toneID NEQ 0>,
+                toneID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_toneID#">
+            </cfif>
+            <cfif arguments.new_contractTypeID NEQ 0>,
+                contractTypeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contractTypeID#">
+            </cfif>
+            <cfif arguments.new_contactid NEQ 0>,
+                contactid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contactid#">
+            </cfif>
+        WHERE audprojectID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audprojectID#">
+    </cfquery>
+</cffunction>
+
+
+
+
 <cffunction output="false" name="DETaudprojects" access="public" returntype="query">
     <cfargument name="eventId" type="numeric" required="true">
 
