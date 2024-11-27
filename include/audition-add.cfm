@@ -5,48 +5,9 @@
 <cfparam name="isdirect" default="0"/>
 <!--- Set default value for isdirect --->
 <cfparam name="userCalStarttime" default=""/>
-<style>
-  /* Styles for hidden divs */
-  #hiddenSelfTape {
-    display: none;
-  }
-
-  #hiddenLocation {
-    display: none;
-  }
-
-  #hiddenAddLocation {
-    display: none;
-  }
-
-  #hiddenCasting {
-    display: none;
-  }
-
-  /* Output text style */
-  .output {
-    font: 1rem 'Fira Sans', sans-serif;
-  }
-
-  /* Fieldset styling */
-  fieldset {
-    display: block;
-    margin-inline-start: 1px;
-    margin-inline-end: 1px;
-    padding-block-start: 0.35em;
-    padding-inline-start: 0.75em;
-    padding-inline-end: 0.75em;
-    padding-block-end: 0.625em;
-    min-inline-size: min-content;
-    border-width: 2px;
-    border-style: groove;
-    border-color: #ced4da;
-    border-style: solid;
-    border-image: initial;
-  }
-</style>
 
 <cfset dbug="N"/>
+
 <!--- Initialize debug variable --->
 
 <cfinclude template="/include/qry/fetchLocationService.cfm"/>
