@@ -648,7 +648,7 @@
                     <p class="card-text">
 
 <cfoutput> 
-<cfset contact_avatar_filename = "#session.userContactsPath#\#currentid#\avatar.jpg" />
+<cfset contact_avatar_filename = "#USERCONTACTSPATH#\#currentid#\avatar.jpg" />
 
                         </cfoutput>
 

@@ -66,7 +66,7 @@
 
         </cfif>
 
-        <cfset dir_media_root_user_contacts="#session.userContactsPath#" />
+        <cfset dir_media_root_user_contacts="#USERCONTACTSPATH#" />
 
         <cfif #dbug# is "Y">
 
