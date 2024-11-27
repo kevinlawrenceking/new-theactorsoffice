@@ -39,7 +39,7 @@
 
     
 
-        <cfset session.contactAvatarUrl="#session.userAvatarUrl#" />
+        <cfset session.contactAvatarUrl="#USERAVATARURL#" />
 
         <cfif #dbug# is "Y">
 
