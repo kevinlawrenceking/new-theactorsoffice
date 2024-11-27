@@ -24558,7 +24558,7 @@ fieldset {
   .dataTables_wrapper .dataTables_filter {
     float: right;
     text-align: right;
-    visibility: hidden;
+    visibility: hidden;}
 
 .responsive-tabs {
     padding: 1rem;
@@ -24700,4 +24700,9 @@ fieldset {
         margin-left: 0;
         margin-right: 0;
     }
- 
+
+    .anchor-offset {
+        box-sizing: border-box;
+        padding-top: 75px;
+        margin-top: -75px;
+    }

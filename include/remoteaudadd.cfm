@@ -14,13 +14,6 @@
 <!--- Include the subcategory selection query --->
 <cfinclude template="/include/qry/audsubcategories_sel.cfm">
 
-<style>
-    #hidden_div {
-        display: none;
-    }
-</style>
-
-
 <!--- Form for audition submission --->
 <form method="post" action="/app/audition-add/index.cfm" class="parsley-examples" name="event-form" id="form-event" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" data-parsley-trigger="keyup" data-parsley-validate>
     

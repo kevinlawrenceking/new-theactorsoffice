@@ -1,11 +1,5 @@
 <!--- This ColdFusion page handles the display and submission of notes related to a contact, including visibility options and a text editor for note details. --->
 
-<style>
-    #hidden_div {
-        display: none;
-    }
-</style>
-
 <cfinclude template="/include/qry/relationships_13_1.cfm" />
 
 <div class="row">

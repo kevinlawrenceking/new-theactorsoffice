@@ -11,11 +11,6 @@
 --->
 
 <!--- Define the style for the hidden div --->
-<style>
-    #hidden_div {
-        display: none;
-    }
-</style>
 
 <!--- Include the file for remote loading --->
 <cfinclude template="/include/qry/events_203_1.cfm" />

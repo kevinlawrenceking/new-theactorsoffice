@@ -90,46 +90,29 @@
         </div>
     </cfif>
 
-    <!--- Conditional styling based on source ID --->
-    <cfif #roledetails.audsourceid# is not "1">
-        <style>
-            #hidden_div {
-                display: none;
-            }
-        </style>
-    </cfif>
+ <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get the source ID from ColdFusion
+        const audSourceId = "<cfoutput>#roledetails.audsourceid#</cfoutput>";
 
-    <cfif #roledetails.audsourceid# is not "2">
-        <style>
-            #hidden_divss {
-                display: none;
-            }
-        </style>
-    </cfif>
+        // Define mappings of IDs to their corresponding conditions
+        const divMappings = {
+            hidden_div: audSourceId !== "1",
+            hidden_divss: audSourceId !== "2",
+            hidden_divs: audSourceId !== "3",
+            hidden_divx: audSourceId !== "4"
+        };
 
-    <cfif #roledetails.audsourceid# is "2">
-        <style>
-            #hidden_divss {
-                display: block;
+        // Apply styles based on conditions
+        for (const [divId, shouldHide] of Object.entries(divMappings)) {
+            const element = document.getElementById(divId);
+            if (element) {
+                element.style.display = shouldHide ? "none" : "block";
             }
-        </style>
-    </cfif>
+        }
+    });
+</script>
 
-    <cfif #roledetails.audsourceid# is not "3">
-        <style>
-            #hidden_divs {
-                display: none;
-            }
-        </style>
-    </cfif>
-
-    <cfif #roledetails.audsourceid# is not "4">
-        <style>
-            #hidden_divx {
-                display: none;
-            }
-        </style>
-    </cfif>
 
     <div class="form-group col-md-6">
         <label for="new_audsourceid">Source </label>

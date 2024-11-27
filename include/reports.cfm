@@ -1,11 +1,3 @@
-<!--- This ColdFusion page generates reports based on user input and displays them dynamically. --->
-<style>
-    .anchor-offset {
-        box-sizing: border-box;
-        padding-top: 75px;
-        margin-top: -75px;
-    }
-</style>
 
 <!--- Check if the user has access to the audition module --->
 <cfif #isauditionmodule# is "0">
@@ -28,21 +20,6 @@
     <cflocation url="/include/reportsrefresh.cfm?refresh=n" />
 </cfif>
 
-<style>
-    .col-lg {
-        min-width: 0;
-    }
-
-    <!--- Hide divs based on range ID --->
-    <cfif #new_rangeid# is not "7">
-        #hidden_div {
-            display: none;
-        }
-        #hidden_divs {
-            display: none;
-        }
-    </cfif>
-</style>
 
 <!--- Form for report generation --->
 <form action="/include/reportsRefresh.cfm">

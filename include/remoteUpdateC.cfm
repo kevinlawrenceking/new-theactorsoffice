@@ -1,10 +1,5 @@
 <!--- This ColdFusion page handles the display and submission of a form for updating item details based on various categories. --->
 
-<style>
-    #hidden_div {
-        display: none;
-    }
-</style>
            <script src="/app/assets/js/libs/parsleyjs/parsley.min.js?ver=13"></script>
 <cfinclude template="/include/qry/fetchLocationService.cfm" />
 <cfinclude template="/include/qry/details_261_1.cfm" />

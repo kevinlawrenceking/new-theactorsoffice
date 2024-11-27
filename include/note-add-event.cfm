@@ -3,12 +3,6 @@
 <cfparam name="reventid" default="0" />
 <cfset eventid = reventid />
 
-<style>
-    #hidden_div {
-        display: none;
-    }
-</style>
-
 <cfinclude template="/include/qry/relationships_13_1.cfm" />
 
 <div class="row">
