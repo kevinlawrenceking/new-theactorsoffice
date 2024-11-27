@@ -1,11 +1,6 @@
 <cfparam name="reventid" default="0" />
 <cfset eventid = reventid />
- 
-<style>
-    #hidden_div {
-        display: none;
-    }
-</style>
+
 
 
 

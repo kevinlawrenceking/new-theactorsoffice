@@ -31,26 +31,19 @@
     <cfset tab1_expand = "true" />
 </cfif>
 
-<style>
-    <!--- Set display property based on event details day of the week --->
-    <cfif #eventdetails.dow# is "">
-        #hidden_div {
-            display: none;
-        }
-    <cfelse>
-        #hidden_div {
-            display: block;
-        }
-    </cfif>
-</style>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const hiddenDiv = document.getElementById("hidden_div");
+        const dowValue = "<cfoutput>#eventdetails.dow#</cfoutput>";
 
-<style>
-    .dataTables_wrapper .dataTables_filter {
-        float: right;
-        text-align: right;
-        visibility: hidden;
-    }
-</style>
+        if (dowValue === "") {
+            hiddenDiv.style.display = "none";
+        } else {
+            hiddenDiv.style.display = "block";
+        }
+    });
+</script>
+
 
 <cfset session.new_eventid = eventdetails.eventid />
 

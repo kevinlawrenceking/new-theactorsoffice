@@ -6,17 +6,20 @@
 <cfinclude template="/include/qry/durations.cfm" />
 <cfinclude template="/include/qry/relationships_13_1.cfm" />
 <cfinclude template="/include/qry/eventtypes_user_443_2.cfm" />
-<style>
-    <cfif #eventdetails.dow# is "">
-        #hidden_div {
-            display: none;
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const hiddenDiv = document.getElementById("hidden_div");
+        const dowValue = "<cfoutput>#eventdetails.dow#</cfoutput>";
+
+        if (dowValue === "") {
+            hiddenDiv.style.display = "none";
+        } else {
+            hiddenDiv.style.display = "block";
         }
-    <cfelse>
-        #hidden_div {
-            display: block;
-        }
-    </cfif>
-</style>
+    });
+</script>
+
 
 <script>
     $(document).ready(function() {
@@ -182,12 +185,6 @@
         </div>
     </div>
 </div>
-
-<style>
-    .selectize-dropdown, .selectize-input {
-        line-height: 28px;
-    }
-</style>
 
 <script>
     $(document).ready(function() {

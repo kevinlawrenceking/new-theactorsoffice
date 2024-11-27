@@ -2,11 +2,6 @@
 
 <cfparam name="rcontactid" default="0"/>
 
-<style>
-  #hidden_div {
-    display: none;
-  }
-</style>
 
 <cfinclude template="/include/qry/relationships_13_1.cfm"/>
 <cfinclude template="/include/qry/durations.cfm"/>

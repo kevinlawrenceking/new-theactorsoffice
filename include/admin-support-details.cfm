@@ -260,16 +260,7 @@
         </div>
     </div>
 
-    <style>
-        .wrapit {
-            /* CSS-3 */
-            white-space: -o-pre-wrap;
-            word-wrap: break-word;
-            white-space: pre-wrap;
-            white-space: -moz-pre-wrap;
-            white-space: -pre-wrap;
-        }
-    </style>
+
 
     <!--- Ticket Log Table Section --->
     <div class="row">

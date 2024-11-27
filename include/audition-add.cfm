@@ -28,28 +28,9 @@
 <cfinclude template="/include/qry/castingdirectors_sel.cfm">
 <!--- Include casting directors selection --->
 
-<cfif #isdirect# is "1">
-  <!--- Check if isdirect is 1 --->
-  <style>
-    #hidedirectbooking {
-      display: none;
-    }
 
-    .input {
-      margin: 0 auto;
-    }
-  </style>
-</cfif>
 
-<style>
-  #hidden_div {
-    display: none;
-  }
 
-  .input {
-    margin: 0 auto;
-  }
-</style>
 
 <div class="row">
   <div class="col-xl-6 col-lg-8 col-md-12">
@@ -138,6 +119,24 @@
                   }
                 </script>
 
+                <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const isDirect = "<cfoutput>#isdirect#</cfoutput>";
+        const hideDirectBooking = document.getElementById("hidedirectbooking");
+
+        if (isDirect === "1") {
+            // Hide the #hidedirectbooking element
+            hideDirectBooking.style.display = "none";
+
+            // Add margin styling to all elements with the 'input' class
+            document.querySelectorAll(".input").forEach(function (inputElement) {
+                inputElement.style.margin = "0 auto";
+            });
+        }
+    });
+</script>
+
+
                 <div class="form-group col-md-6 col-sm-12">
                   <label for="new_audrolename">Role Name<span class="text-danger">*</span>
                   </label>
@@ -217,14 +216,7 @@
                               </fieldset>
                             </div>
                           </div>
-
-                          <style>
-                            .field_set {
-                              border-color: #ced4da;
-                              border-width: 1px;
-                            }
-                          </style>
-
+                          
                           <fieldset class="answer" id="hidedirectbooking">
                             <legend>Appointment details</legend>
                             <div class="row">

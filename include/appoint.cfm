@@ -24,27 +24,7 @@
     <cfset tab1_expand = "true" />
 </cfif>
 
-<style>
-    <!--- Hide or show hidden_div based on event details --->
-    <cfif #eventdetails.dow# is "">
-        #hidden_div {
-            display: none;
-        }
-    <cfelse>
-        #hidden_div {
-            display: block;
-        }
-    </cfif>
-</style>
 
-<style>
-    <!--- Style for DataTables filter visibility --->
-    .dataTables_wrapper .dataTables_filter {
-        float: right;
-        text-align: right;
-        visibility: hidden;
-    }
-</style>
 
 <script>
     <!--- Initialize selectize for relationship selection --->
