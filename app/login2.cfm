@@ -35,6 +35,7 @@
     <cfif loginQuery.passwordHash eq userpassword2> --->
         <!--- Set the session variable --->
         <cfset userid = loginQuery.userid />
+        <cfset session.userid = userid />
  Redirect to the user's status URL --->
         <cflocation url="#loginQuery.status_url#" addtoken="false" />
     <!--- <cfelse> --->

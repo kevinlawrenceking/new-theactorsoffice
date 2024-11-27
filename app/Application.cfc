@@ -69,7 +69,7 @@
       
 
         <!--- Configure application paths and session variables if authenticated --->
-        <cfif structKeyExists(variables), "userid")>
+        <cfif structKeyExists(session, "userid")>
             <cfscript>
                 baseMediaPath = "C:\home\theactorsoffice.com\media-" & this.datasource;
                 baseMediaUrl = "/media-" & this.datasource;
