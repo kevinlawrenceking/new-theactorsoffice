@@ -13,7 +13,7 @@
         <center>
           <!--- Output the subscription calendar URL --->
           <cfoutput>
-            <h5 id="p1">#session.userCalendarUrl#</h5>
+            <h5 id="p1">#USERCALENDARURL#</h5>
           </cfoutput>
         </center>
         <p>&nbsp;</p>
