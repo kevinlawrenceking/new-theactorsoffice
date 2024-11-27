@@ -35,8 +35,8 @@
 </cfif>
 
 <!--- Set calendar root directory and URL from session variables. --->
-<Cfset Cal_root_dir = session.userCalendarPath />
-<Cfset cal_root_url = session.userCalendarURL />
+<Cfset Cal_root_dir = userCalendarPath />
+<Cfset cal_root_url = userCalendarURL />
 <Cfset cookie.userid = userid />
 
 <cfinclude template="/include/qry/fetchusers.cfm" />
