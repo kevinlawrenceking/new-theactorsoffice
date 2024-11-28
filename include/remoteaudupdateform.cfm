@@ -2,7 +2,7 @@
 
 <cfparam name="pgaction" default="view" />
 <cfparam name="old_callbacktypeid" default="0" />
-
+<cfparam name="isdirect" default="0" />
 <cfinclude template="/include/qry/durations.cfm" />
 <cfinclude template="/include/qry/fetchLocationService.cfm" />
 <cfinclude template="/include/qry/fetchusers.cfm" />
