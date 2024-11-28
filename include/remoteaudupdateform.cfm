@@ -95,12 +95,13 @@
     }
     </cfif>
 
-    <Cfif #aud_det.audtypeid# is not "2">#hiddenDiv_2 {
+    <Cfif #aud_det.audtypeid# is not "2">#hiddenSelfTape {
         display: none;
     }
     </cfif>
 
 
+</style>
 
 <cfset new_audcatid = aud_det.audcatid />
 <cfinclude template="/include/qry/audtypes_sel_221_11.cfm" />
@@ -336,7 +337,7 @@
             });
         </script>
 
-        <div id="hiddenDiv_2">
+        <div id="hiddenSelfTape">
             <cfoutput>
                 <div class="form-group col-md-12">
                     <label for="new_eventStart">Platform URL (optional)</label>
@@ -401,7 +402,73 @@
             }
         </script>
 
-        <script>
-            $('select[name=new_eventStartTime]').on("change", function() {
-                var
+ <script>
+                  function handleSelectChange(element) {
+                    const hiddenSelfTape = document.getElementById('hiddenSelfTape');
+                    const hiddenLocation = document.getElementById('hiddenLocation');
+                    const locationInput = document.getElementById('eventLocation');
+                    const hideDirectBooking = document.getElementById('hidedirectbooking');
 
+                    // Show or hide the "Self Tape" div
+                    if (hiddenSelfTape) {
+                      hiddenSelfTape.style.display = element.value == 2
+                        ? 'block'
+                        : 'none';
+                    }
+
+                    // Show or hide the "Location" div and toggle "required" for Location input
+                    if (hiddenLocation) {
+                      hiddenLocation.style.display = element.value == 1
+                        ? 'block'
+                        : 'none';
+                    }
+                    if (locationInput) {
+                      if (element.value == 1) {
+                        locationInput.setAttribute('required', 'required');
+                        locationInput.setAttribute('data-parsley-required', 'true');
+                      } else {
+                        locationInput.removeAttribute('required');
+                        locationInput.removeAttribute('data-parsley-required');
+                      }
+                    }
+
+                    // Show or hide the "Direct Booking" div
+                    if (hideDirectBooking) {
+                      hideDirectBooking.style.display = element.value == 23
+                        ? 'none'
+                        : 'block';
+                    }
+
+                    console.log("Value: ", element.value, "Type: ", typeof element.value);
+                  }
+                </script>
+
+                <script>
+                  function handleSelectChangeCasting(element) {
+
+                    document
+                      .getElementById('hiddenAddLocation')
+                      .style
+                      .display = element.value == 0
+                        ? 'block'
+                        : 'none';
+                    console.log("Value: ", element.value, "Type: ", typeof element.value);
+                  }
+                </script>
+
+                <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const isDirect = "<cfoutput>#isdirect#</cfoutput>";
+        const hideDirectBooking = document.getElementById("hidedirectbooking");
+
+        if (isDirect === "1") {
+            // Hide the #hidedirectbooking element
+            hideDirectBooking.style.display = "none";
+
+            // Add margin styling to all elements with the 'input' class
+            document.querySelectorAll(".input").forEach(function (inputElement) {
+                inputElement.style.margin = "0 auto";
+            });
+        }
+    });
+</script>

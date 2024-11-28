@@ -6,6 +6,12 @@
 <!--- Set default value for isdirect --->
 <cfparam name="userCalStarttime" default=""/>
 
+<cfparam name="new_region_id" default="CA">
+<cfparam name="new_countryid" default="US">
+<cfparam name="valueCountry" default="">
+<cfparam name="valuestate" default="">
+<cfparam name="valuetext" default="">
+
 <cfset dbug="N"/>
 
 <!--- Initialize debug variable --->
@@ -27,10 +33,6 @@
 <cfinclude template="/include/qry/casting_types_27_4.cfm"/>
 <cfinclude template="/include/qry/castingdirectors_sel.cfm">
 <!--- Include casting directors selection --->
-
-
-
-
 
 <div class="row">
   <div class="col-xl-6 col-lg-8 col-md-12">
@@ -462,13 +464,6 @@
                                                 WHERE u.userid = '#userid#'
                                               </cfquery>
 
-                                              <cfparam name="new_region_id" default="CA">
-                                              <cfparam name="new_countryid" default="US">
-
-                                              <cfparam name="valueCountry" default="">
-                                              <cfparam name="valuestate" default="">
-
-                                              <cfparam name="valuetext" default="">
                                               <cfinclude template="/include/qry/countries.cfm"/>
                                               <cfinclude template="/include/qry/regions.cfm"/>
                                               <cfinclude template="/include/qry/cities.cfm"/>
