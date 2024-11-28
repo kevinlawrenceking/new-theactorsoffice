@@ -100,25 +100,7 @@
     }
     </cfif>
 
-    .output {
-        font: 1rem 'Fira Sans', sans-serif;
-    }
 
-    fieldset {
-        display: block;
-        margin-inline-start: 1px;
-        margin-inline-end: 1px;
-        padding-block-start: 0.35em;
-        padding-inline-start: 0.75em;
-        padding-inline-end: 0.75em;
-        padding-block-end: 0.625em;
-        min-inline-size: min-content;
-        border-width: 2px;
-        border-style: groove;
-        border-color: #ced4da;
-        border-style: solid border-image: initial;
-    }
-</style>
 
 <cfset new_audcatid = aud_det.audcatid />
 <cfinclude template="/include/qry/audtypes_sel_221_11.cfm" />
