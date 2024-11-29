@@ -74,8 +74,8 @@
                 baseMediaPath = "C:\home\theactorsoffice.com\media-" & this.datasource;
                 baseMediaUrl = "/media-" & this.datasource;
 
-                imagesPath = baseMediaPath & "\images";
-                imagesUrl = baseMediaUrl & "/images";
+                application.imagesPath = baseMediaPath & "\images";
+                application.imagesUrl = baseMediaUrl & "/images";
 
                 datesPath = application.imagesPath & "\dates";
                 datesUrl = application.imagesUrl & "/dates";
