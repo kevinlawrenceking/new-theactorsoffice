@@ -12,7 +12,6 @@
 <cfparam name="BROWSER_CONTACT_AVATAR_FILENAME" default="" />
 <Cfparam name="USERCALENDARPATH" default="" />
 <Cfparam name="userCalendarPath" default="" />
-<Cfparam name="" default="" />
 <cfscript>
     currentURL = cgi.server_name;
     host = ListFirst(currentURL, ".");

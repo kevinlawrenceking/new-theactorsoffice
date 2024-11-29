@@ -115,21 +115,21 @@ FROM sharez where userid = #userid#
              <div class="logo-box">
             <a href="/app/" class="logo logo-dark text-center">
                 <span class="logo-sm">
-                    <img src="<cfoutput>#application.imagesUrl#</cfoutput>/logo-sm.png" alt="" height="30">
+                    <img src="<cfoutput>#imagesUrl#</cfoutput>/logo-sm.png" alt="" height="30">
                     <!--- <span class="logo-lg-text-light">UBold</span> --->
                 </span>
                 <span class="logo-lg">
-                    <img src="<cfoutput>#application.imagesUrl#</cfoutput>/logo-sm.png" alt="" height="30">
+                    <img src="<cfoutput>#imagesUrl#</cfoutput>/logo-sm.png" alt="" height="30">
                     <!--- <span class="logo-lg-text-light">U</span> --->
                 </span>
             </a>
     
             <a href="/app/" class="logo logo-light text-center">
                 <span class="logo-sm">
-                    <img src="<cfoutput>#application.imagesUrl#</cfoutput>/logo-sm.png" alt="" height="30">
+                    <img src="<cfoutput>#imagesUrl#</cfoutput>/logo-sm.png" alt="" height="30">
                 </span>
                 <span class="logo-lg">
-                    <img src="<cfoutput>#application.imagesUrl#</cfoutput>/logo-light.png" alt="" height="30">
+                    <img src="<cfoutput>#imagesUrl#</cfoutput>/logo-light.png" alt="" height="30">
                 </span>
             </a>
         </div>

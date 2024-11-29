@@ -1,7 +1,7 @@
 <cfsetting requesttimeout="9999" />
 
 <cftry>
-     <cfset image_dir_app="application.retinaIcons14Url" />
+     <cfset image_dir_app="retinaIcons14Url" />
 
      <cfset image_dir_dev="C:\home\theactorsoffice.com\wwwroot\dev-subdomain\app\assets\images\retina-circular-icons\14" />
 
@@ -81,7 +81,7 @@
 
 
 <cfset dir_source_app="C:\home\theactorsoffice.com\wwwroot\app-subdomain_1.5\app\assets\images\retina-circular-icons\32" />
-<cfset dir_dest_app="application.retinaIcons14Url" />
+<cfset dir_dest_app="retinaIcons14Url" />
 
 <!--- Read the source directory to get the list of files --->
 <cfdirectory directory="#dir_source_app#" name="files" filter="*.png" />

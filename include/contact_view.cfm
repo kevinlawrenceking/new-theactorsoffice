@@ -17,7 +17,7 @@
                 <cfif isimagefile(browser_contact_avatar_filename)>
                     <img src="<Cfoutput>#browser_contact_avatar_filename#</cfoutput>?ver=<Cfoutput>#rand()#</cfoutput>" class="mr-3 rounded-circle gambar img-responsive img-thumbnail" style="height:120px;" alt="profile-image" id="item-img-output" />
                 <CFELSE>
-                    <img src="<Cfoutput>#application.defaultAvatarUrl#</cfoutput>" class="mr-3 rounded-circle gambar img-responsive img-thumbnail" style="height:120px;" alt="profile-image" id="item-img-output" />
+                    <img src="<Cfoutput>#defaultAvatarUrl#</cfoutput>" class="mr-3 rounded-circle gambar img-responsive img-thumbnail" style="height:120px;" alt="profile-image" id="item-img-output" />
                 </cfif>
             </figure>
         </A>
@@ -113,7 +113,7 @@
                             <cfloop query="profiles">
                                 <cfoutput>
                                     <a href="#profiles.valuetext#" class="text-reset font-18 py-1 ps-o me-2 px-1 d-inline-block" data-bs- data-bs-placement="top" title="" target="#profiles.valuetext#" data-bs-original-title="#profiles.valuetype#">
-                                        <img src="#application.retinaIcons14Url#/#profiles.typeicon#" width="16px" />
+                                        <img src="#retinaIcons14Url#/#profiles.typeicon#" width="16px" />
                                     </a>
                                 </cfoutput>
                             </cfloop>

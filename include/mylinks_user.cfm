@@ -57,7 +57,7 @@
 
                         <div class="col-md-12">
                             <a href="#mylinks_user.siteurl#" class="text-reset font-14 py-1 px-1 d-inline-block" target="#mylinks_user.sitename#" title="#mylinks_user.sitename#">
-                                <img class="site-icon" id="icon_#mylinks_user.id#" src="#application.RETINAICONS14URL#/#mylinks_user.siteicon#" style="width:14px;" alt="#mylinks_user.sitename#" />
+                                <img class="site-icon" id="icon_#mylinks_user.id#" src="#RETINAICONS14URL#/#mylinks_user.siteicon#" style="width:14px;" alt="#mylinks_user.sitename#" />
                                 #mylinks_user.sitename#
                             </a> 
 
@@ -108,7 +108,7 @@
                 setupModalLoading("updatelink_#mylinks_user.id#", "/include/remotelinkUpdate.cfm", "userid=#userid#&new_id=#mylinks_user.new_id#&target=dashboard_new");
                 setupModalLoading("remoteDeleteLink_#mylinks_user.id#", "/include/remoteDeleteFormLink.cfm", "userid=#userid#&new_id=#mylinks_user.new_id#&target=dashboard_new");
             </cfloop>
-            setupModalLoading("addlink_#siteTypeDetails.sitetypeid#", "/include/remotelinkAdd.cfm", "RETINAICONS14PATH=#URLEncodedFormat(application.retinaIcons14Path)#&new_sitetypeid=#siteTypeDetails.sitetypeid#&userid=#userid#&target=dashboard_new");
+            setupModalLoading("addlink_#siteTypeDetails.sitetypeid#", "/include/remotelinkAdd.cfm", "RETINAICONS14PATH=#URLEncodedFormat(retinaIcons14Path)#&new_sitetypeid=#siteTypeDetails.sitetypeid#&userid=#userid#&target=dashboard_new");
         </cfoutput>
     });
 </script>

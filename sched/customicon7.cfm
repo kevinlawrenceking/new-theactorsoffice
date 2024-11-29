@@ -80,7 +80,7 @@
 
          </cfoutput>
 
-         <cfset image_dir_app="application.retinaIcons14Url" />
+         <cfset image_dir_app="retinaIcons14Url" />
 
          <cfset image_dir_dev="C:\home\theactorsoffice.com\wwwroot\dev-subdomain\app\assets\images\retina-circular-icons\14" />
 

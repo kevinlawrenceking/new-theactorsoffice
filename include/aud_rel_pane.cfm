@@ -96,7 +96,7 @@
                             <cfif isimagefile(contact_avatar_filename)>
                                 <img src="#userContactsUrl#/#audcontacts.contactid#/avatar.jpg?ver=#rand()#" class="rounded-circle img-thumbnail avatar-xl" alt="profile-image">
                             <cfelse>
-                                <img src="#application.defaultAvatarUrl#" class="rounded-circle img-thumbnail avatar-xl" alt="profile-image">
+                                <img src="#defaultAvatarUrl#" class="rounded-circle img-thumbnail avatar-xl" alt="profile-image">
                             </cfif>
 
                             <h4 class="mt-2">

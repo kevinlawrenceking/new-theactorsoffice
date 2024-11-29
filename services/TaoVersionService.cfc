@@ -240,7 +240,7 @@
         <cfset sql &= " WHERE verid = ?">
         <cfset arrayAppend(params, arguments.verid)>
     
-        <cfquery result="result" datasource = "#application.datasource#" name = "updateQuery">#sql#
+        <cfquery result="result" datasource = "#datasource#" name = "updateQuery">#sql#
             <cfsilent>
                 <!--- Loop through parameters and bind them --->
                 <cfloop from = 1 to = #arrayLen(params)# index = i>

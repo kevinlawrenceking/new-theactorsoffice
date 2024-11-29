@@ -681,7 +681,7 @@
 
                                     <a href="#profiles.valuetext#" class="text-reset font-14 py-1 ps-o me-2   d-inline-block" data-bs- data-bs-placement="top" title="" target="#profiles.valuetext#" data-bs-original-title="#profiles.valuetype#">
 
-                                        <img src="#application.retinaIcons14Url#/#profiles.typeicon#" width="16px" />
+                                        <img src="#retinaIcons14Url#/#profiles.typeicon#" width="16px" />
 
                                     </a>
 

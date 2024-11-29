@@ -33,7 +33,7 @@
                                 <cfif isImageFile("#userContactsUrl#/#birthdays.contactid#/avatar.jpg")>
                                     <img src="#userContactsUrl#/#birthdays.contactid#/avatar.jpg" class="img-fluid" alt="#birthdays.col1#" style="width: 30px;" />
                                 <cfelse>
-                                    <img src="#application.defaultAvatarUrl#" class="img-fluid" alt="#birthdays.col1#" style="width: 30px;" />
+                                    <img src="#defaultAvatarUrl#" class="img-fluid" alt="#birthdays.col1#" style="width: 30px;" />
                                 </cfif>
                             </a>
                         </div>

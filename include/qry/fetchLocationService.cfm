@@ -1,4 +1,4 @@
-<!--- This ColdFusion page initializes the LocationService and fetches countries and regions for use in the application. --->
+<!--- This ColdFusion page initializes the LocationService and fetches countries and regions for use in the  --->
 <cfset locationService = createObject("component", "services.LocationService")>
 
 
