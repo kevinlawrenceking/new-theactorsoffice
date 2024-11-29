@@ -14,14 +14,14 @@
     <cfset host = ListFirst(cgi.server_name, ".") />
 
     <cfif host eq "app" or host eq "uat">
-        <cfset application.dsn = "abo" />
-        <cfset dsn = application.dsn />
+        <cfset dsn = "abo" />
+        <cfset dsn = dsn />
         <cfset rev = current_ver />
         <cfset suffix = IIF(host eq "app", "_1.5", "") />
         <cfset information_schema = "actorsbusinessoffice" />
     <cfelse>
-        <cfset application.dsn = "abod" />
-        <cfset dsn = application.dsn />
+        <cfset dsn = "abod" />
+        <cfset dsn = dsn />
         <cfset rev = 1 />
         <cfset suffix = "" />
         <cfset information_schema = "new_development" />
@@ -29,7 +29,7 @@
 
     <cfscript>
         this.name = "TAO";
-        this.datasource = application.dsn;
+        this.datasource = dsn;
         this.sessionManagement = true;
         this.applicationTimeout = createTimeSpan(1, 1, 0, 0);
         this.sessionTimeout = createTimeSpan(0, 0, 20, 0);
@@ -41,7 +41,7 @@
 
     <!--- Application start logic --->
     <cffunction name="onApplicationStart" returntype="boolean" output="false">
-        <cfset dsn = application.dsn />
+        <cfset dsn = dsn />
         <cfreturn true />
     </cffunction>
 
@@ -74,31 +74,31 @@
                 baseMediaPath = "C:\home\theactorsoffice.com\media-" & this.datasource;
                 baseMediaUrl = "/media-" & this.datasource;
 
-                application.imagesPath = baseMediaPath & "\images";
-                application.imagesUrl = baseMediaUrl & "/images";
+                imagesPath = baseMediaPath & "\images";
+                imagesUrl = baseMediaUrl & "/images";
 
-                datesPath = application.imagesPath & "\dates";
-                datesUrl = application.imagesUrl & "/dates";
+                datesPath = imagesPath & "\dates";
+                datesUrl = imagesUrl & "/dates";
 
-                defaultsPath = application.imagesPath & "\defaults";
-                defaultsUrl = application.imagesUrl & "/defaults";
+                defaultsPath = imagesPath & "\defaults";
+                defaultsUrl = imagesUrl & "/defaults";
 
-                defaultAvatarUrl = application.defaultsUrl & "/avatar.jpg";
+                defaultAvatarUrl = defaultsUrl & "/avatar.jpg";
 
-                emailImagesPath = application.imagesPath & "\email";
-                emailImagesUrl = application.imagesUrl & "/email";
+                emailImagesPath = imagesPath & "\email";
+                emailImagesUrl = imagesUrl & "/email";
 
-                filetypesPath = application.imagesPath & "\filetypes";
-                filetypesUrl = application.imagesUrl & "/filetypes";
+                filetypesPath = imagesPath & "\filetypes";
+                filetypesUrl = imagesUrl & "/filetypes";
 
-                retinaIconsPath = application.imagesPath & "\retina-circular-icons";
-                retinaIconsUrl = application.imagesUrl & "/retina-circular-icons";
+                retinaIconsPath = imagesPath & "\retina-circular-icons";
+                retinaIconsUrl = imagesUrl & "/retina-circular-icons";
 
-                retinaIcons14Path = application.retinaIconsPath & "\14";
-                retinaIcons14Url = application.retinaIconsUrl & "/14";
+                retinaIcons14Path = retinaIconsPath & "\14";
+                retinaIcons14Url = retinaIconsUrl & "/14";
 
-                retinaIcons32Path = application.retinaIconsPath & "\32";
-                retinaIcons32Url = application.retinaIconsUrl & "/32";
+                retinaIcons32Path = retinaIconsPath & "\32";
+                retinaIcons32Url = retinaIconsUrl & "/32";
 
                 userMediaPath = baseMediaPath & "\users\" & userID;
                 userMediaUrl = baseMediaUrl & "/users/" & userID;
