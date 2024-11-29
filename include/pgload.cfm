@@ -10,7 +10,9 @@
 <cfparam name="contactid" default="0" />
 <cfparam name="userid" default="#userid#" />
 <cfparam name="BROWSER_CONTACT_AVATAR_FILENAME" default="" />
-
+<Cfparam name="USERCALENDARPATH " default="" />
+<Cfparam name="" default="" />
+<Cfparam name="" default="" />
 <cfscript>
     currentURL = cgi.server_name;
     host = ListFirst(currentURL, ".");
