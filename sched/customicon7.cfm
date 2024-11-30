@@ -9,7 +9,7 @@
      <cfloop query="z">
          <cfoutput>
 
-             <cfset image_dir="#retinaIcons14Path#" />
+             <cfset image_dir="#application.retinaIcons14Path#" />
 
          </cfoutput>
 
@@ -76,11 +76,11 @@
 
          <cfoutput>
 
-             <cfset image_dir="#retinaIcons14Path#" />
+             <cfset image_dir="#application.retinaIcons14Path#" />
 
          </cfoutput>
 
-         <cfset image_dir_app="retinaIcons14Url" />
+         <cfset image_dir_app="application.retinaIcons14Url" />
 
          <cfset image_dir_dev="C:\home\theactorsoffice.com\wwwroot\dev-subdomain\app\assets\images\retina-circular-icons\14" />
 

@@ -10,14 +10,14 @@
     <cfloop query="headshots_sel">
         
         <!--- Check if the media file is an image --->
-        <cfif IsImageFile("https://#host#.theactorsoffice.com/#userMediaUrl#/#headshots_sel.mediaFileName#")> 
+        <cfif IsImageFile("https://#host#.theactorsoffice.com/#session.userMediaUrl#/#headshots_sel.mediaFileName#")> 
             <Cfoutput>
                 
                 <div class="col-sm-12">
                     
                     <center>
                         <a href="/include/remoteselectedheadshot2.cfm?selected_eventid=#selected_eventid#&mediaid=#headshots_sel.mediaid#&eventid=#eventid#&audprojectid=#audprojectid#"> 
-                            <img src="https://#host#.theactorsoffice.com/#userMediaUrl#/#headshots_sel.mediaFileName#?ver=#rand()#" 
+                            <img src="https://#host#.theactorsoffice.com/#session.userMediaUrl#/#headshots_sel.mediaFileName#?ver=#rand()#" 
                                  class="mr-2 rounded-square gambar img-thumbnail img-fluid p-0 m-0" 
                                  title="User ID: 30" 
                                  alt="profile-image" 

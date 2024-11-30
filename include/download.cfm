@@ -8,12 +8,12 @@
 
 
 <!--- Check if the user media directory exists, if not, create it. --->
-<CFIF not DirectoryExists("#userMediaPath#")>
-    <CFDIRECTORY directory="#userMediaPath#" action="create" />
+<CFIF not DirectoryExists("#session.userMediaPath#")>
+    <CFDIRECTORY directory="#session.userMediaPath#" action="create" />
 </CFIF>
 
 <!--- Download the media file as binary. --->
-<cfhttp url="#userMediaUrl#/#attachdetails.attachfilename#" getAsBinary="yes" />
+<cfhttp url="#session.userMediaUrl#/#attachdetails.attachfilename#" getAsBinary="yes" />
 
 <!--- Set the header for file download. --->
 <cfheader name="Content-Disposition" value="attachment; filename=#attachdetails.attachfilename#" />

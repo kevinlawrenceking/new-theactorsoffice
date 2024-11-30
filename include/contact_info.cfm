@@ -648,7 +648,7 @@
                     <p class="card-text">
 
 <cfoutput> 
-<cfset contact_avatar_filename = "#USERCONTACTSPATH#\#currentid#\avatar.jpg" />
+<cfset contact_avatar_filename = "#session.userContactsPath#\#currentid#\avatar.jpg" />
 
                         </cfoutput>
 
@@ -658,7 +658,7 @@
 <cfoutput>
                             
 
-<centeR><img src="#userContactsUrl#/#currentid#/avatar.jpg" 
+<centeR><img src="#session.userContactsUrl#/#currentid#/avatar.jpg" 
 class="mr-3 rounded-circle gambar img-responsive img-thumbnail" style="max-width:180px;width:100%" alt="profile-image" 
 id="item-img-output" />     
 
@@ -875,11 +875,11 @@ id="item-img-output" />
 
                                     <a href="#profiles.valuetext#" class="text-white font-14 py-1 ps-o me-2   d-inline-block" data-bs- data-bs-placement="top" title="" target="#profiles.valuetext#" data-bs-original-title="#profiles.valuetype#">
 <cfif #profiles.typeicon# is "">
-                   <img src="#retinaIcons14Url#/customlink.png" title="#profiles.valuetext#"  width="32px" />                           
+                   <img src="#application.retinaIcons14Url#/customlink.png" title="#profiles.valuetext#"  width="32px" />                           
                                         
     
     <cfelse>
-          <img src="#retinaIcons14Url#/#profiles.typeicon#" title="#profiles.valuetext#"  width="32px" />
+          <img src="#application.retinaIcons14Url#/#profiles.typeicon#" title="#profiles.valuetext#"  width="32px" />
                                         
                                         </cfif>
                                   

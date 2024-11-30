@@ -40,7 +40,7 @@
 </cfif>
 
 <!--- Fix the image_dir path and use correct path formatting --->
-<cfset image_dir = replace("#retinaIcons14Path#", "\", "/", "all") />
+<cfset image_dir = replace("#application.retinaIcons14Path#", "\", "/", "all") />
 <cfif #dbug# neq "N">
     <cfoutput>image_dir: [#image_dir#]</cfoutput><br>
 </cfif>
@@ -80,8 +80,8 @@
     </cfif>
 
     <!--- Fix the tempFile and pngFile paths --->
-    <cfset tempFile = "#replace(retinaIcons14Path, '\', '/', 'all')#/temp/custom_#id##fileExtension#" />
-    <cfset pngFile = "#replace(retinaIcons14Path, '\', '/', 'all')#/custom_#id#.png" />
+    <cfset tempFile = "#replace(application.retinaIcons14Path, '\', '/', 'all')#/temp/custom_#id##fileExtension#" />
+    <cfset pngFile = "#replace(application.retinaIcons14Path, '\', '/', 'all')#/custom_#id#.png" />
 
     <cfif #dbug# neq "N">
         <p>temp file: <cfoutput>#tempFile#</cfoutput></p>

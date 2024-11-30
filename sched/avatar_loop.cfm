@@ -27,8 +27,8 @@ ORDER BY d.contactid
 <cfloop query="x">
  
  
-        <cfset contact_avatar_filename = "#USERCONTACTSPATH#\#x.contactid#\avatar.jpg" />
-<cfoutput>#x.contactfullname# avatar: #USERCONTACTSPATH#\#x.contactid#\avatar.jpg<BR></cfoutput>
+        <cfset contact_avatar_filename = "#session.userContactsPath#\#x.contactid#\avatar.jpg" />
+<cfoutput>#x.contactfullname# avatar: #session.userContactsPath#\#x.contactid#\avatar.jpg<BR></cfoutput>
 
 <cfset contact_avatar_data = FileReadBinary(contact_avatar_filename)>
 <cfset contact_avatar_hash = Hash(contact_avatar_data, "MD5")>  
@@ -65,7 +65,7 @@ update contactitems set avatar_yn = 'Y' where itemid = #x.itemid#
 </cfoutput>
 <BR>
     <!--- Download and save the image --->
-    <cfhttp url="#gravatarURL#" method="get" path="#USERCONTACTSPATH#\#x.contactid#" file="avatar.jpg">
+    <cfhttp url="#gravatarURL#" method="get" path="#session.userContactsPath#\#x.contactid#" file="avatar.jpg">
     </cfhttp>
     <cfoutput>
        #x.contactfullname#: Gravatar exists and has been saved.<BR>

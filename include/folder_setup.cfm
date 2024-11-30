@@ -5,12 +5,12 @@
 
 <cfset starttime = timeformat(now(), 'HHMMSS') />
 
-    <cfset browser_media_root_user = userMediaUrl />
-    <cfset dir_media_root_user = userMediaPath />
-    <cfset browser_media_root_user_contacts = userContactsUrl />
-    <cfset dir_media_root_user_contacts = userContactsPath />
-    <cfset browser_media_root_user_imports = userImportsUrl />
-    <cfset dir_media_root_user_imports = "#userMediaPath#\imports" />
+    <cfset browser_media_root_user = session.userMediaUrl />
+    <cfset dir_media_root_user = session.userMediaPath />
+    <cfset browser_media_root_user_contacts = session.userContactsUrl />
+    <cfset dir_media_root_user_contacts = session.userContactsPath />
+    <cfset browser_media_root_user_imports = session.userImportsUrl />
+    <cfset dir_media_root_user_imports = "#session.userMediaPath#\imports" />
 
 
     
@@ -27,8 +27,8 @@
         <cfdirectory directory="#dir_media_root_user_imports#" action="create">
     </cfif>
 
-    <cfif not fileExists(userAvatarPath)>
-        <cffile action="copy" source="#dir_missing_avatar_filename#" destination="#userMediaPath#\" />
+    <cfif not fileExists(session.userAvatarPath)>
+        <cffile action="copy" source="#dir_missing_avatar_filename#" destination="#session.userMediaPath#\" />
     </cfif>
 
     <cfinclude template="/include/qry/C_73_2.cfm" />
@@ -46,7 +46,7 @@
         <cfdirectory directory="#dir_media_root_user_contacts_folder_attachments#" action="create">
     </cfif>
 
-    <cfif not fileExists(userAvatarPath)>
+    <cfif not fileExists(session.userAvatarPath)>
         <cffile action="copy" source="#dir_missing_avatar_filename#" destination="#dir_media_root_user_contacts_folder#\" />
     </cfif>
 </cfloop>

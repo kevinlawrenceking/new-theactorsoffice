@@ -113,7 +113,7 @@
                             <cfloop query="profiles">
                                 <cfoutput>
                                     <a href="#profiles.valuetext#" class="text-reset font-18 py-1 ps-o me-2 px-1 d-inline-block" data-bs- data-bs-placement="top" title="" target="#profiles.valuetext#" data-bs-original-title="#profiles.valuetype#">
-                                        <img src="#retinaIcons14Url#/#profiles.typeicon#" width="16px" />
+                                        <img src="#application.retinaIcons14Url#/#profiles.typeicon#" width="16px" />
                                     </a>
                                 </cfoutput>
                             </cfloop>

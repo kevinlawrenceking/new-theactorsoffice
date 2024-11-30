@@ -20,7 +20,7 @@
         
  
 
-        <cfset browser_media_root_user="#usermediaurl#" />
+        <cfset browser_media_root_user="#session.userMediaUrl#" />
 
         <cfif #dbug# is "Y">
 
@@ -39,7 +39,7 @@
 
     
 
-        <cfset session.contactAvatarUrl="#USERAVATARURL#" />
+        <cfset session.contactAvatarUrl="#application.session.userAvatarUrl#" />
 
         <cfif #dbug# is "Y">
 
@@ -58,7 +58,7 @@
 
         </CFIF>
 
-        <cfset browser_media_root_user_contacts="#userContactsUrl#" />
+        <cfset browser_media_root_user_contacts="#session.userContactsUrl#" />
 
         <cfif #dbug# is "Y">
 
@@ -66,7 +66,7 @@
 
         </cfif>
 
-        <cfset dir_media_root_user_contacts="#USERCONTACTSPATH#" />
+        <cfset dir_media_root_user_contacts="#session.userContactsPath#" />
 
         <cfif #dbug# is "Y">
 

@@ -14,7 +14,7 @@
 <cfoutput>
 
   <cfset subtitle="#userFirstName# #userLastName#"/>
-  <cfset image_url="#USERAVATARURL#"/>
+  <cfset image_url="#application.session.userAvatarUrl#"/>
   <cfset cookie.uploadDir="#session.userAvatarPath#"/>
   <cfset cookie.return_url="/app/myaccount/"/>
 

@@ -5,13 +5,13 @@
 </cfquery>
 
 <!--- Define the path where the images are stored --->
-<cfset retinaIconsPath = "C:\home\theactorsoffice.com\media-abod\images\retina-circular-icons\14\" />
+<cfset application.application.retinaIconsPath = "C:\home\theactorsoffice.com\media-abod\images\retina-circular-icons\14\" />
 
 <cfoutput>
     <!--- Loop through the records --->
     <cfloop query="siteLinks">
         <!--- Build the full path to the site icon --->
-        <cfset siteiconPath = retinaIconsPath & siteLinks.siteicon />
+        <cfset siteiconPath = application.application.retinaIconsPath & siteLinks.siteicon />
 
         <!--- Check if the file exists --->
         <cfif NOT fileExists(siteiconPath)>

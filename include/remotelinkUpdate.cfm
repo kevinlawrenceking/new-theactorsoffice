@@ -25,7 +25,7 @@
             <div class="form-group col-md-6">
                 <h5>
                     <cfoutput>
-                        <img src="#retinaIcons14Url#/#linkDetails.siteicon#" width="14px" alt="#linkDetails.sitename#"> 
+                        <img src="#application.retinaIcons14Url#/#linkDetails.siteicon#" width="14px" alt="#linkDetails.sitename#"> 
                         #linkDetails.sitename#
                     </cfoutput>
                 </h5>

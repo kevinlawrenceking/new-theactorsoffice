@@ -28,7 +28,7 @@
             <!--- New image name and directory --->
             <cfset new_siteicon = "custom_#id#.png" />
             <cfoutput>
-            <cfset image_dir = "#retinaIcons14Url#" />
+            <cfset image_dir = "#application.retinaIcons14Url#" />
             </cfoutput>
             
             <!--- Convert to PNG and Save --->

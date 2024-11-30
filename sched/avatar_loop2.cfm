@@ -22,9 +22,9 @@ ORDER BY d.contactid
 <cfloop query="x">
 
 
-<cfset contact_avatar_filename = "#USERCONTACTSPATH#\#x.contactid#\avatar.jpg" />
+<cfset contact_avatar_filename = "#session.userContactsPath#\#x.contactid#\avatar.jpg" />
 <cfoutput>
-#x.contactfullname# avatar: #USERCONTACTSPATH#\#x.contactid#\avatar.jpg
+#x.contactfullname# avatar: #session.userContactsPath#\#x.contactid#\avatar.jpg
 
 <BR>
 </cfoutput>
@@ -69,7 +69,7 @@ ORDER BY d.contactid
  <!--- Check for 'success' field in the response --->
     <cfif structKeyExists(apiResponse, "success") AND apiResponse.success eq true>
         <!--- Check if it's the default avatar --->
-            <cfhttp url="#apiResponse.Image#" method="get" path="#USERCONTACTSPATH#\#x.contactid#" file="avatar.jpg">
+            <cfhttp url="#apiResponse.Image#" method="get" path="#session.userContactsPath#\#x.contactid#" file="avatar.jpg">
             </cfhttp>
             <cfoutput>
                 Custom avatar exists and has been saved.

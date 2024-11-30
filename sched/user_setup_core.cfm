@@ -30,74 +30,74 @@
             imagesPath = baseMediaPath & "\images";
             application.imagesUrl = baseMediaUrl & "/images";
 
-            datesPath = imagesPath & "\dates";
-            datesUrl = application.imagesUrl & "/dates";
+            application.datesPath = imagesPath & "\dates";
+            application.datesUrl = application.imagesUrl & "/dates";
 
-            defaultsPath = imagesPath & "\defaults";
+            application.defaultsPath = imagesPath & "\defaults";
             defaultsUrl = application.imagesUrl & "/defaults";
             
                     defaultAvatarUrl = defaultsUrl & "/avatar.jpg";
 
-            emailImagesPath = imagesPath & "\email";
+            application.emailImagesPath = imagesPath & "\email";
             emailapplication.imagesUrl = application.imagesUrl & "/email";
 
-            filetypesPath = imagesPath & "\filetypes";
-            filetypesUrl = application.imagesUrl & "/filetypes";
+            application.application.application.filetypesPath = imagesPath & "\filetypes";
+            application.application.application.filetypesUrl = application.imagesUrl & "/filetypes";
 
-            retinaIconsPath = imagesPath & "\retina-circular-icons";
-            retinaIconsUrl = application.imagesUrl & "/retina-circular-icons";
+            application.application.retinaIconsPath = imagesPath & "\retina-circular-icons";
+            application.application.retinaIconsUrl = application.imagesUrl & "/retina-circular-icons";
 
-                    retinaIcons14Path = retinaIconsPath & "\14";
-                    retinaIcons14Url = retinaIconsUrl & "/14";
+                    application.retinaIcons14Path = application.application.retinaIconsPath & "\14";
+                    application.retinaIcons14Url = application.application.retinaIconsUrl & "/14";
 
-                    retinaIcons32Path = retinaIconsPath & "\32";
-                    retinaIcons32Url = retinaIconsUrl & "/32";
+                    retinaIcons32Path = application.application.retinaIconsPath & "\32";
+                    retinaIcons32Url = application.application.retinaIconsUrl & "/32";
 
-        userMediaPath = baseMediaPath & "\users\" & userID;
-        userMediaUrl = baseMediaUrl & "/users/" & userID;
+        session.userMediaPath = baseMediaPath & "\users\" & userID;
+        session.userMediaUrl = baseMediaUrl & "/users/" & userID;
 
-                    userContactsPath = userMediaPath & "\contacts";
-                    userContactsUrl = userMediaUrl & "/contacts";
+                    session.userContactsPath = session.userMediaPath & "\contacts";
+                    session.userContactsUrl = session.userMediaUrl & "/contacts";
 
        
 
-                    userImportsPath = userMediaPath & "\imports";
-                    userImportsUrl = userMediaUrl & "/imports";
+                    session.userImportsPath = session.userMediaPath & "\imports";
+                    session.userImportsUrl = session.userMediaUrl & "/imports";
 
-                    userExportsPath = userMediaPath & "\exports";
-                    userExportsUrl = userMediaUrl & "/exports";
+                    session.userExportsPath = session.userMediaPath & "\exports";
+                    session.userExportsUrl = session.userMediaUrl & "/exports";
 
-                    userSharePath = userMediaPath & "\share";
-                    userShareUrl = userMediaUrl & "/share";
+                    session.userSharePath = session.userMediaPath & "\share";
+                    session.userShareUrl = session.userMediaUrl & "/share";
             
-                    userAvatarPath = userMediaPath & "\avatar.jpg";
-                    userAvatarUrl = userMediaUrl & "/avatar.jpg";
+                    session.userAvatarPath = session.userMediaPath & "\avatar.jpg";
+                    application.session.userAvatarUrl = session.userMediaUrl & "/avatar.jpg";
         </cfscript>
 
 <cfset starttime = timeFormat(Now(), 'HHMMSS') />
 
-<cfif not DirectoryExists(userMediaPath)>
-    <cfdirectory directory="#userMediaPath#" action="create" />
+<cfif not DirectoryExists(session.userMediaPath)>
+    <cfdirectory directory="#session.userMediaPath#" action="create" />
 </cfif>
 
-<cfif not DirectoryExists(userContactsPath)>
-    <cfdirectory directory="#userContactsPath#" action="create" />
+<cfif not DirectoryExists(session.userContactsPath)>
+    <cfdirectory directory="#session.userContactsPath#" action="create" />
 </cfif>
 
-<cfif not DirectoryExists(userImportsPath)>
-    <cfdirectory directory="#userImportsPath#" action="create" />
+<cfif not DirectoryExists(session.userImportsPath)>
+    <cfdirectory directory="#session.userImportsPath#" action="create" />
 </cfif>
 
-<cfif not DirectoryExists(userExportsPath)>
-    <cfdirectory directory="#userExportsPath#" action="create" />
+<cfif not DirectoryExists(session.userExportsPath)>
+    <cfdirectory directory="#session.userExportsPath#" action="create" />
 </cfif>
 
-<cfif not DirectoryExists(userSharePath)>
-    <cfdirectory directory="#userSharePath#" action="create" />
+<cfif not DirectoryExists(session.userSharePath)>
+    <cfdirectory directory="#session.userSharePath#" action="create" />
 </cfif>
 
-<cfif NOT fileExists(userAvatarPath)>
-    <cffile action="copy" source="#defaultAvatarUrl#" destination="#userAvatarPath#" />
+<cfif NOT fileExists(session.userAvatarPath)>
+    <cffile action="copy" source="#defaultAvatarUrl#" destination="#session.userAvatarPath#" />
 </cfif>
 
 <cfquery result="result" datasource="#dsn#" name="C">
@@ -113,11 +113,11 @@
 <cfloop query="C">
     <cfset new_contactid = C.contactid />
 
-    <cfif not DirectoryExists(userContactsPath & "\" & new_contactid)>
-        <cfdirectory directory="#userContactsPath#\#new_contactid#" action="create" />
+    <cfif not DirectoryExists(session.userContactsPath & "\" & new_contactid)>
+        <cfdirectory directory="#session.userContactsPath#\#new_contactid#" action="create" />
     </cfif>
 
-    <cfset contactPath = userContactsPath & "\" & new_contactid />
+    <cfset contactPath = session.userContactsPath & "\" & new_contactid />
     <cfset contactAvatarPath = contactPath & "\avatar.jpg" />
 
     <cfif NOT fileExists(contactAvatarPath)>

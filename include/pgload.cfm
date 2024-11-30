@@ -8,8 +8,8 @@
 <cfparam name="contactid" default="0" />
 <cfparam name="userid" default="#userid#" />
 <cfparam name="BROWSER_CONTACT_AVATAR_FILENAME" default="" />
-<Cfparam name="USERCALENDARPATH" default="" />
-<Cfparam name="userCalendarURL" default="" />
+<Cfparam name="session.userCalendarPath" default="" />
+<Cfparam name="session.userCalendarUrl" default="" />
 <cfscript>
     currentURL = cgi.server_name;
     host = ListFirst(currentURL, ".");
@@ -34,8 +34,8 @@
 </cfif>
 
 <!--- Set calendar root directory and URL from session variables. --->
-<Cfset Cal_root_dir = userCalendarPath />
-<Cfset cal_root_url = userCalendarURL />
+<Cfset Cal_root_dir = session.userCalendarPath />
+<Cfset cal_root_url = session.userCalendarUrl />
 <Cfset cookie.userid = userid />
 
 <cfinclude template="/include/qry/fetchusers.cfm" />

@@ -164,7 +164,7 @@
                                 <cfoutput>
                                     <h5>
                                         <a title="Edit" href="updateuserlink.cfm" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##updatelink_#mylinks_user.id#">
-                                            <img src="#retinaIcons14Url#/#mylinks_user.siteicon#" width="14px" /> 
+                                            <img src="#application.retinaIcons14Url#/#mylinks_user.siteicon#" width="14px" /> 
                                             #mylinks_user.sitename# <cfif #mylinks_user.ver# is not ""> (#ver#)</cfif>
                                             <i class="mdi mdi-square-edit-outline"></i>
                                         </a>
