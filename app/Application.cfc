@@ -14,14 +14,14 @@
     <cfset host = ListFirst(cgi.server_name, ".") />
 
     <cfif host eq "app" or host eq "uat">
-        <cfset dsn = "abo" />
-        <cfset dsn = dsn />
+        <cfset application.dsn = "abo" />
+        <cfset dsn = application.dsn />
         <cfset rev = current_ver />
         <cfset suffix = IIF(host eq "app", "_1.5", "") />
         <cfset information_schema = "actorsbusinessoffice" />
     <cfelse>
-        <cfset dsn = "abod" />
-        <cfset dsn = dsn />
+        <cfset application.dsn = "abod" />
+        <cfset dsn = application.dsn />
         <cfset rev = 1 />
         <cfset suffix = "" />
         <cfset information_schema = "new_development" />
@@ -29,7 +29,7 @@
 
     <cfscript>
         this.name = "TAO";
-        this.datasource = dsn;
+        this.datasource = application.dsn;
         this.sessionManagement = true;
         this.applicationTimeout = createTimeSpan(1, 1, 0, 0);
         this.sessionTimeout = createTimeSpan(0, 0, 20, 0);
@@ -41,7 +41,7 @@
 
     <!--- Application start logic --->
     <cffunction name="onApplicationStart" returntype="boolean" output="false">
-        <cfset dsn = dsn />
+        <cfset dsn = application.dsn />
         <cfreturn true />
     </cffunction>
 
@@ -50,78 +50,72 @@
         <cfargument name="targetPage" required="true" type="string">
 
              <cfif isdefined('U')>
-            <cfset userid = U />
+            <cfset session.userid = U />
             </cfif>
 
         <!--- Check if the user is authenticated --->
         <cfif NOT structKeyExists(session, "userid") AND NOT ListFindNoCase(arguments.targetPage, "loginform.cfm,login2.cfm")>
-       <Cfset zoo =3343 >   
-       <cfif #isdefined('zoo')#><cfelse>
+          
+       
          
 
           
-            <cflocation url="/loginform.cfm" addToken="false"></cfif>
-      <!--- Check if userid is defined, if not, redirect to the login form --->
-<cfif NOT isDefined("userid")>
-    <cflocation url="/loginform.cfm" addToken="false">
-</cfif>
-      </cfif>
-      
+            <cflocation url="/loginform.cfm" addToken="false">
+            </cfif>
+       
 
         <!--- Configure application paths and session variables if authenticated --->
-        <cfif structKeyExists(session, "userid")>Yes
+        <cfif structKeyExists(session, "userid")>
             <cfscript>
                 baseMediaPath = "C:\home\theactorsoffice.com\media-" & this.datasource;
                 baseMediaUrl = "/media-" & this.datasource;
 
-                imagesPath = baseMediaPath & "\images";
-                imagesUrl = baseMediaUrl & "/images";
+                application.imagesPath = baseMediaPath & "\images";
+                application.imagesUrl = baseMediaUrl & "/images";
 
-                datesPath = imagesPath & "\dates";
-                datesUrl = imagesUrl & "/dates";
+                application.datesPath = application.imagesPath & "\dates";
+                application.datesUrl = application.imagesUrl & "/dates";
 
-                defaultsPath = imagesPath & "\defaults";
-                defaultsUrl = imagesUrl & "/defaults";
+                application.defaultsPath = application.imagesPath & "\defaults";
+                application.defaultsUrl = application.imagesUrl & "/defaults";
 
-                defaultAvatarUrl = defaultsUrl & "/avatar.jpg";
+                application.defaultAvatarUrl = application.defaultsUrl & "/avatar.jpg";
 
-                emailImagesPath = imagesPath & "\email";
-                emailImagesUrl = imagesUrl & "/email";
+                application.emailImagesPath = application.imagesPath & "\email";
+                application.emailImagesUrl = application.imagesUrl & "/email";
 
-                filetypesPath = imagesPath & "\filetypes";
-                filetypesUrl = imagesUrl & "/filetypes";
+                application.filetypesPath = application.imagesPath & "\filetypes";
+                application.filetypesUrl = application.imagesUrl & "/filetypes";
 
-                retinaIconsPath = imagesPath & "\retina-circular-icons";
-                retinaIconsUrl = imagesUrl & "/retina-circular-icons";
+                application.retinaIconsPath = application.imagesPath & "\retina-circular-icons";
+                application.retinaIconsUrl = application.imagesUrl & "/retina-circular-icons";
 
-                retinaIcons14Path = retinaIconsPath & "\14";
-                retinaIcons14Url = retinaIconsUrl & "/14";
+                application.retinaIcons14Path = application.retinaIconsPath & "\14";
+                application.retinaIcons14Url = application.retinaIconsUrl & "/14";
 
-                retinaIcons32Path = retinaIconsPath & "\32";
-                retinaIcons32Url = retinaIconsUrl & "/32";
+                application.retinaIcons32Path = application.retinaIconsPath & "\32";
+                application.retinaIcons32Url = application.retinaIconsUrl & "/32";
 
-                userMediaPath = baseMediaPath & "\users\" & userID;
-                userMediaUrl = baseMediaUrl & "/users/" & userID;
+                session.userMediaPath = baseMediaPath & "\users\" & session.userID;
+                session.userMediaUrl = baseMediaUrl & "/users/" & session.userID;
 
-                userCalendarPath = userMediaPath;
-                userCalendarUrl = "https://" & host & ".theactorsoffice.com/" & userMediaUrl;
-                session.userCalendarPath = userCalendarPath;
-                session.userCalendarUrl = userCalendarUrl;
+                session.userCalendarPath = session.userMediaPath;
+                session.userCalendarUrl = "https://" & host & ".theactorsoffice.com/" & session.userMediaUrl;
 
-                userContactsPath = userMediaPath & "\contacts";
-                userContactsUrl = userMediaUrl & "/contacts";
+                session.userContactsPath = session.userMediaPath & "\contacts";
+                session.userContactsUrl = session.userMediaUrl & "/contacts";
 
-                userImportsPath = userMediaPath & "\imports";
-                userImportsUrl = userMediaUrl & "/imports";
+                session.userImportsPath = session.userMediaPath & "\imports";
+                session.userImportsUrl = session.userMediaUrl & "/imports";
 
-                userExportsPath = userMediaPath & "\exports";
-                userExportsUrl = userMediaUrl & "/exports";
+                session.userExportsPath = session.userMediaPath & "\exports";
+                session.userExportsUrl = session.userMediaUrl & "/exports";
 
-                userSharePath = userMediaPath & "\share";
-                userShareUrl = userMediaUrl & "/share";
+                session.userSharePath = session.userMediaPath & "\share";
+                session.userShareUrl = session.userMediaUrl & "/share";
 
-                userAvatarPath = userMediaPath & "\avatar.jpg";
-                userAvatarUrl = userMediaUrl & "/avatar.jpg";
+                session.userAvatarPath = session.userMediaPath & "\avatar.jpg";
+                session.userAvatarUrl = session.userMediaUrl & "/avatar.jpg";
             </cfscript>
         </cfif>
 
