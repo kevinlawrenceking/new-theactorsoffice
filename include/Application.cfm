@@ -12,4 +12,4 @@
 </cfif>
 
 <!--- Assign dsn to Application.datasource --->
-<cfset Application.datasource = dsn />
+<cfset this.datasource = Application.dsn />
