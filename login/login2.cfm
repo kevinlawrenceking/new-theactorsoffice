@@ -12,7 +12,7 @@
 <cfparam name="j_username" default="" />
  
 
-<cfquery result="result" name="insert">
+<cfquery result="result" name="insert" datasource="#dsn#">
     INSERT INTO loggins (u, p, REMOTE_ADDR, HTTP_USER_AGENT) 
     VALUES (
         <cfqueryparam value="#j_username#" cfsqltype="cf_sql_varchar" />, 
