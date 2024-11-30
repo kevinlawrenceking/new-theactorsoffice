@@ -22,5 +22,5 @@
     setclientcookies="true"
 >
 
-<cfinclude template="/include/fetchUsers.cfm" />
+<cfinclude template="/include/qry/fetchUsers.cfm" />
 
