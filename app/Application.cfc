@@ -105,6 +105,8 @@
 
                 userCalendarPath = userMediaPath;
                 userCalendarUrl = "https://" & host & ".theactorsoffice.com/" & userMediaUrl;
+                session.userCalendarPath = userCalendarPath'
+                session.userCalendarUrl = userCalendarUrl;
 
                 userContactsPath = userMediaPath & "\contacts";
                 userContactsUrl = userMediaUrl & "/contacts";
