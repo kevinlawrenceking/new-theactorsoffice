@@ -115,8 +115,15 @@
                 </cfscript>
 
             </cfif>
+        <cfif isdefined('currentid')>
 
+                <cfscript>
 
+                    defaultavatarurl = session.userContactsPath & "\" & currentid & "\avatar.jpg";
+
+                </cfscript>
+
+            </cfif>
 
         </cfif>
 
