@@ -13,7 +13,7 @@
                     <cfoutput>
                         <div class="toast fade show" role="alert" aria-live="assertive" aria-atomic="true" data-bs-toggle="toast">
                             <div class="toast-header">
-                                <img src="..<cfoutput>#iapplication.imagesUrl#</cfoutput>/logo-sm.png" alt="brand-logo" height="12" class="mr-1" />
+                                <img src="..<cfoutput>#application.imagesUrl#</cfoutput>/logo-sm.png" alt="brand-logo" height="12" class="mr-1" />
                                 <strong class="mr-auto">#toasts.notiftitle#</strong>
                                 <button type="button" class="ml-2 mb-1 close" data-bs-dismiss="toast" aria-label="Close">
                                     <span 

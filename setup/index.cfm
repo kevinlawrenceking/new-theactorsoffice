@@ -74,13 +74,13 @@ WHERE th.STATUS = 'Emailed' and th.uuid = '#uuid#'
                                     <div class="auth-logo">
                                         <a href="index.html" class="logo logo-dark text-center">
                                             <span class="logo-lg">
-                                                <img src="<cfoutput>#iapplication.imagesUrl#/taowhite.png</cfoutput>" alt="" height="60">
+                                                <img src="<cfoutput>#application.imagesUrl#/taowhite.png</cfoutput>" alt="" height="60">
                                             </span>
                                         </a>
                     
                                         <a href="index.html" class="logo logo-light text-center">
                                             <span class="logo-lg">
-                                                <img src="<cfoutput>#iapplication.imagesUrl#</cfoutput>/logo-dark.png" alt="" height="20">
+                                                <img src="<cfoutput>#application.imagesUrl#</cfoutput>/logo-dark.png" alt="" height="20">
                                             </span>
                                         </a>
                                     </div>
