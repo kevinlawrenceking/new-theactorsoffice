@@ -27,6 +27,12 @@
                 <cfelse>
                     <!--- Loop through birthdays and display --->
                     <cfloop query="birthdays">
+
+                   <cfscript>
+
+                    defaultavatarurl = session.userContactsPath & "\" & birthdays.contactid & "\avatar.jpg";
+
+                </cfscript>
                         <!--- Avatar and Contact Link --->
                         <div class="col-md-2 col-lg-2" style="margin-top:7px;margin-left:7px;">
                             <a href="/app/contact/?contactid=#birthdays.contactid#&t1=1" title="#birthdays.col1#">
