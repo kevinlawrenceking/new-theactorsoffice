@@ -102,7 +102,22 @@
 
                 session.userAvatarPath = session.userMediaPath & "\avatar.jpg";
                 session.userAvatarUrl = session.userMediaUrl & "/avatar.jpg";
+
+            
             </cfscript>
+
+            <cfif isdefined('contactid')>
+
+                <cfscript>
+
+                    defaultavatarurl = session.userContactsPath & "\" & contactid & "\avatar.jpg";
+
+                </cfscript>
+
+            </cfif>
+
+
+
         </cfif>
 
         <cfreturn true />
