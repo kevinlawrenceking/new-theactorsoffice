@@ -94,7 +94,7 @@
                             </cfoutput>
 
                             <!--- Login form --->
-                            <form id="demo-form" action="/app/login2.cfm" method="post">
+                            <form id="demo-form" action="/login/login2.cfm" method="post">
                                 <input type="hidden" name="pwrong" value="N" />
                                 <input type="hidden" name="pwpass" value="Y" />
                                 

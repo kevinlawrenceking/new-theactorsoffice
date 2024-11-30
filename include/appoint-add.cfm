@@ -79,7 +79,7 @@
             <select class="form-control" name="eventTypeName" id="eventTypeName" data-parsley-required="data-parsley-required" data-parsley-error-message="Type is required">
               <option value=""></option>
               <cfoutput query="eventtypes_user">
-                <option value="#eventtypes_user.eventtypename#">#eventtypes_user.eventtypename#</option>
+                <cfif eventtypes_user.eventtypename neq "audition"> <option value="#eventtypes_user.eventtypename#">#eventtypes_user.eventtypename#</option></cfif>
               </cfoutput>
             </select>
           </div>
