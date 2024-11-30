@@ -36,7 +36,7 @@
             application.defaultsPath = imagesPath & "\defaults";
             defaultsUrl = application.imagesUrl & "/defaults";
             
-                    defaultAvatarUrl = defaultsUrl & "/avatar.jpg";
+                    application.defaultAvatarUrl = defaultsUrl & "/avatar.jpg";
 
             application.emailImagesPath = imagesPath & "\email";
             emailapplication.imagesUrl = application.imagesUrl & "/email";
@@ -97,7 +97,7 @@
 </cfif>
 
 <cfif NOT fileExists(session.userAvatarPath)>
-    <cffile action="copy" source="#defaultAvatarUrl#" destination="#session.userAvatarPath#" />
+    <cffile action="copy" source="#application.defaultAvatarUrl#" destination="#session.userAvatarPath#" />
 </cfif>
 
 <cfquery result="result" datasource="#dsn#" name="C">

@@ -47,7 +47,7 @@
                             <cfif isimagefile(contact_avatar_filename)>
                                 <img src="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg?ver=#rand()#" class="rounded-circle img-thumbnail avatar-xl" alt="profile-image">
                             <cfelse>
-                                <img src="#defaultAvatarUrl#" class="rounded-circle img-thumbnail avatar-xl" alt="profile-image">
+                                <img src="#application.defaultAvatarUrl#" class="rounded-circle img-thumbnail avatar-xl" alt="profile-image">
                             </cfif>
                             <h4 class="mt-2">
                                 <A href="/app/contact/?contactid=#myteam.contactid#">#myteam.contactname#</A>

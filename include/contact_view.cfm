@@ -17,7 +17,7 @@
                 <cfif isimagefile(browser_contact_avatar_filename)>
                     <img src="<Cfoutput>#browser_contact_avatar_filename#</cfoutput>?ver=<Cfoutput>#rand()#</cfoutput>" class="mr-3 rounded-circle gambar img-responsive img-thumbnail" style="height:120px;" alt="profile-image" id="item-img-output" />
                 <CFELSE>
-                    <img src="<Cfoutput>#defaultAvatarUrl#</cfoutput>" class="mr-3 rounded-circle gambar img-responsive img-thumbnail" style="height:120px;" alt="profile-image" id="item-img-output" />
+                    <img src="<Cfoutput>#application.defaultAvatarUrl#</cfoutput>" class="mr-3 rounded-circle gambar img-responsive img-thumbnail" style="height:120px;" alt="profile-image" id="item-img-output" />
                 </cfif>
             </figure>
         </A>

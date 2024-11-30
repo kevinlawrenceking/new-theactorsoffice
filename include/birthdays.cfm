@@ -30,16 +30,16 @@
 
                    <cfscript>
 
-                    defaultavatarurl = session.userContactsUrl & "/" & birthdays.contactid & "/avatar.jpg";
+                    contactAvatarUrl = session.userContactsUrl & "/" & birthdays.contactid & "/avatar.jpg";
 
                 </cfscript>
                         <!--- Avatar and Contact Link --->
                         <div class="col-md-2 col-lg-2" style="margin-top:7px;margin-left:7px;">
                             <a href="/app/contact/?contactid=#birthdays.contactid#&t1=1" title="#birthdays.col1#">
-                                <cfif isImageFile("#session.userContactsUrl#/#birthdays.contactid#/avatar.jpg")>
-                                    <img src="#session.userContactsUrl#/#birthdays.contactid#/avatar.jpg" class="img-fluid" alt="#birthdays.col1#" style="width: 30px;" />
+                                <cfif isImageFile("#contactAvatarUrl#")>
+                                    <img src="#contactAvatarUrl#" class="img-fluid" alt="#birthdays.col1#" style="width: 30px;" />
                                 <cfelse>
-                                    <img src="#defaultAvatarUrl#" class="img-fluid" alt="#birthdays.col1#" style="width: 30px;" />
+                                    <img src="#application.defaultAvatarUrl#" class="img-fluid" alt="#birthdays.col1#" style="width: 30px;" />
                                 </cfif>
                             </a>
                         </div>

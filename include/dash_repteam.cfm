@@ -36,7 +36,7 @@
               <cfif #isimagefile("https://#host#.theactorsoffice.com#session.userContactsUrl#/#myteam.contactid#/avatar.jpg")#>
                 <img src="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg" style="width:30px;" alt="#myteam.contactname#"/>
               <cfelse>
-                <img src="#defaultAvatarUrl#" style="width:30px;" alt="#myteam.contactname#"/>
+                <img src="#application.defaultAvatarUrl#" style="width:30px;" alt="#myteam.contactname#"/>
               </cfif>
 
             </a>
