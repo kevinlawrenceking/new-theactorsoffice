@@ -59,16 +59,10 @@
                 }
             },
             serverSide: true,
-          ajax: {
-    url: '/app/ajaxController.cfm',
-    type: 'post',
-    data: {
-        contacts_table: '<cfoutput>#contacts_table#</cfoutput>',
-        userid: '<cfoutput>#userid#</cfoutput>',
-        bytag: '<cfoutput>#bytag#</cfoutput>',
-        byimport: '<cfoutput>#byimport#</cfoutput>'
-    }
-},
+            ajax: {
+                url: '/include/contacts_ss.cfm?contacts_table=<cfoutput>#contacts_table#</cfoutput>&userid=<cfoutput>#userid#</cfoutput>&bytag=<cfoutput>#bytag#</cfoutput>&byimport=<cfoutput>#byimport#</cfoutput>',
+                type: 'post'
+            },
             buttons: [
                 {
                     text: 'Add',
