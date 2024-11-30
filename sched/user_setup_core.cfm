@@ -28,24 +28,24 @@
     baseMediaUrl = "/media-" & dsn;
 
             imagesPath = baseMediaPath & "\images";
-            imagesUrl = baseMediaUrl & "/images";
+            iapplication.imagesUrl = baseMediaUrl & "/images";
 
             datesPath = imagesPath & "\dates";
-            datesUrl = imagesUrl & "/dates";
+            datesUrl = iapplication.imagesUrl & "/dates";
 
             defaultsPath = imagesPath & "\defaults";
-            defaultsUrl = imagesUrl & "/defaults";
+            defaultsUrl = iapplication.imagesUrl & "/defaults";
             
                     defaultAvatarUrl = defaultsUrl & "/avatar.jpg";
 
             emailImagesPath = imagesPath & "\email";
-            emailImagesUrl = imagesUrl & "/email";
+            emailIapplication.imagesUrl = iapplication.imagesUrl & "/email";
 
             filetypesPath = imagesPath & "\filetypes";
-            filetypesUrl = imagesUrl & "/filetypes";
+            filetypesUrl = iapplication.imagesUrl & "/filetypes";
 
             retinaIconsPath = imagesPath & "\retina-circular-icons";
-            retinaIconsUrl = imagesUrl & "/retina-circular-icons";
+            retinaIconsUrl = iapplication.imagesUrl & "/retina-circular-icons";
 
                     retinaIcons14Path = retinaIconsPath & "\14";
                     retinaIcons14Url = retinaIconsUrl & "/14";

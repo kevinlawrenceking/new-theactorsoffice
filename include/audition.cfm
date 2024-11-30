@@ -35,7 +35,7 @@
                         <cfif #steps.stepinfo4# is not ""> 
                             <p>#steps.stepinfo4#</p>
                             <center>
-                                <p><img src="#imagesUrl#/#steps.audstepid#.png"></p>
+                                <p><img src="#iapplication.imagesUrl#/#steps.audstepid#.png"></p>
                             </center>
                         </cfif>
                         <p>#steps.stepinfo3#</p>
