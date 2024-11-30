@@ -54,10 +54,12 @@
             </cfif>
 
         <!--- Check if the user is authenticated --->
-        <cfif NOT structKeyExists(session, "userid") AND NOT ListFindNoCase(arguments.targetPage, "loginform.cfm,login2.cfm,login2.cfm")>
-          
+      <cfif NOT structKeyExists(session, "userid") 
+      AND NOT ListFindNoCase(arguments.targetPage, "loginform.cfm,login2.cfm") 
+      AND NOT ListFindNoCase(CGI.SCRIPT_NAME, "login2.cfm")>
+ 
        
-         here<Cfabort>
+ 
 
           
             <cflocation url="/loginform.cfm" addToken="false">
