@@ -24,6 +24,7 @@
     </cfif>
 
     <cfscript>
+        this.mappings["/app"] = expandPath(".");
         this.name = "TAO";
         this.datasource = application.dsn;
         this.sessionManagement = true;
