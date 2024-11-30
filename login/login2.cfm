@@ -1,3 +1,13 @@
+<cfscript>
+    host = ListFirst(cgi.server_name, ".");
+    if (host == "app" || host == "uat") {
+        datasourceName = "abo";
+        dsn = "abo";
+    } else {
+        datasourceName = "abod";
+        dsn = "abod";
+    }
+</cfscript>
 <cfparam name="j_password" default="" />
 <cfparam name="j_username" default="" />
  
@@ -13,7 +23,7 @@
 </cfquery>
 
 <!--- Query to authenticate the user --->
-<cfquery result="result" name="loginQuery" maxrows="1">
+<cfquery result="result" name="loginQuery" datasource="#dsn#" maxrows="1">
     SELECT 
         u.userid,
         u.passwordHash,
