@@ -111,7 +111,7 @@
 
                 <cfscript>
 
-                    defaultavatarurl = session.userContactsUrl & "/" & birthdays.contactid & "/avatar.jpg";
+                    defaultavatarurl = session.userContactsUrl & "/" & contactid & "/avatar.jpg";
 
                 </cfscript>
 
@@ -120,7 +120,7 @@
 
                 <cfscript>
 
-                    defaultavatarurl = session.userContactsUrl & "/" & birthdays.contactid & "/avatar.jpg";
+                    defaultavatarurl = session.userContactsUrl & "/" & contactid & "/avatar.jpg";
                 </cfscript>
 
             </cfif>
