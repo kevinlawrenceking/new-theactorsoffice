@@ -4,12 +4,12 @@
 
 <!--- Determine the data source based on the host --->
 <cfif host eq "app">
-    <cfset dsn = "abo" />
+    <cfset Application.dsn = "abo" />
     <cfset rev = "1.2.0" />
 <cfelse>
-    <cfset dsn = "abod" />
+    <cfset Application.dsn = "abod" />
     <cfset rev = rand() />
 </cfif>
 
-<!--- Assign dsn to Application.datasource --->
+<!--- Set the default datasource for the application --->
 <cfset this.datasource = Application.dsn />
