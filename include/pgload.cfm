@@ -1,5 +1,3 @@
-
-
 <cfparam name="TIMETITLE" default="" />
 <cfparam name="pgaction" default="view" />
 <cfparam name="subdomain" default="app" />
@@ -11,7 +9,7 @@
 <cfparam name="userid" default="#userid#" />
 <cfparam name="BROWSER_CONTACT_AVATAR_FILENAME" default="" />
 <Cfparam name="USERCALENDARPATH" default="" />
-<Cfparam name="userCalendarPath" default="" />
+<Cfparam name="userCalendarURL" default="" />
 <cfscript>
     currentURL = cgi.server_name;
     host = ListFirst(currentURL, ".");
