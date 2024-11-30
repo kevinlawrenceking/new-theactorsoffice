@@ -73,7 +73,7 @@
 
                 application.imagesPath = baseMediaPath & "\images";
                 application.imagesUrl = baseMediaUrl & "/images";
-
+                IMAGESURL  = application.IMAGESURl;
                 application.datesPath = application.imagesPath & "\dates";
                 application.datesUrl = application.imagesUrl & "/dates";
 
