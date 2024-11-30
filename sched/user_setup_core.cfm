@@ -71,7 +71,7 @@
                     session.userShareUrl = session.userMediaUrl & "/share";
             
                     session.userAvatarPath = session.userMediaPath & "\avatar.jpg";
-                    application.session.userAvatarUrl = session.userMediaUrl & "/avatar.jpg";
+                    session.userAvatarUrl = session.userMediaUrl & "/avatar.jpg";
         </cfscript>
 
 <cfset starttime = timeFormat(Now(), 'HHMMSS') />
