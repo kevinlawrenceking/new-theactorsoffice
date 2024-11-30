@@ -2,11 +2,14 @@
 
 <cfset host = ListFirst(currentURL, ".") />
 
-<cfif #host# is "app">
+<!--- Determine the data source based on the host --->
+<cfif host eq "app">
     <cfset dsn = "abo" />
     <cfset rev = "1.2.0" />
-    <cfelse>
-  <cfset dsn = "abod" />
-<cfset rev = rand() />
+<cfelse>
+    <cfset dsn = "abod" />
+    <cfset rev = rand() />
 </cfif>
-    
+
+<!--- Assign dsn to Application.datasource --->
+<cfset Application.datasource = dsn />
