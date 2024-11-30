@@ -58,7 +58,7 @@
       AND NOT ListFindNoCase(arguments.targetPage, "loginform.cfm,login2.cfm") 
       AND NOT ListFindNoCase(CGI.SCRIPT_NAME, "login2.cfm")>
  
-       
+       <cfoutput>#cgi.script_name#</cfoutput><cfabort>
  
 
           
