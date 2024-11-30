@@ -46,7 +46,7 @@
                             <div class="col">
                                 <cfoutput>
                                     <a class="dropdown-icon-item" href="https://theactorsoffice.helpwise.help/" target="FAQ">
-                                        <img src="#application.application.imagesUrl#/faq.png?ver=3" alt="FAQ">
+                                        <img src="#application.imagesUrl#/faq.png?ver=3" alt="FAQ">
                                         <span>FAQ</span>
                                     </a>
                                 </cfoutput>
@@ -54,7 +54,7 @@
                             <div class="col">
                                 <cfoutput>
                                     <a class="dropdown-icon-item" href="https://www.facebook.com/groups/taousercommunity" target="usercommunity">
-                                        <img src="#application.application.imagesUrl#/usercom.png?ver=3" alt="User Community">
+                                        <img src="#application.imagesUrl#/usercom.png?ver=3" alt="User Community">
                                         <span>User Community</span>
                                     </a>
                                 </cfoutput>
@@ -63,7 +63,7 @@
                                 <div class="col">
                                     <cfoutput>
                                         <a href="remoteSupportForm.cfm" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteSupportForm" class="dropdown-icon-item">
-                                            <img src="#application.application.imagesUrl#/feedback.png?ver=3" alt="Feedback">
+                                            <img src="#application.imagesUrl#/feedback.png?ver=3" alt="Feedback">
                                             <span>Create a Ticket</span>
                                         </a>
                                     </cfoutput>
@@ -72,7 +72,7 @@
                             <div class="col">
                                 <cfoutput>
                                     <a class="dropdown-icon-item" href="mailto:support@theactorsoffice.com?subject=I%20Need%20Some%20Support%20with%20TAO">
-                                        <img src="#application.application.imagesUrl#/contact.png?ver=3" alt="Contact Support">
+                                        <img src="#application.imagesUrl#/contact.png?ver=3" alt="Contact Support">
                                         <span>Contact Support</span>
                                     </a>
                                 </cfoutput>
@@ -107,18 +107,18 @@
             <div class="logo-box">
                 <a href="/app/" class="logo logo-dark text-center">
                     <span class="logo-sm">
-                        <img src="#application.application.imagesUrl#/logo-sm.png" alt="" height="30">
+                        <img src="#application.imagesUrl#/logo-sm.png" alt="" height="30">
                     </span>
                     <span class="logo-lg">
-                        <img src="#application.application.imagesUrl#/logo-sm.png" alt="" height="30">
+                        <img src="#application.imagesUrl#/logo-sm.png" alt="" height="30">
                     </span>
                 </a>
                 <a href="/app/" class="logo logo-light text-center">
                     <span class="logo-sm">
-                        <img src="#application.application.imagesUrl#/logo-sm.png" alt="" height="30">
+                        <img src="#application.imagesUrl#/logo-sm.png" alt="" height="30">
                     </span>
                     <span class="logo-lg">
-                        <img src="#application.application.imagesUrl#/logo-light.png" alt="" height="30">
+                        <img src="#application.imagesUrl#/logo-light.png" alt="" height="30">
                     </span>
                 </a>
             </div>

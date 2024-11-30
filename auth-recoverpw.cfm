@@ -111,7 +111,7 @@
                                     <div class="auth-logo">
                                         <a href="index.html" class="logo logo-dark text-center">
                                             <span class="logo-lg">
-                                                <img src="<cfoutput>#application.application.imagesUrl#/taowhite.png</cfoutput>" alt="" style="width:100%">
+                                                <img src="<cfoutput>#application.imagesUrl#/taowhite.png</cfoutput>" alt="" style="width:100%">
                                             </span>
                                         </a>
                     

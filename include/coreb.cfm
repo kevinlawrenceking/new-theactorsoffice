@@ -81,11 +81,11 @@
 
                 <a href="<cfoutput>#home#</cfoutput>" class="logo logo-light text-center">
                     <span class="logo-sm">
-                        <img src="<cfoutput>#application.application.imagesUrl#</cfoutput>/logo-sm.png" alt="" height="22">
+                        <img src="<cfoutput>#application.imagesUrl#</cfoutput>/logo-sm.png" alt="" height="22">
                     </span>
                     <span class="logo-lg" style="min-width:200px !important;">
                         <span class="logo-sm-text-light"></span>
-                        <img src="<cfoutput>#application.application.imagesUrl#</cfoutput>/<cfoutput>#findPage.appLogoName#?ver=5</cfoutput>" alt="" height="30">
+                        <img src="<cfoutput>#application.imagesUrl#</cfoutput>/<cfoutput>#findPage.appLogoName#?ver=5</cfoutput>" alt="" height="30">
                     </span>
                 </a>
             </div>
@@ -121,7 +121,7 @@
 
         <!--- Set content page style based on pgFilename --->
         <div class="content-page" <cfif #pgFilename# is "comingsoon.cfm">
-            style="background-image: url('#application.application.imagesUrl#/comingsoon_<cfoutput>#pgid#</cfoutput>.png?ver=293');background-position: top;background-repeat: no-repeat;background-size: cover;"
+            style="background-image: url('#application.imagesUrl#/comingsoon_<cfoutput>#pgid#</cfoutput>.png?ver=293');background-position: top;background-repeat: no-repeat;background-size: cover;"
             </cfif>>
             <div class="content">
                 <div class="container-fluid">
