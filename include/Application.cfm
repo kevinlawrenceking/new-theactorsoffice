@@ -11,5 +11,5 @@
     <cfset rev = rand() />
 </cfif>
 
-<!--- Set the default datasource for the application --->
-<cfset this.datasource = Application.dsn />
+<!--- Set the default datasource for all queries --->
+<cfset setdatasource(Application.dsn) />
