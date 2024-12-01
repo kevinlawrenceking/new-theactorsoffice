@@ -90,7 +90,7 @@
 </cfif>
 
 <style>
-    <Cfif #aud_det.audtypeid# is not "1">#hiddenDiv_1 {
+    <Cfif #aud_det.audtypeid# is not "1">#hiddenLocation {
         display: none;
     }
     </cfif>
@@ -235,7 +235,7 @@
             </div>
         </cfif>
 
-        <div id="hiddenDiv_1">
+        <div id="hiddenLocation">
             <cfoutput>
                 <div class="form-group col-md-12">
                     <label for="new_parkingDetails">Parking Details</label>

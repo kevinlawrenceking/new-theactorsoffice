@@ -247,55 +247,21 @@
                                   <label for="new_eventStartTime">Start Time / Due Time<span class="text-danger">*</span>
                                   </label>
                                   <select class="form-control" name="new_eventStartTime" autocomplete="off" id="new_eventStartTime" data-parsley-required="data-parsley-required" data-parsley-error-message="Start Time is required">
-                                    <option value="">Select a Start Time</option>
-                                    <cfoutput>
-                                      <option value="07:00" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "07:00 AM">Selected</cfif>>07:00 AM</option>
-                                      <option value="07:15" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "07:15 AM">Selected</cfif>>07:15 AM</option>
-                                      <option value="07:30" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "07:30 AM">Selected</cfif>>07:30 AM</option>
-                                      <option value="07:45" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "07:45 AM">Selected</cfif>>07:45 AM</option>
-                                      <option value="08:00" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "08:00 AM">Selected</cfif>>08:00 AM</option>
-                                      <option value="08:15" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "08:15 AM">Selected</cfif>>08:15 AM</option>
-                                      <option value="08:30" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "08:30 AM">Selected</cfif>>08:30 AM</option>
-                                      <option value="08:45" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "08:45 AM">Selected</cfif>>08:45 AM</option>
-                                      <option value="09:00" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "09:00 AM">Selected</cfif>>09:00 AM</option>
-                                      <option value="09:15" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "09:15 AM">Selected</cfif>>09:15 AM</option>
-                                      <option value="09:30" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "09:30 AM">Selected</cfif>>09:30 AM</option>
-                                      <option value="09:45" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "09:45 AM">Selected</cfif>>09:45 AM</option>
-                                      <option value="10:00" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "10:00 AM">Selected</cfif>>10:00 AM</option>
-                                      <option value="10:15" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "10:15 AM">Selected</cfif>>10:15 AM</option>
-                                      <option value="10:30" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "10:30 AM">Selected</cfif>>10:30 AM</option>
-                                      <option value="10:45" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "10:45 AM">Selected</cfif>>10:45 AM</option>
-                                      <option value="11:00" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "11:00 AM">Selected</cfif>>11:00 AM</option>
-                                      <option value="11:15" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "11:15 AM">Selected</cfif>>11:15 AM</option>
-                                      <option value="11:30" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "11:30 AM">Selected</cfif>>11:30 AM</option>
-                                      <option value="11:45" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "11:45 AM">Selected</cfif>>11:45 AM</option>
-                                      <option value="12:00" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "12:00 PM">Selected</cfif>>12:00 PM</option>
-                                      <option value="12:15" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "12:15 PM">Selected</cfif>>12:15 PM</option>
-                                      <option value="12:30" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "12:30 PM">Selected</cfif>>12:30 PM</option>
-                                      <option value="12:45" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "12:45 PM">Selected</cfif>>12:45 PM</option>
-                                      <option value="13:00" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "01:00 PM">Selected</cfif>>01:00 PM</option>
-                                      <option value="13:15" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "01:15 PM">Selected</cfif>>01:15 PM</option>
-                                      <option value="13:30" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "01:30 PM">Selected</cfif>>01:30 PM</option>
-                                      <option value="13:45" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "01:45 PM">Selected</cfif>>01:45 PM</option>
-                                      <option value="14:00" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "02:00 PM">Selected</cfif>>02:00 PM</option>
-                                      <option value="14:15" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "02:15 PM">Selected</cfif>>02:15 PM</option>
-                                      <option value="14:30" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "02:30 PM">Selected</cfif>>02:30 PM</option>
-                                      <option value="14:45" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "02:45 PM">Selected</cfif>>02:45 PM</option>
-                                      <option value="15:00" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "03:00 PM">Selected</cfif>>03:00 PM</option>
-                                      <option value="15:15" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "03:15 PM">Selected</cfif>>03:15 PM</option>
-                                      <option value="15:30" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "03:30 PM">Selected</cfif>>03:30 PM</option>
-                                      <option value="15:45" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "03:45 PM">Selected</cfif>>03:45 PM</option>
-                                      <option value="16:00" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "04:00 PM">Selected</cfif>>04:00 PM</option>
-                                      <option value="16:15" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "04:15 PM">Selected</cfif>>04:15 PM</option>
-                                      <option value="16:30" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "04:30 PM">Selected</cfif>>04:30 PM</option>
-                                      <option value="16:45" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "04:45 PM">Selected</cfif>>04:45 PM</option>
-                                      <option value="17:00" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "05:00 PM">Selected</cfif>>05:00 PM</option>
-                                      <option value="17:15" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "05:15 PM">Selected</cfif>>05:15 PM</option>
-                                      <option value="17:30" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "05:30 PM">Selected</cfif>>05:30 PM</option>
-                                      <option value="17:45" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "05:45 PM">Selected</cfif>>05:45 PM</option>
-                                      <option value="18:00" <cfif #timeformat('#userCalStarttime#','hh:mm TT')# is "06:00 PM">Selected</cfif>>06:00 PM</option>
-                                    </cfoutput>
-                                  </select>
+    <option value="">Select a Start Time</option>
+    <cfset selectedTime = timeformat(userCalStarttime, 'HH:mm')>
+    <cfloop from="0" to="23" index="hour">
+        <cfloop from="0" to="45" step="15" index="minute">
+            <cfset hourStr = right("0" & hour, 2)>
+            <cfset minuteStr = right("0" & minute, 2)>
+            <cfset timeValue = hourStr & ":" & minuteStr>
+            <cfset displayTime = timeformat(createDateTime(2000, 1, 1, hour, minute, 0), "hh:mm tt")>
+            <cfoutput>
+                <option value="#timeValue#" <cfif timeValue eq selectedTime>selected</cfif>>#displayTime#</option>
+            </cfoutput>
+        </cfloop>
+    </cfloop>
+</select>
+
                                 </div>
 
                                 <div class="form-group col-md-6">
