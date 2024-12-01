@@ -443,7 +443,7 @@
                                               Add New Location</legend>
 
                                             <div class="row">
-                                              <cfquery name="FindUser" datasource="#dsn#">
+                                              <cfquery name="FindUser" >
                                                 SELECT
                                                 u.userid
                                                 ,u.recordname
