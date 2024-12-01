@@ -237,7 +237,7 @@
                         <cfif #results.recordcount# is not "0">
                             <p>
                                 <cfoutput>
-                                    <strong>#results.recordcount#</strong> audition <cfif #results.recordcount# is not "1">s</cfif> found
+                                    <strong> #results.recordcount#</strong> audition<cfif #results.recordcount# is not "1">s</cfif> found
                                 </cfoutput>
                             </p>
                         </cfif>
