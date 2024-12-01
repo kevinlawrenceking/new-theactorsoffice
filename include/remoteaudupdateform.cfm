@@ -1,19 +1,129 @@
-<!--- Update Form for Audition Event --->
+<!--- This ColdFusion page handles the audition event form, including fetching data, processing inputs, and rendering the form for user interaction. --->
 
 <cfparam name="pgaction" default="view" />
 <cfparam name="old_callbacktypeid" default="0" />
 <cfparam name="isdirect" default="0" />
-<cfparam name="new_countryid" default="#aud_det.countryid#" />
-<cfparam name="new_region_id" default="#aud_det.region_id#" />
-
 <cfinclude template="/include/qry/durations.cfm" />
 <cfinclude template="/include/qry/fetchLocationService.cfm" />
+<cfinclude template="/include/qry/fetchusers.cfm" />
+<cfset usercalstarttime = calstarttime />
+<cfset dbug = "N" />
+
 <cfinclude template="/include/qry/audplatforms_user_sel.cfm" />
+<cfinclude template="/include/qry/projectDetails_221_1.cfm" />
+<cfset audroleid = projectDetails.audroleid />
+<cfinclude template="/include/qry/roleDetails_221_2.cfm" />
+<cfinclude template="/include/qry/locationDetails_492_1.cfm" />
+<Cfoutput>
+    <cfset NEW_AUDSUBCATID = "#projectDetails.audsubcatid#" />
+</Cfoutput>
+
+<!--- Check if new_audsubcatid is empty and set default value --->
+<cfif #new_audsubcatid# is "">
+    <cfset new_audsubcatid = "0" />
+</cfif>
+
+<cfinclude template="/include/qry/cat_221_3.cfm" />
+
+<!--- Ensure new_audsubcatid is set --->
+<cfif #new_audsubcatid# is "">
+    <cfset new_audsubcatid = 0 />
+</cfif>
+
+<cfinclude template="/include/qry/cat_221_4.cfm" />
+<cfinclude template="/include/qry/audroletypes_sel_221_5.cfm" />
 <cfinclude template="/include/qry/audtypes_sel_221_6.cfm" />
-<cfinclude template="/include/qry/regions.cfm" />
-<cfinclude template="/include/qry/countries_457_1.cfm" />
+<cfinclude template="/include/qry/casting_types_221_7.cfm" />
+<cfinclude template="/include/qry/castingdirectors_sel.cfm" />
+
+<!--- Check if the action is to add a new audition --->
+<cfif #pgaction# is "add">
+    <cfset new_audroleid = roleDetails.audroleid />
+    <cfset new_userid = userid />
+    <cfset new_audstepid = audstepid />
+
+    <cfparam name="new_durid" default="0" />
+    <cfparam name="new_userid" default="" />
+    <cfparam name="new_audRoleID" default="" />
+    <cfparam name="new_audTypeID" default="" />
+    <cfparam name="new_audLocation" default="" />
+    <cfparam name="new_audlocid" default="" />
+    <cfparam name="new_eventStart" default="" />
+    <cfparam name="new_eventStartTime" default="" />
+    <cfparam name="new_eventStopTime" default="" />
+    <cfparam name="new_audplatformid" default="4" />
+    <cfparam name="new_audStepID" default="1" />
+    <cfparam name="new_parkingDetails" default="" />
+    <cfparam name="new_workwithcoach" default="0" />
+    <cfparam name="new_isDeleted" default="0" />
+    <cfparam name="new_trackmileage" default="0" />
+
+    <cfinclude template="/include/qry/auditions_ins_221_8.cfm" />
+<cfset eventid = result />
+</cfif>
+
+<cfset dbug = "N" />
+<cfinclude template="/include/qry/aud_det_221_9.cfm" />
+
+<Cfoutput>
+    <cfparam name="new_region_id" default="#aud_det.region_id#">
+    <cfparam name="new_countryid" default="#aud_det.countryid#">
+</Cfoutput>
+
+<cfparam name="valuetext" default="">
+<cfinclude template="/include/qry/cities_448_1.cfm" />
+
+<!--- Set default duration hours if not provided --->
+<cfif #aud_det.new_durhours# is "">
+    <cfset new_durhours = 1 />
+<cfelse>
+    <cfset new_durhours = aud_det.new_durhours />
+</cfif>
+
+<cfinclude template="/include/qry/findd_221_10.cfm" />
+
+<!--- Check if a record was found in findd --->
+<cfif #findd.recordcount# is "1">
+    <cfset new_durid = findd.new_durid />
+<cfelse>
+    <cfset new_durid = 0 />
+</cfif>
+
+<style>
+    <Cfif #aud_det.audtypeid# is not "1">#hiddenLocation {
+        display: none;
+    }
+    </cfif>
+
+    <Cfif #aud_det.audtypeid# is not "2">#hiddenSelfTape {
+        display: none;
+    }
+    </cfif>
+
+
+</style>
+
+<cfset new_audcatid = aud_det.audcatid />
+<cfinclude template="/include/qry/audtypes_sel_221_11.cfm" />
+<cfinclude template="/include/qry/audsteps_sel_217_3.cfm" />
+<cfinclude template="/include/qry/audplatforms_sel.cfm" />
+<cfset dbug = "N" />
 
 <script src="/app/assets/js/jquery.chained.js"></script>
+
+<h4>
+    <cfoutput>#aud_det.audstep# appointment</cfoutput>
+</h4>
+
+<!--- Set default country and region if not provided --->
+<cfif #new_countryid# is "">
+    <cfset new_countryid = "US" />
+</cfif>
+
+<cfif #new_region_id# is "">
+    <cfset new_region_id = "3911" />
+</cfif>
+
 
 <form method="post" 
       action="/include/remoteaudupdateform2.cfm" 
