@@ -13,7 +13,7 @@
 <cfparam name="valuetext" default="">
 
 <cfset dbug="N"/>
-<cfoutput>#new_audsubcatid#</cfoutput><cfabort>
+
 <!--- Initialize debug variable --->
 
 <cfinclude template="/include/qry/fetchLocationService.cfm"/>
