@@ -42,7 +42,7 @@
           <cfoutput>
             <input type="hidden" name="new_audStepID" value="1"/>
             <input type="hidden" name="new_audcatid" value="#cat.audcatid#"/>
-            <input type="hidden" name="new_audsubcatid" value="#cat.audsubcatid#"/>
+            <input type="hidden" name="new_audsubcatid" value="#new_audsubcatid#"/>
             <input type="hidden" name="new_userid" value="#userid#"/>
             <input type="hidden" name="isdirect" value="#isdirect#"/>
           </cfoutput>
