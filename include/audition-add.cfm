@@ -443,28 +443,8 @@
                                               Add New Location</legend>
 
                                             <div class="row">
-                                              <cfquery name="FindUser" >
-                                                SELECT
-                                                u.userid
-                                                ,u.recordname
-                                                ,u.userFirstName
-                                                ,u.userLastName
-                                                ,u.userEmail
-                                                ,u.contactid
-                                                ,u.userRole
-                                                ,u.calstarttime
-                                                ,u.calendtime
-                                                ,u.avatarname
-                                                ,u.IsBetaTester
-                                                ,u.defRows
-
-                                                ,u.contactid AS userContactID
-                                                ,u.tzid
-                                                FROM taousers u
-                                                WHERE u.userid = '#userid#'
-                                              </cfquery>
-
-                                              <cfinclude template="/include/qry/countries.cfm"/>
+                                            
+                                              <cfinclude template="/include/qry/countries_457_1.cfm"/>
                                               <cfinclude template="/include/qry/regions.cfm"/>
                                               <cfinclude template="/include/qry/cities.cfm"/>
 
