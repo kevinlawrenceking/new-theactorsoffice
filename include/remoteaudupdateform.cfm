@@ -66,8 +66,8 @@
 <cfinclude template="/include/qry/aud_det_221_9.cfm" />
 
 <Cfoutput>
-    <cfparam name="new_region_id" default="#locationDetails.same_region_id#">
-    <cfparam name="new_countryid" default="#locationDetails.same_countryid#">
+    <cfset new_region_id ="#locationDetails.same_region_id#">
+    <cfset new_countryid ="#locationDetails.same_countryid#">
 </Cfoutput>
 
 <cfparam name="valuetext" default="">
