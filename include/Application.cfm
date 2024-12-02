@@ -19,7 +19,6 @@
     applicationtimeout="#createTimeSpan(1, 0, 0, 0)#" 
     sessiontimeout="#createTimeSpan(0, 1, 0, 0)#" 
     datasource="#datasourceName#"
-     this.datasource="#datasourceName#"
     setclientcookies="true"
 >
 
@@ -27,8 +26,8 @@
 
 <cfif structKeyExists(variables, "userid")>
     <cfscript>
-      application.baseMediaPath = "C:\home\theactorsoffice.com\media-" & this.datasource;
-        application.baseMediaUrl = "/media-" & this.datasource;
+      application.baseMediaPath = "C:\home\theactorsoffice.com\media-" & datasource;
+        application.baseMediaUrl = "/media-" & datasource;
 
         application.imagesPath = application.baseMediaPath & "\images";
         application.imagesUrl = application.baseMediaUrl & "/images";
