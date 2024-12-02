@@ -93,15 +93,27 @@
                     <cfset placeholder = "https://">
                 </cfif>
                 <cfset minlength = "3">
-                <div class="form-group col-md-12">
-                    <label for="valuetext">#details.recordname#<span class="text-danger">*</span></label>
-                    <input class="form-control" type="#valuefieldtype#" placeholder="#placeholder#" id="valuetext" 
-                           value="#valuetext#" name="valuetext"
-                           data-parsley-maxlength="800"  data-parsley-required="true"
-                           data-parsley-maxlength-message="Max length 800 characters"
-                           <cfif new_catid neq "4">placeholder="Enter #details.recordname#"</cfif>
-                    >
-                </div>
+     <div class="form-group col-md-12">
+    <label for="valuetext">#details.recordname#<span class="text-danger">*</span></label>
+    <input 
+        class="form-control" 
+        type="#valuefieldtype#" 
+        placeholder="#placeholder#" 
+        id="valuetext" 
+        value="#valuetext#" 
+        name="valuetext"
+        data-parsley-maxlength="800"  
+        data-parsley-required="true"
+        data-parsley-maxlength-message="Max length 800 characters"
+        <cfif new_catid eq "4">
+            data-parsley-type="url"
+            data-parsley-type-message="Please enter a valid URL starting with http or https"
+        <cfelse>
+            placeholder="Enter #details.recordname#"
+        </cfif>
+    >
+</div>
+
             </cfoutput>
         </cfif>
 
