@@ -68,8 +68,6 @@
 <Cfoutput>
     <cfset new_region_id ="#locationDetails.same_region_id#">
     <cfset new_countryid ="#locationDetails.same_countryid#">
-     <cfset new_regionname ="#locationDetails.same_regionname#">
-    <cfset new_countryname ="#locationDetails.same_countryname#">
 </Cfoutput>
 
 <cfparam name="valuetext" default="">
@@ -293,21 +291,15 @@
     </div>
 </cfoutput>
     <div class="row">
-<select id="region_id" name="new_region_id" class="form-control">
-    <cfif len(new_region_id)>
-        <cfoutput>
-            <option value="#new_region_id#">#new_regionname#</option>
-        </cfoutput>
-    </cfif>
-    <cfloop query="regions">
-        <cfoutput>
-            <option value="#regions.region_id#" data-chained="#regions.countryid#">
-                #regions.regionname#
-            </option>
-        </cfoutput>
-    </cfloop>
-</select>
-
+    <div class="form-group col-md-6">
+        <label for="region_id">State/Region<span class="text-danger">*</span></label>
+        <select id="region_id" name="new_region_id" class="form-control">
+            <option value="">--</option>
+            <cfloop query="regions"><cfoutput>
+                <option value="#regions.region_id#" data-chained="#regions.countryid#" <cfif #regions.region_id# is "#new_region_id#">selected</cfif>>#regions.regionname#</option>
+            </cfoutput></cfloop>
+        </select>
+    </div>
 
     <!-- Country -->
     <div class="form-group col-md-6">
@@ -315,7 +307,7 @@
         <select id="countryid" class="form-control" name="countryid" data-parsley-required data-parsley-error-message="Country is required"  onchange="filterRegions(this.value)">
             <option value="">--</option>
             <cfloop query="countries"><cfoutput>
-                <option value="#countries.countryid#">#countries.countryname#</option>
+                <option value="#countries.countryid#" <cfif #countries.countryid# is "#new_countryid#">selected</cfif>>#countries.countryname#</option>
            </cfoutput> </cfloop>
         </select>
     </div>
