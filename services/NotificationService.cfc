@@ -125,7 +125,22 @@
     <cfreturn result>
 </cffunction>
 
+<cffunction name="UPDfunotifications_23831" access="public" output="false" returntype="void">
+    <cfargument name="notid" type="numeric" required="true">
+    <cfargument name="notendDate" type="date" required="false" default="">
+    <cfargument name="notstatus" type="string" required="false" default="">
 
+    <!--- Update notification --->
+    <cfquery name="addNotification">
+        UPDATE funotifications
+        SET 
+            notStatus = <cfqueryparam value="#arguments.notstatus#" cfsqltype="CF_SQL_VARCHAR" maxlength="50">
+            <cfif arguments.notstatus EQ "Completed" OR arguments.notstatus EQ "Skipped">
+                , notenddate = <cfqueryparam value="#arguments.notendDate#" cfsqltype="CF_SQL_DATE" null="#NOT len(trim(arguments.notendDate))#">
+            </cfif>
+        WHERE notid = <cfqueryparam value="#arguments.notid#" cfsqltype="CF_SQL_INTEGER">
+    </cfquery>
+</cffunction>
 
 <cffunction name="UPDfunotifications" access="public" output="false" returntype="void">
     <cfargument name="notid" type="numeric" required="true">
