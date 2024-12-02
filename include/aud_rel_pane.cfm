@@ -12,7 +12,7 @@
     });
 </script>
 
-
+<style>
     .box-row {
         margin-bottom: 20px; /* Adjust the margin as per your requirement */
     }
