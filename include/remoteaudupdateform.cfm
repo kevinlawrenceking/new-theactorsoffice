@@ -382,9 +382,7 @@
             <button type="submit" class="btn btn-primary btn-sm waves-effect waves-light" id="btn-save-event">Update</button>
         </div>
 
-       <script>
-                                    $("#region_id").chained("#countryid");
-                                  </script>
+ 
 
         <script>
             $(document).ready(function() {
