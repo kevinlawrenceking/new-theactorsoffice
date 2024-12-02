@@ -290,7 +290,7 @@
 
     </div>
 </cfoutput>
-    <!-- State/Region -->
+    <div class="row">
     <div class="form-group col-md-6">
         <label for="region_id">State/Region<span class="text-danger">*</span></label>
         <select id="region_id" name="new_region_id" class="form-control">
@@ -310,6 +310,7 @@
                 <option value="#countries.countryid#" <cfif countries.countryid is new_countryid>selected</cfif>>#countries.countryname#</option>
            </cfoutput> </cfloop>
         </select>
+    </div>
     </div>
 </div>
 
