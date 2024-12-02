@@ -1453,7 +1453,7 @@
                 e.audcity AS same_audcity,
                 IFNULL(e.region_id, 3911) AS same_region_id,
                 IFNULL(c.countryid, 'US') AS same_countryid,
-                  IFNULL(e.regionname, 'California') AS same_regionname,
+                  IFNULL(r.regionname, 'California') AS same_regionname,
                 IFNULL(c.countryname, 'United States') AS same_countryname,
                 e.audzip AS same_audzip
             FROM
