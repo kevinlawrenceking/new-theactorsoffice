@@ -90,13 +90,13 @@
 </cfif>
 
 <style>
-    <Cfif #aud_det.audtypeid# is not "1">#hiddenLocation {
-        display: none;
+    <Cfif #aud_det.audtypeid# is  "1">#hiddenLocation {
+        display: block;
     }
     </cfif>
 
-    <Cfif #aud_det.audtypeid# is not "2">#hiddenSelfTape {
-        display: none;
+    <Cfif #aud_det.audtypeid# is  "2">#hiddenSelfTape {
+        display: block;
     }
     </cfif>
 
