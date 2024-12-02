@@ -479,10 +479,10 @@ function filterRegions(countryId) {
     const regionDropdown = document.getElementById('region_id');
     const options = regionDropdown.options;
 
-    // Reset region dropdown
+
     for (let i = 0; i < options.length; i++) {
         const option = options[i];
-        // Show/hide based on countryId
+
         if (option.dataset.chained === countryId || option.value === "") {
             option.style.display = "";
         } else {
@@ -490,7 +490,6 @@ function filterRegions(countryId) {
         }
     }
 
-    // Reset selected value
     regionDropdown.value = "";
 }
 </script>
