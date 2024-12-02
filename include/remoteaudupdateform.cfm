@@ -312,6 +312,7 @@
                 </select>
             </div>
         </div>
+        </div>
 
         <script>
             document.getElementById('populateFieldsButton').addEventListener('click', function() {
