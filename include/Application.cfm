@@ -27,8 +27,11 @@
 <cfif structKeyExists(variables, "userid")>
     <cfscript>
     session.userid = userid;
-      application.baseMediaPath = "C:\home\theactorsoffice.com\media-" & datasourceName;
+
+        application.baseMediaPath = "C:\home\theactorsoffice.com\media-" & datasourceName;
         application.baseMediaUrl = "/media-" & datasourceName;
+
+        defaultAvatarPath = application.imagesPath & "\defaults\avatar.jpg";
 
         application.imagesPath = application.baseMediaPath & "\images";
         application.imagesUrl = application.baseMediaUrl & "/images";
