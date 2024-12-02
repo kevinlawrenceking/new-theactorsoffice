@@ -442,13 +442,13 @@
 <cffunction output="false" name="UPDcontactdetails_23861" access="public" returntype="void">
     <cfargument name="idList" type="string" required="true">
     <!--- Ensure the idList is sanitized --->
-    <cfset var sanitizedIdList = ListQualify(arguments.idList, "'", ",")>
+
 
     <!--- Update query --->
     <cfquery name="queryResult">
         UPDATE contactdetails_tbl
         SET isdeleted = 1
-        WHERE contactid IN (#sanitizedIdList#)
+        WHERE contactid IN (#idList#)
     </cfquery>
 </cffunction>
 
