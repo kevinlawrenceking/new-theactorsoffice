@@ -1,6 +1,6 @@
 <cfcomponent displayname="CountryService" hint="Handles operations for Country table" > 
 <cffunction output="false" name="SELcountries" access="public" returntype="query">
-    <cfargument name="countryid" type="numeric" required="true">
+    <cfargument name="countryid" type="string" required="true">
     
     
     
