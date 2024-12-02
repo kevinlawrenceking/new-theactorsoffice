@@ -276,6 +276,8 @@
         <div class="invalid-feedback">Please enter an extended address.</div>
     </div>
 
+    <div class="row">
+
     <div class="form-group col-md-6">
         <label for="valuetext">Town/City</label>
         <input class="form-control" type="text" id="audcity" name="new_audcity" value="#aud_det.audcity#" placeholder="Enter City">
@@ -284,6 +286,8 @@
     <div class="form-group col-md-6">
         <label for="valuetext">Postal Code</label>
         <input class="form-control" type="text" id="audzip" name="new_audzip" value="#aud_det.audzip#" placeholder="Enter Postal Code">
+    </div>
+
     </div>
 </cfoutput>
     <!-- State/Region -->
