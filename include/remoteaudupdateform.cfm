@@ -296,7 +296,7 @@
         <select id="region_id" name="new_region_id" class="form-control">
             <option value="">--</option>
             <cfloop query="regions"><cfoutput>
-                <option value="#regions.region_id#" data-chained="#regions.countryid#" <cfif regions.region_id is new_region_id>selected</cfif>>#regions.regionname#</option>
+                <option value="#regions.region_id#" data-chained="#regions.countryid#" <cfif #regions.region_id# is "#new_region_id#">selected</cfif>>#regions.regionname#</option>
             </cfoutput></cfloop>
         </select>
     </div>
@@ -307,7 +307,7 @@
         <select id="countryid" class="form-control" name="countryid" data-parsley-required data-parsley-error-message="Country is required">
             <option value="">--</option>
             <cfloop query="countries"><cfoutput>
-                <option value="#countries.countryid#" <cfif countries.countryid is new_countryid>selected</cfif>>#countries.countryname#</option>
+                <option value="#countries.countryid#" <cfif #countries.countryid# is "#new_countryid#">selected</cfif>>#countries.countryname#</option>
            </cfoutput> </cfloop>
         </select>
     </div>
