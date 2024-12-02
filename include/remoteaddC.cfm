@@ -147,7 +147,7 @@
 
             <!--- Now, use the countries and regions queries in your form --->
             <div class="form-group col-md-6">
-                <label for="countryid">Country<span class="text-danger">*</span></label>
+                <label for="countryid">Country <cfoutput>[#new_countryid#]</cfoutput><span class="text-danger">*</span></label>
                 <select id="countryid" class="form-control" name="countryid" data-parsley-required 
                         data-parsley-error-message="Country is required">
                     <option value="">--</option>
