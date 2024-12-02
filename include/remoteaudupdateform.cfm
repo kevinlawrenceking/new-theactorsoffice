@@ -304,7 +304,7 @@
     <!-- Country -->
     <div class="form-group col-md-6">
         <label for="countryid">Country <cfoutput>(#new_countryid#)</cfoutput><span class="text-danger">*</span></label>
-        <select id="countryid" class="form-control" name="countryid" data-parsley-required data-parsley-error-message="Country is required">
+        <select id="countryid" class="form-control" name="countryid" data-parsley-required data-parsley-error-message="Country is required"  onchange="filterRegions(this.value)">
             <option value="">--</option>
             <cfloop query="countries"><cfoutput>
                 <option value="#countries.countryid#" <cfif #countries.countryid# is "#new_countryid#">selected</cfif>>#countries.countryname#</option>
@@ -473,4 +473,24 @@
             });
         }
     });
+</script>
+<script>
+function filterRegions(countryId) {
+    const regionDropdown = document.getElementById('region_id');
+    const options = regionDropdown.options;
+
+    // Reset region dropdown
+    for (let i = 0; i < options.length; i++) {
+        const option = options[i];
+        // Show/hide based on countryId
+        if (option.dataset.chained === countryId || option.value === "") {
+            option.style.display = "";
+        } else {
+            option.style.display = "none";
+        }
+    }
+
+    // Reset selected value
+    regionDropdown.value = "";
+}
 </script>
