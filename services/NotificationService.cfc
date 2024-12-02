@@ -180,6 +180,49 @@
     <cfreturn result>
 </cffunction>
 
+<cffunction name="INSfunotifications_23941" access="public" returntype="struct" output="false" hint="Adds a notification to the database">
+        <cfargument name="new_actionid" type="numeric" required="true" hint="The action ID for the notification">
+        <cfargument name="new_userid" type="numeric" required="true" hint="The ID of the user">
+        <cfargument name="NewSuid" type="numeric" required="true" hint="The suID for the notification">
+        <cfargument name="notstartdate" type="date" required="true" hint="The start date of the notification">
+        <cfargument name="sunotes" type="string" required="true" hint="Notes">
+
+        <cfquery  name="addNotificationQuery" result="result">
+            INSERT INTO funotifications (actionid, userid, suID, notstartdate, notstatus, notNotes)
+            VALUES (
+                <cfqueryparam value="#arguments.actionID#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.suID#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#DateFormat(arguments.notStartDate, 'yyyy-mm-dd')#" cfsqltype="CF_SQL_DATE">,
+                <cfqueryparam value="Pending" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.sunotes#" cfsqltype="CF_SQL_VARCHAR">
+            )
+        </cfquery>
+
+        <cfreturn result.generatedKey>
+    </cffunction>
+
+    <cffunction name="INSfunotifications_23940" access="public" returntype="struct" output="false" hint="Adds a notification to the database">
+        <cfargument name="new_actionid" type="numeric" required="true" hint="The action ID for the notification">
+        <cfargument name="new_userid" type="numeric" required="true" hint="The ID of the user">
+        <cfargument name="NewSuid" type="numeric" required="true" hint="The suID for the notification">
+        <cfargument name="notstartdate" type="date" required="true" hint="The start date of the notification">
+        <cfargument name="sunotes" type="string" required="true" hint="Notes">
+
+        <cfquery  name="addNotificationQuery" result="result">
+            INSERT INTO funotifications (actionid, userid, suID, notstartdate, notNotes)
+            VALUES (
+                <cfqueryparam value="#arguments.actionID#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.suID#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#DateFormat(arguments.notStartDate, 'yyyy-mm-dd')#" cfsqltype="CF_SQL_DATE">, 
+                <cfqueryparam value="#arguments.sunotes#" cfsqltype="CF_SQL_VARCHAR">
+            )
+        </cfquery>
+
+        <cfreturn result.generatedKey>
+    </cffunction>
+
 
 <cffunction name="INSfunotifications" access="public" returntype="struct" output="false" hint="Adds a notification to the database">
         <cfargument name="actionID" type="numeric" required="true" hint="The action ID for the notification">
