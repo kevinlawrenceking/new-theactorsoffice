@@ -26,8 +26,8 @@
 
 <cfif structKeyExists(variables, "userid")>
     <cfscript>
-      application.baseMediaPath = "C:\home\theactorsoffice.com\media-" & datasource;
-        application.baseMediaUrl = "/media-" & datasource;
+      application.baseMediaPath = "C:\home\theactorsoffice.com\media-" & datasourceName;
+        application.baseMediaUrl = "/media-" & datasourceName;
 
         application.imagesPath = application.baseMediaPath & "\images";
         application.imagesUrl = application.baseMediaUrl & "/images";
