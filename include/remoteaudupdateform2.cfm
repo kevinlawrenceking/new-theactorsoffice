@@ -2,7 +2,7 @@
 
 <cfparam name="NEW_AUDBOOKTYPEID" default="0" />
 <cfparam name="essence" default="" />
-
+<cfoutput>#new_region_id#</cfoutput><cfabort>
 <!--- Include the initial query for finding records --->
 <cfinclude template="/include/qry/FIND_222_1.cfm" />
 
