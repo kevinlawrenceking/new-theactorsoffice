@@ -7,7 +7,7 @@
     <cfquery name="result">
         SELECT countryid, countryname
         FROM countries
-        WHERE countryid = <cfqueryparam value="#arguments.countryid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE countryid = <cfqueryparam value="#arguments.countryid#" cfsqltype="CF_SQL_VARCHAR">
     </cfquery>
     
     <cfreturn result>
