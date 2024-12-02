@@ -190,9 +190,9 @@
         <cfquery  name="addNotificationQuery" result="result">
             INSERT INTO funotifications (actionid, userid, suID, notstartdate, notstatus, notNotes)
             VALUES (
-                <cfqueryparam value="#arguments.actionID#" cfsqltype="CF_SQL_INTEGER">,
-                <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">,
-                <cfqueryparam value="#arguments.suID#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.new_actionid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.new_userid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.NewSuid#" cfsqltype="CF_SQL_INTEGER">,
                 <cfqueryparam value="#DateFormat(arguments.notStartDate, 'yyyy-mm-dd')#" cfsqltype="CF_SQL_DATE">,
                 <cfqueryparam value="Pending" cfsqltype="CF_SQL_VARCHAR">,
                 <cfqueryparam value="#arguments.sunotes#" cfsqltype="CF_SQL_VARCHAR">
@@ -212,9 +212,9 @@
         <cfquery  name="addNotificationQuery" result="result">
             INSERT INTO funotifications (actionid, userid, suID, notstartdate, notNotes)
             VALUES (
-                <cfqueryparam value="#arguments.actionID#" cfsqltype="CF_SQL_INTEGER">,
-                <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">,
-                <cfqueryparam value="#arguments.suID#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.new_actionid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.new_userid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.NewSuid#" cfsqltype="CF_SQL_INTEGER">,
                 <cfqueryparam value="#DateFormat(arguments.notStartDate, 'yyyy-mm-dd')#" cfsqltype="CF_SQL_DATE">, 
                 <cfqueryparam value="#arguments.sunotes#" cfsqltype="CF_SQL_VARCHAR">
             )
