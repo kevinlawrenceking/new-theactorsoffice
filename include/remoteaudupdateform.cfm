@@ -293,16 +293,21 @@
     </div>
 </cfoutput>
     <div class="row">
-    <div class="form-group col-md-6">
-        <label for="region_id">State/Region<span class="text-danger">*</span></label>
-        <select id="region_id" name="new_region_id" class="form-control">
-            <cfoutput><option value="#new_region_id#">#new_regionname#</option></cfoutput>
-            <cfloop query="regions"><cfoutput>
-           
-        <option value="#regions.region_id#" data-chained="#regions.countryid#">#regions.regionname#</option>
-        </cfoutput></cfloop>
-        </select>
-    </div>
+<select id="region_id" name="new_region_id" class="form-control">
+    <cfif len(new_region_id)>
+        <cfoutput>
+            <option value="#new_region_id#">#new_regionname#</option>
+        </cfoutput>
+    </cfif>
+    <cfloop query="regions">
+        <cfoutput>
+            <option value="#regions.region_id#" data-chained="#regions.countryid#">
+                #regions.regionname#
+            </option>
+        </cfoutput>
+    </cfloop>
+</select>
+
 
     <!-- Country -->
     <div class="form-group col-md-6">
