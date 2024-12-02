@@ -26,6 +26,35 @@
 
 <cfif structKeyExists(variables, "userid")>
     <cfscript>
+      application.baseMediaPath = "C:\home\theactorsoffice.com\media-" & this.datasource;
+        application.baseMediaUrl = "/media-" & this.datasource;
+
+        application.imagesPath = application.baseMediaPath & "\images";
+        application.imagesUrl = application.baseMediaUrl & "/images";
+
+        application.datesPath = application.imagesPath & "\dates";
+        application.datesUrl = application.imagesUrl & "/dates";
+
+        application.defaultsPath = application.imagesPath & "\defaults";
+        application.defaultsUrl = application.imagesUrl & "/defaults";
+
+        application.defaultAvatarUrl = application.defaultsUrl & "/avatar.jpg";
+
+        application.emailImagesPath = application.imagesPath & "\email";
+        application.emailImagesUrl = application.imagesUrl & "/email";
+
+        application.filetypesPath = application.imagesPath & "\filetypes";
+        application.filetypesUrl = application.imagesUrl & "/filetypes";
+
+        application.retinaIconsPath = application.imagesPath & "\retina-circular-icons";
+        application.retinaIconsUrl = application.imagesUrl & "/retina-circular-icons";
+
+        application.retinaIcons14Path = application.retinaIconsPath & "\14";
+        application.retinaIcons14Url = application.retinaIconsUrl & "/14";
+
+        application.retinaIcons32Path = application.retinaIconsPath & "\32";
+        application.retinaIcons32Url = application.retinaIconsUrl & "/32";
+        
         session.userMediaPath = application.baseMediaPath & "\users\" & session.userID;
         session.userMediaUrl = application.baseMediaUrl & "/users/" & session.userID;
 
