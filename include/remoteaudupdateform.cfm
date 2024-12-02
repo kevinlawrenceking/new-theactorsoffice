@@ -234,81 +234,78 @@
                 </select>
             </div>
         </cfif>
+<div id="hiddenLocation">
+    <div class="form-group col-md-12">
+        <label for="new_parkingDetails">Parking Details</label>
+        <input class="form-control" type="text" id="new_parkingDetails" autocomplete="off" value="#aud_det.parkingDetails#" name="new_parkingDetails" placeholder="Parking details">
+    </div>
 
-       <div id="hiddenLocation">
-    <cfoutput>
-        <div class="form-group col-md-12">
-            <label for="new_parkingDetails">Parking Details</label>
-            <input class="form-control" type="text" id="new_parkingDetails" autocomplete="off" value="#aud_det.parkingDetails#" name="new_parkingDetails" placeholder="Parking details">
-        </div>
-
-        <div class="form-group col-md-12">
-            <div class="custom-group custom-checkbox">
-                <div style="margin-left:25px;">
-                    <label class="custom-control-label">
-                        <input type="checkbox" name="new_trackmileage" class="custom-control-input" id="trackmileage" value="1" <cfif #aud_det.trackmileage# is "1"> checked </cfif>>
-                        <span class="custom-control-label" for="trackmileage">Track Mileage</span>
-                    </label>
-                </div>
+    <div class="form-group col-md-12">
+        <div class="custom-group custom-checkbox">
+            <div style="margin-left:25px;">
+                <label class="custom-control-label">
+                    <input type="checkbox" name="new_trackmileage" class="custom-control-input" id="trackmileage" value="1" <cfif aud_det.trackmileage is "1"> checked </cfif>>
+                    <span class="custom-control-label" for="trackmileage">Track Mileage</span>
+                </label>
             </div>
         </div>
+    </div>
 
-        <div class="form-group col-md-12 d-flex align-items-center">
-            <label for="projName" class="flex-grow-1">Location Name<span class="text-danger">*</span></label>
-            <cfif locationDetails.recordcount NEQ 0>
-                <button type="button" class="btn btn-primary btn-xs ml-auto" id="populateFieldsButton">Same</button>
-            </cfif>
-        </div>
+    <div class="form-group col-md-12 d-flex align-items-center">
+        <label for="projName" class="flex-grow-1">Location Name<span class="text-danger">*</span></label>
+        <cfif locationDetails.recordcount NEQ 0>
+            <button type="button" class="btn btn-primary btn-xs ml-auto" id="populateFieldsButton">Same</button>
+        </cfif>
+    </div>
 
-        <div class="form-group col-md-12">
-            <input class="form-control" type="text" id="eventLocation" name="new_eventLocation" value="#aud_det.eventLocation#" placeholder="Location Name" required data-parsley-required data-parsley-error-message="Location Name is required">
-            <div class="invalid-feedback">Please enter a Location Name.</div>
-        </div>
+    <div class="form-group col-md-12">
+        <input class="form-control" type="text" id="eventLocation" name="new_eventLocation" value="#aud_det.eventLocation#" placeholder="Location Name" required data-parsley-required data-parsley-error-message="Location Name is required">
+        <div class="invalid-feedback">Please enter a Location Name.</div>
+    </div>
 
-        <div class="form-group col-md-12">
-            <label for="projName">Address</label>
-            <input class="form-control" type="text" id="audlocadd1" name="new_audlocadd1" value="#aud_det.audlocadd1#" placeholder="Address">
-            <div class="invalid-feedback">Please enter an address.</div>
-        </div>
+    <div class="form-group col-md-12">
+        <label for="projName">Address</label>
+        <input class="form-control" type="text" id="audlocadd1" name="new_audlocadd1" value="#aud_det.audlocadd1#" placeholder="Address">
+        <div class="invalid-feedback">Please enter an address.</div>
+    </div>
 
-        <div class="form-group col-md-12">
-            <label for="projName">Extended Address</label>
-            <input class="form-control" type="text" id="audlocadd2" name="new_audlocadd2" value="#aud_det.audlocadd2#" placeholder="APT 101">
-            <div class="invalid-feedback">Please enter an extended address.</div>
-        </div>
+    <div class="form-group col-md-12">
+        <label for="projName">Extended Address</label>
+        <input class="form-control" type="text" id="audlocadd2" name="new_audlocadd2" value="#aud_det.audlocadd2#" placeholder="APT 101">
+        <div class="invalid-feedback">Please enter an extended address.</div>
+    </div>
 
-        <div class="form-group col-md-6">
-            <label for="valuetext">Town/City</label>
-            <input class="form-control" type="text" id="audcity" name="new_audcity" value="#aud_det.audcity#" placeholder="Enter City">
-        </div>
+    <div class="form-group col-md-6">
+        <label for="valuetext">Town/City</label>
+        <input class="form-control" type="text" id="audcity" name="new_audcity" value="#aud_det.audcity#" placeholder="Enter City">
+    </div>
 
-        <div class="form-group col-md-6">
-            <label for="valuetext">Postal Code</label>
-            <input class="form-control" type="text" id="audzip" name="new_audzip" value="#aud_det.audzip#" placeholder="Enter Postal Code">
-        </div>
+    <div class="form-group col-md-6">
+        <label for="valuetext">Postal Code</label>
+        <input class="form-control" type="text" id="audzip" name="new_audzip" value="#aud_det.audzip#" placeholder="Enter Postal Code">
+    </div>
 
-        <!-- State/Region -->
-        <div class="form-group col-md-6">
-            <label for="region_id">State/Region<span class="text-danger">*</span></label>
-            <select id="region_id" name="new_region_id" class="form-control">
-                <option value="">--</option>
-                <cfoutput query="regions">
-                    <option value="#regions.region_id#" data-chained="#regions.countryid#" <cfif #regions.region_id# is "#new_region_id#">selected</cfif>>#regions.regionname#</option>
-                </cfoutput>
-            </select>
-        </div>
+    <!-- State/Region -->
+    <div class="form-group col-md-6">
+        <label for="region_id">State/Region<span class="text-danger">*</span></label>
+        <select id="region_id" name="new_region_id" class="form-control">
+            <option value="">--</option>
+            <cfloop query="regions">
+                <option value="#regions.region_id#" data-chained="#regions.countryid#" <cfif regions.region_id is new_region_id>selected</cfif>>#regions.regionname#</option>
+            </cfloop>
+        </select>
+    </div>
 
-        <!-- Country -->
-        <div class="form-group col-md-6">
-            <label for="countryid">Country<span class="text-danger">*</span></label>
-            <select id="countryid" class="form-control" name="countryid" data-parsley-required data-parsley-error-message="Country is required">
-                <option value="">--</option>
-                <cfoutput query="countries">
-                    <option value="#countries.countryid#" <cfif #countries.countryid# is "#new_countryid#">selected</cfif>>#countries.countryname#</option>
-                </cfoutput>
-            </select>
-        </div>
-    </cfoutput>
+    <!-- Country -->
+    <div class="form-group col-md-6">
+        <label for="countryid">Country<span class="text-danger">*</span></label>
+        <select id="countryid" class="form-control" name="countryid" data-parsley-required data-parsley-error-message="Country is required">
+            <option value="">--</option>
+            <cfloop query="countries">
+                <option value="#countries.countryid#" <cfif countries.countryid is new_countryid>selected</cfif>>#countries.countryname#</option>
+            </cfloop>
+        </select>
+    </div>
 </div>
 
 
