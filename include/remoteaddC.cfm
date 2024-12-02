@@ -97,7 +97,11 @@
     <label for="valuetext">#details.recordname#<span class="text-danger">*</span></label>
     <input 
         class="form-control" 
+         <cfif new_catid eq "4">
+         type="url"
+         <cfelse>
         type="#valuefieldtype#" 
+        </cfif>
         placeholder="#placeholder#" 
         id="valuetext" 
         value="#valuetext#" 
