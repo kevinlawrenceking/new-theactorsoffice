@@ -437,52 +437,21 @@
             </cfif>
             ORDER BY contactid
         </cfquery>
-        
-        
-            
-            
-        
-    
-
     <cfreturn result>
 </cffunction>
 <cffunction output="false" name="UPDcontactdetails_23861" access="public" returntype="void">
-    <cfargument name="idList" type="array" required="true">
+    <cfargument name="idList" type="string" required="true">
+    <!--- Ensure the idList is sanitized --->
+    <cfset var sanitizedIdList = ListQualify(arguments.idList, "'", ",")>
 
-    <cfset var queryResult = "">
-    <cfset var sql = "">
-    <cfset var idParams = "">
-
-    
-        <!--- Build the SQL query dynamically --->
-        <cfset sql = "UPDATE contactdetails_tbl SET isdeleted = 1 WHERE contactid IN (">
-        
-        <!--- Loop through the idList to create parameterized placeholders --->
-        <cfloop from="1" to="#arrayLen(arguments.idList)#" index="i">
-            <cfif i gt 1>
-                <cfset sql = sql & ", ">
-            </cfif>
-            <cfset sql = sql & "?">
-        </cfloop>
-        
-        <cfset sql = sql & ")">
-
-        <!--- Execute the query with parameterized inputs --->
-        <cfquery result="result" name="queryResult" >
-            #sql#
-            <cfloop array="#arguments.idList#" index="id">
-                <cfqueryparam value="#id#" cfsqltype="CF_SQL_INTEGER">
-            </cfloop>
-        </cfquery>
-
-    
-        <!--- Log error details --->
-        
-        <!--- Re-throw the error to handle it at a higher level if needed --->
-        
-    
-    
+    <!--- Update query --->
+    <cfquery name="queryResult">
+        UPDATE contactdetails_tbl
+        SET isdeleted = 1
+        WHERE contactid IN (#sanitizedIdList#)
+    </cfquery>
 </cffunction>
+
 <cffunction output="false" name="SELcontactdetails_23888" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     <cfargument name="idList" type="string" required="true">
