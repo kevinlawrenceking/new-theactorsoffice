@@ -180,7 +180,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="INSfunotifications_23941" access="public" returntype="struct" output="false" hint="Adds a notification to the database">
+<cffunction name="INSfunotifications_23941" access="public" returntype="numeric" output="false" hint="Adds a notification to the database">
         <cfargument name="new_actionid" type="numeric" required="true" hint="The action ID for the notification">
         <cfargument name="new_userid" type="numeric" required="true" hint="The ID of the user">
         <cfargument name="NewSuid" type="numeric" required="true" hint="The suID for the notification">
@@ -202,7 +202,7 @@
         <cfreturn result.generatedKey>
     </cffunction>
 
-    <cffunction name="INSfunotifications_23940" access="public" returntype="struct" output="false" hint="Adds a notification to the database">
+    <cffunction name="INSfunotifications_23940" access="public" returntype="numeric" output="false" hint="Adds a notification to the database">
         <cfargument name="new_actionid" type="numeric" required="true" hint="The action ID for the notification">
         <cfargument name="new_userid" type="numeric" required="true" hint="The ID of the user">
         <cfargument name="NewSuid" type="numeric" required="true" hint="The suID for the notification">
