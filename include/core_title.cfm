@@ -11,7 +11,7 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="/app/#compDir#">
+                   <cfoutput> <a href="/app/#compDir#"></cfoutput>
                         <cfoutput>#compName#</cfoutput>
                     </a>
                 </li>
