@@ -213,7 +213,7 @@
 
         <div class="form-group col-md-6">
             <label for="audtypeid">Type<span class="text-danger">*</span></label>
-            <select id="audtypeid" name="new_audtypeid" class="form-control" data-parsley-required data-parsley-error-message="Type is required">
+            <select id="audtypeid" name="new_audtypeid" class="form-control" data-parsley-required data-parsley-error-message="Type is required"  data-parsley-error-message="Type is required" onChange="handleSelectChange(this);">
                 <option value="">--</option>
                 <cfoutput query="audtypes_sel">
                     <option value="#audtypes_sel.id#" <cfif #audtypes_sel.id# is "#aud_det.audtypeid#"> selected </cfif>>#audtypes_sel.name#</option>
