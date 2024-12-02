@@ -19,6 +19,7 @@
     applicationtimeout="#createTimeSpan(1, 0, 0, 0)#" 
     sessiontimeout="#createTimeSpan(0, 1, 0, 0)#" 
     datasource="#datasourceName#"
+     this.datasource="#datasourceName#"
     setclientcookies="true"
 >
 
@@ -54,7 +55,7 @@
 
         application.retinaIcons32Path = application.retinaIconsPath & "\32";
         application.retinaIcons32Url = application.retinaIconsUrl & "/32";
-        
+
         session.userMediaPath = application.baseMediaPath & "\users\" & session.userID;
         session.userMediaUrl = application.baseMediaUrl & "/users/" & session.userID;
 
