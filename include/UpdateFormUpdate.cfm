@@ -85,8 +85,12 @@
                 <cfset oldvalue = "NULL" />
             </cfif>
 
-            <cfif "#newvalue#" is "">
+       <cfif "#newvalue#" is "">
+            <cfif RPGUpdate.updatetype is "delete">
+            <cfset newvalue = 0 />
+            <cfelse>
                 <cfset newvalue = "NULL" />
+                </cfif>
             </cfif>
             
             <cfset updatedetails = "<span style='color: ##406E8E;font-weight:400;'>#oldvalue#</span> to <span style='color: ##406E8E;font-weight:400;'>#newvalue#</span>" />
