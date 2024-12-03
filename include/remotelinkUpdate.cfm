@@ -2,7 +2,7 @@
 <cfif NOT structKeyExists(variables, "new_id") OR len(trim(new_id)) EQ 0>
     <cfset new_id = id>
 </cfif>
-
+<cfoutput>#new_id#<cfabort></cfoutput>
 <cfset siteLinksService = createObject("component", "services.SiteLinksService")>
 <cfset linkDetails = siteLinksService.getLinkDetailsById(linkid=new_id)> 
 <cfparam name="target" default="myaccount" />
