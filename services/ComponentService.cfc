@@ -1,32 +1,24 @@
 <cfcomponent displayname="ComponentService" hint="Handles operations for Component table" > 
+
 <cffunction output="false" name="SELpgcomps" access="public" returntype="query">
-    <cfargument name="menuYN" type="string" required="true">
-    <cfargument name="compOwner" type="string" required="true">
-    <cfargument name="appid" type="string" required="true">
 
-    
- 
-        <cfquery name="result">
-            SELECT 
-                c.compID, 
-                c.compName, 
-                c.compIcon, 
-                c.compOwner, 
-                c.menuYN, 
-                c.compDir, 
-                c.menuOrder 
-            FROM 
-                pgcomps c 
-            WHERE 
-                c.menuYN = <cfqueryparam value="#arguments.menuYN#" cfsqltype="CF_SQL_CHAR"> 
-                AND c.compOwner = <cfqueryparam value="#arguments.compOwner#" cfsqltype="CF_SQL_CHAR"> 
-            AND c.appid IN (<cfqueryparam value="#arguments.appid#" cfsqltype="CF_SQL_VARCHAR">) 
+ <cfquery name="result">
+ SELECT
+c.compID
+,c.compName
+,c.compIcon
+,c.compOwner
+,c.menuYN
+,c.compDir
+,c.menuOrder
+FROM pgcomps c
+WHERE c.menuYN = 'Y'
+and   compOwner = 'U' and c.appid <> 3
+ORDER BY c.menuOrder
+</cfquery>
 
-            ORDER BY 
-                c.menuOrder
-        </cfquery>
+<cfreturn result>
 
-    <cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="getPgComps" access="public" returntype="query">

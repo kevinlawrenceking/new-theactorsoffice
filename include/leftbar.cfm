@@ -41,6 +41,8 @@
 
                 </Cfoutput>
 
+                <!---
+
                            <li>
                         <a href="/app/auditions/">
                             <i data-feather="<i data-feather="film"></i>
@@ -48,7 +50,7 @@
                         </a>
                     </li>
 
-
+--->
                 <cfif #userrole# is "Administrator">
 
  

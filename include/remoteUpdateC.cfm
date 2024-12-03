@@ -82,7 +82,7 @@
                     <cfset minlength = "3">
                 </cfif>
                 <cfif new_catid is "5">
-                    <cfset minlength = "14">
+                    <cfset minlength = "8">
                 </cfif>
 
       <div class="form-group col-md-12">
