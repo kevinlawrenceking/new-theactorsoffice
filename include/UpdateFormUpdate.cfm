@@ -6,6 +6,7 @@
 <cfparam name="Recordname" default="" />
 <cfparam name="NewValue" default="" />
 <cfparam name="updatename" default="" />
+<cfparam name="updateusername" default="" />
 <cfparam name="recid" default="0" />
 <cfparam name="updatedetails" default="" />
 <cfparam name="loginname" default="" />
