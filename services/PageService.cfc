@@ -1,4 +1,45 @@
 <cfcomponent displayname="PageService" hint="Handles operations for Page table" > 
+
+<cffunction name="SELpgpages_24740" access="public" returntype="query" output="false">
+
+    <cfargument name="pgid" type="numeric" required="true">
+    
+
+    <cfquery name="FindJoins" >
+        SELECT      
+            f.fname,
+            f2.fname AS fnameb,
+            c2.comptable AS comptableb,
+            c.comptable,
+            f2.fieldid,
+            f2.fkey,
+            CONCAT('t', f.fieldid) AS talias
+        FROM 
+            pgpages p
+        INNER JOIN 
+            pgcomps c ON c.compID = p.compID
+        INNER JOIN 
+            pgapps a ON a.appID = c.appid
+        INNER JOIN 
+            pgfields f ON f.pgid = p.pgid
+        LEFT JOIN 
+            pgfields f2 ON f.fkey = f2.fieldid
+        LEFT JOIN 
+            pgpages p2 ON p2.pgid = f2.pgid
+        LEFT JOIN 
+            pgcomps c2 ON c2.compid = p2.compid
+        WHERE 
+            p.pgid = <cfqueryparam value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER">
+            AND f.results_yn = 'Y' 
+            AND f.fkey <> ''
+    </cfquery>
+
+    <!--- Return the query result --->
+    <cfreturn FindJoins>
+</cffunction>
+
+
+
 <cffunction output="false" name="SELpgpages" access="public" returntype="query">
     <cfargument name="ticketActive" type="string" required="true">
     <cfset var queryResult = "">
