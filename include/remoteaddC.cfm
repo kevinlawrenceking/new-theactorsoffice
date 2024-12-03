@@ -97,7 +97,7 @@
     <label for="valuetext">#details.recordname#<span class="text-danger">*</span></label>
     <input 
         class="form-control" 
-        type="#valuefieldtype#" 
+        type="<cfif new_catid eq '4' or new_catid eq '5'>url<cfelse>#valuefieldtype#</cfif>" 
         placeholder="#placeholder#" 
         id="valuetext" 
         value="#valuetext#" 
@@ -105,7 +105,7 @@
         data-parsley-maxlength="800"  
         data-parsley-required="true"
         data-parsley-maxlength-message="Max length 800 characters"
-        <cfif new_catid eq "4">
+        <cfif new_catid eq "4" or new_catid eq "5">
             data-parsley-type="url"
             data-parsley-pattern="^(?!.*@).*$"
             data-parsley-pattern-message="Please enter a valid URL without '@'"
