@@ -21,7 +21,7 @@ ORDER BY c.menuOrder
 
 </cffunction>
 
-<cffunction output="false" name="mennuItemsA" access="public" returntype="query">
+<cffunction output="false" name="menuItemsA" access="public" returntype="query">
 
  <cfquery name="result">
  SELECT
@@ -44,7 +44,7 @@ ORDER BY c.menuOrder
 </cffunction>
 
 
-<cffunction output="false" name="mennuItemsAud" access="public" returntype="query">
+<cffunction output="false" name="menuItemsAud" access="public" returntype="query">
 
  <cfquery name="result">
  SELECT
