@@ -15,6 +15,10 @@
         <input type="hidden" name="new_iscustom" value="#linkDetails.iscustom#">
         <input type="hidden" name="userid" value="#userid#">
         <input type="hidden" name="target" value="#target#">
+    
+<cfif linkDetails.iscustom is "0">
+          <input type="hidden" name="new_siteName" value="#linkDetails.sitename#">
+          </cfif>
     </cfoutput>
 
     <div class="row">
