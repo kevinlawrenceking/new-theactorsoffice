@@ -683,7 +683,7 @@
         <cffile action="copy" 
                 source="#application.defaultAvatarUrl#" 
                 destination="#avatar_path#" 
-                overwrite="true">
+               >
     <cfcatch type="any">
         <!--- Log or handle the error --->
         <cfset application.errorLog = "Failed to copy default avatar: " & cfcatch.message>
