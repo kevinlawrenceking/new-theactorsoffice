@@ -50,7 +50,7 @@
             $(document).ready(function() {
                 $("##updatelink_#mylinks.id#").on("show.bs.modal", function(event) {
                     <!--- Load the HTML for updating a link into the modal body --->
-                    $(this).find(".modal-body").load("/include/remotelinkUpdate.cfm?id=#mylinks.id#");
+                    $(this).find(".modal-body").load("/include/remotelinkUpdate.cfm?new_id=#mylinks.id#");
                 });
             });
         </script>
