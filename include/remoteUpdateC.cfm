@@ -85,10 +85,30 @@
                     <cfset minlength = "14">
                 </cfif>
 
-                <div class="form-group col-md-12">
-                    <label for="valuefieldtype">#details.recordname#<span class="text-danger">*</span></label>
-                    <input class="form-control" type="#valuefieldtype#" id="valuetext" name="valuetext" value="#details.valuetext#" data-parsley-required="true" data-parsley-minlength="#minlength#" data-parsley-minlength-message="Min length #minlength# characters" data-parsley-maxlength="800" data-parsley-maxlength-message="Max length 800 characters" data-parsley-required data-parsley-error-message="Valid #details.recordname# is required" placeholder="Enter #details.recordname#">
-                </div>
+      <div class="form-group col-md-12">
+    <label for="valuefieldtype">#details.recordname#<span class="text-danger">*</span></label>
+    <input 
+        class="form-control" 
+        type="<cfif details.catid eq '4' or details.catid eq '5'>url<cfelse>#valuefieldtype#</cfif>" 
+        id="valuetext" 
+        name="valuetext" 
+        value="#details.valuetext#" 
+        data-parsley-maxlength="800" 
+        data-parsley-required="true" 
+        data-parsley-minlength="#minlength#"
+        data-parsley-minlength-message="Min length #minlength# characters"
+        data-parsley-maxlength-message="Max length 800 characters" 
+        data-parsley-error-message="Valid #details.recordname# is required"
+        placeholder="Enter #details.recordname#"
+        <cfif details.catid eq "4" or details.catid eq "5">
+            data-parsley-type="url"
+            data-parsley-pattern="^(?!.*@).*$"
+            data-parsley-pattern-message="Please enter a valid URL without '@'"
+            data-parsley-type-message="Please enter a valid URL starting with http or https"
+        </cfif>
+    >
+</div>
+
             </cfoutput>
         </cfif>
 
