@@ -4,6 +4,11 @@
 <cfset linkDetails = siteLinksService.getLinkDetailsById(linkid=new_id)> 
 <cfparam name="target" default="myaccount" />
 
+<cfif NOT structKeyExists(variables, "new_id") OR len(trim(new_id)) EQ 0>
+    <cfset new_id = id>
+</cfif>
+
+
 <form action="/include/remotelinkUpdateUpdate.cfm" method="post" class="parsley-examples" 
       data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" 
       data-parsley-trigger="keyup" data-parsley-validate id="actinglinks_update">
