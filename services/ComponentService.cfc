@@ -21,6 +21,51 @@ ORDER BY c.menuOrder
 
 </cffunction>
 
+<cffunction output="false" name="mennuItemsA" access="public" returntype="query">
+
+ <cfquery name="result">
+ SELECT
+
+c.compID
+,c.compName
+,c.compIcon
+,c.compOwner
+,c.menuYN
+,c.compDir
+,c.menuOrder
+FROM pgcomps c
+WHERE c.menuYN = 'Y'
+    and compOwner = 'A'  and c.appid <> 3
+ORDER BY c.menuOrder
+</cfquery>
+
+<cfreturn result>
+
+</cffunction>
+
+
+<cffunction output="false" name="mennuItemsAud" access="public" returntype="query">
+
+ <cfquery name="result">
+ SELECT
+
+c.compID
+,c.compName
+,c.compIcon
+,c.compOwner
+,c.menuYN
+,c.compDir
+,c.menuOrder
+FROM pgcomps c
+WHERE c.menuYN = 'Y'
+    and compOwner = 'A' and c.appid = 3
+ORDER BY c.menuOrder
+</cfquery>
+
+<cfreturn result>
+
+</cffunction>
+
 <cffunction output="false" name="getPgComps" access="public" returntype="query">
     <cfargument name="appID" type="numeric" required="true">
     <cfargument name="compOwner" type="string" required="true">
