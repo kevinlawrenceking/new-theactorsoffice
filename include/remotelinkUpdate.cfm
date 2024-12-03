@@ -1,7 +1,4 @@
 <!--- This ColdFusion page handles the update of remote link details, including custom and non-custom links. --->
-<cfif NOT structKeyExists(variables, "new_id") OR len(trim(new_id)) EQ 0>
-    <cfset new_id = id>
-</cfif>
 
 <cfset siteLinksService = createObject("component", "services.SiteLinksService")>
 <cfset linkDetails = siteLinksService.getLinkDetailsById(linkid=new_id)> 
