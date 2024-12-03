@@ -658,9 +658,46 @@
 <cfoutput>
                             
 
-<centeR><img src="#session.userContactsUrl#/#currentid#/avatar.jpg" 
-class="mr-3 rounded-circle gambar img-responsive img-thumbnail" style="max-width:180px;width:100%" alt="profile-image" 
-id="item-img-output" />     
+<centeR>
+
+<cfset contact_avatar = session.userContactsUrl & "/" & currentid & "/avatar.jpg">
+<cfset default_avatar = application.defaultAvatarUrl>
+<cfset avatar_path = session.userContactsPath & "/" & currentid & "/avatar.jpg"> <!--- Physical path --->
+
+<cfif NOT fileExists(avatar_path)>
+    <!--- Fallback to default avatar if the contact's avatar doesn't exist --->
+    <img src="#default_avatar#" 
+         class="mr-3 rounded-circle gambar img-responsive img-thumbnail" 
+         style="max-width:180px;width:100%" 
+         alt="profile-image" 
+         id="item-img-output" />
+    
+    <!--- Copy the default avatar to the user's contact folder --->
+    <cftry>
+        <!--- Ensure the directory exists --->
+        <cfif NOT directoryExists(session.userContactsPath & "/" & currentid)>
+            <cfdirectory action="create" directory="#session.userContactsPath & "/" & currentid#">
+        </cfif>
+        
+        <!--- Copy the default avatar to the user's contact directory --->
+        <cffile action="copy" 
+                source="#application.defaultAvatarUrl#" 
+                destination="#avatar_path#" 
+                overwrite="true">
+    <cfcatch type="any">
+        <!--- Log or handle the error --->
+        <cfset application.errorLog = "Failed to copy default avatar: " & cfcatch.message>
+    </cfcatch>
+    </cftry>
+<cfelse>
+    <!--- Display the contact's avatar if it exists --->
+    <img src="#contact_avatar#" 
+         class="mr-3 rounded-circle gambar img-responsive img-thumbnail" 
+         style="max-width:180px;width:100%" 
+         alt="profile-image" 
+         id="item-img-output" />
+</cfif>
+
 
  </centeR>
                             
