@@ -278,7 +278,10 @@
     </div>
 </form>
 
-
+<cfoutput>
+    select recordname as value, recordname as text from #RPgupdate.tableSelect# order by recordname
+</cfoutput>
+<cfabort>
 
 <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
