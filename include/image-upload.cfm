@@ -18,6 +18,13 @@
   <cfset cookie.uploadDir="#session.userAvatarPath#"/>
   <cfset cookie.return_url="/app/myaccount/"/>
 
+
+   <cfif isdefined('cookie.uploadDir')>
+            cookie.uploadDir: #cookie.uploadDir#<br />
+        </cfif>
+
+
+
 </cfoutput>
 
 <!--- Set picture size based on reference page ID --->
