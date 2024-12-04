@@ -691,7 +691,7 @@
     </cftry>
 <cfelse>
     <!--- Display the contact's avatar if it exists --->
-    <img src="#contact_avatar#" 
+    <img src="#contact_avatar#?rev=#rand()#" 
          class="mr-3 rounded-circle gambar img-responsive img-thumbnail" 
          style="max-width:180px;width:100%" 
          alt="profile-image" 
