@@ -26,8 +26,3 @@
     new_contactBirthday = isDate(new_contactBirthday) ? createODBCDate(new_contactBirthday) : "",
     new_Website = new_Website
 )>
-
-<cfset updateDatabase()>
-
-<cffunction name="updateDatabase" access="private" returntype="void">
-    <!--- Update database to set isfetch to 1 --->
