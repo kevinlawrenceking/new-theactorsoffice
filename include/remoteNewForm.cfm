@@ -175,7 +175,7 @@
         </div>
 
         <div class="form-group text-center">
-            <button class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="background-color: #406e8e; border: #406e8e;" type="submit">Add</button>
+            <button class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="background-color: ##406e8e; border: #406e8e;" type="submit">Add</button>
         </div>
     </form>
 
