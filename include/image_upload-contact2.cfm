@@ -3,13 +3,7 @@
 <cfset pictureImg = imageReadBase64(form.picturebase)>
 
 
-<!--- Save the image to the specified directory --->
-<cfimage 
-    source="#pictureImg#"
-    destination="#cookie.uploadDir_Contact#" 
-    overwrite="true"
-    action="write">
-</cfimage>
+
 
 <!--- Gather diagnostic information for email --->
 <cfoutput>
@@ -38,6 +32,8 @@
     </cfsavecontent>
 </cfoutput>
 
+<Cfoutput>diagnostics</cfoutput><cfabort>
+
 <!--- Send email with diagnostic information --->
 <cfmail 
     from="support@theactorsoffice.com" 
@@ -46,3 +42,10 @@
     type="HTML">
     <p>#diagnostics#</p>
 </cfmail>
+<!--- Save the image to the specified directory --->
+<cfimage 
+    source="#pictureImg#"
+    destination="#cookie.uploadDir_Contact#" 
+    overwrite="true"
+    action="write">
+</cfimage>
