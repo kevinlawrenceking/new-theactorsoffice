@@ -72,18 +72,18 @@ px;"></div>
     <button id="uploadbutton" class="btn upload-result btn-primary">Update</button>
     </div>
     </div>
-    <!--- JavaScript for handling Croppie and uploads --->
+ 
     <script>
     $(document).ready(function () {
     $('#cont').hide();
     $('#uploadbutton').hide();
-    //--- Function to show the upload button ---//
+
     function showButton() {
     $('#uploadbutton')
     .attr('disabled', false)
     .show();
     }
-    //--- Change event for file input ---//
+
     $('input:file').change(function () {
     if ($(this).val()) {
     showButton();
