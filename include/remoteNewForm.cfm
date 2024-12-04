@@ -16,11 +16,7 @@
 
 </cfsilent>
 
-<cfoutput>
-    <!--- Check if 'flah' is defined and display a message if it is. --->
-    <cfif isdefined('flah')>
-        <p><cfoutput>#RPGAdd.recordcount#</cfoutput>Enter the information below and press the Add button to continue.</p>
-    </cfif>
+
 
     <form action="/include/remoteNewFormAdd.cfm" method="post" class="needs-validation" novalidate>
         <cfoutput>
