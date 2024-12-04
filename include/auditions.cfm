@@ -227,7 +227,7 @@
                         </form>
                     </div>
                 </div>
-
+<div class="container">
                 <div class="row">
                     <cfif #view# is "glry">
                         <cfif #results.recordcount# is "0">
@@ -493,6 +493,7 @@
                             });
                         </SCRIPT>
                     </cfif>
+               </div>
                 </div>
                 <!--- end card body --->
             </div>
