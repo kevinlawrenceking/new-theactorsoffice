@@ -98,7 +98,7 @@
 <cfinclude template="/include/qry/audsteps_sel_31_2.cfm" />
 <cfinclude template="/include/qry/audtypes_sel_31_3.cfm" />
 
-<div class="container px-1">
+<div class="container px-3">
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -229,7 +229,6 @@
                 </div>
 
                 <div class="row">
-                <div class="container">
                     <cfif #view# is "glry">
                         <cfif #results.recordcount# is "0">
                             <p>No events found</p>
@@ -356,7 +355,7 @@
                             </cfif>
                         </cfloop>
                    
-                   </div>
+                   
                    
                     </cfif>
 
