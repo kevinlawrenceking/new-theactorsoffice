@@ -356,6 +356,21 @@
                                     </div>
                                     </div>
 
+                                            <cfelseif RPGUpdate.updatetype is "yn">
+                <cfoutput>
+                    <div class="custom-group custom-checkbox">
+                        <div style="margin-left:25px;">
+                            <label class="custom-control-label">
+                                <input type="checkbox" class="custom-control-input" id="#RPGUpdate.fname#" value="1" name="new_#RPGUpdate.fname#" 
+                                    <cfif FindValue.fvalue is "1">checked</cfif> >
+                                <span class="custom-control-label" for="#RPGUpdate.fname#">#RPGUpdate.updatename#</span>
+                            </label>
+                        </div>
+                    </div>
+                </cfoutput>
+
+                
+
                                 <cfelse>
                                     <cfoutput>
                                         <input type="hidden" name="new_#RPGUpdate.fname#" value="" />
