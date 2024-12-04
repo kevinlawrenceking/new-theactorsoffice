@@ -10,9 +10,9 @@
 <cfparam name="contactid" default="0" />
 
 <cfscript>
-    <!--- Define new table name and form fields based on RPGAdd structure --->
-    new_tablename = rpg.comptable
-    newformfields = valuelist(RPGAdd.fname)
+
+    new_tablename = rpg.comptable;
+    newformfields = valuelist(RPGAdd.fname);
 </cfscript>
 
 <cfoutput>
