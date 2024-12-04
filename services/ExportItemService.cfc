@@ -31,35 +31,35 @@
                 WorkPhone, MobilePhone, HomePhone, Company, Address, Address2, City, State, Zip, Country,
                 ContactMeetingDate, ContactMeetingLoc, contactBirthday, Website
             ) VALUES (
-                <cfqueryparam cfsqltype="#CF_SQL_INTEGER#" value="#arguments.new_exportid#" />,
-                <cfqueryparam cfsqltype="#CF_SQL_INTEGER#" value="#arguments.new_contactid#" />,
-                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_FirstName#" maxlength=1000 null="#NOT len(trim(arguments.new_FirstName))#" />,
-                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_LastName#" maxlength=1000 null="#NOT len(trim(arguments.new_LastName))#" />,
-                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_Tag1#" maxlength=1000 null="#NOT len(trim(arguments.new_Tag1))#" />,
-                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_Tag2#" maxlength=1000 null="#NOT len(trim(arguments.new_Tag2))#" />,
-                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_Tag3#" maxlength=1000 null="#NOT len(trim(arguments.new_Tag3))#" />,
-                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_BusinessEmail#" maxlength=1000 null="#NOT len(trim(arguments.new_BusinessEmail))#" />,
-                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_PersonalEmail#" maxlength=1000 null="#NOT len(trim(arguments.new_PersonalEmail))#" />,
-                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_WorkPhone#" maxlength=1000 null="#NOT len(trim(arguments.new_WorkPhone))#" />,
-                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_MobilePhone#" maxlength=1000 null="#NOT len(trim(arguments.new_MobilePhone))#" />,
-                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_HomePhone#" maxlength=1000 null="#NOT len(trim(arguments.new_HomePhone))#" />,
-                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_Company#" maxlength=1000 null="#NOT len(trim(arguments.new_Company))#" />,
-                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_Address#" maxlength=1000 null="#NOT len(trim(arguments.new_Address))#" />,
-                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_Address2#" maxlength=1000 null="#NOT len(trim(arguments.new_Address2))#" />,
-                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_City#" maxlength=1000 null="#NOT len(trim(arguments.new_City))#" />,
-                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_State#" maxlength=1000 null="#NOT len(trim(arguments.new_State))#" />,
-                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_Zip#" maxlength=1000 null="#NOT len(trim(arguments.new_Zip))#" />,
-                <cfqueryparam cfsqltype="#CF_SQL_VARCHAR#" value="#arguments.new_Country#" maxlength=1000 null="#NOT len(trim(arguments.new_Country))#" />,
-                <cfqueryparam cfsqltype="#CF_SQL_DATE#" value="#arguments.new_ContactMeetingDate#"
+                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_exportid#" />,
+                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contactid#" />,
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_FirstName#" maxlength=1000 null="#NOT len(trim(arguments.new_FirstName))#" />,
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_LastName#" maxlength=1000 null="#NOT len(trim(arguments.new_LastName))#" />,
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_Tag1#" maxlength=1000 null="#NOT len(trim(arguments.new_Tag1))#" />,
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_Tag2#" maxlength=1000 null="#NOT len(trim(arguments.new_Tag2))#" />,
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_Tag3#" maxlength=1000 null="#NOT len(trim(arguments.new_Tag3))#" />,
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_BusinessEmail#" maxlength=1000 null="#NOT len(trim(arguments.new_BusinessEmail))#" />,
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_PersonalEmail#" maxlength=1000 null="#NOT len(trim(arguments.new_PersonalEmail))#" />,
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_WorkPhone#" maxlength=1000 null="#NOT len(trim(arguments.new_WorkPhone))#" />,
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_MobilePhone#" maxlength=1000 null="#NOT len(trim(arguments.new_MobilePhone))#" />,
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_HomePhone#" maxlength=1000 null="#NOT len(trim(arguments.new_HomePhone))#" />,
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_Company#" maxlength=1000 null="#NOT len(trim(arguments.new_Company))#" />,
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_Address#" maxlength=1000 null="#NOT len(trim(arguments.new_Address))#" />,
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_Address2#" maxlength=1000 null="#NOT len(trim(arguments.new_Address2))#" />,
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_City#" maxlength=1000 null="#NOT len(trim(arguments.new_City))#" />,
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_State#" maxlength=1000 null="#NOT len(trim(arguments.new_State))#" />,
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_Zip#" maxlength=1000 null="#NOT len(trim(arguments.new_Zip))#" />,
+                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_Country#" maxlength=1000 null="#NOT len(trim(arguments.new_Country))#" />,
+                <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.new_ContactMeetingDate#"
                     null = "#NOT isDate(arguments.new_ContactMeetingDate)#"/>,
-                <cfqueryparam cfsqltype = "#CF_SQL_VARCHAR#"
+                <cfqueryparam cfsqltype = "CF_SQL_VARCHAR"
                     value = "#arguments.new_ContactMeetingLoc#"
                     maxlength = 1000
                     null = "#NOT len(trim(arguments.new_ContactMeetingLoc))#"/>,
-                <cfqueryparam cfsqltype = "#CF_SQL_DATE#"
+                <cfqueryparam cfsqltype = "CF_SQL_DATE"
                     value = "#arguments.new_contactBirthday#"
                     null = "#NOT isDate(arguments.new_contactBirthday)#"/>,
-                <cfqueryparam cfsqltype = "#CF_SQL_VARCHAR#"
+                <cfqueryparam cfsqltype = "CF_SQL_VARCHAR"
                     value = "#arguments.new_Website#"
                     maxlength = 1000
                     null = "#NOT len(trim(arguments.new_Website))#"/>
