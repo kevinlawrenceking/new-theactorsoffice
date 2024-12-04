@@ -18,8 +18,8 @@
 
     <cfset browser_contact_avatar_filename = session.userContactsUrl & "/" & contactid & "/avatar.jpg"/>
     <cfset cookie.browser_contact_avatar_filename = session.userContactsUrl & "/" & contactid & "/avatar.jpg"/>
-    <cfset cookie.uploadDir_Contact = session.userContactsPath & "\" & contactid & "\" />
-[#cookie.uploadDir_Contact#]<cfabort>
+    <cfset cookie.uploadDir_Contact = session.userContactsPath & "\" & contactid & "\avatar.jpg" />
+
     <cfset dir_contact_avatar_filename = session.userContactsUrl & "/" & contactid & "/avatar.jpg"/>
     <cfset cookie.dir_contact_avatar_filename = session.userContactsUrl & "\" & contactid & "\avatar.jpg"/>
 
