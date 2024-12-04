@@ -1,7 +1,7 @@
 <!--- This ColdFusion page processes an uploaded image, saves it, and sends an email with diagnostic information. --->
 
 <cfset pictureImg = imageReadBase64(form.picturebase)>
-<Cfabort>
+
 
 <!--- Save the image to the specified directory --->
 <cfimage 
