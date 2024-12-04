@@ -32,7 +32,6 @@
     </cfsavecontent>
 </cfoutput>
 
-<Cfoutput>diagnostics</cfoutput><cfabort>
 
 <!--- Send email with diagnostic information --->
 <cfmail 
