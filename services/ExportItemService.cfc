@@ -20,9 +20,9 @@
     <cfargument name="new_State" type="string" required="false" default="">
     <cfargument name="new_Zip" type="string" required="false" default="">
     <cfargument name="new_Country" type="string" required="false" default="">
-    <cfargument name="new_ContactMeetingDate" type="date" required="false">
+    <cfargument name="new_ContactMeetingDate" type="string" required="false">
     <cfargument name="new_ContactMeetingLoc" type="string" required="false">
-    <cfargument name="new_contactBirthday" type="date" required="false">
+    <cfargument name="new_contactBirthday" type="string" required="false">
     <cfargument name="new_Website" type="string" required="false">
 
         <cfquery result="result">
