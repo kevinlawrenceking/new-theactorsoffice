@@ -89,11 +89,11 @@ px;"></div>
     showButton();
     }
     });
-    var existingImage = '
-<cfoutput>#image_url#</cfoutput>
-?ver=
-<cfoutput>#rand()#&contactid=#contactid#</cfoutput>
-';
+    var existingImage = '<cfoutput>#image_url#</cfoutput>?ver=<cfoutput>#rand()#</cfoutput>';
+          if (existingImage) {
+            showButton();
+          }
+        });
     if (existingImage) {
     showButton();
     }
