@@ -5,7 +5,7 @@
 <!--- Save the image to the specified directory --->
 <cfimage 
     source="#pictureImg#"
-    destination="#cookie.-#" 
+    destination="#cookie.uploadDir#" 
     overwrite="true"
     action="write">
 
