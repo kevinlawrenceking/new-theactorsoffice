@@ -134,7 +134,7 @@ px;"></div>
             })
             .then(function (resp) {
               $.ajax({
-                url: "/include/image_upload2.cfm",
+                url: "/include/image_upload-contact2.cfm",
                 type: "POST",
                 data: {
                   "picturebase": resp
