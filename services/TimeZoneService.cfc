@@ -54,6 +54,7 @@
             SELECT tzid, gmt, tzname, tzgeneral, utchouroffset
             FROM timezones
             WHERE 1=1
+            and tzgeneral <> '' and tzgeneral is not null 
             <cfif len(trim(arguments.tzGeneral))>
                 AND tzgeneral = <cfqueryparam value="#arguments.tzGeneral#" cfsqltype="CF_SQL_VARCHAR">
             </cfif>
