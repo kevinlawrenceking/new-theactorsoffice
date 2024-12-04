@@ -227,7 +227,7 @@
                         </form>
                     </div>
                 </div>
-<div class="container">
+<div class="container p-3">
                 <div class="row">
                     <cfif #view# is "glry">
                         <cfif #results.recordcount# is "0">
