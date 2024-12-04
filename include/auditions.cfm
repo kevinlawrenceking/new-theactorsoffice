@@ -229,6 +229,7 @@
                 </div>
 
                 <div class="row">
+                <div class="container">
                     <cfif #view# is "glry">
                         <cfif #results.recordcount# is "0">
                             <p>No events found</p>
@@ -354,6 +355,9 @@
                                     <cfset i=0>
                             </cfif>
                         </cfloop>
+                   
+                   </div>
+                   
                     </cfif>
 
                     <cfif #view# is "tbl">
