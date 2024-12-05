@@ -3,7 +3,7 @@
 <cfinclude template="/include/qry/audmedia_details_226_1.cfm" />
 
 <cfoutput>
-    <center>Are you sure you want<BR>to remove <strong>#audmedia_details.mediaType#: #audmedia_details.medianame#</strong>?</center>
+    <center>Are you sure you want<BR>to remove <strong>#audmedia_details.mediaType#: #audmedia_details.medianame#</strong> from this audition?</center>
 </cfoutput>
 <p></p>
 
