@@ -1,4 +1,4 @@
-<cfset objReportsService = createObject("component", "ReportsRefreshService")>
+<cfset objReportsService = createObject("component", "services.ReportsRefreshService")>
 
 <!--- Define the common variables --->
 <cfset userid = session.userid>
@@ -9,8 +9,7 @@
 <cfset new_audcatid = 1>
 <cfset new_audsourceid = 0>
 
-<!--- Execute all reports --->
-<cftry>
+
     <!--- Report 2 --->
     <cfset objReportsService.report_2(
         userid=userid, 
@@ -99,12 +98,5 @@
         new_audsourceid=new_audsourceid
     )>
 
-    <cfcatch type="any">
-        <!--- Log the error (adjust the path for your logging mechanism) --->
-        <cfset writeOutput("Error running reports: #cfcatch.message#")>
-    </cfcatch>
-</cftry>
 
-<cfoutput>
-    Reports have been successfully processed.
-</cfoutput>
+
