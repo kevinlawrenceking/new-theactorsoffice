@@ -17,23 +17,6 @@
     <cfset i = 0 />
     <cfinclude template="/include/qry/delete_all_282_1.cfm" />
     <cfinclude template="/include/qry/rangeselected_282_2.cfm" />
-
-    <!--- Set the start date based on the selected range. --->
-    <cfif IsDate(rangeselected.rangestart)>
-        <cfset new_rangestart = DateFormat(rangeselected.rangestart, "yyyy-mm-dd")>
-    <cfelse>
-        <!--- Set a very old date as the default value. --->
-        <cfset new_rangestart = "1900-01-01">
-    </cfif>
-
-    <!--- Set the end date based on the selected range. --->
-    <cfif IsDate(rangeselected.rangeend)>
-        <cfset new_rangeend = DateFormat(rangeselected.rangeend, "yyyy-mm-dd")>
-    <cfelse>
-        <!--- Set a future date as the default value. --->
-        <cfset new_rangeend = "2100-01-01">
-    </cfif>
-
     <cfinclude template="/include/qry/reportRefresh.cfm" />
 </cfif>
 
