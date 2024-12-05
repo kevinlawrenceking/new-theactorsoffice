@@ -43,19 +43,43 @@
 
 </cffunction>
 
-<cffunction output="false" name="SELreportranges_24229" access="public" returntype="query">
+<cffunction output="false" name="SELreportranges_24229" access="public" returntype="struct">
     <cfargument name="new_rangeid" type="numeric" required="true">
-    
-    
 
+    <!--- Query to fetch the range details --->
     <cfquery name="result">
         SELECT rangeid, rangename, rangestart, rangeend
         FROM reportranges
         WHERE rangeid = <cfqueryparam value="#arguments.new_rangeid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
-    
-    <cfreturn result>
+
+    <!--- Initialize the output struct --->
+    <cfset var rangeSelected = {}>
+    <cfif result.recordcount EQ 1>
+        <cfset rangeSelected.rangeid = result.rangeid>
+        <cfset rangeSelected.rangename = result.rangename>
+        
+        <!--- Validate and set rangestart --->
+        <cfif IsDate(result.rangestart)>
+            <cfset rangeSelected.rangestart = DateFormat(result.rangestart, "yyyy-mm-dd")>
+        <cfelse>
+            <cfset rangeSelected.rangestart = "1900-01-01">
+        </cfif>
+
+        <!--- Validate and set rangeend --->
+        <cfif IsDate(result.rangeend)>
+            <cfset rangeSelected.rangeend = DateFormat(result.rangeend, "yyyy-mm-dd")>
+        <cfelse>
+            <cfset rangeSelected.rangeend = "2100-01-01">
+        </cfif>
+    <cfelse>
+        <!--- Handle case where no record is found --->
+        <cfset rangeSelected.error = "No record found for rangeid #arguments.new_rangeid#">
+    </cfif>
+
+    <cfreturn rangeSelected>
 </cffunction>
+
 
 <cffunction name="getReportRanges" access="public" returntype="query" output="false">
     <cfargument name="params" type="struct" required="true">
