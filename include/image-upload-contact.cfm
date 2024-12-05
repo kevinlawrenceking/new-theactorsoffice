@@ -30,9 +30,7 @@
     <cfset cookie.return_url = "/app/contact/?contactid=#contactid#"/>
     <cfset return_url = "/app/contact/?contactid=#contactid#"/>
 
-         <cfif isdefined('cookie.uploadDir_Contact')>
-            cookie.uploadDir_Contact: #cookie.uploadDir_Contact#<br />
-        </cfif>
+
 
 
 
