@@ -29,24 +29,16 @@
 </cffunction>
 
 <cffunction output="false" name="SELaudsources_24222" access="public" returntype="query">
-    <cfargument name="isDeleted" type="boolean" required="false" default="false">
-    
-    
-    
-    <cfset var sql = "
+    <cfquery name="result">
         SELECT audsourceid, audsource
         FROM audsources
-        WHERE isdeleted = ?
+        WHERE isdeleted = 0
         ORDER BY audsource
-    ">
-    
-    <cfquery name="result">
-        #sql#
-        <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
     </cfquery>
     
     <cfreturn result>
 </cffunction>
+
 
 <cffunction output="false" name="SELaudsources_24359" access="public" returntype="query">
     <cfargument name="audsource" type="string" required="true">
