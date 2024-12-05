@@ -90,7 +90,7 @@
                         <h6 class="p-1 d-flex header-title">#reports.reportname#
                             <span class="ms-auto">
                                 <!-- Conditional forms based on report ID -->
-                                <cfif reports.reportid in (2, 7, 8)>
+                                <cfif reports.reportid eq 2 OR reports.reportid eq 7 OR reports.reportid eq 8>
                                     <form action="/app/reportsRefresh/">
                                         <input type="hidden" name="anchortag" value="anchor-#reports.reportid#">
                                         <input type="hidden" name="new_rangeid" value="#new_rangeid#">
