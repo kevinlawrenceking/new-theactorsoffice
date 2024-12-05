@@ -154,6 +154,7 @@
 
         <!--- Generate dataset content --->
         <cfsavecontent variable="dataset_data">
+         <cfloop query="dataset_x">
            <cfinclude template="/include/qry/values_x_281_6.cfm" />
                     <cfoutput>
                         <cfset itemvalues = "#ValueList(values_x.itemValueInt, ',')#" />
