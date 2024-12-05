@@ -95,10 +95,11 @@
                                 <div class="card" id="#reports.reportid#" style="border: 1px solid ##e5e5e5; border-radius:3px;">
                                   <div class="card-body" dir="ltr">
                                     <h6 class="p-1 d-flex header-title">#reports.reportname#
-                                      <span class="ms-auto">
+                                      <span class="ms-auto"></cfoutput>
                                         <!-- Conditional forms based on report ID -->
                                         <cfif #reports.reportid# is "2" OR #reports.reportid# is "7" OR #reports.reportid# is "8">
                                           <form action="/app/reportsRefresh/">
+                                          <cfoutput>
                                             <input type="hidden" name="anchortag" value="anchor-#reports.reportid#"/>
                                             <input type="hidden" name="new_rangeid" value="#new_rangeid#"/>
                                             <input type="hidden" name="new_audsourceid" value="#new_audsourceid#"/>
