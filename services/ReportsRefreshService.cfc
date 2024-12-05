@@ -83,6 +83,8 @@
         ORDER BY audtypes.audtype, audsteps.audstep
     </cfquery>
 
+          <cfset i = 0>
+
     <!--- Loop through report data --->
     <cfloop query="report_4_loop">
         <!--- Increment order number --->
