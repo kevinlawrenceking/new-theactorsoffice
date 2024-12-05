@@ -7,7 +7,7 @@
         <cfargument name="new_rangeend" type="date" required="true">
 
         <!--- Fetch the report data --->
-        <cfquery name="reportQuery" datasource="#dsn#">
+        <cfquery name="reportQuery" >
             SELECT 
                 count(p.audprojectID) as totals,
                 'Number of Callbacks' as label,

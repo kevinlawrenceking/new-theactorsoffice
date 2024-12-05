@@ -1,5 +1,4 @@
-<cfset objReportsService = createObject("component", "services.ReportsRefreshService")>
-
+<cfset ReportsRefreshService = createObject("component", "services.ReportsRefreshService")>
 <!--- Define the common variables --->
 <cfset userid = session.userid>
 <cfset rangestart = "2024-01-01">
@@ -11,7 +10,7 @@
 
 
     <!--- Report 2 --->
-    <cfset objReportsService.report_2(
+    <cfset ReportsRefreshService.report_2(
         userid=userid, 
         rangestart=rangestart, 
         rangeend=rangeend, 
@@ -19,28 +18,28 @@
     )>
 
     <!--- Report 3 --->
-    <cfset objReportsService.report_3(
+    <cfset ReportsRefreshService.report_3(
         userid=userid, 
         rangestart=rangestart, 
         rangeend=rangeend
     )>
 
     <!--- Report 4 --->
-    <cfset objReportsService.report_4(
+    <cfset ReportsRefreshService.report_4(
         userid=userid, 
         rangestart=rangestart, 
         rangeend=rangeend
     )>
 
     <!--- Report 5 --->
-    <cfset objReportsService.report_5(
+    <cfset ReportsRefreshService.report_5(
         userid=userid, 
         rangestart=rangestart, 
         rangeend=rangeend
     )>
 
     <!--- Report 7 --->
-    <cfset objReportsService.report_7(
+    <cfset ReportsRefreshService.report_7(
         userid=userid, 
         rangestart=rangestart, 
         rangeend=rangeend, 
@@ -48,7 +47,7 @@
     )>
 
     <!--- Report 8 --->
-    <cfset objReportsService.report_8(
+    <cfset ReportsRefreshService.report_8(
         userid=userid, 
         rangestart=rangestart, 
         rangeend=rangeend, 
@@ -56,42 +55,42 @@
     )>
 
     <!--- Report 10 --->
-    <cfset objReportsService.report_10(
+    <cfset ReportsRefreshService.report_10(
         userid=userid, 
         new_rangestart=rangestart, 
         new_rangeend=rangeend
     )>
 
     <!--- Report 11 --->
-    <cfset objReportsService.report_11(
+    <cfset ReportsRefreshService.report_11(
         userid=userid, 
         rangestart=rangestart, 
         rangeend=rangeend
     )>
 
     <!--- Report 12 --->
-    <cfset objReportsService.report_12(
+    <cfset ReportsRefreshService.report_12(
         userid=userid, 
         rangestart=rangestart, 
         rangeend=rangeend
     )>
 
     <!--- Report 13 --->
-    <cfset objReportsService.report_13(
+    <cfset ReportsRefreshService.report_13(
         userid=userid, 
         rangestart=rangestart, 
         rangeend=rangeend
     )>
 
     <!--- Report 17 --->
-    <cfset objReportsService.report_17(
+    <cfset ReportsRefreshService.report_17(
         userid=userid, 
         rangestart=rangestart, 
         rangeend=rangeend
     )>
 
     <!--- Report 18 --->
-    <cfset objReportsService.report_18(
+    <cfset ReportsRefreshService.report_18(
         userid=userid, 
         rangestart=rangestart, 
         rangeend=rangeend, 
