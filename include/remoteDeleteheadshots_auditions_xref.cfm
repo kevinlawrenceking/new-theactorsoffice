@@ -1,4 +1,4 @@
-<!--- This ColdFusion page confirms the removal of a media item and processes the deletion request. --->
+<Cfabort>
 
 <cfinclude template="/include/qry/audmedia_details_226_1.cfm" />
 
