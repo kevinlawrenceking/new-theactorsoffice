@@ -82,39 +82,18 @@
 
 
 <cffunction name="getReportRanges" access="public" returntype="query" output="false">
-    <cfargument name="params" type="struct" required="true">
-
-    <cfset var result = queryNew("rangeid, rangename, rangestart, rangeend", "integer,varchar,timestamp,timestamp")>
-    <cfset var sql = "SELECT rangeid, rangename, rangestart, rangeend FROM reportranges WHERE 1=1">
-    <cfset var conditions = []>
-    <cfset var paramValues = []>
-    <cfset var validColumns = "rangeid,rangename,rangestart,rangeend">
-
-
-    <cfloop collection="#arguments.params#" item="key">
-        <cfif listFindNoCase(validColumns, key)>
-            <cfset arrayAppend(conditions, key & " = ?")>
-            <cfset arrayAppend(paramValues, {value=arguments.params[key], cfsqltype=getCFSQLType(key)})>
-        </cfif>
-    </cfloop>
-
-
-    <cfif arrayLen(conditions) GT 0>
-        <cfset sql &= " AND " & arrayToList(conditions, " AND ")>
-    <cfelse>
-        <cfreturn result>
-    </cfif>
-
-
     <cfquery name="result">
-        #sql#
-        <cfloop array="#paramValues#" index="param">
-            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-        </cfloop>
+        SELECT 
+            rangeid, 
+            rangename, 
+            rangestart, 
+            rangeend 
+        FROM reportranges 
+        WHERE 1=1
     </cfquery>
-
     <cfreturn result>
 </cffunction>
+
 
 <cffunction name="getCFSQLType" access="public" returntype="string" output="false">
     <cfargument name="columnName" type="string" required="true">
