@@ -128,6 +128,117 @@
       </cfloop>
     </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<cfloop query="reports">
+
+ <cfif ListFindNoCase("3,6,5,7,8,9,2,4,18", reports.reportid)>
+
+                 <cfinclude template="/include/qry/reportitems_x_281_3.cfm" />
+            <cfinclude template="/include/qry/dataset_x_281_4.cfm" />
+            <cfinclude template="/include/qry/labels_x_281_5.cfm" />
+        <cfset k = 0 />
+
+        <!--- Generate dataset content --->
+        <cfsavecontent variable="dataset_data">
+           <cfinclude template="/include/qry/values_x_281_6.cfm" />
+                    <cfoutput>
+                        <cfset itemvalues = "#ValueList(values_x.itemValueInt, ',')#" />
+                    </cfoutput>
+
+                <cfset k = k + 1 />
+                <cfif k EQ 1 OR k EQ 3>
+                    <cfset bgcolor = ",backgroundColor: ['##406E8E']" />
+                <cfelse>
+                    <cfset bgcolor = ",backgroundColor: ['##1ABC9C']" />
+                </cfif>
+
+                <cfif k GT 1>,</cfif>
+                <cfoutput>
+                    {
+                        label: '#dataset_x.itemdataset#',
+                        data: [#itemvalues#]
+                        <cfif reports.reporttypename NEQ "bar">
+                            ,backgroundColor: [#reports.colorscheme#]
+                        <cfelse>
+                            #bgcolor#
+                        </cfif>
+                    }
+                </cfoutput>
+            </cfloop>
+        </cfsavecontent>
+
+        <!--- Prepare data for the chart --->
+        <cfscript>
+            reportlabels = QuotedValueList(labels_x.itemLabel, ",");
+            reportvalues = QuotedValueList(reportitems_x.itemValueInt, ",");
+        </cfscript>
+
+        <cfoutput>
+            <cfset reportvalues = "#reportvalues#">
+            <cfset reportlabels = "#reportlabels#">
+
+            <script>
+                const chart#reports.reportid# = document.getElementById('myChart_#reports.reportid#');
+                new Chart(chart#reports.reportid#, {
+                    type: '#reports.reporttypename#',
+                    data: {
+                        labels: [#reportlabels#],
+                        datasets: [#dataset_data#],
+                    },
+                    options: {
+                        responsive: true,
+                        <cfif reports.reportid EQ 4>
+                            scales: {
+                                x: { stacked: true },
+                                y: { stacked: true }
+                            },
+                        </cfif>
+                        <cfif reports.reportid EQ 9>
+                            scales: {
+                                x: { stacked: true },
+                                y: {
+                                    ticks: { precision: 0 },
+                                    stacked: true
+                                }
+                            },
+                        </cfif>
+                    }
+                });
+            </script>
+        </cfoutput>
+
+    </cfif>
+
+</cfloop>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
     <script>
       function showDiv(divId, element) {
         var checked = document.querySelectorAll('input:checked');
