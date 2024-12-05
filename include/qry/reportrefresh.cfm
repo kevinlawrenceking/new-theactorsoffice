@@ -1,13 +1,7 @@
 <cfset ReportsRefreshService = createObject("component", "services.ReportsRefreshService")>
-<!--- Define the common variables --->
-<cfset userid = session.userid>
-<cfset rangestart = "2024-01-01">
-<cfset rangeend = "2024-12-31">
 
-<!--- Optional parameters for specific reports --->
-<cfset new_audcatid = 1>
-<cfset new_audsourceid = 0>
-
+<cfparam name="new_audcatid" default="1">
+<cfparam name="new_audsourceid" default="0">
 
     <!--- Report 2 --->
     <cfset ReportsRefreshService.report_2(
