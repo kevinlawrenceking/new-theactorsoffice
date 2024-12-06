@@ -85,33 +85,11 @@ current_rangeid: #current_rangeid#</cfoutput><BR>
     </cfif>
 
     <!--- Check for Last 6 Months range name --->
-    <cfif #x.rangename# is "Last 6 Months">
-
-        <cfset current_month = month(now()) />
-        <cfset current_day = day(now()) />
-
-        <cfif #current_month# is "6">
-            <cfset six_month = 12 />
-            <cfset six_year = last_year />
-        <cfelseif #current_month# is "5">
-            <cfset six_month = 11 />
-            <cfset six_year = last_year />
-        <cfelseif #current_month# is "4">
-            <cfset six_month = 10 />
-            <cfset six_year = last_year />
-        <cfelseif #current_month# is "3">
-            <cfset six_month = 8 />
-            <cfset six_year = last_year />
-        <cfelseif #current_month# is "2">
-            <cfset six_month = 7 />
-            <cfset six_year = last_year />
-        <cfelseif #current_month# is "1">
-            <cfset six_month = 6 />
-            <cfset six_year = last_year />
-        <cfelse>
-            <cfset six_year = current_year />
-            <cfset six_month = current_month - 6 />
-        </cfif>
+    <cfif x.rangename EQ "Last 6 Months">
+    <!--- Compute date range --->
+    <cfset new_rangestart = DateFormat(DateAdd("m", -6, Now()), "YYYY-MM-01")>
+    <cfset new_rangeend = Now()>
+</cfif>
 
         <cfoutput>
             <cfset new_rangeend = "#dateformat('#now()#', 'YYYY-MM-dd')#" />
@@ -119,7 +97,13 @@ current_rangeid: #current_rangeid#</cfoutput><BR>
         </cfoutput>
 
     </cfif>
-
+<cfif #dbug# is "Y">
+<Cfoutput>
+range id: #rangeid#<BR>
+rangestart: #rangestart#<BR>
+rangestart: #rangeend#<BR>
+</cfoutput>
+</cfif>
     <cfinclude template="/include/qry/update2_280_2.cfm" />
 
 </cfloop>
