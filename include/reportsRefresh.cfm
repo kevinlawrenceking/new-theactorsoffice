@@ -18,7 +18,7 @@
     <cfinclude template="/include/qry/delete_all_282_1.cfm" />
     <cfinclude template="/include/qry/rangeselected_282_2.cfm" />
     <cfinclude template="/include/qry/reportRefresh.cfm" />
-</cfif>
+</cfif>DONE!
 <Cfabort>
 <!--- Redirect to the reports page based on the presence of an anchor tag. --->
 <cfif #anchortag# is not "">
