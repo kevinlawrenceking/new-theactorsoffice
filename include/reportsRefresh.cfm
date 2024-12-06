@@ -9,8 +9,7 @@
 <cfparam name="refreshdata_yn" default="N" />
 
 
-<cfoutput>#new_audsourceid# userid: #userid#<BR>new_rangestart:#new_rangestart#</cfoutput>
-<Cfabort>
+
 <!--- Proceed if the user ID is not "0". --->
 <cfif #userid# is not "0"> 
     <cfinclude template="/include/reportrangegenerator.cfm" />
@@ -19,7 +18,8 @@
     <cfinclude template="/include/qry/rangeselected_282_2.cfm" />
     <cfinclude template="/include/qry/reportRefresh.cfm" />
 
-
+<cfoutput>#new_audsourceid# userid: #userid#<BR>new_rangestart:#new_rangestart#</cfoutput>
+<Cfabort>
 </cfif>
 <!--- Redirect to the reports page based on the presence of an anchor tag. --->
 <cfif #anchortag# is not "">
