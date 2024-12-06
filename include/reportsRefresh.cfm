@@ -12,14 +12,14 @@
 
 <!--- Proceed if the user ID is not "0". --->
 <cfif #userid# is not "0"> 
-    <cfinclude template="/include/reportrangegenerator.cfm" />
+    <cfinclude template="/include/reportrangegenerator.cfm" /><cfoutput>#new_audsourceid# userid: #userid#<BR>new_rangestart:#new_rangestart#</cfoutput>
+<Cfabort>
     <cfset i = 0 />
     <cfinclude template="/include/qry/delete_all_282_1.cfm" />
     <cfinclude template="/include/qry/rangeselected_282_2.cfm" />
     <cfinclude template="/include/qry/reportRefresh.cfm" />
 
-<cfoutput>#new_audsourceid# userid: #userid#<BR>new_rangestart:#new_rangestart#</cfoutput>
-<Cfabort>
+
 </cfif>
 <!--- Redirect to the reports page based on the presence of an anchor tag. --->
 <cfif #anchortag# is not "">
