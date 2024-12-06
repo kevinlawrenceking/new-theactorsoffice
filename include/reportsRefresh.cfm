@@ -11,7 +11,7 @@
 
 <cfoutput>new_rangeid: #new_rangeid#<BR></cfoutput>
 <!--- Proceed if the user ID is not "0". --->
-<cfif #userid# is not "0"> 
+<cfif #userid# is not "0"> here
     <cfinclude template="/include/reportrangegenerator.cfm" />
     <cfset i = 0 />
     <cfinclude template="/include/qry/delete_all_282_1.cfm" />
