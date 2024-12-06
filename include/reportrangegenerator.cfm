@@ -1,5 +1,5 @@
 <!--- This ColdFusion page processes date ranges based on predefined criteria from a query and prepares them for further use. --->
-<cfset dbug = "Y">
+<cfset dbug = "N">
 <cfinclude template="/include/qry/x_280_1.cfm" />
 
 
@@ -49,10 +49,7 @@
     <!--- Compute date range exactly 3 months prior --->
     <cfset new_rangestart = DateAdd("m", -3, Now())>
     <cfset new_rangeend = Now()>
-
-    <!--- Format the dates as 'YYYY-MM-DD' --->
-    <cfset new_rangestart = DateFormat(new_rangestart, "YYYY-MM-dd")>
-    <cfset new_rangeend = DateFormat(new_rangeend, "YYYY-MM-dd")>
+ 
 </cfif>
 
 
