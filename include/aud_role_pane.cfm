@@ -37,7 +37,7 @@
         $(document).ready(function() {
             $("##roleupdate").on("show.bs.modal", function(event) {
                 
-                $(this).find(".modal-body").load("/include/roleupdateform.cfm?audprojectid=#audprojectid#&audroleid=#roledetails.audroleid#&pgdir=audition");
+                $(this).find(".modal-body").load("/include/roleupdateform.cfm?audprojectid=#audprojectid#&audroleid=#roledetails.audroleid#&new_audcatid=#projectDetails.audcatid#&pgdir=audition");
             });
         });
     </script>
