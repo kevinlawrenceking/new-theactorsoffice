@@ -9,7 +9,7 @@
 <cfparam name="refreshdata_yn" default="N" />
 
 
-<cfoutput>#new_audsourceid# userid: #userid#<BR></cfoutput>
+<cfoutput>#new_audsourceid# userid: #userid#<BR>new_rangestart:#new_rangestart#</cfoutput>
 <Cfabort>
 <!--- Proceed if the user ID is not "0". --->
 <cfif #userid# is not "0"> 
