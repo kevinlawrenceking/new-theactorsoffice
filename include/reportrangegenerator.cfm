@@ -15,10 +15,7 @@
 <cfloop query="x">
 
     <cfset current_rangeid = x.rangeid />
-<cfif #dbug# is "Y">
-<cfoutput>
-current_rangeid: #current_rangeid#</cfoutput><BR>
-</cfif>
+
     <!--- Check for Current Year range name --->
     <cfif #x.rangename# is "Current Year">
 
@@ -60,12 +57,11 @@ current_rangeid: #current_rangeid#</cfoutput><BR>
 
         <cfoutput>
             <cfset next_date = "#new_year#-#next_month#-01" />
-        </cfoutput>
-
+   
         <cfset new_rangeend = DateAdd("d", -1, next_date) />
         <cfset new_rangeend = "#dateformat('#new_rangeend#', 'YYYY-MM-dd')#" />
 
-        <cfoutput>
+
             <cfset new_rangestart = "#current_year#-#current_month#-01" />
         </cfoutput>
 
@@ -84,19 +80,15 @@ current_rangeid: #current_rangeid#</cfoutput><BR>
 
     </cfif>
 
-    <!--- Check for Last 6 Months range name --->
+
     <cfif x.rangename EQ "Last 6 Months">
-    <!--- Compute date range --->
+
     <cfset new_rangestart = DateFormat(DateAdd("m", -6, Now()), "YYYY-MM-01")>
     <cfset new_rangeend = Now()>
 </cfif>
 
-        <cfoutput>
-            <cfset new_rangeend = "#dateformat('#now()#', 'YYYY-MM-dd')#" />
-            <cfset new_rangestart = "#dateformat('#now()#', '#six_year#-#six_month#-#current_day#')#" />
-        </cfoutput>
+   
 
-    </cfif>
 <cfif #dbug# is "Y">
 <Cfoutput>
 range id: #rangeid#<BR>
