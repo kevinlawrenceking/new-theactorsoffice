@@ -81,9 +81,9 @@
 
 
 <cfif x.rangename EQ "Last 6 Months">
-    <!--- Compute date range exactly 6 months prior --->
-    <cfset new_rangestart = DateFormat(DateAdd("m", -6, Now()), "YYYY-MM-DD")>
-    <cfset new_rangeend = DateFormat(Now(), "YYYY-MM-DD")>
+    <!--- Compute date range as actual date objects --->
+    <cfset new_rangestart = DateAdd("m", -6, Now())>
+    <cfset new_rangeend = Now()>
 </cfif>
 
 
