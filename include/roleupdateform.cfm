@@ -421,7 +421,7 @@
             });
         </script>
     </div>
-    <cfoutput><h2>new_audcatid: #new_audcatid#</cfoutput></h2>
+    <cfoutput><h2>new_audcatid: #audcatid#</cfoutput></h2>
     <cfinclude template="/include/qry/findit_286_12.cfm" />
 
     <cfif #int(findit.recordcount)# is not "0">
