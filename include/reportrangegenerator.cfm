@@ -91,6 +91,7 @@
 
 <cfif #dbug# is "Y">
 <Cfoutput>
+<h2>#x.rangename#</h2>
 range id: #rangeid#<BR>
 rangestart: #rangestart#<BR>
 rangestart: #rangeend#<BR>
