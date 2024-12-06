@@ -116,8 +116,8 @@
     <cfinclude template="/include/qry/update2_280_2.cfm" />
 
 </cfloop>
-
+<cfif #CUSTOMSTART# is not "">
 <cfinclude template="/include/qry/update2_280_3.cfm" />
-
+</cfif>
 <cfset new_rangeend = "" />
 <cfset new_rangestart = "" />
