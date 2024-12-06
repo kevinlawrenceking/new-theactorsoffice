@@ -18,7 +18,7 @@
 
 
     <cfset i = 0 />
-    <cfinclude template="/include/qry/delete_all_282_1.cfm" /><cfabort>
+    <cfinclude template="/include/qry/delete_all_282_1.cfm" />
     <cfinclude template="/include/qry/rangeselected_282_2.cfm" />
     <cfinclude template="/include/qry/reportRefresh.cfm" />
     <cfif #dbug# is "Y">
