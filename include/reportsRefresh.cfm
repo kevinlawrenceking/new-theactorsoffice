@@ -10,7 +10,7 @@
 
 
 <cfoutput>#new_audsourceid# userid: #userid#<BR></cfoutput>
-
+<Cfabort>
 <!--- Proceed if the user ID is not "0". --->
 <cfif #userid# is not "0"> 
     <cfinclude template="/include/reportrangegenerator.cfm" />
@@ -20,7 +20,7 @@
     <cfinclude template="/include/qry/reportRefresh.cfm" />
 
 
-</cfif><Cfabort>
+</cfif>
 <!--- Redirect to the reports page based on the presence of an anchor tag. --->
 <cfif #anchortag# is not "">
     <cflocation url="/app/reports/?refresh=n&new_audsourceidb=#new_audsourceidb#&new_audsourceid=#new_audsourceid#&customstart=#customstart#&customend=#customend#&new_rangeid=#new_rangeid#&new_audcatid=#new_audcatid####anchortag#" addtoken="false" />
