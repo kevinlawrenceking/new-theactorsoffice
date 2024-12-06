@@ -8,7 +8,7 @@
     <cfquery name="qryResult">
         SELECT rangeid, rangename, rangestart, rangeend
         FROM reportranges
-        WHERE rangeid NOT IN (#excludedRangeIds#)
+        where rangeid not in (1,7)
     </cfquery>
 
     <cfreturn qryResult>
