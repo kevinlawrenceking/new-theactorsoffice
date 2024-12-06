@@ -29,7 +29,7 @@ current_rangeid: #current_rangeid#</cfoutput><BR>
             <cfset new_rangeend = "#new_year#-12-31" />
         </cfoutput>
  <cfif #dbug# is "Y"><cfoutput>new_rangestart: #new_rangestart#</cfoutput><BR></cfif>
-  <cfif #dbug# is "Y"><cfoutput>new_rangeend: #new_year#-01-01</cfoutput><BR></cfif>
+  <cfif #dbug# is "Y"><cfoutput>new_rangeend: #new_rangeend#</cfoutput><BR></cfif>
    <cfif #dbug# is "Y"><cfoutput>new_year: #new_year#</cfoutput><BR></cfif>
     </cfif>
 
