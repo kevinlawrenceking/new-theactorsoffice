@@ -70,12 +70,13 @@
     <!--- Check for Last 3 Months range name --->
     <cfif #x.rangename# is "Last 3 Months">
 
-        <cfset currentDate = now() />
-        <cfset newRangeStart = CreateDate(year(currentDate), month(currentDate) - 3, 1) />
+  <cfset new_rangestart = DateFormat(DateAdd("m", -3, Now()), "YYYY-MM-01")>
+    <cfset new_rangeend = Now()>
 
         <cfoutput>
+      
+            <cfset new_rangestart = "#dateformat('#newRangeStart#', 'YYYY-MM-dd')#" />
             <cfset new_rangeend = "#dateformat('#currentDate#', 'YYYY-MM-dd')#" />
-            <cfset newRangeStart = "#dateformat('#newRangeStart#', 'YYYY-MM-dd')#" />
         </cfoutput>
 
     </cfif>
@@ -93,8 +94,8 @@
 <Cfoutput>
 <h2>#x.rangename#</h2>
 range id: #rangeid#<BR>
-rangestart: #rangestart#<BR>
-rangestart: #rangeend#<BR>
+new_rangestart: #new_rangestart#<BR>
+new_rangeend: #new_rangeend#<BR>
 </cfoutput>
 </cfif>
     <cfinclude template="/include/qry/update2_280_2.cfm" />
