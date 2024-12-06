@@ -51,8 +51,8 @@
     <cfset new_rangeend = Now()>
 
     <!--- Format the dates as 'YYYY-MM-DD' --->
-    <cfset new_rangestart = DateFormat(new_rangestart, "YYYY-MM-DD")>
-    <cfset new_rangeend = DateFormat(new_rangeend, "YYYY-MM-DD")>
+    <cfset new_rangestart = DateFormat(new_rangestart, "YYYY-MM-dd")>
+    <cfset new_rangeend = DateFormat(new_rangeend, "YYYY-MM-dd")>
 </cfif>
 
 
@@ -75,10 +75,11 @@ new_rangeend: #new_rangeend#<BR>
 </cfoutput>
 </cfif>
 
-<cfset new_rangestart = DateFormat(new_rangestart, "YYYY-MM-DD")>
-<cfset new_rangeend = DateFormat(new_rangeend, "YYYY-MM-DD")>
+<cfset new_rangestart = DateFormat(new_rangestart, "YYYY-MM-dd")>
+<cfset new_rangeend = DateFormat(new_rangeend, "YYYY-MM-dd")>
 
     <cfinclude template="/include/qry/update2_280_2.cfm" />
+
 
 </cfloop>
 <cfif #CUSTOMSTART# is not "">
