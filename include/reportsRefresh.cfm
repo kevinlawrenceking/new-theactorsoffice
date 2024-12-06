@@ -7,23 +7,24 @@
 <cfparam name="new_audsourceidb" default="0" />
 <cfparam name="new_audcatid" default="1" />
 <cfparam name="refreshdata_yn" default="N" />
-
+<cfset dbug="N">
 
 <cfoutput>new_rangeid: #new_rangeid#<BR></cfoutput>
 <!--- Proceed if the user ID is not "0". --->
 <cfif #userid# is not "0"> 
-    <cfinclude template="/include/reportrangegenerator.cfm" /><Cfabort>
+    <cfinclude template="/include/reportrangegenerator.cfm" />
 
 
 
-    
+
     <cfset i = 0 />
     <cfinclude template="/include/qry/delete_all_282_1.cfm" />
     <cfinclude template="/include/qry/rangeselected_282_2.cfm" />
     <cfinclude template="/include/qry/reportRefresh.cfm" />
+    <cfif #dbug# is "Y">
 <cfoutput>#new_audsourceid# userid: #userid#
     <BR>new_rangestart:#new_rangestart#</cfoutput>
-<Cfabort>
+<Cfabort></cfif>
 
 </cfif>
 <!--- Redirect to the reports page based on the presence of an anchor tag. --->
