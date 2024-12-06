@@ -71,7 +71,7 @@
     <cfif #x.rangename# is "Last 3 Months">
 
         <cfset currentDate = now() />
-        <cfset newRangeStartx = CreateDate(year(currentDate), month(currentDate) - 3, 1) />
+        <cfset newRangeStart = CreateDate(year(currentDate), month(currentDate) - 3, 1) />
 
         <cfoutput>
             <cfset new_rangeend = "#dateformat('#currentDate#', 'YYYY-MM-dd')#" />
