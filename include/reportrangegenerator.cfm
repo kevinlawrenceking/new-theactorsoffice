@@ -77,7 +77,6 @@ new_rangeend: #new_rangeend#<BR>
 
 <cfset new_rangestart = DateFormat(new_rangestart, "YYYY-MM-dd")>
 <cfset new_rangeend = DateFormat(new_rangeend, "YYYY-MM-dd")>
-
  
     <cfinclude template="/include/qry/update2_280_2.cfm" />
 
