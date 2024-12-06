@@ -1,6 +1,7 @@
 <!--- This ColdFusion page processes date ranges based on predefined criteria from a query and prepares them for further use. --->
-
+<cfset dbug = "Y">
 <cfinclude template="/include/qry/x_280_1.cfm" />
+
 
 <Cfoutput>
 
@@ -14,16 +15,22 @@
 <cfloop query="x">
 
     <cfset current_rangeid = x.rangeid />
-
+<cfif #dbug# is "Y">
+<cfoutput>
+current_rangeid: #current_rangeid#</cfoutput><BR>
+</cfif>
     <!--- Check for Current Year range name --->
     <cfif #x.rangename# is "Current Year">
 
+    <cfif #dbug# is "Y"><cfoutput>x.rangename: #x.rangename#</cfoutput><BR></cfif>
         <cfoutput>
             <cfset new_year = "#year(now())#" />
             <cfset new_rangestart = "#new_year#-01-01" />
             <cfset new_rangeend = "#new_year#-12-31" />
         </cfoutput>
-
+ <cfif #dbug# is "Y"><cfoutput>new_rangestart: #new_rangestart#</cfoutput><BR></cfif>
+  <cfif #dbug# is "Y"><cfoutput>new_rangeend: #new_year#-01-01</cfoutput><BR></cfif>
+   <cfif #dbug# is "Y"><cfoutput>new_year: #new_year#</cfoutput><BR></cfif>
     </cfif>
 
     <!--- Check for Last Year range name --->

@@ -2,7 +2,7 @@
 
 <cffunction output="false" name="SELreportranges" access="public" returntype="query">
     <!--- Function to retrieve report ranges excluding specific IDs provided as a comma-separated string. --->
-    <cfargument name="excludedRangeIds" type="string" required="true">
+
  
 
     <cfquery name="qryResult">
