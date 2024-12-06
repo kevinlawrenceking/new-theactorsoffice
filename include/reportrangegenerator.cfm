@@ -31,41 +31,18 @@
     </cfif>
 
     <!--- Check for Last Year range name --->
-    <cfif #x.rangename# is "Last Year">
-
-        <cfset new_year = year(now()) - 1 />
-
-        <cfoutput>
-            <cfset new_rangestart = "#new_year#-01-01" />
-            <cfset new_rangeend = "#new_year#-12-31" />
-        </cfoutput>
-
-    </cfif>
+<cfif x.rangename EQ "Last Year">
+    <!--- Compute date range for the entire last year --->
+    <cfset new_rangestart = CreateDate(Year(Now()) - 1, 1, 1)>
+    <cfset new_rangeend = CreateDate(Year(Now()) - 1, 12, 31)>
+</cfif>
 
     <!--- Check for Current Month range name --->
-    <cfif #x.rangename# is "Current Month">
-
-        <cfif #current_month# is "12">
-            <cfset next_month = 1 />
-            <cfset new_year = current_year + 1 />
-        </cfif>
-
-        <cfif #current_month# is not "12">
-            <cfset next_month = current_month + 1 />
-            <cfset new_year = current_year />
-        </cfif>
-
-        <cfoutput>
-            <cfset next_date = "#new_year#-#next_month#-01" />
-   
-        <cfset new_rangeend = DateAdd("d", -1, next_date) />
-        <cfset new_rangeend = "#dateformat('#new_rangeend#', 'YYYY-MM-dd')#" />
-
-
-            <cfset new_rangestart = "#current_year#-#current_month#-01" />
-        </cfoutput>
-
-    </cfif>
+<cfif x.rangename EQ "Current Month">
+    <!--- Compute start and end dates for the current month --->
+    <cfset new_rangestart = CreateDate(Year(Now()), Month(Now()), 1)>
+    <cfset new_rangeend = DateAdd("d", -1, DateAdd("m", 1, new_rangestart))>
+</cfif>
 
     <!--- Check for Last 3 Months range name --->
 <cfif x.rangename EQ "Last 3 Months">
