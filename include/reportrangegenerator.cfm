@@ -68,24 +68,23 @@
     </cfif>
 
     <!--- Check for Last 3 Months range name --->
-    <cfif #x.rangename# is "Last 3 Months">
-
-  <cfset new_rangestart = DateFormat(DateAdd("m", -3, Now()), "YYYY-MM-01")>
+<cfif x.rangename EQ "Last 3 Months">
+    <!--- Compute date range exactly 3 months prior --->
+    <cfset new_rangestart = DateAdd("m", -3, Now())>
     <cfset new_rangeend = Now()>
 
-        <cfoutput>
-      
-            <cfset new_rangestart = "#dateformat('#new_RangeStart#', 'YYYY-MM-dd')#" />
-            <cfset new_rangeend = "#dateformat('#new_rangeend#', 'YYYY-MM-dd')#" />
-        </cfoutput>
+    <!--- Format the dates as 'YYYY-MM-DD' --->
+    <cfset new_rangestart = DateFormat(new_rangestart, "YYYY-MM-DD")>
+    <cfset new_rangeend = DateFormat(new_rangeend, "YYYY-MM-DD")>
+</cfif>
 
-    </cfif>
 
 
     <cfif x.rangename EQ "Last 6 Months">
 
-    <cfset new_rangestart = DateFormat(DateAdd("m", -6, Now()), "YYYY-MM-01")>
-    <cfset new_rangeend = Now()>
+    <cfset new_rangestart = DateFormat(DateAdd("m", -6, Now()), "YYYY-MM-DD")>
+    <cfset new_rangeend = Now()>    <cfset new_rangestart = DateFormat(new_rangestart, "YYYY-MM-DD")>
+    <cfset new_rangeend = DateFormat(new_rangeend, "YYYY-MM-DD")>
 </cfif>
 
    
