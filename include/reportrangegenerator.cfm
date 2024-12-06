@@ -76,7 +76,7 @@
         <cfoutput>
       
             <cfset new_rangestart = "#dateformat('#new_RangeStart#', 'YYYY-MM-dd')#" />
-            <cfset new_rangeend = "#dateformat('#currentDate#', 'YYYY-MM-dd')#" />
+            <cfset new_rangeend = "#dateformat('#new_rangeend#', 'YYYY-MM-dd')#" />
         </cfoutput>
 
     </cfif>
