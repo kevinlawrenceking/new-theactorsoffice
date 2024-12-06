@@ -421,9 +421,9 @@
             });
         </script>
     </div>
-
-    <cfinclude template="/include/qry/findit_286_12.cfm" />
     <cfoutput><h2>int: #int(findit.recordcount)# new_audcatid: #new_audcatid#</cfoutput></h2>
+    <cfinclude template="/include/qry/findit_286_12.cfm" />
+
     <cfif #int(findit.recordcount)# is not "0">
         <cfif #new_audcatid# is not "5" or #new_audcatid# is "5" and #new_subcatid# is "34" >
             <div class="col-md-12">
