@@ -3,7 +3,7 @@
 <cfparam name="new_audsourceid" default="0">
 <cfparam name="rangestart" default="2022-01-01">
 <cfparam name="rangeend" default="2500-12-31">
-<cfset rangestart = rangeselected.rangeselected />
+<cfset rangestart = rangeselected.rangestart />
 <cfset rangeend = rangeselected.rangeend />
 <cfset rangeid = rangeselected.rangeid />
     <!--- Report 2 --->
