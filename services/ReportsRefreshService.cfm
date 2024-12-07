@@ -908,7 +908,7 @@
 
     <!--- Query to fetch report data --->
     <cfquery name="report_2">
-    SELECT count(r.audroleid) as totals, g.audgenre as label, 'Auditions' as itemDataset
+    SELECT count(r.audroleid) as totals, g.audgenre as label, 'Stuff' as itemDataset
 FROM audgenres_audition_xref x  INNER JOIN audroles r ON r.audroleid = x.audroleid
 inner JOIN audgenres_user g ON g.audgenreid = x.audgenreid
 INNER JOIN audprojects p on p.audprojectid = r.audprojectid
