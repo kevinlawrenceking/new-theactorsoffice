@@ -908,7 +908,7 @@
 
     <!--- Query to fetch report data --->
     <cfquery name="report_2">
-    SELECT count(r.audroleid) as totals, g.audgenre as label, 'Auditions' as itemDataset
+    SELECT count(r.audroleid) afs totals, g.audgenre as label, 'Auditions' as itemDataset
 FROM audgenres_audition_xref x  INNER JOIN audroles r ON r.audroleid = x.audroleid
 inner JOIN audgenres_user g ON g.audgenreid = x.audgenreid
 INNER JOIN audprojects p on p.audprojectid = r.audprojectid
@@ -916,7 +916,8 @@ INNER JOIN audsubcategories s ON s.audsubcatid = p.audsubcatid
  WHERE 
             r.isdeleted = 0
             AND p.isDeleted = 0
-
+            AND p.projdate >= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangestart#">
+            AND p.projdate <= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangeend#">
             AND p.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
             AND s.audcatid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audcatid#">
         GROUP BY g.audgenre
@@ -938,9 +939,9 @@ INNER JOIN audsubcategories s ON s.audsubcatid = p.audsubcatid
             AND r.reportid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#new_reportid#">
         </cfquery>
 
-
+        <cfif findid.recordcount eq 1>
             <cfset new_id = findid.new_id>
-     <cfset new_id = 3342>
+        </cfif>
 
         <!--- Sanitize the label --->
         <cfset var new_label_new = Replace(new_label, "'", "", "All")>
