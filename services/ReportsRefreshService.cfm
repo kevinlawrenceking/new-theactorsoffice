@@ -908,16 +908,12 @@
 
     <!--- Query to fetch report data --->
     <cfquery name="report_2">
-        SELECT
-            COUNT(r.audroleid) AS totals,
-            g.audgenre AS label,
-            'Auditions' AS itemDataset
-        FROM audprojects p
-        INNER JOIN audroles r ON p.audprojectID = r.audprojectID
-        INNER JOIN audsubcategories s ON s.audsubcatid = p.audsubcatid
-        INNER JOIN audgenres_audition_xref x ON x.audroleid = r.audroleid
-        INNER JOIN audgenres_user g ON g.audgenreid = x.audgenreid
-        WHERE 
+    SELECT count(r.audroleid) as totals, g.audgenre as label, 'Auditions' as itemDataset
+FROM audgenres_audition_xref x  INNER JOIN audroles r ON r.audroleid = x.audroleid
+inner JOIN audgenres_user g ON g.audgenreid = x.audgenreid
+INNER JOIN audprojects p on p.audprojectid = r.audprojectid
+INNER JOIN audsubcategories s ON s.audsubcatid = p.audsubcatid
+ WHERE 
             r.isdeleted = 0
             AND p.isDeleted = 0
             AND p.projdate >= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangestart#">
