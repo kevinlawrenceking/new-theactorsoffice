@@ -904,11 +904,11 @@
     <cfset var new_label = "">
     <cfset var new_itemValueInt = 0>
     <cfset var new_itemDataset = "">
-    <cfset var new_id = 3342>
+    <cfset var new_id = 0>
 
     <!--- Query to fetch report data --->
     <cfquery name="report_2">
-    SELECT count(r.audroleid) as totals, g.audgenre as label, 'Stuff' as itemDataset
+    SELECT count(r.audroleid) as totals, g.audgenre as label, 'Auditions' as itemDataset
 FROM audgenres_audition_xref x  INNER JOIN audroles r ON r.audroleid = x.audroleid
 inner JOIN audgenres_user g ON g.audgenreid = x.audgenreid
 INNER JOIN audprojects p on p.audprojectid = r.audprojectid
