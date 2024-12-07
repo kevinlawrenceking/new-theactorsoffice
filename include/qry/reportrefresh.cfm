@@ -6,6 +6,9 @@
 <cfset rangestart = rangeselected.rangestart />
 <cfset rangeend = rangeselected.rangeend />
 <cfset rangeid = rangeselected.rangeid />
+<cfif isdefined('form.new_audcatid')>
+    <cfset new_audcatid = form.new_audcatid />
+</cfif>
     <!--- Report 2 --->
     <cfset ReportsRefreshService.report_2(
         userid=userid, 
