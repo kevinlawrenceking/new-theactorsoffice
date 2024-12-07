@@ -58,7 +58,7 @@
             <cfinclude template="/include/qry/insert_287_12.cfm" />
         <cfelse>
             <cfinclude template="/include/qry/insert_287_13.cfm" />
-            <cfset new_audgenreid = result.generated_key />
+     
             <cfinclude template="/include/qry/insert_287_14.cfm" />
         </cfif>
     </cfloop>
