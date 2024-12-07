@@ -33,7 +33,7 @@
 
 </cfif>
 
-
+<cfabort>
 <!--- Redirect to the reports page based on the presence of an anchor tag. --->
 <cfif #anchortag# is not "">
     <cflocation url="/app/reports/?refresh=y&new_audsourceidb=#new_audsourceidb#&new_audsourceid=#new_audsourceid#&customstart=#customstart#&customend=#customend#&new_rangeid=#new_rangeid#&new_audcatid=#new_audcatid####anchortag#" addtoken="false" />
