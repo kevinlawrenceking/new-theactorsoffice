@@ -11,7 +11,7 @@
         userid=userid, 
         rangestart=rangestart, 
         rangeend=rangeend, 
-        new_audcatid=new_audcatid
+        new_audcatid=a
     )>
  
   
