@@ -14,7 +14,7 @@
         new_audcatid=new_audcatid
     )>
  
-    <!--- Report 3
+  
     <cfset ReportsRefreshService.report_3(
         userid=userid, 
         rangestart=rangestart, 
@@ -96,4 +96,4 @@
 
 
 
- --->
+ 
