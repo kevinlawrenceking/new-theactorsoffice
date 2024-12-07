@@ -904,7 +904,7 @@
     <cfset var new_label = "">
     <cfset var new_itemValueInt = 0>
     <cfset var new_itemDataset = "">
-    <cfset var new_id = 0>
+    <cfset var new_id = 3342>
 
     <!--- Query to fetch report data --->
     <cfquery name="report_2">
