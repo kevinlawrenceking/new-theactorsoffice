@@ -916,8 +916,7 @@ INNER JOIN audsubcategories s ON s.audsubcatid = p.audsubcatid
  WHERE 
             r.isdeleted = 0
             AND p.isDeleted = 0
-            AND p.projdate >= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangestart#">
-            AND p.projdate <= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangeend#">
+
             AND p.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
             AND s.audcatid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audcatid#">
         GROUP BY g.audgenre
