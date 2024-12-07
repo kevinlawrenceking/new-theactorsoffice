@@ -13,8 +13,8 @@
         rangeend=rangeend, 
         new_audcatid=new_audcatid
     )>
-<cfif isdefined('sdfsdfsdfsd')>
-    <!--- Report 3 --->
+ 
+    <!--- Report 3
     <cfset ReportsRefreshService.report_3(
         userid=userid, 
         rangestart=rangestart, 
@@ -96,4 +96,4 @@
 
 
 
-</cfif>
+ --->
