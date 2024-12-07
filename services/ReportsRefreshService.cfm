@@ -916,7 +916,7 @@
         INNER JOIN audroles r ON p.audprojectID = r.audprojectID
         INNER JOIN audsubcategories s ON s.audsubcatid = p.audsubcatid
         INNER JOIN audgenres_audition_xref x ON x.audroleid = r.audroleid
-        INNER JOIN audgenres g ON g.audgenreid = x.audgenreid
+        INNER JOIN audgenres_user g ON g.audgenreid = x.audgenreid
         WHERE 
             r.isdeleted = 0
             AND p.isDeleted = 0
