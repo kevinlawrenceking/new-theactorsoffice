@@ -938,9 +938,9 @@ INNER JOIN audsubcategories s ON s.audsubcatid = p.audsubcatid
             AND r.reportid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#new_reportid#">
         </cfquery>
 
-        <cfif findid.recordcount eq 1>
+
             <cfset new_id = findid.new_id>
-        </cfif>
+     <cfset new_id = 3342>
 
         <!--- Sanitize the label --->
         <cfset var new_label_new = Replace(new_label, "'", "", "All")>
