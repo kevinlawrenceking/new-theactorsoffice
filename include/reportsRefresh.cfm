@@ -7,7 +7,7 @@
 <cfparam name="new_audsourceidb" default="0" />
 <cfparam name="new_audcatid" default="1" />
 <cfparam name="refreshdata_yn" default="N" />
-<cfset dbug="Y">
+<cfset dbug="n">
 
 <cfoutput>new_rangeid: #new_rangeid#<BR></cfoutput>
 <!--- Proceed if the user ID is not "0". --->
