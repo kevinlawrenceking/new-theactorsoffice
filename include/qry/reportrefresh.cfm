@@ -19,6 +19,7 @@
     {id=3, fn="report_3", params={userid=userid, rangestart=rangestart, rangeend=rangeend}},
     {id=4, fn="report_4", params={userid=userid, rangestart=rangestart, rangeend=rangeend}},
     {id=5, fn="report_5", params={userid=userid, rangestart=rangestart, rangeend=rangeend}},
+      {id=6, fn="report_6", params={userid=userid, rangestart=rangestart, rangeend=rangeend, new_audsourceidb=new_audsourceidb}},
     {id=7, fn="report_7", params={userid=userid, rangestart=rangestart, rangeend=rangeend, new_audcatid=new_audcatid}},
     {id=8, fn="report_8", params={userid=userid, rangestart=rangestart, rangeend=rangeend, new_audcatid=new_audcatid}},
     {id=10, fn="report_10", params={userid=userid, new_rangestart=rangestart, new_rangeend=rangeend}},
