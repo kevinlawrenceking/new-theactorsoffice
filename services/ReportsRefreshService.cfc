@@ -233,7 +233,7 @@
                     itemDataset, 
                     userid
                 ) VALUES (
-                    <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#report_4_loop.new_label#">,
+                    <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#report_4_loop.new_label# KKKK">,
                     <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#i#">,
                     <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="0">,
                     <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="0">,
