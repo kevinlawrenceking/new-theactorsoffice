@@ -595,11 +595,11 @@
     <cfargument name="rangeend" type="date" required="true">
 
     <!--- Initialize variables --->
-    <cfset var totalProcessed = 0>
+    <cfset var totalSelected = 0>
     <cfset var totalInserted = 0>
-    <cfset var totalUpdated = 0>
     <cfset var new_reportid = 5>
     <cfset var i = 0>
+    <cfset var resultSummary = {totalSelected = 0, totalInserted = 0, reportId = new_reportid}>
 
     <!--- Query to calculate essence totals --->
     <cfquery name="report_5">
@@ -620,6 +620,9 @@
         GROUP BY e.essencename
         ORDER BY e.essencename
     </cfquery>
+
+    <!--- Update summary with total selected --->
+    <cfset resultSummary.totalSelected = report_5.recordCount>
 
     <!--- Loop through results --->
     <cfloop query="report_5">
@@ -664,20 +667,15 @@
             )
         </cfquery>
 
-        <!--- Track insertions and updates --->
+        <!--- Track insertions --->
         <cfset totalInserted++>
-        <cfset totalProcessed++>
     </cfloop>
 
+    <!--- Update summary with total inserted --->
+    <cfset resultSummary.totalInserted = totalInserted>
+
     <!--- Return summary --->
-    <cfreturn {
-        totalProcessed = totalProcessed,
-        totalInserted = totalInserted,
-        totalUpdated = totalUpdated,
-        reportId = new_reportid,
-        startDate = arguments.rangestart,
-        endDate = arguments.rangeend
-    }>
+    <cfreturn resultSummary>
 </cffunction>
 
 <cffunction name="report_7" access="public" returntype="void" output="false">
