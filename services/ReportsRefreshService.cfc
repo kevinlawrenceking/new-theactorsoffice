@@ -1166,11 +1166,12 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
-    <cfargument name="new_audsourceidb" type="numeric" required="true">
+    <cfargument name="new_audsourceidb" type="numeric" default="1" required="true">
 
     <!--- Initialize variables --->
     <cfset var i = 0>
     <cfset var new_reportid = 6>
+     <cfset var new_audsourceidb = 1>
     <cfset var new_label = "">
     <cfset var new_itemValueInt = 0>
     <cfset var new_itemDataset = "">
