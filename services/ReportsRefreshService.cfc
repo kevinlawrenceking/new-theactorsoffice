@@ -160,9 +160,9 @@
     <!--- Initialize summary variables --->
     <cfset var totalProcessed = 0>
     <cfset var totalInserted = 0>
-    <cfset var totalUpdated = 0>
     <cfset var new_reportid = 11>
     <cfset var i = 0>
+    <cfset var resultSummary = {totalSelected = 0, totalInserted = 0, reportId = new_reportid}>
 
     <!--- Query to calculate totals for redirects --->
     <cfquery name="report_11">
@@ -180,6 +180,9 @@
             AND p.projdate >= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangestart#">
             AND p.projdate <= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangeend#">
     </cfquery>
+
+    <!--- Update totalSelected in the summary --->
+    <cfset resultSummary.totalSelected = report_11.recordCount>
 
     <!--- Loop through results --->    
     <cfloop query="report_11">
@@ -202,7 +205,7 @@
             <cfset new_id = findid.new_id>
         </cfif>
 
-        <!--- Insert or update report item --->    
+        <!--- Insert report item --->    
         <cfquery name="Insert_ReportItems" result="insertResult">
             INSERT INTO reportitems (
                 itemLabel, 
@@ -221,20 +224,17 @@
             )
         </cfquery>
 
-        <!--- Track updates and insertions --->
+        <!--- Track totalInserted and totalProcessed --->
         <cfset totalInserted++>
         <cfset totalProcessed++>
     </cfloop>
 
+    <!--- Update resultSummary totals --->
+    <cfset resultSummary.totalInserted = totalInserted>
+    <cfset resultSummary.totalProcessed = totalProcessed>
+
     <!--- Return summary --->
-    <cfreturn {
-        totalProcessed = totalProcessed,
-        totalInserted = totalInserted,
-        totalUpdated = totalUpdated,
-        reportId = new_reportid,
-        startDate = arguments.rangestart,
-        endDate = arguments.rangeend
-    }>
+    <cfreturn resultSummary>
 </cffunction>
 
 <cffunction name="report_12" access="public" returntype="struct" output="false" hint="Generates report 12, updates reportitems, and provides a summary.">
