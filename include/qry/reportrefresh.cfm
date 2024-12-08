@@ -66,12 +66,12 @@
             </tr>
         </thead>
         <tbody>
-            <cfloop array="#reportSummaries#" index="summary">
+            <cfloop array="#reportSummaries#" index="summary"><cfoutput>
                 <tr>
                     <td>#summary.reportId#</td>
                     <td>#summary.totalSelected#</td>
                     <td>#summary.totalInserted#</td>
-                </tr>
+                </tr></cfoutput>
             </cfloop>
         </tbody>
     </table>
