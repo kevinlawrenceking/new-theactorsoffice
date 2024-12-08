@@ -899,7 +899,7 @@
 </cffunction>
 
 
-<cffunction name="report_2" access="public" returntype="void" output="false">
+<cffunction name="report_2" access="public" returntype="struct" output="false">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
@@ -912,18 +912,25 @@
     <cfset var new_itemValueInt = 0>
     <cfset var new_itemDataset = "">
     <cfset var new_id = 0>
+    <cfset var insertCount = 0>
+    <cfset var resultSummary = {totalSelected = 0, totalInserted = 0, reportId = new_reportid}>
 
     <!--- Query to fetch report data --->
     <cfquery name="report_2">
-        SELECT
-            COUNT(r.audroleid) AS totals,
-            g.audgenre AS label,
+        SELECT 
+            count(r.audroleid) AS totals, 
+            g.audgenre AS label, 
             'Auditions' AS itemDataset
-        FROM audprojects p
-        INNER JOIN audroles r ON p.audprojectID = r.audprojectID
-        INNER JOIN audsubcategories s ON s.audsubcatid = p.audsubcatid
-        INNER JOIN audgenres_audition_xref x ON x.audroleid = r.audroleid
-        INNER JOIN audgenres g ON g.audgenreid = x.audgenreid
+        FROM 
+            audgenres_audition_xref x  
+        INNER JOIN 
+            audroles r ON r.audroleid = x.audroleid
+        INNER JOIN 
+            audgenres_user g ON g.audgenreid = x.audgenreid
+        INNER JOIN 
+            audprojects p ON p.audprojectid = r.audprojectid
+        INNER JOIN 
+            audsubcategories s ON s.audsubcatid = p.audsubcatid
         WHERE 
             r.isdeleted = 0
             AND p.isDeleted = 0
@@ -931,9 +938,14 @@
             AND p.projdate <= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangeend#">
             AND p.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
             AND s.audcatid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audcatid#">
-        GROUP BY g.audgenre
-        ORDER BY g.audgenre
+        GROUP BY 
+            g.audgenre
+        ORDER BY 
+            g.audgenre
     </cfquery>
+
+    <!--- Update summary with total selected --->
+    <cfset resultSummary.totalSelected = report_2.recordcount>
 
     <!--- Loop through the query results --->
     <cfloop query="report_2">
@@ -975,8 +987,18 @@
                 <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
             )
         </cfquery>
+
+        <!--- Increment insert counter --->
+        <cfset insertCount = insertCount + 1>
     </cfloop>
+
+    <!--- Update summary with total inserted --->
+    <cfset resultSummary.totalInserted = insertCount>
+
+    <!--- Return the summary --->
+    <cfreturn resultSummary>
 </cffunction>
+
 
 
 
