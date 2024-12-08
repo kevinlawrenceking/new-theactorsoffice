@@ -32,13 +32,17 @@
 <!--- Execute and collect summaries --->
 <cfloop array="#reportFunctions#" index="report">
     <cftry>
-        <cfset result = ReportsRefreshService[report.fn](argumentCollection=report.params)>
+        <!-- Dynamically invoke the function using its name -->
+        <cfset result = invoke(ReportsRefreshService, report.fn, report.params)>
+        
+        <!-- Append the report summary -->
         <cfset arrayAppend(reportSummaries, {
             reportId = report.id,
             totalSelected = result.totalSelected,
             totalInserted = result.totalInserted
         })>
     <cfcatch>
+        <!-- Handle errors and add error info to summaries -->
         <cfset arrayAppend(reportSummaries, {
             reportId = report.id,
             totalSelected = "Error",
@@ -48,6 +52,7 @@
     </cfcatch>
     </cftry>
 </cfloop>
+
 
 <!--- Display Report Summaries --->
 <div>
