@@ -506,11 +506,11 @@
     <cfargument name="rangeend" type="date" required="true">
 
     <!--- Initialize variables --->
-    <cfset var totalProcessed = 0>
+    <cfset var totalSelected = 0>
     <cfset var totalInserted = 0>
-    <cfset var totalUpdated = 0>
     <cfset var new_reportid = 3>
     <cfset var i = 0>
+    <cfset var resultSummary = {totalSelected = 0, totalInserted = 0, reportId = new_reportid}>
 
     <!--- Query to calculate category totals --->
     <cfquery name="report_3">
@@ -531,6 +531,9 @@
         GROUP BY c.audcatname
         ORDER BY c.audcatname
     </cfquery>
+
+    <!--- Update summary with total selected --->
+    <cfset resultSummary.totalSelected = report_3.recordCount>
 
     <!--- Loop through results --->
     <cfloop query="report_3">
@@ -575,20 +578,15 @@
             )
         </cfquery>
 
-        <!--- Track insertions and updates --->
+        <!--- Track insertions --->
         <cfset totalInserted++>
-        <cfset totalProcessed++>
     </cfloop>
 
+    <!--- Update summary with total inserted --->
+    <cfset resultSummary.totalInserted = totalInserted>
+
     <!--- Return summary --->
-    <cfreturn {
-        totalProcessed = totalProcessed,
-        totalInserted = totalInserted,
-        totalUpdated = totalUpdated,
-        reportId = new_reportid,
-        startDate = arguments.rangestart,
-        endDate = arguments.rangeend
-    }>
+    <cfreturn resultSummary>
 </cffunction>
 
 <cffunction name="report_5" access="public" returntype="struct" output="false" hint="Generates report 5, updates reportitems, and provides a summary.">
