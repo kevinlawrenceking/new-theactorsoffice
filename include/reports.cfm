@@ -145,7 +145,7 @@
 
 <cfloop query="reports">
 
- <cfif ListFindNoCase("3,6,5,7,8,9,2,4,18", reports.reportid)>
+ <cfif ListFindNoCase("3,4,6,5,7,8,9,2,4,18", reports.reportid)>
 
                  <cfinclude template="/include/qry/reportitems_x_281_3.cfm" />
             <cfinclude template="/include/qry/dataset_x_281_4.cfm" />
