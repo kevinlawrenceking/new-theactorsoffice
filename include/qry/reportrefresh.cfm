@@ -13,58 +13,41 @@
 <!--- Initialize summary array --->
 <cfset reportSummaries = []>
 
-<!--- Report 2 --->
-<cfset report2Summary = ReportsRefreshService.report_2(
-    userid=userid, 
-    rangestart=rangestart, 
-    rangeend=rangeend, 
-    new_audcatid=new_audcatid
-)>
-<cfset arrayAppend(reportSummaries, {reportId=2, totalSelected=report2Summary.totalSelected, totalInserted=report2Summary.totalInserted})>
+<!--- Report Calls --->
+<cfset reportFunctions = [
+    {id=2, fn="report_2", params={userid=userid, rangestart=rangestart, rangeend=rangeend, new_audcatid=new_audcatid}},
+    {id=3, fn="report_3", params={userid=userid, rangestart=rangestart, rangeend=rangeend}},
+    {id=4, fn="report_4", params={userid=userid, rangestart=rangestart, rangeend=rangeend}},
+    {id=5, fn="report_5", params={userid=userid, rangestart=rangestart, rangeend=rangeend}},
+    {id=7, fn="report_7", params={userid=userid, rangestart=rangestart, rangeend=rangeend, new_audcatid=new_audcatid}},
+    {id=8, fn="report_8", params={userid=userid, rangestart=rangestart, rangeend=rangeend, new_audcatid=new_audcatid}},
+    {id=10, fn="report_10", params={userid=userid, new_rangestart=rangestart, new_rangeend=rangeend}},
+    {id=11, fn="report_11", params={userid=userid, rangestart=rangestart, rangeend=rangeend}},
+    {id=12, fn="report_12", params={userid=userid, rangestart=rangestart, rangeend=rangeend}},
+    {id=13, fn="report_13", params={userid=userid, rangestart=rangestart, rangeend=rangeend}},
+    {id=17, fn="report_17", params={userid=userid, rangestart=rangestart, rangeend=rangeend}},
+    {id=18, fn="report_18", params={userid=userid, rangestart=rangestart, rangeend=rangeend, new_audsourceid=new_audsourceid}}
+]>
 
-<!--- Report 3 --->
-<cfset report3Summary = ReportsRefreshService.report_3(
-    userid=userid, 
-    rangestart=rangestart, 
-    rangeend=rangeend
-)>
-<cfset arrayAppend(reportSummaries, {reportId=3, totalSelected=report3Summary.totalSelected, totalInserted=report3Summary.totalInserted})>
-
-<!--- Report 4 --->
-<cfset report4Summary = ReportsRefreshService.report_4(
-    userid=userid, 
-    rangestart=rangestart, 
-    rangeend=rangeend
-)>
-<cfset arrayAppend(reportSummaries, {reportId=4, totalSelected=report4Summary.totalSelected, totalInserted=report4Summary.totalInserted})>
-
-<!--- Continue similarly for other reports --->
-<cfset report5Summary = ReportsRefreshService.report_5(userid=userid, rangestart=rangestart, rangeend=rangeend)>
-<cfset arrayAppend(reportSummaries, {reportId=5, totalSelected=report5Summary.totalSelected, totalInserted=report5Summary.totalInserted})>
-
-<cfset report7Summary = ReportsRefreshService.report_7(userid=userid, rangestart=rangestart, rangeend=rangeend, new_audcatid=new_audcatid)>
-<cfset arrayAppend(reportSummaries, {reportId=7, totalSelected=report7Summary.totalSelected, totalInserted=report7Summary.totalInserted})>
-
-<cfset report8Summary = ReportsRefreshService.report_8(userid=userid, rangestart=rangestart, rangeend=rangeend, new_audcatid=new_audcatid)>
-<cfset arrayAppend(reportSummaries, {reportId=8, totalSelected=report8Summary.totalSelected, totalInserted=report8Summary.totalInserted})>
-
-<cfset report10Summary = ReportsRefreshService.report_10(userid=userid, new_rangestart=rangestart, new_rangeend=rangeend)>
-<cfset arrayAppend(reportSummaries, {reportId=10, totalSelected=report10Summary.totalSelected, totalInserted=report10Summary.totalInserted})>
-
-<cfset report11Summary = ReportsRefreshService.report_11(userid=userid, rangestart=rangestart, rangeend=rangeend)>
-<cfset arrayAppend(reportSummaries, {reportId=11, totalSelected=report11Summary.totalSelected, totalInserted=report11Summary.totalInserted})>
-
-<cfset report12Summary = ReportsRefreshService.report_12(userid=userid, rangestart=rangestart, rangeend=rangeend)>
-<cfset arrayAppend(reportSummaries, {reportId=12, totalSelected=report12Summary.totalSelected, totalInserted=report12Summary.totalInserted})>
-
-<cfset report13Summary = ReportsRefreshService.report_13(userid=userid, rangestart=rangestart, rangeend=rangeend)>
-<cfset arrayAppend(reportSummaries, {reportId=13, totalSelected=report13Summary.totalSelected, totalInserted=report13Summary.totalInserted})>
-
-<cfset report17Summary = ReportsRefreshService.report_17(userid=userid, rangestart=rangestart, rangeend=rangeend)>
-<cfset arrayAppend(reportSummaries, {reportId=17, totalSelected=report17Summary.totalSelected, totalInserted=report17Summary.totalInserted})>
-
-<cfset report18Summary = ReportsRefreshService.report_18(userid=userid, rangestart=rangestart, rangeend=rangeend, new_audsourceid=new_audsourceid)>
-<cfset arrayAppend(reportSummaries, {reportId=18, totalSelected=report18Summary.totalSelected, totalInserted=report18Summary.totalInserted})>
+<!--- Execute and collect summaries --->
+<cfloop array="#reportFunctions#" index="report">
+    <cftry>
+        <cfset result = ReportsRefreshService[report.fn](argumentCollection=report.params)>
+        <cfset arrayAppend(reportSummaries, {
+            reportId = report.id,
+            totalSelected = result.totalSelected,
+            totalInserted = result.totalInserted
+        })>
+    <cfcatch>
+        <cfset arrayAppend(reportSummaries, {
+            reportId = report.id,
+            totalSelected = "Error",
+            totalInserted = "Error"
+        })>
+        <cfoutput><p>Error in Report ID #report.id#: #cfcatch.message#</p></cfoutput>
+    </cfcatch>
+    </cftry>
+</cfloop>
 
 <!--- Display Report Summaries --->
 <div>
