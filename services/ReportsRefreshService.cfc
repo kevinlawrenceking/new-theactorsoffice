@@ -1178,17 +1178,23 @@
     <cfset var insertCount = 0>
     <cfset var resultSummary = {totalSelected = 0, totalInserted = 0, reportId = new_reportid}>
 
+    <!--- Prepare the source label logic --->
+    <cfset var sourceField = "s.audsource">
+    <cfif arguments.new_audsourceidb EQ 1>
+        <cfset sourceField = "c.recordname">
+    <cfelseif arguments.new_audsourceidb EQ 2>
+        <cfset sourceField = "ss.submitsitename">
+    <cfelseif arguments.new_audsourceidb EQ 3>
+        <cfset sourceField = "c.recordname">
+    <cfelseif arguments.new_audsourceidb EQ 4>
+        <cfset sourceField = "o.opencallname">
+    </cfif>
+
     <!--- Query to fetch report data based on audsourceidb --->
     <cfquery name="report_6">
         SELECT
             COUNT(p.audprojectid) AS totals,
-            CASE 
-                WHEN <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_audsourceidb#"> = 0 THEN IFNULL(s.audsource, 'Unknown')
-                WHEN <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_audsourceidb#"> = 1 THEN IFNULL(c.recordname, 'Unknown')
-                WHEN <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_audsourceidb#"> = 2 THEN IFNULL(ss.submitsitename, 'Unknown')
-                WHEN <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_audsourceidb#"> = 3 THEN IFNULL(c.recordname, 'Unknown')
-                WHEN <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_audsourceidb#"> = 4 THEN IFNULL(o.opencallname, 'Unknown')
-            END AS label,
+            IFNULL(#sourceField#, 'Unknown') AS label,
             'Auditions' AS itemDataset
         FROM
             audprojects p
@@ -1204,8 +1210,8 @@
             AND p.projdate <= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangeend#">
             AND p.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
             AND (
-                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_audsourceidb#"> = 0 
-                OR s.audsourceid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_audsourceidb#">
+                arguments.new_audsourceidb = 0 
+                OR s.audsourceid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audsourceidb#">
             )
         GROUP BY label
         ORDER BY label
