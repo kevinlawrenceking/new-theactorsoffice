@@ -678,23 +678,23 @@
     <cfreturn resultSummary>
 </cffunction>
 
-<cffunction name="report_7" access="public" returntype="void" output="false">
+<cffunction name="report_7" access="public" returntype="struct" output="false" hint="Generates report 7, updates reportitems, and provides a summary.">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
     <cfargument name="new_audcatid" type="numeric" required="true">
 
     <!-- Initialize variables -->
-    <cfset var i = 0>
+    <cfset var totalSelected = 0>
+    <cfset var totalInserted = 0>
     <cfset var new_reportid = 7>
-    <cfset var new_label = "">
-    <cfset var new_itemValueInt = 0>
-    <cfset var new_itemDataset = "">
+    <cfset var i = 0>
+    <cfset var resultSummary = {totalSelected = 0, totalInserted = 0, reportId = new_reportid}>
 
     <!-- Query to fetch data -->
     <cfquery name="report_7">
         SELECT
-            count(p.audprojectid) AS totals,
+            COUNT(p.audprojectid) AS totals,
             rt.audroletype AS label,
             'Auditions' AS itemDataset
         FROM
@@ -708,10 +708,10 @@
         WHERE
             r.isdeleted = 0
             AND p.isDeleted = 0
-            AND p.userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#">
-            AND p.projdate >= <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.rangestart#">
-            AND p.projdate <= <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.rangeend#">
-            AND s.audcatid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_audcatid#">
+            AND p.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
+            AND p.projdate >= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangestart#">
+            AND p.projdate <= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangeend#">
+            AND s.audcatid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audcatid#">
         GROUP BY
             rt.audroletype
         HAVING
@@ -720,12 +720,15 @@
             rt.audroletype
     </cfquery>
 
+    <!-- Update summary with total selected -->
+    <cfset resultSummary.totalSelected = report_7.recordCount>
+
     <!-- Loop through the results and insert report items -->
     <cfloop query="report_7">
-        <cfset i = i + 1>
-        <cfset new_label = report_7.label>
-        <cfset new_itemValueInt = report_7.totals>
-        <cfset new_itemDataset = report_7.itemDataset>
+        <cfset i++>
+        <cfset var new_label = report_7.label>
+        <cfset var new_itemValueInt = report_7.totals>
+        <cfset var new_itemDataset = report_7.itemDataset>
 
         <!-- Find or create report item ID -->
         <cfquery name="findid">
@@ -736,7 +739,7 @@
         </cfquery>
 
         <cfset var new_id = 0>
-        <cfif findid.recordcount eq 1>
+        <cfif findid.recordCount EQ 1>
             <cfset new_id = findid.new_id>
         </cfif>
 
@@ -761,7 +764,16 @@
                 <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
             )
         </cfquery>
+
+        <!-- Track insertions -->
+        <cfset totalInserted++>
     </cfloop>
+
+    <!-- Update summary with total inserted -->
+    <cfset resultSummary.totalInserted = totalInserted>
+
+    <!-- Return summary -->
+    <cfreturn resultSummary>
 </cffunction>
 
 <cffunction name="report_18" access="public" returntype="void" output="false">
