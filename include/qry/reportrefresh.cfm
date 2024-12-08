@@ -23,6 +23,7 @@
       {id=6, fn="report_6", params={userid=userid, rangestart=rangestart, rangeend=rangeend, new_audsourceidb=new_audsourceidb}},
     {id=7, fn="report_7", params={userid=userid, rangestart=rangestart, rangeend=rangeend, new_audcatid=new_audcatid}},
     {id=8, fn="report_8", params={userid=userid, rangestart=rangestart, rangeend=rangeend, new_audcatid=new_audcatid}},
+    {id=9, fn="report_9", params={userid=userid, rangestart=rangestart, rangeend=rangeend}},
     {id=10, fn="report_10", params={userid=userid, new_rangestart=rangestart, new_rangeend=rangeend}},
     {id=11, fn="report_11", params={userid=userid, rangestart=rangestart, rangeend=rangeend}},
     {id=12, fn="report_12", params={userid=userid, rangestart=rangestart, rangeend=rangeend}},
