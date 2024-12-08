@@ -1166,7 +1166,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
-    <cfargument name="new_audsourceidb" type="numeric" default="1" required="true">
+
 
     <!--- Initialize variables --->
     <cfset var i = 0>
