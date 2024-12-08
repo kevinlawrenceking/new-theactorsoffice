@@ -891,18 +891,18 @@
     </cfloop>
 </cffunction>
 
-<cffunction name="report_8" access="public" returntype="void" output="false">
+<cffunction name="report_8" access="public" returntype="struct" output="false" hint="Generates report 8, updates reportitems, and provides a summary.">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
     <cfargument name="new_audcatid" type="numeric" required="true">
 
     <!--- Initialize variables --->
-    <cfset var i = 0>
+    <cfset var totalSelected = 0>
+    <cfset var totalInserted = 0>
     <cfset var new_reportid = 8>
-    <cfset var new_label = "">
-    <cfset var new_itemValueInt = 0>
-    <cfset var new_itemDataset = "">
+    <cfset var i = 0>
+    <cfset var resultSummary = {totalSelected = 0, totalInserted = 0, reportId = new_reportid}>
 
     <!--- Query to fetch report data --->
     <cfquery name="report_8">
@@ -932,12 +932,15 @@
             m.medianame
     </cfquery>
 
+    <!--- Update summary with total selected --->
+    <cfset resultSummary.totalSelected = report_8.recordCount>
+
     <!--- Loop through the query results --->
     <cfloop query="report_8">
-        <cfset i = i + 1>
-        <cfset new_label = report_8.label>
-        <cfset new_itemValueInt = report_8.totals>
-        <cfset new_itemDataset = report_8.itemDataset>
+        <cfset i++>
+        <cfset var new_label = report_8.label>
+        <cfset var new_itemValueInt = report_8.totals>
+        <cfset var new_itemDataset = report_8.itemDataset>
 
         <!--- Find or create the report item ID --->
         <cfquery name="findid">
@@ -948,7 +951,7 @@
         </cfquery>
 
         <cfset var new_id = 0>
-        <cfif findid.recordcount eq 1>
+        <cfif findid.recordcount EQ 1>
             <cfset new_id = findid.new_id>
         </cfif>
 
@@ -973,7 +976,16 @@
                 <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
             )
         </cfquery>
+
+        <!--- Track insertions --->
+        <cfset totalInserted++>
     </cfloop>
+
+    <!--- Update summary with total inserted --->
+    <cfset resultSummary.totalInserted = totalInserted>
+
+    <!--- Return summary --->
+    <cfreturn resultSummary>
 </cffunction>
 
 <cffunction name="report_2" access="public" returntype="struct" output="false">
