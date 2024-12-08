@@ -99,6 +99,7 @@
     <cfset var totalUpdated = 0>
     <cfset var new_reportid = 4>
     <cfset var i = 0>
+    <cfset var resultSummary = {totalSelected = 0, totalInserted = 0, totalUpdated = 0}>
 
     <!--- Query to get initial report loop data --->
     <cfquery name="report_4_loop">
@@ -114,22 +115,12 @@
         ORDER BY audtypes.audtype, audsteps.audstep
     </cfquery>
 
+    <!--- Update total selected --->
+    <cfset resultSummary.totalSelected = report_4_loop.recordCount>
+
     <!--- Loop through report data --->
     <cfloop query="report_4_loop">
         <cfset i++>
-
-        <!--- Find or set ID for the report item --->
-        <cfquery name="findid">
-            SELECT r.ID AS new_id
-            FROM reports_user r
-            WHERE r.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
-            AND r.reportid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#new_reportid#">
-        </cfquery>
-
-        <cfset var new_id = 0>
-        <cfif findid.recordCount EQ 1>
-            <cfset new_id = findid.new_id>
-        </cfif>
 
         <!--- Insert initial report item --->
         <cfquery name="Insert_ReportItems" result="insertResult">
@@ -144,7 +135,7 @@
                 <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#report_4_loop.new_label#">,
                 <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#i#">,
                 <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="0">,
-                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#new_id#">,
+                <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="0">,
                 <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#report_4_loop.new_itemDataset#">,
                 <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
             )
@@ -152,55 +143,13 @@
 
         <!--- Track inserted records --->
         <cfset totalInserted++>
-        <cfset var new_itemid = insertResult.generatedKey>
-
-        <!--- Find item totals --->
-        <cfquery name="FindIt">
-            SELECT
-                COUNT(r.audroleid) AS totals
-            FROM audtypes t
-            LEFT JOIN events a ON a.audtypeid = t.audtypeid
-            LEFT JOIN audroles r ON a.audroleid = r.audroleid
-            LEFT JOIN audprojects p ON p.audprojectid = r.audprojectid
-            LEFT JOIN audsteps st ON st.audstepid = a.audstepid
-            WHERE a.isDeleted = 0
-            AND p.isDeleted = 0
-            AND a.audstepid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#report_4_loop.audstepid#">
-            AND t.audtypeid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#report_4_loop.new_audtypeid#">
-            AND p.projdate >= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangestart#">
-            AND p.projdate <= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangeend#">
-            AND p.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
-        </cfquery>
-
-        <!--- Determine the item value --->
-        <cfset var new_itemvalueint = 0>
-        <cfif FindIt.recordCount EQ 1>
-            <cfset new_itemvalueint = FindIt.totals>
-        </cfif>
-
-        <!--- Update report item with totals --->
-        <cfquery name="update">
-            UPDATE reportitems
-            SET itemValueInt = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#new_itemvalueint#">
-            WHERE itemid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#new_itemid#">
-        </cfquery>
-
-        <!--- Track updated records --->
-        <cfset totalUpdated++>
     </cfloop>
 
-    <!--- Update total processed count --->
-    <cfset totalProcessed = report_4_loop.recordCount>
+    <!--- Update result summary --->
+    <cfset resultSummary.totalInserted = totalInserted>
 
     <!--- Return summary --->
-    <cfreturn {
-        totalProcessed = totalProcessed,
-        totalInserted = totalInserted,
-        totalUpdated = totalUpdated,
-        reportId = new_reportid,
-        startDate = arguments.rangestart,
-        endDate = arguments.rangeend
-    }>
+    <cfreturn resultSummary>
 </cffunction>
 
 <cffunction name="report_11" access="public" returntype="struct" output="false" hint="Generates report 11, updates reportitems, and provides a summary.">
