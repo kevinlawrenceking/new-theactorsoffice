@@ -129,20 +129,6 @@
     </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <cfloop query="reports">
 
  <cfif ListFindNoCase("3,4,6,5,7,8,9,2,4,18", reports.reportid)>
