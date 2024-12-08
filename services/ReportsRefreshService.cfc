@@ -1166,12 +1166,11 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
- <cfargument name="new_audsourceidb" type="numeric" required="true">
+    <cfargument name="new_audsourceidb" type="numeric" required="true">
 
     <!--- Initialize variables --->
     <cfset var i = 0>
     <cfset var new_reportid = 6>
-
     <cfset var new_label = "">
     <cfset var new_itemValueInt = 0>
     <cfset var new_itemDataset = "">
@@ -1210,10 +1209,9 @@
             AND p.projdate >= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangestart#">
             AND p.projdate <= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangeend#">
             AND p.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
-            AND (
-                arguments.new_audsourceidb = 0 
-                OR s.audsourceid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audsourceidb#">
-            )
+            <cfif arguments.new_audsourceidb NEQ 0>
+                AND s.audsourceid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audsourceidb#">
+            </cfif>
         GROUP BY label
         ORDER BY label
     </cfquery>
