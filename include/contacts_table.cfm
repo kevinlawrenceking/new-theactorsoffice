@@ -51,6 +51,7 @@
         // Initialize DataTable
         var table = $('#<cfoutput>#contacts_table#</cfoutput>').DataTable({
             "pageLength": <cfoutput>#defrows#</cfoutput>,
+            filter: true,
             stateSave: false,
             dom: 'Bfrtip',
             responsive: {
