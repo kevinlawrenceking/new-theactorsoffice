@@ -219,6 +219,22 @@
         <!--- Update total selected --->
         <cfset resultSummary.totalSelected = report_4_loop.recordCount>
 
+              
+            <cfquery name="findid">
+                SELECT r.ID AS new_id
+                FROM reports_user r
+                WHERE 
+                    r.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
+                    AND r.reportid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#new_reportid#">
+            </cfquery>
+
+            <cfset var new_id = 0>
+            <cfif findid.recordcount EQ 1>
+                <cfset new_id = findid.new_id>
+            </cfif>
+
+
+
         <!--- Loop through report data --->
         <cfloop query="report_4_loop">
             <cfset i++>
@@ -233,17 +249,61 @@
                     itemDataset, 
                     userid
                 ) VALUES (
-                    <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#report_4_loop.new_label# KKKK">,
+                    <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#report_4_loop.new_label#">,
                     <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#i#">,
                     <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="0">,
-                    <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="0">,
+                    <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#new_id#">,
                     <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#report_4_loop.new_itemDataset#">,
                     <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
                 )
             </cfquery>
-
+ <cfset new_itemid=insertResult.GENERATEDKEY />
             <!--- Track inserted records --->
             <cfset totalInserted++>
+
+           
+ <cfquery  name="Findit">
+                SELECT
+                count(r.audroleid) as totals
+                from
+                audtypes t
+                left join events a on a.audtypeid = t.audtypeid
+                left join audroles r on a.audroleid = r.audroleid
+                left join audprojects p on p.audprojectid = r.audprojectid
+                LEFT JOIN audsteps st ON st.audstepid = a.audstepid
+                WHERE a.isDeleted = 0
+                AND p.isdeleted = 0
+                and a.audstepid = #report_4_loop.audstepid#
+                and t.audtypeid = #report_4_loop.new_audtypeid#
+    AND p.projdate >= <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.rangestart#" /> 
+    AND p.projdate <= <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.rangeend#" />
+AND p.userid=<cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#"> 
+</cfquery>
+
+<cfif #findit.recordcount# is "0">
+
+    <cfset new_itemvalueint=0 />
+
+                        <cfelse>
+
+                            <cfoutput>
+                                
+                                <cfset new_itemvalueint=#int(FindIt.totals)# />
+                                
+                            </cfoutput>
+                            
+                    </cfif>
+    
+                    <cfquery  name="update">
+                        update reportitems set itemValueInt =
+                        <cfqueryparam cfsqltype="cf_sql_integer" value="#new_itemvalueint#" />
+                        where itemid =
+                        <cfqueryparam cfsqltype="cf_sql_integer" value="#new_itemid#" />
+                    </cfquery>
+
+
+
+
         </cfloop>
 
         <!--- Update result summary --->
@@ -720,7 +780,7 @@
                     itemDataset,
                     userid
                 ) VALUES (
-                    <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#new_label_new#">,
+                    <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#new_label_new# KKKK">,
                     <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#i#">,
                     <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#new_itemValueInt#">,
                     <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#new_id#">,
