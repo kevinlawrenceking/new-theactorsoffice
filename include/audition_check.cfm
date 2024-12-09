@@ -31,7 +31,7 @@ cfinclude template= /include/qry/uu_33_1.cfm    --->
                     $(document).ready(function() {
                   
                         $("##follow").on("show.bs.modal", function(event) {
-                            $(this).find(".modal-body").load("/include/folowup_body.cfm?contactid=#followup_contactid#");
+                            $(this).find(".modal-body").load("/include/folowup_body.cfm?followup_contactid=#followup_contactid#");
                         });
                         $("##follow").modal('show');
                     });

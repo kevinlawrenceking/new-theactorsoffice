@@ -1,2 +1,2 @@
 <cfset eventService = createObject("component", "services.EventService")>
-<cfset followup_contactid = eventService.SELevents(audprojectid=audprojectid)>
+<cfset FOLLOWUP_CONTACTID = eventService.SELevents(audprojectid=audprojectid)>
