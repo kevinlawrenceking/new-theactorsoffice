@@ -20632,9 +20632,24 @@ text-align:center
 }
 }
 
+
+
 div.dataTables_wrapper div.dataTables_filter input {
 margin-left:.5em;
 margin-right:0
+}
+
+.dataTables_filter {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: auto !important;
+    width: auto !important;
+}
+.dataTables_filter input {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
 div.table-responsive>div.dataTables_wrapper>div.row>div[class^=col-]:last-child {
