@@ -2,48 +2,31 @@
             maxTime: "<cfoutput>#CalEndtime#</cfoutput>",
 
 
-    <cfsavecontent variable="events_loop">
-        <cfloop query="events">
-            <cfoutput>
-                <cfset starttime="#timeformat('#events.eventStartTime#','HH:mm')#" />
-                <cfset stoptime="#timeformat('#events.eventstopTime#','HH:mm')#" />
-                <cfset newdate="#dateformat('#events.col3#','YYYY-mm-dd')#" />
-                <cfset enddate="#dateformat('#events.eventstop#','YYYY-mm-dd')#" />
-                <cfset dow1="#trim(events.dow)#" />
-                <cfset dow2="#replace(dow1,',',''',''')#" />
-                <cfset final_dow="'#dow2#'">
-                    <cfif #events.endrecur# is not "">
-                        <cfset initial_endrecur="#dateformat('#events.endrecur#','YYYY-mm-dd')#" />
-                        <cfset endrecur=DateAdd('d', 2, initial_endrecur) />
-                    </cfif>
-                    {
-                    <Cfif #events.dow# is not "">
-                        groupId: 'recurring#events.eventid#',
-                        startRecur: '#newdate#',
-                        daysOfWeek: [ #final_dow# ],
-                        startTime: '#starttime#',
-                        endTime: '#stoptime#',
-                        <cfif #events.endrecur# is not "">
-                            endRecur: '#endrecur#',
-                        </cfif>
-                    </Cfif>
-                    title: '#replace(events.col1, "'", "\'", "ALL")#',
-                    start: '#newdate# #starttime#',
-                    end: '#enddate# #stoptime#',
-                    <cfif #events.audprojectid# is "">
-                    url: '/app/appoint/?eventid=#events.eventid#&returnurl=calendar-appoint&rcontactid=0',
-                    <cfelse>
-                        url: '/app/audition/?focusid=#events.eventid#&audprojectid=#events.audprojectid#',
-                    </cfif>
-                    description: '#replace(events.col5, "'", "\'", "ALL")#',
-                    className: "colorkey-#EVENTS.id#"
-                    }
-                    <cfif #events.currentrow# is "#events.recordcount#">
-                        <cfelse>,
-                    </cfif>
-            </cfoutput>
-        </cfloop>
-    </cfsavecontent>
+<cfsavecontent variable="events_loop">
+    <cfoutput>
+    <cfloop query="events">
+        {
+            <cfif events.dow neq "">
+                groupId: "recurring#events.eventid#",
+                startRecur: "#dateformat(events.col3, 'YYYY-mm-dd')#",
+                daysOfWeek: [ "#replace(trim(events.dow), ',', "','")#" ],
+                startTime: "#timeformat(events.eventStartTime, 'HH:mm')#",
+                endTime: "#timeformat(events.eventstopTime, 'HH:mm')#",
+                <cfif events.endrecur neq "">
+                    endRecur: "#dateformat(DateAdd('d', 2, events.endrecur), 'YYYY-mm-dd')#",
+                </cfif>
+            </cfif>
+            title: "#replace(events.col1, "'", "\'", 'ALL')#",
+            start: "#dateformat(events.col3, 'YYYY-mm-dd')# #timeformat(events.eventStartTime, 'HH:mm')#",
+            end: "#dateformat(events.eventstop, 'YYYY-mm-dd')# #timeformat(events.eventstopTime, 'HH:mm')#",
+            url: "<cfif events.audprojectid eq "">/app/appoint/?eventid=#events.eventid#&returnurl=calendar-appoint&rcontactid=0<cfelse>/app/audition/?focusid=#events.eventid#&audprojectid=#events.audprojectid#</cfif>",
+            description: "#replace(events.col5, "'", "\'", 'ALL')#",
+            className: "colorkey-#events.id#"
+        }<cfif events.currentrow lt events.recordcount>,</cfif>
+    </cfloop>
+    </cfoutput>
+</cfsavecontent>
+
 
 <script>
 ! function(l) {
