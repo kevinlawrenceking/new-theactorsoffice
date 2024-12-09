@@ -321,27 +321,21 @@
     <cfreturn result>
 </cffunction>
 
-       
-       <cffunction output="false" name="UPDevents_23762" access="public" returntype="void">
-    <cfargument name="eventTitle" type="string" required="true">
-    <cfargument name="projName" type="string" required="true">
-
-
-        <cfquery result="result" name="updateQuery" >
-            UPDATE events_tbl e
-            INNER JOIN audroles r ON r.audroleid = e.audroleid
-            INNER JOIN audprojects p ON p.audprojectid = r.audprojectid
-            SET e.eventtitle = <cfqueryparam value="#arguments.projName#" cfsqltype="CF_SQL_VARCHAR">,
-                e.eventdescription = LEFT(REPLACE(REPLACE(p.projDescription, CHAR(13), ''), CHAR(10), ''), 5000)
-            WHERE e.eventtitle != <cfqueryparam value="#arguments.projName#" cfsqltype="CF_SQL_VARCHAR">
-        </cfquery>
+<cffunction output="false" name="UPDevents_23762" access="public" returntype="void">
+    <cfquery result="result" name="updateQuery">
+        UPDATE events_tbl e
+        INNER JOIN audroles r ON r.audroleid = e.audroleid
+        INNER JOIN audprojects p ON p.audprojectid = r.audprojectid
+        SET e.eventtitle = p.projName,
+            e.eventdescription = LEFT(REPLACE(REPLACE(p.projDescription, CHAR(13), ''), CHAR(10), ''), 5000)
+        WHERE e.eventtitle != p.projName
+    </cfquery>
+</cffunction>
 
 
 
 
-
-
-</cffunction> <cffunction output="false" name="SELevents" access="public" returntype="query">
+<cffunction output="false" name="SELevents" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
 
 

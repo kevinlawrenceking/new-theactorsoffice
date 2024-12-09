@@ -67,7 +67,7 @@
     </cfif>
 </cfif>
 
-<cfinclude template="/include/qry/audintoevents.cfm" />
+
 
 <!--- Include the query for adding missing records --->
 <cfinclude template="/include/qry/addmissing_33_3.cfm" />
