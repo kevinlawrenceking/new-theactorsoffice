@@ -49,17 +49,17 @@
         <input type="submit" class="btn btn-primary waves-effect waves-light" value="Refresh"></div>
 
         <Cfoutput>
-
+<div id="hidden_div">
           <!--- Start Date --->
-          <div id="hidden_div" class="form-group col-md-2">
+          <div id="hidden_divx" class="form-group col-md-2">
             <label for="customstart">Start Date</label>
             <input id="customstart" class="form-control" autocomplete="off" value="#customstart#" name="customstart" type="date" onchange="this.form.submit();"/></div>
 
           <!--- End Date --->
-          <div id="hidden_divs" class="form-group col-md-2">
+          <div id="hidden_divsx" class="form-group col-md-2">
             <label for="customend">End Date</label>
             <input id="customend" class="form-control" autocomplete="off" value="#customend#" name="customend" type="date" onchange="this.form.submit();"/></div>
-
+</div>
         </cfoutput>
       </div>
     </form>
