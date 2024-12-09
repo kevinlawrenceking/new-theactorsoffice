@@ -1,3 +1,5 @@
+
+<cfinclude template="/include/qry/fetch_folowup.cfm" >
 <cfoutput>
 
 <p>&nbsp;</p>
