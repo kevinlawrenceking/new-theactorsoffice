@@ -26,5 +26,5 @@
     new_parkingDetails = new_parkingDetails,
     new_workwithcoach = new_workwithcoach,
     new_trackmileage = new_trackmileage,
-    new_eventtitle = form.new_eventtitle
+    new_eventtitle = variables.new_eventtitle
 )>
