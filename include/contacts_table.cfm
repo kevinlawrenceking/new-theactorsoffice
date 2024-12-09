@@ -52,7 +52,7 @@
         var table = $('#<cfoutput>#contacts_table#</cfoutput>').DataTable({
             "pageLength": <cfoutput>#defrows#</cfoutput>,
             filter: true,
-            searching: true,
+            "searching": true,
             stateSave: false,
             dom: 'Bfrtip',
             responsive: {
