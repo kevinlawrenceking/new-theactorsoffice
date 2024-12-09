@@ -19,7 +19,7 @@ cfinclude template= /include/qry/uu_33_1.cfm    --->
 <cfif isnew eq 1>
     
     <!--- Include follow-up queries --->
-    <cfinclude template="/include/qry/followups_33_2.cfm" />
+    <cfinclude template="/include/qry/folowup_body.cfm" />
     
     <!--- Check if there is exactly one follow-up record --->
     <cfif followup_contactid neq 0>
