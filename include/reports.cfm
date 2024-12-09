@@ -36,11 +36,11 @@
     <div class="form-group col-md-2">
       <label for="eventStart">Date Range<span class="text-danger">*</span>
       </label>
-      <select id="new_rangeid" name="new_rangeid" class="form-control" onchange="this.form.submit();showDiv('hidden_div', this);showDiv('hidden_divs', this);">
-        <cfoutput query="ranges">
-          <option value="#ranges.rangeid#" <cfif ranges.rangeid eq new_rangeid>selected</cfif>>#ranges.rangename#</option>
-        </cfoutput>
-      </select>
+  <select id="new_rangeid" name="new_rangeid" class="form-control" onchange="toggleDateDiv(this.value);">
+    <cfoutput query="ranges">
+      <option value="#ranges.rangeid#" <cfif ranges.rangeid eq new_rangeid>selected</cfif>>#ranges.rangename#</option>
+    </cfoutput>
+  </select>
     </div>
 
     <!--- Refresh Button --->
@@ -49,19 +49,23 @@
         <input type="submit" class="btn btn-primary waves-effect waves-light" value="Refresh"></div>
 
         <Cfoutput>
-<div id="hidden_div">
-          <!--- Start Date --->
-          <div id="hidden_divx" class="form-group col-md-2">
-            <label for="customstart">Start Date</label>
-            <input id="customstart" class="form-control" autocomplete="off" value="#customstart#" name="customstart" type="date" onchange="this.form.submit();"/></div>
+  <!-- Hidden Date Range Div -->
+  <div id="hidden_div" style="display: none;">
+    <!-- Start Date -->
+    <div id="hidden_divx" class="form-group col-md-2">
+      <label for="customstart">Start Date</label>
+      <input id="customstart" class="form-control" autocomplete="off" value="#customstart#" name="customstart" type="date" onchange="this.form.submit();" />
+    </div>
 
-          <!--- End Date --->
-          <div id="hidden_divsx" class="form-group col-md-2">
-            <label for="customend">End Date</label>
-            <input id="customend" class="form-control" autocomplete="off" value="#customend#" name="customend" type="date" onchange="this.form.submit();"/></div>
-</div>
-        </cfoutput>
+    <!-- End Date -->
+    <div id="hidden_divsx" class="form-group col-md-2">
+      <label for="customend">End Date</label>
+      <input id="customend" class="form-control" autocomplete="off" value="#customend#" name="customend" type="date" onchange="this.form.submit();" />
+    </div>
+  </div>
       </div>
+        </cfoutput>
+  
     </form>
 
     <div class="row">
@@ -246,23 +250,23 @@
 
 
 
+<script>
+  function toggleDateDiv(selectedValue) {
+    const customDiv = document.getElementById("hidden_div");
+    if (selectedValue === "y") { // Assuming "y" is the value for "Custom"
+      customDiv.style.display = "block";
+      document.getElementById("customstart").required = true;
+      document.getElementById("customend").required = true;
+    } else {
+      customDiv.style.display = "none";
+      document.getElementById("customstart").required = false;
+      document.getElementById("customend").required = false;
+    }
+  }
 
-
-
-
-
-
-    
-
-    <script>
-      function showDiv(divId, element) {
-        var checked = document.querySelectorAll('input:checked');
-        document
-          .getElementById(divId)
-          .style
-          .display = checked.length === 0
-            ? 'none'
-            : 'block';
-        $("#hidden_div").prop('required', checked.length > 0);
-      }
-    </script>
+  // On page load, ensure the div is hidden unless the value is "Custom"
+  document.addEventListener("DOMContentLoaded", function() {
+    const selectElement = document.getElementById("new_rangeid");
+    toggleDateDiv(selectElement.value);
+  });
+</script>
