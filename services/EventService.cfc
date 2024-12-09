@@ -1194,7 +1194,9 @@
             WHERE eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">
         </cfquery>
 
-</cffunction> <cffunction output="false" name="UPDevents_24557" access="public" returntype="void">
+</cffunction> 
+
+<cffunction output="false" name="UPDevents_24557" access="public" returntype="void">
     <cfargument name="new_userid" type="numeric" required="true">
     <cfargument name="new_audRoleID" type="numeric" required="true">
     <cfargument name="new_audTypeID" type="numeric" required="true">

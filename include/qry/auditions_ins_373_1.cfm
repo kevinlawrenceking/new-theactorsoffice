@@ -12,7 +12,7 @@
 <!--- Default handling for times --->
 <cfif NOT len(trim(new_eventStartTime))><cfset new_eventStartTime = "00:00:00"></cfif>
 <cfif NOT len(trim(new_eventStopTime))><cfset new_eventStopTime = "00:00:00"></cfif>
-
+<Cfoutput>#new_eventtitle#</cfoutput><cfaborT>
 <cfset new_eventid = eventService.INSevents_24555(
     new_userid = new_userid,
     new_audRoleID = new_audRoleID,
