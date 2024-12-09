@@ -337,10 +337,10 @@
 
 <cffunction output="false" name="SELevents" access="public" returntype="numeric">
     <cfargument name="audprojectid" type="numeric" required="true">
-    
-    <!--- Query to check for follow-up --->
-    <cfquery name="result">
-        SELECT COUNT(*) AS recordCount
+
+    <cfquery name="result" maxrows="1">
+        SELECT DISTINCT
+            p.contactid
         FROM
             events e
         INNER JOIN
@@ -356,15 +356,17 @@
             AND p.contactid NOT IN (
                 SELECT contactid FROM fusystemusers WHERE sustatus = 'Active'
             )
+        ORDER BY
+            e.eventid DESC
     </cfquery>
     
-<!--- Return 1 if recordCount > 0, otherwise return 0 --->
     <cfif result.recordCount GT 0>
-        <cfreturn 1>
+        <cfreturn result.contactid>
     <cfelse>
         <cfreturn 0>
     </cfif>
 </cffunction>
+
 
 
 

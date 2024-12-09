@@ -16,13 +16,13 @@
 cfinclude template= /include/qry/uu_33_1.cfm    --->
 
 <!--- Check if the record is new --->
-<cfif #isnew# is "1">
+<cfif isnew eq 1>
     
     <!--- Include follow-up queries --->
     <cfinclude template="/include/qry/followups_33_2.cfm" />
     
     <!--- Check if there is exactly one follow-up record --->
-    <cfif isfollowup eq 1>
+    <cfif followup_contactid neq 0>
         
 
             
@@ -31,10 +31,8 @@ cfinclude template= /include/qry/uu_33_1.cfm    --->
                     $(document).ready(function() {
                   
                         $("##follow").on("show.bs.modal", function(event) {
-                            $(this).find(".modal-body").load("/include/folowup_body.cfm?contactid=#followups.contactid#");
+                            $(this).find(".modal-body").load("/include/folowup_body.cfm?contactid=#followup_contactid#");
                         });
-
-         
                         $("##follow").modal('show');
                     });
                 </script>
