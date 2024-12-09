@@ -253,7 +253,7 @@
 <script>
   function toggleDateDiv(selectedValue) {
     const customDiv = document.getElementById("hidden_div");
-    if (selectedValue === "y") { // Assuming "y" is the value for "Custom"
+    if (selectedValue === "7") { // Assuming "y" is the value for "Custom"
       customDiv.style.display = "block";
       document.getElementById("customstart").required = true;
       document.getElementById("customend").required = true;
