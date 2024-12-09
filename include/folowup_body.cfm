@@ -9,7 +9,7 @@
 </cfoutput>
 <form action="/include/systemchange.cfm">
 <cfoutput>
-<input type="hidden" name="contactid" value="#contactid#">
+<input type="hidden" name="contactid" value="#followup_contactid#">
 
 <input type="hidden" name="suid" value="0">
 <input type="hidden" name="new_systemtype" value="Follow Up" >
