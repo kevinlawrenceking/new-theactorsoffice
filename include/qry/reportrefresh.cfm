@@ -78,4 +78,4 @@
             </cfloop>
         </tbody>
     </table>
-</div><cfabort>
+</div>
