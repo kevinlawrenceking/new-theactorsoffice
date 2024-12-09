@@ -1129,6 +1129,7 @@
     <cfargument name="new_parkingDetails" type="string" required="true">
     <cfargument name="new_workwithcoach" type="boolean" required="true">
     <cfargument name="new_trackmileage" type="boolean" required="true">
+  <cfargument name="new_eventtitle" type="string" required="true">
 
     <cfquery result="result" name="insertEventQuery">
         INSERT INTO events_tbl (
@@ -1136,6 +1137,7 @@
             <cfif arguments.new_audRoleID NEQ 0>, audRoleID</cfif>
             <cfif arguments.new_audTypeID NEQ 0>, audTypeID</cfif>
             <cfif len(trim(arguments.new_audLocation))>, audLocation</cfif>
+               <cfif len(trim(arguments.eventtitle))>, eventtitle</cfif>
             <cfif arguments.new_eventStart NEQ "1970-01-01">, eventStart</cfif>
             <cfif arguments.new_eventStartTime NEQ "00:00:00">, eventStartTime</cfif>
             <cfif arguments.new_eventStopTime NEQ "00:00:00">, eventStopTime</cfif>
@@ -1149,6 +1151,7 @@
             <cfif arguments.new_audRoleID NEQ 0>, <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#"></cfif>
             <cfif arguments.new_audTypeID NEQ 0>, <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audTypeID#"></cfif>
             <cfif len(trim(arguments.new_audLocation))>, <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audLocation#" maxlength="500"></cfif>
+            <cfif len(trim(arguments.new_eventtitle))>, <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_eventtitle#" maxlength="500"></cfif>
             <cfif arguments.new_eventStart NEQ "1970-01-01">, <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.new_eventStart#"></cfif>
             <cfif arguments.new_eventStartTime NEQ "00:00:00">, <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.new_eventStartTime#"></cfif>
             <cfif arguments.new_eventStopTime NEQ "00:00:00">, <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.new_eventStopTime#"></cfif>

@@ -25,5 +25,6 @@
     new_audStepID = new_audStepID,
     new_parkingDetails = new_parkingDetails,
     new_workwithcoach = new_workwithcoach,
-    new_trackmileage = new_trackmileage
+    new_trackmileage = new_trackmileage,
+    new_eventtitle = new_eventtitle
 )>
