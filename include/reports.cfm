@@ -54,13 +54,13 @@
     <!-- Start Date -->
     <div id="hidden_divx" class="form-group col-md-2">
       <label for="customstart">Start Date</label>
-      <input id="customstart" class="form-control" autocomplete="off" value="#customstart#" name="customstart" type="date" onchange="this.form.submit();" />
+      <input id="customstart" class="form-control" autocomplete="off" value="#customstart#" name="customstart" type="date"  />
     </div>
 
     <!-- End Date -->
     <div id="hidden_divsx" class="form-group col-md-2">
       <label for="customend">End Date</label>
-      <input id="customend" class="form-control" autocomplete="off" value="#customend#" name="customend" type="date" onchange="this.form.submit();" />
+      <input id="customend" class="form-control" autocomplete="off" value="#customend#" name="customend" type="date"  />
     </div>
   </div>
       </div>
