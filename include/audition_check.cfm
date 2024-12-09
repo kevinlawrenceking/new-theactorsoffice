@@ -12,8 +12,8 @@
     <cfabort>
 </cfif>
 
-<!--- Include the query for the audition module --->
-<cfinclude template="/include/qry/uu_33_1.cfm" />
+<!--- Include the query that updates events based on audition project. TRIGGER ADDED.
+cfinclude template= /include/qry/uu_33_1.cfm    --->
 
 <!--- Check if the record is new --->
 <cfif #isnew# is "1">

@@ -1,2 +1,4 @@
 <cfset eventService = createObject("component", "services.EventService")>
-<cfset followups = eventService.SELevents(audprojectid=audprojectid)>
+<cfset isFollowup = eventService.SELevents(audprojectid=audprojectid)>
+
+<Cfoutput>isFollowup: #isfollowup#<BR></cfoutput><cfabort>

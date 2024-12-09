@@ -335,44 +335,37 @@
 
 
 
-<cffunction output="false" name="SELevents" access="public" returntype="query">
+<cffunction output="false" name="SELevents" access="public" returntype="numeric">
     <cfargument name="audprojectid" type="numeric" required="true">
+    
+    <!-- Query to check for follow-up -->
+    <cfquery name="result">
+        SELECT COUNT(*) AS recordCount
+        FROM
+            events e
+        INNER JOIN
+            audroles r ON r.audroleid = e.audroleid
+        INNER JOIN
+            audprojects p ON p.audprojectid = r.audprojectid
+        INNER JOIN
+            contactdetails c ON c.contactid = p.contactid
+        WHERE
+            e.isdeleted = 0
+            AND r.audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
+            AND e.eventStart < NOW() -- Event start is in the past
+            AND p.contactid NOT IN (
+                SELECT contactid FROM fusystemusers WHERE sustatus = 'Active'
+            )
+    </cfquery>
+    
+    <!-- Return 1 if at least one record is found, otherwise return 0 -->
+    <cfreturn IIF(result.recordCount > 0, 1, 0)>
+</cffunction>
 
 
 
 
-        <cfquery name="result" >
-            SELECT DISTINCT
-                p.contactid,
-                c.contactfullname,
-                c.userid,
-                e.eventStart
-            FROM
-                events e
-            INNER JOIN
-                audroles r ON r.audroleid = e.audroleid
-            INNER JOIN
-                audprojects p ON p.audprojectid = r.audprojectid
-            INNER JOIN
-                contactdetails c ON c.contactid = p.contactid
-            WHERE
-                e.isdeleted = 0
-                AND r.audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
-                AND p.contactid NOT IN (
-                    SELECT contactid FROM fusystemusers WHERE sustatus = 'Active'
-                )
-            ORDER BY
-                e.eventid DESC
-        </cfquery>
-
-        <cfreturn result>
-
-
-
-
-
-
-</cffunction> <cffunction output="false" name="SELevents_23785" access="public" returntype="query">
+<cffunction output="false" name="SELevents_23785" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
 
 
