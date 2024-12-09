@@ -1116,7 +1116,9 @@
 
 
     <cfreturn result>
-</cffunction> <cffunction output="false" name="INSevents_24555" access="public" returntype="numeric">
+</cffunction> 
+
+<cffunction output="false" name="INSevents_24555" access="public" returntype="numeric">
     <cfargument name="new_userid" type="numeric" required="true">
     <cfargument name="new_audRoleID" type="numeric" required="true">
     <cfargument name="new_audTypeID" type="numeric" required="true">
@@ -1162,6 +1164,8 @@
             <cfif isBoolean(arguments.new_trackmileage)>, <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_trackmileage#"></cfif>
         )
     </cfquery>
+
+
 
     <cfreturn result.generatedKey>
 </cffunction>
