@@ -1165,7 +1165,7 @@
             <cfif isBoolean(arguments.new_trackmileage)>, <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_trackmileage#"></cfif>
         )
     </cfquery>
-
+<Cfabort>
 
 
     <cfreturn result.generatedKey>
