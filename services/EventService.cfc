@@ -1133,7 +1133,7 @@
     <cfargument name="new_trackmileage" type="boolean" required="true">
   <cfargument name="new_eventtitle" type="string" required="true">
 <cfdump var="#arguments#">
-<cfabort>
+
     <cfquery result="result" name="insertEventQuery">
         INSERT INTO events_tbl (
             userid
