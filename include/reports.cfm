@@ -90,7 +90,7 @@
     <div class="row">
       <!--- Loop through reports query to display report cards --->
 <cfloop query="reports">
- 
+ <cfoutput>
     <div id="anchor-#reports.reportid#" class="anchor-offset col-xl-#reports.colxl# col-md-#reports.colmd# col-lg">
       <a>
         <div class="card" id="#reports.reportid#" style="border: 1px solid ##e5e5e5; border-radius:3px;">
