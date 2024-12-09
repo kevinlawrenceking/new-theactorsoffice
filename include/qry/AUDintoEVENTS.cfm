@@ -11,7 +11,7 @@
 <cfparam name="new_eventStopTime" default="" />
 
 <cfparam name="new_contactid" default="" />
-
+<CfaborT>
 <cfif #new_audtypeid# is not "">
 
     <cfinclude template="/include/qry/findtype_365_1.cfm" />
