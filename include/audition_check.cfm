@@ -22,10 +22,9 @@ cfinclude template= /include/qry/uu_33_1.cfm    --->
     <cfinclude template="/include/qry/followups_33_2.cfm" />
     
     <!--- Check if there is exactly one follow-up record --->
-    <cfif #followups.recordcount# is "1">
+    <cfif isfollowup eq 1>
         
-        <!--- Check if the follow-up event has started --->
-        <cfif followups.eventstart lt now()>
+
             
             <cfoutput>
                 <script>
@@ -40,21 +39,17 @@ cfinclude template= /include/qry/uu_33_1.cfm    --->
                     });
                 </script>
             </cfoutput>
-        </cfif>
+   
         
         <!--- Modal for adding follow-up system --->
-        <div id="follow" class="modal fade" tabindex="-1" role="dialog" 
-
->
+        <div id="follow" class="modal fade" tabindex="-1" role="dialog" >
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">
                             <cfoutput>Add Follow Up System</cfoutput>
                         </h4>
-                        <button type="button" class="close" data-bs-dismiss="modal" 
-
->
+                        <button type="button" class="close" data-bs-dismiss="modal">
                             <i class="mdi mdi-close-thick"></i>
                         </button>
                     </div>
@@ -63,10 +58,8 @@ cfinclude template= /include/qry/uu_33_1.cfm    --->
                 </div>
             </div>
         </div>
-        
     </cfif>
 </cfif>
-
 
 
 <!--- Include the query for adding missing records --->
