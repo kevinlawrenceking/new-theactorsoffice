@@ -1137,7 +1137,7 @@
             <cfif arguments.new_audRoleID NEQ 0>, audRoleID</cfif>
             <cfif arguments.new_audTypeID NEQ 0>, audTypeID</cfif>
             <cfif len(trim(arguments.new_audLocation))>, audLocation</cfif>
-               <cfif len(trim(arguments.eventtitle))>, eventtitle</cfif>
+               <cfif len(trim(arguments.new_eventtitle))>, eventtitle</cfif>
             <cfif arguments.new_eventStart NEQ "1970-01-01">, eventStart</cfif>
             <cfif arguments.new_eventStartTime NEQ "00:00:00">, eventStartTime</cfif>
             <cfif arguments.new_eventStopTime NEQ "00:00:00">, eventStopTime</cfif>
