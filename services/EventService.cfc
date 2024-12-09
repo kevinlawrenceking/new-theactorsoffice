@@ -338,7 +338,7 @@
 <cffunction output="false" name="SELevents" access="public" returntype="numeric">
     <cfargument name="audprojectid" type="numeric" required="true">
     
-    <!-- Query to check for follow-up -->
+    <!--- Query to check for follow-up --->
     <cfquery name="result">
         SELECT COUNT(*) AS recordCount
         FROM
@@ -358,8 +358,12 @@
             )
     </cfquery>
     
-    <!-- Return 1 if at least one record is found, otherwise return 0 -->
-    <cfreturn IIF(result.recordCount > 0, 1, 0)>
+<!--- Return 1 if recordCount > 0, otherwise return 0 --->
+    <cfif result.recordCount GT 0>
+        <cfreturn 1>
+    <cfelse>
+        <cfreturn 0>
+    </cfif>
 </cffunction>
 
 
