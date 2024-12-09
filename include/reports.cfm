@@ -87,10 +87,62 @@
       </cfoutput>
     </div>
 
-
-
     <div class="row">
       <!--- Loop through reports query to display report cards --->
+      <cfloop query="reports">
+        <Cfoutput>
+          <div id="anchor-#reports.reportid#" class="anchor-offset col-xl-#reports.colxl# col-md-#reports.colmd# col-lg">
+            <a>
+              <div class="card" id="#reports.reportid#" style="border: 1px solid ##e5e5e5; border-radius:3px;">
+                <div class="card-body" dir="ltr">
+                  <h6 class="p-1 d-flex header-title">#reports.reportname#
+                    <span class="ms-auto">
+                    </cfoutput>
+                    <!--- Conditional forms based on report ID --->
+                    <cfif #reports.reportid# is "2" OR #reports.reportid# is "7" OR #reports.reportid# is "8">
+                      <form action="/app/reportsRefresh/">
+                        <cfoutput>
+                          <input type="hidden" name="anchortag" value="anchor-#reports.reportid#"/>
+                          <input type="hidden" name="new_rangeid" value="#new_rangeid#"/>
+                          <input type="hidden" name="new_audsourceid" value="#new_audsourceid#"/>
+                          <input type="hidden" name="customstart" value="#customstart#"/>
+                          <input type="hidden" name="customend" value="#customend#"/>
+                          <input type="hidden" name="userid" value="#userid#"/>
+                        </cfoutput>
+                        <select name="new_audcatid" onchange="this.form.submit();">
+                          <cfoutput query="categories">
+                            <option value="#categories.audcatid#" <cfif #categories.audcatid# is "#new_audcatid#">selected</cfif>>#categories.audcatname#</option>
+                          </cfoutput>
+                        </select>
+                      </form>
+                    </cfif>
+                  </span>
+                </h6>
+                <Cfoutput>
+                  <canvas id="myChart_#reports.reportid#"></canvas>
+                </cfoutput>
+              </div>
+            </div>
+          </a>
+        </div>
+      </cfloop>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <cfloop query="reports">
 
  <cfif ListFindNoCase("3,4,6,5,7,8,9,2,4,18", reports.reportid)>
@@ -172,56 +224,7 @@
 
     </cfif>
 
-    
- <cfoutput>
-    <div id="anchor-#reports.reportid#" class="anchor-offset col-xl-#reports.colxl# col-md-#reports.colmd# col-lg">
-      <a>
-        <div class="card" id="#reports.reportid#" style="border: 1px solid ##e5e5e5; border-radius:3px;">
-          <div class="card-body" dir="ltr">
-            <h6 class="p-1 d-flex header-title">#reports.reportname#
-              <span class="ms-auto">
-              </cfoutput>
-              <!--- Conditional forms based on report ID --->
-              <cfif #reports.reportid# is "2" OR #reports.reportid# is "7" OR #reports.reportid# is "8">
-                <form action="/app/reportsRefresh/">
-                  <cfoutput>
-                    <input type="hidden" name="anchortag" value="anchor-#reports.reportid#"/>
-                    <input type="hidden" name="new_rangeid" value="#new_rangeid#"/>
-                    <input type="hidden" name="new_audsourceid" value="#new_audsourceid#"/>
-                    <input type="hidden" name="customstart" value="#customstart#"/>
-                    <input type="hidden" name="customend" value="#customend#"/>
-                    <input type="hidden" name="userid" value="#userid#"/>
-                  </cfoutput>
-                  <select name="new_audcatid" onchange="this.form.submit();">
-                    <cfoutput query="categories">
-                      <option value="#categories.audcatid#" <cfif #categories.audcatid# is "#new_audcatid#">selected</cfif>>#categories.audcatname#</option>
-                    </cfoutput>
-                  </select>
-                </form>
-              </cfif>
-            </span>
-          </h6>
-          <Cfoutput>
-            <!-- Check if data is available -->
-            <cfif dataset_x.recordCount GT 0>
-              <canvas id="myChart_#reports.reportid#"></canvas>
-            <cfelse>
-              <!-- No data available message -->
-              <div style="text-align: center; color: grey; font-size: 16px; height: 100px; display: flex; align-items: center; justify-content: center;">
-                No data available
-              </div>
-            </cfif>
-          </cfoutput>
-        </div>
-      </div>
-    </a>
-  </div>
-
-
-
- 
 </cfloop>
-   </div>
 
 
 
