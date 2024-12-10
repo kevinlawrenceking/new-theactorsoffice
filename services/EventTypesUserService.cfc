@@ -22,7 +22,7 @@
         SET 
             eventtypecolor = <cfqueryparam value="#arguments.new_eventtypecolor#" cfsqltype="cf_sql_varchar">
 
-<cfif arguments.deletelink>
+<cfif arguments.deletelink eq 1>
                 ,isdeleted = 1
             </cfif>
 

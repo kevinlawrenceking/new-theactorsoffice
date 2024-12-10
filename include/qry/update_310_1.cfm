@@ -14,4 +14,4 @@
     new_iscustom = #new_iscustom#,<BR>
     new_eventtypename = #new_eventtypename#<BR>
 
-    </cfoutput><cfabort>
+    </cfoutput>
