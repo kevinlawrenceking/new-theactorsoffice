@@ -177,7 +177,7 @@
 
                     <cfif #mylinks_user_del.recordcount# is not "0">
                         <form action="/include/linkinclude.cfm">
-                            <cfoutput><input type="hidden" name="target_id" value="#target_id#"></cfoutput>
+                            <cfoutput><input type="hidden" name="target_id" value="#target_id#" /></cfoutput>
                             <h5>Restore:
                                 <select name="new_id" id="<cfoutput>new_id_#sitetypes.sitetypeid#</cfoutput>" required="" onchange='this.form.submit()'>
                                     <option value=""></option>

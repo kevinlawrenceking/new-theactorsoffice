@@ -11,7 +11,7 @@
                 <cfoutput>
                     <div class="form-group col-md-6">
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="newpnid_#dashboardzz.pnid#" checked value="#dashboardzz.pnid#" name="new_isvisible">
+                            <input type="checkbox" class="custom-control-input" id="newpnid_#dashboardzz.pnid#" checked value="#dashboardzz.pnid#" name="new_isvisible" />
                             <label class="custom-control-label" for="newpnid_#dashboardzz.pnid#">#dashboardzz.pnTitle#</label>
                         </div>
                     </div>
@@ -20,7 +20,7 @@
                 <cfoutput>
                     <div class="form-group col-md-6">
                         <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="newpnid_#dashboardzz.pnid#" value="#dashboardzz.pnid#" name="new_isvisible">
+                            <input type="checkbox" class="custom-control-input" id="newpnid_#dashboardzz.pnid#" value="#dashboardzz.pnid#" name="new_isvisible" />
                             <label class="custom-control-label" for="newpnid_#dashboardzz.pnid#">#dashboardzz.pnTitle#</label>
                         </div>
                     </div>

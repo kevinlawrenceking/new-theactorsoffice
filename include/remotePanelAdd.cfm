@@ -6,8 +6,8 @@
 
     <!--- Output hidden fields for user ID and return page --->
     <cfoutput> 
-        <input type="hidden" name="userid" value="#userid#">
-        <input type="hidden" name="pgrtn" value="#pgrtn#">
+        <input type="hidden" name="userid" value="#userid#" />
+        <input type="hidden" name="pgrtn" value="#pgrtn#" />
     </cfoutput>
 
     <div class="row">

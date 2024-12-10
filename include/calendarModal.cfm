@@ -49,12 +49,12 @@
                         </div>
                         <div class="form-group col-md-12">
                             <label for="eventLocation">Location</label>
-                            <input class="form-control" type="text" id="eventLocation" name="eventLocation" placeholder="Location">
+                            <input class="form-control" type="text" id="eventLocation" name="eventLocation" placeholder="Location" />
                             <div class="invalid-feedback">Please enter a Location.</div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="eventStart">Start Date</label>
-                            <input class="form-control" id="eventStart" name="eventStart" type="date">
+                            <input class="form-control" id="eventStart" name="eventStart" type="date" />
                             <div class="invalid-feedback">Please choose a Start Date.</div>
                         </div>
                         <div class="form-group col-md-6">
@@ -74,12 +74,12 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="eventStartTime">Start Time</label>
-                            <input class="form-control" id="eventStartTime" name="eventStartTime" type="time">
+                            <input class="form-control" id="eventStartTime" name="eventStartTime" type="time" />
                             <div class="invalid-feedback">Please choose a Start Time.</div>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="eventStopTime">End Time</label>
-                            <input class="form-control" id="eventStopTime" name="eventStopTime" type="time">
+                            <input class="form-control" id="eventStopTime" name="eventStopTime" type="time" />
                             <div class="invalid-feedback">Please choose a End Time.</div>
                         </div>
                     </div>

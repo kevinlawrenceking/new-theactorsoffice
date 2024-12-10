@@ -40,7 +40,7 @@
     <!--- Project Name Input --->
     <div class="form-group col-md-12">
         <label for="projName">Project Name (Title)</label>
-        <input class="form-control" type="text" id="projName" name="new_projName" value="#projName#" placeholder="Project Name (Title)">
+        <input class="form-control" type="text" id="projName" name="new_projName" value="#projName#" placeholder="Project Name (Title)" />
         <div class="invalid-feedback">
             Please enter a Project Name (Title).
         </div>
@@ -115,7 +115,7 @@
     <div class="custom-group custom-checkbox">
         <div style="margin-left:25px;">
             <label class="custom-control-label">
-                <input type="checkbox" class="custom-control-input" id="deleteitem" value="1" name="new_isDeleted">
+                <input type="checkbox" class="custom-control-input" id="deleteitem" value="1" name="new_isDeleted" />
                 <span class="custom-control-label" for="deleteitem">Delete</span>
             </label>
         </div>

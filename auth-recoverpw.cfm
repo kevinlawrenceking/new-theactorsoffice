@@ -103,13 +103,13 @@
                                     <div class="auth-logo">
                                         <a href="index.html" class="logo logo-dark text-center">
                                             <span class="logo-lg">
-                                                <img src="<cfoutput>#application.imagesUrl#/taowhite.png</cfoutput>" alt="" style="width:100%">
+                                                <img src="<cfoutput />#application.imagesUrl#/taowhite.png</cfoutput>" alt="" style="width:100%">
                                             </span>
                                         </a>
                     
                                         <a href="index.html" class="logo logo-light text-center">
                                             <span class="logo-lg">
-                                                <img src="/media/shared/images/logo-dark.png" alt="" style="width:100%">
+                                                <img src="/media/shared/images/logo-dark.png" alt="" style="width:100%" />
                                             </span>
                                         </a>
                                         <h5><cfoutput>#header#</cfoutput></h5>
@@ -135,7 +135,7 @@
                                     <input type="hidden" name="pgaction" value="recover" />
                                     <div class="form-group mb-3">
                                         <label for="emailaddress">Email address</label>
-                                        <input class="form-control" type="email"   id="email" name="email" required="" placeholder="Enter your email">
+                                        <input class="form-control" type="email"   id="email" name="email" required="" placeholder="Enter your email" />
                                     </div>
 
 <div class="form-group mb-0 text-center">

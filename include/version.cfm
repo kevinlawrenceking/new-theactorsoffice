@@ -312,7 +312,7 @@ x</button>
                                                     </cfloop>
                                                     </select>                    
                                                 <cfelse>
-                                                    <Cfoutput>#results.col5# <input type="hidden" name="new_ticketpriority" value="#results.col5#"></Cfoutput> 
+                                                    <Cfoutput>#results.col5# <input type="hidden" name="new_ticketpriority" value="#results.col5#" /></Cfoutput> 
                                                 </cfif>
                                             </td> 
                                             <cfoutput>

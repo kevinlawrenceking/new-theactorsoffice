@@ -83,9 +83,9 @@
                     <cfif #action_user_del.recordcount# is not "0">
                         <form action="/app/myaccount/">
                             <cfoutput>
-                                <input type="hidden" name="new_pgid" value="125">
-                                <input type="hidden" name="ctaction" value="includeaction">
-                                <input type="hidden" name="target_id_system" value="#mysystems.systemid#">
+                                <input type="hidden" name="new_pgid" value="125" />
+                                <input type="hidden" name="ctaction" value="includeaction" />
+                                <input type="hidden" name="target_id_system" value="#mysystems.systemid#" />
                             </cfoutput>
                             <h5>Restore:
                                 <select name="new_id" id="<cfoutput>new_id_system_#mysystems.systemid#</cfoutput>" required="" onchange='this.form.submit()'>

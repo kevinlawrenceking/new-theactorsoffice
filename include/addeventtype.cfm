@@ -2,7 +2,7 @@
 
 <form action="/include/addeventtypeadd.cfm" method="post" class="needs-validation" validate="validate" id="profile-form">
 
-    <input type="hidden" name="new_iscustom" value="1">
+    <input type="hidden" name="new_iscustom" value="1" />
 
     <div class="row"/>
 
@@ -10,7 +10,7 @@
             <label for="new_eventtypename">Name:</label>
 
             <cfoutput>
-                <input class="form-control" type="text" id="new_eventtypename" name="new_eventtypename" required="required" placeholder="Enter an Event Type">
+                <input class="form-control" type="text" id="new_eventtypename" name="new_eventtypename" required="required" placeholder="Enter an Event Type" />
             </cfoutput>
 
             <div class="invalid-feedback">
@@ -20,7 +20,7 @@
 
         <div class="form-group col-md-12">
             <label for="hexa-colorpicker">Color:</label>
-            <input type="text" id="hexa-colorpicker" name="new_eventtypecolor" value="#FFFFFF" class="form-control">
+            <input type="text" id="hexa-colorpicker" name="new_eventtypecolor" value="#FFFFFF" class="form-control" />
 
             <div class="invalid-feedback">
                 Please enter a color.

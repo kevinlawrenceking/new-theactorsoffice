@@ -33,13 +33,13 @@
         <div style="margin-right:5px; margin-left:15px;">
             <!--- Radio button for "My Tatted Life" category selection. --->
             <label class="form-check-label" for="My Tatted Life" style="margin-right:5px; margin-left:5px;">
-                <input type="radio" name="Reach_Categories" id="MyTattedLife" value="My Tatted Life" class="styled" onclick="javascript:yesnoCheck();">
+                <input type="radio" name="Reach_Categories" id="MyTattedLife" value="My Tatted Life" class="styled" onclick="javascript:yesnoCheck();" />
                 My Tatted Life
             </label>
 
             <!--- Additional options that appear based on radio button selection. --->
             <span style="visibility:hidden" id="ifYes">
-                <input type="button" value="Clear Restriction" class="small" onclick="Clear();">
+                <input type="button" value="Clear Restriction" class="small" onclick="Clear();" />
             </span>
         </div>
     </div>
@@ -51,4 +51,4 @@
 </form>
 
 <!--- File input for uploading files. --->
-<input type="file" name="files">
+<input type="file" name="files" />

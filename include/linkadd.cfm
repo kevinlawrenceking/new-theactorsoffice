@@ -14,16 +14,16 @@
       data-parsley-trigger="keyup" data-parsley-validate>
     
     <cfoutput>
-        <input type="hidden" name="rcontactid" value="#contactid#">
-        <input type="hidden" name="reventid" value="#new_eventid#">
-        <input type="hidden" name="contactid" value="#contactid#">
-        <input type="hidden" name="eventid" value="#new_eventid#">
-        <input type="hidden" name="returnurl" value="#returnurl#">
-        <input type="hidden" name="noteid" value="#noteid#">
+        <input type="hidden" name="rcontactid" value="#contactid#" />
+        <input type="hidden" name="reventid" value="#new_eventid#" />
+        <input type="hidden" name="contactid" value="#contactid#" />
+        <input type="hidden" name="eventid" value="#new_eventid#" />
+        <input type="hidden" name="returnurl" value="#returnurl#" />
+        <input type="hidden" name="noteid" value="#noteid#" />
 
         <!--- Check if audprojectid is defined and include it as a hidden input --->
         <cfif isdefined('audprojectid')>
-            <input type="hidden" name="audprojectid" value="#audprojectid#">
+            <input type="hidden" name="audprojectid" value="#audprojectid#" />
         </cfif>
     </cfoutput>
 

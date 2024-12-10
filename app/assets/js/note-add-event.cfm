@@ -18,11 +18,11 @@
                     
                     <cfoutput>
                         
-                        <input type="hidden" name="returnurl" value="#returnurl#">
-                        <input type="hidden" name="rcontactid" value="#contactid#">
-                        <input type="hidden" name="reventid" value="#reventid#">
+                        <input type="hidden" name="returnurl" value="#returnurl#" />
+                        <input type="hidden" name="rcontactid" value="#contactid#" />
+                        <input type="hidden" name="reventid" value="#reventid#" />
                         
-                        <input type="hidden" name="userid" value="#userid#">
+                        <input type="hidden" name="userid" value="#userid#" />
 
 </cfoutput>
 

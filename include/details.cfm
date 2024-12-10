@@ -176,7 +176,7 @@
                                     <cfoutput>
                                         <div class="form-group col-md-12">
                                             <label for="#RPGUpdate.fname#">#RPGUpdate.updatename#</label>
-                                            <input class="form-control" type="text" id="#RPGUpdate.fname#" name="new_#RPGUpdate.fname#" value="#FindValue.fvalue#" <cfif #RPGUpdate.required_yn# is "Y">required</cfif> placeholder="#RPGUpdate.updatename#">
+                                            <input class="form-control" type="text" id="#RPGUpdate.fname#" name="new_#RPGUpdate.fname#" value="#FindValue.fvalue#" <cfif #RPGUpdate.required_yn# is "Y" />required</cfif> placeholder="#RPGUpdate.updatename#">
                                             <div class="invalid-feedback">
                                                 Please enter a #RPGUpdate.updatename#.
                                             </div>
@@ -219,7 +219,7 @@
                                     <cfoutput>
                                         <div class="form-group form-group col-md-12">
                                             <label for="#RPGUpdate.fname#">#RPGUpdate.updatename#</label>
-                                            <input class="form-control" type="password" id="#RPGUpdate.fname#" name="new_#RPGUpdate.fname#" value="#FindValue.fvalue#" <cfif #RPGUpdate.required_yn# is "Y">required</cfif> placeholder="#RPGUpdate.updatename#">
+                                            <input class="form-control" type="password" id="#RPGUpdate.fname#" name="new_#RPGUpdate.fname#" value="#FindValue.fvalue#" <cfif #RPGUpdate.required_yn# is "Y" />required</cfif> placeholder="#RPGUpdate.updatename#">
                                             <div class="invalid-feedback">
                                                 Please add a valid #RPGUpdate.updatename#.
                                             </div>
@@ -242,7 +242,7 @@
                                         <cfset datevalue="#dateformat('#findvalue.fvalue#','YYYY-MM-DD')#" />
                                         <div class="form-group col-md-6">
                                             <label for="#RPGUpdate.fname#">#RPGUpdate.updatename#</label>
-                                            <input class="form-control" id="#RPGUpdate.fname#" name="new_#RPGUpdate.fname#" value="#datevalue#" type="date">
+                                            <input class="form-control" id="#RPGUpdate.fname#" name="new_#RPGUpdate.fname#" value="#datevalue#" type="date" />
                                             <div class="invalid-feedback">
                                                 Please choose a #RPGUpdate.updatename#.
                                             </div>
@@ -296,7 +296,7 @@
                                     <div class="custom-group custom-checkbox">
                                         <div style="margin-left:25px;">
                                             <label class="custom-control-label">
-                                                <input type="checkbox" class="custom-control-input" id="deleteitem" value="1" name="new_isDeleted">
+                                                <input type="checkbox" class="custom-control-input" id="deleteitem" value="1" name="new_isDeleted" />
                                                 <span class="custom-control-label" for="deleteitem">Delete</span>
                                             </label>
                                         </div>
@@ -327,7 +327,7 @@
                                     <cfoutput>
                                         <div class="form-group col-md-6">
                                             <label for="#RPGUpdate.fname#">#RPGUpdate.updatename#</label>
-                                            <input class="form-control" id="#RPGUpdate.fname#" name="new_#RPGUpdate.fname#" type="time">
+                                            <input class="form-control" id="#RPGUpdate.fname#" name="new_#RPGUpdate.fname#" type="time" />
                                             <div class="invalid-feedback">
                                                 Please choose a #RPGUpdate.updatename#.
                                             </div>

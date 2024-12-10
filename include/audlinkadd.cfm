@@ -8,9 +8,9 @@
       data-parsley-trigger="keyup" data-parsley-validate>
     
     <cfoutput>
-        <input type="hidden" name="audroleid" value="#audroleid#">
-        <input type="hidden" name="eventid" value="#eventid#">
-        <input type="hidden" name="audprojectid" value="#audprojectid#">
+        <input type="hidden" name="audroleid" value="#audroleid#" />
+        <input type="hidden" name="eventid" value="#eventid#" />
+        <input type="hidden" name="audprojectid" value="#audprojectid#" />
     </cfoutput>
 
     <cfset placeholder="https://" />

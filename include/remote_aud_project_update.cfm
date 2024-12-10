@@ -39,7 +39,7 @@
         <cfoutput query="auditionprojectdetails">
             <div class="form-group col-md-12">
                 <label for="projName">Project Name (Title)<span class="text-danger">*</span></label>
-                <input class="form-control" type="text" id="projName" name="new_projName" value="#auditionprojectdetails.projName#" placeholder="Project Name (Title)" required data-parsley-required data-parsley-error-message="Project Name is required">
+                <input class="form-control" type="text" id="projName" name="new_projName" value="#auditionprojectdetails.projName#" placeholder="Project Name (Title)" required data-parsley-required data-parsley-error-message="Project Name is required" />
                 <div class="invalid-feedback">
                     Please enter a Project Name (Title).
                 </div>
@@ -91,7 +91,7 @@
             <cfoutput>
                 <div class="form-group col-md-6" id="CustomNetworks" style="visibility:hidden;">
                     <label for="CustomTone">Custom Network</label>
-                    <input class="form-control" type="text" id="CustomNetwork" name="CustomNetwork" value="" placeholder="Enter a Custom Network">
+                    <input class="form-control" type="text" id="CustomNetwork" name="CustomNetwork" value="" placeholder="Enter a Custom Network" />
                 </div>
             </cfoutput>
         </cfif>
@@ -121,7 +121,7 @@
             <cfoutput>
                 <div class="form-group col-md-6" id="Custom" style="visibility:hidden;">
                     <label for="new_custom">Custom Tone</label>
-                    <input class="form-control" type="text" id="new_custom" name="Custom" value="" placeholder="Enter a Custom Tone">
+                    <input class="form-control" type="text" id="new_custom" name="Custom" value="" placeholder="Enter a Custom Tone" />
                 </div>
             </cfoutput>
         </cfif>

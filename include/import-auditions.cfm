@@ -29,11 +29,11 @@
 
                 <form action="/include/upload_audition.cfm" method="post" enctype="multipart/form-data" id="upload">
                     <cfoutput>
-                        <input type="hidden" name="userid" value="#userid#">
+                        <input type="hidden" name="userid" value="#userid#" />
                     </cfoutput>
-                    <input name="file" onchange="unlock();" type="file">
+                    <input name="file" onchange="unlock();" type="file" />
                     <p></p>
-                    <input type="submit" value="Upload" class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="background-color: #406e8e; border: #406e8e" id="buttonSubmit" disabled>
+                    <input type="submit" value="Upload" class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="background-color: #406e8e; border: #406e8e" id="buttonSubmit" disabled />
                 </form>
             </div>
         </div>
@@ -189,19 +189,19 @@
             </div>
             <div class="modal-body">
                 <form id="fixForm" onsubmit="return submitFixForm();">
-                    <input type="hidden" name="recordId" id="recordId">
+                    <input type="hidden" name="recordId" id="recordId" />
                     <div class="form-group">
                         <label for="projName">Project</label>
-                        <input type="text" class="form-control" name="projName" id="projName">
+                        <input type="text" class="form-control" name="projName" id="projName" />
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="audRoleName">Role</label>
-                            <input type="text" class="form-control" name="audRoleName" id="audRoleName">
+                            <input type="text" class="form-control" name="audRoleName" id="audRoleName" />
                         </div>
                         <div class="form-group col-md-6">
                             <label for="projDate">Project Date</label>
-                            <input type="date" class="form-control" name="projDate" id="projDate">
+                            <input type="date" class="form-control" name="projDate" id="projDate" />
                         </div>
                     </div>
                     <div class="row">
@@ -221,35 +221,35 @@
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="cdfirstname">CD First Name</label>
-                            <input type="text" class="form-control" name="cdfirstname" id="cdfirstname">
+                            <input type="text" class="form-control" name="cdfirstname" id="cdfirstname" />
                         </div>
                         <div class="form-group col-md-6">
                             <label for="cdlastname">CD Last Name</label>
-                            <input type="text" class="form-control" name="cdlastname" id="cdlastname">
+                            <input type="text" class="form-control" name="cdlastname" id="cdlastname" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-3">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="callback_yn" id="callback_yn" value="Y">
+                                <input class="form-check-input" type="checkbox" name="callback_yn" id="callback_yn" value="Y" />
                                 <label class="form-check-label" for="callback_yn">Callback</label>
                             </div>
                         </div>
                         <div class="form-group col-md-3">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="redirect_yn" id="redirect_yn" value="Y">
+                                <input class="form-check-input" type="checkbox" name="redirect_yn" id="redirect_yn" value="Y" />
                                 <label class="form-check-label" for="redirect_yn">Redirect</label>
                             </div>
                         </div>
                         <div class="form-group col-md-3">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="pin_yn" id="pin_yn" value="Y">
+                                <input class="form-check-input" type="checkbox" name="pin_yn" id="pin_yn" value="Y" />
                                 <label class="form-check-label" for="pin_yn">Pin</label>
                             </div>
                         </div>
                         <div class="form-group col-md-3">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="booked_yn" id="booked_yn" value="Y">
+                                <input class="form-check-input" type="checkbox" name="booked_yn" id="booked_yn" value="Y" />
                                 <label class="form-check-label" for="booked_yn">Booked</label>
                             </div>
                         </div>
@@ -267,7 +267,7 @@
                         <textarea class="form-control" name="note" id="note" rows="2"></textarea>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="status" id="status">
+                        <input type="text" class="form-control" name="status" id="status" />
                     </div>
                     <button type="submit" id="fixFormSubmitButton" class="btn btn-primary">Save changes</button>
                 </form>

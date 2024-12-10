@@ -13,7 +13,7 @@
 
 <form action="/include/remoteaudmatadd2.cfm" method="post" class="parsley-examples" enctype="multipart/form-data" id="upload">
     <cfoutput>
-        <input type="hidden" name="audprojectid" value="#audprojectid#">
+        <input type="hidden" name="audprojectid" value="#audprojectid#" />
     </cfoutput>
 
     <div class="row" />
@@ -43,7 +43,7 @@
 
     <div class="form-group col-md-12">
         <label for="attachname">Name (Optional)</label>
-        <input class="form-control" type="text" id="new_medianame" name="new_medianame" data-parsley-maxlength="800" data-parsley-maxlength-message="Max length 800 characters" placeholder="Add a name/brief description">
+        <input class="form-control" type="text" id="new_medianame" name="new_medianame" data-parsley-maxlength="800" data-parsley-maxlength-message="Max length 800 characters" placeholder="Add a name/brief description" />
     </div>
 
 </form>

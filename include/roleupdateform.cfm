@@ -27,7 +27,7 @@
         
         <div class="form-group col-md-6 col-sm-12">
             <label for="new_audrolename">Role Name <span class="text-danger">*</span></label>
-            <input class="form-control" type="text" id="new_audrolename" autocomplete="off" required data-parsley-required data-parsley-error-message="Role Name is required" name="new_audrolename" value="#roledetails.audrolename#" placeholder="Role Name">
+            <input class="form-control" type="text" id="new_audrolename" autocomplete="off" required data-parsley-required data-parsley-error-message="Role Name is required" name="new_audrolename" value="#roledetails.audrolename#" placeholder="Role Name" />
         </div>
     </cfoutput>
 
@@ -86,7 +86,7 @@
         
         <div class="form-group col-md-6" id="CustomDialects" style="visibility:hidden;">
             <label for="CustomDialect">Custom Dialect</label>
-            <input class="form-control" type="text" id="CustomDialect" name="CustomDialect" value="" placeholder="Enter a Custom Dialect">
+            <input class="form-control" type="text" id="CustomDialect" name="CustomDialect" value="" placeholder="Enter a Custom Dialect" />
         </div>
     </cfif>
 

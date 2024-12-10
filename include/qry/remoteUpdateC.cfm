@@ -27,9 +27,9 @@
 
 <form action="/include/remoteUpdateCUpdate.cfm" method="post" class="parsley-examples" id="<cfoutput>#formid#</cfoutput>" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" data-parsley-trigger="keyup" data-parsley-validate>
     <cfoutput>
-        <input type="hidden" name="catid" value="#new_catid#">
-        <input type="hidden" name="itemid" value="#details.itemid#">
-        <input type="hidden" name="contactid" value="#details.contactid#">
+        <input type="hidden" name="catid" value="#new_catid#" />
+        <input type="hidden" name="itemid" value="#details.itemid#" />
+        <input type="hidden" name="contactid" value="#details.contactid#" />
     </cfoutput>
 
     <div class="row" />
@@ -51,7 +51,7 @@
 
     <div id="hidden_div" class="form-group col-md-6">
         <label for="customtype">Custom Type</label>
-        <input class="form-control" type="text" id="customtype" name="customtype" placeholder="Add a custom type">
+        <input class="form-control" type="text" id="customtype" name="customtype" placeholder="Add a custom type" />
     </div>
 
     <cfset valuefieldtype="text">
@@ -74,7 +74,7 @@
 
             <div class="form-group col-md-12">
                 <label for="valuetext">#details.recordname#<span class="text-danger">*</span></label>
-                <input class="form-control" type="#valuefieldtype#" id="valuetext" name="valuetext" value="#details.valuetext#" data-parsley-minlength="#minlength#" data-parsley-minlength-message="Min length #minlength# characters" data-parsley-maxlength="800" data-parsley-maxlength-message="Max length 800 characters" data-parsley-required data-parsley-error-message="Valid #details.recordname# is required" placeholder="Enter #details.recordname#">
+                <input class="form-control" type="#valuefieldtype#" id="valuetext" name="valuetext" value="#details.valuetext#" data-parsley-minlength="#minlength#" data-parsley-minlength-message="Min length #minlength# characters" data-parsley-maxlength="800" data-parsley-maxlength-message="Max length 800 characters" data-parsley-required data-parsley-error-message="Valid #details.recordname# is required" placeholder="Enter #details.recordname#" />
             </div>
         </cfoutput>
     </Cfif>
@@ -83,7 +83,7 @@
         <cfoutput>
             <div class="form-group col-md-12">
                 <label for="valuetext">#details.recordname#<span class="text-danger">*</span></label>
-                <input class="form-control" type="text" id="valuetext" name="valuetext" value="#details.valuetext#" data-parsley-minlength="7" data-parsley-minlength-message="Min length 7 characters" data-parsley-maxlength="25" data-parsley-maxlength-message="Max length 25 characters" data-parsley-pattern="^[\d\+\-\.\(\)\/\s]*$" data-parsley-pattern-message="Must be a valid phone number (no letters)" data-parsley-required placeholder="Enter #details.recordname#">
+                <input class="form-control" type="text" id="valuetext" name="valuetext" value="#details.valuetext#" data-parsley-minlength="7" data-parsley-minlength-message="Min length 7 characters" data-parsley-maxlength="25" data-parsley-maxlength-message="Max length 25 characters" data-parsley-pattern="^[\d\+\-\.\(\)\/\s]*$" data-parsley-pattern-message="Must be a valid phone number (no letters)" data-parsley-required placeholder="Enter #details.recordname#" />
             </div>
         </cfoutput>
     </Cfif>
@@ -92,22 +92,22 @@
         <cfoutput>
             <div class="form-group col-md-12">
                 <label for="valueStreetAddress">Address<span class="text-danger">*</span></label>
-                <input class="form-control" type="text" id="valueStreetAddress" value="#details.valueStreetAddress#" name="valueStreetAddress" data-parsley-minlength="2" data-parsley-minlength-message="Min length 3 characters" data-parsley-maxlength="100" data-parsley-maxlength-message="Max length 100 characters" data-parsley-required data-parsley-error-message="Street is required" placeholder="Enter Street">
+                <input class="form-control" type="text" id="valueStreetAddress" value="#details.valueStreetAddress#" name="valueStreetAddress" data-parsley-minlength="2" data-parsley-minlength-message="Min length 3 characters" data-parsley-maxlength="100" data-parsley-maxlength-message="Max length 100 characters" data-parsley-required data-parsley-error-message="Street is required" placeholder="Enter Street" />
             </div>
 
             <div class="form-group col-md-12">
                 <label for="valueExtendedAddress">Extended Address</label>
-                <input class="form-control" type="text" id="valueExtendedAddress" value="#details.valueExtendedAddress#" name="valueExtendedAddress" placeholder="Enter Street">
+                <input class="form-control" type="text" id="valueExtendedAddress" value="#details.valueExtendedAddress#" name="valueExtendedAddress" placeholder="Enter Street" />
             </div>
 
             <div class="form-group col-md-6">
                 <label for="valuetext">Town/City</label>
-                <input class="form-control" type="text" id="valueCity" value="#details.valuecity#" name="valueCity" placeholder="Enter City">
+                <input class="form-control" type="text" id="valueCity" value="#details.valuecity#" name="valueCity" placeholder="Enter City" />
             </div>
 
             <div class="form-group col-md-6">
                 <label for="valuetext">Postal Code</label>
-                <input class="form-control" type="text" id="valuePostalCode" value="#details.valuePostalCode#" name="valuePostalCode" placeholder="Enter Postal Code">
+                <input class="form-control" type="text" id="valuePostalCode" value="#details.valuePostalCode#" name="valuePostalCode" placeholder="Enter Postal Code" />
             </div>
         </cfoutput>
 
@@ -136,7 +136,7 @@
         <cfoutput>
             <div class="form-group col-md-12">
                 <label for="itemDate">Important Date<span class="text-danger">*</span></label>
-                <input class="form-control" id="itemDate" data-parsley-required data-parsley-error-message="Date is required" type="date" value="#details.itemdate#" name="itemDate">
+                <input class="form-control" id="itemDate" data-parsley-required data-parsley-error-message="Date is required" type="date" value="#details.itemdate#" name="itemDate" />
             </div>
         </cfoutput>
     </cfif>
@@ -158,18 +158,18 @@
 
         <div class="form-group col-md-12" id="special" style="visibility:hidden">
             <cfoutput>
-                <input class="form-control" type="text" id="custom" name="custom" style="visibility:hidden;" value="" placeholder="Enter Custom #details.recordname#">
+                <input class="form-control" type="text" id="custom" name="custom" style="visibility:hidden;" value="" placeholder="Enter Custom #details.recordname#" />
             </cfoutput>
         </div>
 
         <div class="form-group col-md-12">
             <label for="valuetext">Department</label>
-            <input class="form-control" type="text" id="valueDepartment" name="valueDepartment" value="#details.valueDepartment#" placeholder="Enter Department">
+            <input class="form-control" type="text" id="valueDepartment" name="valueDepartment" value="#details.valueDepartment#" placeholder="Enter Department" />
         </div>
 
         <div class="form-group col-md-12">
             <label for="valuetext">Title</label>
-            <input class="form-control" type="text" id="valuetitle" name="valuetitle" value="#details.valuetitle#" placeholder="Enter Title">
+            <input class="form-control" type="text" id="valuetitle" name="valuetitle" value="#details.valuetitle#" placeholder="Enter Title" />
         </div>
         </cfoutput>
     </Cfif>
@@ -177,7 +177,7 @@
     <div class="form-group col-md-12">
         <div class="custom-control custom-checkbox">
             <label class="custom-control-label">
-                <input type="checkbox" class="custom-control-input" id="deleteitem" value="1" name="deleteitem">
+                <input type="checkbox" class="custom-control-input" id="deleteitem" value="1" name="deleteitem" />
                 <span class="custom-control-label" for="deleteitem">Delete</span>
             </label>
         </div>

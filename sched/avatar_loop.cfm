@@ -49,7 +49,7 @@ update contactitems set avatar_yn = 'Y' where itemid = #x.itemid#
 <!--- Check if Gravatar exists (HTTP status code 200) --->
 <cfif httpResponse.StatusCode eq "200 OK">
 <Cfoutput>
-<img src="#gravatarURL#" alt="User Avatar">
+<img src="#gravatarURL#" alt="User Avatar" />
 </cfoutput>
 <BR>
     <!--- Download and save the image --->

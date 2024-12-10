@@ -25,7 +25,7 @@
 <form action="/include/remoteaddHeadshot2.cfm" method="post" class="parsley-examples" enctype="multipart/form-data" id="upload" 
       data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden"
       data-parsley-trigger="keyup" data-parsley-validate>
-    <input type="hidden" name="new_mediatypeid" value="1">
+    <input type="hidden" name="new_mediatypeid" value="1" />
 
     <div class="row" />
 
@@ -57,7 +57,7 @@
 
     <div class="form-group col-md-12">
         <label for="attachname">Name (Optional)</label>
-        <input class="form-control" type="text" id="new_medianame" name="new_medianame" data-parsley-maxlength="800" data-parsley-maxlength-message="Max length 800 characters" placeholder="Add a name/brief description">
+        <input class="form-control" type="text" id="new_medianame" name="new_medianame" data-parsley-maxlength="800" data-parsley-maxlength-message="Max length 800 characters" placeholder="Add a name/brief description" />
     </div>
 </form>
 

@@ -39,13 +39,13 @@
                                     <div class="auth-logo">
                                         <a href="" class="logo logo-dark text-center">
                                             <span class="logo-lg">
-                                                <img src="/assets/images/taowhite.png" alt="" height="60">
+                                                <img src="/assets/images/taowhite.png" alt="" height="60" />
                                             </span>
                                         </a>
                     
                                         <a href="" class="logo logo-light text-center">
                                             <span class="logo-lg">
-                                                <img src="/assets/images/logo-dark.png" alt="" height="20">
+                                                <img src="/assets/images/logo-dark.png" alt="" height="20" />
                                             </span>
                                         </a>
                                     </div>

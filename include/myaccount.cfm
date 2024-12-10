@@ -36,22 +36,22 @@
                         <input type="hidden" name="t3" value="1" />
                         <div class="form-group col-md-12">
                             <label for="userFirstName">First Name<span class="text-danger">*</span></label>
-                            <input class="form-control" type="text" id="new_userFirstName" name="new_userFirstName" value="#userFirstName#" data-parsley-required data-parsley-error-message="First Name is required" placeholder="Enter your first name">
+                            <input class="form-control" type="text" id="new_userFirstName" name="new_userFirstName" value="#userFirstName#" data-parsley-required data-parsley-error-message="First Name is required" placeholder="Enter your first name" />
                         </div>
 
                         <div class="form-group col-md-12">
                             <label for="userLastName">Last Name<span class="text-danger">*</span></label>
-                            <input class="form-control" type="text" id="new_userLastName" name="new_userLastName" value="#userLastName#" data-parsley-required data-parsley-error-message="Last Name is required" placeholder="Enter your last name">
+                            <input class="form-control" type="text" id="new_userLastName" name="new_userLastName" value="#userLastName#" data-parsley-required data-parsley-error-message="Last Name is required" placeholder="Enter your last name" />
                         </div>
 
                         <div class="form-group col-md-12">
                             <label for="new_AvatarName">Avatar Name<span class="text-danger">*</span></label>
-                            <input class="form-control" type="text" id="new_AvatarName" name="new_AvatarName" value="#avatarname#" data-parsley-required data-parsley-error-message="Avatar Name is required" placeholder="Enter your Avatar name">
+                            <input class="form-control" type="text" id="new_AvatarName" name="new_AvatarName" value="#avatarname#" data-parsley-required data-parsley-error-message="Avatar Name is required" placeholder="Enter your Avatar name" />
                         </div>
 
                         <div class="form-group col-md-12">
                             <label for="useremail">Email<span class="text-danger">*</span></label>
-                            <input class="form-control" name="new_useremail" value="#useremail#" data-parsley-type="email" id="email_address" data-parsley-required data-parsley-trigger="focusout" data-parsley-checkemail data-parsley-checkemail-message="Email Address already Exists" placeholder="Enter your email">
+                            <input class="form-control" name="new_useremail" value="#useremail#" data-parsley-type="email" id="email_address" data-parsley-required data-parsley-trigger="focusout" data-parsley-checkemail data-parsley-checkemail-message="Email Address already Exists" placeholder="Enter your email" />
                         </div>
 
                         <div class="form-group text-center col-md-12">
@@ -80,22 +80,22 @@
                         <input type="hidden" name="ctaction" value="update" />
                         <div class="form-group col-md-12">
                             <label for="userFirstName">First Name<span class="text-danger">*</span></label>
-                            <input class="form-control" type="text" id="new_userFirstName" name="new_userFirstName" value="#userFirstName#" data-parsley-required data-parsley-error-message="First Name is required" placeholder="Enter your first name">
+                            <input class="form-control" type="text" id="new_userFirstName" name="new_userFirstName" value="#userFirstName#" data-parsley-required data-parsley-error-message="First Name is required" placeholder="Enter your first name" />
                         </div>
 
                         <div class="form-group col-md-12">
                             <label for="userLastName">Last Name<span class="text-danger">*</span></label>
-                            <input class="form-control" type="text" id="new_userLastName" name="new_userLastName" value="#userLastName#" data-parsley-required data-parsley-error-message="Last Name is required" placeholder="Enter your last name">
+                            <input class="form-control" type="text" id="new_userLastName" name="new_userLastName" value="#userLastName#" data-parsley-required data-parsley-error-message="Last Name is required" placeholder="Enter your last name" />
                         </div>
 
                         <div class="form-group col-md-12">
                             <label for="new_AvatarName">Avatar Name<span class="text-danger">*</span></label>
-                            <input class="form-control" type="text" id="new_AvatarName" name="new_AvatarName" value="#avatarname#" data-parsley-required data-parsley-error-message="Avatar Name is required" placeholder="Enter your Avatar name">
+                            <input class="form-control" type="text" id="new_AvatarName" name="new_AvatarName" value="#avatarname#" data-parsley-required data-parsley-error-message="Avatar Name is required" placeholder="Enter your Avatar name" />
                         </div>
 
                         <div class="form-group col-md-12">
                             <label for="useremail">Email<span class="text-danger">*</span></label>
-                            <input class="form-control" name="new_useremail" value="#useremail#" data-parsley-type="email" id="email_address" placeholder="Enter your email">
+                            <input class="form-control" name="new_useremail" value="#useremail#" data-parsley-type="email" id="email_address" placeholder="Enter your email" />
                         </div>
 
                         <div class="form-group col-md-12">
@@ -112,12 +112,12 @@
 
                         <div class="form-group col-md-6">
                             <label for="valuetext">Town/City</label>
-                            <input class="form-control" type="text" id="city" name="city" value="#city#" placeholder="Enter City">
+                            <input class="form-control" type="text" id="city" name="city" value="#city#" placeholder="Enter City" />
                         </div>
 
                         <div class="form-group col-md-6">
                             <label for="valuetext">Postal Code</label>
-                            <input class="form-control" type="text" id="zip" name="zip" value="#zip#" placeholder="Enter Postal Code">
+                            <input class="form-control" type="text" id="zip" name="zip" value="#zip#" placeholder="Enter Postal Code" />
                         </div>
                     </cfoutput>
 

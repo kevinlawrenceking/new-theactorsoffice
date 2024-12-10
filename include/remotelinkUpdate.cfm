@@ -10,14 +10,14 @@
     
     <!--- Hidden Inputs --->
     <cfoutput>
-        <input type="hidden" name="new_id" value="#linkDetails.id#">
-        <input type="hidden" name="target_id" value="#linkDetails.sitetypeid#">
-        <input type="hidden" name="new_iscustom" value="#linkDetails.iscustom#">
-        <input type="hidden" name="userid" value="#userid#">
-        <input type="hidden" name="target" value="#target#">
+        <input type="hidden" name="new_id" value="#linkDetails.id#" />
+        <input type="hidden" name="target_id" value="#linkDetails.sitetypeid#" />
+        <input type="hidden" name="new_iscustom" value="#linkDetails.iscustom#" />
+        <input type="hidden" name="userid" value="#userid#" />
+        <input type="hidden" name="target" value="#target#" />
     
 <cfif linkDetails.iscustom is "0">
-          <input type="hidden" name="new_siteName" value="#linkDetails.sitename#">
+          <input type="hidden" name="new_siteName" value="#linkDetails.sitename#" />
           </cfif>
     </cfoutput>
 
@@ -29,7 +29,7 @@
             <div class="form-group col-md-6">
                 <h5>
                     <cfoutput>
-                        <img src="#application.retinaIcons14Url#/#linkDetails.siteicon#" width="14px" alt="#linkDetails.sitename#"> 
+                        <img src="#application.retinaIcons14Url#/#linkDetails.siteicon#" width="14px" alt="#linkDetails.sitename#" /> 
                         #linkDetails.sitename#
                     </cfoutput>
                 </h5>

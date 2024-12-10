@@ -20,7 +20,7 @@
 
             <div class="form-group">
                 <label for="emailaddress">Patch Note</label>
-                <input class="form-control" type="text" id="patchnote" value="#details.patchnote#" name="patchnote"> 
+                <input class="form-control" type="text" id="patchnote" value="#details.patchnote#" name="patchnote" /> 
             </div>
 
             <!--- Check if the ticket status is Pending --->
@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="form-check">
-                    <input type="checkbox" name="email_user" value="Y" class="form-check-input" id="customCheck1">
+                    <input type="checkbox" name="email_user" value="Y" class="form-check-input" id="customCheck1" />
                     <label class="form-check-label" for="customCheck1">Email User</label>
                 </div>
 

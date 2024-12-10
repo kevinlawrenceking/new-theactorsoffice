@@ -12,23 +12,23 @@
                 <form method="post" action="/include/admin-support-update2.cfm" class="parsley-examples" name="ticket-form" id="form-ticket" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" data-parsley-trigger="keyup" data-parsley-validate>
                     <cfoutput>
                         <!--- Hidden Fields --->
-                        <input type="hidden" name="verid" value="#ticketDetails.verid#">
-                        <input type="hidden" name="ticketid" value="#ticketDetails.ticketid#">
-                        <input type="hidden" name="recid" value="#ticketDetails.ticketid#">
-                        <input type="hidden" name="old_ticketName" value="#ticketDetails.ticketName#">
-                        <input type="hidden" name="old_pgid" value="#ticketDetails.pgid#">
-                        <input type="hidden" name="old_userid" value="#ticketDetails.userid#">
-                        <input type="hidden" name="old_tickettype" value="#ticketDetails.tickettype#">
-                        <input type="hidden" name="old_environ" value="#ticketDetails.environ#">
-                        <input type="hidden" name="old_ticketpriority" value="#ticketDetails.ticketpriority#">
-                        <input type="hidden" name="old_ticketdetails" value="#ticketDetails.ticketdetails#">
-                        <input type="hidden" name="old_ticketResponse" value="#ticketDetails.ticketResponse#">
-                        <input type="hidden" name="old_verid" value="#ticketDetails.verid#">
-                        <input type="hidden" name="old_estHours" value="#ticketDetails.estHours#">
-                        <input type="hidden" name="old_testingscript" value="#ticketDetails.testingscript#">
-                        <input type="hidden" name="old_patchnote" value="#ticketDetails.patchnote#">
-                        <input type="hidden" name="old_customTestPageName" value="#ticketDetails.customTestPageName#">
-                        <input type="hidden" name="old_customTestPageLink" value="#ticketDetails.customTestPageLink#">
+                        <input type="hidden" name="verid" value="#ticketDetails.verid#" />
+                        <input type="hidden" name="ticketid" value="#ticketDetails.ticketid#" />
+                        <input type="hidden" name="recid" value="#ticketDetails.ticketid#" />
+                        <input type="hidden" name="old_ticketName" value="#ticketDetails.ticketName#" />
+                        <input type="hidden" name="old_pgid" value="#ticketDetails.pgid#" />
+                        <input type="hidden" name="old_userid" value="#ticketDetails.userid#" />
+                        <input type="hidden" name="old_tickettype" value="#ticketDetails.tickettype#" />
+                        <input type="hidden" name="old_environ" value="#ticketDetails.environ#" />
+                        <input type="hidden" name="old_ticketpriority" value="#ticketDetails.ticketpriority#" />
+                        <input type="hidden" name="old_ticketdetails" value="#ticketDetails.ticketdetails#" />
+                        <input type="hidden" name="old_ticketResponse" value="#ticketDetails.ticketResponse#" />
+                        <input type="hidden" name="old_verid" value="#ticketDetails.verid#" />
+                        <input type="hidden" name="old_estHours" value="#ticketDetails.estHours#" />
+                        <input type="hidden" name="old_testingscript" value="#ticketDetails.testingscript#" />
+                        <input type="hidden" name="old_patchnote" value="#ticketDetails.patchnote#" />
+                        <input type="hidden" name="old_customTestPageName" value="#ticketDetails.customTestPageName#" />
+                        <input type="hidden" name="old_customTestPageLink" value="#ticketDetails.customTestPageLink#" />
 
                         <div class="row">
                             <div class="col-12">
@@ -73,7 +73,7 @@
                                         <option value="#ticketStatuses.id#" <cfif ticketStatuses.id EQ ticketDetails.ticketstatus> selected </cfif>>#ticketStatuses.name#</option>
                                     </cfoutput>
                                 </select>
-                                <input type="hidden" name="old_ticketstatus" value="#ticketDetails.ticketstatus#">
+                                <input type="hidden" name="old_ticketstatus" value="#ticketDetails.ticketstatus#" />
                             </div>
                         </div>
 
@@ -155,7 +155,7 @@
                         <!--- Patch Note and Testing Script --->
                         <div class="form-group">
                             <label for="new_patchNote">Patch Note</label>
-                            <input class="form-control" placeholder="Add Patch Note" value="#ticketDetails.patchNote#" type="text" name="new_patchNote" id="new_patchNote">
+                            <input class="form-control" placeholder="Add Patch Note" value="#ticketDetails.patchNote#" type="text" name="new_patchNote" id="new_patchNote" />
                         </div>
 
                         <div class="form-group">
@@ -168,14 +168,14 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="new_customTestPageName">Custom Test Page Name</label>
-                                    <input class="form-control" placeholder="Add Page Name" value="#ticketDetails.customTestPageName#" type="text" name="new_customTestPageName" id="new_customTestPageName">
+                                    <input class="form-control" placeholder="Add Page Name" value="#ticketDetails.customTestPageName#" type="text" name="new_customTestPageName" id="new_customTestPageName" />
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="new_customTestPageLink">Custom Test Page Link</label>
-                                    <input class="form-control" placeholder="Add Page Link" value="#ticketDetails.customTestPageLink#" type="text" name="new_customTestPageLink" id="new_customTestPageLink">
+                                    <input class="form-control" placeholder="Add Page Link" value="#ticketDetails.customTestPageLink#" type="text" name="new_customTestPageLink" id="new_customTestPageLink" />
                                 </div>
                             </div>
                         </div>
@@ -186,7 +186,7 @@
                     <div class="row mt-2">
                         <div class="col-6"></div>
                         <div class="col-6 text-right">
-                            <input type="submit" class="btn btn-primary btn-sm waves-effect waves-light" value="Update">
+                            <input type="submit" class="btn btn-primary btn-sm waves-effect waves-light" value="Update" />
                         </div>
                     </div>
                 </form>

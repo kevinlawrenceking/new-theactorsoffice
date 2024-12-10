@@ -38,8 +38,8 @@
 
 <form class="app-search" action="/app/audition/?secid=175" method="POST">
     <cfoutput>  
-        <input type="hidden" name="ctaction" value="addmember">
-        <input type="hidden" name="audprojectid" value="#audprojectid#">
+        <input type="hidden" name="ctaction" value="addmember" />
+        <input type="hidden" name="audprojectid" value="#audprojectid#" />
     </cfoutput>
 
     <div class="row">
@@ -92,9 +92,9 @@
                             <cfset contact_avatar_filename = "#session.userContactsPath#\#audcontacts.contactid#\avatar.jpg" />
 
                             <cfif isimagefile(contact_avatar_filename)>
-                                <img src="#session.userContactsUrl#/#audcontacts.contactid#/avatar.jpg?ver=#rand()#" class="rounded-circle img-thumbnail avatar-xl" alt="profile-image">
+                                <img src="#session.userContactsUrl#/#audcontacts.contactid#/avatar.jpg?ver=#rand()#" class="rounded-circle img-thumbnail avatar-xl" alt="profile-image" />
                             <cfelse>
-                                <img src="#application.defaultAvatarUrl#" class="rounded-circle img-thumbnail avatar-xl" alt="profile-image">
+                                <img src="#application.defaultAvatarUrl#" class="rounded-circle img-thumbnail avatar-xl" alt="profile-image" />
                             </cfif>
 
                             <h4 class="mt-2">

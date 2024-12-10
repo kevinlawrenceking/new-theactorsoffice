@@ -55,7 +55,7 @@
         <!--- Start Date Input --->
         <div class="form-group col-md-6">
             <label for="new_eventStart">Start Date<span class="text-danger">*</span></label>
-            <input id="new_eventStart" class="form-control" autocomplete="off" name="new_eventStart" type="date" data-parsley-required data-parsley-error-message="Start Date is required">
+            <input id="new_eventStart" class="form-control" autocomplete="off" name="new_eventStart" type="date" data-parsley-required data-parsley-error-message="Start Date is required" />
         </div>
 
         <!--- Start Time Selection --->
@@ -223,18 +223,18 @@
 
             <!--- Custom Location Input --->
             <div class="form-group col-md-12 pt-3" id="special" style="visibility:hidden">
-                <input class="form-control" type="text" id="custom" name="custom" style="visibility:hidden;" value="" placeholder="Enter Custom Location">
+                <input class="form-control" type="text" id="custom" name="custom" style="visibility:hidden;" value="" placeholder="Enter Custom Location" />
             </div>
 
             <!--- Zoom Link Input --->
             <label for="new_eventStart">Zoom Link<span class="text-danger">*</span></label>
-            <input class="form-control" type="text" id="new_audLocation" autocomplete="off" data-parsley-error-message="Zoom link is required" name="new_audLocation" placeholder="Location">
+            <input class="form-control" type="text" id="new_audLocation" autocomplete="off" data-parsley-error-message="Zoom link is required" name="new_audLocation" placeholder="Location" />
         </div>
 
         <!--- Parking Details Input --->
         <div class="form-group col-md-12">
             <label for="new_parkingDetails">Parking Details</label>
-            <input class="form-control" type="text" id="new_parkingDetails" autocomplete="off" name="new_parkingDetails" placeholder="Location">
+            <input class="form-control" type="text" id="new_parkingDetails" autocomplete="off" name="new_parkingDetails" placeholder="Location" />
         </div>
 
         <!--- Checkbox for Working with Coach --->
@@ -242,7 +242,7 @@
             <div class="custom-group custom-checkbox">
                 <div style="margin-left:25px;">
                     <label class="custom-control-label">
-                        <input type="checkbox" class="custom-control-input" id="workwithcoach" value="1" name="new_workwithcoach">
+                        <input type="checkbox" class="custom-control-input" id="workwithcoach" value="1" name="new_workwithcoach" />
                         <span class="custom-control-label" for="workwithcoach">Worked with Coach</span>
                     </label>
                 </div>
@@ -254,7 +254,7 @@
             <div class="custom-group custom-checkbox">
                 <div style="margin-left:25px;">
                     <label class="custom-control-label">
-                        <input type="checkbox" class="custom-control-input" id="trackmileage" value="1" name="new_trackmileage">
+                        <input type="checkbox" class="custom-control-input" id="trackmileage" value="1" name="new_trackmileage" />
                         <span class="custom-control-label" for="trackmileage">Track Mileage</span>
                     </label>
                 </div>

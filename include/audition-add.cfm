@@ -60,12 +60,12 @@
             <div class="form-group col-md-12">
               <label for="new_projname">Project Name (Title)<span class="text-danger">*</span>
               </label>
-              <input class="form-control" type="text" id="new_projname" autocomplete="off" required="required" data-parsley-required="data-parsley-required" data-parsley-error-message="Project Name is required" name="new_projname" placeholder="Project Name"></div>
+              <input class="form-control" type="text" id="new_projname" autocomplete="off" required="required" data-parsley-required="data-parsley-required" data-parsley-error-message="Project Name is required" name="new_projname" placeholder="Project Name" /></div>
 
               <div class="form-group col-md-12">
                 <label for="new_projDescription">Project Description/Logline<span class="text-danger">*</span>
                 </label>
-                <input class="form-control" type="text" id="new_projDescription" data-parsley-required="data-parsley-required" data-parsley-="data-parsley-" name="new_projDescription" error-message="Project Description is required" placeholder="Project Description"></div>
+                <input class="form-control" type="text" id="new_projDescription" data-parsley-required="data-parsley-required" data-parsley-="data-parsley-" name="new_projDescription" error-message="Project Description is required" placeholder="Project Description" /></div>
 
                 <script>
                   function handleSelectChange(element) {
@@ -141,7 +141,7 @@
 <div class="form-group col-md-6 col-sm-12">
                   <label for="new_audrolename">Role Name<span class="text-danger">*</span>
                   </label>
-                  <input class="form-control" type="text" id="new_audrolename" autocomplete="off" required="required" data-parsley-required="data-parsley-required" data-parsley-error-message="Role Name is required" name="new_audrolename" placeholder="Role Name"></div>
+                  <input class="form-control" type="text" id="new_audrolename" autocomplete="off" required="required" data-parsley-required="data-parsley-required" data-parsley-error-message="Role Name is required" name="new_audrolename" placeholder="Role Name" /></div>
 
                   <cfif #new_audcatid# IS "5">
                     <!--- Check if new_audcatid is 5 --->
@@ -175,11 +175,11 @@
                         <legend>Add New Casting</legend>
                         <div class="form-group col-md-10">
                           <div class="form-check">
-                            <input class="form-check-input" type="radio" name="casting_info" id="casting_director_known" value="casting_director_known" checked="checked">
+                            <input class="form-check-input" type="radio" name="casting_info" id="casting_director_known" value="casting_director_known" checked="checked" />
                               <label class="form-check-label" for="casting_director_known">Casting Director known</label>
                             </div>
                             <div class="form-check">
-                              <input class="form-check-input" type="radio" name="casting_info" id="only_company_known" value="only_company_known">
+                              <input class="form-check-input" type="radio" name="casting_info" id="only_company_known" value="only_company_known" />
                                 <label class="form-check-label" for="only_company_known">Only company known</label>
                               </div>
                             </div>
@@ -187,7 +187,7 @@
                             <div id="CD">
                               <div class="form-group col-md-6">
                                 <label for="cdfirstname">Casting Director</label>
-                                <input class="form-control" type="text" id="cdfullname" name="cdfullname" autocomplete="off" placeholder="Casting Director">
+                                <input class="form-control" type="text" id="cdfullname" name="cdfullname" autocomplete="off" placeholder="Casting Director" />
                                   <div id="nameResults"></div>
                                   <div class="invalid-feedback">Please enter a Casting Director.</div>
                                 </div>
@@ -209,7 +209,7 @@
                               <div id="co_only">
                                 <div class="form-group col-md-6">
                                   <label for="cdco">Casting Company</label>
-                                  <input class="form-control" type="text" id="companySearch" name="cdco" autocomplete="off" placeholder="Casting Company">
+                                  <input class="form-control" type="text" id="companySearch" name="cdco" autocomplete="off" placeholder="Casting Company" />
                                     <div id="results"></div>
                                     <div class="invalid-feedback">Please enter a Casting Company.</div>
                                   </div>
@@ -240,7 +240,7 @@
                               <div class="form-group col-md-6">
                                 <label for="new_eventStart">Start Date / Due Date<span class="text-danger">*</span>
                                 </label>
-                                <input id="new_eventStart" class="form-control" autocomplete="off" name="new_eventStart" type="date" data-parsley-required="data-parsley-required" data-parsley-error-message="Start Date is required"></div>
+                                <input id="new_eventStart" class="form-control" autocomplete="off" name="new_eventStart" type="date" data-parsley-required="data-parsley-required" data-parsley-error-message="Start Date is required" /></div>
 
                                 <div class="form-group col-md-6">
                                   <label for="new_eventStartTime">Start Time / Due Time<span class="text-danger">*</span>
@@ -279,7 +279,7 @@
                                     <label for="new_eventStart">
                                       Zoom Link (optional)</label>
 
-                                    <input class="form-control" type="text" id="new_audLocation" autocomplete="off" name="new_audLocation" placeholder="Zoom link"></div>
+                                    <input class="form-control" type="text" id="new_audLocation" autocomplete="off" name="new_audLocation" placeholder="Zoom link" /></div>
 
                                     <div class="form-group col-md-12">
 
@@ -307,7 +307,7 @@
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                      <input class="form-control" required="false" type="text" id="CustomPlatform" name="CustomPlatform" value="" data-parsley-error-message="Platform is required" placeholder="Enter a Custom Platform" style="visibility:hidden;"></div>
+                                      <input class="form-control" required="false" type="text" id="CustomPlatform" name="CustomPlatform" value="" data-parsley-error-message="Platform is required" placeholder="Enter a Custom Platform" style="visibility:hidden;" /></div>
 
                                     </div>
 
@@ -350,13 +350,13 @@
                                           <label for="valuetext">
                                             Town/City</label>
 
-                                          <input class="form-control" type="text" id="audcity" name="new_audcity" placeholder="Enter City"></div>
+                                          <input class="form-control" type="text" id="audcity" name="new_audcity" placeholder="Enter City" /></div>
 
                                           <div class="form-group col-md-6">
                                             <label for="valuetext">
                                               Postal Code</label>
 
-                                            <input class="form-control" type="text" id="audzip" name="new_audzip" placeholder="Enter Postal Code"></div>
+                                            <input class="form-control" type="text" id="audzip" name="new_audzip" placeholder="Enter Postal Code" /></div>
 
                                           </div>
 
@@ -418,7 +418,7 @@
                                                   Location Name<span class="text-danger">
                                                     *</span>
                                                 </label>
-                                                <input class="form-control" type="text" id="eventLocation" name="new_eventLocation" placeholder="Location Name" required="required" data-parsley-required="data-parsley-required" data-parsley-error-message="Location Name is required">
+                                                <input class="form-control" type="text" id="eventLocation" name="new_eventLocation" placeholder="Location Name" required="required" data-parsley-required="data-parsley-required" data-parsley-error-message="Location Name is required" />
 
                                                   <div class="invalid-feedback">
                                                     Please enter a Location Name.
@@ -449,13 +449,13 @@
                                                   <label for="valuetext">
                                                     Town/City</label>
 
-                                                  <input class="form-control" type="text" id="audcity" name="new_audcity" placeholder="Enter City"></div>
+                                                  <input class="form-control" type="text" id="audcity" name="new_audcity" placeholder="Enter City" /></div>
 
                                                   <div class="form-group col-md-6">
                                                     <label for="valuetext">
                                                       Postal Code</label>
 
-                                                    <input class="form-control" type="text" id="audzip" name="new_audzip" placeholder="Enter Postal Code"></div>
+                                                    <input class="form-control" type="text" id="audzip" name="new_audzip" placeholder="Enter Postal Code" /></div>
 
                                                     <div class="form-group col-md-6">
                                                       <label for="countryid">

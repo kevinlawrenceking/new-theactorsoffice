@@ -18,9 +18,9 @@
 <form method="post" action="/app/audition-add/index.cfm" class="parsley-examples" name="event-form" id="form-event" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" data-parsley-trigger="keyup" data-parsley-validate>
     
     <cfoutput>
-        <input type="hidden" name="new_audStepID" value="1">     
-        <input type="hidden" name="new_userid" value="#userid#">   
-        <input type="hidden" name="isdirect" value="#isdirect#">   
+        <input type="hidden" name="new_audStepID" value="1" />     
+        <input type="hidden" name="new_userid" value="#userid#" />   
+        <input type="hidden" name="isdirect" value="#isdirect#" />   
     </cfoutput>
  
     <div class="row">     

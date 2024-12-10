@@ -18,10 +18,10 @@
       data-parsley-trigger="keyup" data-parsley-validate>
       
     <cfoutput>
-        <input type="hidden" name="returnurl" value="#returnurl#">
-        <input type="hidden" name="noteid" value="#noteid#">
-        <input type="hidden" name="audprojectid" value="#audprojectid#">
-        <input type="hidden" name="rcontactid" value="#contactid#">
+        <input type="hidden" name="returnurl" value="#returnurl#" />
+        <input type="hidden" name="noteid" value="#noteid#" />
+        <input type="hidden" name="audprojectid" value="#audprojectid#" />
+        <input type="hidden" name="rcontactid" value="#contactid#" />
     </cfoutput>
 
     <div class="row" />

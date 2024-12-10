@@ -21,8 +21,8 @@
       data-parsley-trigger="keyup" data-parsley-validate>
     
     <cfoutput>
-        <input type="hidden" name="eventid" value="#eventid#">
-        <input type="hidden" name="audprojectid" value="#audprojectid#">
+        <input type="hidden" name="eventid" value="#eventid#" />
+        <input type="hidden" name="audprojectid" value="#audprojectid#" />
     </cfoutput>
 
     <div class="row"></div>
@@ -49,7 +49,7 @@
             <!--- Check if the question type is text --->
             <cfif #questions.qtype# is "text">
                 <div class="form-group col-md-12 pt-0 pb-0">
-                    <input class="form-control" type="text" id="q#questions.qid#" value="#questions.atext#" name="q#questions.qid#">
+                    <input class="form-control" type="text" id="q#questions.qid#" value="#questions.atext#" name="q#questions.qid#" />
                 </div>
             </cfif>
 

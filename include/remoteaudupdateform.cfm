@@ -133,15 +133,15 @@
       data-parsley-validate>
     <div class="row">
         <cfoutput>
-            <input type="hidden" name="audprojectid" value="#audprojectid#">
-            <input type="hidden" name="new_eventid" value="#eventid#">
-            <input type="hidden" name="eventid" value="#eventid#">
-            <input type="hidden" name="new_audStepID" value="#aud_det.audstepid#">
-            <input type="hidden" name="new_audcatid" value="#aud_det.audcatid#">
-            <input type="hidden" name="new_audsubcatid" value="#aud_det.audsubcatid#">
-            <input type="hidden" name="new_userid" value="#userid#">
-            <input type="hidden" name="secid" value="#secid#">
-            <input type="hidden" name="new_audRoleID" value="#aud_det.audroleid#">
+            <input type="hidden" name="audprojectid" value="#audprojectid#" />
+            <input type="hidden" name="new_eventid" value="#eventid#" />
+            <input type="hidden" name="eventid" value="#eventid#" />
+            <input type="hidden" name="new_audStepID" value="#aud_det.audstepid#" />
+            <input type="hidden" name="new_audcatid" value="#aud_det.audcatid#" />
+            <input type="hidden" name="new_audsubcatid" value="#aud_det.audsubcatid#" />
+            <input type="hidden" name="new_userid" value="#userid#" />
+            <input type="hidden" name="secid" value="#secid#" />
+            <input type="hidden" name="new_audRoleID" value="#aud_det.audroleid#" />
         </cfoutput>
 
         <div class="form-group col-md-12">
@@ -153,7 +153,7 @@
         <cfoutput>
             <div class="form-group col-md-6">
                 <label for="new_eventStart">Start Date / Due Date<span class="text-danger">*</span></label>
-                <input id="new_eventStart" class="form-control" autocomplete="off" name="new_eventStart" type="date" data-parsley-required data-parsley-error-message="Start Date is required" value="#aud_det.eventStart#">
+                <input id="new_eventStart" class="form-control" autocomplete="off" name="new_eventStart" type="date" data-parsley-required data-parsley-error-message="Start Date is required" value="#aud_det.eventStart#" />
             </div>
         </cfoutput>
 
@@ -237,14 +237,14 @@
 <cfoutput>
     <div class="form-group col-md-12">
         <label for="new_parkingDetails">Parking Details</label>
-        <input class="form-control" type="text" id="new_parkingDetails" autocomplete="off" value="#aud_det.parkingDetails#" name="new_parkingDetails" placeholder="Parking details">
+        <input class="form-control" type="text" id="new_parkingDetails" autocomplete="off" value="#aud_det.parkingDetails#" name="new_parkingDetails" placeholder="Parking details" />
     </div>
 
     <div class="form-group col-md-12">
         <div class="custom-group custom-checkbox">
             <div style="margin-left:25px;">
                 <label class="custom-control-label">
-                    <input type="checkbox" name="new_trackmileage" class="custom-control-input" id="trackmileage" value="1" <cfif aud_det.trackmileage is "1"> checked </cfif>>
+                    <input type="checkbox" name="new_trackmileage" class="custom-control-input" id="trackmileage" value="1" <cfif aud_det.trackmileage is "1" /> checked </cfif>>
                     <span class="custom-control-label" for="trackmileage">Track Mileage</span>
                 </label>
             </div>
@@ -259,19 +259,19 @@
     </div>
 
     <div class="form-group col-md-12">
-        <input class="form-control" type="text" id="eventLocation" name="new_eventLocation" value="#aud_det.eventLocation#" placeholder="Location Name" required data-parsley-required data-parsley-error-message="Location Name is required">
+        <input class="form-control" type="text" id="eventLocation" name="new_eventLocation" value="#aud_det.eventLocation#" placeholder="Location Name" required data-parsley-required data-parsley-error-message="Location Name is required" />
         <div class="invalid-feedback">Please enter a Location Name.</div>
     </div>
 
     <div class="form-group col-md-12">
         <label for="projName">Address</label>
-        <input class="form-control" type="text" id="audlocadd1" name="new_audlocadd1" value="#aud_det.audlocadd1#" placeholder="Address">
+        <input class="form-control" type="text" id="audlocadd1" name="new_audlocadd1" value="#aud_det.audlocadd1#" placeholder="Address" />
         <div class="invalid-feedback">Please enter an address.</div>
     </div>
 
     <div class="form-group col-md-12">
         <label for="projName">Extended Address</label>
-        <input class="form-control" type="text" id="audlocadd2" name="new_audlocadd2" value="#aud_det.audlocadd2#" placeholder="APT 101">
+        <input class="form-control" type="text" id="audlocadd2" name="new_audlocadd2" value="#aud_det.audlocadd2#" placeholder="APT 101" />
         <div class="invalid-feedback">Please enter an extended address.</div>
     </div>
 
@@ -279,12 +279,12 @@
 
     <div class="form-group col-md-6">
         <label for="valuetext">Town/City</label>
-        <input class="form-control" type="text" id="audcity" name="new_audcity" value="#aud_det.audcity#" placeholder="Enter City">
+        <input class="form-control" type="text" id="audcity" name="new_audcity" value="#aud_det.audcity#" placeholder="Enter City" />
     </div>
 
     <div class="form-group col-md-6">
         <label for="valuetext">Postal Code</label>
-        <input class="form-control" type="text" id="audzip" name="new_audzip" value="#aud_det.audzip#" placeholder="Enter Postal Code">
+        <input class="form-control" type="text" id="audzip" name="new_audzip" value="#aud_det.audzip#" placeholder="Enter Postal Code" />
     </div>
 
     </div>
@@ -341,7 +341,7 @@
             <cfoutput>
                 <div class="form-group col-md-12">
                     <label for="new_eventStart">Platform URL (optional)</label>
-                    <input class="form-control" type="text" id="new_audLocation" autocomplete="off" name="new_audLocation" placeholder="Zoom link">
+                    <input class="form-control" type="text" id="new_audLocation" autocomplete="off" name="new_audLocation" placeholder="Zoom link" />
                 </div>
                 <input type="hidden" name="old_audPlatformid" value="#aud_det.audplatformid#" />
             </cfoutput>
@@ -359,7 +359,7 @@
 
             <div class="form-group col-md-6" id="CustomPlatforms" style="visibility:hidden;">
                 <label for="CustomPlatform">Custom Platform</label>
-                <input class="form-control" type="text" id="CustomPlatform" name="CustomPlatform" value="" placeholder="Enter a Custom Platform">
+                <input class="form-control" type="text" id="CustomPlatform" name="CustomPlatform" value="" placeholder="Enter a Custom Platform" />
             </div>
         </div>
 
@@ -368,7 +368,7 @@
                 <div class="custom-group custom-checkbox">
                     <div style="margin-left:25px;">
                         <label class="custom-control-label">
-                            <input type="checkbox" class="custom-control-input" id="workwithcoach" value="1" <cfif #aud_det.workwithcoach# is "1"> checked </cfif> name="new_workwithcoach">
+                            <input type="checkbox" class="custom-control-input" id="workwithcoach" value="1" <cfif #aud_det.workwithcoach# is "1" /> checked </cfif> name="new_workwithcoach">
                             <span class="custom-control-label" for="workwithcoach">Worked with Coach</span>
                         </label>
                     </div>

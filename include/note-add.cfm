@@ -20,9 +20,9 @@
                 <cfform method="post" action="/include/note-add2.cfm" class="parsley-examples" name="event-form" id="form-event" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" data-parsley-trigger="keyup" data-parsley-validate>
                     
                     <cfoutput>
-                        <input type="hidden" name="returnurl" value="#returnurl#">
-                        <input type="hidden" name="rcontactid" value="#rcontactid#">
-                        <input type="hidden" name="userid" value="#userid#">
+                        <input type="hidden" name="returnurl" value="#returnurl#" />
+                        <input type="hidden" name="rcontactid" value="#rcontactid#" />
+                        <input type="hidden" name="userid" value="#userid#" />
                     </cfoutput>
                     
                     <div class="row">

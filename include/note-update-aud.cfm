@@ -16,11 +16,11 @@
                 <!--- Form for submitting notes --->
                 <cfform method="post" action="/include/note-update-aud2.cfm" class="parsley-examples" name="aud-form" id="form-aud" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" data-parsley-trigger="keyup" data-parsley-validate>
                     <cfoutput>
-                        <input type="hidden" name="audprojectid" value="#audprojectid#">
-                        <input type="hidden" name="returnurl" value="#returnurl#">
-                        <input type="hidden" name="rcontactid" value="#rcontactid#">
-                        <input type="hidden" name="userid" value="#userid#">
-                        <input type="hidden" name="noteid" value="#noteid#">
+                        <input type="hidden" name="audprojectid" value="#audprojectid#" />
+                        <input type="hidden" name="returnurl" value="#returnurl#" />
+                        <input type="hidden" name="rcontactid" value="#rcontactid#" />
+                        <input type="hidden" name="userid" value="#userid#" />
+                        <input type="hidden" name="noteid" value="#noteid#" />
                     </cfoutput>
 
                     <div class="row">

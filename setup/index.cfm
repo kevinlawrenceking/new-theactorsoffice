@@ -73,13 +73,13 @@ WHERE th.STATUS = 'Emailed' and th.uuid = '#uuid#'
                                     <div class="auth-logo">
                                         <a href="index.html" class="logo logo-dark text-center">
                                             <span class="logo-lg">
-                                                <img src="<cfoutput>#application.imagesUrl#/taowhite.png</cfoutput>" alt="" height="60">
+                                                <img src="<cfoutput />#application.imagesUrl#/taowhite.png</cfoutput>" alt="" height="60">
                                             </span>
                                         </a>
                     
                                         <a href="index.html" class="logo logo-light text-center">
                                             <span class="logo-lg">
-                                                <img src="<cfoutput>#application.imagesUrl#</cfoutput>/logo-dark.png" alt="" height="20">
+                                                <img src="<cfoutput />#application.imagesUrl#</cfoutput>/logo-dark.png" alt="" height="20">
                                             </span>
                                         </a>
                                     </div>
@@ -112,12 +112,12 @@ WHERE th.STATUS = 'Emailed' and th.uuid = '#uuid#'
                                     
                                                     <div class="form-group mb-2 col-md-6">
                                         <label for="customerfirst">First Name<span class="text-danger">*</span></label>
-                                        <input class="form-control" type="text"  value="#u.customerfirst#" id="customerfirst" name="customerfirst" data-parsley-required data-parsley-error-message="First Name is required" placeholder="Enter your First Name">
+                                        <input class="form-control" type="text"  value="#u.customerfirst#" id="customerfirst" name="customerfirst" data-parsley-required data-parsley-error-message="First Name is required" placeholder="Enter your First Name" />
                                     </div>
 
 <div class="form-group mb-2 col-md-6">
                                         <label for="emailaddress">Last Name<span class="text-danger">*</span></label>
-                                        <input class="form-control" type="text"   value="#u.customerlast#" id="customerlast" name="customerlast"  data-parsley-required data-parsley-error-message="Last Name is required" placeholder="Enter your Last Name">
+                                        <input class="form-control" type="text"   value="#u.customerlast#" id="customerlast" name="customerlast"  data-parsley-required data-parsley-error-message="Last Name is required" placeholder="Enter your Last Name" />
                                     </div>
 
 <div class="form-group mb-2 col-md-12">
@@ -146,7 +146,7 @@ WHERE th.STATUS = 'Emailed' and th.uuid = '#uuid#'
 
 <div class="form-group mb-3 col-md-12">
                                         <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="checkbox-signin" checked>
+                                            <input type="checkbox" class="custom-control-input" id="checkbox-signin" checked />
                                             <label class="custom-control-label" for="checkbox-signin">I agree to the <A href="#">Terms & Conditions</A></label>
                                         </div>
                                     </div>

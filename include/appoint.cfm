@@ -51,9 +51,9 @@
         <div class="card-body">
             <form method="post" action="/include/appoint-update2.cfm" class="parsley-examples" name="event-form" id="form-event" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" data-parsley-trigger="keyup" data-parsley-validate>
                 <cfoutput>
-                    <input type="hidden" name="returnurl" value="#returnurl#">
-                    <input type="hidden" name="rcontactid" value="#rcontactid#">
-                    <input type="hidden" name="eventid" value="#eventdetails.eventid#">
+                    <input type="hidden" name="returnurl" value="#returnurl#" />
+                    <input type="hidden" name="rcontactid" value="#rcontactid#" />
+                    <input type="hidden" name="eventid" value="#eventdetails.eventid#" />
                     <div class="row">
                         <div class="col-md-12">
                             <a href="/app/appoint-update/?eventid=#session.new_eventid#&returnurl=appoint">

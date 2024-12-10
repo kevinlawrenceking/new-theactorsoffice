@@ -208,7 +208,7 @@
                             <div class="col-lg-8 pb-1">
                                 <div class="app-search-box dropdown">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="audsearch" value="<cfoutput>#audsearch#</cfoutput>" id="audsearch" placeholder="Search..." autocomplete="off">
+                                        <input type="text" class="form-control" name="audsearch" value="<cfoutput />#audsearch#</cfoutput>" id="audsearch" placeholder="Search..." autocomplete="off">
                                         &nbsp;
                                         <div class="input-group-append">
                                             <button class="btn btn-xs btn-primary waves-effect waves-light" id="mybtn" style="height:100%;" type="submit">
@@ -274,7 +274,7 @@
                                             <div class="col-md-4 p-2">
                                                 <cfif #isdefined('option1')#>
                                                     <center>
-                                                        <img src="#application.datesUrl#/#DateFormat('#results.col1#','mm-dd')#.png" style="max-width:75px;" alt="...">
+                                                        <img src="#application.datesUrl#/#DateFormat('#results.col1#','mm-dd')#.png" style="max-width:75px;" alt="..." />
                                                     </center>
                                                     <br>
                                                     <center>#DateFormat('#results.col1#','yyyy')#</center>
@@ -282,11 +282,11 @@
 
                                                 <cfif #results.col1#is not "">
                                                     <a href="/app/audition/?audprojectid=#results.recid#" title="#DateFormat('#results.col1#','long')#">
-                                                        <img src="#application.datesUrl#/#DateFormat('#results.col1#','mm-dd')#.png" style="max-width:75px;" alt="...">
+                                                        <img src="#application.datesUrl#/#DateFormat('#results.col1#','mm-dd')#.png" style="max-width:75px;" alt="..." />
                                                     </a>
                                                 <cfelse>
                                                     <a href="/app/audition/?audprojectid=#results.recid#" title="#DateFormat('#results.col1b#','long')# at #timeformat('#results.col1b#')#">
-                                                        <img src="#application.datesUrl#/#DateFormat('#results.col1b#','mm-dd')#.png" style="max-width:75px;" alt="...">
+                                                        <img src="#application.datesUrl#/#DateFormat('#results.col1b#','mm-dd')#.png" style="max-width:75px;" alt="..." />
                                                     </a>
                                                 </cfif>
                                             </div>

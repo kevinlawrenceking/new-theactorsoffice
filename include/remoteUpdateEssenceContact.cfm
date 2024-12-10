@@ -8,8 +8,8 @@
                   
     <!--- Output hidden fields for user and essence IDs --->
     <cfoutput>  
-        <input type="hidden" name="userid" value="#userid#" >
-        <input type="hidden" name="essenceid" value="#essenceid#" >
+        <input type="hidden" name="userid" value="#userid#"  />
+        <input type="hidden" name="essenceid" value="#essenceid#"  />
     </cfoutput>
 
     <div class="row">
@@ -27,7 +27,7 @@
             <div class="custom-group custom-checkbox">
                 <div style="margin-left:25px;">
                     <label class="custom-control-label">
-                        <input type="checkbox" class="custom-control-input" id="IsDeleted" value="1" name="IsDeleted">
+                        <input type="checkbox" class="custom-control-input" id="IsDeleted" value="1" name="IsDeleted" />
                         <span class="custom-control-label" for="deleteitem">Delete</span>
                     </label>
                 </div>

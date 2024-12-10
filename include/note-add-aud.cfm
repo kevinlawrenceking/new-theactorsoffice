@@ -18,10 +18,10 @@
                     
                     <cfoutput>
                         <!--- Hidden inputs for form submission --->
-                        <input type="hidden" name="returnurl" value="#returnurl#">
-                        <input type="hidden" name="rcontactid" value="#contactid#">
-                        <input type="hidden" name="audprojectid" value="#audprojectid#">
-                        <input type="hidden" name="userid" value="#userid#">
+                        <input type="hidden" name="returnurl" value="#returnurl#" />
+                        <input type="hidden" name="rcontactid" value="#contactid#" />
+                        <input type="hidden" name="audprojectid" value="#audprojectid#" />
+                        <input type="hidden" name="userid" value="#userid#" />
                     </cfoutput>
                     
                     <div class="row">

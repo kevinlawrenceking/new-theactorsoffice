@@ -23,22 +23,22 @@
         
         <center>
             <div class="radio radio-info form-check-inline">
-                <input type="radio" id="N" value="None" name="new_systemtype" <cfif #old_systemtype# is "None">checked="checked" </cfif>>
+                <input type="radio" id="N" value="None" name="new_systemtype" <cfif #old_systemtype# is "None" />checked="checked" </cfif>>
                 <label for="N"> None </label>
             </div>
             
             <div class="radio form-check-inline">
-                <input type="radio" id="T" value="Targeted List" name="new_systemtype" <cfif #old_systemtype# is "Targeted List">checked="checked" </cfif>>
+                <input type="radio" id="T" value="Targeted List" name="new_systemtype" <cfif #old_systemtype# is "Targeted List" />checked="checked" </cfif>>
                 <label for="T"> Targeted List </label>
             </div>
             
             <div class="radio form-check-inline">
-                <input type="radio" id="F" value="Follow Up" name="new_systemtype" <cfif #old_systemtype# is "Follow Up">checked="checked" </cfif>>
+                <input type="radio" id="F" value="Follow Up" name="new_systemtype" <cfif #old_systemtype# is "Follow Up" />checked="checked" </cfif>>
                 <label for="F"> Follow Up </label>
             </div>
             
             <div class="radio form-check-inline">
-                <input type="radio" id="M" value="Maintenance List" name="new_systemtype" <cfif #old_systemtype# is "Maintenance List">checked="checked" </cfif>>
+                <input type="radio" id="M" value="Maintenance List" name="new_systemtype" <cfif #old_systemtype# is "Maintenance List" />checked="checked" </cfif>>
                 <label for="M"> Maintenance List </label>
             </div>
         </center>
@@ -46,7 +46,7 @@
         <p>&nbsp;</p>
         <div>
             <center>
-                <input name="submit" type="submit" value="Update" class="btn btn-xs btn-primary waves-effect mb-2 waves-light">
+                <input name="submit" type="submit" value="Update" class="btn btn-xs btn-primary waves-effect mb-2 waves-light" />
             </center>
         </div>
         

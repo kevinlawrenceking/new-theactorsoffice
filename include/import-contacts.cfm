@@ -104,7 +104,7 @@
                         </cfoutput>
                         <input name="file" onchange="unlock();" type="file" />
                         <p></p><p></p><p></p><p></p>
-                        <input type="submit" value="Upload" class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="background-color: #406e8e; border: #406e8e" id="buttonSubmit" disabled>
+                        <input type="submit" value="Upload" class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="background-color: #406e8e; border: #406e8e" id="buttonSubmit" disabled />
                     </form>   
 
                     <div class="dropzone-previews mt-3" id="file-previews"></div>  

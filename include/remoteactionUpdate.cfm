@@ -10,8 +10,8 @@
     
     <!--- Hidden inputs for action details --->
     <cfoutput>
-        <input type="hidden" name="id" value="#actiondetails.id#" >
-        <input type="hidden" name="target_id_system" value="#actiondetails.systemid#" >
+        <input type="hidden" name="id" value="#actiondetails.id#"  />
+        <input type="hidden" name="target_id_system" value="#actiondetails.systemid#"  />
     </cfoutput>
     
     <div class="row">
@@ -54,7 +54,7 @@
         <!--- Checkbox for removal action --->
         <div class="form-group col-md-12">
             <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="deleteaction" value="1" name="deleteaction">
+                <input type="checkbox" class="custom-control-input" id="deleteaction" value="1" name="deleteaction" />
                 <label class="custom-control-label" for="deleteaction">Remove</label>
             </div>
         </div>

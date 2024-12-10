@@ -22,9 +22,9 @@
                     data-parsley-trigger="keyup" 
                     data-parsley-validate>
                     <cfoutput>
-                        <input type="hidden" name="returnurl" value="#returnurl#">
-                        <input type="hidden" name="rcontactid" value="#rcontactid#">
-                        <input type="hidden" name="userid" value="#userid#">
+                        <input type="hidden" name="returnurl" value="#returnurl#" />
+                        <input type="hidden" name="rcontactid" value="#rcontactid#" />
+                        <input type="hidden" name="userid" value="#userid#" />
                     </cfoutput>
                     <div class="row">
                         <div class="col-12">
@@ -121,19 +121,19 @@
                         <div class="form-group col-md-12">
                             <label for="eventStopTime">Recurring every:</label>
                             <div id="checkboxes">
-                                <input type="checkbox" name="dow" value="1" autocomplete="off" onchange="showDiv('hidden_div', this)"> Monday
-                                <input type="checkbox" name="dow" value="2" onchange="showDiv('hidden_div', this)"> Tuesday
-                                <input type="checkbox" name="dow" value="3" onchange="showDiv('hidden_div', this)"> Wednesday
-                                <input type="checkbox" name="dow" value="4" onchange="showDiv('hidden_div', this)"> Thursday
-                                <input type="checkbox" name="dow" value="5" onchange="showDiv('hidden_div', this)"> Friday
-                                <input type="checkbox" name="dow" value="6" onchange="showDiv('hidden_div', this)"> Saturday
-                                <input type="checkbox" name="dow" value="0" onchange="showDiv('hidden_div', this)"> Sunday
+                                <input type="checkbox" name="dow" value="1" autocomplete="off" onchange="showDiv('hidden_div', this)" /> Monday
+                                <input type="checkbox" name="dow" value="2" onchange="showDiv('hidden_div', this)" /> Tuesday
+                                <input type="checkbox" name="dow" value="3" onchange="showDiv('hidden_div', this)" /> Wednesday
+                                <input type="checkbox" name="dow" value="4" onchange="showDiv('hidden_div', this)" /> Thursday
+                                <input type="checkbox" name="dow" value="5" onchange="showDiv('hidden_div', this)" /> Friday
+                                <input type="checkbox" name="dow" value="6" onchange="showDiv('hidden_div', this)" /> Saturday
+                                <input type="checkbox" name="dow" value="0" onchange="showDiv('hidden_div', this)" /> Sunday
                             </div>
                         </div>
 
                         <div class="form-group col-md-6" id="hidden_div">
                             <label for="eventStart">Recurring Until:</label>
-                            <input class="form-control" id="endRecur" name="endRecur" type="date">
+                            <input class="form-control" id="endRecur" name="endRecur" type="date" />
                         </div>
                     </div>
 

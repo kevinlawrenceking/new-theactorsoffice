@@ -5,8 +5,8 @@
 
 <form action="/include/updateeventtypeupdate.cfm" method="post" class="needs-validation" validate id="profile-form">
     <cfoutput>
-        <input type="hidden" name="id" value="#linkdetails.id#" >
-        <input type="hidden" name="new_iscustom" value="#linkdetails.iscustom#" >
+        <input type="hidden" name="id" value="#linkdetails.id#"  />
+        <input type="hidden" name="new_iscustom" value="#linkdetails.iscustom#"  />
     </cfoutput>
 
     <div class="row">
@@ -14,7 +14,7 @@
         <!--- Check if the event is not custom --->
         <cfif #linkdetails.iscustom# is "0"> 
             <cfoutput>
-                <input type="hidden" name="new_eventtypename" value="#linkdetails.eventtypename#">
+                <input type="hidden" name="new_eventtypename" value="#linkdetails.eventtypename#" />
             </cfoutput>
         
             <div class="form-group col-md-6">
@@ -30,7 +30,7 @@
             <div class="form-group col-md-12">
                 <label for="new_eventtypename">Name:</label>
                 <cfoutput>
-                    <input class="form-control" type="text" id="new_eventtypename" name="new_eventtypename" value="#linkdetails.eventtypename#" required placeholder="Enter an Event Type">
+                    <input class="form-control" type="text" id="new_eventtypename" name="new_eventtypename" value="#linkdetails.eventtypename#" required placeholder="Enter an Event Type" />
                 </cfoutput>
                 <div class="invalid-feedback">
                     Please enter your Event Type.
@@ -41,7 +41,7 @@
         <div class="form-group col-md-12">
             <label for="hexa-colorpicker">Color:</label>
             <cfoutput>
-                <input type="text" id="hexa-colorpicker_#id#" name="new_eventtypecolor" class="form-control" value="#linkdetails.eventtypecolor#">
+                <input type="text" id="hexa-colorpicker_#id#" name="new_eventtypecolor" class="form-control" value="#linkdetails.eventtypecolor#" />
             </cfoutput>
             <div class="invalid-feedback">
                 Please enter a color.
@@ -53,7 +53,7 @@
             <cfif #find_events.recordcount# is "0">
                 <div class="form-group col-md-12">
                     <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="deletelink" value="1" name="deletelink">
+                        <input type="checkbox" class="custom-control-input" id="deletelink" value="1" name="deletelink" />
                         <label class="custom-control-label" for="deletelink">Remove</label>
                     </div>
                 </div>

@@ -9,15 +9,15 @@
 </cfoutput>
 <form action="/include/systemchange.cfm">
 <cfoutput>
-<input type="hidden" name="contactid" value="#followup_contactid#">
+<input type="hidden" name="contactid" value="#followup_contactid#" />
 
-<input type="hidden" name="suid" value="0">
-<input type="hidden" name="new_systemtype" value="Follow Up" >
+<input type="hidden" name="suid" value="0" />
+<input type="hidden" name="new_systemtype" value="Follow Up"  />
 
 </cfoutput>
          <div>
          <center> 
-         <input name="submit" type="submit" value="Add" class="btn btn-xs btn-primary waves-effect mb-2 waves-light">
+         <input name="submit" type="submit" value="Add" class="btn btn-xs btn-primary waves-effect mb-2 waves-light" />
          </center>
          </div>
 

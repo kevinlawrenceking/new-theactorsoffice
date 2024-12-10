@@ -17,7 +17,7 @@
         <div class="col-md-2 p-2">Add Team Member:</div>
         <div class="col-md-3 p-2">
             <div class="input-group">
-                <input type="text" class="form-control" name="topsearch_myteam" id="autocomplete2" placeholder="Search..." autocomplete="off">
+                <input type="text" class="form-control" name="topsearch_myteam" id="autocomplete2" placeholder="Search..." autocomplete="off" />
                 <div class="input-group-append">
                     <button id="mybtns" type="submit" class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="background-color: #406e8e; border: #406e8e; height: 37px;">
                         <i class="fe-plus"></i> Add 
@@ -45,9 +45,9 @@
                             <cfset contact_avatar_filename = "#session.userContactsPath#\#myteam.contactid#\avatar.jpg" />
                             <!--- Check if the contact has an avatar image --->
                             <cfif isimagefile(contact_avatar_filename)>
-                                <img src="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg?ver=#rand()#" class="rounded-circle img-thumbnail avatar-xl" alt="profile-image">
+                                <img src="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg?ver=#rand()#" class="rounded-circle img-thumbnail avatar-xl" alt="profile-image" />
                             <cfelse>
-                                <img src="#application.defaultAvatarUrl#" class="rounded-circle img-thumbnail avatar-xl" alt="profile-image">
+                                <img src="#application.defaultAvatarUrl#" class="rounded-circle img-thumbnail avatar-xl" alt="profile-image" />
                             </cfif>
                             <h4 class="mt-2">
                                 <A href="/app/contact/?contactid=#myteam.contactid#">#myteam.contactname#</A>

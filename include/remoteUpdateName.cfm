@@ -12,7 +12,7 @@
       data-parsley-trigger="keyup" data-parsley-validate>
     
     <cfoutput>
-        <input type="hidden" name="contactid" value="#details.contactid#">
+        <input type="hidden" name="contactid" value="#details.contactid#" />
     </cfoutput>
 
     <div class="row" />
@@ -45,17 +45,17 @@
 
         <div class="form-group col-sm-6 mb-6">
             <label for="simpleinput">Next Birthday</label>
-            <input class="form-control" id="contactbirthday" value="#contactbirthday ?: ''#" type="date" name="contactbirthday">
+            <input class="form-control" id="contactbirthday" value="#contactbirthday ?: ''#" type="date" name="contactbirthday" />
         </div>
 
         <div class="form-group col-sm-6 mb-6">
             <label for="simpleinput">Initial Meeting Date</label>
-            <input class="form-control" id="contactmeetingdate" value="#contactmeetingdate ?: ''#" type="date" name="contactmeetingdate">
+            <input class="form-control" id="contactmeetingdate" value="#contactmeetingdate ?: ''#" type="date" name="contactmeetingdate" />
         </div>
 
         <div class="form-group col-sm-6 mb-6">
             <label for="contactmeetingloc">Initial Meeting Location</label>
-            <input class="form-control" id="contactmeetingloc" type="text" name="contactmeetingloc" value="#details.contactmeetingloc#">
+            <input class="form-control" id="contactmeetingloc" type="text" name="contactmeetingloc" value="#details.contactmeetingloc#" />
         </div>
     </cfoutput>
 

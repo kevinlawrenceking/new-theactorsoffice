@@ -34,7 +34,7 @@
     <div class="row">
         <div class="col-lg-12">
             <center>
-                <input name="submit" type="submit" value="Update" class="btn btn-primary editable-submit btn-sm waves-effect waves-light">
+                <input name="submit" type="submit" value="Update" class="btn btn-primary editable-submit btn-sm waves-effect waves-light" />
             </center>
         </div>
         <div class="col-lg-12">

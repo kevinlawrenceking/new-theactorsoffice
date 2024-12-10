@@ -9,10 +9,10 @@
 
     <!--- Hidden inputs for form submission --->
     <cfoutput> 
-        <input type="hidden" name="pnid" value="#updates.pnid#" >
-        <input type="hidden" name="new_sitetypeid" value="#new_sitetypeid#" >
-        <input type="hidden" name="userid" value="#userid#" >
-        <input type="hidden" name="pgrtn" value="P" >
+        <input type="hidden" name="pnid" value="#updates.pnid#"  />
+        <input type="hidden" name="new_sitetypeid" value="#new_sitetypeid#"  />
+        <input type="hidden" name="userid" value="#userid#"  />
+        <input type="hidden" name="pgrtn" value="P"  />
     </cfoutput>
 
     <div class="row">
@@ -33,9 +33,9 @@
                     <div style="margin-left:25px;">
                         <label class="custom-control-label">
                             <cfif #updates.isvisible# is "1">
-                                <input type="checkbox" checked class="custom-control-input" id="isVisible" value="1" name="isVisible" data-parsley-multiple="isVisible">
+                                <input type="checkbox" checked class="custom-control-input" id="isVisible" value="1" name="isVisible" data-parsley-multiple="isVisible" />
                             <cfelse>
-                                <input type="checkbox" class="custom-control-input" id="isVisible" value="1" name="isVisible" data-parsley-multiple="isVisible">   
+                                <input type="checkbox" class="custom-control-input" id="isVisible" value="1" name="isVisible" data-parsley-multiple="isVisible" />   
                             </cfif>
                             <span class="custom-control-label" for="isVisible">Show on Dashboard</span>
                         </label>

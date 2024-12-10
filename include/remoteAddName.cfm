@@ -23,17 +23,17 @@
 
     <div class="form-group col-sm-6 mb-6">
         <label for="simpleinput">Next Birthday</label>
-        <input class="form-control" id="contactbirthday" value="" type="date" name="contactbirthday">
+        <input class="form-control" id="contactbirthday" value="" type="date" name="contactbirthday" />
     </div>
 
     <div class="form-group col-sm-6 mb-6">
         <label for="simpleinput">Initial Meeting Date</label>
-        <input class="form-control" id="contactmeetingdate" value="" type="date" name="contactmeetingdate">
+        <input class="form-control" id="contactmeetingdate" value="" type="date" name="contactmeetingdate" />
     </div>
 
     <div class="form-group col-sm-6 mb-6">
         <label for="contactmeetingloc">Initial Meeting Location</label>
-        <input class="form-control" id="contactmeetingloc" type="text" name="contactmeetingloc" value="">
+        <input class="form-control" id="contactmeetingloc" type="text" name="contactmeetingloc" value="" />
     </div>
 
     <div class="form-group col-sm-6 mb-6">

@@ -45,10 +45,10 @@
             <div class="card-body">
                 <form method="post" action="/include/appoint-update2.cfm" class="parsley-examples" name="event-form" id="form-event" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" data-parsley-trigger="keyup" data-parsley-validate>
                     <cfoutput>
-                        <input type="hidden" name="reventid" value="#reventid#" >
-                        <input type="hidden" name="returnurl" value="#returnurl#" >
-                        <input type="hidden" name="rcontactid" value="#rcontactid#" >
-                        <input type="hidden" name="eventid" value="#eventdetails.eventid#" >
+                        <input type="hidden" name="reventid" value="#reventid#"  />
+                        <input type="hidden" name="returnurl" value="#returnurl#"  />
+                        <input type="hidden" name="rcontactid" value="#rcontactid#"  />
+                        <input type="hidden" name="eventid" value="#eventdetails.eventid#"  />
                         <div class="row">
                             <div class="col-12">
                                 <div class="form-group">
@@ -88,14 +88,14 @@
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="eventLocation">Location</label>
-                                <input class="form-control" type="text" autocomplete="off" id="eventLocation" value="#eventdetails.eventlocation#" name="eventLocation" placeholder="Location">
+                                <input class="form-control" type="text" autocomplete="off" id="eventLocation" value="#eventdetails.eventlocation#" name="eventLocation" placeholder="Location" />
                                 <div class="invalid-feedback">
                                     Please enter a Location.
                                 </div>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="eventStart">Start Date</label>
-                                <input class="form-control" id="eventStart" autocomplete="off" value="#dateformat(eventdetails.eventstart,'YYYY-MM-dd')#" name="eventStart" type="date">
+                                <input class="form-control" id="eventStart" autocomplete="off" value="#dateformat(eventdetails.eventstart,'YYYY-MM-dd')#" name="eventStart" type="date" />
                                 <div class="invalid-feedback">
                                     Please choose a Start Date.
                                 </div>
@@ -143,13 +143,13 @@
                             <div class="form-group col-md-12">
                                 <label for="eventStopTime">Recurring every:</label>
                                 <div id="checkboxes">
-                                    <input type="checkbox" name="dow" value="1" <cfif #eventdetails.dow# contains "1">checked</cfif> onchange="showDiv('hidden_div', this)"> Monday
-                                    &nbsp;<input type="checkbox" name="dow" value="2" <cfif #eventdetails.dow# contains "2">checked</cfif> onchange="showDiv('hidden_div', this)"> Tuesday
-                                    &nbsp;<input type="checkbox" name="dow" value="3" <cfif #eventdetails.dow# contains "3">checked</cfif> onchange="showDiv('hidden_div', this)"> Wednesday
-                                    &nbsp;<input type="checkbox" name="dow" value="4" <cfif #eventdetails.dow# contains "4">checked</cfif> onchange="showDiv('hidden_div', this)"> Thursday
-                                    &nbsp;<input type="checkbox" name="dow" value="5" <cfif #eventdetails.dow# contains "5">checked</cfif> onchange="showDiv('hidden_div', this)"> Friday
-                                    &nbsp;<input type="checkbox" name="dow" value="6" <cfif #eventdetails.dow# contains "6">checked</cfif> onchange="showDiv('hidden_div', this)"> Saturday
-                                    &nbsp;<input type="checkbox" name="dow" value="0" <cfif #eventdetails.dow# contains "0">checked</cfif> onchange="showDiv('hidden_div', this)"> Sunday
+                                    <input type="checkbox" name="dow" value="1" <cfif #eventdetails.dow# contains "1" />checked</cfif> onchange="showDiv('hidden_div', this)"> Monday
+                                    &nbsp;<input type="checkbox" name="dow" value="2" <cfif #eventdetails.dow# contains "2" />checked</cfif> onchange="showDiv('hidden_div', this)"> Tuesday
+                                    &nbsp;<input type="checkbox" name="dow" value="3" <cfif #eventdetails.dow# contains "3" />checked</cfif> onchange="showDiv('hidden_div', this)"> Wednesday
+                                    &nbsp;<input type="checkbox" name="dow" value="4" <cfif #eventdetails.dow# contains "4" />checked</cfif> onchange="showDiv('hidden_div', this)"> Thursday
+                                    &nbsp;<input type="checkbox" name="dow" value="5" <cfif #eventdetails.dow# contains "5" />checked</cfif> onchange="showDiv('hidden_div', this)"> Friday
+                                    &nbsp;<input type="checkbox" name="dow" value="6" <cfif #eventdetails.dow# contains "6" />checked</cfif> onchange="showDiv('hidden_div', this)"> Saturday
+                                    &nbsp;<input type="checkbox" name="dow" value="0" <cfif #eventdetails.dow# contains "0" />checked</cfif> onchange="showDiv('hidden_div', this)"> Sunday
                                 </div>
                             </div>
 
@@ -161,7 +161,7 @@
 
                             <div class="form-group col-md-6" id="hidden_div">
                                 <label for="eventStart">Recurring Until:</label>
-                                <input class="form-control" id="endRecur" name="endRecur" value="#dateformat(endRecurDisplay,'YYYY-MM-dd')#" type="date">
+                                <input class="form-control" id="endRecur" name="endRecur" value="#dateformat(endRecurDisplay,'YYYY-MM-dd')#" type="date" />
                             </div>
                         </cfoutput>
                     </div>

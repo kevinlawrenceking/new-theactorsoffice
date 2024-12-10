@@ -17,8 +17,8 @@
         <div class="float-left">
             <form>
                 <cfoutput>
-                    <input type="hidden" name="contactid" value="#currentid#">
-                    <input type="hidden" name="t4" value="1">
+                    <input type="hidden" name="contactid" value="#currentid#" />
+                    <input type="hidden" name="t4" value="1" />
                 </cfoutput>
                 <div class="checkbox checkbox-success form-check-inline">
                     <input type="checkbox" id="hide_completed" value="Y" name="hide_completed" onChange="this.form.submit()" #hide_completed_check# />
@@ -100,7 +100,7 @@
         <cfif #isdefined('showstuff')#>
             <cfif #hide_completed# is "N">
                 <cfif #notsinactive.recordcount# is not "0">
-                    <hr style="color:purple;">
+                    <hr style="color:purple;" />
                     <p style="color:purple;"><cfoutput>#zquery#</cfoutput></p>
                     <p style="color:purple;">The reminders below are future and will NOT be shown to the user. These are shown for testing purposes only:</p>
                 </cfif>

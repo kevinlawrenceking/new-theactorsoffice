@@ -74,7 +74,7 @@
                             <a href="#session.userMediaUrl#/#headshots_sel.mediaFileName#?ver=#rand()#" data-toggle="lightbox" data-gallery="example-gallery">
                         </cfif>
 
-                        <img src="#session.userMediaUrl#/#headshots_sel.mediaFileName#?ver=#rand()#" class="mr-2 rounded-square gambar img-thumbnail img-fluid p-0 m-0" title="User ID: 30" style="max-width:120px; height:120px; height:100%" alt="profile-image" id="item-img-output">
+                        <img src="#session.userMediaUrl#/#headshots_sel.mediaFileName#?ver=#rand()#" class="mr-2 rounded-square gambar img-thumbnail img-fluid p-0 m-0" title="User ID: 30" style="max-width:120px; height:120px; height:100%" alt="profile-image" id="item-img-output" />
                         </a>
                     </center>
                 </div>

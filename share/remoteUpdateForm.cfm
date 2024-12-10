@@ -88,7 +88,7 @@
                     <cfoutput>
                         <div class="form-group col-md-12">
                             <label for="#RPGUpdate.fname#">#RPGUpdate.updatename#</label>
-                            <input class="form-control" type="text" id="#RPGUpdate.fname#" name="new_#RPGUpdate.fname#" value="#FindValue.fvalue#" <cfif #RPGUpdate.required_yn# is "Y">required
+                            <input class="form-control" type="text" id="#RPGUpdate.fname#" name="new_#RPGUpdate.fname#" value="#FindValue.fvalue#" <cfif #RPGUpdate.required_yn# is "Y" />required
                 </cfif> placeholder="#RPGUpdate.updatename#">
 
                 <div class="invalid-feedback">
@@ -138,7 +138,7 @@
                     <cfoutput>
                         <div class="form-group form-group col-md-12">
                             <label for="#RPGUpdate.fname#">#RPGUpdate.updatename#</label>
-                            <input class="form-control" type="password" id="#RPGUpdate.fname#" name="new_#RPGUpdate.fname#" value="#FindValue.fvalue#" <cfif #RPGUpdate.required_yn# is "Y">required
+                            <input class="form-control" type="password" id="#RPGUpdate.fname#" name="new_#RPGUpdate.fname#" value="#FindValue.fvalue#" <cfif #RPGUpdate.required_yn# is "Y" />required
             </cfif> placeholder="#RPGUpdate.updatename#">
 
             <div class="invalid-feedback">
@@ -168,7 +168,7 @@
 
                         <div class="form-group col-md-6">
                             <label for="#RPGUpdate.fname#">#RPGUpdate.updatename#</label>
-                            <input class="form-control" id="#RPGUpdate.fname#" name="new_#RPGUpdate.fname#" value="#datevalue#" type="date">
+                            <input class="form-control" id="#RPGUpdate.fname#" name="new_#RPGUpdate.fname#" value="#datevalue#" type="date" />
 
                             <div class="invalid-feedback">
                                 Please choose a #RPGUpdate.updatename#.
@@ -289,7 +289,7 @@
                             <cfoutput>
                                 <div class="form-group col-md-6">
                                     <label for="#RPGUpdate.fname#">#RPGUpdate.updatename#</label>
-                                    <input class="form-control" id="#RPGUpdate.fname#" name="new_#RPGUpdate.fname#" type="time">
+                                    <input class="form-control" id="#RPGUpdate.fname#" name="new_#RPGUpdate.fname#" type="time" />
 
                                     <div class="invalid-feedback">
                                         Please choose a #RPGUpdate.updatename#.

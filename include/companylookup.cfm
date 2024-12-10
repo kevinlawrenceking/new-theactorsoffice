@@ -29,7 +29,7 @@
 <body>
 
     <form>
-        <input type="text" id="companySearch" autocomplete="off">
+        <input type="text" id="companySearch" autocomplete="off" />
         <div id="results"></div>
     </form>
 

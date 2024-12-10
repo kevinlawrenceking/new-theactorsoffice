@@ -119,7 +119,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="control-label">Hours Available</label>
-                                    <input class="form-control" placeholder="Add Hours Available" value="400" type="number" name="new_hoursavail" id="new_hoursavail">
+                                    <input class="form-control" placeholder="Add Hours Available" value="400" type="number" name="new_hoursavail" id="new_hoursavail" />
                                 </div>
                             </div>
                         </cfoutput>
@@ -129,7 +129,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="eventStart">Review Date</label>
-                                <input class="form-control" id="reviewDate" name="new_reviewDate" type="text">
+                                <input class="form-control" id="reviewDate" name="new_reviewDate" type="text" />
                                 <div class="invalid-feedback">
                                     Please choose a Review Date.
                                 </div>
@@ -139,7 +139,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="eventStartTime">Review Time</label>
-                                <input id="reviewtime" class="form-control" name="new_reviewtime" type="text">
+                                <input id="reviewtime" class="form-control" name="new_reviewtime" type="text" />
                                 <div class="invalid-feedback">
                                     Please choose a Review Time.
                                 </div>
@@ -151,7 +151,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="eventStart">Release Date</label>
-                                <input class="form-control" id="releaseDate" name="new_releaseDate" type="text">
+                                <input class="form-control" id="releaseDate" name="new_releaseDate" type="text" />
                                 <div class="invalid-feedback">
                                     Please choose a Release Date.
                                 </div>
@@ -161,7 +161,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="eventStartTime">Release Time</label>
-                                <input id="releasetime" class="form-control" name="new_releasetime" type="text">
+                                <input id="releasetime" class="form-control" name="new_releasetime" type="text" />
                                 <div class="invalid-feedback">
                                     Please choose a Release Time.
                                 </div>

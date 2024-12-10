@@ -476,7 +476,7 @@ $(document).ready(function() {
      <div class="form-group col-md-5">
 
 <div class="form-check mb-2 form-check-success">
-                                        <input class="form-check-input" type="radio" name="keeplist" value="skip" id="customradio2" checked="checked">
+                                        <input class="form-check-input" type="radio" name="keeplist" value="skip" id="customradio2" checked="checked" />
                                         <label class="form-check-label" for="customradio2">Skip</label>
                                     </div>
          
@@ -484,7 +484,7 @@ $(document).ready(function() {
 
 <div class="form-group col-md-6">
                      <div class="form-check mb-2 form-check-danger">
-                                        <input class="form-check-input" type="radio" name="keeplist" value="replace" id="customradio4">
+                                        <input class="form-check-input" type="radio" name="keeplist" value="replace" id="customradio4" />
                                         <label class="form-check-label" for="customradio4">Replace</label>
                                     </div>
 
@@ -560,7 +560,7 @@ $(document).ready(function() {
                         <div class="form-group col-md-5">
 
                             <div class="form-check mb-2 form-check-success">
-                                <input class="form-check-input" type="radio" name="addremove" value="add" id="add" checked="checked">
+                                <input class="form-check-input" type="radio" name="addremove" value="add" id="add" checked="checked" />
                                 <label class="form-check-label" for="customradio2">Add it</label>
                             </div>
 
@@ -569,7 +569,7 @@ $(document).ready(function() {
                         <div class="form-group col-md-6">
                             
                             <div class="form-check mb-2 form-check-danger">
-                                <input class="form-check-input" type="radio" name="addremove" value="remove" id="remove">
+                                <input class="form-check-input" type="radio" name="addremove" value="remove" id="remove" />
                                 <label class="form-check-label" for="customradio4">Remove it</label>
                             </div>
 

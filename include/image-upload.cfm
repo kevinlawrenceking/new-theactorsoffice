@@ -49,9 +49,9 @@
       <div style="padding-bottom:10px;">
         <strong>Select a file:</strong>
       </div>
-      <input type="file" id="upload"></div>
+      <input type="file" id="upload" /></div>
     </div>
-    <input type="hidden" name="picturebase" id="picturebase" value="">
+    <input type="hidden" name="picturebase" id="picturebase" value="" />
       <div class="col-md-12">
         <div id="upload-input" style="width:<cfoutput>#inputsize#</cfoutput>px; height: <cfoutput>#inputsize#</cfoutput>px;"></div>
       </div>

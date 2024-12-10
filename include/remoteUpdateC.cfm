@@ -32,10 +32,10 @@
 
 <form action="/include/remoteUpdateCUpdate.cfm" method="post" class="parsley-examples" id="<cfoutput>#formid#</cfoutput>" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" data-parsley-trigger="keyup" data-parsley-validate>
     <cfoutput>
-        <input type="hidden" name="catid" value="#new_catid#">
-        <input type="hidden" name="itemid" value="#details.itemid#">
-        <input type="hidden" name="contactid" value="#details.contactid#">
-        <input type="hidden" name="userid" value="#userid#">
+        <input type="hidden" name="catid" value="#new_catid#" />
+        <input type="hidden" name="itemid" value="#details.itemid#" />
+        <input type="hidden" name="contactid" value="#details.contactid#" />
+        <input type="hidden" name="userid" value="#userid#" />
     </cfoutput>
 
     <div class="row">
@@ -60,7 +60,7 @@
 
 <div id="hidden_div" class="form-group col-md-6">
             <label for="customtype">Custom Type</label>
-            <input class="form-control" type="text" id="customtype" name="customtype" placeholder="Add a custom type"   data-parsley-required="false">
+            <input class="form-control" type="text" id="customtype" name="customtype" placeholder="Add a custom type"   data-parsley-required="false" />
         </div>
 
         <cfset valuefieldtype = "text">
@@ -116,7 +116,7 @@
             <cfoutput>
                 <div class="form-group col-md-12">
                     <label for="valuetext">#details.recordname#<span class="text-danger">*</span></label>
-                    <input class="form-control" type="text" id="valuetext" name="valuetext" value="#details.valuetext#" data-parsley-minlength="#minlength#" data-parsley-required="true" data-parsley-minlength-message="Min length #minlength# characters" data-parsley-maxlength="800" data-parsley-maxlength-message="Max length 800 characters" data-parsley-required data-parsley-error-message="Valid #details.recordname# is required" placeholder="Enter #details.recordname#">
+                    <input class="form-control" type="text" id="valuetext" name="valuetext" value="#details.valuetext#" data-parsley-minlength="#minlength#" data-parsley-required="true" data-parsley-minlength-message="Min length #minlength# characters" data-parsley-maxlength="800" data-parsley-maxlength-message="Max length 800 characters" data-parsley-required data-parsley-error-message="Valid #details.recordname# is required" placeholder="Enter #details.recordname#" />
                 </div>
             </cfoutput>
         </cfif>
@@ -125,22 +125,22 @@
             <cfoutput>
                 <div class="form-group col-md-12">
                     <label for="valueStreetAddress">Address<span class="text-danger">*</span></label>
-                    <input class="form-control" type="text" id="valueStreetAddress" value="#details.valueStreetAddress#" name="valueStreetAddress" data-parsley-minlength="2" data-parsley-minlength-message="Min length 3 characters" data-parsley-maxlength="100" data-parsley-maxlength-message="Max length 100 characters" data-parsley-required data-parsley-error-message="Street is required" placeholder="Enter Street">
+                    <input class="form-control" type="text" id="valueStreetAddress" value="#details.valueStreetAddress#" name="valueStreetAddress" data-parsley-minlength="2" data-parsley-minlength-message="Min length 3 characters" data-parsley-maxlength="100" data-parsley-maxlength-message="Max length 100 characters" data-parsley-required data-parsley-error-message="Street is required" placeholder="Enter Street" />
                 </div>
 
                 <div class="form-group col-md-12">
                     <label for="valueExtendedAddress">Extended Address</label>
-                    <input class="form-control" type="text" id="valueExtendedAddress" value="#details.valueExtendedAddress#" name="valueExtendedAddress" placeholder="Enter Street">
+                    <input class="form-control" type="text" id="valueExtendedAddress" value="#details.valueExtendedAddress#" name="valueExtendedAddress" placeholder="Enter Street" />
                 </div>
 
                 <div class="form-group col-md-6">
                     <label for="valuetvalueCityext">Town/City</label>
-                    <input class="form-control" type="text" id="valueCity" value="#details.valueCity#" name="valueCity" placeholder="Enter City">
+                    <input class="form-control" type="text" id="valueCity" value="#details.valueCity#" name="valueCity" placeholder="Enter City" />
                 </div>
 
                 <div class="form-group col-md-6">
                     <label for="valuePostalCode">Postal Code</label>
-                    <input class="form-control" type="text" id="valuePostalCode" value="#details.valuePostalCode#" name="valuePostalCode" placeholder="Enter Postal Code">
+                    <input class="form-control" type="text" id="valuePostalCode" value="#details.valuePostalCode#" name="valuePostalCode" placeholder="Enter Postal Code" />
                 </div>
             </cfoutput>
 
@@ -169,7 +169,7 @@
             <cfoutput>
                 <div class="form-group col-md-12">
                     <label for="itemDate">Important Date<span class="text-danger">*</span></label>
-                    <input class="form-control" id="itemDate" data-parsley-required data-parsley-error-message="Date is required" type="date" value="#details.itemdate#" name="itemDate">
+                    <input class="form-control" id="itemDate" data-parsley-required data-parsley-error-message="Date is required" type="date" value="#details.itemdate#" name="itemDate" />
                 </div>
             </cfoutput>
         </cfif>
@@ -195,17 +195,17 @@
                 <Cfoutput>
                 <div class="form-group col-md-12" id="special" style="display: none;">
                     <label for="custom">Custom Name</label>
-                    <input class="form-control" type="text" id="custom" name="custom" value="" placeholder="Enter Custom #details.recordname#"   data-parsley-required="false">
+                    <input class="form-control" type="text" id="custom" name="custom" value="" placeholder="Enter Custom #details.recordname#"   data-parsley-required="false" />
                 </div>
 
                 <div class="form-group col-md-12">
                     <label for="valuetext">Department</label>
-                    <input class="form-control" type="text" id="valueDepartment" name="valueDepartment" value="#details.valueDepartment#" placeholder="Enter Department">
+                    <input class="form-control" type="text" id="valueDepartment" name="valueDepartment" value="#details.valueDepartment#" placeholder="Enter Department" />
                 </div>
 
                 <div class="form-group col-md-12">
                     <label for="valuetext">Title</label>
-                    <input class="form-control" type="text" id="valuetitle" name="valuetitle" value="#details.valueTitle#" placeholder="Enter Title">
+                    <input class="form-control" type="text" id="valuetitle" name="valuetitle" value="#details.valueTitle#" placeholder="Enter Title" />
                 </div>
             </cfoutput>
         </cfif>
@@ -213,7 +213,7 @@
         <div class="custom-group custom-checkbox">
             <div style="margin-left:25px;">
                 <label class="custom-control-label">
-                    <input type="checkbox" class="custom-control-input" id="deleteitem" value="1" name="deleteitem">
+                    <input type="checkbox" class="custom-control-input" id="deleteitem" value="1" name="deleteitem" />
                     <span class="custom-control-label" for="deleteitem">Delete</span>
                 </label>
             </div>

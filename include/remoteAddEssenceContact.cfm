@@ -6,7 +6,7 @@
     
     <!--- Output hidden user ID field --->
     <cfoutput>
-        <input type="hidden" name="userid" value="#userid#">
+        <input type="hidden" name="userid" value="#userid#" />
     </cfoutput>
 
     <div class="row">

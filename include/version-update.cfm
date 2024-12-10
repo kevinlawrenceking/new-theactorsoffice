@@ -25,7 +25,7 @@
           <h5>Version Update Form</h5>
 
           <cfoutput>
-            <input type="hidden" name="verid" value="#details.verid#">
+            <input type="hidden" name="verid" value="#details.verid#" />
             </cfoutput>
 
             <div class="row">
@@ -135,7 +135,7 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label class="control-label">Hours Available</label>
-                    <input class="form-control" placeholder="Add Hours Available" value="#numberformat(details.hoursavail)#" type="number" name="new_hoursavail" id="new_hoursavail"></div>
+                    <input class="form-control" placeholder="Add Hours Available" value="#numberformat(details.hoursavail)#" type="number" name="new_hoursavail" id="new_hoursavail" /></div>
                   </div>
                 </cfoutput>
               </div>
@@ -145,7 +145,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="eventStart">Review Date</label>
-                      <input class="form-control" id="reviewDate" value="#dateFormat(details.reviewDate, 'yyyy-mm-dd')#" name="new_reviewDate" type="date">
+                      <input class="form-control" id="reviewDate" value="#dateFormat(details.reviewDate, 'yyyy-mm-dd')#" name="new_reviewDate" type="date" />
                         <div class="invalid-feedback">
                           Please choose a Review Date.
                         </div>
@@ -155,7 +155,7 @@
 <div class="col-md-6">
                     <div class="form-group">
                       <label for="eventStartTime">Review Time</label>
-                      <input id="reviewtime" class="form-control" value="#timeformat(details.reviewtime, 'hh:mm')#" name="new_reviewtime" type="time">
+                      <input id="reviewtime" class="form-control" value="#timeformat(details.reviewtime, 'hh:mm')#" name="new_reviewtime" type="time" />
                         <div class="invalid-feedback">
                           Please choose a Review Time.
                         </div>
@@ -167,7 +167,7 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="eventStart">Release Date</label>
-                        <input class="form-control" id="releaseDate" value="#dateFormat(details.releaseDate, 'yyyy-mm-dd')#" name="new_releaseDate" type="date">
+                        <input class="form-control" id="releaseDate" value="#dateFormat(details.releaseDate, 'yyyy-mm-dd')#" name="new_releaseDate" type="date" />
                           <div class="invalid-feedback">
                             Please choose a Release Date.
                           </div>
@@ -177,7 +177,7 @@
 <div class="col-md-6">
                       <div class="form-group">
                         <label for="eventStartTime">Release Time</label>
-                        <input id="releasetime" class="form-control" value="#timeformat(details.releasetime, 'hh:mm')#" name="new_releasetime" type="time">
+                        <input id="releasetime" class="form-control" value="#timeformat(details.releasetime, 'hh:mm')#" name="new_releasetime" type="time" />
                           <div class="invalid-feedback">
                             Please choose a Release Time.
                           </div>

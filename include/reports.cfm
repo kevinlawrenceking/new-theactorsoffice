@@ -46,7 +46,7 @@
     <!--- Refresh Button --->
     <div class="form-group col-md-2 align-bottom">
       <br>
-        <input type="submit" class="btn btn-primary waves-effect waves-light" value="Refresh"></div>
+        <input type="submit" class="btn btn-primary waves-effect waves-light" value="Refresh" /></div>
 
         <Cfoutput>
   <!-- Hidden Date Range Div -->

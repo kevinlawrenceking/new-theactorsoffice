@@ -18,10 +18,10 @@
               data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" 
               data-parsley-trigger="keyup" 
               data-parsley-validate>
-            <input type="hidden" name="itemid" value="#itemDetails.itemid#">
+            <input type="hidden" name="itemid" value="#itemDetails.itemid#" />
             <div class="form-group">
                 <label for="valueText">Text</label>
-                <input type="text" class="form-control" id="valueText" name="valueText" value="#itemDetails.valueText#" required>
+                <input type="text" class="form-control" id="valueText" name="valueText" value="#itemDetails.valueText#" required />
             </div>
             <button type="submit" class="btn btn-primary">Save changes</button>
         </form>

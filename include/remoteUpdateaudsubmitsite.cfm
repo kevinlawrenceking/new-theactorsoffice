@@ -9,8 +9,8 @@
                   
     <!--- Hidden inputs for user ID and submission site ID --->
     <cfoutput>  
-        <input type="hidden" name="userid" value="#userid#" >
-        <input type="hidden" name="submitsiteid" value="#submitsiteid#" >
+        <input type="hidden" name="userid" value="#userid#"  />
+        <input type="hidden" name="submitsiteid" value="#submitsiteid#"  />
     </cfoutput>
 
     <div class="row">
@@ -60,7 +60,7 @@
             <div style="margin-left:25px;">    
                 <cfoutput>   
                     <label class="custom-control-label">
-                        <input type="checkbox" #disable_tag# class="custom-control-input" id="IsDeleted" value="1" name="IsDeleted">
+                        <input type="checkbox" #disable_tag# class="custom-control-input" id="IsDeleted" value="1" name="IsDeleted" />
                         <span class="custom-control-label" style="color:#disable_tag#red;" for="deleteitem">Delete<cfif disable_tag is "disabled">*</cfif></span>
                     </label>
                 </cfoutput>  

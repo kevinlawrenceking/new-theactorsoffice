@@ -26,9 +26,9 @@
 
     <!--- Hidden inputs for the form --->
     <cfoutput>
-        <input type="hidden" name="audprojectid" value="#audprojectid#">
-        <input type="hidden" name="userid" value="#userid#">
-        <input type="hidden" name="src" value="#src#">
+        <input type="hidden" name="audprojectid" value="#audprojectid#" />
+        <input type="hidden" name="userid" value="#userid#" />
+        <input type="hidden" name="src" value="#src#" />
     </cfoutput>
 
     <div class="row">
@@ -36,7 +36,7 @@
         <!--- Input field for the name --->
         <div class="form-group col-md-6">
             <label for="contactfullname">Name:</label>
-            <input class="form-control" type="text" id="contactfullname" name="contactfullname" required placeholder="Enter Name">
+            <input class="form-control" type="text" id="contactfullname" name="contactfullname" required placeholder="Enter Name" />
         </div>
 
         <!--- Dropdown for tags --->
@@ -68,14 +68,14 @@
         <div class="form-group col-sm-6 md-6">
             <div id="hidden_div">
                 <label for="company_new">Custom Company<span class="text-danger">*</span></label>
-                <input class="form-control" type="text" id="company_new" name="company_new" value="" placeholder="Enter Company">
+                <input class="form-control" type="text" id="company_new" name="company_new" value="" placeholder="Enter Company" />
             </div>
         </div>
 
         <!--- Input field for work phone --->
         <div class="form-group col-md-6">
             <label for="workphone">Phone:</label>
-            <input class="form-control" type="text" id="workphone" name="workphone" placeholder="Enter Work Phone">
+            <input class="form-control" type="text" id="workphone" name="workphone" placeholder="Enter Work Phone" />
             <div class="invalid-feedback">
                 Please add work phone.
             </div>
@@ -84,7 +84,7 @@
         <!--- Input field for work email --->
         <div class="form-group col-md-6">
             <label for="workemail">Email:</label>
-            <input class="form-control" type="text" id="workemail" name="workemail" placeholder="Enter Email">
+            <input class="form-control" type="text" id="workemail" name="workemail" placeholder="Enter Email" />
         </div>
 
         <!--- Closing div for form group --->
@@ -108,7 +108,7 @@
                         <div class="form-group">
                             <cfoutput query="events">
                                 <div>
-                                    <input type="checkbox" name="events_list" value="#events.eventid#" id="event#events.eventid#">
+                                    <input type="checkbox" name="events_list" value="#events.eventid#" id="event#events.eventid#" />
                                     <label for="event#events.eventid#">#dateFormat(events.eventStart, 'mm/dd/yy')#</label>
                                 </div>
                             </cfoutput>
