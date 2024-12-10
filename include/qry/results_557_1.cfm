@@ -1,2 +1,2 @@
-<cfset var ticketService = createObject("component", "services.TicketService")>
-<cfset var results = ticketService.REStickets_24787()>
+<cfset  ticketService = createObject("component", "services.TicketService")>
+<cfset  results = ticketService.REStickets_24787()>
