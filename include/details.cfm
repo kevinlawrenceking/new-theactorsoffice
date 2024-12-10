@@ -176,7 +176,7 @@
                                     <cfoutput>
                                         <div class="form-group col-md-12">
                                             <label for="#RPGUpdate.fname#">#RPGUpdate.updatename#</label>
-                                            <input class="form-control" type="text" id="#RPGUpdate.fname#" name="new_#RPGUpdate.fname#" value="#FindValue.fvalue#" <cfif #RPGUpdate.required_yn# is "Y" />required</cfif> placeholder="#RPGUpdate.updatename#">
+                                            <input class="form-control" type="text" id="#RPGUpdate.fname#" name="new_#RPGUpdate.fname#" value="#FindValue.fvalue#" >required</cfif> placeholder="#RPGUpdate.updatename#">
                                             <div class="invalid-feedback">
                                                 Please enter a #RPGUpdate.updatename#.
                                             </div>
@@ -219,7 +219,7 @@
                                     <cfoutput>
                                         <div class="form-group form-group col-md-12">
                                             <label for="#RPGUpdate.fname#">#RPGUpdate.updatename#</label>
-                                            <input class="form-control" type="password" id="#RPGUpdate.fname#" name="new_#RPGUpdate.fname#" value="#FindValue.fvalue#" <cfif #RPGUpdate.required_yn# is "Y" />required</cfif> placeholder="#RPGUpdate.updatename#">
+                                            <input class="form-control" type="password" id="#RPGUpdate.fname#" name="new_#RPGUpdate.fname#" value="#FindValue.fvalue#" >required</cfif> placeholder="#RPGUpdate.updatename#">
                                             <div class="invalid-feedback">
                                                 Please add a valid #RPGUpdate.updatename#.
                                             </div>
