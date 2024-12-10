@@ -17,20 +17,27 @@
     <cfargument name="new_iscustom" type="numeric" required="false" default="false">
     <cfargument name="new_eventtypename" type="string" required="false" default="">
 
-<cfquery name="update" >
-        UPDATE eventtypes_user
-        SET 
-            eventtypecolor = <cfqueryparam value="#arguments.new_eventtypecolor#" cfsqltype="cf_sql_varchar">
+    <!--- Initialize the query string --->
+    <cfset var queryString = "UPDATE eventtypes_user SET eventtypecolor = '#arguments.new_eventtypecolor#'" />
 
-<cfif arguments.deletelink eq 1>
-                ,isdeleted = 1
-            </cfif>
+    <!--- Add conditional clauses to the query string --->
+    <cfif arguments.deletelink eq 1>
+        <cfset queryString &= ", isdeleted = 1" />
+    </cfif>
 
-<cfif arguments.new_iscustom eq 1>
-                ,eventtypename = <cfqueryparam value="#arguments.new_eventtypename#" cfsqltype="cf_sql_varchar">
-            </cfif>
+    <cfif arguments.new_iscustom eq 1>
+        <cfset queryString &= ", eventtypename = '#arguments.new_eventtypename#'" />
+    </cfif>
 
-WHERE id = <cfqueryparam value="#arguments.id#" cfsqltype="cf_sql_integer">
+    <!--- Add the WHERE clause --->
+    <cfset queryString &= " WHERE id = #arguments.id#" />
+
+    <!--- Dump the final query for debugging --->
+    <cfdump var="#queryString#" label="Final Query for Debugging" />
+    
+    <!--- Execute the query --->
+    <cfquery name="update">
+        #queryString#
     </cfquery>
 </cffunction>
 
