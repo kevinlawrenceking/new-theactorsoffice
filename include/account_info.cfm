@@ -699,7 +699,8 @@
 
                           <div style="margin-left:25px;">
                             <label class="custom-control-label">
-                              <input type="checkbox" class="custom-control-input" id="isAuditionModule" value="1" name="new_isAuditionModule" <cfif #isAuditionModule# is "1" /> checked </cfif>>
+                              <input type="checkbox" class="custom-control-input" id="isAuditionModule" value="1" name="new_isAuditionModule" <cfif #isAuditionModule# is "1" >
+ checked </cfif>>
                                 <span class="custom-control-label" for="isAuditionModule">Account module activated</span>
                               </label>
                             </div>

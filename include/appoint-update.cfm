@@ -143,13 +143,20 @@
                             <div class="form-group col-md-12">
                                 <label for="eventStopTime">Recurring every:</label>
                                 <div id="checkboxes">
-                                    <input type="checkbox" name="dow" value="1" <cfif #eventdetails.dow# contains "1" />checked</cfif> onchange="showDiv('hidden_div', this)"> Monday
-                                    &nbsp;<input type="checkbox" name="dow" value="2" <cfif #eventdetails.dow# contains "2" />checked</cfif> onchange="showDiv('hidden_div', this)"> Tuesday
-                                    &nbsp;<input type="checkbox" name="dow" value="3" <cfif #eventdetails.dow# contains "3" />checked</cfif> onchange="showDiv('hidden_div', this)"> Wednesday
-                                    &nbsp;<input type="checkbox" name="dow" value="4" <cfif #eventdetails.dow# contains "4" />checked</cfif> onchange="showDiv('hidden_div', this)"> Thursday
-                                    &nbsp;<input type="checkbox" name="dow" value="5" <cfif #eventdetails.dow# contains "5" />checked</cfif> onchange="showDiv('hidden_div', this)"> Friday
-                                    &nbsp;<input type="checkbox" name="dow" value="6" <cfif #eventdetails.dow# contains "6" />checked</cfif> onchange="showDiv('hidden_div', this)"> Saturday
-                                    &nbsp;<input type="checkbox" name="dow" value="0" <cfif #eventdetails.dow# contains "0" />checked</cfif> onchange="showDiv('hidden_div', this)"> Sunday
+                                    <input type="checkbox" name="dow" value="1" <cfif #eventdetails.dow# contains "1" >
+checked</cfif> onchange="showDiv('hidden_div', this)"> Monday
+                                    &nbsp;<input type="checkbox" name="dow" value="2" <cfif #eventdetails.dow# contains "2" >
+checked</cfif> onchange="showDiv('hidden_div', this)"> Tuesday
+                                    &nbsp;<input type="checkbox" name="dow" value="3" <cfif #eventdetails.dow# contains "3" >
+checked</cfif> onchange="showDiv('hidden_div', this)"> Wednesday
+                                    &nbsp;<input type="checkbox" name="dow" value="4" <cfif #eventdetails.dow# contains "4" >
+checked</cfif> onchange="showDiv('hidden_div', this)"> Thursday
+                                    &nbsp;<input type="checkbox" name="dow" value="5" <cfif #eventdetails.dow# contains "5" >
+checked</cfif> onchange="showDiv('hidden_div', this)"> Friday
+                                    &nbsp;<input type="checkbox" name="dow" value="6" <cfif #eventdetails.dow# contains "6" >
+checked</cfif> onchange="showDiv('hidden_div', this)"> Saturday
+                                    &nbsp;<input type="checkbox" name="dow" value="0" <cfif #eventdetails.dow# contains "0" >
+checked</cfif> onchange="showDiv('hidden_div', this)"> Sunday
                                 </div>
                             </div>
 

@@ -365,10 +365,12 @@
                             <cfif #projectdetails.isdirect# is "0">
                                 <cfinclude template="/include/qry/callback_check_29_5.cfm" />
                                 <cfif #rolecheck.iscallback# is "1">
-                                    <input class="form-check-input form-check-input-callback" type="checkbox" id="new_iscallback" name="new_iscallback" value="1" <cfif #rolecheck.iscallback# is "1" /> checked </cfif>
+                                    <input class="form-check-input form-check-input-callback" type="checkbox" id="new_iscallback" name="new_iscallback" value="1" <cfif #rolecheck.iscallback# is "1" >
+ checked </cfif>
                                     <cfif #callback_check.recordcount# is not "0"> onclick="return false;" <cfelse> data-bs-toggle="modal" data-bs-target="##StatusCancel2" </cfif> />
                                 <cfelse>
-                                    <input class="form-check-input form-check-input-callback" type="checkbox" data-bs-toggle="modal" data-bs-target="##StatusConfirm2" id="new_iscallback" name="new_iscallback" value="1" <cfif #rolecheck.iscallback# is "1" /> checked </cfif>
+                                    <input class="form-check-input form-check-input-callback" type="checkbox" data-bs-toggle="modal" data-bs-target="##StatusConfirm2" id="new_iscallback" name="new_iscallback" value="1" <cfif #rolecheck.iscallback# is "1" >
+ checked </cfif>
                                     <cfif #callback_check.recordcount# is not "0"> onclick="return false;" </cfif> />
                                 </cfif>
                                 <label class="form-check-label" for="new_iscallback">Callback </label>
@@ -382,7 +384,8 @@
                             <cfif #projectdetails.isdirect# is "0">
                                 <cfinclude template="/include/qry/Redirect_check_29_6.cfm" />
                                 <cfif #rolecheck.isRedirect# is "1">
-                                    <input class="form-check-input form-check-input-Redirect" type="checkbox" id="new_isRedirect" name="new_isRedirect" value="1" <cfif #rolecheck.isRedirect# is "1" /> checked </cfif>
+                                    <input class="form-check-input form-check-input-Redirect" type="checkbox" id="new_isRedirect" name="new_isRedirect" value="1" <cfif #rolecheck.isRedirect# is "1" >
+ checked </cfif>
                                    <cfif #Redirect_check.recordcount# is not "0"> onclick="return false;"
                                 <cfelse>
                        
@@ -392,7 +395,8 @@
 
                             <cfelse>
 
-                                <input class="form-check-input form-check-input-Redirect" type="checkbox" data-bs-toggle="modal" data-bs-target="##StatusConfirm3" id="new_isRedirect" name="new_isRedirect" value="1" <cfif #rolecheck.isRedirect# is "1" /> checked </cfif>
+                                <input class="form-check-input form-check-input-Redirect" type="checkbox" data-bs-toggle="modal" data-bs-target="##StatusConfirm3" id="new_isRedirect" name="new_isRedirect" value="1" <cfif #rolecheck.isRedirect# is "1" >
+ checked </cfif>
 
                                 <cfif #Redirect_check.recordcount# is not "0"> onclick="return false;"</cfif> />
 
@@ -416,7 +420,8 @@
 
 <cfif #rolecheck.isPin# is "1">
 
-                                <input class="form-check-input form-check-input-Pin" type="checkbox" id="new_isPin" name="new_isPin" value="1" <cfif #rolecheck.isPin# is "1" /> checked
+                                <input class="form-check-input form-check-input-Pin" type="checkbox" id="new_isPin" name="new_isPin" value="1" <cfif #rolecheck.isPin# is "1" >
+ checked
                             </cfif>
 
                             <cfif #Pin_check.recordcount# is not "0"> onclick="return false;"
@@ -428,7 +433,8 @@
 
                             <cfelse>
 
-                                <input class="form-check-input form-check-input-Pin" type="checkbox" data-bs-toggle="modal" data-bs-target="##StatusConfirm4" id="new_isPin" name="new_isPin" value="1" <cfif #rolecheck.isPin# is "1" /> checked </cfif>
+                                <input class="form-check-input form-check-input-Pin" type="checkbox" data-bs-toggle="modal" data-bs-target="##StatusConfirm4" id="new_isPin" name="new_isPin" value="1" <cfif #rolecheck.isPin# is "1" >
+ checked </cfif>
 
                                 <cfif #Pin_check.recordcount# is not "0"> onclick="return false;"</cfif> />
 
@@ -449,7 +455,8 @@
 
                             <cfif #rolecheck.isBooked# is "1">
 
-                                <input class="form-check-input form-check-input-Booked" type="checkbox" id="new_isBooked" name="new_isBooked" value="1" <cfif #rolecheck.isBooked# is "1" /> checked
+                                <input class="form-check-input form-check-input-Booked" type="checkbox" id="new_isBooked" name="new_isBooked" value="1" <cfif #rolecheck.isBooked# is "1" >
+ checked
                             </cfif>
 
                             <cfif #Booked_check.recordcount# is not "0"> 
@@ -463,7 +470,8 @@
 
                             <cfelse>
 
-                                <input class="form-check-input form-check-input-Booked" type="checkbox" data-bs-toggle="modal" data-bs-target="##StatusConfirm5" id="new_isBooked" name="new_isBooked" value="1" <cfif #rolecheck.isBooked# is "1" /> checked </cfif>
+                                <input class="form-check-input form-check-input-Booked" type="checkbox" data-bs-toggle="modal" data-bs-target="##StatusConfirm5" id="new_isBooked" name="new_isBooked" value="1" <cfif #rolecheck.isBooked# is "1" >
+ checked </cfif>
 
                                 <cfif #Booked_check.recordcount# is not "0"> onclick="return false;"</cfif> />
 
