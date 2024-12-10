@@ -14,7 +14,7 @@
     <cfargument name="id" type="numeric" required="true">
     <cfargument name="new_eventtypecolor" type="string" required="true">
     <cfargument name="deletelink" type="boolean" required="false" default="false">
-    <cfargument name="new_iscustom" type="boolean" required="false" default="false">
+    <cfargument name="new_iscustom" type="numeric" required="false" default="false">
     <cfargument name="new_eventtypename" type="string" required="false" default="">
 
 <cfquery name="update" >
@@ -26,7 +26,7 @@
                 ,isdeleted = 1
             </cfif>
 
-<cfif arguments.new_iscustom>
+<cfif arguments.new_iscustom eq 1>
                 ,eventtypename = <cfqueryparam value="#arguments.new_eventtypename#" cfsqltype="cf_sql_varchar">
             </cfif>
 
