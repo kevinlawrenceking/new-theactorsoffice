@@ -50,8 +50,7 @@
     <cfset systemid_old = 0>
 </cfif>
 
-
-            <!--- part K--->
+<!--- part K--->
             <cfif systemid is 3 and systemid_old neq 3>
                 <cfinclude template="/include/qry/InsertNote_294_8.cfm" />
             </cfif>

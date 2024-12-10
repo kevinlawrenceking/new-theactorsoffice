@@ -1,6 +1,5 @@
 
 
-
 <cfparam name="new_userid" default="" />
 
 <cfparam name="new_audRoleID" default="" />
@@ -50,8 +49,7 @@
     <cfinclude template="/include/qry/duration.cfm" />
 
  <cfset new_durseconds = duration.durseconds />
-    
-    
+
 <cfset new_eventStopTime = "#DateAdd("s","#new_eventStartTime#","#new_durseconds#")#" />
 
 <cfoutput>
@@ -60,10 +58,7 @@
     new_durseconds: #new_durseconds#<BR>
 
   statement:     SELECT ADDTIME("#timeformat('#new_eventStartTime#','HH:MM:SS')#", "#new_durseconds#") as new_eventStopTime <BR>  
-    
-    
- 
-    
+
 <cfset new_eventStopTime="#timeformat(DateAdd("s","#new_durseconds#","#new_eventStartTime#"),'HH:MM:SS')#" />
     
     new_eventStopTime: #new_eventStopTime#<BR>
@@ -72,12 +67,9 @@
 
 </cfif>
 
-
-
 <cfinclude template="/include/qry/auditions_ins_374_1.cfm" />
-    
-        
-        <cfoutput>
+
+<cfoutput>
 
         <cfset eventstart="#new_eventStart#" />
 
@@ -86,14 +78,6 @@
         <cfset eventStopTime="#new_eventStopTime#" />
 
     </cfoutput>
-    
-    
-    
- <cfinclude template="/include/qry/FInd_374_2.cfm" />  
-    
-    
-    
-    
-    
-    
+
+<cfinclude template="/include/qry/FInd_374_2.cfm" />  
 

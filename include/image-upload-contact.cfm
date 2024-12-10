@@ -30,10 +30,6 @@
     <cfset cookie.return_url = "/app/contact/?contactid=#contactid#"/>
     <cfset return_url = "/app/contact/?contactid=#contactid#"/>
 
-
-
-
-
 </cfoutput>
 
 <!--- Determine picture size based on ref_pgid --->

@@ -32,8 +32,6 @@
 <!--- Load query for retrieving materials --->
 <cfinclude template="/include/qry/materials_sel.cfm" />
 
-
-
 <!--- Modal for 'My Materials' information/help --->
 <div id="mymaterialshelp" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" 
 
@@ -158,8 +156,7 @@
                         </div>
                     </div>
 
-
-                    <!--- Table row for each material --->
+<!--- Table row for each material --->
                     <tr>
                         <td>
                             <a title="Edit" data-bs-toggle="modal" data-bs-target="##remoteupdatematerial#headshots_sel.mediaid#">

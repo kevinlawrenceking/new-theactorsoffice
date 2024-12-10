@@ -20,7 +20,6 @@
     });
 </script>
 
-
 <script>
     $(document).ready(function() {
         $("#select-relationship").selectize({
@@ -215,7 +214,6 @@
         }
     });
 </script>
-
 
 <script>
     $('select[name=eventStartTime]').on("change", function() {

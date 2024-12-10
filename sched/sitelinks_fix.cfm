@@ -1,8 +1,7 @@
 
         xx
-       
-        
-         <cfquery result="result"  name="u"  >
+
+<cfquery result="result"  name="u"  >
       select * from taousers
         </cfquery>
 
@@ -10,8 +9,7 @@
 
         <cfquery result="result"  name="xs"  >
    SELECT * 
- 
- 
+
 FROM pgpanels pn inner join pgpanels_user_xref x on x.pnid = pn.pnid inner join taousers u on u.userid = x.userid 
  
 WHERE u.userid = #u.userid#
@@ -30,10 +28,6 @@ WHERE u.userid = #u.userid#
         <cfoutput>#xs.pntitle#-#xs.pnfilename#-#xs.userid#xxxx<br></cfoutput>
         
         </cfloop>  
-        
 
+</cfloop>
 
-    </cfloop>
-        
-        
-        

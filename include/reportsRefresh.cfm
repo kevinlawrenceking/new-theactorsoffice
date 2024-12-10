@@ -14,15 +14,11 @@
 <cfif #userid# is not "0"> 
     <cfinclude template="/include/reportrangegenerator.cfm" />
 
-
-
-
-    <cfset i = 0 />
+<cfset i = 0 />
     <cfinclude template="/include/qry/delete_all_282_1.cfm" />
     <cfinclude template="/include/qry/rangeselected_282_2.cfm" />
 
-
-    <cfinclude template="/include/qry/reportRefresh.cfm" />
+<cfinclude template="/include/qry/reportRefresh.cfm" />
     <cfif #dbug# is "Y">
 <cfoutput>#new_audsourceid# userid: #userid#
     <BR>new_rangestart:#new_rangestart#</cfoutput>

@@ -12,7 +12,6 @@
 
 <cfset host=ListFirst(currentURL, "." ) />
 
-
 <cfif #select_userid# is "0">
 
     No user
@@ -73,9 +72,6 @@
     </cfif>
 
 </cfoutput>
-
-
-
 
 <cfoutput>
 
@@ -269,19 +265,12 @@
 
 </cfloop>
 
-
-
-
-
 <cfquery result="result"  name="update_tags">
     UPDATE tags_user
     SET IsTeam = 1
     WHERE userid = #select_userid# and tagname IN (
     select tagname FROM tags WHERE isteam = 1)
 </cfquery>
-
-
-
 
 <cfset n=0 />
 <cfquery result="result"  name="x">
@@ -322,14 +311,6 @@
 
 </cfloop>
 
-
-
-
-
-
-
-
-
 <cfset n=0 />
 
 <cfquery result="result"  name="x">
@@ -368,15 +349,6 @@
     </cfif>
 
 </cfloop>
-
-
-
-
-
-
-
-
-
 
 <cfset n=0 />
 
@@ -417,15 +389,6 @@
 
 </cfloop>
 
-
-
-
-
-
-
-
-
-
 <cfset n=0 />
 
 <cfquery result="result"  name="x">
@@ -459,15 +422,6 @@
 
     </cfif>
 </cfloop>
-
-
-
-
-
-
-
-
-
 
 <cfset n=0 />
 
@@ -506,22 +460,11 @@
 
 </cfloop>
 
-
-
-
-
-
-
-
-
-
 <cfset n=0 />
-
 
 <cfquery result="result"  name="x">
     SELECT * FROM audquestions_default where isdeleted = 0
 </cfquery>
-
 
 <cfloop query="x">
 
@@ -538,9 +481,7 @@
             </cfif>
         </cfoutput>
 
-
-
-        <cfquery result="result"  name="insert">
+<cfquery result="result"  name="insert">
 
             INSERT INTO `audquestions_user` (`qtypeid`, `qtext`, `qorder`, `userid`)
             VALUES (#x.qtypeid#, '#x.qtext#', #x.qorder#, #select_userid#);
@@ -550,29 +491,19 @@
             <CFOUTPUT>Audquestions_user added: #x.qtext#</CFOUTPUT><BR>
         </cfif>
 
-
-    </cfif>
+</cfif>
 
 </cfloop>
 
-
-
-
-
-
 <cfset n=0 />
-
-
 
 <cfquery result="result"  name="x">
     SELECT submitsitename,catlist FROM audsubmitsites
 </cfquery>
 
-
 <cfloop query="x">
 
-
-    <cfquery result="result"  name="find">
+<cfquery result="result"  name="find">
         Select * from audsubmitsites_user
         where submitsitename = '#x.submitsitename#' and userid = #select_userid#
     </cfquery>
@@ -585,8 +516,7 @@
             </cfif>
         </cfoutput>
 
-
-        <cfquery result="result"  name="insert">
+<cfquery result="result"  name="insert">
 
             INSERT INTO `audsubmitsites_user` (`submitsitename`, `catlist`, `userid`)
             VALUES ('#x.submitsitename#','#x.catlist#',#select_userid#);
@@ -602,16 +532,7 @@
 
 </cfloop>
 
-
-
-
-
-
-
-
-
 <cfset n=0 />
-
 
 <cfquery result="result"  name="x">
     select toneid,
@@ -649,15 +570,6 @@
     </cfif>
 
 </cfloop>
-
-
-
-
-
-
-
-
-
 
 <cfset n=0 />
 
@@ -702,19 +614,11 @@
 
 </cfloop>
 
-
-
-
-
-
-
 <cfset n=0 />
-
 
 <cfquery result="result"  name="x">
     SELECT genderpronoun,genderpronounplural FROM genderpronouns where isdeleted = 0
 </cfquery>
-
 
 <cfloop query="x">
 
@@ -746,10 +650,7 @@
     </cfif>
 </cfloop>
 
-
-
 <cfset n=0 />
-
 
 <cfquery result="result"  name="x">
     select typeid,valuetype,typeicon FROM itemtypes
@@ -784,13 +685,6 @@
     </cfif>
 
 </cfloop>
-
-
-
-
-
-
-
 
 <cfset n=0 />
 
@@ -841,64 +735,7 @@
 
 </cfloop>
 
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-
-
-
-
-
-
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-
-
-
 <cfset n=0 />
-
-
-
-
 
 <cfquery result="result"  name="x">
     SELECT * FROM pgpanels_master
@@ -925,41 +762,9 @@
 
         </cfquery>
 
-
-
-
-
-    </cfif>
+</cfif>
 
 </cfloop>
-
-
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-
-
-
 
 <cfset n=0 />
 
@@ -994,29 +799,6 @@
 
 </cfloop>
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-
-
-
-
-
-
-
 <cfset n=0 />
 
 <cfquery result="result"  name="x">
@@ -1038,12 +820,9 @@
         where sitetypename = '#x.sitetypename#' and userid = #select_userid#
     </cfquery>
 
+<cfif #find.recordcount# is "0">
 
-
-    <cfif #find.recordcount# is "0">
-
-
-        <cfoutput>
+<cfoutput>
             <cfset n=#n# + 1 />
             <cfif #n# is "1">
                 <h3>sitelinks_user</h3>
@@ -1073,34 +852,7 @@
 
     </cfif>
 
-
 </cfloop>
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-
-
-
-
-
 
 <cfset n=0 />
 

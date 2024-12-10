@@ -2,7 +2,6 @@
 <cfset userService = createObject("component", "services.UserService")>
 <cfset userData = userService.getUserById(userID)>
 
-
 <cfif structIsEmpty(userData)>
     <cfoutput>Not found!</cfoutput>
     <cfabort>
@@ -54,7 +53,6 @@
 
 <cfset planName = UserData.user.planName />
 <cfset BaseProductLabel = UserData.user.BaseProductLabel />
-
 
 <cfset tzname = UserData.timezone.tzname />
 <cfset tzgeneral = UserData.timezone.tzgeneral />

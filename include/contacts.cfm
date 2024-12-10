@@ -17,13 +17,7 @@
 </cfif>
 
 <cfinclude template="/include/qry/lastupdates.cfm" />
-    
 
-    
-  
- 
-    
-    
 <script>
     $(document).ready(function() {
         $("#remoteAddName").on("show.bs.modal", function(event) {
@@ -61,7 +55,6 @@
 
 </div>
 
-
 <cfif #session.pgaction# is "bulk">
   <cfset session.pgaction="view" />
     <script>
@@ -81,20 +74,8 @@
         table.on("change", "input", enableBtn);
         enableBtn();
     </script>
-    
-    
-    
-    
-    
-    
 
-    
-    
-    
-    
-
-
-    <div id="bulkModal" class="modal fade">
+<div id="bulkModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -119,31 +100,24 @@
                         <cfoutput>#s# relationship<cfif #s# is not "1">s</cfif> skipped.</cfoutput>
                     </p>
                     </cfif>
-                    
-                    
-                    <div class="form-group text-center col-md-12">
+
+<div class="form-group text-center col-md-12">
                         <A href="/app/contacts/" >
              <button class=" btn btn-primary  btn-sm waves-effect waves-light" type="button" style="background-color: #406e8e; border: #406e8e;">Continue</button></A>
          </div>
-                    
-                    
-                    
 
-                </div>
+</div>
             </div>
         </div>
     </div>
 
-
-
- <cfelse>
+<cfelse>
          <script>
         $(document).ready(function() {
             $("#bulkModal").modal('hide');
         });
     </script>
 </cfif>
-
 
 <div class="row">
 
@@ -163,8 +137,7 @@
                        <div class="container"> <cfset byimport="#byimport#"><A HREF="/app/contacts/"> <span class="badge badge-blue">Import ###byimport# X</span></A></div>
                     </cfoutput>
                 </cfif>
-                          
-  
+
 <div class="container responsive-tabs">
         <ul class="nav nav-pills navtab-bg nav-justified p-1" role="tablist">
             
@@ -186,9 +159,7 @@
             
         </ul>
 
-                
-                
-        <div id="content" class="tab-content" role="tablist">
+<div id="content" class="tab-content" role="tablist">
             <div id="contacts" class="card tab-pane fade<cfif #contact_expand# is 'true'> show active</cfif>" role="tabpanel" aria-labelledby="tab-A">
                 <div class="card-header" role="tab" id="heading-A">
                     <h5 class="mb-0">
@@ -264,16 +235,8 @@
                         <cfset bytag="#bytag#"><A HREF="/app/contacts/"> <span class="badge badge-blue">#bytag# X</span></A>
                     </cfoutput>
                 </cfif>
-                    
 
-
-                    
-
-
-
-
-
-            </div>
+</div>
 
         </div>
 
@@ -281,17 +244,7 @@
 
     </div>
 
-
-
-
-
-
-
 </div> 
-
-
-
-
 
 <cfquery name="tags">
     SELECT tagid,tagname FROM tags_user where userid = #userid# order by tagname
@@ -325,12 +278,7 @@
         </div>
     </div>
 </div>
-    
-    
-    
-    
-    
-    
+
 <cfinclude template="/include/qry/imports.cfm" />
 
 <div class="modal fade" id="exampleModal22" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" 
@@ -361,11 +309,8 @@
         </div>
     </div>
 </div>
-    
-    
-    
-    
-    <div id="exampleModal5" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
+
+<div id="exampleModal5" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
 
 >
     <div class="modal-dialog">
@@ -386,32 +331,20 @@
          <label for="valuetext">Export all selected relationships</label>
      </div>
 
- 
- 
-                   <div class="form-group text-center col-md-12">
+<div class="form-group text-center col-md-12">
 
                         <button class="btn btn-primary editable-submit btn-sm waves-effect waves-light" type="submit" style="background-color: #406e8e; border: #406e8e;">Export</button>
 
                     </div>
 
-     
-     
+</form>
 
-
-
- </form>
-
-
-
-        
-        
 </div>
         </div>
     </div>
 </div><!--- xxx --->
-    
-    
-    <script>
+
+<script>
 $(document).ready(function() {
   $('#myformexport').on('submit', function(e) {
     e.preventDefault(); // Prevents the default form submit action
@@ -430,11 +363,8 @@ $(document).ready(function() {
 });
 
 </script>
-    
-    
-    
-    
-        <div id="exampleModaldelete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
+
+<div id="exampleModaldelete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
 
 >
     <div class="modal-dialog">
@@ -454,34 +384,20 @@ $(document).ready(function() {
          <label for="valuetext">Delete all selected relationships</label>
      </div>
 
- 
- 
-                   <div class="form-group text-center col-md-12">
+<div class="form-group text-center col-md-12">
 
                         <button class="btn btn-red editable-submit btn-sm waves-effect waves-light" type="submit" style="background-color: red; border: #406e8e;">Delete</button>
 
                     </div>
 
-     
-     
+</form>
 
-
- </form>
-
-
-
-        
-        
 </div>
         </div>
     </div>
 </div><!--- xxx --->
-    
-    
-    
-    
-    
-    <div id="exampleModal99" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
+
+<div id="exampleModal99" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
 
 >
     <div class="modal-dialog">
@@ -510,55 +426,18 @@ $(document).ready(function() {
     </select>
 </div>
 
-
-     
-     
-    
-       
-
-                   <div class="form-group text-center col-md-12">
+<div class="form-group text-center col-md-12">
 
                         <button class="btn btn-primary editable-submit btn-sm waves-effect waves-light" type="submit" style="background-color: #406e8e; border: #406e8e;">Delete System</button>
 
                     </div>
 
-     
-     
+</form>
 
-
- </form>
-
- 
-   
-
-        
-        
 </div>
         </div>
     </div>
 </div><!--- xxx --->
-    
-
-
-
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
 <div id="exampleModal3" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
 
@@ -603,41 +482,28 @@ $(document).ready(function() {
 
 </div>
 
-     
-     
-       <div class="form-group col-md-12">
+<div class="form-group col-md-12">
            
                     <label for="valuetext">If a relationship already has an active system:</label>
      </div>
-     
-     
-     
-     
-     
-     
-    <div class="form-group col-md-12">
+
+<div class="form-group col-md-12">
      <div class="form-group col-md-5">
-       
-         
-                <div class="form-check mb-2 form-check-success">
+
+<div class="form-check mb-2 form-check-success">
                                         <input class="form-check-input" type="radio" name="keeplist" value="skip" id="customradio2" checked="checked">
                                         <label class="form-check-label" for="customradio2">Skip</label>
                                     </div>
          
      </div>
-     
-     
-     
-     
-        <div class="form-group col-md-6">
+
+<div class="form-group col-md-6">
                      <div class="form-check mb-2 form-check-danger">
                                         <input class="form-check-input" type="radio" name="keeplist" value="replace" id="customradio4">
                                         <label class="form-check-label" for="customradio4">Replace</label>
                                     </div>
-            
-            
-            
-     </div>
+
+</div>
      
      </div>
                    <div class="form-group text-center col-md-12">
@@ -646,82 +512,20 @@ $(document).ready(function() {
 
                     </div>
 
-     
-     
+</form>
 
-
- </form>
-
- 
-        
-    <script>      
+<script>      
  $(document).ready(function() {
     $(".parsley-examples").parsley()
 });
  </script>     
 
-
-        
-        
 </div>
         </div>
     </div>
 </div><!--- xxx --->
-    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-    <div id="exampleModal4" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
+<div id="exampleModal4" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
 
 >
     <div class="modal-dialog">
@@ -806,10 +610,7 @@ $(document).ready(function() {
 
 </div>
 
-    
-    
-    
-    <script>
+<script>
     $(document).ready(function() {
   $('#myformexport').on('submit', function(e) {
     e.preventDefault();
@@ -823,14 +624,6 @@ $(document).ready(function() {
   });
 });
    </script> 
-    
-    
-    
-  
-    
 
-    
-
-
-    <cfset script_name_include="/include/#ListLast(GetCurrentTemplatePath(), " \")#" />
+<cfset script_name_include="/include/#ListLast(GetCurrentTemplatePath(), " \")#" />
     <cfinclude template="/include/bigbrotherinclude.cfm" />

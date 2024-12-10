@@ -109,8 +109,7 @@
             </span>
         </h4>
 
-
-        <cfoutput>
+<cfoutput>
             <div class="col-md-12 col-lg-6 col-xl-4 p-1 text-nowrap"><strong>Income Type: </strong>#roledetails.incometype#</div>
             <div class="col-md-12 col-lg-6 col-xl-4 p-1 text-nowrap"><strong>Payrate/Session fee: </strong>#dollarformat(roledetails.payrate)#
                 <cfif #roledetails.paycycleid# is not ""> (#roledetails.paycyclename#)</cfif>

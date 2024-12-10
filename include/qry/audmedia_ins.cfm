@@ -1,6 +1,5 @@
 
 
-
 <cfparam name="audprojectid" default="" />
 
 <cfparam name="new_mediaTypeID" default="" />
@@ -22,9 +21,6 @@
  <cfif #left(new_mediaURL,4)# is not "http">
 <cfset new_mediaURL = "https://#new_mediaURL#" />
 </cfif>
-
-
-
 
 <cfinclude template="/include/qry/audmedia_ins_383_1.cfm" />
 

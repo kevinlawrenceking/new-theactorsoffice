@@ -10,8 +10,7 @@
 
     <cfset fullFilePath = "C:/home/theactorsoffice.com/optimized#path#/#filename#">
 
- 
-    <cfif fileExists(fullFilePath)>
+<cfif fileExists(fullFilePath)>
         <cfset fileContent = fileRead(fullFilePath)>
 <Cfabort>
      
@@ -19,8 +18,7 @@
  
         <cfset queryNameMatch = REMatchNoCase("name\s*=\s*['\"]([a-zA-Z0-9_-]+)['\"]", fileContent)>
 
- 
-        <cfoutput>
+<cfoutput>
             Found Matches: #arrayLen(queryNameMatch)# for file: #filename#<br>
         </cfoutput>
 
@@ -29,13 +27,11 @@
     
             <cfset extractedQueryName = queryNameMatch[1]>
 
-          
-            <cfset extractedQueryName = trim(replace(replace(extractedQueryName, "name=", "", "ALL"), '"', "", "ALL"))>
+<cfset extractedQueryName = trim(replace(replace(extractedQueryName, "name=", "", "ALL"), '"', "", "ALL"))>
 
     file: #filename#<br></cfoutput>
 
-     
-            <cfquery result="result" datasource="abod">
+<cfquery result="result" datasource="abod">
                 UPDATE tao_files
                 SET qry_name = <cfqueryparam value="#extractedQueryName#" cfsqltype="cf_sql_varchar" maxlength="255">
                 WHERE id = <cfqueryparam value="#getFiles.id#" cfsqltype="cf_sql_integer">

@@ -11,8 +11,6 @@
         ,zip = '#zip#'
         ,region_id = #region_id#
         ,countryid = '#countryid#'
- 
 
- 
-        where userid = #userid#
+where userid = #userid#
     </cfquery>

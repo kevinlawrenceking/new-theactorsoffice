@@ -1,7 +1,5 @@
 <!--- This ColdFusion page displays notes related to a contact, allowing users to view, add, edit, and delete notes and their associated links and attachments. --->
 
-
-
 <div class="d-flex justify-content-between">
 
     <div class="float-left">

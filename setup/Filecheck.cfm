@@ -6,17 +6,12 @@
 </cfoutput>
 <h2>Files not used</h2>
 <cfloop query="listRoot">
-  
-       
-  <cfset FileExt=ListLast(#name#,".")>            
- 
-      
-      
-      <cfif #fileext# is "cfm">
-          
-          
-          
-       <CFQUERY RESULT="RESULT" name="bro_add" datasource="abo" >
+
+<cfset FileExt=ListLast(#name#,".")>            
+
+<cfif #fileext# is "cfm">
+
+<CFQUERY RESULT="RESULT" name="bro_add" datasource="abo" >
 		select * from bigbrother where script_name = '/include/#name#'
           </CFQUERY>
           

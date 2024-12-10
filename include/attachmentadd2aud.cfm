@@ -34,7 +34,6 @@
 <!--- Include the insert query template --->
 <cfinclude template="/include/qry/INSERT_22_1.cfm" />
 
-
 <cfoutput>
     <!--- Set the return URL for redirection after upload --->
     <cfset returnurl = "/app/audition/?audprojectid=#audprojectid#&secid=178" />

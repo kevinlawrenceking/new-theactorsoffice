@@ -56,7 +56,6 @@
     </cftry>
 </cfloop>
 
-
 <!--- Display Report Summaries --->
 <div>
     <h3>Report Summaries</h3>

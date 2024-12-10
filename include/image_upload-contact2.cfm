@@ -2,9 +2,6 @@
 
 <cfset pictureImg = imageReadBase64(form.picturebase)>
 
-
-
-
 <!--- Gather diagnostic information for email --->
 <cfoutput>
     <cfsavecontent variable="diagnostics">
@@ -31,7 +28,6 @@
         </cfif>
     </cfsavecontent>
 </cfoutput>
-
 
 <!--- Send email with diagnostic information --->
 <cfmail 

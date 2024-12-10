@@ -8,4 +8,3 @@
 <cflocation url="/app/audition/?audprojectid=#audprojectid#" />
 <!--- Redirect to the audition page with the specified project ID --->
 
-

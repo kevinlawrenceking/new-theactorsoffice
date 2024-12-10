@@ -26,9 +26,8 @@
               <th>CF QueryParam Type</th>
             <th>Nullable</th>
             <th>Default Value</th>
-      
-          
-        </tr>
+
+</tr>
         <cfloop query="getColumnDetails">
             <tr>
                 <td>#getColumnDetails.COLUMN_NAME#</td>
@@ -36,9 +35,8 @@
                      <td>#getColumnDetails.CF_PARAM_TYPE#</td>
                 <td>#getColumnDetails.IS_NULLABLE#</td>
                 <td>#getColumnDetails.COLUMN_DEFAULT#</td>
-           
-           
-            </tr>
+
+</tr>
         </cfloop>
     </table>
 </cfoutput>

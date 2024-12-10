@@ -16,9 +16,7 @@
 
 </cfsilent>
 
-
-
-    <form action="/include/remoteNewFormAdd.cfm" method="post" class="needs-validation" novalidate>
+<form action="/include/remoteNewFormAdd.cfm" method="post" class="needs-validation" novalidate>
         <cfoutput>
             <input type="hidden" name="rpgid" value="#rpgid#" />
             <input type="hidden" name="pgdir" value="#pgdir#" />

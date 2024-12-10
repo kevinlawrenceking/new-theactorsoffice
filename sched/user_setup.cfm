@@ -9,18 +9,13 @@
     <cfif #select_userid# is "0">
     No user <CFABORT>
     </cfif>
-        
-        
-    <cfoutput>
+
+<cfoutput>
     <cfset starttime = "#timeformat(NOw(),'HHMMSS')#" />
-    
 
+<cfoutput>
 
-    <cfoutput>
-        
- 
-
-        <cfset browser_media_root_user="#session.userMediaUrl#" />
+<cfset browser_media_root_user="#session.userMediaUrl#" />
 
         <cfif #dbug# is "Y">
 
@@ -28,8 +23,7 @@
 
         </cfif>
 
-
-        <cfset dir_media_root_user="#session.userMediaPath#" />
+<cfset dir_media_root_user="#session.userMediaPath#" />
 
         <cfif #dbug# is "Y">
 
@@ -37,9 +31,7 @@
 
         </cfif>
 
-    
-
-        <cfset session.contactAvatarUrl="#session.userAvatarUrl#" />
+<cfset session.contactAvatarUrl="#session.userAvatarUrl#" />
 
         <cfif #dbug# is "Y">
 
@@ -51,12 +43,9 @@
 
             <CFDIRECTORY directory="#session.userMediaPath#" action="create">
 
+<h3>dir_media_root_user dir created: #session.contactAvatarUrl#</h3>
 
-
-                <h3>dir_media_root_user dir created: #session.contactAvatarUrl#</h3>
-
-
-        </CFIF>
+</CFIF>
 
         <cfset browser_media_root_user_contacts="#session.userContactsUrl#" />
 
@@ -78,15 +67,11 @@
 
             <CFDIRECTORY directory="#dir_media_root_user_contacts#" action="create">
 
+<h3>dir_media_root_user_contacts dir created: #dir_media_root_user_contacts#</h3>
 
-                <h3>dir_media_root_user_contacts dir created: #dir_media_root_user_contacts#</h3>
+</CFIF>
 
-
-
-        </CFIF>
-
-
-        <cfset browser_media_root_user_imports="#session.userImportsUrl#" />
+<cfset browser_media_root_user_imports="#session.userImportsUrl#" />
 
         <cfif #dbug# is "Y">
 
@@ -106,35 +91,21 @@
 
             <CFDIRECTORY directory="#dir_media_root_user_imports#" action="create">
 
+<h3>dir_media_root_user_imports dir created: #dir_media_root_user_imports#</h3>
 
-
-
-                <h3>dir_media_root_user_imports dir created: #dir_media_root_user_imports#</h3>
-
-
-
-        </CFIF>
+</CFIF>
 
         <cfif NOT fileExists(session.userAvatarPath)>
 
             <cffile action="copy" source="#dir_missing_avatar_filename#" destination="#session.userMediaPath#\" />
 
+<h3>default avatar moved to: #session.userMediaPath#</h3>
 
-
-            <h3>default avatar moved to: #session.userMediaPath#</h3>
-
-
-
-        </cfif>
+</cfif>
 
     </cfoutput>
 
-
-
-
-
-
-    <cfquery result="result"  name="C"  >
+<cfquery result="result"  name="C"  >
         SELECT contactid,recordname
         from contactdetails
         where userid = #u.userid#
@@ -155,8 +126,7 @@
 
         <cfoutput>
 
-
-            <cfset new_contactid="#C.contactid#" />
+<cfset new_contactid="#C.contactid#" />
 
             <cfif #dbug# is "Y">
                 <h3>#c.recordname#: Contact ID #new_contactid#</h3>
@@ -164,60 +134,25 @@
 
             <cfset dir_media_root_user_contacts_folder="#dir_media_root_user_contacts#\#new_contactid#" />
 
-
-
-
-            <CFIF not DirectoryExists("#dir_media_root_user_contacts_folder#")>
+<CFIF not DirectoryExists("#dir_media_root_user_contacts_folder#")>
 
                 <CFDIRECTORY directory="#dir_media_root_user_contacts_folder#" action="create">
 
+<h3>dir_media_root_user_contacts_folder dir created: #dir_media_root_user_contacts_folder#</h3>
 
+</cfif>
 
+<cfset dir_media_root_user_contacts_folder_attachements="#dir_media_root_user_contacts_folder#\attachments" />
 
-                    <h3>dir_media_root_user_contacts_folder dir created: #dir_media_root_user_contacts_folder#</h3>
-
-
-
-
-            </cfif>
-
-
-
-                
-                
-                  <cfset dir_media_root_user_contacts_folder_attachements="#dir_media_root_user_contacts_folder#\attachments" />
-
-
-
-
-            <CFIF not DirectoryExists("#dir_media_root_user_contacts_folder_attachements#")>
+<CFIF not DirectoryExists("#dir_media_root_user_contacts_folder_attachements#")>
 
                 <CFDIRECTORY directory="#dir_media_root_user_contacts_folder_attachements#" action="create">
 
+<h3>dir_media_root_user_contacts_folder_attachements dir created: #dir_media_root_user_contacts_folder_attachements#</h3>
 
+</cfif>
 
-
-                    <h3>dir_media_root_user_contacts_folder_attachements dir created: #dir_media_root_user_contacts_folder_attachements#</h3>
-
-
-
-
-            </cfif>
-
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-
-            <cfset dir_contact_avatar_filename="#dir_media_root_user_contacts_folder#\avatar.jpg" />
+<cfset dir_contact_avatar_filename="#dir_media_root_user_contacts_folder#\avatar.jpg" />
 
             <cfif #dbug# is "Y">
 
@@ -225,60 +160,29 @@
 
             </cfif>
 
-
-
-
-
-
-
-            <cfif NOT fileExists(dir_contact_avatar_filename)>
+<cfif NOT fileExists(dir_contact_avatar_filename)>
 
                 <cffile action="copy" source="#dir_missing_avatar_filename#" destination="#dir_media_root_user_contacts_folder#\" />
 
+<h3>default contact avatar moved to: #dir_media_root_user_contacts_folder#</h3>
 
-                <h3>default contact avatar moved to: #dir_media_root_user_contacts_folder#</h3>
+</cfif>
 
-
-
-            </cfif>
-
-
-
-
-
-
-
-
-
-
-        </cfoutput>
-
-
-    </cfloop>
+</cfoutput>
 
 </cfloop>
-        
-        
-        
-        
-        
-        
-        
+
+</cfloop>
+
 <cfoutput><cfset endtime = "#timeformat(NOw(),'HHMMSS')#" />
-    
-    
-    <cfset dur = endtime - starttime />
+
+<cfset dur = endtime - starttime />
        <cfif #dbug# is "Y">  
            <h1>Completed: <cfoutput>#dur# second(s)</cfoutput></h1></cfif>
     
             </cfoutput>
-        
-        
-        
-    
-        
-        
-        <cfquery result="result"  name="users"  >
+
+<cfquery result="result"  name="users"  >
 select userid from taousers 
              <cfif #select_userid# is not "0">
             where userid = #select_userid#
@@ -286,9 +190,6 @@ select userid from taousers
 </cfquery>
 
 <cfloop query="users">
-    
-    
-    
 
 <cfset newuserid = users.userid />
 
@@ -315,22 +216,8 @@ Insert into pgpanels_user_xref (pnid,userid) values (#newpnid#,#newuserid#)
 </cfloop>
 
 </cfloop>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <cfquery result="result"  name="u"  >
+
+<cfquery result="result"  name="u"  >
         SELECT * from taousers     <cfif #select_userid# is not "0">
         where userid = #select_userid#</cfif>
     </cfquery>
@@ -341,8 +228,7 @@ Insert into pgpanels_user_xref (pnid,userid) values (#newpnid#,#newuserid#)
             SELECT sitetypename,sitetypedescription from sitetypes_master
         </cfquery>
 
-
-        <cfloop query="x">
+<cfloop query="x">
             
             <cfquery result="result"  name="find"  >
             Select * from sitetypes_user 
@@ -369,28 +255,8 @@ Insert into pgpanels_user_xref (pnid,userid) values (#newpnid#,#newuserid#)
 
         </cfloop>
 
+</cfloop>
 
-    </cfloop>
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
 <cfquery result="result"  name="u"  >
         SELECT * from taousers 
         <cfif #select_userid# is not "0">
@@ -414,8 +280,7 @@ FROM sitelinks_master s INNER JOIN sitetypes_master t ON t.sitetypeid = s.siteTy
 ORDER BY s.sitename
         </cfquery>
 
-
-        <cfloop query="x">
+<cfloop query="x">
             
             <cfquery result="result"  name="find"  >
                 Select sitetypeid from sitetypes_user 
@@ -436,10 +301,8 @@ ORDER BY s.sitename
                     
                     INSERT INTO `sitelinks_user_tbl` (`siteName`,`siteURL`,`siteicon`,`siteTypeid`,`userid`) 
                     VALUES ('#x.sitename#','#x.siteurl#','#x.siteicon#', #new_sitetypeid#, #u.userid#);
-                    
-                    
-                    
-                </cfquery>
+
+</cfquery>
                 
                 <cfif #dbug# is "Y">
                 <CFOUTPUT>       INSERT INTO `sitelinks_user_tbl` (`siteName`,`siteURL`,`siteicon`,`siteTypeid`,`userid`) 
@@ -450,51 +313,9 @@ ORDER BY s.sitename
 
         </cfloop>
 
+</cfloop>
 
-    </cfloop>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-                <cfquery result="result"  name="u"  >
+<cfquery result="result"  name="u"  >
         SELECT * from taousers  
         </cfquery>
 
@@ -508,9 +329,8 @@ ORDER BY s.sitename
         </cfquery>
 
         <cfloop query="x">
-            
-            
-            <cfquery result="result"  name="find"  >
+
+<cfquery result="result"  name="find"  >
             SELECT eventTypeName
             ,eventtypedescription
             ,eventtypecolor
@@ -529,22 +349,9 @@ ORDER BY s.sitename
 
         </cfloop>
 
+</cfloop>
 
-    </cfloop>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-    
-     <cfquery result="result"    name="u"  >
+<cfquery result="result"    name="u"  >
         SELECT * from taousers     
     </cfquery>
 
@@ -558,8 +365,7 @@ isDeleted
  FROM audtones
         </cfquery>
 
-
-        <cfloop query="x">
+<cfloop query="x">
             
              <cfquery result="result"  name="find"  >
             Select * from audtones_user
@@ -582,37 +388,9 @@ isDeleted
 
         </cfloop>
 
+</cfloop>
 
-    </cfloop>
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        <cfquery result="result"  name="u"  >
+<cfquery result="result"  name="u"  >
         SELECT * from taousers  where userid = #select_userid#
     </cfquery>
 
@@ -622,8 +400,7 @@ isDeleted
         SELECT * FROM tags
         </cfquery>
 
-
-        <cfloop query="x">
+<cfloop query="x">
             
             <cfquery result="result"  name="find"  >
             Select * from tags_user 
@@ -638,34 +415,21 @@ isDeleted
                     VALUES ('#x.tagname#',#u.userid#);
           
                 </cfquery>
-                
-     
-            </cfif>
+
+</cfif>
 
         </cfloop>
 
+</cfloop>
 
-    </cfloop>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        <cfquery result="result"  name="update_tags"  >
+<cfquery result="result"  name="update_tags"  >
         UPDATE tags_user 
             SET IsTeam = 1 
             WHERE userid = #select_userid# and tagname IN (
             SELECT tagname FROM tags WHERE isteam = 1)
         </cfquery>
-        
-        
-        
-        
-        <cfquery result="result"  name="u"  >
+
+<cfquery result="result"  name="u"  >
         SELECT * from taousers  where userid = #select_userid#
     </cfquery>
 
@@ -675,8 +439,7 @@ isDeleted
       SELECT typeid,valuetype,typeicon FROM itemtypes
         </cfquery>
 
-
-        <cfloop query="x">
+<cfloop query="x">
             
             <cfquery result="result"  name="find"  >
             Select * from itemtypes_user 
@@ -691,31 +454,14 @@ isDeleted
                     VALUES ('#x.valuetype#','#x.typeicon#',#u.userid#);
           
                 </cfquery>
-                
-     
-            </cfif>
+
+</cfif>
 
         </cfloop>
 
+</cfloop>
 
-    </cfloop>
-
-        
-      
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        <cfquery result="result"  name="u"  >
+<cfquery result="result"  name="u"  >
         SELECT * from taousers where userid = #select_userid#
     </cfquery>
 
@@ -733,33 +479,23 @@ INNER JOIN itemtypes i ON i.typeid = x.typeid
 
 ORDER BY c.catid,i.valuetype
         </cfquery>
-   
-        
- 
 
-        <cfloop query="x">
+<cfloop query="x">
             
             <cfset new_catid = x.catid />
-            
-    
-            
-            <cfquery result="result"  name="find"  >
+
+<cfquery result="result"  name="find"  >
             Select typeid from itemtypes_user
             where valuetype = '#x.valuetype#' and userid = #new_userid#
             </cfquery>
             
             <cfset new_typeid = find.typeid />
-            
-            
-            
-                  <cfquery result="result"  name="check"  >
+
+<cfquery result="result"  name="check"  >
         select * from itemcatxref_user where userid = #new_userid# and typeid = #new_typeid# and catid = #new_catid#
             </cfquery>
-            
-            
-            
-            
-            <cfif #check.recordcount# is "0">
+
+<cfif #check.recordcount# is "0">
             
                 <cfquery result="result"  name="insert"  >
                     
@@ -767,12 +503,10 @@ ORDER BY c.catid,i.valuetype
                     VALUES (#new_typeid#,#new_catid#,#new_userid#);
           
                 </cfquery>
-                
-     
-            </cfif>
+
+</cfif>
 
         </cfloop>
 
-
-    </cfloop>
+</cfloop>
 

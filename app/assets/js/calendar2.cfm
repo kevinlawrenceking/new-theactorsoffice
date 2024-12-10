@@ -1,7 +1,6 @@
     minTime: "<cfoutput>#CalStarttime#</cfoutput>",
             maxTime: "<cfoutput>#CalEndtime#</cfoutput>",
 
-
 <cfsavecontent variable="events_loop">
     <cfoutput>
     <cfloop query="events">
@@ -26,7 +25,6 @@
     </cfloop>
     </cfoutput>
 </cfsavecontent>
-
 
 <script>
 ! function(l) {
@@ -95,6 +93,4 @@ function() {
     height: calc(100vh - 100px); /* Adjust based on your layout */
 }
 </script>
-    
-    
- 
+

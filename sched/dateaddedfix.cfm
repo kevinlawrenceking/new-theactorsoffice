@@ -1,7 +1,5 @@
  
 
-
-
 <cfquery result="result" name="x"  >
 SELECT  d.contactid
  ,min(su.sustartdate) AS new_dateadded
@@ -35,10 +33,8 @@ ORDER BY d.contactid
     <cfoutput>
       #new_contactid# added add date #dateformat(new_dateadded)#<BR/>
     </cfoutput>
-        
-        
+
 </cfloop>
-      
 
 <cfquery result="result" name="y"  >
 SELECT  d.contactid
@@ -77,10 +73,6 @@ ORDER BY d.contactid
     <cfoutput>
       #new_contactid# added add date #dateformat(new_dateadded)#<BR/>
     </cfoutput>
-        
-        
+
 </cfloop>
-      
-      
-      
-    
+

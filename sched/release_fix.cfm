@@ -15,14 +15,12 @@
 
 <cfinclude template="release_fix_qry.cfm" />
 
-
- <cfset pgtable = "pgpagespluginsxref_tbl" />
+<cfset pgtable = "pgpagespluginsxref_tbl" />
 <cfset pgid = "pgplugid" />
 
 <cfinclude template="release_fix_qry.cfm" />
 
-
- <cfset pgtable = "pgcomps" />
+<cfset pgtable = "pgcomps" />
 <cfset pgid = "compid" />
 
 <cfinclude template="release_fix_qry.cfm" />

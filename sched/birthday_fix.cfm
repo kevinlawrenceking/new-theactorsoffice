@@ -4,13 +4,11 @@
 SELECT contactid,contactbirthday FROM contactdetails WHERE contactbirthday IS not null
 </cfquery>
 
-
 <cfoutput>
 
     <cfset current_year = "#dateformat(now(),'yyyy')#" />
     
     <cfset next_year = #current_year# + 1 />
-    
 
 </cfoutput>
 
@@ -38,10 +36,8 @@ SELECT contactid,contactbirthday FROM contactdetails WHERE contactbirthday IS no
          </cfoutput>
          
          <cfelse>
-             
-             
-             
-             <cfoutput>
+
+<cfoutput>
                  
                  <cfset new_day=#day(new_contactbirthday)# />
                  
@@ -79,8 +75,4 @@ SELECT contactid,contactbirthday FROM contactdetails WHERE contactbirthday IS no
      </cfif>
              
  </cfloop>
-        
-        
-        
-        
-                
+

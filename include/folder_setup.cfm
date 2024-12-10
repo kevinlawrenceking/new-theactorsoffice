@@ -12,10 +12,7 @@
     <cfset browser_media_root_user_imports = session.userImportsUrl />
     <cfset dir_media_root_user_imports = "#session.userMediaPath#\imports" />
 
-
-    
-
-    <cfif not directoryExists(dir_media_root_user)>
+<cfif not directoryExists(dir_media_root_user)>
         <cfdirectory directory="#dir_media_root_user#" action="create">
     </cfif>
 
@@ -50,7 +47,6 @@
         <cffile action="copy" source="#dir_missing_avatar_filename#" destination="#dir_media_root_user_contacts_folder#\" />
     </cfif>
 </cfloop>
-
 
 <cfoutput>
     <cfset endtime = timeformat(now(), 'HHMMSS') />

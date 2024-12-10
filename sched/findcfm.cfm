@@ -12,7 +12,6 @@
     LIKE #chr(39)#%.cfm#chr(39)#">
  
 <Cfoutput>   #dynamicQuery#;<BR></cfoutput>
-  
-      
+
 </cfloop>
  

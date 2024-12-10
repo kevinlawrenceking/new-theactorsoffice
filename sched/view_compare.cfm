@@ -8,7 +8,6 @@ LIMIT 1;
 
 <Cfloop query="find_table">
 
-
 <cfquery result="result" name="x" datasource="abod" >
 SELECT id,qry_details,qry_table 
 FROM  tao_files 
@@ -24,7 +23,6 @@ ORDER BY qry_table, qry_details;
 
 <cfif #x.recordcount# is "1">
 
-
 <p>Create a view from this query</p>
 
 <p>Generate the sql to write the views</p>
@@ -35,7 +33,6 @@ ORDER BY qry_table, qry_details;
 
 <p>Every column must be prefixed with its table alias to avoid ambiguity.</p>
 <p>When joins are involved, all columns should be fully qualified with their corresponding table aliases.</p>
-
 
 <p>Ensure that all columns used in the WHERE clause are included in the SELECT statement of the view. For example, 
 if the query is SELECT id, name FROM table WHERE userid = #userid#, the view should be created as 
@@ -75,7 +72,6 @@ SELECT statement, only keep one of them.
 
 <p>Ignore any conditions that include variables</p>
 
-
 <p>Every column must be prefixed with its table alias to avoid ambiguity.</p>
 <p>When joins are involved, all columns should be fully qualified with their corresponding table aliases.</p>
 
@@ -86,7 +82,6 @@ SELECT statement, only keep one of them.
 that are listed multiple times. For example, if `a.audroleid` and `ad.audroleid` are both in the 
 SELECT statement, only keep one of them.
 </p>
-
 
 <p>come up with a name for the view making it "vm_" + qry_table + "_" + a secondary table name to make the view name unique</p>
 
@@ -107,6 +102,5 @@ SELECT statement, only keep one of them.
 </cfoutput>
 </cfloop>
 </cfif>
-
 
 </cfloop>

@@ -2,7 +2,6 @@
 
 <Cfset to_email="kevinking7135@gmail.com" />
 
-
 <cfset currentURL = cgi.server_name />
 
 <cfset host = ListFirst(currentURL, ".") />
@@ -36,8 +35,7 @@
     <cfset new_id=U.id />
     <cfoutput>
 
- 
-        <cfset new_recordname="#u.recordname#" />
+<cfset new_recordname="#u.recordname#" />
         <cfset new_useremail="#u.useremail#" />
  <cfset new_purchasedate="#u.purchasedate#" />
  
@@ -50,8 +48,7 @@
         where id = #new_id#
     </cfquery>
 
-
-    <cfmail from="support@theactorsoffice.com" to="support@theactorsoffice.com" bcc="kevinking7135@gmail.com" subject="Audition module activation: #new_recordname#" type="HTML">
+<cfmail from="support@theactorsoffice.com" to="support@theactorsoffice.com" bcc="kevinking7135@gmail.com" subject="Audition module activation: #new_recordname#" type="HTML">
         <HTML>
 
         <head>
@@ -67,17 +64,14 @@
                 }
 
             </style>
-           
 
-            <p>This is an automated confirmation</p>
+<p>This is an automated confirmation</p>
 
             <p>The audition module has been activated for #new_recordname#.</p>
 
        <p>Purchased: #new_purchasedate#</p>
-   
 
-
-        </body>
+</body>
 
         </HTML>
     </cfmail>
@@ -88,6 +82,4 @@
         where userid = #new_userid#
     </cfquery>
 
-    
-    
 </cfloop>

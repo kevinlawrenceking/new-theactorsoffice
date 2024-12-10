@@ -7,7 +7,6 @@
 <cfparam name="search" default="" type="string" />
 <cfset listColumns = "col1,col2,col3,col4,col5" />
 
-
 <cfif structKeyExists(form, "search[value]") and len(form["search[value]"]) gt 0>
     <cfset search = form["search[value]"]>
 </cfif>
@@ -56,6 +55,4 @@
         ]
     }
 </cfoutput>
-
-
 

@@ -1,8 +1,6 @@
 <cfinclude template="remote_load.cfm" />
-        
-        
-        
-         <cfquery result="result"  name="u"  >
+
+<cfquery result="result"  name="u"  >
         SELECT * from taousers 
     </cfquery>
 
@@ -12,8 +10,7 @@
         SELECT * FROM audquestions_default where isdeleted = 0
         </cfquery>
 
-
-        <cfloop query="x">
+<cfloop query="x">
             
              <cfquery result="result"  name="find"  >
             Select * from audquestions_user
@@ -37,12 +34,10 @@
                 <cfif #dbug# is "Y">
                 <CFOUTPUT>tags_user: #x.qtext# added to #u.userfirstname#</CFOUTPUT><BR>
                 </cfif>
-                    
-     
-            </cfif>
+
+</cfif>
 
         </cfloop>
 
-
-    </cfloop>
+</cfloop>
         

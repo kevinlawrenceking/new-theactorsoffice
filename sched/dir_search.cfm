@@ -6,7 +6,6 @@
     <cfqueryparam cfsqltype="cf_sql_varchar" value="Missing" />
     where filestatus =  <cfqueryparam cfsqltype="cf_sql_varchar" value="Found" />
 </cfquery>
- 
 
 <cfoutput>
     <cfset cal_root_dir="c:\home\theactorsoffice.com\wwwroot\#host#-subdomain\" />
@@ -17,9 +16,8 @@
 
     <cfloop query="pgitems">
         <cfoutput>
-            
-          
-            <cfset prefix="#pgitems.type#" />
+
+<cfset prefix="#pgitems.type#" />
             <cfset type="#pgitems.type#" />
             
             <cfset name="#pgitems.name#" />
@@ -36,12 +34,10 @@
                   <cfelse>
                       <cfset ext = "" />
                     </cfif>
-                  
 
-            <cfset PARENTID = ListDeleteAt(ID, ListLen(ID, "/"), "/")>
- 
+<cfset PARENTID = ListDeleteAt(ID, ListLen(ID, "/"), "/")>
 
-        <cfquery result="result"  name="find">
+<cfquery result="result"  name="find">
             select Id,#prefix#status from `pg#prefix#s`
             where #prefix#name =
             
@@ -80,51 +76,20 @@
                        
                 <cfset id=find.ID />
                 <cfset new_filestatus=find.filestatus />
-                  
-           
 
-                <cfquery result="result"  name="update">
+<cfquery result="result"  name="update">
                     UPDATE `pg#prefix#s`
 
-              
-                 set `#prefix#status` =
+set `#prefix#status` =
                     <cfqueryparam cfsqltype="cf_sql_varchar" value="Found" />
                     where id = <cfqueryparam cfsqltype="cf_sql_varchar" value="#id#" /> 
                 </cfquery>
-         
- 
-                <cfoutput> UPDATE `pg#prefix#s`  set `#prefix#status` = 'Found' where id = '#id#'<BR></cfoutput>
 
-                       
-                       
-                </cfif>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-              
+<cfoutput> UPDATE `pg#prefix#s`  set `#prefix#status` = 'Found' where id = '#id#'<BR></cfoutput>
 
+</cfif>
 
-        </cfif>
+</cfif>
 
     </cfloop>
-       
-                
-                
-                   
+

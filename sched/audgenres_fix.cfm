@@ -16,14 +16,10 @@
         
     <cfset information_schema = "new_development" />
 </cfif>
-    
-    
-    <cfset rev = rand() />
-    
-    
 
-    
-     <cfquery result="result"    name="u"  >
+<cfset rev = rand() />
+
+<cfquery result="result"    name="u"  >
         SELECT * from taousers     
     </cfquery>
 
@@ -60,32 +56,9 @@ isDeleted
 
         </cfloop>
 
+</cfloop>
 
-    </cfloop>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-              <cfquery result="result"  name="z"  >
+<cfquery result="result"  name="z"  >
         
         SELECT g.audgenre,u.audgenre,x.audroleid,x.audgenreid AS old_audgenreid, u.audgenreid AS NEW_audgenreid
 
@@ -97,14 +70,10 @@ WHERE g.audgenre = u.audgenre
         </cfquery>
         
         <cfloop query="z">
-        
-            
-              <cfquery result="result"  name="update"  >
+
+<cfquery result="result"  name="update"  >
                   UPDATE audgenres_audition_xref set audgenreid = #z.new_audgenreid# where audroleid = #z.audroleid# and audgenreid = #z.old_audgenreid#
             </cfquery>
         
         </cfloop>
 
-
-        
-        

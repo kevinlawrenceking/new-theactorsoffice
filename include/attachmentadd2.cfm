@@ -31,8 +31,6 @@
 <!--- Include the query for inserting the upload record --->
 <cfinclude template="/include/qry/INSERT_22_1.cfm" />
 
-
-
 <cfoutput>
     <!--- Construct the return URL with parameters --->
     <cfset returnurl = "/app/#returnurl#/?contactid=#rcontactid#&eventid=#reventid#&tab2_expand=true&t3=1" />

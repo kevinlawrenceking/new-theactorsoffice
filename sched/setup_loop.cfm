@@ -14,19 +14,12 @@
         
     <cfset information_schema = "new_development" />
 </cfif>
-    
-    
-    <cfset rev = rand() />
-    
-    
-    
-    
 
+<cfset rev = rand() />
 
 <cfquery result="result"  name="z" maxrows="10">
     SELECT * FROM taousers where userstatus = 'active' AND issetup IS NOT true
     </cfquery>
-
 
 <cfloop query="z">
 <cfset select_userid  = z.userid />

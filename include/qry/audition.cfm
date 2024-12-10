@@ -36,29 +36,23 @@
 
 <cfparam name="events_list" default="">
 
-
-    <cfif #ctaction# is "addmember">
-
+<cfif #ctaction# is "addmember">
 
 <cfinclude template="/include/qry/add_aud_contact.cfm" />
 
-
-        <!--- <cfoutput>[[#new_contactid#]]</cfoutput><cfabort> --->
+<!--- <cfoutput>[[#new_contactid#]]</cfoutput><cfabort> --->
         <cfif DateCompare(projectDetails.audprojectdate, Now()) lt 0>
       
              <cfinclude template="/include/qry/getSystemIdBasedOnTag.cfm" />
-            
-            
-                  <cfset new_contactid=new_contactid />
+
+<cfset new_contactid=new_contactid />
            <cfset new_userid=userid />
          
             <cfset new_suStartDate = projectDetails.audprojectdate />
-    
 
-    <cfinclude template="/include/modalansweryes.cfm" />
-            
-            
-        </cfif>
+<cfinclude template="/include/modalansweryes.cfm" />
+
+</cfif>
 
     </cfif>
 

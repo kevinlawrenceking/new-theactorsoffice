@@ -17,14 +17,11 @@
     </cfif>
 </cfif>
 
-
-
 <cfif #isdefined('session.mocktoday')# >
 <Cfset currentStartDate = "#DateFormat(session.mocktoday,'yyyy-mm-dd')#"/> 
     <cfelse>
 <Cfset currentStartDate = "#DateFormat(Now(),'yyyy-mm-dd')#"/>
 </cfif>
-
 
 <cfparam name="contact_expand" default="true" />
 <cfparam name="appointments_expand" default="false" />
@@ -556,8 +553,6 @@
 
 </cfloop>
 
-
-
 <div class="row" style="width:100%;
   margin:0;
   padding:0;
@@ -582,14 +577,12 @@
             
             </cfoutput>
 
-       
-                <h4 class="card-card-header text-center text-white text-nowrap py-0" style="background-color: #406E8E;margin:0!important;padding:15px!important;" >
+<h4 class="card-card-header text-center text-white text-nowrap py-0" style="background-color: #406E8E;margin:0!important;padding:15px!important;" >
                     <cfoutput>#details.fullname#</cfoutput>
                 </h4>
                 <div class="py-1 px-3 flex text-center font-22">
-                            
 
-                        <cfif #emailcheck.recordcount# is "1">
+<cfif #emailcheck.recordcount# is "1">
 
                             <cfoutput>
 
@@ -628,24 +621,12 @@
                             <i class="fe-calendar"></i>
 
                         </a>
-                    
-                    
-              
-                
-                </div>
-                
-                
 
+</div>
 
+<div class="card-body">
 
-
-                
-                
- 
-            <div class="card-body">
-
-                
-                    <p class="card-text">
+<p class="card-text">
 
 <cfoutput> 
 <cfset contact_avatar_filename = "#session.userContactsPath#\#currentid#\avatar.jpg" />
@@ -656,7 +637,6 @@
 
                             <figure>
 <cfoutput>
-                            
 
 <centeR>
 
@@ -698,29 +678,23 @@
          id="item-img-output" />
 </cfif>
 
-
- </centeR>
-                            
+</centeR>
 
 </cfoutput>
 
-
-                            </figure>
+</figure>
 
                         </A>
 <cfloop query="findcompany">
 <cfoutput><center>#valueCompany#</center></cfoutput>
 </cfloop>
-                
-          
 
-            </div>
+</div>
         </div>
 
     </div>
 
-
-    <cfoutput>
+<cfoutput>
 
         <cfset fileExist="#FileExists(browser_contact_avatar_filename)#" />
 
@@ -737,36 +711,23 @@
       <h4 class="card-card-header text-center text-white text-nowrap py-0" style="background-color: #406E8E;margin:0!important;padding:15px!important;" >
                    Relationship Info
                 </h4>
-            
-            
-            
-            
-            <cfoutput>
+
+<cfoutput>
                          <h4 class="px-3 d-flex text-nowrap">
 
-                 
-
-                           <span class="ms-auto">
+<span class="ms-auto">
 
                           <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateName" data-bs-placement="top" title="Update Contact" data-bs-original-title="Update Contact"> <i class="mdi mdi-square-edit-outline"></i> </a>
 
                            </span>
 
                        </h4>
-            
-            
-            </cfoutput>
-            
-            
-            
 
-            <div class="card-body">
+</cfoutput>
 
-          
+<div class="card-body">
 
-
-
-                <p class="mt-1 mb-0 py-1 text-muted font-14">
+<p class="mt-1 mb-0 py-1 text-muted font-14">
 
                     <cfloop query="tagscontact">
 
@@ -792,22 +753,14 @@
 
                 </p>
 
-
-
-
-                     
-     <p class="mt-1 mb-0 text-muted py-1 font-14">
+<p class="mt-1 mb-0 text-muted py-1 font-14">
                             <cfoutput><strong>Gender Pronoun:</strong>    <cfif #details.contactpronoun# is not "">#details.contactpronoun#  
                             </cfif></cfoutput>
                             </p>
-                      
 
+<p class="mt-1 mb-0 text-muted py-1 font-14">  
 
-
-                <p class="mt-1 mb-0 text-muted py-1 font-14">  
-
-
-                    <cfoutput> 
+<cfoutput> 
                         <strong>Birthday:</strong>
 
                         <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateName" data-bs-placement="top" title="Update Contact" data-bs-original-title="Update Contact">
@@ -828,10 +781,7 @@
                     </cfoutput>
                 </p>
 
-
-        
-
-                    <cfset meetingdate="#dateformat('#details.contactmeetingdate#','short')#" />
+<cfset meetingdate="#dateformat('#details.contactmeetingdate#','short')#" />
 
                     <p class="mt-1 mb-0 text-muted py-1 font-14">
                         <cfoutput>
@@ -848,35 +798,12 @@
                         </cfoutput>
                     </p>
 
-         
-
-
- 
-
-                  
-
-                        <p class="mt-1 mb-0 text-muted py-1 font-14">
+<p class="mt-1 mb-0 text-muted py-1 font-14">
 
                             <strong>Referred By:</strong> <cfif #details.referdetailsfullname# is not "">  <cfoutput>#details.referdetailsfullname#</cfoutput>  </cfif>
                         </p>
 
-                  
-
-           
-
-
-              
-
-
-
-
-
-
-
-
-
-
-                    <cfif #details.newsletter_yn# is "Y" or #details.googlealert_yn# is "Y" or #details.socialmedia_yn# is "Y">
+<cfif #details.newsletter_yn# is "Y" or #details.googlealert_yn# is "Y" or #details.socialmedia_yn# is "Y">
 
                         <p class="mt-1 mb-0 text-muted py-1  font-14">
 
@@ -913,15 +840,13 @@
                                     <a href="#profiles.valuetext#" class="text-white font-14 py-1 ps-o me-2   d-inline-block" data-bs- data-bs-placement="top" title="" target="#profiles.valuetext#" data-bs-original-title="#profiles.valuetype#">
 <cfif #profiles.typeicon# is "">
                    <img src="#application.retinaIcons14Url#/customlink.png" title="#profiles.valuetext#"  width="32px" />                           
-                                        
-    
-    <cfelse>
+
+<cfelse>
           <img src="#application.retinaIcons14Url#/#profiles.typeicon#" title="#profiles.valuetext#"  width="32px" />
                                         
                                         </cfif>
-                                  
 
-                                    </a>
+</a>
 
                                 </Cfoutput>
 
@@ -930,11 +855,6 @@
                         </p>
 
                     </cfif>
-
-
-                    
-
-
 
 <cfloop query="inactivecategories">
  
@@ -968,8 +888,7 @@
 
                                   <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateSUID#rels.suid#" data-bs-placement="top" title="Relationship System" data-bs-original-title="Relationship System">#rels.SystemType#
 
-
-                                  </a>
+</a>
 
                               </h5>
 
@@ -983,9 +902,7 @@
 
                           <cfif #rels.recordcount# is "0">
 
-
-
-                              <h5 class="text-muted font-weight-lighter">
+<h5 class="text-muted font-weight-lighter">
 
                                   <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="#remoteUpdateSUID0" data-bs-placement="top" title="Relationship" data-bs-original-title="Relationship ">Add Relationship System
 
@@ -999,11 +916,7 @@
 
                               </div>
 
-
-
-
-
-                          </cfif>
+</cfif>
                           <!--- end if rels.recordcount is 0 --->
 
                       </div>
@@ -1014,17 +927,13 @@
 
 </cfloop>
 
-
-
-            </div>
+</div>
         </div>
 
     </div>
 
 </div>
 <p>&nbsp;</p>
- 
-
 
 <cfif #devicetype# is "mobile">
 
@@ -1049,10 +958,7 @@
             </div>
         </div><!--- /btn-group --->
 
-
-
-
-        <div class="card-body">
+<div class="card-body">
 
             <cfif #pgid# is "117">
                 <cfinclude template="/include/contact_pane.cfm" />
@@ -1073,36 +979,15 @@
         </div>
     </div>
 
- 
 <cfelse>
-            
-                
-                
-                
-                
-                
-                
-                
-                
-                      
-                
-                
-                
-                
-                
-                
-                
-                
-           
-            
-        <cfif #contact_expand# is "true">
+
+<cfif #contact_expand# is "true">
         
             <cfset contact_active = "show active" />
             
         </cfif>
-            
-            
-        <cfif #contact_expand# is not "true">
+
+<cfif #contact_expand# is not "true">
         
             <cfset contact_active = "" />
             
@@ -1113,9 +998,8 @@
             <cfset appointments_active = "show active" />
             
         </cfif>
-            
-            
-        <cfif #appointments_expand# is not "true">
+
+<cfif #appointments_expand# is not "true">
         
             <cfset appointments_active = "" />
             
@@ -1126,21 +1010,14 @@
             <cfset notes_active = "show active" />
             
         </cfif>
-            
-            
-        <cfif #notes_expand# is not "true">
+
+<cfif #notes_expand# is not "true">
         
             <cfset notes_active = "" />
             
         </cfif>
-                
-                
-                
-                
 
-        
-        
-        <cfparam name="status_active_check" default="" />
+<cfparam name="status_active_check" default="" />
 
 <cfparam name="status_completed_check" default="" />
 
@@ -1164,13 +1041,9 @@
 
     <cfset status_future_check="checked" />
 
-
 </cfif>
 
-
-        
-        
-        <div class="card">
+<div class="card">
     
         <div class="card-body">
      <ul class="nav nav-pills navtab-bg nav-justified p-1" role="tablist">
@@ -1222,12 +1095,10 @@
 
                 </li>
     </ul>
-    
-    
-                   <div class="tab-content">
-            
-            
-            <div class="tab-pane <Cfoutput>#contact_active#</cfoutput>" id="contact">
+
+<div class="tab-content">
+
+<div class="tab-pane <Cfoutput>#contact_active#</cfoutput>" id="contact">
               <cfinclude template="/include/contact_pane.cfm" />
                 
             </div>
@@ -1246,38 +1117,16 @@
                 <cfinclude template="/include/reminder_pane.cfm" />
                 
             </div>
-            
-            
-        </div>
+
+</div>
     
     </div>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    </div>
-    
-    
-    
+
+</div>
+
 </cfif>
 
-
-
-
-
 <cfset script_name_include="/include/#ListLast(GetCurrentTemplatePath(), " \")#" />
-
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -1317,7 +1166,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 </script>
 
-
 <script>
  $('.modal').on('show.bs.modal', function () {
     var modalId = $(this).attr('id');
@@ -1326,5 +1174,4 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 </script>
-
 

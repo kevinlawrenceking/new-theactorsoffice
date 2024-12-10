@@ -19,8 +19,7 @@ LEFT JOIN products pr ON pr.BaseProductId = th.BaseProductId
 WHERE th.STATUS = 'Emailed' and th.uuid = '#uuid#'
 </cfquery>
 
-
-	<cfif #u.recordcount# is not "1">
+<cfif #u.recordcount# is not "1">
 <cflocation url="/app/dashboard_new/" />
 
 </cfif>
@@ -88,9 +87,8 @@ WHERE th.STATUS = 'Emailed' and th.uuid = '#uuid#'
                                     <p class="text-muted mb-4 mt-3" style="font-size:14px;">Enter your information below to setup your account.</p>
                                 </div>
 <Cfoutput>
-	
-	
-	<cfif #pwrong# is "Y">
+
+<cfif #pwrong# is "Y">
 	 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span 
@@ -117,16 +115,13 @@ WHERE th.STATUS = 'Emailed' and th.uuid = '#uuid#'
                                         <label for="customerfirst">First Name<span class="text-danger">*</span></label>
                                         <input class="form-control" type="text"  value="#u.customerfirst#" id="customerfirst" name="customerfirst" data-parsley-required data-parsley-error-message="First Name is required" placeholder="Enter your First Name">
                                     </div>
-                                    
-                                        
-                                                    <div class="form-group mb-2 col-md-6">
+
+<div class="form-group mb-2 col-md-6">
                                         <label for="emailaddress">Last Name<span class="text-danger">*</span></label>
                                         <input class="form-control" type="text"   value="#u.customerlast#" id="customerlast" name="customerlast"  data-parsley-required data-parsley-error-message="Last Name is required" placeholder="Enter your Last Name">
                                     </div>
-                                    
-                                  
-                                    
-                                    <div class="form-group mb-2 col-md-12">
+
+<div class="form-group mb-2 col-md-12">
                                         <label for="emailaddress">Email address<span class="text-danger">*</span></label>
                                         <input class="form-control"   value="#u.customeremail#" id="email_address" name="customeremail"  
                                                
@@ -150,12 +145,7 @@ WHERE th.STATUS = 'Emailed' and th.uuid = '#uuid#'
                                                    placeholder="Password" class="form-control" id="passWord2">
                                         </div>
 
-                                        
-                                        
-                                        
-                                        
-                                        
-                                    <div class="form-group mb-3 col-md-12">
+<div class="form-group mb-3 col-md-12">
                                         <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="checkbox-signin" checked>
                                             <label class="custom-control-label" for="checkbox-signin">I agree to the <A href="#">Terms & Conditions</A></label>
@@ -169,9 +159,7 @@ WHERE th.STATUS = 'Emailed' and th.uuid = '#uuid#'
                                   
                                 </form>
 
-
-                        
-                            </div> <!--- end card-body --->
+</div> <!--- end card-body --->
                         </div>
                         <!--- end card --->
 
@@ -185,8 +173,7 @@ WHERE th.STATUS = 'Emailed' and th.uuid = '#uuid#'
         </div>
         <!--- end page --->
 
-
-        <footer class="footer footer-alt text-white-50">
+<footer class="footer footer-alt text-white-50">
               &copy; 2021 The Actor's Office &trade; - All Right Reserved.
         </footer>
 

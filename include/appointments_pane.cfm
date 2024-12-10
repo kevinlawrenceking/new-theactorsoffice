@@ -87,9 +87,8 @@
                     #eventresults.eventresults.col5#
                     <cfif eventresults.eventresults.audstep neq "" and eventresults.eventresults.audstep neq "Audition"> (#eventresults.eventresults.audstep#)</cfif>
                 </td>
-                
-      
-                <td>
+
+<td>
                     <cfif finall.recordcount eq 1>
                         <a href="/include/deleteappointment.cfm?recid=#eventresults.eventresults.recid#&contactid=#currentid#">
                             <i class="mdi mdi-trash-can-outline mr-1"></i>
@@ -101,7 +100,6 @@
             </cfloop>
     </tbody>
 </table>
-
 
 </div>
 
@@ -190,6 +188,5 @@
         </div>
     </div>
 </div>
-
 
 <cfset script_name_include="/include/#ListLast(GetCurrentTemplatePath(), " \")#" />

@@ -92,7 +92,6 @@
     </div>
 
     <div class="row">
-   
 
 <cfloop query="reports">
         <cfinclude template="/include/qry/dataset_x_281_4.cfm" />
@@ -142,24 +141,7 @@
   </div>
 </cfloop>
 
-
-
- </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</div>
 
 <cfloop query="reports">
 
@@ -243,12 +225,6 @@
     </cfif>
 
 </cfloop>
-
-
-
-
-
-
 
 <script>
   function toggleDateDiv(selectedValue) {

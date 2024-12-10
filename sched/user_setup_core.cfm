@@ -59,9 +59,7 @@
                     session.userContactsPath = session.userMediaPath & "\contacts";
                     session.userContactsUrl = session.userMediaUrl & "/contacts";
 
-       
-
-                    session.userImportsPath = session.userMediaPath & "\imports";
+session.userImportsPath = session.userMediaPath & "\imports";
                     session.userImportsUrl = session.userMediaUrl & "/imports";
 
                     session.userExportsPath = session.userMediaPath & "\exports";
@@ -124,7 +122,6 @@
         <cffile action="copy" source="#dir_missing_avatar_filename#" destination="#contactAvatarPath#" />
     </cfif>
 </cfloop>
-
 
 <cfquery result="result" datasource="#dsn#" name="update_tags">
     UPDATE tags_user
@@ -747,8 +744,6 @@
 </cfloop>
 
 <cfset n = 0 />
-
-
 
 <cfquery result="result" datasource="#dsn#" name="x">
     SELECT sitetypeid, sitetypename, sitetypedescription from sitetypes_user where userid = <cfqueryparam value="#select_userid#" cfsqltype="CF_SQL_INTEGER">

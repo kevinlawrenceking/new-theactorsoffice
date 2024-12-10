@@ -116,8 +116,7 @@
     >
 </div>
 
-
-            </cfoutput>
+</cfoutput>
         </cfif>
 
         <!--- Handle specific new_catid cases --->
@@ -234,19 +233,13 @@
     </div>
 </form>
 
-
-
-    
- 
-  <cfif new_catid is "2">
+<cfif new_catid is "2">
 <script src="/app/assets/js/jquery.chained.js?ver=13.4"></script>
 <script>
     $("#region_id").chained("#countryid");
 </script>
 
 </cfif>
-
-
 
 <script>
     function toggleCustomField(select) {
@@ -257,15 +250,13 @@
         // Show or hide the custom field
         customFieldDiv.style.display = isCustomSelected ? 'block' : 'none';
 
- 
-        if (isCustomSelected) {
+if (isCustomSelected) {
             customFieldInput.setAttribute('data-parsley-required', 'true');
         } else {
             customFieldInput.removeAttribute('data-parsley-required');
         }
 
- 
-        if (window.Parsley) {
+if (window.Parsley) {
             customFieldInput
                 .closest('form')  
                 .parsley()
@@ -313,9 +304,6 @@
         }
     });
 </script>
-
-
-
 
 <script>
     function showDiv(divId, element) {

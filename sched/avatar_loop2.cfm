@@ -1,7 +1,5 @@
  
 
-  
-
 <cfquery result="result" name="x"  maxrows="1000">
 SELECT distinct
 d.contactid,
@@ -21,15 +19,12 @@ ORDER BY d.contactid
 
 <cfloop query="x">
 
-
 <cfset contact_avatar_filename = "#session.userContactsPath#\#x.contactid#\avatar.jpg" />
 <cfoutput>
 #x.contactfullname# avatar: #session.userContactsPath#\#x.contactid#\avatar.jpg
 
 <BR>
 </cfoutput>
-
-
 
 <!--- The email for which you want to get the avatar --->
 <cfset email = "#x.contactemail#">
@@ -44,7 +39,6 @@ ORDER BY d.contactid
     "password": "#password#",
     "email": "#email#"</cfoutput>
 
-
 <!--- Make the POST request to AvatarAPI --->
 <cfhttp url="#apiEndpoint#" method="post" result="httpResponse">
     <cfhttpparam type="header" name="Content-Type" value="text/plain">
@@ -53,20 +47,12 @@ ORDER BY d.contactid
     </cfhttpparam>
 </cfhttp>
 
-
-
 <!--- Parse JSON response --->
 <cfset apiResponse = DeserializeJSON(httpResponse.FileContent)>
 
-
 <Cfdump var="#apiResponse#">
 
-
-
-
-
-
- <!--- Check for 'success' field in the response --->
+<!--- Check for 'success' field in the response --->
     <cfif structKeyExists(apiResponse, "success") AND apiResponse.success eq true>
         <!--- Check if it's the default avatar --->
             <cfhttp url="#apiResponse.Image#" method="get" path="#session.userContactsPath#\#x.contactid#" file="avatar.jpg">
@@ -81,10 +67,7 @@ ORDER BY d.contactid
 update contactitems set avatar_yn = 'Y' where itemid = #x.itemid# 
 </cfquery>
 
-
-
-       
-    <cfelse>
+<cfelse>
         <!--- Avatar doesn't exist --->
         <cfoutput>
             No avatar found. Ignoring.
@@ -95,19 +78,5 @@ update contactitems set avatar_yn = 'X' where itemid = #x.itemid#
 </cfquery>
 
     </cfif>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </cfloop>

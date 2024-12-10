@@ -2,8 +2,7 @@
  
     host = ListFirst(cgi.server_name, ".");
 
- 
-    if (host == "app" || host == "uat") {
+if (host == "app" || host == "uat") {
         datasourceName = "abo";
         dsn = "abo";
     } else {
@@ -12,7 +11,6 @@
     }
 </cfscript>
 
- 
 <cfapplication 
     name="TAO_dev" 
     sessionmanagement="true" 

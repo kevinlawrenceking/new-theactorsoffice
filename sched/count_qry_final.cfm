@@ -26,10 +26,6 @@
     </cfif>
 </cfloop>
 
-
-
-
-
 <!--- Get a list of files in the /include/qry/qry directory --->
 <cfdirectory action="list" directory="C:/home/theactorsoffice.com/optimized/include" name="fileList">
 
@@ -57,10 +53,6 @@
         </cfquery>
     </cfif>
 </cfloop>
-
-
-
-
 
 <!--- Function to count the number of occurrences of <cfquery result="result"  --->
 <cffunction name="REFindNoCaseCount" returnType="numeric">

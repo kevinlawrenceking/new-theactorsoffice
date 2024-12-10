@@ -11,7 +11,6 @@
 <!--- Include the query to add a system user record --->
 <cfinclude template="/include/qry/addSystem_5_1.cfm" />
 
-
 <!--- Include the query to select actions --->
 <cfinclude template="/include/qry/addDaysNo_528_1.cfm" />
 

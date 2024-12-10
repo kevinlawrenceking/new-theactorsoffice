@@ -1,11 +1,8 @@
 <!--- This ColdFusion page handles the update of remote link details, including custom and non-custom links. --->
 
-
 <cfset siteLinksService = createObject("component", "services.SiteLinksService")>
 <cfset linkDetails = siteLinksService.getLinkDetailsById(linkid=new_id)> 
 <cfparam name="target" default="myaccount" />
-
-
 
 <form action="/include/remotelinkUpdateUpdate.cfm" method="post" class="parsley-examples" 
       data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" 

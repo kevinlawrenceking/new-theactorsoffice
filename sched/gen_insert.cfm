@@ -1,7 +1,6 @@
 <cfoutput>
-        
-        
-        #chr(60)#cffunction name="#getInsertFunctions.function_name#" access="public" returntype="void" output="false"#chr(62)#
+
+#chr(60)#cffunction name="#getInsertFunctions.function_name#" access="public" returntype="void" output="false"#chr(62)#
             #chr(60)#cfargument name="recordData" type="struct" required="true" #chr(62)#
             
             #chr(60)#cfif NOT structKeyExists(arguments, "recordData") OR structIsEmpty(arguments.recordData)#chr(62)#
@@ -10,9 +9,8 @@
             
             #chr(60)#cfset var columns = ""#chr(62)#
             #chr(60)#cfset var values = ""#chr(62)#
-            
-             
-            #chr(60)#cfloop query="getTableMetadata"#chr(62)#
+
+#chr(60)#cfloop query="getTableMetadata"#chr(62)#
                 #chr(60)#cfset columnName = getTableMetadata.COLUMN_NAME#chr(62)#
                 #chr(60)#cfset paramType = "cf_sql_varchar"#chr(62)#
                 
@@ -21,16 +19,14 @@
                 #chr(60)#cfelseif getTableMetadata.DATA_TYPE contains "date"#chr(62)#
                     #chr(60)#cfset paramType = "cf_sql_date"#chr(62)#
                 #chr(60)#/cfif#chr(62)#
-                
-                 
-                #chr(60)#cfif structKeyExists(arguments.recordData, columnName)#chr(62)#
+
+#chr(60)#cfif structKeyExists(arguments.recordData, columnName)#chr(62)#
                     #chr(60)#cfset columns = listAppend(columns, columnName)#chr(62)#
                     #chr(60)#cfset values = listAppend(values, "#chr(60)#cfqueryparam value=""#arguments.recordData[columnName]#"" cfsqltype=""#paramType#""#chr(62)#")#chr(62)#
                 #chr(60)#/cfif#chr(62)#
             #chr(60)#/cfloop#chr(62)#
-            
-             
-            #chr(60)#cfquery datasource="your_datasource"#chr(62)#
+
+#chr(60)#cfquery datasource="your_datasource"#chr(62)#
                 INSERT INTO #getInsertFunctions.qry_table# (#columns#)
                 VALUES (#values#)
             #chr(60)#/cfquery#chr(62)#

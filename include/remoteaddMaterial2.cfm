@@ -1,6 +1,5 @@
 <!--- This ColdFusion page handles user media uploads and manages the media path for the session. --->
 
-
 <cfoutput>
     <cfset session.userMediaPath = "#session.userMediaPath#"/>
 </cfoutput>

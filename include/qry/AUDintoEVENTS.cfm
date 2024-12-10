@@ -70,9 +70,7 @@
 
     </cfoutput>
 
-
-
-    <cfinclude template="/include/qry/add_365_3.cfm" />
+<cfinclude template="/include/qry/add_365_3.cfm" />
 
     <cfinclude template="/include/qry/t_365_4.cfm" />
 

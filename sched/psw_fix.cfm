@@ -38,17 +38,8 @@ SELECT contactid,contactbirthday FROM contactdetails WHERE contactbirthday IS no
     </cfif>
 </cfif>
 </cfloop>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <cfquery result="result"  name="getUsers"  >
+
+<cfquery result="result"  name="getUsers"  >
   SELECT * FROM taousers
 </cfquery>
 <cfloop query="getUsers">
@@ -58,9 +49,4 @@ SELECT contactid,contactbirthday FROM contactdetails WHERE contactbirthday IS no
     WHERE (userID = <cfqueryparam cfsqltype="integer" value="#userID#">
   </cfquery>
 </cfloop>
-            
-        
-        
-        
-        
-                
+

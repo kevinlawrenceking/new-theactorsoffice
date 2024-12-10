@@ -1,8 +1,4 @@
 
-                
-                
-                
-
 
 <script>
 $(document).ready(function () {

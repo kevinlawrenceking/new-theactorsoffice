@@ -10,8 +10,7 @@
           AND path = '/include/qry'
     </cfquery>
 
- 
-    <cfif checkFileExists.recordcount EQ 0>
+<cfif checkFileExists.recordcount EQ 0>
   
         <cfquery result="result" datasource="abod">
             INSERT INTO tao_files (parent_id,filename, `path`, status, qry_removed_yn, qry_extract_yn, qry_no)

@@ -1,9 +1,5 @@
  
 
-  
-
- 
-
 <cfset default_avatar_filename = "C:\home\theactorsoffice.com\media-app\users\13\avatar.jpg">
  <cfset default_avatar_data = FileReadBinary(default_avatar_filename)>
 <cfset default_avatar_hash = Hash(default_avatar_data, "MD5")>
@@ -25,9 +21,8 @@ ORDER BY d.contactid
 </cfquery>
 
 <cfloop query="x">
- 
- 
-        <cfset contact_avatar_filename = "#session.userContactsPath#\#x.contactid#\avatar.jpg" />
+
+<cfset contact_avatar_filename = "#session.userContactsPath#\#x.contactid#\avatar.jpg" />
 <cfoutput>#x.contactfullname# avatar: #session.userContactsPath#\#x.contactid#\avatar.jpg<BR></cfoutput>
 
 <cfset contact_avatar_data = FileReadBinary(contact_avatar_filename)>
@@ -43,16 +38,9 @@ update contactitems set avatar_yn = 'Y' where itemid = #x.itemid#
      <cfoutput>#x.contactfullname# avatar already exists<BR></cfoutput>
         <cfelse>
 
-
-   
 <cfset emailHash = LCase(Hash(Trim(x.contactemail), "MD5"))>
 
-
-
-
 <cfset gravatarURL = "https://www.gravatar.com/avatar/#emailHash#?s=200&d=404">
-
-
 
 <!--- Make HTTP Request to Gravatar --->
 <cfhttp url="#gravatarURL#" method="get" result="httpResponse">
@@ -75,7 +63,6 @@ update contactitems set avatar_yn = 'Y' where itemid = #x.itemid#
 update contactitems set avatar_yn = 'Y' where itemid = #x.itemid# 
 </cfquery>
 
-
 <cfelse>
     <!--- Gravatar doesn't exist. Ignore --->
     <cfoutput>
@@ -86,33 +73,8 @@ update contactitems set avatar_yn = 'Y' where itemid = #x.itemid#
 update contactitems set avatar_yn = 'N' where itemid = #x.itemid# 
 </cfquery>
 
-
-
 </cfif>
 
-
-
-
-
-
-
-        </cfif>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</cfif>
 
 </cfloop>

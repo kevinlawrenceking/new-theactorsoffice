@@ -3,24 +3,15 @@
 <cfquery result="result"  name="x">
 SELECT id FROM pgfiles WHERE id IN (SELECT distinct script_name  from bigbrother )
 </cfquery>
-    
-    
+
 <cfloop query="x">
 
- 
-    
-            <cfquery result="result"  name="insert">
+<cfquery result="result"  name="insert">
       update pgfiles 
                 set filestatus = 'Confirmed' where id = '#x.id#'
             </cfquery>
 
-          
- 
-    
-    
-    
-   
-    </cfloop>
+</cfloop>
                 
    <cfquery result="result"  name="z">      
 update pgfiles

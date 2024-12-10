@@ -1,6 +1,5 @@
 <cfset dbug="N" />
 
-
 <cfset currentURL = cgi.server_name />
 
 <cfset host = ListFirst(currentURL, ".") />
@@ -19,7 +18,6 @@
 </cfif>
 
 <Cfset to_email="kevinking7135@gmail.com" />
- 
 
 <cfquery result="result"  name="U" datasource="#dsn#">
     SELECT th.id
@@ -56,8 +54,7 @@
         where id = #new_id#
     </cfquery>
 
-
-    <cfmail from="support@theactorsoffice.com" to="#new_customerEmail#" bcc="kevinking7135@gmail.com" subject="#new_customerfirst#, set up your profile for The Actor's Office!" type="HTML">
+<cfmail from="support@theactorsoffice.com" to="#new_customerEmail#" bcc="kevinking7135@gmail.com" subject="#new_customerfirst#, set up your profile for The Actor's Office!" type="HTML">
         <HTML>
 
         <head>
@@ -92,8 +89,7 @@
 
             <p>&nbsp;</p>
 
-
-        </body>
+</body>
 
         </HTML>
     </cfmail>
@@ -106,8 +102,5 @@
     </cfquery>
 
 </cfloop>
-
-
-
 
 <cfinclude template="thrivecart_process_audition.cfm" />

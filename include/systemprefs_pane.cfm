@@ -17,8 +17,7 @@
                <cfinclude template="/include/qry/action_user_295_2.cfm" />
                 <cfinclude template="/include/qry/action_user_del_295_3.cfm" />
 
-
-        <cfif #mysystems.systemid# is "#target_id_system#">
+<cfif #mysystems.systemid# is "#target_id_system#">
           <div class="card mb-1">
             <div class="card-header" id="<cfoutput>heading_system_#mysystems.systemid#</cfoutput>">
               <h5 class="m-0">
@@ -74,9 +73,8 @@
                         <cfoutput>
                           <h5>
                             <a title="Edit" href="updateactionlink.cfm" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##updateaction_#action_user.id#">
-                              
 
-                              #action_user.currentrow# - #action_user.actiontitle#
+#action_user.currentrow# - #action_user.actiontitle#
 
                               <i class="mdi mdi-square-edit-outline"></i>
                             </a>

@@ -3,7 +3,6 @@
     <cfset new_region_id = 0>
 </cfif>
 
-
 <cfset eventService.UPDevents_24556(
     new_eventLocation = trim(new_eventLocation),
     new_audlocadd1 = trim(new_audlocadd1),

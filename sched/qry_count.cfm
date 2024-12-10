@@ -4,8 +4,7 @@
     FROM tao_files
     WHERE path = '/include/'
 
- 
-    ORDER BY `filename`
+ORDER BY `filename`
 </cfquery>
 
 <cfloop query="getFiles">

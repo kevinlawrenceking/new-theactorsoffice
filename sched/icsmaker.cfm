@@ -49,12 +49,9 @@
             <h2>calendar dir: #calendar_dir#</h2>
         </cfif>
 
+</cfoutput>
 
-
-    </cfoutput>
-
-
-    <cfset UTCHourOffset=3 />
+<cfset UTCHourOffset=3 />
     <cfset PRODID="TheActorsOffice" />
     <cfset CALNAME="TAO Calendar" />
 
@@ -94,9 +91,7 @@
         WHERE e.userid = #new_userid# and e.eventStart is not null and e.eventStop is not null
     </cfquery>
 
-
-
-    <cfif #isdefined('tzid')#>
+<cfif #isdefined('tzid')#>
         <cfset tzid=tzid />
     </cfif>
 
@@ -112,10 +107,7 @@
 
     </cfif>
 
-
-
-
-    <cfset ICSContent="" />
+<cfset ICSContent="" />
     <cfset ICSContent=ICSContent & "BEGIN:VCALENDAR#chr(13)##chr(10)#" />
     <cfset ICSContent=ICSContent & "PRODID:#prodid##chr(13)##chr(10)#" />
     <cfset ICSContent=ICSContent & "VERSION:2.0#chr(13)##chr(10)#" />
@@ -123,19 +115,12 @@
     <cfset ICSContent=ICSContent & "X-WR-CALNAME:#calname##chr(13)##chr(10)#" />
     <cfset ICSContent=ICSContent & "X-WR-TIMEZONE:#tzid##chr(13)##chr(10)#" />
 
+<cfloop query="eventItem">
 
-
-    <cfloop query="eventItem">
-
-
-
-
-        <cfoutput>
+<cfoutput>
             <cfset new_description1="#eventitem.eventDescription#" />
 
-
-
-            <cfset new_description2=#replace(new_description1, "#chr(13)#" ,"\n","All")# />
+<cfset new_description2=#replace(new_description1, "#chr(13)#" ,"\n","All")# />
             <cfset new_description3=#replace(new_description2, "#chr(10)#" ,"\n","All")# />
             <cfset new_description=#replace(new_description3, "," , "\," ,"All")# />
 
@@ -144,9 +129,7 @@
         <cfoutput>
             <cfset new_location1="#eventitem.location#" />
 
-
-
-            <cfset new_location2=#replace(new_location1, "#chr(13)#" ,"\n","All")# />
+<cfset new_location2=#replace(new_location1, "#chr(13)#" ,"\n","All")# />
             <cfset new_location3=#replace(new_location2, "#chr(10)#" ,"\n","All")# />
             <cfset new_location=#replace(new_location3, "," , "\," ,"All")# />
 
@@ -238,9 +221,7 @@
 
         </cfif>
 
-
-
-        <cfset ICSContent=ICSContent & "BEGIN:VEVENT#chr(13)##chr(10)#" />
+<cfset ICSContent=ICSContent & "BEGIN:VEVENT#chr(13)##chr(10)#" />
         <cfset ICSContent=ICSContent & "UID:#CreateUUID()##chr(13)##chr(10)#" />
         <cfset ICSContent=ICSContent & "SUMMARY:#eventItem.summary##chr(13)##chr(10)#" />
         <cfset ICSContent=ICSContent & "DESCRIPTION:#new_description##chr(13)##chr(10)#" />
@@ -252,11 +233,8 @@
             <cfset ICSContent=ICSContent & "END:VEVENT#chr(13)##chr(10)#" />
     </cfloop>
 
+<cfset ICSContent=ICSContent & "END:VCALENDAR" />
 
-    <cfset ICSContent=ICSContent & "END:VCALENDAR" />
-
-
-    <cffile action="write" file="#calendar_dir#.ics" output="#TRIM(ICSContent)#" />
-
+<cffile action="write" file="#calendar_dir#.ics" output="#TRIM(ICSContent)#" />
 
 </cfloop>

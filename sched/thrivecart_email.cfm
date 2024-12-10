@@ -7,10 +7,8 @@
            <!--- Style Tag in the Body, not Head, for Email --->
            <style type="text/css">
                body { font-size: 14px; }
-             
-               
-               
-           </style>
+
+</style>
           <p>Hi Test,</p>
 
 <p>Your purchase of The Actor's Office - Relationships Module has been received.</p>
@@ -26,15 +24,9 @@
            <p>Welcome aboard!</p>
            <p>More to come...</p>
     <p>Jodie Bentley and The Actor's Office Team</p>
-           
-           
-               <p>&nbsp;</p>  
-           
-           
-           
-           
-           
-           
-       </body>
+
+<p>&nbsp;</p>  
+
+</body>
     </HTML>
 </cfmail>

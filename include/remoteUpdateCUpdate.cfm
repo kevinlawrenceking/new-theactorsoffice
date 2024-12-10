@@ -27,7 +27,6 @@
     <cfset old_countryid = findcountry.countryid />
 </cfif>
 
-
 <!--- Include region query and check if a region is found --->
 <cfinclude template="/include/qry/findregion_262_4.cfm" />
 <cfif #findregion.recordcount# is "1">
@@ -58,7 +57,6 @@
 <!--- Include update queries for contact items --->
 <cfinclude template="/include/qry/update_262_5.cfm" />
 <cfinclude template="/include/qry/update2_262_6.cfm" />
-
 
 <cfset script_name_include = "/include/#ListLast(GetCurrentTemplatePath(), " \")#" />
 

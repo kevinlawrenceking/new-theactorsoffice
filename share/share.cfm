@@ -81,13 +81,10 @@ eventid
  
 ORDER BY eventCreation
 </cfquery>
-                    
-                    
-                    <cfoutput>
 
-                                
-                                
-                                <tr>
+<cfoutput>
+
+<tr>
                                     <td style="white-space: nowrap;">
                                         <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteShareViewC#shares.contactid#" data-bs-placement="top" title="View Contact Info and Audition List" data-bs-original-title="View Contact Info and Audition List">
                                             <i class="fe-search"></i>
@@ -104,11 +101,8 @@ ORDER BY eventCreation
                         </span>
 
                     </cfif>
-                                    
-                                    
-                                    
-                                    
-                                           <cfif #isdefined('auditionsgggg')#>    
+
+<cfif #isdefined('auditionsgggg')#>    
                                                
                                                <td style="white-space: nowrap;">#events.recordcount#</td>
                                             
@@ -135,12 +129,6 @@ ORDER BY eventCreation
         </div>
     </div>
 </div>
-
-
-
-
-
-
 
 <SCRIPT>
     $(document).ready(function() {

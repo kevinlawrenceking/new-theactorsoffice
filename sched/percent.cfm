@@ -54,11 +54,6 @@
     WHERE f.function_code IS not NULL 
     </cfquery>
 
- 
-
-
-
-
 <cfoutput>
     <!--- Calculate the completion percentage --->
     <cfset percentageComplete = 0>

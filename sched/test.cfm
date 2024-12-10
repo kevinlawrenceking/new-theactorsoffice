@@ -11,7 +11,4 @@
 
 <pre>#xmlformat(x.function_code_final)#</pre>
 
-
-
-
 </cfoutput>

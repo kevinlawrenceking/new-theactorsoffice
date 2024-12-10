@@ -30,8 +30,7 @@
      </cfloop>
  </cfif>
 
-
- <cfquery result="result"  name="x" maxrows="50">
+<cfquery result="result"  name="x" maxrows="50">
      SELECT id,sitename,siteurl,siteicon FROM sitelinks_user WHERE iscustom = 1 AND siteicon = 'unknown.png'
  </cfquery>
 
@@ -86,9 +85,7 @@
 
          <cfset image_dir_uat="C:\home\theactorsoffice.com\wwwroot\uat-subdomain\app\assets\images\retina-circular-icons\14" />
 
-
-
-         <cfhttp url="https://icon.horse/icon/#domain#?apikey=996ca328-b4b1-47a7-8d41-e5255525ab6b&fallback_bg=406e8e&size=small&ignore_other_sizes=false" method="get" getAsBinary="yes" result="icoResult"></cfhttp>
+<cfhttp url="https://icon.horse/icon/#domain#?apikey=996ca328-b4b1-47a7-8d41-e5255525ab6b&fallback_bg=406e8e&size=small&ignore_other_sizes=false" method="get" getAsBinary="yes" result="icoResult"></cfhttp>
 
          <cfdump var="#icoResult#">
 
@@ -109,10 +106,7 @@
                                      <cfset fileExtension=".jpg">
                          </cfif>
 
-
-
-
-                         <p>status is ok</p>
+<p>status is ok</p>
 
                          <cfset tempFile="#image_dir#\temp\custom_#id##fileExtension#" />
 
@@ -198,8 +192,7 @@
                      <p><strong>Extended Info:</strong> #cfcatch.ExtendedInfo#</p>
                      <p><strong>Error Code:</strong> #cfcatch.ErrorCode#</p>
 
-
-                 </cfoutput>
+</cfoutput>
              </cfcatch>
      </cftry>
  </cfloop>

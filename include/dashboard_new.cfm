@@ -1,6 +1,5 @@
 <!--- This ColdFusion page manages user dashboards and handles batch notifications, including modal confirmations and dynamic grid layouts. --->
 
-
 <cfparam name="batchlist" default="0"/>
 <cfparam name="new_sitetypeid" default="0"/>
 <cfparam name="quoteoftheday" default=""/>
@@ -122,7 +121,6 @@ $(window).resize(function() {
 });
 console.log("After Packery");
 </script>
-
 
 <script>
 function openAllUrls(siteurl_list) {

@@ -2,7 +2,6 @@
 <!--- Initialize BirthdayService --->
 <cfset birthdayService = createObject("component", "services.BirthdayService")>
 
-
 <!--- Fetch birthdays for the dashboard --->
 <cfset birthdays = birthdayService.getBirthdaysForDashboard(userid)>
 

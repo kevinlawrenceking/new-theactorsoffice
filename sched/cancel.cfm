@@ -4,7 +4,6 @@
     UPDATE thrivecart_cancel SET STATUS = 'N/A' WHERE basepaymentplanid NOT IN (SELECT basepaymentplanid FROM paymentplans)
 </cfquery>
 
-
 <cfquery result="result"  name="x">
     SELECT * from thrivecart_cancel where status = 'Pending'
 </cfquery>
@@ -14,9 +13,8 @@
     <cfset thrivecart_cancel_id=x.id />
     <cfset thrivecart_cancel_invoiceid=x.invoiceid />
     <cfset thrivecart_cancel_canceldate=x.canceldate />
-    
 
-    <cfquery result="result"  name="Find">
+<cfquery result="result"  name="Find">
         SELECT * from thrivecart where invoiceid = '#thrivecart_cancel_invoiceid#'
     </cfquery>
 
@@ -40,9 +38,8 @@
  <P>Thrivecart invoice id: #thrivecart_invoiceid#</P>
            
             </cfoutput>
-        
-        
-        <cfquery result="result"  name="FindUser" maxrows="1">
+
+<cfquery result="result"  name="FindUser" maxrows="1">
             SELECT * from taousers where customerid = #thrivecart_id#
         </cfquery>
 
@@ -75,9 +72,8 @@
                      <cfoutput>
             <p>[#thrivecart_cancel_id#] Thrivecart Cancel status set to CANCELLED</p>
             </cfoutput>
-            
-            
-            <cfquery result="result"  name="update_user">
+
+<cfquery result="result"  name="update_user">
             update taousers
             set userstatus = 'Cancelling'
             where userid = #new_userid#
@@ -85,24 +81,19 @@
                              <cfoutput>
             <p>[#new_userid#] User status set to CANCELLING</p>
             </cfoutput>
-   
-            
-        </cfif>
 
+</cfif>
 
-        <cfif #find.recordcount# is not "0" and #find.recordcount# is not "1">
+<cfif #find.recordcount# is not "0" and #find.recordcount# is not "1">
 
             More than one record!<BR>
         </cfif>
 
-
-    </cfif>
+</cfif>
 
 </cfloop>
-        
-        
-        
-   <cfquery result="result"  name="Y">       
+
+<cfquery result="result"  name="Y">       
 SELECT u.userid as new_userid,u.*,t.canceldate FROM thrivecart t INNER JOIN thrivecart_cancel c ON t.InvoiceID = c.invoiceid
 INNER JOIN taousers u ON u.customerid = t.id
 WHERE c.canceldate <= CURRENT_DATE()  AND u.userstatus <> 'Cancelled'
@@ -117,13 +108,10 @@ WHERE c.canceldate <= CURRENT_DATE()  AND u.userstatus <> 'Cancelled'
                isdeleted = 1
                where userid = #Y.new_userid#
             </cfquery>
-            
-            
-            <cfoutput>
+
+<cfoutput>
             #Y.userfirstname# #y.userlastname# had a cancel date of #dateformat(Y.canceldate)# and was cancelled today.<BR>
             </cfoutput>
             
             </Cfloop>
-        
-        
-        
+

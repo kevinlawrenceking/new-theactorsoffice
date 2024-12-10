@@ -36,8 +36,6 @@
 
 <cfinclude template="/include/qry/FindEvent_222_4.cfm" />
 
-
-
 <!--- Prepare return URL for redirection --->
 <cfoutput>
     <cfset returnurl = "/app/audition/?audprojectid=#audprojectid#&secid=#secid#" />

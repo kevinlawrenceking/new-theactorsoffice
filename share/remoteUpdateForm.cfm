@@ -14,9 +14,7 @@
 <cfparam name="t3" default="0" />
 
 <cfparam name="t4" default="0" />
- 
 
-  
 <cfquery result="result" name="FindModalTitle" >
     SELECT p.pgTitle,
     c.compname
@@ -26,7 +24,6 @@
     WHERE p.pgid = #rpgid#
 </cfquery>
 
-
 <cfinclude template="/include/qry/update.cfm" />
 
 </cfsilent>
@@ -35,8 +32,7 @@
     <cfset headcols=3 />
     <cfset valuecols=9 />
 
-
-    <cfquery result="result" name="find" >
+<cfquery result="result" name="find" >
         Select recordname
         FROM #rpg_compTable#
         Where #Fid# = #recid#
@@ -54,15 +50,12 @@
                      <input type="hidden" name="t2" value="#t2#" />
                      <input type="hidden" name="t3" value="#t3#" />
                      <input type="hidden" name="t4" value="#t4#" />
-        
-     
-                   <input type="hidden" name="pgdir" value="#pgdir#" />
-                    
-                    
-                    <input type="hidden" name="details_recid" value="#details_recid#" />
-   
-            
-       <input type="hidden" name="pgid" value="#pgid#" />
+
+<input type="hidden" name="pgdir" value="#pgdir#" />
+
+<input type="hidden" name="details_recid" value="#details_recid#" />
+
+<input type="hidden" name="pgid" value="#pgid#" />
             <input type="hidden" name="recid" value="#recid#" />
 
             <cfif #isdefined('contactid')#>
@@ -72,9 +65,8 @@
                               <cfif #isdefined('userid')#>
                 <input type="hidden" name="userid" value="#userid#" />
                 </cfif>
-            
-            
-        </cfoutput>
+
+</cfoutput>
            <div class="row" />
         <cfloop query="RPGUpdate">
 
@@ -90,20 +82,8 @@
                 </cfquery>
 
                 <cfif #isdefined('dbug')#><cfoutput> - updatetype: #RPGUpdate.updatetype#</cfoutput></cfif>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                <cfif #RPGUpdate.updatetype# is "input">
+
+<cfif #RPGUpdate.updatetype# is "input">
 
                     <cfoutput>
                         <div class="form-group col-md-12">
@@ -116,10 +96,8 @@
                 </div>
                 </div>
                 </cfoutput>
-                
-                
-                
-                                <cfelseif #RPGUpdate.updatetype# is "number">
+
+<cfelseif #RPGUpdate.updatetype# is "number">
 
                     <cfoutput>
                         <div class="form-group col-md-6">
@@ -151,26 +129,11 @@
                             <script>
     $("input[name='new_#RPGUpdate.fname#']").TouchSpin();
 </script>
-                             
-                
-                                   
-       
-                </div>
-                </cfoutput>
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
 
-                <cfelseif #RPGUpdate.updatetype# is "password">
+</div>
+                </cfoutput>
+
+<cfelseif #RPGUpdate.updatetype# is "password">
 
                     <cfoutput>
                         <div class="form-group form-group col-md-12">
@@ -194,12 +157,9 @@
                             Please enter a #RPGUpdate.updatename#.
                         </div>
 
+</div>
 
-
-                    </div>
-
-
-                </cfoutput>
+</cfoutput>
 
                 <cfelseif #RPGUpdate.updatetype# is "calendar">
                     <cfoutput>
@@ -214,24 +174,19 @@
                                 Please choose a #RPGUpdate.updatename#.
                             </div>
 
-
-                        </div>
+</div>
 
                     </cfoutput>
 
-
-
-                    <cfelseif #RPGUpdate.updatetype# is "select_id">
+<cfelseif #RPGUpdate.updatetype# is "select_id">
                         
                 <cfquery result="result" name="FindValue" >
                     Select #RPGUpdate.fname# as fvalue
                     FROM #rpg_compTable#
                     Where #Fid# = #recid#
                 </cfquery>
-                        
-                 
 
-                        <cfquery result="result" name="selects" >
+<cfquery result="result" name="selects" >
                             select #rpgupdate.fname# as value, recordname as text from #RPgupdate.tableSelect# order by recordname
                         </cfquery>
                         
@@ -246,8 +201,7 @@
                             <cfoutput>
                                 <option value="#selects.value#" <cfif #selects.value# is "#FindValue.fvalue#"> selected </cfif> >
 
-
-                                    #selects.text#</option>
+#selects.text#</option>
 
                             </cfoutput>
                         </cfloop>
@@ -258,18 +212,8 @@
                         </div>
 
                         </div>
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-              
-                    <cfelseif #RPGUpdate.updatetype# is "select_distinct">
+
+<cfelseif #RPGUpdate.updatetype# is "select_distinct">
                         
                 <cfquery result="result" name="FindValue" >
                     Select #RPGUpdate.fname# as fvalue
@@ -294,8 +238,7 @@
                             <cfoutput>
                                 <option value="#selects.value#" <cfif #selects.value# is "#FindValue.fvalue#"> selected </cfif> >
 
-
-                                    #selects.text#</option>
+#selects.text#</option>
 
                             </cfoutput>
                         </cfloop>
@@ -307,22 +250,15 @@
 
                         </div>
 
-            
-            
-            
-            
-
-         <cfelseif #RPGUpdate.updatetype# is "select_fieldvalue">
+<cfelseif #RPGUpdate.updatetype# is "select_fieldvalue">
              
                      <cfquery result="result" name="FindValue" >
                     Select #RPGUpdate.fname# as fvalue
                     FROM #rpg_compTable#
                     Where #Fid# = #recid#
                 </cfquery>
-             
-             
 
-                        <cfquery result="result" name="selects" >
+<cfquery result="result" name="selects" >
                             select fieldvalue as value, fieldtext as text from #RPgupdate.tableSelect# order by fieldtext
                         </cfquery>
                         <cfoutput>
@@ -336,8 +272,7 @@
                             <cfoutput>
                                 <option value="#selects.value#" <cfif #selects.value# is "#FindValue.fvalue#"> selected </cfif> >
 
-
-                                    #selects.text#</option>
+#selects.text#</option>
 
                             </cfoutput>
                         </cfloop>
@@ -349,10 +284,7 @@
 
                         </div>
 
-
-
-
-                        <cfelseif #RPGUpdate.updatetype# is "time">
+<cfelseif #RPGUpdate.updatetype# is "time">
 
                             <cfoutput>
                                 <div class="form-group col-md-6">
@@ -363,14 +295,11 @@
                                         Please choose a #RPGUpdate.updatename#.
                                     </div>
 
-
-                                </div>
+</div>
 
                             </cfoutput>
-                            
-                            
-                            
-                            <cfelseif #RPGUpdate.updatetype# is "select">
+
+<cfelseif #RPGUpdate.updatetype# is "select">
 
                                 <cfquery result="result" name="selects" >
                                     select recordname as value, recordname as text from #RPgupdate.tableSelect# order by recordname
@@ -386,8 +315,7 @@
                                     <cfoutput>
                                         <option value="#selects.value#" <cfif #selects.value# is ""> selected </cfif> >
 
-
-                                            #selects.text#</option>
+#selects.text#</option>
 
                                     </cfoutput>
                                 </cfloop>
@@ -399,34 +327,25 @@
 
                                 </div>
 
-
-
-
-
-                                <cfelse>
+<cfelse>
                                     <cfoutput>
                                         <input type="hidden" name="new_#RPGUpdate.fname#" value="" />
                                     </cfoutput>
 
                                     </cfif>
 
+</cfif>
 
-                                    </cfif>
+</cfloop>
 
-
-        </cfloop>
-
-
-        <div class="form-group text-center  col-md-12">
+<div class="form-group text-center  col-md-12">
             <button class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="background-color: #406e8e; border: #406e8e;"  type="submit">Update</button>
         </div>
 
 </div>
     </form>
 
-
-
-    <script>
+<script>
         // Example starter JavaScript for disabling form submissions if there are invalid fields
         (function() {
             'use strict'

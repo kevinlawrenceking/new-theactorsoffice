@@ -24,8 +24,6 @@
     <cfset tab1_expand = "true" />
 </cfif>
 
-
-
 <script>
     <!--- Initialize selectize for relationship selection --->
     $(document).ready(function() {

@@ -16,9 +16,6 @@
     
     <Cfif #dbug# is "Y"> <cfoutput><h1>#z.userfirstname# #z.userlastname#</h1></cfoutput><BR /></cfif>
 
-
-
-
 <cfset n=0 />
 
 <cfquery result="result" datasource="#dsn#" name="x">
@@ -37,9 +34,8 @@
         where sitetypename = '#x.sitetypename#' and userid = #select_userid# - #find.recordcount#<br/></cfoutput>
     
     </cfif>
-    
 
-    <cfif #find.recordcount# is "0">
+<cfif #find.recordcount# is "0">
         <cfoutput>
             <cfset n=#n# + 1 />
             <cfif #n# is "1" and #dbug# is "Y">
@@ -55,21 +51,13 @@
             
               INSERT INTO `sitetypes_user` (`siteTypeName`, `siteTypeDescription`, `userid`)
             VALUES ('#x.sitetypename#','#x.sitetypedescription#',#select_userid#);<br/>
-            
-            
-            Sitetypes_user added: #x.sitetypename#<br />
+
+Sitetypes_user added: #x.sitetypename#<br />
         </cfoutput>
         </cfif>
     </cfif>
 
 </cfloop>
-
-    
-
-
-
-
-
 
 <cfquery result="result" datasource="#dsn#" name="x">
     select
@@ -96,8 +84,7 @@
 
     <cfif #find.recordcount# is "1">
 
-
-        <cfoutput>
+<cfoutput>
             <cfset n=#n# + 1 />
             <cfif #n# is "1">
                 <h3>sitelinks_user</h3>
@@ -115,9 +102,8 @@
         
         <cfif #dbug# is "y">
 <cfoutput>Select * from sitelinks_user where sitename = '#x.sitename#' and userid = #select_userid#<br/>
-    
-    
-    <h3>find2 recordcount: #find2.recordcount#</h3>
+
+<h3>find2 recordcount: #find2.recordcount#</h3>
     
     </cfoutput>
             
@@ -142,19 +128,11 @@
 
         </cfif>
 
+</cfloop>
 
+<cfquery result="result" datasource="#dsn#" name="update">
+            update taousers set imdbid = 0 where userid = #select_userid#
+        </cfquery>
 
 </cfloop>
 
-
-        <cfquery result="result" datasource="#dsn#" name="update">
-            update taousers set imdbid = 0 where userid = #select_userid#
-        </cfquery>
-    
-    
-    </cfloop>
-
-
-
-    
-    

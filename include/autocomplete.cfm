@@ -44,8 +44,7 @@
                     }
                 }),
 
-
-                j = b;
+j = b;
             o = e.concat(a);
             i = o.concat(b);
 
@@ -78,10 +77,5 @@
                     noSuggestionNotice: "Sorry, no matching results",
                     groupBy: "Contacts"
                 })
-                           
-                        
-                           
-                           
-                           
 
-        </script>
+</script>

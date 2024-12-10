@@ -1,13 +1,6 @@
 <Cfparam name="pass1" default="" />
 
-
-    
-    
-    
-    
 <cfset new_passwordSalt=hash(generateSecretKey("AES"),"SHA-512") />
-
-
 
 <cfquery result="result" name="Del" >
 UPDATE taousers_tbl set isdeleted = 1 where customerid =
@@ -35,14 +28,9 @@ VALUES (
 
 </cfquery>
 
-
-
-
-
 <cfset select_userid=result.generatedkey />
 
     <cfinclude template="/sched/user_setup_core.cfm" />
-
 
 <cfquery result="result" name="update" >
     UPDATE thrivecart
@@ -51,5 +39,4 @@ VALUES (
     where id = #id#
 </cfquery>
 
-
-    <cflocation url="setup-complete.cfm?userid=#select_userid#" />
+<cflocation url="setup-complete.cfm?userid=#select_userid#" />

@@ -102,9 +102,7 @@
         </cfif>
     </div>
 
-
 <cfinclude template="/include/qry/subsites_189_1.cfm" />
-
 
 <div class="d-flex justify-content-between">
     <div class="float-left">
@@ -165,11 +163,7 @@
     </div>
 </div>
 
-
-
-
-
-          <div id="updatenewsletter" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
+<div id="updatenewsletter" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
 
 >
             <div class="modal-dialog">

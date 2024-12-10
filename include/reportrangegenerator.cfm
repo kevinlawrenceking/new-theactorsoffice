@@ -2,7 +2,6 @@
 <cfset dbug = "N">
 <cfinclude template="/include/qry/x_280_1.cfm" />
 
-
 <Cfoutput>
 
     <cfset current_year = "#year(now())#" />
@@ -52,16 +51,11 @@
  
 </cfif>
 
-
-
 <cfif x.rangename EQ "Last 6 Months">
     <!--- Compute date range as actual date objects --->
     <cfset new_rangestart = DateAdd("m", -6, Now())>
     <cfset new_rangeend = Now()>
 </cfif>
-
-
-   
 
 <cfif #dbug# is "Y">
 <Cfoutput>
@@ -76,7 +70,6 @@ new_rangeend: #new_rangeend#<BR>
 <cfset new_rangeend = DateFormat(new_rangeend, "YYYY-MM-dd")>
  
     <cfinclude template="/include/qry/update2_280_2.cfm" />
-
 
 </cfloop>
 <cfif #CUSTOMSTART# is not "">

@@ -1,7 +1,5 @@
 
 
-
-
 $uploadCrop = $('#upload-input').croppie({
     enableExif: true,
     url: <Cfoutput>'#image_url#</cfoutput>?ver=<Cfoutput>#rand()#</cfoutput>',
@@ -16,7 +14,6 @@ $uploadCrop = $('#upload-input').croppie({
     }
 });
 
-
 $('#upload').on('change', function () { 
 	var reader = new FileReader();
     reader.onload = function (e) {
@@ -29,7 +26,6 @@ $('#upload').on('change', function () {
     }
     reader.readAsDataURL(this.files[0]);
 });
-
 
 $('.upload-result').on('click', function (ev) {
 	$uploadCrop.croppie('result', {

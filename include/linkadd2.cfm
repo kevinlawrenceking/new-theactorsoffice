@@ -7,7 +7,6 @@
 <!--- Include the template for adding a record --->
 <cfinclude template="/include/qry/add_149_1.cfm" />
 
-
 <!--- Check if 'audprojectid' is defined --->
 <cfif #isdefined('audprojectid')#>
     <cfoutput>

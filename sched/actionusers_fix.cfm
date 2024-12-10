@@ -1,8 +1,6 @@
 
-        
-       
-        
-         <cfquery result="result"  name="u"  >
+
+<cfquery result="result"  name="u"  >
         SELECT * from taousers  
         </cfquery>
 
@@ -13,9 +11,8 @@
         </cfquery>
 
         <cfloop query="xs">
-            
-            
-            <cfquery result="result"  name="find"  >
+
+<cfquery result="result"  name="find"  >
             SELECT * from actionusers where actionid = #xs.actionid# and userid = #u.userid#
             </cfquery>
             
@@ -30,8 +27,5 @@
 
         </cfloop>
 
+</cfloop>
 
-    </cfloop>
-        
-        
-        

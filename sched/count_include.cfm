@@ -11,18 +11,15 @@
 
         <cfset fileContent = ToString(fileRead(fullFilePath))>
 
+<cfset qryCount = ArrayLen(REMatchNoCase("<cfquery\b[^>]*>", fileContent))>
 
-        <cfset qryCount = ArrayLen(REMatchNoCase("<cfquery\b[^>]*>", fileContent))>
-
-
-        <cfquery result="result" datasource="abod">
+<cfquery result="result" datasource="abod">
             UPDATE tao_files
             SET qry_no = <cfqueryparam value="#qryCount#" cfsqltype="cf_sql_integer">
             WHERE id = <cfqueryparam value="#getAllIncludeFiles.id#" cfsqltype="cf_sql_integer">
         </cfquery>
 
-  
-        <cfoutput>
+<cfoutput>
             File: #getAllIncludeFiles.filename# | Number of Queries: #qryCount#<br>
         </cfoutput>
     </cfif>

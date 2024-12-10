@@ -2,8 +2,6 @@
 <cfparam name="sel_audcatid" default="%" />
 <cfparam name="SEL_AUDSTEPID" default="0" />
 
-
-
 <cfparam name="audsearch" default="" />
 <cfparam name="byimport" default="" />
 <cfparam name="sel_audstepid" default="%" />
@@ -17,7 +15,6 @@
 <cfoutput>
 <cfset cur_date = "#dateformat('#now()#','YYYY-MM-dd')#" />
 
-
 </cfoutput>
 
 <cfinclude template="/include/qry/coss_371_1.cfm" />
@@ -26,7 +23,5 @@
 
 <cfinclude template="/include/qry/results_371_2.cfm" />
 
-    
 <cfset projectlist = valuelist(results.audprojectid) />    
-    
-   
+

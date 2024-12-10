@@ -18,6 +18,4 @@
 <cfif structKeyExists(form, "valuePostalCode")><cfset args.valuePostalCode = trim(valuePostalCode)></cfif>
 <cfif structKeyExists(form, "itemdate") AND IsDate(itemdate)><cfset args.itemdate = itemdate></cfif>
 
-
-
 <cfset contactItemService.UPDcontactitems_24046(argumentCollection=args)>

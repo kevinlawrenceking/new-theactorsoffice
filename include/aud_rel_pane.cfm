@@ -2,7 +2,6 @@
 <cfparam name="dbug" default="N" />
 <cfparam name="audprojectid" default="0" />
 
-
 <script>
     $(document).ready(function() {
         $("#remoteAddContactAud").on("show.bs.modal", function(event) {
@@ -27,7 +26,6 @@
 <cfinclude template="/include/qry/audcontacts_349_1.cfm" />
 
 <cfinclude template="/include/qry/audcontacts_sel_349_2.cfm" />
-
 
 <h4>Audition Relationships</h4>
 

@@ -20,5 +20,4 @@
     <cfset params["contactMeetingDate"] = contactmeetingdate>
 </cfif>
 
-
 <cfset currentid = contactService.INScontactdetails_24070(argumentCollection=params)>

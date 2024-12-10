@@ -183,11 +183,9 @@
                                 </span>
                             </div>
 
-                     
-                                <input type="hidden" name="auddate" value="%"/>
-    
+<input type="hidden" name="auddate" value="%"/>
 
-                            <cfinclude template="/include/qry/cds_31_4.cfm" />
+<cfinclude template="/include/qry/cds_31_4.cfm" />
                             <cfinclude template="/include/qry/cos_31_5.cfm" />
                             <cfparam name="sel_coname" default="%"/>
 
@@ -354,10 +352,8 @@
                                     <cfset i=0>
                             </cfif>
                         </cfloop>
-                   
-                   
-                   
-                    </cfif>
+
+</cfif>
 
                     <cfif #view# is "tbl">
                         <div class="container">

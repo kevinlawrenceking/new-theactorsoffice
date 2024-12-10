@@ -113,8 +113,7 @@
     });
 </script>
 
-
-    <div class="form-group col-md-6">
+<div class="form-group col-md-6">
         <label for="new_audsourceid">Source </label>
         <select class="form-control" name="new_audsourceid" id="new_audsourceid" onChange="showDivx('hidden_divx', this);showDiv('hidden_div', this);showDivs('hidden_divs', this);showDivss('hidden_divss', this);requiredDiv('require_div', this);">
             <option value="">--</option>

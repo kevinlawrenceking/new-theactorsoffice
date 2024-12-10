@@ -7,21 +7,6 @@
 
      <cfset image_dir_uat="C:\home\theactorsoffice.com\wwwroot\uat-subdomain\app\assets\images\retina-circular-icons\14" />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <cfset dir_source_uat="C:\home\theactorsoffice.com\wwwroot\uat-subdomain\app\assets\images\retina-circular-icons\32" />
 <cfset dir_dest_uat="C:\home\theactorsoffice.com\wwwroot\uat-subdomain\app\assets\images\retina-circular-icons\14" />
 
@@ -43,17 +28,6 @@
 
                </cfif>
 </cfloop>
-
-
-
-
-
-
-
-
-
-
-
 
 <cfset dir_source_dev="C:\home\theactorsoffice.com\wwwroot\dev-subdomain\app\assets\images\retina-circular-icons\32" />
 <cfset dir_dest_dev="C:\home\theactorsoffice.com\wwwroot\dev-subdomain\app\assets\images\retina-circular-icons\14" />
@@ -77,9 +51,6 @@
                </cfif>
 </cfloop>
 
-
-
-
 <cfset dir_source_app="C:\home\theactorsoffice.com\wwwroot\app-subdomain_1.5\app\assets\images\retina-circular-icons\32" />
 <cfset dir_dest_app="application.retinaIcons14Url" />
 
@@ -100,8 +71,6 @@
 
                </cfif>
 </cfloop>
-
-
 
 <cfset dir_dest_dev="C:\home\theactorsoffice.com\wwwroot\dev-subdomain\app\assets\images\retina-circular-icons\14" />
 <cfset dir_dest_uat="C:\home\theactorsoffice.com\wwwroot\uat-subdomain\app\assets\images\retina-circular-icons\14" />
@@ -146,9 +115,7 @@
     </cfif>
 </cfloop>
 
-
-
- <cfcatch type="any">
+<cfcatch type="any">
     <!--- Custom error message --->
     <cfdump var="#cfcatch#">
     <cfoutput>

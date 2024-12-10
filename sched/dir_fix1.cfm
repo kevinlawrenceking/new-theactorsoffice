@@ -14,27 +14,21 @@ ORDER BY LENGTH(PARENTID) desc
     </Cfif>
 <cfloop query="pgitems">
 
- 
-        <cfoutput>
+<cfoutput>
             <cfset type="Dir" />
       <cfset id = "#pgitems.id#" />
 
-                    
-  <cfset PARENTID = ListDeleteAt(id, ListLen(id, "/"), "/")>                         
-                                   
-           
-                    <cfset NAME ="#replace('#id#','#parentid#/','','All')#" />
-      
+<cfset PARENTID = ListDeleteAt(id, ListLen(id, "/"), "/")>                         
 
-             
-             <cfset directory ="c:\home\theactorsoffice.com\wwwroot\dev-subdomain#replace('#parentid#','/','\','All')#" />
+<cfset NAME ="#replace('#id#','#parentid#/','','All')#" />
+
+<cfset directory ="c:\home\theactorsoffice.com\wwwroot\dev-subdomain#replace('#parentid#','/','\','All')#" />
         <cfset status="Calculated" />
             <cfset size="0" />
             <cfset DateLastModified="" />
         </cfoutput>
-            
-            
-            <cfif #name# contains ".">
+
+<cfif #name# contains ".">
               <cfset Ext = listLast(name,".")>
                   <cfelse>
                       <cfset ext = "" />
@@ -79,18 +73,7 @@ ORDER BY LENGTH(PARENTID) desc
                 )
             </cfquery>
 
-          
+</cfif>
 
-        </cfif>
+</cfloop>
 
-    
-    
-    
-    
-    
-    
-    
-   
-    </cfloop>
-                
-         

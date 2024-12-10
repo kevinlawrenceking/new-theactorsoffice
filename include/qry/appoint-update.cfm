@@ -13,10 +13,5 @@
     
     </cfif>
 
-
-
-
-
- <cfinclude template="/include/qry/contacts_335_5.cfm" />
-
+<cfinclude template="/include/qry/contacts_335_5.cfm" />
 

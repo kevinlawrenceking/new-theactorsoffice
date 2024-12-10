@@ -24,13 +24,10 @@
     </cfif>
 </cfloop>
 
- 
-
 <!--- Insert missing files into the database --->
 <cfloop array="#missingFiles#" index="file">
 
-
-    <cfquery result="result" datasource="abod">
+<cfquery result="result" datasource="abod">
         INSERT INTO tao_files (filename, status, path, updated_timestamp)
         VALUES (
             <cfqueryparam value="#file#" cfsqltype="cf_sql_varchar" maxlength="255">,

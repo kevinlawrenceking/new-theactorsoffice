@@ -10,8 +10,7 @@
 
     <cfoutput>#f#</cfoutput>
 
-
-    <cfset fname = listLast(f, "/")>
+<cfset fname = listLast(f, "/")>
 
     <!--- Try to insert each file into the database --->
     <cftry>

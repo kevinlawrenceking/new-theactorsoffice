@@ -22,18 +22,16 @@ Select * from taousers where useremail = '#trim(x.userEmail)#'
     </cfquery>
     
     <cfif #findcontact.recordcount# is "0">
-    
-    
-        <cfquery  name="add"   result="result">
+
+<cfquery  name="add"   result="result">
         INSERT INTO contactdetails_tbl (userid,contactfullname,contactstatus) 
         VALUES (#new_userid#,'#TRIM(x.fname)# #trim(x.lname)#','Pending')
         </cfquery>
        
         <cfset new_contactid=result.generated_key />
          <cfset contactid=result.generated_key />
-        
-        
-        <cfquery result="result"  name="update"  >
+
+<cfquery result="result"  name="update"  >
         UPDATE contactdetails
         SET contactstatus = 'Working'        
         <cfif #x.contactMeetingLoc# is not "">
@@ -55,23 +53,19 @@ Select * from taousers where useremail = '#trim(x.userEmail)#'
                 
             ,birthday_dd =  <cfqueryparam cfsqltype="cf_sql_varchar" value="#new_birthday_dd#" /> 
             </cfif>
-        
 
-        
-        WHERE contactid = #new_contactid#
+WHERE contactid = #new_contactid#
         </cfquery>
-        
-    
-        <!--- Add tag --->
+
+<!--- Add tag --->
     
         <CFIF #X.TAG# IS NOT "">
             
                 <cfset new_valuetext = "#trim(x.tag)#" />
                 <cfset new_valuecategory = "Tag"  />
                 <cfset new_valuetype = "Tags" />
-    
-    
-                <cfquery  name="add"   result="result" >
+
+<cfquery  name="add"   result="result" >
                 INSERT INTO contactitems (contactid,valuetype,itemStatus,valueCategory,valuetext)
                 VALUES (
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#new_contactid#" /> 
@@ -83,17 +77,15 @@ Select * from taousers where useremail = '#trim(x.userEmail)#'
                 </cfquery>
         </CFIF>
 
-
-         <!--- Add Business Email --->
+<!--- Add Business Email --->
     
         <CFIF #X.BUSINESS_EMAIL# IS NOT "">
             
                 <cfset new_valuetext = "#trim(x.BUSINESS_EMAIL)#" />
                 <cfset new_valuecategory = "Email"  />
                 <cfset new_valuetype = "Business" />
-    
-    
-                <cfquery  name="add"   result="result" >
+
+<cfquery  name="add"   result="result" >
                 INSERT INTO contactitems (contactid,valuetype,itemStatus,valueCategory,valuetext)
                 VALUES (
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#new_contactid#" /> 
@@ -111,9 +103,8 @@ Select * from taousers where useremail = '#trim(x.userEmail)#'
                 <cfset new_valuetext = "#trim(x.PERSONAL_EMAIL)#" />
                 <cfset new_valuecategory = "Email"  />
                 <cfset new_valuetype = "Personal" />
-    
-    
-                <cfquery  name="add"   result="result" >
+
+<cfquery  name="add"   result="result" >
                 INSERT INTO contactitems (contactid,valuetype,itemStatus,valueCategory,valuetext)
                 VALUES (
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#new_contactid#" /> 
@@ -125,16 +116,14 @@ Select * from taousers where useremail = '#trim(x.userEmail)#'
                 </cfquery>
             
         </CFIF>  
-            
 
-        <CFIF #X.WORK_PHONE# IS NOT "">
+<CFIF #X.WORK_PHONE# IS NOT "">
             
                 <cfset new_valuetext = "#trim(x.WORK_PHONE)#" />
                 <cfset new_valuecategory = "Phone"  />
                 <cfset new_valuetype = "Work" />
-    
-    
-                <cfquery  name="add"   result="result" >
+
+<cfquery  name="add"   result="result" >
                 INSERT INTO contactitems (contactid,valuetype,itemStatus,valueCategory,valuetext)
                 VALUES (
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#new_contactid#" /> 
@@ -152,9 +141,8 @@ Select * from taousers where useremail = '#trim(x.userEmail)#'
                 <cfset new_valuetext = "#trim(x.MOBILE_PHONE)#" />
                 <cfset new_valuecategory = "Phone"  />
                 <cfset new_valuetype = "Mobile" />
-    
-    
-                <cfquery  name="add"   result="result" >
+
+<cfquery  name="add"   result="result" >
                 INSERT INTO contactitems (contactid,valuetype,itemStatus,valueCategory,valuetext)
                 VALUES (
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#new_contactid#" /> 
@@ -166,16 +154,14 @@ Select * from taousers where useremail = '#trim(x.userEmail)#'
                 </cfquery>
             
         </CFIF>  
-    
-    
-        <CFIF #X.HOME_PHONE# IS NOT "">
+
+<CFIF #X.HOME_PHONE# IS NOT "">
             
                 <cfset new_valuetext = "#trim(x.HOME_PHONE)#" />
                 <cfset new_valuecategory = "Phone"  />
                 <cfset new_valuetype = "Home" />
-    
-    
-                <cfquery  name="add"   result="result" >
+
+<cfquery  name="add"   result="result" >
                 INSERT INTO contactitems (contactid,valuetype,itemStatus,valueCategory,valuetext)
                 VALUES (
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#new_contactid#" /> 
@@ -187,16 +173,14 @@ Select * from taousers where useremail = '#trim(x.userEmail)#'
                 </cfquery>
             
         </CFIF>  
-    
-    
-        <CFIF #X.COMPANY# IS NOT "">
+
+<CFIF #X.COMPANY# IS NOT "">
             
                 <cfset new_valuetext = "#trim(x.COMPANY)#" />
                 <cfset new_valuecategory = "Company"  />
                 <cfset new_valuetype = "Company" />
-    
-    
-                <cfquery  name="add"   result="result" >
+
+<cfquery  name="add"   result="result" >
                 INSERT INTO contactitems (contactid,valuetype,itemStatus,valueCategory,valuetext)
                 VALUES (
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#new_contactid#" /> 
@@ -206,10 +190,7 @@ Select * from taousers where useremail = '#trim(x.userEmail)#'
                 
                 ,<cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(new_valuetext)#" />    
 
-                    
-                    
-                    
-                    )
+)
                 </cfquery>
             
         </CFIF>  
@@ -219,9 +200,8 @@ Select * from taousers where useremail = '#trim(x.userEmail)#'
                 <cfset new_valuetext = "#trim(x.ADDRESS)#" />
                 <cfset new_valuecategory = "Address"  />
                 <cfset new_valuetype = "Work" />
-    
-    
-                <cfquery  name="add"   result="result" >
+
+<cfquery  name="add"   result="result" >
                 INSERT INTO contactitems (contactid,valuetype,itemStatus,valueCategory,valueStreetAddress,valueExtendedAddress,valueCity,valueRegion,valueCountry,valuePostalCode)
                 VALUES (
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#new_contactid#" /> 
@@ -240,12 +220,10 @@ Select * from taousers where useremail = '#trim(x.userEmail)#'
         </CFIF>     
  
     <cfif #x.maintenance_or_target# is "Target" > 
- 
-       
-       <CFSET NEW_SYSTEMTYPE = "Targeted List" />
-       
-    
-        <cfquery result="result"  name="findscope"    >   
+
+<CFSET NEW_SYSTEMTYPE = "Targeted List" />
+
+<cfquery result="result"  name="findscope"    >   
 SELECT * FROM contactitems WHERE valuecategory = 'Tag' AND valuetext = 'Casting Director' AND contactid = #contactid# AND itemstatus = 'Active'
 </cfquery>
 
@@ -257,36 +235,27 @@ SELECT * FROM contactitems WHERE valuecategory = 'Tag' AND valuetext = 'Casting 
    <cfset new_systemscope = "Industry" /> 
     
 </cfif>       
-           
-    
-                 <cfquery result="result"  name="FindSystem"    >  
+
+<cfquery result="result"  name="FindSystem"    >  
             
             Select * from fusystems where systemtype = <cfqueryparam cfsqltype="cf_sql_varchar" value="#new_systemtype#" /> and systemscope = <cfqueryparam cfsqltype="cf_sql_varchar" value="#new_systemscope#" />
             </cfquery>
-            
-            
-            <cfif #findsystem.recordcount# is "1">
+
+<cfif #findsystem.recordcount# is "1">
             
             <cfset systemid = findsystem.systemid />
                 
                 <cfinclude template="add_system.cfm" />
-                
-                
-            
-            </cfif>
+
+</cfif>
                 
        </cfif>
-               
-               
-               
-               
-    <cfif #x.maintenance_or_target# is "Maintenance" > 
- 
-       
-       <CFSET NEW_SYSTEMTYPE = "Maintenance List" />
-       
-    
-        <cfquery result="result"  name="findscope"    >   
+
+<cfif #x.maintenance_or_target# is "Maintenance" > 
+
+<CFSET NEW_SYSTEMTYPE = "Maintenance List" />
+
+<cfquery result="result"  name="findscope"    >   
 SELECT * FROM contactitems WHERE valuecategory = 'Tag' AND valuetext = 'Casting Director' AND contactid = #contactid# AND itemstatus = 'Active'
 </cfquery>
 
@@ -298,41 +267,33 @@ SELECT * FROM contactitems WHERE valuecategory = 'Tag' AND valuetext = 'Casting 
    <cfset new_systemscope = "Industry" /> 
     
 </cfif>       
-           
-    
-                 <cfquery result="result"  name="FindSystem"    >  
+
+<cfquery result="result"  name="FindSystem"    >  
             
             Select * from fusystems where systemtype = <cfqueryparam cfsqltype="cf_sql_varchar" value="#new_systemtype#" /> and systemscope = <cfqueryparam cfsqltype="cf_sql_varchar" value="#new_systemscope#" />
             </cfquery>
-            
-            
-            <cfif #findsystem.recordcount# is "1">
+
+<cfif #findsystem.recordcount# is "1">
             
             <cfset systemid = findsystem.systemid />
                 
                 <cfinclude template="add_system.cfm" />
-                
-                
-            
-            </cfif>
+
+</cfif>
                 
        </cfif>
-                  
-        
-        
-        <cfset select_userid = new_userid />
+
+<cfset select_userid = new_userid />
 <cfset select_contactid = new_contactid />
 <cfinclude template="folder_setup.cfm" />
-               
-               
-                    <cfquery result="result"  name="update"  >
+
+<cfquery result="result"  name="update"  >
         UPDATE contactdetails
         SET contactstatus = 'Active' where contactid = #contactid#
 
         </cfquery>
-               
-        
-           <cfquery result="result"  name="update"  >
+
+<cfquery result="result"  name="update"  >
         update contactsimport
         set status = 'Completed'
         where id = #new_id#
@@ -344,23 +305,10 @@ SELECT * FROM contactitems WHERE valuecategory = 'Tag' AND valuetext = 'Casting 
         set status = 'Duplicate'
         where id = #new_id#
         </cfquery>
-        
-        
-        </cfif>   
 
-    
-    
-    
-                </cfif>   
-  
+</cfif>   
+
+</cfif>   
 
 </cfloop>
 
-
-    
-    
-    
-    
-    
-
-        

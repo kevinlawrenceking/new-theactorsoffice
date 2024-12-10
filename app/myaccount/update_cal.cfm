@@ -15,8 +15,7 @@
 <cfset rev = rand() />
 </cfif>
 
-
-    <cfquery result="result"  name="update">
+<cfquery result="result"  name="update">
         update taousers
         set calstarttime =
         <cfqueryparam cfsqltype="cf_sql_time" value="#calstarttime#" />

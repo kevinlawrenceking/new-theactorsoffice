@@ -1,7 +1,6 @@
 <cfparam name="u" default="" />
 <cfparam name="p" default="" />
 
-
 <cfparam name="pwrong" default="N" />
 
 <!DOCTYPE html>
@@ -13,9 +12,8 @@
         <meta content="The Actor's Office Application" name="description" />
         <meta content="Jodie Bentley" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    
 
-		<!--- App css --->
+<!--- App css --->
 		<link href="/assets/css/bootstrap-modern.min.css" rel="stylesheet" type="text/css" id="bs-default-stylesheet" />
 		<link href="/assets/css/app-modern.min.css" rel="stylesheet" type="text/css" id="app-default-stylesheet" />
 
@@ -73,8 +71,7 @@
         </div>
         <!--- end page --->
 
-
-        <footer class="footer footer-alt text-white-50">
+<footer class="footer footer-alt text-white-50">
               &copy; 2021 The Actor's Office &trade; - All Right Reserved.
         </footer>
 

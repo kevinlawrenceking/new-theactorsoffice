@@ -20,7 +20,6 @@
     <cflocation url="/include/reportsrefresh.cfm?refresh=n" />
 </cfif>
 
-
 <!--- Form for report generation --->
 <form action="/include/reportsRefresh.cfm">
     <cfoutput>

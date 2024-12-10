@@ -44,6 +44,5 @@
     new_isDeleted = new_isDeleted,
     isdirect = isdirect
     ,new_contactid = new_contactid
-    
-    
-    ) />
+
+) />

@@ -460,13 +460,11 @@
                     var tabSetWidth = 0;
                     var xPxAvailable;
 
-                    
-                    $element.children('li').each(function() {
+$element.children('li').each(function() {
                         tabSetWidth += $(this).outerWidth(true);
                     });
 
-                    
-                    xPxAvailable = parentWidth - tabSetWidth;
+xPxAvailable = parentWidth - tabSetWidth;
 
                     $element.find('.dropdown-menu a').each(function() {
                         if ($(this).data('width') <= xPxAvailable) {

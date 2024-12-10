@@ -25,8 +25,7 @@ from `tao_files` where isapp = 0
         <cfif fileExists(fullFilePath)>
             <cfset fileContent = ToString(fileRead(fullFilePath))>
 
-
-            <cfif REFindNoCase("#qryFilename#", fileContent)>
+<cfif REFindNoCase("#qryFilename#", fileContent)>
                 
                 <cfif len(parentIds) EQ 0>
                     <!--- Start the list if it's the first parent found --->

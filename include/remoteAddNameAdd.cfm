@@ -4,8 +4,6 @@
 <!--- Include the query to add a new contact --->
 <cfinclude template="/include/qry/add_211_1.cfm" />
 
-
-
 <!--- Set the contact ID for further processing --->
 <cfset contactid = currentid />
 

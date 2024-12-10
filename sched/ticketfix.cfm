@@ -4,7 +4,6 @@
 SELECT * FROM tickets WHERE verid = 7 AND ticketstatus = 'Implemented'
  
 </cfquery>
-   
 
 <cfloop query="x">
     
@@ -36,9 +35,8 @@ SELECT * FROM tickets WHERE verid = 7 AND ticketstatus = 'Implemented'
         <cfqueryparam value="Pending" cfsqltype="cf_sql_varchar" />
                                               ,
         <cfqueryparam value="Bug" cfsqltype="cf_sql_varchar" />     
-        
-        
-                      ,
+
+,
         <cfqueryparam value="D" cfsqltype="cf_sql_varchar" />   
         
           ,
@@ -49,9 +47,6 @@ SELECT * FROM tickets WHERE verid = 7 AND ticketstatus = 'Implemented'
         
         )
 
+</cfquery>
 
-    </cfquery>
-      
-    
-    
 </cfloop>

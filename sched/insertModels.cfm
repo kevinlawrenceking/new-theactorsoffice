@@ -5,9 +5,8 @@
 </cfquery>
 
 <cfloop query="getDistinctTables">
-  
-    
-    <!--- Insert into components table --->
+
+<!--- Insert into components table --->
     <cfquery result="result" datasource="abod">
         INSERT INTO models (tableName)
         VALUES (

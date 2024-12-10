@@ -13,9 +13,7 @@
 
     <cfloop array="#parentIDs#" index="parentID">
 
-    
-        
-        <!--- Get the parent file details --->
+<!--- Get the parent file details --->
         <cfquery result="result" name="getParentFile" datasource="abod">
             SELECT id, path, filename
             FROM tao_files

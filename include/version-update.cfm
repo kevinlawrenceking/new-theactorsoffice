@@ -151,9 +151,8 @@
                         </div>
                       </div>
                     </div>
-                
 
-                  <div class="col-md-6">
+<div class="col-md-6">
                     <div class="form-group">
                       <label for="eventStartTime">Review Time</label>
                       <input id="reviewtime" class="form-control" value="#timeformat(details.reviewtime, 'hh:mm')#" name="new_reviewtime" type="time">
@@ -174,9 +173,8 @@
                           </div>
                         </div>
                       </div>
-              
 
-                    <div class="col-md-6">
+<div class="col-md-6">
                       <div class="form-group">
                         <label for="eventStartTime">Release Time</label>
                         <input id="releasetime" class="form-control" value="#timeformat(details.releasetime, 'hh:mm')#" name="new_releasetime" type="time">

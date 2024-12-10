@@ -4,7 +4,6 @@
 
 <cfset host = ListFirst(currentURL, ".") />
 
-
 <cfif #host# is "app">
     <cfset dsn = "abo" />
   <cfoutput>  <cfset rev = "#rand()#" /> </cfoutput>
@@ -17,14 +16,10 @@
         
     <cfset information_schema = "new_development" />
 </cfif>
-    
-    
-    <cfset rev = rand() />
-    
-    
 
-    
-     <cfquery result="result"    name="u"  >
+<cfset rev = rand() />
+
+<cfquery result="result"    name="u"  >
         SELECT * from taousers     
     </cfquery>
 
@@ -61,5 +56,4 @@ isDeleted
 
         </cfloop>
 
-
-    </cfloop>
+</cfloop>

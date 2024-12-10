@@ -1,8 +1,6 @@
 <cfset host = "app" />
 <cfset dsn = "abo" />
 
-
-
 <cfoutput>
     <cfset cal_root_dir="c:\home\theactorsoffice.com\wwwroot\app-subdomain\include\" />
     <cfset cal_root_url="https://app.theactorsoffice.com/" />
@@ -12,9 +10,8 @@
 
     <cfloop query="pgitems">
         <cfoutput>
-            
-          
-            <cfset prefix="#pgitems.type#" />
+
+<cfset prefix="#pgitems.type#" />
             <cfset type="#pgitems.type#" />
             
             <cfset name="#pgitems.name#" />
@@ -31,12 +28,10 @@
                   <cfelse>
                       <cfset ext = "" />
                     </cfif>
-                  
 
-            <cfset PARENTID = ListDeleteAt(ID, ListLen(ID, "/"), "/")>
- 
+<cfset PARENTID = ListDeleteAt(ID, ListLen(ID, "/"), "/")>
 
-        <cfquery result="result"  name="find">
+<cfquery result="result"  name="find">
             select Id from `pg#prefix#s`
             where #prefix#name =
             
@@ -96,14 +91,7 @@
                     where id = <cfqueryparam cfsqltype="cf_sql_varchar" value="#id#" />
                 </cfquery>
 
-
-
-        </cfif>
+</cfif>
 
     </cfloop>
-       
-                
-                
-                
-                
-    
+

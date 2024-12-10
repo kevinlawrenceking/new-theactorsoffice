@@ -1,6 +1,5 @@
 <CFINCLUDE template="remote_load.cfm" />
 
- 
 <cfquery result="result" name="details" >
 SELECT `Name`,`Company`,`Title`,`WhereMet`,`WhenMet`,`NotesLog`
 FROM sharez where contactid = '#contactid#'
@@ -13,11 +12,8 @@ FROM sharez where contactid = '#contactid#'
                                                 <cfif #Company# is not ""><cfif #title# is not ""><BR></cfif>#Company# </cfif>
                                                
                                             </p>
-                                       
-    
-    
-    
-    </cfoutput>
+
+</cfoutput>
 
 <cfquery result="result" name="events" >
 SELECT distinct p.projdate AS col1,
@@ -42,8 +38,6 @@ INNER JOIN (
 WHERE r.isdeleted IS FALSE AND p.isDeleted IS false
 AND x.contactid = #contactid#
 </cfquery>
-
-    
 
 <cfquery result="result" name="auditionz" >
     SELECT 
@@ -78,8 +72,7 @@ p.audprojectid AS recid
     
     INNER join audroles r on p.audprojectID = r.audprojectID
 
-  
- LEFT JOIN events a ON r.audroleid = a.audroleid 
+LEFT JOIN events a ON r.audroleid = a.audroleid 
  
  LEFT JOIN audsources s ON s.audSourceID = r.audSourceID
  LEFT JOIN contactdetails c ON c.contactID = p.contactid
@@ -101,19 +94,7 @@ GROUP BY r.audroleid, p.projname,s.audsource,rt.audroletype,r.iscallback,r.isred
 
 </cfquery>
 
-
-
-
-
-
-
-
-
-
-
-
-
-  <cfif #events.recordcount# is not "0">
+<cfif #events.recordcount# is not "0">
 <hr>
       <p>Audition History</p>
 
@@ -129,9 +110,7 @@ GROUP BY r.audroleid, p.projname,s.audsource,rt.audroletype,r.iscallback,r.isred
                 <cfloop query="events">
                     <cfoutput>
 
-                                
-                                
-                                <tr>
+<tr>
                         <td>#dateformat('#col1#','medium')#</td>
                                                         <td>#col2#</td>
                                    <td>#col3#</td>
@@ -142,7 +121,6 @@ GROUP BY r.audroleid, p.projname,s.audsource,rt.audroletype,r.iscallback,r.isred
         </div>
     </div>
 </div>
-
 
 <SCRIPT>
     $(document).ready(function() {
@@ -175,21 +153,4 @@ GROUP BY r.audroleid, p.projname,s.audsource,rt.audroletype,r.iscallback,r.isred
 
 </SCRIPT>
 </cfif>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

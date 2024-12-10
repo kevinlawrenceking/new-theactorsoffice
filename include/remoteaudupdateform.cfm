@@ -100,7 +100,6 @@
     }
     </cfif>
 
-
 </style>
 
 <cfset new_audcatid = aud_det.audcatid />
@@ -314,8 +313,7 @@
     </div>
 </div>
 
-
-        <script>
+<script>
             document.getElementById('populateFieldsButton').addEventListener('click', function() {
                 // Sample data fetched from the query (This will be dynamic)
                 var locationDetails = {
@@ -382,9 +380,7 @@
             <button type="submit" class="btn btn-primary btn-sm waves-effect waves-light" id="btn-save-event">Update</button>
         </div>
 
- 
-
-        <script>
+<script>
             $(document).ready(function() {
                 $(".parsley-examples").parsley()
             });
@@ -477,8 +473,7 @@ function filterRegions(countryId) {
     const regionDropdown = document.getElementById('region_id');
     const options = regionDropdown.options;
 
-
-    for (let i = 0; i < options.length; i++) {
+for (let i = 0; i < options.length; i++) {
         const option = options[i];
 
         if (option.dataset.chained === countryId || option.value === "") {

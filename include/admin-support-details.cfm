@@ -259,9 +259,7 @@
         </div>
     </div>
 
-
-
-    <!--- Ticket Log Table Section --->
+<!--- Ticket Log Table Section --->
     <div class="row">
         <div class="col-12">
             <div class="card">

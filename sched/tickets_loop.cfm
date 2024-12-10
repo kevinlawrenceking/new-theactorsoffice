@@ -2,8 +2,7 @@
 Select * from tickets
 </cfquery>  
 <cfloop query="z">
-    
-    
+
 <cfquery result="result" datasource="abo" name="update"  >   
         update tickets
         set ticketname  = <cfqueryparam cfsqltype="cf_sql_varchar" value="#z.ticketname#" />
@@ -21,12 +20,6 @@ Select * from tickets
      ,isdeleted  = <cfqueryparam cfsqltype="cf_sql_bit" value="#z.isdeleted#" />
         where ticketid = <cfqueryparam cfsqltype="cf_sql_integer" value="#z.ticketid#" />
         </cfquery>   
-    
-    
-    
+
 </cfloop>
-            
-        
-        
-        
-                
+

@@ -8,8 +8,6 @@
     
 </cfif>
 
-
-
 <cfparam name="t3" default="0" />
 
 <cfif #t3# is "1">
@@ -25,7 +23,6 @@
 <Cflocation url="/app/contact/?contactid=#contactid#&new_pgid=120" />
     
 </cfif>
-
 
 <cfparam name="dbug" default="N" />
 
@@ -95,8 +92,6 @@
 
 <cfinclude template="/include/qry/profiles.cfm" />
 
-
-
 <cfinclude template="/include/qry/sysactive.cfm" />
 
 <cfinclude template="/include/qry/notsall.cfm" />
@@ -124,7 +119,6 @@
     <cfset browser_contact_avatar_filename=details.contactphoto />
 
 </cfif>
-
 
 <cfquery result="result"  name="cu">
     SELECT i.itemid, c.catid, c.valuecategory FROM contactitems i INNER JOIN itemcategory c ON c.valuecategory = i.valuecategory WHERE contactid = #currentid#
@@ -226,7 +220,6 @@
 
 </cfloop>
 
-
 <script>
     $(document).ready(function() {
         $("#remoteUpdateTag").on("show.bs.modal", function(event) {
@@ -264,7 +257,6 @@
 
 </div>
 
-
 <script>
     $(document).ready(function() {
         $("#remoteNewForm").on("show.bs.modal", function(event) {
@@ -273,7 +265,6 @@
         });
     });
 </script>
-
 
 <div id="showmaint" class="modal fade" tabindex="-1" role="dialog" 
 
@@ -351,8 +342,6 @@
 
 </Cfoutput>
 
-
-
 <script>
     $(document).ready(function() {
         $("#remoteUpdateName").on("show.bs.modal", function(event) {
@@ -391,30 +380,22 @@
 
 </div>
 
-
-
 <div class="row">
 
     <div class="col-md-3 col-sm-6 col-xs-12">
 
         <div class="card h-100">
 
-
-            <Center>
+<Center>
                 <h4 class="card-header text-nowrap">
                     <cfoutput>#details.fullname#</cfoutput>
                 </h4>
             </Center>
             <div class="card-body">
 
-                
-                    <p class="card-text">
+<p class="card-text">
 
-
-
-
-
-                        <A href="/app/image-upload/?contactid=<cfoutput>#contactid#&ref_pgid=#pgid#</cfoutput>">
+<A href="/app/image-upload/?contactid=<cfoutput>#contactid#&ref_pgid=#pgid#</cfoutput>">
 
                             <figure>
 
@@ -425,25 +406,18 @@
                                         <center><img src="/media-<Cfoutput>#host#</cfoutput>/defaults/avatar.jpg" class="mr-3 rounded-circle gambar img-responsive img-thumbnail" style="max-width:120px;width:100%;" alt="profile-image" id="item-img-output" /></center>
                                 </CFIF>
 
-
-
-
-                            </figure>
+</figure>
 
                         </A>
 
+</p>
 
-
-                    </p>
-          
-
-            </div>
+</div>
         </div>
 
     </div>
 
-
-    <cfoutput>
+<cfoutput>
 
         <cfset fileExist="#FileExists(browser_contact_avatar_filename)#" />
 
@@ -458,9 +432,8 @@
         <div class="card h-100">
 
        <h4 class="card-header">
-             
 
-                        <cfif #emailcheck.recordcount# is "1">
+<cfif #emailcheck.recordcount# is "1">
 
                             <cfoutput>
 
@@ -520,20 +493,11 @@
 
                         </cfoutput>
 
-
-
-                     
-
-
-                </h4>
+</h4>
 
             <div class="card-body">
 
-          
-
-
-
-                <p class="mt-1 mb-0 py-1 text-muted font-14">
+<p class="mt-1 mb-0 py-1 text-muted font-14">
 
                     <cfloop query="tagscontact">
 
@@ -559,22 +523,13 @@
 
                 </p>
 
-
-
-
-
-
-
- 
-                        <cfif #details.contactpronoun# is not "">
+<cfif #details.contactpronoun# is not "">
      <p class="mt-1 mb-0 text-muted py-1 font-14">
                             <cfoutput><strong>Gender Pronoun:</strong> #details.contactpronoun#</cfoutput>
                             </p>
                         </cfif>
 
-
-
-                <p class="mt-1 mb-0 text-muted py-1 font-14">
+<p class="mt-1 mb-0 text-muted py-1 font-14">
                     <cfoutput>
                         <strong>Birthday:</strong>
 
@@ -596,8 +551,7 @@
                     </cfoutput>
                 </p>
 
-
-                <cfif #details.contactmeetingdate# is not "">
+<cfif #details.contactmeetingdate# is not "">
 
                     <cfset meetingdate="#dateformat('#details.contactmeetingdate#','medium')#" />
 
@@ -618,9 +572,7 @@
 
                 </cfif>
 
-
-
-                <cfif #details.referdetailsfullname# is not "">
+<cfif #details.referdetailsfullname# is not "">
 
                     <cfif #refer_details.recordcount# is "1">
 
@@ -633,19 +585,7 @@
 
                 </cfif>
 
-
-              
-
-
-
-
-
-
-
-
-
-
-                    <cfif #details.newsletter_yn# is "Y" or #details.googlealert_yn# is "Y" or #details.socialmedia_yn# is "Y">
+<cfif #details.newsletter_yn# is "Y" or #details.googlealert_yn# is "Y" or #details.socialmedia_yn# is "Y">
 
                         <p class="mt-1 mb-0 text-muted py-1  font-14">
 
@@ -693,36 +633,15 @@
 
                     </cfif>
 
-
-                    
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-            </div>
+</div>
         </div>
 
     </div>
 
 </div>
 <p>&nbsp;</p>
- 
 
-
-
-
-    <div class="card">
+<div class="card">
 
         <div class="btn-group py-2 col-md-12">
 
@@ -743,10 +662,7 @@
             </div>
         </div><!--- /btn-group --->
 
-
-
-
-        <div class="card-body">
+<div class="card-body">
 
             <cfif #pgid# is "117">
                 <cfinclude template="/include/contact_pane.cfm" />
@@ -767,13 +683,5 @@
         </div>
     </div>
 
- 
-
-
-
-
-
-
 <cfset script_name_include="/include/#ListLast(GetCurrentTemplatePath(), " \")#" />
 
- 

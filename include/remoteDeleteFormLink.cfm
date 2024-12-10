@@ -2,7 +2,6 @@
 <cfset siteLinksService = createObject("component", "services.SiteLinksService")>
 <cfset linkDetails = siteLinksService.getLinkDetailsById(new_id)>
 
-
 <cfoutput>
     <center>Are you sure you want to delete your #linkDetails.sitename# link?</center>
 </cfoutput>

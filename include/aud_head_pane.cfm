@@ -14,8 +14,7 @@
 
 <cfoutput>
 
-
-    <script>
+<script>
         $(document).ready(function() {
             $("##remoteadd").on("show.bs.modal", function(event) {
                 <!--- Load media addition modal content --->

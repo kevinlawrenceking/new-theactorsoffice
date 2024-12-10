@@ -19,15 +19,6 @@ SELECT `contactid`,`Name`,`Company`,`Title`,`Audition`,`WhereMet`,`WhenMet`,`Not
 FROM sharez where userid = #userid#
 </cfquery>
 
-
-
-
-
-
-
-
-
-
 <cfparam name="TAOVERSION" default="0" />
 <!DOCTYPE html>
 <html lang="en">
@@ -100,11 +91,8 @@ FROM sharez where userid = #userid#
 </head>
 
 <body class="loading">
-    
 
-    
-    
-    <div id="wrapper">
+<div id="wrapper">
         <cfif #host# is "dev">
             <div class="navbar-custom" style="background-color: #8b0000 !important;">
                 <cfelse>
@@ -173,18 +161,7 @@ FROM sharez where userid = #userid#
         </cfoutput>
     </cfloop>
 
-
-
-
-
-
-
-
-
-
-    <cfloop query="shares">
-
-
+<cfloop query="shares">
 
 <script>
 $(document).ready(function() {
@@ -195,11 +172,7 @@ $(document).ready(function() {
 });  
 </script>
 
-
-
-
-
-        <div id="remoteShareViewC<cfoutput>#shares.contactid#</cfoutput>" class="modal modal-lg fade" tabindex="-1" role="dialog" 
+<div id="remoteShareViewC<cfoutput>#shares.contactid#</cfoutput>" class="modal modal-lg fade" tabindex="-1" role="dialog" 
 
 >
 
@@ -230,10 +203,6 @@ $(document).ready(function() {
         </div>
 
     </cfloop>
-
-
-
-
 
 </body>
 

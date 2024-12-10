@@ -23,10 +23,8 @@ cfinclude template= /include/qry/uu_33_1.cfm    --->
     
     <!--- Check if there is exactly one follow-up record --->
     <cfif followup_contactid neq 0>
-        
 
-            
-            <cfoutput>
+<cfoutput>
                 <script>
                     $(document).ready(function() {
                   
@@ -37,9 +35,8 @@ cfinclude template= /include/qry/uu_33_1.cfm    --->
                     });
                 </script>
             </cfoutput>
-   
-        
-        <!--- Modal for adding follow-up system --->
+
+<!--- Modal for adding follow-up system --->
         <div id="follow" class="modal fade" tabindex="-1" role="dialog" >
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -58,7 +55,6 @@ cfinclude template= /include/qry/uu_33_1.cfm    --->
         </div>
     </cfif>
 </cfif>
-
 
 <!--- Include the query for adding missing records --->
 <cfinclude template="/include/qry/addmissing_33_3.cfm" />

@@ -4,9 +4,8 @@
     WHERE status <> 'deleted'
       AND qry_removed_yn = 1
       AND path = '/include'
-    
- 
-    ORDER BY `filename`
+
+ORDER BY `filename`
 </cfquery>
 
 <cfloop query="getFilesWithMultipleQueries">

@@ -115,10 +115,7 @@
                                                 )
                                             </cfquery>
 
- 
-
-
-                                            <cfif #find_fu.recordcount# is "0">
+<cfif #find_fu.recordcount# is "0">
 
                                                 <cfoutput>
 
@@ -180,24 +177,21 @@
                                                             and a.actionID is not null
                                                             ORDER BY a.actionNo
                                                         </cfquery>
-                                                         
 
-                                                        <cfset add_action="Y" />
+<cfset add_action="Y" />
                                                         
                                                         <cfset new_actionid = addDaysNo.actionid />
                                                         <cfset actiondaysno=numberformat(addDaysNo.actiondaysno) />
                                                         <cfif #adddaysno.isunique# is "1">
 
-
-                                                            <cfquery result="result"  name="checkUnique">
+<cfquery result="result"  name="checkUnique">
                                                                 SELECT d.contactid from
                                                                 contactdetails d
                                                                 where d.#adddaysno.uniquename# = 'Y'
                                                                 and d.contactid = #contactid# limit 1
                                                             </cfquery>
 
-
-                                                            <cfif #checkunique.recordcount# is "1">
+<cfif #checkunique.recordcount# is "1">
                                                                 <cfset #add_action#="N">
 
                                                             </cfif>
@@ -213,14 +207,8 @@
                                                             <cfset notstartdate=dateAdd('d', actionDaysNo, currentstartdate) />
 
                                                             <cfif notstartdate lte currentstartdate>
-                                                                
-                                                      
-                                                                
-                                                                
-                                                                
-                                                                
-                                                                
-                                                                <cfquery  name="addNotification" result="result">
+
+<cfquery  name="addNotification" result="result">
                                                                     INSERT INTO funotifications (actionid,userid,suID,notstartdate)
                                                                     VALUES (#numberformat(new_actionid)#,#numberformat(new_userid,999999)#,#numberformat(NewSuid,999999)#,'#DateFormat(notstartdate,'yyyy-mm-dd')#')
                                                                 </cfquery>
@@ -238,8 +226,7 @@
 
                                                         <cfelse>
 
-
-                                            </cfif>
+</cfif>
 
                                         </cfloop>
 
@@ -253,12 +240,7 @@
                                     </cfloop>
 </cftransaction>
 
-       
-                                                
-                                                
-                                                
-                                                                                        
-  <cfquery result="result"  name="uppdate_when" >
+<cfquery result="result"  name="uppdate_when" >
 UPDATE contactdetails cd
 INNER JOIN (
   SELECT x.contactid, MIN(e.eventstop) AS oldest_new_contactmeetingdate
@@ -283,7 +265,4 @@ INNER JOIN (
 SET cd.contactMeetingloc = sub.oldest_new_contactMeetingLoc
 WHERE cd.contactMeetingloc IS NULL;
 </cfquery>
-                                                
-                                                
-                                                
-                                                
+

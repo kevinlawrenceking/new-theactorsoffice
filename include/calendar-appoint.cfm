@@ -1,7 +1,5 @@
 <!--- This ColdFusion page includes various templates related to calendar functionality and event management. --->
 
-
-
 <!--- Include event types for user --->
 <cfinclude template="/include/qry/eventtypes_user.cfm" />
 

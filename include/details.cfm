@@ -369,9 +369,7 @@
                     </div>
                 </cfoutput>
 
-                
-
-                                <cfelse>
+<cfelse>
                                     <cfoutput>
                                         <input type="hidden" name="new_#RPGUpdate.fname#" value="" />
                                     </cfoutput>

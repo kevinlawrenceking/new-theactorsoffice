@@ -6,7 +6,6 @@
     <cfqueryparam cfsqltype="cf_sql_varchar" value="Missing" />
     where filestatus =  <cfqueryparam cfsqltype="cf_sql_varchar" value="Found" />
 </cfquery>
- 
 
 <cfoutput>
     <cfset cal_root_dir="c:\home\theactorsoffice.com\wwwroot\#host#-subdomain\" />
@@ -36,20 +35,14 @@
                   <cfelse>
                       <cfset ext = "" />
                     </cfif>
-                  
 
-            <cfset PARENTID = ListDeleteAt(ID, ListLen(ID, "/"), "/")>
- 
+<cfset PARENTID = ListDeleteAt(ID, ListLen(ID, "/"), "/")>
 
-                
-                <cfquery result="result"  name="find">    
+<cfquery result="result"  name="find">    
                  update `pg#prefix#s`
                     set #prefix#status = 'Found'
             where id = '#id#' and #prefix#status <> 'Confirmed'
                 </cfquery>
 
     </cfloop>
-       
-                
-                
-                   
+

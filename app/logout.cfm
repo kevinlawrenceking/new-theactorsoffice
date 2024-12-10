@@ -5,6 +5,4 @@
     </cfif>   
    
      <cflocation url="/loginform.cfm" />
-     
-     
- 
+

@@ -31,7 +31,6 @@
     <cfset new_durseconds = duration.durseconds />
     <cfset new_eventStopTime = "#timeformat(DateAdd("s", "#new_durseconds#", "#eventStartTime#"), 'HH:MM:SS')#" />
 
-  
 </cfif>
 
 <!--- Clean event description and limit its length --->
@@ -46,8 +45,6 @@
 <cfinclude template="/include/qry/t_14_2.cfm" />
 <cfinclude template="/include/qry/tt_14_3.cfm" />
 <cfinclude template="/include/qry/dd_14_4.cfm" />
-
-
 
 <!--- Loop through relationships and process each one --->
 <cfloop list="#relationships#" index="relationship">

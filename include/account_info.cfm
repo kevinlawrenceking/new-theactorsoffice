@@ -72,14 +72,11 @@
 
           <input type="hidden" name="t4" value="1"/>
 
-         
-
-    <!--- Start and End times for the loop --->
+<!--- Start and End times for the loop --->
 <cfset startTime = createTime(5, 0, 0)>
 <cfset endTime = createTime(23, 45, 0)>
 
-    
-    <!--- Start Time Selection --->
+<!--- Start Time Selection --->
     <div class="form-group col-md-6">
         <label for="calstarttime">Start Time<span class="text-danger">*</span></label>
         <select class="form-control" name="calstarttime" id="calstarttime">
@@ -111,8 +108,7 @@
     </div>
 </cfoutput>
 
-
-          <div class="form-group col-md-6">
+<div class="form-group col-md-6">
 
             <label for="defrows">Rows Per Page<span class="text-danger">*</span>
             </label>
@@ -179,7 +175,6 @@
 </div>
 <!--- modal end 
 <cfinclude template="/include/qry/FindUser_1694_2.cfm"/> --->
-
 
 <cfinclude template="/include/qry/dateformats_463_1.cfm"/>
 
@@ -440,9 +435,7 @@
 
           <cfinclude template="/include/qry/addMembers.cfm"/>
 
-     
-
-          <cfset new_region_id = region_id/>
+<cfset new_region_id = region_id/>
 
           <cfif #new_region_id# is "" and #def_region_id# is not "">
 
@@ -483,8 +476,7 @@
             </cfif>
           </cfif>
 
-
-            <div id="updatecal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
+<div id="updatecal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
 
 >
 

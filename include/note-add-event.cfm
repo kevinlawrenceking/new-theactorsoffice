@@ -26,9 +26,8 @@
                     
                     <div class="row">
                         <!--- Check if 'seleeectzi' is defined and initialize selectize if true --->
-           
-                    
-                        <div class="form-group col-md-12">
+
+<div class="form-group col-md-12">
                             <label for="noteDetails">Note Title<span class="text-danger">*</span></label>
                             <input class="form-control" type="text" name="noteDetails" id="noteDetails" data-parsley-required />
                         </div>

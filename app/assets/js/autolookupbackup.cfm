@@ -9,7 +9,6 @@
   <cfset dsn = "abod" />
 <cfset rev = rand() />
 </cfif>
-    
 
 <cfquery result="result"  name="jsons">
             SELECT col1 from contacts_ss WHERE userid = #userid# and col1 not like '%#chr(34)#%'
@@ -38,9 +37,8 @@
                         }
                     }
                 }),
-                           
-                           
-                a = $.map([ < cfloop query = "jsons" > < cfoutput > < cfif #jsons.currentrow # is not "1" > , < /cfif>"#Replace(jsons.col1,"""""","","all")#"</cfoutput> < /cfloop>], function(e) {
+
+a = $.map([ < cfloop query = "jsons" > < cfoutput > < cfif #jsons.currentrow # is not "1" > , < /cfif>"#Replace(jsons.col1,"""""","","all")#"</cfoutput> < /cfloop>], function(e) {
                     return {
                         value: e,
                         data: {
@@ -48,10 +46,8 @@
                         }
                     }
                 }),
-                           
-                           
 
-                b = $.map([ < cfloop query = "jsons_myteam" > < cfoutput > < cfif #jsons_myteam.currentrow # is not "1" > , < /cfif>"#Replace(jsons_myteam.col1,"""""","","all")#"</cfoutput> < /cfloop>], function(e) {
+b = $.map([ < cfloop query = "jsons_myteam" > < cfoutput > < cfif #jsons_myteam.currentrow # is not "1" > , < /cfif>"#Replace(jsons_myteam.col1,"""""","","all")#"</cfoutput> < /cfloop>], function(e) {
                     return {
                         value: e,
                         data: {
@@ -60,8 +56,7 @@
                     }
                 }),
 
-
-                j = a;
+j = a;
             o = e.concat(a);
             i = o.concat(b);
  
@@ -97,8 +92,7 @@
 
         </script>
 
-
-  <script>
+<script>
             var e = $.map([ < cfloop query = "jtags" > < cfoutput > < cfif #jtags.currentrow # is not "1" > , < /cfif>"#Replace(jtags.col1,"""""","","all")#"</cfoutput> < /cfloop>], function(e) {
                     return {
                         value: e,
@@ -107,9 +101,8 @@
                         }
                     }
                 }),
-                           
-                           
-                a = $.map([ < cfloop query = "jsons" > < cfoutput > < cfif #jsons.currentrow # is not "1" > , < /cfif>"#Replace(jsons.col1,"""""","","all")#"</cfoutput> < /cfloop>], function(e) {
+
+a = $.map([ < cfloop query = "jsons" > < cfoutput > < cfif #jsons.currentrow # is not "1" > , < /cfif>"#Replace(jsons.col1,"""""","","all")#"</cfoutput> < /cfloop>], function(e) {
                     return {
                         value: e,
                         data: {
@@ -117,10 +110,8 @@
                         }
                     }
                 }),
-                           
-                           
 
-                b = $.map([ < cfloop query = "jsons_myteam" > < cfoutput > < cfif #jsons_myteam.currentrow # is not "1" > , < /cfif>"#Replace(jsons_myteam.col1,"""""","","all")#"</cfoutput> < /cfloop>], function(e) {
+b = $.map([ < cfloop query = "jsons_myteam" > < cfoutput > < cfif #jsons_myteam.currentrow # is not "1" > , < /cfif>"#Replace(jsons_myteam.col1,"""""","","all")#"</cfoutput> < /cfloop>], function(e) {
                     return {
                         value: e,
                         data: {
@@ -129,8 +120,7 @@
                     }
                 }),
 
-
-                j = a;
+j = a;
             o = e.concat(a);
             i = o.concat(b);
 
@@ -165,5 +155,4 @@
                 })
 
         </script>
-
 

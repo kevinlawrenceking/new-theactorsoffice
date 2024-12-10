@@ -4,7 +4,6 @@
 <cfset share_dir = "#session.userMediaPath#\share" />
 </cfoutput>
 
-
 <cfquery result="result" name="shares"  >	
 SELECT 
 	`d`.`recordname` AS `Name`
@@ -14,8 +13,7 @@ SELECT
 	,`d`.`contactMeetingLoc` AS `WhereMet`
 	,`d`.`contactMeetingDate` AS `WhenMet`
 
-	
-	,p.projname AS `Project`
+,p.projname AS `Project`
 	,c.audcatname AS `Category`
 	,sc.audsubcatname AS `SubCategory`
 	,rt.audroletype AS `RoleType`
@@ -80,22 +78,17 @@ GROUP BY `d`.`contactID`
 select * from taousers 
 where left(passwordhash,10) = '#U#'
 </cfquery>	   
-        
 
 <cfoutput>
     
     <cfset sub_name_a = "#x.userfirstname#_#x.userlastname#" />
-    
- 
-    <cfset sub_name_b = "#Replace(sub_name_a,' ','','all')#" />
 
+<cfset sub_name_b = "#Replace(sub_name_a,' ','','all')#" />
 
-    <cfset sub_name_c = "#dateformat('#now()#','YYYYMMDD')#" />   
+<cfset sub_name_c = "#dateformat('#now()#','YYYYMMDD')#" />   
     <cfset sub_name_d = "#timeformat('#now()#','HHMMSS')#" />   
-    
-    
+
 <cfset fileName = "#sub_name_b##sub_name_c##sub_name_d#.xls" />
- 
 
 <cfscript>
 cfspreadsheet( action="write", fileName="#share_dir#\#fileName#", query="shares", overwrite=true );

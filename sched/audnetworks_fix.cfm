@@ -16,14 +16,10 @@
         
     <cfset information_schema = "new_development" />
 </cfif>
-    
-    
-    <cfset rev = rand() />
-    
-    
 
-    
-     <cfquery result="result"    name="u"  >
+<cfset rev = rand() />
+
+<cfquery result="result"    name="u"  >
         SELECT * from taousers     
     </cfquery>
 
@@ -60,5 +56,4 @@ isDeleted
 
         </cfloop>
 
-
-    </cfloop>
+</cfloop>

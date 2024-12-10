@@ -13,9 +13,8 @@
 <div class="left-side-menu">
 
     <div class="h-100" data-simplebar>
-  
-        
-        <!--- Sidemenu --->
+
+<!--- Sidemenu --->
         <div id="sidebar-menu">
 
                 <ul id="side-menu">
@@ -53,8 +52,7 @@
 --->
                 <cfif #userrole# is "Administrator">
 
- 
-                <li>
+<li>
                                 <a href="#sidebara" data-bs-toggle="collapse">
                                 <i data-feather="sliders"></i>
                                     <span> Relationships - Admin </span>
@@ -71,15 +69,12 @@
                             </a>
                         </li>
                                         </Cfoutput>
-                                        
-                                        
-                                    </ul>
+
+</ul>
                                 </div>
                             </li>
-          
-                
-                
-                <li>
+
+<li>
                                 <a href="#sidebarEmail" data-bs-toggle="collapse">
                                       <i data-feather="sliders"></i>
                                     <span> Audition - Admin </span>
@@ -96,23 +91,16 @@
                             </a>
                         </li>
                                         </Cfoutput>
-                                        
-                                        
-                                    </ul>
+
+</ul>
                                 </div>
                             </li>
-                
-                
-                
-                
-                </cfif>
-                
-                
-                  
-                <cfparam name="userisbetatester" default="0" />
-                
 
-                <cfif #userIsBetaTester# is "1">
+</cfif>
+
+<cfparam name="userisbetatester" default="0" />
+
+<cfif #userIsBetaTester# is "1">
                     <li>
                         <a href="/app/Testings/">
                             <i data-feather="list"></i>
@@ -122,13 +110,11 @@
 
                 </cfif>
 
-
-            </ul>
+</ul>
 
         </div>
- 
 
-        <div class="clearfix"></div>
+<div class="clearfix"></div>
 
     </div>
     <!--- Sidebar left --->

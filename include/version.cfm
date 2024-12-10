@@ -295,16 +295,14 @@
                                     </script>
                                     
                                     <tr>
-                                                 
-                                        
-                                        <TD>
+
+<TD>
                                             <A href="/app/admin-support-details/?recid=#results.recid#&oldverid=#details.verid#" title="#results.col4# - #results.col5#">#results.recid#</A>
                                         </TD>
                                         
                                         <td>#results.col2#</td>
-                                
-                                        
-                                        <td>#results.col45#</td>
+
+<td>#results.col45#</td>
                                         <form class="px-3 col-md-12" id="updatever#results.recid#" method="post" action="/include/updatetickver2.cfm">
                                             <td>
                                                 <input type="hidden" name="ticketid" value="#results.recid#" />

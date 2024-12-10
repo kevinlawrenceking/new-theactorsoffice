@@ -40,9 +40,8 @@ $(document).ready(function() {
 
     setupAutocomplete('#companySearch', '#results', '/include/CompanyLookup.cfc', 'getCompanies');
     setupAutocomplete('#contactFullName', '#nameResults', '/include/FullNameLookup.cfc', 'getFullNames');
-    
 
-    $('#contactFullName, #new_audrolename').on('keydown', function(e) {
+$('#contactFullName, #new_audrolename').on('keydown', function(e) {
         if (e.keyCode == 13) {
             e.preventDefault();
             $(this).blur();

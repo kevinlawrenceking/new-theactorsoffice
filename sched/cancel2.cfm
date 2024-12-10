@@ -15,21 +15,17 @@
     <cfset new_userfirstname = x.userfirstname />
     <cfset new_userlastname = x.userlastname />
 <h3><cfoutput>#new_username#</cfoutput></h3>
-    
 
-    
-    <cfquery result="result"  name="findemail" maxrows="1">
+<cfquery result="result"  name="findemail" maxrows="1">
         SELECT p.planname, t.* FROM thrivecart t  
         inner join paymentplans p on p.basepaymentplanid = t.basepaymentplanid
         
         WHERE baseproductname = 'The actor''s office' AND STATUS <> 'Cancelled'
         and customeremail = '#new_useremail#' 
-        
- 
-        order by t.id desc
+
+order by t.id desc
  
 </cfquery>
-
 
 <cfif #findemail.recordcount# is "1">
     
@@ -51,17 +47,12 @@
                              <cfoutput>
             <p>[#new_userid#] User status set to CANCELLING</p>
             </cfoutput>
-    
-    
-    
-    
-    
-    <cfelse>
+
+<cfelse>
         <p style="color:red;">No plan found. <cfoutput>
               <cfset cancel_total = #cancel_total# + 1 />
-            
-            
-            #new_username# Cancelled</cfoutput></p>
+
+#new_username# Cancelled</cfoutput></p>
         
                   <cfquery result="result"  name="update_user">
             update taousers_tbl
@@ -69,12 +60,8 @@
                   
             where userid = #new_userid#
             </cfquery>
-                             
-                                   
-                                   
-                                   
-</cfif>
 
+</cfif>
 
 </cfloop>
 <cfoutput>

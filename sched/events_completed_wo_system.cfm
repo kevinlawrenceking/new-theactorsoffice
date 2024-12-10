@@ -89,10 +89,7 @@
                                     )
                                 </cfquery>
 
-
-
-
-                                <cfif #find_fu.recordcount# is "0">
+<cfif #find_fu.recordcount# is "0">
 
                                     <cfoutput>
 
@@ -155,23 +152,20 @@
                                             ORDER BY a.actionNo
                                         </cfquery>
 
-
-                                        <cfset add_action="Y" />
+<cfset add_action="Y" />
 
                                         <cfset new_actionid=addDaysNo.actionid />
                                         <cfset actiondaysno=numberformat(addDaysNo.actiondaysno) />
                                         <cfif #adddaysno.isunique# is "1">
 
-
-                                            <cfquery result="result"  name="checkUnique">
+<cfquery result="result"  name="checkUnique">
                                                 SELECT d.contactid from
                                                 contactdetails d
                                                 where d.#adddaysno.uniquename# = 'Y'
                                                 and d.contactid = #contactid# limit 1
                                             </cfquery>
 
-
-                                            <cfif #checkunique.recordcount# is "1">
+<cfif #checkunique.recordcount# is "1">
                                                 <cfset #add_action#="N">
 
                                             </cfif>
@@ -188,13 +182,7 @@
 
                                             <cfif notstartdate lte currentstartdate>
 
-
-
-
-
-
-
-                                                <cfquery  name="addNotification" result="result">
+<cfquery  name="addNotification" result="result">
                                                     INSERT INTO funotifications (actionid,userid,suID,notstartdate,notnotes)
                                                     VALUES (
                                                     
@@ -227,11 +215,8 @@
 
                                         <cfelse>
 
-
-                                </cfif>
+</cfif>
 
                             </cfloop>
 
-                       
-
-                        </cfloop>
+</cfloop>

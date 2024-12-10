@@ -2,26 +2,16 @@
 
 <cfparam name="rcontactid" default="0"/>
 
-
 <cfinclude template="/include/qry/relationships_13_1.cfm"/>
 <cfinclude template="/include/qry/durations.cfm"/>
 <cfinclude template="/include/qry/eventtypes_user_443_2.cfm"/>
 
-
-
-    <div class="col-xl-6 col-lg-8 col-md-12">
+<div class="col-xl-6 col-lg-8 col-md-12">
       <div class="card">
-    
 
-        <div class="card-body">
+<div class="card-body">
 
-
-
-
-
-
-            
-                <!--- Form for adding an appointment --->
+<!--- Form for adding an appointment --->
                 <form 
                     method="post" 
                     action="/include/appoint-add2.cfm" 
@@ -43,16 +33,13 @@
                             </div>
                         </div>
 
-                    
-
-                        <div class="col-lg-12">
+<div class="col-lg-12">
                             <div class="form-group mb-3">
                                
                             </div>
                         </div>
 
-
-                        <div class="form-group col-md-6">
+<div class="form-group col-md-6">
                             <label for="eventStart">Start Date<span class="text-danger">*</span></label>
                             <input 
                                 id="eventStart" 
@@ -169,7 +156,6 @@
         </div>
 
   </div>
-
 
 <script>
   $(document).ready(function () {

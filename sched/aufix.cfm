@@ -1,14 +1,5 @@
 
 
-
-
-
-
-
-
-
-
-
 <cfquery result="result"  name="x"  >
  SELECT min(notid) as new_notid,actionid,userid,suid
                          FROM funotifications
@@ -19,7 +10,6 @@
                         ORDER BY actionid,userid,suid
 </cfquery>
 
-
 <cfloop query="x">
 <cfquery result="result"  name="rr"  >
 update funotifications_tbl
@@ -28,14 +18,7 @@ set isdeleted = 1 where notid = #x.new_notid#
 
 </cfquery>
 
-
-
 </cfloop>
-
-
-
-
-
 
 <cfquery result="result"  name="de"  >
 update actionusers_tbl
@@ -53,9 +36,8 @@ set isdeleted = 1
         </cfquery>
 
         <cfloop query="xs">
-            
-            
-            <cfquery result="result"  name="find"  >
+
+<cfquery result="result"  name="find"  >
             SELECT * from actionusers where actionid = #xs.actionid# and userid = #u.userid#
             </cfquery>
             
@@ -70,6 +52,5 @@ set isdeleted = 1
 
         </cfloop>
 
-
-    </cfloop>
+</cfloop>
         

@@ -6,8 +6,7 @@ SELECT `id`, `filename`, `path`
 
 <cfloop query="getDeletedFiles">
 
- 
-    <cfset sourceFilePath = "C:/home/theactorsoffice.com/optimized#path#/#filename#">
+<cfset sourceFilePath = "C:/home/theactorsoffice.com/optimized#path#/#filename#">
     <cfset destinationFilePath = "C:/home/theactorsoffice.com/extracted/deleted#path#/#filename#">
 
 <CFOUTPUT>
@@ -18,14 +17,11 @@ DESTINATIONFILEPATH: #destinationFilePath#<br>
  
     <cfif fileExists(sourceFilePath)>
 
- 
-        <cfset destinationDirectory = getDirectoryFromPath(destinationFilePath)>
-     
+<cfset destinationDirectory = getDirectoryFromPath(destinationFilePath)>
 
-      <cffile action="move" source="#sourceFilePath#" destination="#destinationFilePath#" />
+<cffile action="move" source="#sourceFilePath#" destination="#destinationFilePath#" />
 
- 
-        <cfoutput>Moved file: #filename# to #destinationFilePath#<br></cfoutput>
+<cfoutput>Moved file: #filename# to #destinationFilePath#<br></cfoutput>
 <cfoutput>path: /extracted/deleted#path#<br></cfoutput>
  
         <cfquery result="result" name="move" datasource="abod">    

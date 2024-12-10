@@ -2,13 +2,11 @@
 <cfparam name="select_userid" default="0" />
 <cfparam name="select_contactid" default="0" />
 <cfoutput>
-    
-    
-    <cfset currentURL = cgi.server_name />
+
+<cfset currentURL = cgi.server_name />
     <cfset host = ListFirst(currentURL, ".") />
-    
-    
-    <cfset starttime = "#timeformat(NOw(),'HHMMSS')#" />
+
+<cfset starttime = "#timeformat(NOw(),'HHMMSS')#" />
     
     <cfset dir_media_root="#datasourceMediaPath#" />
 
@@ -26,9 +24,7 @@
 
     </cfif>
 
-
-
-    <cfset dir_media_root_defaults="#dir_media_root#\defaults" />
+<cfset dir_media_root_defaults="#dir_media_root#\defaults" />
 
     <cfif #dbug# is "Y">
 
@@ -59,9 +55,6 @@
         <h2>browser_missing_avatar_filename: #browser_missing_avatar_filename#</h2>
 
     </cfif>
-    
- 
-    
 
 </cfoutput>
 
@@ -83,9 +76,8 @@
 <cfloop query="U">
 
     <cfoutput>
-        
 
-        <cfif #dbug# is "Y">
+<cfif #dbug# is "Y">
 
             <h2>User: #u.userid#</h2>
 
@@ -99,8 +91,7 @@
 
         </cfif>
 
-
-        <cfset dir_media_root_user="#dir_media_root#\users\#u.userid#" />
+<cfset dir_media_root_user="#dir_media_root#\users\#u.userid#" />
 
         <cfif #dbug# is "Y">
 
@@ -128,12 +119,9 @@
 
             <CFDIRECTORY directory="#session.userMediaPath#" action="create">
 
+<h3>dir_media_root_user dir created: #session.contactAvatarUrl#</h3>
 
-
-                <h3>dir_media_root_user dir created: #session.contactAvatarUrl#</h3>
-
-
-        </CFIF>
+</CFIF>
 
         <cfset browser_media_root_user_contacts="#browser_media_root_user#/contacts" />
 
@@ -155,15 +143,11 @@
 
             <CFDIRECTORY directory="#dir_media_root_user_contacts#" action="create">
 
+<h3>dir_media_root_user_contacts dir created: #dir_media_root_user_contacts#</h3>
 
-                <h3>dir_media_root_user_contacts dir created: #dir_media_root_user_contacts#</h3>
+</CFIF>
 
-
-
-        </CFIF>
-
-
-        <cfset browser_media_root_user_imports="#browser_media_root_user#/imports" />
+<cfset browser_media_root_user_imports="#browser_media_root_user#/imports" />
 
         <cfif #dbug# is "Y">
 
@@ -183,35 +167,21 @@
 
             <CFDIRECTORY directory="#dir_media_root_user_imports#" action="create">
 
+<h3>dir_media_root_user_imports dir created: #dir_media_root_user_imports#</h3>
 
-
-
-                <h3>dir_media_root_user_imports dir created: #dir_media_root_user_imports#</h3>
-
-
-
-        </CFIF>
+</CFIF>
 
         <cfif NOT fileExists(session.userAvatarPath)>
 
             <cffile action="copy" source="#dir_missing_avatar_filename#" destination="#session.userMediaPath#\" />
 
+<h3>default avatar moved to: #session.userMediaPath#</h3>
 
-
-            <h3>default avatar moved to: #session.userMediaPath#</h3>
-
-
-
-        </cfif>
+</cfif>
 
     </cfoutput>
 
-
-
-
-
-
-    <cfquery result="result"  name="C"  >
+<cfquery result="result"  name="C"  >
         SELECT contactid,recordname
         from contactdetails
         where userid = #u.userid#
@@ -232,8 +202,7 @@
 
         <cfoutput>
 
-
-            <cfset new_contactid="#C.contactid#" />
+<cfset new_contactid="#C.contactid#" />
 
             <cfif #dbug# is "Y">
                 <h3>#c.recordname#: Contact ID #new_contactid#</h3>
@@ -241,60 +210,25 @@
 
             <cfset dir_media_root_user_contacts_folder="#dir_media_root_user_contacts#\#new_contactid#" />
 
-
-
-
-            <CFIF not DirectoryExists("#dir_media_root_user_contacts_folder#")>
+<CFIF not DirectoryExists("#dir_media_root_user_contacts_folder#")>
 
                 <CFDIRECTORY directory="#dir_media_root_user_contacts_folder#" action="create">
 
+<h3>dir_media_root_user_contacts_folder dir created: #dir_media_root_user_contacts_folder#</h3>
 
+</cfif>
 
+<cfset dir_media_root_user_contacts_folder_attachements="#dir_media_root_user_contacts_folder#\attachments" />
 
-                    <h3>dir_media_root_user_contacts_folder dir created: #dir_media_root_user_contacts_folder#</h3>
-
-
-
-
-            </cfif>
-
-
-
-                
-                
-                  <cfset dir_media_root_user_contacts_folder_attachements="#dir_media_root_user_contacts_folder#\attachments" />
-
-
-
-
-            <CFIF not DirectoryExists("#dir_media_root_user_contacts_folder_attachements#")>
+<CFIF not DirectoryExists("#dir_media_root_user_contacts_folder_attachements#")>
 
                 <CFDIRECTORY directory="#dir_media_root_user_contacts_folder_attachements#" action="create">
 
+<h3>dir_media_root_user_contacts_folder_attachements dir created: #dir_media_root_user_contacts_folder_attachements#</h3>
 
+</cfif>
 
-
-                    <h3>dir_media_root_user_contacts_folder_attachements dir created: #dir_media_root_user_contacts_folder_attachements#</h3>
-
-
-
-
-            </cfif>
-
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-
-            <cfset dir_contact_avatar_filename="#dir_media_root_user_contacts_folder#\avatar.jpg" />
+<cfset dir_contact_avatar_filename="#dir_media_root_user_contacts_folder#\avatar.jpg" />
 
             <cfif #dbug# is "Y">
 
@@ -302,36 +236,17 @@
 
             </cfif>
 
-
-
-
-
-
-
-            <cfif NOT fileExists(dir_contact_avatar_filename)>
+<cfif NOT fileExists(dir_contact_avatar_filename)>
 
                 <cffile action="copy" source="#dir_missing_avatar_filename#" destination="#dir_media_root_user_contacts_folder#\" />
 
+<h3>default contact avatar moved to: #dir_media_root_user_contacts_folder#</h3>
 
-                <h3>default contact avatar moved to: #dir_media_root_user_contacts_folder#</h3>
+</cfif>
 
+</cfoutput>
 
-
-            </cfif>
-
-
-
-
-
-
-
-
-
-
-        </cfoutput>
-
-
-    </cfloop>
+</cfloop>
 
 </cfloop>
 <cfoutput><cfset endtime = "#timeformat(NOw(),'HHMMSS')#" />

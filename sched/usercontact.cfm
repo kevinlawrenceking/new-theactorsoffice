@@ -1,9 +1,5 @@
  
 
-  
-
-
-
 <cfquery result="result" name="loginQuery" datasource="abod" >
   SELECT * FROM taousers_tbl
 </cfquery>       
@@ -24,6 +20,5 @@
             </cfquery>     
         
         </cfif> 
-    
-    
-    </cfloop>
+
+</cfloop>
