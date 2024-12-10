@@ -18,7 +18,7 @@
     <cfargument name="new_eventtypename" type="string" required="false" default="">
 
     <!--- Initialize the query string --->
-    <cfset var queryString = "UPDATE eventtypes_user SET eventtypecolor = '#arguments.new_eventtypecolor#'" />
+    <cfset var queryString = "UPDATE eventtypes_user SET eventtypecolor = '#arguments.new_eventtypecolor#' where id = #arguments.id#" />
 
     <!--- Add conditional clauses to the query string --->
     <cfif arguments.deletelink eq 1>
