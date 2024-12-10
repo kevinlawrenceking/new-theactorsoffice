@@ -39,16 +39,30 @@
         </cfif>
 
 
-        <div class="form-group col-md-12">
-            <label for="hexa-colorpicker">Color:</label>
-            <cfoutput>
-                <input type="color" id="hexa-colorpicker_#id#" name="new_eventtypecolor" class="form-control" value="#linkdetails.eventtypecolor#" />
-            </cfoutput>
-            <div class="invalid-feedback">
-                Please enter a color.
-            </div>
-        </div>
+  <div class="form-group col-md-12">
+    <label for="hexa-colorpicker">Color:</label>
+    <cfoutput>
+        <input type="color" id="hexa-colorpicker_#id#" name="new_eventtypecolor" 
+            class="form-control" 
+            value="#linkdetails.eventtypecolor#" 
+            onchange="updatePreview('##preview_#id#', this.value)" />
+    </cfoutput>
+    <div class="invalid-feedback">
+        Please enter a color.
+    </div>
+    <div id="preview_#id#" style="margin-top: 10px; font-size: 18px; color:#linkdetails.eventtypecolor#;">
+        Color Preview
+    </div>
+</div>
 
+<script>
+    function updatePreview(previewId, colorValue) {
+        const previewElement = document.querySelector(previewId);
+        if (previewElement) {
+            previewElement.style.color = colorValue;
+        }
+    }
+</script>
         <!--- Check if the event is custom and has no associated events --->
         <cfif #linkdetails.isCustom# is "1">
             <cfif #find_events.recordcount# is "0">
