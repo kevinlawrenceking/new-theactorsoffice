@@ -36,8 +36,8 @@
   
    
  
-        <cfif NOT directoryExists(session.userContactsPath & "/" & currentid)>
-            <cfdirectory action="create" directory="#session.userContactsPath & "/" & currentid#">
+        <cfif NOT directoryExists(session.userContactsPath & "/" & contactid)>
+            <cfdirectory action="create" directory="#session.userContactsPath & "/" & contactid#">
         </cfif>
         
         <cffile action="copy" 
