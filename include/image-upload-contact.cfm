@@ -32,6 +32,20 @@
 
 </cfoutput>
 
+<cfif NOT fileExists(contact_avatar)>
+  
+   
+ 
+        <cfif NOT directoryExists(session.userContactsPath & "/" & currentid)>
+            <cfdirectory action="create" directory="#session.userContactsPath & "/" & currentid#">
+        </cfif>
+        
+        <cffile action="copy" 
+                source="#application.defaultAvatarUrl#" 
+                destination="#avatar_path#" >          
+
+</cfif>
+
 <!--- Determine picture size based on ref_pgid --->
 <cfif ref_pgid is "9">
     <cfset picsize = 200/>
