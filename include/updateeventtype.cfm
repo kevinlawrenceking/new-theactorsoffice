@@ -38,6 +38,7 @@
             </div>
         </cfif>
 
+
         <div class="form-group col-md-12">
             <label for="hexa-colorpicker">Color:</label>
             <cfoutput>
