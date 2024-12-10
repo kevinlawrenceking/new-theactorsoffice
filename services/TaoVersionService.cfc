@@ -190,63 +190,54 @@
     
     </cffunction>
     
-    <cffunction name = "UPDtaoversions" access = "public" returntype = "void">
-        <cfargument name = "verid" type = "numeric" required = "true"/>
-        <cfargument name = "new_major" type = "numeric" required = "true"/>
-        <cfargument name = "new_minor" type = "numeric" required = "true"/>
-        <cfargument name = "new_patch" type = "numeric" required = "true"/>
-        <cfargument name = "new_versionstatus" type = "string" required = "true"/>
-        <cfargument name = "new_versiontype" type = "string" required = "true"/>
-        <cfargument name = "new_version" type = "numeric" required = "true"/>
-        <cfargument name = "new_build" type = "numeric" required = "true"/>
-        <cfargument name = "new_reviewDate" type = "date" required = "false" default = ""/>
-        <cfargument name = "new_releaseDate" type = "date" required = "false" default = ""/>
-        <cfargument name = "new_reviewtime" type = "string" required = "false" default = ""/>
-        <cfargument name = "new_releasetime" type = "string" required = "false" default = ""/>
-        <cfargument name = "new_hoursavail" type = "numeric" required = "false" default = ""/>
-    
-        <cfset var sql = "UPDATE taoversions SET major = ?, minor = ?, patch = ?, versionstatus = ?, versiontype = ?, version = ?, build = ?">
-        <cfset var params = [arguments.new_major, arguments.new_minor, arguments.new_patch, 
-                                     arguments.new_versionstatus,arguments.new_versiontype, 
-                                     arguments.new_version,arguments.new_build]>
-    
-        <cfif len(arguments.new_reviewDate)>
-            <cfset sql &= ", reviewDate = ?">
-            <cfset arrayAppend(params, arguments.new_reviewDate)>
-        </cfif>
-    
-        <cfif len(arguments.new_releaseDate)>
-            <cfset sql &= ", releaseDate = ?">
-            <cfset arrayAppend(params, arguments.new_releaseDate)>
-        </cfif>
-    
-        <cfif len(arguments.new_reviewtime)>
-            <cfset sql &= ", reviewtime = ?">
-            <cfset arrayAppend(params, arguments.new_reviewtime)>
-        </cfif>
-    
-        <cfif len(arguments.new_releasetime)>
-            <cfset sql &= ", releasetime = ?">
-            <cfset arrayAppend(params, arguments.new_releasetime)>
-        </cfif>
-    
-        <cfif len(arguments.new_hoursavail)>
-            <cfset sql &= ", hoursavail = ?">
-            <cfset arrayAppend(params, numberFormat(arguments.new_hoursavail, "9.99"))>
-        </cfif>
-    
-        <cfset sql &= " WHERE verid = ?">
-        <cfset arrayAppend(params, arguments.verid)>
-    
-        <cfquery result="result" name = "updateQuery">#sql#
-            <cfsilent>
-                <!--- Loop through parameters and bind them --->
-                <cfloop from = 1 to = #arrayLen(params)# index = i>
-                    <cfqueryparam value = "#params[i]#" cfsqltype = "#getSQLType(params[i])#"/>
-                </cfloop>
-            </cfsilent>
-        </cfquery>
-    
-    </cffunction>
+<cffunction name="UPDtaoversions" access="public" returntype="void" output="false" hint="Updates a version record in the taoversions table.">
+    <!--- Define arguments for the function --->
+    <cfargument name="verid" type="numeric" required="true" hint="The ID of the version to update.">
+    <cfargument name="new_major" type="numeric" required="true" hint="The new major version.">
+    <cfargument name="new_minor" type="numeric" required="true" hint="The new minor version.">
+    <cfargument name="new_patch" type="numeric" required="true" hint="The new patch version.">
+    <cfargument name="new_versionstatus" type="string" required="true" hint="The new version status.">
+    <cfargument name="new_versiontype" type="string" required="true" hint="The new version type.">
+    <cfargument name="new_version" type="numeric" required="true" hint="The new version number.">
+    <cfargument name="new_build" type="numeric" required="true" hint="The new build number.">
+    <cfargument name="new_reviewDate" type="date" required="false" default="" hint="The new review date.">
+    <cfargument name="new_releaseDate" type="date" required="false" default="" hint="The new release date.">
+    <cfargument name="new_reviewtime" type="string" required="false" default="" hint="The new review time.">
+    <cfargument name="new_releasetime" type="string" required="false" default="" hint="The new release time.">
+    <cfargument name="new_hoursavail" type="numeric" required="false" default="" hint="The new available hours.">
+
+    <!--- Execute the query --->
+    <cfquery name="update">
+        UPDATE taoversions
+        SET 
+            major = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_major#" />,
+            minor = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_minor#" />,
+            patch = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_patch#" />,
+            versionstatus = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_versionstatus#" />,
+            versiontype = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_versiontype#" />,
+            version = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_version#" />,
+            build = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_build#" />
+            
+            <!--- Conditionally include optional fields --->
+            <cfif arguments.new_reviewDate neq "">
+                ,reviewDate = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_reviewDate#" />
+            </cfif>
+            <cfif arguments.new_releaseDate neq "">
+                ,releaseDate = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_releaseDate#" />
+            </cfif>
+            <cfif arguments.new_reviewtime neq "">
+                ,reviewtime = <cfqueryparam cfsqltype="cf_sql_time" value="#arguments.new_reviewtime#" />
+            </cfif>
+            <cfif arguments.new_releasetime neq "">
+                ,releasetime = <cfqueryparam cfsqltype="cf_sql_time" value="#arguments.new_releasetime#" />
+            </cfif>
+            <cfif arguments.new_hoursavail neq "">
+                ,hoursavail = <cfqueryparam cfsqltype="cf_sql_float" value="#numberformat(arguments.new_hoursavail, '9.99')#" />
+            </cfif>
+        WHERE 
+            verid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.verid#" />
+    </cfquery>
+</cffunction>
+
     
 </cfcomponent>
