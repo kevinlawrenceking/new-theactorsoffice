@@ -651,14 +651,7 @@
                 complete_email = 1
             WHERE ticketid = <cfqueryparam value="#arguments.recid#" cfsqltype="cf_sql_integer">
         </cfquery>
-        
-        <!--- Log successful update --->
-        
-        
-    
-        <!--- Log error details --->
-        
-    
+
     
 </cffunction>
 <cffunction output="false" name="UPDtickets_24339" access="public" returntype="void">

@@ -4,5 +4,5 @@
 <!--- Fetch ticket details using the Ticket_det function --->
 <cfset ticketDetails = ticketService.Ticket_det(recid = #recid#)>
 
-<!--- Fetch ticket log using the TicketLog_res function --->
-<cfset ticketLog = ticketService.TicketLog_res(recid = #recid#)>
+<!--- Fetch ticket log using the DETtickets_24782 function --->
+<cfset ticketLog = ticketService.DETtickets_24782(recid = #recid#)>

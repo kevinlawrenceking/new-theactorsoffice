@@ -3,7 +3,7 @@
 <cfset ticketService = createObject("component", "services.TicketService")>
 
 <!--- Fetch ticket details using the Ticket_det function --->
-<cfset ticketDetails = ticketService.Ticket_det(recid = #recid#)>
+<cfset ticketDetails = ticketService.DETtickets(recid = #recid#)>
 <cfset ticketStatuses = ticketService.statuses_sel()>
 
 <!--- Fetch the ticket types using the types_sel function --->
