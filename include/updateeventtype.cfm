@@ -20,7 +20,7 @@
             <div class="form-group col-md-6">
                 <h5>
                     <cfoutput>
-                        <span class="fc-event-dot" ></span>&nbsp; #linkdetails.eventtypename#
+                        <span class="fc-event-dot" style="color:###linkdetails.eventtypecolor#" ></span>&nbsp; #linkdetails.eventtypename#
                     </cfoutput>
                 </h5>
             </div>
