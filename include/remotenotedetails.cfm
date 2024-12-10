@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
     hiddenDiv.style.display = "none";
   }
 });
-<script>
+</script>
 
 <cfinclude template="/include/qry/notes_21_1.cfm" />   
 
