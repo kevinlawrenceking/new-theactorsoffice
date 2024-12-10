@@ -390,9 +390,9 @@
 
                                 <cfif isimagefile(browser_contact_avatar_filename)>
 
-                                    <centeR><img src="<Cfoutput />#browser_contact_avatar_filename#</cfoutput>?ver=<Cfoutput>#rand()#</cfoutput>" class="mr-3 rounded-circle gambar img-responsive img-thumbnail" style="max-width:120px;width:100%" alt="profile-image" id="item-img-output" />      </centeR>
+                                    <centeR><img src="<cfoutput>#browser_contact_avatar_filename#</cfoutput>?ver=<Cfoutput>#rand()#</cfoutput>" class="mr-3 rounded-circle gambar img-responsive img-thumbnail" style="max-width:120px;width:100%" alt="profile-image" id="item-img-output" />      </centeR>
                                     <CFELSE>
-                                        <center><img src="/media-<Cfoutput />#host#</cfoutput>/defaults/avatar.jpg" class="mr-3 rounded-circle gambar img-responsive img-thumbnail" style="max-width:120px;width:100%;" alt="profile-image" id="item-img-output" /></center>
+                                        <center><img src="/media-<cfoutput>#host#</cfoutput>/defaults/avatar.jpg" class="mr-3 rounded-circle gambar img-responsive img-thumbnail" style="max-width:120px;width:100%;" alt="profile-image" id="item-img-output" /></center>
                                 </CFIF>
 
 </figure>

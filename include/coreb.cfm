@@ -81,11 +81,11 @@
 
                 <a href="<cfoutput>#home#</cfoutput>" class="logo logo-light text-center">
                     <span class="logo-sm">
-                        <img src="<cfoutput />#application.imagesUrl#</cfoutput>/logo-sm.png" alt="" height="22">
+                        <img src="<cfoutput>#application.imagesUrl#</cfoutput>/logo-sm.png" alt="" height="22">
                     </span>
                     <span class="logo-lg" style="min-width:200px !important;">
                         <span class="logo-sm-text-light"></span>
-                        <img src="<cfoutput />#application.imagesUrl#</cfoutput>/<cfoutput>#findPage.appLogoName#?ver=5</cfoutput>" alt="" height="30">
+                        <img src="<cfoutput>#application.imagesUrl#</cfoutput>/<cfoutput>#findPage.appLogoName#?ver=5</cfoutput>" alt="" height="30">
                     </span>
                 </a>
             </div>

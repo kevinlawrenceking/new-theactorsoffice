@@ -208,7 +208,7 @@
                             <div class="col-lg-8 pb-1">
                                 <div class="app-search-box dropdown">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" name="audsearch" value="<cfoutput />#audsearch#</cfoutput>" id="audsearch" placeholder="Search..." autocomplete="off">
+                                        <input type="text" class="form-control" name="audsearch" value="<cfoutput>#audsearch#</cfoutput>" id="audsearch" placeholder="Search..." autocomplete="off">
                                         &nbsp;
                                         <div class="input-group-append">
                                             <button class="btn btn-xs btn-primary waves-effect waves-light" id="mybtn" style="height:100%;" type="submit">

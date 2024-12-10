@@ -48,12 +48,12 @@
 
         <div id="hidden_div" class="form-group col-md-2">
             <label for="customstart">Start Date</label>
-            <input id="customstart" class="form-control" autocomplete="off" value="<cfoutput />#customstart#</cfoutput>" name="customstart" type="date" onchange="this.form.submit();">
+            <input id="customstart" class="form-control" autocomplete="off" value="<cfoutput>#customstart#</cfoutput>" name="customstart" type="date" onchange="this.form.submit();">
         </div>
 
         <div id="hidden_divs" class="form-group col-md-2">
             <label for="customend">End Date</label>
-            <input id="customend" class="form-control" autocomplete="off" value="<cfoutput />#customend#</cfoutput>" name="customend" type="date" onchange="this.form.submit();">
+            <input id="customend" class="form-control" autocomplete="off" value="<cfoutput>#customend#</cfoutput>" name="customend" type="date" onchange="this.form.submit();">
         </div>
     </div>
 </form>

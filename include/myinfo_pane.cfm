@@ -16,7 +16,7 @@
             <a href="/app/image-upload/?contactid=<cfoutput>#contactid#&ref_pgid=7</cfoutput>">
                 <center>
                     <figure>
-                        <img src="<cfoutput />#session.userAvatarUrl#?ver=#rand()#</cfoutput>" class="mr-2 rounded-circle gambar img-responsive img-thumbnail" title="User ID: <cfoutput>#userid#</cfoutput>" style="max-width:120px; width:100%;" alt="profile-image" id="item-img-output" />
+                        <img src="<cfoutput>#session.userAvatarUrl#?ver=#rand()#</cfoutput>" class="mr-2 rounded-circle gambar img-responsive img-thumbnail" title="User ID: <cfoutput>#userid#</cfoutput>" style="max-width:120px; width:100%;" alt="profile-image" id="item-img-output" />
                         <figcaption>
                             <center><cfoutput>#avatarname#</cfoutput></center>
                         </figcaption>
