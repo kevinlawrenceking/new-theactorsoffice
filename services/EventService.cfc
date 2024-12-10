@@ -692,7 +692,9 @@ WHERE
             WHERE eventid = <cfqueryparam value="#arguments.new_eventid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
-</cffunction> <cffunction output="false" name="SELevents_24379" access="public" returntype="query">
+</cffunction> 
+
+<cffunction output="false" name="SELevents_24379" access="public" returntype="query">
     <cfargument name="eventtypename" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
@@ -703,7 +705,9 @@ WHERE
         </cfquery>
 
 <cfreturn result>
-</cffunction> <cffunction output="false" name="DETevents_24487" access="public" returntype="query">
+</cffunction> 
+
+<cffunction output="false" name="DETevents_24487" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
 
 <cfquery name="result" >

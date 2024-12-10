@@ -84,7 +84,7 @@
                         <span class="fc-event-dot" style="background-color:#eventtypes_user.eventtypecolor#;font-size:14px;"></span> #eventtypes_user.eventtypename#
                         <span style="font-size:10px;padding-right:25px;min-width:200px;">
                             <!--- Link to update the event type --->
-                            <a href="updateeventtype_#eventtypes_user.id#.cfm" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##updateeventtype_#eventtypes_user.id#" toggle="tooltip" data-bs-placement="top" title="Update Type" data-bs-original-title="Update Type">
+                            <a href="" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##updateeventtype_#eventtypes_user.id#" toggle="tooltip" data-bs-placement="top" title="Update Type" data-bs-original-title="Update Type">
                                 <i class="mdi mdi-square-edit-outline"></i>
                             </a>
                         </span>

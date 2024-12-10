@@ -8,7 +8,7 @@
                 <!--- Attach event handler for showing modal. --->
                 $("##updateeventtype_#eventtypes_user.id#").on("show.bs.modal", function(event) {
                     <!--- Load the HTML content into the modal body. --->
-                    $(this).find(".modal-body").load("/include/updateeventtype.cfm?id=#eventtypes_user.id#");
+                    $(this).find(".modal-body").load("/include/updateeventtype.cfm?eventtypeid=#eventtypes_user.id#&id=#eventtypes_user.id#");
                 });
             });
         </script>
