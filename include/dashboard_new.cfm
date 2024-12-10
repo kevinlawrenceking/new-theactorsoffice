@@ -14,18 +14,16 @@
 <cfif pgaction is "batch" AND batchlist is not "0">
   <cfset cnotsconfirm = notificationService.getNotificationsByBatchlist(batchlist)>
 
-  <div id="batchconfirm" class="modal fade" tabindex="-1" role="dialog" 
+  <div id="batchconfirm" class="modal fade" tabindex="-1" role="dialog" >
 
->
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">
             <cfoutput>Batch #batchtype# confirmation</cfoutput>
           </h4>
-          <button type="button" class="close" data-bs-dismiss="modal" 
+          <button type="button" class="close" data-bs-dismiss="modal" >
 
->
             <i class="mdi mdi-close-thick"></i>
           </button>
         </div>

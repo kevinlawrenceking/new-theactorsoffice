@@ -17,6 +17,6 @@ if (host == "app" || host == "uat") {
     applicationtimeout="#createTimeSpan(1, 0, 0, 0)#" 
     sessiontimeout="#createTimeSpan(0, 1, 0, 0)#" 
     datasource="#datasourceName#"
-    setclientcookies="true"
->
+    setclientcookies="true">
+
 

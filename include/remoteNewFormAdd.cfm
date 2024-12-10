@@ -24,8 +24,8 @@
 
 <CFINSERT 
     TABLENAME="#new_tablename#" 
-    formfields="#newformfields#"
->
+    formfields="#newformfields#">
+
 
 <!--- Check if rpgid is equal to "8" and include necessary templates --->
 <cfif #rpgid# is "8">

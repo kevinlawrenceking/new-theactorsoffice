@@ -22,9 +22,8 @@
 </div>
 
 <!--- Edit Modal --->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" 
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" >
 
->
     <div class="modal-dialog" role="document">
         <div class="modal-content" id="modalContent">
             <!--- Modal content will be loaded here --->

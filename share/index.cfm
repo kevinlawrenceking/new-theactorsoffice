@@ -172,9 +172,8 @@ $(document).ready(function() {
 });  
 </script>
 
-<div id="remoteShareViewC<cfoutput>#shares.contactid#</cfoutput>" class="modal modal-lg fade" tabindex="-1" role="dialog" 
+<div id="remoteShareViewC<cfoutput>#shares.contactid#</cfoutput>" class="modal modal-lg fade" tabindex="-1" role="dialog" >
 
->
 
             <div class="modal-dialog">
 
@@ -186,9 +185,8 @@ $(document).ready(function() {
 
                         </h4>
 
-                        <button type="button" class="close" data-bs-dismiss="modal" 
-
-><i class="mdi mdi-close-thick"></i></button>
+                        <button type="button" class="close" data-bs-dismiss="modal" >
+<i class="mdi mdi-close-thick"></i></button>
 
                     </div>
 

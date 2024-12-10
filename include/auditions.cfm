@@ -33,16 +33,14 @@
     });
 </script>
 
-<div id="remoteaudadd" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" 
+<div id="remoteaudadd" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" >
 
->
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #f3f7f9;">
                 <h4 class="modal-title" id="standard-modalLabel">Audition Type</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" 
+                <button type="button" class="close" data-bs-dismiss="modal" >
 
->
                     <i class="mdi mdi-close-thick"></i>
                 </button>
             </div>
@@ -61,16 +59,14 @@
     });
 </script>
 
-<div id="remoteaudadddirect" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" 
+<div id="remoteaudadddirect" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" >
 
->
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #f3f7f9;">
                 <h4 class="modal-title" id="standard-modalLabel">Direct Booking Type</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" 
+                <button type="button" class="close" data-bs-dismiss="modal" >
 
->
                     <i class="mdi mdi-close-thick"></i>
                 </button>
             </div>

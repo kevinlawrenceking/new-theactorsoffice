@@ -1,15 +1,13 @@
 <!--- This ColdFusion page displays modal dialogs for role updates and essence help, along with various details about audition roles and genres. --->
 
-<div id="essencehelp" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" 
+<div id="essencehelp" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" >
 
->
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #f3f7f9;">
                 <h4 class="modal-title" id="standard-modalLabel">Essences</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" 
+                <button type="button" class="close" data-bs-dismiss="modal" >
 
->
                     <i class="mdi mdi-close-thick"></i>
                 </button>
             </div>
@@ -43,16 +41,14 @@
     </script>
     
     <!--- Modal for Role Update --->
-    <div id="roleupdate" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" 
+    <div id="roleupdate" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" >
 
->
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: ##f3f7f9;">
                     <h4 class="modal-title" id="standard-modalLabel">Role Update</h4>
-                    <button type="button" class="close" data-bs-dismiss="modal" 
+                    <button type="button" class="close" data-bs-dismiss="modal" >
 
->
                         <i class="mdi mdi-close-thick"></i>
                     </button>
                 </div>

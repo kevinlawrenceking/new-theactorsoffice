@@ -137,48 +137,42 @@
                                         </td>
                                     </cfloop>
                                 </tr>
-                                <div id="remoteNewForm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
+                                <div id="remoteNewForm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" >
 
->
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header" style="background-color: ##f3f7f9;">
                                                 <h4 class="modal-title" id="standard-modalLabel">#compname#</h4>
-                                                <button type="button" class="close" data-bs-dismiss="modal" 
-
-><i class="mdi mdi-close-thick"></i></button>
+                                                <button type="button" class="close" data-bs-dismiss="modal" >
+<i class="mdi mdi-close-thick"></i></button>
                                             </div>
                                             <div class="modal-body"></div>
                                         </div>
                                     </div>
                                 </div>
                                 <cfif #update_type# is "modal">
-                                    <div id="remoteUpdateForm#results.recid#" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
+                                    <div id="remoteUpdateForm#results.recid#" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" >
 
->
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header" style="background-color: ##f3f7f9;">
                                                     <h4 class="modal-title" id="standard-modalLabel">#compname#</h4>
-                                                    <button type="button" class="close" data-bs-dismiss="modal" 
-
-><i class="mdi mdi-close-thick"></i></button>
+                                                    <button type="button" class="close" data-bs-dismiss="modal" >
+<i class="mdi mdi-close-thick"></i></button>
                                                 </div>
                                                 <div class="modal-body"></div>
                                             </div>
                                         </div>
                                     </div>
                                 </cfif>
-                                <div id="remoteDeleteForm#results.recid#" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
+                                <div id="remoteDeleteForm#results.recid#" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" >
 
->
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header" style="background-color: red;">
                                                 <h4 class="modal-title" id="standard-modalLabel">#compname#</h4>
-                                                <button type="button" class="close" data-bs-dismiss="modal" 
-
-><i class="mdi mdi-close-thick"></i></button>
+                                                <button type="button" class="close" data-bs-dismiss="modal" >
+<i class="mdi mdi-close-thick"></i></button>
                                             </div>
                                             <div class="modal-body"></div>
                                         </div>

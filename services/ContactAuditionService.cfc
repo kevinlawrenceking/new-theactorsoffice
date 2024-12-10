@@ -172,7 +172,7 @@
             INSERT IGNORE INTO audcontacts_auditions_xref 
             SET audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="cf_sql_integer">, 
                 contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_integer">
-        </cfquery>
-        >
+        </cfquery>>
+
 </cffunction>
 </cfcomponent>

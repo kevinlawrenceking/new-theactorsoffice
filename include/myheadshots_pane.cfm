@@ -49,16 +49,14 @@
                 });
             </script>
 
-            <div id="remoteDeleteaudmedia#headshots_sel.mediaid#" class="modal fade" tabindex="-1" role="dialog" 
+            <div id="remoteDeleteaudmedia#headshots_sel.mediaid#" class="modal fade" tabindex="-1" role="dialog" >
 
->
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header" style="background-color: red;">
                             <h4 class="modal-title">Delete Headshot</h4>
-                            <button type="button" class="close" data-bs-dismiss="modal" 
-
-><i class="mdi mdi-close-thick"></i></button>
+                            <button type="button" class="close" data-bs-dismiss="modal" >
+<i class="mdi mdi-close-thick"></i></button>
                         </div>
                         <div class="modal-body"></div>
                     </div>

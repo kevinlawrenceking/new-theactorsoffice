@@ -195,18 +195,16 @@
     });
 </script>
 
-<div id="remoteUpdateSUID0" class="modal fade" tabindex="-1" role="dialog" 
+<div id="remoteUpdateSUID0" class="modal fade" tabindex="-1" role="dialog" >
 
->
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">
                     <cfoutput>Relationship System</cfoutput>
                 </h4>
-                <button type="button" class="close" data-bs-dismiss="modal" 
-
-><i class="mdi mdi-close-thick"></i></button>
+                <button type="button" class="close" data-bs-dismiss="modal" >
+<i class="mdi mdi-close-thick"></i></button>
             </div>
             <div class="modal-body"></div>
         </div>
@@ -223,16 +221,14 @@
         });
     </script>
 
-    <div id="remoteUpdate<cfoutput>SUID#ru.suid#</cfoutput>" class="modal fade" tabindex="-1" role="dialog" 
+    <div id="remoteUpdate<cfoutput>SUID#ru.suid#</cfoutput>" class="modal fade" tabindex="-1" role="dialog" >
 
->
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Update <cfoutput>Relationship System</cfoutput></h4>
-                    <button type="button" class="close" data-bs-dismiss="modal" 
-
-><i class="mdi mdi-close-thick"></i></button>
+                    <button type="button" class="close" data-bs-dismiss="modal" >
+<i class="mdi mdi-close-thick"></i></button>
                 </div>
                 <div class="modal-body"></div>
             </div>
@@ -252,18 +248,16 @@
         });
     </script>
 
-    <div id="remoteUpdate<cfoutput>C#cu.itemid#</cfoutput>" class="modal fade" tabindex="-1" role="dialog" 
+    <div id="remoteUpdate<cfoutput>C#cu.itemid#</cfoutput>" class="modal fade" tabindex="-1" role="dialog" >
 
->
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">
                         Update <cfoutput>#cu.valueCategory# Form</cfoutput>
                     </h4>
-                    <button type="button" class="close" data-bs-dismiss="modal" 
+                    <button type="button" class="close" data-bs-dismiss="modal" >
 
->
                         <i class="mdi mdi-close-thick"></i>
                     </button>
                 </div>
@@ -275,16 +269,14 @@
 
 <cfloop query="sysactive">
     <cfoutput>
-        <div id="action#sysactive.suid#-modal" class="modal fade" tabindex="-1" role="dialog" 
+        <div id="action#sysactive.suid#-modal" class="modal fade" tabindex="-1" role="dialog" >
 
->
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title">#sysactive.recordname#</h4>
-                        <button type="button" class="close" data-bs-dismiss="modal" 
-
->x</button>
+                        <button type="button" class="close" data-bs-dismiss="modal" >
+x</button>
                     </div>
                     <div class="modal-body">
                         <h5>Description</h5>
@@ -307,16 +299,14 @@
             });
         </script>
 
-        <div id="remoteDeleteForm#sysActive.suid#" class="modal fade" tabindex="-1" role="dialog" 
+        <div id="remoteDeleteForm#sysActive.suid#" class="modal fade" tabindex="-1" role="dialog" >
 
->
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color: red;">
                         <h4 class="modal-title">Follow Up System</h4>
-                        <button type="button" class="close" data-bs-dismiss="modal" 
-
-><i class="mdi mdi-close-thick"></i></button>
+                        <button type="button" class="close" data-bs-dismiss="modal" >
+<i class="mdi mdi-close-thick"></i></button>
                     </div>
                     <div class="modal-body"></div>
                 </div>
@@ -337,16 +327,14 @@
         });
     </script>
 
-    <div id="remoteAdd<cfoutput>C#c.catid#</cfoutput>" class="modal fade" tabindex="-1" role="dialog" 
+    <div id="remoteAdd<cfoutput>C#c.catid#</cfoutput>" class="modal fade" tabindex="-1" role="dialog" >
 
->
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">New <cfoutput>#c.valueCategory# Form</cfoutput></h4>
-                    <button type="button" class="close" data-bs-dismiss="modal" 
-
-><i class="mdi mdi-close-thick"></i></button>
+                    <button type="button" class="close" data-bs-dismiss="modal" >
+<i class="mdi mdi-close-thick"></i></button>
                 </div>
                 <div class="modal-body"></div>
             </div>
@@ -363,16 +351,14 @@
     });
 </script>
 
-<div id="remoteUpdateTag" class="modal fade" tabindex="-1" role="dialog" 
+<div id="remoteUpdateTag" class="modal fade" tabindex="-1" role="dialog" >
 
->
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Update Tags</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" 
-
-><i class="mdi mdi-close-thick"></i></button>
+                <button type="button" class="close" data-bs-dismiss="modal" >
+<i class="mdi mdi-close-thick"></i></button>
             </div>
             <div class="modal-body"></div>
         </div>
@@ -388,9 +374,8 @@
     });
 </script>
 
-<div id="showmaint" class="modal fade" tabindex="-1" role="dialog" 
+<div id="showmaint" class="modal fade" tabindex="-1" role="dialog" >
 
->
     <div class="modal-dialog modal-sm">
         <div class="modal-content modal-filled bg-success">
             <div class="modal-body p-4">
@@ -426,16 +411,14 @@
         });
     </script>
 
-    <div id="remoteDeleteForm#currentid#" class="modal fade" tabindex="-1" role="dialog" 
+    <div id="remoteDeleteForm#currentid#" class="modal fade" tabindex="-1" role="dialog" >
 
->
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: red;">
                     <h4 class="modal-title">#compname#</h4>
-                    <button type="button" class="close" data-bs-dismiss="modal" 
-
-><i class="mdi mdi-close-thick"></i></button>
+                    <button type="button" class="close" data-bs-dismiss="modal" >
+<i class="mdi mdi-close-thick"></i></button>
                 </div>
                 <div class="modal-body"></div>
             </div>
@@ -452,16 +435,14 @@
     });
 </script>
 
-<div id="remoteUpdateName" class="modal fade" tabindex="-1" role="dialog" 
+<div id="remoteUpdateName" class="modal fade" tabindex="-1" role="dialog" >
 
->
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Contact Details</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" 
-
-><i class="mdi mdi-close-thick"></i></button>
+                <button type="button" class="close" data-bs-dismiss="modal" >
+<i class="mdi mdi-close-thick"></i></button>
             </div>
             <div class="modal-body"></div>
         </div>
@@ -474,16 +455,14 @@
     
     <cfloop query="notsactive">
         <cfoutput>
-            <div id="action#notsActive.actionid#-modal" class="modal fade" tabindex="-1" role="dialog" 
+            <div id="action#notsActive.actionid#-modal" class="modal fade" tabindex="-1" role="dialog" >
 
->
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title">#notsActive.actiontitle#</h4>
-                            <button type="button" class="close" data-bs-dismiss="modal" 
-
->x</button>
+                            <button type="button" class="close" data-bs-dismiss="modal" >
+x</button>
                         </div>
                         <div class="modal-body">
                             <h5>#notsActive.actiondetails#</h5>
@@ -512,16 +491,14 @@
                 </div>
             </div>
 
-            <div id="actionconfirm#notsActive.actionid#-modal" class="modal fade" tabindex="-1" role="dialog" 
+            <div id="actionconfirm#notsActive.actionid#-modal" class="modal fade" tabindex="-1" role="dialog" >
 
->
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title">#notsActive.actiontitle# Completed</h4>
-                            <button type="button" class="close" data-bs-dismiss="modal" 
-
->x</button>
+                            <button type="button" class="close" data-bs-dismiss="modal" >
+x</button>
                         </div>
                         <div class="modal-body">
                             <center>
@@ -662,8 +639,8 @@
         <!--- Copy the default avatar to the user's contact directory --->
         <cffile action="copy" 
                 source="#application.defaultAvatarUrl#" 
-                destination="#avatar_path#" 
-               >
+                destination="#avatar_path#" >
+
     <cfcatch type="any">
         <!--- Log or handle the error --->
         <cfset application.errorLog = "Failed to copy default avatar: " & cfcatch.message>

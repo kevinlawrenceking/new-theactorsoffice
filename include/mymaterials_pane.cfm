@@ -33,16 +33,14 @@
 <cfinclude template="/include/qry/materials_sel.cfm" />
 
 <!--- Modal for 'My Materials' information/help --->
-<div id="mymaterialshelp" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" 
+<div id="mymaterialshelp" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" >
 
->
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header" style="background-color: #f3f7f9;">
                 <h4 class="modal-title" id="standard-modalLabel">My Materials</h4>
-                <button type="button" class="close" data-bs-dismiss="modal" 
+                <button type="button" class="close" data-bs-dismiss="modal" >
 
->
                     <i class="mdi mdi-close-thick"></i>
                 </button>
             </div>
@@ -110,16 +108,14 @@
                     </script>
 
                     <!--- Delete Material Modal --->
-                    <div id="remoteDeleteaudmedia#headshots_sel.mediaid#" class="modal fade" tabindex="-1" role="dialog" 
+                    <div id="remoteDeleteaudmedia#headshots_sel.mediaid#" class="modal fade" tabindex="-1" role="dialog" >
 
->
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header" style="background-color: red;">
                                     <h4 class="modal-title">Delete Material</h4>
-                                    <button type="button" class="close" data-bs-dismiss="modal" 
+                                    <button type="button" class="close" data-bs-dismiss="modal" >
 
->
                                         <i class="mdi mdi-close-thick"></i>
                                     </button>
                                 </div>
@@ -138,16 +134,14 @@
                     </script>
 
                     <!--- Update Material Modal --->
-                    <div id="remoteupdatematerial#headshots_sel.mediaid#" class="modal fade" tabindex="-1" role="dialog" 
+                    <div id="remoteupdatematerial#headshots_sel.mediaid#" class="modal fade" tabindex="-1" role="dialog" >
 
->
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h4 class="modal-title">Update Material</h4>
-                                    <button type="button" class="close" data-bs-dismiss="modal" 
+                                    <button type="button" class="close" data-bs-dismiss="modal" >
 
->
                                         <i class="mdi mdi-close-thick"></i>
                                     </button>
                                 </div>

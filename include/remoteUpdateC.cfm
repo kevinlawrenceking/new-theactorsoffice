@@ -104,8 +104,8 @@
             data-parsley-pattern="^(?!.*@).*$"
             data-parsley-pattern-message="Please enter a valid URL without '@'"
             data-parsley-type-message="Please enter a valid URL starting with http or https"
-        </cfif>
-    >
+        </cfif>>
+
 </div>
 
             </cfoutput>

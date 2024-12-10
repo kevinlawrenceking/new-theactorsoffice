@@ -135,9 +135,8 @@
         });
     </script>
 
-    <div id="remoteUpdate<cfoutput>C#cu.itemid#</cfoutput>" class="modal fade" tabindex="-1" role="dialog" 
+    <div id="remoteUpdate<cfoutput>C#cu.itemid#</cfoutput>" class="modal fade" tabindex="-1" role="dialog" >
 
->
 
         <div class="modal-dialog">
 
@@ -151,9 +150,8 @@
 
                     </h4>
 
-                    <button type="button" class="close" data-bs-dismiss="modal" 
+                    <button type="button" class="close" data-bs-dismiss="modal" >
 
->
 
                         <i class="mdi mdi-close-thick"></i>
 
@@ -188,9 +186,8 @@
         });
     </script>
 
-    <div id="remoteAdd<cfoutput>C#c.catid#</cfoutput>" class="modal fade" tabindex="-1" role="dialog" 
+    <div id="remoteAdd<cfoutput>C#c.catid#</cfoutput>" class="modal fade" tabindex="-1" role="dialog" >
 
->
 
         <div class="modal-dialog">
 
@@ -202,9 +199,8 @@
 
                     </h4>
 
-                    <button type="button" class="close" data-bs-dismiss="modal" 
-
-><i class="mdi mdi-close-thick"></i></button>
+                    <button type="button" class="close" data-bs-dismiss="modal" >
+<i class="mdi mdi-close-thick"></i></button>
 
                 </div>
 
@@ -229,9 +225,8 @@
     });
 </script>
 
-<div id="remoteUpdateTag" class="modal fade" tabindex="-1" role="dialog" 
+<div id="remoteUpdateTag" class="modal fade" tabindex="-1" role="dialog" >
 
->
 
     <div class="modal-dialog">
 
@@ -241,9 +236,8 @@
 
                 <h4 class="modal-title">Update Tags</h4>
 
-                <button type="button" class="close" data-bs-dismiss="modal" 
-
-><i class="mdi mdi-close-thick"></i></button>
+                <button type="button" class="close" data-bs-dismiss="modal" >
+<i class="mdi mdi-close-thick"></i></button>
 
             </div>
 
@@ -266,9 +260,8 @@
     });
 </script>
 
-<div id="showmaint" class="modal fade" tabindex="-1" role="dialog" 
+<div id="showmaint" class="modal fade" tabindex="-1" role="dialog" >
 
->
 
     <div class="modal-dialog modal-sm">
 
@@ -312,9 +305,8 @@
 
 <Cfoutput>
 
-    <div id="remoteDeleteForm#currentid#" class="modal fade" tabindex="-1" role="dialog" 
+    <div id="remoteDeleteForm#currentid#" class="modal fade" tabindex="-1" role="dialog" >
 
->
 
         <div class="modal-dialog">
 
@@ -324,9 +316,8 @@
 
                     <h4 class="modal-title">#compname#</h4>
 
-                    <button type="button" class="close" data-bs-dismiss="modal" 
-
-><i class="mdi mdi-close-thick"></i></button>
+                    <button type="button" class="close" data-bs-dismiss="modal" >
+<i class="mdi mdi-close-thick"></i></button>
 
                 </div>
 
@@ -352,9 +343,8 @@
 
 </script>
 
-<div id="remoteUpdateName" class="modal fade" tabindex="-1" role="dialog" 
+<div id="remoteUpdateName" class="modal fade" tabindex="-1" role="dialog" >
 
->
 
     <div class="modal-dialog">
 
@@ -364,9 +354,8 @@
 
                 <h4 class="modal-title">Contact Details</h4>
 
-                <button type="button" class="close" data-bs-dismiss="modal" 
-
-><i class="mdi mdi-close-thick"></i></button>
+                <button type="button" class="close" data-bs-dismiss="modal" >
+<i class="mdi mdi-close-thick"></i></button>
 
             </div>
 

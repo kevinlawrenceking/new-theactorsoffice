@@ -91,9 +91,8 @@ WHERE th.STATUS = 'Emailed' and th.uuid = '#uuid#'
 <cfif #pwrong# is "Y">
 	 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span 
-
->&times;</span>
+                                            <span >
+&times;</span>
                                         </button>
                                        Incorrect Email Address and Password!
                                     </div>
@@ -103,8 +102,8 @@ WHERE th.STATUS = 'Emailed' and th.uuid = '#uuid#'
     </cfoutput>
                                 <form action="setup2.cfm" method="post"  autocomplete="off" class="parsley-examples"
                                        data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden"
-  data-parsley-trigger="keyup" data-parsley-validate
-                                      >
+  data-parsley-trigger="keyup" data-parsley-validate>
+
 <input type="hidden" name="pwrong" value="N" />
                                     
                                     <Cfoutput>

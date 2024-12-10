@@ -15,16 +15,14 @@
     </cfoutput>
     
     <cfoutput>
-        <div id="updateeventtype_#eventtypes_user.id#" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" 
+        <div id="updateeventtype_#eventtypes_user.id#" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" >
 
->
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header" style="background-color: #eventtypes_user.eventtypecolor#;">
                         <h4 class="modal-title" id="standard-modalLabel">#eventtypes_user.eventtypename# Appointment Type Update</h4>
-                        <button type="button" class="close" data-bs-dismiss="modal" 
+                        <button type="button" class="close" data-bs-dismiss="modal" >
 
->
                             <i class="mdi mdi-close-thick"></i>
                         </button>
                     </div>

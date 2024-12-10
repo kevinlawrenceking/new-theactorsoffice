@@ -112,8 +112,8 @@
             data-parsley-type-message="Please enter a valid URL starting with http or https"
         <cfelse>
             placeholder="Enter #details.recordname#"
-        </cfif>
-    >
+        </cfif>>
+
 </div>
 
 </cfoutput>

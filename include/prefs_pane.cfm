@@ -163,16 +163,14 @@
     </div>
 </div>
 
-<div id="updatenewsletter" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" 
+<div id="updatenewsletter" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" >
 
->
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header" style="background-color: ##f3f7f9;">
                   <h4 class="modal-title" id="standard-modalLabel">Newsletter Update</h4>
-                  <button type="button" class="close" data-bs-dismiss="modal" 
+                  <button type="button" class="close" data-bs-dismiss="modal" >
 
->
                     <i class="mdi mdi-close-thick"></i>
                   </button>
                 </div>
