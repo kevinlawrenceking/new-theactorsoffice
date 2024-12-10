@@ -49,15 +49,15 @@
         <input type="submit" class="btn btn-primary waves-effect waves-light" value="Refresh" /></div>
 
         <Cfoutput>
-  <!-- Hidden Date Range Div -->
+  <!--- Hidden Date Range Div --->
   <div id="hidden_div" style="display: none;">
-    <!-- Start Date -->
+    <!--- Start Date --->
     <div id="hidden_divx" class="form-group col-md-2">
       <label for="customstart">Start Date</label>
       <input id="customstart" class="form-control" autocomplete="off" value="#customstart#" name="customstart" type="date"  />
     </div>
 
-    <!-- End Date -->
+    <!--- End Date --->
     <div id="hidden_divsx" class="form-group col-md-2">
       <label for="customend">End Date</label>
       <input id="customend" class="form-control" autocomplete="off" value="#customend#" name="customend" type="date"  />
@@ -125,11 +125,11 @@
             </span>
           </h6>
           <Cfoutput>
-            <!-- Check if data is available -->
+            <!--- Check if data is available --->
             <cfif dataset_x.recordCount GT 0>
               <canvas id="myChart_#reports.reportid#"></canvas>
             <cfelse>
-              <!-- No data available message -->
+              <!--- No data available message --->
               <div style="text-align: center; color: grey; font-size: 16px; height: 100px; display: flex; align-items: center; justify-content: center;">
                 No data available
               </div>

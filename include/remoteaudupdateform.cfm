@@ -301,7 +301,7 @@
         </select>
     </div>
 
-    <!-- Country -->
+    <!--- Country --->
     <div class="form-group col-md-6">
         <label for="countryid">Country <cfoutput>(#new_countryid#)</cfoutput><span class="text-danger">*</span></label>
         <select id="countryid" class="form-control" name="countryid" data-parsley-required data-parsley-error-message="Country is required"  onchange="filterRegions(this.value)">

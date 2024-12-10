@@ -8,17 +8,17 @@
 <body>
     <h1>Testing Report 6</h1>
 
-    <!-- Initialize the ReportsRefreshService component -->
+    <!--- Initialize the ReportsRefreshService component --->
     <cfset ReportsRefreshService = createObject("component", "services.ReportsRefreshService")>
 
-    <!-- Fetch results for different audsourceidb values -->
+    <!--- Fetch results for different audsourceidb values --->
     <cfset result_0 = ReportsRefreshService.report_6(userid=30, rangestart="2023-01-01", rangeend="2023-12-31", new_audsourceidb=0)>
     <cfset result_1 = ReportsRefreshService.report_6(userid=30, rangestart="2023-01-01", rangeend="2023-12-31", new_audsourceidb=1)>
     <cfset result_2 = ReportsRefreshService.report_6(userid=30, rangestart="2023-01-01", rangeend="2023-12-31", new_audsourceidb=2)>
     <cfset result_3 = ReportsRefreshService.report_6(userid=30, rangestart="2023-01-01", rangeend="2023-12-31", new_audsourceidb=3)>
     <cfset result_4 = ReportsRefreshService.report_6(userid=30, rangestart="2023-01-01", rangeend="2023-12-31", new_audsourceidb=4)>
 
-    <!-- Display the results -->
+    <!--- Display the results --->
     <h2>Results for new_audsourceidb = 0</h2>
     <cfdump var="#result_0#">
 
