@@ -1002,8 +1002,6 @@
     <cfargument name="recid" type="numeric" required="true">
 
     
-    
-    
         <cfquery name="result" >
             SELECT 
                 v.verid, 
@@ -1028,12 +1026,6 @@
             WHERE v.verid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
         
-        
-            
-            
-        
-    
-
     <cfreturn result>
 </cffunction>
 <cffunction output="false" name="DETtickets_24784" access="public" returntype="query">
