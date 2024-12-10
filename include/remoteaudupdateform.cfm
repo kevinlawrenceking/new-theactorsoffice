@@ -244,8 +244,7 @@
         <div class="custom-group custom-checkbox">
             <div style="margin-left:25px;">
                 <label class="custom-control-label">
-                    <input type="checkbox" name="new_trackmileage" class="custom-control-input" id="trackmileage" value="1" <cfif aud_det.trackmileage is "1" ></cfif>
- checked </cfif>>
+                    <input type="checkbox" name="new_trackmileage" class="custom-control-input" id="trackmileage" value="1" <cfif aud_det.trackmileage is "1" /> checked </cfif>>
                     <span class="custom-control-label" for="trackmileage">Track Mileage</span>
                 </label>
             </div>
@@ -369,8 +368,7 @@
                 <div class="custom-group custom-checkbox">
                     <div style="margin-left:25px;">
                         <label class="custom-control-label">
-                            <input type="checkbox" class="custom-control-input" id="workwithcoach" value="1" <cfif #aud_det.workwithcoach# is "1" ></cfif>
- checked </cfif> name="new_workwithcoach">
+                            <input type="checkbox" class="custom-control-input" id="workwithcoach" value="1" <cfif #aud_det.workwithcoach# is "1" /> checked </cfif> name="new_workwithcoach">
                             <span class="custom-control-label" for="workwithcoach">Worked with Coach</span>
                         </label>
                     </div>
