@@ -1125,13 +1125,9 @@
 
 <cffunction name="REStickets_24787" access="public" returntype="query" output="false" hint="Fetches version and ticket data.">
     <!--- Define arguments if needed for future flexibility --->
-    <cfargument name="datasource" type="string" required="true" hint="The datasource name.">
-
-    <!--- Initialize the query result --->
-    <cfset var results = "">
 
     <!--- Execute the query --->
-    <cfquery name="results" datasource="#arguments.datasource#">
+    <cfquery name="results">
         SELECT 
             v.verid,
             'Release' AS head1,
@@ -1161,7 +1157,6 @@
         ORDER BY v.major, v.minor, v.patch, v.version, v.build
     </cfquery>
 
-    <!--- Return the query result --->
     <cfreturn results>
 </cffunction>
 
