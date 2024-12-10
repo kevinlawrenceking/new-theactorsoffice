@@ -12,7 +12,7 @@
 
 <!--- Include the second query template for cleaning up --->
 <cfinclude template="/include/qry/CLEAN_169_2.cfm" />
-<cfabort>
+
 <!--- Prepare the return URL with contact and event IDs --->
 <cfoutput>
     <cfset returnurl = "/app/#returnurl#/?contactid=#rcontactid#&eventid=#reventid#&tab2_expand=true&t3=1" />
