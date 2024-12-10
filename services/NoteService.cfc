@@ -97,10 +97,10 @@
         UPDATE noteslog 
         SET NOTEDETAILSHTML = REPLACE(
             NOTEDETAILSHTML, 
-            '<input type="text" data-formula="e=mc^2" data-link="https://quilljs.com" data-video="Embed URL" />', 
+            '<input type="text" data-formula="e=mc^2" data-link="https://quilljs.com" data-video="Embed URL">', 
             ''
         ) 
-        WHERE NOTEDETAILSHTML LIKE '%<input type="text" data-formula="e=mc^2" data-link="https://quilljs.com" data-video="Embed URL" />%';
+        WHERE NOTEDETAILSHTML LIKE '%<input %';
     </cfquery>
 </cffunction>
 
