@@ -186,18 +186,17 @@
                                 <div class="media">
                                     <div class="media-body">
                                         <div class="mt-0 font-size-12">
-                                            <cfif ticketDetails.releasedate neq "">#dateFormat(details.releasedate,'mm-dd-yyyy')#</cfif>
+                                            <cfif ticketDetails.releasedate neq "">#dateFormat(ticketDetails.releasedate,'mm-dd-yyyy')#</cfif>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col-md-3">
                                 <p class="mt-2 mb-0 font-weight-bold">Implementation Date</p>
                                 <div class="media">
                                     <div class="media-body">
                                         <div class="mt-0 font-size-12">
-                                            <cfif ticketDetails.ticketCompletedDate neq "">#dateFormat(details.ticketCompletedDate,'mm-dd-yyyy')#</cfif>
+                                            <cfif ticketDetails.ticketCompletedDate neq "">#dateFormat(ticketDetails.ticketCompletedDate,'mm-dd-yyyy')#</cfif>
                                         </div>
                                     </div>
                                 </div>
