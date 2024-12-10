@@ -42,7 +42,7 @@
         
         <cffile action="copy" 
                 source="#application.defaultAvatarUrl#" 
-                destination="#avatar_path#" >          
+                destination="#cookie.uploadDir_Contact#" >          
 
 </cfif>
 
