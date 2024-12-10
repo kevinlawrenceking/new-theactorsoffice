@@ -517,14 +517,14 @@ AND p.userid=<cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#"
         <cfargument name="rangeend" type="date" required="true">
         <cfargument name="new_audcatid" type="numeric" required="true">
 
-        <!-- Initialize variables -->
+        <!--- Initialize variables --->
         <cfset var totalSelected = 0>
         <cfset var totalInserted = 0>
         <cfset var new_reportid = 7>
         <cfset var i = 0>
         <cfset var resultSummary = {totalSelected = 0, totalInserted = 0, reportId = new_reportid}>
 
-        <!-- Query to fetch data -->
+        <!--- Query to fetch data --->
         <cfquery name="report_7">
             SELECT
                 COUNT(p.audprojectid) AS totals,
@@ -553,17 +553,17 @@ AND p.userid=<cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#"
                 rt.audroletype
         </cfquery>
 
-        <!-- Update summary with total selected -->
+        <!--- Update summary with total selected --->
         <cfset resultSummary.totalSelected = report_7.recordCount>
 
-        <!-- Loop through the results and insert report items -->
+        <!--- Loop through the results and insert report items --->
         <cfloop query="report_7">
             <cfset i++>
             <cfset var new_label = report_7.label>
             <cfset var new_itemValueInt = report_7.totals>
             <cfset var new_itemDataset = report_7.itemDataset>
 
-            <!-- Find or create report item ID -->
+            <!--- Find or create report item ID --->
             <cfquery name="findid">
                 SELECT r.ID AS new_id
                 FROM reports_user r
@@ -576,10 +576,10 @@ AND p.userid=<cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#"
                 <cfset new_id = findid.new_id>
             </cfif>
 
-            <!-- Sanitize label -->
+            <!--- Sanitize label --->
             <cfset var new_label_new = Replace(new_label, "'", "", "All")>
 
-            <!-- Insert report item -->
+            <!--- Insert report item --->
             <cfquery name="Insert_ReportItems" result="insertResult">
                 INSERT INTO reportitems (
                     itemLabel,
@@ -598,14 +598,14 @@ AND p.userid=<cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#"
                 )
             </cfquery>
 
-            <!-- Track insertions -->
+            <!--- Track insertions --->
             <cfset totalInserted++>
         </cfloop>
 
-        <!-- Update summary with total inserted -->
+        <!--- Update summary with total inserted --->
         <cfset resultSummary.totalInserted = totalInserted>
 
-        <!-- Return summary -->
+        <!--- Return summary --->
         <cfreturn resultSummary>
     </cffunction>
 

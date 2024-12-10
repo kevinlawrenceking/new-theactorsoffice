@@ -338,7 +338,7 @@
 <cffunction output="false" name="SELevents" access="public" returntype="numeric">
     <cfargument name="audprojectid" type="numeric" required="true">
     
-    <!-- Query to get the contactid -->
+    <!--- Query to get the contactid --->
     <cfquery name="result" maxrows="1">
         SELECT DISTINCT
             p.contactid
@@ -361,7 +361,7 @@
             e.eventid DESC
     </cfquery>
     
-    <!-- Return contactid or 0 -->
+    <!--- Return contactid or 0 --->
     <cfif result.recordCount GT 0>
         <cfreturn result.contactid>
     <cfelse>
