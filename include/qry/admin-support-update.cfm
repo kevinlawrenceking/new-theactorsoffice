@@ -4,11 +4,16 @@
 
 <!--- Fetch ticket details using the Ticket_det function --->
 <cfset ticketDetails = ticketService.DETtickets(recid = #recid#)>
-<cfset ticketStatuses = ticketService.statuses_sel()>
+<cfset ticketStatuses = ticketService.SELticketstatuses()>
+
+<cfset ticketTypeService = createObject("component", "services.ticketTypeService")>
 
 <!--- Fetch the ticket types using the types_sel function --->
-<cfset ticketTypes = ticketService.types_sel()>
-<cfset ticketPriorities = ticketService.priorities_sel()>
+<cfset ticketTypeService = ticketService.types_sel()>
+
+
+<cfset ticketPriorityService = createObject("component", "services.ticketPriorityService")>
+<cfset ticketPriorities = ticketicketPriorityServicetService.priorities_sel()>
 
 <!--- Fetch active pages using the pages_sel function from PageService --->
 <cfset pageService = createObject("component", "services.PageService")>

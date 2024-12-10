@@ -1,33 +1,10 @@
 <cfcomponent displayname="TicketStatusService" hint="Handles operations for TicketStatus table" > 
 <cffunction output="false" name="SELticketstatuses" access="public" returntype="query">
-    <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
-    
-    <cfset var sql = "SELECT ticketstatus AS id, ticketstatus AS name FROM ticketstatuses">
-    <cfset var whereClauses = []>
-    <cfset var params = []>
-
-    <!--- Validate and build WHERE clauses --->
-    <cfloop collection="#arguments.conditions#" item="key">
-        <cfif listFindNoCase("ticketstatus", key)>
-            <cfset arrayAppend(whereClauses, "#key# = ?")>
-            <cfset arrayAppend(params, {value=arguments.conditions[key], cfsqltype="CF_SQL_VARCHAR"})>
-        </cfif>
-    </cfloop>
-
-    <!--- Append WHERE clause if conditions exist --->
-    <cfif arrayLen(whereClauses) gt 0>
-        <cfset sql &= " WHERE " & arrayToList(whereClauses, " AND ")>
-    </cfif>
-
-    <!--- Add ORDER BY clause --->
-    <cfset sql &= " ORDER BY id">
-
     <!--- Execute the query --->
     <cfquery name="result">
-        #sql#
-        <cfloop array="#params#" index="param">
-            <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-        </cfloop>
+        SELECT ticketstatus AS id, ticketstatus AS name 
+        FROM ticketstatuses 
+        ORDER BY id
     </cfquery>
 
     <!--- Return the query result --->
