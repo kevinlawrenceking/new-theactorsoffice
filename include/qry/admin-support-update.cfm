@@ -2,15 +2,14 @@
 
 <cfset ticketService = createObject("component", "services.TicketService")>
 <cfset ticketStatusService = createObject("component", "services.ticketStatusService")>
+<cfset ticketTypeService = createObject("component", "services.ticketTypeService")>
 
 <!--- Fetch ticket details using the Ticket_det function --->
 <cfset ticketDetails = ticketService.DETtickets(recid = #recid#)>
 <cfset ticketStatuses = ticketStatusService.SELticketstatuses()>
 
-<cfset ticketTypeService = createObject("component", "services.ticketTypeService")>
-
 <!--- Fetch the ticket types using the types_sel function --->
-<cfset ticketTypeService = ticketService.types_sel()>
+<cfset ticketTypeService = ticketTypeService.types_sel()>
 
 <!--- Fetch the ticket priorities --->
 <cfset ticketPriorityService = createObject("component", "services.ticketPriorityService")>
