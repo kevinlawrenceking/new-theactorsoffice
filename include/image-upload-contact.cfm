@@ -32,7 +32,7 @@
 
 </cfoutput>
 
-<cfif NOT fileExists(contact_avatar)>
+<cfif NOT fileExists(cookie.browser_contact_avatar_filename)>
   
    
  
