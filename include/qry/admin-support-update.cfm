@@ -1,6 +1,6 @@
 <!--- This ColdFusion page fetches ticket details, statuses, types, priorities, active pages, users, and versions from various services. --->
 
-<cfset ticketService = createObject("component", "services.TicketsService")>
+<cfset ticketService = createObject("component", "services.TicketService")>
 
 <!--- Fetch ticket details using the Ticket_det function --->
 <cfset ticketDetails = ticketService.Ticket_det(recid = #recid#)>
