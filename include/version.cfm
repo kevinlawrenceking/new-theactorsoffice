@@ -169,7 +169,8 @@
                                 <div class="media">
                                     <div class="media-body">
                                         <div class="mt-0 font-size-12">
-                                            #details.reviewDate#
+                                            
+                                                #dateformat("#details.reviewDate#","MM-dd-YYYY")#
                                         </div>
                                     </div>
                                 </div>
@@ -191,7 +192,7 @@
                                 <div class="media">
                                     <div class="media-body">
                                         <div class="mt-0 font-size-12">
-                                            #details.releasedate#
+                                            #dateformat("#details.releasedate#","MM-dd-YYYY")#
                                         </div>
                                     </div>
                                 </div>
