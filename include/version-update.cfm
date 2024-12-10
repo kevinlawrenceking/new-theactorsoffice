@@ -130,6 +130,7 @@
                         </cfoutput>
                     </div>
 
+<cfoutput>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -173,6 +174,8 @@
                             </div>
                         </div>
                     </div>
+
+                    </cfoutput>
                 </form>
                 <div class="row mt-2">
                     <div class="col-6">
