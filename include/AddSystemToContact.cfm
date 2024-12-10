@@ -12,8 +12,6 @@
     </cfoutput>
 </cfif>
 
-
-
 <!--- Determine action items needed for new system --->  
 <cfinclude template="/include/qry/addDaysNo_5_2.cfm" />
 
