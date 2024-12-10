@@ -2,7 +2,7 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  const hiddenDiv = document.querySelector(".ql-tooltip.ql-hidden");
+  const hiddenDiv = document.querySelector(".ql-hidden");
   if (hiddenDiv) {
     hiddenDiv.style.display = "none";
   }
