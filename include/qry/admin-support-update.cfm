@@ -9,7 +9,7 @@
 <cfset ticketStatuses = ticketStatusService.SELticketstatuses()>
 
 <!--- Fetch the ticket types using the types_sel function --->
-<cfset ticketTypeService = ticketTypeService.types_sel()>
+<cfset ticketTypeService = ticketTypeService.SELtickettypes()>
 
 <!--- Fetch the ticket priorities --->
 <cfset ticketPriorityService = createObject("component", "services.ticketPriorityService")>
