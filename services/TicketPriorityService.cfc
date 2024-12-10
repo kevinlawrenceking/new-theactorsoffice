@@ -7,7 +7,7 @@
         ORDER BY orderNo
     </cfquery>
 
-    <!--- Return the query result --->
+<!--- Return the query result --->
     <cfreturn result>
 </cffunction>
 

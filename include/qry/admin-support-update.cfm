@@ -26,5 +26,5 @@
 <cfset users = userService.users_sel()>
 
 <!--- Call the versions_sel function from VersionsService --->
-<cfset versionService = createObject("component", "services.VersionsService")>
-<cfset vers = versionService.versions_sel()>
+<cfset taoVersionService = createObject("component", "services.taoVersionService")>
+<cfset vers = taoVersionService.versions_sel()>

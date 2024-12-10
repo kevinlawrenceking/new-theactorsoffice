@@ -1,10 +1,10 @@
-<cfcomponent displayname="PageService" hint="Handles operations for Page table" > 
+<cfcomponent displayname="PageService" hint="Handles operations for Page table" >
 
 <cffunction name="SELpgpages_24740" access="public" returntype="query" output="false">
 
-    <cfargument name="pgid" type="numeric" required="true">
-    
-    <cfquery name="FindJoins" >
+<cfargument name="pgid" type="numeric" required="true">
+
+<cfquery name="FindJoins" >
         SELECT      
             f.fname,
             f2.fname AS fnameb,
@@ -33,15 +33,15 @@
             AND f.fkey <> ''
     </cfquery>
 
-    <!--- Return the query result --->
+<!--- Return the query result --->
     <cfreturn FindJoins>
 </cffunction>
 
 <cffunction output="false" name="SELpgpages" access="public" returntype="query">
     <cfargument name="ticketActive" type="string" required="true">
     <cfset var queryResult = "">
-    
-        <cfquery result="result" name="queryResult" >
+
+<cfquery result="result" name="queryResult" >
             SELECT DISTINCT p.pgid, p.pgname 
             FROM taousers u 
             INNER JOIN tickets t ON u.userID = t.userid 
@@ -49,13 +49,13 @@
             WHERE t.ticketactive = <cfqueryparam value="#arguments.ticketActive#" cfsqltype="CF_SQL_CHAR"> 
             ORDER BY p.pgname
         </cfquery>
- 
-    <cfreturn queryResult>
+
+<cfreturn queryResult>
 </cffunction>
 <cffunction output="false" name="SELpgpages_23868" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT *
             FROM pgpages p
             INNER JOIN pgcomps c ON c.compID = p.compid
@@ -63,43 +63,43 @@
             WHERE p.parentpgid = <cfqueryparam value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER">
             AND p.pgfilename = <cfqueryparam value="results.cfm" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="DETpgpages" access="public" returntype="query">
     <cfargument name="compid" type="numeric" required="true">
     <cfargument name="pgid" type="numeric" required="true">
 
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT pgid, pgdir
             FROM pgpages
             WHERE compid = <cfqueryparam value="#arguments.compid#" cfsqltype="CF_SQL_INTEGER">
             AND pgid <> <cfqueryparam value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER">
             AND pgfilename = <cfqueryparam value="results.cfm" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
-        
-        <!---  #arguments.pgid# AND pgfilename = 'results.cfm'"> --->
+
+<!---  #arguments.pgid# AND pgfilename = 'results.cfm'"> --->
     <cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELpgpages_23870" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT p.pgTitle, c.compname 
             FROM pgpages p 
             INNER JOIN pgcomps c ON c.compID = p.compID 
             INNER JOIN pgapps a ON a.appID = c.appid 
             WHERE p.pgid = <cfqueryparam value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="SELpgpages_23912" access="public" returntype="query">
     <cfargument name="ref_pgid" type="numeric" required="true">
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 a.appname, a.appAuthor, c.compname, p.pgname, a.appId, 
                 a.appDescription, a.appLogoName, a.colorTopBar, a.colorLeftSideBar, 
@@ -113,27 +113,27 @@
             INNER JOIN pgapps a ON a.appID = c.appid
             WHERE p.pgid = <cfqueryparam value="#arguments.ref_pgid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        <cfreturn result>
-        
+
+<cfreturn result>
+
 </cffunction>
 
 <cffunction output="false" name="DETpgpages_23991" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT pgdir 
             FROM pgpages 
             WHERE pgid = <cfqueryparam value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-   
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="getDynamicQuery" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 f.fname, f.fieldid, f.pgid, f.ftype, f.ftypefull, 
                 f.update_yn, f.updatename, f.updatetype, f.fkey, 
@@ -150,14 +150,14 @@
             AND f.results_yn = 'Y'
             ORDER BY f.displayOrder
         </cfquery>
- 
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="SELpgpages_24003" access="public" returntype="query">
     <cfargument name="thispage" type="string" required="true">
 
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 a.appname, a.appAuthor, c.compname, p.pgname, a.appId, a.appDescription, 
                 a.appLogoName, a.colorTopBar, a.colorLeftSideBar, a.mocktoday, a.mock_yn, 
@@ -174,13 +174,13 @@
             WHERE 
                 p.pgDir = <cfqueryparam value="#trim(arguments.thispage)#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
- 
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="FindFields" access="public" returntype="query">
     <cfargument name="thispage" type="string" required="true">
-   
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 a.appname, c.compname, p.pgname, f.fname, 
                 a.appId, a.appName, a.appDescription, a.appLogoName, 
@@ -203,13 +203,13 @@
             WHERE 
                 p.pgDir = <cfqueryparam value="#trim(arguments.thispage)#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
-  
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELpgpages_24004" access="public" returntype="query">
     <cfargument name="thispage" type="string" required="true">
 
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 a.appname, c.compname, p.pgname, f.fname, 
                 a.appId, a.appName, a.appDescription, a.appLogoName, 
@@ -232,38 +232,38 @@
             WHERE 
                 p.pgDir = <cfqueryparam value="#trim(arguments.thispage)#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="DETpgpages_24197" access="public" returntype="query">
     <cfargument name="details_pgid" type="numeric" required="true">
- 
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT pgdir
             FROM pgpages
             WHERE pgid = <cfqueryparam value="#arguments.details_pgid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
- 
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELpgpages_24210" access="public" returntype="query">
     <cfargument name="compactive" type="string" required="true">
 
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT p.pgid AS ID, p.pgname AS name
             FROM pgpages p
             INNER JOIN pgcomps c ON c.compid = p.compid
             WHERE c.compactive = <cfqueryparam value="#arguments.compactive#" cfsqltype="CF_SQL_CHAR">
             ORDER BY p.pgname
         </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="DETpgpages_24259" access="public" returntype="query">
     <cfargument name="compid" type="numeric" required="true">
     <cfargument name="pgid" type="numeric" required="true">
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT pgid, pgdir 
             FROM pgpages 
             WHERE compid = <cfqueryparam value="#arguments.compid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -271,13 +271,13 @@
             AND pgfilename = <cfqueryparam value="details.cfm" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="SELpgpages_24300" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
- 
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 a.appname, a.appAuthor, c.compname, p.pgname, a.appId, a.appDescription, 
                 a.appLogoName, a.colorTopBar, a.colorLeftSideBar, c.compid, c.compDir, 
@@ -294,14 +294,14 @@
             WHERE 
                 p.pgid = <cfqueryparam value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="SELpgpages_24301" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 a.appname, c.compname, p.pgname, f.fname, f.num_min, f.num_max, 
                 f.required_yn, a.appId, a.appName, a.appDescription, a.appLogoName, 
@@ -319,14 +319,14 @@
             WHERE p.pgid = <cfqueryparam value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER">
             AND f.update_yn = <cfqueryparam value="y" cfsqltype="CF_SQL_CHAR">
         </cfquery>
-     
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="RESpgpages_24302" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
-  
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 a.appname, c.compname, p.pgname, f.fname, f.required_yn, f.num_min, f.num_max,
                 a.appId, a.appName, a.appDescription, a.appLogoName, a.colorTopBar, a.colorLeftSideBar,
@@ -351,13 +351,13 @@
             AND 
                 f.results_yn = <cfqueryparam value="y" cfsqltype="CF_SQL_CHAR">
         </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELpgpages_24303" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT f.fname, f.ftype 
             FROM pgpages p 
             INNER JOIN pgcomps c ON c.compID = p.compID 
@@ -366,13 +366,13 @@
             WHERE p.pgid = <cfqueryparam value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER"> 
               AND f.updatename = <cfqueryparam value="ID" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
-        
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELpgpages_24304" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
 
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 a.appname, c.compname, p.pgname, f.fname, f.required_yn, f.num_min, f.num_max, 
                 a.appId, a.appName, a.appDescription, a.appLogoName, a.colorTopBar, a.colorLeftSideBar, 
@@ -388,13 +388,13 @@
             WHERE p.pgid = <cfqueryparam value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER"> 
             AND f.add_yn = <cfqueryparam value="y" cfsqltype="CF_SQL_CHAR">
         </cfquery>
-        
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELpgpages_24305" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 a.appname, c.compname, p.pgname, f.fname, f.num_min, f.num_max, 
                 f.required_yn, a.appId, a.appName, a.appDescription, a.appLogoName, 
@@ -417,13 +417,13 @@
                 p.pgid = <cfqueryparam value="#arguments.rpgid#" cfsqltype="CF_SQL_INTEGER"> 
                 AND f.update_yn = <cfqueryparam value="y" cfsqltype="CF_SQL_CHAR">
         </cfquery>
-        
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="RESpgpages_24652" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
 
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 f.fname, f.fieldid, f.pgid, f.ftype, f.ftypefull, 
                 f.update_yn, f.updatename, f.updatetype, f.fkey, 
@@ -450,12 +450,12 @@
                 f.displayOrder
         </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELpgpages_24653" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
 
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 f.fname, 
                 f2.fname AS fnameb, 
@@ -483,13 +483,13 @@
                 AND f.details_yn = <cfqueryparam value="Y" cfsqltype="CF_SQL_CHAR"> 
                 AND f.fkey <> ''
         </cfquery>
-        
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="RESpgpages_24739" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 f.fname, 
                 f.fieldid, 
@@ -524,15 +524,15 @@
             ORDER BY 
                 f.displayOrder
         </cfquery>
-        
-        <cfreturn result>
-        
+
+<cfreturn result>
+
 </cffunction>
 
 <cffunction output="false" name="getDynamicQueryx" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 f.fname, 
                 f2.fname AS fnameb, 
@@ -561,13 +561,13 @@
                 AND f.fkey <> ''
         </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="RESpgpages_24777" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
 
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 f.fname, f.fieldid, f.pgid, f.ftype, f.ftypefull, f.update_yn, 
                 f.updatename, f.updatetype, f.fkey, f.det_cols, 
@@ -593,14 +593,14 @@
             ORDER BY 
                 f.displayOrder
         </cfquery>
-        
-        <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="SELpgpages_24778" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
 
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 f.fname, 
                 f2.fname AS fnameb, 
@@ -628,21 +628,21 @@
                 AND f.details_yn = <cfqueryparam value="Y" cfsqltype="CF_SQL_CHAR"> 
                 AND f.fkey <> ''
         </cfquery>
-        
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 
-    <cffunction output="false" name="getPageDetails" access="public" returntype="struct"  hint="Fetch page details by page ID or URL">
+<cffunction output="false" name="getPageDetails" access="public" returntype="struct"  hint="Fetch page details by page ID or URL">
         <cfargument name="pgid" type="string" required="false" default="">
         <cfargument name="pgDir" type="string" required="false" default="">
 
-        <cfset var page = {}>
+<cfset var page = {}>
 
-        <cfif NOT Len(arguments.pgid) AND NOT Len(arguments.pgDir)>
-            
-        </cfif>
+<cfif NOT Len(arguments.pgid) AND NOT Len(arguments.pgDir)>
 
-        <cfquery result="result" name="qPageDetails" >
+</cfif>
+
+<cfquery result="result" name="qPageDetails" >
             SELECT
                 a.appname, p.allowdelete_yn, p.allowupdate_yn, p.allowadd_yn, p.allowdetails_yn,
                 a.appAuthor, c.compname, p.pgname, a.appId, a.appDescription,
@@ -664,7 +664,7 @@
             </cfif>
         </cfquery>
 
-        <cfif qPageDetails.recordCount EQ 1>
+<cfif qPageDetails.recordCount EQ 1>
             <cfset page = {
                 "appname": qPageDetails.appname,
                 "allowdelete_yn": qPageDetails.allowdelete_yn,
@@ -705,16 +705,16 @@
             }>
         </cfif>
 
-        <cfreturn page>
+<cfreturn page>
     </cffunction>
 
-    <cffunction output="false" name="getPageLinksByLocation" access="public" returntype="struct"  hint="Fetch top and bottom CSS/JS links for the given page">
+<cffunction output="false" name="getPageLinksByLocation" access="public" returntype="struct"  hint="Fetch top and bottom CSS/JS links for the given page">
         <cfargument name="pgid" type="string" required="true" hint="Page ID to fetch links for">
         <cfargument name="version" type="string" required="true" hint="Version to append to the URL as a cache-busting parameter">
 
-             <cfset var links = { top_links = "", bottom_links = "" }>
+<cfset var links = { top_links = "", bottom_links = "" }>
 
-    <cfquery result="result" name="qPageLinks">
+<cfquery result="result" name="qPageLinks">
             SELECT
                 CASE 
                     WHEN l.linktype = 'css' THEN 
@@ -736,7 +736,7 @@
             ORDER BY l.link_no ASC
         </cfquery>
 
-     <!--- Loop through the query and add links to the appropriate section --->
+<!--- Loop through the query and add links to the appropriate section --->
         <cfloop query="qPageLinks">
             <cfif qPageLinks.linkloc_tb EQ "t">
                 <!--- Append to top_links --->
@@ -747,18 +747,18 @@
             </cfif>
         </cfloop>
 
-        <!--- Return the struct containing top and bottom links --->
+<!--- Return the struct containing top and bottom links --->
         <cfreturn links>
     </cffunction>
 
-     <!--- Function to get script_include links for a page --->
+<!--- Function to get script_include links for a page --->
     <cffunction output="false" name="getIncludeLinks" access="public" returntype="array"  hint="Fetch script_include links for the given page">
         <cfargument name="pgid" type="numeric" required="true" hint="Page ID to fetch include links for">
 
-        <!--- Initialize an empty array to store the include links --->
+<!--- Initialize an empty array to store the include links --->
         <cfset var includeLinksArray = []>
 
-        <!--- Query to fetch the script_include links --->
+<!--- Query to fetch the script_include links --->
         <cfquery result="result" name="includeLinks">
             SELECT l.linkurl
             FROM pgapplinks l
@@ -771,16 +771,16 @@
             ORDER BY l.link_no ASC
         </cfquery>
 
-        <!--- Loop through the query and populate the array --->
+<!--- Loop through the query and populate the array --->
         <cfloop query="includeLinks">
             <cfset ArrayAppend(includeLinksArray, includeLinks.linkurl)>
         </cfloop>
 
-        <!--- Return the array of include links --->
+<!--- Return the array of include links --->
         <cfreturn includeLinksArray>
     </cffunction>
 
- <!--- Function to retrieve a select list of active pages --->
+<!--- Function to retrieve a select list of active pages --->
     <cffunction output="false" name="pages_sel" access="remote" returntype="query"  hint="Get a select list of active pages.">
         <cfquery result="result" name="pages">
             SELECT 

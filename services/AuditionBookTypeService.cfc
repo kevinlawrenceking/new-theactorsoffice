@@ -1,9 +1,8 @@
 <cfcomponent displayname="AuditionBookTypeService" hint="Handles operations for AuditionBookType table" > 
 <cffunction output="false" name="SELaudbooktypes" access="public" returntype="query">
     <cfargument name="audbooktypeid" type="numeric" required="false">
-    
 
-    <cfquery name="result">
+<cfquery name="result">
         SELECT audbooktypeid AS id, audbooktype AS name
         FROM audbooktypes
         WHERE isdeleted = 0
@@ -13,6 +12,6 @@
         </cfif>
     </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 </cfcomponent>

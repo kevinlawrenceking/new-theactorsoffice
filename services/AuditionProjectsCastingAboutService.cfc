@@ -14,7 +14,7 @@
     <cfargument name="new_CastingDir2" type="string" required="true">
     <cfargument name="new_audnetwork" type="string" required="true">
 
-    <cfquery result="result" name="insertQuery">
+<cfquery result="result" name="insertQuery">
         INSERT INTO audprojects_castingabout (
             projName, projtye, Status1, Status2, CastingAgency, 
             CastingDir, CastingAssociate, CastingAssistant, 
@@ -54,7 +54,7 @@
     <cfargument name="new_audnetwork" type="string" required="true">
     <cfargument name="new_ID" type="numeric" required="true">
 
-    <cfquery result="result" name="updateQuery">
+<cfquery result="result" name="updateQuery">
         UPDATE audprojects_castingabout
         SET 
             projName = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_projName#" maxlength="500">,

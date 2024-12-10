@@ -8,7 +8,6 @@
     <cfreturn result>
 </cffunction>
 
-
 <cffunction output="false" name="SELaudmediatypes_23753" access="public" returntype="query">
     <cfargument name="mediaTypeIds" type="array" required="true">
   <cfquery name="result">
@@ -22,32 +21,30 @@
         )
     </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 
 <cffunction name="getMediaTypes" access="public" returntype="query" output="false">
     <cfargument name="mediaTypeIds" type="array" required="true">
 
-    <!--- Convert the array to a comma-delimited list --->
+<!--- Convert the array to a comma-delimited list --->
     <cfset var mediaTypeList = arrayToList(arguments.mediaTypeIds)>
 
-    <!--- Execute the query --->
+<!--- Execute the query --->
     <cfquery name="result" >
         SELECT mediatypeid, mediatype
         FROM audmediatypes
         WHERE mediatypeid IN (<cfqueryparam value="#mediaTypeList#" cfsqltype="CF_SQL_INTEGER" list="true">)
     </cfquery>
 
-    <!--- Return the query result --->
+<!--- Return the query result --->
     <cfreturn result>
 </cffunction>
-
-
 
 <cffunction output="false" name="SELaudmediatypes_24067" access="public" returntype="query">
     <cfargument name="src" type="string" required="false" default="">
 
-    <!--- Execute the query --->
+<!--- Execute the query --->
     <cfquery name="queryResult" >
         SELECT mediatypeid, mediatype 
         FROM audmediatypes 
@@ -59,10 +56,9 @@
         ORDER BY mediatype
     </cfquery>
 
-    <!--- Return the result --->
+<!--- Return the result --->
     <cfreturn queryResult>
 </cffunction>
-
 
 <cffunction output="false" name="SELaudmediatypes_24198" access="public" returntype="query">
     <cfargument name="src" type="string" required="true">
@@ -78,7 +74,6 @@
     <cfreturn queryResult>
 </cffunction>
 
-
 <cffunction output="false" name="INSaudmediatypes" access="public" returntype="numeric">
     <cfargument name="new_mediaType" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
@@ -92,13 +87,12 @@
     <cfreturn result.generatedKey>
 </cffunction>
 
-
 <cffunction output="false" name="UPDaudmediatypes" access="public" returntype="void">
     <cfargument name="new_mediaType" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_mediaTypeID" type="numeric" required="true">
 
-    <!--- Update media type in database --->
+<!--- Update media type in database --->
     <cfquery result="result">
         UPDATE audmediatypes 
         SET 

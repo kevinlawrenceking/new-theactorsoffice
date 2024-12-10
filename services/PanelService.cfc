@@ -2,13 +2,11 @@
 <cffunction output="false" name="SELpgpanels" access="public" returntype="query">
     <cfargument name="newpnids" type="array" required="true">
 
-    
+<cfif arrayLen(arguments.newpnids) eq 0>
 
-    <cfif arrayLen(arguments.newpnids) eq 0>
-        
-    </cfif>
+</cfif>
 
-    <cfquery name="result">
+<cfquery name="result">
         SELECT pnid 
         FROM pgpanels 
         WHERE pnid IN (
@@ -18,6 +16,6 @@
         )
     </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 </cfcomponent>

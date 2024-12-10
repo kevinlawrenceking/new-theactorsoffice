@@ -2,7 +2,7 @@
 <cffunction output="false" name="INSuploads" access="public" returntype="numeric">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         INSERT INTO uploads (userid) 
         VALUES (<cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">)
     </cfquery>
@@ -10,15 +10,13 @@
 </cffunction>
 <cffunction output="false" name="DETuploads" access="public" returntype="query">
     <cfargument name="uploadid" type="numeric" required="true">
-    
-    
 
-    <cfquery name="result">
+<cfquery name="result">
         SELECT uploadid, `TIMESTAMP`, userid, uploadstatus
         FROM uploads
         WHERE uploadid = <cfqueryparam value="#arguments.uploadid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 </cfcomponent>

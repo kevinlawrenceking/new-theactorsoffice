@@ -1,11 +1,11 @@
 
-<cfcomponent displayname="AuditionMediaService" hint="Handles operations for AuditionMedia table" > 
+<cfcomponent displayname="AuditionMediaService" hint="Handles operations for AuditionMedia table" >
 
-    <!--- Function to select headshots based on user ID --->
+<!--- Function to select headshots based on user ID --->
     <cffunction output="false" name="GetHeadshots" access="public" returntype="query"  hint="Retrieve headshots for a specific user ID.">
         <cfargument name="userid" type="numeric" required="yes" hint="ID of the user to retrieve headshots for.">
 
-        <!--- Query to fetch headshots --->
+<!--- Query to fetch headshots --->
         <cfquery result="result" name="headshots_sel">
             SELECT 
                 m.mediaid,
@@ -37,17 +37,14 @@
                 m.mediaName
         </cfquery>
 
-        <cfreturn headshots_sel>
+<cfreturn headshots_sel>
     </cffunction>
 
 <cffunction output="false" name="SELaudmedia" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
     <cfargument name="mediatypeid" type="numeric" required="true">
-    
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT * 
             FROM audmedia m 
             INNER JOIN audmedia_auditions_xref x ON x.mediaid = m.mediaid 
@@ -56,21 +53,13 @@
             AND m.mediatypeid = <cfqueryparam value="#arguments.mediatypeid#" cfsqltype="CF_SQL_INTEGER"> 
             AND m.isdeleted IS FALSE
         </cfquery>
-        
-        
-            
-            
-        
-    
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELaudmedia_23799" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 m.mediaid, 
                 m.mediatypeid, 
@@ -90,55 +79,34 @@
             WHERE m.eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER">
             AND m.isdeleted = <cfqueryparam value="false" cfsqltype="CF_SQL_BIT">
         </cfquery>
-        
-            
-            
-        
-    
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="UPDaudmedia" access="public" returntype="void">
     <cfargument name="mediaid" type="numeric" required="true">
-    
-    
-        <cfquery result="result" >
+
+<cfquery result="result" >
             UPDATE audmedia 
             SET isdeleted = 1 
             WHERE mediaid = <cfqueryparam value="#arguments.mediaid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        
-            
-            
-        
-    
+
 </cffunction>
 <cffunction output="false" name="DETaudmedia" access="public" returntype="query">
     <cfargument name="mediaid" type="numeric" required="true">
-    
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT * 
             FROM audmedia 
             WHERE mediaid = <cfqueryparam value="#arguments.mediaid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        
-            
-            
-        
-    
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="DETaudmedia_24113" access="public" returntype="query">
     <cfargument name="mediaid" type="numeric" required="true">
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 m.mediaid, 
                 m.mediatypeid, 
@@ -158,12 +126,8 @@
             WHERE 
                 m.mediaid = <cfqueryparam value="#arguments.mediaid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-            
-            
-        
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELaudmedia_24249" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
@@ -171,10 +135,7 @@
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
 
-    
-
-    
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 COUNT(x.audprojectid) AS totals, 
                 m.medianame AS label, 
@@ -206,14 +167,9 @@
             ORDER BY 
                 m.medianame;
         </cfquery>
-        
-        <cfreturn result>
-        
-        
-            
-            
-        
-    
+
+<cfreturn result>
+
 </cffunction>
 <cffunction output="false" name="INSaudmedia" access="public" returntype="numeric">
     <cfargument name="new_mediaTypeID" type="numeric" required="true">
@@ -225,7 +181,7 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_isshare" type="boolean" required="true">
 
-        <cfquery result="result" name="insertResult">
+<cfquery result="result" name="insertResult">
             INSERT INTO audmedia (
                 mediaTypeID, 
                 mediaURL, 
@@ -250,11 +206,8 @@
 </cffunction>
 <cffunction output="false" name="SELaudmedia_24569" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
-    
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 m.mediaid, 
                 m.mediatypeid, 
@@ -281,23 +234,14 @@
             AND x.audprojectid <> 0
             AND t.mediaType <> 'Headshot'
         </cfquery>
-        
-        
-            
-            
-        
-    
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELaudmedia_24570" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="audprojectid" type="numeric" required="true">
-    
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 m.mediaid, 
                 m.mediatypeid, 
@@ -344,14 +288,9 @@
             ORDER BY 
                 t.mediaType, m.mediaName
         </cfquery>
-        
-        <cfreturn result>
-        
-        
-            
-            
-        
-    
+
+<cfreturn result>
+
 </cffunction>
 <cffunction output="false" name="UPDaudmedia_24571" access="public" returntype="void">
     <cfargument name="new_mediaTypeID" type="numeric" required="true">
@@ -364,7 +303,7 @@
     <cfargument name="new_isShare" type="boolean" required="true">
     <cfargument name="new_mediaID" type="numeric" required="true">
 
-        <cfquery result="result">
+<cfquery result="result">
             UPDATE audmedia 
             SET 
                 mediaTypeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_mediaTypeID#" null="#NOT len(trim(arguments.new_mediaTypeID))#">,
@@ -384,11 +323,8 @@
 </cffunction>
 <cffunction output="false" name="SELaudmedia_24572" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
-    
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 m.mediaid, 
                 m.mediatypeid, 
@@ -414,22 +350,14 @@
               AND m.isdeleted IS FALSE
               AND x.audprojectid <> 0
         </cfquery>
-        
-        <cfreturn result>
-        
-        
-            
-            
-        
-    
+
+<cfreturn result>
+
 </cffunction>
 <cffunction output="false" name="SELaudmedia_24573" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
-    
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 m.mediaid, 
                 m.mediatypeid, 
@@ -456,23 +384,15 @@
               AND x.audprojectid <> 0 
               AND t.mediatypeid = 1
         </cfquery>
-        
-        <cfreturn result>
-        
-        
-            
-            
-        
-    
+
+<cfreturn result>
+
 </cffunction>
 <cffunction output="false" name="SELaudmedia_24665" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="audprojectid" type="numeric" required="true">
 
-    
-    
-    
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 m.mediaid, 
                 m.mediatypeid, 
@@ -502,22 +422,13 @@
             ORDER BY 
                 m.mediaName
         </cfquery>
-        
-        
-            
-            
-        
-    
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELaudmedia_24666" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
-    
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 m.mediaid, 
                 m.mediatypeid, 
@@ -545,22 +456,14 @@
             ORDER BY 
                 m.mediaName
         </cfquery>
-        
-        <cfreturn result>
-        
-        
-            
-            
-        
-    
+
+<cfreturn result>
+
 </cffunction>
 <cffunction output="false" name="DETaudmedia_24676" access="public" returntype="query">
     <cfargument name="mediaid" type="numeric" required="true">
 
-    
-    
-    
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 m.mediaid, 
                 m.mediatypeid, 
@@ -586,23 +489,15 @@
             WHERE 
                 m.mediaid = <cfqueryparam value="#arguments.mediaid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        <cfreturn result>
-        
-        
-            
-            
-        
-    
+
+<cfreturn result>
+
 </cffunction>
 <cffunction output="false" name="SELaudmedia_24677" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="audprojectid" type="numeric" required="true">
 
-    
-
-    
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 m.mediaid, 
                 m.mediatypeid, 
@@ -631,22 +526,14 @@
                     SELECT mediaid FROM audmedia_auditions_xref WHERE audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
                 )
         </cfquery>
-        
-        <cfreturn result>
 
-    
-        
-        
-    
-    
+<cfreturn result>
+
 </cffunction>
 <cffunction output="false" name="SELaudmedia_24678" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
-    
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 m.mediaid, 
                 m.mediatypeid, 
@@ -676,13 +563,7 @@
             ORDER BY 
                 m.mediaName
         </cfquery>
-        
-        
-            
-            
-        
-    
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 </cfcomponent>

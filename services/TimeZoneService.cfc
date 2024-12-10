@@ -6,36 +6,36 @@
     <cfset var whereClause = []>
     <cfset var params = []>
 
-    <!--- Build WHERE clause dynamically based on filters --->
+<!--- Build WHERE clause dynamically based on filters --->
     <cfif structKeyExists(arguments.filters, "tzid")>
         <cfset arrayAppend(whereClause, "tzid = ?")>
         <cfset arrayAppend(params, {value=arguments.filters.tzid, cfsqltype="CF_SQL_INTEGER"})>
     </cfif>
-    
-    <cfif structKeyExists(arguments.filters, "gmt")>
+
+<cfif structKeyExists(arguments.filters, "gmt")>
         <cfset arrayAppend(whereClause, "gmt = ?")>
         <cfset arrayAppend(params, {value=arguments.filters.gmt, cfsqltype="CF_SQL_VARCHAR"})>
     </cfif>
 
-    <cfif structKeyExists(arguments.filters, "tzname")>
+<cfif structKeyExists(arguments.filters, "tzname")>
         <cfset arrayAppend(whereClause, "tzname = ?")>
         <cfset arrayAppend(params, {value=arguments.filters.tzname, cfsqltype="CF_SQL_VARCHAR"})>
     </cfif>
 
-    <cfif structKeyExists(arguments.filters, "utchouroffset")>
+<cfif structKeyExists(arguments.filters, "utchouroffset")>
         <cfset arrayAppend(whereClause, "utchouroffset = ?")>
         <cfset arrayAppend(params, {value=arguments.filters.utchouroffset, cfsqltype="CF_SQL_INTEGER"})>
     </cfif>
 
-    <!--- Append WHERE clause if conditions exist --->
+<!--- Append WHERE clause if conditions exist --->
     <cfif arrayLen(whereClause) gt 0>
         <cfset sql &= " WHERE " & arrayToList(whereClause, " AND ")>
     </cfif>
 
-    <!--- Append ORDER BY clause --->
+<!--- Append ORDER BY clause --->
     <cfset sql &= " ORDER BY utcHourOffset">
 
-    <!--- Execute the query --->
+<!--- Execute the query --->
     <cfquery result="result" name="queryResult">
         #sql#
         <cfloop array="#params#" index="param">
@@ -43,14 +43,13 @@
         </cfloop>
     </cfquery>
 
-    <!--- Return the query result --->
+<!--- Return the query result --->
     <cfreturn queryResult>
 </cffunction>
 <cffunction output="false" name="SELtimezones_24770" access="public" returntype="query">
     <cfargument name="tzGeneral" type="string" required="false" default="">
-    
-    
-        <cfquery name="result">
+
+<cfquery name="result">
             SELECT tzid, gmt, tzname, tzgeneral, utchouroffset
             FROM timezones
             WHERE 1=1
@@ -61,6 +60,6 @@
             ORDER BY gmt
         </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 </cfcomponent>

@@ -1,13 +1,13 @@
 <cfcomponent displayname="GenreAuditionService" hint="Handles operations for GenreAudition table" > 
 <cffunction output="false" name="SELaudgenres_audition_xref" access="public" returntype="query">
     <cfargument name="projectList" type="string" required="true">
-    
-    <!--- Validate input to ensure projectList is not empty --->
+
+<!--- Validate input to ensure projectList is not empty --->
     <cfif len(trim(arguments.projectList)) EQ 0>
         <cfthrow message="Project list cannot be empty." />
     </cfif>
 
-    <!--- Execute the query --->
+<!--- Execute the query --->
     <cfquery name="queryResult" result="result">
         SELECT 
             p.audprojectid AS recid,
@@ -71,32 +71,29 @@
         ORDER BY p.projdate DESC
     </cfquery>
 
-    <!--- Return the query result --->
+<!--- Return the query result --->
     <cfreturn queryResult>
 </cffunction>
-
 
 <cffunction output="false" name="SELaudgenres_audition_xref_24274" access="public" returntype="query">
     <cfargument name="audgenre" type="string" required="true">
     <cfargument name="audroleid" type="numeric" required="true">
-    
-    
-    
-    <cfquery name="result">
+
+<cfquery name="result">
         SELECT *
         FROM audgenres_audition_xref x
         INNER JOIN audgenres_user g ON g.audgenreid = x.audgenreid
         WHERE g.audgenre = <cfqueryparam value="#arguments.audgenre#" cfsqltype="CF_SQL_VARCHAR">
         AND x.audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="DELaudgenres_audition_xref" access="public" returntype="void">
     <cfargument name="new_audroleid" type="numeric" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         DELETE FROM audgenres_audition_xref
         WHERE audroleid = <cfqueryparam value="#arguments.new_audroleid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
@@ -106,7 +103,7 @@
     <cfargument name="new_audgenreid" type="numeric" required="true">
     <cfargument name="new_audroleid" type="numeric" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         INSERT INTO audgenres_audition_xref (audgenreid, audroleid)
         VALUES (
             <cfqueryparam value="#arguments.new_audgenreid#" cfsqltype="CF_SQL_INTEGER">,
@@ -133,7 +130,7 @@
     <cfargument name="new_audgenreID" type="numeric" required="true">
     <cfargument name="conditionValue" type="any" required="true">
 
-        <cfquery result="result" >
+<cfquery result="result" >
             UPDATE audgenres_audition_xref 
             SET 
                 audRoleID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#" null="#NOT len(trim(arguments.new_audRoleID))#">, 

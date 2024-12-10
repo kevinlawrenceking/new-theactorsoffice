@@ -1,4 +1,4 @@
-<cfcomponent displayname="ExportItemService" hint="Handles operations for ExportItem table" > 
+<cfcomponent displayname="ExportItemService" hint="Handles operations for ExportItem table" >
 
 <cffunction output="false" name="INSexportitems" access="public" returntype="void">
     <cfargument name="new_exportid" type="numeric" required="true">
@@ -25,7 +25,7 @@
     <cfargument name="new_contactBirthday" type="string" required="false">
     <cfargument name="new_Website" type="string" required="false">
 
-        <cfquery result="result">
+<cfquery result="result">
             INSERT INTO exportitems (
                 exportid, contactid, FirstName, LastName, Tag1, Tag2, Tag3, BusinessEmail, PersonalEmail,
                 WorkPhone, MobilePhone, HomePhone, Company, Address, Address2, City, State, Zip, Country,
@@ -65,15 +65,13 @@
                     null = "#NOT len(trim(arguments.new_Website))#"/>
             )
         </cfquery>
-     
+
 </cffunction>
 
 <cffunction output="false" name="SELexportitems" access="public" returntype="query">
     <cfargument name="exportID" type="numeric" required="true">
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 contactid AS ID, 
                 FirstName, 
@@ -100,7 +98,7 @@
             FROM exportitems
             WHERE exportid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.exportID#" />
         </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 </cfcomponent>

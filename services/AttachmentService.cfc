@@ -1,11 +1,11 @@
 <cfcomponent displayname="AttachmentService" hint="Handles operations for Attachment table" >
 
-    <cffunction output="false" name="INSattachments" access="public" returntype="numeric">
+<cffunction output="false" name="INSattachments" access="public" returntype="numeric">
         <cfargument name="attachname" type="string" required="true">
         <cfargument name="attachfilename" type="string" required="true">
         <cfargument name="noteid" type="numeric" required="true">
-        
-        <cfquery result="result">
+
+<cfquery result="result">
             INSERT INTO attachments (attachname, attachfilename, isdeleted, userid, noteid) 
             VALUES (
                 <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.attachname#" />,
@@ -18,40 +18,38 @@
          <cfreturn result.generatedKey>
     </cffunction>
 
-    <cffunction output="false" name="DETattachments" access="public" returntype="query">
+<cffunction output="false" name="DETattachments" access="public" returntype="query">
         <cfargument name="attachid" type="numeric" required="true">
-        
 
-        <cfquery name="result">
+<cfquery name="result">
             SELECT attachid, noteid, attachname, attachfilename
             FROM attachments
             WHERE attachid = <cfqueryparam value="#arguments.attachid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
-        <cfreturn result>
+<cfreturn result>
     </cffunction>
 
-    <cffunction output="false" name="UPDattachments" access="public" returntype="void">
+<cffunction output="false" name="UPDattachments" access="public" returntype="void">
         <cfargument name="attachid" type="numeric" required="true">
 
-        <cfquery result="result">
+<cfquery result="result">
             UPDATE attachments
             SET isdeleted = 1
             WHERE attachid = <cfqueryparam value="#arguments.attachid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
     </cffunction>
 
-    <cffunction output="false" name="SELattachments" access="public" returntype="query">
+<cffunction output="false" name="SELattachments" access="public" returntype="query">
         <cfargument name="new_noteid" type="numeric" required="true">
-        
 
-        <cfquery name="result">
+<cfquery name="result">
             SELECT attachid, noteid, attachname, attachfilename, userid
             FROM attachments
             WHERE noteid = <cfqueryparam value="#arguments.new_noteid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
-        <cfreturn result>
+<cfreturn result>
     </cffunction>
 
 </cfcomponent>

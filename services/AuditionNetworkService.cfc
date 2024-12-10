@@ -4,7 +4,7 @@
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         INSERT INTO audnetworks (network, audCatid, isDeleted)
         VALUES (
             <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_network#" maxlength="100" null="#NOT len(trim(arguments.new_network))#">,
@@ -20,7 +20,7 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_networkid" type="numeric" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         UPDATE audnetworks 
         SET 
             network = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_network#" maxlength="100" null="#NOT len(trim(arguments.new_network))#">,

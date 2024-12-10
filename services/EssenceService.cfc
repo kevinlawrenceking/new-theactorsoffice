@@ -1,8 +1,8 @@
 <cfcomponent displayname="EssenceService" hint="Handles operations for Essence table" > 
 <cffunction output="false" name="SELessences" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
-    
-    <cfquery name="result">
+
+<cfquery name="result">
         SELECT *
         FROM essences e
         INNER JOIN audessences_audtion_xref x ON x.essenceid = e.essenceid
@@ -35,8 +35,8 @@
 
 <cffunction output="false" name="DETessences" access="public" returntype="query">
     <cfargument name="essenceid" type="numeric" required="true">
-    
-    <cfquery name="result">
+
+<cfquery name="result">
         SELECT *
         FROM essences
         WHERE essenceid = <cfqueryparam value="#arguments.essenceid#" cfsqltype="CF_SQL_INTEGER">
@@ -58,8 +58,8 @@
 
 <cffunction output="false" name="SELessences_24270" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
-    
-    <cfquery name="result">
+
+<cfquery name="result">
         SELECT essenceid, essencename
         FROM essences
         WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
@@ -72,8 +72,8 @@
 <cffunction output="false" name="SELessences_24282" access="public" returntype="query">
     <cfargument name="new_essence" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
-    
-    <cfquery name="result">
+
+<cfquery name="result">
         SELECT essenceid AS new_essenceid
         FROM essences
         WHERE essencename = <cfqueryparam value="#arguments.new_essence#" cfsqltype="CF_SQL_VARCHAR">
@@ -99,8 +99,8 @@
 
 <cffunction output="false" name="SELessences_24658" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
-    
-    <cfquery name="result">
+
+<cfquery name="result">
         SELECT 
             e.essenceid AS ID, 
             e.essencename AS NAME, 

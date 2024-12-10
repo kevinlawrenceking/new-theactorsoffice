@@ -1,17 +1,17 @@
 <cfcomponent output="false">
 
-    <cfquery result="result" name="findit" datasource="abo">
+<cfquery result="result" name="findit" datasource="abo">
         SELECT verid 
         FROM taoversions  
         ORDER BY isactive DESC, verid DESC 
         LIMIT 1
     </cfquery>
 
-    <cfset current_ver = findit.verid />
+<cfset current_ver = findit.verid />
 
-    <cfset host = ListFirst(cgi.server_name, ".") />
+<cfset host = ListFirst(cgi.server_name, ".") />
 
-    <cfif host eq "app" or host eq "uat">
+<cfif host eq "app" or host eq "uat">
         <cfset application.dsn = "abo" />
         <cfset application.information_schema = "actorsbusinessoffice" />
         <cfset application.suffix = IIF(host eq "app", "_1.5", "") />
@@ -23,7 +23,7 @@
         <cfset application.rev = 1 />
     </cfif>
 
-    <cfscript>
+<cfscript>
         this.mappings["/app"] = expandPath(".");
         this.name = "TAO";
         this.datasource = application.dsn;
@@ -35,44 +35,44 @@
         this.errorTemplate = "500.cfm";
         this.errorTemplateNotFound = "404.cfm";
 
-        application.baseMediaPath = "C:\home\theactorsoffice.com\media-" & this.datasource;
+application.baseMediaPath = "C:\home\theactorsoffice.com\media-" & this.datasource;
         application.baseMediaUrl = "/media-" & this.datasource;
 
-        application.imagesPath = application.baseMediaPath & "\images";
+application.imagesPath = application.baseMediaPath & "\images";
         application.imagesUrl = application.baseMediaUrl & "/images";
 
-        application.datesPath = application.imagesPath & "\dates";
+application.datesPath = application.imagesPath & "\dates";
         application.datesUrl = application.imagesUrl & "/dates";
 
-        application.defaultsPath = application.imagesPath & "\defaults";
+application.defaultsPath = application.imagesPath & "\defaults";
         application.defaultsUrl = application.imagesUrl & "/defaults";
 
-        application.defaultAvatarUrl = application.defaultsUrl & "/avatar.jpg";
+application.defaultAvatarUrl = application.defaultsUrl & "/avatar.jpg";
 
-        application.emailImagesPath = application.imagesPath & "\email";
+application.emailImagesPath = application.imagesPath & "\email";
         application.emailImagesUrl = application.imagesUrl & "/email";
 
-        application.filetypesPath = application.imagesPath & "\filetypes";
+application.filetypesPath = application.imagesPath & "\filetypes";
         application.filetypesUrl = application.imagesUrl & "/filetypes";
 
-        application.retinaIconsPath = application.imagesPath & "\retina-circular-icons";
+application.retinaIconsPath = application.imagesPath & "\retina-circular-icons";
         application.retinaIconsUrl = application.imagesUrl & "/retina-circular-icons";
 
-        application.retinaIcons14Path = application.retinaIconsPath & "\14";
+application.retinaIcons14Path = application.retinaIconsPath & "\14";
         application.retinaIcons14Url = application.retinaIconsUrl & "/14";
 
-        application.retinaIcons32Path = application.retinaIconsPath & "\32";
+application.retinaIcons32Path = application.retinaIconsPath & "\32";
         application.retinaIcons32Url = application.retinaIconsUrl & "/32";
     </cfscript>
 
-    <cffunction name="onApplicationStart" returntype="boolean" output="false">
+<cffunction name="onApplicationStart" returntype="boolean" output="false">
         <cfreturn true />
     </cffunction>
 
-    <cffunction name="onRequestStart" returntype="boolean" output="false">
+<cffunction name="onRequestStart" returntype="boolean" output="false">
         <cfargument name="targetPage" required="true" type="string">
 
-        <cfif isdefined('U')>
+<cfif isdefined('U')>
             <cfset session.userid = U />
         </cfif>
         <cfif NOT structKeyExists(session, "userid") 
@@ -81,56 +81,55 @@
             <cflocation url="/loginform.cfm" addToken="false">
         </cfif>
 
-        <cfif structKeyExists(session, "userid")>
+<cfif structKeyExists(session, "userid")>
             <cfscript>
                 session.userMediaPath = application.baseMediaPath & "\users\" & session.userID;
                 session.userMediaUrl = application.baseMediaUrl & "/users/" & session.userID;
 
-                session.userCalendarPath = session.userMediaPath;
+session.userCalendarPath = session.userMediaPath;
                 session.userCalendarUrl = "https://" & host & ".theactorsoffice.com/" & session.userMediaUrl;
 
-                session.userContactsPath = session.userMediaPath & "\contacts";
+session.userContactsPath = session.userMediaPath & "\contacts";
                 session.userContactsUrl = session.userMediaUrl & "/contacts";
 
-                session.userImportsPath = session.userMediaPath & "\imports";
+session.userImportsPath = session.userMediaPath & "\imports";
                 session.userImportsUrl = session.userMediaUrl & "/imports";
 
-                session.userExportsPath = session.userMediaPath & "\exports";
+session.userExportsPath = session.userMediaPath & "\exports";
                 session.userExportsUrl = session.userMediaUrl & "/exports";
 
-                session.userSharePath = session.userMediaPath & "\share";
+session.userSharePath = session.userMediaPath & "\share";
                 session.userShareUrl = session.userMediaUrl & "/share";
 
-                session.userAvatarPath = session.userMediaPath & "\avatar.jpg";
+session.userAvatarPath = session.userMediaPath & "\avatar.jpg";
                 session.userAvatarUrl = session.userMediaUrl & "/avatar.jpg";
 
-            
-            </cfscript>
+</cfscript>
 
-            <cfif isdefined('contactid')>
+<cfif isdefined('contactid')>
 
-                <cfscript>
+<cfscript>
 
-                    defaultavatarurl = session.userContactsUrl & "/" & contactid & "/avatar.jpg";
+defaultavatarurl = session.userContactsUrl & "/" & contactid & "/avatar.jpg";
 
-                </cfscript>
+</cfscript>
 
-            </cfif>
+</cfif>
         <cfif isdefined('currentid')>
 
-                <cfscript>
+<cfscript>
 
-                    defaultavatarurl = session.userContactsUrl & "/" & contactid & "/avatar.jpg";
+defaultavatarurl = session.userContactsUrl & "/" & contactid & "/avatar.jpg";
                 </cfscript>
 
-            </cfif>
+</cfif>
 
-        </cfif>
+</cfif>
 
-        <cfreturn true />
+<cfreturn true />
     </cffunction>
 
-    <cffunction name="onRequest" returntype="void" output="true">
+<cffunction name="onRequest" returntype="void" output="true">
         <cfargument name="targetPage" required="true" type="string">
         <cfinclude template="#arguments.targetPage#">
     </cffunction>

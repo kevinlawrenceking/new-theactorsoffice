@@ -2,17 +2,15 @@
 <cffunction output="false" name="SELtickettestusers" access="public" returntype="query">
     <cfargument name="recid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
-    
-    
 
-    <cfquery name="result">
+<cfquery name="result">
         SELECT * 
         FROM tickettestusers 
         WHERE ticketid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER"> 
           AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="INStickettestusers" access="public" returntype="numeric">
     <cfargument name="new_ticketid" type="numeric" required="true">
@@ -20,7 +18,7 @@
     <cfargument name="new_teststatus" type="string" required="true">
     <cfargument name="new_rejectnotes" type="string" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         INSERT INTO tickettestusers (ticketid, userid, teststatus, rejectNotes)
         VALUES (
             <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_ticketid#" />,
@@ -36,7 +34,7 @@
     <cfargument name="new_rejectnotes" type="string" required="true">
     <cfargument name="testid" type="numeric" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         UPDATE tickettestusers 
         SET 
             teststatus = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_teststatus#" />, 
@@ -49,9 +47,7 @@
     <cfargument name="ticketId" type="numeric" required="true">
     <cfargument name="userId" type="numeric" required="true">
 
-    
-
-    <cfquery name="result">
+<cfquery name="result">
         SELECT 
             tu.id, 
             tu.ticketid, 
@@ -68,15 +64,13 @@
             AND tu.userid <> <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELtickettestusers_24475" access="public" returntype="query">
     <cfargument name="recid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
-    
-    
 
-    <cfquery name="result">
+<cfquery name="result">
         SELECT 
             tu.id, 
             tu.ticketid, 
@@ -92,7 +86,7 @@
             tu.ticketid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER"> 
             AND tu.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 </cfcomponent>

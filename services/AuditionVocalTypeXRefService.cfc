@@ -1,25 +1,23 @@
-<cfcomponent displayname="AuditionVocalTypeXRefService" hint="Handles operations for AuditionVocalTypeXRef table" > 
+<cfcomponent displayname="AuditionVocalTypeXRefService" hint="Handles operations for AuditionVocalTypeXRef table" >
 
 <cffunction output="false" name="SELaudvocaltypes_audition_xref" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     <cfargument name="new_vocaltypeid" type="numeric" required="true">
-    
-    
 
-    <cfquery name="result">
+<cfquery name="result">
         SELECT * 
         FROM audvocaltypes_audition_xref 
         WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER"> 
         AND vocaltypeid = <cfqueryparam value="#arguments.new_vocaltypeid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="DELaudvocaltypes_audition_xref" access="public" returntype="void">
     <cfargument name="audroleid" type="numeric" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         DELETE FROM audvocaltypes_audition_xref
         WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
@@ -29,7 +27,7 @@
     <cfargument name="new_vocaltypeid" type="numeric" required="true">
     <cfargument name="new_audroleid" type="numeric" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         INSERT INTO audvocaltypes_audition_xref (vocaltypeid, audroleid)
         VALUES (
             <cfqueryparam value="#arguments.new_vocaltypeid#" cfsqltype="CF_SQL_INTEGER">,
@@ -43,7 +41,7 @@
     <cfargument name="new_audRoleID" type="numeric" required="true">
     <cfargument name="new_vocaltypeid" type="numeric" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         INSERT INTO audvocaltypes_audition_xref (audRoleID, vocaltypeid)
         VALUES (
             <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#" null="#NOT len(trim(arguments.new_audRoleID))#">,
@@ -58,7 +56,7 @@
     <cfargument name="new_vocaltypeid" type="numeric" required="true">
     <cfargument name="new_id" type="numeric" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         UPDATE audvocaltypes_audition_xref
         SET 
             audRoleID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#" null="#NOT len(trim(arguments.new_audRoleID))#">,

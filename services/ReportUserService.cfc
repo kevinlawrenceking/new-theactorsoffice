@@ -2,47 +2,41 @@
 <cffunction output="false" name="SELreports_user" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     <cfargument name="reportID" type="numeric" required="true">
-    
-    
-    
-    <cfquery name="result">
+
+<cfquery name="result">
         SELECT r.ID as new_iD
         FROM reports_user r
         WHERE r.userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userID#" />
         AND r.reportid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.reportID#" />
     </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="SELreports_user_24232" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_reportid" type="numeric" required="true">
-    
-    
 
-    <cfquery name="result">
+<cfquery name="result">
         SELECT r.ID as new_iD
         FROM reports_user r
         WHERE r.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         AND r.reportid = <cfqueryparam value="#arguments.new_reportid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="SELreports_user_24725" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
-    
-    
 
-    <cfquery name="result">
+<cfquery name="result">
         SELECT * 
         FROM reports_user 
         WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="SELreports_user_24728" access="public" returntype="query">
@@ -50,9 +44,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="reportname" type="string" required="true">
 
-    
-
-    <cfquery name="result">
+<cfquery name="result">
         SELECT reportid, reportname, reportorderno, reporttypeid, reportdescription, colorid
         FROM reports_user
         WHERE reportid = <cfqueryparam value="#arguments.reportid#" cfsqltype="CF_SQL_INTEGER">
@@ -60,7 +52,7 @@
         AND reportname = <cfqueryparam value="#arguments.reportname#" cfsqltype="CF_SQL_VARCHAR">
     </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="INSreports_user" access="public" returntype="numeric">
@@ -75,7 +67,7 @@
     <cfargument name="datalabel" type="string" required="true">
     <cfargument name="colorid" type="numeric" required="true">
 
-    <cfquery result="result" name="insertQuery">
+<cfquery result="result" name="insertQuery">
         INSERT INTO reports_user 
         (reportid, reportname, reportorderno, reporttypeid, reportdescription, userid, colmd, colxl, datalabel, colorid) 
         VALUES 
@@ -97,9 +89,8 @@
 
 <cffunction output="false" name="SELreports_user_24733" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
-    
 
-    <cfquery name="result">
+<cfquery name="result">
         SELECT 
             r.ID, 
             r.reportid, 
@@ -128,17 +119,15 @@
         ORDER BY 
             r.reportorderno
     </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="SELreports_user_24734" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     <cfargument name="reportTypeID" type="numeric" default="4">
 
-    
-    
-            <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 r.ID, 
                 r.reportid, 
@@ -165,13 +154,13 @@
             ORDER BY 
                 r.reportorderno
         </cfquery>
-        
-        <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELreports_user_24736" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT i.itemvalueint AS item_13
             FROM reports_user u
             INNER JOIN reportitems i ON i.ID = u.id
@@ -183,17 +172,15 @@
 <cffunction output="false" name="SELreports_user_24737" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     <cfargument name="reportId" type="numeric" required="true" default="17">
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT i.itemvalueint AS item_17
             FROM reports_user u
             INNER JOIN reportitems i ON i.ID = u.id
             WHERE u.userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
             AND u.reportid = <cfqueryparam value="#arguments.reportId#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 </cfcomponent>

@@ -1,9 +1,9 @@
 <cfcomponent displayname="PageAppLinks" >
 
-    <cffunction output="false" name="GetPageAppLinks" access="public" returntype="query" >
+<cffunction output="false" name="GetPageAppLinks" access="public" returntype="query" >
         <cfargument name="pgid" type="numeric" required="yes">
 
-        <cfquery result="result" name="FindLinksT">
+<cfquery result="result" name="FindLinksT">
             SELECT 
                 l.linkid, 
                 l.linkurl, 
@@ -26,13 +26,13 @@
                 l.link_no
         </cfquery>
 
-        <cfreturn FindLinksT>
+<cfreturn FindLinksT>
     </cffunction>
 
-    <cffunction output="false" name="GetLinksForPageB" access="public" returntype="query" >
+<cffunction output="false" name="GetLinksForPageB" access="public" returntype="query" >
         <cfargument name="pgid" type="numeric" required="true">
 
-        <cfquery name="result">
+<cfquery name="result">
             SELECT
                 l.linkid, l.linkurl, l.linkname, l.linktype,
                 l.link_no, l.linkloc_tb, l.pluginname,
@@ -48,7 +48,7 @@
             ORDER BY l.link_no
         </cfquery>
 
-        <cfreturn result>
+<cfreturn result>
     </cffunction>
 
 </cfcomponent>

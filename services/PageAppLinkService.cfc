@@ -1,9 +1,8 @@
 <cfcomponent displayname="PageAppLinkService" hint="Handles operations for PageAppLink table" > 
 <cffunction output="false" name="SELpgapplinks" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
-    
 
-    <cfquery name="result">
+<cfquery name="result">
         SELECT 
             l.linkid, 
             l.linkurl, 
@@ -30,14 +29,13 @@
             l.link_no
     </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="SELpgapplinks_24006" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
-    
 
-    <cfquery name="result">
+<cfquery name="result">
         SELECT 
             l.linkid, l.linkurl, l.linkname, l.linktype, 
             l.link_no, l.linkloc_tb, l.pluginname, l.rel, l.hrefid 
@@ -57,15 +55,13 @@
             l.link_no
     </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="SELpgapplinks_24007" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
-    
-    
 
-    <cfquery name="result">
+<cfquery name="result">
         SELECT DISTINCT l.pluginname
         FROM pgapplinks l
         INNER JOIN pgplugins p ON p.pluginName = l.pluginname
@@ -77,6 +73,6 @@
         ORDER BY l.link_no
     </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 </cfcomponent>

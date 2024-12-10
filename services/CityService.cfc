@@ -1,8 +1,8 @@
-<cfcomponent displayname="CityService" hint="Handles operations for City table" > 
+<cfcomponent displayname="CityService" hint="Handles operations for City table" >
 
-    <cffunction output="false" name="SELcities" access="public" returntype="query" >
-        
-        <cfquery name="result">
+<cffunction output="false" name="SELcities" access="public" returntype="query" >
+
+<cfquery name="result">
             SELECT 
                 id, 
                 countryid, 
@@ -13,9 +13,9 @@
             ORDER BY 
                 cityname
         </cfquery>
-        
-        <cfreturn result>
-        
-    </cffunction>
+
+<cfreturn result>
+
+</cffunction>
 
 </cfcomponent>

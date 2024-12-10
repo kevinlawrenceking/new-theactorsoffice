@@ -2,9 +2,7 @@
 <cffunction output="false" name="SELaudcallbacktypes" access="public" returntype="query">
     <cfargument name="audcatid" type="numeric" required="true">
 
-    
-
-    <cfquery name="result">
+<cfquery name="result">
         SELECT 
             callbacktypeid AS id, 
             callbacktype AS name 
@@ -18,14 +16,12 @@
             callbacktype
     </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELaudcallbacktypes_24509" access="public" returntype="query">
     <cfargument name="audcatid" type="numeric" required="true">
 
-    
-
-    <cfquery name="result">
+<cfquery name="result">
         SELECT callbacktypeid AS id, callbacktype AS name
         FROM audcallbacktypes
         WHERE audstepid = 2
@@ -34,6 +30,6 @@
         ORDER BY callbacktype
     </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 </cfcomponent>

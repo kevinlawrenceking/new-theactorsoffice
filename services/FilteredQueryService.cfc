@@ -3,12 +3,11 @@
     <cfargument name="sIndexColumn" type="string" required="true">
     <cfargument name="conditions" type="struct" required="false" default="#StructNew()#">
 
-    
-    <cfset var sql = "SELECT COUNT(#arguments.sIndexColumn#) as total FROM qFiltered">
+<cfset var sql = "SELECT COUNT(#arguments.sIndexColumn#) as total FROM qFiltered">
     <cfset var whereClause = "">
     <cfset var paramList = []>
 
-    <!--- Build WHERE clause dynamically based on conditions --->
+<!--- Build WHERE clause dynamically based on conditions --->
     <cfif StructCount(arguments.conditions) gt 0>
         <cfset whereClause = " WHERE ">
         <cfloop collection="#arguments.conditions#" item="key">
@@ -19,10 +18,10 @@
         <cfset whereClause = Left(whereClause, Len(whereClause) - 4)>
     </cfif>
 
-    <!--- Combine SQL with WHERE clause --->
+<!--- Combine SQL with WHERE clause --->
     <cfset sql &= whereClause>
 
-    <!--- Execute query --->
+<!--- Execute query --->
     <cfquery name="result">
         #sql#
         <cfloop array="#paramList#" index="param">
@@ -30,6 +29,6 @@
         </cfloop>
     </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 </cfcomponent>

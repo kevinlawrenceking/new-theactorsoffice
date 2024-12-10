@@ -1,11 +1,11 @@
-<cfcomponent displayname="QuotesService" > 
+<cfcomponent displayname="QuotesService" >
 
-    <cffunction output="false" name="getQuoteOfTheDay" access="public" returntype="query" >
-        
-        <cfset todayMonth = dateFormat(Now(), "MM")>
+<cffunction output="false" name="getQuoteOfTheDay" access="public" returntype="query" >
+
+<cfset todayMonth = dateFormat(Now(), "MM")>
         <cfset todayDay = dateFormat(Now(), "dd")>
-        
-        <cfquery result="result" name="quoteOfTheDay">
+
+<cfquery result="result" name="quoteOfTheDay">
             SELECT 
                 quotename, 
                 quoteauthor
@@ -18,10 +18,10 @@
                 quotedate DESC
             LIMIT 1
         </cfquery>
-        
-        <cfif quoteOfTheDay.recordcount eq 0>
-            
-            <cfquery result="result" name="randomQuote">
+
+<cfif quoteOfTheDay.recordcount eq 0>
+
+<cfquery result="result" name="randomQuote">
                 SELECT 
                     id,
                     quotename, 
@@ -34,7 +34,7 @@
                 LIMIT 1
             </cfquery>
 
-            <cfif randomQuote.recordcount gt 0>
+<cfif randomQuote.recordcount gt 0>
                 <cfquery result="result">
                     UPDATE quotes 
                     SET 
@@ -44,13 +44,13 @@
                     WHERE id = <cfqueryparam cfsqltype="cf_sql_integer" value="#randomQuote.id#">
                 </cfquery>
 
-                <cfreturn randomQuote>
+<cfreturn randomQuote>
             </cfif>
 
-        <cfelse>
+<cfelse>
             <cfreturn quoteOfTheDay>
         </cfif>
-        
-    </cffunction>
+
+</cffunction>
 
 </cfcomponent>

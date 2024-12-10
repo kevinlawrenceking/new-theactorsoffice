@@ -1,11 +1,8 @@
 <cfcomponent displayname="AuditionRoleService" hint="Handles operations for AuditionRole table" > 
 <cffunction output="false" name="SELaudroles" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
-    
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 r.audroleid, 
                 r.audprojectid, 
@@ -34,14 +31,9 @@
             LEFT OUTER JOIN incometypes i ON (i.incometypeid = r.incometypeid)
             WHERE r.audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        <cfreturn result>
-        
-        
-            
-            
-        
-    
+
+<cfreturn result>
+
 </cffunction>
 <cffunction output="false" name="INSaudroles" access="public" returntype="numeric">
     <cfargument name="new_audRoleName" type="string" required="true">
@@ -56,7 +48,7 @@
     <cfargument name="new_isDeleted" type="boolean" required="false" default=false>
     <cfargument name="isdirect" type="boolean" required="false" default=false>
 
-        <cfquery result="result" >
+<cfquery result="result" >
             INSERT INTO audroles (
                 audRoleName, 
                 audprojectID, 
@@ -88,26 +80,17 @@
 <cffunction output="false" name="UPDaudroles" access="public" returntype="void">
     <cfargument name="audroleid" type="numeric" required="true">
 
-    
-        <cfquery result="result" >
+<cfquery result="result" >
             UPDATE audroles
             SET isbooked = 1
             WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        
-            
-            
-        
-    
+
 </cffunction>
 <cffunction output="false" name="SELaudroles_23809" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
-    
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 c.audcatname, 
                 c.audcatid, 
@@ -131,14 +114,9 @@
             WHERE 
                 r.audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        <cfreturn result>
-        
-        
-            
-            
-        
-    
+
+<cfreturn result>
+
 </cffunction>
 <cffunction output="false" name="UPDaudroles_23810" access="public" returntype="void">
     <cfargument name="new_audroleid" type="numeric" required="true">
@@ -148,38 +126,38 @@
     <cfargument name="new_buyout" type="numeric" required="false">
     <cfargument name="new_paycycleid" type="numeric" required="false">
 
-    <cfset var sql = "UPDATE audroles SET audroleid = ?">
+<cfset var sql = "UPDATE audroles SET audroleid = ?">
     <cfset var params = [ { value=arguments.new_audroleid, cfsqltype="CF_SQL_INTEGER" } ]>
 
-    <cfif structKeyExists(arguments, "new_incometypeid") and len(arguments.new_incometypeid)>
+<cfif structKeyExists(arguments, "new_incometypeid") and len(arguments.new_incometypeid)>
         <cfset sql &= ", incometypeid = ?">
         <cfset arrayAppend(params, { value=arguments.new_incometypeid, cfsqltype="CF_SQL_INTEGER" })>
     </cfif>
 
-    <cfif structKeyExists(arguments, "new_payrate") and len(arguments.new_payrate)>
+<cfif structKeyExists(arguments, "new_payrate") and len(arguments.new_payrate)>
         <cfset sql &= ", payrate = ?">
         <cfset arrayAppend(params, { value=arguments.new_payrate, cfsqltype="CF_SQL_DECIMAL" })>
     </cfif>
 
-    <cfif structKeyExists(arguments, "new_netincome") and len(arguments.new_netincome)>
+<cfif structKeyExists(arguments, "new_netincome") and len(arguments.new_netincome)>
         <cfset sql &= ", netincome = ?">
         <cfset arrayAppend(params, { value=arguments.new_netincome, cfsqltype="CF_SQL_DECIMAL" })>
     </cfif>
 
-    <cfif structKeyExists(arguments, "new_buyout") and len(arguments.new_buyout)>
+<cfif structKeyExists(arguments, "new_buyout") and len(arguments.new_buyout)>
         <cfset sql &= ", buyout = ?">
         <cfset arrayAppend(params, { value=arguments.new_buyout, cfsqltype="CF_SQL_DECIMAL" })>
     </cfif>
 
-    <cfif structKeyExists(arguments, "new_paycycleid") and len(arguments.new_paycycleid)>
+<cfif structKeyExists(arguments, "new_paycycleid") and len(arguments.new_paycycleid)>
         <cfset sql &= ", paycycleid = ?">
         <cfset arrayAppend(params, { value=arguments.new_paycycleid, cfsqltype="CF_SQL_INTEGER" })>
     </cfif>
 
-    <cfset sql &= " WHERE audroleid = ?">
+<cfset sql &= " WHERE audroleid = ?">
     <cfset arrayAppend(params, { value=arguments.new_audroleid, cfsqltype="CF_SQL_INTEGER" })>
 
-        <cfquery result="result">
+<cfquery result="result">
             #sql#
             <cfloop array="#params#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
@@ -191,43 +169,28 @@
     <cfargument name="statusField" type="string" required="true">
     <cfargument name="newAudRoleId" type="numeric" required="true">
 
-    
-        <cfquery result="result" >
+<cfquery result="result" >
             UPDATE audroles 
             SET #arguments.statusField# = <cfqueryparam value="0" cfsqltype="CF_SQL_INTEGER"> 
             WHERE audroleid = <cfqueryparam value="#arguments.newAudRoleId#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
-        
-            
-            
-        
-    
 </cffunction>
 <cffunction output="false" name="UPDaudroles_23814" access="public" returntype="void">
     <cfargument name="statusField" type="string" required="true">
     <cfargument name="newAudroleId" type="numeric" required="true">
 
-    
-        <cfquery result="result" name="updateQuery" >
+<cfquery result="result" name="updateQuery" >
             UPDATE audroles
             SET #arguments.statusField# = <cfqueryparam value="1" cfsqltype="CF_SQL_BIT">
             WHERE audroleid = <cfqueryparam value="#arguments.newAudroleId#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        
-            
-            
-        
-    
+
 </cffunction>
 <cffunction output="false" name="SELaudroles_23851" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
 
-    
-    
-    
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 r.audroleid, 
                 r.audprojectid, 
@@ -259,22 +222,13 @@
             LEFT OUTER JOIN incometypes i ON (i.incometypeid = r.incometypeid)
             WHERE r.audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        
-            
-            
-        
-    
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="DETaudroles" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
 
-    
-    
-    
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 r.audroleid, 
                 r.audprojectid, 
@@ -298,22 +252,14 @@
             INNER JOIN audsubcategories subcat ON (proj.audSubCatID = subcat.audSubCatId)
             WHERE r.audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        <cfreturn result>
-        
-        
-            
-            
-        
-    
+
+<cfreturn result>
+
 </cffunction>
 <cffunction output="false" name="DETaudroles_24086" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
-    
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 r.audroleid, 
                 r.audprojectid, 
@@ -337,22 +283,14 @@
             INNER JOIN audsubcategories subcat ON (proj.audSubCatID = subcat.audSubCatId)
             WHERE r.audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        <cfreturn result>
-        
-        
-            
-            
-        
-    
+
+<cfreturn result>
+
 </cffunction>
 <cffunction output="false" name="DETaudroles_24090" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
-    
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 r.audroleid, 
                 r.audprojectid, 
@@ -387,22 +325,14 @@
             LEFT OUTER JOIN audpaycycles p ON p.paycycleid = r.paycycleid
             WHERE r.audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        <cfreturn result>
-        
-    
-        
-        
-    
-    
+
+<cfreturn result>
+
 </cffunction>
 <cffunction output="false" name="DETaudroles_24122" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
 
-    
-    
-    
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 r.audroleid, 
                 r.audprojectid, 
@@ -434,52 +364,31 @@
             LEFT OUTER JOIN contactdetails c ON (c.contactid = r.contactid)
             WHERE r.audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        
-            
-            
-        
-    
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="UPDaudroles_24126" access="public" returntype="void" >
     <cfargument name="audroleid" type="numeric" required="true">
 
-    
-        <cfquery result="result" >
+<cfquery result="result" >
             UPDATE audroles
             SET isdeleted = 1
             WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        
-            
-            
-        
-    
+
 </cffunction>
 <cffunction output="false" name="SELaudroles_24165" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="submitsiteid" type="numeric" required="true">
-    
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT *
             FROM audroles
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
             AND submitsiteid = <cfqueryparam value="#arguments.submitsiteid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        
-            
-            
-        
-    
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="UPDaudroles_24260" access="public" returntype="void">
     <cfargument name="new_iscallback" type="boolean" required="true">
@@ -488,8 +397,7 @@
     <cfargument name="new_isbooked" type="boolean" required="true">
     <cfargument name="audroleid" type="numeric" required="true">
 
-    
-        <cfquery result="result" >
+<cfquery result="result" >
             UPDATE audroles
             SET iscallback = <cfqueryparam value="#arguments.new_iscallback#" cfsqltype="CF_SQL_BIT">,
                 isredirect = <cfqueryparam value="#arguments.new_isredirect#" cfsqltype="CF_SQL_BIT">,
@@ -497,7 +405,7 @@
                 isbooked = <cfqueryparam value="#arguments.new_isbooked#" cfsqltype="CF_SQL_BIT">
             WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-   
+
 </cffunction>
 <cffunction output="false" name="UPDaudroles_24299" access="public" returntype="void">
     <cfargument name="new_audRoleName" type="string" required="true">
@@ -511,7 +419,7 @@
     <cfargument name="new_isDeleted" type="boolean" required="true" default=0>
     <cfargument name="new_audRoleID" type="numeric" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         UPDATE audroles 
         SET 
             audRoleName = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audRoleName#" maxlength="500">
@@ -522,9 +430,9 @@
                 audRoleTypeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleTypeID#">
             </cfif>
 
-                ,charDescription = <cfqueryparam cfsqltype="CF_SQL_LONGVARCHAR" value="#arguments.new_charDescription#">
+,charDescription = <cfqueryparam cfsqltype="CF_SQL_LONGVARCHAR" value="#arguments.new_charDescription#">
 
-            <cfif arguments.new_audDialectID neq 0>, 
+<cfif arguments.new_audDialectID neq 0>, 
                 audDialectID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audDialectID#">
             </cfif>
             <cfif arguments.new_audSourceID neq 0>, 
@@ -554,7 +462,7 @@
     <cfargument name="ispin" type="boolean" required="false" default=false>
     <cfargument name="isredirect" type="boolean" required="false" default=false>
 
-        <cfquery result="result">
+<cfquery result="result">
             INSERT INTO audroles (
                 audRoleName, 
                 audprojectID, 
@@ -583,27 +491,18 @@
 </cffunction>
 <cffunction output="false" name="UPDaudroles_24542" access="public" returntype="void">
     <cfargument name="audsourceid" type="numeric" required="true">
-    
-    
-        <cfquery result="result" >
+
+<cfquery result="result" >
             UPDATE audroles 
             SET submitsiteid = NULL, contactid = NULL, opencallid = NULL 
             WHERE audsourceid = <cfqueryparam value="#arguments.audsourceid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        
-            
-            
-        
-    
+
 </cffunction>
 <cffunction output="false" name="DETaudroles_24544" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
-    
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 r.audroleid, r.audprojectid, r.auddialectid, r.audRoleName, 
                 r.charDescription, r.holdStartDate, r.holdEndDate, rt.audroletype, 
@@ -623,14 +522,8 @@
             LEFT JOIN audopencalloptions_user o ON o.opencallid = r.opencallid
             WHERE r.audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="cf_sql_integer">
         </cfquery>
-        
-        
-            
-            
-        
-    
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="INSaudroles_24593" access="public" returntype="numeric">
@@ -649,7 +542,7 @@
     <cfargument name="ispin" type="boolean" required="true">
     <cfargument name="isredirect" type="boolean" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         INSERT INTO audroles (
             audRoleName,
             audprojectID,
@@ -693,10 +586,8 @@
         )
     </cfquery>
 
-    <cfreturn result.generatedKey>
+<cfreturn result.generatedKey>
 </cffunction>
-
-
 
 <cffunction output="false" name="UPDaudroles_24594" access="public" returntype="void">
     <cfargument name="new_audRoleName" type="string" required="true">
@@ -711,8 +602,7 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_audRoleID" type="numeric" required="true">
 
-    
-        <cfquery result="result">
+<cfquery result="result">
             UPDATE audroles 
             SET 
                 audRoleName = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audRoleName)#" maxlength="500" null="#NOT len(trim(arguments.new_audRoleName))#">,
@@ -728,10 +618,8 @@
             WHERE 
                 audRoleID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#">
         </cfquery>
-        
-            
-            <!--- Handle error as needed --->
-        
-    
+
+<!--- Handle error as needed --->
+
 </cffunction>
 </cfcomponent>

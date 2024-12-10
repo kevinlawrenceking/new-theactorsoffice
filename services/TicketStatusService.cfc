@@ -7,7 +7,7 @@
         ORDER BY id
     </cfquery>
 
-    <!--- Return the query result --->
+<!--- Return the query result --->
     <cfreturn result>
 </cffunction>
 
@@ -18,7 +18,7 @@
     <cfset var whereClause = "">
     <cfset var paramList = []>
 
-    <!--- Build WHERE clause dynamically --->
+<!--- Build WHERE clause dynamically --->
     <cfif structCount(arguments.conditions) gt 0>
         <cfset whereClause = " WHERE ">
         <cfloop collection="#arguments.conditions#" item="key">
@@ -29,7 +29,7 @@
         <cfset whereClause = left(whereClause, len(whereClause) - 4)>
     </cfif>
 
-    <!--- Execute query --->
+<!--- Execute query --->
     <cfquery result="result" name="queryResult">
         #sql##whereClause#
         <cfloop array="#paramList#" index="param">
@@ -37,45 +37,45 @@
         </cfloop>
     </cfquery>
 
-    <cfreturn queryResult>
+<cfreturn queryResult>
 </cffunction>
 
 <cffunction output="false" name="SELticketstatuses_24781" access="public" returntype="query">
     <cfargument name="status" type="string" required="false">
 
-    <cfset var sql = "">
+<cfset var sql = "">
     <cfset var params = []>
-    
-    <cfset sql = "
+
+<cfset sql = "
         SELECT 'Completed' AS id, 'Completed' AS name 
         FROM ticketstatuses 
         WHERE 1=1
     ">
-    
-    <cfif structKeyExists(arguments, "status") and len(trim(arguments.status))>
+
+<cfif structKeyExists(arguments, "status") and len(trim(arguments.status))>
         <cfset sql &= " AND name = ?">
         <cfset arrayAppend(params, {value=arguments.status, cfsqltype="CF_SQL_VARCHAR"})>
     </cfif>
 
-    <cfset sql &= "
+<cfset sql &= "
         UNION 
         SELECT 'Pending' AS id, 'Pending' AS name 
         FROM ticketstatuses
         WHERE 1=1
     ">
-    
-    <cfif structKeyExists(arguments, "status") and len(trim(arguments.status))>
+
+<cfif structKeyExists(arguments, "status") and len(trim(arguments.status))>
         <cfset sql &= " AND name = ?">
         <cfset arrayAppend(params, {value=arguments.status, cfsqltype="CF_SQL_VARCHAR"})>
     </cfif>
 
-    <cfquery name="result">
+<cfquery name="result">
         #sql#
         <cfloop array="#params#" index="param">
             <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
         </cfloop>
     </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 </cfcomponent>

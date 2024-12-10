@@ -1,23 +1,23 @@
 Here is the refined and standardized ColdFusion component code:
 
-<cfcomponent displayname="AuditionQuestionUserService" hint="Handles operations for AuditionQuestionUser table" > 
+<cfcomponent displayname="AuditionQuestionUserService" hint="Handles operations for AuditionQuestionUser table" >
 
 <cffunction output="false" name="SELaudquestions_user" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
-    
-    <cfquery name="result">
+
+<cfquery name="result">
         SELECT qid,qTypeID,qtext,qorder,userid,isDeleted
 FROM audquestions_user
- 
-        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+
+WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
     <cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="SELaudquestions_user_24078" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
-    
-    <cfquery name="result">
+
+<cfquery name="result">
           SELECT qid,qTypeID,qtext,qorder,userid,isDeleted
 FROM audquestions_user
         WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
@@ -27,8 +27,8 @@ FROM audquestions_user
 
 <cffunction output="false" name="SELaudquestions_user_24501" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
-    
-    <cfquery name="result">
+
+<cfquery name="result">
         SELECT 
             q.qid, 
             q.qtext, 

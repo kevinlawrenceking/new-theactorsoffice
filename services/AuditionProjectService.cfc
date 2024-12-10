@@ -1,4 +1,4 @@
-<cfcomponent displayname="AuditionProjectService" hint="Handles operations for AuditionProject table" > 
+<cfcomponent displayname="AuditionProjectService" hint="Handles operations for AuditionProject table" >
 
 <cffunction name="UPDaudprojects_24586" access="public" returntype="void" output="false">
     <!--- Arguments with default handling --->
@@ -11,7 +11,7 @@
     <cfargument name="new_contactid" type="numeric" required="false" default="0">
     <cfargument name="new_audprojectID" type="numeric" required="true">
 
-    <!--- Build the update query dynamically --->
+<!--- Build the update query dynamically --->
     <cfquery >
         UPDATE audprojects
         SET
@@ -38,14 +38,10 @@
     </cfquery>
 </cffunction>
 
-
-
-
 <cffunction output="false" name="DETaudprojects" access="public" returntype="query">
     <cfargument name="eventId" type="numeric" required="true">
 
-    
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 pr.audprojectid AS recid, 
                 ad.eventid, 
@@ -94,22 +90,13 @@
             LEFT OUTER JOIN countries c ON rg.countryid = c.countryid
             WHERE ad.eventid = <cfqueryparam value="#arguments.eventId#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        
-            
-            
-        
-    
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELaudprojects" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
-    
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT DISTINCT 
                 c.contactfullname AS cd, 
                 c.contactid 
@@ -124,22 +111,13 @@
             ORDER BY 
                 c.contactfullname
         </cfquery>
-        
-        
-            
-            
-        
-    
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELaudprojects_23795" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
-    
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT DISTINCT i.valueCompany 
             FROM audprojects p 
             INNER JOIN contactdetails c ON c.contactid = p.contactid 
@@ -148,22 +126,13 @@
             AND i.valueCategory = <cfqueryparam value="Company" cfsqltype="CF_SQL_VARCHAR"> 
             ORDER BY i.valueCompany
         </cfquery>
-        
-        
-            
-            
-        
-    
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="DETaudprojects_23811" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
-    
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 a.audprojectid, 
                 a.projname, 
@@ -185,59 +154,39 @@
             LEFT OUTER JOIN audroles a4 ON (a.audprojectID = a4.audprojectID)
             WHERE a.audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        <cfreturn result>
-        
-        
-            
-            
-        
-    
+
+<cfreturn result>
+
 </cffunction>
 <cffunction output="false" name="UPDaudprojects" access="public" returntype="void">
     <cfargument name="new_audSubCatID" type="numeric" required="true">
     <cfargument name="new_audprojectID" type="numeric" required="true">
 
-    
-        <cfquery result="result" >
+<cfquery result="result" >
             UPDATE audprojects 
             SET audSubCatID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audSubCatID#" null="#NOT len(trim(arguments.new_audSubCatID))#">
             WHERE audprojectID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audprojectID#">
         </cfquery>
-        
-        
-            
-            
-        
-    
+
 </cffunction>
 <cffunction output="false" name="SELaudprojects_23961" access="public" returntype="query">
     <cfargument name="mediaid" type="numeric" required="true">
-    
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT DISTINCT p.audprojectid
             FROM audprojects p
             INNER JOIN audmedia_auditions_xref x ON p.audprojectID = x.audprojectid
             WHERE p.isdeleted = 0 
             AND x.mediaid = <cfqueryparam value="#arguments.mediaid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        
-            
-            
-        
-    
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="UPDaudprojects_24011" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="audprojectids" type="string" required="true"> <!--- Expecting a comma-delimited list of integers --->
 
-    <cfquery result="result" name="updateQuery">
+<cfquery result="result" name="updateQuery">
         UPDATE audprojects 
         SET projdate = NULL 
         WHERE isdeleted <> 1 
@@ -257,42 +206,28 @@
     <cfargument name="new_projdate" type="date" required="true">
     <cfargument name="audprojectID" type="numeric" required="true">
 
-    
-        <cfquery result="result" >
+<cfquery result="result" >
             UPDATE audprojects 
             SET projdate = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_projdate#"/> 
             WHERE audprojectid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.audprojectID#"/>
         </cfquery>
-        
-        
-            
-            
-        
-    
+
 </cffunction>
 <cffunction output="false" name="UPDaudprojects_24015" access="public" returntype="void">
     <cfargument name="new_projdate" type="date" required="true">
     <cfargument name="audprojectID" type="numeric" required="true">
 
-    
-        <cfquery result="result" >
+<cfquery result="result" >
             UPDATE audprojects 
             SET projdate = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_projdate#"/> 
             WHERE audprojectid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.audprojectID#"/>
         </cfquery>
-        
-        
-            
-            
-        
-    
+
 </cffunction>
 <cffunction output="false" name="SELaudprojects_24016" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 p.audprojectID, 
                 CAST(p.audprojectdate AS DATE) AS new_projDate 
@@ -303,55 +238,35 @@
                 AND p.projdate IS null 
                 AND p.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        
-            
-            
-        
-    
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="UPDaudprojects_24017" access="public" returntype="void">
     <cfargument name="new_projdate" type="date" required="true">
     <cfargument name="audprojectID" type="numeric" required="true">
 
-    
-        <cfquery result="result" >
+<cfquery result="result" >
             UPDATE audprojects 
             SET projdate = <cfqueryparam value="#arguments.new_projdate#" cfsqltype="cf_sql_date"/>
             WHERE audprojectid = <cfqueryparam value="#arguments.audprojectID#" cfsqltype="cf_sql_integer"/>
         </cfquery>
-        
-            
-            
-        
-    
+
 </cffunction>
 <cffunction output="false" name="UPDaudprojects_24019" access="public" returntype="void">
     <cfargument name="projDate" type="string" required="true">
-    
-    
-        <cfquery result="result" name="updateQuery" >
+
+<cfquery result="result" name="updateQuery" >
             UPDATE audprojects p
             INNER JOIN auditionsimport i ON i.audprojectid = p.audprojectid
             SET p.projdate = <cfqueryparam value="#arguments.projDate#" cfsqltype="CF_SQL_DATE">
             WHERE STR_TO_DATE(i.projdate, '%Y-%m-%d') IS NOT NULL
         </cfquery>
-        
-        
-            
-            
-        
-    
+
 </cffunction>
 <cffunction output="false" name="SELaudprojects_24062" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
-    
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT DISTINCT e.eventid, e.eventstart
             FROM audprojects p 
             INNER JOIN audroles r ON r.audprojectID = p.audprojectID 
@@ -362,41 +277,24 @@
             AND r.isdeleted = 0 
             AND p.isdeleted = 0
         </cfquery>
-        
-        
-            
-            
-        
-    
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELaudprojects_24085" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
 
-    
-    
-    
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT projname, projdescription, contactid
             FROM audprojects
             WHERE audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        
-            
-            
-        
-    
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="DETaudprojects_24089" access="public" returntype="query">
     <cfargument name="audprojectID" type="numeric" required="true">
-    
 
-    
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 proj.audprojectID, 
                 r.audroleid, 
@@ -423,21 +321,13 @@
             LEFT OUTER JOIN audunions un ON proj.unionID = un.unionID
             WHERE proj.audprojectID = <cfqueryparam value="#arguments.audprojectID#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-            
-            
-        
-    
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELaudprojects_24097" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
 
-    
-    
-    
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 ad.eventid, 
                 a4.audroleid, 
@@ -492,22 +382,13 @@
             LEFT OUTER JOIN regions r ON r.region_id = ad.region_id
             WHERE ad.eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        
-            
-            
-        
-    
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="DETaudprojects_24106" access="public" returntype="query">
     <cfargument name="new_eventid" type="numeric" required="true">
 
-    
-    
-    
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 pr.audprojectid AS recid, 
                 ad.eventid, 
@@ -556,22 +437,13 @@
             LEFT OUTER JOIN countries c ON rg.countryid = c.countryid
             WHERE ad.eventid = <cfqueryparam value="#arguments.new_eventid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        
-            
-            
-        
-    
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="DETaudprojects_24107" access="public" returntype="query">
     <cfargument name="audprojectID" type="numeric" required="true">
-    
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 proj.audprojectID, 
                 r.audroleid, 
@@ -598,40 +470,26 @@
             LEFT OUTER JOIN audunions un ON proj.unionID = un.unionID
             WHERE proj.audprojectID = <cfqueryparam value="#arguments.audprojectID#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        <cfreturn result>
-        
-        
-            
-            
-        
-    
+
+<cfreturn result>
+
 </cffunction>
 <cffunction output="false" name="UPDaudprojects_24125" access="public" returntype="void">
     <cfargument name="audprojectid" type="numeric" required="true">
-    
-    
-        <cfquery result="result" >
+
+<cfquery result="result" >
             UPDATE audprojects 
             SET isdeleted = 1 
             WHERE audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        
-            
-            
-        
-    
+
 </cffunction>
 <cffunction output="false" name="SELaudprojects_24230" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_rangestart" type="date" required="true">
     <cfargument name="new_rangeend" type="date" required="true">
 
-    
-    
-    
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT count(p.audprojectID) as totals, 
                    'Number of Callbacks' as label, 
                    'Auditions' as itemDataset 
@@ -644,24 +502,16 @@
               AND p.projdate >= <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_rangestart#" /> 
               AND p.projdate <= <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_rangeend#" />
         </cfquery>
-        
-        <cfreturn result>
-        
-        
-            
-            
-        
-    
+
+<cfreturn result>
+
 </cffunction>
 <cffunction output="false" name="SELaudprojects_24236" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
 
-    
-    
-    
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 count(p.audprojectID) as totals, 
                 'Number of Redirects' as label, 
@@ -678,24 +528,18 @@
                 AND p.projdate >= <cfqueryparam value="#arguments.rangestart#" cfsqltype="cf_sql_date"> 
                 AND p.projdate <= <cfqueryparam value="#arguments.rangeend#" cfsqltype="cf_sql_date">
         </cfquery>
-        
-        <cfreturn result>
 
-    
-        = #arguments.rangestart# AND p.projdate <= #arguments.rangeend#">
-        
-    
-    
+<cfreturn result>
+
+= #arguments.rangestart# AND p.projdate <= #arguments.rangeend#">
+
 </cffunction>
 <cffunction output="false" name="SELaudprojects_24237" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
 
-    
-    
-    
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 count(p.audprojectID) as totals, 
                 'Number of Pins/Avails' as label, 
@@ -712,24 +556,17 @@
                 AND p.projdate >= <cfqueryparam value="#arguments.rangestart#" cfsqltype="CF_SQL_DATE">
                 AND p.projdate <= <cfqueryparam value="#arguments.rangeend#" cfsqltype="CF_SQL_DATE">
         </cfquery>
-        
-        
-            = #arguments.rangestart# AND p.projdate <= #arguments.rangeend#">
-            
-        
-    
 
-    <cfreturn result>
+= #arguments.rangestart# AND p.projdate <= #arguments.rangeend#">
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELaudprojects_24238" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
 
-    
-    
-    
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 count(p.audprojectID) as totals, 
                 'Number of Auditions' as label, 
@@ -745,24 +582,15 @@
                 AND p.projdate >= <cfqueryparam value="#arguments.rangestart#" cfsqltype="CF_SQL_DATE"> 
                 AND p.projdate <= <cfqueryparam value="#arguments.rangeend#" cfsqltype="CF_SQL_DATE">
         </cfquery>
-        
-        
-            
-            
-        
-    
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELaudprojects_24239" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
 
-    
-    
-    
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 count(p.audprojectID) as totals, 
                 'Number of Bookings' as label, 
@@ -779,24 +607,17 @@
                 AND p.projdate >= <cfqueryparam value="#arguments.rangestart#" cfsqltype="CF_SQL_DATE"> 
                 AND p.projdate <= <cfqueryparam value="#arguments.rangeend#" cfsqltype="CF_SQL_DATE">
         </cfquery>
-        
-        
-            = #arguments.rangestart# AND p.projdate <= #arguments.rangeend#">
-            
-        
-    
 
-    <cfreturn result>
+= #arguments.rangestart# AND p.projdate <= #arguments.rangeend#">
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELaudprojects_24240" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
 
-    
-    
-    
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 count(p.audprojectid) as totals, 
                 c.audcatname as label, 
@@ -820,24 +641,16 @@
             ORDER BY 
                 c.audcatname
         </cfquery>
-        
-        <cfreturn result>
-        
-        
-            
-            
-        
-    
+
+<cfreturn result>
+
 </cffunction>
 <cffunction output="false" name="SELaudprojects_24241" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
 
-    
-    
-    
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 count(p.audprojectid) as totals, 
                 e.essencename as label, 
@@ -861,24 +674,16 @@
             ORDER BY 
                 e.essencename
         </cfquery>
-        
-        <cfreturn result>
-        
-        
-            
-            
-        
-    
+
+<cfreturn result>
+
 </cffunction>
 <cffunction output="false" name="SELaudprojects_24242" access="public" returntype="query">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    
-    
-    
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 count(p.audprojectid) as totals, 
                 IFNULL(s.audsource, 'Unknown') as label, 
@@ -900,22 +705,16 @@
             ORDER BY 
                 label
         </cfquery>
-        
-        
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
-
-
 
 <cffunction output="false" name="SELaudprojects_24244" access="public" returntype="query">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    
-    
-    
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 count(p.audprojectid) as totals, 
                 IFNULL(ss.submitsitename, 'Unknown') as label, 
@@ -940,24 +739,16 @@
             ORDER BY 
                 label
         </cfquery>
-        
-        <cfreturn result>
-        
-        
-            
-            
-        
-    
+
+<cfreturn result>
+
 </cffunction>
 <cffunction output="false" name="SELaudprojects_24245" access="public" returntype="query">
     <cfargument name="rangeStart" type="date" required="true">
     <cfargument name="rangeEnd" type="date" required="true">
     <cfargument name="userId" type="numeric" required="true">
 
-    
-    
-    
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 count(p.audprojectid) as totals, 
                 IFNULL(c.recordname, 'Unknown') as label, 
@@ -980,24 +771,15 @@
             GROUP BY label 
             ORDER BY label
         </cfquery>
-        
-        
-            
-            
-        
-    
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELaudprojects_24246" access="public" returntype="query">
     <cfargument name="rangeStart" type="date" required="true">
     <cfargument name="rangeEnd" type="date" required="true">
     <cfargument name="userId" type="numeric" required="true">
 
-    
-    
-    
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 COUNT(p.audprojectid) AS totals, 
                 IFNULL(o.opencallname, 'Unknown') AS label, 
@@ -1022,20 +804,14 @@
             ORDER BY 
                 label
         </cfquery>
-        
-        
-            
-            
-        
-    
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 <cffunction name="getAuditionData" access="public" returntype="query" output="false">
     <cfargument name="rangeselected" type="struct" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery name="result">
+<cfquery name="result">
         SELECT 
             COUNT(p.audprojectid) AS totals, 
             IFNULL(c.recordname, 'Unknown') AS label, 
@@ -1061,7 +837,7 @@
             label
     </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="SELaudprojects_24248" access="public" returntype="query">
@@ -1069,9 +845,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="rangeselected" type="struct" required="true">
 
-    
-    
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT count(p.audprojectid) as totals, 'Non-Union' as label, 'Auditions' as itemDataset
             FROM audprojects p
             INNER JOIN audroles r ON p.audprojectID = r.audprojectID
@@ -1088,9 +862,9 @@
             AND p.projdate <= <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.rangeselected.rangeend#">
             GROUP BY label, itemDataset
 
-            UNION ALL
+UNION ALL
 
-            SELECT count(p.audprojectid) as totals, 'Union' as label, 'Auditions' as itemDataset
+SELECT count(p.audprojectid) as totals, 'Union' as label, 'Auditions' as itemDataset
             FROM audprojects p
             INNER JOIN audroles r ON p.audprojectID = r.audprojectID
             INNER JOIN audunions u ON u.unionid = p.unionid
@@ -1106,24 +880,17 @@
             AND p.projdate <= <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.rangeselected.rangeend#">
             GROUP BY label, itemDataset
 
-            ORDER BY label
+ORDER BY label
         </cfquery>
         <cfreturn result>
-    
-        
-        
-    
-    
+
 </cffunction>
 <cffunction output="false" name="SELaudprojects_24250" access="public" returntype="query">
     <cfargument name="rangestart" type="date" required="true">
     <cfargument name="rangeend" type="date" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    
-    
-    
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 count(r.audroleid) AS totals, 
                 a.rangename AS label, 
@@ -1149,14 +916,9 @@
             ORDER BY 
                 a.rangename
         </cfquery>
-        
-        <cfreturn result>
-        
-        
-            
-            
-        
-    
+
+<cfreturn result>
+
 </cffunction>
 <cffunction output="false" name="SELaudprojects_24251" access="public" returntype="query">
     <cfargument name="rangestart" type="date" required="true">
@@ -1164,10 +926,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_audcatid" type="numeric" required="true">
 
-    
-    
-    
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 count(r.audroleid) AS totals, 
                 g.audgenre AS label, 
@@ -1194,35 +953,22 @@
             ORDER BY 
                 g.audgenre
         </cfquery>
-        
-        <cfreturn result>
 
-    
-        
-        
-    
-    
+<cfreturn result>
+
 </cffunction>
 <cffunction output="false" name="SELaudprojects_24353" access="public" returntype="query">
     <cfargument name="projname" type="string" required="true">
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT *
             FROM audprojects
             WHERE projname = <cfqueryparam value="#arguments.projname#" cfsqltype="CF_SQL_VARCHAR">
             AND userid = <cfqueryparam value="#userid#" cfsqltype="CF_SQL_INTEGER">
             AND isdeleted = <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
         </cfquery>
-        
-        
-            
-            
-        
-    
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="INSaudprojects" access="public" returntype="numeric">
     <cfargument name="new_projName" type="string" required="true">
@@ -1233,7 +979,7 @@
     <cfargument name="new_contactid" type="numeric" required="false">
     <cfargument name="new_projdate" type="date" required="true">
 
-        <cfquery result="result" >
+<cfquery result="result" >
             INSERT INTO audprojects (
                 projName,
                 projDescription,
@@ -1258,11 +1004,8 @@
 </cffunction>
 <cffunction output="false" name="SELaudprojects_24500" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
-    
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 a4.audroleid, 
                 a.projName, 
@@ -1288,22 +1031,13 @@
             LEFT JOIN audtypes t ON t.audtypeid = ad.audtypeid
             WHERE ad.eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        
-            
-            
-        
-    
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="DETaudprojects_24543" access="public" returntype="query">
     <cfargument name="audprojectID" type="numeric" required="true">
-    
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 proj.audprojectID, 
                 r.audroleid, 
@@ -1332,22 +1066,14 @@
             LEFT JOIN audunions un ON proj.unionID = un.unionID
             WHERE proj.audprojectID = <cfqueryparam value="#arguments.audprojectID#" cfsqltype="cf_sql_integer">
         </cfquery>
-        
-        <cfreturn result>
-        
-        
-            
-            
-        
-    
+
+<cfreturn result>
+
 </cffunction>
 <cffunction output="false" name="SELaudprojects_24550" access="public" returntype="query">
     <cfargument name="audprojectID" type="numeric" required="true">
 
-    
-    
-    
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 p.audprojectid, 
                 p.contactid 
@@ -1360,22 +1086,13 @@
                 AND r.isdeleted IS FALSE 
                 AND p.audprojectID = <cfqueryparam value="#arguments.audprojectID#" cfsqltype="cf_sql_integer">
         </cfquery>
-        
-        
-            
-            
-        
-    
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="DETaudprojects_24553" access="public" returntype="query">
     <cfargument name="eventid" type="numeric" required="true">
-    
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 a4.audroleid, 
                 a.projName, 
@@ -1401,22 +1118,13 @@
             LEFT JOIN audtypes t ON t.audtypeid = ad.audtypeid
             WHERE ad.eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        
-            
-            
-        
-    
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="DETaudprojects_24554" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
-    
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 a.audprojectid, 
                 a.projname, 
@@ -1442,23 +1150,15 @@
             LEFT OUTER JOIN audcategories ac ON (ac.audcatid = a2.audcatid)
             WHERE a.audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        <cfreturn result>
-        
-        
-            
-            
-        
-    
+
+<cfreturn result>
+
 </cffunction>
 <cffunction output="false" name="SELaudprojects_24559" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="sel_coname" type="string" required="true">
-    
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT DISTINCT c.contactid
             FROM audprojects p
             INNER JOIN contactdetails c ON c.contactid = p.contactid
@@ -1466,14 +1166,8 @@
             WHERE p.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
             AND i.valueCompany = <cfqueryparam value="#arguments.sel_coname#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
-        
-        
-            
-            
-        
-    
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="RESaudprojects" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
@@ -1487,10 +1181,8 @@
     <cfargument name="cur_date" type="date" required="false">
     <cfargument name="materials" type="string" required="false" default="%">
     <cfargument name="audsearch" type="string" required="false" default="">
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 p.audprojectid AS recid, 
                 p.audprojectid, 
@@ -1532,26 +1224,26 @@
             LEFT JOIN audcontacts_auditions_xref x ON x.audprojectid = p.audprojectid
             LEFT JOIN contactdetails c3 ON c3.contactid = x.contactid
             WHERE r.isdeleted = 0 AND p.isDeleted = 0 AND p.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
-            
-            <cfif arguments.byimport neq "">
+
+<cfif arguments.byimport neq "">
                 AND p.audprojectid IN (
                     SELECT audprojectid FROM auditionsimport WHERE uploadid = <cfqueryparam value="#arguments.byimport#" cfsqltype="CF_SQL_INTEGER">
                 )
             </cfif>
-            
-            <cfif arguments.sel_contactid neq "%">
+
+<cfif arguments.sel_contactid neq "%">
                 AND c.contactid = <cfqueryparam value="#arguments.sel_contactid#" cfsqltype="CF_SQL_INTEGER">
             </cfif>
-            
-            <cfif arguments.colist neq "%" and arguments.colist neq "">
+
+<cfif arguments.colist neq "%" and arguments.colist neq "">
                 AND c.contactid IN (#arguments.colist#)
             </cfif>
-            
-            <cfif arguments.sel_audcatid neq "%">
+
+<cfif arguments.sel_audcatid neq "%">
                 AND sc.audcatid = <cfqueryparam value="#arguments.sel_audcatid#" cfsqltype="CF_SQL_INTEGER">
             </cfif>
-            
-            <cfif arguments.sel_audstepid neq "%">
+
+<cfif arguments.sel_audstepid neq "%">
                 <cfif arguments.sel_audstepid eq "2"> AND r.iscallback = 1 </cfif>
                 <cfif arguments.sel_audstepid eq "3"> AND r.isredirect = 1 </cfif>
                 <cfif arguments.sel_audstepid eq "4"> AND r.ispin = 1 </cfif>
@@ -1560,36 +1252,35 @@
                 <cfif arguments.sel_audstepid eq "999"> AND p.isDirect = 1 </cfif>
             </cfif>
 
-            <cfif arguments.sel_audtype neq "%">
+<cfif arguments.sel_audtype neq "%">
                 AND t.audtype = <cfqueryparam value="#arguments.sel_audtype#" cfsqltype="CF_SQL_VARCHAR">
             </cfif>
 
-            <cfif arguments.auddate eq "future">
+<cfif arguments.auddate eq "future">
                 AND p.projdate >= <cfqueryparam value="#arguments.cur_date#" cfsqltype="CF_SQL_DATE">
             </cfif>
 
-            <cfif arguments.auddate eq "past">
+<cfif arguments.auddate eq "past">
                 AND p.projdate <= <cfqueryparam value="#arguments.cur_date#" cfsqltype="CF_SQL_DATE">
             </cfif>
 
-            <cfif arguments.materials neq "%" and arguments.materials neq "">
+<cfif arguments.materials neq "%" and arguments.materials neq "">
                 AND p.audprojectid IN (#arguments.materials#)
             </cfif>
 
-            GROUP BY r.audroleid, p.projname, s.audsource, rt.audroletype, r.iscallback, r.isredirect, r.ispin, r.isbooked
-            
-            <cfif arguments.audsearch neq "">
+GROUP BY r.audroleid, p.projname, s.audsource, rt.audroletype, r.iscallback, r.isredirect, r.ispin, r.isbooked
+
+<cfif arguments.audsearch neq "">
               HAVING (search_query LIKE '%#arguments.audsearch#%' OR contacts_list LIKE '%#arguments.audsearch#%')
             </cfif>
 
-            ORDER BY p.projdate DESC
+ORDER BY p.projdate DESC
         </cfquery>
-        
-        <!--- Return the query result --->
+
+<!--- Return the query result --->
         <cfreturn result>
-        
- 
-    </cffunction>
+
+</cffunction>
 <cffunction output="false" name="INSaudprojects_24585" access="public" returntype="numeric">
     <cfargument name="new_projName" type="string" required="true">
     <cfargument name="new_projDescription" type="string" required="false">
@@ -1603,7 +1294,7 @@
     <cfargument name="isdirect" type="string" required="false">
     <cfargument name="new_contactid" type="numeric" required="false">
 
-    <cfquery result="result">
+<cfquery result="result">
         INSERT INTO audprojects (
             projName,
             projDescription
@@ -1631,24 +1322,14 @@
         )
     </cfquery>
 
-    <!--- Return the generated key --->
+<!--- Return the generated key --->
     <cfreturn result.generatedKey>
 </cffunction>
-
-
-
-
-
-
-
 
 <cffunction output="false" name="DETaudprojects_24716" access="public" returntype="query">
     <cfargument name="audprojectID" type="numeric" required="true">
 
-    
-    
-
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 proj.audprojectID, 
                 proj.projName, 
@@ -1679,8 +1360,8 @@
             WHERE 
                 proj.audprojectID = <cfqueryparam value="#arguments.audprojectID#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        <cfreturn result>
-    
+
+<cfreturn result>
+
 </cffunction>
 </cfcomponent>

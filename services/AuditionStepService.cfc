@@ -1,8 +1,8 @@
 <cfcomponent displayname="AuditionStepService" hint="Handles operations for AuditionStep table" > 
 <cffunction output="false" name="SELaudsteps" access="public" returntype="query">
     <cfargument name="stepinfo1" type="string" required="false">
-    
-        <cfquery name="result">
+
+<cfquery name="result">
             SELECT *
             FROM audsteps
             WHERE stepinfo1 IS NOT NULL
@@ -14,8 +14,8 @@
 </cffunction>
 <cffunction output="false" name="SELaudsteps_23784" access="public" returntype="query">
     <cfargument name="new_audstepid" type="numeric" required="true">
-    
-        <cfquery name="result">
+
+<cfquery name="result">
             SELECT audstep
             FROM audsteps
             WHERE audstepid = <cfqueryparam value="#arguments.new_audstepid#" cfsqltype="CF_SQL_INTEGER">
@@ -40,8 +40,8 @@
 </cffunction>
 <cffunction output="false" name="SELaudsteps_24083" access="public" returntype="query">
     <cfargument name="isDeleted" type="boolean" required="true">
-    
-        <cfquery name="result">
+
+<cfquery name="result">
             SELECT 
                 audstepid AS id, 
                 audstep AS NAME 

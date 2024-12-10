@@ -1,8 +1,8 @@
-<cfcomponent displayname="ComponentService" hint="Handles operations for Component table" > 
+<cfcomponent displayname="ComponentService" hint="Handles operations for Component table" >
 
 <cffunction output="false" name="SELpgcomps" access="public" returntype="query">
 
- <cfquery name="result">
+<cfquery name="result">
  SELECT
 c.compID
 ,c.compName
@@ -23,7 +23,7 @@ ORDER BY c.menuOrder
 
 <cffunction output="false" name="menuItemsA" access="public" returntype="query">
 
- <cfquery name="result">
+<cfquery name="result">
  SELECT
 
 c.compID
@@ -43,10 +43,9 @@ ORDER BY c.menuOrder
 
 </cffunction>
 
-
 <cffunction output="false" name="menuItemsAud" access="public" returntype="query">
 
- <cfquery name="result">
+<cfquery name="result">
  SELECT
 
 c.compID
@@ -70,9 +69,7 @@ ORDER BY c.menuOrder
     <cfargument name="appID" type="numeric" required="true">
     <cfargument name="compOwner" type="string" required="true">
 
-    
-
-        <cfif isNumeric(arguments.appID) AND len(arguments.compOwner)>
+<cfif isNumeric(arguments.appID) AND len(arguments.compOwner)>
             <cfquery name="result">
                 SELECT 
                     c.compID, 
@@ -92,10 +89,10 @@ ORDER BY c.menuOrder
                     c.menuOrder
             </cfquery>
         <cfelse>
-            
-        </cfif>
 
-    <cfreturn result>
+</cfif>
+
+<cfreturn result>
 </cffunction>
 
 </cfcomponent>

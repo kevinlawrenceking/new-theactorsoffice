@@ -1,4 +1,4 @@
-<cfcomponent displayname="UserService" hint="Handles operations for User table" > 
+<cfcomponent displayname="UserService" hint="Handles operations for User table" >
 
 <cffunction name="users_sel" access="public" returntype="query" output="false" hint="Fetches a list of users with the minimum user ID for each record name.">
     <!--- Fetches a list of users with the minimum user ID for each record name. --->
@@ -14,15 +14,15 @@
             u.recordname
     </cfquery>
 
-    <!--- Return the query result --->
+<!--- Return the query result --->
     <cfreturn users>
 </cffunction>
 
-    <!--- Function to retrieve user details by user ID --->
+<!--- Function to retrieve user details by user ID --->
     <cffunction output="false" name="GetUserDetails" access="public" returntype="query" >
         <cfargument name="userid" type="numeric" required="yes">
 
-        <cfquery result="result" name="details">
+<cfquery result="result" name="details">
             SELECT 
                 u.viewtypeid, 
                 tz.tzgeneral,
@@ -64,13 +64,13 @@
                 u.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
         </cfquery>
 
-        <cfreturn details>
+<cfreturn details>
     </cffunction>
 
 <cffunction output="false" name="SELtaousers" access="public" returntype="query">
     <cfargument name="ticketActive" type="string" required="true">
-  
-        <cfquery result="result" name="qResult" >
+
+<cfquery result="result" name="qResult" >
             SELECT DISTINCT 
                 u.recordname, 
                 u.userrole, 
@@ -85,27 +85,27 @@
                 u.userlastname, 
                 u.userfirstname
         </cfquery>
-        
-    <cfreturn qResult>
+
+<cfreturn qResult>
 </cffunction>
 <cffunction output="false" name="SELtaousers_23718" access="public" returntype="query">
     <cfargument name="ticketActive" type="string" required="true">
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT DISTINCT t.tickettype
             FROM taousers u
             INNER JOIN tickets t ON u.userID = t.userid
             WHERE t.ticketactive = <cfqueryparam value="#arguments.ticketActive#" cfsqltype="CF_SQL_CHAR">
             ORDER BY t.tickettype
         </cfquery>
-        
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="SELtaousers_23721" access="public" returntype="query">
     <cfargument name="ticketId" type="numeric" required="true">
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 tu.id, 
                 tu.ticketid, 
@@ -120,38 +120,38 @@
             WHERE 
                 tu.ticketid = <cfqueryparam value="#arguments.ticketId#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="UPDtaousers" access="public" returntype="void">
     <cfargument name="view" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfset var viewTypeId = 0>
-    
-    <!--- Determine viewTypeId based on view argument --->
+<cfset var viewTypeId = 0>
+
+<!--- Determine viewTypeId based on view argument --->
     <cfif arguments.view eq "tbl">
         <cfset viewTypeId = 1>
     <cfelse>
         <cfset viewTypeId = 2>
     </cfif>
 
-        <!--- Execute the parameterized query --->
+<!--- Execute the parameterized query --->
         <cfquery result="result" >
             UPDATE taousers 
             SET viewtypeid = <cfqueryparam value="#viewTypeId#" cfsqltype="CF_SQL_INTEGER"> 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
-            <!--- Log error details --->
-            
-            <!--- Optionally rethrow or handle the error further --->
+<!--- Log error details --->
+
+<!--- Optionally rethrow or handle the error further --->
 
 </cffunction>
 <cffunction output="false" name="SELtaousers_23842" access="public" returntype="query">
     <cfargument name="select_userid" type="numeric" required="true">
 
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 u.userid, 
                 u.recordname, 
@@ -167,23 +167,23 @@
             </cfif>
         </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="UPDtaousers_23911" access="public" returntype="void">
     <cfargument name="accessToken" type="string" required="false">
     <cfargument name="userId" type="numeric" required="true">
 
-        <cfquery result="result" >
+<cfquery result="result" >
             UPDATE taousers 
             SET access_token = <cfqueryparam value="#arguments.accessToken#" cfsqltype="CF_SQL_VARCHAR"> 
             WHERE userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
+
 </cffunction>
 
 <cffunction output="false" name="UPDtaousers_23945" access="public" returntype="void">
 
-  <cfargument name="new_userfirstname" type="string" required="false">
+<cfargument name="new_userfirstname" type="string" required="false">
     <cfargument name="new_userlastname" type="string" required="false">
     <cfargument name="new_avatarname" type="string" required="false">
     <cfargument name="new_useremail" type="string" required="false">
@@ -195,7 +195,7 @@
     <cfargument name="countryid" type="string" required="false">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery result="result" >
+<cfquery result="result" >
         UPDATE taousers 
         SET userfirstname = <cfqueryparam value="#arguments.new_userfirstname#" cfsqltype="CF_SQL_VARCHAR">,
             userlastname = <cfqueryparam value="#arguments.new_userlastname#" cfsqltype="CF_SQL_VARCHAR">,
@@ -216,13 +216,13 @@
     <cfargument name="new_nletter_yn" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-        <cfquery result="result" >
+<cfquery result="result" >
             UPDATE taousers 
             SET nletter_link = <cfqueryparam value="#arguments.new_nletter_link#" cfsqltype="CF_SQL_VARCHAR">, 
                 nletter_yn = <cfqueryparam value="#arguments.new_nletter_yn#" cfsqltype="CF_SQL_VARCHAR">
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
+
 </cffunction>
 
 <cffunction output="false" name="UPDtaousers_23951" access="public" returntype="void">
@@ -233,7 +233,7 @@
     <cfargument name="defState" type="string" required="false">
     <cfargument name="userid" type="numeric" required="true">
 
-        <cfquery result="result" >
+<cfquery result="result" >
             UPDATE taousers 
             SET 
                 calstarttime = <cfqueryparam cfsqltype="cf_sql_time" value="#arguments.calstarttime#" />,
@@ -244,19 +244,19 @@
             WHERE 
                 userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#" />
         </cfquery>
-        
+
 </cffunction>
 
 <cffunction output="false" name="SELtaousers_23956" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
 
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT contactid 
             FROM taousers 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="UPDtaousers_23989" access="public" returntype="void">
@@ -264,31 +264,31 @@
     <cfargument name="refreshToken" type="string" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-        <cfquery result="result" >
+<cfquery result="result" >
             UPDATE taousers 
             SET access_token = <cfqueryparam value="#arguments.accesstoken#" cfsqltype="CF_SQL_VARCHAR">, 
                 refresh_token = <cfqueryparam value="#arguments.refreshToken#" cfsqltype="CF_SQL_VARCHAR"> 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
+
 </cffunction>
 
 <cffunction output="false" name="UPDtaousers_23990" access="public" returntype="void" hint="Updates the access token for a user based on their userid.">
     <cfargument name="accessToken" type="string" required="true" hint="The new access token to be set.">
     <cfargument name="userid" type="numeric" required="true" hint="The ID of the user whose access token is to be updated.">
 
-        <cfquery result="result" >
+<cfquery result="result" >
             UPDATE taousers 
             SET access_token = <cfqueryparam value="#arguments.accessToken#" cfsqltype="CF_SQL_VARCHAR"> 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
+
 </cffunction>
 
 <cffunction output="false" name="SELtaousers_23998" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 u.userid, 
                 u.recordname, 
@@ -312,26 +312,26 @@
             LEFT JOIN timezones t ON t.tzid = u.tzid
             WHERE u.userid = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="UPDtaousers_23999" access="public" returntype="void">
     <cfargument name="userFirstName" type="string" required="false">
     <cfargument name="userId" type="numeric" required="true">
 
-        <cfquery result="result" name="updateAvatar" >
+<cfquery result="result" name="updateAvatar" >
             UPDATE taousers 
             SET avatarname = <cfqueryparam value="#arguments.userFirstName#" cfsqltype="CF_SQL_VARCHAR">
             WHERE userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
+
 </cffunction>
 
 <cffunction output="false" name="UPDtaousers_24001" access="public" returntype="void">
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-        <cfquery result="result" >
+<cfquery result="result" >
             UPDATE taousers 
             SET contactid = <cfqueryparam value="#arguments.new_contactid#" cfsqltype="CF_SQL_INTEGER">
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
@@ -342,7 +342,7 @@
 <cffunction output="false" name="SELtaousers_24002" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
 
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 u.userid, 
                 u.recordname, 
@@ -367,12 +367,12 @@
             WHERE u.userid = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELtaousers_24072" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
 
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 u.userid AS new_userid, 
                 u.recordname AS username 
@@ -382,88 +382,88 @@
                 u.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="DETtaousers" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
 
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT * 
             FROM taousers 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELtaousers_24142" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
-    
-    <cfset var queryResult = "">
+
+<cfset var queryResult = "">
     <cfset var sql = "SELECT userid FROM taousers">
     <cfset var whereClauses = []>
     <cfset var paramValues = []>
-    
-    <!--- Build WHERE clause dynamically based on conditions argument --->
+
+<!--- Build WHERE clause dynamically based on conditions argument --->
     <cfloop collection="#arguments.conditions#" item="key">
         <cfset arrayAppend(whereClauses, "#key# = ?")>
         <cfset arrayAppend(paramValues, {value=arguments.conditions[key], cfsqltype=determineSQLType(key)})>
     </cfloop>
-    
-    <!--- Add WHERE clause if there are conditions --->
+
+<!--- Add WHERE clause if there are conditions --->
     <cfif arrayLen(whereClauses) gt 0>
         <cfset sql &= " WHERE " & arrayToList(whereClauses, " AND ")>
     </cfif>
 
-    <!--- Add ORDER BY clause --->
+<!--- Add ORDER BY clause --->
     <cfset sql &= " ORDER BY userid DESC LIMIT 1">
 
-    <!--- Execute the query with error handling --->
-    
-        <cfquery result="result" name="queryResult" >
+<!--- Execute the query with error handling --->
+
+<cfquery result="result" name="queryResult" >
             #sql#
             <cfloop array="#paramValues#" index="param">
                 <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
             </cfloop>
         </cfquery>
 
-             <!--- Return an empty query set --->
+<!--- Return an empty query set --->
 
-    <cfreturn queryResult>
+<cfreturn queryResult>
 </cffunction>
 <cffunction output="false" name="SELtaousers_24158" access="public" returntype="query">
     <cfargument name="recordName" type="string" required="false">
 
-    <cfset var sql = "SELECT MIN(u.userid) AS id, u.recordname AS name FROM taousers u">
+<cfset var sql = "SELECT MIN(u.userid) AS id, u.recordname AS name FROM taousers u">
     <cfset var whereClause = "">
     <cfset var orderByClause = " 
     ORDER BY u.recordname">
-    
-    <!--- Build WHERE clause dynamically --->
+
+<!--- Build WHERE clause dynamically --->
     <cfif structKeyExists(arguments, "recordName") AND len(arguments.recordName)>
         <cfset whereClause = " WHERE u.recordname = ?">
     </cfif>
-    
-    <!--- Construct final SQL query --->
+
+<!--- Construct final SQL query --->
     <cfset sql = sql & whereClause & " GROUP BY u.recordname" & orderByClause>
-    
-    <!--- Execute the query with error handling --->
-    
-        <cfquery name="result" >
+
+<!--- Execute the query with error handling --->
+
+<cfquery name="result" >
             #sql#
             <cfif len(whereClause)>
                 <cfqueryparam value="#arguments.recordName#" cfsqltype="CF_SQL_VARCHAR">
             </cfif>
         </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELtaousers_24306" access="public" returntype="query">
     <cfargument name="userIds" type="array" required="true">
 
-    <cfset var sql = "">
+<cfset var sql = "">
     <cfset var paramList = "">
 
-        <cfif arrayLen(arguments.userIds) eq 0>
+<cfif arrayLen(arguments.userIds) eq 0>
             <!--- Return an empty query if no user IDs are provided --->
             <cfquery name="result" >
                 select userID,userFirstName,userLastName,userEmail,userRole,recordname,contactid,IsDeleted,nletter_yn,nletter_link,calStartTime,calEndTime,calSlotDuration,avatarName,IsBetaTester,defRows,defCountry,defState,tzid,customerid,userstatus,recover,passwordHash,passwordSalt,userPassword,isAudition,viewtypeid,add1,add2,city,regionid,zip,isAuditionModule,imdbid,isSetup,countryid,def_regionid,access_token,refresh_token,dateFormatID,datePrefID,region_id from taousers WHERE 1=0
@@ -471,8 +471,8 @@
         <cfelse>
             <!--- Construct the SQL query with parameterized inputs --->
             <cfset sql = "select userID,userFirstName,userLastName,userEmail,userRole,recordname,contactid,IsDeleted,nletter_yn,nletter_link,calStartTime,calEndTime,calSlotDuration,avatarName,IsBetaTester,defRows,defCountry,defState,tzid,customerid,userstatus,recover,passwordHash,passwordSalt,userPassword,isAudition,viewtypeid,add1,add2,city,regionid,zip,isAuditionModule,imdbid,isSetup,countryid,def_regionid,access_token,refresh_token,dateFormatID,datePrefID,region_id from taousers WHERE userid IN (">
-            
-            <!--- Loop through userIds to create parameter placeholders --->
+
+<!--- Loop through userIds to create parameter placeholders --->
             <cfloop index="i" from="1" to="#arrayLen(arguments.userIds)#">
                 <cfset sql &= "?">
                 <cfif i lt arrayLen(arguments.userIds)>
@@ -481,24 +481,24 @@
                 <!--- Append cfqueryparam for each userId --->
                 <cfset paramList &= "<cfqueryparam value='#arguments.userIds[i]#' cfsqltype='CF_SQL_INTEGER'>,">
             </cfloop>
-            
-            <!--- Close the IN clause --->
+
+<!--- Close the IN clause --->
             <cfset sql &= ")">
-            
-            <!--- Execute the query --->
+
+<!--- Execute the query --->
             <cfquery name="result" >
                 #sql#
                 <!--- Dynamically insert cfqueryparam tags --->
                 #paramList#
             </cfquery>
         </cfif>
-        
-        <!--- Return the result query --->
+
+<!--- Return the result query --->
         <cfreturn result>
 
-        <!--- Log the error details --->
-        
-        <!--- Return an empty query on error --->
+<!--- Log the error details --->
+
+<!--- Return an empty query on error --->
         <cfquery name="result" >
             select userID,userFirstName,userLastName,userEmail,userRole,recordname,contactid,IsDeleted,nletter_yn,nletter_link,calStartTime,calEndTime,calSlotDuration,avatarName,IsBetaTester,defRows,defCountry,defState,tzid,customerid,userstatus,recover,passwordHash,passwordSalt,userPassword,isAudition,viewtypeid,add1,add2,city,regionid,zip,isAuditionModule,imdbid,isSetup,countryid,def_regionid,access_token,refresh_token,dateFormatID,datePrefID,region_id from taousers WHERE 1=0
         </cfquery>
@@ -508,7 +508,7 @@
 <cffunction output="false" name="SELtaousers_24432" access="public" returntype="query">
     <cfargument name="select_userid" type="numeric" required="true">
 
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 users.userid, 
                 users.recordname, 
@@ -524,23 +524,23 @@
             </cfif>
         </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELtaousers_24461" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
 
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT * 
             FROM taousers 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELtaousers_24759" access="public" returntype="query">
     <cfargument name="userEmail" type="string" required="true">
 
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 u.userid, 
                 u.userFirstName, 
@@ -553,12 +553,12 @@
                 u.userEmail = <cfqueryparam value="#arguments.userEmail#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELtaousers_24760" access="public" returntype="query">
     <cfargument name="userEmail" type="string" required="true">
 
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 u.userid, 
                 u.userFirstName, 
@@ -571,17 +571,17 @@
                 u.userEmail = <cfqueryparam value="#arguments.userEmail#" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 
-    <!--- Function to get user details by ID, including related tables --->
+<!--- Function to get user details by ID, including related tables --->
     <cffunction output="false" name="getUserById" access="public" returntype="struct"  hint="Fetch user details by user ID along with related table data">
         <cfargument name="userId" type="numeric" required="true">
 
-        <!--- Initialize a struct to hold the user data --->
+<!--- Initialize a struct to hold the user data --->
         <cfset var user = {}>
 
-        <!--- SQL Query to join all related tables and select all fields --->
+<!--- SQL Query to join all related tables and select all fields --->
         <cfquery result="result" name="qUserDetails" >
             SELECT
                 u.*,  -- All fields from taousers
@@ -592,9 +592,9 @@
                 tc.CustomerLast, 
                 tc.purchasedate, 
                 tc.CustomerFullName, 
-                tc.baseProductName, 
-                
-                tc.CustomerEmail, 
+                tc.baseProductName,
+
+tc.CustomerEmail, 
                 tc.PurchaseName, 
                 tc.BillingAddress, 
                 tc.BillingCity, 
@@ -624,7 +624,7 @@
                 taousers u
             INNER JOIN dateformats df ON u.dateformatid = df.id
 
-            INNER JOIN timezones t ON u.tzid = t.tzid
+INNER JOIN timezones t ON u.tzid = t.tzid
             INNER JOIN thrivecart tc ON u.customerid = tc.id  
             INNER JOIN paymentplans pp ON pp.BasePaymentPlanId = tc.BasePaymentPlanId
             INNER JOIN products pr ON pr.BaseProductId = tc.BaseProductId
@@ -633,7 +633,7 @@
             WHERE u.userid = <cfqueryparam value="#arguments.userId#" cfsqltype="cf_sql_integer">
         </cfquery>
 
-        <!--- Map query result to a struct --->
+<!--- Map query result to a struct --->
         <cfif qUserDetails.recordCount EQ 1>
              <cfset user = {
                 "user": {
@@ -728,7 +728,7 @@
             }>
         </cfif>
 
-        <cfreturn user>
+<cfreturn user>
     </cffunction>
 
 </cfcomponent>

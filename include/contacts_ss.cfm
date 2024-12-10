@@ -10,54 +10,42 @@
     <cfset search = form["search[value]"]>
 </cfif>
 
-
- 
-    
 <!--- Data set after filtering --->
 
- <cfquery result="result" datasource="#dsn#" name="qFiltered" >
+<cfquery result="result" datasource="#dsn#" name="qFiltered" >
 SELECT contactid,col1,col2,col2b,col3,col4,col5,userid, hlink 
     from #contacts_table#
-    
 
-    
-    
-	WHERE userid = <Cfqueryparam value="#userid#" cfsqltype="CF_SQL_INTEGER" />	
-    
+WHERE userid = <Cfqueryparam value="#userid#" cfsqltype="CF_SQL_INTEGER" />
 
-
-    <cfif #isdefined('bytag')#>
+<cfif #isdefined('bytag')#>
     <cfif #bytag# is not "">
     and contactid in (SELECT contactid from contactitems  WHERE valuetype = 'tags' AND itemstatus = 'active' AND valuetext='#bytag#' )
     </cfif>
     </cfif>
-    
-        <cfif #isdefined('byimport')#>
+
+<cfif #isdefined('byimport')#>
     <cfif #byimport# is not "">
     and contactid in (SELECT contactid FROM contactsimport WHERE uploadid = #byimport# )
     </cfif>
     </cfif>
-    
-    
-    
-    
-    <cfif #isdefined('bylike')#>
-    
-    and col1 like '%#bylike#%'
+
+<cfif #isdefined('bylike')#>
+
+and col1 like '%#bylike#%'
     </cfif>
-    
-        <cfif #uploadid# is not "0">HERE!<Cfabort>
+
+<cfif #uploadid# is not "0">HERE!<Cfabort>
     and contactid in (SELECT contactid FROM contactsimport WHERE uploadid = #uploadid#)
-    
-    </cfif>
-    
+
+</cfif>
+
 <cfif len(trim(search))>
-    
-  <cfif #trim(search)# is "no system">
+
+<cfif #trim(search)# is "no system">
     and contactid NOT IN (SELECT contactid FROM contacts_ss_followup WHERE userid = #userid#) AND contactid NOT IN (SELECT contactid FROM contacts_ss_maint WHERE userid = #userid#) AND contactid NOT IN (SELECT contactid FROM contacts_ss_target WHERE userid = #userid#)
-    
-    
-    <cfelse>
+
+<cfelse>
 AND
     (
     <cfloop list="#listColumns#" index="thisColumn">
@@ -67,46 +55,45 @@ AND
     #thisColumn# LIKE <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="%#trim(search)#%" />   
     </cfloop>
     )
-        
-        </cfif>  
-      
-      
+
+</cfif>
+
 </cfif>
 <cfif structKeyExists(form, "order[0][column]") and val(form["order[0][column]"]) gt 0>
     ORDER BY
-    
-        <cfif form["order[0][column]"] eq '1'>
+
+<cfif form["order[0][column]"] eq '1'>
     col1 <cfif form["order[0][dir]"] eq 'desc'>desc</cfif>
     </cfif>
-    
-    <cfif form["order[0][column]"] eq '2'>
+
+<cfif form["order[0][column]"] eq '2'>
     col1 <cfif form["order[0][dir]"] eq 'desc'>desc</cfif>
     </cfif>
-    
-    <cfif form["order[0][column]"] eq '3'>
+
+<cfif form["order[0][column]"] eq '3'>
     col2b <cfif form["order[0][dir]"] eq 'desc'>desc</cfif>
     </cfif>
-    
-    <cfif form["order[0][column]"] eq '4'>
+
+<cfif form["order[0][column]"] eq '4'>
     col3 <cfif form["order[0][dir]"] eq 'desc'>desc</cfif>
-    </cfif>   
-    
-       <cfif form["order[0][column]"] eq '5'>
+    </cfif>
+
+<cfif form["order[0][column]"] eq '5'>
     col4 <cfif form["order[0][dir]"] eq 'desc'>desc</cfif>
-    </cfif>   
-    
-           <cfif form["order[0][column]"] eq '6'>
+    </cfif>
+
+<cfif form["order[0][column]"] eq '6'>
     col5 <cfif form["order[0][dir]"] eq 'desc'>desc</cfif>
     </cfif>   
 </cfif>
 </cfquery>
- 
+
 <!--- Total data set length --->
 <cfquery result="result" datasource="#dsn#" dbtype="query" name="qCount">
 SELECT COUNT(#sIndexColumn#) as total
 FROM   qFiltered
 </cfquery>
- 
+
 <cfif qFiltered.recordcount gt 0>
     <cfset recordsTotal=#qCount.total#>
 <cfelse>
@@ -116,7 +103,7 @@ FROM   qFiltered
 <!---
 Output
 --->
- 
+
 {"draw": <cfoutput>#val(draw)#</cfoutput>,
 "recordsTotal": <cfoutput>#recordsTotal#</cfoutput>,
 "recordsFiltered": <cfoutput>#qFiltered.recordCount#</cfoutput>,
@@ -129,9 +116,8 @@ Output
    <cfif n LTE val(length)>
     <cfif currentRow gt (start+1)>,</cfif>
     [
-    
 
-    "#SerializeJSON(qFiltered.contactid)#",
+"#SerializeJSON(qFiltered.contactid)#",
     #SerializeJSON(qFiltered.hlink)#,
      #SerializeJSON(qFiltered.col2b)#,
      #SerializeJSON(qFiltered.col5)#,

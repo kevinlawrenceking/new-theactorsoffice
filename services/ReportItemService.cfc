@@ -6,7 +6,7 @@
     <cfargument name="ID" type="numeric" required="true">
     <cfargument name="itemDataset" type="string" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         INSERT INTO reportitems 
         (itemLabel, itemOrderNo, itemValueInt, ID, itemDataset, userid) 
         VALUES 
@@ -26,9 +26,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="reportid" type="numeric" required="true">
 
-    
-
-    <cfquery name="result">
+<cfquery name="result">
         SELECT 
             r.reportid, 
             i.itemid, 
@@ -47,16 +45,14 @@
             r.reportid = <cfqueryparam value="#arguments.reportid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="SELreportitems_24225" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="reportid" type="numeric" required="true">
 
-    
-
-    <cfquery name="result">
+<cfquery name="result">
         SELECT DISTINCT i.itemdataset
         FROM reportitems i
         INNER JOIN reports_user r ON r.id = i.id
@@ -65,16 +61,14 @@
         ORDER BY i.itemdataset
     </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="SELreportitems_24226" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="reportid" type="numeric" required="true">
 
-    
-
-    <cfquery name="result">
+<cfquery name="result">
         SELECT DISTINCT i.itemlabel
         FROM reportitems i
         INNER JOIN reports_user r ON r.id = i.id
@@ -82,7 +76,7 @@
         AND r.reportid = <cfqueryparam value="#arguments.reportid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="SELreportitems_24227" access="public" returntype="query">
@@ -90,9 +84,7 @@
     <cfargument name="reportid" type="numeric" required="true">
     <cfargument name="itemdataset" type="string" required="true">
 
-    
-
-    <cfquery name="result">
+<cfquery name="result">
         SELECT DISTINCT 
             i.itemlabel, 
             i.itemValueInt 
@@ -108,13 +100,13 @@
             i.itemlabel
     </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="DELreportitems" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         DELETE FROM reportitems
         WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
@@ -127,7 +119,7 @@
     <cfargument name="newItemDataSet" type="string" required="true">
     <cfargument name="userID" type="numeric" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         INSERT INTO reportitems 
         (itemLabel, itemOrderNo, itemValueInt, ID, itemDataset, userid) 
         VALUES (
@@ -146,25 +138,22 @@
     <cfargument name="new_itemvalueint" type="numeric" required="true">
     <cfargument name="new_itemid" type="numeric" required="true">
 
-        <cfquery result="result" name="updateQuery" >
+<cfquery result="result" name="updateQuery" >
             UPDATE reportitems 
             SET itemValueInt = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_itemvalueint#" />
             WHERE itemid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_itemid#" />
         </cfquery>
-        
+
 </cffunction>
 <cffunction output="false" name="RESreportitems" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT *
             FROM reportitems
             WHERE userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 </cfcomponent>

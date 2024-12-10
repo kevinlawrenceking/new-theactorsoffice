@@ -3,12 +3,12 @@
     <cfargument name="new_countryid" type="string" required="false" default="">
     <cfargument name="new_audcatid" type="numeric" required="false" default=0>
 
-    <cfset var queryResult = "">
+<cfset var queryResult = "">
     <cfset var sql = "">
     <cfset var whereClause = "">
     <cfset var params = []>
 
-    <!--- Construct the base SQL query --->
+<!--- Construct the base SQL query --->
     <cfset sql = "
         SELECT 
             u.unionid AS ID, 
@@ -22,21 +22,21 @@
         WHERE 
             u.isDeleted IS FALSE">
 
-    <!--- Add conditions based on arguments --->
+<!--- Add conditions based on arguments --->
     <cfif len(trim(arguments.new_countryid))>
         <cfset whereClause &= " AND c.countryid = ?">
         <cfset arrayAppend(params, {value=arguments.new_countryid, cfsqltype="CF_SQL_VARCHAR"})>
     </cfif>
 
-    <cfif arguments.new_audcatid neq 0>
+<cfif arguments.new_audcatid neq 0>
         <cfset whereClause &= " AND u.audcatid = ?">
         <cfset arrayAppend(params, {value=arguments.new_audcatid, cfsqltype="CF_SQL_INTEGER"})>
     </cfif>
 
-    <!--- Append WHERE clause to SQL query --->
+<!--- Append WHERE clause to SQL query --->
     <cfset sql &= whereClause & " ORDER BY u.unionname">
 
-    <!--- Execute the query --->
+<!--- Execute the query --->
     <cfquery result="result" name="queryResult">
         #sql#
         <cfloop array="#params#" index="param">
@@ -44,7 +44,7 @@
         </cfloop>
     </cfquery>
 
-    <!--- Return the result --->
+<!--- Return the result --->
     <cfreturn queryResult>
 </cffunction>
 
@@ -54,7 +54,7 @@
     <cfargument name="new_audCatID" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         INSERT INTO audunions (unionName, countryid, audCatID, isDeleted)
         VALUES (
             <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_unionName#" maxlength="100" null="#NOT len(trim(arguments.new_unionName))#">,
@@ -73,7 +73,7 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_unionID" type="numeric" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         UPDATE audunions
         SET 
             unionName = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_unionName)#" maxlength="100" null="#NOT len(trim(arguments.new_unionName))#">,

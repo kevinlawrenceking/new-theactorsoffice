@@ -5,7 +5,7 @@
     <cfargument name="new_qorder" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         INSERT INTO audquestions_default (qTypeID, qtext, qorder, isDeleted)
         VALUES (
             <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_qTypeID#">,
@@ -24,7 +24,7 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_qID" type="numeric" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         UPDATE audquestions_default 
         SET 
             qTypeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_qTypeID#">,

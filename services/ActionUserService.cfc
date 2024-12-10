@@ -1,8 +1,8 @@
 <cfcomponent displayname="ActionUserService" hint="Handles operations for ActionUser table" > <cffunction name="updateActionUsers" access="public" returntype="void" output="false">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="target_id_system" type="numeric" required="true">
-    
-    <!--- Step 1: Delete existing action users for the user and target system --->
+
+<!--- Step 1: Delete existing action users for the user and target system --->
     <cfquery name="deleteActionUsers">
         UPDATE actionusers_tbl
         SET isdeleted = 1
@@ -15,8 +15,8 @@
     </cfquery>    <!--- Step 2: Fetch user details --->
     <cfquery name="userDetails">
         SELECT userID
- 
-        FROM taousers
+
+FROM taousers
         WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>    <!--- Ensure user exists before proceeding --->
     <cfif userDetails.recordcount GT 0>
@@ -130,7 +130,7 @@
                 WHERE systemid = <cfqueryparam value="#arguments.target_id_system#" cfsqltype="CF_SQL_INTEGER">
             )
         </cfquery>
-        
+
 </cffunction>
 <cffunction output="false" name="SELactionusers" access="public" returntype="query">
     <cfargument name="actionid" type="numeric" required="true">
@@ -147,8 +147,8 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="actiondaysno" type="numeric" required="true">
     <cfargument name="actiondaysrecurring" type="string" required="false" default="">
-    
-        <cfquery result="result" >
+
+<cfquery result="result" >
             INSERT INTO actionusers_tbl (
                 actionid, 
                 userid, 
@@ -174,9 +174,9 @@
             FROM actionusers 
             WHERE actionid = <cfqueryparam value="#arguments.actionid#" cfsqltype="CF_SQL_INTEGER"> 
             AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
-        </cfquery>            
-                
-    <cfreturn result>
+        </cfquery>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="INSactionusers_24455" access="public" returntype="numeric">
     <cfargument name="actionid" type="numeric" required="true">

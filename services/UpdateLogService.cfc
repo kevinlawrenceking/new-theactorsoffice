@@ -9,7 +9,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="updatedetails" type="string" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         INSERT INTO updatelog (
             oldValue, NewValue, recordname, updatename, recid, compid, userid, updatedetails
         ) VALUES (
@@ -27,10 +27,8 @@
 </cffunction>
 <cffunction output="false" name="RESupdatelog" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
-    
-    
-    
-    <cfquery name="result">
+
+<cfquery name="result">
         SELECT 
             u.updateID, 
             u.oldValue, 
@@ -59,7 +57,7 @@
         WHERE u.userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER">
         ORDER BY u.updateid DESC
     </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 </cfcomponent>

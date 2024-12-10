@@ -3,23 +3,21 @@
     <cfargument name="new_audcatid" type="numeric" required="true">
     <cfargument name="audsubcatname" type="string" required="true">
 
-    
-
-    <cfquery name="result">
+<cfquery name="result">
         SELECT * 
         FROM audsubcategories 
         WHERE audcatid = <cfqueryparam value="#arguments.new_audcatid#" cfsqltype="CF_SQL_INTEGER"> 
         AND audsubcatname = <cfqueryparam value="#arguments.audsubcatname#" cfsqltype="CF_SQL_VARCHAR">
     </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="INSaudsubcategories" access="public" returntype="numeric">
     <cfargument name="new_audSubCatName" type="string" required="true">
     <cfargument name="new_audCatId" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         INSERT INTO audsubcategories (audSubCatName, audCatId, isDeleted)
         VALUES (
             <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audSubCatName#" maxlength="100" null="#NOT len(trim(arguments.new_audSubCatName))#" />,
@@ -35,7 +33,7 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_audSubCatId" type="numeric" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         UPDATE audsubcategories 
         SET 
             audSubCatName = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audSubCatName)#" maxlength="100" null="#NOT len(trim(arguments.new_audSubCatName))#">,

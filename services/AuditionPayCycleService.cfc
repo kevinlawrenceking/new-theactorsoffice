@@ -1,9 +1,8 @@
 <cfcomponent displayname="AuditionPayCycleService" hint="Handles operations for AuditionPayCycle table" > 
 <cffunction output="false" name="SELaudpaycycles" access="public" returntype="query">
     <cfargument name="paycycleid" type="numeric" required="false">
-    
 
-    <cfquery name="result">
+<cfquery name="result">
         SELECT paycycleid AS id, paycycle AS name
         FROM audpaycycles
         WHERE 1=1
@@ -13,7 +12,7 @@
         ORDER BY paycycle
     </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELaudpaycycles_24579" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
@@ -22,7 +21,7 @@
     <cfset var whereClause = "">
     <cfset var paramList = []>
 
-    <!--- Construct WHERE clause dynamically --->
+<!--- Construct WHERE clause dynamically --->
     <cfif structCount(arguments.conditions) gt 0>
         <cfset whereClause = " WHERE ">
         <cfloop collection="#arguments.conditions#" item="key">
@@ -39,10 +38,10 @@
         <cfset whereClause = left(whereClause, len(whereClause) - 4)>
     </cfif>
 
-    <!--- Complete SQL statement --->
+<!--- Complete SQL statement --->
     <cfset sql &= whereClause & " ORDER BY paycyclename">
 
-    <!--- Execute query --->
+<!--- Execute query --->
     <cfquery result="result" name="queryResult">
         #sql#
         <cfloop array="#paramList#" index="param">
@@ -50,7 +49,7 @@
         </cfloop>
     </cfquery>
 
-    <!--- Return the result --->
+<!--- Return the result --->
     <cfreturn queryResult>
 </cffunction>
 </cfcomponent>

@@ -1,13 +1,13 @@
 <cfcomponent displayname="ItemCategoryService" hint="Handles operations for ItemCategory table" > 
 <cffunction output="false" name="SELitemcategory" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
-    
-    <cfset var queryResult = "">
+
+<cfset var queryResult = "">
     <cfset var sql = "SELECT * FROM itemcategory">
     <cfset var whereClause = "">
     <cfset var params = []>
-    
-    <!--- Build WHERE clause dynamically based on arguments --->
+
+<!--- Build WHERE clause dynamically based on arguments --->
     <cfif structCount(arguments.conditions) gt 0>
         <cfset whereClause = " WHERE ">
         <cfloop collection="#arguments.conditions#" item="columnName">
@@ -20,10 +20,10 @@
         <cfset whereClause = left(whereClause, len(whereClause) - 5)>
     </cfif>
 
-    <!--- Construct final SQL statement --->
+<!--- Construct final SQL statement --->
     <cfset sql &= whereClause>
 
-    <!--- Execute the query --->
+<!--- Execute the query --->
     <cfquery result="result" name="queryResult">
         #sql#
         <cfloop array="#params#" index="param">
@@ -31,30 +31,26 @@
         </cfloop>
     </cfquery>
 
-    <cfreturn queryResult>
+<cfreturn queryResult>
 </cffunction>
 
 <cffunction output="false" name="DETitemcategory" access="public" returntype="query">
     <cfargument name="catid" type="numeric" required="true">
-    
-    
-    
-    <cfquery name="result">
+
+<cfquery name="result">
         SELECT * 
         FROM itemcategory 
         WHERE catid = <cfqueryparam value="#arguments.catid#" cfsqltype="cf_sql_integer">
     </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="SELitemcategory_24039" access="public" returntype="query">
     <cfargument name="new_catid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
-    
-    
-    
-    <cfquery name="result">
+
+<cfquery name="result">
         SELECT DISTINCT i.valuetype 
         FROM itemcategory c 
         INNER JOIN itemcatxref_user x ON x.catid = c.catid 
@@ -64,15 +60,14 @@
         AND x.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer"> 
         ORDER BY valuetype
     </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="SELitemcategory_24465" access="public" returntype="query">
     <cfargument name="catidList" type="array" required="false" default="#ArrayNew(1)#">
-    
-    
-    <cfquery name="result">
+
+<cfquery name="result">
         SELECT DISTINCT c.catid, i.valuetype
         FROM itemcategory c
         INNER JOIN itemcatxref x ON x.catid = c.catid
@@ -88,16 +83,14 @@
         </cfif>
         ORDER BY c.catid, i.valuetype
     </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="SELitemcategory_24621" access="public" returntype="query">
     <cfargument name="catArea_UCB" type="string" required="true">
-    
-    
-    
-    <cfquery name="result">
+
+<cfquery name="result">
         SELECT 
             i.catID, 
             i.valuecategory, 
@@ -113,17 +106,15 @@
         ORDER BY 
             catOrder
     </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="SELitemcategory_24722" access="public" returntype="query">
     <cfargument name="new_catid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
-    
-    
-    
-    <cfquery name="result">
+
+<cfquery name="result">
         SELECT DISTINCT i.valuetype
         FROM itemcategory c
         INNER JOIN itemcatxref_user x ON x.catid = c.catid
@@ -133,7 +124,7 @@
         AND x.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         ORDER BY valuetype
     </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 </cfcomponent>

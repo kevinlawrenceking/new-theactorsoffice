@@ -1,12 +1,12 @@
 <cfcomponent displayname="AuditionSourceService" hint="Handles operations for AuditionSource table" > 
 <cffunction output="false" name="SELaudsources" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
-    
-    <cfset var sql = "SELECT audsource AS NAME FROM audsources">
+
+<cfset var sql = "SELECT audsource AS NAME FROM audsources">
     <cfset var whereClause = "">
     <cfset var paramList = []>
 
-    <!--- Build WHERE clause dynamically --->
+<!--- Build WHERE clause dynamically --->
     <cfif structCount(arguments.conditions) gt 0>
         <cfset whereClause = " WHERE ">
         <cfloop collection="#arguments.conditions#" item="key">
@@ -17,7 +17,7 @@
         <cfset whereClause = left(whereClause, len(whereClause) - 5)>
     </cfif>
 
-    <!--- Execute query --->
+<!--- Execute query --->
     <cfquery name="result">
         #sql##whereClause#
         <cfloop array="#paramList#" index="param">
@@ -25,7 +25,7 @@
         </cfloop>
     </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="SELaudsources_24222" access="public" returntype="query">
@@ -35,46 +35,41 @@
         WHERE isdeleted = 0
         ORDER BY audsource
     </cfquery>
-    
-    <cfreturn result>
-</cffunction>
 
+<cfreturn result>
+</cffunction>
 
 <cffunction output="false" name="SELaudsources_24359" access="public" returntype="query">
     <cfargument name="audsource" type="string" required="true">
 
-    
-    
-    <cfquery name="result">
+<cfquery name="result">
         SELECT *
         FROM audsources
         WHERE isdeleted = 0
         AND audsource = <cfqueryparam value="#arguments.audsource#" cfsqltype="CF_SQL_VARCHAR">
     </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="SELaudsources_24371" access="public" returntype="query">
     <cfargument name="audsource" type="string" required="true">
-    
-    
-    
-    <cfquery name="result">
+
+<cfquery name="result">
         SELECT *
         FROM audsources
         WHERE audsource = <cfqueryparam value="#arguments.audsource#" cfsqltype="CF_SQL_VARCHAR">
         AND isdeleted = <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
     </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="INSaudsources" access="public" returntype="numeric">
     <cfargument name="new_audsource" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         INSERT INTO audsources (audsource, isDeleted)
         VALUES (
             <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audsource)#" maxlength="100" null="#NOT len(trim(arguments.new_audsource))#">,
@@ -89,7 +84,7 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_audsourceid" type="numeric" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         UPDATE audsources 
         SET 
             audsource = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audsource)#" maxlength="100" null="#NOT len(trim(arguments.new_audsource))#">,
@@ -101,10 +96,8 @@
 
 <cffunction output="false" name="SELaudsources_24684" access="public" returntype="query">
     <cfargument name="excludeMyTeam" type="boolean" required="false" default="false">
-    
-    
-    
-    <cfquery name="result">
+
+<cfquery name="result">
         SELECT audsourceid AS id, audsource AS NAME 
         FROM audsources
         WHERE 1=1
@@ -113,7 +106,7 @@
         </cfif>
         ORDER BY audsource
     </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 </cfcomponent>

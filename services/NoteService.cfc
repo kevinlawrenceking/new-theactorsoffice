@@ -4,7 +4,7 @@
     <cfargument name="newcontactid" type="numeric" required="true">
     <cfargument name="newnoteDetails" type="string" required="true">
 
-        <cfquery result="result" >
+<cfquery result="result" >
             INSERT INTO noteslog (userid, contactid, noteDetails) 
             VALUES (
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#" />, 
@@ -17,39 +17,27 @@
 <cffunction output="false" name="DELnoteslog" access="public" returntype="void" hint="Deletes a note by its ID">
     <cfargument name="noteid" type="numeric" required="true" hint="ID of the note to delete">
 
-    
-        <cfquery result="result" >
+<cfquery result="result" >
             DELETE FROM noteslog 
             WHERE noteid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.noteid#" />
         </cfquery>
-        
-        
-            
-            
-        
-    
+
 </cffunction>
 <cffunction output="false" name="DELnoteslog_23709" access="public" returntype="void">
     <cfargument name="noteId" type="numeric" required="true">
-    
-    
-        <cfquery result="result" >
+
+<cfquery result="result" >
             DELETE FROM noteslog 
             WHERE noteid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.noteId#" />
         </cfquery>
-        
-        
-            
-            
-        
-    
+
 </cffunction>
 <cffunction output="false" name="INSnoteslog_23730" access="public" returntype="numeric">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_eventid" type="numeric" required="true">
     <cfargument name="noteDetails" type="string" required="true">
 
-        <cfquery result="result" >
+<cfquery result="result" >
             INSERT INTO noteslog (userid, contactid, eventid, noteDetails, ispublic)
             VALUES (
                 <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
@@ -63,34 +51,24 @@
 </cffunction>
 <cffunction output="false" name="SELnoteslog" access="public" returntype="query">
     <cfargument name="noteid" type="numeric" required="true">
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT noteID,noteDetails,notedetailshtml,userid,notetimestamp,contactid,isdeleted,eventid,ispublic,audprojectid
             FROM noteslog 
             WHERE noteid = <cfqueryparam value="#arguments.noteid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="UPDnoteslog" access="public" returntype="void">
     <cfargument name="recid" type="numeric" required="true">
-    
-    
-        <cfquery result="result" >
+
+<cfquery result="result" >
             UPDATE noteslog_tbl 
             SET isdeleted = 1 
             WHERE noteid = <cfqueryparam value="#arguments.recid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-        
-            
-            
-            
-        
-    
+
 </cffunction>
 <cffunction output="false" name="INSnoteslog_23966" access="public" returntype="numeric" >
     <cfargument name="userid" type="numeric" required="true">
@@ -100,7 +78,7 @@
     <cfargument name="audprojectid" type="numeric" required="true">
     <cfargument name="notedetailshtml" type="string" required="true">
 
-        <cfquery result="result" >
+<cfquery result="result" >
             INSERT INTO noteslog (userid, contactid, noteDetails, isPublic, audprojectid, notedetailshtml)
             VALUES (
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#" />,
@@ -153,7 +131,7 @@
     <cfargument name="isPublic" type="numeric" required="true">
     <cfargument name="eventid" type="numeric" required="true">
 
-        <cfquery result="result" >
+<cfquery result="result" >
             INSERT INTO noteslog (userid, contactid, noteDetails, isPublic, eventid) 
             VALUES (
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#" />,
@@ -171,7 +149,7 @@
     <cfargument name="isPublic" type="boolean" required="true">
     <cfargument name="noteid" type="numeric" required="true">
 
-        <cfquery result="result" >
+<cfquery result="result" >
             UPDATE noteslog 
             SET 
                 noteDetails = <cfqueryparam cfsqltype="cf_sql_longvarchar" value="#LEFT(trim(arguments.noteDetails),2000)#">,
@@ -187,7 +165,7 @@
     <cfargument name="isPublic" type="boolean" required="true">
     <cfargument name="noteid" type="numeric" required="true">
 
-        <cfquery result="result" >
+<cfquery result="result" >
             UPDATE noteslog 
             SET 
                 noteDetails = <cfqueryparam cfsqltype="cf_sql_longvarchar" value="#LEFT(trim(arguments.noteDetails),2000)#">,
@@ -195,13 +173,13 @@
             WHERE 
                 noteid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.noteid#">
         </cfquery>
-        
+
 </cffunction>
 <cffunction output="false" name="SELnoteslog_23987" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     <cfargument name="eventID" type="numeric" required="true">
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 n.noteID, 
                 n.noteTimestamp, 
@@ -225,15 +203,13 @@
             ORDER BY 
                 n.noteTimestamp DESC
         </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="DETnoteslog" access="public" returntype="query">
     <cfargument name="updateNoteID" type="numeric" required="true">
-    
-    
 
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 n.noteID, 
                 n.noteDetails, 
@@ -249,8 +225,8 @@
             WHERE 
                 n.noteid = <cfqueryparam value="#arguments.updateNoteID#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-        
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="INSnoteslog_24319" access="public" returntype="numeric">
     <cfargument name="userid" type="numeric" required="true">
@@ -259,8 +235,7 @@
     <cfargument name="isPublic" type="boolean" required="true">
     <cfargument name="eventid" type="numeric" required="true">
 
- 
-        <cfquery result="result" >
+<cfquery result="result" >
             INSERT INTO noteslog (userid, contactid, noteDetails, isPublic, eventid) 
             VALUES (
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#" />,
@@ -270,18 +245,15 @@
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.eventid#" />
             )
         </cfquery>
-        
-            
-            
-        
-       <cfreturn result.generatedKey>
+
+<cfreturn result.generatedKey>
 </cffunction>
 <cffunction output="false" name="INSnoteslog_24373" access="public" returntype="numeric">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="noteDetails" type="string" required="true">
     <cfargument name="new_audprojectid" type="numeric" required="true">
 
-        <cfquery result="result" >
+<cfquery result="result" >
             INSERT INTO noteslog (userid, noteDetails, isPublic, audprojectid, contactid) 
             VALUES (
                 <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#" />,
@@ -298,30 +270,22 @@
     <cfargument name="select_contactid" type="numeric" required="true">
     <cfargument name="noteDetailsPrefix" type="string" required="true">
 
-    
-
-    
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT * 
             FROM noteslog 
             WHERE userid = <cfqueryparam value="#arguments.select_userid#" cfsqltype="CF_SQL_INTEGER"> 
             AND contactid = <cfqueryparam value="#arguments.select_contactid#" cfsqltype="CF_SQL_INTEGER"> 
             AND noteDetails LIKE <cfqueryparam value="#arguments.noteDetailsPrefix#%" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
-        
-            
-            
-        
-    
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="INSnoteslog_24401" access="public" returntype="numeric">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="noteDetails" type="string" required="true">
 
-        <cfquery result="result" >
+<cfquery result="result" >
             INSERT INTO noteslog (userid, contactid, noteDetails, ispublic) 
             VALUES (
                 <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
@@ -334,11 +298,8 @@
 </cffunction>
 <cffunction output="false" name="SELnoteslog_24698" access="public" returntype="query">
     <cfargument name="audprojectid" type="numeric" required="true">
-    
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 n.noteID, 
                 n.noteTimestamp, 
@@ -360,23 +321,14 @@
             AND n.audprojectid <> 0
             ORDER BY n.noteTimestamp DESC
         </cfquery>
-        
-        
-            
-            
-        
-    
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELnoteslog_24700" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     <cfargument name="contactID" type="numeric" required="true">
-    
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 n.noteID, 
                 n.noteid AS recid, 
@@ -398,23 +350,14 @@
             AND n.contactid = <cfqueryparam value="#arguments.contactID#" cfsqltype="CF_SQL_INTEGER">
             ORDER BY n.noteTimestamp DESC
         </cfquery>
-        
-        
-            
-            
-        
-    
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="SELnoteslog_24702" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     <cfargument name="eventID" type="numeric" required="true">
-    
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 n.noteID, 
                 n.noteTimestamp, 
@@ -436,23 +379,15 @@
             AND n.eventid = <cfqueryparam value="#arguments.eventID#" cfsqltype="CF_SQL_INTEGER">
             ORDER BY n.noteTimestamp DESC
         </cfquery>
-        
-        <cfreturn result>
-        
-        
-            
-            
-        
-    
+
+<cfreturn result>
+
 </cffunction>
 <cffunction output="false" name="SELnoteslog_24704" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     <cfargument name="contactID" type="numeric" required="true">
-    
-    
-    
 
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 n.noteID, 
                 n.noteid AS recid, 
@@ -477,8 +412,7 @@
             AND n.contactid = <cfqueryparam value="#arguments.contactID#" cfsqltype="CF_SQL_INTEGER">
             ORDER BY n.noteTimestamp DESC
         </cfquery>
-        
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 </cfcomponent>

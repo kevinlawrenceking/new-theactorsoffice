@@ -1,11 +1,11 @@
-<cfcomponent displayname="AuditionToneUserService" hint="Handles operations for AuditionToneUser table" > 
+<cfcomponent displayname="AuditionToneUserService" hint="Handles operations for AuditionToneUser table" >
 
 <cffunction output="false" name="INSaudtones_user" access="public" returntype="numeric">
     <cfargument name="tone" type="string" required="true">
     <cfargument name="audcatid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         INSERT INTO audtones_user (tone, audcatid, userid)
         VALUES (
             <cfqueryparam value="#arguments.tone#" cfsqltype="CF_SQL_VARCHAR">,
@@ -19,10 +19,8 @@
 <cffunction output="false" name="SELaudtones_user" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_audcatid" type="numeric" required="true">
-    
-    
 
-    <cfquery name="result">
+<cfquery name="result">
         SELECT 
             a.toneid AS ID, 
             a.tone AS NAME, 
@@ -36,8 +34,8 @@
         ORDER BY 
             a.tone
     </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 
 </cfcomponent>

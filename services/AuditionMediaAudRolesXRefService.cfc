@@ -5,7 +5,7 @@
     <cfargument name="new_mediaAudroleDescript" type="string" required="false" default="">
     <cfargument name="new_isDeleted" type="boolean" required="false" default=false>
 
-    <cfquery result="result">
+<cfquery result="result">
         INSERT INTO audmedia_audroles_xref (mediaid, audroleid, mediaAudroleDescript, isDeleted)
         VALUES (
             <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_mediaid#" null="#NOT len(trim(arguments.new_mediaid))#">,
@@ -24,9 +24,9 @@
     <cfargument name="conditionColumn" required="true" type="string">
     <cfargument name="conditionValue" required="true">
 
-    <cfset var queryResult = "">
+<cfset var queryResult = "">
 
-    <cfquery result="result" name="queryResult">
+<cfquery result="result" name="queryResult">
         UPDATE audmedia_audroles_xref 
         SET 
             mediaid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_mediaid#" null="#NOT len(trim(arguments.new_mediaid))#">,

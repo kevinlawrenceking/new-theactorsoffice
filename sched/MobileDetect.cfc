@@ -1,6 +1,6 @@
 /**
 
- * Mobile Detect Library
+* Mobile Detect Library
  * =====================
  *
  * Motto: "Every business should have a mobile detection script to detect mobile readers"
@@ -23,110 +23,110 @@
  *
  * This current version is based on their 2.8.11 release
 
- * @version     2.2.0
+* @version     2.2.0
  * @name        MobileDetect
  * @license     Code and contributions have "MIT License"
  *              More details: https://github.com/GiancarloGomez/ColdFusion-MobileDetect/blob/master/LICENSE.md
  */
 component output="false" accessors="true"{
 
-    /**
+/**
     * A frequently used regular expression to extract version #s.
     */
     property name="VER" type="string" default="([\w._\+]+)";
 
-    /**
+/**
     * Stores the version number of the current release
     */
     property name="VERSION" type="string" default="2.2.0";
 
-    /**
+/**
     * Sets how you want a version number returned, either as a float or a string (no float parsing)
     */
     property name="VERSIONTYPE" type="string" default="float";
 
-    /**
+/**
     * Used for using mobile or extended rules
     */
     property name="detectionType" type="string" default="mobile";
 
-    /**
+/**
     * The Detection Types
     */
     property name="detectionTypes" type="array";
 
-    /**
+/**
     * HTTP headers that trigger the "isMobile" detection to be true.
     */
     property name="mobileHeaders" type="struct";
 
-    /**
+/**
     * All possible HTTP headers that represent the User-Agent string.
     */
     property name="uaHttpHeaders" type="array";
 
-    /**
+/**
     * The User-Agent HTTP header is stored in here.
     */
     property name="userAgent" type="string";
 
-    /**
+/**
     * HTTP headers
     */
     property name="httpHeaders" type="struct";
 
-    /**
+/**
     * Struct of mobile devices (phones).
     */
     property name="phoneDevices" type="struct";
 
-    /**
+/**
     * Struct of tablet devices.
     */
     property name="tabletDevices" type="struct";
 
-    /**
+/**
     * Struct of mobile Operating Systems.
     */
     property name="operatingSystems" type="struct";
 
-    /**
+/**
     * List of mobile User Agents.
     */
     property name="browsers" type="struct";
 
-    /**
+/**
     * Struct of Utilities
     */
     property name="utilities" type="struct";
 
-    /**
+/**
     * The individual segments that could exist in a User-Agent string. VER refers to the regular
     * expression defined in variables.VER
     */
     property name="properties" type="struct";
 
-    /**
+/**
     * The matching Regex.
     * This is good for debug.
     */
     property name="matchingRegex" type="string";
 
-    /**
+/**
     * The matches extracted from the regex expression.
     * This is good for debug.
     */
     property name="matchesStruct" type="struct";
 
-    /**
+/**
     * Constructor sets all defaults and custom headers or user-agent can
     * be passed (useful for testing)
     */
     public function init(struct httpHeaders,string userAgent){
 
-        setDetectionTypes(["mobile","extended"]);
+setDetectionTypes(["mobile","extended"]);
 
-        setPhoneDevices({
+setPhoneDevices({
             "iPhone"        : "\biPhone\b|\biPod\b", // |\biTunes
             "BlackBerry"    : "BlackBerry|\bBB10\b|rim[0-9]+",
             "HTC"           : "HTC|HTC.*(Sensation|Evo|Vision|Explorer|6800|8100|8900|A7272|S510e|C110e|Legend|Desire|T8282)|APX515CKT|Qtek9090|APA9292KT|HD_mini|Sensation.*Z710e|PG86100|Z715e|Desire.*(A8181|HD)|ADR6200|ADR6400L|ADR6425|001HT|Inspire 4G|Android.*\bEVO\b|T-Mobile G1|Z520m",
@@ -170,7 +170,7 @@ component output="false" accessors="true"{
             "GenericPhone"  : "Tapatalk|PDA;|SAGEM|\bmmp\b|pocket|\bpsp\b|symbian|Smartphone|smartfon|treo|up.browser|up.link|vodafone|\bwap\b|nokia|Series40|Series60|S60|SonyEricsson|N900|MAUI.*WAP.*Browser"
         });
 
-        setTabletDevices({
+setTabletDevices({
             "iPad"              : "iPad|iPad.*Mobile",
             "NexusTablet"       : "Android.*Nexus[\s]+(7|9|10)",
             // https://en.wikipedia.org/wiki/Pixel_C
@@ -422,7 +422,7 @@ component output="false" accessors="true"{
             "GenericTablet"     : "Android.*\b97D\b|Tablet(?!.*PC)|BNTV250A|MID-WCDMA|LogicPD Zoom2|\bA7EB\b|CatNova8|A1_07|CT704|CT1002|\bM721\b|rk30sdk|\bEVOTAB\b|M758A|ET904|ALUMIUM10|Smartfren Tab|Endeavour 1010|Tablet-PC-4|Tagi Tab|\bM6pro\b|CT1020W|arc 10HD|\bJolla\b|\bTP750\b|\bQTAQZ3\b|WVT101|TM1088|KT107"
         });
 
-        setOperatingSystems({
+setOperatingSystems({
             "AndroidOS"         : "Android",
             "BlackBerryOS"      : "blackberry|\bBB10\b|rim tablet os",
             "PalmOS"            : "PalmOS|avantgo|blazer|elaine|hiptop|palm|plucker|xiino",
@@ -446,7 +446,7 @@ component output="false" accessors="true"{
             "BREWOS"            : "BREW"
         });
 
-        setBrowsers({
+setBrowsers({
             "Vivaldi"         : "Vivaldi",
             // @reference: https://developers.google.com/chrome/mobile/docs/user-agent
             "Chrome"          : "\bCrMo\b|CriOS|Android.*Chrome/[.0-9]* (Mobile)?",
@@ -485,7 +485,7 @@ component output="false" accessors="true"{
             "PaleMoon"          : "Android.*PaleMoon|Mobile.*PaleMoon"
         });
 
-        setMobileHeaders({
+setMobileHeaders({
             "HTTP_ACCEPT"                  : [  // Opera Mini; @reference: http://dev.opera.com/articles/view/opera-binary-markup-language/
                                                 "application/x-obml2d",
                                                 // BlackBerry devices.
@@ -512,7 +512,7 @@ component output="false" accessors="true"{
             "HTTP_UA_CPU"                  : ["ARM"]
         });
 
-        setUtilities({
+setUtilities({
             // Experimental. When a mobile device wants to switch to "Desktop Mode".
             // http://scottcate.com/technology/windows-phone-8-ie10-desktop-or-mobile/
             // https://github.com/serbanghita/Mobile-Detect/issues/57#issuecomment-15024011
@@ -527,7 +527,7 @@ component output="false" accessors="true"{
             "Watch"       : "SM-V700"
         });
 
-        setUaHttpHeaders([
+setUaHttpHeaders([
             // The default User-Agent string.
             "HTTP_USER_AGENT",
             // Header can occur on devices using Opera Mini.
@@ -541,21 +541,21 @@ component output="false" accessors="true"{
             "HTTP_X_UCBROWSER_DEVICE_UA"
         ]);
 
-        setProperties({
+setProperties({
             // Build
             "Mobile"        : "Mobile/[VER]",
             "Build"         : "Build/[VER]",
             "Version"       : "Version/[VER]",
             "VendorID"      : "VendorID/[VER]",
 
-            // Devices
+// Devices
             "iPad"          : "iPad.*CPU[a-z ]+[VER]",
             "iPhone"        : "iPhone.*CPU[a-z ]+[VER]",
             "iPod"          : "iPod.*CPU[a-z ]+[VER]",
             //"BlackBerry"    : array("BlackBerry[VER]", "BlackBerry [VER];"),
             "Kindle"        : "Kindle/[VER]",
 
-            // Browser
+// Browser
             "Chrome"        : ["Chrome/[VER]","CriOS/[VER]","CrMo/[VER]"],
             "Coast"         : ["Coast/[VER]"],
             "Dolfin"        : "Dolfin/[VER]",
@@ -587,13 +587,13 @@ component output="false" accessors="true"{
             "Webkit"        : "webkit[ /][VER]",
             "PaleMoon"      : "PaleMoon/[VER]",
 
-            // Engine
+// Engine
             "Gecko"         : "Gecko/[VER]",
             "Trident"       : "Trident/[VER]",
             "Presto"        : "Presto/[VER]",
             "Goanna"        : "Goanna/[VER]",
 
-            // OS
+// OS
             "iOS"              : " \bi?OS\b [VER][ ;]{1} ",
             "Android"          : "Android [VER]",
             "BlackBerry"       : ["BlackBerry[\w]+/[VER]", "BlackBerry.*Version/[VER]", "Version/[VER]"],
@@ -610,13 +610,13 @@ component output="false" accessors="true"{
             "webOS"            : ["webOS/[VER]", "hpwOS/[VER];"]
         });
 
-        setHttpHeaders(argumentCollection:arguments);
+setHttpHeaders(argumentCollection:arguments);
         setUserAgent(argumentCollection:arguments);
 
-        return this;
+return this;
     }
 
-    /**
+/**
     * Check the HTTP headers for signs of mobile.
     * This is the fastest mobile check possible; it"s used
     * inside isMobile() method.
@@ -645,7 +645,7 @@ component output="false" accessors="true"{
         return isMobile;
     }
 
-    /**
+/**
     * The mobile rules to use by default.
     */
     public struct function getMobileDetectionRules(){
@@ -657,7 +657,7 @@ component output="false" accessors="true"{
         return rules;
     }
 
-    /**
+/**
     * The extended mobile rules to use by if detectionType is extended.
     */
     public struct function getMobileDetectionRulesExtended(){
@@ -666,7 +666,7 @@ component output="false" accessors="true"{
         return rules;
     }
 
-    /**
+/**
     * Retrieves a particular header. If it doesn"t exist, no exception/error is caused.
     *
     * @header The name of the header to retrieve.
@@ -679,7 +679,7 @@ component output="false" accessors="true"{
         return str;
     }
 
-    /**
+/**
     * Retrieve the current set of rules.
     */
     public struct function getRules(){
@@ -691,7 +691,7 @@ component output="false" accessors="true"{
         return rules;
     }
 
-    /**
+/**
     * This method checks for a certain property in the userAgent.
     *
     * @key string
@@ -700,22 +700,22 @@ component output="false" accessors="true"{
         return matchUAAgainstKey(key);
     }
 
-    /**
+/**
     * Check if the device is mobile.
     * Returns true if any type of mobile device detected, including special ones
     */
     public boolean function isMobile(){
         var isMobile = false;
 
-        if (checkHttpHeadersForMobile())
+if (checkHttpHeadersForMobile())
             isMobile = true;
         else
             isMobile = matchDetectionRulesAgainstUA();
 
-        return isMobile;
+return isMobile;
     }
 
-    /**
+/**
     * Check if the device is a tablet.
     * Return true if any type of tablet device is detected.
     */
@@ -723,17 +723,17 @@ component output="false" accessors="true"{
         var tablets     = getTabletDevices();
         var isTablet    = false;
 
-        for(var key in tablets){
+for(var key in tablets){
             if (match(tablets[key])){
                 isTablet = true;
                 break;
             }
         }
 
-        return isTablet;
+return isTablet;
     }
 
-    /**
+/**
     * This method checks for a certain property in the userAgent.
     *
     * @regex The regex passed to validate against the userAgent
@@ -743,37 +743,36 @@ component output="false" accessors="true"{
         var matches     = {};
         var isMatch     = false;
 
-        // Escape the special character which is the delimiter.
+// Escape the special character which is the delimiter.
         arguments.regex = replace(arguments.regex,"/","\/","ALL");
 
-        // search the userAgent
+// search the userAgent
         matches = reFindNoCase(arguments.regex,userAgent,0,true);
 
-        // if there is a value in the first position of the len key of matches
+// if there is a value in the first position of the len key of matches
         // return true and build the strings for each entry (good for debug)
         if (matches.len[1]){
 
-            isMatch = true;
+isMatch = true;
 
-            // set a new key to store the string pieces of the matches
+// set a new key to store the string pieces of the matches
             matches.strings = [];
 
-            for (var i = 1; i <= matches.len.len(); i++){
+for (var i = 1; i <= matches.len.len(); i++){
                 // make sure we only append strings where the match has a length as a 0 value will error out
                 if (matches.len[i])
                     matches.strings.append( mid(userAgent,matches.pos[i],matches.len[i]) );
             }
 
-
-            setMatchingRegex(arguments.regex);
+setMatchingRegex(arguments.regex);
             setMatchesStruct(matches);
 
-        }
+}
 
-        return isMatch;
+return isMatch;
     }
 
-    /**
+/**
     * Search for a certain key in the rules array.
     * If the key is found the try to match the corresponding
     * regex agains the User-Agent.
@@ -783,14 +782,14 @@ component output="false" accessors="true"{
         var rules       = getRules();
         var userAgent   = getUserAgent();
 
-        // validate against rule if it exists
+// validate against rule if it exists
         if(structKeyExists(rules,arguments.key) && match(rules[arguments.key]))
             isMobile = true;
 
-        return isMobile;
+return isMobile;
     }
 
-    /**
+/**
     * Find a detection rule that matches the current User-agent.
     */
     public function matchDetectionRulesAgainstUA(){
@@ -798,7 +797,7 @@ component output="false" accessors="true"{
         var rules       = getRules();
         var userAgent   = getUserAgent();
 
-        for (var key in rules){
+for (var key in rules){
             if (len(rules[key])){
                 if (match(rules[key])){
                     isMobile = true;
@@ -807,10 +806,10 @@ component output="false" accessors="true"{
             }
         }
 
-        return isMobile;
+return isMobile;
     }
 
-    /**
+/**
     * Prepare the version number.
     *
     * @ver      The version number being passed
@@ -820,16 +819,16 @@ component output="false" accessors="true"{
         // replace all spaces, underscores or backslashes as periods
         arguments.ver = reReplace(arguments.ver,"_|\s|\/",".","ALL");
 
-        //set the type to the default if we don"t recognize the type
+//set the type to the default if we don"t recognize the type
         if (!structKeyExists(arguments,"type") || !listFind("float,string",arguments.type))
             arguments.type = getVersionType();
 
-        // we want to return a float based number so let see how many positions we have
+// we want to return a float based number so let see how many positions we have
         // and then build the return value accordingly
         if (!compare(arguments.type,"float")){
             var fullVersion = listToArray(arguments.ver,".");
 
-            // if more than 2 positions
+// if more than 2 positions
             if (fullVersion.len() > 2){
                 arguments.ver = fullVersion[1] & ".";
                 fullVersion.deleteAt(1);
@@ -845,26 +844,26 @@ component output="false" accessors="true"{
             }
         }
 
-        return arguments.ver;
+return arguments.ver;
     }
 
-    /**
+/**
     * Set the HTTP Headers. This method will reset existing headers.
     */
     public function setHttpHeaders(struct httpHeaders){
 
-        // use global CGI variables if not passed
+// use global CGI variables if not passed
         if (!structKeyExists(arguments,"httpHeaders") || !isStruct(arguments.httpHeaders))
             arguments.httpHeaders = cgi;
 
-        // Only save HTTP headers that start with HTTP_.
+// Only save HTTP headers that start with HTTP_.
         for(var key in arguments.httpHeaders){
             if(left(key,5) == "HTTP_")
                 variables.httpHeaders[key] = arguments.httpHeaders[key];
         }
     }
 
-    /**
+/**
     * Set the User-Agent to be used by force or get from HTTP headers.
     *
     * @userAgent The user agent string to set.
@@ -885,7 +884,7 @@ component output="false" accessors="true"{
         }
     }
 
-    /**
+/**
     * Check the version of the given property in the User-Agent.
     *
     * @propertyName The name of the property See getProperties() struct
@@ -894,18 +893,18 @@ component output="false" accessors="true"{
     */
     public string function version(string propertyName,string type){
 
-        var properties  = getProperties();
+var properties  = getProperties();
         var userAgent   = getUserAgent();
         var version     = "";
         var pattern     = "";
         var _properties = [];
         var _match      = [];
 
-        //set the type to the default if we don"t recognize the type
+//set the type to the default if we don"t recognize the type
         if (!structKeyExists(arguments,"type") || !listFind("float,string",arguments.type))
             arguments.type = getVersionType();
 
-        // check if the key exists in the properties struct
+// check if the key exists in the properties struct
         if(structKeyExists(properties,arguments.propertyName)){
             // Prepare the pattern to be matched.
             // Make sure we always deal with an array (string is set to first position).
@@ -914,16 +913,16 @@ component output="false" accessors="true"{
             else
                 _properties     = properties[arguments.propertyName];
 
-            // loop thru
+// loop thru
             for (var propertyMatchString in _properties){
 
-                pattern = replace(propertyMatchString,"[VER]",getVER(),"ALL");
+pattern = replace(propertyMatchString,"[VER]",getVER(),"ALL");
                 // Escape the special character which is the delimiter.
                 pattern = reReplace(pattern,"/","\/","ALL");
 
-                _match   = reFindNoCase(pattern,userAgent,0,true);
+_match   = reFindNoCase(pattern,userAgent,0,true);
 
-                if (arrayLen(_match.pos) > 1){
+if (arrayLen(_match.pos) > 1){
                     version = mid(userAgent,_match.pos[2],_match.len[2]);
                     version = prepareVersionNo(version,arguments.type);
                     break;
@@ -931,145 +930,145 @@ component output="false" accessors="true"{
             }
         }
 
-        return version;
+return version;
     }
 
-    /**
+/**
     * Magic overloading method.
     */
     public function onMissingMethod(required string missingMethodName){
         var key = "";
 
-        if (compareNoCase(left(arguments.missingMethodName,2),"is"))
+if (compareNoCase(left(arguments.missingMethodName,2),"is"))
             throw(message:"No such method exists:" & arguments.missingMethodName);
 
-        key = mid(missingMethodName,3,missingMethodName.len());
+key = mid(missingMethodName,3,missingMethodName.len());
 
-        return matchUAAgainstKey(key);
+return matchUAAgainstKey(key);
     }
 
-    /**
+/**
     * Retrieve the mobile grading, using self::MOBILE_GRADE_* constants.
     */
     public string function mobileGrade(){
 
-        var isMobile            = isMobile();
+var isMobile            = isMobile();
         var versionTypeFloat    = "float";
 
-        if (
+if (
             // Apple iOS 4-7.0 – Tested on the original iPad (4.3 / 5.0), iPad 2 (4.3 / 5.1 / 6.1), iPad 3 (5.1 / 6.0), iPad Mini (6.1), iPad Retina (7.0), iPhone 3GS (4.3), iPhone 4 (4.3 / 5.1), iPhone 4S (5.1 / 6.0), iPhone 5 (6.0), and iPhone 5S (7.0)
             _is("iOS") && version("iPad", versionTypeFloat)>=4.3 ||
             _is("iOS") && version("iPhone", versionTypeFloat)>=4.3 ||
             _is("iOS") && version("iPod", versionTypeFloat)>=4.3 ||
 
-            // Android 2.1-2.3 - Tested on the HTC Incredible (2.2), original Droid (2.2), HTC Aria (2.1), Google Nexus S (2.3). Functional on 1.5 & 1.6 but performance may be sluggish, tested on Google G1 (1.5)
+// Android 2.1-2.3 - Tested on the HTC Incredible (2.2), original Droid (2.2), HTC Aria (2.1), Google Nexus S (2.3). Functional on 1.5 & 1.6 but performance may be sluggish, tested on Google G1 (1.5)
             // Android 3.1 (Honeycomb)  - Tested on the Samsung Galaxy Tab 10.1 and Motorola XOOM
             // Android 4.0 (ICS)  - Tested on a Galaxy Nexus. Note: transition performance can be poor on upgraded devices
             // Android 4.1 (Jelly Bean)  - Tested on a Galaxy Nexus and Galaxy 7
             ( version("Android", versionTypeFloat)>2.1 && _is("Webkit") ) ||
 
-            // Windows Phone 7.5-8 - Tested on the HTC Surround (7.5), HTC Trophy (7.5), LG-E900 (7.5), Nokia 800 (7.8), HTC Mazaa (7.8), Nokia Lumia 520 (8), Nokia Lumia 920 (8), HTC 8x (8)
+// Windows Phone 7.5-8 - Tested on the HTC Surround (7.5), HTC Trophy (7.5), LG-E900 (7.5), Nokia 800 (7.8), HTC Mazaa (7.8), Nokia Lumia 520 (8), Nokia Lumia 920 (8), HTC 8x (8)
             version("Windows Phone OS", versionTypeFloat)>=7.5 ||
 
-            // Tested on the Torch 9800 (6) and Style 9670 (6), BlackBerry® Torch 9810 (7), BlackBerry Z10 (10)
+// Tested on the Torch 9800 (6) and Style 9670 (6), BlackBerry® Torch 9810 (7), BlackBerry Z10 (10)
             _is("BlackBerry") && version("BlackBerry", versionTypeFloat)>=6.0 ||
             // Blackberry Playbook (1.0-2.0) - Tested on PlayBook
             match("Playbook.*Tablet") ||
 
-            // Palm WebOS (1.4-3.0) - Tested on the Palm Pixi (1.4), Pre (1.4), Pre 2 (2.0), HP TouchPad (3.0)
+// Palm WebOS (1.4-3.0) - Tested on the Palm Pixi (1.4), Pre (1.4), Pre 2 (2.0), HP TouchPad (3.0)
             ( version("webOS", versionTypeFloat)>=1.4 && match("Palm|Pre|Pixi") ) ||
             // Palm WebOS 3.0  - Tested on HP TouchPad
             match("hp.*TouchPad") ||
 
-            // Firefox Mobile 18 - Tested on Android 2.3 and 4.1 devices
+// Firefox Mobile 18 - Tested on Android 2.3 and 4.1 devices
             ( _is("Firefox") && version("Firefox", versionTypeFloat)>=18 ) ||
 
-            // Chrome for Android - Tested on Android 4.0, 4.1 device
+// Chrome for Android - Tested on Android 4.0, 4.1 device
             ( _is("Chrome") && _is("AndroidOS") && version("Android", versionTypeFloat)>=4.0 ) ||
 
-            // Skyfire 4.1 - Tested on Android 2.3 device
+// Skyfire 4.1 - Tested on Android 2.3 device
             ( _is("Skyfire") && version("Skyfire", versionTypeFloat)>=4.1 && _is("AndroidOS") && version("Android", versionTypeFloat)>=2.3 ) ||
 
-            // Opera Mobile 11.5-12: Tested on Android 2.3
+// Opera Mobile 11.5-12: Tested on Android 2.3
             ( _is("Opera") && version("Opera Mobi", versionTypeFloat)>=11.5 && _is("AndroidOS") ) ||
 
-            // Meego 1.2 - Tested on Nokia 950 and N9
+// Meego 1.2 - Tested on Nokia 950 and N9
             _is("MeeGoOS") ||
 
-            // Tizen (pre-release) - Tested on early hardware
+// Tizen (pre-release) - Tested on early hardware
             _is("Tizen") ||
 
-            // Samsung Bada 2.0 - Tested on a Samsung Wave 3, Dolphin browser
+// Samsung Bada 2.0 - Tested on a Samsung Wave 3, Dolphin browser
             // @todo: more tests here!
             _is("Dolfin") && version("Bada", versionTypeFloat)>=2.0 ||
 
-            // UC Browser - Tested on Android 2.3 device
+// UC Browser - Tested on Android 2.3 device
             ( (_is("UC Browser") || _is("Dolfin")) && version("Android", versionTypeFloat)>=2.3 ) ||
 
-            // Kindle 3 and Fire  - Tested on the built-in WebKit browser for each
+// Kindle 3 and Fire  - Tested on the built-in WebKit browser for each
             ( match("Kindle Fire") ||
             _is("Kindle") && version("Kindle", versionTypeFloat)>=3.0 ) ||
 
-            // Nook Color 1.4.1 - Tested on original Nook Color, not Nook Tablet
+// Nook Color 1.4.1 - Tested on original Nook Color, not Nook Tablet
             _is("AndroidOS") && _is("NookTablet") ||
 
-            // Chrome Desktop 16-24 - Tested on OS X 10.7 and Windows 7
+// Chrome Desktop 16-24 - Tested on OS X 10.7 and Windows 7
             version("Chrome", versionTypeFloat)>=16 && !isMobile ||
 
-            // Safari Desktop 5-6 - Tested on OS X 10.7 and Windows 7
+// Safari Desktop 5-6 - Tested on OS X 10.7 and Windows 7
             version("Safari", versionTypeFloat)>=5.0 && !isMobile ||
 
-            // Firefox Desktop 10-18 - Tested on OS X 10.7 and Windows 7
+// Firefox Desktop 10-18 - Tested on OS X 10.7 and Windows 7
             version("Firefox", versionTypeFloat)>=10.0 && !isMobile ||
 
-            // Internet Explorer 7-9 - Tested on Windows XP, Vista and 7
+// Internet Explorer 7-9 - Tested on Windows XP, Vista and 7
             version("IE", versionTypeFloat)>=7.0 && !isMobile ||
 
-            // Opera Desktop 10-12 - Tested on OS X 10.7 and Windows 7
+// Opera Desktop 10-12 - Tested on OS X 10.7 and Windows 7
             version("Opera", versionTypeFloat)>=10 && !isMobile
         ){
             return "A";
         }
 
-        if (
+if (
             _is("iOS") && version("iPad", versionTypeFloat)<4.3 ||
             _is("iOS") && version("iPhone", versionTypeFloat)<4.3 ||
             _is("iOS") && version("iPod", versionTypeFloat)<4.3 ||
 
-            // Blackberry 5.0: Tested on the Storm 2 9550, Bold 9770
+// Blackberry 5.0: Tested on the Storm 2 9550, Bold 9770
             _is("Blackberry") && version("BlackBerry", versionTypeFloat)>=5 && version("BlackBerry", versionTypeFloat)<6 ||
 
-            //Opera Mini (5.0-6.5) - Tested on iOS 3.2/4.3 and Android 2.3
+//Opera Mini (5.0-6.5) - Tested on iOS 3.2/4.3 and Android 2.3
             (version("Opera Mini", versionTypeFloat)>=5.0 && version("Opera Mini", versionTypeFloat)<=7.0 &&
             (version("Android", versionTypeFloat)>=2.3 || _is("iOS")) ) ||
 
-            // Nokia Symbian^3 - Tested on Nokia N8 (Symbian^3), C7 (Symbian^3), also works on N97 (Symbian^1)
+// Nokia Symbian^3 - Tested on Nokia N8 (Symbian^3), C7 (Symbian^3), also works on N97 (Symbian^1)
             match("NokiaN8|NokiaC7|N97.*Series60|Symbian/3") ||
 
-            // @todo: report this (tested on Nokia N71)
+// @todo: report this (tested on Nokia N71)
             version("Opera Mobi", versionTypeFloat)>=11 && _is("SymbianOS")
         ){
             return "B";
         }
 
-        if (
+if (
             // Blackberry 4.x - Tested on the Curve 8330
             version("BlackBerry", versionTypeFloat)<=5.0 ||
             // Windows Mobile - Tested on the HTC Leo (WinMo 5.2)
             match("MSIEMobile|Windows CE.*Mobile") || version("Windows Mobile", versionTypeFloat)<=5.2 ||
 
-            // Tested on original iPhone (3.1), iPhone 3 (3.2)
+// Tested on original iPhone (3.1), iPhone 3 (3.2)
             _is("iOS") && version("iPad", versionTypeFloat)<=3.2 ||
             _is("iOS") && version("iPhone", versionTypeFloat)<=3.2 ||
             _is("iOS") && version("iPod", versionTypeFloat)<=3.2 ||
 
-            // Internet Explorer 7 and older - Tested on Windows XP
+// Internet Explorer 7 and older - Tested on Windows XP
             version("IE", versionTypeFloat)<=7.0 && !isMobile
         ){
             return "C";
         }
 
-        //All older smartphone platforms and featurephones - Any device that doesn"t support media queries
+//All older smartphone platforms and featurephones - Any device that doesn"t support media queries
         //will receive the basic, C grade experience.
         return "C";
     }

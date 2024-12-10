@@ -3,10 +3,8 @@
     <cfargument name="currentid" type="numeric" required="true">
     <cfargument name="sysActiveSuid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
-    
-    
-    
-    <cfquery name="result">
+
+<cfquery name="result">
         SELECT 
             n.notID, n.actionID, n.userID, n.suID, n.notTimeStamp, 
             n.notStartDate, n.notEndDate, 'Future' AS notStatus, 
@@ -38,7 +36,7 @@
             n.notstatus = <cfqueryparam value="Pending" cfsqltype="CF_SQL_VARCHAR"> AND
             ns.notstatus = <cfqueryparam value="Future" cfsqltype="CF_SQL_VARCHAR">
     </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 </cfcomponent>

@@ -4,7 +4,7 @@
     <cfargument name="new_catid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         INSERT INTO auddialects_user_tbl (auddialect, audcatid, userid)
         VALUES (
             <cfqueryparam value="#arguments.CustomDialect#" cfsqltype="CF_SQL_VARCHAR">,
@@ -18,10 +18,8 @@
 <cffunction output="false" name="SELauddialects_user" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="new_audcatid" type="numeric" required="true">
-    
-    
 
-    <cfquery name="result">
+<cfquery name="result">
         SELECT 
             a.auddialectid AS ID, 
             a.auddialect AS NAME, 
@@ -35,7 +33,7 @@
         ORDER BY 
             a.auddialect
     </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 </cfcomponent>

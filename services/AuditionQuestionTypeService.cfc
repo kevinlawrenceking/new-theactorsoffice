@@ -3,7 +3,7 @@
     <cfargument name="new_qtype" type="string" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
-    <cfquery result="result" name="insertQuery">
+<cfquery result="result" name="insertQuery">
         INSERT INTO audqtypes (qtype, isDeleted) 
         VALUES (
             <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_qtype#" maxlength="100" null="#NOT len(trim(arguments.new_qtype))#">,
@@ -17,7 +17,7 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_qtypeid" type="numeric" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         UPDATE audqtypes 
         SET 
             qtype = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_qtype#" maxlength="100" null="#NOT len(trim(arguments.new_qtype))#">, 

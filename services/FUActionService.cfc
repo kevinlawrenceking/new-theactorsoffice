@@ -1,10 +1,8 @@
 <cfcomponent displayname="FUActionService" hint="Handles operations for FUAction table" > 
 <cffunction output="false" name="SELfuactions" access="public" returntype="query">
     <cfargument name="target_id_system" type="numeric" required="true">
-    
-    
-    
-    <cfquery name="result">
+
+<cfquery name="result">
         SELECT actionid, actiondaysno, actiondaysrecurring
         FROM fuactions
         WHERE actionid IN (
@@ -13,8 +11,8 @@
             WHERE systemid = <cfqueryparam value="#arguments.target_id_system#" cfsqltype="CF_SQL_INTEGER">
         )
     </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="SELfuactions_24453" access="public" returntype="query">
@@ -22,9 +20,9 @@
     <cfargument name="actionDaysNo" type="numeric" required="false">
     <cfargument name="actionDaysRecurring" type="numeric" required="false">
 
-    <cfset var queryResult = "">
-    
-    <cfquery result="result" name="queryResult">
+<cfset var queryResult = "">
+
+<cfquery result="result" name="queryResult">
         SELECT actionid, actiondaysno, actiondaysrecurring
         FROM fuactions
         WHERE 1=1
@@ -39,6 +37,6 @@
         </cfif>
     </cfquery>
 
-    <cfreturn queryResult>
+<cfreturn queryResult>
 </cffunction>
 </cfcomponent>

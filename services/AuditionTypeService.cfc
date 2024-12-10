@@ -1,8 +1,8 @@
 <cfcomponent displayname="AuditionTypeService" hint="Handles operations for AuditionType table" > 
 <cffunction output="false" name="SELaudtypes" access="public" returntype="query">
     <cfargument name="audcatid" type="string" required="true">
-    
-        <cfquery name="result">
+
+<cfquery name="result">
             SELECT 
                 audtypeid AS id, 
                 audtype AS name, 
@@ -20,8 +20,8 @@
 
 <cffunction output="false" name="SELaudtypes_23793" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
-    
-        <cfquery name="result">
+
+<cfquery name="result">
             SELECT DISTINCT audtype AS id, audtype AS name
             FROM audtypes
             WHERE audtype IN (
@@ -38,8 +38,8 @@
 
 <cffunction output="false" name="SELaudtypes_24082" access="public" returntype="query">
     <cfargument name="new_audcatid" type="numeric" required="true">
-    
-        <cfquery name="result">
+
+<cfquery name="result">
             SELECT 
                 audtypeid AS id, 
                 audtype AS name, 
@@ -58,7 +58,7 @@
 <cffunction name="getAudtypes" access="public" returntype="query" output="false">
     <cfargument name="new_audcatid" type="string" required="false">
 
-    <cfquery name="queryResult">
+<cfquery name="queryResult">
         SELECT 
             audtypeid AS id, 
             audtype AS name, 
@@ -72,14 +72,13 @@
         </cfif>
     </cfquery>
 
-    <cfreturn queryResult>
+<cfreturn queryResult>
 </cffunction>
-
 
 <cffunction output="false" name="SELaudtypes_24231" access="public" returntype="query">
     <cfargument name="audstepIds" type="array" required="true">
-    
-        <cfquery name="result">
+
+<cfquery name="result">
             SELECT 
                 audstepid, 
                 4 AS new_reportid, 
@@ -109,8 +108,7 @@
     <cfargument name="rangeend" type="date" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
-    
-        <cfquery name="result">
+<cfquery name="result">
             SELECT count(r.audroleid) as totals
             FROM audtypes t
             LEFT JOIN events a ON a.audtypeid = t.audtypeid
@@ -130,8 +128,8 @@
 
 <cffunction output="false" name="SELaudtypes_24526" access="public" returntype="query">
     <cfargument name="new_audtypeid" type="numeric" required="true">
-    
-        <cfquery name="result">
+
+<cfquery name="result">
             SELECT audtype 
             FROM audtypes 
             WHERE audtypeid = <cfqueryparam value="#arguments.new_audtypeid#" cfsqltype="CF_SQL_INTEGER">
@@ -144,7 +142,7 @@
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
-        <cfquery result="result" >
+<cfquery result="result" >
             INSERT INTO audtypes (audtype, audCatid, isDeleted)
             VALUES (
                 <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audtype#" maxlength="100" null="#NOT len(trim(arguments.new_audtype))#">,
@@ -156,10 +154,8 @@
 </cffunction>
 <cffunction output="false" name="SELaudtypes_24608" access="public" returntype="query">
     <cfargument name="isDeleted" type="boolean" required="true">
-    
-    
-    
-        <cfquery name="result" >
+
+<cfquery name="result" >
             SELECT 
                 audtypeid AS id, 
                 audtype AS name, 
@@ -171,9 +167,8 @@
             ORDER BY 
                 audtype
         </cfquery>
-        
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 <cffunction output="false" name="UPDaudtypes" access="public" returntype="void">
     <cfargument name="new_audtype" type="string" required="true">
@@ -181,7 +176,7 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_audtypeid" type="numeric" required="true">
 
-        <cfquery result="result" >
+<cfquery result="result" >
             UPDATE audtypes 
             SET 
                 audtype = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audtype)#" maxlength="100" null="#NOT len(trim(arguments.new_audtype))#">,
@@ -190,7 +185,6 @@
             WHERE 
                 audtypeid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audtypeid#">
         </cfquery>
-        
 
 </cffunction>
 </cfcomponent>

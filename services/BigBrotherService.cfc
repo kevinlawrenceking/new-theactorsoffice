@@ -8,7 +8,7 @@
     <cfargument name="script_name_include" type="string" required="true">
     <cfargument name="contactid" type="numeric" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         INSERT INTO bigbrother (
             pgid, userid, remote_addr, query_string, remote_host, script_name, contactid, isInclude
         ) VALUES (
@@ -27,9 +27,8 @@
 
 <cffunction output="false" name="RESbigbrother" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
-    
 
-    <cfquery name="result">
+<cfquery name="result">
         SELECT 
             b.id, 
             b.id AS recid, 
@@ -55,6 +54,6 @@
         ORDER BY id DESC
     </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 </cfcomponent>

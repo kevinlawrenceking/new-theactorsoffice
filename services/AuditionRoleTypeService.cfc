@@ -1,18 +1,16 @@
-<cfcomponent displayname="AuditionRoleTypeService" hint="Handles operations for AuditionRoleType table" > 
+<cfcomponent displayname="AuditionRoleTypeService" hint="Handles operations for AuditionRoleType table" >
 
 <cffunction output="false" name="SELaudroletypes" access="public" returntype="query">
     <cfargument name="audcatid" type="numeric" required="true">
-    
-    
-    
-    <cfquery name="result">
+
+<cfquery name="result">
         SELECT audroletypeid AS id, audroletype AS name
         FROM audroletypes
         WHERE audcatid = <cfqueryparam value="#arguments.audcatid#" cfsqltype="CF_SQL_INTEGER">
         AND isdeleted = <cfqueryparam value="false" cfsqltype="CF_SQL_BIT">
     </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="INSaudroletypes" access="public" returntype="numeric">
@@ -20,7 +18,7 @@
     <cfargument name="new_audCatid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         INSERT INTO audroletypes (audroletype, audCatid, isDeleted)
         VALUES (
             <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audroletype#" maxlength="100">,
@@ -37,7 +35,7 @@
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_audroletypeid" type="numeric" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         UPDATE audroletypes 
         SET 
             audroletype = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audroletype)#" maxlength="100">,

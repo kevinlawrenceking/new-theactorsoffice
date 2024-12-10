@@ -1,12 +1,12 @@
 <cfcomponent displayname="IncomeTypeService" hint="Handles operations for IncomeType table" > 
 <cffunction output="false" name="SELincometypes" access="public" returntype="query">
     <cfargument name="conditions" type="struct" required="false" default="#structNew()#">
-    
-    <cfset var sql = "SELECT incometypeid AS id, incometype AS name FROM incometypes">
+
+<cfset var sql = "SELECT incometypeid AS id, incometype AS name FROM incometypes">
     <cfset var whereClause = []>
     <cfset var paramValues = []>
-    
-    <!--- Build WHERE clause dynamically based on provided conditions --->
+
+<!--- Build WHERE clause dynamically based on provided conditions --->
     <cfloop collection="#arguments.conditions#" item="key">
         <cfif listFindNoCase("id,name", key)>
             <cfset arrayAppend(whereClause, "#key# = ?")>
@@ -14,12 +14,12 @@
         </cfif>
     </cfloop>
 
-    <!--- Append WHERE clause if conditions exist --->
+<!--- Append WHERE clause if conditions exist --->
     <cfif arrayLen(whereClause) GT 0>
         <cfset sql &= " WHERE " & arrayToList(whereClause, " AND ")>
     </cfif>
 
-    <!--- Execute query --->
+<!--- Execute query --->
     <cfquery name="result">
         #sql#
         <cfloop array="#paramValues#" index="param">
@@ -27,6 +27,6 @@
         </cfloop>
     </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 </cfcomponent>

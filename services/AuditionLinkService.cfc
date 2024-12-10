@@ -3,16 +3,14 @@ Here is the updated ColdFusion component code:
 <cfcomponent displayname="AuditionLinkService" hint="Handles operations for AuditionLink table" > 
 <cffunction output="false" name="SELaudlinks" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
-    
-    
-    
-    <cfquery name="result">
+
+<cfquery name="result">
         SELECT * 
         FROM audlinks 
         WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="INSaudlinks" access="public" returntype="numeric">
@@ -20,7 +18,7 @@ Here is the updated ColdFusion component code:
     <cfargument name="linkurl" type="string" required="true">
     <cfargument name="audroleid" type="numeric" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         INSERT INTO audlinks_tbl (linkname, linkurl, isdeleted, userid, audroleid)
         VALUES (
             <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.linkname#" />,
@@ -35,22 +33,20 @@ Here is the updated ColdFusion component code:
 
 <cffunction output="false" name="DETaudlinks" access="public" returntype="query">
     <cfargument name="linkid" type="numeric" required="true">
-    
-    
-    
-    <cfquery name="result">
+
+<cfquery name="result">
         SELECT * 
         FROM audlinks 
         WHERE linkid = <cfqueryparam value="#arguments.linkid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="UPDaudlinks" access="public" returntype="void">
     <cfargument name="linkid" type="numeric" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         UPDATE audlinks 
         SET isdeleted = 1 
         WHERE linkid = <cfqueryparam value="#arguments.linkid#" cfsqltype="CF_SQL_INTEGER">

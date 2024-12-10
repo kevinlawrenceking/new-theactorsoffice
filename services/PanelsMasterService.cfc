@@ -6,7 +6,7 @@
     <cfset var whereClauses = []>
     <cfset var parameters = []>
 
-    <!--- Validate and build WHERE clauses --->
+<!--- Validate and build WHERE clauses --->
     <cfloop collection="#arguments.conditions#" item="columnName">
         <cfif listFindNoCase("validColumn1,validColumn2,validColumn3", columnName)>
             <cfset arrayAppend(whereClauses, "#columnName# = ?")>
@@ -14,16 +14,16 @@
         </cfif>
     </cfloop>
 
-    <!--- Append WHERE clauses if any --->
+<!--- Append WHERE clauses if any --->
     <cfif arrayLen(whereClauses) gt 0>
         <cfset sql &= " WHERE " & arrayToList(whereClauses, " AND ")>
     </cfif>
 
-    <!--- Add ORDER BY clause if needed --->
+<!--- Add ORDER BY clause if needed --->
     <!--- Assuming 'validOrderColumn' is a valid column for ordering --->
     <cfset sql &= " ORDER BY validOrderColumn">
 
-    <!--- Execute the query without error handling --->
+<!--- Execute the query without error handling --->
     <cfquery result="result" name="queryResult">
         #sql#
         <cfloop array="#parameters#" index="param">
@@ -31,6 +31,6 @@
         </cfloop>
     </cfquery>
 
-    <cfreturn queryResult>
+<cfreturn queryResult>
 </cffunction>
 </cfcomponent>

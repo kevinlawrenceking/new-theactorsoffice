@@ -1,4 +1,4 @@
-<cfcomponent displayname="NotificationService" hint="Handles operations for Notification table" > 
+<cfcomponent displayname="NotificationService" hint="Handles operations for Notification table" >
 
 <cffunction name="removenotdups" access="public" returntype="void" output="false">
     <cfquery name="findDuplicates">
@@ -17,7 +17,7 @@
             actionid, userid, suid
     </cfquery>
 
-    <cfloop query="findDuplicates">
+<cfloop query="findDuplicates">
         <cfquery>
             UPDATE funotifications_tbl
             SET isdeleted = 1
@@ -26,14 +26,11 @@
     </cfloop>
 </cffunction>
 
-
-
-
 <cffunction name="UPDfunotifications_24032" access="public" returntype="void" output="false">
     <cfargument name="new_notstartdate" type="date" required="true">
     <cfargument name="notid" type="numeric" required="true">
 
-    <cfquery >
+<cfquery >
         UPDATE funotifications
         SET 
             notstartdate = <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.new_notstartdate#">
@@ -41,7 +38,6 @@
             notid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.notid#">
     </cfquery>
 </cffunction>
-
 
 <cffunction output="false" name="UPDfunotifications_24130" access="public" returntype="void">
     <cfquery name="result">
@@ -52,12 +48,11 @@
     </cfquery>
 </cffunction>
 
-
 <cffunction output="false" name="UPDfunotifications_23823" access="public" returntype="void">
     <cfargument name="notid" type="numeric" required="true">
     <cfargument name="notendDate" type="date" required="true">
 
-    <cfquery>
+<cfquery>
         UPDATE funotifications
         SET 
             notStatus = <cfqueryparam value="Skipped" cfsqltype="CF_SQL_VARCHAR">,
@@ -67,11 +62,10 @@
     </cfquery>
 </cffunction>
 
-
 <cffunction name="SELfunotifications_24713" access="public" output="false" returntype="query">
     <cfargument name="newsuid" type="numeric" required="true">
 
-    <cfquery name="result">
+<cfquery name="result">
         SELECT 
             n.notID, 
             n.actionID, 
@@ -122,7 +116,7 @@
             au.actionDaysNo, a.actionID
     </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 
 <cffunction name="UPDfunotifications_23831" access="public" output="false" returntype="void">
@@ -130,7 +124,7 @@
     <cfargument name="notendDate" type="date" required="false" default="">
     <cfargument name="notstatus" type="string" required="false" default="">
 
-    <!--- Update notification --->
+<!--- Update notification --->
     <cfquery name="addNotification">
         UPDATE funotifications
         SET 
@@ -146,7 +140,7 @@
     <cfargument name="notid" type="numeric" required="true">
     <cfargument name="notendDate" type="date" required="true">
 
-    <cfquery>
+<cfquery>
         UPDATE funotifications
         SET 
             notStatus = 'Completed',
@@ -156,11 +150,10 @@
     </cfquery>
 </cffunction>
 
-
 <cffunction name="DETfunotifications" access="public" output="false" returntype="query">
     <cfargument name="notid" type="numeric" required="true">
 
-    <cfquery name="result">
+<cfquery name="result">
         SELECT 
             su.contactid, 
             su.userid, 
@@ -192,7 +185,7 @@
             AND au.userid = n.userid
     </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 
 <cffunction name="INSfunotifications_23941" access="public" returntype="numeric" output="false" hint="Adds a notification to the database">
@@ -202,7 +195,7 @@
         <cfargument name="notstartdate" type="date" required="true" hint="The start date of the notification">
         <cfargument name="sunotes" type="string" required="true" hint="Notes">
 
-        <cfquery  name="addNotificationQuery" result="result">
+<cfquery  name="addNotificationQuery" result="result">
             INSERT INTO funotifications (actionid, userid, suID, notstartdate, notstatus, notNotes)
             VALUES (
                 <cfqueryparam value="#arguments.new_actionid#" cfsqltype="CF_SQL_INTEGER">,
@@ -214,17 +207,17 @@
             )
         </cfquery>
 
-        <cfreturn result.generatedKey>
+<cfreturn result.generatedKey>
     </cffunction>
 
-    <cffunction name="INSfunotifications_23940" access="public" returntype="numeric" output="false" hint="Adds a notification to the database">
+<cffunction name="INSfunotifications_23940" access="public" returntype="numeric" output="false" hint="Adds a notification to the database">
         <cfargument name="new_actionid" type="numeric" required="true" hint="The action ID for the notification">
         <cfargument name="new_userid" type="numeric" required="true" hint="The ID of the user">
         <cfargument name="NewSuid" type="numeric" required="true" hint="The suID for the notification">
         <cfargument name="notstartdate" type="date" required="true" hint="The start date of the notification">
         <cfargument name="sunotes" type="string" required="true" hint="Notes">
 
-        <cfquery  name="addNotificationQuery" result="result">
+<cfquery  name="addNotificationQuery" result="result">
             INSERT INTO funotifications (actionid, userid, suID, notstartdate, notNotes)
             VALUES (
                 <cfqueryparam value="#arguments.new_actionid#" cfsqltype="CF_SQL_INTEGER">,
@@ -235,9 +228,8 @@
             )
         </cfquery>
 
-        <cfreturn result.generatedKey>
+<cfreturn result.generatedKey>
     </cffunction>
-
 
 <cffunction name="INSfunotifications" access="public" returntype="struct" output="false" hint="Adds a notification to the database">
         <cfargument name="actionID" type="numeric" required="true" hint="The action ID for the notification">
@@ -245,10 +237,10 @@
         <cfargument name="suID" type="numeric" required="true" hint="The suID for the notification">
         <cfargument name="notStartDate" type="date" required="true" hint="The start date of the notification">
 
-        <!--- Define local variable for query result --->
+<!--- Define local variable for query result --->
         <cfset var result = structNew()>
 
-        <cfquery  name="addNotificationQuery" result="result">
+<cfquery  name="addNotificationQuery" result="result">
             INSERT INTO funotifications (actionid, userid, suID, notstartdate, notstatus)
             VALUES (
                 <cfqueryparam value="#arguments.actionID#" cfsqltype="CF_SQL_INTEGER">,
@@ -259,13 +251,13 @@
             )
         </cfquery>
 
-        <cfreturn result.generatedKey>
+<cfreturn result.generatedKey>
     </cffunction>
 
 <cffunction  output="false" name="UPDfunotifications_24316" access="public" returntype="void">
     <cfargument name="suid" type="numeric" required="true">
-    
-    <cfquery  name="close2">
+
+<cfquery  name="close2">
         UPDATE funotifications
         SET isdeleted = 1
         WHERE suid = <cfqueryparam value="#arguments.suid#" cfsqltype="CF_SQL_INTEGER">
@@ -283,11 +275,10 @@
     </cfquery>
 </cffunction>
 
-
-    <cffunction output="false" name="SELfunotifications_24711" access="public" returntype="query">
+<cffunction output="false" name="SELfunotifications_24711" access="public" returntype="query">
         <cfargument name="currentid" type="numeric" required="true">
-        
-        <cfquery result="result" name="notsall">
+
+<cfquery result="result" name="notsall">
             SELECT
                 n.notID
             FROM funotifications n
@@ -296,17 +287,17 @@
             INNER JOIN fuactions a ON a.actionID = n.actionID
             WHERE f.contactID = <cfqueryparam value="#arguments.currentid#" cfsqltype="cf_sql_integer">
         </cfquery>
-        
-        <cfreturn notsall>
+
+<cfreturn notsall>
     </cffunction>
 
-    <cffunction output="false" name="SELfunotifications_24706" access="public" returntype="query">
+<cffunction output="false" name="SELfunotifications_24706" access="public" returntype="query">
         <cfargument name="currentid" type="numeric" required="true">
         <cfargument name="sysActiveSuid" type="numeric" required="true">
         <cfargument name="userid" type="numeric" required="true">
         <cfargument name="hide_completed" type="string" required="true">
-        
-        <cfquery result="result" name="notsActive">
+
+<cfquery result="result" name="notsActive">
             SELECT
                 n.notID,
                 n.actionID,
@@ -360,15 +351,14 @@
             </cfif>
             ORDER BY FIELD(n.notStatus, 'Pending', 'Completed', 'Skipped'), n.notEndDate
         </cfquery>
-        
-        <cfreturn notsActive>
+
+<cfreturn notsActive>
     </cffunction>
 
 <cffunction output="false" name="SELfunotifications_24709" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
-    
 
-    <cfquery name="result">
+<cfquery name="result">
         SELECT 
             s.Systemtype, n.notID, n.actionID, n.userID, n.suID, n.notTimeStamp, 
             n.notStartDate, n.notEndDate, n.notStatus, n.notNotes, f.systemID, 
@@ -404,7 +394,7 @@
             s.systemtype, n.notstartdate
     </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="INSnotifications" access="public" returntype="numeric">
@@ -412,7 +402,7 @@
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="contactid" type="numeric" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         INSERT INTO notifications (
             subtitle, 
             userid, 
@@ -437,7 +427,7 @@
     <cfargument name="new_contactname" type="string" required="true">
     <cfargument name="contactid" type="numeric" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         INSERT INTO notifications (
             subtitle, 
             userid, 
@@ -465,7 +455,7 @@
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="sunotes" type="string" required="true">
 
-    <cfquery result="result">
+<cfquery result="result">
         INSERT INTO notifications (
             subtitle,
             userid,
@@ -491,7 +481,7 @@
 <cffunction output="false" name="UPDnotifications" access="public" returntype="void">
     <cfargument name="notificationId" type="numeric" required="true">
 
-    <cfquery result="result" name="updateQuery">
+<cfquery result="result" name="updateQuery">
         UPDATE notifications 
         SET `read` = 1 
         WHERE id = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.notificationId#">
@@ -501,13 +491,13 @@
 <cffunction output="false" name="UPDnotifications_24009" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
 
-        <cfquery result="result" >
+<cfquery result="result" >
             UPDATE notifications 
             SET trash = 1 
             WHERE userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#"> 
             AND trash = 0
         </cfquery>
-        
+
 </cffunction>
 
 <cffunction output="false" name="getRemindersTotal" access="public" returntype="numeric">
@@ -515,7 +505,7 @@
     <cfset var remindersTotal = 0>
         <cfset var currentStartDate = DateFormat(Now(), 'yyyy-mm-dd')>
 
-        <cfquery result="result" name="reminders" >
+<cfquery result="result" name="reminders" >
             SELECT count(*) AS reminderstotal
             FROM funotifications n
             INNER JOIN fusystemusers f ON f.suID = n.suID
@@ -532,16 +522,15 @@
             AND n.notstatus = 'Pending'
         </cfquery>
 
-        <cfset remindersTotal = reminders.reminderstotal>
+<cfset remindersTotal = reminders.reminderstotal>
 
-    <cfreturn remindersTotal>
+<cfreturn remindersTotal>
 </cffunction>
 
 <cffunction output="false" name="SELnotifications" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
-    
 
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 n.ID, 
                 n.notiftitle, 
@@ -558,18 +547,14 @@
                 AND n.`read` = 0 
                 AND n.trash = 0
         </cfquery>
-        
-    
-    <cfreturn result>
+
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="SELfunotifications_24639" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
-    
-    
-    
 
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT count(*) as nots_total
             FROM funotifications n
             INNER JOIN fusystemusers f ON f.suID = n.suID
@@ -585,17 +570,14 @@
             AND DATE(n.notstartdate) <= <cfqueryparam value="#DateFormat(Now(), 'yyyy-mm-dd')#" cfsqltype="CF_SQL_DATE">
             AND n.notstatus = <cfqueryparam value="Pending" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
-        
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
 
 <cffunction output="false" name="SELnotifications_24351" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
-    
-    
 
-        <cfquery name="result" >
+<cfquery name="result" >
             SELECT 
                 n.ID, 
                 n.notiftitle, 
@@ -618,18 +600,18 @@
                 n.notiftimestamp DESC
         </cfquery>
 
-    <cfreturn result>
+<cfreturn result>
 </cffunction>
     <cffunction output="false" name="getNotificationsByBatchlist" access="public" returntype="query"  hint="Fetch notifications by batchlist">
         <cfargument name="batchlist" type="string" required="true" hint="Comma-separated list of notification IDs"/>
 
-        <cfquery result="result" name="qNotifications" >
+<cfquery result="result" name="qNotifications" >
             SELECT n.notID
             FROM funotifications n
             WHERE n.notid IN (#arguments.batchlist#)
         </cfquery>
 
-        <cfreturn qNotifications>
+<cfreturn qNotifications>
     </cffunction>
 
 </cfcomponent>
