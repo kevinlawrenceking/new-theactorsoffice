@@ -1122,64 +1122,47 @@
 
     <cfreturn result>
 </cffunction>
-<cffunction output="false" name="REStickets_24787" access="public" returntype="query">
-    <cfargument name="verid" type="numeric" required="false">
-    
-    
-    <cfset var sql = "">
-    <cfset var params = []>
 
-    
-        <cfset sql = "
-            SELECT 
-                v.verid, 
-                'Release' AS head1, 
-                'Review Date' AS head2, 
-                'Release Date' AS head3, 
-                'Status' AS head4, 
-                'Type' AS head4b, 
-                'Total Tickets' AS head5, 
-                'Hours Left' AS head6, 
-                CONCAT(v.major, '.', v.minor, '.', v.patch, '.', v.version, '.', v.build, ' - ', v.versiontype) AS col1, 
-                v.reviewDate AS col2, 
-                v.reviewtime, 
-                v.releasedate AS col3, 
-                v.releaseTime, 
-                v.versionstatus AS col4, 
-                v.versiontype AS col4b, 
-                (SELECT COUNT(*) FROM tickets WHERE verid = v.verid) AS col5, 
-                (SELECT SUM(esthours) FROM tickets WHERE verid = v.verid) AS col6b,
-                v.major,
-                v.minor,
-                v.patch,
-                v.alphabeta,
-                v.version,
-                ((v.hoursavail) - (SELECT SUM(esthours) FROM tickets t WHERE verid = v.verid)) AS col6,
-                v.isActive
-            FROM taoversions v
-            WHERE 1=1
-        ">
+<cffunction name="REStickets_24787" access="public" returntype="query" output="false" hint="Fetches version and ticket data.">
+    <!--- Define arguments if needed for future flexibility --->
+    <cfargument name="datasource" type="string" required="true" hint="The datasource name.">
 
-        <cfif structKeyExists(arguments, "verid")>
-            <cfset sql &= " AND v.verid = ?">
-            <cfset arrayAppend(params, {value=arguments.verid, cfsqltype="CF_SQL_INTEGER"})>
-        </cfif>
+    <!--- Initialize the query result --->
+    <cfset var results = "">
 
-        <cfset sql &= " ORDER BY v.major, v.minor, v.patch, v.version, v.build">
+    <!--- Execute the query --->
+    <cfquery name="results" datasource="#arguments.datasource#">
+        SELECT 
+            v.verid,
+            'Release' AS head1,
+            'Review Date' AS head2,
+            'Release Date' AS head3,
+            'Status' AS head4,
+            'Type' AS head4b,
+            'Total Tickets' AS head5,
+            'Hours Left' AS head6,
+            CONCAT(v.major, '.', v.minor, '.', v.patch, '.', v.version, '.', v.build, ' - ', v.versiontype) AS col1,
+            v.reviewDate AS col2,
+            v.reviewtime,
+            v.releasedate AS col3,
+            v.releaseTime,
+            v.versionstatus AS col4,
+            v.versiontype AS col4b,
+            (SELECT COUNT(*) FROM tickets WHERE verid = v.verid) AS col5,
+            (SELECT SUM(esthours) FROM tickets WHERE verid = v.verid) AS col6b,
+            v.major,
+            v.minor,
+            v.patch,
+            v.alphabeta,
+            v.version,
+            ((v.hoursavail) - (SELECT SUM(esthours) FROM tickets t WHERE verid = v.verid)) AS col6,
+            v.isActive
+        FROM taoversions v
+        ORDER BY v.major, v.minor, v.patch, v.version, v.build
+    </cfquery>
 
-        <cfquery name="result" >
-            #sql#
-            <cfloop array="#params#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-            </cfloop>
-        </cfquery>
-
-        <cfreturn result>
-
-    
-        
-        
-    
-    
+    <!--- Return the query result --->
+    <cfreturn results>
 </cffunction>
+
 </cfcomponent>
