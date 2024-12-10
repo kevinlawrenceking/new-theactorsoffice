@@ -48,6 +48,9 @@ application.defaultsPath = application.imagesPath & "\defaults";
         application.defaultsUrl = application.imagesUrl & "/defaults";
 
 application.defaultAvatarUrl = application.defaultsUrl & "/avatar.jpg";
+application.defaultAvatarPath = application.defaultsPath & "/avatar.jpg";
+
+application.baseMediaPath
 
 application.emailImagesPath = application.imagesPath & "\email";
         application.emailImagesUrl = application.imagesUrl & "/email";

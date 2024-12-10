@@ -41,10 +41,10 @@
         </cfif>
         
         <cffile action="copy" 
-                source="#application.defaultAvatarUrl#" 
+                source="#application.defaultAvatarPath#" 
                 destination="#cookie.uploadDir_Contact#" >          
 
-</cfif>
+</cfif> 
 
 <!--- Determine picture size based on ref_pgid --->
 <cfif ref_pgid is "9">
