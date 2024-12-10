@@ -176,7 +176,7 @@
                     </div>
 
                     </cfoutput>
-                </form>
+            
                 <div class="row mt-2">
                     <div class="col-6">
                         <!--- Empty Column for Alignment --->
@@ -186,6 +186,7 @@
                         <button type="submit" class="btn btn-primary btn-sm waves-effect waves-light" id="btn-save-event">Update</button>
                     </div>
                 </div>
+                    </form>
             </div>
         </div>
     </div>
