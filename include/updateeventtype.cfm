@@ -17,13 +17,13 @@
                 <input type="hidden" name="new_eventtypename" value="#linkdetails.eventtypename#" />
             </cfoutput>
         
-            <div class="form-group col-md-6">
-                <h5>
-                    <cfoutput>
-                        <span class="fc-event-dot" style="color:##linkdetails.eventtypecolor#" ></span>&nbsp; #linkdetails.eventtypename#
-                    </cfoutput>
-                </h5>
-            </div>
+  <div class="form-group col-md-6">
+    <h5>
+        <cfoutput>
+            <span class="fc-event-dot" style="color:#linkdetails.eventtypecolor#;"></span>&nbsp;#linkdetails.eventtypename#
+        </cfoutput>
+    </h5>
+</div>
         
         <!--- If the event is custom, show input for event name --->
         <cfelse>
