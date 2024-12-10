@@ -29,13 +29,10 @@
 
     <cfset cookie.return_url = "/app/contact/?contactid=#contactid#"/>
     <cfset return_url = "/app/contact/?contactid=#contactid#"/>
-
 </cfoutput>
 
 <cfif NOT fileExists(cookie.browser_contact_avatar_filename)>
   
-   
- 
         <cfif NOT directoryExists(session.userContactsPath & "/" & contactid)>
             <cfdirectory action="create" directory="#session.userContactsPath & "/" & contactid#">
         </cfif>

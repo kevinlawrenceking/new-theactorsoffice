@@ -39,3 +39,5 @@
         $('#hexa-colorpicker').colorpicker();
     });
 </script>
+ <script src="/app/assets/libs/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js?ver=13"></script>
+<link href="/app/assets/libs/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css?rev=13.7"  rel="stylesheet" type="text/css" />
