@@ -41,7 +41,7 @@
         <div class="form-group col-md-12">
             <label for="hexa-colorpicker">Color:</label>
             <cfoutput>
-                <input type="text" id="hexa-colorpicker_#id#" name="new_eventtypecolor" class="form-control" value="#linkdetails.eventtypecolor#" />
+                <input type="color" id="hexa-colorpicker_#id#" name="new_eventtypecolor" class="form-control" value="#linkdetails.eventtypecolor#" />
             </cfoutput>
             <div class="invalid-feedback">
                 Please enter a color.
