@@ -3,9 +3,7 @@
 
 <cfset host = ListFirst(currentURL, ".") />
 
-
 <cfinclude template="/include/qry/attachdetails_25_1.cfm" />
-
 
 <!--- Check if the user media directory exists, if not, create it. --->
 <CFIF not DirectoryExists("#session.userMediaPath#")>

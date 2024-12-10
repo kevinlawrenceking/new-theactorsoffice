@@ -195,8 +195,6 @@
     </div>
 </div>
 
-
-
 <script>
     $(document).ready(function() {
         $(".form-ticket").parsley();

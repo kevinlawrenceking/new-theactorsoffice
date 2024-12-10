@@ -68,17 +68,9 @@
             <cfset pgaction = "fail">
    
     </cfif>
-    
-    
+
 </cfif> 
-    
-    
-        
-        
-        
-        
-        
-    
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -125,16 +117,13 @@
                                     <p class="text-muted mb-4 mt-3" style="font-size:14px;"><cfoutput>#instruct#</cfoutput>            <p class="text-muted mb-4 mt-3"></p></p>
                                 </div>
 
-	
-	
-	<cfif #pgaction# is "fail">
+<cfif #pgaction# is "fail">
         <Cfoutput>
 	 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 
                                      Email not found! 
-        
-         
-                                    </div> <P></P>
+
+</div> <P></P>
             <A href="/auth-recoverpw.cfm?pgaction=view"><button class="btn btn-primary" type="submit"> Try Again </button></A>
          
 		<cfset pwrong = "N" />	</Cfoutput>  
@@ -149,9 +138,7 @@
                                         <input class="form-control" type="email"   id="email" name="email" required="" placeholder="Enter your email">
                                     </div>
 
-                     
-
-                                    <div class="form-group mb-0 text-center">
+<div class="form-group mb-0 text-center">
                                         <button class="btn btn-primary"  type="submit" value="Log In"> Reset Password </button>
                                     </div>
 
@@ -174,17 +161,14 @@
         </div>
         <!--- end page --->
 
-
-        <footer class="footer footer-alt text-white-50">
+<footer class="footer footer-alt text-white-50">
               &copy; 2021 The Actor's Office &trade; - All Right Reserved.
         </footer>
 
         <!--- Vendor js --->
         <script src="/app/assets/js/vendor.min.js"></script>
-        
 
-
-        <!--- App js --->
+<!--- App js --->
         <script src="/app/assets/js/app.min.js"></script>
         
     </body>

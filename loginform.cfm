@@ -12,7 +12,6 @@
     <cfset information_schema = "new_development" />
 </cfif>
 
-
 <cfquery result="result" name="fix" datasource="#dsn#"> 
     SELECT u.userID  
     FROM taousers u
@@ -26,7 +25,6 @@
         UPDATE taousers SET userstatus = 'active' WHERE userid = <cfqueryparam value="#fix.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery> 
 </cfloop>
-
 
 <!--- Default parameters for the page --->
 <cfparam name="pgrecover" default="N" />

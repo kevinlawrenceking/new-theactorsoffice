@@ -44,7 +44,6 @@
     });
 </script>
 
-
 <cfset session.new_eventid = eventdetails.eventid />
 
 <div class="row">
