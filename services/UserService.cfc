@@ -1,7 +1,23 @@
 <cfcomponent displayname="UserService" hint="Handles operations for User table" > 
 
-    <!--- Define the datasource property --->
- 
+<cffunction name="users_sel" access="public" returntype="query" output="false" hint="Fetches a list of users with the minimum user ID for each record name.">
+    <!--- Fetches a list of users with the minimum user ID for each record name. --->
+    <cfquery name="users">
+        SELECT 
+            MIN(u.userid) AS id,
+            u.recordname AS name
+        FROM 
+            taousers u
+        GROUP BY 
+            u.recordname
+        ORDER BY 
+            u.recordname
+    </cfquery>
+
+    <!--- Return the query result --->
+    <cfreturn users>
+</cffunction>
+
 
     <!--- Function to retrieve user details by user ID --->
     <cffunction output="false" name="GetUserDetails" access="public" returntype="query" >
@@ -529,7 +545,8 @@
     
     <cfset var sql = "SELECT MIN(u.userid) AS id, u.recordname AS name FROM taousers u">
     <cfset var whereClause = "">
-    <cfset var orderByClause = " ORDER BY u.recordname">
+    <cfset var orderByClause = " 
+    ORDER BY u.recordname">
     
     <!--- Build WHERE clause dynamically --->
     <cfif structKeyExists(arguments, "recordName") AND len(arguments.recordName)>
@@ -549,8 +566,7 @@
         </cfquery>
         
         
-            
-            <!--- Return an empty query on error --->
+     
             
         
     
