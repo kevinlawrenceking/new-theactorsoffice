@@ -1,5 +1,29 @@
 <cfcomponent displayname="NotificationService" hint="Handles operations for Notification table" >
 
+<cffunction name="INSfunotifications_23817" access="public" returntype="void" output="false">
+    <cfargument name="actionID" type="numeric" required="true">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="NewSuid" type="numeric" required="true">
+    <cfargument name="newest_notstartdate" type="date" required="true">
+
+    <!--- Insert query for funotifications --->
+    <cfquery>
+        INSERT INTO funotifications (
+            actionid, 
+            userid, 
+            suID, 
+            notstartdate, 
+            notstatus
+        ) VALUES (
+            <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.actionID#">,
+            <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">,
+            <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.NewSuid#">,
+            <cfqueryparam cfsqltype="CF_SQL_DATE" value="#DateFormat(arguments.newest_notstartdate, 'yyyy-mm-dd')#">,
+            <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="Pending">
+        )
+    </cfquery>
+</cffunction>
+
 <cffunction name="removenotdups" access="public" returntype="void" output="false">
     <cfquery name="findDuplicates">
         SELECT 
