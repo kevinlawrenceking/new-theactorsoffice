@@ -1,0 +1,12 @@
+{
+	"Remove Extra Blank Lines": {
+	  "prefix": "regex-blank-lines",
+	  "body": [
+		"Regex: (\\s*\\r?\\n\\s*){2,}",
+		"Replace: \\n\\n",
+		"Description: Reduces multiple blank lines to a single blank line."
+	  ],
+	  "description": "Removes extra blank lines from code."
+	}
+  }
+  

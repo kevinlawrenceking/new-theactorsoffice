@@ -371,10 +371,7 @@
 </cffunction>
 <cffunction output="false" name="SELpgpages_24304" access="public" returntype="query">
     <cfargument name="rpgid" type="numeric" required="true">
-    
-    
-    
-    
+
         <cfquery name="result" >
             SELECT 
                 a.appname, c.compname, p.pgname, f.fname, f.required_yn, f.num_min, f.num_max, 
@@ -425,9 +422,7 @@
 </cffunction>
 <cffunction output="false" name="RESpgpages_24652" access="public" returntype="query">
     <cfargument name="pgid" type="numeric" required="true">
-    
 
-    
         <cfquery name="result" >
             SELECT 
                 f.fname, f.fieldid, f.pgid, f.ftype, f.ftypefull, 
@@ -454,7 +449,6 @@
             ORDER BY 
                 f.displayOrder
         </cfquery>
-        
 
     <cfreturn result>
 </cffunction>
@@ -720,7 +714,6 @@
 
              <cfset var links = { top_links = "", bottom_links = "" }>
 
-   
     <cfquery result="result" name="qPageLinks">
             SELECT
                 CASE 

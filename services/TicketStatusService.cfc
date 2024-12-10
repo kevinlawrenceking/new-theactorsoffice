@@ -42,8 +42,7 @@
 
 <cffunction output="false" name="SELticketstatuses_24781" access="public" returntype="query">
     <cfargument name="status" type="string" required="false">
-    
-    
+
     <cfset var sql = "">
     <cfset var params = []>
     
