@@ -200,8 +200,8 @@
     <cfargument name="new_versiontype" type="string" required="true" hint="The new version type.">
     <cfargument name="new_version" type="numeric" required="true" hint="The new version number.">
     <cfargument name="new_build" type="numeric" required="true" hint="The new build number.">
-    <cfargument name="new_reviewDate" type="date" required="false" default="" hint="The new review date.">
-    <cfargument name="new_releaseDate" type="date" required="false" default="" hint="The new release date.">
+    <cfargument name="new_reviewDate" type="string" required="false" default="" hint="The new review date.">
+    <cfargument name="new_releaseDate" type="string" required="false" default="" hint="The new release date.">
     <cfargument name="new_reviewtime" type="string" required="false" default="" hint="The new review time.">
     <cfargument name="new_releasetime" type="string" required="false" default="" hint="The new release time.">
     <cfargument name="new_hoursavail" type="numeric" required="false" default="" hint="The new available hours.">
