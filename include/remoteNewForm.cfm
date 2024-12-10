@@ -40,7 +40,7 @@
                         <cfoutput>
                             <div class="form-group col-md-12">
                                 <label for="#RPGAdd.fname#">#RPGAdd.updatename#</label>
-                                <input class="form-control" type="text" id="#RPGAdd.fname#" name="#RPGAdd.fname#" >required</cfif> placeholder="#RPGAdd.updatename#">
+                                <input class="form-control" type="text" id="#RPGAdd.fname#" name="#RPGAdd.fname#" <cfif RPGAdd.required_yn is "Y" />required</cfif> placeholder="#RPGAdd.updatename#">
                                 <div class="invalid-feedback">
                                     Please enter a #RPGAdd.updatename#.
                                 </div>
@@ -82,7 +82,7 @@
                         <cfoutput>
                             <div class="form-group col-md-12">
                                 <label for="#RPGAdd.fname#">#RPGAdd.updatename#</label>
-                                <input class="form-control" type="password" id="#RPGAdd.fname#" name="#RPGAdd.fname#" >required</cfif> placeholder="#RPGAdd.updatename#">
+                                <input class="form-control" type="password" id="#RPGAdd.fname#" name="#RPGAdd.fname#" <cfif RPGAdd.required_yn is "Y" />required</cfif> placeholder="#RPGAdd.updatename#">
                                 <div class="invalid-feedback">
                                     Please add a valid #RPGAdd.updatename#.
                                 </div>
