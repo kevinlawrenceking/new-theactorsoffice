@@ -15,7 +15,7 @@
     <!--- Step 2: Process files in batches --->
     <cfloop from="1" to="#totalBatches#" index="batchNumber">
         <!--- Get the current batch --->
-        <cfset currentBatch = querySlice(qryFiles, batchSize, batchNumber)>
+        <cfset currentBatch = querySliced(qryFiles, batchSize, batchNumber)>
 
         <!--- Loop through the current batch --->
         <cfloop array="#currentBatch#" index="fileName">
@@ -65,7 +65,7 @@
 </cffunction>
 
 <!--- Helper function to slice queries into batches --->
-<cffunction name="querySlice" access="private" returntype="array">
+<cffunction name="querySliced" access="private" returntype="array">
     <cfargument name="query" type="query" required="true">
     <cfargument name="batchSize" type="numeric" required="true">
     <cfargument name="batchNumber" type="numeric" required="true">
