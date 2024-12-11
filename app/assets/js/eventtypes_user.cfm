@@ -1,3 +1,5 @@
+
+<cfinclude template="/include/qry/eventtypes_user.cfm" />
  <style>   
 <cfloop query="eventtypes_user">   
      <cfoutput>
