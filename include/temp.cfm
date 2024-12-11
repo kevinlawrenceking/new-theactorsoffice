@@ -1,27 +1,18 @@
 <cffunction output="false" name="findOrphanedFiles" access="public" returntype="void">
     <!--- Define directories --->
     <cfset var qryDir = "C:\home\theactorsoffice.com\wwwroot\new-subdomain\include\qry\">
-    <cfset var parentDir = "C:\home\theactorsoffice.com\wwwroot\new-subdomain\">
+    <cfset var parentDir = "C:\home\theactorsoffice.com\wwwroot\new-subdomain\include\">
     <cfset var filesWithQuery = []>
     <cfset var orphanedFiles = []>
 
-    <!--- Step 1: Find all files in qryDir containing <cfquery> --->
+    <!--- Step 1: Find all files in qryDir --->
     <cfdirectory action="list" directory="#qryDir#" name="qryFiles" filter="*.cfm">
 
     <cfloop query="qryFiles">
-        <cffile action="read" file="#qryDir##qryFiles.name#" variable="fileContent">
-
-        <!--- Check if the file contains <cfquery> --->
-        <cfif FindNoCase("<cfquery", fileContent)>
-            <cfset arrayAppend(filesWithQuery, qryFiles.name)>
-        </cfif>
-    </cfloop>
-
-    <!--- Step 2: Check parentDir for references to filesWithQuery --->
-    <cfloop array="#filesWithQuery#" index="fileName">
+        <cfset var fileName = qryFiles.name>
         <cfset var fileFound = false>
 
-        <!--- Search for <cfinclude> references in all files in parentDir --->
+        <!--- Step 2: Check parentDir for filename occurrences --->
         <cfdirectory action="list" directory="#parentDir#" name="parentFiles" recurse="true" filter="*.cfm">
 
         <cfloop query="parentFiles">
@@ -29,8 +20,8 @@
             <cftry>
                 <cffile action="read" file="#parentDir##parentFiles.name#" variable="parentFileContent">
 
-                <!--- Look for the fileName in <cfinclude> --->
-                <cfif FindNoCase("<cfinclude template=" & Chr(34) & "include/qry/" & fileName & Chr(34), parentFileContent)>
+                <!--- Look for the filename anywhere in the file --->
+                <cfif FindNoCase(fileName, parentFileContent)>
                     <cfset fileFound = true>
                     <cfbreak>
                 </cfif>
