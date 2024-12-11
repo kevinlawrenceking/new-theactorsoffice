@@ -32,7 +32,7 @@
             <cfif "#findlinkst.linktype#" is "script">
               <script src="#findlinkst.linkurl#?ver=#rev#.4.#rand()#"></script>
             <cfelseif "#findlinkst.linktype#" is "script_include">
-
+<h2>#findlinkst.linkurl#?ver=#rev#.4.99999.#rand()#</h2>
               <cfinclude template="#findlinkst.linkurl#?ver=#rev#.4.99999.#rand()#">
 <H2><cfoutput>#findlinkst.linkurl#?ver=#rev#.4.1</cfoutput></h2>
             <cfelse>
