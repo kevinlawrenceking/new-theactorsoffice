@@ -22,7 +22,7 @@
                 </cfoutput>
                 <div class="checkbox checkbox-success form-check-inline">
                     <input type="checkbox" id="hide_completed" value="Y" name="hide_completed" onChange="this.form.submit()" #hide_completed_check# />
-                    <label for="hide_completed"> Hide Completed &#38; Skipped </label>
+                    <label for="hide_completed"> Hide Completed &amp; Skipped </label>
                 </div>
             </form>
         </div>
