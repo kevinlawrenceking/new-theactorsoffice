@@ -50,7 +50,7 @@
     <div class="invalid-feedback">
         Please enter a color.
     </div>
-    <div id="preview_#eventtypeid#" style="margin-top: 10px; font-size: 18px; color:#linkdetails.eventtypecolor#;">
+    <div id="preview_#eventtypeid#" style="margin-top: 10px; font-size: 18px; color:#linkdetails.eventtypecolor#;display:hidden;">
         Color Preview
     </div>
 </div>
