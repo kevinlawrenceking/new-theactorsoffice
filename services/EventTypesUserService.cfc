@@ -13,8 +13,8 @@
 <cffunction output="false" name="UPDeventtypes_user" access="public" returntype="void">
     <cfargument name="eventtypeid" type="numeric" required="true">
     <cfargument name="new_eventtypecolor" type="string" required="true">
-    <cfargument name="deletelink" type="boolean" required="false" default="false">
-    <cfargument name="new_iscustom" type="boolean" required="false" default="false">
+    <cfargument name="deletelink" type="numeric" required="false" default="false">
+    <cfargument name="new_iscustom" type="numeric" required="false" default="false">
     <cfargument name="new_eventtypename" type="string" required="false" default="">
 
     <!--- Execute the query --->
