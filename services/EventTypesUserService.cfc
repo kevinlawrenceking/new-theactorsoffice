@@ -32,8 +32,7 @@
     <!--- Add the WHERE clause --->
     <cfset queryString &= " WHERE id = #arguments.id#" />
 
-    <!--- Dump the final query for debugging --->
-    <cfdump var="#queryString#" label="Final Query for Debugging" />
+
     
     <!--- Execute the query --->
     <cfquery name="update">
