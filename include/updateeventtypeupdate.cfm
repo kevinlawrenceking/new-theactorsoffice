@@ -4,6 +4,6 @@
 
 <!--- Include the update query template for processing the deletion. --->
 <cfinclude template="/include/qry/update_310_1.cfm" />
-
+<Cfabort>
 <!--- Redirect to the calendar appointment page with the specified legend status. --->
 <cflocation url="/app/calendar-appoint/?legendstatus=show" />
