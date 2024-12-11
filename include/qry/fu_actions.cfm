@@ -1,4 +1,4 @@
 <!--- This ColdFusion page retrieves action details for a specific user from the database. --->
 
-<cfinclude template="/include/qry/actions_477_1.cfm" />
+<cfinclude template="/include/qry/actions_159_2.cfm" />
 

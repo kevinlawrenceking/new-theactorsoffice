@@ -51,7 +51,7 @@
 <!--- If actionDaysRecurring is not zero, calculate the newest start date and add notification --->
 <Cfif #numberformat(actionDaysRecurring)# is not "0">
     <cfset newest_notstartdate=dateAdd('d', numberformat(actionDaysRecurring), currentStartDate) />
-    <cfinclude template="/include/qry/addNotification_70_3.cfm" />
+    <cfinclude template="/include/qry/addNotification_71_3.cfm" />
 </Cfif>
 
 <!--- Include the next notifications query --->

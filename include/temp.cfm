@@ -1,86 +1,42 @@
-<cffunction output="false" name="findOrphanedFilesInBatches" access="public" returntype="void">
-    <!--- Define directories --->
-    <cfset var qryDir = "C:\home\theactorsoffice.com\wwwroot\new-subdomain\include\qry\">
-    <cfset var parentDir = "C:\home\theactorsoffice.com\wwwroot\new-subdomain\">
-    <cfset var batchSize = 1> <!--- Number of files to process per batch --->
-    <cfset var filesWithQuery = []>
-    <cfset var orphanedFiles = []>
-    <cfset var currentBatch = []>
-    <cfset var totalBatches = 0>
+import os
 
-    <!--- Step 1: Find all files in qryDir --->
-    <cfdirectory action="list" directory="#qryDir#" name="qryFiles" filter="*.cfm">
-    <cfset totalBatches = ceiling(qryFiles.recordCount / batchSize)>
+def find_mentioned_files(qry_removed_path, include_path):
+    # Get all filenames from the qry_REMOVED directory
+    removed_files = [
+        file for file in os.listdir(qry_removed_path)
+        if os.path.isfile(os.path.join(qry_removed_path, file))
+    ]
+    
+    # Get all .cfm files from the include directory and its subdirectories
+    include_files = []
+    for root, _, files in os.walk(include_path):
+        include_files.extend(
+            os.path.join(root, file) for file in files if file.endswith('.cfm')
+        )
 
-    <!--- Step 2: Process files in batches --->
-    <cfloop from="1" to="#totalBatches#" index="batchNumber">
-        <!--- Get the current batch --->
-        <cfset currentBatch = querySliced(qryFiles, batchSize, batchNumber)>
+    # Search for each filename in the content of include files
+    mentioned_files = []
+    for removed_file in removed_files:
+        is_mentioned = False
+        for include_file in include_files:
+            with open(include_file, 'r', encoding='utf-8') as f:
+                content = f.read()
+                if removed_file in content:
+                    mentioned_files.append(removed_file)
+                    is_mentioned = True
+                    break
+        if not is_mentioned:
+            print(f"Not mentioned: {removed_file}")
+    
+    # Return the list of mentioned files
+    return mentioned_files
 
-        <!--- Loop through the current batch --->
-        <cfloop array="#currentBatch#" index="fileName">
-            <cfset var fileFound = false>
+# Paths to directories
+qry_removed_path = r"C:\Users\xkking\Documents\qry_REMOVED"
+include_path = r"C:\Users\xkking\Documents\new-actorsoffice\new-theactorsoffice\include"
 
-            <!--- Check parentDir for filename occurrences --->
-            <cfdirectory action="list" directory="#parentDir#" name="parentFiles" recurse="true" filter="*.cfm">
-
-            <cfloop query="parentFiles">
-                <!--- Wrap file reading in error handling --->
-                <cftry>
-                    <cffile action="read" file="#parentDir##parentFiles.name#" variable="parentFileContent">
-
-                    <!--- Look for the filename anywhere in the file --->
-                    <cfif FindNoCase(fileName, parentFileContent)>
-                        <cfset fileFound = true>
-                        <cfbreak>
-                    </cfif>
-
-                <cfcatch type="any">
-                    <!--- Skip missing or inaccessible files --->
-                    <cfset fileFound = fileFound>
-                </cfcatch>
-                </cftry>
-            </cfloop>
-
-            <!--- If not found, add to orphaned list --->
-            <cfif NOT fileFound>
-                <cfset arrayAppend(orphanedFiles, fileName)>
-            </cfif>
-        </cfloop>
-    </cfloop>
-
-    <!--- Step 3: Display orphaned files --->
-    <cfoutput>
-        <h2>Orphaned Files:</h2>
-        <cfif arrayLen(orphanedFiles) EQ 0>
-            <p>No orphaned files found.</p>
-        <cfelse>
-            <ul>
-                <cfloop array="#orphanedFiles#" index="fileName">
-                    <li>#fileName#</li>
-                </cfloop>
-            </ul>
-        </cfif>
-    </cfoutput>
-</cffunction>
-
-<!--- Helper function to slice queries into batches --->
-<cffunction name="querySliced" access="private" returntype="array">
-    <cfargument name="query" type="query" required="true">
-    <cfargument name="batchSize" type="numeric" required="true">
-    <cfargument name="batchNumber" type="numeric" required="true">
-
-    <cfset var startRow = ((arguments.batchNumber - 1) * arguments.batchSize) + 1>
-    <cfset var endRow = min(startRow + arguments.batchSize - 1, arguments.query.recordCount)>
-    <cfset var batch = []>
-
-    <cfloop from="#startRow#" to="#endRow#" index="rowIndex">
-        <cfset arrayAppend(batch, arguments.query.name[rowIndex])>
-    </cfloop>
-
-    <cfreturn batch>
-</cffunction>
-
-<cfscript>
-    findOrphanedFilesInBatches();
-</cfscript>
+# Run the function and print the results
+mentioned_files = find_mentioned_files(qry_removed_path, include_path)
+print("\nMentioned files:")
+for file in mentioned_files:
+    print(file)
