@@ -2,7 +2,7 @@
     <!--- Define directories --->
     <cfset var qryDir = "C:\home\theactorsoffice.com\wwwroot\new-subdomain\include\qry\">
     <cfset var parentDir = "C:\home\theactorsoffice.com\wwwroot\new-subdomain\">
-    <cfset var batchSize = 20> <!--- Number of files to process per batch --->
+    <cfset var batchSize = 1> <!--- Number of files to process per batch --->
     <cfset var filesWithQuery = []>
     <cfset var orphanedFiles = []>
     <cfset var currentBatch = []>
