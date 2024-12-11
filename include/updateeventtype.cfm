@@ -5,7 +5,7 @@
 
 <form action="/include/updateeventtypeupdate.cfm" method="post" class="needs-validation" validate id="profile-form">
     <cfoutput>
-        <input type="hidden" name="id" value="#linkdetails.id#"  />
+        <input type="hidden" name="id" value="#eventtypeid#"  />
         <input type="hidden" name="new_iscustom" value="#linkdetails.iscustom#"  />
     </cfoutput>
 
@@ -42,15 +42,15 @@
   <div class="form-group col-md-12">
     <label for="hexa-colorpicker">Color:</label>
     <cfoutput>
-        <input type="color" id="hexa-colorpicker_#id#" name="new_eventtypecolor" 
+        <input type="color" id="hexa-colorpicker_#eventtypeid#" name="new_eventtypecolor" 
             class="form-control" 
             value="#linkdetails.eventtypecolor#" 
-            onchange="updatePreview('##preview_#id#', this.value)" />
+            onchange="updatePreview('##preview_#eventtypeid#', this.value)" />
 
     <div class="invalid-feedback">
         Please enter a color.
     </div>
-    <div id="preview_#id#" style="margin-top: 10px; font-size: 18px; color:#linkdetails.eventtypecolor#;">
+    <div id="preview_#eventtypeid#" style="margin-top: 10px; font-size: 18px; color:#linkdetails.eventtypecolor#;">
         Color Preview
     </div>
 </div>
