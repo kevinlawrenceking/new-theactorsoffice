@@ -46,7 +46,7 @@
             class="form-control" 
             value="#linkdetails.eventtypecolor#" 
             onchange="updatePreview('##preview_#id#', this.value)" />
-    </cfoutput>
+
     <div class="invalid-feedback">
         Please enter a color.
     </div>
@@ -54,7 +54,7 @@
         Color Preview
     </div>
 </div>
-
+    </cfoutput>
 <script>
     function updatePreview(previewId, colorValue) {
         const previewElement = document.querySelector(previewId);
