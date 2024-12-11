@@ -21,7 +21,7 @@
                 INNER JOIN pgpages g ON g.pgid = x.pgid 
             WHERE 
                 g.pgid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.pgid#"> 
-                AND l.linkloc_tb = 't' 
+                AND l.linkloc_tb in ('t','i') 
             ORDER BY 
                 l.link_no
         </cfquery>
