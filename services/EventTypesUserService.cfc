@@ -39,7 +39,7 @@
     <cfquery name="update">
         #queryString#
     </cfquery>
-    <cfabort>
+
 </cffunction>
 
 <cffunction output="false" name="SELeventtypes_user" access="public" returntype="query">
