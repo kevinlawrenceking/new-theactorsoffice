@@ -5,7 +5,7 @@
 
 <form action="/include/updateeventtypeupdate.cfm" method="post" class="needs-validation" validate id="profile-form">
     <cfoutput>
-        <input type="hidden" name="id" value="#eventtypeid#"  />
+        <input type="hidden" name="eventtypeid" value="#eventtypeid#"  />
         <input type="hidden" name="new_iscustom" value="#linkdetails.iscustom#"  />
     </cfoutput>
 
