@@ -1,37 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Report 6 Test</title>
-</head>
-<body>
-    <h1>Testing Report 6</h1>
+<cffunction name="findOrphanedFiles" access="public" output="true">
+    <cfset var qryDir = "C:\home\theactorsoffice.com\wwwroot\new-subdomain\include\qry\">
+    <cfset var parentDir = "C:\home\theactorsoffice.com\wwwroot\new-subdomain\">
+    <cfset var filesWithQuery = []>
+    <cfset var orphanedFiles = []>
 
-    <!--- Initialize the ReportsRefreshService component --->
-    <cfset ReportsRefreshService = createObject("component", "services.ReportsRefreshService")>
+    <!-- Step 1: Find all files in the qry directory with <cfquery> -->
+    <cfdirectory action="list" directory="#qryDir#" name="qryFiles" filter="*.cfm">
+    
+    <cfloop query="qryFiles">
+        <cffile action="read" file="#qryDir##qryFiles.name#" variable="fileContent">
+        
+        <cfif FindNoCase("<cfquery", fileContent)>
+            <!-- Add file to the list if it contains <cfquery> -->
+            <cfset arrayAppend(filesWithQuery, qryFiles.name)>
+        </cfif>
+    </cfloop>
 
-    <!--- Fetch results for different audsourceidb values --->
-    <cfset result_0 = ReportsRefreshService.report_6(userid=30, rangestart="2023-01-01", rangeend="2023-12-31", new_audsourceidb=0)>
-    <cfset result_1 = ReportsRefreshService.report_6(userid=30, rangestart="2023-01-01", rangeend="2023-12-31", new_audsourceidb=1)>
-    <cfset result_2 = ReportsRefreshService.report_6(userid=30, rangestart="2023-01-01", rangeend="2023-12-31", new_audsourceidb=2)>
-    <cfset result_3 = ReportsRefreshService.report_6(userid=30, rangestart="2023-01-01", rangeend="2023-12-31", new_audsourceidb=3)>
-    <cfset result_4 = ReportsRefreshService.report_6(userid=30, rangestart="2023-01-01", rangeend="2023-12-31", new_audsourceidb=4)>
+    <!-- Step 2: Check parent directory for <cfinclude> references -->
+    <cfloop array="#filesWithQuery#" index="fileName">
+        <cfset var fileFound = false>
 
-    <!--- Display the results --->
-    <h2>Results for new_audsourceidb = 0</h2>
-    <cfdump var="#result_0#">
+        <!-- Search for cfinclude in all files in the parent directory -->
+        <cfdirectory action="list" directory="#parentDir#" name="parentFiles" recurse="true" filter="*.cfm">
+        
+        <cfloop query="parentFiles">
+            <cffile action="read" file="#parentDir##parentFiles.name#" variable="parentFileContent">
 
-    <h2>Results for new_audsourceidb = 1</h2>
-    <cfdump var="#result_1#">
+            <!-- Look for the fileName in cfinclude -->
+            <cfif FindNoCase("<cfinclude template=" & Chr(34) & fileName, parentFileContent)>
+                <cfset fileFound = true>
+                <cfbreak>
+            </cfif>
+        </cfloop>
 
-    <h2>Results for new_audsourceidb = 2</h2>
-    <cfdump var="#result_2#">
+        <!-- If not found, add to orphaned list -->
+        <cfif NOT fileFound>
+            <cfset arrayAppend(orphanedFiles, fileName)>
+        </cfif>
+    </cfloop>
 
-    <h2>Results for new_audsourceidb = 3</h2>
-    <cfdump var="#result_3#">
+    <!-- Step 3: Display orphaned files -->
+    <cfoutput>
+        <h2>Orphaned Files:</h2>
+        <cfif arrayLen(orphanedFiles) EQ 0>
+            <p>No orphaned files found.</p>
+        <cfelse>
+            <ul>
+                <cfloop array="#orphanedFiles#" index="fileName">
+                    <li>#fileName#</li>
+                </cfloop>
+            </ul>
+        </cfif>
+    </cfoutput>
+</cffunction>
 
-    <h2>Results for new_audsourceidb = 4</h2>
-    <cfdump var="#result_4#">
-</body>
-</html>
+<cfscript>
+    findOrphanedFiles();
+</cfscript>
