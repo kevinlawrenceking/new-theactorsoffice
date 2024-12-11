@@ -50,6 +50,22 @@
     </cfloop>
 </cffunction>
 
+<cffunction name="UPDfunotifications_23818" access="public" returntype="void" output="false" hint="Updates the status and optionally the start date of a notification.">
+    <cfargument name="new_notstartdate" type="string" required="false" hint="New start date for the notification.">
+    <cfargument name="notid" type="numeric" required="true" hint="ID of the notification to update.">
+
+    <cfquery>
+        UPDATE funotifications
+        SET notstatus = 'Pending'
+        <cfif IsDate(arguments.new_notstartdate)>
+            ,notstartdate = <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.new_notstartdate#">
+        </cfif>
+        WHERE notid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.notid#">
+    </cfquery>
+</cffunction>
+
+
+
 <cffunction name="UPDfunotifications_24032" access="public" returntype="void" output="false">
     <cfargument name="new_notstartdate" type="date" required="true">
     <cfargument name="notid" type="numeric" required="true">

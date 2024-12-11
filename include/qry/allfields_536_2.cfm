@@ -1,5 +1,2 @@
-<!--- This ColdFusion page retrieves the structure of the current table. --->
-<cfquery name="allfields">         
-    <!--- Describe the structure of the current table. --->
-    Describe #comptable# 
-</cfquery>
+<cfset componentService = createObject("component", "services.ComponentService")>
+<cfset fields = componentService.getAllFields(comptable=comptable)>

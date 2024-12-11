@@ -1,5 +1,21 @@
 <cfcomponent displayname="ComponentService" hint="Handles operations for Component table" >
 
+<cffunction name="getAllFields" access="public" returntype="query" output="false" hint="Describes the structure of the specified table and returns its fields.">
+    <!--- Define arguments --->
+    <cfargument name="comptable" type="string" required="true" hint="Name of the table to describe.">
+
+    <!--- Perform the describe query --->
+    <cfquery name="fields">
+        DESCRIBE <cfqueryparam value="#arguments.comptable#" cfsqltype="cf_sql_varchar">
+    </cfquery>
+
+    <!--- Return the query result --->
+    <cfreturn fields>
+</cffunction>
+
+
+
+
 <cffunction output="false" name="SELpgcomps" access="public" returntype="query">
 
 <cfquery name="result">

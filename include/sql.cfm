@@ -5,7 +5,7 @@
     <!--- Loop through each record in the query 'y' --->
     <cfset comptable = y.new_comptable />
 
-    <cfinclude template="/include/qry/allfields_292_2.cfm" />
+    <cfinclude template="/include/qry/allfields_536_2.cfm" />
     <cfinclude template="/include/qry/x_292_3.cfm" />
     <cfinclude template="/include/qry/findp_292_4.cfm" />
     

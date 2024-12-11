@@ -39,6 +39,6 @@
 
 </cfif>
 
-<cfinclude template="/include/qry/add_cd_367_8.cfm"/>
+<cfinclude template="/include/qry/add_cd_28_12.cfm"/>
 
 <cflocation url="/app/audition/?audprojectid=#new_audprojectid#"/>

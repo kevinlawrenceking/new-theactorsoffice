@@ -10,7 +10,7 @@
 <cfset new_userid=cookie.userid />
 
 <!--- Query to describe the structure of the specified table. --->
-<cfinclude template="/include/qry/allfields_464_1.cfm" />
+<cfinclude template="/include/qry/allfields_536_2.cfm" />
 
 <!--- Filter the fields to exclude primary keys and auto-increment fields. --->
 <cfinclude template="/include/qry/x_464_2.cfm" />
