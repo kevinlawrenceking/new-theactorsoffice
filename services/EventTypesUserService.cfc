@@ -21,24 +21,27 @@
     <cfset var queryString = "UPDATE eventtypes_user SET eventtypecolor = '#arguments.new_eventtypecolor#'" />
 
     <!--- Add conditional clauses to the query string --->
-    <cfif arguments.deletelink eq 1>
+    <cfif compare(arguments.deletelink, true) eq 0>
         <cfset queryString &= ", isdeleted = 1" />
     </cfif>
 
-    <cfif arguments.new_iscustom eq 1>
+    <cfif compare(arguments.new_iscustom, true) eq 0>
         <cfset queryString &= ", eventtypename = '#arguments.new_eventtypename#'" />
     </cfif>
 
     <!--- Add the WHERE clause --->
     <cfset queryString &= " WHERE id = #arguments.id#" />
 
+    <!--- Debugging Output --->
+    <cfdump var="#queryString#" label="Generated Query"/>
+    <cfabort> <!-- Remove this after debugging -->
 
-    
     <!--- Execute the query --->
     <cfquery name="update">
         #queryString#
     </cfquery>
 </cffunction>
+
 
 <cffunction output="false" name="SELeventtypes_user" access="public" returntype="query">
     <cfargument name="eventTypeName" type="string" required="true">
