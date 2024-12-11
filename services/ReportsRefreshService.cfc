@@ -773,7 +773,7 @@ AND p.userid=<cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#"
                     itemDataset,
                     userid
                 ) VALUES (
-                    <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#new_label_new# KKKK">,
+                    <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#new_label_new#">,
                     <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#i#">,
                     <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#new_itemValueInt#">,
                     <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#new_id#">,
