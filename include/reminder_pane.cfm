@@ -22,7 +22,7 @@
                 </cfoutput>
                 <div class="checkbox checkbox-success form-check-inline">
                     <input type="checkbox" id="hide_completed" value="Y" name="hide_completed" onChange="this.form.submit()" #hide_completed_check# />
-                    <label for="hide_completed"> Hide Completed & Skipped </label>
+                    <label for="hide_completed"> Hide Completed &#38; Skipped </label>
                 </div>
             </form>
         </div>
@@ -37,20 +37,22 @@
         <cfoutput>
             <div class="row">
                 <div class="col-md-12">
-                    <h4>#sysActive.systemName# 
-                        <a href="" title="click for details" data-bs-toggle="modal" data-bs-target="##action#sysactive.suid#-modal">
-                            <i class="fe-info font-14 mr-1"></i>
+                    <h4>#sysActive.systemName#
+                    <a href="" title="click for details" data-bs-toggle="modal" data-bs-target="##action#sysactive.suid#-modal">
+                        <i class="fe-info font-14 mr-1"></i>
+                    </a>
+                    <!--- Check if system status is completed --->
+                    <cfif #sysActive.sustatus# is "Completed">
+                        <span class="badge bg-warning rounded-pill">Completed</span>
+                    </cfif>
+                    <span>
+                        <a title="Delete System" href="DeleteModal.cfm?rpgid=40&recid=#sysActive.suid#&t4=1" data-bs-toggle="modal" data-bs-target="##remoteDeleteForm#sysActive.suid#">
+                        <i class="fe-trash-2"></i>
                         </a>
-                        <!--- Check if system status is completed --->
-                        <cfif #sysActive.sustatus# is "Completed">
-                            <span class="badge bg-warning rounded-pill">Completed</span>
-                        </cfif>
-                        <span> 
-                            <a title="Delete System" href="DeleteModal.cfm?rpgid=40&recid=#sysActive.suid#&t4=1" data-bs-toggle="modal" data-bs-target="##remoteDeleteForm#sysActive.suid#">
-                                <i class="fe-trash-2"></i>
-                            </a>
-                        </span>
+                    </span>
                     </h4>
+                </div>
+            </div>
         </cfoutput>
 
         <!--- Check if there are no active items --->
