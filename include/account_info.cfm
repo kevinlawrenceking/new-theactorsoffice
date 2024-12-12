@@ -401,7 +401,7 @@
 
           <cfinclude template="/include/qry/qry_block_1_2.cfm"/>
 
-          <cfset ctaction="view"/><Cfabort>
+          <cfset ctaction="view"/>
 
           <Cflocation url="/app/myaccount/?t0=1"/>
 
