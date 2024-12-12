@@ -399,11 +399,11 @@
 
         <cfif #ctaction# is "update">
 
-          <cfinclude template="/include/qry/qry_block_1_2.cfm"/>
+          <cfinclude template="/include/qry/qry_block_1_2.cfm"/><Cfabort>
 
           <cfset ctaction="view"/>
 
-          <Cflocation url="/app/myaccount/?t0=1"/><Cfabort>
+          <Cflocation url="/app/myaccount/?t0=1"/>
 
         </cfif>
 
