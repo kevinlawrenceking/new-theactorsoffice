@@ -109,3 +109,6 @@
         $(".parsley-examples").parsley();
     });
 </script>
+<script>
+    $("#region_id").chained("#countryid");
+</script>

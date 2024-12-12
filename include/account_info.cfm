@@ -634,9 +634,7 @@
 
                         </form>
 
-                        <script>
-                          $("#region_id").chained("#countryid");
-                        </script>
+               
                       </div>
                     </div>
 
