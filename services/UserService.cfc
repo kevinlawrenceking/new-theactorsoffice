@@ -179,7 +179,7 @@
 
 <cffunction output="false" name="UPDtaousers_23945" access="public" returntype="void">
 
-<cfargument name="new_userfirstname" type="string" required="false">
+    <cfargument name="new_userfirstname" type="string" required="false">
     <cfargument name="new_userlastname" type="string" required="false">
     <cfargument name="new_avatarname" type="string" required="false">
     <cfargument name="new_useremail" type="string" required="false">
@@ -190,6 +190,10 @@
     <cfargument name="region_id" type="numeric" required="false">
     <cfargument name="countryid" type="string" required="false">
     <cfargument name="userid" type="numeric" required="true">
+
+  
+    <cfdump var="#arguments#" label="Arguments Passed">
+    <cfabort>
 
 <cfquery result="result" >
         UPDATE taousers 
