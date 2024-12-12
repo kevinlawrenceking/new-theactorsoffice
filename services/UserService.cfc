@@ -143,12 +143,8 @@
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
-<!--- Log error details --->
-
-<!--- Optionally rethrow or handle the error further --->
-
 </cffunction>
-<cffunction output="false" name="SELtaousers_23842" access="public" returntype="query">
+<cffunction output="false" name="SELtaousers_23842" access="public" returntype="query" >
     <cfargument name="select_userid" type="numeric" required="true">
 
 <cfquery name="result" >
