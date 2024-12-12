@@ -36,7 +36,7 @@
 
 <script>
   $(document).ready(function () {
-    $("#remoteUpdateUser").on("show.bs.modal", function (event) {
+    $("#remoteUserUpdate").on("show.bs.modal", function (event) {
       $(this)
         .find(".modal-body")
         .load("<cfoutput>/include/remoteUpdateUser.cfm?userid=#userid#&src=account</cfoutput>");
