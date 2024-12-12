@@ -21,7 +21,7 @@
   });
 </script>
 
-<cfset modalid="remoteUpdateUser"/>
+<cfset modalid="remoteUserUpdate"/>
 
 <cfset modaltitle="Update Account"/>
 
