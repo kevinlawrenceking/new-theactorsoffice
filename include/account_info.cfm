@@ -403,7 +403,7 @@
 
           <cfset ctaction="view"/>
 
-          <Cflocation url="/app/myaccount/?t0=1"/>
+          <Cflocation url="/app/myaccount/?t0=1"/><Cfabort>
 
         </cfif>
 
