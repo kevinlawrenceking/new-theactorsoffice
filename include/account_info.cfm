@@ -228,23 +228,7 @@
 
      
 
-<!--- JavaScript to dynamically update the selected attribute --->
-<script>
-    document.getElementById('countryid').addEventListener('change', function() {
-        updateSelectedAttribute(this);
-    });
 
-    document.getElementById('region_id').addEventListener('change', function() {
-        updateSelectedAttribute(this);
-    });
-
-    function updateSelectedAttribute(selectElement) {
-
-        Array.from(selectElement.options).forEach(option => option.removeAttribute('selected'));
-
-        selectElement.options[selectElement.selectedIndex].setAttribute('selected', 'selected');
-    }
-</script>
                   <cfoutput>
 
                     <div class="row">
@@ -905,6 +889,4 @@
 
                 </cfif>
 
-                <script>
-                  $("#region_id").chained("#countryid");
-                </script>
+              

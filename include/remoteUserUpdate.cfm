@@ -112,3 +112,23 @@
 <script>
     $("#region_id").chained("#countryid");
 </script>
+
+<!--- JavaScript to dynamically update the selected attribute --->
+<script>
+    document.getElementById('countryid').addEventListener('change', function() {
+        updateSelectedAttribute(this);
+    });
+
+    document.getElementById('region_id').addEventListener('change', function() {
+        updateSelectedAttribute(this);
+    });
+
+    function updateSelectedAttribute(selectElement) {
+
+        Array.from(selectElement.options).forEach(option => option.removeAttribute('selected'));
+
+        selectElement.options[selectElement.selectedIndex].setAttribute('selected', 'selected');
+    }
+</script>
+
+<script src="/app/assets/js/jquery.chained.js?ver=13.4.0.580339357529"></script>
