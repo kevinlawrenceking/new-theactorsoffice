@@ -1,3 +1,5 @@
+<cfinclude template="/include/qry/details_1693_1.cfm"/>
+
 <cfinclude template="/include/qry/countries_457_1.cfm"/>
 
 <cfinclude template="/include/qry/regions_518_1.cfm"/>
