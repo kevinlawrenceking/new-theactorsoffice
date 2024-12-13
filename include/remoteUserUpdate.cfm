@@ -133,3 +133,28 @@
     }
 </script>
 
+            <script>
+                  $(document).ready(function () {
+
+                    $('#email_address').parsley();
+
+                    window
+                      .ParsleyValidator
+                      .addValidator('checkemail', {
+                        validateString: function (value) {
+                          return $.ajax({
+                            url: '/include/fetch.cfm?userID=<Cfoutput>#userid#</cfoutput>',
+                            method: "POST",
+                            data: {
+                              email: value
+                            },
+                            dataType: "json",
+                            success: function (data) {
+                              return true;
+                            }
+                          });
+                        }
+                      });
+
+                  });
+                </script>
