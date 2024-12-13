@@ -4,6 +4,6 @@
 
 
 <!--- Redirect the user to their account page with specific parameters --->
-<cflocation url="/app/myaccount/?t3=1&tab3_expand=true" />
+<cflocation url="/app/myaccount/?t0=1" />
 
-          
+          <Cflocation url="/app/myaccount/?t0=1" />
