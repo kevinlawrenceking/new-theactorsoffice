@@ -9,7 +9,7 @@
 <script src="/app/assets/js/jquery.chained.js?ver=13.4.0.580339357529"></script>
  
  
- <form action="/include/remoteUserUpdated" method="post" class="parsley-examples" id="update" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" data-parsley-trigger="keyup" data-parsley-validate="data-parsley-validate">
+ <form action="/include/remoteUserUpdated.cfm" method="post" class="parsley-examples" id="update" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" data-parsley-trigger="keyup" data-parsley-validate="data-parsley-validate">
 
         <cfoutput>
           <input type="hidden" name="t3" value="1"/>
@@ -110,7 +110,7 @@
                         <button class=" btn btn-primary editable-submit btn-sm waves-effect waves-light" type="submit" style="background-color: ##406e8e; border: ##406e8e;">Update</button>
 
                       </div>
-                      
+
 </div>
 
 <!--- Initialize Parsley Validation --->
