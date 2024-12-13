@@ -12,6 +12,66 @@
 
 <cfinclude template="/include/qry/timezones_min_547_2.cfm" />
 
+<cfif #ctaction# is "addmember">
+
+    <cfinclude template="/include/qry/qry_block_1_3.cfm" />
+
+    <cfif #findK.recordcount# is "1">
+
+        <cfset new_contactid=findk.contactid />
+
+        <Cfif #new_contactid# is not "">
+        
+            <cfinclude template="/include/qry/qry_block_1_4.cfm" />
+
+        </cfif>
+
+    </cfif>
+
+    <cfif #new_region_id# is "" and #def_region_id# is not "">
+
+        <cfset new_region_id=def_region_id />
+
+    </cfif>
+
+
+    <cfif #new_countryid# is "" and #def_countryid# is not "">
+
+        <cfset new_countryid=def_countryid />
+
+    </cfif>
+
+    <cfparam name="t2" default="0" />
+
+    <cfif #devicetype# is "mobile">
+
+
+        <cfif #t2# is "1">
+
+            <Cflocation url="/app/contact/?contactid=#contactid#&new_pgid=122" />
+
+        </cfif>
+
+        <cfparam name="t3" default="0" />
+
+        <cfif #t3# is "1">
+
+            <Cflocation url="/app/contact/?contactid=#contactid#&new_pgid=124" />
+
+        </cfif>
+
+        <cfparam name="t7" default="0" />
+
+        <cfif #t7# is "1">
+
+            <Cflocation url="/app/contact/?contactid=#contactid#&new_pgid=125" />
+
+        </cfif>
+
+        
+
+</cfif>
+
 <script>
   $(document).ready(function () {
     $("#dashboardupdate").on("show.bs.modal", function (event) {
