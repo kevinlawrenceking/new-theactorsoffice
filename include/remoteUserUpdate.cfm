@@ -31,7 +31,7 @@
 
           <div class="row">
             <div class="form-group col-md-6">
-              <label for="userFirstName">First Name [#details.recordcount#]<span class="text-danger">*</span>
+              <label for="userFirstName">First Name<span class="text-danger">*</span>
               </label>
             </label>
 
@@ -65,7 +65,7 @@
 
             <div class="row">
               <div class="form-group col-md-12">
-                <label for="valueStreetAddress">Address<span class="text-danger">*</span>
+                <label for="add1">Address<span class="text-danger">*</span>
                 </label>
                 <input class="form-control" type="text" id="add1" value="#details.add1#" name="add1" data-parsley-minlength="2" data-parsley-minlength-message="Min length 3 characters" data-parsley-maxlength="100" data-parsley-maxlength-message="Max length 100 characters" data-parsley-required="data-parsley-required" data-parsley-error-message="Street is required" placeholder="Enter Street" /></div>
 
@@ -73,7 +73,7 @@
 
               <div class="row">
                 <div class="form-group col-md-12">
-                  <label for="valueExtendedAddress">Extended Address</label>
+                  <label for="add2">Extended Address</label>
                   <input class="form-control" type="text" id="add2" value="#details.add2#" name="add2" placeholder="Enter Street" /></div>
 
                 </div>
@@ -81,11 +81,11 @@
                 <div class="row">
 
                   <div class="form-group col-md-6">
-                    <label for="valuetext">Town/City</label>
+                    <label for="city">Town/City</label>
                     <input class="form-control" type="text" id="city" value="#details.city#" name="city" placeholder="Enter City" /></div>
 
                     <div class="form-group col-md-6">
-                      <label for="valuetext">Postal Code</label>
+                      <label for="zip">Postal Code</label>
                       <input class="form-control" type="text" id="zip" value="#details.zip#" name="zip" placeholder="Enter Postal Code" /></div>
 
                     </div>
