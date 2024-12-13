@@ -1,20 +1,29 @@
 <cfparam name="u" default="" />
 <cfparam name="p" default="" />
  
-<cfscript>
-    // Get the first part of the server name (subdomain)
-    host = ListFirst(cgi.server_name, ".");
 
-    // Determine the datasource based on the host
-    if (host == "app" || host == "uat") {
-        datasourceName = "abo";
-        dsn = "abo";
-    } else {
-        datasourceName = "abod";
-        dsn = "abod";
-    }
-</cfscript>
+<cfquery result="result" name="findit" datasource="abo">
+        SELECT verid 
+        FROM taoversions  
+        ORDER BY isactive DESC, verid DESC 
+        LIMIT 1
+    </cfquery>
 
+<cfset current_ver = findit.verid />
+
+<cfset host = ListFirst(cgi.server_name, ".") />
+
+<cfif host eq "app" or host eq "uat">
+        <cfset application.dsn = "abo" />
+        <cfset application.information_schema = "actorsbusinessoffice" />
+        <cfset application.suffix = IIF(host eq "app", "_1.5", "") />
+        <cfset application.rev = current_ver />
+    <cfelse>
+        <cfset application.dsn = "abod" />
+        <cfset application.information_schema = "new_development" />
+        <cfset application.suffix = "" />
+        <cfset application.rev = 1 />
+    </cfif>
 
 <cfif #isdefined('recoverid')# >
 <cfoutput>Select * from taousers where userid = #recoverid#</cfoutput>
