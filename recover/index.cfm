@@ -36,9 +36,12 @@ Select * from taousers where recover = '#recover#'
 </cfquery>
 
 <cfoutput>
+
     <cfset cookie.recover = '#recover#' /></cfoutput>
 </cfif>
-
+<cfoutput>
+<Cfset img_loc = "/media-#host#/images" />
+</cfoutput>
 
 	<cfif #u.recordcount# is not "1">
 <cflocation url="/app/dashboard_new/" />
@@ -75,21 +78,22 @@ Select * from taousers where recover = '#recover#'
                         <div class="card ">
 
                             <div class="card-body p-4">
-                                
+                                <Cfoutput>
                                 <div class="text-center w-85 m-auto">
                                     <div class="auth-logo">
                                         <a href="index.html" class="logo logo-dark text-center">
                                             <span class="logo-lg">
-                                                <img src="/assets/images/taowhite.png" alt="" style="width:100%">
+                                                <img src="#img_loc#/taowhite.png" alt="" style="width:100%">
                                             </span>
                                         </a>
                     
                                         <a href="index.html" class="logo logo-light text-center">
                                             <span class="logo-lg">
-                                                <img src="/assets/images/logo-dark.png" alt="" style="width:100%">
+                                                <img src="#img_loc#/logo-dark.png" alt="" style="width:100%">
                                             </span>
                                         </a>
                                     </div>
+                                    </cfoutput>
                                     <h5>Password Change</h5>
                                     <p class="text-muted mb-4 mt-3" style="font-size:14px;">Enter your information below to change your password.</p>
                                 </div>
