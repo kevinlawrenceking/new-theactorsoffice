@@ -44,7 +44,7 @@
                     }
                 }),
 
-j = b;
+j = a;
             o = e.concat(a);
             i = o.concat(b);
 
