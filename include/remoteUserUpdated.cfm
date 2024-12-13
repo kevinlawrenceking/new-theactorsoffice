@@ -1,7 +1,3 @@
-<cfparam name="devicetype" default="" />
-<cfinclude template="/include/qry/qry_block_1_1.cfm"/><Cfabort>
+<cfinclude template="/include/qry/qry_block_1_2.cfm" />
 
-
-<Cfabort>
-<!--- Redirect the user to their account page with specific parameters --->
 <cflocation url="/app/myaccount/?t0=1" />
