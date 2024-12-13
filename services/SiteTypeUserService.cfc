@@ -1,16 +1,18 @@
 <cfcomponent displayname="SiteTypeUserService" hint="Handles operations for SiteTypeUser table" > 
-<cffunction output="false" name="SELsitetypes_user" access="public" returntype="query">
+<cffunction name="SELsitetypes_user" access="public" returntype="query" output="false">
     <cfargument name="sitetypeid" type="numeric" required="true">
 
-<cfset var sql = "SELECT pnid FROM sitetypes_user_tbl WHERE sitetypeid = ?">
-
-<cfquery name="result">
-        #sql#
-        <cfqueryparam value="#arguments.sitetypeid#" cfsqltype="CF_SQL_INTEGER">
+    <!--- Perform the query --->
+    <cfquery name="result">
+        SELECT pnid 
+        FROM sitetypes_user_tbl 
+        WHERE sitetypeid = <cfqueryparam value="#arguments.sitetypeid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 
-<cfreturn result>
+    <!--- Return the query result --->
+    <cfreturn result>
 </cffunction>
+
 <cffunction output="false" name="UPDsitetypes_user" access="public" returntype="void">
     <cfargument name="sitetypeid" type="numeric" required="true">
 
