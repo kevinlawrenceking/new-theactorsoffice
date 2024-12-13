@@ -27,7 +27,6 @@
 
 <cfinclude template="/include/modal.cfm"/>
 
-
 <cfset modalid="remoteAddContact"/>
 
 <cfset modaltitle="Add Contact"/>
@@ -357,11 +356,10 @@
                   <cfinclude template="/include/qry/qry_block_1_6.cfm"/>
 
                 </cfif>
-<Cfset new_pgid=122 />
-              </cfif>
-<cfif #customerid# is "">
-<cfset customerid = 0 />
-</cfif>
+
+
+
+
               <cfparam name="currentid" default="0"/>
               <cfset session.pgrtn="P"/>
 
