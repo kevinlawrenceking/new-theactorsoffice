@@ -343,7 +343,7 @@
 
                 <cfset t2=1/>
 
-              </cfif>
+         
 
               <cfif #ctaction# is "deleteitem">
 
@@ -357,7 +357,7 @@
 
                 </cfif>
 
-
+</cfif>
 
 
               <cfparam name="currentid" default="0"/>
