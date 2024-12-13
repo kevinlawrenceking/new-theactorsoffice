@@ -2,14 +2,14 @@
 
 <cfset UserService.UPDtaousers_23945(
     userid=userid,
-    new_userfirstname=new_userfirstname,
-    new_userlastname=new_userlastname,
-    new_avatarname=new_avatarname,
-    new_useremail=new_useremail,
-    add1= form.add1,
+    new_userfirstname=form.new_userfirstname,
+    new_userlastname=form.new_userlastname,
+    new_avatarname=form.new_avatarname,
+    new_useremail=form.new_useremail,
+    add1 form.add1,
     add2=form.add2,
-    city=city,
-    zip=zip,
-    region_id=region_id,
-    countryid=countryid
+    city=form.city,
+    zip=form.zip,
+    region_id=form.region_id,
+    countryid=form.countryid
 )>
