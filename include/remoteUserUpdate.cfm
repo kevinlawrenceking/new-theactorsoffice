@@ -4,7 +4,7 @@
 
 <cfinclude template="/include/qry/regions_518_1.cfm"/>
 
-<cfinclude template="/include/qry/timezones_min_547_2.cfm" />
+
 
 <script src="/app/assets/js/jquery.chained.js?ver=13.4.0.580339357529"></script>
  
