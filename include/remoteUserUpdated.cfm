@@ -1,4 +1,4 @@
-<cfparam name="devicetype" defaul="" />
+<cfparam name="devicetype" default="" />
 <cfinclude template="/include/qry/qry_block_1_1.cfm"/>
 
 
