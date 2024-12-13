@@ -192,8 +192,7 @@
     <cfargument name="userid" type="numeric" required="true">
 
   
-    <cfdump var="#arguments#" label="Arguments Passed">
-    <cfabort>
+
 
 <cfquery result="result" >
         UPDATE taousers 
