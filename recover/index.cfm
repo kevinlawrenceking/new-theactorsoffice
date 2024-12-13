@@ -40,7 +40,7 @@ Select * from taousers where recover = '#recover#'
     <cfset cookie.recover = '#recover#' /></cfoutput>
 </cfif>
 <cfoutput>
-<Cfset img_loc = "/media-#host#/images" />
+<Cfset img_loc = "/media-#dsn#/images" />
 </cfoutput>
 
 	<cfif #u.recordcount# is not "1">
