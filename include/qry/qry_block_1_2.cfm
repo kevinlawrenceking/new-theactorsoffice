@@ -6,10 +6,9 @@
     new_userlastname=form.new_userlastname,
     new_avatarname=new_avatarname,
     new_useremail=new_useremail,
-    add1= form.add1,
     add2=form.add2,
-    city=city,
-    zip=zip,
+    city=form.city,
+    zip=form.zip,
     region_id=region_id,
     countryid=countryid
 )>
