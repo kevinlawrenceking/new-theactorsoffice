@@ -10,6 +10,6 @@
     add2=form.add2,
     city=form.city,
     zip=form.zip,
-    region_id=region_id,
-    countryid=countryid
+    region_id=form.region_id,
+    countryid=form.countryid
 )>
