@@ -71,7 +71,7 @@
         
 
 </cfif>
-
+</cfif>
 <script>
   $(document).ready(function () {
     $("#dashboardupdate").on("show.bs.modal", function (event) {
