@@ -2,7 +2,7 @@
 <cfcomponent displayname="AuditionMediaService" hint="Handles operations for AuditionMedia table" >
 
 <!--- Function to select headshots based on user ID --->
-    <cffunction output="false" name="GetHeadshots" access="public" returntype="query"  hint="Retrieve headshots for a specific user ID.">
+ <cffunction output="false" name="GetHeadshots" access="public" returntype="query"  hint="Retrieve headshots for a specific user ID.">
         <cfargument name="userid" type="numeric" required="yes" hint="ID of the user to retrieve headshots for.">
 
 <!--- Query to fetch headshots --->
@@ -33,6 +33,42 @@
                 AND m.isdeleted IS FALSE 
                 AND t.ismaterial = 1 
                 AND m.isshare = 1
+            ORDER BY 
+                m.mediaName
+        </cfquery>
+
+    <cffunction output="false" name="GetMaterials" access="public" returntype="query"  hint="Retrieve headshots for a specific user ID.">
+        <cfargument name="userid" type="numeric" required="yes" hint="ID of the user to retrieve headshots for.">
+
+<!--- Query to fetch headshots --->
+        <cfquery result="result" name="materials_sel">
+            SELECT 
+                m.mediaid,
+                m.mediatypeid,
+                m.mediaName,
+                m.mediaLoc,
+                m.mediaurl,
+                0 AS eventid,
+                m.mediaFilename,
+                m.mediaExt,
+                m.userid,
+                m.mediacreated,
+                m.isdeleted,
+                t.mediaType,
+                t.isimage,
+                e.isimage AS isValidImage
+            FROM 
+                audmedia m  
+            INNER JOIN 
+                audmediatypes t ON t.mediaTypeID = m.mediatypeid
+            LEFT JOIN 
+                exttypes e ON e.mediaext = m.mediaext
+            WHERE 
+                m.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+                AND m.isdeleted IS FALSE 
+                AND t.ismaterial = 1 
+                AND m.isshare = 1
+                and t.mediatype <> 'Headshot'
             ORDER BY 
                 m.mediaName
         </cfquery>
