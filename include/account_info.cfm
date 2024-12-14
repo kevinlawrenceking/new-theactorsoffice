@@ -19,22 +19,13 @@
               </cfif>
 
 
+           <cfif #ctaction# is "addmember">
 
-<cfif #ctaction# is "addmember">
+                <cfinclude template="/include/qry/addTeam.cfm"/>
 
-    <cfinclude template="/include/qry/qry_block_1_3.cfm" />
+              </cfif>
 
-    <cfif #findK.recordcount# is "1">
 
-        <cfset new_contactid=findk.contactid />
-
-        <Cfif #new_contactid# is not "">
-        
-            <cfinclude template="/include/qry/qry_block_1_4.cfm" />
-
-        </cfif>
-
-    </cfif>
 
     <cfif #new_region_id# is "" and #def_region_id# is not "">
 
