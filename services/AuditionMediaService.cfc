@@ -453,6 +453,7 @@
                 m.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
                 AND m.isdeleted = <cfqueryparam value="false" cfsqltype="CF_SQL_BIT"> 
                 AND m.mediatypeid = <cfqueryparam value="1" cfsqltype="CF_SQL_INTEGER">
+                AND t.mediatype = 'Headshot'
             ORDER BY 
                 m.mediaName
         </cfquery>
