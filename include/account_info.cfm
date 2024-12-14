@@ -12,6 +12,14 @@
 
 <cfinclude template="/include/qry/timezones_min_547_2.cfm" />
 
+       <cfif #ctaction# is "deleteitem"><Cfabort>
+
+                <cfinclude template="/include/qry/deleteTeam.cfm"/>
+
+              </cfif>
+
+              
+
 <cfif #ctaction# is "addmember">
 
     <cfinclude template="/include/qry/qry_block_1_3.cfm" />
@@ -405,11 +413,7 @@
 
                 <cfset t2=1/>
 
-              <cfif #ctaction# is "deleteitem">
-
-                <cfinclude template="/include/qry/deleteTeam.cfm"/>
-<Cfabort>
-              </cfif>
+       
 
               <cfparam name="currentid" default="0"/>
 
