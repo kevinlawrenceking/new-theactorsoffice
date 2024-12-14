@@ -4,15 +4,10 @@
 
     <!--- Perform the combined query --->
     <cfquery>
-        UPDATE contactitems_tbl
+           UPDATE contactitems_tbl
         SET isdeleted = 1
-        WHERE itemid = (
-            SELECT itemid 
-            FROM contactitems 
             WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
             AND valuetext = 'My Team'
-            LIMIT 1
-        )
     </cfquery>
 </cffunction>
 <cffunction output="false" name="itemsByCatActive" access="public" returntype="struct">
