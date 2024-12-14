@@ -1,6 +1,6 @@
 <cfcomponent displayname="ActionUserService" hint="Handles operations for ActionUser table" > 
 
-<cffunction name="updateActionUsers" access="public" returntype="void" output="false">
+<cffunction name="updateActionUsers" access="public" returntype="numeric" output="false">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="target_id_system" type="numeric" required="true">
 
