@@ -20,7 +20,7 @@
 <form action="/include/remoteDeleteaudMedia2.cfm" method="post" class="needs-validation" novalidate>
     <cfoutput>
         <input type="hidden" name="mediaid" value="#mediaid#" />
-        <input type="hidden" name="secid" value="#secid#" />
+        <input type="hidden" name="secid" value="#new_secid#" />
         <input type="hidden" name="dqry" value="#dqry#" />
     </cfoutput>
 
