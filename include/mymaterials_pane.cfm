@@ -91,7 +91,7 @@
         </thead>
         <tbody>
             <!--- Loop through materials query --->
-            <cfloop query="headshots_sel">
+            <cfloop query="materials_sel">
                 <!--- Load events for each material --->
                 <cfinclude template="/include/qry/events_166_1.cfm" />
                 <cfset materials = ValueList(events.audprojectid)>
@@ -101,14 +101,14 @@
                     <script>
                         $(document).ready(function() {
                             // Load delete modal content dynamically
-                            $("##remoteDeleteaudmedia#headshots_sel.mediaid#").on("show.bs.modal", function() {
-                                $(this).find(".modal-body").load("/include/remoteDeleteaudmedia.cfm?mediaid=#headshots_sel.mediaid#&secid=196");
+                            $("##remoteDeleteaudmedia#materials_sel.mediaid#").on("show.bs.modal", function() {
+                                $(this).find(".modal-body").load("/include/remoteDeleteaudmedia.cfm?mediaid=#materials_sel.mediaid#&secid=196");
                             });
                         });
                     </script>
 
                     <!--- Delete Material Modal --->
-                    <div id="remoteDeleteaudmedia#headshots_sel.mediaid#" class="modal fade" tabindex="-1" role="dialog" >
+                    <div id="remoteDeleteaudmedia#materials_sel.mediaid#" class="modal fade" tabindex="-1" role="dialog" >
 
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -127,14 +127,14 @@
                     <script>
                         $(document).ready(function() {
                             // Load update modal content dynamically
-                            $("##remoteupdatematerial#headshots_sel.mediaid#").on("show.bs.modal", function() {
-                                $(this).find(".modal-body").load("/include/remoteupdatematerial.cfm?src=account&mediaid=#headshots_sel.mediaid#");
+                            $("##remoteupdatematerial#materials_sel.mediaid#").on("show.bs.modal", function() {
+                                $(this).find(".modal-body").load("/include/remoteupdatematerial.cfm?src=account&mediaid=#materials_sel.mediaid#");
                             });
                         });
                     </script>
 
                     <!--- Update Material Modal --->
-                    <div id="remoteupdatematerial#headshots_sel.mediaid#" class="modal fade" tabindex="-1" role="dialog" >
+                    <div id="remoteupdatematerial#materials_sel.mediaid#" class="modal fade" tabindex="-1" role="dialog" >
 
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -153,32 +153,32 @@
 <!--- Table row for each material --->
                     <tr>
                         <td>
-                            <a title="Edit" data-bs-toggle="modal" data-bs-target="##remoteupdatematerial#headshots_sel.mediaid#">
+                            <a title="Edit" data-bs-toggle="modal" data-bs-target="##remoteupdatematerial#materials_sel.mediaid#">
                                 <i class="mdi mdi-square-edit-outline"></i>
                             </a>
                             <cfif events.recordcount is 0>
-                                <a data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteDeleteaudmedia#headshots_sel.mediaid#"
+                                <a data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteDeleteaudmedia#materials_sel.mediaid#"
                                    title="Delete media">
                                     <i class="mdi mdi-trash-can-outline"></i>
                                 </a>
                             </cfif>
                         </td>
-                        <td class="text-nowrap">#headshots_sel.mediaType#</td>
-                        <td class="text-nowrap">#headshots_sel.mediaName#</td>
+                        <td class="text-nowrap">#materials_sel.mediaType#</td>
+                        <td class="text-nowrap">#materials_sel.mediaName#</td>
                         <td class="text-nowrap">
-                            <a href="##" id="downloadLink_#headshots_sel.mediaid#" style="text-decoration: underline; color: blue;">
-                                #headshots_sel.mediaFilename#
+                            <a href="##" id="downloadLink_#materials_sel.mediaid#" style="text-decoration: underline; color: blue;">
+                                #materials_sel.mediaFilename#
                             </a>
                         </td>
                         <td class="text-nowrap">
-                            <cfif headshots_sel.mediaurl neq "">
-                                <a href="#headshots_sel.mediaurl#" target="_blank" style="text-decoration: underline; color: blue;">
-                                    #headshots_sel.mediaurl#
+                            <cfif materials_sel.mediaurl neq "">
+                                <a href="#materials_sel.mediaurl#" target="_blank" style="text-decoration: underline; color: blue;">
+                                    #materials_sel.mediaurl#
                                 </a>
                             </cfif>
                         </td>
                         <td class="text-nowrap">
-                            #dateformat(headshots_sel.mediacreated, 'm-d-YYYY')#<br />#timeformat(headshots_sel.mediacreated, 'medium')#
+                            #dateformat(materials_sel.mediacreated, 'm-d-YYYY')#<br />#timeformat(materials_sel.mediacreated, 'medium')#
                         </td>
                         <td class="text-nowrap">
                             <cfif events.recordcount neq 0>
@@ -193,11 +193,11 @@
 
                     <!--- JavaScript for handling download link for each media item --->
                     <script type="text/javascript">
-                        document.getElementById('downloadLink_#headshots_sel.mediaid#').addEventListener('click', function(e) {
+                        document.getElementById('downloadLink_#materials_sel.mediaid#').addEventListener('click', function(e) {
                             e.preventDefault();
                             const host = '#host#';
                             const userid = '#userid#';
-                            const mediafilename = '#headshots_sel.mediafilename#';
+                            const mediafilename = '#materials_sel.mediafilename#';
                             window.location.href = '/include/mediadownload.cfm?host=' + host + '&userid=' + userid + '&mediafilename=' + mediafilename;
                         });
                     </script>
