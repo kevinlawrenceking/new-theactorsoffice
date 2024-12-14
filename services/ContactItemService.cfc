@@ -1,4 +1,26 @@
 <cfcomponent displayname="ContactItemService" hint="Handles operations for ContactItem table" > 
+
+<cffunction name="addTeam" access="public" returntype="void" output="false">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="topsearch_myteam" type="string" required="true">
+    <cfquery>
+        INSERT INTO contactitems (contactid, valuetype, valuecategory, valuetext, itemstatus, primary_yn)
+        SELECT 
+            contactid,
+            'Tags',
+            'Tag',
+            'My Team',
+            'Active',
+            'Y'
+        FROM contacts_ss
+        WHERE 
+            userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            AND col1 = <cfqueryparam value="#arguments.topsearch_myteam#" cfsqltype="CF_SQL_VARCHAR">
+        LIMIT 1
+    </cfquery>
+</cffunction>
+
+
 <cffunction name="deleteTeam" access="public" returntype="void" output="false">
     <cfargument name="contactid" type="numeric" required="true">
     <cfquery>
