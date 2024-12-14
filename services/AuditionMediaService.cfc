@@ -73,7 +73,7 @@
                 m.mediaName
         </cfquery>
 
-<cfreturn headshots_sel>
+<cfreturn materials_sel>
     </cffunction>
 
 <cffunction output="false" name="SELaudmedia" access="public" returntype="query">
