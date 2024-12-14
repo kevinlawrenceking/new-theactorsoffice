@@ -87,8 +87,7 @@
                                   immediately</strong>
                               <cfelse>
                                 Starts in<strong>
-                                  #action_user.actiondaysno# day <cfif #action_user.actiondaysno# is not "1">
-                                    s</cfif>
+                                  #action_user.actiondaysno# day<cfif #action_user.actiondaysno# is not "1">s</cfif>
                                 </strong>
                               </cfif>
                               <cfif #numberformat(action_user.actiondaysrecurring)# is not "0">
