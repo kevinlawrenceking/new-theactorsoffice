@@ -7,4 +7,3 @@ target_id_system: #target_id_system#<BR>
 userid: #userid#<BR>
     Number of actions inserted: #insertedCount#
 </cfoutput>
-<cfabort>
