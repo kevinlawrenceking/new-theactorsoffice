@@ -54,7 +54,7 @@
         <cfoutput>
             <script>
                 $(document).ready(function() {
-                    $("##remoteDelete#audmedia.mediaid#").on("show.bs.modal", function(event) {
+                    $("##remoteDelete#headshots.mediaid#").on("show.bs.modal", function(event) {
                         <!--- Load delete media modal content --->
                         $(this).find(".modal-body").load("/include/remoteDeleteheadshots_auditions_xref.cfm?mediaid=#headshots.mediaid#&secid=196&audprojectid=#audprojectid#");
                     });
