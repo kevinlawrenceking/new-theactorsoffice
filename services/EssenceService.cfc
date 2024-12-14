@@ -49,7 +49,6 @@
     <cfargument name="isdeleted" type="numeric" default="0" required="false">
     <cfargument name="essenceid" type="numeric" required="true">
 
-
     <cfquery result="result">
         UPDATE essences 
         SET essenceName = <cfqueryparam value="#arguments.new_essenceName#" cfsqltype="CF_SQL_VARCHAR">, 
