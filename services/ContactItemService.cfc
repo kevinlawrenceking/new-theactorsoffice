@@ -1,8 +1,6 @@
 <cfcomponent displayname="ContactItemService" hint="Handles operations for ContactItem table" > 
 <cffunction name="deleteTeam" access="public" returntype="void" output="false">
     <cfargument name="contactid" type="numeric" required="true">
-
-    <!--- Perform the combined query --->
     <cfquery>
            UPDATE contactitems_tbl
         SET isdeleted = 1
