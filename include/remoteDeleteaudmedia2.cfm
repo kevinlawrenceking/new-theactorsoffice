@@ -7,6 +7,6 @@
     <cflocation url="/app/myaccount/?t9=1&tab9_expand=true" />
 <cfelse>
     <!--- Redirect to the myaccount page with different parameters for other secid values --->
-    <cflocation url="/app/myaccount/?t91&tab9_expand=true" />
+    <cflocation url="/app/myaccount/?t8=1&tab8_expand=true" />
 </cfif>
 
