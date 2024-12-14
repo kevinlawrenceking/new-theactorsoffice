@@ -46,7 +46,7 @@
 
 <cffunction output="false" name="UPDessences_24181" access="public" returntype="void">
     <cfargument name="new_essenceName" type="string" required="true">
-    <cfargument name="isdeleted" type="numeric" required="true">
+    <cfargument name="isdeleted" type="numeric" default="0" required="false">
     <cfargument name="essenceid" type="numeric" required="true">
 
 
