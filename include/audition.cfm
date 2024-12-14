@@ -135,7 +135,7 @@
                             <!--- Open cfif for eventStart --->
                             <cfif auditiondetails.eventStart is not "">
                                 <h4 class="px-1 d-flex text-nowrap">
-                                    <img src="#application.datesUrl#/#DateFormat(auditiondetails.eventStart, 'MM-dd')#.png" style="max-width:75px;" alt="..." />
+                                    <img src="#application.datesUrl#/#DateFormat(auditiondetails.eventStart, 'yyyy-mm-dd')#.png" style="max-width:75px;" alt="..." />
                                 </h4>
                             </cfif>
                             <div class="col-md-12 p-1"><strong>Time: </strong>#timeformat(auditiondetails.eventStartTime)# 
