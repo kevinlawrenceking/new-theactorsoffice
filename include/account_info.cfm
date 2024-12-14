@@ -16,12 +16,24 @@
 
                 <cfinclude template="/include/qry/deleteTeam.cfm"/>
 
+                      <cfset ctaction="view"/>
+
+                <cfset teamaction="view"/>
+
+                <cfset t2=1/>
+
               </cfif>
 
 
            <cfif #ctaction# is "addmember">
 
                 <cfinclude template="/include/qry/addTeam.cfm"/>
+
+                      <cfset ctaction="view"/>
+
+                <cfset teamaction="view"/>
+
+                <cfset t2=1/>
 
               </cfif>
 
@@ -397,11 +409,7 @@
 
                 <cfparam name="ITEMIDD" default="0"/>
 
-                <cfset ctaction="view"/>
-
-                <cfset teamaction="view"/>
-
-                <cfset t2=1/>
+          
 
        
 
