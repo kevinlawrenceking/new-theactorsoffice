@@ -6,8 +6,7 @@
 
 <!--- Step 1: Delete existing action users for the user and target system --->
     <cfquery name="deleteActionUsers">
-        UPDATE actionusers_tbl
-        SET isdeleted = 1
+        delete from  actionusers_tbl
         WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         AND actionid IN (
             SELECT actionid
