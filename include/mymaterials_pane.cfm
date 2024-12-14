@@ -102,7 +102,7 @@
                         $(document).ready(function() {
                             // Load delete modal content dynamically
                             $("##remoteDeleteaudmedia#materials_sel.mediaid#").on("show.bs.modal", function() {
-                                $(this).find(".modal-body").load("/include/remoteDeleteaudmedia.cfm?mediaid=#materials_sel.mediaid#&secid=196");
+                                $(this).find(".modal-body").load("/include/remoteDeleteaudmedia.cfm?mediaid=#materials_sel.mediaid#&new_secid=196&secid=196");
                             });
                         });
                     </script>
