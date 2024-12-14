@@ -36,7 +36,7 @@
             ORDER BY 
                 m.mediaName
         </cfquery>
-
+</cffunction>
     <cffunction output="false" name="GetMaterials" access="public" returntype="query"  hint="Retrieve headshots for a specific user ID.">
         <cfargument name="userid" type="numeric" required="yes" hint="ID of the user to retrieve headshots for.">
 
