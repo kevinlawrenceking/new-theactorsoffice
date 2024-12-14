@@ -12,13 +12,13 @@
 
 <cfinclude template="/include/qry/timezones_min_547_2.cfm" />
 
-       <cfif #ctaction# is "deleteitem"><Cfabort>
+       <cfif #ctaction# is "deleteitem">
 
                 <cfinclude template="/include/qry/deleteTeam.cfm"/>
 
               </cfif>
 
-              
+
 
 <cfif #ctaction# is "addmember">
 
