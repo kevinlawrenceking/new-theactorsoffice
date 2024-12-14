@@ -2,8 +2,7 @@
 <cffunction name="deleteTeam" access="public" returntype="void" output="false">
     <cfargument name="contactid" type="numeric" required="true">
     <cfquery>
-           UPDATE contactitems_tbl
-        SET isdeleted = 1
+           DELETE from contactitems_tbl
             WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
             AND valuetext = 'My Team'
     </cfquery>

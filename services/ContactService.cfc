@@ -1040,6 +1040,7 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
                     FROM contactitems 
                     WHERE valuetext = <cfqueryparam value="My Team" cfsqltype="CF_SQL_VARCHAR"> 
                     AND valuecategory = <cfqueryparam value="Tag" cfsqltype="CF_SQL_VARCHAR">
+                    and isDeleted = 0
                 ) 
             ORDER BY 
                 d.contactfullname

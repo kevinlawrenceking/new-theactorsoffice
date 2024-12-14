@@ -408,11 +408,11 @@
               <cfif #ctaction# is "deleteitem">
 
                 <cfinclude template="/include/qry/deleteTeam.cfm"/>
-
+<Cfabort>
               </cfif>
 
               <cfparam name="currentid" default="0"/>
-              
+
               <cfset session.pgrtn="P"/>
 
               <cfset pgrtn="P"/>
