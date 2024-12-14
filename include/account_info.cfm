@@ -405,28 +405,14 @@
 
                 <cfset t2=1/>
 
-
-
-
-
-         
-
               <cfif #ctaction# is "deleteitem">
 
-                <cfinclude template="/include/qry/qry_block_1_5.cfm"/>
+                <cfinclude template="/include/qry/deleteTeam.cfm"/>
 
-                <cfif #findz.recordcount# is "1">
-
-                  <cfset new_itemid=findz.itemid/>
-
-                  <cfinclude template="/include/qry/qry_block_1_6.cfm"/>
-
-                </cfif>
-
-</cfif>
-
+              </cfif>
 
               <cfparam name="currentid" default="0"/>
+              
               <cfset session.pgrtn="P"/>
 
               <cfset pgrtn="P"/>
