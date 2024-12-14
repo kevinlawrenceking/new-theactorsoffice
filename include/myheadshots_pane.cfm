@@ -44,7 +44,7 @@
                 $(document).ready(function() {
                     $("##remoteDeleteaudmedia#headshots_sel.mediaid#").on("show.bs.modal", function(event) {
                         <!--- Load the HTML for deleting a headshot into the modal body --->
-                        $(this).find(".modal-body").load("/include/remoteDeleteaudmedia.cfm?mediaid=#headshots_sel.mediaid#&secid=196");
+                        $(this).find(".modal-body").load("/include/remoteDeleteaudmedia.cfm?mediaid=#headshots_sel.mediaid#&secid=999");
                     });
                 });
             </script>
