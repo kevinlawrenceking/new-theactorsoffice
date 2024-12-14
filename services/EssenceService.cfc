@@ -46,12 +46,12 @@
 
 <cffunction output="false" name="UPDessences_24181" access="public" returntype="void">
     <cfargument name="new_essenceName" type="string" required="true">
-    <cfargument name="isdeleted" type="boolean" required="true">
+    <cfargument name="isdeleted" type="numeric" required="true">
     <cfargument name="essenceid" type="numeric" required="true">
     <cfquery result="result">
         UPDATE essences 
         SET essenceName = <cfqueryparam value="#arguments.new_essenceName#" cfsqltype="CF_SQL_VARCHAR">, 
-            isDeleted = <cfqueryparam value="#arguments.isdeleted#" cfsqltype="CF_SQL_BIT">
+            isDeleted = <cfqueryparam value="#arguments.isdeleted#" cfsqltype="CF_SQL_INTEGER">
         WHERE essenceid = <cfqueryparam value="#arguments.essenceid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 </cffunction>
