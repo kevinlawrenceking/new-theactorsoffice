@@ -25,7 +25,7 @@
 
 <div class="nomobile">
     <!--- Table to display event results --->
- 
+ <cfif eventresults.eventresults.recordcount neq 0>
 <table id="events-datatable" class="table display dt-responsive nowrap w-100 table-striped table-hover">
     <thead>
         <!--- Render the table header with column names --->
@@ -100,7 +100,7 @@
             </cfloop>
     </tbody>
 </table>
-
+</cfif>
 </div>
 
 <div class="mobile" style="100%;">
