@@ -1,5 +1,32 @@
 <cfcomponent displayname="UserService" hint="Handles operations for User table" >
 
+<cffunction name="update_cal" access="public" returntype="void" output="false">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="calstarttime" type="string" required="true">
+    <cfargument name="calendtime" type="string" required="true">
+    <cfargument name="defRows" type="numeric" required="true">
+    <cfargument name="viewtypeid" type="numeric" required="true">
+    <cfargument name="dateformatid" type="numeric" required="true">
+    <cfargument name="tzid" type="string" required="true">
+
+    <cfquery name="update">
+        UPDATE taousers
+        SET 
+            calstarttime = <cfqueryparam cfsqltype="cf_sql_time" value="#arguments.calstarttime#">,
+            calendtime = <cfqueryparam cfsqltype="cf_sql_time" value="#arguments.calendtime#">,
+            defRows = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.defRows#">,
+            viewtypeid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.viewtypeid#">,
+            dateformatid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.dateformatid#">,
+            tzid = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.tzid#">
+        WHERE 
+            userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#">
+    </cfquery>
+</cffunction>
+
+
+
+
+
 <cffunction name="users_sel" access="public" returntype="query" output="false" hint="Fetches a list of users with the minimum user ID for each record name.">
     <!--- Fetches a list of users with the minimum user ID for each record name. --->
     <cfquery name="users">
