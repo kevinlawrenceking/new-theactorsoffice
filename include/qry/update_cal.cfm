@@ -16,4 +16,3 @@
 <cfoutput>
     <p>Rows Updated: #rowsAffected#</p>
 </cfoutput>
-<cfabort>
