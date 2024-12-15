@@ -4,7 +4,7 @@
 
 
 <!--- Call the function --->
-<cfset userService.update_cal(
+<cfset rowsAffected = userService.update_cal(
     userid = userid,
     calstarttime = calstarttime,
     calendtime = calendtime,
