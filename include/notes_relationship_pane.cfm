@@ -10,7 +10,7 @@
 
         <!--- Output the count of notes --->
         <cfoutput>
-            You have <strong>#notesRelationship.recordcount#</strong> note<cfif #notesRelationship.recordcount# is not "1">s</cfif>.
+            You have <strong>#notesRelationship.recordcount#</strong> note<cfif #notesRelationship.recordcount# is not "1">s</cfif>
         </cfoutput>
     </div>
 

@@ -10,7 +10,7 @@
 
         <!--- Output the count of notes --->
         <cfoutput>
-            You have <strong>#NotesEvent.recordcount#</strong> note<cfif #NotesEvent.recordcount# is not "1">s</cfif>.
+            You have <strong>#NotesEvent.recordcount#</strong> note<cfif #NotesEvent.recordcount# is not "1">s</cfif>
         </cfoutput>
 
     </div>

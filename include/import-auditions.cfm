@@ -133,7 +133,7 @@
                     <div class="d-flex justify-content-between">
                         <div class="float-left">
                             <cfoutput>
-                                <p>You have <strong>#imports.recordcount#</strong> imports.</p>
+                                <p>You have <strong>#imports.recordcount#</strong> imports</p>
                             </cfoutput>
                         </div>
                     </div>
