@@ -2,34 +2,7 @@
 
 <cfinclude template="/include/qry/mysystems_295_1.cfm" />
 
-  <cfloop query="actions">
-                        <cfoutput>
-                            <script>
-                                $(document).ready(function() {
-                                    $("##updateaction_#actions.id#").on("show.bs.modal", function(event) {
-                                        
-                                        $(this).find(".modal-body").load("/include/remoteactionUpdate.cfm?id=#actions.id#");
-                                    });
-                                });
-                            </script>
-                        </cfoutput>
 
-                        <cfoutput>
-                            <div id="updateaction_#actions.id#" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" >
-
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header" style="background-color: ##f3f7f9;">
-                                            <h4 class="modal-title" id="standard-modalLabel">#actions.systemName# Action Update</h4>
-                                            <button type="button" class="close" data-bs-dismiss="modal" >
-<i class="mdi mdi-close-thick"></i></button>
-                                        </div>
-                                        <div class="modal-body"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </cfoutput>
-                    </cfloop>
 
 
 <div class="row">
@@ -99,6 +72,38 @@
                   <div class="row">
 
                     <cfloop query="action_user">
+
+
+                               <cfoutput>
+                            <script>
+                                $(document).ready(function() {
+                                    $("##updateaction_#actions.id#").on("show.bs.modal", function(event) {
+                                        
+                                        $(this).find(".modal-body").load("/include/remoteactionUpdate.cfm?id=#actions.id#");
+                                    });
+                                });
+                            </script>
+                        </cfoutput>
+
+                        <cfoutput>
+                            <div id="updateaction_#actions.id#" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" >
+
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header" style="background-color: ##f3f7f9;">
+                                            <h4 class="modal-title" id="standard-modalLabel">#actions.systemName# Action Update</h4>
+                                            <button type="button" class="close" data-bs-dismiss="modal" >
+<i class="mdi mdi-close-thick"></i></button>
+                                        </div>
+                                        <div class="modal-body"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </cfoutput>
+
+
+
+                        
                       <div class="col-md-12">
                         <cfoutput>
                           <h5>
