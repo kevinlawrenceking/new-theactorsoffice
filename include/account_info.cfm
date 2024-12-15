@@ -228,7 +228,7 @@
 
               <cfoutput query="dateformats">
 
-                <option value="10" <cfif #details.dateformatid# is "#dateformats.id#"> Selected </cfif>>#dateformats.formatexample#</option>
+                <option value="#dateformats.id#" <cfif #details.dateformatid# is "#dateformats.id#"> Selected </cfif>>#dateformats.formatexample#</option>
 
               
 
