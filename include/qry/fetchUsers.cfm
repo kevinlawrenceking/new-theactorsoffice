@@ -3,7 +3,7 @@
 <cfset userData = userService.getUserById(userID)>
 
 <cfif structIsEmpty(userData)>
-    <cfoutput>Not found!</cfoutput>
+    <cfoutput>Not found! #userid#</cfoutput>
     <cfabort>
 </cfif>
 
