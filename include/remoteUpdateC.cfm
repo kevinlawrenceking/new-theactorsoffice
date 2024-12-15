@@ -102,7 +102,7 @@
         <cfif details.catid eq "4" or details.catid eq "5">
             data-parsley-type="url"
             data-parsley-pattern="^(?!.*@).*$"
-            data-parsley-pattern-message="Please enter a valid URL without '@'"
+            data-parsley-pattern-message="Please enter a valid URL"
             data-parsley-type-message="Please enter a valid URL starting with http or https"
         </cfif>>
 
