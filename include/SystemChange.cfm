@@ -51,7 +51,33 @@
 </cfif>
 
 <!--- part K--->
-            <cfif systemid is 3 and systemid_old neq 3>
+            <cfif systemid is 1 and systemid_old neq 1>
+            <cfset new_NoteDetails = "Moved to Follow Up track." />
+                <cfinclude template="/include/qry/InsertNote_294_8.cfm" />
+            </cfif>
+
+                     <cfif systemid is 2 and systemid_old neq 2>
+            <cfset new_NoteDetails = "Moved to Follow Up track." />
+                <cfinclude template="/include/qry/InsertNote_294_8.cfm" />
+            </cfif>
+
+                     <cfif systemid is 3 and systemid_old neq 3>
+            <cfset new_NoteDetails = "Moved to Maintenance Track." />
+                <cfinclude template="/include/qry/InsertNote_294_8.cfm" />
+            </cfif>
+
+                     <cfif systemid is 4 and systemid_old neq 4>
+            <cfset new_NoteDetails = "Moved to Maintenance Track." />
+                <cfinclude template="/include/qry/InsertNote_294_8.cfm" />
+            </cfif>
+
+                     <cfif systemid is 5 and systemid_old neq 5>
+            <cfset new_NoteDetails = "Moved to Targeted Track." />
+                <cfinclude template="/include/qry/InsertNote_294_8.cfm" />
+            </cfif>
+
+                     <cfif systemid is 6 and systemid_old neq 6>
+            <cfset new_NoteDetails = "Moved to Targeted Track." />
                 <cfinclude template="/include/qry/InsertNote_294_8.cfm" />
             </cfif>
 
