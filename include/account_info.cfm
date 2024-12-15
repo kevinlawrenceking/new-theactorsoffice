@@ -354,8 +354,7 @@
 
                       </div>
 
-                      utput>
-                      <div class="form-group col-md-6">
+                            <div class="form-group col-md-6">
 
                         <label for="defrows">Rows Per Page<span class="text-danger">*</span>
                         </label>
