@@ -25,7 +25,8 @@
         <cfqueryparam cfsqltype="cf_sql_integer" value="#defRows#" />
         ,viewtypeid =
         <cfqueryparam cfsqltype="cf_sql_integer" value="#viewtypeid#" />
-
+        ,dateformatid =
+        <cfqueryparam cfsqltype="cf_sql_integer" value="#dateformatid#" />
         ,tzid =
         <cfqueryparam cfsqltype="cf_sql_varchar" value="#tzid#" />
         where userid = #userid#
