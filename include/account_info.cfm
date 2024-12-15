@@ -354,6 +354,30 @@
 
                       </div>
 
+                      utput>
+                      <div class="form-group col-md-6">
+
+                        <label for="defrows">Rows Per Page<span class="text-danger">*</span>
+                        </label>
+
+                        <select class="form-control" name="defrows" id="defrows">
+
+                          <cfoutput>
+
+                            <option value="10" <cfif #details.defrows# is "10"> Selected </cfif>>10</option>
+
+                            <option value="25" <cfif #details.defrows# is "25"> Selected </cfif>>25</option>
+
+                            <option value="50" <cfif #details.defrows# is "50"> Selected </cfif>>50</option>
+
+                            <option value="100" <cfif #details.defrows# is "100"> Selected </cfif>>100</option>
+
+                          </cfoutput>
+
+                        </select>
+
+                      </div>
+
                       <cfoutput>
 
                         <input type="hidden" name="viewtypeid" value="#details.viewtypeid#"/>
