@@ -12,6 +12,8 @@
 
 <cfinclude template="/include/qry/timezones_min_547_2.cfm" />
 
+<cfinclude template="/include/qry/dateformats_463_1.cfm"/>
+
        <cfif #ctaction# is "deleteitem">
 
                 <cfinclude template="/include/qry/deleteTeam.cfm"/>
@@ -281,7 +283,7 @@
 <!--- modal end 
 <cfinclude template="/include/qry/FindUser_1694_2.cfm"/> --->
 
-<cfinclude template="/include/qry/dateformats_463_1.cfm"/>
+
 
 <cfparam name="ctaction" default="view"/>
 
