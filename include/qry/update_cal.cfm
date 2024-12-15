@@ -13,4 +13,7 @@
     dateformatid = dateformatid,
     tzid = tzid
 )>
+<cfoutput>
+    <p>Rows Updated: #rowsAffected#</p>
+</cfoutput>
 <cfabort>

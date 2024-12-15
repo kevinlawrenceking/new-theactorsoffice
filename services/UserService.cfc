@@ -1,6 +1,6 @@
 <cfcomponent displayname="UserService" hint="Handles operations for User table" >
 
-<cffunction name="update_cal" access="public" returntype="void" output="false">
+<cffunction name="update_cal" access="public" returntype="numeric" output="false">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="calstarttime" type="string" required="true">
     <cfargument name="calendtime" type="string" required="true">
@@ -9,7 +9,8 @@
     <cfargument name="dateformatid" type="numeric" required="true">
     <cfargument name="tzid" type="string" required="true">
 
-    <cfquery name="update">
+    <!--- Execute the update query --->
+    <cfquery name="update" result="updateResult">
         UPDATE taousers
         SET 
             calstarttime = <cfqueryparam cfsqltype="cf_sql_time" value="#arguments.calstarttime#">,
@@ -21,7 +22,11 @@
         WHERE 
             userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#">
     </cfquery>
+
+    <!--- Return the number of rows affected --->
+    <cfreturn updateResult.recordcount>
 </cffunction>
+
 
 
 
