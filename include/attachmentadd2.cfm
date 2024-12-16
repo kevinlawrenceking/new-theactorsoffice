@@ -32,6 +32,8 @@
 <cfset new_filename = CFFILE.serverfile />
 
 <cfoutput>
+
+#attachmentsPath#<CFabort>
     <!--- Set the attachment name if it is not already set --->
     <cfif #attachname# is "">
         <cfset attachname = "#new_filename#" />
