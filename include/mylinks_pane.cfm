@@ -190,7 +190,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <cfloop query="mylinks_user">
                             <div class="col-md-6 col-lg-4">
                                 <cfoutput>
-                                    <h5>
+                                    <h5 id="item#mylinks_user.id#">
                                         <a title="Edit" href="updateuserlink.cfm" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##updatelink_#mylinks_user.id#">
                                             <img src="#application.retinaIcons14Url#/#mylinks_user.siteicon#" width="14px" /> 
                                             #mylinks_user.sitename# <cfif #mylinks_user.ver# is not ""> (#ver#)</cfif>
