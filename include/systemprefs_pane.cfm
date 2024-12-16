@@ -102,8 +102,6 @@
                         </cfoutput>
 
 
-
-
                       <div class="col-md-12">
                         <cfoutput>
                           <h5>
@@ -129,7 +127,7 @@
                                 , repeating every<strong>
                                   #action_user.actiondaysrecurring# days</strong>
                               </cfif>
-                              .
+                              
 
                             </p>
                           </div>
