@@ -32,4 +32,4 @@
 )>
 
 <!--- Redirect to the target page --->
-<cflocation url="/app/#target#/?t1=1&target_id=#target_id#" /> 
+<cflocation url="/app/#target#/?t1=1&target_id=#target_id####new_sitetypeid#" /> 
