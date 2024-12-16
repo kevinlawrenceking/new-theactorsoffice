@@ -24,16 +24,33 @@
 </cfif>
 
 <!--- Upload the file to the attachments directory --->
+<!--- Upload the file --->
 <cffile action="upload" 
         filefield="form.file" 
         destination="#attachmentsPath#\" 
-        nameconflict="MAKEUNIQUE" />
+        nameconflict="MAKEUNIQUE" 
+        result="uploadResult" />
+
+<!--- Check if uploadResult variables exist --->
+<cfif StructKeyExists(uploadResult, "FileWasSaved") AND uploadResult.FileWasSaved>
+    <!--- Success message --->
+    <cfoutput>
+        File uploaded successfully!<br>
+        File Name: #uploadResult.ServerFile#<br>
+        File Path: #uploadResult.ServerDirectory#
+    </cfoutput>
+<cfelse>
+    <!--- Failure message --->
+    <cfoutput>
+        File upload failed. Please try again.
+    </cfoutput>
+</cfif>
 
 <cfset new_filename = CFFILE.serverfile />
 
 <cfoutput>
 
-#attachmentsPath#<CFabort>
+#attachmentsPath#<BR>
     <!--- Set the attachment name if it is not already set --->
     <cfif #attachname# is "">
         <cfset attachname = "#new_filename#" />
@@ -44,7 +61,7 @@
 
 <!--- Include the query for inserting the upload record --->
 <cfinclude template="/include/qry/INSERT_22_1.cfm" />
-
+<cfabort>
 <cfoutput>
     <!--- Construct the return URL with parameters --->
     <cfset returnurl = "/app/#returnurl#/?contactid=#rcontactid#&eventid=#reventid#&tab2_expand=true&t3=1" />
