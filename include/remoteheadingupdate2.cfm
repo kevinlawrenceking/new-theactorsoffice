@@ -18,13 +18,13 @@
 --->
 <!--- Redirect based on the value of 'pgrtn' for different scenarios --->
 <cfif #pgrtn# is "P">
-    <cflocation url="/app/myaccount/?t1=1&target_id=#new_sitetypeid#" />
+    <cflocation url="/app/myaccount/?t1=1&target_id=#new_sitetypeid###heading#new_sitetypeid#" addtoken="no"  />
 </cfif>
 
 <cfif #pgrtn# is "D">
-    <cflocation url="/app/myaccount/?t1=1&target_id=#new_sitetypeid#" />
+    <cflocation url="/app/myaccount/?t1=1&target_id=#new_sitetypeid###heading#new_sitetypeid#" addtoken="no"  />
 </cfif>
 
 <cfif #pgrtn# is "z">
-    <cflocation url="/app/dashboard_new/" />
+    <cflocation url="/app/dashboard_new/##heading#new_sitetypeid#" addtoken="no" />
 </cfif>
