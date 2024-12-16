@@ -46,7 +46,7 @@
     </cfoutput>
 </cfif>
 
-<cfset new_filename = CFFILE.serverfile />
+<cfset new_filename = uploadResult.serverfile />
 
 <cfoutput>
 
