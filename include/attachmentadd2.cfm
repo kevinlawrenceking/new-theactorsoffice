@@ -50,7 +50,7 @@
 
 <cfoutput>
 
-#attachmentsPath#<BR>
+
     <!--- Set the attachment name if it is not already set --->
     <cfif #attachname# is "">
         <cfset attachname = "#new_filename#" />
@@ -61,11 +61,11 @@
 
 <!--- Include the query for inserting the upload record --->
 <cfinclude template="/include/qry/INSERT_22_1.cfm" />
-<cfabort>
+
 <cfoutput>
     <!--- Construct the return URL with parameters --->
     <cfset returnurl = "/app/#returnurl#/?contactid=#rcontactid#&eventid=#reventid#&tab2_expand=true&t3=1" />
 </cfoutput>
 
 <!--- Redirect to the return URL --->
-<cflocation url="#returnurl#" />
+<cflocation url="#returnurl#" addtoken="no"  />
