@@ -6,15 +6,27 @@
 
 <cfset host = ListFirst(currentURL, ".") />
 
-<!--- Check if the user media path directory exists, if not, create it --->
-<CFIF not DirectoryExists("#session.userMediaPath#")>
-    <CFDIRECTORY directory="#session.userMediaPath#" action="create">
-</CFIF>
+<!--- Check if the base user media path directory exists, if not, create it --->
+<cfif not DirectoryExists(session.userMediaPath)>
+    <cfdirectory directory="#session.userMediaPath#" action="create">
+</cfif>
 
-<!--- Upload the file to the user's media path --->
+<!--- Construct the path for rcontactid and check/create --->
+<cfset rcontactPath = session.userMediaPath & "\" & rcontactid>
+<cfif not DirectoryExists(rcontactPath)>
+    <cfdirectory directory="#rcontactPath#" action="create">
+</cfif>
+
+<!--- Construct the path for attachments and check/create --->
+<cfset attachmentsPath = rcontactPath & "\attachments">
+<cfif not DirectoryExists(attachmentsPath)>
+    <cfdirectory directory="#attachmentsPath#" action="create">
+</cfif>
+
+<!--- Upload the file to the attachments directory --->
 <cffile action="upload" 
         filefield="form.file" 
-        destination="#session.userMediaPath#\" 
+        destination="#attachmentsPath#\" 
         nameconflict="MAKEUNIQUE" />
 
 <cfset new_filename = CFFILE.serverfile />
