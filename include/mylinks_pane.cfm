@@ -1,31 +1,5 @@
 <!--- This ColdFusion page handles the display of site types and their associated links, including modals for adding and updating links and panels. --->
-<style>
-html {
-    scroll-behavior: smooth;
-}
-</style>
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    const hash = window.location.hash;
-    if (hash) {
-        const targetAccordion = document.querySelector(hash);
-        if (targetAccordion) {
-            // Expand the accordion if it is not already expanded
-            const collapseElement = targetAccordion.nextElementSibling;
-            if (collapseElement && collapseElement.classList.contains("collapse")) {
-                const bsCollapse = new bootstrap.Collapse(collapseElement, { toggle: true });
-                bsCollapse.show();
-            }
-            
-            // Scroll to the target header after a small delay
-            setTimeout(() => {
-                targetAccordion.scrollIntoView({ behavior: "smooth", block: "start" });
-            }, 300); // Delay to allow expansion animation to complete
-        }
-    }
-});
-</script>
 
 
 <cfinclude template="/include/qry/sitetypes_535_1.cfm" />
