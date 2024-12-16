@@ -1,48 +1,40 @@
 <!--- This ColdFusion page handles user media file downloads and ensures the media directory exists before downloading the file. --->
-<cfset currentURL = cgi.server_name />
 
+<cfset currentURL = cgi.server_name />
 <cfset host = ListFirst(currentURL, ".") />
 
+<!--- Include the query to fetch attachment details --->
 <cfinclude template="/include/qry/attachdetails_25_1.cfm" />
 
-<!--- Check if the user media directory exists, if not, create it. --->
-<cfif NOT DirectoryExists(session.userMediaPath)>
-    <!--- Create the directory --->
-    <cfdirectory action="create" directory="#session.userMediaPath#" />
+<cfset rcontactid = attachdetails.contactid />
+
+<!--- Base path for the user media directory --->
+<cfif not DirectoryExists(session.userMediaPath)>
+    <cfdirectory directory="#session.userMediaPath#" action="create">
 </cfif>
 
-<!--- Now proceed with file upload or retrieval logic --->
-<cffile action="upload" 
-        filefield="form.file" 
-        destination="#session.userMediaPath#\" 
-        nameconflict="MAKEUNIQUE" 
-        result="uploadResult" />
+<!--- Construct the path for rcontactid and check/create --->
+<cfset rcontactPath = session.userMediaPath & "\" & attachdetails.rcontactid>
+<cfif not DirectoryExists(rcontactPath)>
+    <cfdirectory directory="#rcontactPath#" action="create">
+</cfif>
 
-<cfif StructKeyExists(uploadResult, "FileWasSaved") AND uploadResult.FileWasSaved>
-    <!--- Set the new filename from the upload result --->
-    <cfset new_filename = uploadResult.ServerFile />
-    <cfoutput>
-        File uploaded successfully: #new_filename#
-    </cfoutput>
+<!--- Construct the path for attachments and check/create --->
+<cfset attachmentsPath = rcontactPath & "\attachments">
+<cfif not DirectoryExists(attachmentsPath)>
+    <cfdirectory directory="#attachmentsPath#" action="create">
+</cfif>
+
+<!--- Construct the full file path --->
+<cfset filePath = attachmentsPath & "\" & attachdetails.attachfilename>
+
+<!--- Ensure the file exists before attempting to download --->
+<cfif FileExists(filePath)>
+    <!--- Read the file and serve it as a download --->
+    <cfheader name="Content-Disposition" value="attachment; filename=#attachdetails.attachfilename#" />
+    <cfcontent type="application/octet-stream" file="#filePath#" />
 <cfelse>
     <cfoutput>
-        File upload failed. Please try again.
+        The requested file does not exist: #filePath#
     </cfoutput>
 </cfif>
-
-
-<!--- Ensure the URL is correctly formatted --->
-<cfset mediaUrl = Trim(session.userMediaUrl) />
-<cfif Right(mediaUrl, 1) NEQ "/">
-    <cfset mediaUrl = mediaUrl & "/" />
-</cfif>
-
-<!--- Download the media file as binary --->
-<cfhttp 
-    url="#mediaUrl##attachdetails.attachfilename#" 
-    getAsBinary="yes" 
-    result="fileResult" />
-
-<cfheader name="Content-Disposition" value="attachment; filename=#attachdetails.attachfilename#" />
-<cfcontent type="application/octet-stream" variable="#cfhttp.fileContent#" />
-

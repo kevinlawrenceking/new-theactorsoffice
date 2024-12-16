@@ -22,11 +22,11 @@
         <cfargument name="attachid" type="numeric" required="true">
 
 <cfquery name="result">
-            SELECT attachid, noteid, attachname, attachfilename
-            FROM attachments
-            WHERE attachid = <cfqueryparam value="#arguments.attachid#" cfsqltype="CF_SQL_INTEGER">
+SELECT a.attachid, a.noteid, a.attachname, a.attachfilename,n.contactid
+FROM attachments a
+    INNER JOIN noteslog n on n.noteid = a.noteid
+WHERE attachid = <cfqueryparam value="#arguments.attachid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
-
 <cfreturn result>
     </cffunction>
 
