@@ -1,14 +1,6 @@
 <cfif isdefined('isexport') and isexport EQ "Y">
-    <cfinclude template="/include/qry/export_ac_31_6.cfm">
-    <cfset sub_name_c=dateFormat(now(),"YYYYMMDD")>
-    <cfset sub_name_d=timeFormat(now(),"HHMMSS")>
-    <cfset fileName="xexport_auditions_#sub_name_c##sub_name_d#.xls">
-    <cfheader name="content-disposition" value="Attachment;filename=#fileName#">
-    <cfcontent file="#session.userMediaPath#\#fileName#" type="application/vnd.ms-excel">
-    <cfscript>
-        cfspreadsheet(action="write", filename="#session.userMediaPath#\#fileName#", query="export_ac", overwrite=true);
-    </cfscript>
-    <cfset isexport="N"/>
+<Cfset session.projectlist = projectlist />
+<Cflocation url="/include/export_auditions.cfm" /
 </cfif>
 <cfinclude template="/include/audition_check.cfm"/>
 <cfinclude template="/include/qry/audcategories_sel.cfm"/>
