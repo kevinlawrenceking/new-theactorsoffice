@@ -69,7 +69,7 @@
 <!--- Handle custom platform logic --->
 <cfif #new_audPlatformid# is "CustomPlatform" and #CustomPlatform# is not "" and #find.recordcount# is "0">
     <cfinclude template="/include/qry/insert_28_11.cfm" />
-    <cfset new_audPlatformid = resultx.generatedkey />
+    <cfset new_audPlatformid = resultx />
 <cfelseif #new_audplatformid# is "CustomPlatform" and #CustomPlatform# is not "" and #find.recordcount# is "1">
     <cfset new_audPlatformid = find.audplatformid />
 <cfelseif #new_audplatformid# is "CustomPlatform" and #CustomPlatform# is "">
