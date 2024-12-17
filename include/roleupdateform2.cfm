@@ -111,6 +111,8 @@
             <cfset select_contactid = new_contactid />
             <cfinclude template="/include/folder_setup.cfm" />
         </cfif>
+        <cfelse>
+        <cfset new_contact_id = 0 />
     </cfif>
 </cfif>
 
@@ -194,7 +196,7 @@
         <cfset new_dialectid = old_dialectid />
     </cfif>
 </cfif> 
-
+<cfoutput></cfoutput><cfaborT>
 <!--- Update audition roles. --->
 <cfinclude template="/include/qry/audroles_upd_287_25.cfm" />
 
