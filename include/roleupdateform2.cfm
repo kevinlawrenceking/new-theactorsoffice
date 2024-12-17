@@ -9,7 +9,7 @@
 <cfparam name="new_opencallname" default="" /> 
 <cfparam name="NEW_OPENCALLID" default="0" /> 
 <cfparam name="new_submitsiteid" default="" />
-<cfparam name="dbug" default="Y" />
+<cfparam name="dbug" default="YN" />
 
 <!--- Include necessary query files for deletion and processing. --->
 <cfinclude template="/include/qry/delete_287_1.cfm" />
