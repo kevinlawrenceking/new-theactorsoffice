@@ -1,5 +1,17 @@
 <cfcomponent displayname="AuditionVocalTypeXRefService" hint="Handles operations for AuditionVocalTypeXRef table" >
 
+<cffunction output="false" name="audvocaltypes_audition_xref" access="public" returntype="query">
+    <cfargument name="audroleid" type="numeric" required="true">
+
+<cfquery name="result">
+        SELECT * 
+        FROM audvocaltypes_audition_xref 
+        WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER"> 
+  </cfquery>
+
+<cfreturn result>
+</cffunction>
+
 <cffunction output="false" name="SELaudvocaltypes_audition_xref" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     <cfargument name="new_vocaltypeid" type="numeric" required="true">

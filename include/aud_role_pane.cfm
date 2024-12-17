@@ -160,6 +160,7 @@
     </cfoutput>
 
     <cfif #new_audsubcatid# is "34">
+       <cfinclude template="/include/qry/audvocaltypes_audition_xref.cfm" />
         <div class="col-md-12 p-1">
             <strong>Vocal Quality: </strong>
           <!---  <cfif #audvocaltypes_audition_xref.recordcount# is not "0"> --->
