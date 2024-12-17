@@ -91,26 +91,21 @@
     </cfif>
 
  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // Get the source ID from ColdFusion
-        const audSourceId = "<cfoutput>#roledetails.audsourceid#</cfoutput>";
+document.addEventListener("DOMContentLoaded", function () {
+    const audSourceId = "<cfoutput>#roledetails.audsourceid#</cfoutput>";
 
-        // Define mappings of IDs to their corresponding conditions
-        const divMappings = {
-            hidden_div: audSourceId !== "1",
-            hidden_divss: audSourceId !== "2",
-            hidden_divs: audSourceId !== "3",
-            hidden_divx: audSourceId !== "4"
-        };
+    // Logic to show only the div that corresponds to the audSourceId
+    if (audSourceId === "1") {
+        document.getElementById("hidden_div").style.display = "block";
+    } else if (audSourceId === "2") {
+        document.getElementById("hidden_divss").style.display = "block";
+    } else if (audSourceId === "3") {
+        document.getElementById("hidden_divs").style.display = "block";
+    } else if (audSourceId === "4") {
+        document.getElementById("hidden_divx").style.display = "block";
+    }
+});
 
-        // Apply styles based on conditions
-        for (const [divId, shouldHide] of Object.entries(divMappings)) {
-            const element = document.getElementById(divId);
-            if (element) {
-                element.style.display = shouldHide ? "none" : "block";
-            }
-        }
-    });
 </script>
 
 <div class="form-group col-md-6">
