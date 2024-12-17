@@ -4,9 +4,9 @@
     <cfargument name="audroleid" type="numeric" required="true">
 
 <cfquery name="result">
-        SELECT * 
-        FROM audvocaltypes_audition_xref 
-        WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER"> 
+SELECT * FROM audvocaltypes t 
+inner join audvocaltypes_audition_xref x on x.vocaltypeid = t.vocaltypeid
+WHERE audroleid = <cfqueryparam value="#arguments.audroleid#" cfsqltype="CF_SQL_INTEGER"> 
   </cfquery>
 
 <cfreturn result>
