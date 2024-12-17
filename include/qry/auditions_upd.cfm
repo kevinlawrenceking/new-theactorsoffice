@@ -42,6 +42,8 @@
 
 <cfparam name="new_region_id" default="" />
 
+<cfoutput>workwithcoach: #new_workwithcoach#<BR></cfoutput><cfabort>
+
 <cfparam name="new_audzip" default="" />
 
 <cfif #new_eventStartTime# is not "">
@@ -56,7 +58,7 @@
     
     new_eventStartTime: #timeformat(new_eventStartTime,'HH:MM:SS')#<BR>
     new_durseconds: #new_durseconds#<BR>
-
+workwithcoach: #new_workwithcoach#<BR>
   statement:     SELECT ADDTIME("#timeformat('#new_eventStartTime#','HH:MM:SS')#", "#new_durseconds#") as new_eventStopTime <BR>  
 
 <cfset new_eventStopTime="#timeformat(DateAdd("s","#new_durseconds#","#new_eventStartTime#"),'HH:MM:SS')#" />
