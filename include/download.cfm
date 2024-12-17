@@ -14,7 +14,7 @@
 </cfif>
 
 <!--- Construct the path for rcontactid and check/create --->
-<cfset rcontactPath = session.userMediaPath & "\" & attachdetails.rcontactid>
+<cfset rcontactPath = session.userMediaPath & "\" & rcontactid>
 <cfif not DirectoryExists(rcontactPath)>
     <cfdirectory directory="#rcontactPath#" action="create">
 </cfif>
