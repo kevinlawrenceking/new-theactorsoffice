@@ -2,6 +2,8 @@
 <Cfset session.projectlist = projectlist />
 <Cflocation url="/include/export_auditions.cfm" />
 </cfif>
+
+
 <cfinclude template="/include/audition_check.cfm"/>
 <cfinclude template="/include/qry/audcategories_sel.cfm"/>
 
