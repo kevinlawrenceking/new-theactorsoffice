@@ -42,7 +42,7 @@
 
 <cfparam name="new_region_id" default="" />
 
-<cfoutput>workwithcoach: #new_workwithcoach#<BR></cfoutput><cfabort>
+
 
 <cfparam name="new_audzip" default="" />
 
