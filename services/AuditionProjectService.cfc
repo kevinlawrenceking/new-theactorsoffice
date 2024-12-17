@@ -12,30 +12,48 @@
     <cfargument name="new_audprojectID" type="numeric" required="true">
 
 <!--- Build the update query dynamically --->
-    <cfquery >
-        UPDATE audprojects
-        SET
-            projName = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_projName#" maxlength="500" null="#NOT len(trim(arguments.new_projName))#">
-            <cfif len(trim(arguments.new_projDescription))>,
-                projDescription = <cfqueryparam cfsqltype="CF_SQL_LONGVARCHAR" value="#arguments.new_projDescription#">
-            </cfif>
-            <cfif arguments.new_unionID NEQ 0>,
-                unionID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_unionID#">
-            </cfif>
-            <cfif arguments.new_networkID NEQ 0>,
-                networkID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_networkID#">
-            </cfif>
-            <cfif arguments.new_toneID NEQ 0>,
-                toneID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_toneID#">
-            </cfif>
-            <cfif arguments.new_contractTypeID NEQ 0>,
-                contractTypeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contractTypeID#">
-            </cfif>
-            <cfif arguments.new_contactid NEQ 0>,
-                contactid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contactid#">
-            </cfif>
-        WHERE audprojectID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audprojectID#">
-    </cfquery>
+<cfquery>
+    UPDATE audprojects
+    SET
+        projName = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_projName#" maxlength="500" null="#NOT len(trim(arguments.new_projName))#">
+        
+        <cfif len(trim(arguments.new_projDescription))>
+            ,projDescription = <cfqueryparam cfsqltype="CF_SQL_LONGVARCHAR" value="#arguments.new_projDescription#">
+        </cfif>
+
+        <cfif arguments.new_unionID EQ 0>
+            ,unionID = NULL
+        <cfelse>
+            ,unionID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_unionID#">
+        </cfif>
+
+        <cfif arguments.new_networkID EQ 0>
+            ,networkID = NULL
+        <cfelse>
+            ,networkID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_networkID#">
+        </cfif>
+
+        <cfif arguments.new_toneID EQ 0>
+            ,toneID = NULL
+        <cfelse>
+            ,toneID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_toneID#">
+        </cfif>
+
+        <cfif arguments.new_contractTypeID EQ 0>
+            ,contractTypeID = NULL
+        <cfelse>
+            ,contractTypeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contractTypeID#">
+        </cfif>
+
+        <cfif arguments.new_contactid EQ 0>
+            ,contactid = NULL
+        <cfelse>
+            ,contactid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contactid#">
+        </cfif>
+
+    WHERE audprojectID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audprojectID#">
+</cfquery>
+
 </cffunction>
 
 <cffunction output="false" name="DETaudprojects" access="public" returntype="query">
