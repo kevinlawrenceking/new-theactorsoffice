@@ -91,12 +91,29 @@
     </cfif>
 
     <style>
-  #hidden_div,
-  #hidden_divss,
-  #hidden_divs,
-  #hidden_divx {
-    display: none; /* All hidden initially */
+    <cfif roledetails.audsourceid neq 1 >
+  #hidden_div{
+    display: none
   }
+  </cfif>
+
+      <cfif roledetails.audsourceid neq 2 >
+  #hidden_divss{
+    display: none
+  }
+  </cfif>
+
+      <cfif roledetails.audsourceid neq 3 >
+  #hidden_divs{
+    display: none 
+  }
+  </cfif>
+
+      <cfif roledetails.audsourceid neq 4 >
+  #hidden_divx {
+    display: none
+  }
+  </cfif?
 </style>
 
  <script>
