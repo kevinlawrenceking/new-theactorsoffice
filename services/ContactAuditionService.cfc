@@ -82,7 +82,7 @@
 
 <cffunction output="false" name="DELaudcontacts_auditions_xref" access="public" returntype="void" hint="Deletes a contact from the audcontacts_auditions_xref table based on project and contact IDs.">
     <cfargument name="audprojectid" type="numeric" required="true" hint="The ID of the project." />
-    <cfargument name="old_contactid" type="numeric" required="true" hint="The ID of the contact to be deleted." />
+    <cfargument name="old_contactid" type="numeric" required="true" default="0" hint="The ID of the contact to be deleted." />
 
 <cfquery result="result">
         DELETE FROM audcontacts_auditions_xref
