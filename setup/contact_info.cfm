@@ -293,16 +293,6 @@
 
 </div>
 
-<script>
-    $(document).ready(function() {
-        $("#remoteUploadForm").on("show.bs.modal", function(event) {
-            
-            $(this).find(".modal-body").load("/include/remoteUploadForm.cfm");
-        });
-    });
-
-</script>
-
 <Cfoutput>
 
     <div id="remoteDeleteForm#currentid#" class="modal fade" tabindex="-1" role="dialog" >

@@ -392,15 +392,6 @@ x</button>
     </div>
 </div>
 
-<script>
-    $(document).ready(function() {
-        $("#remoteUploadForm").on("show.bs.modal", function(event) {
-            
-            $(this).find(".modal-body").load("/include/remoteUploadForm.cfm");
-        });
-    });
-</script>
-
 <Cfoutput>
     <script>
         $(document).ready(function() {
