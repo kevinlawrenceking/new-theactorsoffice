@@ -113,7 +113,7 @@
   #hidden_divx {
     display: none
   }
-  </cfif?
+  </cfif>
 </style>
 
  <script>
