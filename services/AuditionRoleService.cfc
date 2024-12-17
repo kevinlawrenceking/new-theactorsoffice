@@ -425,18 +425,26 @@
             audRoleName = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_audRoleName#" maxlength="500">
             <cfif arguments.new_opencallid neq 0>, 
                 opencallid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_opencallid#">
+                    <cfelse>
+                ,opencallid = NULL
             </cfif>
             <cfif arguments.new_audRoleTypeID neq 0>, 
                 audRoleTypeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleTypeID#">
+                    <cfelse>
+                ,audRoleTypeID = NULL
             </cfif>
 
 ,charDescription = <cfqueryparam cfsqltype="CF_SQL_LONGVARCHAR" value="#arguments.new_charDescription#">
 
 <cfif arguments.new_audDialectID neq 0>, 
                 audDialectID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audDialectID#">
+                     <cfelse>
+                ,audDialectID = NULL
             </cfif>
             <cfif arguments.new_audSourceID neq 0>, 
                 audSourceID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audSourceID#">
+                 <cfelse>
+                ,audSourceID = NULL
             </cfif>
             <cfif arguments.new_contactid neq 0>, 
                 contactid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contactid#">
