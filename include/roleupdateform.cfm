@@ -122,19 +122,19 @@
   }
   </cfif>
 
-      <cfif roledetails.audsourceid neq 2 >
+      <cfif roledetails.audsourceid eq 2 >
   #hidden_divss{
     display: block
   }
   </cfif>
 
-      <cfif roledetails.audsourceid neq 3 >
+      <cfif roledetails.audsourceid eq 3 >
   #hidden_divs{
     display: block 
   }
   </cfif>
 
-      <cfif roledetails.audsourceid neq 4 >
+      <cfif roledetails.audsourceid eq 4 >
   #hidden_divx {
     display: block
   }
