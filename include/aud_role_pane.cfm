@@ -162,7 +162,7 @@
     <cfif #new_audsubcatid# is "34">
         <div class="col-md-12 p-1">
             <strong>Vocal Quality: </strong>
-            <cfif #audvocaltypes_audition_xref.recordcount# is not "0">
+          <!---  <cfif #audvocaltypes_audition_xref.recordcount# is not "0"> --->
                 <cfloop query="audvocaltypes_audition_xref">
                     <cfoutput>
                         <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateTag" data-bs-placement="top" title="Update Tag" data-bs-original-title="Update Tag">
@@ -170,7 +170,7 @@
                         </a>
                     </cfoutput>
                 </cfloop>
-            </cfif>
+            <!---   </cfif> --->
         </div>
     </cfif>
 
