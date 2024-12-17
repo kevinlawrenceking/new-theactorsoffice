@@ -196,7 +196,7 @@
         <cfset new_dialectid = old_dialectid />
     </cfif>
 </cfif> 
-<cfoutput></cfoutput><cfaborT>
+
 <!--- Update audition roles. --->
 <cfinclude template="/include/qry/audroles_upd_287_25.cfm" />
 
