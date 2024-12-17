@@ -342,7 +342,7 @@
             <cfoutput>
                 <div class="form-group col-md-12">
                     <label for="new_eventStart">Platform URL (optional)</label>
-                    <input class="form-control" type="text" value="#projectDetails.audlocation#" id="new_audLocation" autocomplete="off" name="new_audLocation" placeholder="Zoom link" />
+                    <input class="form-control" type="text" value="#aud_det.audlocation#" id="new_audLocation" autocomplete="off" name="new_audLocation" placeholder="Zoom link" />
                 </div>
                 <input type="hidden" name="old_audPlatformid" value="#aud_det.audplatformid#" />
             </cfoutput>
