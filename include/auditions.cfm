@@ -1,4 +1,15 @@
-<!--- This ColdFusion page handles audition management, including adding auditions, filtering by various criteria, and displaying results in both table and gallery formats. --->
+<cfif isexport EQ "Y">
+    <cfinclude template="/include/qry/export_ac_31_6.cfm">
+    <cfset sub_name_c=dateFormat(now(),"YYYYMMDD")>
+    <cfset sub_name_d=timeFormat(now(),"HHMMSS")>
+    <cfset fileName="xexport_auditions_#sub_name_c##sub_name_d#.xls">
+    <cfheader name="content-disposition" value="Attachment;filename=#fileName#">
+    <cfcontent file="#session.userMediaPath#\#fileName#" type="application/vnd.ms-excel">
+    <cfscript>
+        cfspreadsheet(action="write", filename="#session.userMediaPath#\#fileName#", query="export_ac", overwrite=true);
+    </cfscript>
+    <cfset isexport="N"/>
+</cfif>
 <cfinclude template="/include/audition_check.cfm"/>
 <cfinclude template="/include/qry/audcategories_sel.cfm"/>
 
@@ -494,24 +505,4 @@
         <!--- end col --->
     </div>
 
-    <cfif #isexport# is "Y">
-        <cfinclude template="/include/qry/export_ac_31_6.cfm">
-   
-        <cfoutput>
 
-      
-          <cfset sub_name_c="#dateformat('#now()#','YYYYMMDD')#"/>
-          <cfset sub_name_d="#timeformat('#now()#','HHMMSS')#"/>
-          <cfset fileName="xexport_auditions_#sub_name_c##sub_name_d#.xls"/>
-
-          <cfscript>
-            cfspreadsheet(action = "write", fileName = "#session.userMediaPath#\#fileName#", query = "export_ac", overwrite = true);
-          </cfscript>
-
-          <cfheader name="content-disposition" value="Attachment;filename=#fileName#">
-          <cfcontent file="#session.userMediaPath#\#fileName#" type="application/vnd.ms-excel">
-
-        </cfoutput>
-
-        <cfset isexport="N"/>
-      </cfif>
