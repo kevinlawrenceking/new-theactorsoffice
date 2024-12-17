@@ -453,6 +453,8 @@
             </cfif>
             <cfif arguments.new_submitsiteid neq 0>, 
                 submitsiteid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_submitsiteid#">
+                    <cfelse>
+                ,submitsiteid = NULL
             </cfif>
             , isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#">
         WHERE 
