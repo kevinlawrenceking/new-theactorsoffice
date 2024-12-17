@@ -66,7 +66,7 @@
 </cfoutput>
 
 </cfif>
-new_audLocation: <cfoutput>#new_audLocation#</cfoutput><cfabort>
+
 <cfinclude template="/include/qry/auditions_ins_374_1.cfm" />
 
 <cfoutput>

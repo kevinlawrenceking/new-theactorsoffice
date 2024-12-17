@@ -17,7 +17,7 @@
 </cfif>
 
 <!--- Include additional queries for auditions and event activation --->
-<cfinclude template="/include/qry/auditions_upd.cfm" />
+<cfinclude template="/include/qry/pauditions_upd.cfm" />
 <cfinclude template="/include/qry/activate_222_3.cfm" />
 
 <cfinclude template="/include/qry/auditionDetails_222_5.cfm" />
