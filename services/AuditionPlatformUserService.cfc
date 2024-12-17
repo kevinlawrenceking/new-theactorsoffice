@@ -19,13 +19,14 @@
     <cfargument name="userid" type="numeric" required="true">
 
 <cfquery result="result">
-        INSERT INTO audPlatforms_user_tbl (audPlatform, userid) 
+        INSERT INTO audPlatforms_user_tbl (audPlatform, userid, isdeleted) 
         VALUES (
             <cfqueryparam value="#arguments.CustomPlatform#" cfsqltype="CF_SQL_VARCHAR">, 
-            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+            <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
         )
     </cfquery>
-    <cfreturn result>
+    <cfreturn result.GeneratedKey>
 </cffunction>
 
 <cffunction output="false" name="SELaudplatforms_user_24582" access="public" returntype="query">
