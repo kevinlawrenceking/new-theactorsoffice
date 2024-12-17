@@ -84,12 +84,18 @@
     <cfargument name="audprojectid" type="numeric" required="true" hint="The ID of the project." />
     <cfargument name="old_contactid" type="numeric" required="true" default="0" hint="The ID of the contact to be deleted." />
 
-<cfquery result="result">
+    <!--- If old_contactid is null, set it to 0 --->
+    <cfif NOT isNumeric(arguments.old_contactid)>
+        <cfset arguments.old_contactid = 0>
+    </cfif>
+
+    <cfquery result="result">
         DELETE FROM audcontacts_auditions_xref
         WHERE audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
         AND contactid = <cfqueryparam value="#arguments.old_contactid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 </cffunction>
+
 
 <cffunction output="false" name="INSaudcontacts_auditions_xref_24059" access="public" returntype="void">
     <cfargument name="audprojectid" type="numeric" required="true">
