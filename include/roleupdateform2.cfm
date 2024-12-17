@@ -113,7 +113,7 @@
         </cfif>
     </cfif>
 </cfif>
-
+here<CfaborT>
 <!--- Handle submissions if new_audSourceID is 2. --->
 <cfif #new_audSourceID# is "2">
     <cfinclude template="/include/qry/find_subsite_287_21.cfm" />
@@ -175,7 +175,7 @@
         <cfif #dbug# is "Y">
             <cfoutput>
                 new_submitsiteid: #new_submitsiteid#<BR>
-            </cfoutput><Cfabort>
+            </cfoutput>
         </cfif>
     </cfif>
 </cfif>
