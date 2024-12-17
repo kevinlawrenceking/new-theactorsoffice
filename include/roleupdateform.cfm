@@ -90,6 +90,15 @@
         </div>
     </cfif>
 
+    <style>
+  #hidden_div,
+  #hidden_divss,
+  #hidden_divs,
+  #hidden_divx {
+    display: none; /* All hidden initially */
+  }
+</style>
+
  <script>
 document.addEventListener("DOMContentLoaded", function () {
     const audSourceId = "<cfoutput>#roledetails.audsourceid#</cfoutput>";
