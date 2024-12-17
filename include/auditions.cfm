@@ -499,17 +499,17 @@
    
         <cfoutput>
 
-          <cfset app_direct="C:\home\theactorsoffice.com\media-#host#\users\#userid#\"/>
+      
           <cfset sub_name_c="#dateformat('#now()#','YYYYMMDD')#"/>
           <cfset sub_name_d="#timeformat('#now()#','HHMMSS')#"/>
           <cfset fileName="xexport_auditions_#sub_name_c##sub_name_d#.xls"/>
 
           <cfscript>
-            cfspreadsheet(action = "write", fileName = "#app_direct#\#fileName#", query = "export_ac", overwrite = true);
+            cfspreadsheet(action = "write", fileName = "#session.userMediaPath#\#fileName#", query = "export_ac", overwrite = true);
           </cfscript>
 
           <cfheader name="content-disposition" value="Attachment;filename=#fileName#">
-          <cfcontent file="#app_direct#\#fileName#" type="application/vnd.ms-excel">
+          <cfcontent file="#session.userMediaPath#\#fileName#" type="application/vnd.ms-excel">
 
         </cfoutput>
 
