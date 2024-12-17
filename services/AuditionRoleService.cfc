@@ -440,6 +440,8 @@
             </cfif>
             <cfif arguments.new_contactid neq 0>, 
                 contactid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contactid#">
+                <cfelse>
+                contactid = NULL
             </cfif>
             <cfif arguments.new_submitsiteid neq 0>, 
                 submitsiteid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_submitsiteid#">

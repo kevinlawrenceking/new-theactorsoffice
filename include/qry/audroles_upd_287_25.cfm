@@ -19,7 +19,10 @@
     <cfset roleArgs.new_audSourceID = new_audSourceID>
 </cfif>
 <cfif isNumeric(new_contactid)>
-    <cfset roleArgs.new_contactid = new_contactid>
+<cfset roleArgs.new_contactid = new_contactid>
+<Cfelse>
+<cfset roleArgs.new_contactid = 0 />
+    
 </cfif>
 <cfif isNumeric(new_submitsiteid)>
     <cfset roleArgs.new_submitsiteid = new_submitsiteid>
