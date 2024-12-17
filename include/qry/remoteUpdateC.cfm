@@ -147,7 +147,7 @@
             <div class="form-group col-md-12">
                 <label for="valueCompany">#details.recordname# Name<span class="text-danger">*</span></label>
             </cfoutput>
-            <select id="valueCompany" name="valueCompany" class="form-control" data-parsley-required data-parsley-error-message="Name is required." onchange="if (this.value=='custom'){this.form['custom'].style.visibility='visible'} else {this.form['custom'].style.visibility='hidden'};">
+            <select id="valueCompany" name="valueCompany" class="form-control" data-parsley-required data-parsley-error-message="Name is required." onchange="if (this.value=='custom'){this.form['custom'].style.display='block'} else {this.form['custom'].style.display='none'};">
                 <option value=""></option>
                 <cfoutput query="companies">
                     <option value="#companies.new_valuecompany#" <cfif #companies.new_valuecompany# is "#details.valuecompany#"> selected </cfif>>#companies.new_valuecompany# </option>
@@ -156,9 +156,9 @@
             </select>
         </div>
 
-        <div class="form-group col-md-12" id="special" style="visibility:hidden">
+        <div class="form-group col-md-12" id="special" style="display:none">
             <cfoutput>
-                <input class="form-control" type="text" id="custom" name="custom" style="visibility:hidden;" value="" placeholder="Enter Custom #details.recordname#" />
+                <input class="form-control" type="text" id="custom" name="custom" style="display:none;" value="" placeholder="Enter Custom #details.recordname#" />
             </cfoutput>
         </div>
 

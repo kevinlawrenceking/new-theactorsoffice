@@ -38,7 +38,7 @@
             </label>
 
             <!--- Additional options that appear based on radio button selection. --->
-            <span style="visibility:hidden" id="ifYes">
+            <span style="display:none" id="ifYes">
                 <input type="button" value="Clear Restriction" class="small" onclick="Clear();" />
             </span>
         </div>
@@ -46,7 +46,7 @@
 
     <p>
         <!--- Submit button to continue with the form submission. --->
-        <input type="submit" onclick="popup('popUpDiv')" id="submitit" name="submitit" value="Continue" style="visibility: hidden;" class="btn submitit btn-xs btn-primary legitRipple" />
+        <input type="submit" onclick="popup('popUpDiv')" id="submitit" name="submitit" value="Continue" style="display: none;" class="btn submitit btn-xs btn-primary legitRipple" />
     </p>
 </form>
 

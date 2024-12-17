@@ -68,7 +68,7 @@
     <cfelse>
         <div class="form-group col-md-6">
             <label for="new_auddialectid">Dialect</label>
-            <select class="form-control" name="new_auddialectid" id="new_auddialectid" onchange="if (this.value=='CustomDialect'){this.form['CustomDialect'].style.visibility='visible',this.form['CustomDialect'].required=true} else {this.form['CustomDialect'].style.visibility='hidden',this.form['CustomDialect'].required=false};">
+            <select class="form-control" name="new_auddialectid" id="new_auddialectid" onchange="if (this.value=='CustomDialect'){this.form['CustomDialect'].style.display='block',this.form['CustomDialect'].required=true} else {this.form['CustomDialect'].style.display='none',this.form['CustomDialect'].required=false};">
                 <option value="">--</option>
                 <option value="CustomDialect">***ADD CUSTOM</option>
                 <cfoutput query="auddialects_user_sel">
@@ -84,7 +84,7 @@
             </div>
         </div>
         
-        <div class="form-group col-md-6" id="CustomDialects" style="visibility:hidden;">
+        <div class="form-group col-md-6" id="CustomDialects" style="display:none;">
             <label for="CustomDialect">Custom Dialect</label>
             <input class="form-control" type="text" id="CustomDialect" name="CustomDialect" value="" placeholder="Enter a Custom Dialect" />
         </div>

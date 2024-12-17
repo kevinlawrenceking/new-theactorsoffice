@@ -72,7 +72,7 @@
         <cfelse>
             <div class="form-group col-md-6">
                 <label for="new_networkID">Network</label>
-                <select class="form-control" name="new_networkID" id="new_networkID" onchange="if (this.value=='CustomNetwork'){this.form['CustomNetwork'].style.visibility='visible',this.form['CustomNetwork'].required=true} else {this.form['CustomNetwork'].style.visibility='hidden',this.form['CustomNetwork'].required=false};">
+                <select class="form-control" name="new_networkID" id="new_networkID" onchange="if (this.value=='CustomNetwork'){this.form['CustomNetwork'].style.display='block',this.form['CustomNetwork'].required=true} else {this.form['CustomNetwork'].style.display='none',this.form['CustomNetwork'].required=false};">
                     <option value="">--</option>
                     <option value="CustomNetwork">***ADD CUSTOM</option>
                     <cfoutput query="audnetworks_user_sel">
@@ -89,7 +89,7 @@
             </div>
 
             <cfoutput>
-                <div class="form-group col-md-6" id="CustomNetworks" style="visibility:hidden;">
+                <div class="form-group col-md-6" id="CustomNetworks" style="display:none;">
                     <label for="CustomTone">Custom Network</label>
                     <input class="form-control" type="text" id="CustomNetwork" name="CustomNetwork" value="" placeholder="Enter a Custom Network" />
                 </div>
@@ -102,7 +102,7 @@
         <cfelse>
             <div class="form-group col-md-6">
                 <label for="new_toneID">Style / Format</label>
-                <select class="form-control" name="new_toneID" id="new_toneID" onchange="if (this.value=='Custom'){this.form['Custom'].style.visibility='visible',this.form['Custom'].required=true} else {this.form['Custom'].style.visibility='hidden',this.form['Custom'].required=false};">
+                <select class="form-control" name="new_toneID" id="new_toneID" onchange="if (this.value=='Custom'){this.form['Custom'].style.display='block',this.form['Custom'].required=true} else {this.form['Custom'].style.display='none',this.form['Custom'].required=false};">
                     <option value="">--</option>
                     <option value="Custom">***ADD CUSTOM</option>
                     <cfoutput query="audtones_user_sel">
@@ -119,7 +119,7 @@
             </div>
 
             <cfoutput>
-                <div class="form-group col-md-6" id="Custom" style="visibility:hidden;">
+                <div class="form-group col-md-6" id="Custom" style="display:none;">
                     <label for="new_custom">Custom Tone</label>
                     <input class="form-control" type="text" id="new_custom" name="Custom" value="" placeholder="Enter a Custom Tone" />
                 </div>

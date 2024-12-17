@@ -62,7 +62,7 @@
     <div class="form-group col-sm-6 mb-6">
         <label for="contactPronoun">Gender Pronoun</label>
         <select id="contactPronoun" name="contactPronoun" class="form-control" 
-                onchange="if (this.value=='custom'){this.form['custom'].style.visibility='visible',this.form['custom'].required=true}else {this.form['custom'].style.visibility='hidden',this.form['custom'].required=false};">
+                onchange="if (this.value=='custom'){this.form['custom'].style.display='block',this.form['custom'].required=true}else {this.form['custom'].style.display='none',this.form['custom'].required=false};">
             <option value="">Select a Pronoun</option>
             <cfoutput query="pronouns">
                 <option value="#pronouns.genderPronoun#" <cfif #pronouns.genderPronoun# is "#details.contactPronoun#"> Selected</cfif>>#pronouns.genderPronoun#</option>
@@ -83,7 +83,7 @@
 
     <div class="form-group col-sm-6 mb-6">
         <div class="input-group">
-            <input class="form-control" type="text" name="custom" id="custom" style="visibility:hidden;" 
+            <input class="form-control" type="text" name="custom" id="custom" style="display:none;" 
                    data-parsley-maxlength="50" placeholder="Add a Gender Pronoun in single/plural format.">
         </div>
     </div>

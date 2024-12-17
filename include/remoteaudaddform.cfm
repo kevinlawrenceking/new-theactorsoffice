@@ -213,7 +213,7 @@
         <!--- Physical Location Selection --->
         <div class="form-group col-md-6 col-sm-12">
             <label for="new_audLocation">Physical Location<span class="text-danger">*</span></label>
-            <select id="new_audlocid" class="form-control" name="new_audlocid" data-parsley-required data-parsley-error-message="Location is required" onchange="if (this.value=='custom'){this.form['custom'].style.visibility='visible',this.form['custom'].required=true} else {this.form['custom'].style.visibility='hidden',this.form['custom'].required=false};">
+            <select id="new_audlocid" class="form-control" name="new_audlocid" data-parsley-required data-parsley-error-message="Location is required" onchange="if (this.value=='custom'){this.form['custom'].style.display='block',this.form['custom'].required=true} else {this.form['custom'].style.display='none',this.form['custom'].required=false};">
                 <option value="">--</option>
                 <option value="custom">***ADD NEW***</option>
                 <cfoutput query="audlocations_sel">
@@ -222,8 +222,8 @@
             </select>
 
             <!--- Custom Location Input --->
-            <div class="form-group col-md-12 pt-3" id="special" style="visibility:hidden">
-                <input class="form-control" type="text" id="custom" name="custom" style="visibility:hidden;" value="" placeholder="Enter Custom Location" />
+            <div class="form-group col-md-12 pt-3" id="special" style="display:none">
+                <input class="form-control" type="text" id="custom" name="custom" style="display:none;" value="" placeholder="Enter Custom Location" />
             </div>
 
             <!--- Zoom Link Input --->
