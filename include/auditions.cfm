@@ -1,6 +1,6 @@
 <cfif isdefined('isexport') and isexport EQ "Y">
 <Cfset session.projectlist = projectlist />
-<Cflocation url="/include/export_auditions.cfm" /
+<Cflocation url="/include/export_auditions.cfm" />
 </cfif>
 <cfinclude template="/include/audition_check.cfm"/>
 <cfinclude template="/include/qry/audcategories_sel.cfm"/>
