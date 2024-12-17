@@ -206,7 +206,7 @@
                                 <cfif attachments.recordcount is not "0">
                                     <cfloop query="attachments">
                                         <br />
-                                        <a href="/include/download.cfm?attachid=#attachid#">#attachname#</a>
+                                        <a href="/include/download_aud.cfm?attachid=#attachid#">#attachname#</a>
                                         <a href="/include/attachmentdelaud.cfm?contactid=0&rcontactid=0&attachid=#attachments.attachid#&audprojectid=#audprojectid#&returnurl=audition" title="delete attachment">
                                             <i class="mdi mdi-trash-can-outline mr-1"></i>
                                         </a>
