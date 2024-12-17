@@ -9,7 +9,7 @@
 <cfparam name="new_opencallname" default="" /> 
 <cfparam name="NEW_OPENCALLID" default="0" /> 
 <cfparam name="new_submitsiteid" default="" />
-<cfparam name="dbug" default="n" />
+<cfparam name="dbug" default="Y" />
 
 <!--- Include necessary query files for deletion and processing. --->
 <cfinclude template="/include/qry/delete_287_1.cfm" />
@@ -175,7 +175,7 @@
         <cfif #dbug# is "Y">
             <cfoutput>
                 new_submitsiteid: #new_submitsiteid#<BR>
-            </cfoutput>
+            </cfoutput><Cfabort>
         </cfif>
     </cfif>
 </cfif>
