@@ -150,7 +150,7 @@
                     new_catlist: #new_catlist#<BR>
                 </cfoutput>
             </cfif>
-            here<CfaborT>
+        
             <cfinclude template="/include/qry/update_287_22.cfm" />
             <cfif #dbug# is "Y">
                 <cfoutput>

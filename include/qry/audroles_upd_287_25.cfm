@@ -28,5 +28,5 @@
 <cfif len(trim(new_charDescription))>
     <cfset roleArgs.new_charDescription = new_charDescription>
 </cfif>
-
+<cfoutput>submitsiteid: #new_submitsiteid#</cfoutput><cfabort>
 <cfset auditionRoleService.UPDaudroles_24299(argumentCollection=roleArgs)>
