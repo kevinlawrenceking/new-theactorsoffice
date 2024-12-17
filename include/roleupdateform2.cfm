@@ -83,6 +83,10 @@
 </cfif>
 
 <!--- Handle contact creation if new_audSourceID is 3 and referral is provided. --->
+<cfif #new_audsourceid# is "">
+<cfset new_contactid = 0 />
+<cfset new_submitsiteid = 0 />
+</cfif>
 <cfif #new_audSourceID# is "3">
     <cfif #referral# is not "">
         <cfinclude template="/include/qry/findg_287_19.cfm" />
