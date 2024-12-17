@@ -39,7 +39,7 @@
 <cfif isDate(new_eventStopTime)>
     <cfset eventArguments["new_eventStopTime"] = new_eventStopTime>
 </cfif>
-<cfoutput>workwithcoach: #new_workwithcoach#<BR></cfoutput><cfabort>
+
 <!--- Call the function with filtered arguments --->
 <cfset eventService.UPDevents_24557(argumentCollection=eventArguments)>
 
