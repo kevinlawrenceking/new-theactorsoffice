@@ -39,7 +39,7 @@
 <cfif isDate(new_eventStopTime)>
     <cfset eventArguments["new_eventStopTime"] = new_eventStopTime>
 </cfif>
-<Cfoutput>new_audLocation: #new_audLocation#</cfoutput><cfaborT>
+
 <!--- Call the function with filtered arguments --->
 <cfset eventService.UPDevents_24557(argumentCollection=eventArguments)>
 
