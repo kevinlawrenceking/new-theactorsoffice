@@ -114,6 +114,33 @@
     display: none
   }
   </cfif>
+
+
+   <cfif roledetails.audsourceid eq 1 >
+  #hidden_div{
+    display: block
+  }
+  </cfif>
+
+      <cfif roledetails.audsourceid neq 2 >
+  #hidden_divss{
+    display: block
+  }
+  </cfif>
+
+      <cfif roledetails.audsourceid neq 3 >
+  #hidden_divs{
+    display: block 
+  }
+  </cfif>
+
+      <cfif roledetails.audsourceid neq 4 >
+  #hidden_divx {
+    display: block
+  }
+  </cfif>
+
+
 </style>
 
  <script>
