@@ -1,4 +1,4 @@
-<cfif isexport EQ "Y">
+<cfif isdefined('isexport') and isexport EQ "Y">
     <cfinclude template="/include/qry/export_ac_31_6.cfm">
     <cfset sub_name_c=dateFormat(now(),"YYYYMMDD")>
     <cfset sub_name_d=timeFormat(now(),"HHMMSS")>
