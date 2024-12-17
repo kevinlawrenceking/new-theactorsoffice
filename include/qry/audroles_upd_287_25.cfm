@@ -29,4 +29,4 @@
     <cfset roleArgs.new_charDescription = new_charDescription>
 </cfif>
 <cfoutput>submitsiteid: #new_submitsiteid#<BR><Cfdump var="#roleArgs#"></cfoutput><cfabort>
-<cfset auditionRoleService.UPDaudroles_24299(argumentCollection=roleArgs#)>
+<cfset auditionRoleService.UPDaudroles_24299(argumentCollection=roleArgs)>
