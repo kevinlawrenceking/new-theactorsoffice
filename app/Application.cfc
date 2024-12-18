@@ -90,8 +90,8 @@
         session.userMediaPath = application.baseMediaPath & "\users\" & session.userID;
  session.userMediaUrl = application.baseMediaUrl & "/users/" & session.userID;
 
-        session.userCalendarPath = session.userMediaPath;
-        session.userCalendarUrl = "https://" & host & ".theactorsoffice.com/" & session.userMediaUrl;
+       session.userCalendarPath = baseMediaPath & "\calendar\" & UserData.user.calendarName & ".ics";
+        session.userCalendarUrl = baseMediaUrl & "/calendar/" & UserData.user.calendarName & ".ics";
 
         session.userContactsPath = session.userMediaPath & "\contacts";
         session.userContactsUrl = session.userMediaUrl & "/contacts";
