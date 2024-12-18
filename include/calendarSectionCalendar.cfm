@@ -23,7 +23,7 @@
                     <i class="mdi mdi-close-thick"></i>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body">-
             </div>
         </div>
     </div>
