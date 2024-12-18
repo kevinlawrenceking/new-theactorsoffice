@@ -99,7 +99,7 @@
             <option value="">--</option>
             <cfoutput query="countries">
                 <option value="#countries.countryid#" 
-                    <cfif countries.countryid EQ new_countryid>selected</cfif>>
+                    <cfif countries.countryid EQ details.new_countryid>selected</cfif>>
                     #countries.countryname#
                 </option>
             </cfoutput>
@@ -112,7 +112,7 @@
             <option value="">--</option>
             <cfoutput query="regions">
                 <option value="#regions.region_id#" data-chained="#regions.countryid#" 
-                    <cfif regions.region_id EQ new_region_id>selected</cfif>>
+                    <cfif regions.region_id EQ details.new_region_id>selected</cfif>>
                     #regions.regionname#
                 </option>
             </cfoutput>
