@@ -39,7 +39,7 @@
             <cfset new_essenceid = findit.new_essenceid />
         <cfelse>
             <cfinclude template="/include/qry/insert_287_9.cfm" />
-            <cfset new_essenceid = result.generated_key />
+            
         </cfif>
         
         <cfinclude template="/include/qry/insert_287_10.cfm" />
