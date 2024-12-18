@@ -124,7 +124,7 @@
             <cfoutput>
                 <div class="form-group col-md-12">
                     <label for="valuetext">#details.recordname#<span class="text-danger">*</span></label>
-                    <input class="form-control" type="text" id="valuetext"  data-parsley-required="true" name="valuetext" data-parsley-minlength="#minlength#" data-parsley-minlength-message="Min length #minlength# characters" data-parsley-maxlength="800" data-parsley-maxlength-message="Max length 800 characters" data-parsley-required data-parsley-error-message="Valid #details.recordname# is required" placeholder="Enter #details.recordname#" />
+                    <input class="form-control" type="text" id="valuetext"  data-parsley-required="true" name="valuetext" data-parsley-minlength="#minlength#" data-parsley-minlength-message="Min length #minlength# characters" data-parsley-maxlength="800" data-parsley-maxlength-message="Max length 800 characters" data-parsley-required data-parsley-phone data-parsley-error-message="Valid #details.recordname# is required" placeholder="Enter #details.recordname#" />
                 </div>
             </cfoutput>
         </cfif>
