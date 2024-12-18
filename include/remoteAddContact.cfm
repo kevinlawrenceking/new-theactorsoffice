@@ -60,17 +60,4 @@
         </p>
     </div>
 </form>
-
-<script>
-Parsley.addValidator('phone', {
-  requirementType: 'string',
-  validateString: function(value) {
-    // This regex allows various international formats:
-    // Digits, spaces, plus sign, parentheses, and dashes
-    return /^[0-9\+\-\(\)\s]+$/.test(value);
-  },
-  messages: {
-    en: 'Please enter a valid phone number.'
-  }
-});
-</script>
+                                                                                                                            
