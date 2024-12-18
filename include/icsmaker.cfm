@@ -53,7 +53,7 @@ WHERE u.userid = #target_userid#
         ,e.eventStopTime
         ,t.eventtypecolor
         FROM events e INNER JOIN eventtypes t on t.eventtypename = e.eventtypename
-        WHERE e.userid = #new_userid# and e.eventStart is not null and e.eventStop is not null
+        WHERE e.userid = #new_userid# and e.eventStart is not null and e.eventStop is not null and e.eventstatus = 'Active' and e.isdeleted = 0
     </cfquery>
 
 <Cfif #eventItem.recordcount# is not "0">
