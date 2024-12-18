@@ -115,7 +115,7 @@
     <cfset ICSContent=ICSContent & "CALSCALE:#calscale##chr(13)##chr(10)#" />
     <cfset ICSContent=ICSContent & "X-WR-CALNAME:#calname##chr(13)##chr(10)#" />
     <cfset ICSContent=ICSContent & "X-WR-TIMEZONE:#tzid##chr(13)##chr(10)#" />
-
+<Cfif #eventItem.recordcount# is not "0">
 <cfloop query="eventItem">
 
 <cfoutput>
@@ -240,3 +240,4 @@
 <cffile action="write" file="#calendar_path#" output="#TRIM(ICSContent)#" />
 
 </cfloop>
+</cfif>
