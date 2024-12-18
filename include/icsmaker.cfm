@@ -231,6 +231,7 @@
         <cfset ICSContent=ICSContent & "DTEND:#DateFormat(dateend,'yyyymmdd')#T#TimeFormat(DateAdd('h',utcHourOffset,timeend),'HHmmss')#Z#chr(13)##chr(10)#" />
         <cfset ICSContent=ICSContent & "DTSTAMP:#DateFormat(now(),'yyyymmdd')#T#TimeFormat(now(),'HHmmss')#Z#chr(13)##chr(10)#">
         <cfset ICSContent=ICSContent & "END:VEVENT#chr(13)##chr(10)#" />
+        </cfif>
     </cfloop>
 
 <cfset ICSContent=ICSContent & "END:VCALENDAR" />
@@ -240,4 +241,3 @@
 <cffile action="write" file="#calendar_path#" output="#TRIM(ICSContent)#" />
 
 </cfloop>
-</cfif>
