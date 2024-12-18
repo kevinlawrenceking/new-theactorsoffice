@@ -126,7 +126,7 @@
     <cfargument name="new_buyout" required="false">
     <cfargument name="new_paycycleid" required="false">
 
-    <cfquery datasource="#dsn#">
+    <cfquery >
         UPDATE audroles
         SET audroleid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audroleid#">
 
