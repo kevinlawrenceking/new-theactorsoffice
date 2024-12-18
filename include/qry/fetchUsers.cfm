@@ -6,7 +6,7 @@
     <cfoutput>Not found! #userid#</cfoutput>
     <cfabort>
 </cfif>
-
+<cfset calendarName = UserData.user.calendarName />
 <cfset userId = UserData.user.userId />
 <cfset recordName = UserData.user.recordName />
 <cfset isDeleted = UserData.user.isDeleted />
