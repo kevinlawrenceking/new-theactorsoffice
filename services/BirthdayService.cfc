@@ -7,25 +7,25 @@
     
     <!--- Query to retrieve the upcoming birthdays --->
     <cfquery name="birthdays" maxrows="#arguments.maxRows#">
-        SELECT 
-            d.contactfullname AS col1,
-            d.contactid,
-            DATE_FORMAT(d.contactbirthday, '%m-%d') AS col2,
-            DATEDIFF(
-                DATE_ADD(
-                    STR_TO_DATE(CONCAT(YEAR(CURDATE()), '-', DATE_FORMAT(d.contactbirthday, '%m-%d')), '%Y-%m-%d'),
-                    IF(DATE_FORMAT(d.contactbirthday, '%m-%d') < DATE_FORMAT(CURDATE(), '%m-%d'), INTERVAL 1 YEAR, INTERVAL 0 DAY)
-                ),
-                CURDATE()
-            ) AS daysuntil
-        FROM contactdetails d
-        WHERE 
-            d.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer"> 
-            AND d.contactbirthday IS NOT NULL
-        HAVING daysuntil BETWEEN 0 AND <cfqueryparam value="#arguments.daysLimit#" cfsqltype="cf_sql_integer">
-        ORDER BY daysuntil
-    </cfquery>
-
+SELECT 
+    d.contactfullname AS col1,
+    d.contactid,
+    DATE_FORMAT(d.contactbirthday, '%m-%d') AS col2,
+    DATEDIFF(
+        CASE 
+            WHEN DATE_FORMAT(d.contactbirthday, '%m-%d') < DATE_FORMAT(CURDATE(), '%m-%d') 
+            THEN STR_TO_DATE(CONCAT(YEAR(CURDATE()) + 1, '-', DATE_FORMAT(d.contactbirthday, '%m-%d')), '%Y-%m-%d')
+            ELSE STR_TO_DATE(CONCAT(YEAR(CURDATE()), '-', DATE_FORMAT(d.contactbirthday, '%m-%d')), '%Y-%m-%d')
+        END,
+        CURDATE()
+    ) AS daysuntil
+FROM contactdetails d
+WHERE 
+    d.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer"> 
+    AND d.contactbirthday IS NOT NULL
+HAVING daysuntil BETWEEN 0 AND <cfqueryparam value="#arguments.daysLimit#" cfsqltype="cf_sql_integer">
+ORDER BY daysuntil
+</cfquery>
     <!--- Return the query result --->
     <cfreturn birthdays>
 </cffunction>
