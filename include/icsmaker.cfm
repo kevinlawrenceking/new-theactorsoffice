@@ -183,12 +183,12 @@
         <cfset starthours_h=eventitem.starthours_h />
 
         <cfset starthours=#replace(starthours_h,'h','','All')# />
-
+      <cfset stophours = numberformat(stophours) />
         <cfset final_start_hour=numberformat(starthours + utchouroffset) />
 
         <cfset stopthours_h=eventitem.stophours_h />
 
-        <cfset stophours=#replace(stophours_h,'h','','All')# />
+ 
         <cfif #dbug# is "Y">
             <Cfoutput>
                 stophours: #stophours# utchouroffset: utchouroffset <BR>
