@@ -25,36 +25,54 @@
                     </div>
                 <cfelse>
                     <!--- Loop through birthdays and display --->
-                    <cfloop query="birthdays">
+                   <cfloop query="birthdays">
+    <!--- Generate paths and URLs for avatars --->
+    <cfset contactAvatarUrl = session.userContactsUrl & "/" & birthdays.contactid & "/avatar.jpg">
+    <cfset avatarPath = session.userContactsPath & "/" & birthdays.contactid & "/avatar.jpg">
+    <cfset defaultAvatarUrl = application.defaultAvatarUrl>
 
-                   <cfscript>
+    <!--- Check and handle avatar existence --->
+    <cfif NOT fileExists(avatarPath)>
+        <!--- Ensure the directory exists --->
+        <cfif NOT directoryExists(session.userContactsPath & "/" & birthdays.contactid)>
+            <cfdirectory action="create" directory="#session.userContactsPath & "/" & birthdays.contactid#">
+        </cfif>
 
-                    contactAvatarUrl = session.userContactsUrl & "/" & birthdays.contactid & "/avatar.jpg";
+        <!--- Copy default avatar to contact directory --->
+        <cftry>
+            <cffile action="copy" source="#defaultAvatarUrl#" destination="#avatarPath#">
+            <cfcatch type="any">
+                <!--- Log or handle error --->
+                <cfset application.errorLog = "Failed to copy default avatar for contact ID " & birthdays.contactid & ": " & cfcatch.message>
+            </cfcatch>
+        </cftry>
+    </cfif>
 
-                </cfscript>
-                        <!--- Avatar and Contact Link --->
-                        <div class="col-md-2 col-lg-2" style="margin-top:7px;margin-left:7px;">
-                            <a href="/app/contact/?contactid=#birthdays.contactid#&t1=1" title="#birthdays.col1#">
-                                <cfif isImageFile("#contactAvatarUrl#")>
-                                    <img src="#contactAvatarUrl#" class="img-fluid" alt="#birthdays.col1#" style="width: 30px;" />
-                                <cfelse>
-                                    <img src="#application.defaultAvatarUrl#" class="img-fluid" alt="#birthdays.col1#" style="width: 30px;" />
-                                </cfif>
-                            </a>
-                        </div>
+    <!--- Display contact information --->
+    <div class="col-md-2 col-lg-2" style="margin-top:7px;margin-left:7px;">
+        <a href="/app/contact/?contactid=#birthdays.contactid#&t1=1" title="#birthdays.col1#">
+            <!--- Display avatar or fallback to default --->
+            <cfif fileExists(avatarPath)>
+                <img src="#contactAvatarUrl#?rev=#rand()#" class="img-fluid" alt="#birthdays.col1#" style="width: 30px;" />
+            <cfelse>
+                <img src="#defaultAvatarUrl#" class="img-fluid" alt="#birthdays.col1#" style="width: 30px;" />
+            </cfif>
+        </a>
+    </div>
 
-                        <!--- Birthday Information --->
-                        <div class="col-md-9 col-lg-9">
-                            <a href="/app/contact/?contactid=#birthdays.contactid#&t1=1" title="#birthdays.col1#">
-                                #birthdays.col1#
-                            </a>
-                            <br>
-                            <small>#birthdays.col2#</small>
-                        </div>
+    <!--- Birthday Information --->
+    <div class="col-md-9 col-lg-9">
+        <a href="/app/contact/?contactid=#birthdays.contactid#&t1=1" title="#birthdays.col1#">
+            #birthdays.col1#
+        </a>
+        <br>
+        <small>#birthdays.col2#</small>
+    </div>
 
-                        <!--- Spacing between entries --->
-                        <div class="col-12 mb-2"></div>
-                    </cfloop>
+    <!--- Spacing between entries --->
+    <div class="col-12 mb-2"></div>
+</cfloop>
+
                 </cfif>
             </div>
         </div>
