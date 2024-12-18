@@ -1,4 +1,4 @@
-<cfset dbug="N" />
+<cfset dbug="Y" />
 <CFINCLUDE template="remote_load.cfm" />
 <cfset currentURL=cgi.server_name />
 <cfset host=ListFirst(currentURL, "." ) />
