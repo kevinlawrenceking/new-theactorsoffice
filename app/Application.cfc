@@ -51,8 +51,6 @@
     application.defaultAvatarUrl = application.defaultsUrl & "/avatar.jpg";
     application.defaultAvatarPath = application.defaultsPath & "/avatar.jpg";
 
-    application.baseMediaPath
-
     application.emailImagesPath = application.imagesPath & "\email";
     application.emailImagesUrl = application.imagesUrl & "/email";
 
@@ -84,14 +82,13 @@
     </cfif>
 
     <cfif structKeyExists(session, "userid")>
-
-    <cfinclude template="/include/qry/fetchusers.cfm" />
+    <CFINCLUDE template="/include/qry/fetchUsers.cfm" />
       <cfscript>
         session.userMediaPath = application.baseMediaPath & "\users\" & session.userID;
- session.userMediaUrl = application.baseMediaUrl & "/users/" & session.userID;
+        session.userMediaUrl = application.baseMediaUrl & "/users/" & session.userID;
 
-       session.userCalendarPath = baseMediaPath & "\calendar\" & UserData.user.calendarName & ".ics";
-        session.userCalendarUrl = baseMediaUrl & "/calendar/" & UserData.user.calendarName & ".ics";
+        session.userCalendarPath = session.userMediaPath & "\calendar\" & calendarname & ".ics";
+        session.userCalendarUrl = "https://" & host & ".theactorsoffice.com/calendar/" & calendarname & ".ics";
 
         session.userContactsPath = session.userMediaPath & "\contacts";
         session.userContactsUrl = session.userMediaUrl & "/contacts";
