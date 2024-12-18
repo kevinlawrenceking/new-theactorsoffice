@@ -330,7 +330,7 @@
                                 <!--- end if ActiveCategories.valueCategory is not Email and ActiveCategories.valueCategory is not Phone and ActiveCategories.valueCategory is not Tag --->
 
                             </cfif>
-                            <!--- end if ActiveCategories.catfieldset is text --->
+              v              <!--- end if ActiveCategories.catfieldset is text --->
 
                         </cfloop>
 
