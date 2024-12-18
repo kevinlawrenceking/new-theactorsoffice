@@ -122,7 +122,7 @@
 </cfif>
 
 <!--- Always show import history if record count is not zero --->
-<cfinclude template="/include/qry/imports_140_4.cfm" />
+<cfinclude template="/include/qry/auditions_import.cfm" />
 
 <cfif imports.recordcount GT 0>
     <div class="row">
