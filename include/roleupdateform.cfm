@@ -412,22 +412,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 </select>
             </div>
 
-            <script>
-                $("#select-vocal").selectize({
-                    persist: !1,
-                    createOnBlur: !0,
-                    create: !0,
-                    plugins: ["remove_button"],
-                    delimiter: ",",
-                    persist: false,
-                    create: function(input) {
-                        return {
-                            value: input,
-                            text: input,
-                        };
-                    },
-                });
-            </script>
+      <script>
+    $("#select-vocal").selectize({
+        persist: false,
+        createOnBlur: false,
+        create: false, // Prevents creation of new options
+        plugins: ["remove_button"],
+        delimiter: ","
+    });
+</script>
         </div>
     </cfif>
 
