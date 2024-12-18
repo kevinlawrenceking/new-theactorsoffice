@@ -227,11 +227,10 @@
         <cfset ICSContent=ICSContent & "SUMMARY:#eventItem.summary##chr(13)##chr(10)#" />
         <cfset ICSContent=ICSContent & "DESCRIPTION:#new_description##chr(13)##chr(10)#" />
         <cfset ICSContent=ICSContent & "LOCATION:#new_location##chr(13)##chr(10)#" />
-
         <cfset ICSContent=ICSContent & "DTSTART:#DateFormat(datestart,'yyyymmdd')#T#TimeFormat(DateAdd('h',utcHourOffset,timestart),'HHmmss')#Z#chr(13)##chr(10)#" />
         <cfset ICSContent=ICSContent & "DTEND:#DateFormat(dateend,'yyyymmdd')#T#TimeFormat(DateAdd('h',utcHourOffset,timeend),'HHmmss')#Z#chr(13)##chr(10)#" />
         <cfset ICSContent=ICSContent & "DTSTAMP:#DateFormat(now(),'yyyymmdd')#T#TimeFormat(now(),'HHmmss')#Z#chr(13)##chr(10)#">
-            <cfset ICSContent=ICSContent & "END:VEVENT#chr(13)##chr(10)#" />
+        <cfset ICSContent=ICSContent & "END:VEVENT#chr(13)##chr(10)#" />
     </cfloop>
 
 <cfset ICSContent=ICSContent & "END:VCALENDAR" />
