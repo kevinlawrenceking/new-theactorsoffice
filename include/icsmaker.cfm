@@ -22,6 +22,7 @@
     FROM taousers u
 <Cfif #target_userid# is not "0">
 and u.userid = #target_userid#
+</cfif>
 </cfquery>
 
 <cfloop query="U">
