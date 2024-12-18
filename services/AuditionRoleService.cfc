@@ -120,49 +120,38 @@
 </cffunction>
 <cffunction output="false" name="UPDaudroles_23810" access="public" returntype="void">
     <cfargument name="new_audroleid" type="numeric" required="true">
-    <cfargument name="new_incometypeid" type="numeric" required="false">
-    <cfargument name="new_payrate" type="numeric" required="false">
-    <cfargument name="new_netincome" type="numeric" required="false">
-    <cfargument name="new_buyout" type="numeric" required="false">
-    <cfargument name="new_paycycleid" type="numeric" required="false">
+    <cfargument name="new_incometypeid" required="false">
+    <cfargument name="new_payrate" required="false">
+    <cfargument name="new_netincome" required="false">
+    <cfargument name="new_buyout" required="false">
+    <cfargument name="new_paycycleid" required="false">
 
-<cfset var sql = "UPDATE audroles SET audroleid = ?">
-    <cfset var params = [ { value=arguments.new_audroleid, cfsqltype="CF_SQL_INTEGER" } ]>
+    <cfquery datasource="#dsn#">
+        UPDATE audroles
+        SET audroleid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audroleid#">
 
-<cfif structKeyExists(arguments, "new_incometypeid") and len(arguments.new_incometypeid)>
-        <cfset sql &= ", incometypeid = ?">
-        <cfset arrayAppend(params, { value=arguments.new_incometypeid, cfsqltype="CF_SQL_INTEGER" })>
-    </cfif>
-
-<cfif structKeyExists(arguments, "new_payrate") and len(arguments.new_payrate)>
-        <cfset sql &= ", payrate = ?">
-        <cfset arrayAppend(params, { value=arguments.new_payrate, cfsqltype="CF_SQL_DECIMAL" })>
-    </cfif>
-
-<cfif structKeyExists(arguments, "new_netincome") and len(arguments.new_netincome)>
-        <cfset sql &= ", netincome = ?">
-        <cfset arrayAppend(params, { value=arguments.new_netincome, cfsqltype="CF_SQL_DECIMAL" })>
-    </cfif>
-
-<cfif structKeyExists(arguments, "new_buyout") and len(arguments.new_buyout)>
-        <cfset sql &= ", buyout = ?">
-        <cfset arrayAppend(params, { value=arguments.new_buyout, cfsqltype="CF_SQL_DECIMAL" })>
-    </cfif>
-
-<cfif structKeyExists(arguments, "new_paycycleid") and len(arguments.new_paycycleid)>
-        <cfset sql &= ", paycycleid = ?">
-        <cfset arrayAppend(params, { value=arguments.new_paycycleid, cfsqltype="CF_SQL_INTEGER" })>
-    </cfif>
-
-<cfset sql &= " WHERE audroleid = ?">
-    <cfset arrayAppend(params, { value=arguments.new_audroleid, cfsqltype="CF_SQL_INTEGER" })>
-
-<cfquery result="result">
-            #sql#
-            <cfloop array="#params#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-            </cfloop>
-        </cfquery>
+        <cfif isNumeric(arguments.new_incometypeid)>
+            ,incometypeid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_incometypeid#">
+        </cfif>
+        
+        <cfif isNumeric(arguments.new_payrate)>
+            ,payrate = <cfqueryparam cfsqltype="CF_SQL_DECIMAL" value="#arguments.new_payrate#">
+        </cfif>
+        
+        <cfif isNumeric(arguments.new_netincome)>
+            ,netincome = <cfqueryparam cfsqltype="CF_SQL_DECIMAL" value="#arguments.new_netincome#">
+        </cfif>
+        
+        <cfif isNumeric(arguments.new_buyout)>
+            ,buyout = <cfqueryparam cfsqltype="CF_SQL_DECIMAL" value="#arguments.new_buyout#">
+        </cfif>
+        
+        <cfif isNumeric(arguments.new_paycycleid)>
+            ,paycycleid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_paycycleid#">
+        </cfif>
+        
+        WHERE audroleid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audroleid#">
+    </cfquery>
 
 </cffunction>
 <cffunction output="false" name="UPDaudroles_23813" access="public" returntype="void">
