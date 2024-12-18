@@ -40,3 +40,19 @@ $(function() {
 });
 
 </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    window.Parsley.addValidator('phone', {
+        validateString: function(value) {
+            // Simple regex for US phone numbers (e.g., 123-456-7890 or (123) 456-7890)
+            const phoneRegex = /^(?:\(?\d{3}\)?[-.\s]?)?\d{3}[-.\s]?\d{4}$/;
+            return phoneRegex.test(value);
+        },
+        messages: {
+            en: 'Please enter a valid phone number (e.g., 123-456-7890)',
+        }
+    });
+});
+</script>
+
