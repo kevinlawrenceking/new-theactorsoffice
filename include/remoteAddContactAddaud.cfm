@@ -14,8 +14,8 @@
 
 <!--- Include the initial query for adding contact information --->
 <cfinclude template="/include/qry/add_202_1.cfm" />
-<cfset currentid = result.generated_key />
-<cfset contactid = result.generated_key />
+<cfset currentid = newContactId />
+<cfset contactid = newContactId />
 
 <!--- Check if new tags are provided and insert them --->
 <cfif #new_tag# is not "">
