@@ -18,7 +18,7 @@
                 <cfoutput>
                 <p>
                     Download the 
-                    <a href="#application.auditionimporttemplate#" target="new">
+                    <a href="#application.auditionimporttemplate#" download target="new">
                         <strong><i class="fe-upload"></i> Import Template</strong>
                     </a> 
                     to copy and paste all the events you'd like to import. 
