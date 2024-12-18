@@ -27,6 +27,35 @@
 
     <cfset new_userid=U.userid />
 
+        <cfquery result="result"  name="eventItem">
+        SELECT
+        e.eventID
+        ,e.eventID as recid
+        ,e.eventTitle as summary
+        ,e.eventDescription
+        ,e.eventLocation as LOCATION
+        ,e.eventStatus as col4
+        ,e.eventCreation
+        ,e.eventStart
+        ,e.eventStop
+        ,e.eventTypeName as col5
+        ,'Appointment' as head1
+        ,'Location' as head2
+        ,'Date' as head3
+        ,'Status' as head4
+        ,'Type' as head5
+        ,e.userid
+        ,e.eventStartTime
+        ,DATE_FORMAT(e.eventStartTime, '%k') as starthours_h
+        ,DATE_FORMAT(e.eventStopTime, '%k') as stophours_h
+        ,e.eventStopTime
+        ,t.eventtypecolor
+        FROM events e INNER JOIN eventtypes t on t.eventtypename = e.eventtypename
+        WHERE e.userid = #new_userid# and e.eventStart is not null and e.eventStop is not null
+    </cfquery>
+
+<Cfif #eventItem.recordcount# is not "0">
+
     <cfoutput>
 
         <cfset tzid="#u.tzid#" />
@@ -65,32 +94,7 @@
     <cfparam name="CALSCALE" default="Gregorian" />
     <cfparam name="utcHourOffset" default="Gregorian" />
     <cfparam name="location" default="" />
-    <cfquery result="result"  name="eventItem">
-        SELECT
-        e.eventID
-        ,e.eventID as recid
-        ,e.eventTitle as summary
-        ,e.eventDescription
-        ,e.eventLocation as LOCATION
-        ,e.eventStatus as col4
-        ,e.eventCreation
-        ,e.eventStart
-        ,e.eventStop
-        ,e.eventTypeName as col5
-        ,'Appointment' as head1
-        ,'Location' as head2
-        ,'Date' as head3
-        ,'Status' as head4
-        ,'Type' as head5
-        ,e.userid
-        ,e.eventStartTime
-        ,DATE_FORMAT(e.eventStartTime, '%k') as starthours_h
-        ,DATE_FORMAT(e.eventStopTime, '%k') as stophours_h
-        ,e.eventStopTime
-        ,t.eventtypecolor
-        FROM events e INNER JOIN eventtypes t on t.eventtypename = e.eventtypename
-        WHERE e.userid = #new_userid# and e.eventStart is not null and e.eventStop is not null
-    </cfquery>
+
 
 <cfif #isdefined('tzid')#>
         <cfset tzid=tzid />
@@ -115,7 +119,7 @@
     <cfset ICSContent=ICSContent & "CALSCALE:#calscale##chr(13)##chr(10)#" />
     <cfset ICSContent=ICSContent & "X-WR-CALNAME:#calname##chr(13)##chr(10)#" />
     <cfset ICSContent=ICSContent & "X-WR-TIMEZONE:#tzid##chr(13)##chr(10)#" />
-<Cfif #eventItem.recordcount# is not "0">
+
 <cfloop query="eventItem">
 
 <cfoutput>
@@ -231,13 +235,13 @@
         <cfset ICSContent=ICSContent & "DTEND:#DateFormat(dateend,'yyyymmdd')#T#TimeFormat(DateAdd('h',utcHourOffset,timeend),'HHmmss')#Z#chr(13)##chr(10)#" />
         <cfset ICSContent=ICSContent & "DTSTAMP:#DateFormat(now(),'yyyymmdd')#T#TimeFormat(now(),'HHmmss')#Z#chr(13)##chr(10)#">
         <cfset ICSContent=ICSContent & "END:VEVENT#chr(13)##chr(10)#" />
-        </cfif>
+    
     </cfloop>
-
+ 
 <cfset ICSContent=ICSContent & "END:VCALENDAR" />
 
 <Cfset calendar_path = "C:\home\theactorsoffice.com\media-#dsn#\calendar\#u.calendarname#.ics" />
 
 <cffile action="write" file="#calendar_path#" output="#TRIM(ICSContent)#" />
-
+</cfif>
 </cfloop>
