@@ -24,9 +24,8 @@
 
   <div class="card-body">
 
-    <div class="row">
-
-      <cfloop query="myteam">
+    <div class="row">   <cfinclude template="/include/qry/findtag_97_1.cfm"/>
+<cfloop query="myteam">
 
     <!--- Construct paths and URLs for avatar --->
     <cfset contactAvatarUrl = session.userContactsUrl & "/" & myteam.contactid & "/avatar.jpg">
@@ -81,6 +80,7 @@
         &nbsp;
     </div>
 </cfloop>
+
 
       </div>
 
