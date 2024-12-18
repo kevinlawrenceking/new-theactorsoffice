@@ -28,36 +28,60 @@
 
       <cfloop query="myteam">
 
-        <cfinclude template="/include/qry/findtag_97_1.cfm"/>
+    <!--- Construct paths and URLs for avatar --->
+    <cfset contactAvatarUrl = session.userContactsUrl & "/" & myteam.contactid & "/avatar.jpg">
+    <cfset avatarPath = session.userContactsPath & "/" & myteam.contactid & "/avatar.jpg">
+    <cfset defaultAvatarUrl = application.defaultAvatarUrl>
 
-        <div class="col-md-2 col-lg-2" style="margin-top:7px;margin-left:7px;">
-          <cfoutput>
+    <!--- Ensure avatar file existence and copy default if missing --->
+    <cfif NOT fileExists(avatarPath)>
+        <!--- Ensure directory exists --->
+        <cfif NOT directoryExists(session.userContactsPath & "/" & myteam.contactid)>
+            <cfdirectory action="create" directory="#session.userContactsPath & "/" & myteam.contactid#">
+        </cfif>
+
+        <!--- Copy default avatar to user's contact directory --->
+        <cftry>
+            <cffile action="copy" source="#defaultAvatarUrl#" destination="#avatarPath#">
+            <cfcatch type="any">
+                <!--- Log or handle error --->
+                <cfset application.errorLog = "Failed to copy default avatar for contact ID " & myteam.contactid & ": " & cfcatch.message>
+            </cfcatch>
+        </cftry>
+    </cfif>
+
+    <!--- Render avatar and contact details --->
+    <div class="col-md-2 col-lg-2" style="margin-top:7px;margin-left:7px;">
+        <cfoutput>
             <a href="/app/contact/?contactid=#myteam.contactid#&t1=1" class="" title="#myteam.contactname#">
-              <cfif #isimagefile("https://#host#.theactorsoffice.com#session.userContactsUrl#/#myteam.contactid#/avatar.jpg")#>
-                <img src="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg" style="width:30px;" alt="#myteam.contactname#"/>
-              <cfelse>
-                <img src="#application.defaultAvatarUrl#" style="width:30px;" alt="#myteam.contactname#"/>
-              </cfif>
-
+                <!--- Display avatar or fallback to default --->
+                <cfif fileExists(avatarPath)>
+                    <img src="#contactAvatarUrl#?rev=#rand()#" style="width:30px;" alt="#myteam.contactname#"/>
+                <cfelse>
+                    <img src="#defaultAvatarUrl#" style="width:30px;" alt="#myteam.contactname#"/>
+                </cfif>
             </a>
-          </cfoutput>
-        </div>
+        </cfoutput>
+    </div>
 
-        <div class="col-md-9 col-lg-9">
-          <cfoutput>
+    <div class="col-md-9 col-lg-9">
+        <cfoutput>
             <a href="/app/contact/?contactid=#myteam.contactid#&t1=1" class="" title="#myteam.contactname#">
-              #myteam.contactname#
+                #myteam.contactname#
             </a>
-            <BR>
-              <small>
+            <br>
+            <small>
                 #findtag.tag#
-              </small>
-            </cfoutput>
-          </div>
-          <div class="col-md-12 col-lg-12">
-            &nbsp;
-          </div>
-        </cfloop>
+            </small>
+        </cfoutput>
+    </div>
+
+    <!--- Add spacing between entries --->
+    <div class="col-md-12 col-lg-12">
+        &nbsp;
+    </div>
+</cfloop>
+
       </div>
 
       <div class="col-md-12 col-lg-12">
