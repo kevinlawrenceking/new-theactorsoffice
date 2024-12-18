@@ -15,15 +15,16 @@
         <div class="card">
             <div class="card-body">
                 <h5>Step One: Import Template</h5>
+                <cfoutput>
                 <p>
                     Download the 
-                    <a href="/include/auditionimporttemplates.xlsx" target="new">
+                    <a href="#application.auditionimporttemplate#" target="new">
                         <strong><i class="fe-upload"></i> Import Template</strong>
                     </a> 
                     to copy and paste all the events you'd like to import. 
                     <strong>Imports must be in this format.</strong>
                 </p>
-                
+                </cfoutput>
                 <h5>Step Two: Upload Template</h5>
                 <p>Once you've populated and saved the Import Template as an .xlsx file, select the file and upload.</p>
 
