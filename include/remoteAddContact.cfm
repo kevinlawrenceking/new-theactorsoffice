@@ -40,7 +40,7 @@
         <!--- Form Group for Work Phone --->
         <div class="form-group col-md-6">
             <label for="workphone">Phone:</label>
-            <input class="form-control" type="text" id="workphone" name="workphone" placeholder="Enter Work Phone" />
+            <input class="form-control" type="text" id="workphone" name="workphone" data-parsley-phone placeholder="Enter Work Phone" />
             <div class="invalid-feedback">
                 Please add work phone.
             </div>
@@ -60,3 +60,17 @@
         </p>
     </div>
 </form>
+
+<script>
+Parsley.addValidator('phone', {
+  requirementType: 'string',
+  validateString: function(value) {
+    // This regex allows various international formats:
+    // Digits, spaces, plus sign, parentheses, and dashes
+    return /^[0-9\+\-\(\)\s]+$/.test(value);
+  },
+  messages: {
+    en: 'Please enter a valid phone number.'
+  }
+});
+</script>
