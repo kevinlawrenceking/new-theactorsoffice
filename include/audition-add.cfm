@@ -5,7 +5,6 @@
 <cfparam name="isdirect" default="0"/>
 <!--- Set default value for isdirect --->
 <cfparam name="userCalStarttime" default=""/>
-
 <cfparam name="new_region_id" default="CA">
 <cfparam name="new_countryid" default="US">
 <cfparam name="valueCountry" default="">
@@ -112,7 +111,7 @@
                   function handleSelectChangeCasting(element) {
 
                     document
-                      .getElementById('hiddenAddLocation')
+                      .getElementById('hiddenCasting')
                       .style
                       .display = element.value == 0
                         ? 'block'
