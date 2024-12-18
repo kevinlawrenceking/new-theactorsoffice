@@ -39,7 +39,7 @@
 
         <!--- Form Group for Work Phone --->
         <div class="form-group col-md-6">
-            <label for="workphone">Phone:</label>
+            <label for="workphone">Phones:</label>
             <input class="form-control" type="text" id="workphone" name="workphone" data-parsley-phone placeholder="Enter Work Phone" />
             <div class="invalid-feedback">
                 Please add work phone.
