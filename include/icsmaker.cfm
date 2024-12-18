@@ -1,8 +1,8 @@
-<cfset dbug="Y" />
+<cfset dbug="N" />
 <CFINCLUDE template="remote_load.cfm" />
 <cfset currentURL=cgi.server_name />
 <cfset host=ListFirst(currentURL, "." ) />
-
+<Cfparam name="target_userid" default="0" />
 <cfoutput>
     <cfset cal_root_dir="#session.userSharePath#\" />
     <cfset cal_root_url="https://#host#.theactorsoffice.com/calendar/" />
@@ -20,7 +20,8 @@
     ,u.userRole
     ,u.tzid
     FROM taousers u
-
+<Cfif #target_userid# is not "0">
+and u.userid = #target_userid#
 </cfquery>
 
 <cfloop query="U">
