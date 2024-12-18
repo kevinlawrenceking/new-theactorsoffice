@@ -85,11 +85,12 @@
 
     <cfif structKeyExists(session, "userid")>
       <cfscript>
-        session.userMediaPath = application.baseMediaPath & "\users\" & session.userID;
- session.userMediaUrl = application.baseMediaUrl & "/users/" & session.userID;
+
+     session.userCalendarPath = baseMediaPath = "\calendar\" & calendarName & ".ics";
+    session.userCalendarUrl = baseMediaUrl = "/calendar/" & calendarName & ".ics";
 
         session.userCalendarPath = session.userMediaPath;
-        session.userCalendarUrl = "https://" & host & ".theactorsoffice.com/" & session.userMediaUrl;
+         = "https://" & host & ".theactorsoffice.com/" & session.userMediaUrl;
 
         session.userContactsPath = session.userMediaPath & "\contacts";
         session.userContactsUrl = session.userMediaUrl & "/contacts";

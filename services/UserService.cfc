@@ -624,8 +624,8 @@
                 tc.purchasedate, 
                 tc.CustomerFullName, 
                 tc.baseProductName,
-
-tc.CustomerEmail, 
+                REPLACE(REPLACE(u.recordname, ' ', ''), '-', '') AS calendarName,
+                tc.CustomerEmail, 
                 tc.PurchaseName, 
                 tc.BillingAddress, 
                 tc.BillingCity, 
@@ -671,6 +671,7 @@ INNER JOIN timezones t ON u.tzid = t.tzid
     "userId": qUserDetails.userID,
     "userfirstName": qUserDetails.userFirstName,
     "userlastName": qUserDetails.userLastName,
+    "calendarName": qUserDetails.calendarName,
     "useremail": qUserDetails.userEmail,
     "userrole": qUserDetails.userRole,
     "recordName": qUserDetails.recordname,
