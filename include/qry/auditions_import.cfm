@@ -1,2 +1,2 @@
 <cfset AuditionImportService = createObject("component", "services.AuditionImportService")>
-<cfset importQuery = AuditionImportService.auditionImports()>
+<cfset imports = AuditionImportService.auditionImports()>
