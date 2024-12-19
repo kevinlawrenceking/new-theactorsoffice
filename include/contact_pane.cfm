@@ -1,6 +1,6 @@
 <!-- Contact Card View (Optimized) -->
 <div id="contact-card-view2" class="d-flex flex-wrap mx-auto mt-3 px-2">
-
+<H2>here yA GOO DUMMY</A>
     <!-- Loop through active categories -->
     <cfloop query="ActiveCategories">
 
