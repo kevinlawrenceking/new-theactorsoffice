@@ -135,7 +135,9 @@
                                                     #valuetext#
 
                                                 </a>
-
+     <a href="javascript:;" class="ms-2" data-bs-toggle="modal" data-bs-target="##remoteUpdateC#itemid#" title="Update #ActiveCategories.valueCategory#">
+                                                <i class="mdi mdi-square-edit-outline"></i>
+                                            </a>
     </h5>
        <div class="text-uppercase font-13 text-left mb-1">#valuetype#</div>
 </cfif>
