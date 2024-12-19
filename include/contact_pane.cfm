@@ -137,6 +137,7 @@
                                                 </a>
 
     </h5>
+       <div class="text-uppercase font-13 text-left mb-1">#valuetype#</div>
 </cfif>
 
 
