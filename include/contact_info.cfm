@@ -528,7 +528,7 @@ x</button>
 
     <div class="col-md-6 col-sm-6 col-xs-12">
 
-        <div class="card h-100" >
+        <div class="card h-100 mb-3" >
 
             <cfset tool_button = "btn-xl text-secondary px-1" />
             
@@ -674,7 +674,7 @@ x</button>
 
     <div class="col-md-6 col-sm-6 col-xs-12">
 
-        <div class="card h-100">
+        <div class="card h-100 mb-3">
 
       <h4 class="card-card-header text-center text-white text-nowrap py-0" style="background-color: #406E8E;margin:0!important;padding:15px!important;" >
                    Relationship Info
@@ -905,7 +905,7 @@ x</button>
 
 <cfif #devicetype# is "mobile">
 
-    <div class="card">
+    <div class="card mb-3">
 
         <div class="btn-group py-0 col-md-12">
 
@@ -1011,7 +1011,7 @@ x</button>
 
 </cfif>
 
-<div class="card">
+<div class="card mb-3">
     
         <div class="card-body">
      <ul class="nav nav-pills navtab-bg nav-justified p-1" role="tablist">
