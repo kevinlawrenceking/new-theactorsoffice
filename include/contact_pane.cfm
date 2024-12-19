@@ -120,29 +120,27 @@
                                             </a>
                                         </h5>
                                     </cfif>
-     <cfif ActiveCategories.valueCategory is "Social Profile">
-                                        <cfset socialIcon = "/media-abod/images/retina-circular-icons/14/" & LCase(valuetype) & ".png">
-                                        <cfif NOT FileExists(session.userContactsPath & socialIcon)>
-                                            <cfset socialIcon = "/media-abod/images/retina-circular-icons/14/generic.png">
-                                        </cfif>
-                                        <h5 class="mb-2">
-                                            <a href="#valuetext#" target="_blank" title="#valuetype#">
-                                                <img src="#socialIcon#" alt="#valuetype#" class="rounded-circle" width="32px" />
-                                            </a>
-                                        </h5>
-                                    </cfif>
+<cfif ActiveCategories.valueCategory is "Social Profile" or ActiveCategories.valueCategory is "URL">
+    <!-- Ensure the URL starts with http:// -->
+    <cfif Left(valuetext, 4) neq "http">
+        <cfset valuetext = "http://" & valuetext>
+    </cfif>
 
-                                         <cfif ActiveCategories.valueCategory is "URL">
-                                        <cfset socialIcon = "/media-abod/images/retina-circular-icons/14/" & LCase(valuetype) & ".png">
-                                        <cfif NOT FileExists(session.userContactsPath & socialIcon)>
-                                            <cfset socialIcon = "/media-abod/images/retina-circular-icons/14/generic.png">
-                                        </cfif>
-                                        <h5 class="mb-2">
-                                            <a href="#valuetext#" target="_blank" title="#valuetype#">
-                                                <img src="#socialIcon#" alt="#valuetype#" class="rounded-circle" width="32px" />
-                                            </a>
-                                        </h5>
-                                    </cfif>
+    <!-- Determine social icon -->
+    <cfset socialIcon = "/media-abod/images/retina-circular-icons/14/" & LCase(valuetype) & ".png">
+    <cfif NOT FileExists(session.userContactsPath & socialIcon)>
+        <cfset socialIcon = "/media-abod/images/retina-circular-icons/14/generic.png">
+    </cfif>
+
+    <h5 class="mb-2">
+        <a href="#valuetext#" target="_blank" title="#valuetype#">
+            <img src="#socialIcon#" alt="#valuetype#" class="rounded-circle" width="32px" />
+        </a>
+    </h5>
+</cfif>
+
+
+                         
 
                                 </cfif>
 
