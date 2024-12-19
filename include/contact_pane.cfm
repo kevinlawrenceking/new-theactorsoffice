@@ -21,36 +21,7 @@
                             <!-- Loop through items by category -->
                             <cfloop query="result.itemsbycatActive">
                                 
-                                <!-- Social Profile Category -->
-<cfif ActiveCategories.catfieldset is "social">
-    <h5 class="mb-2">Social Profiles</h5>
-    <div class="d-flex flex-wrap">
-        <cfloop query="result.itemsbycatActive">
-            <cfoutput>
-                <!-- Determine the appropriate icon based on valuetype -->
-                <cfset socialIcon = "/media-abod/images/retina-circular-icons/14/" & LCase(valuetype) & ".png">
-                <!-- Fallback to a generic icon if specific icon doesn't exist -->
-                <cfif NOT FileExists(session.userContactsPath & socialIcon)>
-                    <cfset socialIcon = "/media-abod/images/retina-circular-icons/14/generic.png">
-                </cfif>
-
-                <!-- Social Profile Link -->
-                <a href="#valuetext#" 
-                   class="text-white font-14 py-1 ps-0 me-2 d-inline-block" 
-                   target="_blank" 
-                   data-bs-toggle="tooltip" 
-                   data-bs-placement="top" 
-                   title="#valuetype#">
-                    <img src="#socialIcon#" 
-                         alt="#valuetype#" 
-                         width="32px" 
-                         class="rounded-circle" />
-                </a>
-            </cfoutput>
-        </cfloop>
-    </div>
-</cfif>
-
+                                
                                 <!-- Address Category -->
                                 <cfif ActiveCategories.catfieldset is "address">
                                     <h5 class="mb-2">
@@ -149,6 +120,30 @@
                                             </a>
                                         </h5>
                                     </cfif>
+     <cfif ActiveCategories.valueCategory is "Social Profile">
+                                        <cfset socialIcon = "/media-abod/images/retina-circular-icons/14/" & LCase(valuetype) & ".png">
+                                        <cfif NOT FileExists(session.userContactsPath & socialIcon)>
+                                            <cfset socialIcon = "/media-abod/images/retina-circular-icons/14/generic.png">
+                                        </cfif>
+                                        <h5 class="mb-2">
+                                            <a href="#valuetext#" target="_blank" title="#valuetype#">
+                                                <img src="#socialIcon#" alt="#valuetype#" class="rounded-circle" width="32px" />
+                                            </a>
+                                        </h5>
+                                    </cfif>
+
+                                         <cfif ActiveCategories.valueCategory is "URL">
+                                        <cfset socialIcon = "/media-abod/images/retina-circular-icons/14/" & LCase(valuetype) & ".png">
+                                        <cfif NOT FileExists(session.userContactsPath & socialIcon)>
+                                            <cfset socialIcon = "/media-abod/images/retina-circular-icons/14/generic.png">
+                                        </cfif>
+                                        <h5 class="mb-2">
+                                            <a href="#valuetext#" target="_blank" title="#valuetype#">
+                                                <img src="#socialIcon#" alt="#valuetype#" class="rounded-circle" width="32px" />
+                                            </a>
+                                        </h5>
+                                    </cfif>
+
                                 </cfif>
 
                             </cfloop>
