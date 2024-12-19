@@ -109,7 +109,7 @@
                                             <a href="javascript:;" class="ms-2" data-bs-toggle="modal" data-bs-target="##remoteUpdateC#itemid#" title="Update Phone">
                                                 <i class="mdi mdi-square-edit-outline"></i>
                                             </a>
-                                        </h5>
+                                        </h5>     <div class="text-uppercase font-13 text-left mb-1">#valuetype#</div>
                                     </cfif>
 
                                     <cfif ActiveCategories.valueCategory is "Email">
@@ -118,7 +118,7 @@
                                             <a href="javascript:;" class="ms-2" data-bs-toggle="modal" data-bs-target="##remoteUpdateC#itemid#" title="Update Email">
                                                 <i class="mdi mdi-square-edit-outline"></i>
                                             </a>
-                                        </h5>
+                                        </h5>     <div class="text-uppercase font-13 text-left mb-1">#valuetype#</div>
                                     </cfif>
 <cfif ActiveCategories.valueCategory is "Social Profile" or ActiveCategories.valueCategory is "URL">
     <!-- Ensure the URL starts with http:// -->
