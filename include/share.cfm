@@ -22,7 +22,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <div class="card">
+        <div class="card mb-3">
             <div class="card-body">
                 <!--- Loop through the query results and output user information with a share link --->
                 <cfloop query="x">

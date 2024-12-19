@@ -15,7 +15,7 @@
 <cfif pgaction eq "view">
     <div class="row">
         <div class="col-12">
-            <div class="card">
+            <div class="card mb-3">
                 <div class="card-body">
                     <h4 class="header-title">
                         <cfoutput>#pgHeading# for No. #ticketDetails.recid#: #ticketDetails.recordname#</cfoutput>
@@ -262,7 +262,7 @@
 <!--- Ticket Log Table Section --->
     <div class="row">
         <div class="col-12">
-            <div class="card">
+            <div class="card mb-3">
                 <div class="card-body">
                     <h4 class="header-title">Ticket Log</h4>
                     <p class="text-muted font-13 mb-4"></p>

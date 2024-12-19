@@ -4,7 +4,7 @@
     <cfset fileExist="#FileExists(browser_contact_avatar_filename)#" />
 </cfoutput>
 
-<div class="card">
+<div class="card mb-3">
     <cfoutput>
         <Cfset recid=#currentid# />
         <cfset h5style="font-size:0.875rem;font-weight: 500;text-align:left;margin-bottom:0;" />

@@ -7,7 +7,7 @@
 
 <div class="row">
     <div class="col-xl-6 col-lg-8 col-md-12">
-        <div class="card">
+        <div class="card mb-3">
             <div class="card-body">
                 <form method="post" action="/include/admin-support-update2.cfm" class="parsley-examples" name="ticket-form" id="form-ticket" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" data-parsley-trigger="keyup" data-parsley-validate>
                     <cfoutput>

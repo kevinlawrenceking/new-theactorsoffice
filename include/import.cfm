@@ -2,7 +2,7 @@
 
 <div class="row">
     <div class="col-12">
-        <div class="card">
+        <div class="card mb-3">
             <div class="card-body">
                 <h4 class="header-title">Import Details</h4>
 
@@ -72,7 +72,7 @@
 
 <div class="row">
     <div class="col-12">
-        <div class="card">
+        <div class="card mb-3">
             <div class="card-body">
                 <h6>
                     <cfoutput>#results.recordcount# relationship contacts were imported. Click on a name to view details.</cfoutput>

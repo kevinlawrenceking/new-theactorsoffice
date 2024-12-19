@@ -14,7 +14,7 @@
     <!--- Check if the action is to view details --->
     <div class="row">
         <div class="col-12">
-            <div class="card">
+            <div class="card mb-3">
                 <div class="card-body">
                     <h4 class="header-title">
                         <cfoutput> #pgHeading#: #details.recordname#</cfoutput>
@@ -113,7 +113,7 @@
     <!--- Check if the action is to update details --->
     <div class="row">
         <div class="col-12">
-            <div class="card">
+            <div class="card mb-3">
                 <div class="card-body">
                     <h4 class="header-title">Update Form </h4>
 

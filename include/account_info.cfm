@@ -443,7 +443,7 @@
               <cfset pgrtn="P"/>
 
               <cfif #devicetype# is "mobilez">
-                <div class="card">
+                <div class="card mb-3">
 
                   <div class="btn-group col-md-12">
 
@@ -522,7 +522,7 @@
 
                 </cfif>
 
-                <div class="card">
+                <div class="card mb-3">
 
                   <div class="card-body">
 

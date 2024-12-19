@@ -53,7 +53,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-8 col-lg-6 col-xl-5">
-                    <div class="card">
+                    <div class="card mb-3">
                         <div class="card-body p-4">
                             <div class="text-center w-85 m-auto">
                                 <div class="auth-logo">

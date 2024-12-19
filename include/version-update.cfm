@@ -18,7 +18,7 @@
 
 <div class="row">
   <div class="col-xl-6 col-lg-8 col-md-12">
-    <div class="card">
+    <div class="card mb-3">
       <div class="card-body">
         <!--- Form for updating version details --->
         <form method="post" action="/include/version-update2.cfm" class="parsley-examples" name="version-form" id="form-version" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" data-parsley-trigger="keyup" data-parsley-validate="data-parsley-validate">

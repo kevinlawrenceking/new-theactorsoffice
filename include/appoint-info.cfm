@@ -48,7 +48,7 @@
 
 <div class="row">
     <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="card h-100">
+        <div class="card h-100 mb-3">
             <center>
                 <h4 class="text-center text-white text-nowrap py-0" style="color:white;background-color: #406E8E;margin:0!important;padding:15px!important;">
                     <cfoutput>
@@ -93,7 +93,7 @@
     <cfset h5style = "font-size:0.875rem;font-weight: 500;text-align:left;margin-bottom:0;" />
  
     <div class="col-md-9 col-sm-6 col-xs-12">
-        <div class="card h-100">
+        <div class="card h-100 mb-3">
             <div class="card-body">
                 <h4 class="text-nowrap"> 
                     #eventdetails.eventtitle#
@@ -107,9 +107,9 @@
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 
-<div class="card">
+<div class="card mb-3">
     <cfoutput>
-        <div class="card" class="p-3">
+        <div class="card mb-3" class="p-3">
             <ul class="nav nav-pills navtab-bg nav-justified p-1" role="tablist">
                 <li class="nav-item" role="presentation">
                     <a href="##role" data-bs-toggle="tab" aria-expanded="#tab1_expand#" class="nav-link <cfif #tab1_expand# is 'true'> active</cfif>" role="tab">

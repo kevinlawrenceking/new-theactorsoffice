@@ -99,7 +99,7 @@
   <Cfoutput>
     <div id="anchor-#reports.reportid#" class="anchor-offset col-xl-#reports.colxl# col-md-#reports.colmd# col-lg">
       <a>
-        <div class="card" id="#reports.reportid#" style="border: 1px solid ##e5e5e5; border-radius:3px;">
+        <div class="card mb-3" id="#reports.reportid#" style="border: 1px solid ##e5e5e5; border-radius:3px;">
           <div class="card-body" dir="ltr">
             <h6 class="p-1 d-flex header-title">#reports.reportname#
               <span class="ms-auto">

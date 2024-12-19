@@ -120,7 +120,7 @@
 
     <div class="col-lg-12">
 
-        <div class="card">
+        <div class="card mb-3">
 
             <div class="card-body">    
                       <cfif #bytag# is not "">

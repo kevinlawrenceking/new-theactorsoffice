@@ -779,7 +779,7 @@ Appointments
 
     <div class="col-md-6 col-xs-6 col-xs-12">
 
-        <div class="card h-100">
+        <div class="card h-100 mb-3">
 
 <Center>
 
@@ -839,7 +839,7 @@ Appointments
 
 <cfif #istab# is "N">
 
-    <div class="card">
+    <div class="card mb-3">
 
         <div class="btn-group col-md-12">
 
@@ -945,7 +945,7 @@ Appointments
     </cfif>
 </cfif>
 
-<div class="card" class="p-3">
+<div class="card mb-3" class="p-3">
 
         <ul class="nav nav-pills navtab-bg nav-justified p-1" role="tablist">
 

@@ -1,7 +1,7 @@
 <!--- This ColdFusion page displays a table of versions with options to add new versions and format the data accordingly. --->
 <div class="row">
     <div class="col-12">
-        <div class="card">
+        <div class="card mb-3">
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center">
                     <h4 class="header-title">Versions</h4>

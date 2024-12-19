@@ -88,7 +88,7 @@
     <!--- Display the import template upload form if upload ID is not defined --->
     <div class="row">
         <div class="col-12">
-            <div class="card">
+            <div class="card mb-3">
                 <div class="card-body">
                     <h5>Step One: Import Template</h5>    
                     <p>Download the <A href="/include/ImportTemplate2.xlsx" target="new"><strong><i class="fe-upload"></i> Import Template</strong></A> to copy and paste all the contacts you'd like to import. <strong>Imports must be in this format.</strong></p>
@@ -115,7 +115,7 @@
 
     <div class="row">
         <div class="col-12">
-            <div class="card">
+            <div class="card mb-3">
                 <div class="card-body">
                     <h4 class="header-title">Import History <span class="small right"></span></h4>
                     <div class="d-flex justify-content-between">

@@ -2,7 +2,7 @@
 
     <div class="col-md-3 col-sm-6 col-xs-12">
 
-        <div class="card h-100">
+        <div class="card h-100 mb-3">
 
             <Center>
                 
@@ -41,7 +41,7 @@
 
     <div class="col-md-9 col-sm-6 col-xs-12">
 
-        <div class="card h-100">
+        <div class="card h-100 mb-3">
 
             <h4 class="card-header">
 

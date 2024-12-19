@@ -47,7 +47,7 @@
 <cfset session.new_eventid = eventdetails.eventid />
 
 <div class="row">
-    <div class="card" style="width:100%;">
+    <div class="card mb-3" style="width:100%;">
         <div class="card-body">
             <form method="post" action="/include/appoint-update2.cfm" class="parsley-examples" name="event-form" id="form-event" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" data-parsley-trigger="keyup" data-parsley-validate>
                 <cfoutput>

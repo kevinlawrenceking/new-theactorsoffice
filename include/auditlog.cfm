@@ -1,7 +1,7 @@
 <!--- This ColdFusion page displays user activity in a table format with data fetched from a query. --->
 <div class="row">
     <div class="col-12">
-        <div class="card">
+        <div class="card mb-3">
             <div class="card-body">
                 <h4 class="header-title">User Activity</h4>
                 <p class="text-muted font-13 mb-4"></p>

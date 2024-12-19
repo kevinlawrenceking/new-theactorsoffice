@@ -363,7 +363,7 @@
 
     <div class="col-md-3 col-sm-6 col-xs-12">
 
-        <div class="card h-100">
+        <div class="card h-100 mb-3">
 
 <Center>
                 <h4 class="card-header text-nowrap">
@@ -408,7 +408,7 @@
 
     <div class="col-md-9 col-sm-6 col-xs-12">
 
-        <div class="card h-100">
+        <div class="card h-100 mb-3">
 
        <h4 class="card-header">
 
@@ -620,7 +620,7 @@
 </div>
 <p>&nbsp;</p>
 
-<div class="card">
+<div class="card mb-3">
 
         <div class="btn-group py-2 col-md-12">
 

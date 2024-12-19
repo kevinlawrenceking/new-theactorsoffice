@@ -147,7 +147,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <div class="card">
+        <div class="card mb-3">
             <div class="card-body">
                 <div class="button-list nomobile">
                     <button type="button" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="#remoteAddName" data-bs-placement="top" class="btn btn-warning waves-effect waves-light">

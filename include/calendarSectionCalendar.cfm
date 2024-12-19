@@ -74,7 +74,7 @@
 </div>
 
 <div class="collapse <cfoutput>#legendstatus#</cfoutput>" id="collapseExample" style="margin-top:5px;">
-    <div class="card">
+    <div class="card mb-3">
         <div class="card-body">
             <p><strong>Legend</strong></p>
             <div style="margin-left:20px;">

@@ -12,7 +12,7 @@
 <!--- Form for uploading the template --->
 <div class="row">
     <div class="col-12">
-        <div class="card">
+        <div class="card mb-3">
             <div class="card-body">
                 <h5>Step One: Import Template</h5>
                 <cfoutput>
@@ -49,7 +49,7 @@
 
     <div class="row">
         <div class="col-12">
-            <div class="card">
+            <div class="card mb-3">
                 <div class="card-body">
                     <h4 class="header-title">Events imported <span class="small right"></span></h4>
                     <div class="d-flex justify-content-between">
@@ -128,7 +128,7 @@
 <cfif imports.recordcount GT 0>
     <div class="row">
         <div class="col-12">
-            <div class="card">
+            <div class="card mb-3">
                 <div class="card-body">
                     <h4 class="header-title">Import History <span class="small right"></span></h4>
                     <div class="d-flex justify-content-between">
