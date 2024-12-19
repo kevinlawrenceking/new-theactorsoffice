@@ -130,12 +130,12 @@
 
     <h5 class="mb-2">
         <a href="#valuetext#" target="_blank" title="#valuetype#">
-               <a href="#valuetext#" target="_blank">
+            
 
-                                                    #result.itemsbycatActive.valuetext#
+                                                    #valuetext#
 
                                                 </a>
-        </a>
+
     </h5>
 </cfif>
 
