@@ -126,15 +126,15 @@
         <cfset valuetext = "http://" & valuetext>
     </cfif>
 
-    <!-- Determine social icon -->
-    <cfset socialIcon = "/media-abod/images/retina-circular-icons/14/" & LCase(valuetype) & ".png">
-    <cfif NOT FileExists(session.userContactsPath & socialIcon)>
-        <cfset socialIcon = "/media-abod/images/retina-circular-icons/14/generic.png">
-    </cfif>
+
 
     <h5 class="mb-2">
         <a href="#valuetext#" target="_blank" title="#valuetype#">
-            <img src="#socialIcon#" alt="#valuetype#" class="rounded-circle" width="32px" />
+               <a href="#valuetext#" target="_blank">
+
+                                                    #result.itemsbycatActive.valuetext#
+
+                                                </a>
         </a>
     </h5>
 </cfif>
