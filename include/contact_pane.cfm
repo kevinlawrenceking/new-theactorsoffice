@@ -28,7 +28,8 @@
                                         <a href="javascript:;" class="ms-2" data-bs-toggle="modal" data-bs-target="##remoteUpdateC#itemid#" title="Update">
                                             <i class="mdi mdi-square-edit-outline"></i>
                                         </a>
-                                        
+                             
+                                        <cfif #ActiveCategories.catfieldset# is "company">Company!<CFABORT>
                                         <cfif valueExtendedaddress neq "">
                                             <br>#valueExtendedaddress#
                                             <a href="javascript:;" class="ms-2" data-bs-toggle="modal" data-bs-target="##remoteUpdateC#itemid#" title="Update">
