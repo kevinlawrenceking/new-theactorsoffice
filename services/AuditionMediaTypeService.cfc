@@ -40,7 +40,7 @@
 <!--- Return the query result --->
     <cfreturn result>
 </cffunction>
-
+zzz
 <cffunction output="false" name="SELaudmediatypes_24067" access="public" returntype="query">
     <cfargument name="src" type="string" required="false" default="">
 
@@ -50,9 +50,7 @@
         FROM audmediatypes 
         WHERE mediatype <> 'Headshot' 
         AND isdeleted = 0
-        <cfif arguments.src EQ "account">
-            AND ismymaterial = 1
-        </cfif>
+
         ORDER BY mediatype
     </cfquery>
 
@@ -67,9 +65,7 @@
         FROM audmediatypes 
         WHERE mediatype <> 'Headshot' 
         AND isdeleted = 0
-        <cfif arguments.src EQ "account">
-            AND ismymaterial = 1
-        </cfif>
+   
     </cfquery>
     <cfreturn queryResult>
 </cffunction>
