@@ -152,12 +152,28 @@
 <cffunction output="false" name="DELaudcontacts_auditions_xref_24545" access="public" returntype="void">
     <cfargument name="audprojectid" type="numeric" required="true">
 
-<cfquery result="result">
-        DELETE FROM audcontacts_auditions_xref 
-        WHERE audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="cf_sql_integer"> 
-        AND xrefNotes = <cfqueryparam value="Referral" cfsqltype="cf_sql_varchar">
+    <!-- Validate existence -->
+    <cfquery name="validateRecord">
+        SELECT COUNT(*) AS recordCount
+        FROM audcontacts_auditions_xref
+        WHERE audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER"> 
+        AND xrefNotes = <cfqueryparam value="Referral" cfsqltype="CF_SQL_VARCHAR">
     </cfquery>
+
+    <cfif validateRecord.recordCount gt 0>
+        <!-- Proceed with deletion -->
+        <cfquery result="result">
+            DELETE FROM audcontacts_auditions_xref 
+            WHERE audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER"> 
+            AND xrefNotes = <cfqueryparam value="Referral" cfsqltype="CF_SQL_VARCHAR">
+        </cfquery>
+         <cfreturn result.recordcount>
+    <cfelse>
+        <cfthrow type="RecordNotFoundException" message="No matching record found for deletion">
+         <cfreturn 0>
+    </cfif>
 </cffunction>
+
 
 <cffunction output="false" name="DELaudcontacts_auditions_xref_24548" access="public" returntype="void">
     <cfargument name="audprojectid" type="numeric" required="true">
