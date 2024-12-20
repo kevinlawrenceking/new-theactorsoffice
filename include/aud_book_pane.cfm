@@ -3,7 +3,7 @@
 <div class="row">
     
     <!--- Include the types query template --->
-    <cfinclude template="/include/qry/types_42_1.cfm" />
+    <cfinclude template="/include/qry/SEL_Media_types_material.cfm" />
     
     <!--- Loop through each type to create modals for media uploads --->
     <cfloop query="types">

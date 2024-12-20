@@ -1,2 +1,2 @@
 <cfset auditionMediaTypeService = createObject("component", "services.AuditionMediaTypeService")>
-<cfset Type = auditionMediaTypeService.SELaudmediatypes_24198(src="account")>
+<cfset Type = auditionMediaTypeService.SEL_Media_types_material()>

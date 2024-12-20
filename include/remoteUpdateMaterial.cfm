@@ -23,7 +23,7 @@
 <cfparam name="eventid" default=""/>
 
 <cfinclude template="/include/qry/materials_details.cfm"/>
-<cfinclude template="/include/qry/Type_267_1.cfm"/>
+<cfinclude template="/include/qry/SEL_Media_types_material"/>
 
 <!--- Form for updating material details --->
 <form action="/include/remoteUpdateMaterial2.cfm" method="post" class="parsley-examples" enctype="multipart/form-data" id="upload" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" data-parsley-trigger="keyup" data-parsley-validate="data-parsley-validate">

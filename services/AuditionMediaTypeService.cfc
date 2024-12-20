@@ -40,9 +40,9 @@
 <!--- Return the query result --->
     <cfreturn result>
 </cffunction>
-zzz
-<cffunction output="false" name="SELaudmediatypes_24067" access="public" returntype="query">
-    <cfargument name="src" type="string" required="false" default="">
+ 
+<cffunction output="false" name="SEL_Media_types_material" access="public" returntype="query">
+
 
 <!--- Execute the query --->
     <cfquery name="queryResult" >
@@ -59,7 +59,7 @@ zzz
 </cffunction>
 
 <cffunction output="false" name="SELaudmediatypes_24198" access="public" returntype="query">
-    <cfargument name="src" type="string" required="true">
+
     <cfquery name="queryResult" >
         SELECT mediatypeid, mediatype 
         FROM audmediatypes 
