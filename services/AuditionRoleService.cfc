@@ -493,12 +493,24 @@
 <cffunction output="false" name="UPDaudroles_24542" access="public" returntype="void">
     <cfargument name="audsourceid" type="numeric" required="true">
 
-<cfquery result="result" >
-            UPDATE audroles 
-            SET submitsiteid = NULL, contactid = NULL, opencallid = NULL 
-            WHERE audsourceid = <cfqueryparam value="#arguments.audsourceid#" cfsqltype="CF_SQL_INTEGER">
-        </cfquery>
+    <!-- Execute the update query -->
+    <cfquery result="result">
+        UPDATE audroles 
+        SET submitsiteid = NULL, contactid = NULL, opencallid = NULL 
+        WHERE audsourceid = <cfqueryparam value="#arguments.audsourceid#" cfsqltype="CF_SQL_INTEGER">
+    </cfquery>
 
+    <!-- Log the update operation -->
+    <cfset debugService = createObject("component", "services.DebugService")>
+    <cfset debugDetails = {
+        functionName = "UPDaudroles_24542",
+        arguments = arguments,
+        rowsAffected = result.recordCount
+    }>
+    <cfset debugService.insertDebugLog(
+        filename = "AuditionRoleService.cfc",
+        debugDetails = serializeJSON(debugDetails)
+    )>
 </cffunction>
 <cffunction output="false" name="DETaudroles_24544" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
