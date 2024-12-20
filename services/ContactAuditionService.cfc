@@ -149,7 +149,7 @@
     </cfquery>
 </cffunction>
 
-<cffunction output="false" name="DELaudcontacts_auditions_xref_24545" access="public" returntype="void">
+<cffunction output="false" name="DELaudcontacts_auditions_xref_24545" access="public" returntype="numeric">
     <cfargument name="audprojectid" type="numeric" required="true">
 
     <!-- Validate existence -->
