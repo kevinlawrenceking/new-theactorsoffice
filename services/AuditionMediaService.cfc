@@ -332,8 +332,6 @@
     <cfargument name="new_mediaTypeID" type="numeric" required="true">
     <cfargument name="new_mediaURL" type="string" required="true">
     <cfargument name="new_mediaName" type="string" required="true">
-    <cfargument name="new_mediaFilename" type="string" required="false">
-    <cfargument name="new_mediaExt" type="string" required="false">
     <cfargument name="new_userid" type="numeric" required="true">
     <cfargument name="new_isDeleted" type="boolean" required="true">
     <cfargument name="new_isShare" type="boolean" required="true">
@@ -345,10 +343,7 @@
                 mediaTypeID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_mediaTypeID#" null="#NOT len(trim(arguments.new_mediaTypeID))#">,
                 mediaURL = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaURL#" null="#NOT len(trim(arguments.new_mediaURL))#">,
                 mediaName = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaName#" null="#NOT len(trim(arguments.new_mediaName))#">,
-                <cfif structKeyExists(arguments, "new_mediaFilename")>
-                    mediaFilename = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaFilename#" maxlength="200" null="#NOT len(trim(arguments.new_mediaFilename))#">,
-                    mediaExt = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_mediaExt#" maxlength="3" null="#NOT len(trim(arguments.new_mediaExt))#">,
-                </cfif>
+            
                 userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_userid#" null="#NOT len(trim(arguments.new_userid))#">,
                 isDeleted = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isDeleted#" null="#NOT len(trim(arguments.new_isDeleted))#">,
                 isShare = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_isShare#" null="#NOT len(trim(arguments.new_isShare))#">
