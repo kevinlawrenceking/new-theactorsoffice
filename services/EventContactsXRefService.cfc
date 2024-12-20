@@ -1,6 +1,7 @@
 <cfcomponent displayname="EventContactsXRefService" hint="Handles operations for EventContactsXRef table" >
 
 <cffunction name="eventaudsync" access="public" returntype="void" output="false">
+<cfargument name="aud_projectid" type="numeric" required="true">
     <cfquery>
         INSERT INTO eventcontactsxref (eventid, contactid)
         SELECT DISTINCT e.eventid, c.contactid
@@ -11,7 +12,8 @@
         INNER JOIN audcontacts_auditions_xref x ON x.audprojectid = p.audprojectID
         INNER JOIN contactdetails c ON c.contactid = x.contactid
         WHERE 
-            a.isDeleted = 0 
+            p.audprojectid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.audprojectid#"/>,
+            and a.isDeleted = 0 
             AND r.isdeleted = 0 
             AND p.isdeleted = 0 
             AND c.contactid <> 0
