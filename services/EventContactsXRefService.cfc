@@ -1,5 +1,29 @@
 <cfcomponent displayname="EventContactsXRefService" hint="Handles operations for EventContactsXRef table" >
 
+<cffunction name="eventaudsync" access="public" returntype="void" output="false">
+    <cfquery>
+        INSERT INTO eventcontactsxref (eventid, contactid)
+        SELECT DISTINCT e.eventid, c.contactid
+        FROM audprojects p
+        INNER JOIN audroles r ON r.audprojectID = p.audprojectID  
+        INNER JOIN events a ON a.audroleid = r.audroleid
+        INNER JOIN events e ON e.eventid = a.eventid
+        INNER JOIN audcontacts_auditions_xref x ON x.audprojectid = p.audprojectID
+        INNER JOIN contactdetails c ON c.contactid = x.contactid
+        WHERE 
+            a.isDeleted = 0 
+            AND r.isdeleted = 0 
+            AND p.isdeleted = 0 
+            AND c.contactid <> 0
+            AND NOT EXISTS (
+                SELECT 1 
+                FROM eventcontactsxref ecx
+                WHERE ecx.eventid = e.eventid AND ecx.contactid = c.contactid
+            )
+    </cfquery>
+</cffunction>
+
+
 <cffunction output="false" name="INSeventcontactsxref" access="public" returntype="numeric">
     <cfargument name="new_eventid" type="numeric" required="true">
     <cfargument name="new_contactid" type="numeric" required="true">
