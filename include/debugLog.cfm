@@ -1,4 +1,4 @@
-<cfif dbug eq "Y">
+<cfif application.dbug eq "Y" and userid eq 30>
     <!-- Insert debug information into the debugLog table -->
     <cfset debugService = createObject("component", "services.DebugService")>
     <cfset debugDetails = {

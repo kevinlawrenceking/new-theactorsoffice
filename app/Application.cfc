@@ -11,6 +11,8 @@
 
   <cfset host=ListFirst(cgi.server_name, ".")/>
 
+  <Cfset application.dbug = "Y" />
+
   <cfif host eq "app" or host eq "uat">
     <cfset application.dsn="abo"/>
     <cfset application.information_schema="actorsbusinessoffice"/>
