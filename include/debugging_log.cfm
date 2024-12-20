@@ -23,7 +23,7 @@
             </thead>
             <tbody>
     
-                <cfquery name="debugLogs" datasource="yourDatasource">
+                <cfquery name="debugLogs" >
                     SELECT 
                         id,
                         filename,
