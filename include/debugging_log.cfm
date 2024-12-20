@@ -26,7 +26,7 @@
             </thead>
             <tbody>
                 <!-- Fetch debug log entries -->
-                <cfquery name="debugLogs" datasource="yourDatasource">
+                <cfquery name="debugLogs" >
                     SELECT 
                         id,
                         filename,
