@@ -4,78 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Debug Log Viewer</title>
-    <!--- Include Bootstrap CSS --->
+    <!-- Include Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!--- Include DataTables CSS --->
+    <!-- Include DataTables CSS -->
     <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
-    <style>
-        pre {
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-    </style>
 </head>
 <body>
-<div class="container my-4">
-    <h1 class="mb-4">Debug Log Viewer</h1>
-
-    <!--- Debug Log Table --->
-    <table id="debugLogTable" class="table table-striped table-bordered">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Filename</th>
-                <th>Timestamp</th>
-                <th>Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            <cfquery name="debugLog" >
-                SELECT id, filename, timestamp, debugDetails 
-                FROM debugLog
-                ORDER BY timestamp DESC
-            </cfquery>
-
-            <cfoutput query="debugLog">
+    <div class="container my-5">
+        <h1 class="mb-4">Debug Log Viewer</h1>
+        <table id="debugLogTable" class="table table-striped table-bordered">
+            <thead>
                 <tr>
-                    <td>#id#</td>
-                    <td>#filename#</td>
-                    <td>#dateFormat(timestamp, 'mm/dd/yyyy')# #timeFormat(timestamp, 'hh:mm:ss tt')#</td>
-                    <td>
-                        <!--- Use HTMLEditFormat to safely escape JSON --->
-                        <pre class="json-details" data-json="#htmlEditFormat(debugdetails)#"></pre>
-                    </td>
+                    <th>ID</th>
+                    <th>Filename/Path</th>
+                    <th>Debug Details</th>
+                    <th>Timestamp</th>
                 </tr>
-            </cfoutput>
-        </tbody>
-    </table>
-</div>
+            </thead>
+            <tbody>
+                <!-- Fetch debug log entries -->
+                <cfquery name="debugLogs" datasource="yourDatasource">
+                    SELECT 
+                        id,
+                        filename,
+                        debugDetails,
+                        timestamp
+                    FROM debugLog
+                    ORDER BY timestamp DESC
+                </cfquery>
 
-<!--- Include jQuery --->
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-<!--- Include Bootstrap JS --->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<!--- Include DataTables JS --->
-<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-<script>
-    $(document).ready(function () {
-        // Initialize DataTable
-        $('#debugLogTable').DataTable();
+                <cfoutput query="debugLogs">
+                    <tr>
+                        <td>#id#</td>
+                        <td>#filename#</td>
+                        <td>
+                            <button class="btn btn-link btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="##details-#id#" aria-expanded="false" aria-controls="details-#id#">
+                                View Details
+                            </button>
+                            <div class="collapse" id="details-#id#">
+                                <div class="card card-body debug-details">
+                                    <cfoutput>#debugDetails#</cfoutput>
+                                </div>
+                            </div>
+                        </td>
+                        <td>#timestamp#</td>
+                    </tr>
+                </cfoutput>
+            </tbody>
+        </table>
+    </div>
 
-        // Parse and pretty-print JSON details
-        $('.json-details').each(function () {
-            const jsonData = $(this).data('json');
-            try {
-                // Decode HTML entities (if any) before parsing
-                const decodedJson = $('<div/>').html(jsonData).text();
-                const parsedData = JSON.parse(decodedJson);
-                $(this).text(JSON.stringify(parsedData, null, 2));
-            } catch (e) {
-                $(this).text('Invalid JSON');
-                console.error('JSON Parsing Error:', e, jsonData);
-            }
+    <!-- Include Bootstrap Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <!-- Include DataTables JS -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+    <!-- Initialize DataTable -->
+    <script>
+        $(document).ready(function () {
+            $('#debugLogTable').DataTable();
         });
-    });
-</script>
+
+        // JSON Parsing for Debug Details
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.debug-details').forEach((element) => {
+                try {
+                    const json = JSON.parse(element.textContent);
+                    element.innerHTML = `<pre>${JSON.stringify(json, null, 2)}</pre>`;
+                } catch (e) {
+                    element.innerHTML = `<pre>${element.textContent}</pre>`;
+                }
+            });
+        });
+    </script>
 </body>
 </html>
