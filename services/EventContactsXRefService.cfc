@@ -12,7 +12,7 @@
         INNER JOIN audcontacts_auditions_xref x ON x.audprojectid = p.audprojectID
         INNER JOIN contactdetails c ON c.contactid = x.contactid
         WHERE 
-            p.audprojectid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.audprojectid#"/>,
+            p.audprojectid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.audprojectid#"/>
             and a.isDeleted = 0 
             AND r.isdeleted = 0 
             AND p.isdeleted = 0 
