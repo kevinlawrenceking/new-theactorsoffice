@@ -49,7 +49,7 @@
                             </button>
                             <div class="collapse" id="details-#id#">
                                 <div class="card card-body debug-details">
-                                    <cfoutput>#htmlEditFormat(debugDetails)#</cfoutput>
+                                    <cfoutput>#htmlEditFormat(debugLogs.debugDetails)#</cfoutput>
                                 </div>
                             </div>
                         </td>
@@ -68,26 +68,6 @@
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
     <!--- Initialize DataTable --->
-    <script>
-        $(document).ready(function () {
-            $('#debugLogTable').DataTable();
-        });
-
-        // Parse and format JSON in Debug Details
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.debug-details').forEach((element) => {
-                try {
-                    // Decode JSON content and pretty print
-                    const rawJson = element.textContent.trim();
-                    const json = JSON.parse(rawJson);
-                    element.innerHTML = `<pre>${JSON.stringify(json, null, 2)}</pre>`;
-                } catch (e) {
-                    // Show raw content if JSON parsing fails
-                    element.innerHTML = `<pre>${element.textContent.trim()}</pre>`;
-                    console.error("JSON Parsing Error for Debug Details:", e);
-                }
-            });
-        });
-    </script>
+    
 </body>
 </html>
