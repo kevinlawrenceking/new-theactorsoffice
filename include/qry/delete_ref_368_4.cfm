@@ -5,11 +5,11 @@
 <Cfif application.dbug eq "Y" and userid eq 30 >
 <cfif rowsDeleted gt 0>
     <cfoutput>
-        Successfully deleted #rowsDeleted# record(s) for Project ID #audprojectid#.
+        <Cfset msg="Successfully deleted #rowsDeleted# record(s) for Project ID #audprojectid#." />
     </cfoutput>
 <cfelse>
     <cfoutput>
-        No records were deleted for Project ID #audprojectid#.
+        <Cfset msg="No records were deleted for Project ID #audprojectid#." />
     </cfoutput>
 </cfif>
 
@@ -20,7 +20,8 @@
     debugDetails = serializeJSON({
         operation = "Delete",
         audprojectid = audprojectid,
-        rowsDeleted = rowsDeleted
+        rowsDeleted = rowsDeleted,
+        message = msg
     })
 )>
 
