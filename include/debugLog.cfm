@@ -1,9 +1,11 @@
+
+
+
 <cfif application.dbug eq "Y" and userid eq 30>
-    <!-- Insert debug information into the debugLog table -->
     <cfset debugService = createObject("component", "services.DebugService")>
     <cfset debugDetails = {
         arguments = arguments,
-        queryResult = current_queryResult
+        queryResult = result
     }>
     <cfset debugService.insertDebugLog(
         filename = cgi.script_name,
