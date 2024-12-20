@@ -8,6 +8,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!--- Include DataTables CSS --->
     <link href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+    <style>
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
 </head>
 <body>
     <div class="container my-5">
@@ -43,11 +49,11 @@
                             </button>
                             <div class="collapse" id="details-#id#">
                                 <div class="card card-body debug-details">
-                                    <cfoutput>#debugDetails#</cfoutput>
+                                    <cfoutput>#htmlEditFormat(debugDetails)#</cfoutput>
                                 </div>
                             </div>
                         </td>
-                        <td>#timestamp#</td>
+                        <td>#dateFormat(timestamp, "mm/dd/yyyy")# #timeFormat(timestamp, "hh:mm:ss tt")#</td>
                     </tr>
                 </cfoutput>
             </tbody>
@@ -67,14 +73,18 @@
             $('#debugLogTable').DataTable();
         });
 
-        // JSON Parsing for Debug Details
+        // Parse and format JSON in Debug Details
         document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.debug-details').forEach((element) => {
                 try {
-                    const json = JSON.parse(element.textContent);
+                    // Decode JSON content and pretty print
+                    const rawJson = element.textContent.trim();
+                    const json = JSON.parse(rawJson);
                     element.innerHTML = `<pre>${JSON.stringify(json, null, 2)}</pre>`;
                 } catch (e) {
-                    element.innerHTML = `<pre>${element.textContent}</pre>`;
+                    // Show raw content if JSON parsing fails
+                    element.innerHTML = `<pre>${element.textContent.trim()}</pre>`;
+                    console.error("JSON Parsing Error for Debug Details:", e);
                 }
             });
         });
