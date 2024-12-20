@@ -36,7 +36,7 @@
                         debugDetails,
                         timestamp
                     FROM debugLog
-                    ORDER BY timestamp DESC
+                    ORDER BY `timestamp` DESC
                 </cfquery>
 
                 <cfoutput query="debugLogs">
