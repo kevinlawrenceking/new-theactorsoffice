@@ -152,15 +152,13 @@
 <cffunction output="false" name="DELaudcontacts_auditions_xref_24545" access="public" returntype="numeric">
     <cfargument name="audprojectid" type="numeric" required="true">
 
-    <!-- Validate existence -->
+    <cfquery result="result">
+        DELETE FROM audcontacts_auditions_xref 
+        WHERE audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER"> 
+        AND xrefNotes = <cfqueryparam value="Referral" cfsqltype="CF_SQL_VARCHAR">
+    </cfquery>
 
-
-        <cfquery result="result">
-            DELETE FROM audcontacts_auditions_xref 
-            WHERE audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER"> 
-            AND xrefNotes = <cfqueryparam value="Referral" cfsqltype="CF_SQL_VARCHAR">
-        </cfquery>
-      
+    <cfreturn result.recordcount>
 </cffunction>
 
 
@@ -183,7 +181,7 @@
             INSERT IGNORE INTO audcontacts_auditions_xref 
             SET audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="cf_sql_integer">, 
                 contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_integer">
-        </cfquery>>
+        </cfquery>
 
 </cffunction>
 </cfcomponent>
