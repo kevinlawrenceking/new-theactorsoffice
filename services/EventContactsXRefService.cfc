@@ -1,7 +1,7 @@
 <cfcomponent displayname="EventContactsXRefService" hint="Handles operations for EventContactsXRef table" >
 
 <cffunction name="eventaudsync" access="public" returntype="void" output="false">
-<cfargument name="aud_projectid" type="numeric" required="true">
+<cfargument name="audprojectid" type="numeric" required="true">
     <cfquery>
         INSERT INTO eventcontactsxref (eventid, contactid)
         SELECT DISTINCT e.eventid, c.contactid
