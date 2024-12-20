@@ -18,6 +18,8 @@
 <body>
 <div class="container my-4">
     <h1 class="mb-4">Debug Log Viewer</h1>
+
+    <!-- Debug Log Table -->
     <table id="debugLogTable" class="table table-striped table-bordered">
         <thead>
             <tr>
@@ -28,11 +30,17 @@
             </tr>
         </thead>
         <tbody>
+            <cfquery name="debugLog" >
+                SELECT id, filename, timestamp, debugDetails 
+                FROM debugLog
+                ORDER BY timestamp DESC
+            </cfquery>
+
             <cfoutput query="debugLog">
                 <tr>
                     <td>#id#</td>
                     <td>#filename#</td>
-                    <td>#timestamp#</td>
+                    <td>#dateFormat(timestamp, 'mm/dd/yyyy')# #timeFormat(timestamp, 'hh:mm:ss tt')#</td>
                     <td>
                         <pre class="json-details" data-json="#htmlEditFormat(debugdetails)#"></pre>
                     </td>
