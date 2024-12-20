@@ -65,8 +65,8 @@
     </cfloop>
 </cfif>
 
-<cfset eventContactsXRef = createObject("component", "services.EventContactsXRef")>
-<cfset eventContactsXRef.eventaudsync()>
+<cfset EventContactsXRefService = createObject("component", "services.EventContactsXRefService")>
+<cfset EventContactsXRefService.eventaudsync()>
 
 
 <cfinclude template="/include/qry/audageranges_audtion_xref_368_11.cfm" />
