@@ -1,11 +1,8 @@
 
 <cfset userService = createObject("component", "services.UserService")>
+<cfif structIsEmpty(userData)><cfset userid = 30 ></cfif>
 <cfset userData = userService.getUserById(userID)>
 
-<cfif structIsEmpty(userData)>
-    <cfoutput>Not found! #userid#</cfoutput>
-    <cfabort>
-</cfif>
 <cfset calendarName = UserData.user.calendarName />
 <cfset userId = UserData.user.userId />
 <cfset recordName = UserData.user.recordName />
