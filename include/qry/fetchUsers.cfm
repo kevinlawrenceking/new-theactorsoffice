@@ -1,6 +1,6 @@
 
 <cfset userService = createObject("component", "services.UserService")>
-<cfif structIsEmpty(userData)><cfset userid = 30 ></cfif>
+<cfif not isdefined('userid')><cfset userid = 30 ></cfif>
 <cfset userData = userService.getUserById(userID)>
 
 <cfset calendarName = UserData.user.calendarName />
