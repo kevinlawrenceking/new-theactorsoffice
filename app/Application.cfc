@@ -84,6 +84,7 @@
     </cfif>
 
     <cfif structKeyExists(session, "userid")>
+    <cfset userid = session.userid />
     <CFINCLUDE template="/include/qry/fetchUsers.cfm" />
       <cfscript>
         session.userMediaPath = application.baseMediaPath & "\users\" & session.userID;
