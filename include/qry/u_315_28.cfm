@@ -1,2 +1,2 @@
 <cfset contactImportService = createObject("component", "services.ContactImportService")>
-<cfset u = contactImportService.SELcontactsimport_24421(new_uploadid=new_uploadid)>
+<cfset u = contactImportService.SELcontactsimport_u(uploadid=new_uploadid)>

@@ -8,7 +8,7 @@
     <cfset var result = "">
 
     <!--- Query to fetch data with additional filters --->
-    <cfquery name="result" datasource="#application.dsn#">
+    <cfquery name="result" >
         SELECT 
             ID, fname, lname, tag, business_email, personal_email, 
             work_phone, mobile_phone, home_phone, company, address, 
@@ -34,7 +34,7 @@
     <cfset var result = "">
 
     <!--- Query to fetch data with additional filters --->
-    <cfquery name="result" datasource="#application.dsn#">
+    <cfquery name="result" >
         SELECT 
             ID, fname, lname, tag, business_email, personal_email, 
             work_phone, mobile_phone, home_phone, company, address, 
@@ -60,7 +60,7 @@
     <cfset var result = "">
 
     <!--- Query to fetch data with additional filters --->
-    <cfquery name="result" datasource="#application.dsn#">
+    <cfquery name="result" >
         SELECT 
             ID, fname, lname, tag, business_email, personal_email, 
             work_phone, mobile_phone, home_phone, company, address, 
@@ -77,6 +77,205 @@
     <cfreturn result>
 </cffunction>
 
+<cffunction name="SELcontactsimport_f" access="public" returntype="query" output="false">
+    <!--- Arguments --->
+    <cfargument name="uploadid" type="numeric" required="true">
+
+    <!--- Local variable to hold the query result --->
+    <cfset var result = "">
+
+    <!--- Query to fetch data with additional filters --->
+    <cfquery name="result" >
+        SELECT 
+            ID, fname, lname, tag, business_email, personal_email, 
+            work_phone, mobile_phone, home_phone, company, address, 
+            address_second, city, state, zip, country, maintenance_or_target, 
+            contactMeetingDate, contactMeetingLoc, birthday, website, status, 
+            contactid, uploadnotes, timestamp, uploadid, tag1, tag2, tag3, notes
+        FROM contactsimport
+        WHERE uploadid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.uploadid#">
+        and status = 'Added'
+        and personal_email <> '' and personal_email is not null
+    </cfquery>
+
+    <!--- Return the query result --->
+    <cfreturn result>
+</cffunction>
+
+<cffunction name="SELcontactsimport_g" access="public" returntype="query" output="false">
+    <!--- Arguments --->
+    <cfargument name="uploadid" type="numeric" required="true">
+
+    <!--- Local variable to hold the query result --->
+    <cfset var result = "">
+
+    <!--- Query to fetch data with additional filters --->
+    <cfquery name="result" >
+        SELECT 
+            ID, fname, lname, tag, business_email, personal_email, 
+            work_phone, mobile_phone, home_phone, company, address, 
+            address_second, city, state, zip, country, maintenance_or_target, 
+            contactMeetingDate, contactMeetingLoc, birthday, website, status, 
+            contactid, uploadnotes, timestamp, uploadid, tag1, tag2, tag3, notes
+        FROM contactsimport
+        WHERE uploadid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.uploadid#">
+        and status = 'Added'
+        and work_phone <> '' and work_phone is not null
+    </cfquery>
+
+    <!--- Return the query result --->
+    <cfreturn result>
+</cffunction>
+
+<cffunction name="SELcontactsimport_h" access="public" returntype="query" output="false">
+    <!--- Arguments --->
+    <cfargument name="uploadid" type="numeric" required="true">
+
+    <!--- Local variable to hold the query result --->
+    <cfset var result = "">
+
+    <!--- Query to fetch data with additional filters --->
+    <cfquery name="result" >
+        SELECT 
+            ID, fname, lname, tag, business_email, personal_email, 
+            work_phone, mobile_phone, home_phone, company, address, 
+            address_second, city, state, zip, country, maintenance_or_target, 
+            contactMeetingDate, contactMeetingLoc, birthday, website, status, 
+            contactid, uploadnotes, timestamp, uploadid, tag1, tag2, tag3, notes
+        FROM contactsimport
+        WHERE uploadid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.uploadid#">
+        and status = 'Added'
+        and mobile_phone <> '' and mobile_phone is not null
+    </cfquery>
+
+    <!--- Return the query result --->
+    <cfreturn result>
+</cffunction>
+
+<cffunction name="SELcontactsimport_i" access="public" returntype="query" output="false">
+    <!--- Arguments --->
+    <cfargument name="uploadid" type="numeric" required="true">
+
+    <!--- Local variable to hold the query result --->
+    <cfset var result = "">
+
+    <!--- Query to fetch data with additional filters --->
+    <cfquery name="result" >
+        SELECT 
+            ID, fname, lname, tag, business_email, personal_email, 
+            work_phone, mobile_phone, home_phone, company, address, 
+            address_second, city, state, zip, country, maintenance_or_target, 
+            contactMeetingDate, contactMeetingLoc, birthday, website, status, 
+            contactid, uploadnotes, timestamp, uploadid, tag1, tag2, tag3, notes
+        FROM contactsimport
+        WHERE uploadid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.uploadid#">
+        and status = 'Added'
+        and home_phone <> '' and home_phone is not null
+    </cfquery>
+
+    <!--- Return the query result --->
+    <cfreturn result>
+</cffunction>
+
+<cffunction name="SELcontactsimport_j" access="public" returntype="query" output="false">
+    <!--- Arguments --->
+    <cfargument name="uploadid" type="numeric" required="true">
+
+    <!--- Local variable to hold the query result --->
+    <cfset var result = "">
+
+    <!--- Query to fetch data with additional filters --->
+    <cfquery name="result" >
+        SELECT 
+            ID, fname, lname, tag, business_email, personal_email, 
+            work_phone, mobile_phone, home_phone, company, address, 
+            address_second, city, state, zip, country, maintenance_or_target, 
+            contactMeetingDate, contactMeetingLoc, birthday, website, status, 
+            contactid, uploadnotes, timestamp, uploadid, tag1, tag2, tag3, notes
+        FROM contactsimport
+        WHERE uploadid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.uploadid#">
+        and status = 'Added'
+        and Company <> '' and Company is not null
+    </cfquery>
+
+    <!--- Return the query result --->
+    <cfreturn result>
+</cffunction>
+
+<cffunction name="SELcontactsimport_u" access="public" returntype="query" output="false">
+    <!--- Arguments --->
+    <cfargument name="uploadid" type="numeric" required="true">
+
+    <!--- Local variable to hold the query result --->
+    <cfset var result = "">
+
+    <!--- Query to fetch data with additional filters --->
+    <cfquery name="result" >
+        SELECT 
+            ID, fname, lname, tag, business_email, personal_email, 
+            work_phone, mobile_phone, home_phone, company, address, 
+            address_second, city, state, zip, country, maintenance_or_target, 
+            contactMeetingDate, contactMeetingLoc, birthday, website, status, 
+            contactid, uploadnotes, timestamp, uploadid, tag1, tag2, tag3, notes
+        FROM contactsimport
+        WHERE uploadid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.uploadid#">
+        and status = 'Added'
+        and website <> '' and website is not null
+    </cfquery>
+
+    <!--- Return the query result --->
+    <cfreturn result>
+</cffunction>
+
+<cffunction name="SELcontactsimport_address" access="public" returntype="query" output="false">
+    <!--- Arguments --->
+    <cfargument name="uploadid" type="numeric" required="true">
+
+    <!--- Local variable to hold the query result --->
+    <cfset var result = "">
+
+    <!--- Query to fetch data with additional filters --->
+    <cfquery name="result" >
+        SELECT 
+            ID, fname, lname, tag, business_email, personal_email, 
+            work_phone, mobile_phone, home_phone, company, address, 
+            address_second, city, state, zip, country, maintenance_or_target, 
+            contactMeetingDate, contactMeetingLoc, birthday, website, status, 
+            contactid, uploadnotes, timestamp, uploadid, tag1, tag2, tag3, notes
+        FROM contactsimport
+        WHERE uploadid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.uploadid#">
+        and status = 'Added'
+    </cfquery>
+
+    <!--- Return the query result --->
+    <cfreturn result>
+</cffunction>
+
+<cffunction name="SELcontactsimport_maints" access="public" returntype="query" output="false">
+    <!--- Arguments --->
+    <cfargument name="uploadid" type="numeric" required="true">
+
+    <!--- Local variable to hold the query result --->
+    <cfset var result = "">
+
+    <!--- Query to fetch data with additional filters --->
+    <cfquery name="result" >
+        SELECT 
+            ID, fname, lname, tag, business_email, personal_email, 
+            work_phone, mobile_phone, home_phone, company, address, 
+            address_second, city, state, zip, country, maintenance_or_target, 
+            contactMeetingDate, contactMeetingLoc, birthday, website, status, 
+            contactid, uploadnotes, timestamp, uploadid, tag1, tag2, tag3, notes
+        FROM contactsimport
+        WHERE uploadid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.uploadid#">
+        and maintenance_or_target = 'Maintenance'
+        and status = 'Added'
+        and contactid is not null
+    </cfquery>
+
+    <!--- Return the query result --->
+    <cfreturn result>
+</cffunction>
 
 <cffunction name="selContactsImport" access="public" returntype="query" output="false">
     <!--- Arguments --->
@@ -104,7 +303,7 @@
     <cfset var result = "">
 
     <!--- Query to fetch data with additional filters --->
-    <cfquery name="result" datasource="#application.dsn#">
+    <cfquery name="result" >
         SELECT 
             ID, fname, lname, tag, business_email, personal_email, 
             work_phone, mobile_phone, home_phone, company, address, 
