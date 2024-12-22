@@ -1112,6 +1112,25 @@ WHERE itemid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.itemid
         </cfquery>
 <cfreturn result.generatedKey>
 </cffunction>
+
+<cffunction output="false" name="INScontactitems_24405" access="public" returntype="numeric">
+    <cfargument name="contactid" type="numeric" required="true">
+    <cfargument name="new_tag2" type="string" required="true">
+
+<cfquery result="result" >
+            INSERT INTO contactitems (contactid, valueType, valueCategory, valueText, itemstatus)
+            VALUES (
+                <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="Tags" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="tag" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.new_tag2#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
+            )
+        </cfquery>
+<cfreturn result.generatedKey>
+</cffunction>
+
+
 <cffunction output="false" name="INScontactitems_24406" access="public" returntype="numeric" >
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="new_tag2" type="string" required="true">
