@@ -410,27 +410,28 @@
         <cfloop query="#arguments.importdata#" startrow="2">
             <!--- Validate row data: Ensure FirstName is present --->
             <cfif len(trim(importdata.FirstName))>
-                <!--- Build the dynamic query for optional fields --->
-                <cfset var optionalFields = "">
-                <cfset var optionalValues = "">
-                
+                <!--- Optional fields dynamically added based on their presence --->
+                <cfset var optionalFields = "" />
+                <cfset var optionalValues = "" />
+
+                <!--- Handle optional fields dynamically --->
                 <cfif len(trim(importdata.contactMeetingDate))>
                     <cfset optionalFields &= ", contactMeetingDate">
                     <cfset optionalValues &= ", <cfqueryparam cfsqltype='cf_sql_date' value='#dateformat(importdata.contactMeetingDate, "yyyy-mm-dd")#'>">
                 </cfif>
-                
+
                 <cfif len(trim(importdata.contactMeetingLocation))>
                     <cfset optionalFields &= ", contactMeetingLoc">
                     <cfset optionalValues &= ", <cfqueryparam cfsqltype='cf_sql_varchar' maxlength='200' value='#trim(importdata.contactMeetingLocation)#'>">
                 </cfif>
-                
+
                 <cfif len(trim(importdata.birthday))>
                     <cfset optionalFields &= ", birthday">
                     <cfset optionalValues &= ", <cfqueryparam cfsqltype='cf_sql_date' value='#dateformat(importdata.birthday, "yyyy-mm-dd")#'>">
                 </cfif>
 
                 <!--- Insert row into the database --->
-                <cfquery name="insertContact">
+                <cfquery name="insertContact" datasource="#application.dsn#">
                     INSERT INTO contactsimport (
                         uploadid, fname, lname, tag1, tag2, tag3,
                         business_email, personal_email, work_phone, 
@@ -464,15 +465,15 @@
                         #optionalValues#
                     )
                 </cfquery>
-                
+
                 <!--- Increment the row count --->
                 <cfset rowCount++>
             </cfif>
         </cfloop>
-        
+
         <!--- Return the number of successfully inserted rows --->
         <cfreturn rowCount>
-        
+
     <cfcatch type="any">
         <!--- Log the error and return 0 --->
         <cflog file="application" text="Error in INScontactsimport: #cfcatch.message#">
@@ -480,6 +481,7 @@
     </cfcatch>
     </cftry>
 </cffunction>
+
 
 
 </cfcomponent>
