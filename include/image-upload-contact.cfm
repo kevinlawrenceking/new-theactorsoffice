@@ -31,17 +31,6 @@
     <cfset return_url = "/app/contact/?contactid=#contactid#"/>
 </cfoutput>
 
-<cfif NOT fileExists(cookie.browser_contact_avatar_filename)>
-  
-        <cfif NOT directoryExists(session.userContactsPath & "/" & contactid)>
-            <cfdirectory action="create" directory="#session.userContactsPath & "/" & contactid#">
-        </cfif>
-        
-        <cffile action="copy" 
-                source="#application.defaultAvatarPath#" 
-                destination="#cookie.uploadDir_Contact#" >          
-
-</cfif> 
 
 <!--- Determine picture size based on ref_pgid --->
 <cfif ref_pgid is "9">
