@@ -1,5 +1,21 @@
 <cfcomponent displayname="ContactImportService" hint="Handles operations for ContactImport table" >
 
+<cffunction name="DETcontactsimport" access="public" returntype="query" output="false">
+
+    <cfargument name="uploadid" type="numeric" required="true">
+
+
+    <cfquery name="result" >
+        SELECT contactid
+        FROM contactsimport
+        WHERE uploadid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.uploadid#">
+          AND status = <cfqueryparam cfsqltype="cf_sql_varchar" value="Added">
+    </cfquery>
+ --->
+    <cfreturn result>
+</cffunction>
+
+
 <cffunction name="SELcontactsimport_24405" access="public" returntype="query" output="false">
     <!--- Arguments --->
     <cfargument name="uploadid" type="numeric" required="true">
