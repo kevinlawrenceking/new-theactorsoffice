@@ -35,7 +35,7 @@
 <cfloop query="importdata" startrow="2">
 
     <!--- Check if the row contains valid data (all fields must contain a value and price must be numeric) --->
-    <Cfif LEN(importdata.FirstName) gt 0>here<Cfabort>
+    <Cfif LEN(importdata.FirstName) gt 0>
         <cfinclude template="/include/qry/find_315_2.cfm" />
     </Cfif>
 </cfloop>
