@@ -59,28 +59,88 @@
     </cffunction>
 
 <cffunction output="false" name="INScontactsimport" access="public" returntype="numeric">
-        <cfargument name="importData" type="struct" required="true">
-        <cfargument name="newUploadId" type="numeric" required="true">
+    <!--- Arguments --->
+    <cfargument name="importdata" type="query" required="true">
+    <cfargument name="newuploadid" type="numeric" required="true">
 
-<cfset var sql = "INSERT INTO contactsimport (uploadid">
-        <cfset var values = "<cfqueryparam value='#arguments.newUploadId#' cfsqltype='CF_SQL_INTEGER'>">
+    <!--- Local variables --->
+    <cfset var rowCount = 0>
 
-<cfif structKeyExists(arguments.importData, "FirstName")>
-            <cfset sql &= ", fname">
-            <cfset values &= ", <cfqueryparam value='#arguments.importData.FirstName#' cfsqltype='CF_SQL_VARCHAR' maxlength='100'>">
-        </cfif>
+    <cftry>
+        <!--- Loop through the import data query starting from row 2 --->
+        <cfloop query="#arguments.importdata#" startrow="2">
+            <!--- Validate row data: Ensure FirstName is present --->
+            <cfif len(trim(importdata.FirstName))>
+                <!--- Build the dynamic query for optional fields --->
+                <cfset var optionalFields = "">
+                <cfset var optionalValues = "">
+                
+                <cfif len(trim(importdata.contactMeetingDate))>
+                    <cfset optionalFields &= ", contactMeetingDate">
+                    <cfset optionalValues &= ", <cfqueryparam cfsqltype='cf_sql_date' value='#dateformat(importdata.contactMeetingDate, "yyyy-mm-dd")#'>">
+                </cfif>
+                
+                <cfif len(trim(importdata.contactMeetingLocation))>
+                    <cfset optionalFields &= ", contactMeetingLoc">
+                    <cfset optionalValues &= ", <cfqueryparam cfsqltype='cf_sql_varchar' maxlength='200' value='#trim(importdata.contactMeetingLocation)#'>">
+                </cfif>
+                
+                <cfif len(trim(importdata.birthday))>
+                    <cfset optionalFields &= ", birthday">
+                    <cfset optionalValues &= ", <cfqueryparam cfsqltype='cf_sql_date' value='#dateformat(importdata.birthday, "yyyy-mm-dd")#'>">
+                </cfif>
 
-<cfif structKeyExists(arguments.importData, "LastName")>
-            <cfset sql &= ", lname">
-            <cfset values &= ", <cfqueryparam value='#arguments.importData.LastName#' cfsqltype='CF_SQL_VARCHAR' maxlength='100'>">
-        </cfif>
+                <!--- Insert row into the database --->
+                <cfquery name="insertContact">
+                    INSERT INTO contactsimport (
+                        uploadid, fname, lname, tag1, tag2, tag3,
+                        business_email, personal_email, work_phone, 
+                        mobile_phone, home_phone, company, address, 
+                        address_second, city, state, zip, country,
+                        website, status, notes
+                        #optionalFields#
+                    )
+                    VALUES (
+                        <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.newuploadid#">,
+                        <cfqueryparam cfsqltype="cf_sql_varchar" maxlength="100" value="#trim(importdata.FirstName)#">,
+                        <cfqueryparam cfsqltype="cf_sql_varchar" maxlength="100" value="#trim(importdata.LastName)#">,
+                        <cfqueryparam cfsqltype="cf_sql_varchar" maxlength="100" value="#trim(importdata.Tag1)#">,
+                        <cfqueryparam cfsqltype="cf_sql_varchar" maxlength="100" value="#trim(importdata.Tag2)#">,
+                        <cfqueryparam cfsqltype="cf_sql_varchar" maxlength="100" value="#trim(importdata.Tag3)#">,
+                        <cfqueryparam cfsqltype="cf_sql_varchar" maxlength="100" value="#trim(importdata.BusinessEmail)#">,
+                        <cfqueryparam cfsqltype="cf_sql_varchar" maxlength="100" value="#trim(importdata.PersonalEmail)#">,
+                        <cfqueryparam cfsqltype="cf_sql_varchar" maxlength="100" value="#trim(importdata.WorkPhone)#">,
+                        <cfqueryparam cfsqltype="cf_sql_varchar" maxlength="100" value="#trim(importdata.MobilePhone)#">,
+                        <cfqueryparam cfsqltype="cf_sql_varchar" maxlength="100" value="#trim(importdata.HomePhone)#">,
+                        <cfqueryparam cfsqltype="cf_sql_varchar" maxlength="200" value="#trim(importdata.Company)#">,
+                        <cfqueryparam cfsqltype="cf_sql_varchar" maxlength="200" value="#trim(importdata.Address)#">,
+                        <cfqueryparam cfsqltype="cf_sql_varchar" maxlength="100" value="#trim(importdata.Address2)#">,
+                        <cfqueryparam cfsqltype="cf_sql_varchar" maxlength="100" value="#trim(importdata.City)#">,
+                        <cfqueryparam cfsqltype="cf_sql_varchar" maxlength="100" value="#trim(importdata.State)#">,
+                        <cfqueryparam cfsqltype="cf_sql_varchar" maxlength="100" value="#trim(importdata.Zip)#">,
+                        <cfqueryparam cfsqltype="cf_sql_varchar" maxlength="100" value="#trim(importdata.Country)#">,
+                        <cfqueryparam cfsqltype="cf_sql_varchar" maxlength="200" value="#trim(importdata.website)#">,
+                        <cfqueryparam cfsqltype="cf_sql_varchar" value="Pending">,
+                        <cfqueryparam cfsqltype="cf_sql_longvarchar" value="#trim(importdata.Notes)#">
+                        #optionalValues#
+                    )
+                </cfquery>
+                
+                <!--- Increment the row count --->
+                <cfset rowCount++>
+            </cfif>
+        </cfloop>
+        
+        <!--- Return the number of successfully inserted rows --->
+        <cfreturn rowCount>
+        
+    <cfcatch type="any">
+        <!--- Log the error and return 0 --->
+        <cflog file="application" text="Error in INScontactsimport: #cfcatch.message#">
+        <cfreturn 0>
+    </cfcatch>
+    </cftry>
+</cffunction>
 
-<cfset sql &= ") VALUES (" & values & ")">
-
-<cfquery result="result" name="insertQuery">
-            #sql#
-        </cfquery>
-        <cfreturn result.generatedKey>
-    </cffunction>
 
 </cfcomponent>
