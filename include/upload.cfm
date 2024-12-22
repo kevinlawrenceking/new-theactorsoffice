@@ -33,9 +33,9 @@
 
 <!--- Loop through the query starting with the first row containing data (row 2) --->
 <cfloop query="importdata" startrow="2">
-here<Cfabort>
+
     <!--- Check if the row contains valid data (all fields must contain a value and price must be numeric) --->
-    <Cfif LEN(importdata.FirstName) gt 0>
+    <Cfif LEN(importdata.FirstName) gt 0>here<Cfabort>
         <cfinclude template="/include/qry/find_315_2.cfm" />
     </Cfif>
 </cfloop>
