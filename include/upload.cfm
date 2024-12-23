@@ -23,7 +23,7 @@
 <!--- Read the spreadsheet data into a query object --->
 
 
-    !--- Read spreadsheet into query --->
+  <!--- Read spreadsheet into rawdata --->
 <cfspreadsheet action="read" 
     sheetname="TAO Import Template" 
     src="#session.userMediaPath#\#cffile.serverfile#" 
@@ -31,13 +31,14 @@
     columnnames="FirstName,LastName,Tag1,Tag2,Tag3,BusinessEmail,PersonalEmail,WorkPhone,MobilePhone,HomePhone,Company,Address,Address2,City,State,Zip,Country,contactMeetingDate,contactMeetingLocation,Birthday,website,Notes" 
     headerrow="1" />
 
-<!--- Filter rows with meaningful data --->
-<cfset  importdata = QueryNew("FirstName,LastName,Tag1,Tag2,Tag3,BusinessEmail,PersonalEmail,WorkPhone,MobilePhone,HomePhone,Company,Address,Address2,City,State,Zip,Country,contactMeetingDate,contactMeetingLocation,Birthday,website,Notes")>
+<!--- Create importdata to replace rawdata after filtering --->
+<cfset importdata = QueryNew("FirstName,LastName,Tag1,Tag2,Tag3,BusinessEmail,PersonalEmail,WorkPhone,MobilePhone,HomePhone,Company,Address,Address2,City,State,Zip,Country,contactMeetingDate,contactMeetingLocation,Birthday,website,Notes")>
 
-<cfloop query="importdata">
+<!--- Loop through rawdata and filter rows with meaningful data --->
+<cfloop query="rawdata">
     <!--- Check if at least one column has a value --->
     <cfif len(trim(FirstName)) OR len(trim(LastName)) OR len(trim(BusinessEmail)) OR len(trim(WorkPhone)) OR len(trim(MobilePhone)) OR len(trim(HomePhone))>
-        <!--- Add this row to the filtered query --->
+        <!--- Add this row to the importdata query --->
         <cfset QueryAddRow(importdata)>
         <cfset QuerySetCell(importdata, "FirstName", FirstName)>
         <cfset QuerySetCell(importdata, "LastName", LastName)>
@@ -63,10 +64,11 @@
         <cfset QuerySetCell(importdata, "Notes", Notes)>
     </cfif>
 </cfloop>
-<!--- Create a variable to store the codes of products that could not be imported --->
-<cfset failedimports = "" />
 
-<cfdump var="#importdata#"><cfaborT>
+<!--- Debugging: Dump the filtered importdata query --->
+<cfdump var="#importdata#">
+<cfabort>
+
 <!--- Loop through the query starting with the first row containing data (row 2) --->
 <cfloop query="importdata" startrow="2">
 
