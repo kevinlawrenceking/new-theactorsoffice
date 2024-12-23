@@ -433,6 +433,11 @@
                     <cfset optionalValues &= ", '#dateformat(importdata.birthday, "yyyy-mm-dd")#'">
                 </cfif>
 
+                <!--- Remove leading comma from optionalValues if needed ---> 
+                <cfif left(optionalValues, 2) EQ ", ">
+                    <cfset optionalValues = mid(optionalValues, 3)>
+                </cfif>
+
                 <!--- Build SQL for debugging ---> 
                 <cfset sqlStatement = "
                     INSERT INTO contactsimport (
@@ -475,7 +480,8 @@
                     <pre>#sqlStatement#</pre>
                 </cfoutput>
 
-
+                <!--- Abort after debugging if needed ---> 
+                <cfabort>
 
                 <!--- Insert row into the database ---> 
                 <cfquery name="insertContact">
