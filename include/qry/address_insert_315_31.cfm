@@ -1,22 +1,22 @@
 <cfset contactItemService = createObject("component", "services.ContactItemService")>
 
 <!--- Define the address struct dynamically --->
-<cfparam name="form.contactid" default="0">
-<cfparam name="form.address" default="">
-<cfparam name="form.address_second" default="">
-<cfparam name="form.city" default="">
-<cfparam name="form.state" default="">
-<cfparam name="form.zip" default="">
-<cfparam name="form.country" default="">
+<cfparam name="contactid" default="0">
+<cfparam name="address" default="">
+<cfparam name="address_second" default="">
+<cfparam name="city" default="">
+<cfparam name="state" default="">
+<cfparam name="zip" default="">
+<cfparam name="country" default="">
 
 <cfset address = {
-    contactid = val(form.contactid), <!--- Ensure numeric value for contactid --->
-    address = trim(form.address),
-    address_second = trim(form.address_second),
-    city = trim(form.city),
-    state = trim(form.state),
-    zip = trim(form.zip),
-    country = trim(form.country)
+    contactid = val(address.contactid), <!--- Ensure numeric value for contactid --->
+    address = trim(address.address),
+    address_second = trim(address.address_second),
+    city = trim(address.city),
+    state = trim(address.state),
+    zip = trim(address.zip),
+    country = trim(address.country)
 }>
 
 <!--- Validate address struct --->
