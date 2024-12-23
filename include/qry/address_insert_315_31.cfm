@@ -20,7 +20,7 @@
 }>
 
 <!--- Validate address struct --->
-<cfif NOT isStruct(newaddress)>
+<cfif NOT isStruct(new_address)>
     <cfthrow message="Address is not a struct." detail="The address object is invalid.">
 </cfif>
 
