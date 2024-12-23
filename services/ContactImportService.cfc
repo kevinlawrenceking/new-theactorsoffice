@@ -1,5 +1,30 @@
 <cfcomponent displayname="ContactImportService" hint="Handles operations for ContactImport table" >
 
+<cffunction name="UPDCONTACTSIMPORT" access="public" returntype="void" output="false">
+    <!--- Arguments --->
+    <cfargument name="new_status" type="string" required="true">
+    <cfargument name="new_contactid" type="numeric" required="true">
+    <cfargument name="id" type="numeric" required="true">
+
+    <!--- Update Query --->
+    <cftry>
+        <cfquery datasource="#application.dsn#" name="update">
+            UPDATE CONTACTSIMPORT
+            SET status = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_status#">,
+                contactid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_contactid#">
+            WHERE id = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.id#">
+        </cfquery>
+
+    <cfcatch type="any">
+        <!--- Log and rethrow the error --->
+        <cflog file="application" text="Error in UPDCONTACTSIMPORT: #cfcatch.message#">
+        <cfthrow message="Error updating CONTACTSIMPORT" detail="#cfcatch.detail#">
+    </cfcatch>
+    </cftry>
+</cffunction>
+
+
+
 <cffunction name="DETcontactsimport" access="public" returntype="query" output="false">
 
     <cfargument name="uploadid" type="numeric" required="true">
