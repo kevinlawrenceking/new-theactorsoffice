@@ -431,7 +431,7 @@
                 </cfif>
 
                 <!--- Insert row into the database --->
-                <cfquery name="insertContact" datasource="#application.dsn#">
+                <cfquery name="insertContact" >
                     INSERT INTO contactsimport (
                         uploadid, fname, lname, tag1, tag2, tag3,
                         business_email, personal_email, work_phone, 
@@ -482,6 +482,7 @@
     <cfoutput>
         <h3>Error Occurred in INScontactsimport</h3>
         <p><strong>Error Message:</strong> #cfcatch.message#</p>
+        <p>optional: ##optionalFields##</p>
         <p><strong>Detail:</strong> #cfcatch.detail#</p>
         <p><strong>Stack Trace:</strong></p>
         <pre>#cfcatch.stackTrace#</pre>
