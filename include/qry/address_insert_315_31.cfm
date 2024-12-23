@@ -10,7 +10,7 @@
 <cfparam name="form.country" default="">
 
 <cfset address = {
-    contactid = form.contactid,
+    contactid = val(form.contactid), <!--- Ensure numeric value for contactid --->
     address = trim(form.address),
     address_second = trim(form.address_second),
     city = trim(form.city),
@@ -19,6 +19,11 @@
     country = trim(form.country)
 }>
 
+<!--- Validate address struct --->
+<cfif NOT isStruct(address)>
+    <cfthrow message="Address is not a struct." detail="The address object is invalid.">
+</cfif>
+
 <!--- Call the function --->
 <cfset result = contactItemService.INScontactitems_24424(address=address)>
 
@@ -26,3 +31,4 @@
 <cfoutput>
     Insert successful! New ID: #result#
 </cfoutput>
+
