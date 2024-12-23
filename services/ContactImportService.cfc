@@ -404,82 +404,82 @@
 
     <!--- Local variables --->
     <cfset var rowCount = 0>
+    <cfset var optionalFields = "" />
+    <cfset var optionalValues = "" />
+    <cfset var sqlStatement = "" />
 
     <cftry>
-
- 
-        <!--- Loop through the import data query starting from row 2 --->
+        <!--- Loop through the import data query starting from row 2 ---> 
         <cfloop query="#arguments.importdata#" startrow="2">
             <!--- Validate row data: Ensure FirstName is present --->
             <cfif len(trim(importdata.FirstName))>
-                <!--- Optional fields dynamically added based on their presence --->
-                <cfset var optionalFields = "" />
-                <cfset var optionalValues = "" />
+                <!--- Reset optional fields for each row --->
+                <cfset optionalFields = "" />
+                <cfset optionalValues = "" />
 
-                <!--- Handle optional fields dynamically --->
+                <!--- Handle optional fields dynamically ---> 
                 <cfif len(trim(importdata.contactMeetingDate))>
                     <cfset optionalFields &= ", contactMeetingDate">
-                    <cfset optionalValues &= ", <cfqueryparam cfsqltype='cf_sql_date' value='#dateformat(importdata.contactMeetingDate, "yyyy-mm-dd")#'>">
+                    <cfset optionalValues &= ", '#dateformat(importdata.contactMeetingDate, "yyyy-mm-dd")#'">
                 </cfif>
 
                 <cfif len(trim(importdata.contactMeetingLocation))>
                     <cfset optionalFields &= ", contactMeetingLoc">
-                    <cfset optionalValues &= ", <cfqueryparam cfsqltype='cf_sql_varchar' maxlength='200' value='#trim(importdata.contactMeetingLocation)#'>">
+                    <cfset optionalValues &= ", '#trim(importdata.contactMeetingLocation)#'">
                 </cfif>
 
                 <cfif len(trim(importdata.birthday))>
                     <cfset optionalFields &= ", birthday">
-                    <cfset optionalValues &= ", <cfqueryparam cfsqltype='cf_sql_date' value='#dateformat(importdata.birthday, "yyyy-mm-dd")#'>">
+                    <cfset optionalValues &= ", '#dateformat(importdata.birthday, "yyyy-mm-dd")#'">
                 </cfif>
 
-                <cfset var sqlStatement = "">
-<cfset sqlStatement = "
-    INSERT INTO contactsimport (
-        uploadid, fname, lname, tag1, tag2, tag3,
-        business_email, personal_email, work_phone, 
-        mobile_phone, home_phone, company, address, 
-        address_second, city, state, zip, country,
-        website, status, notes
-        #optionalFields#
-    )
-    VALUES (
-        #arguments.newuploadid#,
-        '#trim(importdata.FirstName)#',
-        '#trim(importdata.LastName)#',
-        '#trim(importdata.Tag1)#',
-        '#trim(importdata.Tag2)#',
-        '#trim(importdata.Tag3)#',
-        '#trim(importdata.BusinessEmail)#',
-        '#trim(importdata.PersonalEmail)#',
-        '#trim(importdata.WorkPhone)#',
-        '#trim(importdata.MobilePhone)#',
-        '#trim(importdata.HomePhone)#',
-        '#trim(importdata.Company)#',
-        '#trim(importdata.Address)#',
-        '#trim(importdata.Address2)#',
-        '#trim(importdata.City)#',
-        '#trim(importdata.State)#',
-        '#trim(importdata.Zip)#',
-        '#trim(importdata.Country)#',
-        '#trim(importdata.website)#',
-        'Pending',
-        '#trim(importdata.Notes)#'
-        #optionalValues#
-    )
-">
+                <!--- Build SQL for debugging ---> 
+                <cfset sqlStatement = "
+                    INSERT INTO contactsimport (
+                        uploadid, fname, lname, tag1, tag2, tag3,
+                        business_email, personal_email, work_phone, 
+                        mobile_phone, home_phone, company, address, 
+                        address_second, city, state, zip, country,
+                        website, status, notes
+                        #optionalFields#
+                    )
+                    VALUES (
+                        #arguments.newuploadid#,
+                        '#trim(importdata.FirstName)#',
+                        '#trim(importdata.LastName)#',
+                        '#trim(importdata.Tag1)#',
+                        '#trim(importdata.Tag2)#',
+                        '#trim(importdata.Tag3)#',
+                        '#trim(importdata.BusinessEmail)#',
+                        '#trim(importdata.PersonalEmail)#',
+                        '#trim(importdata.WorkPhone)#',
+                        '#trim(importdata.MobilePhone)#',
+                        '#trim(importdata.HomePhone)#',
+                        '#trim(importdata.Company)#',
+                        '#trim(importdata.Address)#',
+                        '#trim(importdata.Address2)#',
+                        '#trim(importdata.City)#',
+                        '#trim(importdata.State)#',
+                        '#trim(importdata.Zip)#',
+                        '#trim(importdata.Country)#',
+                        '#trim(importdata.website)#',
+                        'Pending',
+                        '#trim(importdata.Notes)#'
+                        #optionalValues#
+                    )
+                ">
 
-<!--- Debug: Output the SQL query before execution --->
-<cfoutput>
-    <h3>Debugging SQL Statement</h3>
-    <pre>#sqlStatement#</pre>
-</cfoutput>
+                <!--- Debugging: Output SQL statement --->
+                <cfoutput>
+                    <h3>Debugging SQL Statement</h3>
+                    <pre>#sqlStatement#</pre>
+                </cfoutput>
 
-<!--- Abort after debugging if needed --->
-<cfabort>
+                <!--- Abort after debugging if needed ---> 
+                <cfabort>
 
-
-                <!--- Insert row into the database --->
-                <cfquery name="insertContact" >
+                <!--- Insert row into the database ---> 
+                <cfquery name="insertContact">
                     INSERT INTO contactsimport (
                         uploadid, fname, lname, tag1, tag2, tag3,
                         business_email, personal_email, work_phone, 
@@ -514,30 +514,29 @@
                     )
                 </cfquery>
 
-                <!--- Increment the row count --->
+                <!--- Increment the row count ---> 
                 <cfset rowCount++>
             </cfif>
         </cfloop>
 
-        <!--- Return the number of successfully inserted rows --->
+        <!--- Return the number of successfully inserted rows ---> 
         <cfreturn rowCount>
-<cfcatch type="any">
-    <!--- Log the error details --->
-    <cflog file="application" text="Error in INScontactsimport: #cfcatch.detail#">
-    <cflog file="application" text="Stack Trace: #cfcatch.stackTrace#">
 
-    <!--- Output detailed error information for debugging --->
-    <cfoutput>
-        <h3>Error Occurred in INScontactsimport</h3>
-        <p><strong>Error Message:</strong> #cfcatch.message#</p>
-        <p>optional: #optionalFields#<BR>#optionalvalues#</p>
-        <p><strong>Detail:</strong> #cfcatch.detail#</p>
-        <p><strong>Stack Trace:</strong></p>
-        <pre>#cfcatch.stackTrace#</pre>
-    </cfoutput>
-    <cfabort>
-</cfcatch>
-</cftry>
+    <cfcatch type="any">
+        <!--- Log and display error details ---> 
+        <cflog file="application" text="Error in INScontactsimport: #cfcatch.detail#">
+        <cflog file="application" text="Stack Trace: #cfcatch.stackTrace#">
+
+        <cfoutput>
+            <h3>Error Occurred in INScontactsimport</h3>
+            <p><strong>Error Message:</strong> #cfcatch.message#</p>
+            <p><strong>Detail:</strong> #cfcatch.detail#</p>
+            <p><strong>Stack Trace:</strong></p>
+            <pre>#cfcatch.stackTrace#</pre>
+        </cfoutput>
+        <cfabort>
+    </cfcatch>
+    </cftry>
 </cffunction>
 
 
