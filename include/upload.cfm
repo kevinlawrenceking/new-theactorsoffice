@@ -37,7 +37,7 @@
 <!--- Loop through rawdata and filter rows with meaningful data --->
 <cfloop query="rawdata">
     <!--- Check if at least one column has a value --->
-    <cfif len(trim(FirstName)) OR len(trim(LastName)) OR len(trim(BusinessEmail)) OR len(trim(WorkPhone)) OR len(trim(MobilePhone)) OR len(trim(HomePhone))>
+    <cfif FirstName neq "">
         <!--- Add this row to the importdata query --->
         <cfset QueryAddRow(importdata)>
         <cfset QuerySetCell(importdata, "FirstName", FirstName)>
