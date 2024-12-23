@@ -482,7 +482,7 @@
     <cfoutput>
         <h3>Error Occurred in INScontactsimport</h3>
         <p><strong>Error Message:</strong> #cfcatch.message#</p>
-        <p>optional: ##optionalFields##</p>
+        <p>optional: #optionalFields#</p>
         <p><strong>Detail:</strong> #cfcatch.detail#</p>
         <p><strong>Stack Trace:</strong></p>
         <pre>#cfcatch.stackTrace#</pre>
