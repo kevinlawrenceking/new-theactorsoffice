@@ -480,9 +480,7 @@
                     <h3>Debugging SQL Statement</h3>
                     <pre>#sqlStatement#</pre>
                 </cfoutput>
-
-                <!--- Abort after debugging if needed ---> 
-                <cfabort>
+>
 
                 <!--- Insert row into the database ---> 
                 <cfquery name="insertContact">
@@ -491,7 +489,8 @@
                         business_email, personal_email, work_phone, 
                         mobile_phone, home_phone, company, address, 
                         address_second, city, state, zip, country,
-                        website, status, notes
+                        website, status, notes,
+                        #optionalFields#
                     )
                     VALUES (
                         <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.newuploadid#">,
@@ -515,7 +514,7 @@
                         <cfqueryparam cfsqltype="cf_sql_varchar" maxlength="200" value="#trim(importdata.website)#">,
                         <cfqueryparam cfsqltype="cf_sql_varchar" value="Pending">,
                         <cfqueryparam cfsqltype="cf_sql_longvarchar" value="#trim(importdata.Notes)#">
-             
+                        #optionalValues#
                     )
                 </cfquery>
 
@@ -539,7 +538,7 @@
             <p><strong>Stack Trace:</strong></p>
             <pre>#cfcatch.stackTrace#</pre>
         </cfoutput>
-
+        <cfabort>
     </cfcatch>
     </cftry>
 </cffunction>
