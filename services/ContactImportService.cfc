@@ -413,33 +413,8 @@
         <cfloop query="#arguments.importdata#" startrow="2">
             <!--- Validate row data: Ensure FirstName is present --->
             <cfif len(trim(importdata.FirstName))>
-                <!--- Reset optional fields for each row --->
-                <cfset optionalFields = "" />
-                <cfset optionalValues = "" />
 
-                <!--- Handle optional fields dynamically ---> 
-                <cfif len(trim(importdata.contactMeetingDate))>
-                    <cfset optionalFields &= ", contactMeetingDate">
-                    <cfset optionalValues &= ", '#dateformat(importdata.contactMeetingDate, "yyyy-mm-dd")#'">
-                </cfif>
-
-                <cfif len(trim(importdata.contactMeetingLocation))>
-                    <cfset optionalFields &= ", contactMeetingLoc">
-                    <cfset optionalValues &= ", '#trim(importdata.contactMeetingLocation)#'">
-                </cfif>
-
-                <cfif len(trim(importdata.birthday))>
-                    <cfset optionalFields &= ", birthday">
-                    <cfset optionalValues &= ", '#dateformat(importdata.birthday, "yyyy-mm-dd")#'">
-                </cfif>
-
-          <!--- Remove leading comma from optionalValues if needed ---> 
-<cfif left(optionalValues, 2) EQ ", ">
-    <cfset optionalValues = mid(optionalValues, 3, len(optionalValues) - 2)>
-</cfif>
-
-
-                <!--- Build SQL for debugging ---> 
+ 
                 <cfset sqlStatement = "
                     INSERT INTO contactsimport (
                         uploadid, fname, lname, tag1, tag2, tag3,
@@ -447,7 +422,20 @@
                         mobile_phone, home_phone, company, address, 
                         address_second, city, state, zip, country,
                         website, status, notes
-                        #optionalFields#
+
+      <cfif len(trim(importdata.contactMeetingDate))>
+                        ,contactMeetingDate
+</cfif>
+
+      <cfif len(trim(importdata.contactMeetingLoc))>
+                        , contactMeetingLoc
+</cfif>
+
+               <cfif len(trim(importdata.birthday))>            
+                     , birthday
+                     </cfif>
+
+
                     )
                     VALUES (
                         #arguments.newuploadid#,
@@ -470,8 +458,20 @@
                         '#trim(importdata.Country)#',
                         '#trim(importdata.website)#',
                         'Pending',
-                        '#trim(importdata.Notes)#',
-                        #optionalValues#
+                        '#trim(importdata.Notes)#'
+
+      <cfif len(trim(importdata.contactMeetingDate))>
+                        ,'#dateformat(importdata.contactMeetingDate, "yyyy-mm-dd")#'
+</cfif>
+
+      <cfif len(trim(importdata.contactMeetingLocation))>
+                        ,'#trim(importdata.contactMeetingLocation)#'
+</cfif>
+
+      <cfif len(trim(importdata.birthday))>
+                        ,'#dateformat(importdata.birthday, "yyyy-mm-dd")#'
+</cfif>
+
                     )
                 ">
 
@@ -490,7 +490,18 @@
                         mobile_phone, home_phone, company, address, 
                         address_second, city, state, zip, country,
                         website, status, notes
-                        #optionalFields#
+                     
+      <cfif len(trim(importdata.contactMeetingDate))>
+                        ,contactMeetingDate
+</cfif>
+
+      <cfif len(trim(importdata.contactMeetingLoc))>
+                        , contactMeetingLoc
+</cfif>
+
+               <cfif len(trim(importdata.birthday))>            
+                     , birthday
+                     </cfif>
                     )
                     VALUES (
                         <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.newuploadid#">,
@@ -513,8 +524,21 @@
                         <cfqueryparam cfsqltype="cf_sql_varchar" maxlength="100" value="#trim(importdata.Country)#">,
                         <cfqueryparam cfsqltype="cf_sql_varchar" maxlength="200" value="#trim(importdata.website)#">,
                         <cfqueryparam cfsqltype="cf_sql_varchar" value="Pending">,
-                        <cfqueryparam cfsqltype="cf_sql_longvarchar" value="#trim(importdata.Notes)#">,
-                        #optionalValues#
+                        <cfqueryparam cfsqltype="cf_sql_longvarchar" value="#trim(importdata.Notes)#">
+
+      <cfif len(trim(importdata.contactMeetingDate))>
+                        ,'#dateformat(importdata.contactMeetingDate, "yyyy-mm-dd")#'
+</cfif>
+
+      <cfif len(trim(importdata.contactMeetingLocation))>
+                        ,'#trim(importdata.contactMeetingLocation)#'
+</cfif>
+
+      <cfif len(trim(importdata.birthday))>
+                        ,'#dateformat(importdata.birthday, "yyyy-mm-dd")#'
+</cfif>
+
+
                     )
                 </cfquery>
 
