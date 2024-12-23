@@ -464,8 +464,8 @@
                         ,'#dateformat(importdata.contactMeetingDate, "yyyy-mm-dd")#'
 </cfif>
 
-      <cfif len(trim(importdata.contactMeetingLocation))>
-                        ,'#trim(importdata.contactMeetingLocation)#'
+      <cfif len(trim(importdata.contactMeetingLoc))>
+                        ,'#trim(importdata.contactMeetingLoc)#'
 </cfif>
 
       <cfif len(trim(importdata.birthday))>
