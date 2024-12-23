@@ -61,8 +61,6 @@
 </cfloop>
 
 
-<cfdump var="#importdata#">
-<cfabort>
 
 <cfloop query="importdata" startrow="2">
 
