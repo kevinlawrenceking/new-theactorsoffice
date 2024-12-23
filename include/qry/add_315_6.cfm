@@ -8,7 +8,7 @@
 <cfparam name="form.birthday" default="">
 
 <!--- Construct contact struct dynamically from submitted variables --->
-<cfset new = {
+<cfset new_X = {
     fname = trim(form.fname),
     lname = trim(form.lname),
     contactMeetingDate = trim(form.contactMeetingDate),
@@ -17,4 +17,4 @@
 }>
 
 <!--- Call the function and pass variables --->
-<cfset result = contactService.INScontactdetails_24399(new=new, userid=userid)>
+<cfset result = contactService.INScontactdetails_24399(new=new_x, userid=userid)>
