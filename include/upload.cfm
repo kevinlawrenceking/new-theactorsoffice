@@ -40,12 +40,14 @@
 </cfloop>
 
 <cfinclude template="/include/qry/x_315_3.cfm" />
-<cfoutput>x: #x.recordcount#<BR></cfoutput>
+<cfoutput>new: #new.recordcount#<BR></cfoutput>
 
 <cfloop query="x">
     <cfinclude template="/include/qry/find_315_4.cfm" />
     <cfoutput>find: #find.recordcount#<BR></cfoutput>
-<cfset new_notes = x.notes />
+ 
+
+
     <cfif #find.recordcount# is "1">
         <cfset new_status = "Duplicate" />
         <cfset new_contactid = find.contactid />

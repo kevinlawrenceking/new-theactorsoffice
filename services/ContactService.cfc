@@ -741,27 +741,27 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
         <cfquery name="add" datasource="#application.dsn#" result="result">
             INSERT INTO contactdetails_tbl (
                 contactfullname, userid
-                <cfif len(trim(arguments.x.contactMeetingDate))>
+                <cfif len(trim(arguments.new.contactMeetingDate))>
                     , contactMeetingDate
                 </cfif>
-                <cfif len(trim(arguments.x.contactMeetingLoc))>
+                <cfif len(trim(arguments.new.contactMeetingLoc))>
                     , contactMeetingLoc
                 </cfif>
-                <cfif len(trim(arguments.x.birthday))>
+                <cfif len(trim(arguments.new.birthday))>
                     , contactBirthday
                 </cfif>
             )
             VALUES (
-                '#trim(arguments.x.fname)# #trim(arguments.x.lname)#',
+                '#trim(arguments.new.fname)# #trim(arguments.new.lname)#',
                 #arguments.userid#
-                <cfif len(trim(arguments.x.contactMeetingDate))>
-                    , <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.x.contactMeetingDate#">
+                <cfif len(trim(arguments.new.contactMeetingDate))>
+                    , <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new.contactMeetingDate#">
                 </cfif>
-                <cfif len(trim(arguments.x.contactMeetingLoc))>
-                    , '#trim(arguments.x.contactMeetingLoc)#'
+                <cfif len(trim(arguments.new.contactMeetingLoc))>
+                    , '#trim(arguments.new.contactMeetingLoc)#'
                 </cfif>
-                <cfif len(trim(arguments.x.birthday))>
-                    , <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.x.birthday#">
+                <cfif len(trim(arguments.new.birthday))>
+                    , <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new.birthday#">
                 </cfif>
             )
         </cfquery>
