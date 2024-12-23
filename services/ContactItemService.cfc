@@ -1279,7 +1279,7 @@ WHERE itemid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.itemid
 <cfreturn result.generatedKey>
 </cffunction>
 <cffunction output="false" name="INScontactitems_24424" access="public" returntype="numeric">
-    <cfargument name="address" type="struct" required="true">
+    <cfargument name="new_address" type="struct" required="true">
 
 <cfset var queryResult = "">
 
@@ -1296,15 +1296,15 @@ WHERE itemid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.itemid
                 valuecountry, 
                 itemstatus
             ) VALUES (
-                <cfqueryparam value="#arguments.address.contactid#" cfsqltype="CF_SQL_INTEGER">,
+                <cfqueryparam value="#arguments.new_address.contactid#" cfsqltype="CF_SQL_INTEGER">,
                 <cfqueryparam value="Work" cfsqltype="CF_SQL_VARCHAR">,
-                <cfqueryparam value="Address" cfsqltype="CF_SQL_VARCHAR">,
-                <cfqueryparam value="#arguments.address.address#" cfsqltype="CF_SQL_VARCHAR">,
-                <cfqueryparam value="#arguments.address.address_second#" cfsqltype="CF_SQL_VARCHAR">,
-                <cfqueryparam value="#arguments.address.city#" cfsqltype="CF_SQL_VARCHAR">,
-                <cfqueryparam value="#arguments.address.state#" cfsqltype="CF_SQL_VARCHAR">,
-                <cfqueryparam value="#arguments.address.zip#" cfsqltype="CF_SQL_VARCHAR">,
-                <cfqueryparam value="#arguments.address.country#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="new_address" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.new_address.new_address#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.new_address.new_address_second#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.new_address.city#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.new_address.state#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.new_address.zip#" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="#arguments.new_address.country#" cfsqltype="CF_SQL_VARCHAR">,
                 <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
             )
         </cfquery>

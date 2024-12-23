@@ -9,7 +9,7 @@
 <cfparam name="zip" default="">
 <cfparam name="country" default="">
 
-<cfset address = {
+<cfset new_address = {
     contactid = val(address.contactid), <!--- Ensure numeric value for contactid --->
     address = trim(address.address),
     address_second = trim(address.address_second),
@@ -20,12 +20,12 @@
 }>
 
 <!--- Validate address struct --->
-<cfif NOT isStruct(address)>
+<cfif NOT isStruct(newaddress)>
     <cfthrow message="Address is not a struct." detail="The address object is invalid.">
 </cfif>
 
 <!--- Call the function --->
-<cfset result = contactItemService.INScontactitems_24424(address=address)>
+<cfset result = contactItemService.INScontactitems_24424(new_address=new_address)>
 
 <!--- Output the result --->
 <cfoutput>
