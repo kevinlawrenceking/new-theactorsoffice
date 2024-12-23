@@ -21,12 +21,7 @@
 <cffile action="upload" filefield="form.file" destination="#session.userMediaPath#\" nameconflict="MAKEUNIQUE" />
 
 <!--- Read the spreadsheet data into a query object --->
-<cfspreadsheet action="read" 
-    sheetname="TAO Import Template" 
-    src="#session.userMediaPath#\#cffile.serverfile#" 
-    query="importdata" 
-    columnnames="FirstName,LastName,Tag1,Tag2,Tag3,BusinessEmail,PersonalEmail,WorkPhone,MobilePhone,HomePhone,Company,Address,Address2,City,State,Zip,Country,contactMeetingDate,contactMeetingLocation,Birthday,website,Notes" 
-    headerrow="1" />
+
 
     !--- Read spreadsheet into query --->
 <cfspreadsheet action="read" 
