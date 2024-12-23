@@ -45,7 +45,7 @@
 <cfloop query="x">
     <cfinclude template="/include/qry/find_315_4.cfm" />
     <cfoutput>find: #find.recordcount#<BR></cfoutput>
-
+<cfset new_notes = x.notes />
     <cfif #find.recordcount# is "1">
         <cfset new_status = "Duplicate" />
         <cfset new_contactid = find.contactid />
@@ -64,7 +64,7 @@
         <cfinclude template="/include/folder_setup.cfm" />
     </cfif>
 
-    <cfif #x.notes# is not ""> 
+    <cfif #new_notes# is not ""> 
         <cfset select_userid = userid />
         <cfset select_contactid = new_contactid />
         <cfinclude template="/include/qry/find_note_315_7.cfm" />
