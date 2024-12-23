@@ -480,7 +480,7 @@
                     <h3>Debugging SQL Statement</h3>
                     <pre>#sqlStatement#</pre>
                 </cfoutput>
->
+
 
                 <!--- Insert row into the database ---> 
                 <cfquery name="insertContact">
