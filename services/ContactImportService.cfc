@@ -491,8 +491,7 @@
                         business_email, personal_email, work_phone, 
                         mobile_phone, home_phone, company, address, 
                         address_second, city, state, zip, country,
-                        website, status, notes,
-                        #optionalFields#
+                        website, status, notes
                     )
                     VALUES (
                         <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.newuploadid#">,
@@ -516,7 +515,7 @@
                         <cfqueryparam cfsqltype="cf_sql_varchar" maxlength="200" value="#trim(importdata.website)#">,
                         <cfqueryparam cfsqltype="cf_sql_varchar" value="Pending">,
                         <cfqueryparam cfsqltype="cf_sql_longvarchar" value="#trim(importdata.Notes)#">
-                        #optionalValues#
+             
                     )
                 </cfquery>
 
