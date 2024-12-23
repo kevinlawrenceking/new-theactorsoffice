@@ -404,7 +404,8 @@
 
     <!--- Local variables --->
     <cfset var rowCount = 0>
- 
+
+    <cftry>
         <!--- Loop through the import data query starting from row 2 --->
         <cfloop query="#arguments.importdata#" startrow="2">
             <!--- Validate row data: Ensure FirstName is present --->
@@ -472,7 +473,21 @@
 
         <!--- Return the number of successfully inserted rows --->
         <cfreturn rowCount>
+<cfcatch type="any">
+    <!--- Log the error details --->
+    <cflog file="application" text="Error in INScontactsimport: #cfcatch.detail#">
+    <cflog file="application" text="Stack Trace: #cfcatch.stackTrace#">
 
+    <!--- Output detailed error information for debugging --->
+    <cfoutput>
+        <h3>Error Occurred in INScontactsimport</h3>
+        <p><strong>Error Message:</strong> #cfcatch.message#</p>
+        <p><strong>Detail:</strong> #cfcatch.detail#</p>
+        <p><strong>Stack Trace:</strong></p>
+        <pre>#cfcatch.stackTrace#</pre>
+    </cfoutput>
+    <cfabort>
+</cfcatch>
 
 </cffunction>
 
