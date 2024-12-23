@@ -23,41 +23,12 @@
 <cfspreadsheet action="read" 
     sheetname="TAO Import Template" 
     src="#session.userMediaPath#\#cffile.serverfile#" 
-    query="rawdata" 
+    query="importdata" 
     columnnames="FirstName,LastName,Tag1,Tag2,Tag3,BusinessEmail,PersonalEmail,WorkPhone,MobilePhone,HomePhone,Company,Address,Address2,City,State,Zip,Country,contactMeetingDate,contactMeetingLocation,Birthday,website,Notes" 
     headerrow="1" />
 
 
 
-<cfloop query="rawdata">
-
-    <cfif FirstName neq "">
-  
-        <cfset QueryAddRow(importdata)>
-        <cfset QuerySetCell(importdata, "FirstName", FirstName)>
-        <cfset QuerySetCell(importdata, "LastName", LastName)>
-        <cfset QuerySetCell(importdata, "Tag1", Tag1)>
-        <cfset QuerySetCell(importdata, "Tag2", Tag2)>
-        <cfset QuerySetCell(importdata, "Tag3", Tag3)>
-        <cfset QuerySetCell(importdata, "BusinessEmail", BusinessEmail)>
-        <cfset QuerySetCell(importdata, "PersonalEmail", PersonalEmail)>
-        <cfset QuerySetCell(importdata, "WorkPhone", WorkPhone)>
-        <cfset QuerySetCell(importdata, "MobilePhone", MobilePhone)>
-        <cfset QuerySetCell(importdata, "HomePhone", HomePhone)>
-        <cfset QuerySetCell(importdata, "Company", Company)>
-        <cfset QuerySetCell(importdata, "Address", Address)>
-        <cfset QuerySetCell(importdata, "Address2", Address2)>
-        <cfset QuerySetCell(importdata, "City", City)>
-        <cfset QuerySetCell(importdata, "State", State)>
-        <cfset QuerySetCell(importdata, "Zip", Zip)>
-        <cfset QuerySetCell(importdata, "Country", Country)>
-        <cfset QuerySetCell(importdata, "contactMeetingDate", contactMeetingDate)>
-        <cfset QuerySetCell(importdata, "contactMeetingLocation", contactMeetingLocation)>
-        <cfset QuerySetCell(importdata, "Birthday", Birthday)>
-        <cfset QuerySetCell(importdata, "website", website)>
-        <cfset QuerySetCell(importdata, "Notes", Notes)>
-    </cfif>
-</cfloop>
 
 
 
