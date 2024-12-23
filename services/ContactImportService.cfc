@@ -433,10 +433,11 @@
                     <cfset optionalValues &= ", '#dateformat(importdata.birthday, "yyyy-mm-dd")#'">
                 </cfif>
 
-                <!--- Remove leading comma from optionalValues if needed ---> 
-                <cfif left(optionalValues, 2) EQ ", ">
-                    <cfset optionalValues = mid(optionalValues, 3)>
-                </cfif>
+          <!--- Remove leading comma from optionalValues if needed ---> 
+<cfif left(optionalValues, 2) EQ ", ">
+    <cfset optionalValues = mid(optionalValues, 3, len(optionalValues) - 2)>
+</cfif>
+
 
                 <!--- Build SQL for debugging ---> 
                 <cfset sqlStatement = "
