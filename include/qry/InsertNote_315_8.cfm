@@ -2,5 +2,5 @@
 <cfset noteService.INSnoteslog_24401(
     userid = select_userid,
     contactid = select_contactid,
-    noteDetails = trim(x.Notes)
+    noteDetails = trim(new.Notes)
 )>

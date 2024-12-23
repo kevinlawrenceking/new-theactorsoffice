@@ -66,7 +66,7 @@
         <cfinclude template="/include/folder_setup.cfm" />
     </cfif>
 
-    <cfif #new_notes# is not ""> 
+    <cfif #new.notes# is not ""> 
         <cfset select_userid = userid />
         <cfset select_contactid = new_contactid />
         <cfinclude template="/include/qry/find_note_315_7.cfm" />
