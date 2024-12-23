@@ -42,7 +42,7 @@
 <cfinclude template="/include/qry/x_315_3.cfm" />
 <cfoutput>new: #new.recordcount#<BR></cfoutput>
 
-<cfloop query="x">
+<cfloop query="new">
     <cfinclude template="/include/qry/find_315_4.cfm" />
     <cfoutput>find: #find.recordcount#<BR></cfoutput>
  
