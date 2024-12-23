@@ -475,8 +475,7 @@
                     <pre>#sqlStatement#</pre>
                 </cfoutput>
 
-                <!--- Abort after debugging if needed ---> 
-                <cfabort>
+
 
                 <!--- Insert row into the database ---> 
                 <cfquery name="insertContact">
