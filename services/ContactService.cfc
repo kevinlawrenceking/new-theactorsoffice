@@ -730,7 +730,7 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
 
 <cffunction name="INScontactdetails_24399" access="public" returntype="struct" output="false">
     <!--- Arguments --->
-    <cfargument name="x" type="struct" required="true">
+    <cfargument name="new" type="struct" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
     <!--- Local variables --->
