@@ -726,51 +726,58 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
 
 <cfreturn result>
 </cffunction>
-<cffunction output="false" name="INScontactdetails_24399" access="public" returntype="numeric">
-    <cfargument name="x" type="struct" required="true">
-    <cfset var queryStr = "">
-    <cfset var valuesStr = "">
-    <cfset var params = []>
 
-<!--- Build the query string dynamically --->
-        <cfset queryStr = "INSERT INTO contactdetails_tbl (contactfullname, userid">
-        <cfset valuesStr = "VALUES (?, ?">
 
-<!--- Check optional fields and add them to the query --->
-        <cfif structKeyExists(arguments.x, "contactmeetingDate") AND arguments.x.contactmeetingDate NEQ "">
-            <cfset queryStr &= ", contactMeetingDate">
-            <cfset valuesStr &= ", ?">
-            <cfset arrayAppend(params, {value=arguments.x.contactmeetingDate, cfsqltype="CF_SQL_DATE"})>
-        </cfif>
+<cffunction name="INScontactdetails_24399" access="public" returntype="struct" output="false">
+    <!--- Arguments --->
+    <cfargument name="contact" type="struct" required="true">
+    <cfargument name="userid" type="numeric" required="true">
 
-<cfif structKeyExists(arguments.x, "contactMeetingLoc") AND arguments.x.contactMeetingLoc NEQ "">
-            <cfset queryStr &= ", contactMeetingLoc">
-            <cfset valuesStr &= ", ?">
-            <cfset arrayAppend(params, {value=arguments.x.contactMeetingLoc, cfsqltype="CF_SQL_VARCHAR"})>
-        </cfif>
+    <!--- Local variables --->
+    <cfset var sqlFields = "contactfullname, userid">
+    <cfset var sqlValues = "'#arguments.contact.fname# #arguments.contact.lname#', #arguments.userid#">
+    <cfset var optionalFields = "">
+    <cfset var optionalValues = "">
+    <cfset var result = {}>
 
-<cfif structKeyExists(arguments.x, "birthday") AND arguments.x.birthday NEQ "">
-            <cfset queryStr &= ", contactBirthday">
-            <cfset valuesStr &= ", ?">
-            <cfset arrayAppend(params, {value=arguments.x.birthday, cfsqltype="CF_SQL_DATE"})>
-        </cfif>
+    <!--- Dynamically handle optional fields --->
+    <cfif structKeyExists(arguments.contact, "contactMeetingDate") AND len(trim(arguments.contact.contactMeetingDate))>
+        <cfset sqlFields &= ", contactMeetingDate">
+        <cfset sqlValues &= ", <cfqueryparam cfsqltype='cf_sql_date' value='#arguments.contact.contactMeetingDate#'>">
+    </cfif>
 
-<!--- Close the SQL statement --->
-        <cfset queryStr &= ") ">
-        <cfset valuesStr &= ")">
+    <cfif structKeyExists(arguments.contact, "contactMeetingLoc") AND len(trim(arguments.contact.contactMeetingLoc))>
+        <cfset sqlFields &= ", contactMeetingLoc">
+        <cfset sqlValues &= ", '#arguments.contact.contactMeetingLoc#'">
+    </cfif>
 
-<!--- Execute the query --->
-        <cfquery result="result" name="insertQuery" >
-            #queryStr# #valuesStr#
-            <cfqueryparam value="#arguments.x.fname# #arguments.x.lname#" cfsqltype="CF_SQL_VARCHAR">
-            <cfqueryparam value="#userid#" cfsqltype="CF_SQL_INTEGER">
-            <cfloop array="#params#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-            </cfloop>
+    <cfif structKeyExists(arguments.contact, "birthday") AND len(trim(arguments.contact.birthday))>
+        <cfset sqlFields &= ", contactBirthday">
+        <cfset sqlValues &= ", <cfqueryparam cfsqltype='cf_sql_date' value='#arguments.contact.birthday#'>">
+    </cfif>
+
+    <!--- Execute the query --->
+    <cftry>
+        <cfquery name="add" result="result">
+            INSERT INTO contactdetails_tbl (#sqlFields#)
+            VALUES (#sqlValues#)
         </cfquery>
 
-<cfreturn result.generatedKey>
+        <!--- Return the result struct --->
+        <cfset result.success = true>
+        <cfset result.insertID = result.generatedKey>
+        <cfreturn result>
+
+    <cfcatch type="any">
+        <!--- Log error and return failure response --->
+        <cflog file="application" text="Error in INScontactdetails_24399: #cfcatch.message#">
+        <cfset result.success = false>
+        <cfset result.error = cfcatch.message>
+        <cfreturn result>
+    </cfcatch>
+    </cftry>
 </cffunction>
+
 <cffunction output="false" name="SELcontactdetails_24433" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     <cfargument name="selectContactId" type="numeric" required="false" default="0">
