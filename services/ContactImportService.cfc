@@ -488,7 +488,7 @@
     </cfoutput>
     <cfabort>
 </cfcatch>
-
+</cftry>
 </cffunction>
 
 
