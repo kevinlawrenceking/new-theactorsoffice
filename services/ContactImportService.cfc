@@ -406,6 +406,8 @@
     <cfset var rowCount = 0>
 
     <cftry>
+
+    <cfdump var="#arguments.importdata#"><cfabort>
         <!--- Loop through the import data query starting from row 2 --->
         <cfloop query="#arguments.importdata#" startrow="2">
             <!--- Validate row data: Ensure FirstName is present --->
