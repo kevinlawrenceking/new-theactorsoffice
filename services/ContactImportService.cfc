@@ -415,72 +415,7 @@
             <cfif len(trim(importdata.FirstName))>
 
  
-                <cfset sqlStatement = "
-                    INSERT INTO contactsimport (
-                        uploadid, fname, lname, tag1, tag2, tag3,
-                        business_email, personal_email, work_phone, 
-                        mobile_phone, home_phone, company, address, 
-                        address_second, city, state, zip, country,
-                        website, status, notes
-
-      <cfif len(trim(importdata.contactMeetingDate))>
-                        ,contactMeetingDate
-</cfif>
-
-      <cfif len(trim(importdata.contactMeetingLocation))>
-                        , contactMeetingLocation
-</cfif>
-
-               <cfif len(trim(importdata.birthday))>            
-                     , birthday
-                     </cfif>
-
-
-                    )
-                    VALUES (
-                        #arguments.newuploadid#,
-                        '#trim(importdata.FirstName)#',
-                        '#trim(importdata.LastName)#',
-                        '#trim(importdata.Tag1)#',
-                        '#trim(importdata.Tag2)#',
-                        '#trim(importdata.Tag3)#',
-                        '#trim(importdata.BusinessEmail)#',
-                        '#trim(importdata.PersonalEmail)#',
-                        '#trim(importdata.WorkPhone)#',
-                        '#trim(importdata.MobilePhone)#',
-                        '#trim(importdata.HomePhone)#',
-                        '#trim(importdata.Company)#',
-                        '#trim(importdata.Address)#',
-                        '#trim(importdata.Address2)#',
-                        '#trim(importdata.City)#',
-                        '#trim(importdata.State)#',
-                        '#trim(importdata.Zip)#',
-                        '#trim(importdata.Country)#',
-                        '#trim(importdata.website)#',
-                        'Pending',
-                        '#trim(importdata.Notes)#'
-
-      <cfif len(trim(importdata.contactMeetingDate))>
-                        ,'#dateformat(importdata.contactMeetingDate, "yyyy-mm-dd")#'
-</cfif>
-
-      <cfif len(trim(importdata.contactMeetingLocation))>
-                        ,'#trim(importdata.contactMeetingLocation)#'
-</cfif>
-
-      <cfif len(trim(importdata.birthday))>
-                        ,'#dateformat(importdata.birthday, "yyyy-mm-dd")#'
-</cfif>
-
-                    )
-                ">
-
-                <!--- Debugging: Output SQL statement --->
-                <cfoutput>
-                    <h3>Debugging SQL Statement</h3>
-                    <pre>#sqlStatement#</pre>
-                </cfoutput>
-
+            
 
                 <!--- Insert row into the database ---> 
                 <cfquery name="insertContact">
@@ -495,8 +430,8 @@
                         ,contactMeetingDate
 </cfif>
 
-      <cfif len(trim(importdata.contactMeetingLocation))>
-                        , contactMeetingLocation
+      <cfif len(trim(importdata.contactMeetingLoc))>
+                        , contactMeetingLoc
 </cfif>
 
                <cfif len(trim(importdata.birthday))>            
@@ -530,8 +465,8 @@
                         ,'#dateformat(importdata.contactMeetingDate, "yyyy-mm-dd")#'
 </cfif>
 
-      <cfif len(trim(importdata.contactMeetingLocation))>
-                        ,'#trim(importdata.contactMeetingLocation)#'
+      <cfif len(trim(importdata.contactMeetingLoc))>
+                        ,'#trim(importdata.contactMeetingLoc)#'
 </cfif>
 
       <cfif len(trim(importdata.birthday))>
