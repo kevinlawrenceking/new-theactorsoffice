@@ -68,10 +68,10 @@
         <cfset QuerySetCell(importdata, "Notes", Notes)>
     </cfif>
 </cfloop>
-<cfdump var="#importdata#"><cfaborT>
 <!--- Create a variable to store the codes of products that could not be imported --->
 <cfset failedimports = "" />
 
+<cfdump var="#importdata#"><cfaborT>
 <!--- Loop through the query starting with the first row containing data (row 2) --->
 <cfloop query="importdata" startrow="2">
 
