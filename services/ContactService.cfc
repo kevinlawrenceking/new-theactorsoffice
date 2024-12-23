@@ -730,7 +730,7 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
 
 <cffunction name="INScontactdetails_24399" access="public" returntype="struct" output="false">
     <!--- Arguments --->
-    <cfargument name="contact" type="struct" required="true">
+    <cfargument name="x" type="struct" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
     <!--- Local variables --->
@@ -738,30 +738,30 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
 
     <!--- SQL Query --->
     <cftry>
-        <cfquery name="insertContact" result="result">
+        <cfquery name="add" datasource="#application.dsn#" result="result">
             INSERT INTO contactdetails_tbl (
                 contactfullname, userid
-                <cfif len(trim(arguments.contact.contactMeetingDate))>
+                <cfif len(trim(arguments.x.contactMeetingDate))>
                     , contactMeetingDate
                 </cfif>
-                <cfif len(trim(arguments.contact.contactMeetingLoc))>
+                <cfif len(trim(arguments.x.contactMeetingLoc))>
                     , contactMeetingLoc
                 </cfif>
-                <cfif len(trim(arguments.contact.birthday))>
+                <cfif len(trim(arguments.x.birthday))>
                     , contactBirthday
                 </cfif>
             )
             VALUES (
-                <cfqueryparam cfsqltype="cf_sql_varchar" maxlength="200" value="#arguments.contact.fname# #arguments.contact.lname#">,
-                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#">
-                <cfif len(trim(arguments.contact.contactMeetingDate))>
-                    , <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.contact.contactMeetingDate#">
+                '#trim(arguments.x.fname)# #trim(arguments.x.lname)#',
+                #arguments.userid#
+                <cfif len(trim(arguments.x.contactMeetingDate))>
+                    , <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.x.contactMeetingDate#">
                 </cfif>
-                <cfif len(trim(arguments.contact.contactMeetingLoc))>
-                    , <cfqueryparam cfsqltype="cf_sql_varchar" maxlength="200" value="#arguments.contact.contactMeetingLoc#">
+                <cfif len(trim(arguments.x.contactMeetingLoc))>
+                    , '#trim(arguments.x.contactMeetingLoc)#'
                 </cfif>
-                <cfif len(trim(arguments.contact.birthday))>
-                    , <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.contact.birthday#">
+                <cfif len(trim(arguments.x.birthday))>
+                    , <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.x.birthday#">
                 </cfif>
             )
         </cfquery>
@@ -780,6 +780,7 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
     </cfcatch>
     </cftry>
 </cffunction>
+
 
 
 <cffunction output="false" name="SELcontactdetails_24433" access="public" returntype="query">
