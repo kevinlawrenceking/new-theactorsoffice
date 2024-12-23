@@ -8,7 +8,7 @@
 <cfparam name="form.birthday" default="">
 
 <!--- Construct contact struct dynamically from submitted variables --->
-<cfset x = {
+<cfset new = {
     fname = trim(form.fname),
     lname = trim(form.lname),
     contactMeetingDate = trim(form.contactMeetingDate),
