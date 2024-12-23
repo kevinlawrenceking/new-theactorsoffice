@@ -37,7 +37,7 @@
     headerrow="1" />
 
 <!--- Filter rows with meaningful data --->
-<cfset var importdata = QueryNew("FirstName,LastName,Tag1,Tag2,Tag3,BusinessEmail,PersonalEmail,WorkPhone,MobilePhone,HomePhone,Company,Address,Address2,City,State,Zip,Country,contactMeetingDate,contactMeetingLocation,Birthday,website,Notes")>
+<cfset  importdata = QueryNew("FirstName,LastName,Tag1,Tag2,Tag3,BusinessEmail,PersonalEmail,WorkPhone,MobilePhone,HomePhone,Company,Address,Address2,City,State,Zip,Country,contactMeetingDate,contactMeetingLocation,Birthday,website,Notes")>
 
 <cfloop query="importdata">
     <!--- Check if at least one column has a value --->
