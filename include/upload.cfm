@@ -27,7 +27,6 @@
     columnnames="FirstName,LastName,Tag1,Tag2,Tag3,BusinessEmail,PersonalEmail,WorkPhone,MobilePhone,HomePhone,Company,Address,Address2,City,State,Zip,Country,contactMeetingDate,contactMeetingLocation,Birthday,website,Notes" 
     headerrow="1" />
 
-<cfset importdata = QueryNew("FirstName,LastName,Tag1,Tag2,Tag3,BusinessEmail,PersonalEmail,WorkPhone,MobilePhone,HomePhone,Company,Address,Address2,City,State,Zip,Country,contactMeetingDate,contactMeetingLocation,Birthday,website,Notes")>
 
 
 <cfloop query="rawdata">

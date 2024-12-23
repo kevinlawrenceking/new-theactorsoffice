@@ -427,8 +427,8 @@
                         ,contactMeetingDate
 </cfif>
 
-      <cfif len(trim(importdata.contactMeetingLoc))>
-                        , contactMeetingLoc
+      <cfif len(trim(importdata.contactMeetingLocation))>
+                        , contactMeetingLocation
 </cfif>
 
                <cfif len(trim(importdata.birthday))>            
@@ -464,8 +464,8 @@
                         ,'#dateformat(importdata.contactMeetingDate, "yyyy-mm-dd")#'
 </cfif>
 
-      <cfif len(trim(importdata.contactMeetingLoc))>
-                        ,'#trim(importdata.contactMeetingLoc)#'
+      <cfif len(trim(importdata.contactMeetingLocation))>
+                        ,'#trim(importdata.contactMeetingLocation)#'
 </cfif>
 
       <cfif len(trim(importdata.birthday))>
@@ -495,8 +495,8 @@
                         ,contactMeetingDate
 </cfif>
 
-      <cfif len(trim(importdata.contactMeetingLoc))>
-                        , contactMeetingLoc
+      <cfif len(trim(importdata.contactMeetingLocation))>
+                        , contactMeetingLocation
 </cfif>
 
                <cfif len(trim(importdata.birthday))>            
