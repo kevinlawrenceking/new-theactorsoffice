@@ -489,7 +489,7 @@
                         business_email, personal_email, work_phone, 
                         mobile_phone, home_phone, company, address, 
                         address_second, city, state, zip, country,
-                        website, status, notes,
+                        website, status, notes
                         #optionalFields#
                     )
                     VALUES (
