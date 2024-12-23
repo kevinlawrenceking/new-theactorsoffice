@@ -20,10 +20,6 @@
 
 <cffile action="upload" filefield="form.file" destination="#session.userMediaPath#\" nameconflict="MAKEUNIQUE" />
 
-<!--- Read the spreadsheet data into a query object --->
-
-
-  <!--- Read spreadsheet into rawdata --->
 <cfspreadsheet action="read" 
     sheetname="TAO Import Template" 
     src="#session.userMediaPath#\#cffile.serverfile#" 
@@ -31,14 +27,13 @@
     columnnames="FirstName,LastName,Tag1,Tag2,Tag3,BusinessEmail,PersonalEmail,WorkPhone,MobilePhone,HomePhone,Company,Address,Address2,City,State,Zip,Country,contactMeetingDate,contactMeetingLocation,Birthday,website,Notes" 
     headerrow="1" />
 
-<!--- Create importdata to replace rawdata after filtering --->
 <cfset importdata = QueryNew("FirstName,LastName,Tag1,Tag2,Tag3,BusinessEmail,PersonalEmail,WorkPhone,MobilePhone,HomePhone,Company,Address,Address2,City,State,Zip,Country,contactMeetingDate,contactMeetingLocation,Birthday,website,Notes")>
 
-<!--- Loop through rawdata and filter rows with meaningful data --->
+
 <cfloop query="rawdata">
-    <!--- Check if at least one column has a value --->
+
     <cfif FirstName neq "">
-        <!--- Add this row to the importdata query --->
+  
         <cfset QueryAddRow(importdata)>
         <cfset QuerySetCell(importdata, "FirstName", FirstName)>
         <cfset QuerySetCell(importdata, "LastName", LastName)>
@@ -65,15 +60,13 @@
     </cfif>
 </cfloop>
 
-<!--- Debugging: Dump the filtered importdata query --->
+
 <cfdump var="#importdata#">
 <cfabort>
 
-<!--- Loop through the query starting with the first row containing data (row 2) --->
 <cfloop query="importdata" startrow="2">
 
-    <!--- Check if the row contains valid data (all fields must contain a value and price must be numeric) --->
-    <Cfif LEN(importdata.FirstName) gt 0>
+   <Cfif LEN(importdata.FirstName) gt 0>
         <cfinclude template="/include/qry/find_315_2.cfm" />
     </Cfif>
 </cfloop>
