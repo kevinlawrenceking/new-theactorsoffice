@@ -539,7 +539,7 @@
             <p><strong>Stack Trace:</strong></p>
             <pre>#cfcatch.stackTrace#</pre>
         </cfoutput>
-        <cfabort>
+
     </cfcatch>
     </cftry>
 </cffunction>
