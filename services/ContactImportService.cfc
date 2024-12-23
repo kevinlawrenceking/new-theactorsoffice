@@ -470,7 +470,7 @@
                         '#trim(importdata.Country)#',
                         '#trim(importdata.website)#',
                         'Pending',
-                        '#trim(importdata.Notes)#'
+                        '#trim(importdata.Notes)#',
                         #optionalValues#
                     )
                 ">
