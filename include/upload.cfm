@@ -1,6 +1,4 @@
-<!--- This ColdFusion page handles the import of contact data from a spreadsheet, processes the data, and updates the database accordingly. --->
 
-<cfset userid = userid />
 
 <cfset currentURL = cgi.server_name />
 <cfset host = ListFirst(currentURL, ".") />
