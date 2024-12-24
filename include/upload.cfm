@@ -174,6 +174,6 @@
         </cfloop>
     </cfif>
 </Cfloop>
-
+<cfaborT>
 <cflocation url="/app/contacts-import/?uploadid=#new_uploadid#">
 
