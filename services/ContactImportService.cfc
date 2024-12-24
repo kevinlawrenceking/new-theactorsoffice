@@ -331,6 +331,7 @@
             contactid, uploadnotes, timestamp, uploadid, tag1, tag2, tag3, notes
         FROM contactsimport
         WHERE uploadid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.uploadid#">
+        and fname <> ''
     </cfquery>
 >
     <cfreturn result>

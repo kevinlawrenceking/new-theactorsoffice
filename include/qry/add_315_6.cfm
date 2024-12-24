@@ -1,19 +1,19 @@
 <cfset contactService = createObject("component", "services.ContactService")>
 
 <!--- Simulate form submission or variable inputs --->
-<cfparam name="form.fname" default="">
-<cfparam name="form.lname" default="">
-<cfparam name="form.contactMeetingDate" default="">
-<cfparam name="form.contactMeetingLoc" default="">
-<cfparam name="form.birthday" default="">
+<cfparam name="fname" default="">
+<cfparam name="lname" default="">
+<cfparam name="contactMeetingDate" default="">
+<cfparam name="contactMeetingLoc" default="">
+<cfparam name="birthday" default="">
 
 <!--- Construct contact struct dynamically from submitted variables --->
 <cfset new_X = {
-    fname = trim(form.fname),
-    lname = trim(form.lname),
-    contactMeetingDate = trim(form.contactMeetingDate),
-    contactMeetingLoc = trim(form.contactMeetingLoc),
-    birthday = trim(form.birthday)
+    fname = trim(new.fname),
+    lname = trim(new.lname),
+    contactMeetingDate = trim(new.contactMeetingDate),
+    contactMeetingLoc = trim(new.contactMeetingLoc),
+    birthday = trim(new.birthday)
 }>
 
 <!--- Call the function and pass variables --->

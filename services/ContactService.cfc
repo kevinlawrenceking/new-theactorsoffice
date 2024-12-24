@@ -738,37 +738,71 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
 
     <!--- SQL Query --->
     <cftry>
-        <cfquery name="add" datasource="#application.dsn#" result="result">
-            INSERT INTO contactdetails_tbl (
-                contactfullname, userid
-                <cfif len(trim(arguments.new.contactMeetingDate))>
-                    , contactMeetingDate
-                </cfif>
-                <cfif len(trim(arguments.new.contactMeetingLoc))>
-                    , contactMeetingLoc
-                </cfif>
-                <cfif len(trim(arguments.new.birthday))>
-                    , contactBirthday
-                </cfif>
-            )
-            VALUES (
-                '#trim(arguments.new.fname)# #trim(arguments.new.lname)#',
-                #arguments.userid#
-                <cfif len(trim(arguments.new.contactMeetingDate))>
-                    , <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new.contactMeetingDate#">
-                </cfif>
-                <cfif len(trim(arguments.new.contactMeetingLoc))>
-                    , '#trim(arguments.new.contactMeetingLoc)#'
-                </cfif>
-                <cfif len(trim(arguments.new.birthday))>
-                    , <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new.birthday#">
-                </cfif>
-            )
+        <!--- Check if a record with the same first and last name exists --->
+        <cfquery name="checkExisting" >
+            SELECT id
+            FROM contactdetails_tbl
+            WHERE contactfullname = '#trim(arguments.new.fname)# #trim(arguments.new.lname)#'
+            AND userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#">
         </cfquery>
 
-        <!--- Return success response --->
-        <cfset result.success = true>
-        <cfset result.insertID = result.generatedKey>
+        <cfif checkExisting.recordCount>
+            <!--- Update the existing record --->
+            <cfquery name="updateRecord">
+                UPDATE contactdetails_tbl
+                SET 
+                    contactMeetingDate = <cfif len(trim(arguments.new.contactMeetingDate))>
+                                            <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new.contactMeetingDate#">
+                                        <cfelse>NULL</cfif>,
+                    contactMeetingLoc = <cfif len(trim(arguments.new.contactMeetingLoc))>
+                                            <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.new.contactMeetingLoc)#">
+                                        <cfelse>NULL</cfif>,
+                    contactBirthday = <cfif len(trim(arguments.new.birthday))>
+                                            <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new.birthday#">
+                                        <cfelse>NULL</cfif>
+                WHERE id = <cfqueryparam cfsqltype="cf_sql_integer" value="#checkExisting.id#">
+            </cfquery>
+
+            <!--- Return success response for update --->
+            <cfset result.success = true>
+            <cfset result.message = "Record updated successfully.">
+            <cfset result.id = checkExisting.id>
+        <cfelse>
+            <!--- Insert a new record --->
+            <cfquery name="add" result="result">
+                INSERT INTO contactdetails_tbl (
+                    contactfullname, userid
+                    <cfif len(trim(arguments.new.contactMeetingDate))>
+                        , contactMeetingDate
+                    </cfif>
+                    <cfif len(trim(arguments.new.contactMeetingLoc))>
+                        , contactMeetingLoc
+                    </cfif>
+                    <cfif len(trim(arguments.new.birthday))>
+                        , contactBirthday
+                    </cfif>
+                )
+                VALUES (
+                    '#trim(arguments.new.fname)# #trim(arguments.new.lname)#',
+                    #arguments.userid#
+                    <cfif len(trim(arguments.new.contactMeetingDate))>
+                        , <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new.contactMeetingDate#">
+                    </cfif>
+                    <cfif len(trim(arguments.new.contactMeetingLoc))>
+                        , '#trim(arguments.new.contactMeetingLoc)#'
+                    </cfif>
+                    <cfif len(trim(arguments.new.birthday))>
+                        , <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new.birthday#">
+                    </cfif>
+                )
+            </cfquery>
+
+            <!--- Return success response for insert --->
+            <cfset result.success = true>
+            <cfset result.message = "Record inserted successfully.">
+            <cfset result.insertID = result.generatedKey>
+        </cfif>
+
         <cfreturn result>
 
     <cfcatch type="any">
@@ -780,6 +814,7 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
     </cfcatch>
     </cftry>
 </cffunction>
+
 
 
 
