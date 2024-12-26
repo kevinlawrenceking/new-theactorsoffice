@@ -99,7 +99,7 @@
           <cfqueryparam value="#arguments.actionDaysRecurring#" cfsqltype="CF_SQL_INTEGER">
         <Cfelse>
             NULL
-        </cfif>
+        </cfif></cfif>
       
       ,isDeleted = <cfqueryparam value="#arguments.isDeleted#" cfsqltype="CF_SQL_BIT">
       
@@ -120,6 +120,8 @@
             WHERE systemid = <cfqueryparam value="#arguments.systemid#" cfsqltype="CF_SQL_INTEGER">
         )
         </cfif>
+
+
   </cfquery>
 </cffunction>
 
