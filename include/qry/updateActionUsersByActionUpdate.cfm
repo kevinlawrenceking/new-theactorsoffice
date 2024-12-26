@@ -1,10 +1,8 @@
-  <cfif #deleteaction# is "1">
-<cfset deleteAction = true />
-  </cfif>
+<cfparam name="deleteAction"
 <cfset ActionUserService = createObject("component", "services.ActionUserService")>
-<cfset ActionUserService.UPDactionusers_24030(
+<cfset ActionUserService.updateActionUsers(
     id = id,
     actionDaysNo = actionDaysNo,
-    deleteAction = deleteaction,
+    isDeleted = deleteaction,
     actionDaysRecurring = actionDaysRecurring
 )>

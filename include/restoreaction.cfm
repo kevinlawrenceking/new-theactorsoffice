@@ -2,7 +2,7 @@
 
 <cfinclude template="/include/qry/removenotdups.cfm" />
 
-<cfinclude template="/include/qry/updateActionUsers.cfm" />
+<cfinclude template="/include/qry/restoreActionUsers.cfm" />
 
 <!--- Redirect to the specified URL with parameters. --->
 <cflocation url="/app/myaccount/?t7=1&target_id_system=#target_id_system#" />
