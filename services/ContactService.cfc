@@ -337,6 +337,7 @@
 
 <cfreturn result>
 </cffunction>
+
 <cffunction output="false" name="UPDcontactdetails" access="public" returntype="void">
     <cfargument name="final_birthday" type="date" required="true">
     <cfargument name="New_contactid" type="numeric" required="true">
@@ -348,6 +349,7 @@
         </cfquery>
 
 </cffunction>
+ 
 <cffunction output="false" name="UPDcontactdetails_23816" access="public" returntype="void">
     <cfargument name="uniquename" type="string" required="true">
     <cfargument name="contactid" type="numeric" required="true">
