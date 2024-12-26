@@ -113,7 +113,7 @@
             AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
       </cfif>
 
-      <cfif arguments.systemid gt 0>
+      <cfif arguments.systemid gt 0 and arguments.systemid neq "">
             AND actionid IN (
             SELECT actionid
             FROM fuactions
