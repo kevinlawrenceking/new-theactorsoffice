@@ -105,23 +105,21 @@
       
       WHERE 1=1 
       
-      <cfif arguments.id gt 0>
+        <cfif arguments.id gt 0>
             AND id = <cfqueryparam value="#arguments.id#" cfsqltype="CF_SQL_INTEGER">
-      </cfif>
+        </cfif>
 
-      <cfif arguments.userid gt 0>
+        <cfif arguments.userid gt 0>
             AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
-      </cfif>
+        </cfif>
 
-      <cfif arguments.systemid gt 0 and arguments.systemid neq "">
+        <cfif arguments.systemid gt 0 and arguments.systemid neq "">
             AND actionid IN (
             SELECT actionid
             FROM fuactions
             WHERE systemid = <cfqueryparam value="#arguments.systemid#" cfsqltype="CF_SQL_INTEGER">
         )
         </cfif>
-
-    </cfif>
   </cfquery>
 </cffunction>
 
