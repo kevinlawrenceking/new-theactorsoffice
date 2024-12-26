@@ -1,4 +1,4 @@
-<cfparam name="deleteAction"
+<cfparam name="deleteaction" default="0" /> 
 <cfset ActionUserService = createObject("component", "services.ActionUserService")>
 <cfset ActionUserService.updateActionUsers(
     id = id,
