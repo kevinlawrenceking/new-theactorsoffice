@@ -3,7 +3,7 @@
 <cfparam name="deleteaction" default="0" /> 
 <cfparam name="ver" default="" />
 <cfparam name="actionDaysNo" default="0" />
-<Cfif deletection eq 1>
+<Cfif deleteaction eq 1>
     <cfset isDeleted = 1 />
 </cfif>
 
