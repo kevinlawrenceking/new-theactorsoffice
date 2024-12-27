@@ -742,7 +742,7 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
     <cftry>
         <!--- Check if a record with the same first and last name exists --->
         <cfquery name="checkExisting" >
-            SELECT id
+            SELECT contactid
             FROM contactdetails_tbl
             WHERE contactfullname = '#trim(arguments.new_x.fname)# #trim(arguments.new_x.lname)#'
             AND userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#">
@@ -762,10 +762,11 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
                     contactBirthday = <cfif len(trim(arguments.new_x.birthday))>
                                             <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_x.birthday#">
                                         <cfelse>NULL</cfif>
-                WHERE id = <cfqueryparam cfsqltype="cf_sql_integer" value="#checkExisting.id#">
+                WHERE contactid = <cfqueryparam cfsqltype="cf_sql_integer" value="#checkExisting.contactid#">
             </cfquery>
 
             <!--- Return success response for update --->
+            <cfset result.new_contactid = checkExisting.contactid />
             <cfset result.success = true>
             <cfset result.message = "Record updated successfully.">
             <cfset result.id = checkExisting.id>
@@ -800,6 +801,7 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
             </cfquery>
 
             <!--- Return success response for insert --->
+            <cfset result.new_contactid = result.generatedKey />
             <cfset result.success = true>
             <cfset result.message = "Record inserted successfully.">
             <cfset result.insertID = result.generatedKey>
