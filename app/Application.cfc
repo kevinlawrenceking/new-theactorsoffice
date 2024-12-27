@@ -73,7 +73,7 @@
     <cfreturn true/>
   </cffunction>
 
-  <cffunction name="onRequestStart" returntype="boolean" output="false">
+  <cffunction name="onSessionStart" returntype="boolean" output="false">
     <cfargument name="targetPage" required="true" type="string">
 
     <cfif isdefined('U')>
