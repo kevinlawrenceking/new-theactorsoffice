@@ -1100,6 +1100,8 @@ WHERE itemid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.itemid
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="new_tag" type="string" required="true">
 
+    <cfset var newId = 0>
+
     <cfquery result="result" name="queryResult">
         INSERT INTO contactitems (contactid, valueType, valueCategory, valueText, itemstatus)
         SELECT 
@@ -1117,9 +1119,12 @@ WHERE itemid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.itemid
     </cfquery>
 
 
+    <!-- If a key is generated, return it -->
+    <cfif structKeyExists(result, "generatedKey")>
+        <cfset newId = result.generatedKey>
+    </cfif>
 
-
-    <cfreturn result.generatedKey>
+    <cfreturn newId>
 </cffunction>
 
 
