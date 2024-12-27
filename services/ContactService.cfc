@@ -809,7 +809,7 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
 <cfset var newContactId = result.new_contactid>
     <!--- Update the importcontacts table --->
     <cfquery name="updateImportContacts">
-        UPDATE importcontacts
+        UPDATE contactsimport
         SET 
             contactid = <cfqueryparam value="#newContactId#" cfsqltype="cf_sql_integer">,
             status = <cfqueryparam value="#result.status#" cfsqltype="cf_sql_varchar">
