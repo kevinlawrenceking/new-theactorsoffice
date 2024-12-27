@@ -427,7 +427,6 @@
     <cfset var optionalValues = "" />
     <cfset var sqlStatement = "" />
 
-    <cftry>
         <!--- Loop through the import data query starting from row 2 ---> 
         <cfloop query="#arguments.importdata#" startrow="2">
             <!--- Validate row data: Ensure FirstName is present --->
