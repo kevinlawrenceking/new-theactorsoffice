@@ -43,7 +43,7 @@
         <cfdirectory directory="#dir_media_root_user_contacts_folder_attachments#" action="create">
     </cfif>
 
-    <cfif not fileExists(session.userAvatarPath)>
+    <cfif not fileExists(#dir_media_root_user_contacts_folder#\#dir_missing_avatar_filename#)>
         <cffile action="copy" source="#dir_missing_avatar_filename#" destination="#dir_media_root_user_contacts_folder#\" />
     </cfif>
 </cfloop>
