@@ -35,11 +35,6 @@
 
 
 
-
-    <!--- Return the query result --->
-    <cfreturn result>
-</cffunction>
-
 <cffunction name="SELcontactsimport_24409" access="public" returntype="query" output="false">
     <!--- Arguments --->
     <cfargument name="uploadid" type="numeric" required="true">
