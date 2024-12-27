@@ -280,13 +280,13 @@
 </cffunction>
 
 <cffunction name="getcontactsImportTag" access="public" returntype="query" output="false">
-    <!--- Arguments --->
+
     <cfargument name="uploadid" type="numeric" required="true">
  <cfargument name="tag_label" type="string" required="true">
-    <!--- Local variable to hold the query result --->
+
     <cfset var result = "">
 
-    <!--- Query to fetch data with additional filters --->
+
     <cfquery name="result" >
         SELECT 
             ID, fname, lname, tag, business_email, personal_email, 
@@ -301,7 +301,6 @@
           AND  #arguments.tag_label# IS NOT NULL
     </cfquery>
 
-    <!--- Return the query result --->
     <cfreturn result>
 </cffunction>
 

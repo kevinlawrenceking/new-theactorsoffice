@@ -72,8 +72,8 @@ Contacts imported: #find#<BR>
 </cfloop>
 
 <cfinclude template="/include/qry/tag_315_12.cfm" />
-<cfloop query="tag">
-    <cfset new_tag2 = tag.tag2 />
+<cfloop query="tag2">
+    <cfset new_tag2 = tag2.tag2 />
     <cfinclude template="/include/qry/tag_insert_315_13.cfm" />
 </cfloop>
 
