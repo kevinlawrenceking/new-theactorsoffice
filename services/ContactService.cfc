@@ -739,7 +739,7 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
     <cfset var result = {}>
 
     <!--- SQL Query --->
-    <cftry>
+
         <!--- Check if a record with the same first and last name exists --->
         <cfquery name="checkExisting" >
             SELECT contactid
@@ -809,14 +809,6 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
 
         <cfreturn result>
 
-    <cfcatch type="any">
-        <!--- Log and return error response --->
-        <cflog file="application" text="Error in INScontactdetails_24399: #cfcatch.message#">
-        <cfset result.success = false>
-        <cfset result.error = cfcatch.message>
-        <cfreturn result>
-    </cfcatch>
-    </cftry>
 </cffunction>
 
 
