@@ -43,8 +43,7 @@ Contacts imported: #find#<BR>
 <cfoutput>contactimports to loop: #new.recordcount#<BR></cfoutput>
 
 <cfloop query="new">
-<cfoutput
->
+
  <cfinclude template="/include/qry/add_315_6.cfm" />
 
    <cfset select_userid = userid />
