@@ -1100,18 +1100,31 @@ WHERE itemid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.itemid
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="new_tag1" type="string" required="true">
 
-<cfquery result="result" >
-            INSERT INTO contactitems (contactid, valueType, valueCategory, valueText, itemstatus)
-            VALUES (
-                <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">,
-                <cfqueryparam value="Tags" cfsqltype="CF_SQL_VARCHAR">,
-                <cfqueryparam value="tag" cfsqltype="CF_SQL_VARCHAR">,
-                <cfqueryparam value="#arguments.new_tag1#" cfsqltype="CF_SQL_VARCHAR">,
-                <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
-            )
-        </cfquery>
-<cfreturn result.generatedKey>
+    <!-- Debug: Dump the arguments -->
+    <cfdump var="#arguments#" label="Debug Arguments">
+
+
+    <cfset var queryResult = "" />
+
+    <!-- Debug: Inspect the SQL being executed -->
+    <cfquery result="result" name="queryResult">
+        INSERT INTO contactitems (contactid, valueType, valueCategory, valueText, itemstatus)
+        VALUES (
+            <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">,
+            <cfqueryparam value="Tags" cfsqltype="CF_SQL_VARCHAR">,
+            <cfqueryparam value="tag" cfsqltype="CF_SQL_VARCHAR">,
+            <cfqueryparam value="#arguments.new_tag1#" cfsqltype="CF_SQL_VARCHAR">,
+            <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
+        )
+    </cfquery>
+
+    <!-- Debug: Dump query result -->
+    <cfdump var="#result#" label="Query Result">
+    <cfabort> <!-- Stop execution to inspect the result -->
+
+    <cfreturn result.generatedKey>
 </cffunction>
+
 
 
 <cffunction output="false" name="INScontactitems_24405" access="public" returntype="numeric">
