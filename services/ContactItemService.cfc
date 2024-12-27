@@ -1103,18 +1103,21 @@ WHERE itemid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.itemid
     <!-- Debug: Dump the arguments -->
     <cfdump var="#arguments#" label="Debug Arguments">
 
-
-    <cfset var queryResult = "" />
-
     <!-- Debug: Inspect the SQL being executed -->
+
     <cfquery result="result" name="queryResult">
         INSERT INTO contactitems (contactid, valueType, valueCategory, valueText, itemstatus)
-        VALUES (
+        SELECT 
             <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">,
             <cfqueryparam value="Tags" cfsqltype="CF_SQL_VARCHAR">,
             <cfqueryparam value="tag" cfsqltype="CF_SQL_VARCHAR">,
             <cfqueryparam value="#arguments.new_tag1#" cfsqltype="CF_SQL_VARCHAR">,
             <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
+        WHERE NOT EXISTS (
+            SELECT 1 
+            FROM contactitems 
+            WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
+            AND valueText = <cfqueryparam value="#arguments.new_tag1#" cfsqltype="CF_SQL_VARCHAR">
         )
     </cfquery>
 

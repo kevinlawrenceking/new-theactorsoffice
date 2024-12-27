@@ -772,33 +772,36 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
           
         <cfelse>
             <!--- Insert a new record --->
-            <cfquery name="add" result="result">
-                INSERT INTO contactdetails_tbl (
-                    contactfullname, userid
-                    <cfif len(trim(arguments.new_x.contactMeetingDate))>
-                        , contactMeetingDate
-                    </cfif>
-                    <cfif len(trim(arguments.new_x.contactMeetingLoc))>
-                        , contactMeetingLoc
-                    </cfif>
-                    <cfif len(trim(arguments.new_x.birthday))>
-                        , contactBirthday
-                    </cfif>
-                )
-                VALUES (
-                    '#trim(arguments.new_x.fname)# #trim(arguments.new_x.lname)#',
-                    #arguments.userid#
-                    <cfif len(trim(arguments.new_x.contactMeetingDate))>
-                        , <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_x.contactMeetingDate#">
-                    </cfif>
-                    <cfif len(trim(arguments.new_x.contactMeetingLoc))>
-                        , '#trim(arguments.new_x.contactMeetingLoc)#'
-                    </cfif>
-                    <cfif len(trim(arguments.new_x.birthday))>
-                        , <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_x.birthday#">
-                    </cfif>
-                )
-            </cfquery>
+  <cfquery name="add" result="result">
+    INSERT INTO contactdetails_tbl (
+        contactfullname, userid
+        <cfif len(trim(arguments.new_x.contactMeetingDate))>
+            , contactMeetingDate
+        </cfif>
+        <cfif len(trim(arguments.new_x.contactMeetingLoc))>
+            , contactMeetingLoc
+        </cfif>
+        <cfif len(trim(arguments.new_x.birthday))>
+            , contactBirthday
+        </cfif>
+        , `status`
+    )
+    VALUES (
+        <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.new_x.fname)# #trim(arguments.new_x.lname)#">,
+        <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#">
+        <cfif len(trim(arguments.new_x.contactMeetingDate))>
+            , <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_x.contactMeetingDate#">
+        </cfif>
+        <cfif len(trim(arguments.new_x.contactMeetingLoc))>
+            , <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.new_x.contactMeetingLoc)#">
+        </cfif>
+        <cfif len(trim(arguments.new_x.birthday))>
+            , <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_x.birthday#">
+        </cfif>
+        , <cfqueryparam cfsqltype="cf_sql_varchar" value="Added">
+    )
+</cfquery>
+
 
             <!--- Return success response for insert --->
             <cfset result.new_contactid = result.generatedKey />
