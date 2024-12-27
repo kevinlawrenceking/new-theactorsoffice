@@ -39,13 +39,28 @@
         <cfdirectory directory="#dir_media_root_user_contacts_folder#" action="create">
     </cfif>
 
+
+
     <cfif not directoryExists(dir_media_root_user_contacts_folder_attachments)>
         <cfdirectory directory="#dir_media_root_user_contacts_folder_attachments#" action="create">
     </cfif>
 
+<cfset contact_avatar = session.userContactsUrl & "/" & new_contactid & "/avatar.jpg">
+<cfset default_avatar = application.defaultAvatarUrl>
+<cfset avatar_path = session.userContactsPath & "/" & new_contactid & "/avatar.jpg"> <!--- Physical path --->
 
-        <cffile action="copy" source="#dir_missing_avatar_filename#" destination="#dir_media_root_user_contacts_folder#\" />
 
+  <cfif NOT fileExists(avatar_path)>
+        <!--- Ensure the directory exists --->
+        <cfif NOT directoryExists(session.userContactsPath & "/" & currentid)>
+            <cfdirectory action="create" directory="#session.userContactsPath & "/" & new_contactid#">
+        </cfif>
+        
+
+        <cffile action="copy" 
+                source="#application.defaultAvatarUrl#" 
+                destination="#avatar_path#" >
+</cfif>
 </cfloop>
 
 <cfoutput>
