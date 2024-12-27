@@ -784,7 +784,7 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
         <cfif len(trim(arguments.new_x.birthday))>
             , contactBirthday
         </cfif>
-        , `status`
+  
     )
     VALUES (
         <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.new_x.fname)# #trim(arguments.new_x.lname)#">,
@@ -798,7 +798,7 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
         <cfif len(trim(arguments.new_x.birthday))>
             , <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_x.birthday#">
         </cfif>
-        , <cfqueryparam cfsqltype="cf_sql_varchar" value="Added">
+  
     )
 </cfquery>
 

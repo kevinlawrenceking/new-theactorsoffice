@@ -354,7 +354,7 @@
             contactid, uploadnotes, timestamp, uploadid, tag1, tag2, tag3, notes
         FROM contactsimport
         WHERE uploadid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.uploadid#">
-          AND status = <cfqueryparam cfsqltype="cf_sql_varchar" value="Added">
+        
           AND tag1 <> ''
           AND tag1 IS NOT NULL
     </cfquery>
