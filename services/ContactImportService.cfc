@@ -6,8 +6,7 @@
     <cfargument name="new_contactid" type="numeric" required="true">
     <cfargument name="id" type="numeric" required="true">
 
-    <!--- Update Query --->
-    <cftry>
+
         <cfquery datasource="#application.dsn#" name="update">
             UPDATE CONTACTSIMPORT
             SET status = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_status#">,
@@ -15,12 +14,6 @@
             WHERE id = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.id#">
         </cfquery>
 
-    <cfcatch type="any">
-        <!--- Log and rethrow the error --->
-        <cflog file="application" text="Error in UPDCONTACTSIMPORT: #cfcatch.message#">
-        <cfthrow message="Error updating CONTACTSIMPORT" detail="#cfcatch.detail#">
-    </cfcatch>
-    </cftry>
 </cffunction>
 
 
@@ -333,7 +326,7 @@
         WHERE uploadid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.uploadid#">
         and fname <> ''
     </cfquery>
->
+
     <cfreturn result>
 </cffunction>
 
@@ -421,7 +414,7 @@
         </cfquery>
 
 <cfreturn result>
-    </cffunction>
+    </cffunction>                                                                                       
 
 <cffunction output="false" name="INScontactsimport" access="public" returntype="numeric">
     <!--- Arguments --->
@@ -510,22 +503,7 @@
 
         <!--- Return the number of successfully inserted rows ---> 
         <cfreturn rowCount>
-
-    <cfcatch type="any">
-        <!--- Log and display error details ---> 
-        <cflog file="application" text="Error in INScontactsimport: #cfcatch.detail#">
-        <cflog file="application" text="Stack Trace: #cfcatch.stackTrace#">
-
-        <cfoutput>
-            <h3>Error Occurred in INScontactsimport</h3>
-            <p><strong>Error Message:</strong> #cfcatch.message#</p>
-            <p><strong>Detail:</strong> #cfcatch.detail#</p>
-            <p><strong>Stack Trace:</strong></p>
-            <pre>#cfcatch.stackTrace#</pre>
-        </cfoutput>
-        <cfabort>
-    </cfcatch>
-    </cftry>
+ 
 </cffunction>
 
 
