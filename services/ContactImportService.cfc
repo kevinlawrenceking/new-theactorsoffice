@@ -34,53 +34,7 @@
 </cffunction>
 
 
-<cffunction name="getcontactsImportTag" access="public" returntype="query" output="false">
-    <!--- Arguments --->
-    <cfargument name="uploadid" type="numeric" required="true">
 
-    <!--- Local variable to hold the query result --->
-    <cfset var result = "">
-
-    <!--- Query to fetch data with additional filters --->
-    <cfquery name="result" >
-        SELECT 
-            ID, fname, lname, tag, business_email, personal_email, 
-            work_phone, mobile_phone, home_phone, company, address, 
-            address_second, city, state, zip, country, maintenance_or_target, 
-            contactMeetingDate, contactMeetingLoc, birthday, website, status, 
-            contactid, uploadnotes, timestamp, uploadid, tag1, tag2, tag3, notes
-        FROM contactsimport
-        WHERE uploadid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.uploadid#">
-          AND status = <cfqueryparam cfsqltype="cf_sql_varchar" value="Added">
-          AND tag2 <> ''
-          AND tag2 IS NOT NULL
-    </cfquery>
-
-    <!--- Return the query result --->
-    <cfreturn result>
-</cffunction>
-
-<cffunction name="getcontactsImportTag" access="public" returntype="query" output="false">
-    <!--- Arguments --->
-    <cfargument name="uploadid" type="numeric" required="true">
-
-    <!--- Local variable to hold the query result --->
-    <cfset var result = "">
-
-    <!--- Query to fetch data with additional filters --->
-    <cfquery name="result" >
-        SELECT 
-            ID, fname, lname, tag, business_email, personal_email, 
-            work_phone, mobile_phone, home_phone, company, address, 
-            address_second, city, state, zip, country, maintenance_or_target, 
-            contactMeetingDate, contactMeetingLoc, birthday, website, status, 
-            contactid, uploadnotes, timestamp, uploadid, tag1, tag2, tag3, notes
-        FROM contactsimport
-        WHERE uploadid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.uploadid#">
-          AND status = <cfqueryparam cfsqltype="cf_sql_varchar" value="Added">
-          AND tag3 <> ''
-          AND tag3 IS NOT NULL
-    </cfquery>
 
     <!--- Return the query result --->
     <cfreturn result>
