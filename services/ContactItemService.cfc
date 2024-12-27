@@ -1124,8 +1124,6 @@ WHERE itemid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.itemid
 </cffunction>
 
 
-<cfreturn result.generatedKey>
-</cffunction>
 <cffunction output="false" name="INScontactitems_24410" access="public" returntype="numeric" hint="Inserts a new contact item into the database.">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="business_email" type="string" required="true">
