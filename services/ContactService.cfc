@@ -769,7 +769,7 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
             <cfset result.new_contactid = checkExisting.contactid />
             <cfset result.success = true>
             <cfset result.message = "Record updated successfully.">
-            <cfset result.id = checkExisting.id>
+          
         <cfelse>
             <!--- Insert a new record --->
             <cfquery name="add" result="result">
@@ -804,7 +804,7 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
             <cfset result.new_contactid = result.generatedKey />
             <cfset result.success = true>
             <cfset result.message = "Record inserted successfully.">
-            <cfset result.insertID = result.generatedKey>
+        
         </cfif>
 
         <cfreturn result>
