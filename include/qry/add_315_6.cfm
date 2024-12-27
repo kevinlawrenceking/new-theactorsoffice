@@ -9,6 +9,7 @@
 
 <!--- Construct contact struct dynamically from submitted variables --->
 <cfset new_X = {
+    new_id = new.id,
     fname = trim(new.fname),
     lname = trim(new.lname),
     contactMeetingDate = trim(new.contactMeetingDate),
