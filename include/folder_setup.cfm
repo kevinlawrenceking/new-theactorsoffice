@@ -70,9 +70,9 @@
             <cfdirectory action="create" directory="#session.userContactsPath & "/" & new_contactid#">
         </cfif>
         
-
         <cffile action="copy" 
-                source="#application.defaultAvatarUrl#" 
+                source="#application.defaultAvatarPath#" 
+                source="#application.defaultAvatarPath#" 
                 destination="#avatar_path#" >
 </cfif>
 </cfloop>
