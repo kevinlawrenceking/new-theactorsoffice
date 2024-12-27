@@ -275,7 +275,7 @@
             FROM noteslog 
             WHERE userid = <cfqueryparam value="#arguments.select_userid#" cfsqltype="CF_SQL_INTEGER"> 
             AND contactid = <cfqueryparam value="#arguments.select_contactid#" cfsqltype="CF_SQL_INTEGER"> 
-            AND noteDetails LIKE <cfqueryparam value="#arguments.noteDetailsPrefix#%" cfsqltype="CF_SQL_VARCHAR">
+            AND noteDetails LIKE '#arguments.noteDetailsPrefix#%'
         </cfquery>
 
 <cfreturn result>

@@ -41,7 +41,7 @@ Contacts imported: #find#<BR>
 
 <cfinclude template="/include/qry/getContactsImportByUploadID.cfm" />
 <cfoutput>contactimports to loop: #new.recordcount#<BR></cfoutput>
-
+<cfoutput>notes: #new.notes#<BR></cfoutput>
 <cfloop query="new">
 
  <cfinclude template="/include/qry/add_315_6.cfm" />
@@ -52,7 +52,7 @@ Contacts imported: #find#<BR>
 
 
      <cfif #new.notes# is not ""> 
-
+New notes arent empty <BR>
         <cfinclude template="/include/qry/find_note_315_7.cfm" />
         
         <cfif #find_Note.recordcount# is "0">
