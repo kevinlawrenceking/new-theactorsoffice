@@ -129,8 +129,7 @@ Contacts imported: #find#<BR>
 
 
 
-
-
+<Cfif isdefined('usingMaint')>
 <cfinclude template="/include/qry/maints_315_32.cfm" />
 <Cfloop query="maints">
     <cfoutput>
@@ -169,9 +168,6 @@ Contacts imported: #find#<BR>
 </Cfloop>
      
  
-
-
-
-<cfaborT>
+</cfif>
 <cflocation url="/app/contacts-import/?uploadid=#new_uploadid#">
 
