@@ -34,7 +34,7 @@
 </cffunction>
 
 
-<cffunction name="SELcontactsimport_24405" access="public" returntype="query" output="false">
+<cffunction name="getcontactsImportTag" access="public" returntype="query" output="false">
     <!--- Arguments --->
     <cfargument name="uploadid" type="numeric" required="true">
 
@@ -60,7 +60,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELcontactsimport_24407" access="public" returntype="query" output="false">
+<cffunction name="getcontactsImportTag" access="public" returntype="query" output="false">
     <!--- Arguments --->
     <cfargument name="uploadid" type="numeric" required="true">
 
@@ -330,10 +330,10 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="SELcontactsimport_24403" access="public" returntype="query" output="false">
+<cffunction name="getcontactsImportTag" access="public" returntype="query" output="false">
     <!--- Arguments --->
     <cfargument name="uploadid" type="numeric" required="true">
-
+ <cfargument name="tag_label" type="string" required="true">
     <!--- Local variable to hold the query result --->
     <cfset var result = "">
 
@@ -348,8 +348,8 @@
         FROM contactsimport
         WHERE uploadid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.uploadid#">
         
-          AND tag1 <> ''
-          AND tag1 IS NOT NULL
+          AND #arguments.tag_label# <> ''
+          AND  #arguments.tag_label# IS NOT NULL
     </cfquery>
 
     <!--- Return the query result --->
