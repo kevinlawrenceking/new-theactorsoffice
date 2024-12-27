@@ -72,7 +72,7 @@
         
         <cffile action="copy" 
                 source="#application.defaultAvatarPath#" 
-                source="#application.defaultAvatarPath#" 
+   
                 destination="#avatar_path#" >
 </cfif>
 </cfloop>
