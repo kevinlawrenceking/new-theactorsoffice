@@ -806,7 +806,7 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
         <cfset result.message = "Record inserted successfully.">
         <cfset result.status = "Added">
     </cfif>
-<cfset newContactId = result.generatedKey>
+<cfset newContactId = result.new_contactid>
     <!--- Update the importcontacts table --->
     <cfquery name="updateImportContacts">
         UPDATE importcontacts
