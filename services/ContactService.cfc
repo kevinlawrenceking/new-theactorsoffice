@@ -813,7 +813,7 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
         SET 
             contactid = <cfqueryparam value="#newContactId#" cfsqltype="cf_sql_integer">,
             status = <cfqueryparam value="#result.status#" cfsqltype="cf_sql_varchar">
-        WHERE id = <cfqueryparam value="#arguments.new_x.id#" cfsqltype="cf_sql_integer">
+        WHERE id = <cfqueryparam value="#arguments.new_x.new_id#" cfsqltype="cf_sql_integer">
     </cfquery>
 
     <!--- Return the final result --->
