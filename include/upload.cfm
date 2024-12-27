@@ -46,13 +46,13 @@ Contacts imported: #find#<BR>
  <cfinclude template="/include/qry/add_315_6.cfm" />
 
    <cfset select_userid = userid />
-        <cfset select_contactid = new_contactid />
+        <cfset select_contactid = new.contactid />
         <cfinclude template="/include/folder_setup.cfm" />
 
 
      <cfif #new.notes# is not ""> 
         <cfset select_userid = userid />
-        <cfset select_contactid = new_contactid />
+        <cfset select_contactid = new.contactid />
         <cfinclude template="/include/qry/find_note_315_7.cfm" />
         
         <cfif #find_Note.recordcount# is "0">
