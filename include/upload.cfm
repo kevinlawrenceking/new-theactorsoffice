@@ -168,5 +168,8 @@ Contacts imported: #find#<BR>
      
  
 </cfif>
+
+
+<cfabort>
 <cflocation url="/app/contacts-import/?uploadid=#new_uploadid#">
 
