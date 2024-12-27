@@ -318,7 +318,7 @@
     <cfreturn result>
 </cffunction>
 
-<cffunction name="selContactsImport" access="public" returntype="query" output="false">
+<cffunction name="getContactsImport" access="public" returntype="query" output="false">
     <!--- Arguments --->
     <cfargument name="uploadid" type="numeric" required="true">
 

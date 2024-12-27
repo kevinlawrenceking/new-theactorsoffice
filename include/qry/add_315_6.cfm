@@ -17,4 +17,4 @@
 }>
 
 <!--- Call the function and pass variables --->
-<cfset result = contactService.INScontactdetails_24399(new=new_x, userid=userid)>
+<cfset result = contactService.INScontactdetails_24399(new_x=new_x, userid=userid)>
