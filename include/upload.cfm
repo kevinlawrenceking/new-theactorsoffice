@@ -26,7 +26,7 @@ upload id: #new_uploadid#<BR>
     columnnames="FirstName,LastName,Tag1,Tag2,Tag3,BusinessEmail,PersonalEmail,WorkPhone,MobilePhone,HomePhone,Company,Address,Address2,City,State,Zip,Country,contactMeetingDate,contactMeetingLoc,Birthday,website,Notes" 
     headerrow="1" />
 
-
+<Cfdump var="#importdata#"><Cfabort
 
 
 <cfoutput>
