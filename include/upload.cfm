@@ -52,8 +52,7 @@ Contacts imported: #find#<BR>
 
 
      <cfif #new.notes# is not ""> 
-        <cfset select_userid = userid />
-        <cfset select_contactid = result.new_contactid />
+
         <cfinclude template="/include/qry/find_note_315_7.cfm" />
         
         <cfif #find_Note.recordcount# is "0">
