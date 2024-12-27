@@ -30,8 +30,8 @@
     this.name = "TAO";
     this.datasource = application.dsn;
     this.sessionManagement = true;
-    this.applicationTimeout = createTimeSpan(1, 1, 0, 0);
-    this.sessionTimeout = createTimeSpan(0, 0, 20, 0);
+    this.applicationTimeout = createTimeSpan(11, 1, 0, 0);
+    this.sessionTimeout = createTimeSpan(0, 9, 20, 0);
     this.loginStorage = "session";
     this.logPath = expandPath("error.log");
     this.errorTemplate = "500.cfm";
