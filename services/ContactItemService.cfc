@@ -1116,9 +1116,8 @@ WHERE itemid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.itemid
         )
     </cfquery>
 
-    <!-- Debug: Dump query result -->
-    <cfdump var="#result#" label="Query Result">
-    <cfabort> <!-- Stop execution to inspect the result -->
+
+
 
     <cfreturn result.generatedKey>
 </cffunction>
