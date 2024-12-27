@@ -1,7 +1,21 @@
 <cfset dbug = "N" />
-
+<cfparam name="new_contactid" default="0" />
 <cfparam name="select_userid" default="0" />
 <cfparam name="select_contactid" default="0" />
+
+<CFif new_contactid neq 0>
+<cfset currentid = new_contactid />
+</cfif>
+
+<CFif select_contactid neq 0>
+    <cfset currentid = select_contactid />
+    <cfset new_contactid = currentid />
+</cfif>
+
+<CFif currentid neq 0>
+<cfset new_contactid = currentid />
+</cfif>
+
 
 <cfset starttime = timeformat(now(), 'HHMMSS') />
 
@@ -52,7 +66,7 @@
 
   <cfif NOT fileExists(avatar_path)>
         <!--- Ensure the directory exists --->
-        <cfif NOT directoryExists(session.userContactsPath & "/" & currentid)>
+        <cfif NOT directoryExists(session.userContactsPath & "/" & new_contactid)>
             <cfdirectory action="create" directory="#session.userContactsPath & "/" & new_contactid#">
         </cfif>
         
