@@ -19,16 +19,9 @@
     country = trim(address.country)
 }>
 
-<!--- Validate address struct --->
-<cfif NOT isStruct(new_address)>
-    <cfthrow message="Address is not a struct." detail="The address object is invalid.">
-</cfif>
+
 
 <!--- Call the function --->
 <cfset result = contactItemService.INScontactitems_24424(new_address=new_address)>
 
-<!--- Output the result --->
-<cfoutput>
-    Insert successful! New ID: #result#
-</cfoutput>
 

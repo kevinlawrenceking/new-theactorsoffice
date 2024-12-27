@@ -1261,7 +1261,7 @@ WHERE itemid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.itemid
             ) VALUES (
                 <cfqueryparam value="#arguments.new_address.contactid#" cfsqltype="CF_SQL_INTEGER">,
                 <cfqueryparam value="Work" cfsqltype="CF_SQL_VARCHAR">,
-                <cfqueryparam value="new_address" cfsqltype="CF_SQL_VARCHAR">,
+                <cfqueryparam value="Address" cfsqltype="CF_SQL_VARCHAR">,
                 <cfqueryparam value="#arguments.new_address.address#" cfsqltype="CF_SQL_VARCHAR">,
                 <cfqueryparam value="#arguments.new_address.address_second#" cfsqltype="CF_SQL_VARCHAR">,
                 <cfqueryparam value="#arguments.new_address.city#" cfsqltype="CF_SQL_VARCHAR">,
