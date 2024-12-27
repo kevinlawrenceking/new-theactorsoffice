@@ -18,4 +18,4 @@
 
 <!--- Call the function and pass variables --->
 <cfset result = contactService.INScontactdetails_24399(new_x=new_x, userid=userid)>
-<Cfdump var="#result#" /><CfaborT>
+<Cfdump var="#result#" />
