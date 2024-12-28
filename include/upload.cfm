@@ -170,7 +170,5 @@ New notes arent empty <BR>
  
 </cfif>
 
-
-<cfabort>
 <cflocation url="/app/contacts-import/?uploadid=#new_uploadid#">
 
