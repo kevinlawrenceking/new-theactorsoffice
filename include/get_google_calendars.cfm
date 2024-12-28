@@ -7,7 +7,7 @@
 </cfhttp>
 
 <!--- Abort the processing of the page to prevent further execution --->
-<cfabort>
+
 
 <!--- Deserialize the JSON response from the API into a ColdFusion structure --->
 <cfset calendars = DeserializeJSON(calendarListResponse.FileContent)>
