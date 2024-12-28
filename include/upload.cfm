@@ -27,7 +27,7 @@ upload id: #new_uploadid#<BR>
     Address2,City,State,Zip,Country,contactMeetingDate,contactMeetingLoc,Birthday,website,Notes" 
     headerrow="1" />
 
-<Cfdump var="#importdata#"><Cfabort>
+
 
 
 <cfoutput>
