@@ -45,7 +45,7 @@
     </div>
     
     <div>
-        <cfif #access_token# is "">
+        <cfif #access_token# is not "223">
             <cfoutput>
                 <cfset clientId = "764716537559-ncfiag8dl4p05v7c9kcoltss0ou3heki.apps.googleusercontent.com">
                 <cfset redirectUri = "https://dev.theactorsoffice.com/include/oauth_callback.cfm">
