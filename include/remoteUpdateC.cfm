@@ -1,6 +1,5 @@
 <!--- This ColdFusion page handles the display and submission of a form for updating item details based on various categories. --->
 
-           <script src="/app/assets/js/libs/parsleyjs/parsley.min.js?ver=13"></script>
 <cfinclude template="/include/qry/fetchLocationService.cfm" />
 <cfinclude template="/include/qry/details_261_1.cfm" />
 
@@ -311,17 +310,3 @@ if (window.Parsley) {
     }
 </script>
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    // Attach reset handler for modals
-    $('.modal').on('hidden.bs.modal', function () {
-        var modalForm = $(this).find("form")[0];
-        if (modalForm) {
-            modalForm.reset(); // Reset all fields
-            $(modalForm).parsley().reset(); // Reset Parsley validation state
-            $("#hidden_div").hide(); // Hide the custom type div
-            $("#special").hide(); // Hide the custom company name div
-        }
-    });
-});
-</script> 
