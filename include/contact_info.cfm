@@ -318,14 +318,18 @@ x</button>
 <cfinclude template="/include/qry/c_83_2.cfm" />
 
 <cfloop query="c">
+
+
     <script>
-        $(document).ready(function() {
-            $("#remoteAdd<cfoutput>C#c.catid#</cfoutput>").on("show.bs.modal", function(event) {
-                
-                $(this).find(".modal-body").load("<cfoutput>/include/remoteAddC.cfm?catid=#c.catid#&userid=#userid#&contactid=#currentid#</cfoutput>");
+    $(document).ready(function() {
+        $("#remoteAdd<cfoutput>C#c.catid#</cfoutput>").on("show.bs.modal", function(event) {
+            $(this).find(".modal-body").load("<cfoutput>/include/remoteAddC.cfm?catid=#c.catid#&userid=#userid#&contactid=#currentid#</cfoutput>", function() {
+                // Initialize Parsley.js for the dynamically loaded form
+                $(this).find("form").parsley();
             });
         });
-    </script>
+    });
+</script>
 
     <div id="remoteAdd<cfoutput>C#c.catid#</cfoutput>" class="modal fade" tabindex="-1" role="dialog" >
 
@@ -1143,3 +1147,33 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    window.Parsley.addValidator('phone', {
+        validateString: function(value) {
+            // Simple regex for US phone numbers (e.g., 123-456-7890 or (123) 456-7890)
+            const phoneRegex = /^(?:\(?\d{3}\)?[-.\s]?)?\d{3}[-.\s]?\d{4}$/;
+            return phoneRegex.test(value);
+        },
+        messages: {
+            en: 'Please enter a valid phone number (e.g., 123-456-7890)',
+        }
+    });
+});
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Attach reset handler for modals
+    $('.modal').on('hidden.bs.modal', function () {
+        var modalForm = $(this).find("form")[0];
+        if (modalForm) {
+            modalForm.reset(); // Reset all fields
+            $("#hidden_div").hide(); // Hide the custom type div
+            $("#special").hide(); // Hide the custom company name div
+        }
+    });
+});
+</script>

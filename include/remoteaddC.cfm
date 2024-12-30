@@ -1,6 +1,6 @@
 <!--- This ColdFusion page handles the form submission for adding new categories and regions, including dynamic fields based on user selection. --->
  
-                <script src="/app/assets/js/libs/parsleyjs/parsley.min.js?ver=13"></script>
+
 <cfparam name="placeholder" default="" />
 <cfparam name="userid" default="0" type="integer">
 <cfparam name="new_catid" default="0" type="integer">
@@ -305,38 +305,6 @@ if (window.Parsley) {
     });
 </script>
 
-<script>
-    function showDiv(divId, element) {
-        document.getElementById(divId).style.display = element.value == "Custom" ? 'block' : 'none';
-    }
-</script>
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    // Attach reset handler for modals
-    $('.modal').on('hidden.bs.modal', function () {
-        var modalForm = $(this).find("form")[0];
-        if (modalForm) {
-            modalForm.reset(); // Reset all fields
-            $(modalForm).parsley().reset(); // Reset Parsley validation state
-            $("#hidden_div").hide(); // Hide the custom type div
-            $("#special").hide(); // Hide the custom company name div
-        }
-    });
-});
-</script>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    window.Parsley.addValidator('phone', {
-        validateString: function(value) {
-            // Simple regex for US phone numbers (e.g., 123-456-7890 or (123) 456-7890)
-            const phoneRegex = /^(?:\(?\d{3}\)?[-.\s]?)?\d{3}[-.\s]?\d{4}$/;
-            return phoneRegex.test(value);
-        },
-        messages: {
-            en: 'Please enter a valid phone number (e.g., 123-456-7890)',
-        }
-    });
-});
-</script>
+
