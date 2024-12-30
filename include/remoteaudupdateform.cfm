@@ -31,7 +31,7 @@
 </cfif>
 
 <cfinclude template="/include/qry/cat_221_4.cfm" />
-<cfinclude template="/include/qry/audroletypes_sel_221_5.cfm" />
+<cfinclude template="/include/qry/audroletypes_sel_27_2.cfm" />
 <cfinclude template="/include/qry/audtypes_sel_221_6.cfm" />
 <cfinclude template="/include/qry/casting_types_221_7.cfm" />
 <cfinclude template="/include/qry/castingdirectors_sel.cfm" />
