@@ -239,14 +239,20 @@
 <cfinclude template="/include/qry/cu_83_1.cfm" />
 
 <cfloop query="cu">
-    <script>
-        $(document).ready(function() {
-            $("#remoteUpdate<cfoutput>C#cu.itemid#</cfoutput>").on("show.bs.modal", function(event) {
-                
-                $(this).find(".modal-body").load("<cfoutput>/include/remoteupdatec.cfm?userid=#userid#&itemid=#cu.itemid#</cfoutput>");
+<script>
+    $(document).ready(function() {
+        $("#remoteUpdate<cfoutput>C#cu.itemid#</cfoutput>").on("show.bs.modal", function(event) {
+            var modal = $(this);
+            
+            // Load the modal content
+            modal.find(".modal-body").load("<cfoutput>/include/remoteupdatec.cfm?userid=#userid#&itemid=#cu.itemid#</cfoutput>", function() {
+                // Initialize Parsley.js for the dynamically loaded form
+                modal.find("form").parsley();
             });
         });
-    </script>
+    });
+</script>
+
 
     <div id="remoteUpdate<cfoutput>C#cu.itemid#</cfoutput>" class="modal fade" tabindex="-1" role="dialog" >
 

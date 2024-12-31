@@ -55,6 +55,7 @@
             </cfoutput>
         </select>
     </div>
+    </div>
 </cfif>
 
 <div id="hidden_div" class="form-group col-md-6">
