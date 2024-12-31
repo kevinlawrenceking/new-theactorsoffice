@@ -60,35 +60,62 @@
         </div>
     </cfoutput>
 
-    <!--- Check if there are dialects available for the user --->
-    <cfif #auddialects_user_sel.recordcount# is "0">
-        <cfoutput>
-            <input type="hidden" name="new_auddialectid" value="#roledetails.auddialectid#" />
-        </cfoutput>
-    <cfelse>
-        <div class="form-group col-md-6">
-            <label for="new_auddialectid">Dialect</label>
-            <select class="form-control" name="new_auddialectid" id="new_auddialectid" onchange="if (this.value=='CustomDialect'){this.form['CustomDialect'].style.display='block',this.form['CustomDialect'].required=true} else {this.form['CustomDialect'].style.display='none',this.form['CustomDialect'].required=false};">
-                <option value="">--</option>
-                <option value="CustomDialect">***ADD CUSTOM</option>
-                <cfoutput query="auddialects_user_sel">
-                    <cfif #roledetails.auddialectid# is "#auddialects_user_sel.id#">
-                        <option value="#auddialects_user_sel.id#" Selected data-chained="#auddialects_user_sel.audcatid#">#auddialects_user_sel.name#</option>
-                    <cfelse>
-                        <option value="#auddialects_user_sel.id#" data-chained="#auddialects_user_sel.audcatid#">#auddialects_user_sel.name#</option>
-                    </cfif>
-                </cfoutput>
-            </select>
-            <div class="invalid-feedback">
-                Please select a Dialect.
-            </div>
+<!--- Check if there are dialects available for the user --->
+<cfif #auddialects_user_sel.recordcount# is "0">
+    <cfoutput>
+        <input type="hidden" name="new_auddialectid" value="#roledetails.auddialectid#" />
+    </cfoutput>
+<cfelse>
+    <div class="form-group col-md-6">
+        <label for="new_auddialectid">Dialect</label>
+        <select 
+            class="form-control" 
+            name="new_auddialectid" 
+            id="new_auddialectid" 
+            onchange="
+                const customDialectDiv = document.getElementById('CustomDialects');
+                const customDialectInput = document.getElementById('CustomDialect');
+                if (this.value === 'CustomDialect') {
+                    customDialectDiv.style.display = 'block';
+                    customDialectInput.required = true;
+                } else {
+                    customDialectDiv.style.display = 'none';
+                    customDialectInput.required = false;
+                }
+            "
+        >
+            <option value="">--</option>
+            <option value="CustomDialect">***ADD CUSTOM</option>
+            <cfoutput query="auddialects_user_sel">
+                <cfif #roledetails.auddialectid# is "#auddialects_user_sel.id#">
+                    <option value="#auddialects_user_sel.id#" Selected data-chained="#auddialects_user_sel.audcatid#">
+                        #auddialects_user_sel.name#
+                    </option>
+                <cfelse>
+                    <option value="#auddialects_user_sel.id#" data-chained="#auddialects_user_sel.audcatid#">
+                        #auddialects_user_sel.name#
+                    </option>
+                </cfif>
+            </cfoutput>
+        </select>
+        <div class="invalid-feedback">
+            Please select a Dialect.
         </div>
-        
-        <div class="form-group col-md-6" id="CustomDialects" style="display:none;">
-            <label for="CustomDialect">Custom Dialect</label>
-            <input class="form-control" type="text" id="CustomDialect" name="CustomDialect" value="" placeholder="Enter a Custom Dialect" />
-        </div>
-    </cfif>
+    </div>
+    
+    <div class="form-group col-md-6" id="CustomDialects" style="display:none;">
+        <label for="CustomDialect">Custom Dialect</label>
+        <input 
+            class="form-control" 
+            type="text" 
+            id="CustomDialect" 
+            name="CustomDialect" 
+            value="" 
+            placeholder="Enter a Custom Dialect" 
+        />
+    </div>
+</cfif>
+
 
     <style>
     <cfif roledetails.audsourceid neq 1 >
