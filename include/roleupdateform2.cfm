@@ -197,7 +197,6 @@
 <cfif #new_audDialectID# is "CustomDialect">
     <cfif #CustomDialect# is not "">  
         <cfinclude template="/include/qry/insert_287_24.cfm" />
-        <cfset new_audDialectID = result.generatedkey>
     <cfelse>
         <cfset new_dialectid = old_dialectid />
     </cfif>
