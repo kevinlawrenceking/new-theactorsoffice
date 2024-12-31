@@ -66,35 +66,52 @@
             </select>
         </div>
 
-        <!--- Check if there are any networks available --->
-        <cfif #audnetworks_user_sel.recordcount# is "0">
-            <cfoutput> <input type="hidden" name="new_networkID" value="#auditionprojectdetails.networkid#" /></cfoutput>
-        <cfelse>
-            <div class="form-group col-md-6">
-                <label for="new_networkID">Network</label>
-                <select class="form-control" name="new_networkID" id="new_networkID" onchange="if (this.value=='CustomNetwork'){this.form['CustomNetwork'].style.display='block',this.form['CustomNetwork'].required=true} else {this.form['CustomNetwork'].style.display='none',this.form['CustomNetwork'].required=false};">
-                    <option value="">--</option>
-                    <option value="CustomNetwork">***ADD CUSTOM</option>
-                    <cfoutput query="audnetworks_user_sel">
-                        <cfif #auditionprojectDetails.networkID# is "#audnetworks_user_sel.id#">
-                            <option value="#audnetworks_user_sel.id#" Selected data-chained="#audnetworks_user_sel.audcatid#">#audnetworks_user_sel.name#</option>
-                        <cfelse>
-                            <option value="#audnetworks_user_sel.id#" data-chained="#audnetworks_user_sel.audcatid#">#audnetworks_user_sel.name#</option>
-                        </cfif>
-                    </cfoutput>
-                </select>
-                <div class="invalid-feedback">
-                    Please select a Network.
-                </div>
-            </div>
-
-            <cfoutput>
-                <div class="form-group col-md-6" id="CustomNetworks" style="display:none;">
-                    <label for="CustomTone">Custom Network</label>
-                    <input class="form-control" type="text" id="CustomNetwork" name="CustomNetwork" value="" placeholder="Enter a Custom Network" />
-                </div>
+     <cfif #audnetworks_user_sel.recordcount# is "0">
+    <cfoutput>
+        <input type="hidden" name="new_networkID" value="#auditionprojectdetails.networkid#" />
+    </cfoutput>
+<cfelse>
+    <div class="form-group col-md-6">
+        <label for="new_networkID">Network</label>
+        <select class="form-control" name="new_networkID" id="new_networkID" onchange="toggleCustomNetwork(this);">
+            <option value="">--</option>
+            <option value="CustomNetwork">***ADD CUSTOM</option>
+            <cfoutput query="audnetworks_user_sel">
+                <cfif #auditionprojectDetails.networkID# is "#audnetworks_user_sel.id#">
+                    <option value="#audnetworks_user_sel.id#" Selected data-chained="#audnetworks_user_sel.audcatid#">#audnetworks_user_sel.name#</option>
+                <cfelse>
+                    <option value="#audnetworks_user_sel.id#" data-chained="#audnetworks_user_sel.audcatid#">#audnetworks_user_sel.name#</option>
+                </cfif>
             </cfoutput>
-        </cfif>
+        </select>
+        <div class="invalid-feedback">
+            Please select a Network.
+        </div>
+    </div>
+
+    <cfoutput>
+        <div class="form-group col-md-6" id="CustomNetworks" style="display:none;">
+            <label for="CustomTone">Custom Network</label>
+            <input class="form-control" type="text" id="CustomNetwork" name="CustomNetwork" value="" placeholder="Enter a Custom Network" />
+        </div>
+    </cfoutput>
+</cfif>
+
+<script>
+    function toggleCustomNetwork(select) {
+        var customDiv = document.getElementById('CustomNetworks');
+        var customInput = document.getElementById('CustomNetwork');
+
+        if (select.value === 'CustomNetwork') {
+            customDiv.style.display = 'block';
+            customInput.required = true;
+        } else {
+            customDiv.style.display = 'none';
+            customInput.required = false;
+        }
+    }
+</script>
+
 
         <!--- Check if there are any tones available --->
         <cfif #audtones_user_sel.recordcount# is "0">
