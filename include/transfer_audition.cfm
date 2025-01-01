@@ -1,208 +1,422 @@
-<!--- This ColdFusion page processes project information and updates the database accordingly. --->
-
 <cfparam name="new_isDeleted" default="0"/>
+
 <cfparam name="new_projName" default=""/>
+
 <cfparam name="new_projDescription" default=""/>
+
 <cfparam name="new_audSubCatID" default=""/>
+
 <cfparam name="new_unionID" default=""/>
+
 <cfparam name="new_networkID" default=""/>
+
 <cfparam name="new_toneID" default=""/>
+
 <cfparam name="new_contractTypeID" default=""/>
+
 <cfparam name="new_contactid" default=""/>
+
 <cfparam name="isdirect" default="0"/>
+
 <cfparam name="isredirect" default="0"/>
+
 <cfparam name="isbooked" default="0"/>
+
 <cfparam name="ispin" default="0"/>
-<cfparam name="isfix" default="N"/>
 
-<cfinclude template="/include/qry/y_308_1.cfm" />
+<cfinclude template="/include/remote_load.cfm"/>
 
-<CFOUTPUT>RECORDz: #Y.RECORDCOUNT#</CFOUTPUT>
 
-<!--- Loop through query results ---> 
+
+
+
+
+
+
+
+<cfquery datasource="#dsn#" name="y">
+    Select *
+    from auditionsimport
+    where uploadid = #new_uploadid#
+</cfquery>
+
 <cfloop query="y">
-    <cfset new_status = "Valid" />
-    
-    <cfoutput>
-        new_status: #new_status#
-    </cfoutput>
-    
-    <cfinclude template="/include/qry/find_308_2.cfm" />
 
-    <!--- Check if the record is unique ---> 
-    <cfif find.recordcount is not "0">
-        its unique!<BR>
+<cfset new_status = "Valid" />
+
+
+
+    <cfquery datasource="#dsn#" name="find" maxrows="1">
+        select * from audprojects where projname = '#y.projname#' and userid = #session.userid# and isdeleted = 0
+    </cfquery>
+
+    <cfif #find.recordcount# is not "0">
+
         <cfset new_status="Invalid" />
-        <CFOUTPUT>#NEW_STATUS#<br></CFOUTPUT>
-        <cfinclude template="/include/qry/err_308_3.cfm" />
+
+      <cfquery datasource="#dsn#" name="err" >
+    insert into auditionsimport_error (id, error_msg) values (#y.id#,'Duplicate project')
+    </cfquery>
+
     </cfif>
 
-    <!--- Validate project name ---> 
-    <cfif y.projname is "">
-        <cfset new_status="Invalid" />
-        PROJNAME IS empty<br>
-        <cfinclude template="/include/qry/err_308_4.cfm" />
-    </cfif>
 
-    <!--- Validate role name ---> 
-    <cfif y.audrolename is "">
-        <cfset new_status="Invalid" />
-        ROLE NAME IS empty<br>
-        <cfinclude template="/include/qry/err_308_5.cfm" />
-    </cfif>
-
-    <!--- Check if fix is required ---> 
-    <cfif isfix is "Y">
-        <cfinclude template="/include/qry/findcat_308_6.cfm" />
-        
-        <!--- Validate category count ---> 
-        <cfif findcat.recordcount is not "1">
-            <cfset new_status="Invalid" />
-            CATEGORY INVALID<br>
-            <cfinclude template="/include/qry/err_308_7.cfm" />
-        </cfif>
-    </cfif>
-
-    <cfinclude template="/include/qry/findsource_308_8.cfm" />
-
-    <!--- Validate source count ---> 
-    <cfif findsource.recordcount is not "1">
-        <cfset new_status="Invalid" />
-        <cfinclude template="/include/qry/err_308_9.cfm" />
-    </cfif>
-
-    <cfinclude template="/include/qry/update_308_10.cfm" />
-</cfloop>
-
-<!--- Check if fix is required for additional processing ---> 
-<cfif isfix is "Y">
-    <cfinclude template="/include/qry/x_308_11.cfm" />
-<cfelse>
-    <cfinclude template="/include/qry/x_308_12.cfm" />
+<cfif #y.projname# is "">
+ <cfset new_status="Invalid" />
+    <cfquery datasource="#dsn#" name="err" >
+    insert into auditionsimport_error (id, error_msg) values (#y.id#,'Missing project name')
+    </cfquery>
 </cfif>
 
-<!--- Loop through another query result ---> 
+
+<cfif #y.audrolename# is "">
+ <cfset new_status="Invalid" />
+    <cfquery datasource="#dsn#" name="err" >
+    insert into auditionsimport_error (id, error_msg) values (#y.id#,'Missing Role name')
+    </cfquery>
+</cfif>
+
+
+
+
+
+
+    <cfquery datasource="#dsn#" name="findcat" >
+        SELECT audcatid FROM audcategories WHERE audcatname = '#y.audcatname#'
+    </cfquery>
+
+
+<cfif #findcat.recordcount# is not "1">
+ <cfset new_status="Invalid" />
+    <cfquery datasource="#dsn#" name="err" >
+    insert into auditionsimport_error (id, error_msg) values (#y.id#,'Invalid Category')
+    </cfquery>
+
+
+
+</cfif>
+
+
+
+
+    <cfquery datasource="#dsn#" name="findsource" >
+SELECT * FROM audsources WHERE isdeleted = 0 AND audsource = '#y.audsource#'
+</cfquery>
+
+
+<cfif #findsource.recordcount# is not "1">
+ <cfset new_status="Invalid" />
+    <cfquery datasource="#dsn#" name="err" >
+    insert into auditionsimport_error (id, error_msg) values (#y.id#,'Invalid Source')
+    </cfquery>
+
+
+</cfif>
+
+
+
+
+
+
+             <cfquery datasource="#dsn#" name="update">
+            UPDATE auditionsimport
+            SET status = '#new_status#' where id = #y.id#
+        </cfquery>
+
+        </cfloop>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<cfquery datasource="#dsn#" name="x">
+    Select *
+    from auditionsimport
+    where uploadid = #new_uploadid# and status = 'Valid'
+</cfquery>
+
+
 <cfloop query="x">
-    <cfset new_projdate = dateformat(x.projdate,'MM/DD/YYYY') />
+<cfset new_projdate = dateformat(x.projdate,'MM/DD/YYYY') />
 
-    <!--- Validate project date ---> 
-    <cfif IsDate(new_projdate)>
-        <cfset new_projdate = x.projdate>
-    <cfelse>
-        <cfset new_projdate = Now()>
-    </cfif>
+<cfif IsDate(new_projdate)>
+    <cfset new_projdate = x.projdate>
+<cfelse>
+    <cfset new_projdate = Now()>
+</cfif>
 
-    <cfset cdfullname = x.cdfirstname & " " & x.cdlastname />
-    <cfinclude template="/include/qry/findcd_308_13.cfm" />
 
-    <!--- Check if contact exists ---> 
-    <cfif findcd.recordcount is "0" and cdfirstname is not "">
-        <cfoutput>contact not found, adding...<BR></cfoutput>
-        <cfinclude template="/include/qry/INScontactDetails.cfm" />
-        
-        <cfset new_contactid=contactid />
-        <cfset select_userid=userid />
-        <cfset select_contactid=new_contactid />
-        <cfset cdtype="Casting Director" />
-        <cfoutput>new contactid: #new_contactid#<BR></cfoutput>
-        <cfinclude template="/include/folder_setup.cfm" />
-        <cfinclude template="/include/qry/insert_28_2.cfm" />
-    <cfelse>
-        <cfset new_contactid=0 />
-    </cfif>
 
-    <cfset new_status="Added" />
-    <cfoutput>
-        result: added - #new_contactid#
-        <br>
-    </cfoutput>
+<cfset cdfullname = x.cdfirstname & " " & x.cdlastname />
 
-    <cfset select_userid=userid />
-    <cfset select_contactid=new_contactid />
-    <cfinclude template="/include/folder_setup.cfm" />
+            <cfquery datasource="#dsn#" name="findcd">
+                select * from contactdetails where contactfullname = '#cdfullname#'
+                and userid = #userid#
+            </cfquery>
+            
+       
+
+            <cfif #findcd.recordcount# is "0" and #cdfirstname# is not "">
+<cfoutput>contact not found, adding...<BR></cfoutput>
+                <cfquery datasource="#dsn#" name="add" result="result">
+                    INSERT INTO contactdetails (userid,contactFullName)
+                    VALUES (#userid#,'#cdfullname#');
+                </cfquery>
+
+                <cfset new_contactid=result.generatedkey />
+
+                <cfset select_userid=userid />
+
+                <cfset select_contactid=new_contactid />
+
+                <cfset cdtype="Casting Director" />
+<cfoutput>new contactid: #new_contactid#<BR></cfoutput>
+                <cfinclude template="/include/scripts/folder_setup.cfm" />
+
+                <cfquery datasource="#dsn#" name="insert">
+                    INSERT INTO CONTACTITEMS (CONTACTID,VALUETYPE,VALUECATEGORY,VALUETEXT,ITEMSTATUS)
+                    VALUES (#new_contactid#,'Tags','Tag','#cdtype#','Active')
+                </cfquery>
+
+                <cfelse>
+
+                    <cfset new_contactid=0 />
+            </cfif>
+
+            <cfset new_status="Added" />
+
+            <cfoutput>
+                result: added - #new_contactid#
+                <br>
+            </cfoutput>
+
+            <cfset select_userid=session.userid />
+            <cfset select_contactid=new_contactid />
+            <cfinclude template="/include/scripts/folder_setup.cfm" />
+
 
     <cfset new_projName=trim(x.projname) />
+
     <cfset new_audrolename=trim(x.audrolename) />
 
-    <cfif isfix is "Y">
-        <cfset new_audsubcatid=x.audsubcatid />
-    <cfelse>
-        <cfif x.audcatname is not "">
-            <cfinclude template="/include/qry/find_subcat_308_16.cfm" />
-            <!--- Validate subcategory count ---> 
-            <cfif find_subcat.recordcount is "1">
-                subcat found<BR>
+    <cfif #x.audcatname# is not "">
+
+
+            <cfquery datasource="#dsn#" name="find_subcat" maxrows="1">
+SELECT s.audsubcatid
+FROM audcategories c INNER JOIN audsubcategories s ON s.audcatid = c.audcatid 
+
+WHERE c.isdeleted = 0 AND s.isdeleted = 0 
+AND CONCAT(c.audcatname,"-",s.audSubCatName) = '#x.audcatname#'
+            </cfquery>
+        
+        
+
+            <cfif #find_subcat.recordcount# is "1">
+subcat found<BR>
                 <cfset new_audsubcatid=find_subcat.audsubcatid />
             </cfif>
         </cfif>
-    </cfif>
+ 
 
-    <cfset iscallback=0 />
-    <cfset isredirect=0 />
-    <cfset ispin=0 />
-    <cfset isbooked=0 />
+       <cfset iscallback=0 />
+              <cfset isredirect=0 />
+                     <cfset ispin=0 />
+                            <cfset isbooked=0 />
 
-    <!--- Set flags based on conditions ---> 
-    <cfif x.callback_yn is "Y">
+
+            
+    <cfif #x.callback_yn# is "Y">
         <cfset iscallback=1 />
     </cfif>
 
-    <cfif x.redirect_yn is "Y">
+    <cfif #x.redirect_yn# is "Y">
         <cfset isredirect=1 />
     </cfif>
 
-    <cfif x.pin_yn is "Y">
+    <cfif #x.pin_yn# is "Y">
         <cfset ispin=1 />
     </cfif>
 
-    <cfif x.booked_yn is "Y">
+    <cfif #x.booked_yn# is "Y">
         <cfset isbooked=1 />
     </cfif>
 
     <cfset new_projDescription=x.projDescription />
+
     <cfset new_charDescription=x.charDescription />
+
     <cfset new_audRoleName=x.audRoleName />
 
-    <cfif isfix is "Y">
-        <cfset new_audsubcatid=x.audsubcatid />
-    <cfelse>
-        <cfif x.audcatname is not "">
-            <cfinclude template="/include/qry/find_cat_308_17.cfm" />
-            <cfoutput>SELECT * FROM audcategories WHERE audcatname = '#x.audcatname#' and isdeleted is false<BR></cfoutput>
-            <cfif find_cat.recordcount eq 1>
-                <cfset new_audcatid=find_cat.audcatid />
-                <cfinclude template="/include/qry/find_subcat_308_18.cfm" />
-                <cfoutput>SELECT * FROM audsubcategories WHERE audcatid = #new_audcatid# and audsubcatname = '#x.audsubcatname#'<BR /></cfoutput>
-                <cfif find_subcat.recordcount is "1">
-                    <cfset new_audsubcatid=find_subcat.audsubcatid />
-                    <cfoutput>new_audsubcatid: #find_subcat.audsubcatid#<BR></cfoutput>
-                </cfif>
+
+    <cfif #x.audcatname# is not "">
+
+        <cfquery datasource="#dsn#" name="find_cat">
+            SELECT * FROM audcategories WHERE audcatname = '#x.audcatname#' and isdeleted is false
+        </cfquery>
+<cfoutput>   SELECT * FROM audcategories WHERE audcatname = '#x.audcatname#' and isdeleted is false<BR></cfoutput>
+        <cfif find_cat.recordcount eq 1>
+
+            <cfset new_audcatid=find_cat.audcatid />
+
+            <cfquery datasource="#dsn#" name="find_subcat" maxrows="1">
+                SELECT * FROM audsubcategories WHERE audcatid = #new_audcatid# and audsubcatname = '#x.audsubcatname#'
+            </cfquery>
+            <Cfoutput>           SELECT * FROM audsubcategories WHERE audcatid = #new_audcatid# and audsubcatname = '#x.audsubcatname#'<BR /></cfoutput>
+            <cfif #find_subcat.recordcount# is "1">
+
+                <cfset new_audsubcatid=find_subcat.audsubcatid />
+                
+                <Cfoutput>new_audsubcatid: #find_subcat.audsubcatid#<BR></Cfoutput>
             </cfif>
         </cfif>
     </cfif>
 
-    here<BR>
-    <cfinclude template="/include/qry/audprojects_ins_308_19.cfm" />
-    <cfset audprojectid=new_audprojectid />
-    <cfoutput>new audprojectid: #new_audprojectid#<BR/></cfoutput>
 
-    <cfif x.audsource is not "">
-        <cfinclude template="/include/qry/find_source_308_20.cfm" />
+
+
+
+    <cfquery name="audprojects_ins" datasource="#dsn#" result="result">
+
+        INSERT INTO audprojects (
+        projName,
+        projDescription,
+        userid,
+        audSubCatID,
+        isDeleted,
+        IsDirect,
+        contactid,
+        projdate
+        )
+        VALUES
+
+        (
+        <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#new_projName#" maxlength="500" null="#NOT len(trim(new_projName))#" />
+        ,
+        <cfqueryparam cfsqltype="CF_SQL_LONGVARCHAR" value="#new_projDescription#" null="#NOT len(trim(new_projDescription))#" />
+        ,
+        <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#cookie.userid#" />
+        ,
+        <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#new_audSubCatID#" null="#NOT len(trim(new_audSubCatID))#" />
+        ,
+        <cfqueryparam cfsqltype="CF_SQL_BIT" value="#new_isDeleted#" null="#NOT len(trim(new_isDeleted))#" />
+        ,
+        <cfqueryparam cfsqltype="CF_SQL_BIT" value="#isdirect#" null="#NOT len(trim(isdirect))#" />
+        ,
+        <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#new_contactid#" null="#NOT len(trim(new_contactid))#" />
+
+                ,
+        <cfqueryparam cfsqltype="CF_SQL_DATE" value="#new_projdate#"/>
+        )
+    </cfquery>
+
+    <cfset new_audprojectID=result.GENERATEDKEY />
+    <cfset audprojectid=new_audprojectid />
+<cfoutput>new audprojectid: #new_audprojectid#<BR/></cfoutput>
+
+
+    <cfif #x.audsource# is not "">
+
+        <cfquery datasource="#dsn#" name="find_source">
+            SELECT * FROM audsources WHERE audsource = '#x.audsource#' and isdeleted is false
+        </cfquery>
+
         <cfif find_source.recordcount eq 1>
+
             <cfset new_audsourceid=find_source.audsourceid />
+
+
         </cfif>
     </cfif>
 
-    <cfif new_audRoleName is "">
-        <cfset new_audRoleName = "Unknown" />
-    </cfif>
 
-    <cfinclude template="/include/qry/audroles_ins_308_21.cfm" />
+<cfif #new_audRoleName# is "">
 
-    <cfif x.note is not "">
-        <cfinclude template="/include/qry/InsertNote_308_22.cfm" />
-    </cfif>
+<cfset new_audRoleName = "Unknown" />
 
-    <cfinclude template="/include/qry/update_contact_308_23.cfm" />
+</cfif>
+
+
+    <cfquery name="audroles_ins" datasource="#dsn#" result="result">
+
+        INSERT INTO audroles (
+        audRoleName,
+        audprojectID,
+        charDescription,
+        audSourceID,
+        userid,
+        isDeleted,
+        isBooked,
+        isCallback,
+        ispin,
+        isredirect
+        )
+
+        VALUES (
+
+        <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#new_audRoleName#" maxlength="500" null="#NOT len(trim(new_audRoleName))#" />
+        ,
+        <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#new_audprojectID#" null="#NOT len(trim(new_audprojectID))#" />
+        ,
+        <cfqueryparam cfsqltype="CF_SQL_LONGVARCHAR" value="#new_charDescription#" null="#NOT len(trim(new_charDescription))#" />
+        ,
+        <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#new_audSourceID#" null="#NOT len(trim(new_audSourceID))#" />
+        ,
+        <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#userid#" />
+        ,
+        <cfqueryparam cfsqltype="CF_SQL_BIT" value="#new_isDeleted#" null="#NOT len(trim(new_isDeleted))#" />
+        ,
+        <cfqueryparam cfsqltype="CF_SQL_BIT" value="#isbooked#" null="#NOT len(trim(isbooked))#" />
+        ,
+        <cfqueryparam cfsqltype="CF_SQL_BIT" value="#isCallback#" null="#NOT len(trim(isCallback))#" />
+        ,
+        <cfqueryparam cfsqltype="CF_SQL_BIT" value="#ispin#" null="#NOT len(trim(ispin))#" />
+        ,
+        <cfqueryparam cfsqltype="CF_SQL_BIT" value="#isredirect#" null="#NOT len(trim(isredirect))#" />
+
+        );
+    </cfquery>
+
+    <cfset new_audRoleID=result.GENERATEDKEY />
+
+    <cfif #x.note# is not "">
+
+
+
+        <cfquery datasource="#dsn#" name="InsertNote">
+            INSERT INTO noteslog (userid,noteDetails,isPublic,audprojectid,contactid)
+            VALUES (
+            <cfqueryparam cfsqltype="cf_sql_integer" value="#userid#" />
+            ,
+            <cfqueryparam cfsqltype="cf_sql_varchar" value="#LEFT(trim(x.note),2000)#" />
+            ,
+            <cfqueryparam cfsqltype="cf_sql_bit" value="1" />
+            ,
+            <cfqueryparam cfsqltype="cf_sql_integer" value="#new_audprojectid#" />
+
+            ,0
+
+            )
+        </cfquery>
+
+</cfif>
+
+    <cfquery datasource="#dsn#" name="update_contact">
+        Update auditionsimport
+        set status='#new_status#', audprojectid = #new_audprojectid# where id = #x.id#
+    </cfquery>
+
 </cfloop>
-
