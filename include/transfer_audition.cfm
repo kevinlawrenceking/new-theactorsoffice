@@ -184,7 +184,7 @@ SELECT * FROM audsources WHERE isdeleted = 0 AND audsource = '#y.audsource#'
 
                 <cfset cdtype="Casting Director" />
 <cfoutput>new contactid: #new_contactid#<BR></cfoutput>
-                <cfinclude template="/include/scripts/folder_setup.cfm" />
+                <cfinclude template="/include/folder_setup.cfm" />
 
                 <cfquery datasource="#dsn#" name="insert">
                     INSERT INTO CONTACTITEMS (CONTACTID,VALUETYPE,VALUECATEGORY,VALUETEXT,ITEMSTATUS)
