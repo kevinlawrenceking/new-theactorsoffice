@@ -23,10 +23,6 @@
 
 <cfparam name="ispin" default="0"/>
 
- 
- 
-<cfinclude template="/include/remote_load.cfm"/>
-
 <cfparam name="new_audsourceid" default="0"/>
 
 <cfset currentURL = cgi.server_name/>
