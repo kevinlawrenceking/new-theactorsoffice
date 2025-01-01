@@ -84,7 +84,7 @@
     <cfset path = ListDeleteAt(fullPath, ListLen(fullPath, "/"), "/")>
     <cfset filename = ListLast(fullPath, "/")>
 
-    <!--- Log the accessed file --->
+    <!--- Log the accessed main file --->
     <cfset accessService.logFile(path=path, filename=filename)>
 
     <!--- Session logic --->
@@ -141,9 +141,22 @@
     <cfreturn true/>
 </cffunction>
 
-
-  <cffunction name="onRequest" returntype="void" output="true">
+<cffunction name="onRequest" returntype="void" output="true">
     <cfargument name="targetPage" required="true" type="string">
+
+    <!--- Instantiate the AccessedService --->
+    <cfset accessService = new services.AccessedService()>
+
+    <!--- Extract path and filename from CGI.SCRIPT_NAME --->
+    <cfset fullPath = CGI.SCRIPT_NAME>
+    <cfset path = ListDeleteAt(fullPath, ListLen(fullPath, "/"), "/")>
+    <cfset filename = ListLast(fullPath, "/")>
+
+    <!--- Log the included file --->
+    <cfset accessService.logFile(path=path, filename=filename)>
+
+    <!--- Include the target page --->
     <cfinclude template="#arguments.targetPage#">
-  </cffunction>
+</cffunction>
+
 </cfcomponent>
