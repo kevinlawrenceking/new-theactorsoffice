@@ -205,7 +205,7 @@ SELECT * FROM audsources WHERE isdeleted = 0 AND audsource = '#y.audsource#'
 
             <cfset select_userid=session.userid />
             <cfset select_contactid=new_contactid />
-            <cfinclude template="/include/scripts/folder_setup.cfm" />
+            <cfinclude template="/include/folder_setup.cfm" />
 
 
     <cfset new_projName=trim(x.projname) />
