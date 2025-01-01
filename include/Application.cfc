@@ -52,8 +52,9 @@
 
         <!--- Scan for cfinclude tags in the content --->
    <!--- Scan for cfinclude tags in the content --->
-<cfset pattern = "<cfinclude\s+template\s*=\s*['\"]([^'\"]+)['\"]" />
-<cfset matches = REFindNoCase(pattern, fileContent, 1, true)>
+<cfset pattern = "(?i)[cfinclude\s+template\s*=\s*['\"]([^'\"]+)['\"]" />
+<cfset matches = REFind(pattern, fileContent)>
+
 
 
         <!--- Loop through the matches and log each included file --->
