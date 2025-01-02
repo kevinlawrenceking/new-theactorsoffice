@@ -20,6 +20,15 @@
  <cfquery name="x">
         delete FROM `AccessedFiles` WHERE filename not like '%.cfm'
         </cfquery>
+ <cfquery name="x">
+        UPDATE accessedfiles
+SET path = '/qry'
+WHERE path LIKE '%include%' AND path LIKE '%qry%';
+UPDATE accessedfiles
+SET path = '/include'
+WHERE path LIKE '%include%' AND path NOT LIKE '%qry%';
+</cfquery>
+
     </cffunction>
 
 </cfcomponent>
