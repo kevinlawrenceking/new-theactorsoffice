@@ -14,7 +14,7 @@
             NULL
         </cfif></cfif>
       
-      ,isDeleted = #dateaction#
+      ,isDeleted = #deleteaction#
       
       WHERE 1=1 
       
