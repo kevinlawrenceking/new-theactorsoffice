@@ -79,37 +79,11 @@
     </div>
 </cfoutput>
 
-<cfoutput>
-    <script>
-        $(document).ready(function() {
-            $("##matupdate").on("show.bs.modal", function(event) {
-                
-                $(this).find(".modal-body").load("/include/audlinkadd.cfm?audroleid=<Cfoutput>#audroleid#</cfoutput>&eventid=<Cfoutput>#eventid#&audprojectid=#audprojectid#</cfoutput>&pgdir=audition");
-            });
-        });
-    </script>
-    <div id="matupdate" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" >
-
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: ##f3f7f9;">
-                    <h4 class="modal-title" id="standard-modalLabel">Add Link</h4>
-                    <button type="button" class="close" data-bs-dismiss="modal" >
-
-                        <i class="mdi mdi-close-thick"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                </div>
-            </div>
-        </div>
-    </div>
-</cfoutput>
 
 <cfoutput>
     <h4 class="p-1 d-flex">Materials Submitted
         <span class="ms-auto text-muted">
-            <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##matupdate" data-bs-placement="top" title="Update Materials" data-bs-original-title="Update Materials">Update 
+            <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##matupdate" data-bs-placement="top" title="Update Materials" data-bs-original-title="Update Materials"> 
             </a>
         </span>
     </h4>
