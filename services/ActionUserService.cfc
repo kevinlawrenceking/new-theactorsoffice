@@ -112,9 +112,9 @@
     <cfquery name="result">
       UPDATE actionusers_tbl
       SET
-      <cfif arguments.actionDaysNo gt 0>
+
         actionDaysNo = <cfqueryparam value="#arguments.actionDaysNo#" cfsqltype="CF_SQL_INTEGER">
-      </cfif>
+ 
 
         <cfif arguments.actionDaysRecurring neq "">
             ,actionDaysRecurring = <cfif arguments.actionDaysRecurring neq "0" AND len(trim(arguments.actionDaysRecurring))>
