@@ -72,12 +72,18 @@
                 <cfif endQuotePos NEQ 0>
                 
                     <cfset includedFile = mid(fileContent, firstQuotePos + 1, endQuotePos - (firstQuotePos + 1))>
-                    <cfset includedPath = ExpandPath(includedFile)>
-                    <cfset includedFilename = ListLast(includedPath, "/")>
-                    <cfset includedDirectory = ListDeleteAt(includedPath, ListLen(includedPath, "/"), "/")>
 
-    
-                    <cfset accessService.logFile(path=includedDirectory, filename=includedFilename)>
+<cfset includedPath = ExpandPath(includedFile)>
+
+
+<cfset includedFilename = ListLast(includedFile, "/")>
+
+
+<cfset includedDirectory = Replace(includedPath, includedFilename, "", "one")>
+
+
+<cfset accessService.logFile(path=includedDirectory, filename=includedFilename)>
+
                 </cfif>
             </cfif>
 
