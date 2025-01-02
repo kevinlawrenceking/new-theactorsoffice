@@ -16,6 +16,10 @@
                   AND filename = <cfqueryparam value="#arguments.filename#" cfsqltype="cf_sql_varchar">
             )
         </cfquery>
+
+ <cfquery name="x">
+        delete FROM `AccessedFiles` WHERE filename not like '%.cfm'
+        </cfquery>
     </cffunction>
 
 </cfcomponent>
