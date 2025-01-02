@@ -3,15 +3,15 @@
     <cffunction name="onRequestStart" returntype="void" output="false">
         <cfargument name="targetPage" required="true" type="string">
 
-        <!--- Instantiate the AccessedService --->
+        <!--- Instantiate the AccessedService ---> 
         <cfset accessService = new services.AccessedService()>
 
-        <!--- Extract path and filename from CGI.SCRIPT_NAME --->
+        <!--- Extract path and filename from CGI.SCRIPT_NAME ---> 
         <cfset fullPath = CGI.SCRIPT_NAME>
         <cfset path = ListDeleteAt(fullPath, ListLen(fullPath, "/"), "/")>
         <cfset filename = ListLast(fullPath, "/")>
 
-        <!--- Log the accessed file (main request) --->
+        <!--- Log the accessed file (main request) ---> 
         <cfset accessService.logFile(path=path, filename=filename)>
 
         <cfscript>
@@ -36,45 +36,59 @@
     <cffunction name="onRequest" returntype="void" output="true">
         <cfargument name="targetPage" required="true" type="string">
 
-        <!--- Instantiate the AccessedService --->
+        <!--- Instantiate the AccessedService ---> 
         <cfset accessService = new services.AccessedService()>
 
-        <!--- Extract path and filename from CGI.SCRIPT_NAME --->
+        <!--- Extract path and filename from CGI.SCRIPT_NAME ---> 
         <cfset fullPath = CGI.SCRIPT_NAME>
         <cfset path = ListDeleteAt(fullPath, ListLen(fullPath, "/"), "/")>
         <cfset filename = ListLast(fullPath, "/")>
 
-        <!--- Log the main requested file --->
+        <!--- Log the main requested file ---> 
         <cfset accessService.logFile(path=path, filename=filename)>
 
-        <!--- Read the content of the target page --->
+        <!--- Read the content of the target page ---> 
         <cffile action="read" file="#ExpandPath(arguments.targetPage)#" variable="fileContent">
 
-        <!--- Scan for cfinclude tags in the content --->
-   <!--- Scan for cfinclude tags in the content --->
-<cfset pattern = "(?i)[cfinclude\s+template\s*=\s*['\"]([^'\"]+)['\"]" />
-<cfset matches = REFind(pattern, fileContent)>
+        <!--- Convert file content to lowercase for case-insensitive search ---> 
+        <cfset lcFileContent = lcase(fileContent)>
 
+        <!--- Search for <cfinclude template= ---> 
+        <cfset startToken = "<cfinclude template=">
+        <cfset startPos = findNoCase(startToken, lcFileContent)>
 
+        <!--- Process all occurrences of cfinclude ---> 
+        <cfloop condition="startPos NEQ 0">
+            <!-- Move past the start token -->
+            <cfset offset = startPos + len(startToken)>
 
-        <!--- Loop through the matches and log each included file --->
-        <cfif ArrayLen(matches.pos[1])>
-            <cfloop index="i" from="1" to="#ArrayLen(matches.pos[1])#">
-                <!--- Extract the included file path --->
-                <cfset includedFile = Mid(fileContent, matches.pos[1][i], matches.len[1][i])>
-                <cfset includedFile = ReReplaceNoCase(includedFile, "<cfinclude\s+template\s*=\s*[\"']([^\"']+)[\"'].*", "\1", "all")>
+            <!-- Find the opening quote (' or ") -->
+            <cfset firstQuotePos = findNoCase("'", lcFileContent, offset)>
+            <cfif firstQuotePos EQ 0>
+                <cfset firstQuotePos = findNoCase('"', lcFileContent, offset)>
+            </cfif>
 
-                <!--- Resolve full path and split into directory and filename --->
-                <cfset includedPath = ExpandPath(includedFile)>
-                <cfset includedFilename = ListLast(includedPath, "/")>
-                <cfset includedDirectory = ListDeleteAt(includedPath, ListLen(includedPath, "/"), "/")>
+            <!-- If an opening quote is found, locate the closing quote -->
+            <cfif firstQuotePos NEQ 0>
+                <cfset quoteChar = mid(fileContent, firstQuotePos, 1)>
+                <cfset endQuotePos = find(quoteChar, fileContent, firstQuotePos + 1)>
+                <cfif endQuotePos NEQ 0>
+                    <!-- Extract the included file path -->
+                    <cfset includedFile = mid(fileContent, firstQuotePos + 1, endQuotePos - (firstQuotePos + 1))>
+                    <cfset includedPath = ExpandPath(includedFile)>
+                    <cfset includedFilename = ListLast(includedPath, "/")>
+                    <cfset includedDirectory = ListDeleteAt(includedPath, ListLen(includedPath, "/"), "/")>
 
-                <!--- Log the included file --->
-                <cfset accessService.logFile(path=includedDirectory, filename=includedFilename)>
-            </cfloop>
-        </cfif>
+                    <!-- Log the included file -->
+                    <cfset accessService.logFile(path=includedDirectory, filename=includedFilename)>
+                </cfif>
+            </cfif>
 
-        <!--- Include the requested file --->
+            <!-- Find the next occurrence of <cfinclude template= -->
+            <cfset startPos = findNoCase(startToken, lcFileContent, endQuotePos + 1)>
+        </cfloop>
+
+        <!--- Include the requested file ---> 
         <cfinclude template="#arguments.targetPage#">
     </cffunction>
 
