@@ -30,6 +30,13 @@ UPDATE accessedfiles
 SET path = '/include'
 WHERE path LIKE '%include%' AND path NOT LIKE '%qry%';
 </cfquery>
+ <cfquery name="aa">
+DELETE a
+FROM accessedfiles a
+JOIN accessedfiles b
+ON a.path = b.path AND a.filename = b.filename
+WHERE a.id > b.id;
+</cfquery>
 
     </cffunction>
 
