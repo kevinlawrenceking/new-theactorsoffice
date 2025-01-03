@@ -21,7 +21,7 @@
 <cfset userData = userService.getUserByHash(u) />
 
 <!--- Check if user data was found --->
-<cfif structIsEmpty(userData)>
+<cfif userData.recordCount EQ 0>
     <cfoutput>Not found!</cfoutput>
     <cfabort>
 <cfelse>
