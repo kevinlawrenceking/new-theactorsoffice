@@ -37,8 +37,8 @@
     <cfset defState = userData.defState />
     <cfset tzid = userData.tzid />
     <cfset customerid = userData.customerid />
-    <cfset userFirstName = userData.firstName />
-    <cfset userLastName = userData.lastName />
+    <cfset userFirstName = userData.userFirstName />
+    <cfset userLastName = userData.userLastName />
     <cfset userEmail = userData.email />
     <cfset userRole = userData.userRole />
 
