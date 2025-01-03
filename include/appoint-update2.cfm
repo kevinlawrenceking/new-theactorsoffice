@@ -10,7 +10,7 @@
 </cfif>
 
 <!--- Check if event start time is provided --->
-<cfif #eventStartTIme# is not "">
+<cfif eventStartTIme neq "">
 
     <!--- Include duration calculation template --->
 <cfinclude template="/include/qry/durations.cfm" />

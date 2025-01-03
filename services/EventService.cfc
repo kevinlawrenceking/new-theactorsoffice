@@ -735,7 +735,7 @@ WHERE
 <cfreturn result>
 
 </cffunction> <cffunction output="false" name="DETevents_24492" access="public" returntype="query">
-    <cfargument name="eventid" type="numeric" required="true">
+    <cfargument name="eventid" type="numeric" default="0" required="true">
 
 <cfquery name="result" >
             SELECT
