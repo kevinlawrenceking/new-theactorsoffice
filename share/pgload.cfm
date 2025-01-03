@@ -39,7 +39,7 @@
     <cfset customerid = userData.customerid />
     <cfset userFirstName = userData.userFirstName />
     <cfset userLastName = userData.userLastName />
-    <cfset userEmail = userData.email />
+    <cfset userEmail = userData.userEmail />
     <cfset userRole = userData.userRole />
 
     <cfif userContactid EQ contactid>
