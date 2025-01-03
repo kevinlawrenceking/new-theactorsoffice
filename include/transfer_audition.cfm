@@ -34,7 +34,7 @@
 
 
 
-<cfquery datasource="#dsn#" name="y">
+<cfquery  name="y">
     Select *
     from auditionsimport
     where uploadid = #new_uploadid#
@@ -46,7 +46,7 @@
 
 
 
-    <cfquery datasource="#dsn#" name="find" maxrows="1">
+    <cfquery  name="find" maxrows="1">
         select * from audprojects where projname = '#y.projname#' and userid = #session.userid# and isdeleted = 0
     </cfquery>
 
@@ -54,7 +54,7 @@
 
         <cfset new_status="Invalid" />
 
-      <cfquery datasource="#dsn#" name="err" >
+      <cfquery  name="err" >
     insert into auditionsimport_error (id, error_msg) values (#y.id#,'Duplicate project')
     </cfquery>
 
@@ -63,7 +63,7 @@
 
 <cfif #y.projname# is "">
  <cfset new_status="Invalid" />
-    <cfquery datasource="#dsn#" name="err" >
+    <cfquery  name="err" >
     insert into auditionsimport_error (id, error_msg) values (#y.id#,'Missing project name')
     </cfquery>
 </cfif>
@@ -71,7 +71,7 @@
 
 <cfif #y.audrolename# is "">
  <cfset new_status="Invalid" />
-    <cfquery datasource="#dsn#" name="err" >
+    <cfquery  name="err" >
     insert into auditionsimport_error (id, error_msg) values (#y.id#,'Missing Role name')
     </cfquery>
 </cfif>
@@ -81,14 +81,14 @@
 
 
 
-    <cfquery datasource="#dsn#" name="findcat" >
+    <cfquery  name="findcat" >
         SELECT audcatid FROM audcategories WHERE audcatname = '#y.audcatname#'
     </cfquery>
 
 
 <cfif #findcat.recordcount# is not "1">
  <cfset new_status="Invalid" />
-    <cfquery datasource="#dsn#" name="err" >
+    <cfquery  name="err" >
     insert into auditionsimport_error (id, error_msg) values (#y.id#,'Invalid Category')
     </cfquery>
 
@@ -99,14 +99,14 @@
 
 
 
-    <cfquery datasource="#dsn#" name="findsource" >
+    <cfquery  name="findsource" >
 SELECT * FROM audsources WHERE isdeleted = 0 AND audsource = '#y.audsource#'
 </cfquery>
 
 
 <cfif #findsource.recordcount# is not "1">
  <cfset new_status="Invalid" />
-    <cfquery datasource="#dsn#" name="err" >
+    <cfquery  name="err" >
     insert into auditionsimport_error (id, error_msg) values (#y.id#,'Invalid Source')
     </cfquery>
 
@@ -118,7 +118,7 @@ SELECT * FROM audsources WHERE isdeleted = 0 AND audsource = '#y.audsource#'
 
 
 
-             <cfquery datasource="#dsn#" name="update">
+             <cfquery  name="update">
             UPDATE auditionsimport
             SET status = '#new_status#' where id = #y.id#
         </cfquery>
@@ -142,7 +142,7 @@ SELECT * FROM audsources WHERE isdeleted = 0 AND audsource = '#y.audsource#'
 
 
 
-<cfquery datasource="#dsn#" name="x">
+<cfquery  name="x">
     Select *
     from auditionsimport
     where uploadid = #new_uploadid# and status = 'Valid'
@@ -162,7 +162,7 @@ SELECT * FROM audsources WHERE isdeleted = 0 AND audsource = '#y.audsource#'
 
 <cfset cdfullname = x.cdfirstname & " " & x.cdlastname />
 
-            <cfquery datasource="#dsn#" name="findcd">
+            <cfquery  name="findcd">
                 select * from contactdetails where contactfullname = '#cdfullname#'
                 and userid = #userid#
             </cfquery>
@@ -171,7 +171,7 @@ SELECT * FROM audsources WHERE isdeleted = 0 AND audsource = '#y.audsource#'
 
             <cfif #findcd.recordcount# is "0" and #cdfirstname# is not "">
 <cfoutput>contact not found, adding...<BR></cfoutput>
-                <cfquery datasource="#dsn#" name="add" result="result">
+                <cfquery  name="add" result="result">
                     INSERT INTO contactdetails (userid,contactFullName)
                     VALUES (#userid#,'#cdfullname#');
                 </cfquery>
@@ -188,7 +188,7 @@ SELECT * FROM audsources WHERE isdeleted = 0 AND audsource = '#y.audsource#'
 <cfset currentid = new_contactid />
                 <cfinclude template="/include/folder_setup.cfm" />
 
-                <cfquery datasource="#dsn#" name="insert">
+                <cfquery  name="insert">
                     INSERT INTO CONTACTITEMS (CONTACTID,VALUETYPE,VALUECATEGORY,VALUETEXT,ITEMSTATUS)
                     VALUES (#new_contactid#,'Tags','Tag','#cdtype#','Active')
                 </cfquery>
@@ -217,7 +217,7 @@ SELECT * FROM audsources WHERE isdeleted = 0 AND audsource = '#y.audsource#'
     <cfif #x.audcatname# is not "">
 
 
-            <cfquery datasource="#dsn#" name="find_subcat" maxrows="1">
+            <cfquery  name="find_subcat" maxrows="1">
 SELECT s.audsubcatid
 FROM audcategories c INNER JOIN audsubcategories s ON s.audcatid = c.audcatid 
 
@@ -266,7 +266,7 @@ subcat found<BR>
 
     <cfif #x.audcatname# is not "">
 
-        <cfquery datasource="#dsn#" name="find_cat">
+        <cfquery  name="find_cat">
             SELECT * FROM audcategories WHERE audcatname = '#x.audcatname#' and isdeleted is false
         </cfquery>
 <cfoutput>   SELECT * FROM audcategories WHERE audcatname = '#x.audcatname#' and isdeleted is false<BR></cfoutput>
@@ -274,7 +274,7 @@ subcat found<BR>
 
             <cfset new_audcatid=find_cat.audcatid />
 
-            <cfquery datasource="#dsn#" name="find_subcat" maxrows="1">
+            <cfquery  name="find_subcat" maxrows="1">
                 SELECT * FROM audsubcategories WHERE audcatid = #new_audcatid# and audsubcatname = '#x.audsubcatname#'
             </cfquery>
             <Cfoutput>           SELECT * FROM audsubcategories WHERE audcatid = #new_audcatid# and audsubcatname = '#x.audsubcatname#'<BR /></cfoutput>
@@ -291,7 +291,7 @@ subcat found<BR>
 
 
 
-    <cfquery name="audprojects_ins" datasource="#dsn#" result="result">
+    <cfquery name="audprojects_ins"  result="result">
 
         INSERT INTO audprojects (
         projName,
@@ -332,7 +332,7 @@ subcat found<BR>
 
     <cfif #x.audsource# is not "">
 
-        <cfquery datasource="#dsn#" name="find_source">
+        <cfquery  name="find_source">
             SELECT * FROM audsources WHERE audsource = '#x.audsource#' and isdeleted is false
         </cfquery>
 
@@ -352,7 +352,7 @@ subcat found<BR>
 </cfif>
 
 
-    <cfquery name="audroles_ins" datasource="#dsn#" result="result">
+    <cfquery name="audroles_ins"  result="result">
 
         INSERT INTO audroles (
         audRoleName,
@@ -398,7 +398,7 @@ subcat found<BR>
 
 
 
-        <cfquery datasource="#dsn#" name="InsertNote">
+        <cfquery  name="InsertNote">
             INSERT INTO noteslog (userid,noteDetails,isPublic,audprojectid,contactid)
             VALUES (
             <cfqueryparam cfsqltype="cf_sql_integer" value="#userid#" />
@@ -416,7 +416,7 @@ subcat found<BR>
 
 </cfif>
 
-    <cfquery datasource="#dsn#" name="update_contact">
+    <cfquery  name="update_contact">
         Update auditionsimport
         set status='#new_status#', audprojectid = #new_audprojectid# where id = #x.id#
     </cfquery>
