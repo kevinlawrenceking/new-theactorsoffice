@@ -73,74 +73,66 @@
     <cfreturn true/>
   </cffunction>
 
- <cffunction name="onRequestStart" returntype="boolean" output="false">
+  <cffunction name="onRequestStart" returntype="boolean" output="false">
     <cfargument name="targetPage" required="true" type="string">
 
-    <!--- Instantiate the AccessedService --->
-    <cfset accessService = new services.AccessedService()>
-
-    <!--- Extract path and filename from CGI.SCRIPT_NAME --->
-    <cfset fullPath = CGI.SCRIPT_NAME>
-    <cfset path = ListDeleteAt(fullPath, ListLen(fullPath, "/"), "/")>
-    <cfset filename = ListLast(fullPath, "/")>
-
-    <!--- Log the accessed main file --->
-    <cfset accessService.logFile(path=path, filename=filename)>
-
-    <!--- Session logic --->
     <cfif isdefined('U')>
-        <cfset session.userid = U/>
+      <cfset session.userid=U/>
     </cfif>
-
-    <cfif NOT structKeyExists(session, "userid") AND 
-           NOT ListFindNoCase(arguments.targetPage, "loginform.cfm,login2.cfm") AND 
-           NOT ListFindNoCase(CGI.SCRIPT_NAME, "/app/login2.cfm")>
-        <cflocation url="/loginform.cfm" addToken="false">
+    <cfif NOT structKeyExists(session, "userid") AND NOT ListFindNoCase(arguments.targetPage, "loginform.cfm,login2.cfm") AND NOT ListFindNoCase(CGI.SCRIPT_NAME, "/app/login2.cfm")>
+      <cflocation url="/loginform.cfm" addToken="false">
     </cfif>
 
     <cfif structKeyExists(session, "userid")>
-        <cfset userid = session.userid />
-        <CFINCLUDE template="/include/qry/fetchUsers.cfm" />
+    <cfset userid = session.userid />
+    <CFINCLUDE template="/include/qry/fetchUsers.cfm" />
+      <cfscript>
+        session.userMediaPath = application.baseMediaPath & "\users\" & session.userID;
+        session.userMediaUrl = application.baseMediaUrl & "/users/" & session.userID;
+
+        session.userCalendarPath = session.userMediaPath & "\calendar\" & calendarname & ".ics";
+        session.userCalendarUrl = "https://" & host & ".theactorsoffice.com/media-" & application.dsn & "/calendar/" & calendarname & ".ics";
+
+        session.userContactsPath = session.userMediaPath & "\contacts";
+        session.userContactsUrl = session.userMediaUrl & "/contacts";
+
+        session.userImportsPath = session.userMediaPath & "\imports";
+        session.userImportsUrl = session.userMediaUrl & "/imports";
+
+        session.userExportsPath = session.userMediaPath & "\exports";
+        session.userExportsUrl = session.userMediaUrl & "/exports";
+
+        session.userSharePath = session.userMediaPath & "\share";
+        session.userShareUrl = session.userMediaUrl & "/share";
+
+        session.userAvatarPath = session.userMediaPath & "\avatar.jpg";
+        session.userAvatarUrl = session.userMediaUrl & "/avatar.jpg";
+      </cfscript>
+
+      <cfif isdefined('contactid')>
 
         <cfscript>
-            session.userMediaPath = application.baseMediaPath & "\users\" & session.userID;
-            session.userMediaUrl = application.baseMediaUrl & "/users/" & session.userID;
 
-            session.userCalendarPath = session.userMediaPath & "\calendar\" & calendarname & ".ics";
-            session.userCalendarUrl = "https://" & host & ".theactorsoffice.com/media-" & application.dsn & "/calendar/" & calendarname & ".ics";
-
-            session.userContactsPath = session.userMediaPath & "\contacts";
-            session.userContactsUrl = session.userMediaUrl & "/contacts";
-
-            session.userImportsPath = session.userMediaPath & "\imports";
-            session.userImportsUrl = session.userMediaUrl & "/imports";
-
-            session.userExportsPath = session.userMediaPath & "\exports";
-            session.userExportsUrl = session.userMediaUrl & "/exports";
-
-            session.userSharePath = session.userMediaPath & "\share";
-            session.userShareUrl = session.userMediaUrl & "/share";
-
-            session.userAvatarPath = session.userMediaPath & "\avatar.jpg";
-            session.userAvatarUrl = session.userMediaUrl & "/avatar.jpg";
+          defaultavatarurl = session.userContactsUrl & "/" & contactid & "/avatar.jpg";
         </cfscript>
 
-        <cfif isdefined('contactid')>
-            <cfscript>
-                defaultavatarurl = session.userContactsUrl & "/" & contactid & "/avatar.jpg";
-            </cfscript>
-        </cfif>
+      </cfif>
+      <cfif isdefined('currentid')>
 
-        <cfif isdefined('currentid')>
-            <cfscript>
-                defaultavatarurl = session.userContactsUrl & "/" & contactid & "/avatar.jpg";
-            </cfscript>
-        </cfif>
+        <cfscript>
+
+          defaultavatarurl = session.userContactsUrl & "/" & contactid & "/avatar.jpg";
+        </cfscript>
+
+      </cfif>
+
     </cfif>
 
     <cfreturn true/>
-</cffunction>
+  </cffunction>
 
-
-
+  <cffunction name="onRequest" returntype="void" output="true">
+    <cfargument name="targetPage" required="true" type="string">
+    <cfinclude template="#arguments.targetPage#">
+  </cffunction>
 </cfcomponent>
