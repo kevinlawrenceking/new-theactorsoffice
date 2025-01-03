@@ -304,7 +304,7 @@
     </cfquery>
 </cffunction>
 
-<cffunction  output="false" name="fetchNotifications" access="public" returntype="void" hint="Marks orphaned notifications as deleted.">
+<cffunction  output="false" name="delSystemNotifications" access="public" returntype="void" hint="Marks orphaned notifications as deleted.">
    <cfargument name="userid" type="numeric" required="true">
     <cfquery name="del" >
        UPDATE funotifications_tbl 

@@ -5,7 +5,7 @@
 <cfset suStartDate = dateFormat(Now(),'yyyy-mm-dd') />
 <cfset currentStartDate = dateFormat(Now(),'yyyy-mm-dd') />
 
-<!--- Include the query for system notifications --->
+<!--- Delete any orphaned notifications of user that don't belong to a system --->
 <cfinclude template="/include/qry/delSystemNotifications.cfm" />
 
 <!--- Include the query to add a system user record --->
