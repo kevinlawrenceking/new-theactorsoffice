@@ -27,7 +27,6 @@
 <cfelse>
     <!--- Map user data to local variables --->
     <cfset userid = userData.userId />
-    <cfset uid = userdata.uid />
     <cfset userContactid = userData.userContactID />
     <cfset userCalStarttime = userData.calstarttime />
     <cfset userCalendtime = userData.calendtime />
