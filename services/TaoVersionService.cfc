@@ -1,6 +1,30 @@
 <cfcomponent displayname = "TaoVersionService" hint = "Handles operations for TaoVersion table" 
              output = "false">
 
+              <cffunction name="versions_sel" access="public" returntype="query" output="false">
+
+        <cfquery name="result">
+            SELECT 
+                verid AS id, 
+                versiontype,
+                major,
+                minor,
+                patch,
+                version,
+                build, 
+                alphabeta,
+                isactive 
+            FROM 
+                taoversions 
+            ORDER BY 
+                major, minor, patch, version
+        </cfquery>
+
+        <cfreturn result>
+    </cffunction>
+
+
+
 <cffunction name = "SELtaoversions" access = "public" returntype = "query">
 
 <cfquery name = "result">
