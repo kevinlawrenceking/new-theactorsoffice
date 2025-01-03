@@ -1,10 +1,5 @@
 <cfcomponent displayname="PageService" hint="Handles operations for Page table" >
 
-
-
-
-<cfcomponent displayname="PageService">
-
     <cffunction name="getLinksTop" access="public" returntype="query" output="false">
         
         <cfargument name="pgid" type="numeric" required="true">
