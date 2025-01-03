@@ -18,7 +18,7 @@
 
 <!--- Load the UserService --->
 <cfset userService = createObject("component", "services.UserService")>
-<cfset userData = userService.getUserByHash(u) />
+<cfset userData = userService.getUserByHash(uhash) />
 
 <!--- Check if user data was found --->
 <cfif userData.recordCount EQ 0>

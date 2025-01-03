@@ -2,7 +2,7 @@
 
 <cffunction name="getUserByHash" access="public" returntype="query" output="false">
         <!--- Arguments --->
-        <cfargument name="u" type="string" required="true">
+        <cfargument name="uhash" type="string" required="true">
 
         <!--- Query --->
         <cfquery name="result" >
@@ -27,7 +27,7 @@
                 u.customerid
             FROM taousers u
             LEFT JOIN timezones t ON t.tzid = u.tzid
-            WHERE LEFT(u.passwordhash, 10) = <cfqueryparam value="#arguments.u#" cfsqltype="CF_SQL_CHAR">
+            WHERE LEFT(u.passwordhash, 10) = <cfqueryparam value="#arguments.uhash#" cfsqltype="CF_SQL_CHAR">
         </cfquery>
 
         <!--- Return Query Result --->
