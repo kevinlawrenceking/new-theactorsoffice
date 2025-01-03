@@ -704,6 +704,7 @@ INNER JOIN timezones t ON u.tzid = t.tzid
              <cfset user = {
                 "user": {
     "userId": qUserDetails.userID,
+      "uid": qUserDetails.uid,
     "userfirstName": qUserDetails.userFirstName,
     "userlastName": qUserDetails.userLastName,
     "calendarName": qUserDetails.calendarName,
