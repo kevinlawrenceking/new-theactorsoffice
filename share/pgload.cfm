@@ -1,5 +1,3 @@
-<CFINCLUDE template="remote_load.cfm" />
-
 <!--- Default Parameters --->
 <cfparam name="u" default="434F6AD485112F73A9" />
 <cfparam name="pgaction" default="view" />
@@ -20,8 +18,6 @@
 
 <!--- Load the UserService --->
 <cfset userService = createObject("component", "services.UserService")>
-
-<!--- Fetch the user data using the UserService --->
 <cfset userData = userService.getUserByHash(u) />
 
 <!--- Check if user data was found --->

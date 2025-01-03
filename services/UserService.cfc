@@ -1,5 +1,39 @@
 <cfcomponent displayname="UserService" hint="Handles operations for User table" >
 
+<cffunction name="getUserByHash" access="public" returntype="query" output="false">
+        <!--- Arguments --->
+        <cfargument name="u" type="string" required="true">
+
+        <!--- Query --->
+        <cfquery name="result" >
+            SELECT
+                u.userid,
+                u.recordname,
+                u.userFirstName,
+                u.userLastName,
+                u.userEmail,
+                u.contactid,
+                u.userRole,
+                u.IsBetaTester,
+                u.defRows,
+                u.defCountry,
+                u.defState,
+                u.calstarttime,
+                u.calendtime,
+                u.avatarname,
+                u.contactid AS userContactID,
+                u.tzid,
+                t.tzname,
+                u.customerid
+            FROM taousers u
+            LEFT JOIN timezones t ON t.tzid = u.tzid
+            WHERE LEFT(u.passwordhash, 10) = <cfqueryparam value="#arguments.u#" cfsqltype="CF_SQL_CHAR">
+        </cfquery>
+
+        <!--- Return Query Result --->
+        <cfreturn result>
+    </cffunction>
+
 <cffunction name="update_cal" access="public" returntype="numeric" output="false">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="calstarttime" type="string" required="true">
