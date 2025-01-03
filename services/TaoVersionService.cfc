@@ -6,6 +6,7 @@
         <cfquery name="result">
             SELECT 
                 verid AS id, 
+                CONCAT(v.major, '.', v.minor, '.', v.patch, '.', v.version, '.', v.build) as name,
                 versiontype,
                 major,
                 minor,
