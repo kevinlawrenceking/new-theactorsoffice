@@ -201,6 +201,7 @@
                 p.pgdir, 
                 t.patchnote, 
                 t.complete_email, 
+                t.testingscript,
                 t.initial_email
             FROM tickets t
             INNER JOIN taousers u ON u.userid = t.userid
