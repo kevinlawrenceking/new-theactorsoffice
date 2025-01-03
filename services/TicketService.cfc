@@ -169,6 +169,7 @@
 <cfquery name="result" >
             SELECT 
                 p.pgid, 
+                t.ticketID,
                 t.ticketID AS recID, 
                 t.ticketID AS pk, 
                 CONCAT(u.userfirstname, ' ', u.userlastname) AS col1, 
