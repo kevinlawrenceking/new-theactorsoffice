@@ -173,6 +173,7 @@
                 t.ticketID AS recID, 
                 t.ticketID AS pk, 
                 CONCAT(u.userfirstname, ' ', u.userlastname) AS col1, 
+                u.userid,
                 'User' AS head1, 
                 'Date' AS head2, 
                 'Time' AS head3, 
