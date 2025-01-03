@@ -50,7 +50,7 @@
 <cfquery result="result" >
         UPDATE sitetypes_user 
         SET sitetypename = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_sitetypename#" />,
-        ivisible = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.isvisible#" />
+        isvisible = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.isvisible#" />
         WHERE sitetypeid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_sitetypeid#" />
     </cfquery>
 
