@@ -3,8 +3,10 @@
 
 <cfset userData = userService.getUserById(userID)>
 
+
 <cfset calendarName = UserData.user.calendarName />
 <cfset userId = UserData.user.userId />
+<cfset uid = UserData.user.uid />
 <cfset recordName = UserData.user.recordName />
 <cfset isDeleted = UserData.user.isDeleted />
 <cfset nletter_yn = UserData.user.nletter_yn />

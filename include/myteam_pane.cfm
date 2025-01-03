@@ -90,8 +90,8 @@
     <p>
         You can share with your team using the team share link:  
         <strong>
-            <a href="https://#host#.theactorsoffice.com/share/?u=#userid#" target="U" title="View Teamshare" data-original-title="View Teamshare">
-                https://#host#.theactorsoffice.com/share/?u=#userid#
+            <a href="https://#host#.theactorsoffice.com/share/?u=#uid#" target="U" title="View Teamshare" data-original-title="View Teamshare">
+                https://#host#.theactorsoffice.com/share/?u=#uid#
             </a>
         </strong>
         <BR>If you click on the button you will see your report.

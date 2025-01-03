@@ -2,7 +2,7 @@
 
 <cffunction name="getUserByHash" access="public" returntype="query" output="false">
         <!--- Arguments --->
-        <cfargument name="uhash" type="string" required="true">
+        <cfargument name="uid" type="string" required="true">
 
         <!--- Query --->
         <cfquery name="result" >
@@ -27,7 +27,7 @@
                 u.customerid
             FROM taousers u
             LEFT JOIN timezones t ON t.tzid = u.tzid
-            WHERE LEFT(u.passwordhash, 10) = <cfqueryparam value="#arguments.uhash#" cfsqltype="CF_SQL_CHAR">
+            WHERE LEFT(u.passwordhash, 10) = <cfqueryparam value="#arguments.uid#" cfsqltype="CF_SQL_CHAR">
         </cfquery>
 
         <!--- Return Query Result --->
@@ -649,9 +649,10 @@
 <!--- SQL Query to join all related tables and select all fields --->
         <cfquery result="result" name="qUserDetails" >
             SELECT
-                u.*,  -- All fields from taousers
-                t.*,  -- All fields from timezones
+                u.*,  
+                t.*, 
                  tc.id, 
+                LEFT(u.passwordhash,10) as uid,
                 tc.userid, 
                 tc.CustomerFirst, 
                 tc.CustomerLast, 
