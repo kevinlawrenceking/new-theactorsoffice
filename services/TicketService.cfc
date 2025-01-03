@@ -183,6 +183,7 @@
                 'Response' AS head7, 
                 'Completed' AS head8, 
                 t.ticketResponse, 
+                t.environ,
                 t.ticketCompletedDate, 
                 t.ticketdetails, 
                 t.ticketCreatedDate, 
