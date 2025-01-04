@@ -2,20 +2,11 @@
 <cfset userid = 0 />
 <CFPARAM name="refresh_yn" default="N" />
 <cfparam name="NEW_USERID" default="0" />
-<CFINCLUDE template="remote_load.cfm" />
-<cfif #userid# is "">
-    <cfif #isdefined('userid')#>
-        <cfquery result="result" name="default" > select left(passwordhash,10) as default_u,userid from taousers where userid = #userid# </cfquery>
-        <cfelse> Invalid. <cfabort> `
-    </cfif>
-    <cfelse>
-        <cfquery result="result" name="default" > select left(passwordhash,10) as default_u,userid from taousers where left(passwordhash,10) = '#u#' </cfquery>
-</cfif>
-<cfset u=default.default_u />
+
 <cfinclude template="pgload.cfm" />
 <cfset new_userid=default.userid />
 <cfquery result="result" name="shares" >
-SELECT `contactid`,`Name`,`Company`,`Title`,`Audition`,`WhereMet`,`WhenMet`,`NotesLog`,`userid`,`u`
+SELECT contactid,Name,Company,Title,Audition,WhereMet,WhenMet,NotesLog,userid,u
 FROM sharez where userid = #userid#
 </cfquery>
 
