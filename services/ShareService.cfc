@@ -17,56 +17,37 @@
     c.audcatname AS Category, 
     sc.audsubcatname AS SubCategory, 
     rt.audroletype AS RoleType, 
-    GROUP_CONCAT(DISTINCT n.noteDetails SEPARATOR ',') AS NotesLog 
+    GROUP_CONCAT(DISTINCT n.noteDetails SEPARATOR ',') AS NotesLog
 FROM 
-    contactdetails d 
-    LEFT JOIN audcontacts_auditions_xref x 
-        ON d.contactid = x.contactid 
-    LEFT JOIN audprojects p 
-        ON p.audprojectID = x.audprojectid 
-    INNER JOIN audroles r 
-        ON r.audprojectID = p.audprojectid 
-    LEFT JOIN audsubcategories sc 
-        ON sc.audsubcatid = p.audsubcatid 
-    LEFT JOIN audcategories c 
-        ON c.audcatid = sc.audcatid 
-    LEFT JOIN audroletypes rt 
-        ON rt.audroletypeid = r.audroletypeid 
-    LEFT JOIN maxaudition mx 
-        ON mx.contactid = d.contactID
-    INNER JOIN taousers u 
-        ON u.userID = d.userID
-    LEFT JOIN contactitems ci_company 
-        ON ci_company.contactID = d.contactID 
-        AND ci_company.valueCategory = 'Company' 
-        AND ci_company.itemStatus = 'active'
-    LEFT JOIN contactitems ci_tag 
-        ON ci_tag.contactID = d.contactID 
-        AND ci_tag.valueCategory = 'Tag' 
-        AND ci_tag.itemStatus = 'Active'
-    LEFT JOIN noteslog n 
-        ON n.contactID = d.contactID 
-        AND n.isPublic = 1
-    INNER JOIN fusystemusers su 
-        ON su.contactID = d.contactID
+    contactdetails_tbl d
+LEFT JOIN audcontacts_auditions_xref x 
+    ON d.contactID = x.contactID
+LEFT JOIN audprojects p 
+    ON p.audprojectID = x.audprojectID
+INNER JOIN audroles r 
+    ON r.audprojectID = p.audprojectID
+LEFT JOIN audsubcategories sc 
+    ON sc.audsubcatID = p.audsubcatID
+LEFT JOIN audcategories c 
+    ON c.audcatID = sc.audcatID
+LEFT JOIN audroletypes rt 
+    ON rt.audroleTypeID = r.audroleTypeID
+LEFT JOIN maxaudition mx 
+    ON mx.contactID = d.contactID
+LEFT JOIN contactitems ci_company 
+    ON ci_company.contactID = d.contactID AND ci_company.valueCategory = 'Company' AND ci_company.itemStatus = 'Active'
+LEFT JOIN contactitems ci_tag 
+    ON ci_tag.contactID = d.contactID AND ci_tag.valueCategory = 'Tag' AND ci_tag.itemStatus = 'Active'
+LEFT JOIN noteslog_tbl n 
+    ON n.contactID = d.contactID AND n.isPublic = 1
+INNER JOIN fusystemusers_tbl su 
+    ON su.contactID = d.contactID AND su.suStatus = 'Active' AND su.systemID IN (1, 2, 3, 4)
 WHERE 
-    r.userid = d.userid 
-    AND d.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_VARCHAR"> 
-    AND su.userid = d.userID 
-    AND su.suStatus = 'Active' 
-    AND su.systemID IN (1, 2, 3, 4)
+    d.userID = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_VARCHAR">
 GROUP BY 
-    d.contactID, 
-    d.recordname, 
-    ci_company.valueCompany, 
-    ci_tag.valueText, 
-    mx.audstep, 
-    d.contactMeetingLoc, 
-    d.contactMeetingDate, 
-    p.projname, 
-    c.audcatname, 
-    sc.audsubcatname, 
-    rt.audroletype;
+    d.contactID
+LIMIT 100;
+
 
         </cfquery>
 
