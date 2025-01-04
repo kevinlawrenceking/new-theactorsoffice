@@ -9,12 +9,12 @@
 
 
 <cfset userService = createObject("component", "services.UserService")>
-<cfset x = userService.getUserById(userid=userid) />
+<cfset x = userService.GetUserDetails(userid=userid) />
 
 
 <cfoutput>
     
-    <cfset sub_name_a = "#userfirstname#_#userlastname#" />
+    <cfset sub_name_a = "#x.userfirstname#_#x.userlastname#" />
 
 <cfset sub_name_b = "#Replace(sub_name_a,' ','','all')#" />
 
