@@ -2,7 +2,7 @@
 
     <cffunction name="GetShareDetailsByAudition" access="public" returntype="query" output="false">
         <!--- Arguments --->
-        <cfargument name="u" type="string" required="true">
+        <cfargument name="userid" type="numeral" required="true">
 
         <!--- Query --->
         <cfquery name="result" >
@@ -39,7 +39,7 @@
                 INNER JOIN fusystemusers su ON su.contactID = d.contactID
             WHERE 
                 r.userid = d.userid 
-                AND LEFT(u.passwordHash, 10) = <cfqueryparam value="#arguments.u#" cfsqltype="CF_SQL_VARCHAR"> 
+                AND d.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_VARCHAR"> 
                 AND su.userid = d.userID 
                 AND su.suStatus = 'Active' 
                 AND su.systemID IN (1, 2, 3, 4)
