@@ -48,13 +48,15 @@
     <cfargument name="new_sitetypeid" type="numeric" required="true">
 <cfargument name="new_isvisible" type="numeric" required="true" default="0">
 <cfquery result="result" >
-  UPDATE sitetypes_user AS s
+UPDATE sitetypes_user AS s
 INNER JOIN pgpanels_user AS p ON s.pnid = p.pnid
 SET 
     s.sitetypename = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_sitetypename#">,
-    p.isvisible = <cfqueryparam cfsqltype="cf_sql_bit" value="#arguments.new_isvisible#">
+    p.isvisible = <cfqueryparam cfsqltype="cf_sql_BIT" value="#arguments.new_isvisible#">,
+    p.pnTitle = CONCAT(<cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_sitetypename#">, ' Links')
 WHERE 
     s.sitetypeid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_sitetypeid#">
+
 
     </cfquery>
 
