@@ -1,5 +1,45 @@
 <cfcomponent displayname="AuditionProjectService" hint="Handles operations for AuditionProject table" >
 
+    <cffunction name="getProjectsByContact" access="public" returntype="query" output="false">
+        <!--- Arguments --->
+        <cfargument name="contactid" type="numeric" required="true">
+
+        <!--- Query --->
+        <cfquery name="result" >
+            SELECT DISTINCT 
+                p.projdate AS col1,
+                p.projname AS col2,
+                s.audstep AS col3
+            FROM audprojects p
+            INNER JOIN audroles r ON p.audprojectID = r.audprojectID
+            INNER JOIN events a ON r.audroleid = a.audroleid
+            INNER JOIN audsteps s ON s.audstepid = a.audstepid
+            INNER JOIN audcontacts_auditions_xref x ON x.audprojectid = p.audprojectid
+            INNER JOIN (
+                SELECT 
+                    p.audprojectID, 
+                    MAX(s.audstepid) AS max_audstepid
+                FROM audprojects p
+                INNER JOIN audroles r ON p.audprojectID = r.audprojectID
+                INNER JOIN events a ON r.audroleid = a.audroleid
+                INNER JOIN audsteps s ON s.audstepid = a.audstepid
+                INNER JOIN audcontacts_auditions_xref x ON x.audprojectid = p.audprojectid
+                WHERE 
+                    r.isdeleted IS FALSE 
+                    AND p.isDeleted IS FALSE
+                    AND x.contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
+                GROUP BY p.audprojectID
+            ) AS max_values ON p.audprojectID = max_values.audprojectID AND s.audstepid = max_values.max_audstepid
+            WHERE 
+                r.isdeleted IS FALSE 
+                AND p.isDeleted IS FALSE
+                AND x.contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+
+        <!--- Return Query Result --->
+        <cfreturn result>
+    </cffunction>
+
 <cffunction name="UPDaudprojects_24586" access="public" returntype="void" output="false">
     <!--- Arguments with default handling --->
     <cfargument name="new_projName" type="string" required="false" default="">
