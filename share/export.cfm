@@ -10,7 +10,7 @@
 
 <cfset userService = createObject("component", "services.UserService")>
 <cfset x = userService.getUserById(userid=userid) />
-
+<cfdump var="#x#"><Cfabort>
 
 <cfoutput>
     
