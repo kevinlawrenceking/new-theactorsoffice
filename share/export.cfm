@@ -1,4 +1,4 @@
-<CFINCLUDE template="remote_load.cfm" />
+
 
 <cfoutput>
 <cfset share_dir = "#session.userMediaPath#\share" />
