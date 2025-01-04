@@ -1,50 +1,6 @@
 <cfcomponent displayname="PageService" hint="Handles operations for Page table" >
 
-    <cffunction name="getPagesByShare" access="public" returntype="query" output="false">
-
-        <cfquery name="result" >
-            SELECT
-                a.appname, 
-                a.appAuthor, 
-                c.compname, 
-                p.pgname,
-                a.appId, 
-                a.appDescription, 
-                a.appLogoName,
-                a.colorTopBar, 
-                a.colorLeftSideBar, 
-                a.mocktoday,
-                a.mock_yn, 
-                c.compid, 
-                c.compDir, 
-                c.compTable,
-                c.compowner, 
-                c.compIcon, 
-                c.menuYN, 
-                c.menuOrder,
-                c.compInner, 
-                c.compRecordName, 
-                c.compActive,
-                p.pgid, 
-                p.pgDir, 
-                p.pgTitle, 
-                p.pgHeading, 
-                p.pgFilename,
-                p.datatables_YN, 
-                p.fullcalendar_YN, 
-                p.editable_YN,
-                p.newdatatables_YN, 
-                p.pk, 
-                p.update_type
-            FROM pgpages p
-            INNER JOIN pgcomps c ON c.compID = p.compID
-            INNER JOIN pgapps a ON a.appID = c.appid
-            WHERE p.pgDir = 'share'
-        </cfquery>
-
-        <!--- Return Query Result --->
-        <cfreturn result>
-    </cffunction>
+    
 
     <cffunction name="getLinksTop" access="public" returntype="query" output="false">
         
