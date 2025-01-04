@@ -56,14 +56,14 @@
 <cfif FindPage.RecordCount EQ 1>
     <!--- Fetch related links and components --->
 <cfset PageService = createObject("component", "services.PageService")>
-<cfset linksTop = PageService.getLinksTop(pgid=11)>
+<cfset FindLinksT = PageService.getLinksTop(pgid=11)>
  
 
 <cfset PageService = createObject("component", "services.PageService")>
-<cfset linksBottom = PageService.getLinksBottom(pgid=11)>
+<cfset FindLinksB = PageService.getLinksBottom(pgid=11)>
  
  <cfset PageService = createObject("component", "services.PageService")>
-<cfset linksExtra = PageService.getLinksExtra(pgid=11)>
+<cfset FindLinksExtra = PageService.getLinksExtra(pgid=11)>
 
     <!--- Set application variables --->
     <cfset appName = FindPage.appName />
