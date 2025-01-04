@@ -5,7 +5,7 @@
 </cfoutput>
 
 <cfset ShareService = createObject("component", "services.ShareService")>
-<cfset shareDetails = ShareService.GetShareDetailsByAudition(userid=userid)>
+<cfset shares = ShareService.GetShareDetailsByAudition(userid=userid)>
 
 
 <cfset userService = createObject("component", "services.UserService")>
