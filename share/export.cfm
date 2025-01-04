@@ -1,9 +1,5 @@
 
 
-<cfoutput>
-<cfset share_dir = "#session.userMediaPath#\share" />
-</cfoutput>
-
 <cfset ShareService = createObject("component", "services.ShareService")>
 <cfset shares = ShareService.GetShareDetailsByAudition(userid=userid)>
 
@@ -22,7 +18,7 @@
     <cfset sub_name_d = "#timeformat('#now()#','HHMMSS')#" />   
 
 <cfset fileName = "#sub_name_b##sub_name_c##sub_name_d#.xls" />
-
+<Cfset share_dir="C:\home\theactorsoffice.com\media-" & dsn & "\share">
 <cfscript>
 cfspreadsheet( action="write", fileName="#share_dir#\#fileName#", query="shares", overwrite=true );
     </cfscript>
