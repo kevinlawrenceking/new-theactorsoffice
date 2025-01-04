@@ -46,11 +46,10 @@
 <cffunction output="false" name="UPDsitetypes_user_24134" access="public" returntype="void">
     <cfargument name="new_sitetypename" type="string" required="true">
     <cfargument name="new_sitetypeid" type="numeric" required="true">
-<cfargument name="isvisible" type="numeric" required="true">
+
 <cfquery result="result" >
         UPDATE sitetypes_user 
-        SET sitetypename = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_sitetypename#" />,
-        isvisible = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.isvisible#" />
+        SET sitetypename = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_sitetypename#" />
         WHERE sitetypeid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_sitetypeid#" />
     </cfquery>
 
