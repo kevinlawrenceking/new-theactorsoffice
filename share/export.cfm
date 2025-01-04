@@ -14,7 +14,7 @@
 
 <cfoutput>
     
-    <cfset sub_name_a = "#user.userfirstname#_#user.userlastname#" />
+    <cfset sub_name_a = "#userfirstname#_#userlastname#" />
 
 <cfset sub_name_b = "#Replace(sub_name_a,' ','','all')#" />
 
