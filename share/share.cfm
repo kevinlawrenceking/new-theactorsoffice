@@ -33,7 +33,7 @@
                             <p class="mt-1 mb-0 text-muted font-12">
                                 <strong>Report Date:#dateformat('#now()#','medium')#</strong>
                                 <BR />
-                                <A HREF="https://#host#.theactorsoffice.com/share/export.cfm?u=#userid#" class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="background-color: ##406e8e; border: ##406e8e;"> Download <i class="fe-download"></i>
+                                <A HREF="https://#host#.theactorsoffice.com/share/export.cfm?userid=#userid#" class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="background-color: ##406e8e; border: ##406e8e;"> Download <i class="fe-download"></i>
                                 </A>
                             </p>
                         </div>
@@ -45,7 +45,7 @@
                     <tr>
                         <th></th>
                         <th>Name</th>
-                    <cfif #isdefined('auditions')#>  <th>Auditionz</th></cfif>  
+                    <cfif #isdefined('auditions')#>  <th>Audition</th></cfif>  
                         <th>Company</th>
                         <th>Title</th>
                          <th>Audition Status</th>
