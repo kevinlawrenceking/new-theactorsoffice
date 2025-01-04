@@ -10,11 +10,11 @@
 
 <cfset userService = createObject("component", "services.UserService")>
 <cfset x = userService.getUserById(userid=userid) />
-<cfdump var="#x#"><Cfabort>
+
 
 <cfoutput>
     
-    <cfset sub_name_a = "#x.userfirstname#_#x.userlastname#" />
+    <cfset sub_name_a = "#user.userfirstname#_#user.userlastname#" />
 
 <cfset sub_name_b = "#Replace(sub_name_a,' ','','all')#" />
 
