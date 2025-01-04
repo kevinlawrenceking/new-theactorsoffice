@@ -1,4 +1,4 @@
-<CFINCLUDE template="remote_load.cfm" />
+
 
 <cfparam name="contact_expand" default="true" />
 <cfparam name="a" default="0" />
@@ -22,7 +22,7 @@
                     <figure>
                         <cfoutput>
                             <center>
-                                <img src="/media-#host#/users/#userid#/avatar.jpg?ver=#rand()#" class="mr-3 rounded-circle gambar img-responsive img-thumbnail" style="height:80px;" alt="profile-image" id="item-img-output" />
+                                <img src="#userAvatarUrl#?ver=#rand()#" class="mr-3 rounded-circle gambar img-responsive img-thumbnail" style="height:80px;" alt="profile-image" id="item-img-output" />
                                 <figcaption style="margin-left:-5px;"></figcaption>
                             </center>
                         </cfoutput>
