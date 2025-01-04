@@ -51,7 +51,7 @@
 
 <!--- Fetch page data --->
 <cfset PageService = createObject("component", "services.PageService")>
-<cfset FindPage = userService.getPagesByShare() />
+<cfset FindPage = PageService.getPagesByShare() />
 
 <cfif FindPage.RecordCount EQ 1>
     <!--- Fetch related links and components --->
