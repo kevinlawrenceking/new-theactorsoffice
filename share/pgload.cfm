@@ -47,7 +47,9 @@
     </cfif>
 </cfif>
 
-
+<!--- Fetch shares --->
+<cfset ShareService = createObject("component", "services.ShareService")>
+<cfset shares = ShareService.shares(userid=userid)>
 
 <!--- Fetch page data --->
 <cfset PageService = createObject("component", "services.PageService")>
@@ -58,7 +60,6 @@
 <cfset PageService = createObject("component", "services.PageService")>
 <cfset FindLinksT = PageService.getLinksTop(pgid=11)>
  
-
 <cfset PageService = createObject("component", "services.PageService")>
 <cfset FindLinksB = PageService.getLinksBottom(pgid=11)>
  
