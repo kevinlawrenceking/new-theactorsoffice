@@ -18,7 +18,7 @@
     <div class="card mb-3" style="width:100%;">
         <div class="card-body">
             <div class="col-md-12">
-                <div class="media p-3">
+                <div class="media pt-3">
                     <figure>
                         <cfoutput>
                             <center>
