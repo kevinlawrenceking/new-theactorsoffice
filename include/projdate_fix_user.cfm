@@ -7,7 +7,7 @@
     <cfoutput>
         #now()#
         <br>
-        projectIds: #projectIds#
+        projectIds: #projectIds#>cfabort>
     </cfoutput>
 </cfif>
 
