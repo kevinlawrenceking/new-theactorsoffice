@@ -338,6 +338,11 @@
             });
         </script>
 
+        
+                                            <script>
+                                              $("#new_region_id").chained("#countryid");
+                                            </script>
+
         <div id="hiddenSelfTape">
             <cfoutput>
                 <div class="form-group col-md-12">
