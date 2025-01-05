@@ -188,9 +188,7 @@
     </cfif>
 </cfif>
 
-<cfif #referral# is "">
-    <cfset new_contactid = 0 />
-</cfif>
+
 
 <!--- Debugging output if dbug is enabled. --->
 <cfif #dbug# is "Y">
