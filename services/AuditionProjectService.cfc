@@ -34,7 +34,7 @@
                 r.isdeleted IS FALSE 
                 AND p.isDeleted IS FALSE
                 AND x.contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
-        ;CALL 
+         
 </cfquery>
 
         <!--- Return Query Result --->
@@ -93,7 +93,7 @@
         </cfif>
 
     WHERE audprojectID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audprojectID#">
-;CALL 
+ 
 </cfquery>
 
 </cffunction>
@@ -149,7 +149,7 @@
             LEFT OUTER JOIN regions rg ON rg.region_id = ad.region_id
             LEFT OUTER JOIN countries c ON rg.countryid = c.countryid
             WHERE ad.eventid = <cfqueryparam value="#arguments.eventId#" cfsqltype="CF_SQL_INTEGER">
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
@@ -171,7 +171,7 @@
                 p.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
             ORDER BY 
                 c.contactfullname
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
@@ -187,7 +187,7 @@
             WHERE p.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
             AND i.valueCategory = <cfqueryparam value="Company" cfsqltype="CF_SQL_VARCHAR"> 
             ORDER BY i.valueCompany
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
@@ -216,7 +216,7 @@
             LEFT OUTER JOIN audunions a3 ON (a.unionID = a3.unionID)
             LEFT OUTER JOIN audroles a4 ON (a.audprojectID = a4.audprojectID)
             WHERE a.audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
@@ -230,7 +230,7 @@
             UPDATE audprojects 
             SET audSubCatID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audSubCatID#" null="#NOT len(trim(arguments.new_audSubCatID))#">
             WHERE audprojectID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audprojectID#">
-        ;CALL 
+         
 </cfquery>
 
 </cffunction>
@@ -243,7 +243,7 @@
             INNER JOIN audmedia_auditions_xref x ON p.audprojectID = x.audprojectid
             WHERE p.isdeleted = 0 
             AND x.mediaid = <cfqueryparam value="#arguments.mediaid#" cfsqltype="CF_SQL_INTEGER">
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
@@ -265,7 +265,7 @@
                 <cfqueryparam value="#arguments.audprojectids#" cfsqltype="CF_SQL_INTEGER" list="true">
             )
         )
-    ;CALL 
+     
 </cfquery>
 </cffunction>
 
@@ -277,7 +277,7 @@
             UPDATE audprojects 
             SET projdate = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_projdate#"/> 
             WHERE audprojectid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.audprojectID#"/>
-        ;CALL 
+         
 </cfquery>
 
 </cffunction>
@@ -289,7 +289,7 @@
             UPDATE audprojects 
             SET projdate = <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_projdate#"/> 
             WHERE audprojectid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.audprojectID#"/>
-        ;CALL 
+         
 </cfquery>
 
 </cffunction>
@@ -306,7 +306,7 @@
                 p.isdeleted <> 1 
                 AND p.projdate IS null 
                 AND p.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
@@ -319,7 +319,7 @@
             UPDATE audprojects 
             SET projdate = <cfqueryparam value="#arguments.new_projdate#" cfsqltype="cf_sql_date"/>
             WHERE audprojectid = <cfqueryparam value="#arguments.audprojectID#" cfsqltype="cf_sql_integer"/>
-        ;CALL 
+         
 </cfquery>
 
 </cffunction>
@@ -331,7 +331,7 @@
             INNER JOIN auditionsimport i ON i.audprojectid = p.audprojectid
             SET p.projdate = <cfqueryparam value="#arguments.projDate#" cfsqltype="CF_SQL_DATE">
             WHERE STR_TO_DATE(i.projdate, '%Y-%m-%d') IS NOT NULL
-        ;CALL 
+         
 </cfquery>
 
 </cffunction>
@@ -348,7 +348,7 @@
             AND a.isDeleted = 0 
             AND r.isdeleted = 0 
             AND p.isdeleted = 0
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
@@ -360,7 +360,7 @@
             SELECT projname, projdescription, contactid
             FROM audprojects
             WHERE audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
@@ -394,7 +394,7 @@
             LEFT OUTER JOIN contactdetails c ON c.contactid = proj.contactid
             LEFT OUTER JOIN audunions un ON proj.unionID = un.unionID
             WHERE proj.audprojectID = <cfqueryparam value="#arguments.audprojectID#" cfsqltype="CF_SQL_INTEGER">
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
@@ -456,7 +456,7 @@
             LEFT JOIN audtypes t ON t.audtypeid = ad.audtypeid
             LEFT OUTER JOIN regions r ON r.region_id = ad.region_id
             WHERE ad.eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER">
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
@@ -512,7 +512,7 @@
             LEFT OUTER JOIN regions rg ON rg.region_id = ad.region_id
             LEFT OUTER JOIN countries c ON rg.countryid = c.countryid
             WHERE ad.eventid = <cfqueryparam value="#arguments.new_eventid#" cfsqltype="CF_SQL_INTEGER">
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
@@ -546,7 +546,7 @@
             LEFT OUTER JOIN contactdetails c ON c.contactid = proj.contactid
             LEFT OUTER JOIN audunions un ON proj.unionID = un.unionID
             WHERE proj.audprojectID = <cfqueryparam value="#arguments.audprojectID#" cfsqltype="CF_SQL_INTEGER">
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
@@ -559,7 +559,7 @@
             UPDATE audprojects 
             SET isdeleted = 1 
             WHERE audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
-        ;CALL 
+         
 </cfquery>
 
 </cffunction>
@@ -580,7 +580,7 @@
               AND p.userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#" /> 
               AND p.projdate >= <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_rangestart#" /> 
               AND p.projdate <= <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_rangeend#" />
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
@@ -607,7 +607,7 @@
                 AND p.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer"> 
                 AND p.projdate >= <cfqueryparam value="#arguments.rangestart#" cfsqltype="cf_sql_date"> 
                 AND p.projdate <= <cfqueryparam value="#arguments.rangeend#" cfsqltype="cf_sql_date">
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
@@ -636,7 +636,7 @@
                 AND p.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
                 AND p.projdate >= <cfqueryparam value="#arguments.rangestart#" cfsqltype="CF_SQL_DATE">
                 AND p.projdate <= <cfqueryparam value="#arguments.rangeend#" cfsqltype="CF_SQL_DATE">
-        ;CALL 
+         
 </cfquery>
 
 = #arguments.rangestart# AND p.projdate <= #arguments.rangeend#">
@@ -663,7 +663,7 @@
                 AND p.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
                 AND p.projdate >= <cfqueryparam value="#arguments.rangestart#" cfsqltype="CF_SQL_DATE"> 
                 AND p.projdate <= <cfqueryparam value="#arguments.rangeend#" cfsqltype="CF_SQL_DATE">
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
@@ -689,7 +689,7 @@
                 AND p.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
                 AND p.projdate >= <cfqueryparam value="#arguments.rangestart#" cfsqltype="CF_SQL_DATE"> 
                 AND p.projdate <= <cfqueryparam value="#arguments.rangeend#" cfsqltype="CF_SQL_DATE">
-        ;CALL 
+         
 </cfquery>
 
 = #arguments.rangestart# AND p.projdate <= #arguments.rangeend#">
@@ -724,7 +724,7 @@
                 c.audcatname 
             ORDER BY 
                 c.audcatname
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
@@ -758,7 +758,7 @@
                 e.essencename 
             ORDER BY 
                 e.essencename
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
@@ -790,7 +790,7 @@
                 label 
             ORDER BY 
                 label
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
@@ -825,7 +825,7 @@
                 label 
             ORDER BY 
                 label
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
@@ -858,7 +858,7 @@
                 AND s.audsourceid = <cfqueryparam cfsqltype="cf_sql_integer" value="3" /> 
             GROUP BY label 
             ORDER BY label
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
@@ -892,7 +892,7 @@
                 label
             ORDER BY 
                 label
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
@@ -925,7 +925,7 @@
             label 
         ORDER BY 
             label
-    ;CALL 
+     
 </cfquery>
 
 <cfreturn result>
@@ -972,7 +972,7 @@ SELECT count(p.audprojectid) as totals, 'Union' as label, 'Auditions' as itemDat
             GROUP BY label, itemDataset
 
 ORDER BY label
-        ;CALL 
+         
 </cfquery>
         <cfreturn result>
 
@@ -1007,7 +1007,7 @@ ORDER BY label
                 a.rangename <> 'Unknown' 
             ORDER BY 
                 a.rangename
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
@@ -1045,7 +1045,7 @@ ORDER BY label
                 g.audgenre
             ORDER BY 
                 g.audgenre
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
@@ -1060,7 +1060,7 @@ ORDER BY label
             WHERE projname = <cfqueryparam value="#arguments.projname#" cfsqltype="CF_SQL_VARCHAR">
             AND userid = <cfqueryparam value="#userid#" cfsqltype="CF_SQL_INTEGER">
             AND isdeleted = <cfqueryparam value="0" cfsqltype="CF_SQL_BIT">
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
@@ -1094,7 +1094,7 @@ ORDER BY label
                 <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contactid#" null="#NOT len(trim(arguments.new_contactid))#" />,
                 <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.new_projdate#" />
             )
-        ;CALL 
+         
 </cfquery>
 <cfreturn result.generatedKey>
 </cffunction>
@@ -1126,7 +1126,7 @@ ORDER BY label
             LEFT OUTER JOIN auddialects a6 ON (a4.audDialectID = a6.auddialectid)
             LEFT JOIN audtypes t ON t.audtypeid = ad.audtypeid
             WHERE ad.eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER">
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
@@ -1162,7 +1162,7 @@ ORDER BY label
             LEFT JOIN contactdetails c ON c.contactid = proj.contactid
             LEFT JOIN audunions un ON proj.unionID = un.unionID
             WHERE proj.audprojectID = <cfqueryparam value="#arguments.audprojectID#" cfsqltype="cf_sql_integer">
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
@@ -1183,7 +1183,7 @@ ORDER BY label
                 p.isdeleted IS FALSE 
                 AND r.isdeleted IS FALSE 
                 AND p.audprojectID = <cfqueryparam value="#arguments.audprojectID#" cfsqltype="cf_sql_integer">
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
@@ -1216,7 +1216,7 @@ ORDER BY label
             LEFT OUTER JOIN auddialects a6 ON (a4.audDialectID = a6.auddialectid)
             LEFT JOIN audtypes t ON t.audtypeid = ad.audtypeid
             WHERE ad.eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER">
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
@@ -1249,7 +1249,7 @@ ORDER BY label
             LEFT OUTER JOIN audroles a4 ON (a.audprojectID = a4.audprojectID)
             LEFT OUTER JOIN audcategories ac ON (ac.audcatid = a2.audcatid)
             WHERE a.audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
@@ -1266,7 +1266,7 @@ ORDER BY label
             INNER JOIN contactitems i ON i.contactid = c.contactid
             WHERE p.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
             AND i.valueCompany = <cfqueryparam value="#arguments.sel_coname#" cfsqltype="CF_SQL_VARCHAR">
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
@@ -1377,7 +1377,7 @@ GROUP BY r.audroleid, p.projname, s.audsource, rt.audroletype, r.iscallback, r.i
             </cfif>
 
 ORDER BY p.projdate DESC
-        ;CALL 
+         
 </cfquery>
 
 <!--- Return the query result --->
@@ -1423,7 +1423,7 @@ ORDER BY p.projdate DESC
             <cfif structKeyExists(arguments, "isdirect")>, <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.isdirect#"></cfif>
             <cfif structKeyExists(arguments, "new_contactid") AND arguments.new_contactid NEQ 0>, <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contactid#"></cfif>
         )
-    ;CALL 
+     
 </cfquery>
 
 <!--- Return the generated key --->
@@ -1463,7 +1463,7 @@ ORDER BY p.projdate DESC
                 audunions un ON proj.unionID = un.unionID
             WHERE 
                 proj.audprojectID = <cfqueryparam value="#arguments.audprojectID#" cfsqltype="CF_SQL_INTEGER">
-        ;CALL 
+         
 </cfquery>
 
 <cfreturn result>
