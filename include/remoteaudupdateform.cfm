@@ -290,29 +290,34 @@
 
     </div>
 </cfoutput>
-    <div class="row">
+<div class="row">
+    <!--- State/Region --->
     <div class="form-group col-md-6">
         <label for="region_id">State/Region<span class="text-danger">*</span></label>
         <select id="region_id" name="new_region_id" class="form-control">
             <option value="">--</option>
-            <cfloop query="regions"><cfoutput>
-                <option value="#regions.region_id#" data-chained="#regions.countryid#" <cfif #regions.region_id# is "#new_region_id#">selected</cfif>>#regions.regionname#</option>
-            </cfoutput></cfloop>
+            <cfloop query="regions">
+                <cfoutput>
+                    <option value="#regions.region_id#" data-chained="#regions.countryid#" <cfif #regions.region_id# is "#new_region_id#">selected</cfif>>#regions.regionname#</option>
+                </cfoutput>
+            </cfloop>
         </select>
     </div>
 
     <!--- Country --->
     <div class="form-group col-md-6">
         <label for="countryid">Country <cfoutput>(#new_countryid#)</cfoutput><span class="text-danger">*</span></label>
-        <select id="countryid" class="form-control" name="countryid" data-parsley-required data-parsley-error-message="Country is required"  onchange="filterRegions(this.value)">
+        <select id="countryid" class="form-control" name="countryid" data-parsley-required data-parsley-error-message="Country is required" onchange="filterRegions(this.value)">
             <option value="">--</option>
-            <cfloop query="countries"><cfoutput>
-                <option value="#countries.countryid#" <cfif #countries.countryid# is "#new_countryid#">selected</cfif>>#countries.countryname#</option>
-           </cfoutput> </cfloop>
+            <cfloop query="countries">
+                <cfoutput>
+                    <option value="#countries.countryid#" <cfif #countries.countryid# is "#new_countryid#">selected</cfif>>#countries.countryname#</option>
+                </cfoutput>
+            </cfloop>
         </select>
     </div>
-    </div>
 </div>
+
 
 <script>
             document.getElementById('populateFieldsButton').addEventListener('click', function() {
@@ -492,4 +497,38 @@ for (let i = 0; i < options.length; i++) {
 
     regionDropdown.value = "";
 }
+</script>
+
+<script>
+// Function to filter regions based on the selected country
+function filterRegions(selectedCountryId) {
+    const regionSelect = document.getElementById('region_id');
+    const options = regionSelect.options;
+
+    // Iterate through all the region options and toggle visibility
+    for (let i = 0; i < options.length; i++) {
+        const option = options[i];
+        const countryId = option.getAttribute('data-chained');
+        
+        if (countryId === selectedCountryId || option.value === "") {
+            option.style.display = "block";
+        } else {
+            option.style.display = "none";
+        }
+    }
+
+    // Reset the selected region if it doesn't match the selected country
+    if (regionSelect.value && regionSelect.options[regionSelect.selectedIndex].getAttribute('data-chained') !== selectedCountryId) {
+        regionSelect.value = "";
+    }
+}
+
+// Filter regions on page load based on the preselected country
+document.addEventListener("DOMContentLoaded", function () {
+    const countrySelect = document.getElementById('countryid');
+    const selectedCountryId = countrySelect.value;
+    if (selectedCountryId) {
+        filterRegions(selectedCountryId);
+    }
+});
 </script>
