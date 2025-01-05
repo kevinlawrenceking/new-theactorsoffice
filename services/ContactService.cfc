@@ -662,7 +662,7 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="referral" type="string" required="true">
 
-<cfquery name="result" >
+<cfquery name="result" maxrows="1" >
             SELECT * 
             FROM contactdetails 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
