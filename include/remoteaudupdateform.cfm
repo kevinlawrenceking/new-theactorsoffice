@@ -1,5 +1,5 @@
 <!--- This ColdFusion page handles the audition event form, including fetching data, processing inputs, and rendering the form for user interaction. --->
-
+<cfparam name="isdirect" default="0" />
         <script>
             function showDiv(divId, element) {
                 var checked = document.querySelectorAll('input:checked');
@@ -72,10 +72,9 @@
         const hideDirectBooking = document.getElementById("hidedirectbooking");
 
         if (isDirect === "1") {
-            // Hide the #hidedirectbooking element
+ 
             hideDirectBooking.style.display = "none";
 
-            // Add margin styling to all elements with the 'input' class
             document.querySelectorAll(".input").forEach(function (inputElement) {
                 inputElement.style.margin = "0 auto";
             });
