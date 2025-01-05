@@ -23,7 +23,8 @@
             <cfif arguments.new_eventStopTime NEQ "00:00:00">
                 e.eventstoptime = <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.new_eventStopTime#">,
             </cfif>
-            e.eventid = e.eventid
+            e.eventid = e.eventid;
+            CALL UpdateAudProjects();
     </cfquery>
 </cffunction>
 
@@ -33,7 +34,8 @@
 <cfquery>
         UPDATE events_tbl 
         SET isdeleted = 0 
-        WHERE eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">
+        WHERE eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">;
+        CALL UpdateAudProjects();
     </cfquery>
 </cffunction>
 
@@ -1060,7 +1062,8 @@ audzip = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_aud
             parkingDetails = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_parkingDetails)#" null="#NOT len(trim(arguments.new_parkingDetails))#">,
             workwithcoach = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_workwithcoach#">
         WHERE
-            eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">
+            eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">;
+CALL UpdateAudProjects();
     </cfquery>
 </cffunction> <cffunction output="false" name="UPDevents_24558" access="public" returntype="void">
     <cfargument name="new_eventid" type="numeric" required="true">
@@ -1080,7 +1083,8 @@ audzip = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_aud
         <cfif len(arguments.eventStopTime)>
             , eventStopTime = <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.eventStopTime#">
         </cfif>
-        WHERE eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">
+        WHERE eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">;
+        CALL UpdateAudProjects();
     </cfquery>
 </cffunction> <cffunction output="false" name="SELevents_24597" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
