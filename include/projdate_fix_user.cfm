@@ -1,12 +1,13 @@
 <!--- This ColdFusion page processes various queries and updates based on the debug mode. --->
 
-<cfset dbug = "N">
+<cfset dbug = "y">
 
 <!--- Check if debugging is enabled and output the current time. --->
 <cfif #dbug# is "Y">
     <cfoutput>
         #now()#
         <br>
+        projectIds: #projectIds#
     </cfoutput>
 </cfif>
 

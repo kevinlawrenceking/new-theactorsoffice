@@ -242,7 +242,7 @@
 </cffunction>
 <cffunction output="false" name="UPDaudprojects_24011" access="public" returntype="void">
     <cfargument name="userid" type="numeric" required="true">
-    <cfargument name="audprojectids" type="string" required="true"> <!--- Expecting a comma-delimited list of integers --->
+    <cfargument name="audprojectids" type="string" required="true">
 
 <cfquery result="result" name="updateQuery">
         UPDATE audprojects 
