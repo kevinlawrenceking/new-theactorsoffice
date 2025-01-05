@@ -125,8 +125,8 @@
             <cfinclude template="/include/folder_setup.cfm" />
         </cfif>
         <cfelse>
-        <cfset new_contact_id = 0 />
-    </cfif><cfset new_contact_id = 0 />
+        <cfset new_contactid = 0 />
+    </cfif><cfset new_contactid = 0 />
 </cfif>
 
 <!--- Handle submissions if new_audSourceID is 2. --->
@@ -189,8 +189,8 @@
 </cfif>
 
 <cfif #referral# is "">
-
-<cfset new_contact_id = 0 />
+    <cfset new_contactid = 0 />
+</cfif>
 
 <!--- Debugging output if dbug is enabled. --->
 <cfif #dbug# is "Y">
