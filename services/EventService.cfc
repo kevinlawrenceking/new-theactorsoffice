@@ -24,7 +24,7 @@
                 e.eventstoptime = <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.new_eventStopTime#">,
             </cfif>
             e.eventid = e.eventid;
-            CALL UpdateAudProjects();
+            CALL 
     </cfquery>
 </cffunction>
 
@@ -35,7 +35,7 @@
         UPDATE events_tbl 
         SET isdeleted = 0 
         WHERE eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">;
-        CALL UpdateAudProjects();
+        CALL 
     </cfquery>
 </cffunction>
 
@@ -1063,7 +1063,7 @@ audzip = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_aud
             workwithcoach = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_workwithcoach#">
         WHERE
             eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">;
-CALL UpdateAudProjects();
+CALL 
     </cfquery>
 </cffunction> <cffunction output="false" name="UPDevents_24558" access="public" returntype="void">
     <cfargument name="new_eventid" type="numeric" required="true">
@@ -1084,7 +1084,7 @@ CALL UpdateAudProjects();
             , eventStopTime = <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.eventStopTime#">
         </cfif>
         WHERE eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">;
-        CALL UpdateAudProjects();
+        CALL 
     </cfquery>
 </cffunction> <cffunction output="false" name="SELevents_24597" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
