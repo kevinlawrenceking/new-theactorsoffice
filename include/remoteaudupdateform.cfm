@@ -532,3 +532,5 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 </script>
+
+   <script src="/app/assets/js/jquery.chained.js?ver=13.4.0.381214213207"></script>
