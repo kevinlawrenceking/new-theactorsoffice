@@ -15,6 +15,8 @@
 <cfelseif #new_audplatformid# is "CustomPlatform" and #CustomPlatform# is "">
     <cfset new_audPlatformid = old_audplatformid />
 </cfif>
+<cfif #new_region_id# is "">
+<cfset new_region_id = 0 />
 
 <!--- Include additional queries for auditions and event activation --->
 <cfinclude template="/include/qry/auditions_upd.cfm" />
