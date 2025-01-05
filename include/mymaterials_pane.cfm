@@ -171,7 +171,7 @@
                             </a>
                         </td>
                         <td class="text-nowrap">
-                            <cfif materials_sel.mediaurl neq "">
+                         <cfif #materials_sel.mediaurl# is not "" and #materials_sel.mediaurl# is not "https://">
                                 <a href="#materials_sel.mediaurl#" target="_blank" style="text-decoration: underline; color: blue;">
                                     #materials_sel.mediaurl#
                                 </a>
