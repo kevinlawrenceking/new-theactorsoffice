@@ -188,6 +188,10 @@
     </cfif>
 </cfif>
 
+<cfif #referral# is "">
+
+<cfset new_contact_id = 0 />
+
 <!--- Debugging output if dbug is enabled. --->
 <cfif #dbug# is "Y">
     <cfabort>
