@@ -126,7 +126,7 @@
         </cfif>
         <cfelse>
         <cfset new_contact_id = 0 />
-    </cfif>
+    </cfif><cfset new_contact_id = 0 />
 </cfif>
 
 <!--- Handle submissions if new_audSourceID is 2. --->
