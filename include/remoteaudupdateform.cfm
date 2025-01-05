@@ -1,5 +1,87 @@
 <!--- This ColdFusion page handles the audition event form, including fetching data, processing inputs, and rendering the form for user interaction. --->
 
+        <script>
+            function showDiv(divId, element) {
+                var checked = document.querySelectorAll('input:checked');
+                if (checked.length === 0) {
+                    document.getElementById(divId).style.display = 'none';
+                } else {
+                    document.getElementById(divId).style.display = 'block';
+                    $("#divId").prop('required', true);
+                }
+            }
+        </script>
+
+ <script>
+                  function handleSelectChange(element) {
+                    const hiddenSelfTape = document.getElementById('hiddenSelfTape');
+                    const hiddenLocation = document.getElementById('hiddenLocation');
+                    const locationInput = document.getElementById('eventLocation');
+                    const hideDirectBooking = document.getElementById('hidedirectbooking');
+
+                    // Show or hide the "Self Tape" div
+                    if (hiddenSelfTape) {
+                      hiddenSelfTape.style.display = element.value == 2
+                        ? 'block'
+                        : 'none';
+                    }
+
+                    // Show or hide the "Location" div and toggle "required" for Location input
+                    if (hiddenLocation) {
+                      hiddenLocation.style.display = element.value == 1
+                        ? 'block'
+                        : 'none';
+                    }
+                    if (locationInput) {
+                      if (element.value == 1) {
+                        locationInput.setAttribute('required', 'required');
+                        locationInput.setAttribute('data-parsley-required', 'true');
+                      } else {
+                        locationInput.removeAttribute('required');
+                        locationInput.removeAttribute('data-parsley-required');
+                      }
+                    }
+
+                    // Show or hide the "Direct Booking" div
+                    if (hideDirectBooking) {
+                      hideDirectBooking.style.display = element.value == 23
+                        ? 'none'
+                        : 'block';
+                    }
+
+                    console.log("Value: ", element.value, "Type: ", typeof element.value);
+                  }
+                </script>
+
+                <script>
+                  function handleSelectChangeCasting(element) {
+
+                    document
+                      .getElementById('hiddenAddLocation')
+                      .style
+                      .display = element.value == 0
+                        ? 'block'
+                        : 'none';
+                    console.log("Value: ", element.value, "Type: ", typeof element.value);
+                  }
+                </script>
+
+                <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const isDirect = "<cfoutput>#isdirect#</cfoutput>";
+        const hideDirectBooking = document.getElementById("hidedirectbooking");
+
+        if (isDirect === "1") {
+            // Hide the #hidedirectbooking element
+            hideDirectBooking.style.display = "none";
+
+            // Add margin styling to all elements with the 'input' class
+            document.querySelectorAll(".input").forEach(function (inputElement) {
+                inputElement.style.margin = "0 auto";
+            });
+        }
+    });
+</script>
 <cfparam name="pgaction" default="view" />
 <cfparam name="old_callbacktypeid" default="0" />
 <cfparam name="isdirect" default="0" />
@@ -189,7 +271,7 @@
         <cfif #aud_det.audstepid# is "2">
             <cfinclude template="/include/qry/audcallbacktypes_sel.cfm" />
             <div class="form-group col-md-6">
-                <label for="audtypeid">Callback Type<span class="text-danger">*</span>.</label>
+                <label for="NEW_CALLBACKTYPEID">Callback Type<span class="text-danger">*</span>.</label>
                 <select id="NEW_CALLBACKTYPEID" name="NEW_CALLBACKTYPEID" class="form-control" data-parsley-required data-parsley-error-message="Callback Type is required">
                     <cfoutput query="audcallbacktypes_sel_def">
                         <option value="#audcallbacktypes_sel_def.id#">#audcallbacktypes_sel_def.name#</option>
@@ -398,88 +480,6 @@
             });
         </script>
 
-        <script>
-            function showDiv(divId, element) {
-                var checked = document.querySelectorAll('input:checked');
-                if (checked.length === 0) {
-                    document.getElementById(divId).style.display = 'none';
-                } else {
-                    document.getElementById(divId).style.display = 'block';
-                    $("#divId").prop('required', true);
-                }
-            }
-        </script>
-
- <script>
-                  function handleSelectChange(element) {
-                    const hiddenSelfTape = document.getElementById('hiddenSelfTape');
-                    const hiddenLocation = document.getElementById('hiddenLocation');
-                    const locationInput = document.getElementById('eventLocation');
-                    const hideDirectBooking = document.getElementById('hidedirectbooking');
-
-                    // Show or hide the "Self Tape" div
-                    if (hiddenSelfTape) {
-                      hiddenSelfTape.style.display = element.value == 2
-                        ? 'block'
-                        : 'none';
-                    }
-
-                    // Show or hide the "Location" div and toggle "required" for Location input
-                    if (hiddenLocation) {
-                      hiddenLocation.style.display = element.value == 1
-                        ? 'block'
-                        : 'none';
-                    }
-                    if (locationInput) {
-                      if (element.value == 1) {
-                        locationInput.setAttribute('required', 'required');
-                        locationInput.setAttribute('data-parsley-required', 'true');
-                      } else {
-                        locationInput.removeAttribute('required');
-                        locationInput.removeAttribute('data-parsley-required');
-                      }
-                    }
-
-                    // Show or hide the "Direct Booking" div
-                    if (hideDirectBooking) {
-                      hideDirectBooking.style.display = element.value == 23
-                        ? 'none'
-                        : 'block';
-                    }
-
-                    console.log("Value: ", element.value, "Type: ", typeof element.value);
-                  }
-                </script>
-
-                <script>
-                  function handleSelectChangeCasting(element) {
-
-                    document
-                      .getElementById('hiddenAddLocation')
-                      .style
-                      .display = element.value == 0
-                        ? 'block'
-                        : 'none';
-                    console.log("Value: ", element.value, "Type: ", typeof element.value);
-                  }
-                </script>
-
-                <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const isDirect = "<cfoutput>#isdirect#</cfoutput>";
-        const hideDirectBooking = document.getElementById("hidedirectbooking");
-
-        if (isDirect === "1") {
-            // Hide the #hidedirectbooking element
-            hideDirectBooking.style.display = "none";
-
-            // Add margin styling to all elements with the 'input' class
-            document.querySelectorAll(".input").forEach(function (inputElement) {
-                inputElement.style.margin = "0 auto";
-            });
-        }
-    });
-</script>
 <script>
 function filterRegions(countryId) {
     const regionDropdown = document.getElementById('region_id');
