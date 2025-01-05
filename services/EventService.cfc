@@ -1022,7 +1022,7 @@ audzip = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_aud
     <cfargument name="new_audlocadd1" type="string" required="true">
     <cfargument name="new_audlocadd2" type="string" required="true">
     <cfargument name="new_audcity" type="string" required="true">
-    <cfargument name="new_region_id" type="numeric" required="true">
+    <cfargument name="new_region_id" type="string" required="true">
     <cfargument name="new_audzip" type="string" required="true">
     <cfargument name="new_eventStart" type="date" required="true">
     <cfargument name="new_eventStartTime" type="time" required="true">
@@ -1048,7 +1048,9 @@ audzip = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_aud
             audlocadd1 = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audlocadd1)#" maxlength="500">,
             audlocadd2 = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audlocadd2)#" maxlength="500">,
             audcity = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audcity)#" maxlength="500">,
+            <cfif #arguments.new_region_id# is not "">
             region_id = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_region_id#">,
+            </cfif>
             audzip = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audzip)#" maxlength="10">,
             eventStart = <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.new_eventStart#">,
             eventStartTime = <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.new_eventStartTime#">,
