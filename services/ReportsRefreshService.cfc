@@ -138,11 +138,9 @@
                 c.audcatname AS label,
                 'Auditions' AS itemDataset
             FROM audprojects p
-            INNER JOIN audroles r ON p.audprojectID = r.audprojectID
-            INNER JOIN audroletypes rt ON rt.audroletypeid = r.audroletypeid
+            INNER JOIN audsubcategories sc on p.audsubcatid = sc.audsubcatid
             INNER JOIN audcategories c ON c.audcatid = rt.audcatid
             WHERE 
-                r.isdeleted = 0
                 AND p.isDeleted = 0
                 AND p.userid = #arguments.userid#
                 AND p.projdate >= '#arguments.rangestart#'
