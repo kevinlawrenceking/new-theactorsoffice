@@ -55,6 +55,8 @@
                 g.audgenre
             ORDER BY 
                 g.audgenre</cfoutput><cfabort>
+
+                
 <!--- Update summary with total selected --->
         <cfset resultSummary.totalSelected = report_2.recordcount>
 
