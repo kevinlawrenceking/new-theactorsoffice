@@ -115,7 +115,8 @@
                 c.audcatname AS label,
                 'Auditions' AS itemDataset
             FROM audprojects p
-            INNER JOIN audcategories c ON c.audcatid = p.audcatid
+            INNER JOIN audsubcategories s ON s.audsubcatid = p.audsubcatid
+            inner join audcategories c on c.audcatid = s.audcatid
        WHERE  p.isdeleted <> 1
      
 
