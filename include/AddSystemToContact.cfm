@@ -1,5 +1,5 @@
 
-<cfinclude template="/include/qry/addSystem_5_1.cfm" />
+<cfinclude template="/include/qry/addfuSystemUsers.cfm" />
 
 <cfoutput>
     <cfset no_added = #no_added# + 1 />

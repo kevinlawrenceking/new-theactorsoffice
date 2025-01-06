@@ -37,6 +37,8 @@
             ns.notstatus = <cfqueryparam value="Future" cfsqltype="CF_SQL_VARCHAR">
     </cfquery>
 
+    
+
 <cfreturn result>
 </cffunction>
 </cfcomponent>

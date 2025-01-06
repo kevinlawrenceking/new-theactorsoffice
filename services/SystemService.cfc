@@ -367,7 +367,7 @@
     <cfreturn queryResult>
 </cffunction>
 
-<cffunction output="false" name="SELfusystems_24750" access="public" returntype="query">
+<cffunction output="false" name="getFuSystemUsersBySystemID" access="public" returntype="query">
     <cfargument name="systemid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
