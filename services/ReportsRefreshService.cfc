@@ -140,8 +140,7 @@
             FROM audprojects p
             INNER JOIN audsubcategories sc on p.audsubcatid = sc.audsubcatid
             INNER JOIN audcategories c ON c.audcatid = sc.audcatid
-            WHERE 
-                AND p.isDeleted = 0
+            WHERE  p.isDeleted = 0
                 AND p.userid = #arguments.userid#
                 AND p.projdate >= '#arguments.rangestart#'
                 AND p.projdate <= '#arguments.rangeend#'
