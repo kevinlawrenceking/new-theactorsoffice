@@ -37,7 +37,24 @@
             ORDER BY 
                 g.audgenre
         </cfquery>
-
+<cfoutput>            SELECT 
+                count(r.audroleid) AS totals, 
+                g.audgenre AS label, 
+                'Auditions' AS itemDataset
+            FROM 
+                audgenres_audition_xref x  
+            INNER JOIN 
+                audgenres_user g ON g.audgenreid = x.audgenreid
+            WHERE 
+                AND p.isdeleted <> 1
+                AND p.projdate >= '#arguments.rangestart#'
+                AND p.projdate <= '#arguments.rangeend#'
+                AND p.userid = #arguments.userid#
+                AND p.audcatid = #arguments.new_audcatid#
+            GROUP BY 
+                g.audgenre
+            ORDER BY 
+                g.audgenre</cfoutput><cfabort>
 <!--- Update summary with total selected --->
         <cfset resultSummary.totalSelected = report_2.recordcount>
 
