@@ -30,9 +30,9 @@ SELECT
         INNER JOIN 
             fuActionLinks l ON l.actionlinkid = a.actionlinkid
     WHERE 
-        f.contactID = #arguments.currentid# AND
-        f.suid = #arguments.sysActiveSuid# AND
-        au.userid = #arguments.userid# AND
+        f.contactID = #currentid# AND
+        f.suid = #sysActiveSuid# AND
+        au.userid = #userid# AND
         (n.notstartdate IS NULL OR DATE(n.notstartdate) >= '#DateFormat(Now(), 'yyyy-mm-dd')#') AND
         n.notstatus = 'Pending' AND
         ns.notstatus = 'Future'
