@@ -612,17 +612,16 @@ AND p.userid=<cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#"
 
 <!--- Query to fetch report data --->
         <cfquery name="report_8">
-            SELECT
+         SELECT
                 COUNT(x.audprojectid) AS totals,
                 m.medianame AS label,
                 s.audcatid,
                 'Auditions' AS itemDataset
             FROM audmedia m
-            INNER JOIN audmedia_auditions_xref x ON x.mediaid = m.mediaid
-            INNER JOIN audmediatypes t ON t.mediaTypeID = m.mediatypeid
-            INNER JOIN audprojects p ON p.audprojectID = x.audprojectid
-            INNER JOIN audsubcategories s ON s.audsubcatid = p.audsubcatid
-            LEFT JOIN exttypes e ON e.mediaext = m.mediaext
+            Inner JOIN audmedia_auditions_xref x ON x.mediaid = m.mediaid
+            Inner JOIN audmediatypes t ON t.mediaTypeID = m.mediatypeid
+            Inner JOIN audprojects p ON p.audprojectID = x.audprojectid
+            Inner JOIN audsubcategories s ON s.audsubcatid = p.audsubcatid
             WHERE 
                 m.isdeleted <> 1
                 AND x.audprojectid <> 0
