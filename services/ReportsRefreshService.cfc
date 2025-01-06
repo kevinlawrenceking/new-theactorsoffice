@@ -139,7 +139,7 @@
                 'Auditions' AS itemDataset
             FROM audprojects p
             INNER JOIN audsubcategories sc on p.audsubcatid = sc.audsubcatid
-            INNER JOIN audcategories c ON c.audcatid = rt.audcatid
+            INNER JOIN audcategories c ON c.audcatid = sc.audcatid
             WHERE 
                 AND p.isDeleted = 0
                 AND p.userid = #arguments.userid#
