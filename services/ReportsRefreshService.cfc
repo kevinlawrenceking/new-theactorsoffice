@@ -1246,8 +1246,8 @@ AND p.userid=<cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#"
             INNER JOIN 
                 audsources s ON s.audsourceid = r.audsourceid 
             WHERE 
-                r.isdeleted <> 1 
-                AND p.isdeleted <> 1 
+                r.isdeleted = 0
+                AND p.isdeleted = 0
                 AND u.unionName = 'Non-Union' 
                 <cfif arguments.new_audsourceid neq 0>
                     AND s.audsourceid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audsourceid#">
