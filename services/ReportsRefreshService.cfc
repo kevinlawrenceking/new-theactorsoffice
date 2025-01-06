@@ -28,12 +28,13 @@
                 audgenres_user g ON g.audgenreid = x.audgenreid
                 inner join audroles r on r.audroleid = x.audroleid
                 inner join audprojects p on p.audprojectid = r.audprojectid
+                inner join audsubcategories s on s.audsubcatid = p.audsubcatid
             WHERE 
                  p.isdeleted <> 1
                 AND p.projdate >= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangestart#">
                 AND p.projdate <= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangeend#">
                 AND p.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
-                AND p.audcatid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audcatid#">
+                AND s.audcatid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audcatid#">
             GROUP BY 
                 g.audgenre
             ORDER BY 
