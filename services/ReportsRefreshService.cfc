@@ -132,6 +132,26 @@
             ORDER BY c.audcatname
         </cfquery>
 
+        <Cfoutput>
+                  SELECT 
+                COUNT(p.audprojectID) AS totals,
+                c.audcatname AS label,
+                'Auditions' AS itemDataset
+            FROM audprojects p
+            INNER JOIN audroles r ON p.audprojectID = r.audprojectID
+            INNER JOIN audroletypes rt ON rt.audroletypeid = r.audroletypeid
+            INNER JOIN audcategories c ON c.audcatid = rt.audcatid
+            WHERE 
+                r.isdeleted = 0
+                AND p.isDeleted = 0
+                AND p.userid = #arguments.userid#
+                AND p.projdate >= '#arguments.rangestart#'
+                AND p.projdate <= '#arguments.rangeend#'
+            GROUP BY c.audcatname
+            ORDER BY c.audcatname
+        
+        </cfoutput><Cfabort>
+
 <!--- Update summary with total selected --->
         <cfset resultSummary.totalSelected = report_3.recordCount>
 
