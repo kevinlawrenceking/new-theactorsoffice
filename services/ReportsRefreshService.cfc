@@ -27,6 +27,7 @@
             INNER JOIN 
                 audgenres_user g ON g.audgenreid = x.audgenreid
                 inner join audroles r on r.audroleid = x.audroleid
+                inner join audproject p on p.audprojectid = r.audprojectid
             WHERE 
                  p.isdeleted <> 1
                 AND p.projdate >= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangestart#">
