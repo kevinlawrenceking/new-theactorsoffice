@@ -88,7 +88,7 @@
 <cfoutput>#session.zquery#</cfoutput>
 
 <cfset script_name_include="/include/#ListLast(GetCurrentTemplatePath(), " \")#" />
-
+<cfabort>
 <!--- Redirect based on the value of src --->
 <cfif #src# is "c">
     <cflocation url="/app/contact?contactid=#contactid#&t4=1&hide_completed=#hide_completed#" />

@@ -1,5 +1,5 @@
 <cfset notificationStatusService = createObject("component", "services.NotificationStatusService")>
-<cfset blue = notificationStatusService.SELnotstatuses(
+<cfset notsInactive = notificationStatusService.SELnotstatuses(
     currentid = currentid,
     sysActiveSuid = sysActive.suid,
     userid = userid
