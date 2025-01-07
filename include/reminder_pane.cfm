@@ -63,7 +63,7 @@
 
         <!--- Loop through active notifications --->
         <cfif #notsActive.recordcount# is not "0">
-<cfoutput>recordcount#notsactive#"></cfoutput><Cfabort>
+ 
 <cfloop query="notsActive">
     <cfoutput>
         <div class="col-md-12" style="padding-bottom:10px; margin-left:30px;">
@@ -103,9 +103,9 @@
         </cfif>
 
         <!--- Check if showstuff is defined and hide_completed is "N" --->
-        <cfif  #isdefined('showstuff')#>
+        <cfif NOT #isdefined('showstuff')#>
             <cfif #hide_completed# is "N">
-                <cfif #blue.recordcount# is not "0">
+                <cfif #notsinactive.recordcount# is not "0">
                     <hr style="color:purple;" />
                     <p style="color:purple;"><cfoutput>#zquery#</cfoutput></p>
                     <p style="color:purple;">The reminders below are future and will NOT be shown to the user. These are shown for testing purposes only:</p>
@@ -115,28 +115,28 @@
                 <cfloop query="notsInActive">
                     <cfoutput>
                         <div class="col-md-12" style="padding-bottom:10px; margin-left:30px;">
-                            <cfif #blue.notstatus# is "Pending">
-                                <a href="/include/complete_not.cfm?notid=#blue.notid#&notstatus=Completed&hide_completed=#hide_completed#">
+                            <cfif #notsinactive.notstatus# is "Pending">
+                                <a href="/include/complete_not.cfm?notid=#notsinactive.notid#&notstatus=Completed&hide_completed=#hide_completed#">
                             </cfif>
-                            <i class="mdi mdi-checkbox-#blue.checktype#-outline font-24 mr-1" style="vertical-align: middle;color:###blue.status_color#"></i>
-                            <cfif #blue.notstatus# is "Pending">
+                            <i class="mdi mdi-checkbox-#notsinactive.checktype#-outline font-24 mr-1" style="vertical-align: middle;color:###notsinactive.status_color#"></i>
+                            <cfif #notsinactive.notstatus# is "Pending">
                                 </a>
                             </cfif>
-                            <span style="color:purple;">#blue.delstart# #blue.actiondetails# #blue.delend#</span>
-                            <cfif #blue.notstartDate#is not "">
-                                <span style="color:purple;">(FUTURE DATE: #dateformat('#blue.notstartDate#','m/d')#)</span>  
+                            <span style="color:purple;">#notsinactive.delstart# #notsinactive.actiondetails# #notsinactive.delend#</span>
+                            <cfif #notsinactive.notstartDate#is not "">
+                                <span style="color:purple;">(FUTURE DATE: #dateformat('#notsinactive.notstartDate#','m/d')#)</span>  
                             <cfelse>
                                 <span style="color:purple;">(FUTURE DATE: TBD)</span>  
                             </cfif>
                             <!--- Check if notification is past due --->
-                            <cfif #blue.ispastdue# is "1">
+                            <cfif #notsinactive.ispastdue# is "1">
                                 <span class="badge badge-soft-danger">Past Due</span>
                             </cfif>
-                            <a href="" title="click for details" data-bs-toggle="modal" data-bs-target="##action#blue.actionid#-modal">
+                            <a href="" title="click for details" data-bs-toggle="modal" data-bs-target="##action#notsinactive.actionid#-modal">
                                 <i class="fe-info font-14 mr-1"></i>
                             </a>
-                            <cfif #blue.notstatus# is "Pending">
-                                <a href="/include/complete_not.cfm?notid=#blue.notid#&notstatus=Skipped&hide_completed=#hide_completed#" title="Skip reminder"> 
+                            <cfif #notsinactive.notstatus# is "Pending">
+                                <a href="/include/complete_not.cfm?notid=#notsinactive.notid#&notstatus=Skipped&hide_completed=#hide_completed#" title="Skip reminder"> 
                                     <span class="badge badge-blue" style="margin-left:10px">x Skip</span>    
                                 </a>               
                             </cfif>
