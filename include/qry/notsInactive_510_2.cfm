@@ -31,7 +31,7 @@ SELECT
             fuActionLinks l ON l.actionlinkid = a.actionlinkid
     WHERE 
         f.contactID = #currentid# AND
-        f.suid = #sysActiveSuid# AND
+        f.suid = #sysActive.suid# AND
         au.userid = #userid# AND
         (n.notstartdate IS NULL OR DATE(n.notstartdate) >= '#DateFormat(Now(), 'yyyy-mm-dd')#') AND
         n.notstatus = 'Pending' AND
