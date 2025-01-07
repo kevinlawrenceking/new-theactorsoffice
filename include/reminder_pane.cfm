@@ -62,40 +62,42 @@
 
         <!--- Loop through active notifications --->
         <cfif #notsActive.recordcount# is not "0">
-            <cfloop query="notsActive">
-                <cfoutput>
-                    <div class="col-md-12" style="padding-bottom:10px; margin-left:30px;">
-                        <!--- Check if notification status is pending --->
-                        <cfif #notsActive.notstatus# is "Pending">
-                            <a href="/include/complete_not.cfm?notid=#notsactive.notid#&notstatus=Completed&hide_completed=#hide_completed#">
-                        </cfif>
-                        <i class="mdi mdi-checkbox-#notsactive.checktype#-outline font-24 mr-1" style="vertical-align: middle;color:###notsactive.status_color#"></i>
-                        <cfif #notsActive.notstatus# is "Pending">
-                            </a>
-                        </cfif>
-                        #notsactive.delstart# #notsActive.actiondetails# #notsactive.delend#
-                        <!--- Check for end date --->
-                        <cfif #notsactive.notEndDate#is not "">
-                            (#notsactive.notstatus# #dateformat('#notsactive.notEndDate#','m/d')#)
-                        </cfif>
-                        <cfif #notsactive.notEndDate# is "">
-                            (Due Date #dateformat('#notsactive.notstartdate#','m/d')#)
-                        </cfif>
-                        <!--- Check if notification is past due --->
-                        <cfif #notsactive.ispastdue# is "1">
-                            <span class="badge badge-soft-danger">Past Due</span>
-                        </cfif>
-                        <a href="" title="click for details" data-bs-toggle="modal" data-bs-target="##action#notsActive.actionid#-modal">
-                            <i class="fe-info font-14 mr-1"></i>
-                        </a>
-                        <cfif #notsactive.notstatus# is "Pending">
-                            <a href="/include/complete_not.cfm?notid=#notsactive.notid#&notstatus=Skipped&hide_completed=#hide_completed#" title="Skip reminder"> 
-                                <span class="badge badge-blue" style="margin-left:10px">x Skip</span>    
-                            </a>               
-                        </cfif>
-                    </div> <!--- end col-md-12 --->
-                </cfoutput>
-            </cfloop>
+<cfloop query="notsActive">
+    <cfoutput>
+        <div class="col-md-12" style="padding-bottom:10px; margin-left:30px;">
+            <cfif notsActive.notstatus is "Pending">
+                <a href="/include/complete_not.cfm?notid=#notsactive.notid#&notstatus=Completed&hide_completed=#hide_completed#">
+            </cfif>
+            <i class="mdi mdi-checkbox-#notsactive.checktype#-outline font-24 mr-1" 
+               style="vertical-align: middle;color:###notsactive.status_color#"></i>
+            <cfif notsActive.notstatus is "Pending">
+                </a>
+            </cfif>
+            
+            #notsactive.delstart# #notsActive.actiondetails# #notsactive.delend#
+
+            <cfif notsactive.notEndDate neq "">
+                (#notsactive.notstatus# #dateformat(notsactive.notEndDate, 'm/d')#)
+            <cfelse>
+                (Due Date #dateformat(notsactive.notstartdate, 'm/d')#)
+            </cfif>
+
+            <cfif notsactive.ispastdue eq "1">
+                <span class="badge badge-soft-danger">Past Due</span>
+            </cfif>
+
+            <a href="" title="Click for details" data-bs-toggle="modal" data-bs-target="##action#notsActive.actionid#-modal">
+                <i class="fe-info font-14 mr-1"></i>
+            </a>
+
+            <cfif notsActive.notstatus is "Pending">
+                <a href="/include/complete_not.cfm?notid=#notsactive.notid#&notstatus=Skipped&hide_completed=#hide_completed#" title="Skip reminder">
+                    <span class="badge badge-blue" style="margin-left:10px">x Skip</span>
+                </a>
+            </cfif>
+        </div>
+    </cfoutput>
+</cfloop>
         </cfif>
 
         <!--- Check if showstuff is defined and hide_completed is "N" --->
