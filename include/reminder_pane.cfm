@@ -101,8 +101,6 @@
     </cfoutput>
 </cfloop>
         </cfif>
-
-        <!--- Check if showstuff is defined and hide_completed is "N" --->
         <cfif  #isdefined('showstuff')#>
             <cfif #hide_completed# is "N">
                 <cfif #notsinactive.recordcount# is not "0">
