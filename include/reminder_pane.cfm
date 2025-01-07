@@ -103,7 +103,7 @@
         </cfif>
 
         <!--- Check if showstuff is defined and hide_completed is "N" --->
-        <cfif NOT #isdefined('showstuff')#>
+        <cfif  #isdefined('showstuff')#>
             <cfif #hide_completed# is "N">
                 <cfif #blue.recordcount# is not "0">
                     <hr style="color:purple;" />
