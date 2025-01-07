@@ -55,6 +55,7 @@
             </div>
         </cfoutput>
 
+          <cfdump var="#notsActive#" /><CFabort>
         <!--- Check if there are no active items --->
         <cfif #notsActive.recordcount# is "0">
             <p>No action items to show!</p>
@@ -63,7 +64,6 @@
         <!--- Loop through active notifications --->
         <cfif #notsActive.recordcount# is not "0">
 
-          <cfdump var="#notsActive#" /><CFabort>
 <cfloop query="notsActive">
     <cfoutput>
         <div class="col-md-12" style="padding-bottom:10px; margin-left:30px;">
