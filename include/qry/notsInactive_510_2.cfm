@@ -5,3 +5,4 @@
     userid = userid
 )>
 
+<cfdump var="#notsinactive#"><Cfabort>

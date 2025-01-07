@@ -55,7 +55,7 @@
             </div>
         </cfoutput>
 
-          <cfdump var="#notsActive#" /><CFabort>
+    
         <!--- Check if there are no active items --->
         <cfif #notsActive.recordcount# is "0">
             <p>No action items to show!</p>
@@ -103,7 +103,7 @@
         </cfif>
 
         <!--- Check if showstuff is defined and hide_completed is "N" --->
-        <cfif #isdefined('showstuff')#>
+        <cfif NOT #isdefined('showstuff')#>
             <cfif #hide_completed# is "N">
                 <cfif #notsinactive.recordcount# is not "0">
                     <hr style="color:purple;" />
