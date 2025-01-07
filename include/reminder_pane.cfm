@@ -63,7 +63,7 @@
 
         <!--- Loop through active notifications --->
         <cfif #notsActive.recordcount# is not "0">
-
+<cfoutput>recordcount#notsinactive#"></cfoutput><Cfabort>
 <cfloop query="notsActive">
     <cfoutput>
         <div class="col-md-12" style="padding-bottom:10px; margin-left:30px;">
