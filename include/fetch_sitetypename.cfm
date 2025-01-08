@@ -6,7 +6,7 @@
 <cfif structKeyExists(form, "sitetypename")>
 
     <!--- Query the database to check for the site type name --->
-    <cfquery name="checkSiteType" datasource="#dsn#">
+    <cfquery name="checkSiteType" >
         SELECT COUNT(*) AS total_row
         FROM sitetypes_user
         WHERE userid = <cfqueryparam value="#userID#" cfsqltype="CF_SQL_INTEGER">

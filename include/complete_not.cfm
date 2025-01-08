@@ -255,6 +255,11 @@
         No maintenance record!<BR/></p>
     </cfoutput>
   </cfif>
+<Cfoutput>
+ <cfset subtitle = "Maintenance system created for #new_contactname#" />
+
+<Cfset notifUrl = "/app/contact/?contactid=#contactid#&t4=1" />
+</cfoutput>
 
   <cfinclude template="/include/qry/addNotifications.cfm">
 

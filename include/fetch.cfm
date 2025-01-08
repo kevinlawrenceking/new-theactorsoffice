@@ -6,7 +6,7 @@
 
 <cfif structKeyExists(form, "email")>
     <!--- Query to check for existing emails --->
-    <cfquery name="emailCheck" datasource="#dsn#">
+    <cfquery name="emailCheck" >
         SELECT COUNT(*) AS total_row
         FROM taousers
         WHERE userid <> <cfqueryparam value="#userID#" cfsqltype="CF_SQL_INTEGER">
