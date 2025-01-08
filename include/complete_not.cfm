@@ -19,7 +19,7 @@
 <!--- Include the notification details query --->
 <cfinclude template="/include/qry/getNotificationByID.cfm"/>
 <h3>Get Notification By ID</h3>
-
+<Cfoutput>
       <p>  SELECT 
             su.contactid, 
             su.userid, 
@@ -48,23 +48,41 @@
             taousers u ON u.userid = n.userid
         WHERE 
             n.notID = #arguments.notid#
-            AND au.userid = n.userid</p>
-<cfabort>
+            AND au.userid = n.userid</p><h4>Notification ID: #GetNotificationByID.notid#</h4>
+
 <!--- Calculate the start date for notifications based on actionDaysRecurring --->
 <cfset notstartdate=dateAdd('d', numberformat(NotificationDetails.actionDaysRecurring), currentStartDate)/>
-
 <cfoutput>
   <!--- Set various contact and notification details from the query results --->
-  <cfset contactid="#NotificationDetails.contactid#"/>
-  <cfset new_contactname="#NotificationDetails.new_contactname#"/>
-  <cfset systemid="#NotificationDetails.systemid#"/>
-  <cfset userid="#NotificationDetails.userid#"/>
-  <cfset actionid="#NotificationDetails.actionid#"/>
-  <cfset newsuid=#NotificationDetails.newsuid#/>
-  <cfset newsystemscope="#NotificationDetails.newsystemscope#"/>
-  <cfset actionDaysRecurring="#NotificationDetails.actionDaysRecurring#"/>
-  <cfset uniquename="#NotificationDetails.uniquename#"/>
-  <cfset IsUnique="#NotificationDetails.IsUnique#"/>
+  <cfset contactid = "#NotificationDetails.contactid#"/>
+  <cfset new_contactname = "#NotificationDetails.new_contactname#"/>
+  <cfset systemid = "#NotificationDetails.systemid#"/>
+  <cfset userid = "#NotificationDetails.userid#"/>
+  <cfset actionid = "#NotificationDetails.actionid#"/>
+  <cfset newsuid = #NotificationDetails.newsuid#/>
+  <cfset newsystemscope = "#NotificationDetails.newsystemscope#"/>
+  <cfset actionDaysRecurring = "#NotificationDetails.actionDaysRecurring#"/>
+  <cfset uniquename = "#NotificationDetails.uniquename#"/>
+  <cfset IsUnique = "#NotificationDetails.IsUnique#"/>
+</cfoutput>
+
+<cfif dbug eq "Y">
+  <cfoutput>
+    <p><strong>Debug Output:</strong></p>
+    notstartdate: #notstartdate#<BR>
+    Contact ID: #contactid#<br>
+    New Contact Name: #new_contactname#<br>
+    System ID: #systemid#<br>
+    User ID: #userid#<br>
+    Action ID: #actionid#<br>
+    New suID: #newsuid#<br>
+    New System Scope: #newsystemscope#<br>
+    Action Days Recurring: #actionDaysRecurring#<br>
+    Unique Name: #uniquename#<br>
+    Is Unique: #IsUnique#<br>
+  </cfoutput>
+</cfif>
+<cfabort>
 
   <!--- Set default notification status if not defined --->
   <cfif NOT #isdefined('notstatus')#>

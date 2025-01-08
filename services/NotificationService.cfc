@@ -300,6 +300,7 @@
     </cfquery>
 
 <cfreturn result>
+
 </cffunction>
 
 <cffunction name="INSfunotifications_23941" access="public" returntype="numeric" output="false" hint="Adds a notification to the database">
