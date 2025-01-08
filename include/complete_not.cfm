@@ -18,6 +18,37 @@
 
 <!--- Include the notification details query --->
 <cfinclude template="/include/qry/getNotificationByID.cfm"/>
+<h3>Get Notification By ID</h3>
+
+      <p>  SELECT 
+            su.contactid, 
+            su.userid, 
+            n.notid, 
+            s.systemid, 
+            s.systemscope AS newsystemscope, 
+            n.actionid, 
+            su.suID AS newsuid, 
+            au.actionDaysRecurring, 
+            a.uniquename, 
+            a.IsUnique, 
+            u.recordname AS new_contactname
+        FROM 
+            funotifications n
+        INNER JOIN 
+            fusystemusers su ON su.suid = n.suid
+        INNER JOIN 
+            contactdetails c ON c.contactID = su.contactid
+        INNER JOIN 
+            fusystems s ON s.systemID = su.systemID
+        INNER JOIN 
+            actionusers au ON au.actionid = n.actionid
+        INNER JOIN 
+            fuactions a ON a.actionid = au.actionid
+        INNER JOIN 
+            taousers u ON u.userid = n.userid
+        WHERE 
+            n.notID = #arguments.notid#
+            AND au.userid = n.userid</p>
 <cfabort>
 <!--- Calculate the start date for notifications based on actionDaysRecurring --->
 <cfset notstartdate=dateAdd('d', numberformat(NotificationDetails.actionDaysRecurring), currentStartDate)/>
