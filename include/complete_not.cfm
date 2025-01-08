@@ -82,7 +82,7 @@
       <cfinclude template="/include/add_system.cfm"/>
     </cfif>
 
-
+<Cfif #dbug# is "Y"><cfabort></cfif>
 
 <cfset script_name_include="/include/#ListLast(GetCurrentTemplatePath(), " \")#"/>
 

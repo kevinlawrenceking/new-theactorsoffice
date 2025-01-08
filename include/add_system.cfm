@@ -14,20 +14,25 @@
 <!--- Include the query to select actions --->
 <cfinclude template="/include/qry/getFuSystemUsersBySystemID.cfm" />
 
-<!--- Loop through the addDaysNo query to process actions --->
+<!--- Loop through all of the actions of a system. --->
 <cfloop query="addDaysNo">
     <cfset add_action = "Y" />
 
     <!--- Check if the day is unique --->
     <cfif addDaysNo.isunique is "1">
+
         <!--- Include the query to check for unique contacts --->
         <cfinclude template="/include/qry/checkUnique_157_8.cfm" />
 
         <!--- If a unique contact is found, set add_action to "N" --->
         <cfif checkUnique.recordcount is "1">
+
             <cfset add_action = "N" />
+
         </cfif>
+
     </cfif>
+
 
     <!--- If adding action is permitted --->
     <cfif add_action is "Y">
