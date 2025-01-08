@@ -83,9 +83,9 @@
   </cfoutput>
 </cfif>
 
-<Cfoutput>
+
   <!--- Set default notification status if not defined --->
-  <cfif NOT #isdefined('notstatus')#>
+  <cfif NOT #isdefined('notstatus')#><Cfoutput>
     <Cfset notstatus="Pending"/>
     <p>notstatus isn't defined</p>
        notstatus: Pending<br>
@@ -94,7 +94,7 @@
   <cfset notEndDate="#DateFormat(Now(),'yyyy-mm-dd')#"/>
 
        notEndDate: #notEndDate#<br>
-  </cfif>
+
 
 </cfoutput>
 
