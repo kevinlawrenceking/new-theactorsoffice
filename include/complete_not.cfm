@@ -51,6 +51,7 @@
         WHERE 
             n.notID = #notid#
             AND au.userid = n.userid</p><h4>Notification ID: #notid#</h4>
+            </cfoutput>
 </cfif>
 <!--- Calculate the start date for notifications based on actionDaysRecurring --->
 <cfset notstartdate=dateAdd('d', numberformat(NotificationDetails.actionDaysRecurring), currentStartDate)/>
@@ -67,7 +68,7 @@
   <cfset actionDaysRecurring = "#NotificationDetails.actionDaysRecurring#"/>
   <cfset uniquename = "#NotificationDetails.uniquename#"/>
   <cfset IsUnique = "#NotificationDetails.IsUnique#"/>
-</cfoutput>
+ 
 
 <cfif dbug eq "Y">
   <cfoutput>
