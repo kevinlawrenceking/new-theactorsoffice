@@ -82,7 +82,7 @@
       <cfinclude template="/include/add_system.cfm"/>
     </cfif>
 
-</cfif>
+
 
 <cfset script_name_include="/include/#ListLast(GetCurrentTemplatePath(), " \")#"/>
 
