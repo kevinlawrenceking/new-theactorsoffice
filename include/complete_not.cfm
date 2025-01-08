@@ -98,7 +98,7 @@
   <cfset notEndDate="#DateFormat(Now(),'yyyy-mm-dd')#"/>
 <Cfoutput>
        notEndDate: #notEndDate#<br>
-
+notstatus: #notstatus#<BR>
 
 </cfoutput>
 
