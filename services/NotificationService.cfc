@@ -40,7 +40,7 @@
 
 <cffunction name="updateNotification" access="public" output="false" returntype="void">
     <cfargument name="notid" type="numeric" required="true">
-    <cfargument name="notendDate" type="date" required="false" default="">
+    <cfargument name="notendDate" type="string" required="false" default="">
     <cfargument name="notstatus" type="string" required="true" default="">
     <cfargument name="notstartdate" type="string" required="false" default="">
 
