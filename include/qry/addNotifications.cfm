@@ -1,5 +1,5 @@
 <cfset notificationsService = createObject("component", "services.NotificationsService")>
-<cfset newNotificationID = notificationService.addNotifications(
+<cfset newNotificationID = notificationsService.addNotifications(
     subtitle = subtitle,
     userid = userid,
     notifUrl = "notiURL",
