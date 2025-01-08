@@ -1,2 +1,2 @@
 <cfset notificationService = createObject("component", "services.NotificationService")>
-<cfset notsdetails = notificationService.DETfunotifications(notid=#notid#)>
+<cfset notificationService.UPDfunotifications_24316(suid=suid)>

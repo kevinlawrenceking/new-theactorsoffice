@@ -1,5 +1,18 @@
 <cfcomponent displayname="SystemUserService" hint="Handles operations for SystemUser table" >
 
+   <cffunction name="updateSystemUser" access="public" returntype="void" output="false">
+        <cfargument name="suid" type="numeric" required="true">
+        <cfargument name="sustatus" type="string" required="false" default="Completed">
+
+        <cfquery name="updateQuery">
+            UPDATE fusystemusers
+            SET suStatus = <cfqueryparam value="#arguments.sustatus#" cfsqltype="CF_SQL_VARCHAR">
+            WHERE suid = <cfqueryparam value="#arguments.suid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+    </cffunction>
+
+
+
 <cffunction output="false" name="addfuSystemUsers" access="public" returntype="numeric">
     <cfargument name="systemID" type="numeric" required="true">
     <cfargument name="contactID" type="numeric" required="true">
@@ -37,15 +50,7 @@
     <cfreturn result.generatedKey>
 </cffunction>
 
-<cffunction output="false" name="UPDfusystemusers" access="public" returntype="void">
-    <cfargument name="suid" type="numeric" required="true">
 
-<cfquery result="result">
-        UPDATE fusystemusers
-        SET suStatus = <cfqueryparam value="Completed" cfsqltype="CF_SQL_VARCHAR">
-        WHERE suid = <cfqueryparam value="#arguments.suid#" cfsqltype="CF_SQL_INTEGER">
-    </cfquery>
-</cffunction>
 
 <cffunction output="false" name="SELfusystemusers" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">

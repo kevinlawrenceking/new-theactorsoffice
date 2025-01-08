@@ -13,23 +13,23 @@
 </cfif>
 
 <!--- Include notification details query --->
-<cfinclude template="/include/qry/notsdetails.cfm" />
+<cfinclude template="/include/qry/NotificationDetails.cfm" />
 
 <!--- Calculate the start date for notifications based on action days recurring --->
-<cfset notstartdate=dateAdd('d', numberformat(notsdetails.actionDaysRecurring), currentStartDate) />
+<cfset notstartdate=dateAdd('d', numberformat(NotificationDetails.actionDaysRecurring), currentStartDate) />
 
 <cfoutput>
     <!--- Set various notification-related variables from the details query --->
-    <cfset contactid="#notsdetails.contactid#" />
-    <cfset new_contactname="#notsdetails.new_contactname#" />
-    <cfset systemid="#notsdetails.systemid#" />
-    <cfset userid="#notsdetails.userid#" />
-    <cfset actionid="#notsdetails.actionid#" />
-    <cfset newsuid=#notsdetails.newsuid# />
-    <cfset newsystemscope="#notsdetails.newsystemscope#" />
-    <cfset actionDaysRecurring="#notsdetails.actionDaysRecurring#" />
-    <cfset uniquename="#notsdetails.uniquename#" />
-    <cfset IsUnique="#notsdetails.IsUnique#" />
+    <cfset contactid="#NotificationDetails.contactid#" />
+    <cfset new_contactname="#NotificationDetails.new_contactname#" />
+    <cfset systemid="#NotificationDetails.systemid#" />
+    <cfset userid="#NotificationDetails.userid#" />
+    <cfset actionid="#NotificationDetails.actionid#" />
+    <cfset newsuid=#NotificationDetails.newsuid# />
+    <cfset newsystemscope="#NotificationDetails.newsystemscope#" />
+    <cfset actionDaysRecurring="#NotificationDetails.actionDaysRecurring#" />
+    <cfset uniquename="#NotificationDetails.uniquename#" />
+    <cfset IsUnique="#NotificationDetails.IsUnique#" />
 
     <!--- Set default notification status if not defined --->
     <cfif NOT #isdefined('notstatus')#>
@@ -38,7 +38,7 @@
 
     <cfset notEndDate="#DateFormat(Now(),'yyyy-mm-dd')#" />
     
-    notid:#notid# (#notsdetails.recordcount#)<BR>
+    notid:#notid# (#NotificationDetails.recordcount#)<BR>
 </cfoutput>
 
 <!--- Include the add notification query --->

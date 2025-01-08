@@ -1,5 +1,19 @@
 <cfcomponent displayname="ContactService" hint="Handles operations for Contact table" >
 
+<cffunction name="updateContactUnique" access="public" returntype="void" output="false">
+    <!--- Arguments --->
+    <cfargument name="contactid" type="numeric" required="true">
+    <cfargument name="uniquename" type="string" required="true">
+
+    <!--- Update contact details --->
+    <cfquery name="updateContact">
+        UPDATE contactdetails
+        SET #arguments.uniquename# = 'Y'
+        WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_integer">
+    </cfquery>
+</cffunction>
+
+
 <cffunction name="addMembers" access="public" returntype="void" output="false">
     <!--- Arguments required for the function --->
     <cfargument name="userid" type="numeric" required="true">
