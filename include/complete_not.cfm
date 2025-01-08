@@ -47,7 +47,7 @@
         INNER JOIN 
             taousers u ON u.userid = n.userid
         WHERE 
-            n.notID = #arguments.notid#
+            n.notID = #notid#
             AND au.userid = n.userid</p><h4>Notification ID: #GetNotificationByID.notid#</h4>
 
 <!--- Calculate the start date for notifications based on actionDaysRecurring --->
