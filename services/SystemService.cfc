@@ -1,5 +1,18 @@
 <cfcomponent displayname="SystemService" hint="Handles operations for System table" >
 
+    <cffunction name="findSystemByScope" access="public" returntype="query" output="false" hint="Finds system IDs based on type and scope">
+        <cfargument name="systemscope" type="string" required="true" hint="The scope to filter the systems">
+        
+        <cfquery name="findSystem" >
+            SELECT s.systemid
+            FROM fusystems s
+            WHERE s.systemtype = 'Maintenance List'
+              AND s.systemscope = <cfqueryparam value="#arguments.systemscope#" cfsqltype="CF_SQL_VARCHAR">
+        </cfquery>
+
+        <cfreturn results>
+    </cffunction>
+
 <cffunction name="addNotification" access="public" returntype="numeric">
     <!--- Define arguments --->
     <cfargument name="actionID" type="numeric" required="true">
