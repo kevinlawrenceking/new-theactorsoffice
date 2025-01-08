@@ -220,6 +220,7 @@
 <!--- If there are no notifications after, perform maintenance checks and updates --->
 
 <cfif #notsafter# is "0">
+
 <Cfif #dbug# is "Y">
   <cfoutput>
     <h4>All items for this system completed!</h4>
@@ -287,7 +288,7 @@
     </cfoutput>
   </cfif>
 </cfif>
-
+</cfif>
 <cfif #src# is "c">
 
   <cflocation url="/app/contact?contactid=#contactid#&t4=1&hide_completed=#hide_completed#"/>
