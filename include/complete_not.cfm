@@ -240,32 +240,28 @@
 
 <Cfinclude template="/include/qry/checkformaint_71_6.cfm"/>
 
-  <Cfif #dbug# is "Y">
-    <Cfoutput>
-      <p>
-        Check if a maintenance record exists<BR/></p>
-    </cfoutput>
-  </cfif>
-
-
-
+<Cfif #dbug# is "Y">
+  <Cfoutput>
+    <p>
+      Check if a maintenance record exists<BR/></p>
+  </cfoutput>
+</cfif>
 
 <cfif #checkformaint.recordcount# is "0">
 
-<Cfif #dbug# is "Y">
+  <Cfif #dbug# is "Y">
     <Cfoutput>
       <p>
         No maintenance record!<BR/></p>
     </cfoutput>
   </cfif>
 
-
   <cfinclude template="/include/qry/addNotifications.cfm">
 
   <Cfif #dbug# is "Y">
     <Cfoutput>
       <p>
-       Added notification<BR/></p>
+        Added notification<BR/></p>
     </cfoutput>
   </cfif>
 
@@ -281,7 +277,7 @@
   <cfset session.ftom="Y"/>
 
   <cfinclude template="/include/add_system.cfm"/>
-<Cfif #dbug# is "Y">
+  <Cfif #dbug# is "Y">
     <Cfoutput>
       <p>
         Added new maintence system!<BR/></p>
@@ -289,14 +285,18 @@
   </cfif>
 </cfif>
 </cfif>
+
+<Cfif #dbug# is "Y">
+<Cfabort />
+</cfif>
 <cfif #src# is "c">
 
-  <cflocation url="/app/contact?contactid=#contactid#&t4=1&hide_completed=#hide_completed#"/>
+<cflocation url="/app/contact?contactid=#contactid#&t4=1&hide_completed=#hide_completed#"/>
 
 </cfif>
 
 <cfif #src# is "d">
 
-  <cflocation url="/app/dashboard_new/"/>
+<cflocation url="/app/dashboard_new/"/>
 
 </cfif>
