@@ -10,9 +10,15 @@
   <Cfset currentStartDate="#DateFormat(Now(),'yyyy-mm-dd')#"/>
 </cfif>
 
+<cfif #dbug# is "Y">
+<Cfotuput>
+<p>CurrentStartDate: #currentStartDate#</cfif>
+</cfoutput>
+</cfif>
+
 <!--- Include the notification details query --->
 <cfinclude template="/include/qry/getNotificationByID.cfm"/>
-
+<cfabort>
 <!--- Calculate the start date for notifications based on actionDaysRecurring --->
 <cfset notstartdate=dateAdd('d', numberformat(NotificationDetails.actionDaysRecurring), currentStartDate)/>
 
