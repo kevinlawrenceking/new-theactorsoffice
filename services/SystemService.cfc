@@ -1,17 +1,26 @@
 <cfcomponent displayname="SystemService" hint="Handles operations for System table" >
 
-    <cffunction name="findSystemByScope" access="public" returntype="query" output="false" hint="Finds system IDs based on type and scope">
-        <cfargument name="systemscope" type="string" required="true" hint="The scope to filter the systems">
-        
-        <cfquery name="findSystem" >
-            SELECT s.systemid
-            FROM fusystems s
-            WHERE s.systemtype = 'Maintenance List'
-              AND s.systemscope = <cfqueryparam value="#arguments.systemscope#" cfsqltype="CF_SQL_VARCHAR">
-        </cfquery>
+<cffunction name="findSystemByScope" access="public" returntype="string" output="false" hint="Finds system ID based on type and scope">
+    <cfargument name="systemscope" type="string" required="true" hint="The scope to filter the systems">
 
-        <cfreturn results>
-    </cffunction>
+    <cfset var systemID = "">
+
+    <cfquery name="findSystem" datasource="#application.dsn#">
+        SELECT s.systemid
+        FROM fusystems s
+        WHERE s.systemtype = 'Maintenance List'
+          AND s.systemscope = <cfqueryparam value="#arguments.systemscope#" cfsqltype="CF_SQL_VARCHAR">
+        LIMIT 1
+    </cfquery>
+
+    <!--- If a record is found, assign the system ID --->
+    <cfif findSystem.recordCount>
+        <cfset systemID = findSystem.systemid>
+    </cfif>
+
+    <cfreturn systemID>
+</cffunction>
+
 
 <cffunction name="addNotification" access="public" returntype="numeric">
     <!--- Define arguments --->
