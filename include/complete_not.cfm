@@ -48,7 +48,7 @@
             taousers u ON u.userid = n.userid
         WHERE 
             n.notID = #notid#
-            AND au.userid = n.userid</p><h4>Notification ID: #GetNotificationByID.notid#</h4>
+            AND au.userid = n.userid</p><h4>Notification ID: #notid#</h4>
 
 <!--- Calculate the start date for notifications based on actionDaysRecurring --->
 <cfset notstartdate=dateAdd('d', numberformat(NotificationDetails.actionDaysRecurring), currentStartDate)/>
