@@ -1,45 +1,5 @@
 <cfcomponent displayname="NotificationService" hint="Handles operations for Notification table" >
 
-<cffunction name="handleMaintenanceSystem" access="public" returntype="numeric" output="false">
-    <cfargument name="contactid" type="numeric" required="true">
-    <cfargument name="userid" type="numeric" required="true">
-    <cfargument name="newsystemscope" type="string" required="true">
-    <cfargument name="new_contactname" type="string" required="true">
-    <cfargument name="actionID" type="numeric" required="true">
-    <cfargument name="newest_notstartdate" type="date" required="true">
-
-    <!--- Variables --->
-    <cfset var systemID = 0>
-    <cfset var notificationID = 0>
-
-    <!--- Step 1: Check if there's already an entry in fusystemusers --->
-    <cfquery name="checkForMaint" maxrows="1">
-        SELECT fc.suID
-        FROM fusystemusers fc
-        INNER JOIN fusystems s ON s.systemID = fc.systemID
-        WHERE fc.contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
-        AND s.systemtype = 'Maintenance List'
-        AND fc.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
-    </cfquery>
-
-    <!--- Step 2: If no entry, find the appropriate system ID --->
-    <cfif checkForMaint.recordCount EQ 0>
-        <cfquery name="findSystem" maxrows="1">
-            SELECT s.systemid
-            FROM fusystems s
-            WHERE s.systemtype = 'Maintenance List'
-            AND s.systemscope = <cfqueryparam value="#arguments.newsystemscope#" cfsqltype="CF_SQL_VARCHAR">
-        </cfquery>
-        <cfif findSystem.recordCount>
-            <cfset systemID = findSystem.systemid>
-        </cfif>
-    </cfelse>
-        <!--- If entry exists, use the existing suID --->
-        <cfset systemID = checkForMaint.suID>
-    </cfif>
-
-
-</cffunction>
 
 
 <cffunction name="getOrCreateSystemID" access="public" output="false" returntype="numeric">
