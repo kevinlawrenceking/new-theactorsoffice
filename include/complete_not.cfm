@@ -87,7 +87,7 @@
       <cfif len(trim(notstartdate))>
         , notstartdate = '#notstartdate#<br/>
       </cfif>
-      <cfif arguments.notstatus EQ "Completed" OR arguments.notstatus EQ "Skipped">
+      <cfif notstatus EQ "Completed" OR notstatus EQ "Skipped">
         , notenddate = #notendDate#<br/>
       </cfif>
       WHERE notid = #notid#<br/></p>
@@ -109,7 +109,7 @@
   <cfif #dbug# is "Y">
     <Cfoutput>
       <p>
-        UPDATE contactdetails SET #arguments.uniquename# = 'Y' WHERE contactid = #contactid#</p>
+        UPDATE contactdetails SET #uniquename# = 'Y' WHERE contactid = #contactid#</p>
     </cfoutput>
   </cfif>
 
@@ -206,8 +206,8 @@
       <p>
         UPDATE funotifications<BR/>
         SET notStatus = 'Pending'<BR/>
-        <cfif len(trim(arguments.notstartdate))>
-          , notstartdate = '#arguments.notstartdate#'<BR/>
+        <cfif len(trim(notstartdate))>
+          , notstartdate = '#notstartdate#'<BR/>
         </cfif>
 
         WHERE notid = #notsnext.notid#<BR/></p>
