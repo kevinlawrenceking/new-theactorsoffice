@@ -1,7 +1,7 @@
 <!--- This ColdFusion page processes notifications and updates system information based on user input and session data. --->
 
 <cfparam name="src" default="c"/>
-<cfset dbug="N"/>
+<cfset dbug="Y"/>
 
 <!--- Check if session variable 'mocktoday' is defined and set currentStartDate accordingly --->
 <cfif #isdefined('session.mocktoday')#>
