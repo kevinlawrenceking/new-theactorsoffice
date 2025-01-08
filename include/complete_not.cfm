@@ -170,7 +170,7 @@
     <BR/>
     INNER JOIN notstatuses ns ON ns.notstatus = n.notStatus
     <BR/>
-    WHERE n.suID = #suid#
+    WHERE n.suID = #newsuid#
     <BR/>
     AND au.userID = f.userID
     <BR/>
@@ -180,7 +180,7 @@
     <BR/>
     ORDER BY au.actionDaysNo, a.actionID
     <BR/>
-    LIMIT #maxrow#<BR/>
+    LIMIT 1<BR/>
   </cfoutput>
 </cfif>
 
