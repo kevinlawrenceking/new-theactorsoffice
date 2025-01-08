@@ -18,6 +18,8 @@
 
 <!--- Include the notification details query --->
 <cfinclude template="/include/qry/getNotificationByID.cfm"/>
+
+<cfif #dbug# is "Y">
 <h3>Get Notification By ID</h3>
 <Cfoutput>
       <p>  SELECT 
@@ -52,7 +54,8 @@
 
 <!--- Calculate the start date for notifications based on actionDaysRecurring --->
 <cfset notstartdate=dateAdd('d', numberformat(NotificationDetails.actionDaysRecurring), currentStartDate)/>
-<cfoutput>
+
+
   <!--- Set various contact and notification details from the query results --->
   <cfset contactid = "#NotificationDetails.contactid#"/>
   <cfset new_contactname = "#NotificationDetails.new_contactname#"/>
