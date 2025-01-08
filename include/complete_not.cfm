@@ -12,7 +12,7 @@
 
 <cfif #dbug# is "Y">
 <cfoutput>
-<p>CurrentStartDate: #currentStartDate#</cfif>
+<p>CurrentStartDate: #currentStartDate#</p>
 </cfoutput>
 </cfif>
 
