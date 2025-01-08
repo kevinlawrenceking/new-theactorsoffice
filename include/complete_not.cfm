@@ -108,6 +108,7 @@
 
   <cfif #dbug# is "Y">
     <Cfoutput>
+    <h4>Notification completed!</h4>
       <p>
         UPDATE contactdetails SET #uniquename# = 'Y' WHERE contactid = #contactid#</p>
     </cfoutput>
