@@ -82,14 +82,20 @@
     Is Unique: #IsUnique#<br>
   </cfoutput>
 </cfif>
-<cfabort>
 
+<Cfoutput>
   <!--- Set default notification status if not defined --->
   <cfif NOT #isdefined('notstatus')#>
     <Cfset notstatus="Pending"/>
+    <p>notstatus isn't defined</p>
+       notstatus: Pending<br>
   </cfif>
 
   <cfset notEndDate="#DateFormat(Now(),'yyyy-mm-dd')#"/>
+
+       notEndDate: #notEndDate#<br>
+  </cfif>
+
 </cfoutput>
 
 <!--- Include the add notification query --->
@@ -98,8 +104,21 @@
 <!--- If notstatus is not "Pending" and uniquename is not empty, update contact --->
 <cfif #notstatus# is not "Pending" and #uniquename#is not "">
   <cfinclude template="/include/qry/updateContactUnique.cfm"/>
-</cfif>
 
+        <p>  UPDATE funotifications<BR>
+        SET 
+            notStatus = '#notstatus#'<BR>
+            <cfif len(trim(notstartdate))>
+                , notstartdate = '#notstartdate#<BR>
+            </cfif>
+            <cfif arguments.notstatus EQ "Completed" OR arguments.notstatus EQ "Skipped">
+                , notenddate = #notendDate#<BR>
+            </cfif>
+        WHERE notid = #notid#<BR>
+</p>
+
+</cfif>
+<Cfabort>
 <!--- If actionDaysRecurring is not zero, calculate the newest start date and add notification --->
 <Cfif #numberformat(actionDaysRecurring)# is not "0">
   <cfset newest_notstartdate=dateAdd('d', numberformat(actionDaysRecurring), currentStartDate)/>
