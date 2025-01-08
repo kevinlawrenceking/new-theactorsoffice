@@ -8,10 +8,10 @@
 <!--- Delete any orphaned notifications of user that don't belong to a system --->
 <cfinclude template="/include/qry/delSystemNotifications.cfm" />
 
-<!--- Include the query to add a system user record --->
+<!--- Add a system user record --->
 <cfinclude template="/include/qry/addfuSystemUsers.cfm" />
 
-<!--- Include the query to select actions --->
+<!--- Grab the list of action items for that particular system --->
 <cfinclude template="/include/qry/getFuSystemUsersBySystemID.cfm" />
 
 <!--- Loop through all of the actions of a system. --->
