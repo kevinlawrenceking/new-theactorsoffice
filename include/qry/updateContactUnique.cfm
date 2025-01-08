@@ -1,2 +1,2 @@
 <cfset ContactService = createObject("component", "services.ContactService")>
-<cfset ContactService.updateNotification(contactid=contactid, uniquename=uniquename)>
+<cfset ContactService.updateContactUnique(contactid=contactid, uniquename=uniquename)>
