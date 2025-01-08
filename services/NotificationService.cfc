@@ -138,7 +138,7 @@
             <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.actionID#">,
             <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">,
             <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.suid#">,
-            <cfqueryparam cfsqltype="CF_SQL_DATE" value="#DateFormat(arguments.newest_notstartdate, 'yyyy-mm-dd')#">,
+            <cfqueryparam cfsqltype="CF_SQL_DATE" value="#DateFormat(arguments.notstartdate, 'yyyy-mm-dd')#">,
             <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="Pending">
         )
     </cfquery>
