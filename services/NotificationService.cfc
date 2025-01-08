@@ -120,7 +120,7 @@
 <cfreturn result>
 </cffunction>
 
-<cffunction name="addNotification" access="public" returntype="void" output="false">
+<cffunction name="addNotification" access="public" returntype="numeric" output="false">
     <cfargument name="actionID" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="suid" type="numeric" required="true">
