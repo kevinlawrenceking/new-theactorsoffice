@@ -1,5 +1,8 @@
-<!--- Get system user details ---> 
+<!--- Initialize services --->
 <cfset systemUserService = createObject("component", "services.SystemUserService")>
+<cfset systemService = createObject("component", "services.SystemService")>
+
+<!--- Get system user details ---> 
 <cfset reldetails = systemUserService.getSystemUserByID(suid=suid)>
 
 <!--- Get old system details ---> 
@@ -28,24 +31,25 @@
 
     <!--- Add or move to new system if new system type is not "None" ---> 
     <cfif new_systemtype neq "None">
-        <!--- Find new and old systems ---> 
-        <cfset findSystem = systemUserService.findSystemByScope(systemscope=new_systemscope)>
-        <cfset systemService = createObject("component", "services.SystemService")>
+        <!--- Find new and old systems using SystemService ---> 
+        <cfset findSystem = systemService.findSystemByScope(systemscope=new_systemscope)>
         <cfset findSystemOld = systemService.findSystemByID(suid=suid)>
 
-        <!--- Set system IDs safely ---> 
+        <!--- Initialize system IDs safely --->
         <cfset systemid = 0>
         <cfset systemid_old = 0>
 
-        <cfif findSystem.recordcount EQ 1 AND structKeyExists(findSystem, "systemid") AND len(trim(findSystem.systemid))>
-            <cfset systemid = findSystem.systemid>
+        <!--- Safely check and set systemid --->
+        <cfif findSystem.recordcount EQ 1 AND findSystem.systemid[1] NEQ "" AND len(trim(findSystem.systemid[1]))>
+            <cfset systemid = findSystem.systemid[1]>
         </cfif>
 
-        <cfif findSystemOld.recordcount EQ 1 AND structKeyExists(findSystemOld, "systemid") AND len(trim(findSystemOld.systemid))>
-            <cfset systemid_old = findSystemOld.systemid>
+        <!--- Safely check and set systemid_old --->
+        <cfif findSystemOld.recordcount EQ 1 AND findSystemOld.systemid[1] NEQ "" AND len(trim(findSystemOld.systemid[1]))>
+            <cfset systemid_old = findSystemOld.systemid[1]>
         </cfif>
 
-        <!--- Output debug information for system IDs --->
+        <!--- Debugging --->
         <cfdump var="#systemid#" label="System ID">
         <cfdump var="#systemid_old#" label="Old System ID">
     </cfif>
