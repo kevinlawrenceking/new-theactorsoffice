@@ -67,12 +67,10 @@
         </cfloop>
 
         <!--- Add the new system --->
-        <cfset systemUserService.addSystem(contactid=contactid, systemid=systemid)>
+  <cfinclude template="/include/add_system.cfm"/>
     </cfif>
 </cfif>
 
-<!--- Redirect to contact page --->
-<cfset script_name_include = "/include/#ListLast(GetCurrentTemplatePath(), '\')#" />
 <cflocation url="/app/contact/?contactid=#contactid#" />
 
 
