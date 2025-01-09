@@ -9,6 +9,16 @@
     </cfquery>
 </cffunction>
 
+<!--- Method to handle additional closure operations ---> 
+    <cffunction name="closeSystemPart2" access="public" returntype="void">
+        <cfargument name="suid" type="numeric" required="true">
+        <cfquery>
+            UPDATE fusystemdetails
+            SET additionalColumn = 'Processed'
+            WHERE suid = <cfqueryparam value="#arguments.suid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+    </cffunction>
+
 
 <cffunction name="getOldSystemDetails" access="public" returntype="struct" output="false" hint="Gets the old system details including system scope and type">
     <!--- Arguments --->
