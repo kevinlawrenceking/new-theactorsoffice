@@ -1,6 +1,25 @@
 <cfcomponent displayname="SystemService" hint="Handles operations for System table" >
 
 
+    <!--- Finds a system by its ID ---> 
+    <cffunction name="findSystemByID" access="public" returntype="query" output="false" hint="Finds a system by its ID">
+        <cfargument name="suid" type="numeric" required="true" hint="The system ID to search for">
+        
+        <cfquery name="findSystemByID" datasource="YourDataSource">
+            SELECT 
+                s.systemid,
+                s.systemscope,
+                s.systemtype
+            FROM 
+                fusystems s
+            INNER JOIN 
+                fusystemusers u ON u.systemid = s.systemid
+            WHERE 
+                u.suid = <cfqueryparam value="#arguments.suid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+        
+        <cfreturn findSystemByID>
+    </cffunction>
 
 
 <cffunction name="addNotification" access="public" returntype="numeric">
