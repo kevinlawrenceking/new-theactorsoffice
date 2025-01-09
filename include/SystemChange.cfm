@@ -2,7 +2,7 @@
 
 <cfinclude template="/include/qry/reldetails_271_1.cfm" />
 <cfset old_systemscope = reldetails.systemscope />
-<cfoutput>suid:#suid#</cfoutput><CfaborT>
+
 <cfinclude template="/include/qry/findscope_old_294_2.cfm" />
 <cfinclude template="/include/qry/findscope_294_3.cfm" />
 
