@@ -1,21 +1,27 @@
-<!--- This ColdFusion page processes system scope and type changes, including closing existing systems and inserting notes as necessary. --->
+<!--- Get system user details ---> 
+<cfset systemUserService = createObject("component", "services.SystemUserService")>
+<cfset reldetails = systemUserService.getSystemUserByID(suid=suid)>
 
-<cfinclude template="/include/qry/reldetails_271_1.cfm" />
-<cfset old_systemscope = reldetails.systemscope />
+<!--- Get old system details --->
+<cfset oldSystemDetails = systemUserService.getOldSystemDetails(suid=suid)>
 
-<cfinclude template="/include/qry/findscope_old_294_2.cfm" />
-<cfinclude template="/include/qry/findscope_294_3.cfm" />
+<cfset old_systemscope = oldSystemDetails.systemscope>
+<cfset old_systemtype = oldSystemDetails.systemtype>
 
-<!--- Determine new system scope based on findscope record count --->
-<!--- Part aa --->
-<cfif findscope.recordcount is 1>
-    <cfset new_systemscope = "Casting Director">
+<!--- Determine old system type based on suid --->
+<cfif suid neq "0">
+    <cfset old_systemtype = reldetails.systemtype>
 <cfelse>
-    <cfset new_systemscope = "Industry">
+    <cfset old_systemtype = "None">
 </cfif>
 
-<!--- Part bb--->
-<!--- Determine old system type based on suid --->
+<!--- Get contact tag status --->
+<cfset contactItemService = createObject("component", "services.ContactItemService")>
+<cfset new_systemscope = contactItemService.getContactTagStatus(contactid=contactid, userid=userid)>
+
+
+
+
 <cfif suid neq "0">
     <cfset old_systemtype = reldetails.systemtype>
 <cfelse>
