@@ -5,8 +5,15 @@
 <!--- Get old system details --->
 <cfset oldSystemDetails = systemUserService.getOldSystemDetails(suid=suid)>
 
-<cfset old_systemscope = oldSystemDetails.systemscope>
-<cfset old_systemtype = oldSystemDetails.systemtype>
+<!--- Check if oldSystemDetails has data ---> 
+<cfif structKeyExists(oldSystemDetails, "systemscope")>
+    <cfset old_systemscope = oldSystemDetails.systemscope>
+    <cfset old_systemtype = oldSystemDetails.systemtype>
+<cfelse>
+    <cfset old_systemscope = "None">
+    <cfset old_systemtype = "None">
+</cfif>
+
 
 <!--- Determine old system type based on suid --->
 <cfif suid neq "0">
