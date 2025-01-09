@@ -1,5 +1,37 @@
 <cfcomponent displayname="ContactItemService" hint="Handles operations for ContactItem table" > 
 
+<cffunction name="getContactTagStatus" access="public" returntype="string" output="false" hint="Checks contact tags and returns the appropriate system scope">
+    <cfargument name="contactid" type="numeric" required="true" hint="The ID of the contact">
+    <cfargument name="userid" type="numeric" required="true" hint="The ID of the user">
+
+    <cfset var result = "" />
+
+    <cfquery name="tagCheck">
+        SELECT COUNT(*) AS recordCount
+        FROM contactitems
+        WHERE valuecategory = <cfqueryparam value="Tag" cfsqltype="CF_SQL_VARCHAR">
+          AND contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
+          AND itemstatus = <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
+          AND valuetext IN (
+              SELECT tagname
+              FROM tags_user
+              WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+              AND tagtype = <cfqueryparam value="C" cfsqltype="CF_SQL_CHAR">
+          )
+    </cfquery>
+
+    <!--- Determine new_systemscope based on the record count ---> 
+    <cfif tagCheck.recordCount EQ 1>
+        <cfset result = "Casting Director" />
+    <cfelse>
+        <cfset result = "Industry" />
+    </cfif>
+
+    <cfreturn result />
+</cffunction>
+
+
+
 <cffunction name="addTeam" access="public" returntype="void" output="false">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="topsearch_myteam" type="string" required="true">
@@ -246,7 +278,7 @@
             AND valuecategory = <cfqueryparam value="Tag" cfsqltype="CF_SQL_VARCHAR">
         </cfquery>
 
-'My Team' AND valuecategory = 'Tag'">
+
 
 <cfreturn result>
 </cffunction>
@@ -978,7 +1010,7 @@ WHERE itemid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.itemid
     <cfargument name="contactid" type="numeric" required="true">
 
 <cfquery name="result" >
-            SELECT * 
+            SELECT itemID, contactID, valueType, valueCategory, valueText, valueCompany, valueDepartment, valueTitle, valueStreetAddress, valueExtendedAddress, valueCity, valueRegion, itemDate, itemNotes, itemStatus, itemCreationDate, itemLastUpdated, valueCountry, valuePostalCode, primary_YN, IsDeleted 
             FROM contactitems 
             WHERE valuecategory = <cfqueryparam value="Tag" cfsqltype="CF_SQL_VARCHAR"> 
             AND valuetext = <cfqueryparam value="Casting Director" cfsqltype="CF_SQL_VARCHAR"> 
@@ -988,21 +1020,13 @@ WHERE itemid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.itemid
 
 <cfreturn result>
 </cffunction>
+
 <cffunction output="false" name="SELcontactitems_24314" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
 
 <cfquery name="result" >
-            SELECT *
-            FROM contactitems
-            WHERE valuecategory = <cfqueryparam value="Tag" cfsqltype="CF_SQL_VARCHAR">
-            AND contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
-            AND itemstatus = <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
-            AND valuetext IN (
-                SELECT tagname AS valuetext
-                FROM tags_user
-                WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
-                AND tagtype = <cfqueryparam value="C" cfsqltype="CF_SQL_CHAR">
+ 
             )
         </cfquery>
 

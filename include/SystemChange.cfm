@@ -1,20 +1,13 @@
-<!--- This ColdFusion page processes system scope and type changes, including closing existing systems and inserting notes as necessary. --->
+<!--- Get system user details ---> 
+<cfset systemUserService = createObject("component", "services.SystemUserService")>
+<cfset reldetails = systemUserService.getSystemUserByID(suid=suid)>
 
-<cfinclude template="/include/qry/reldetails_271_1.cfm" />
-<cfset old_systemscope = reldetails.systemscope />
-<cfoutput>suid:#suid#</cfoutput><CfaborT>
-<cfinclude template="/include/qry/findscope_old_294_2.cfm" />
-<cfinclude template="/include/qry/findscope_294_3.cfm" />
+<!--- Get old system details --->
+<cfset oldSystemDetails = systemUserService.getOldSystemDetails(suid=suid)>
 
-<!--- Determine new system scope based on findscope record count --->
-<!--- Part aa --->
-<cfif findscope.recordcount is 1>
-    <cfset new_systemscope = "Casting Director">
-<cfelse>
-    <cfset new_systemscope = "Industry">
-</cfif>
+<cfset old_systemscope = oldSystemDetails.systemscope>
+<cfset old_systemtype = oldSystemDetails.systemtype>
 
-<!--- Part bb--->
 <!--- Determine old system type based on suid --->
 <cfif suid neq "0">
     <cfset old_systemtype = reldetails.systemtype>
@@ -22,77 +15,64 @@
     <cfset old_systemtype = "None">
 </cfif>
 
-<!--- Part c--->
-<cfif old_systemtype neq new_systemtype>
+<!--- Get contact tag status --->
+<cfset contactItemService = createObject("component", "services.ContactItemService")>
+<cfset new_systemscope = contactItemService.getContactTagStatus(contactid=contactid, userid=userid)>
 
+<!--- Check for changes in system type and scope --->
+<cfif old_systemtype neq new_systemtype>
     <!--- Close existing system if old system type is not "None" --->
     <cfif old_systemtype neq "None">
-        <cfinclude template="/include/qry/close_294_4.cfm" />
-        <cfinclude template="/include/qry/close2_294_5.cfm" />
+        <cfset systemUserService.closeSystem(suid=suid)>
+        <cfset systemUserService.closeSystemPart2(suid=suid)>
     </cfif>
 
-<!--- part d --->
+    <!--- Add or move to new system if new system type is not "None" --->
     <cfif new_systemtype neq "None">
-        <cfinclude template="/include/qry/FindSystem_294_6.cfm" />
-        <cfinclude template="/include/qry/FindSystemOld_294_7.cfm" />
+        <cfset findSystem = systemUserService.findSystemByScope(systemscope=new_systemscope)>
+        <cfset findSystemOld = systemUserService.findSystemByID(suid=suid)>
 
-        <!--- Check if there is exactly one record in findsystem --->
-        <cfif findsystem.recordcount is 1>
-          <cfif len(trim(findsystem.systemid))>
-    <cfset systemid = findsystem.systemid>
-<cfelse>
-    <cfset systemid = 0>
-</cfif>
+        <!--- Set system IDs --->
+        <cfset systemid = (findSystem.recordcount EQ 1 AND len(trim(findSystem.systemid))) ? findSystem.systemid : 0>
+        <cfset systemid_old = (findSystemOld.recordcount EQ 1 AND len(trim(findSystemOld.systemid))) ? findSystemOld.systemid : 0>
 
-<cfif len(trim(findsystemold.systemid))>
-    <cfset systemid_old = findsystemold.systemid>
-<cfelse>
-    <cfset systemid_old = 0>
-</cfif>
+        <!--- Determine the verb (Added or Moved) --->
+        <cfset verb = (systemid_old EQ 0) ? "Added" : "Moved">
 
-<!--- part K--->
+        <!--- Track names mapped by system ID --->
+        <cfset tracks = {
+            1: "Follow Up",
+            2: "Follow Up",
+            3: "Maintenance",
+            4: "Maintenance",
+            5: "Targeted",
+            6: "Targeted"
+        }>
 
-<cfif systemid_old eq 0>
+        <!--- Process notes based on system changes --->
+        <cfloop collection="#tracks#" item="key" index="track">
+            <cfif systemid EQ key AND systemid_old NEQ key>
+                <cfset new_NoteDetails = "#verb# to #track# Track.">
 
-<cfset verb = "Added">
-
-<cfelse>
-<cfset verb = "Moved">
-</cfif>
-            <cfif systemid is 1 and systemid_old neq 1>
-            <cfset new_NoteDetails = "#verb# to Follow Up track." />
-                <cfinclude template="/include/qry/InsertNote_294_8.cfm" />
+                <!--- Insert note dynamically without include --->
+                <cfset noteService = createObject("component", "services.NoteService")>
+                <cfset noteService.INSnoteslog_24319(
+                    userid=userid,
+                    contactid=contactid,
+                    noteDetails=new_NoteDetails,
+                    isPublic=true,
+                    eventid=0
+                )>
             </cfif>
+        </cfloop>
 
-                     <cfif systemid is 2 and systemid_old neq 2>
-            <cfset new_NoteDetails = "#verb# to Follow Up track." />
-                <cfinclude template="/include/qry/InsertNote_294_8.cfm" />
-            </cfif>
-
-                     <cfif systemid is 3 and systemid_old neq 3>
-            <cfset new_NoteDetails = "#verb# to Maintenance Track." />
-                <cfinclude template="/include/qry/InsertNote_294_8.cfm" />
-            </cfif>
-
-                     <cfif systemid is 4 and systemid_old neq 4>
-            <cfset new_NoteDetails = "#verb# to Maintenance Track." />
-                <cfinclude template="/include/qry/InsertNote_294_8.cfm" />
-            </cfif>
-
-                     <cfif systemid is 5 and systemid_old neq 5>
-            <cfset new_NoteDetails = "#verb# to Targeted Track." />
-                <cfinclude template="/include/qry/InsertNote_294_8.cfm" />
-            </cfif>
-
-                     <cfif systemid is 6 and systemid_old neq 6>
-            <cfset new_NoteDetails = "#verb# to Targeted Track." />
-                <cfinclude template="/include/qry/InsertNote_294_8.cfm" />
-            </cfif>
-
-            <cfinclude template="/include/add_system.cfm" />
-        </cfif>
+        <!--- Add the new system --->
+        <cfset systemUserService.addSystem(contactid=contactid, systemid=systemid)>
     </cfif>
 </cfif>
 
+<!--- Redirect to contact page --->
 <cfset script_name_include = "/include/#ListLast(GetCurrentTemplatePath(), '\')#" />
 <cflocation url="/app/contact/?contactid=#contactid#" />
+
+

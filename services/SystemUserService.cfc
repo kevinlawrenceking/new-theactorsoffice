@@ -1,5 +1,48 @@
 <cfcomponent displayname="SystemUserService" hint="Handles operations for SystemUser table" >
 
+<cffunction name="getOldSystemDetails" access="public" returntype="struct" output="false" hint="Gets the old system details including system scope and type">
+    <!--- Arguments --->
+    <cfargument name="suid" type="numeric" required="true" hint="The system user ID (suid) to look up">
+    
+    <!--- Local Variables --->
+    <cfset var result = {}>
+    <cfset var reldetails = "">
+    <cfset result.old_systemscope = "None">
+    <cfset result.old_systemtype = "None">
+
+    <!--- Query to retrieve system details based on suid --->
+    <cfquery name="reldetails" >
+        SELECT 
+            fc.suID, 
+            fc.contactid, 
+            fc.userid, 
+            fc.suStartDate, 
+            fc.suenddate, 
+            fc.suStatus, 
+            s.systemName, 
+            s.systemdescript, 
+            s.systemtype, 
+            s.systemscope, 
+            s.systemid, 
+            s.recordname
+        FROM fusystemusers fc
+        INNER JOIN fusystems s ON s.systemID = fc.systemID
+        WHERE fc.suid = <cfqueryparam value="#arguments.suid#" cfsqltype="CF_SQL_INTEGER">
+    </cfquery>
+
+    <!--- Logic to determine old_systemscope and old_systemtype --->
+    <cfif reldetails.recordCount>
+        <cfset result.old_systemscope = reldetails.systemscope>
+        <cfset result.old_systemtype = reldetails.systemtype>
+    </cfif>
+
+    <!--- Return result as a struct --->
+    <cfreturn result>
+</cffunction>
+
+
+
+
    <cffunction name="updateSystemUser" access="public" returntype="void" output="false">
         <cfargument name="suid" type="numeric" required="true">
         <cfargument name="sustatus" type="string" required="false" default="Completed">
@@ -163,7 +206,7 @@
 <cfreturn result>
 
 </cffunction>
-<cffunction output="false" name="DETfusystemusers" access="public" returntype="query">
+<cffunction output="false" name="getSystemUserByID" access="public" returntype="query">
     <cfargument name="suid" type="numeric" required="true">
 
 <cfquery name="result" >
