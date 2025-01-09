@@ -50,7 +50,7 @@
         }>
 
         <!--- Process notes based on system changes --->
-        <cfloop collection="#tracks#" item="key" index="track">
+      <cfloop collection="#tracks#" item="key">
             <cfif systemid EQ key AND systemid_old NEQ key>
                 <cfset new_NoteDetails = "#verb# to #track# Track.">
 
