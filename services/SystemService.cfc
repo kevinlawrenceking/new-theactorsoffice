@@ -5,7 +5,7 @@
     <cffunction name="findSystemByID" access="public" returntype="query" output="false" hint="Finds a system by its ID">
         <cfargument name="suid" type="numeric" required="true" hint="The system ID to search for">
         
-        <cfquery name="findSystemByID" datasource="YourDataSource">
+        <cfquery name="findSystemByID" >
             SELECT 
                 s.systemid,
                 s.systemscope,
