@@ -33,44 +33,20 @@
         <cfset systemService = createObject("component", "services.SystemService")>
         <cfset findSystemOld = systemService.findSystemByID(suid=suid)>
 
-        <!--- Set system IDs ---> 
-        <cfset systemid = (findSystem.recordcount EQ 1 AND len(trim(findSystem.systemid))) ? findSystem.systemid : 0>
-        <cfset systemid_old = (findSystemOld.recordcount EQ 1 AND len(trim(findSystemOld.systemid))) ? findSystemOld.systemid : 0>
+        <!--- Set system IDs safely ---> 
+        <cfset systemid = 0>
+        <cfset systemid_old = 0>
 
-        <!--- Determine the verb (Added or Moved) ---> 
-        <cfset verb = (systemid_old EQ 0) ? "Added" : "Moved">
+        <cfif findSystem.recordcount EQ 1 AND structKeyExists(findSystem, "systemid") AND len(trim(findSystem.systemid))>
+            <cfset systemid = findSystem.systemid>
+        </cfif>
 
-        <!--- Track names mapped by system ID ---> 
-        <cfset tracks = {
-            1: "Follow Up",
-            2: "Follow Up",
-            3: "Maintenance",
-            4: "Maintenance",
-            5: "Targeted",
-            6: "Targeted"
-        }>
+        <cfif findSystemOld.recordcount EQ 1 AND structKeyExists(findSystemOld, "systemid") AND len(trim(findSystemOld.systemid))>
+            <cfset systemid_old = findSystemOld.systemid>
+        </cfif>
 
-        <!--- Process notes based on system changes ---> 
-        <cfloop collection="#tracks#" item="key">
-            <cfif systemid EQ key AND systemid_old NEQ key>
-                <cfset new_NoteDetails = "#verb# to #tracks[key]# Track.">
-
-                <!--- Insert note dynamically without include ---> 
-                <cfset noteService = createObject("component", "services.NoteService")>
-                <cfset noteService.INSnoteslog_24319(
-                    userid=userid,
-                    contactid=contactid,
-                    noteDetails=new_NoteDetails,
-                    isPublic=true,
-                    eventid=0
-                )>
-            </cfif>
-        </cfloop>
-
-        <!--- Add the new system ---> 
-        <cfinclude template="/include/add_system.cfm"/>
+        <!--- Output debug information for system IDs --->
+        <cfdump var="#systemid#" label="System ID">
+        <cfdump var="#systemid_old#" label="Old System ID">
     </cfif>
 </cfif>
-
-<!--- Redirect to contact page ---> 
-<cflocation url="/app/contact/?contactid=#contactid#" />
