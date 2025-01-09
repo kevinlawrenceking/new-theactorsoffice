@@ -50,21 +50,23 @@
         }>
 
         <!--- Process notes based on system changes --->
-        <cfloop collection="#tracks#" item="key" index="track">
-            <cfif systemid EQ key AND systemid_old NEQ key>
-                <cfset new_NoteDetails = "#verb# to #track# Track.">
+    <!--- Process notes based on system changes --->
+<cfloop collection="#tracks#" item="key">
+    <cfif systemid EQ key AND systemid_old NEQ key>
+        <cfset new_NoteDetails = "#verb# to #tracks[key]# Track.">
 
-                <!--- Insert note dynamically without include --->
-                <cfset noteService = createObject("component", "services.NoteService")>
-                <cfset noteService.INSnoteslog_24319(
-                    userid=userid,
-                    contactid=contactid,
-                    noteDetails=new_NoteDetails,
-                    isPublic=true,
-                    eventid=0
-                )>
-            </cfif>
-        </cfloop>
+        <!--- Insert note dynamically without include --->
+        <cfset noteService = createObject("component", "services.NoteService")>
+        <cfset noteService.INSnoteslog_24319(
+            userid=userid,
+            contactid=contactid,
+            noteDetails=new_NoteDetails,
+            isPublic=true,
+            eventid=0
+        )>
+    </cfif>
+</cfloop>
+
 
         <!--- Add the new system --->
   <cfinclude template="/include/add_system.cfm"/>
