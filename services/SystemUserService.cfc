@@ -1,4 +1,14 @@
-<cfcomponent displayname="SystemUserService" hint="Handles operations for SystemUser table" >
+<cfcomponent displayname="" hint="Handles operations for SystemUser table" >
+
+<cffunction name="closeSystem" access="public" returntype="void">
+    <cfargument name="suid" type="numeric" required="true">
+    <cfquery>
+        UPDATE fusystemusers
+        SET suStatus = 'Closed'
+        WHERE suid = <cfqueryparam value="#arguments.suid#" cfsqltype="CF_SQL_INTEGER">
+    </cfquery>
+</cffunction>
+
 
 <cffunction name="getOldSystemDetails" access="public" returntype="struct" output="false" hint="Gets the old system details including system scope and type">
     <!--- Arguments --->
