@@ -89,8 +89,11 @@
     <cfargument name="notstartdate" type="date" required="true" hint="Start date for the notification">
     <cfargument name="notstatus" type="string" required="true" default="Pending" hint="Notification status">
 
+    <!--- Ensure local scope for all variables ---> 
+    <cfset var local = {}>
+
     <!--- Pre-check for existing Pending notification with a non-NULL start date --->
-    <cfquery name="checkExistingPending">
+    <cfquery name="local.checkExistingPending" datasource="YourDataSourceName">
         SELECT COUNT(*) AS pendingCount
         FROM funotifications
         WHERE 
@@ -101,16 +104,16 @@
     </cfquery>
 
     <!--- Decide whether to include the notstartdate --->
-    <cfif checkExistingPending.pendingCount GT 0>
+    <cfif local.checkExistingPending.pendingCount GT 0>
         <!--- Existing Pending notification found, keep notstartdate NULL --->
-        <cfset finalNotStartDate = JavaCast("null", "")>
+        <cfset local.finalNotStartDate = JavaCast("null", "")>
     <cfelse>
         <!--- No existing Pending notification with notstartdate, use provided date --->
-        <cfset finalNotStartDate = arguments.notstartdate>
+        <cfset local.finalNotStartDate = arguments.notstartdate>
     </cfif>
 
     <!--- Insert the new notification --->
-    <cfquery result="result" >
+    <cfquery result="result" datasource="YourDataSourceName">
         INSERT INTO funotifications (
             actionid, 
             userid, 
@@ -121,7 +124,7 @@
             <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.actionID#">,
             <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">,
             <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.suid#">,
-            <cfqueryparam cfsqltype="CF_SQL_DATE" value="#DateFormat(finalNotStartDate, 'yyyy-mm-dd')#" null="#NOT len(trim(finalNotStartDate))#">,
+            <cfqueryparam cfsqltype="CF_SQL_DATE" value="#DateFormat(local.finalNotStartDate, 'yyyy-mm-dd')#" null="#NOT len(trim(local.finalNotStartDate))#">,
             <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="Pending">
         )
     </cfquery>
