@@ -111,7 +111,7 @@
         <div class="input-group-append">
             <div class="input-group-text">
                 <span class="password-eye" onclick="togglePassword()" style="cursor: pointer;">
-                    <i id="eyeIcon" class="fas fa-eye"></i>
+                   
                 </span>
             </div>
         </div>
