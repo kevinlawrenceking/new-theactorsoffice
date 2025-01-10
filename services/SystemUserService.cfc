@@ -71,11 +71,7 @@
         WHERE fc.suid = <cfqueryparam value="#arguments.suid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 
-    <!--- Logic to determine old_systemscope and old_systemtype --->
-    <cfif reldetails.recordCount>
-        <cfset result.old_systemscope = reldetails.systemscope>
-        <cfset result.old_systemtype = reldetails.systemtype>
-    </cfif>
+
 
     <!--- Return result as a struct --->
     <cfreturn result>
