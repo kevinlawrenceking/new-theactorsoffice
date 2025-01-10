@@ -45,10 +45,8 @@
     <!--- Arguments --->
     <cfargument name="suid" type="numeric" required="true" hint="The system user ID (suid) to look up">
     
-
-
-    <!--- Query to retrieve system details based on suid --->
-    <cfquery name="reldetails" >
+    <!--- Query to fetch old system details --->
+    <cfquery name="reldetails">
         SELECT 
             fc.suID, 
             fc.contactid, 
@@ -66,11 +64,9 @@
         INNER JOIN fusystems s ON s.systemID = fc.systemID
         WHERE fc.suid = <cfqueryparam value="#arguments.suid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
-
-
-
-    <!--- Return result as a struct --->
-    <cfreturn result>
+    
+    <!--- Return the query result --->
+    <cfreturn reldetails>
 </cffunction>
 
 
