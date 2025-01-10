@@ -3,6 +3,5 @@
     actionID = NotificationDetails.actionID,
     userid = userid,
     suid = NewSuid,
-    notstartdate = newest_notstartdate,
-    notstatus = "Pending"
+    notstartdate = newest_notstartdate
 )>
