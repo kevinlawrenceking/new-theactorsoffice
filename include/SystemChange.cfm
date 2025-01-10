@@ -20,7 +20,7 @@ old_systemtype: #old_systemtype#<BR>
 
 <!--- Part c--->
 <cfif old_systemtype neq new_systemtype>
-<cfoutput>#old_systemtype# does not equal #old_systemtype#<cfoutput><BR>
+
     <!--- Close existing system if old system type is not "None" --->
     <cfif old_systemtype neq "None">
     <cfset systemUserService.closeSystem(suid=suid)>
