@@ -37,18 +37,7 @@
     this.errorTemplate = "500.cfm";
     this.errorTemplateNotFound = "404.cfm";
 
-<cffunction name="formatDate" access="public" returntype="string" output="false" hint="Formats dates according to the user's preferences">
-    <cfargument name="dateValue" required="true" type="date" hint="The date to be formatted">
-    
-    <!--- Use session date format or default to mm/dd/yyyy --->
-    <cfset var dateFormatToUse = "mm/dd/yyyy">
-    <cfif structKeyExists(session, "dateformatExample")>
-        <cfset dateFormatToUse = session.dateformatExample>
-    </cfif>
-
-    <!--- Format the date --->
-    <cfreturn dateFormat(arguments.dateValue, dateFormatToUse)>
-</cffunction>
+<
 
     application.baseMediaPath = "C:\home\theactorsoffice.com\media-" & this.datasource;
     application.baseMediaUrl = "/media-" & this.datasource;
@@ -81,6 +70,19 @@
     application.retinaIcons32Path = application.retinaIconsPath & "\32";
     application.retinaIcons32Url = application.retinaIconsUrl & "/32";
   </cfscript>
+
+  <cffunction name="formatDate" access="public" returntype="string" output="false" hint="Formats dates according to the user's preferences">
+    <cfargument name="dateValue" required="true" type="date" hint="The date to be formatted">
+    
+    <!--- Use session date format or default to mm/dd/yyyy --->
+    <cfset var dateFormatToUse = "mm/dd/yyyy">
+    <cfif structKeyExists(session, "dateformatExample")>
+        <cfset dateFormatToUse = session.dateformatExample>
+    </cfif>
+
+    <!--- Format the date --->
+    <cfreturn dateFormat(arguments.dateValue, dateFormatToUse)>
+</cffunction>
 
   <cffunction name="onApplicationStart" returntype="boolean" output="false">
     <cfreturn true/>
