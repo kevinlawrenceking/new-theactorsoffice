@@ -4,8 +4,8 @@
 <cfset userData = userService.getUserById(userID)>
 
 
-<cfset session.dateformatID = userData.dateformatID />
-<cfset session.dateformatExample = userData.dateformatExample />
+<cfset session.dateformatID = userData.user.dateformatID />
+<cfset session.dateformatExample = userData.user.dateformatExample />
 <cfset calendarName = UserData.user.calendarName />
 <cfset userId = UserData.user.userId />
 <cfset uid = UserData.user.uid />
