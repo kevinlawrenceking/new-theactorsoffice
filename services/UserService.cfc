@@ -6,7 +6,7 @@
 
     <!--- Update the date format in the database --->
     <cfquery name="updateDateFormat">
-        UPDATE taouser
+        UPDATE taousers
         SET dateformatid = <cfqueryparam value="#arguments.dateformatid#" cfsqltype="CF_SQL_INTEGER">
         WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
