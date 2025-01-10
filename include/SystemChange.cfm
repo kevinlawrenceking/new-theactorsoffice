@@ -18,21 +18,20 @@ old_systemtype: #old_systemtype#<BR>
 
 </cfoutput>
 
-<Cfabort>
 <!--- Part c--->
 <cfif old_systemtype neq new_systemtype>
-
+<cfoutput>#old_systemtype# does not equal #old_systemtype#<cfoutput><BR>
     <!--- Close existing system if old system type is not "None" --->
     <cfif old_systemtype neq "None">
-        <cfinclude template="/include/qry/close_294_4.cfm" />
-        <cfinclude template="/include/qry/close2_294_5.cfm" />
+    <cfset systemUserService.closeSystem(suid=suid)>
+        <cfset systemUserService.closeSystemPart2(suid=suid)>
     </cfif>
 
 <!--- part d --->
     <cfif new_systemtype neq "None">
-        <cfinclude template="/include/qry/FindSystem_294_6.cfm" />
-        <cfinclude template="/include/qry/FindSystemOld_294_7.cfm" />
-
+       <cfset findSystem = systemService.findSystemByScope(systemscope=new_systemscope)>
+        <cfset findSystemOld = systemService.findSystemByID(suid=suid)>
+        
         <!--- Check if there is exactly one record in findsystem --->
         <cfif findsystem.recordcount is 1>
           <cfif len(trim(findsystem.systemid))>
