@@ -93,7 +93,7 @@
     <cfset var local = {}>
 
     <!--- Pre-check for existing Pending notification with a non-NULL start date --->
-    <cfquery name="local.checkExistingPending" datasource="YourDataSourceName">
+    <cfquery name="local.checkExistingPending" >
         SELECT COUNT(*) AS pendingCount
         FROM funotifications
         WHERE 
@@ -113,7 +113,7 @@
     </cfif>
 
     <!--- Insert the new notification --->
-    <cfquery result="result" datasource="YourDataSourceName">
+    <cfquery result="result" >
         INSERT INTO funotifications (
             actionid, 
             userid, 
