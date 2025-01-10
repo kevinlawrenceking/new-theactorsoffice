@@ -10,7 +10,7 @@
 
 <cfset userService = createObject("component", "services.UserService")>
 <cfset userService.dateformatpref(
-    userid = session.user.userid,
+    userid = userid,
     dateformatid = form.dateformatid
 )>
 
