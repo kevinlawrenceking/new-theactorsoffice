@@ -17,7 +17,7 @@
             u.dateformatid, 
             d.formatExample
         FROM 
-            taouser u
+            taousers u
         LEFT JOIN 
             dateformats d ON u.dateformatid = d.id
         WHERE 
