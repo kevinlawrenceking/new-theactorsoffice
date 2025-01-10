@@ -45,7 +45,7 @@
         }>
     </cfif>
 
-    <!-- Define the global date formatting function -->
+ 
     <cfset session.formatDate = function(dateToFormat) {
         var format = StructKeyExists(session.user, "dateformatExample") ? session.user.dateformatExample : "mm/dd/yyyy";
         return DateFormat(dateToFormat, format);

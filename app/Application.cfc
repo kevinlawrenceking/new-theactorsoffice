@@ -132,12 +132,12 @@
   </cffunction>
 
 <cffunction name="onSessionStart" returntype="void" output="false">
-    <!--- Run the parent implementation, if applicable --->
+
     <cfif StructKeyExists(super, "onSessionStart")>
         <cfset super.onSessionStart()>
     </cfif>
 
-    <!-- Initialize user preferences -->
+
     <cfquery name="getUserPreferences">
         SELECT 
             u.dateformatid, 
@@ -156,14 +156,13 @@
             dateformatExample = getUserPreferences.formatExample
         }>
     <cfelse>
-        <!-- Fallback to default -->
+
         <cfset session.user = {
             dateformatid = 1,
             dateformatExample = "mm/dd/yyyy"
         }>
     </cfif>
 
-    <!-- Define the global date formatting function -->
     <cfset session.formatDate = function(dateToFormat) {
         var format = StructKeyExists(session.user, "dateformatExample") ? session.user.dateformatExample : "mm/dd/yyyy";
         return DateFormat(dateToFormat, format);
