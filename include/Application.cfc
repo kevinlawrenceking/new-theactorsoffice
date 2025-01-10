@@ -1,7 +1,18 @@
 <cfcomponent extends="/app/Application">
     <!-- This Application.cfc acts as a proxy to the main Application.cfc in /app -->
 
-   
+     <cffunction name="formatDate" access="public" returntype="string" output="false" hint="Formats dates according to the user's preferences">
+    <cfargument name="dateValue" required="true" type="date" hint="The date to be formatted">
+    
+    <!--- Use session date format or default to mm/dd/yyyy --->
+    <cfset var dateFormatToUse = "mm/dd/yyyy">
+    <cfif structKeyExists(session, "dateformatExample")>
+        <cfset dateFormatToUse = session.dateformatExample>
+    </cfif>
+
+    <!--- Format the date --->
+    <cfreturn dateFormat(arguments.dateValue, dateFormatToUse)>
+</cffunction>
     <cfquery name="getUserPreferences">
         SELECT 
             u.dateformatid, 
