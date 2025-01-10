@@ -20,17 +20,17 @@ old_systemtype: #old_systemtype#<BR>
 
 <!--- Part c--->
 <cfif old_systemtype neq new_systemtype>
-<cfoutput>#old_systemtype# does not equal #old_systemtype#</cfoutput><BR>
+<cfoutput>#old_systemtype# does not equal #old_systemtype#<cfoutput><BR>
     <!--- Close existing system if old system type is not "None" --->
     <cfif old_systemtype neq "None">
     <cfset systemUserService.closeSystem(suid=suid)>
-        <cfset systemUserService.closeSystemPart2(suid=suid)>
+       <cfset notificationService.deleteNotificationBySystem(suid=suid)>
     </cfif>
 
 <!--- part d --->
     <cfif new_systemtype neq "None">
-       <cfset findSystem = systemService.findSystemByScope(systemscope=new_systemscope)>
-        <cfset findSystemOld = systemService.findSystemByID(suid=suid)>
+        <cfinclude template="/include/qry/FindSystem_294_6.cfm" />
+        <cfinclude template="/include/qry/FindSystemOld_294_7.cfm" />
 
         <!--- Check if there is exactly one record in findsystem --->
         <cfif findsystem.recordcount is 1>

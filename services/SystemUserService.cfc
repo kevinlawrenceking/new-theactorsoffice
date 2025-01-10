@@ -4,20 +4,12 @@
     <cfargument name="suid" type="numeric" required="true">
     <cfquery>
         UPDATE fusystemusers
-        SET suStatus = 'Closed'
+        SET isdeleted = 1
         WHERE suid = <cfqueryparam value="#arguments.suid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 </cffunction>
 
-<!--- Method to handle additional closure operations ---> 
-    <cffunction name="closeSystemPart2" access="public" returntype="void">
-        <cfargument name="suid" type="numeric" required="true">
-        <cfquery>
-            UPDATE fusystemdetails
-            SET additionalColumn = 'Processed'
-            WHERE suid = <cfqueryparam value="#arguments.suid#" cfsqltype="CF_SQL_INTEGER">
-        </cfquery>
-    </cffunction>
+
 
     <cffunction name="findSystemByScope" access="public" returntype="string" output="false" hint="Finds system ID based on type and scope">
     <cfargument name="systemscope" type="string" required="true" hint="The scope to filter the systems">
