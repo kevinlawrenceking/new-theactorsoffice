@@ -131,36 +131,45 @@
     <cfreturn true/>
   </cffunction>
 
-  <cffunction name="onSessionStart" returntype="void" output="false">
+<cffunction name="onSessionStart" returntype="void" output="false">
     <!--- Run the parent implementation, if applicable --->
     <cfif StructKeyExists(super, "onSessionStart")>
         <cfset super.onSessionStart()>
     </cfif>
 
     <!-- Initialize user preferences -->
-    <cfif StructKeyExists(session, "user") AND StructKeyExists(session.user, "userid")>
-        <cfquery name="getUserPreferences">
-            SELECT 
-                u.dateformatid, 
-                d.formatExample
-            FROM 
-                taouser u
-            LEFT JOIN 
-                dateformats d ON u.dateformatid = d.id
-            WHERE 
-                u.userid = <cfqueryparam value="#session.user.userid#" cfsqltype="CF_SQL_INTEGER">
-        </cfquery>
+    <cfquery name="getUserPreferences">
+        SELECT 
+            u.dateformatid, 
+            d.formatExample
+        FROM 
+            taouser u
+        LEFT JOIN 
+            dateformats d ON u.dateformatid = d.id
+        WHERE 
+            u.userid = <cfqueryparam value="#session.userid#" cfsqltype="CF_SQL_INTEGER">
+    </cfquery>
 
-        <cfif getUserPreferences.recordcount>
-            <cfset session.user.dateformatid = getUserPreferences.dateformatid>
-            <cfset session.user.dateformatExample = getUserPreferences.formatExample>
-        <cfelse>
-            <!-- Fallback to default -->
-            <cfset session.user.dateformatid = 1>
-            <cfset session.user.dateformatExample = "mm/dd/yyyy">
-        </cfif>
+    <cfif getUserPreferences.recordcount>
+        <cfset session.user = {
+            dateformatid = getUserPreferences.dateformatid,
+            dateformatExample = getUserPreferences.formatExample
+        }>
+    <cfelse>
+        <!-- Fallback to default -->
+        <cfset session.user = {
+            dateformatid = 1,
+            dateformatExample = "mm/dd/yyyy"
+        }>
     </cfif>
+
+    <!-- Define the global date formatting function -->
+    <cfset session.formatDate = function(dateToFormat) {
+        var format = StructKeyExists(session.user, "dateformatExample") ? session.user.dateformatExample : "mm/dd/yyyy";
+        return DateFormat(dateToFormat, format);
+    }>
 </cffunction>
+
 
 
   <cffunction name="onRequest" returntype="void" output="true">
