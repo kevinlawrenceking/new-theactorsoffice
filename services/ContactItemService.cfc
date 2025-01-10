@@ -6,8 +6,8 @@
 
     <cfset var result = "" />
 
-    <cfquery name="tagCheck">
-        SELECT COUNT(*) AS recordCount
+    <cfquery name="tagCheck" maxrows="1" >
+        SELECT itemid
         FROM contactitems
         WHERE valuecategory = <cfqueryparam value="Tag" cfsqltype="CF_SQL_VARCHAR">
           AND contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
@@ -20,12 +20,12 @@
           )
     </cfquery>
 
-    <!--- Determine new_systemscope based on the record count ---> 
-    <cfif tagCheck.recordCount EQ 1>
-        <cfset result = "Casting Director" />
-    <cfelse>
-        <cfset result = "Industry" />
-    </cfif>
+<Cfif #tagcheck.recordcount# is "1">
+<Cfset result = "Casting Director" />
+<cfelse>
+<Cfset result = "Industry" />
+</cfif>
+
 
     <cfreturn result />
 </cffunction>
