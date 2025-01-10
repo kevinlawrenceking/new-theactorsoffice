@@ -783,7 +783,6 @@ INNER JOIN timezones t ON u.tzid = t.tzid
     "dateFormatID": qUserDetails.dateFormatID,
     "datePrefID": qUserDetails.datePrefID,
     "region_id": qUserDetails.region_id,
-    "formatexample": qUserDetails.formatexample,      
     "planName": qUserDetails.planName,
     "BaseProductLabel": qUserDetails.BaseProductLabel
  },
