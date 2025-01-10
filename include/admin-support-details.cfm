@@ -82,7 +82,7 @@
                                 <p class="mt-2 mb-0 font-weight-bold">Created</p>
                                 <div class="media">
                                     <div class="media-body">
-                                        <div class="mt-0 font-size-12">#dateFormat(createddate,'mm/dd/yyyy')# at #timeFormat(createddate)#</div>
+                                        <div class="mt-0 font-size-12">#application.formatDate(createddate)# at #timeFormat(createddate)#</div>
                                     </div>
                                 </div>
                             </div>

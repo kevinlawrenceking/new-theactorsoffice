@@ -132,7 +132,7 @@
   </cffunction>
 
   <cffunction name="onSessionStart" returntype="void" output="false">
-    <!-- Run the parent implementation, if applicable -->
+    <!--- Run the parent implementation, if applicable --->
     <cfif StructKeyExists(super, "onSessionStart")>
         <cfset super.onSessionStart()>
     </cfif>
