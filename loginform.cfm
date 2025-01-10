@@ -104,17 +104,20 @@
                                     <input class="form-control" type="email" id="j_username" name="j_username" value="#htmlEditFormat(u)#" required placeholder="Enter your email" />
                                 </div>
 
-                                <div class="form-group mb-3">
-                                    <label for="password">Password</label>
-                                    <div class="input-group input-group-merge">
-                                        <input type="password" id="j_password" name="j_password" class="form-control" value="#htmlEditFormat(p)#" placeholder="Enter your password" />
-                                        <div class="input-group-append">
-                                            <div class="input-group-text">
-                                                <span class="password-eye"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                       <div class="form-group mb-3">
+    <label for="password">Password</label>
+    <div class="input-group input-group-merge">
+        <input type="password" id="j_password" name="j_password" class="form-control" value="#htmlEditFormat(p)#" placeholder="Enter your password" />
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="password-eye" onclick="togglePassword()" style="cursor: pointer;">
+                    <i id="eyeIcon" class="fas fa-eye"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
 </cfoutput>
                                 <div class="form-group mb-3">
                                     <div class="custom-control custom-checkbox">
@@ -144,5 +147,25 @@
 
     <script src="/app/assets/js/vendor.min.js"></script>
     <script src="/app/assets/js/app.min.js"></script>
+<script>
+    function togglePassword() {
+        const passwordField = document.getElementById('j_password');
+        const eyeIcon = document.getElementById('eyeIcon');
+
+        // Toggle password field type
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+            eyeIcon.classList.remove('fa-eye');
+            eyeIcon.classList.add('fa-eye-slash');
+        } else {
+            passwordField.type = 'password';
+            eyeIcon.classList.remove('fa-eye-slash');
+            eyeIcon.classList.add('fa-eye');
+        }
+    }
+</script>
+
+
+
 </body>
 </html>
