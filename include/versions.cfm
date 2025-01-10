@@ -50,8 +50,8 @@
                                     <td style="font-weight:#verweight#;">
                                         <a href="/app/version/?recid=#results.verid#">#results.col1#</a>
                                     </td>
-                                    <td style="font-weight:#verweight#;">#application.formatDate(results.col2)#</td>
-                                    <td style="font-weight:#verweight#;">#application.formatDate(results.col3)#</td>
+                                    <td style="font-weight:#verweight#;">#session.formatDate(results.col2)#</td>
+                                    <td style="font-weight:#verweight#;">#session.formatDate(results.col3)#</td>
                                     <td style="font-weight:#verweight#;">#results.col4#</td>
                                     <td style="font-weight:#verweight#;">#results.col4b#</td>
                                     <td style="font-weight:#verweight#;">#results.col5#</td>
