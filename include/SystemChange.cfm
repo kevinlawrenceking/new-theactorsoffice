@@ -24,6 +24,7 @@ old_systemtype: #old_systemtype#<BR>
     <!--- Close existing system if old system type is not "None" --->
     <cfif old_systemtype neq "None">
     <cfset systemUserService.closeSystem(suid=suid)>
+    <cfset notificationService = createObject("component", "services.notificationService")>
        <cfset notificationService.deleteNotificationBySystem(suid=suid)>
     </cfif>
 
