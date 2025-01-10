@@ -90,7 +90,7 @@
     <cfargument name="notstatus" type="string" required="true" default="Pending" hint="Notification status">
 
     <!--- Pre-check for existing Pending notification with a non-NULL start date --->
-    <cfquery name="checkExistingPending" >
+    <cfquery name="checkExistingPending" datasource="YourDataSourceName">
         SELECT COUNT(*) AS pendingCount
         FROM funotifications
         WHERE 
@@ -103,14 +103,14 @@
     <!--- Decide whether to include the notstartdate --->
     <cfif checkExistingPending.pendingCount GT 0>
         <!--- Existing Pending notification found, keep notstartdate NULL --->
-        <cfset finalNotStartDate = NULL>
+        <cfset finalNotStartDate = JavaCast("null", "")>
     <cfelse>
         <!--- No existing Pending notification with notstartdate, use provided date --->
         <cfset finalNotStartDate = arguments.notstartdate>
     </cfif>
 
     <!--- Insert the new notification --->
-    <cfquery result="result" >
+    <cfquery result="result" datasource="YourDataSourceName">
         INSERT INTO funotifications (
             actionid, 
             userid, 
