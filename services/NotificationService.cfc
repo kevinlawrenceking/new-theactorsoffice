@@ -110,7 +110,7 @@
     </cfif>
 
     <!--- Insert the new notification --->
-    <cfquery result="result" datasource="YourDataSourceName">
+    <cfquery result="result" >
         INSERT INTO funotifications (
             actionid, 
             userid, 
