@@ -94,7 +94,7 @@
     <cfset var local = {}>
 
     <!--- Check for existing 'Pending' notifications with notstartdate --->
-    <cfquery name="local.checkExistingPending">
+    <cfquery name="checkExistingPending">
         SELECT COUNT(*) AS pendingCount
         FROM funotifications
         WHERE 
@@ -105,14 +105,14 @@
     </cfquery>
 
     <!--- Determine the final notstartdate value --->
-    <cfif local.checkExistingPending.pendingCount GT 0>
+    <cfif checkExistingPending.pendingCount GT 0>
         <cfset local.finalNotStartDate = "">
     <cfelse>
         <cfset local.finalNotStartDate = arguments.notstartdate>
     </cfif>
 
     <!--- Insert the notification --->
-    <cfquery name="local.result">
+    <cfquery result="result">
         INSERT INTO funotifications (
             actionid, 
             userid, 
@@ -129,8 +129,9 @@
     </cfquery>
 
     <!--- Return the generated key for the inserted record --->
-    <cfreturn local.result.generatedKey>
+    <cfreturn result.generatedKey>
 </cffunction>
+
 
 
 
