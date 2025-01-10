@@ -7,8 +7,8 @@
     <cfset var result = "" />
 
     <cfquery name="tagCheck" maxrows="1" >
-        SELECT itemid
-        FROM contactitems
+       SELECT count(itemid) as totaltags
+FROM contactitems
         WHERE valuecategory = <cfqueryparam value="Tag" cfsqltype="CF_SQL_VARCHAR">
           AND contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
           AND itemstatus = <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
@@ -20,7 +20,7 @@
           )
     </cfquery>
 
-<Cfif #tagcheck.recordcount# is "1">
+<Cfif #tagcheck.totaltags# is "1">
 <Cfset result = "Casting Director" />
 <cfelse>
 <Cfset result = "Industry" />
