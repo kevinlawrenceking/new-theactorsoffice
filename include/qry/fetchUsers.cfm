@@ -50,7 +50,7 @@
 <cfset userLastName = UserData.user.userLastName />
 <cfset userEmail = UserData.user.useremail />
 <cfset userRole = UserData.user.userRole />
-<cfset formatexample = UserData.user.formatexample />
+
 
 <cfset planName = UserData.user.planName />
 <cfset BaseProductLabel = UserData.user.BaseProductLabel />
