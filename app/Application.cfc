@@ -37,8 +37,6 @@
     this.errorTemplate = "500.cfm";
     this.errorTemplateNotFound = "404.cfm";
 
-<
-
     application.baseMediaPath = "C:\home\theactorsoffice.com\media-" & this.datasource;
     application.baseMediaUrl = "/media-" & this.datasource;
     application.auditionimporttemplate = application.baseMediaUrl & "/auditionimporttemplates.xlsx";
