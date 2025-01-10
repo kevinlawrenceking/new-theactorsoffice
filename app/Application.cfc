@@ -131,6 +131,38 @@
     <cfreturn true/>
   </cffunction>
 
+  <cffunction name="onSessionStart" returntype="void" output="false">
+    <!-- Run the parent implementation, if applicable -->
+    <cfif StructKeyExists(super, "onSessionStart")>
+        <cfset super.onSessionStart()>
+    </cfif>
+
+    <!-- Initialize user preferences -->
+    <cfif StructKeyExists(session, "user") AND StructKeyExists(session.user, "userid")>
+        <cfquery name="getUserPreferences">
+            SELECT 
+                u.dateformatid, 
+                d.formatExample
+            FROM 
+                taouser u
+            LEFT JOIN 
+                dateformats d ON u.dateformatid = d.id
+            WHERE 
+                u.userid = <cfqueryparam value="#session.user.userid#" cfsqltype="CF_SQL_INTEGER">
+        </cfquery>
+
+        <cfif getUserPreferences.recordcount>
+            <cfset session.user.dateformatid = getUserPreferences.dateformatid>
+            <cfset session.user.dateformatExample = getUserPreferences.formatExample>
+        <cfelse>
+            <!-- Fallback to default -->
+            <cfset session.user.dateformatid = 1>
+            <cfset session.user.dateformatExample = "mm/dd/yyyy">
+        </cfif>
+    </cfif>
+</cffunction>
+
+
   <cffunction name="onRequest" returntype="void" output="true">
     <cfargument name="targetPage" required="true" type="string">
     <cfinclude template="#arguments.targetPage#">
