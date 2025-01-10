@@ -715,7 +715,7 @@
                 tc.IsDeleted, 
                 tc.canceldate,
                 df.formatexample as dateformatExample,
-                df.id as dateformatid,
+                df.id as dateformatID,
                 pp.planName,
                 pr.BaseProductLabel,
                 r.*,  
