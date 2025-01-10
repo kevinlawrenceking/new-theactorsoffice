@@ -82,38 +82,36 @@
 <cfreturn result>
 </cffunction>
 
-<cffunction name="addNotification" access="public" returntype="numeric" output="false" hint="Adds a new notification with logic to enforce Pending notification uniqueness">
-    <cfargument name="actionID" type="numeric" required="true" hint="Action ID for the notification">
-    <cfargument name="userid" type="numeric" required="true" hint="User ID">
-    <cfargument name="suid" type="numeric" required="true" hint="System User ID">
-    <cfargument name="notstartdate" type="date" required="true" hint="Start date for the notification">
-    <cfargument name="notstatus" type="string" required="true" default="Pending" hint="Notification status">
-
-    <!--- Ensure local scope for all variables ---> 
+<cffunction name="addNotification" access="public" returntype="numeric" output="false">
+    <cfargument name="actionID" type="numeric" required="true">
+    <cfargument name="userid" type="numeric" required="true">
+    <cfargument name="suid" type="numeric" required="true">
+    <cfargument name="notstartdate" type="date" required="true">
+    <cfargument name="notstatus" type="string" required="true">
+    
+    <!--- Declare local scope --->
     <cfset var local = {}>
 
-    <!--- Pre-check for existing Pending notification with a non-NULL start date --->
-    <cfquery name="local.checkExistingPending" >
+    <!--- Check for existing Pending notifications --->
+    <cfquery name="checkExistingPending">
         SELECT COUNT(*) AS pendingCount
         FROM funotifications
         WHERE 
-            userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
-            AND suID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.suid#">
-            AND notstatus = 'Pending'
-            AND notstartdate IS NOT NULL
+            userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> AND
+            suID = <cfqueryparam value="#arguments.suid#" cfsqltype="CF_SQL_INTEGER"> AND
+            notstatus = <cfqueryparam value="Pending" cfsqltype="CF_SQL_VARCHAR"> AND
+            notstartdate IS NOT NULL
     </cfquery>
 
-    <!--- Decide whether to include the notstartdate --->
-    <cfif local.checkExistingPending.pendingCount GT 0>
-        <!--- Existing Pending notification found, keep notstartdate NULL --->
-        <cfset local.finalNotStartDate = JavaCast("null", "")>
+    <!--- Set finalNotStartDate based on conditions --->
+    <cfif checkExistingPending.pendingCount GT 0>
+        <cfset local.finalNotStartDate = "">
     <cfelse>
-        <!--- No existing Pending notification with notstartdate, use provided date --->
         <cfset local.finalNotStartDate = arguments.notstartdate>
     </cfif>
 
-    <!--- Insert the new notification --->
-    <cfquery result="result" >
+    <!--- Insert the notification --->
+    <cfquery result="result">
         INSERT INTO funotifications (
             actionid, 
             userid, 
@@ -129,7 +127,7 @@
         )
     </cfquery>
 
-    <!--- Return the generated key for the new notification --->
+    <!--- Return the generated key --->
     <cfreturn result.generatedKey>
 </cffunction>
 
