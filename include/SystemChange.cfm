@@ -11,7 +11,7 @@
 <Cfoutput>
 old_systemscope: #old_systemscope#<BR>
 old_systemtype: #old_systemscope#<BR>
-<cfdump var=#new_systemscope#
+<cfdump var="#new_systemscope#">
 
 </cfoutput>
 
