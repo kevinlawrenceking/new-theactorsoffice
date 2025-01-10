@@ -37,6 +37,24 @@
     this.errorTemplate = "500.cfm";
     this.errorTemplateNotFound = "404.cfm";
 
+
+        // Add the formatDate function here
+        public string function formatDate(required date dateToFormat, string dateFormatString = "") {
+            var formatString = "";
+
+            if (structKeyExists(session, "dateformatExample") AND len(trim(session.dateformatExample))) {
+                formatString = session.dateformatExample;
+            } else {
+                formatString = "mm/dd/yyyy"; // Default format
+            }
+
+            if (len(trim(arguments.dateFormatString))) {
+                formatString = arguments.dateFormatString;
+            }
+
+            return dateFormat(arguments.dateToFormat, formatString);
+        }
+
     application.baseMediaPath = "C:\home\theactorsoffice.com\media-" & this.datasource;
     application.baseMediaUrl = "/media-" & this.datasource;
     application.auditionimporttemplate = application.baseMediaUrl & "/auditionimporttemplates.xlsx";
@@ -107,6 +125,9 @@
 
         session.userAvatarPath = session.userMediaPath & "\avatar.jpg";
         session.userAvatarUrl = session.userMediaUrl & "/avatar.jpg";
+
+
+
       </cfscript>
 
       <cfif isdefined('contactid')>
@@ -131,43 +152,7 @@
     <cfreturn true/>
   </cffunction>
 
-<cffunction name="onSessionStart" returntype="void" output="false">
 
-    <cfif StructKeyExists(super, "onSessionStart")>
-        <cfset super.onSessionStart()>
-    </cfif>
-
-
-    <cfquery name="getUserPreferences">
-        SELECT 
-            u.dateformatid, 
-            d.formatExample
-        FROM 
-            taouser u
-        LEFT JOIN 
-            dateformats d ON u.dateformatid = d.id
-        WHERE 
-            u.userid = <cfqueryparam value="#session.userid#" cfsqltype="CF_SQL_INTEGER">
-    </cfquery>
-
-    <cfif getUserPreferences.recordcount>
-        <cfset session.user = {
-            dateformatid = getUserPreferences.dateformatid,
-            dateformatExample = getUserPreferences.formatExample
-        }>
-    <cfelse>
-
-        <cfset session.user = {
-            dateformatid = 1,
-            dateformatExample = "mm/dd/yyyy"
-        }>
-    </cfif>
-
-    <cfset session.formatDate = function(dateToFormat) {
-        var format = StructKeyExists(session.user, "dateformatExample") ? session.user.dateformatExample : "mm/dd/yyyy";
-        return DateFormat(dateToFormat, format);
-    }>
-</cffunction>
 
 
 

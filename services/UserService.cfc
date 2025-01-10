@@ -714,7 +714,8 @@
                 tc.IsDemo, 
                 tc.IsDeleted, 
                 tc.canceldate,
-                df.formatexample,
+                df.formatexample as dateformatExample,
+                df.id as dateformatid,
                 pp.planName,
                 pr.BaseProductLabel,
                 r.*,  
@@ -736,8 +737,10 @@ INNER JOIN timezones t ON u.tzid = t.tzid
         <cfif qUserDetails.recordCount EQ 1>
              <cfset user = {
                 "user": {
+    "dateformatExample": qUserDetails.dateformatExample,
+    "dateformatID": qUserDetails.dateformatID,
     "userId": qUserDetails.userID,
-      "uid": qUserDetails.uid,
+    "uid": qUserDetails.uid,
     "userfirstName": qUserDetails.userFirstName,
     "userlastName": qUserDetails.userLastName,
     "calendarName": qUserDetails.calendarName,
