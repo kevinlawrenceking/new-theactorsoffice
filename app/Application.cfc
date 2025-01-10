@@ -37,23 +37,18 @@
     this.errorTemplate = "500.cfm";
     this.errorTemplateNotFound = "404.cfm";
 
+<cffunction name="formatDate" access="public" returntype="string" output="false" hint="Formats dates according to the user's preferences">
+    <cfargument name="dateValue" required="true" type="date" hint="The date to be formatted">
+    
+    <!--- Use session date format or default to mm/dd/yyyy --->
+    <cfset var dateFormatToUse = "mm/dd/yyyy">
+    <cfif structKeyExists(session, "dateformatExample")>
+        <cfset dateFormatToUse = session.dateformatExample>
+    </cfif>
 
-        // Add the formatDate function here
-        public string function formatDate(required date dateToFormat, string dateFormatString = "") {
-            var formatString = "";
-
-            if (structKeyExists(session, "dateformatExample") AND len(trim(session.dateformatExample))) {
-                formatString = session.dateformatExample;
-            } else {
-                formatString = "mm/dd/yyyy"; // Default format
-            }
-
-            if (len(trim(arguments.dateFormatString))) {
-                formatString = arguments.dateFormatString;
-            }
-
-            return dateFormat(arguments.dateToFormat, formatString);
-        }
+    <!--- Format the date --->
+    <cfreturn dateFormat(arguments.dateValue, dateFormatToUse)>
+</cffunction>
 
     application.baseMediaPath = "C:\home\theactorsoffice.com\media-" & this.datasource;
     application.baseMediaUrl = "/media-" & this.datasource;
