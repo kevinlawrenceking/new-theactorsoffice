@@ -45,11 +45,7 @@
     <!--- Arguments --->
     <cfargument name="suid" type="numeric" required="true" hint="The system user ID (suid) to look up">
     
-    <!--- Local Variables --->
-    <cfset var result = {}>
-    <cfset var reldetails = "">
-    <cfset result.old_systemscope = "None">
-    <cfset result.old_systemtype = "None">
+
 
     <!--- Query to retrieve system details based on suid --->
     <cfquery name="reldetails" >
