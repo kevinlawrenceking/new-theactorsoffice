@@ -82,18 +82,19 @@
 <cfreturn result>
 </cffunction>
 
-<cffunction name="addNotification" access="public" returntype="numeric" output="false">
-    <cfargument name="actionID" type="numeric" required="true">
-    <cfargument name="userid" type="numeric" required="true">
-    <cfargument name="suid" type="numeric" required="true">
-    <cfargument name="notstartdate" type="date" required="true">
-    <cfargument name="notstatus" type="string" required="true">
-    
-    <!--- Declare local scope --->
+<cffunction name="addNotification" access="public" returntype="numeric" output="false" hint="Adds a notification, ensuring only one 'Pending' notification exists at a time with a notstartdate.">
+    <!--- Arguments --->
+    <cfargument name="actionID" type="numeric" required="true" hint="The ID of the action.">
+    <cfargument name="userid" type="numeric" required="true" hint="The user ID associated with the notification.">
+    <cfargument name="suid" type="numeric" required="true" hint="The system user ID.">
+    <cfargument name="notstartdate" type="date" required="true" hint="The start date for the notification.">
+    <cfargument name="notstatus" type="string" required="true" default="Pending" hint="The status of the notification.">
+
+    <!--- Local variables --->
     <cfset var local = {}>
 
-    <!--- Check for existing Pending notifications --->
-    <cfquery name="checkExistingPending">
+    <!--- Check for existing 'Pending' notifications with notstartdate --->
+    <cfquery name="local.checkExistingPending">
         SELECT COUNT(*) AS pendingCount
         FROM funotifications
         WHERE 
@@ -103,15 +104,15 @@
             notstartdate IS NOT NULL
     </cfquery>
 
-    <!--- Set finalNotStartDate based on conditions --->
-    <cfif checkExistingPending.pendingCount GT 0>
+    <!--- Determine the final notstartdate value --->
+    <cfif local.checkExistingPending.pendingCount GT 0>
         <cfset local.finalNotStartDate = "">
     <cfelse>
         <cfset local.finalNotStartDate = arguments.notstartdate>
     </cfif>
 
     <!--- Insert the notification --->
-    <cfquery result="result">
+    <cfquery name="local.result">
         INSERT INTO funotifications (
             actionid, 
             userid, 
@@ -123,12 +124,12 @@
             <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">,
             <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.suid#">,
             <cfqueryparam cfsqltype="CF_SQL_DATE" value="#DateFormat(local.finalNotStartDate, 'yyyy-mm-dd')#" null="#NOT len(trim(local.finalNotStartDate))#">,
-            <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="Pending">
+            <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.notstatus#">
         )
     </cfquery>
 
-    <!--- Return the generated key --->
-    <cfreturn result.generatedKey>
+    <!--- Return the generated key for the inserted record --->
+    <cfreturn local.result.generatedKey>
 </cffunction>
 
 
