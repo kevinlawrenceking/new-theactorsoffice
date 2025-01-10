@@ -1,24 +1,21 @@
 <!--- Get system user details ---> 
 <cfset systemUserService = createObject("component", "services.SystemUserService")>
-<cfset reldetails = systemUserService.getSystemUserByID(suid=suid)>
-
-<!--- Get old system details --->
 <cfset oldSystemDetails = systemUserService.getOldSystemDetails(suid=suid)>
 
 <cfset old_systemscope = oldSystemDetails.systemscope>
 <cfset old_systemtype = oldSystemDetails.systemtype>
 
-<!--- Determine old system type based on suid --->
-<cfif suid neq "0">
-    <cfset old_systemtype = reldetails.systemtype>
-<cfelse>
-    <cfset old_systemtype = "None">
-</cfif>
-
 <!--- Get contact tag status --->
 <cfset contactItemService = createObject("component", "services.ContactItemService")>
 <cfset new_systemscope = contactItemService.getContactTagStatus(contactid=contactid, userid=userid)>
+<Cfoutput>
+old_systemscope: #old_systemscope#<BR>
+old_systemtype: #old_systemscope#<BR>
+<cfdump var=#new_systemscope#
 
+</cfoutput>
+
+<Cfabort>
 <!--- Part c--->
 <cfif old_systemtype neq new_systemtype>
 
