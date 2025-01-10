@@ -41,7 +41,7 @@
 </cffunction>
 
 
-<cffunction name="getOldSystemDetails" access="public" returntype="struct" output="false" hint="Gets the old system details including system scope and type">
+<cffunction name="getOldSystemDetails" access="public" returntype="query" output="false" hint="Gets the old system details including system scope and type">
     <!--- Arguments --->
     <cfargument name="suid" type="numeric" required="true" hint="The system user ID (suid) to look up">
     
