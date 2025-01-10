@@ -90,7 +90,7 @@
     <cfargument name="notstatus" type="string" required="true" default="Pending" hint="Notification status">
 
     <!--- Pre-check for existing Pending notification with a non-NULL start date --->
-    <cfquery name="checkExistingPending" datasource="YourDataSourceName">
+    <cfquery name="checkExistingPending">
         SELECT COUNT(*) AS pendingCount
         FROM funotifications
         WHERE 
