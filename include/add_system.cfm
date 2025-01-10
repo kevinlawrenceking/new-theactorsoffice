@@ -13,7 +13,7 @@
 
 <!--- Grab the list of action items for that particular system --->
 <cfinclude template="/include/qry/getFuSystemUsersBySystemID.cfm" />
-
+<Cfdump var="#adddaysno#"><cfaborT>
 <!--- Loop through all of the actions of a system. --->
 <cfloop query="addDaysNo">
     <cfset add_action = "Y" />
