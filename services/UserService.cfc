@@ -1,5 +1,38 @@
 <cfcomponent displayname="UserService" hint="Handles operations for User table" >
 
+<cffunction name="dateformatpref" access="public" returntype="void" output="false" hint="Updates the date format preference for a user and refreshes the session.">
+    <cfargument name="userid" type="numeric" required="true" hint="The user ID whose preferences are being updated.">
+    <cfargument name="dateformatid" type="numeric" required="true" hint="The new date format ID.">
+
+    <!--- Update the date format in the database --->
+    <cfquery name="updateDateFormat">
+        UPDATE taouser
+        SET dateformatid = <cfqueryparam value="#arguments.dateformatid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+    </cfquery>
+
+    <!--- Fetch the updated date format preference --->
+    <cfquery name="getUpdatedPreferences">
+        SELECT 
+            u.dateformatid, 
+            d.formatExample
+        FROM 
+            taouser u
+        LEFT JOIN 
+            dateformats d ON u.dateformatid = d.id
+        WHERE 
+            u.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+    </cfquery>
+
+    <!--- Refresh session.user with updated preferences --->
+    <cfif getUpdatedPreferences.recordcount>
+        <cfset session.user.dateformatid = getUpdatedPreferences.dateformatid>
+        <cfset session.user.dateformatExample = getUpdatedPreferences.formatExample>
+    </cfif>
+</cffunction>
+
+
+
 <cffunction name="getUserByHash" access="public" returntype="query" output="false">
         <!--- Arguments --->
         <cfargument name="uid" type="string" required="true">
