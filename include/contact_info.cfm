@@ -287,9 +287,9 @@ x</button>
                     <div class="modal-body">
                         <h5>Description</h5>
                         <p>#sysactive.systemdescript#</p>
-                        <p><strong>Start Date:</strong> #currentStartDate(sysactive.sustartdate)#</p>
+                        <p><strong>Start Date:</strong> #this.formatDate(sysactive.sustartdate)#</p>
                         <cfif #sysactive.suenddate# is not "">
-                            <p><strong>Completed:</strong> #currentStartDate(sysactive.suenddate)#</p>
+                            <p><strong>Completed:</strong> #this.formatDate(sysactive.suenddate)#</p>
                         </cfif>
                     </div>
                 </div>
