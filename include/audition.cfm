@@ -625,7 +625,7 @@ Appointments
 
                     <div class="modal-header" style="background-color: ##f3f7f9;">
 
-                        <h4 class="modal-title" id="standard-modalLabel"><strong>#events.audstep#: </strong>#dateformat(events.eventStart,'long')#: Personal Assessment</h4>
+                        <h4 class="modal-title" id="standard-modalLabel"><strong>#events.audstep#: </strong>#this.formatDate(events.eventStart)#: Personal Assessment</h4>
 
                         <button type="button" class="close" data-bs-dismiss="modal" >
 <i class="mdi mdi-close-thick"></i>
@@ -696,7 +696,7 @@ Appointments
 </td>
 
 <td class="dt-nowrap">
-                                            <a title="View Details" href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##auditionDetails_#events.eventid#"> #DateFormat('#events.eventStart#','mm-dd-yy')#</a>
+                                            <a title="View Details" href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##auditionDetails_#events.eventid#"> #DateFothis.formatDatermat('#events.eventStart#')#</a>
                                         </td>
                                                <td class="dt-nowrap">
                                                    <a title="View Details" href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##auditionDetails_#events.eventid#">  #timeformat(events.eventStartTime,'short')#</a>

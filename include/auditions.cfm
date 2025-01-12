@@ -286,7 +286,7 @@
                                                 </cfif>
 
                                                 <cfif #results.col1#is not "">
-                                                    <a href="/app/audition/?audprojectid=#results.recid#" title="#DateFormat('#results.col1#','long')#">
+                                                    <a href="/app/audition/?audprojectid=#results.recid#" title="#this.formatDate('#results.col1#')#">
                                                         <img src="#application.datesUrl#/#DateFormat('#results.col1#','mm-dd')#.png" style="max-width:75px;" alt="..." />
                                                     </a>
                                                 <cfelse>

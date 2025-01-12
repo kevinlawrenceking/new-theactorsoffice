@@ -54,7 +54,7 @@
                     <cfoutput>
                         <cfif #eventdetails.eventstart# is not "">
                             <a href="/app/appoint-update/?eventid=#session.new_eventid#&returnurl=appoint" style="color:white;">
-                                <i class="fe-calendar"></i> #dateformat(eventdetails.eventStart,'long')#
+                                <i class="fe-calendar"></i> #this.formatDate(eventdetails.eventStart)#
                             </a>
                         </cfif>
                     </cfoutput>

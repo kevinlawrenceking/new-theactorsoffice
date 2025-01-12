@@ -15,7 +15,7 @@
                         <div class="card ribbon-box">
 
                             <div class="card-header d-flex">
-                                <center>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#DateFormat("#results.col1#","mm-dd-yy")#</center>
+                                <center>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#this.formatDate("#results.col1#")#</center>
                                 <span class="ms-auto text-muted">#results.col4#</span>
                             </div>
 

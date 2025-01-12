@@ -241,7 +241,7 @@ required</cfif> placeholder="#RPGUpdate.updatename#">
 
                                 <cfelseif #RPGUpdate.updatetype# is "calendar">
                                     <cfoutput>
-                                        <cfset datevalue="#dateformat('#findvalue.fvalue#','YYYY-MM-DD')#" />
+                                        <cfset datevalue="#currentStartDate(findvalue.fvalue)#" />
                                         <div class="form-group col-md-6">
                                             <label for="#RPGUpdate.fname#">#RPGUpdate.updatename#</label>
                                             <input class="form-control" id="#RPGUpdate.fname#" name="new_#RPGUpdate.fname#" value="#datevalue#" type="date" />

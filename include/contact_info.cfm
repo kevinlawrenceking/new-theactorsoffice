@@ -287,9 +287,9 @@ x</button>
                     <div class="modal-body">
                         <h5>Description</h5>
                         <p>#sysactive.systemdescript#</p>
-                        <p><strong>Start Date:</strong> #dateformat(sysactive.sustartdate)#</p>
+                        <p><strong>Start Date:</strong> #currentStartDate(sysactive.sustartdate)#</p>
                         <cfif #sysactive.suenddate# is not "">
-                            <p><strong>Completed:</strong> #dateformat(sysactive.suenddate)#</p>
+                            <p><strong>Completed:</strong> #currentStartDate(sysactive.suenddate)#</p>
                         </cfif>
                     </div>
                 </div>
@@ -759,7 +759,7 @@ x</button>
                     </cfoutput>
                 </p>
 
-<cfset meetingdate="#dateformat('#details.contactmeetingdate#','short')#" />
+<cfset meetingdate="#currentStartDate(details.contactmeetingdate)#" />
 
                     <p class="mt-1 mb-0 text-muted py-1 font-14">
                         <cfoutput>

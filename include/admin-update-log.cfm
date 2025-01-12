@@ -39,7 +39,7 @@
                         <!--- Output the data rows for the table --->
                         <cfoutput query="results">
                             <tr>
-                                <td>#Dateformat("#results.col1#","long")#</td>
+                                <td>#this.formatDate("#results.col1#")#</td>
                                 <td>#TimeFormat("#results.col2#","medium")#</td>
                                 <td>#results.col3#</td>
                                 <td>#results.col4#</td>

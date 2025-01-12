@@ -71,7 +71,7 @@
                     </p>
 
                     <cfif #details.contactmeetingdate# is not "">
-                        <cfset meetingdate="#dateformat('#details.contactmeetingdate#','medium')#" />
+                        <cfset meetingdate="#currentStartDate(etails.contactmeetingdate)#" />
                         <p class="mt-1 mb-0 text-muted font-14">
                             <cfoutput>
                                 <strong>Initial Meeting:</strong>

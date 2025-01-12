@@ -16,8 +16,8 @@
                 </cfif>
             </cfif>
             title: "#replace(events.col1, "'", "\'", 'ALL')#",
-            start: "#dateformat(events.col3, 'YYYY-mm-dd')# #timeformat(events.eventStartTime, 'HH:mm')#",
-            end: "#dateformat(events.eventstop, 'YYYY-mm-dd')# #timeformat(events.eventstopTime, 'HH:mm')#",
+            start: "#this.formatDate(events.col3)# #timeformat(events.eventStartTime, 'HH:mm')#",
+            end: "#this.formatDate(events.eventstop)# #timeformat(events.eventstopTime, 'HH:mm')#",
             url: "<cfif events.audprojectid eq "">/app/appoint/?eventid=#events.eventid#&returnurl=calendar-appoint&rcontactid=0<cfelse>/app/audition/?focusid=#events.eventid#&audprojectid=#events.audprojectid#</cfif>",
             description: "#replace(events.col5, "'", "\'", 'ALL')#",
             className: "colorkey-#events.id#"

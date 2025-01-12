@@ -65,7 +65,7 @@
                             <div class="media-body">
                                 <cfoutput>
                                     <cfif #eventdetails.eventstart# is not "">
-                                        <i class="fe-calendar"></i> #dateformat(eventdetails.eventStart,'long')#<br>
+                                        <i class="fe-calendar"></i> #this.formatDate(eventdetails.eventStart)#<br>
                                     </cfif>
                                     <cfif #eventdetails.eventStartTime# is not "">
                                         <i class="fe-clock"></i> #timeformat(eventdetails.eventStartTime,'short')# 

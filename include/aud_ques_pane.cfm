@@ -19,7 +19,7 @@
                 <div class="modal-content">
                     <div class="modal-header" style="background-color: ##f3f7f9;">
                         <h4 class="modal-title" id="standard-modalLabel">
-                            <strong>#events.audstep#: </strong>#dateformat(events.eventStart,'long')#: Personal Assessment
+                            <strong>#events.audstep#: </strong>#this.formatDate(events.eventStart)#: Personal Assessment
                         </h4>
                         <button type="button" class="close" data-bs-dismiss="modal" >
 
@@ -42,7 +42,7 @@
                 <h5 class="m-0">
                     <a class="text-dark" data-bs-toggle="collapse" href="##collapse_#events.eventid#" aria-expanded="true">
                         <i class="mdi mdi-filmstrip mr-1 text-primary"></i>
-                        <strong>#events.audstep#: </strong>#dateformat(events.eventStart,'long')#
+                        <strong>#events.audstep#: </strong>#this.formatDate(events.eventStart)#
                     </a>
                 </h5>
             </div>

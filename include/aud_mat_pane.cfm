@@ -240,7 +240,7 @@
                                 <a href="#audmedia.mediaurl#" target="new" style="text-decoration: underline; color: blue;">#audmedia.mediaurl#</a>
                             </cfif>
                         </td>
-                        <td class="text-nowrap">#dateformat('#audmedia.mediacreated#','m-d-YYYY')#<br />#timeformat('#audmedia.mediacreated#','medium')#</td>
+                        <td class="text-nowrap">#this.formatDate('#audmedia.mediacreated#')#<br />#timeformat('#audmedia.mediacreated#','medium')#</td>
                     </tr>
 
                     <script type="text/javascript">

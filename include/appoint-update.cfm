@@ -95,7 +95,7 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="eventStart">Start Date</label>
-                                <input class="form-control" id="eventStart" autocomplete="off" value="#dateformat(eventdetails.eventstart,'YYYY-MM-dd')#" name="eventStart" type="date" />
+                                <input class="form-control" id="eventStart" autocomplete="off" value="#this.formatDate(eventdetails.eventstart)#" name="eventStart" type="date" />
                                 <div class="invalid-feedback">
                                     Please choose a Start Date.
                                 </div>
@@ -168,7 +168,7 @@ checked</cfif> onchange="showDiv('hidden_div', this)"> Sunday
 
                             <div class="form-group col-md-6" id="hidden_div">
                                 <label for="eventStart">Recurring Until:</label>
-                                <input class="form-control" id="endRecur" name="endRecur" value="#dateformat(endRecurDisplay,'YYYY-MM-dd')#" type="date" />
+                                <input class="form-control" id="endRecur" name="endRecur" value="#this.formatDate(endRecurDisplay)#" type="date" />
                             </div>
                         </cfoutput>
                     </div>

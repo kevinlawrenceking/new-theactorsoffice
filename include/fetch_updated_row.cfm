@@ -14,7 +14,7 @@
         <!--- Display audition project date with a link --->
         <a href="/app/audition/?audprojectid=#results.audprojectid#" class="text-body font-weight-semibold">
             <cfset myDateTime = results.col1b>
-            <cfset myFormattedDateTime = DateFormat(myDateTime, "mm/dd/yyyy")>
+            <cfset myFormattedDateTime = myFormattedDateTime(myDateTime)>
             #myFormattedDateTime#
         </a>
     </td>

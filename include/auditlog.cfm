@@ -32,7 +32,7 @@
                             <cfoutput>
                                 <tr>
                                     <td>#results.col1#</td>
-                                    <td>#Dateformat("#results.col2#", "long")#</td>
+                                    <td>#this.formatDate(results.col2)#</td>
                                     <td>#TimeFormat("#results.col3#", "medium")#</td>
                                     <td>#results.col4#</td>
                                     <td>#results.col6#</td>

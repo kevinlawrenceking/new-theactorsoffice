@@ -186,7 +186,7 @@
                                 <div class="media">
                                     <div class="media-body">
                                         <div class="mt-0 font-size-12">
-                                            <cfif ticketDetails.releasedate neq "">#dateFormat(ticketDetails.releasedate,'mm-dd-yyyy')#</cfif>
+                                            <cfif ticketDetails.releasedate neq "">#this.formatDate(ticketDetails.releasedate)#</cfif>
                                         </div>
                                     </div>
                                 </div>
@@ -196,7 +196,7 @@
                                 <div class="media">
                                     <div class="media-body">
                                         <div class="mt-0 font-size-12">
-                                            <cfif ticketDetails.ticketCompletedDate neq "">#dateFormat(ticketDetails.ticketCompletedDate,'mm-dd-yyyy')#</cfif>
+                                            <cfif ticketDetails.ticketCompletedDate neq "">#this.formatDate(ticketDetails.ticketCompletedDate)#</cfif>
                                         </div>
                                     </div>
                                 </div>

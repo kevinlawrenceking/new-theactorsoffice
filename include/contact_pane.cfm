@@ -85,7 +85,7 @@
                                 <!-- Date Category -->
                                 <cfif ActiveCategories.catfieldset is "date">
                                     <h5 class="mb-2">
-                                        #dateformat(itemdate, 'mm-dd-yyyy')#
+                                        #currentStartDate(itemdate)#
                                         <a href="javascript:;" class="ms-2" data-bs-toggle="modal" data-bs-target="##remoteUpdateC#itemid#" title="Update">
                                             <i class="mdi mdi-square-edit-outline"></i>
                                         </a>

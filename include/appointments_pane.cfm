@@ -80,7 +80,7 @@
 
                 <td>#eventresults.eventresults.col1#</td>
                 <td>#eventresults.eventresults.col2#</td>
-                <td>#dateformat(eventresults.eventresults.col3, 'm-d-YYYY')#</td>
+                <td>#this.formatDate(eventresults.eventresults.col3)#</td>
                 <td>#timeFormat(eventresults.eventresults.eventStartTime, 'medium')#</td>
 
                 <td>
@@ -147,7 +147,7 @@
                                    href="#heading_system#" 
                                    aria-expanded="#header_aria_expanded#">
                            
-                               <strong>#dateformat(eventresults.eventresults.col3, 'short')#</strong> - 
+                               <strong>#this.formatDate(eventresults.eventresults.col3)#</strong> - 
 #timeformat(eventresults.eventresults.eventStartTime, 'short')# 
                                         <i class="fe-menu"></i>
                             
