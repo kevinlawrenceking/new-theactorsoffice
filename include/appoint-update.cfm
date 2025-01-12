@@ -168,7 +168,7 @@ checked</cfif> onchange="showDiv('hidden_div', this)"> Sunday
 
                             <div class="form-group col-md-6" id="hidden_div">
                                 <label for="eventStart">Recurring Until:</label>
-                                <input class="form-control" id="endRecur" name="endRecur" value="#this.formatDate(endRecurDisplay)#" type="date" />
+                                <input class="form-control" id="endRecur" name="endRecur" value="#dateformat(endRecurDisplay,'YYYY-mm-dd')#" type="date" />
                             </div>
                         </cfoutput>
                     </div>
