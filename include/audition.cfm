@@ -696,7 +696,7 @@ Appointments
 </td>
 
 <td class="dt-nowrap">
-                                            <a title="View Details" href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##auditionDetails_#events.eventid#"> #DateFothis.formatDatermat('#events.eventStart#')#</a>
+                                            <a title="View Details" href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##auditionDetails_#events.eventid#"> #this.formatDate(events.eventStart)#</a>
                                         </td>
                                                <td class="dt-nowrap">
                                                    <a title="View Details" href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##auditionDetails_#events.eventid#">  #timeformat(events.eventStartTime,'short')#</a>
