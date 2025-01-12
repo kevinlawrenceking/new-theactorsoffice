@@ -234,7 +234,7 @@
         <cfoutput>
             <div class="form-group col-md-6">
                 <label for="new_eventStart">Start Date / Due Date<span class="text-danger">*</span></label>
-                <input id="new_eventStart" class="form-control" autocomplete="off" name="new_eventStart" type="date" data-parsley-required data-parsley-error-message="Start Date is required" value="#aud_det.eventStart#" />
+                <input id="new_eventStart" class="form-control" autocomplete="off" name="new_eventStart" type="date" data-parsley-required data-parsley-error-message="Start Date is required" value="#this.formatDate(aud_det.eventStart)#" />
             </div>
         </cfoutput>
 
