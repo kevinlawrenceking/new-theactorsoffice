@@ -230,7 +230,7 @@
 
               <cfoutput query="dateformats">
 
-                <option value="#dateformats.id#" <cfif #details.dateformatid# is "#dateformats.id#"> Selected </cfif>>#dateformats.formatexample# [#dateformat(now(),'#dateformats.formatexample#')#] - #dateformats.formatnotes#</option>
+                <option value="#dateformats.id#" <cfif #details.dateformatid# is "#dateformats.id#"> Selected </cfif>>#dateformats.formatexample# - (Example: #dateformat(now(),'#dateformats.formatexample#')#) - </option>
 
               
 
