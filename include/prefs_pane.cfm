@@ -52,7 +52,7 @@
     </div>
     <div class="col-md-10 p-2">
         <cfoutput>
-            <a href="" title="Date format" data-bs-toggle="modal" data-bs-target="##updatecal">#formatExample#</a>
+<a href="" title="Date format" data-bs-toggle="modal" data-bs-target="##updatecal">#session.dateformatExample#</a>
         </cfoutput>
     </div>
 </div>
