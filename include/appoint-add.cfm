@@ -84,26 +84,46 @@
             </select>
           </div>
 
-          <div class="form-group col-md-6">
-            <label for="eventStartTime">Start Time<span class="text-danger">*</span>
-            </label>
-            <select class="form-control" name="eventStartTime" autocomplete="off" id="eventStartTime" data-parsley-required="data-parsley-required" data-parsley-error-message="Start Time is required">
-              <option value="">Select a Start Time</option>
-              <cfset new_calstarttime=timeformat(calstarttime, "HH:mm:ss")/>
-              <cfset startTime=createDateTime(year(now()), month(now()), day(now()), 5, 0, 0)/>
-              <cfset endTime=createDateTime(year(now()), month(now()), day(now()), 23, 45, 0)/>
-              <cfloop condition="startTime LTE endTime">
-                <cfset timeString=timeFormat(startTime, "HH:mm:ss")/>
-                <cfset displayTime=timeFormat(startTime, "h:mm tt")/>
-                <cfoutput>
-                  <option value="#timeString#" <cfif timeString EQ new_calstarttime>selected</cfif>>
-                    #displayTime#
-                  </option>
-                </cfoutput>
-                <cfset startTime=dateAdd("n", 15, startTime)/>
-              </cfloop>
-            </select>
-          </div>
+<div class="form-group col-md-6">
+  <label for="eventStartTime">Start Time<span class="text-danger">*</span>
+  </label>
+  <select class="form-control" 
+          name="eventStartTime" 
+          autocomplete="off" 
+          id="eventStartTime" 
+          data-parsley-required="data-parsley-required" 
+          data-parsley-error-message="Start Time is required">
+    <option value="">Select a Start Time</option>
+
+    <!-- Convert DB time columns (calstarttime, calendtime) into strings: "HH:mm:ss" -->
+    <cfset new_calstarttime = timeFormat(calstarttime, "HH:mm:ss") />
+    <cfset new_calendtime   = timeFormat(calendtime,   "HH:mm:ss") />
+
+    <!-- Build "today's date" + user time to form a real date/time object -->
+    <cfset startTime = createODBCDateTime(
+        dateFormat(now(), "yyyy-mm-dd") & " " & new_calstarttime
+    ) />
+    <cfset endTime = createODBCDateTime(
+        dateFormat(now(), "yyyy-mm-dd") & " " & new_calendtime
+    ) />
+
+    <!-- Loop from user’s startTime to user’s endTime in 15-min increments -->
+    <cfloop condition="startTime LTE endTime">
+      <cfset timeString  = timeFormat(startTime, "HH:mm:ss") />
+      <cfset displayTime = timeFormat(startTime, "h:mm tt") />
+      <cfoutput>
+        <option value="#timeString#" 
+          <cfif timeString EQ new_calstarttime>selected</cfif>>
+          #displayTime#
+        </option>
+      </cfoutput>
+
+      <!-- Add 15 minutes -->
+      <cfset startTime = dateAdd("n", 15, startTime) />
+    </cfloop>
+  </select>
+</div>
+
 
           <div class="form-group col-md-6">
             <label for="new_durid">Duration</label>
