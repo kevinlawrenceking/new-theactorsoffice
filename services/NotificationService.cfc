@@ -516,7 +516,7 @@
               AND au.userID = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer">
               AND n.notStartDate IS NOT NULL
          
-            ORDER BY FIELD(n.notStatus, 'Pending', 'Completed', 'Skipped'), n.notEndDate
+            ORDER BY  n.notEndDate
         </cfquery>
 
 <cfreturn notsActive>
