@@ -75,12 +75,12 @@
 <cfloop query="notsActive">
     <cfoutput>
         <div class="col-md-12 reminder #LCase(notsactive.notstatus)#" style="padding-bottom:10px; margin-left:30px;">
-            <cfif notsActive.notstatus is "Pending">
+            <cfif notsActive.notstatus is "Pending" or notsActive.notstatus is "Upcoming">
                 <a href="/include/complete_not.cfm?notid=#notsactive.notid#&notstatus=Completed&hide_completed=#hide_completed#">
             </cfif>
             <i class="mdi mdi-checkbox-#notsactive.checktype#-outline font-24 mr-1" 
                style="vertical-align: middle;color:###notsactive.status_color#"></i>
-            <cfif notsActive.notstatus is "Pending">
+            <cfif notsActive.notstatus is "Pending" or notsActive.notstatus is "Upcoming">
                 </a>
             </cfif>
             
@@ -100,7 +100,7 @@
                 <i class="fe-info font-14 mr-1"></i>
             </a>
 
-            <cfif notsActive.notstatus is "Pending">
+            <cfif notsActive.notstatus is "Pending" or notsActive.notstatus is "Upcoming">
                 <a href="/include/complete_not.cfm?notid=#notsactive.notid#&notstatus=Skipped&hide_completed=#hide_completed#" title="Skip reminder">
                     <span class="badge badge-blue" style="margin-left:10px">x Skip</span>
                 </a>
