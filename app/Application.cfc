@@ -69,18 +69,24 @@
     application.retinaIcons32Url = application.retinaIconsUrl & "/32";
   </cfscript>
 
-  <cffunction name="formatDate" access="public" returntype="string" output="false" hint="Formats dates according to the user's preferences">
-    <cfargument name="dateValue" required="true" type="date" hint="The date to be formatted">
-    
-    <!--- Use session date format or default to mm/dd/yyyy --->
-    <cfset var dateFormatToUse = "mm/dd/yyyy">
-    <cfif structKeyExists(session, "dateformatExample")>
-        <cfset dateFormatToUse = session.dateformatExample>
-    </cfif>
+<cffunction name="formatDate" access="public" returntype="string" output="false" hint="Formats dates according to the user's preferences">
+  <cfargument name="dateValue" required="false" hint="The date to be formatted or could be NULL" />
 
-    <!--- Format the date --->
-    <cfreturn dateFormat(arguments.dateValue, dateFormatToUse)>
+  <!--- Use session date format or default to mm/dd/yyyy --->
+  <cfset var dateFormatToUse = "mm/dd/yyyy">
+  <cfif structKeyExists(session, "dateformatExample")>
+    <cfset dateFormatToUse = session.dateformatExample>
+  </cfif>
+
+  <!--- Check if argument is missing, null, or not a valid date --->
+  <cfif NOT structKeyExists(arguments,"dateValue") OR isNull(arguments.dateValue) OR NOT isDate(arguments.dateValue)>
+    <cfreturn "" /> <!--- or return "N/A" or whatever you want --->
+  </cfif>
+
+  <!--- It's a valid date; format it --->
+  <cfreturn dateFormat(arguments.dateValue, dateFormatToUse)>
 </cffunction>
+
 
   <cffunction name="onApplicationStart" returntype="boolean" output="false">
     <cfreturn true/>
