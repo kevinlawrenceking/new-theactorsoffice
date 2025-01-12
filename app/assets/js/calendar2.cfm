@@ -7,7 +7,7 @@
         {
             <cfif events.dow neq "">
                 groupId: "recurring#events.eventid#",
-                startRecur: "#this.formatDate(results.col3)#",
+                startRecur: "#this.formatDate(events.col3)#",
                 daysOfWeek: [ "#replace(trim(events.dow), ',', "','")#" ],
                 startTime: "#timeformat(events.eventStartTime, 'HH:mm')#",
                 endTime: "#timeformat(events.eventstopTime, 'HH:mm')#",
