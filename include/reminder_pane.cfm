@@ -50,7 +50,7 @@
 
         <cfinclude template="/include/qry/notsactive_510_1.cfm" />
         <cfoutput>
-            <div class="row reminder #shostatus#">
+            <div class="row reminder #showstatus#">
                 <div class="col-md-12">
                     <h4>#sysActive.systemName#
                     <a href="" title="click for details" data-bs-toggle="modal" data-bs-target="##action#sysactive.suid#-modal">
