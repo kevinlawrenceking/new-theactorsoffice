@@ -75,7 +75,7 @@
         </a>
     </div>
 </div>
-
+<div class="row" style="margin: auto;">
     <div class="col-md-2 p-2">
         <strong>Newsletter Link</strong>
     </div>
@@ -101,7 +101,7 @@
             </cfif>
         </cfif>
     </div>
-
+</div>
 
 
 
