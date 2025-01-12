@@ -238,24 +238,53 @@
             </div>
         </cfoutput>
 
-        <div class="form-group col-md-6">
-            <label for="new_eventStartTime">Start Time / Due Time<span class="text-danger">*</span></label>
-            <select class="form-control" name="new_eventStartTime" autocomplete="off" id="new_eventStartTime" data-parsley-required data-parsley-error-message="Start Time is required">
-                <option value="">Select a Start/Due Time</option>
-                <cfset selectedTime = timeformat(aud_det.eventStartTime, 'HH:mm')>
-                <cfloop from="0" to="23" index="hour">
-                    <cfloop from="0" to="45" step="15" index="minute">
-                        <cfset hourStr = right("0" & hour, 2)>
-                        <cfset minuteStr = right("0" & minute, 2)>
-                        <cfset timeValue = hourStr & ":" & minuteStr>
-                        <cfset displayTime = timeformat(createDateTime(2000, 1, 1, hour, minute, 0), "hh:mm tt")>
-                        <cfoutput>
-                            <option value="#timeValue#" <cfif timeValue eq selectedTime>selected</cfif>>#displayTime#</option>
-                        </cfoutput>
-                    </cfloop>
-                </cfloop>
-            </select>
-        </div>
+<div class="form-group col-md-6">
+    <label for="new_eventStartTime">Start Time / Due Time<span class="text-danger">*</span></label>
+    <select class="form-control"
+            name="new_eventStartTime"
+            autocomplete="off"
+            id="new_eventStartTime"
+            data-parsley-required
+            data-parsley-error-message="Start Time is required">
+
+        <!--- Prompt --->
+        <option value="">Select a Start/Due Time</option>
+
+
+
+        <!--- Convert MySQL TIME columns to strings (e.g. "05:00:00") --->
+        <cfset new_calstarttime = timeFormat(calstarttime, "HH:mm:ss") />
+        <cfset new_calendtime   = timeFormat(calendtime,   "HH:mm:ss") />
+
+        <!--- Build date/time objects for "today’s date + calstarttime/calendtime" --->
+        <cfset startTime = createODBCDateTime(
+          dateFormat(now(), "yyyy-mm-dd") & " " & new_calstarttime
+        ) />
+        <cfset endTime = createODBCDateTime(
+          dateFormat(now(), "yyyy-mm-dd") & " " & new_calendtime
+        ) />
+
+        <!--- Convert existing eventStartTime to "HH:mm:ss" for comparison --->
+        <cfset selectedEventTime = timeFormat(aud_det.eventStartTime, "HH:mm:ss") />
+
+        <!--- Loop from 'startTime' to 'endTime' in 15-min increments --->
+        <cfloop condition="startTime LTE endTime">
+          <cfset timeString  = timeFormat(startTime, "HH:mm:ss") />
+          <cfset displayTime = timeFormat(startTime, "h:mm tt") />
+          <cfoutput>
+            <option value="#timeString#"
+              <cfif timeString EQ selectedEventTime>selected</cfif>>
+              #displayTime#
+            </option>
+          </cfoutput>
+
+          <!--- Move forward by 15 minutes --->
+          <cfset startTime = dateAdd("n", 15, startTime) />
+        </cfloop>
+
+    </select>
+</div>
+
 
         <div class="form-group col-md-6">
             <label for="new_eventStopTime">Duration</label>
