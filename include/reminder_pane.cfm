@@ -41,7 +41,7 @@
     <!--- Loop through active systems --->
      
     <cfloop query="sysActive">
-     
+        <cfinclude template="/include/qry/notsactive_510_1.cfm" />
         <cfoutput>
             <div class="row">
                 <div class="col-md-12">
