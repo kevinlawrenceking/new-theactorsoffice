@@ -418,7 +418,7 @@
                                                         </td>
 
                                                         <td style="word-break: break-all;">
-                                                            <span>#this.formatDate(results.col1#)#</span>
+                                                            <span>#this.formatDate(results.col1)#</span>
                                                             #this.formatDate(results.col1)#
                                                         </td>
 
