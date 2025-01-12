@@ -759,7 +759,7 @@ x</button>
                     </cfoutput>
                 </p>
 
-<cfset meetingdate="#currentStartDate(details.contactmeetingdate)#" />
+<cfset meetingdate=#this.formatDate(details.contactmeetingdate)# />
 
                     <p class="mt-1 mb-0 text-muted py-1 font-14">
                         <cfoutput>
