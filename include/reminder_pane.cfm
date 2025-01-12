@@ -122,7 +122,7 @@
                             </cfif>
                             <span style="color:purple;">#notsinactive.delstart# #notsinactive.actiondetails# #notsinactive.delend#</span>
                             <cfif #notsinactive.notstartDate#is not "">
-                                <span style="color:purple;">(FUTURE DATE: #this.formatDate(notsinactive.notstartDate#')#)</span>  
+                                <span style="color:purple;">(FUTURE DATE: #this.formatDate(notsinactive.notstartDate)#)</span>  
                             <cfelse>
                                 <span style="color:purple;">(FUTURE DATE: TBD)</span>  
                             </cfif>
