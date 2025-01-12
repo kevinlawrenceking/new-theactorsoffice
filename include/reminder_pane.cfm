@@ -15,16 +15,24 @@
 <cfoutput>
     <div class="d-flex justify-content-between">
         <div class="float-left">
-            <form>
-                <cfoutput>
-                    <input type="hidden" name="contactid" value="#currentid#" />
-                    <input type="hidden" name="t4" value="1" />
-                </cfoutput>
-                <div class="checkbox checkbox-success form-check-inline">
-                    <input type="checkbox" id="hide_completed" value="Y" name="hide_completed" onChange="this.form.submit()" #hide_completed_check# />
-                    <label for="hide_completed"> Hide Completed &amp; Skipped </label>
-                </div>
-            </form>
+ <!-- Filter checkboxes -->
+<label>
+  <input type="checkbox" class="status-filter" value="completed" checked>
+  Completed
+</label>
+<label>
+  <input type="checkbox" class="status-filter" value="skipped" checked>
+  Skipped
+</label>
+<label>
+  <input type="checkbox" class="status-filter" value="upcoming" checked>
+  Upcoming
+</label>
+<label>
+  <input type="checkbox" class="status-filter" value="pending" checked>
+  Pending
+</label>
+
         </div>
     </div>
 </cfoutput>
