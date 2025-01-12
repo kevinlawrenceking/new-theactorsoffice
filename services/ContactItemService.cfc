@@ -1325,13 +1325,13 @@ WHERE itemid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.itemid
 <cffunction output="false" name="SELcontactitems_24657" access="public" returntype="query">
     <cfargument name="currentid" type="numeric" required="true">
 
-<cfquery name="result" >
+<cfquery name="result" maxrows="1">
             SELECT valueText AS email
             FROM contactitems
             WHERE valueCategory = <cfqueryparam value="Email" cfsqltype="CF_SQL_VARCHAR">
             AND contactID = <cfqueryparam value="#arguments.currentid#" cfsqltype="CF_SQL_INTEGER">
             AND itemstatus = <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR">
-            ORDER BY primary_yn DESC
+            ORDER BY primary_yn DESC limit 1
         </cfquery>
 
 <cfreturn result>
