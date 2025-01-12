@@ -112,5 +112,41 @@
 
     </cfloop>
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // Get all checkboxes
+  const checkboxes = document.querySelectorAll('.status-filter');
+
+  // Attach event listeners
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', filterReminders);
+  });
+
+  // Initial run
+  filterReminders();
+});
+
+function filterReminders() {
+  // 1. Figure out which statuses are checked
+  const checkboxes = document.querySelectorAll('.status-filter');
+  let activeStatuses = [];
+  checkboxes.forEach(cb => {
+    if (cb.checked) {
+      activeStatuses.push(cb.value);
+    }
+  });
+
+  // 2. Show/hide reminders based on their class
+  const allReminders = document.querySelectorAll('.reminder');
+  allReminders.forEach(reminder => {
+    // e.g. "reminder completed"
+    const classes = reminder.className.split(" ");
+    // check if the reminder’s status is in the activeStatuses array
+    let shouldShow = classes.some(c => activeStatuses.includes(c));
+    // Toggle display
+    reminder.style.display = shouldShow ? '' : 'none';
+  });
+}
+</script>
 
 <cfset script_name_include="/include/#ListLast(GetCurrentTemplatePath(), " \ ")#" />
