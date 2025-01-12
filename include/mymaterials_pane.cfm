@@ -178,7 +178,7 @@
                             </cfif>
                         </td>
                         <td class="text-nowrap">
-                            #dateformat(materials_sel.mediacreated, 'm-d-YYYY')#<br />#timeformat(materials_sel.mediacreated, 'medium')#
+                            #this.formatDate(materials_sel.mediacreated)#<br />#timeformat(materials_sel.mediacreated, 'medium')#
                         </td>
                         <td class="text-nowrap">
                             <cfif events.recordcount neq 0>

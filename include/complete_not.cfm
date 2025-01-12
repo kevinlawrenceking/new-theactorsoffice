@@ -196,7 +196,7 @@
     <cfset new_notstartdate=dateAdd('d', numberformat(notsnext.actiondaysno), currentStartDate)/>
     <Cfif #dbug# is "Y">
       <cfoutput>
-        <br/>New start date will be #dateformat('#new_notstartdate#')#</br>
+        <br/>New start date will be #this.formatDate(new_notstartdate)#</br>
     </cfoutput>
   </cfif>
 

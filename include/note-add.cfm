@@ -82,7 +82,7 @@
                             <select class="form-control" name="eventid" id="eventid">
                                 <option value="0" selected>No event</option>
                                 <cfoutput query="events">
-                                    <option value="#eventid#">#dateformat(eventStart)# - #eventTitle#</option>
+                                    <option value="#eventid#">#this.formatDate(eventStart)# - #eventTitle#</option>
                                 </cfoutput>
                             </select>
                         </div>

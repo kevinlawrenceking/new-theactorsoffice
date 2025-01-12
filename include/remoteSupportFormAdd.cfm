@@ -21,7 +21,7 @@
 <cfinclude template="/include/qry/details_257_3.cfm" />
 <cfset to_email = "#details.useremail#" />
 
-<cfset todoist_date = "#dateformat('#details.ticketcreateddate#','mm-dd-yyyy')#" />
+<cfset todoist_date = "#this.formatDate(details.ticketcreateddate)#" />
 <cfset date_tag = "" />
 <cfif #todoist_date# is not "">
     <cfset date_tag = "<date #todoist_date#" />
@@ -210,7 +210,7 @@
                 <p><strong>Status:</strong> #details.col5#</p>
                 <p><strong>User Details:</strong> #details.ticketdetails#</p>
 
-                <p>Received on #Dateformat("#details.ticketCreatedDate#","long")# at #TimeFormat("#details.ticketCreatedDate#","medium")#</p>
+                <p>Received on #this.formatDate(details.ticketCreatedDate)# at #TimeFormat("#details.ticketCreatedDate#","medium")#</p>
             </body>
         </HTML>
     </cfmail>

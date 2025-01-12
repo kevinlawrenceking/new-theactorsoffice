@@ -70,7 +70,7 @@
                                 <option value="0" <cfif events.eventid is "0"> selected</cfif>>No event</option>
                                 <cfoutput query="events">
                                     <option value="#eventid#" <cfif events.eventid is note.eventid> selected</cfif> >
-                                        #dateformat(events.eventStart)# - #events.eventTitle#
+                                        #this.formatDate(events.eventStart)# - #events.eventTitle#
                                     </option>
                                 </cfoutput>
                             </select>

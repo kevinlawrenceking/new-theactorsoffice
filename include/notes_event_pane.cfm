@@ -148,7 +148,7 @@
                                 </a>
                             </td>
 
-                            <td class="text-nowrap">#dateformat('#NotesEvent.col1#','m-d-YYYY')#<BR />#timeformat('#NotesEvent.col2#','medium')#</td>
+                            <td class="text-nowrap">#this.formatDate(NotesEvent.col1)#<BR />#timeformat('#NotesEvent.col2#','medium')#</td>
 
                             <td class="text-nowrap">
                                 <cfif #NotesEvent.col4# is "1">Public<cfelse>Private</cfif>
@@ -257,7 +257,7 @@
                             <h5 class="m-0 align-middle" style="width:100%;">
                                 <a class="text-dark collapsed" data-bs-toggle="collapse" href="#collapse_system_<cfoutput>#notesEvent.currentrow#</cfoutput>" aria-expanded="<cfoutput>#header_aria_exanded#</cfoutput>">
                                     <cfoutput>
-                                        <strong>#dateformat('#notesEvent.noteTimestamp#','short')#</strong> - #timeformat('#notesEvent.noteTimestamp#','short')# <i class="fe-menu"></i>
+                                        <strong>#this.formatDate(notesEvent.noteTimestamp)#</strong> - #timeformat('#notesEvent.noteTimestamp#','short')# <i class="fe-menu"></i>
                                     </cfoutput>
                                     <span class="badge badge-sm badge-blue badge-pill float-end" style="font-size:.7em;">
                                         <cfoutput>

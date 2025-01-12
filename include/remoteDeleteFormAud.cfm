@@ -3,7 +3,7 @@
 <cfinclude template="/include/qry/details_229_1.cfm" />
 
 <cfoutput>
-    <center>Are you sure you want to delete this #dateformat(details.eventStart)# audition?</center>
+    <center>Are you sure you want to delete this #this.formatDate(details.eventStart)# audition?</center>
 </cfoutput>
 <p></p>
 

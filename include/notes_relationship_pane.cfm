@@ -156,7 +156,7 @@
                                 </a>
                             </td>
 
-                            <td class="text-nowrap">#dateformat('#notesRelationship.col1#','m-d-YYYY')#<BR />#timeformat('#notesRelationship.col2#','medium')#</td>
+                            <td class="text-nowrap">#this.formatDate(notesRelationship.col1)#<BR />#timeformat('#notesRelationship.col2#','medium')#</td>
 
                             <td class="text-nowrap">
                                 <cfif #notesRelationship.col4# is "1">Public<cfelse>Private</cfif>
@@ -250,7 +250,7 @@
                         <div class="card-header" id="heading_system_<cfoutput>#notesRelationship.currentrow#</cfoutput>">
                             <h5 class="m-0 align-middle" style="width:100%;">
                                 <a class="text-dark collapsed" data-bs-toggle="collapse" href="#collapse_system_<cfoutput>#notesRelationship.currentrow#</cfoutput>" aria-expanded="<cfoutput>#header_aria_exanded#</cfoutput>">
-                                    <cfoutput> <strong>#dateformat('#notesRelationship.noteTimestamp#','short')#</strong> -  #timeformat('#notesRelationship.noteTimestamp#','short')# <i class="fe-menu"></i> </cfoutput>
+                                    <cfoutput> <strong>#this.formatDate(notesRelationship.noteTimestamp)#</strong> -  #timeformat('#notesRelationship.noteTimestamp#','short')# <i class="fe-menu"></i> </cfoutput>
                                     <span class="badge badge-sm badge-blue badge-pill float-end" style="font-size:.7em;">
                                         <cfoutput>  <cfif #notesRelationship.col4# is "1">Public<cfelse>Private</cfif></cfoutput>
                                     </span>

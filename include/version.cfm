@@ -164,7 +164,7 @@ x</button>
                                     <div class="media-body">
                                         <div class="mt-0 font-size-12">
                                             
-                                                #dateformat("#details.reviewDate#","MM-dd-YYYY")#
+                                                #this.formatDate(details.reviewDate)#
                                         </div>
                                     </div>
                                 </div>
@@ -186,7 +186,7 @@ x</button>
                                 <div class="media">
                                     <div class="media-body">
                                         <div class="mt-0 font-size-12">
-                                            #dateformat("#details.releasedate#","MM-dd-YYYY")#
+                                            #this.formatDate(details.releasedate)#
                                         </div>
                                     </div>
                                 </div>

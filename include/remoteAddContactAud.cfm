@@ -109,7 +109,7 @@
                             <cfoutput query="events">
                                 <div>
                                     <input type="checkbox" name="events_list" value="#events.eventid#" id="event#events.eventid#" />
-                                    <label for="event#events.eventid#">#dateFormat(events.eventStart, 'mm/dd/yy')#</label>
+                                    <label for="event#events.eventid#">#this.formatDate(events.eventStart,)#</label>
                                 </div>
                             </cfoutput>
                         </div>

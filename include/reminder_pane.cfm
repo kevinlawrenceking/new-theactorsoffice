@@ -79,9 +79,9 @@
             #notsactive.delstart# #notsActive.actiondetails# #notsactive.delend#
 
             <cfif notsactive.notEndDate neq "">
-                (#notsactive.notstatus# #dateformat(notsactive.notEndDate, 'm/d')#)
+                (#notsactive.notstatus# #this.formatDate(notsactive.notEndDate)#)
             <cfelse>
-                (Due Date #dateformat(notsactive.notstartdate, 'm/d')#)
+                (Due Date #this.formatDate(notsactive.notstartdate)#)
             </cfif>
 
             <cfif notsactive.ispastdue eq "1">
@@ -122,7 +122,7 @@
                             </cfif>
                             <span style="color:purple;">#notsinactive.delstart# #notsinactive.actiondetails# #notsinactive.delend#</span>
                             <cfif #notsinactive.notstartDate#is not "">
-                                <span style="color:purple;">(FUTURE DATE: #dateformat('#notsinactive.notstartDate#','m/d')#)</span>  
+                                <span style="color:purple;">(FUTURE DATE: #this.formatDate(notsinactive.notstartDate#')#)</span>  
                             <cfelse>
                                 <span style="color:purple;">(FUTURE DATE: TBD)</span>  
                             </cfif>

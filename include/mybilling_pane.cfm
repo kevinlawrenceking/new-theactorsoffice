@@ -13,13 +13,13 @@
         </div>
         
         <div class="col-md-12 col-lg-6 p-1">
-            <strong>Purchase Date: </strong>#dateformat(purchasedate)#
+            <strong>Purchase Date: </strong>#this.formatDate(purchasedate)#
         </div>
         
         <!--- Check if trial end date is available --->
-        <cfif #dateformat(trialenddate)# is not "">
+        <cfif #this.formatDate(trialenddate)# is not "">
             <div class="col-md-12 col-lg-6 p-1">
-                <strong>Trial End Date: </strong>#dateformat(trialenddate)#
+                <strong>Trial End Date: </strong>#this.formatDate(trialenddate)#
             </div>
         </cfif>
         

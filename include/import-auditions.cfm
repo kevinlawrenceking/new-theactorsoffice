@@ -151,7 +151,7 @@
                                 <cfoutput>
                                     <tr>
                                         <td><a title="View" href="/app/auditions/?byimport=#imports.uploadid#">#imports.uploadid#</a></td>
-                                        <td>#dateformat(imports.timestamp)#</td>
+                                        <td>#this.formatDate(imports.timestamp)#</td>
                                         <td>#timeformat(imports.timestamp)#</td>
                                     </tr>
                                 </cfoutput>

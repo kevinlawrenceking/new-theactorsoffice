@@ -418,8 +418,8 @@
                                                         </td>
 
                                                         <td style="word-break: break-all;">
-                                                            <span>#dateformat('#results.col1#','YYYYMMdd')#</span>
-                                                            #dateformat('#results.col1#','MM-dd-YYYY')#
+                                                            <span>#this.formatDate(results.col1#)#</span>
+                                                            #this.formatDate(results.col1)#
                                                         </td>
 
                                                         <td style="word-break: break-all;">#results.col2#</td>

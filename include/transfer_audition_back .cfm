@@ -83,7 +83,7 @@
 
 <!--- Loop through another query result ---> 
 <cfloop query="x">
-    <cfset new_projdate = dateformat(x.projdate,'MM/DD/YYYY') />
+    <cfset new_projdate = this.formatDate(x.projdate) />
 
     <!--- Validate project date ---> 
     <cfif IsDate(new_projdate)>

@@ -39,7 +39,7 @@
                                 <tr>
                                     <td><a title="View" href="/app/contacts/?byimport=#imports.uploadid#">#imports.total_adds#</a></td>
                                     <td>#imports.uploadid#</td>
-                                    <td>#dateformat(imports.timestamp)#</td>
+                                    <td>#this.formatDate(imports.timestamp)#</td>
                                     <td>#timeformat(imports.timestamp)#</td>
                                 </tr>
                             </cfoutput>

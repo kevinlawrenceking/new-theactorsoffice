@@ -56,7 +56,7 @@
         <div class="row">
             <div class="col-md-6">
                 <cfoutput>
-                    #devicetype# version. #dateformat('#now()#','YYYY')# 
+                    #devicetype# version. #this.formatDate('#now()#','YYYY')# 
                     <!--- Check if userid is "30" and if currentStartDate is defined, output the current date --->
                     <cfif #userid# is "30">
                         <cfif #isdefined('currentStartDate')#>
