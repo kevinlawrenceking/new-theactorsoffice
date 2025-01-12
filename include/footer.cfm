@@ -60,7 +60,7 @@
                     <!--- Check if userid is "30" and if currentStartDate is defined, output the current date --->
                     <cfif #userid# is "30">
                         <cfif #isdefined('currentStartDate')#>
-                            current date: #myFormattedDateTime('#currentstartdate#')#
+                            current date: #this.formatDate('#currentstartdate#')#
                         </cfif>
                     </cfif>
                 </cfoutput>&reg; The Actor's Office LLC - All rights reserved
