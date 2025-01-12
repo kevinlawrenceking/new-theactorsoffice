@@ -73,8 +73,13 @@
         <cfif #notsActive.recordcount# is not "0">
  
 <cfloop query="notsActive">
+<cfif #LCase(notsactive.notstatus)# is "active" >
+<cfset showstatus = "Active">
+<cfelse>
+<cfset showstatus = "#LCase(notsactive.notstatus)#">
+</cfif>
     <cfoutput>
-        <div class="col-md-12 reminder #LCase(notsactive.notstatus)#" style="padding-bottom:10px; margin-left:30px;">
+        <div class="col-md-12 reminder #showstatus#" style="padding-bottom:10px; margin-left:30px;">
             <cfif notsActive.notstatus is "Pending" or notsActive.notstatus is "Upcoming">
                 <a href="/include/complete_not.cfm?notid=#notsactive.notid#&notstatus=Completed&hide_completed=#hide_completed#">
             </cfif>
