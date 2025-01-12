@@ -474,7 +474,7 @@
                 n.notStartDate,
                 n.notEndDate,
                  CASE 
-    WHEN n.notStatus = 'Pending' AND n.notStartDate IS NULL THEN 'Upcoming'
+    WHEN n.notStatus = 'Pending' AND n.notStartDate LT Now() THEN 'Upcoming'
     ELSE n.notStatus
   END AS notStatus,
                 n.notNotes,
