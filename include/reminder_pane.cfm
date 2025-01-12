@@ -42,10 +42,10 @@
      
     <cfloop query="sysActive">
 
-    <cfif #LCase(notsactive.notstatus)# is "active" >
+    <cfif #LCase(sysActive.sustatus)# is "active" >
 <cfset showstatus = "Active">
 <cfelse>
-<cfset showstatus = "#LCase(notsactive.notstatus)#">
+<cfset showstatus = "#LCase(sysActive.sustatus)#">
 </cfif>
 
         <cfinclude template="/include/qry/notsactive_510_1.cfm" />
