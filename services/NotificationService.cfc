@@ -473,8 +473,8 @@
                 n.notTimeStamp,
                 n.notStartDate,
                 n.notEndDate,
-                 CASE 
-    WHEN n.notStatus = 'Pending' AND n.notStartDate LT Now() THEN 'Upcoming'
+                CASE
+    WHEN n.notStatus = 'Pending' AND n.notStartDate > NOW() THEN 'Upcoming'
     ELSE n.notStatus
   END AS notStatus,
                 n.notNotes,
