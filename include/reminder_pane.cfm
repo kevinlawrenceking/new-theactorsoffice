@@ -41,9 +41,16 @@
     <!--- Loop through active systems --->
      
     <cfloop query="sysActive">
+
+    <cfif #LCase(notsactive.notstatus)# is "active" >
+<cfset showstatus = "Active">
+<cfelse>
+<cfset showstatus = "#LCase(notsactive.notstatus)#">
+</cfif>
+
         <cfinclude template="/include/qry/notsactive_510_1.cfm" />
         <cfoutput>
-            <div class="row reminder #LCase(sysActive.sustatus)#">
+            <div class="row reminder #shostatus#">
                 <div class="col-md-12">
                     <h4>#sysActive.systemName#
                     <a href="" title="click for details" data-bs-toggle="modal" data-bs-target="##action#sysactive.suid#-modal">
@@ -73,13 +80,9 @@
         <cfif #notsActive.recordcount# is not "0">
  
 <cfloop query="notsActive">
-<cfif #LCase(notsactive.notstatus)# is "active" >
-<cfset showstatus = "Active">
-<cfelse>
-<cfset showstatus = "#LCase(notsactive.notstatus)#">
-</cfif>
+
     <cfoutput>
-        <div class="col-md-12 reminder #showstatus#" style="padding-bottom:10px; margin-left:30px;">
+        <div class="col-md-12 reminder #LCase(notsactive.notstatus)#" style="padding-bottom:10px; margin-left:30px;">
             <cfif notsActive.notstatus is "Pending" or notsActive.notstatus is "Upcoming">
                 <a href="/include/complete_not.cfm?notid=#notsactive.notid#&notstatus=Completed&hide_completed=#hide_completed#">
             </cfif>
