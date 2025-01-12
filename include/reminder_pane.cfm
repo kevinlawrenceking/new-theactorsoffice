@@ -43,7 +43,7 @@
     <cfloop query="sysActive">
         <cfinclude template="/include/qry/notsactive_510_1.cfm" />
         <cfoutput>
-            <div class="row">
+            <div class="row #LCase(sysActive.sustatus)#">
                 <div class="col-md-12">
                     <h4>#sysActive.systemName#
                     <a href="" title="click for details" data-bs-toggle="modal" data-bs-target="##action#sysactive.suid#-modal">
