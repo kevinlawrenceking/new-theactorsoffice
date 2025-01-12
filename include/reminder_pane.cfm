@@ -43,7 +43,7 @@
     <cfloop query="sysActive">
 
     <cfif #LCase(sysActive.sustatus)# is "active" >
-<cfset showstatus = "pending">
+<cfset showstatus = "pending skipped upcoming">
 <cfelse>
 <cfset showstatus = "#LCase(sysActive.sustatus)#">
 </cfif>
