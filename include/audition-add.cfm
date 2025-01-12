@@ -278,7 +278,7 @@
   </select>
 </div>
 
-                                </div>
+                           
 
                                 <div class="form-group col-md-6">
                                   <label for="new_eventStopTime">
@@ -290,6 +290,9 @@
                                     </cfoutput>
                                   </select>
                                 </div>
+     </div>
+
+
 
                                 <div id="hiddenSelfTape">
                                   <div class="form-group col-md-12">
