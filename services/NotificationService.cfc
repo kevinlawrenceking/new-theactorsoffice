@@ -514,8 +514,8 @@
             WHERE f.contactID = <cfqueryparam value="#arguments.currentid#" cfsqltype="cf_sql_integer">
               AND f.suID = <cfqueryparam value="#arguments.sysActiveSuid#" cfsqltype="cf_sql_integer">
               AND au.userID = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer">
-              AND n.notStartDate IS NOT NULL
-              AND DATE(n.notStartDate) <= <cfqueryparam value="#DateFormat(Now(), 'yyyy-mm-dd')#" cfsqltype="cf_sql_date">
+          
+      
             ORDER BY FIELD(n.notStatus, 'Pending', 'Completed', 'Skipped'), n.notEndDate
         </cfquery>
 
