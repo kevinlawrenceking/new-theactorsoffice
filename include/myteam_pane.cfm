@@ -50,57 +50,64 @@
 
       <cfoutput>
         <div class="col">
-          <div class="card border border-secondary h-100 text-center">
-            <div class="pt-3 pb-3">
-              <cfset contact_avatar_filename = "#session.userContactsPath#\#myteam.contactid#\avatar.jpg" />
-              <!-- Check if the contact has an avatar image -->
-              <cfif isimagefile(contact_avatar_filename)>
-                <img 
-                  src="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg?ver=#rand()#" 
-                  class="rounded-circle img-thumbnail avatar-xl" 
-                  alt="profile-image" 
-                />
-              <cfelse>
-                <img 
-                  src="#application.defaultAvatarUrl#" 
-                  class="rounded-circle img-thumbnail avatar-xl" 
-                  alt="profile-image" 
-                />
-              </cfif>
+         <div class="card h-100 shadow-sm text-center border-0">
+  <!-- Card Body -->
+  <div class="card-body d-flex flex-column justify-content-center">
+    <!-- Avatar -->
+    <cfset contact_avatar_filename = "#session.userContactsPath#\#myteam.contactid#\avatar.jpg" />
+    <cfif isimagefile(contact_avatar_filename)>
+      <img 
+        src="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg?ver=#rand()#" 
+        class="rounded-circle mb-3 img-thumbnail avatar-xl" 
+        alt="profile-image" 
+      />
+    <cfelse>
+      <img 
+        src="#application.defaultAvatarUrl#" 
+        class="rounded-circle mb-3 img-thumbnail avatar-xl" 
+        alt="profile-image" 
+      />
+    </cfif>
 
-              <h4 class="mt-2">
-                <a href="/app/contact/?contactid=#myteam.contactid#">
-                  #myteam.contactname#
-                </a>
-              </h4>
+    <!-- Contact Name -->
+    <h5 class="card-title mb-1">
+      <a href="/app/contact/?contactid=#myteam.contactid#">
+        #myteam.contactname#
+      </a>
+    </h5>
 
-              <!-- Tags -->
-              <h5>
-                <cfloop query="mytags">
-                  <cfoutput>#mytags.valuetext#</cfoutput>
-                </cfloop>
-              </h5>
+    <!-- Tags (as badges) -->
+    <p class="card-text">
+      <cfloop query="mytags">
+        <cfoutput>
+          <span class="badge bg-secondary me-1">#mytags.valuetext#</span>
+        </cfoutput>
+      </cfloop>
+    </p>
 
-              <!-- Phone/Email -->
-              <p class="small mt-1 mb-0">
-                <cfif new_phone neq ""> 
-                  <span>#new_phone#</span><br />
-                </cfif>
-                <cfif new_email neq "">
-                  <span>#new_email#</span>
-                </cfif>
-              </p>
+    <!-- Phone / Email -->
+    <cfif new_phone neq "" OR new_email neq "">
+      <p class="text-muted small mb-0">
+        <cfif new_phone neq "">
+          <i class="fe-phone me-1"></i> #new_phone#<br />
+        </cfif>
+        <cfif new_email neq "">
+          <i class="fe-mail me-1"></i> #new_email#
+        </cfif>
+      </p>
+    </cfif>
+  </div> <!-- end .card-body -->
 
-              <!-- Link to remove member from team -->
-              <a href="/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=#myteam.contactid#"
-                 title="Remove from team"
-                 style="padding-left:10px; color:dimgrey;">
-                <span>
-                  <i class="fe-trash-2 font-10 text-muted"></i>
-                </span>
-              </a>
-            </div> <!-- end pt-3/pb-3 -->
-          </div> <!-- end card -->
+  <!-- Card Footer: Remove Link -->
+  <div class="card-footer bg-transparent border-0">
+    <a href="/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=#myteam.contactid#"
+       class="btn btn-sm btn-outline-danger"
+       title="Remove from team">
+      <i class="fe-trash-2 me-1"></i> Remove
+    </a>
+  </div>
+</div>
+
         </div> <!-- end col -->
       </cfoutput>
     </cfloop>
