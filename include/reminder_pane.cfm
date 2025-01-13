@@ -92,7 +92,7 @@
                 </a>
             </cfif>
             
-            #notsactive.notid# #notsactive.delstart# #notsActive.actiondetails# #notsactive.delend#
+            #notsactive.delstart# #notsActive.actiondetails# #notsactive.delend#
 
             <cfif notsactive.notEndDate neq "">
                 (#notsactive.notstatus# #this.formatDate(notsactive.notEndDate)#)
