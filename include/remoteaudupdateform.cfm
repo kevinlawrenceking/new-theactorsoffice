@@ -14,6 +14,7 @@
 <cfset audroleid = projectDetails.audroleid />
 <cfinclude template="/include/qry/roleDetails_221_2.cfm" />
 <cfinclude template="/include/qry/locationDetails_492_1.cfm" />
+    <cfset NEW_AUDSUBCATID = projectDetails.audsubcatid />
 <cfinclude template="/include/qry/cat_221_3.cfm" />
 <cfinclude template="/include/qry/cat_221_4.cfm" />
 <cfinclude template="/include/qry/audroletypes_sel_27_2.cfm" />
