@@ -14,7 +14,7 @@
         <div class="col-md-2 p-2">Select an exising relationship:</div>
         <div class="col-md-4 p-2">
             <div class="input-group">
-                <input type="text" class="form-control"  placeholder="Start typing to find name" name="topsearch_myteam" required id="autocomplete2" placeholder="Search..." autocomplete="off" />
+                <input type="text" class="form-control" required placeholder="Start typing to find name" name="topsearch_myteam" required id="autocomplete2" placeholder="Search..." autocomplete="off" />
                 <div class="input-group-append">
                     <button id="mybtns" type="submit" class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="background-color: #406e8e; border: #406e8e; height: 37px;">
                         <i class="fe-plus"></i> Select 
