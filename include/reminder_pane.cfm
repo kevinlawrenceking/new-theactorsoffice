@@ -25,7 +25,7 @@
   Skipped
 </label>
 <label>
-  <input type="checkbox" class="status-filter" value="upcoming" checked>
+  <input type="checkbox" class="status-filter" value="upcoming" >
   Upcoming
 </label>
 <label>
