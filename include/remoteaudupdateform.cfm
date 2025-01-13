@@ -11,6 +11,7 @@
 <cfinclude template="/include/qry/fetchusers.cfm" />
 <cfinclude template="/include/qry/audplatforms_user_sel.cfm" />
 <cfinclude template="/include/qry/projectDetails_221_1.cfm" />
+<cfset audroleid = projectDetails.audroleid />
 <cfinclude template="/include/qry/roleDetails_221_2.cfm" />
 <cfinclude template="/include/qry/locationDetails_492_1.cfm" />
 <cfinclude template="/include/qry/cat_221_3.cfm" />
