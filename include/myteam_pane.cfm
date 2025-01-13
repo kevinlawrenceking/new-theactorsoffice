@@ -4,29 +4,34 @@
 <h4>My Team</h4>
 
 <p>
-    Add a Team Member from your existing relationships or 
-    <a href="remoteAddContact.cfm?src=account" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="#remoteAddContact">
-        <strong>Add</strong>
-    </a> a new one.
+    Select a Team Member from your existing relationships or add a new one.
 </p>
 
 <form class="app-search" action="/app/myaccount/?new_pgid=122" method="POST">
     <input type="hidden" name="ctaction" value="addmember" />
   
     <div class="row" style="margin: auto;">
-        <div class="col-md-2 p-2">Add Team Member:</div>
-        <div class="col-md-3 p-2">
+        <div class="col-md-2 p-2">Select an exising relationship:</div>
+        <div class="col-md-4 p-2">
             <div class="input-group">
-                <input type="text" class="form-control" name="topsearch_myteam" required id="autocomplete2" placeholder="Search..." autocomplete="off" />
+                <input type="text" class="form-control"  placeholder="Start typing to find name" name="topsearch_myteam" required id="autocomplete2" placeholder="Search..." autocomplete="off" />
                 <div class="input-group-append">
                     <button id="mybtns" type="submit" class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="background-color: #406e8e; border: #406e8e; height: 37px;">
-                        <i class="fe-plus"></i> Add 
+                        <i class="fe-plus"></i> Select 
                     </button>
                 </div>
             </div>
         </div>
-    </div>
 </form>
+<div class="col-md-2 p-2">Or add a new one: </div>
+  <div class="col-md-4 p-4"><a href="remoteAddContact.cfm?src=account" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="#remoteAddContact">
+                    <button id="mybtns" type="submit" class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="background-color: #406e8e; border: #406e8e; height: 37px;">
+                        <i class="fe-plus"></i> Add 
+                    </button></a>
+                </div>
+
+    </div>
+
 
 <div class="container-fluid">
     <div class="row">
