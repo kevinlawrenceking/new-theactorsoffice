@@ -50,21 +50,23 @@
 
       <cfoutput>
         <div class="col">
-         <div class="card h-100 shadow-sm text-center border-0">
+         
+
+<div class="card h-100 shadow-sm border-0">
   <!-- Card Body -->
-  <div class="card-body d-flex flex-column justify-content-center">
+  <div class="card-body text-center d-flex flex-column justify-content-center">
     <!-- Avatar -->
     <cfset contact_avatar_filename = "#session.userContactsPath#\#myteam.contactid#\avatar.jpg" />
     <cfif isimagefile(contact_avatar_filename)>
       <img 
         src="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg?ver=#rand()#" 
-        class="rounded-circle mb-3 img-thumbnail avatar-xl" 
+        class="rounded-circle img-thumbnail avatar-xl mb-3 mx-auto d-block" 
         alt="profile-image" 
       />
     <cfelse>
       <img 
         src="#application.defaultAvatarUrl#" 
-        class="rounded-circle mb-3 img-thumbnail avatar-xl" 
+        class="rounded-circle img-thumbnail avatar-xl mb-3 mx-auto d-block" 
         alt="profile-image" 
       />
     </cfif>
@@ -98,15 +100,22 @@
     </cfif>
   </div> <!-- end .card-body -->
 
-  <!-- Card Footer: Remove Link -->
-  <div class="card-footer bg-transparent border-0">
+  <!-- Card Footer: Remove Button -->
+  <div class="card-footer bg-transparent border-0 text-center">
     <a href="/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=#myteam.contactid#"
-       class="btn btn-sm btn-outline-danger"
-       title="Remove from team">
+       title="Remove from team"
+       class="btn btn-sm"
+       style="background-color: #2e4f65; border: none; color: #fff;">
       <i class="fe-trash-2 me-1"></i> Remove
     </a>
   </div>
 </div>
+
+
+
+
+
+
 
         </div> <!-- end col -->
       </cfoutput>
