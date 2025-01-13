@@ -24,7 +24,7 @@
         </div>
 </form>
 <div class="col-md-2 p-2">Or add a new one: </div>
-  <div class="col-md-4 p-4"><a href="remoteAddContact.cfm?src=account" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="#remoteAddContact">
+  <div class="col-md-4 p-2"><a href="remoteAddContact.cfm?src=account" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="#remoteAddContact">
                     <button id="mybtns" type="submit" class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="background-color: #406e8e; border: #406e8e; height: 37px;">
                         <i class="fe-plus"></i> Add 
                     </button></a>
