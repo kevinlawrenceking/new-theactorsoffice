@@ -38,59 +38,75 @@
 <div class="container-fluid">
     <div class="row">
         <!--- Loop through each team member --->
-        <cfloop query="myteam">
-            <cfinclude template="/include/qry/mytags_167_1.cfm" />
-            <cfinclude template="/include/qry/Findphone_167_2.cfm" />
-            <cfset new_phone = findphone.phone />
-            <cfinclude template="/include/qry/Findemail_167_3.cfm" />
-            <cfset new_email = Findemail.email />
-            
-            <cfoutput>
-                <div class="col-xl-3 col-md-4 col-sm-6 col-xs-12 ">
-                    <div class="text-center card-box border border-secondary border-1 h-100">
-                        <div class="pt-1 pb-1">
-                            <cfset contact_avatar_filename = "#session.userContactsPath#\#myteam.contactid#\avatar.jpg" />
-                            <!--- Check if the contact has an avatar image --->
-                            <cfif isimagefile(contact_avatar_filename)>
-                                <img src="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg?ver=#rand()#" class="rounded-circle img-thumbnail avatar-xl" alt="profile-image" />
-                            <cfelse>
-                                <img src="#application.defaultAvatarUrl#" class="rounded-circle img-thumbnail avatar-xl" alt="profile-image" />
-                            </cfif>
-                            <h4 class="mt-2">
-                                <A href="/app/contact/?contactid=#myteam.contactid#">#myteam.contactname#</A>
-                            </h4>
-                            <h5>
-                                <!--- Loop through tags associated with the team member --->
-                                <cfloop query="mytags">
-                                    <cfoutput>#mytags.valuetext#</cfoutput>
-                                </cfloop>
-                            </h5>
-                            <p class="small mt-1">
-                                <!--- Display phone number if available --->
-                                <cfif #new_phone# is not ""> 
-                                    <span> #new_phone# &nbsp;</span> 
-                                </cfif>          
-                                <!--- Display email if available --->
-                                <cfif #new_email# is not ""> 
-                                    <BR>
-                                    <span> #new_email#  &nbsp;</span>
-                                </cfif>
-                            </p>
-                            <!--- Link to remove member from team --->
-                            <a href="/app/myaccount/?new_pgid=122&ctaction=deleteitem&amp;deletecontactid=#myteam.contactid#" title="Remove from team" style="padding-left:10px;color:dimgrey;">
-                                <span>
-                                    <i class="fe-trash-2 font-10 text-muted"></i>
-                                </span>
-                            </a>
-                        </div> <!--- end .padding --->
-                    </div> 
-                    <p>&nbsp;</p> <!--- end card-box --->
-                </div> 
-                <BR>
-            </cfoutput>
-        </cfloop>
-    </div>
-</div>
+<!-- Make sure you have a container or container-fluid around your row -->
+<div class="container">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-3">
+    <cfloop query="myteam">
+      <cfinclude template="/include/qry/mytags_167_1.cfm" />
+      <cfinclude template="/include/qry/Findphone_167_2.cfm" />
+      <cfset new_phone = findphone.phone />
+      <cfinclude template="/include/qry/Findemail_167_3.cfm" />
+      <cfset new_email = Findemail.email />
+
+      <cfoutput>
+        <div class="col">
+          <div class="card border border-secondary h-100 text-center">
+            <div class="pt-3 pb-3">
+              <cfset contact_avatar_filename = "#session.userContactsPath#\#myteam.contactid#\avatar.jpg" />
+              <!-- Check if the contact has an avatar image -->
+              <cfif isimagefile(contact_avatar_filename)>
+                <img 
+                  src="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg?ver=#rand()#" 
+                  class="rounded-circle img-thumbnail avatar-xl" 
+                  alt="profile-image" 
+                />
+              <cfelse>
+                <img 
+                  src="#application.defaultAvatarUrl#" 
+                  class="rounded-circle img-thumbnail avatar-xl" 
+                  alt="profile-image" 
+                />
+              </cfif>
+
+              <h4 class="mt-2">
+                <a href="/app/contact/?contactid=#myteam.contactid#">
+                  #myteam.contactname#
+                </a>
+              </h4>
+
+              <!-- Tags -->
+              <h5>
+                <cfloop query="mytags">
+                  <cfoutput>#mytags.valuetext#</cfoutput>
+                </cfloop>
+              </h5>
+
+              <!-- Phone/Email -->
+              <p class="small mt-1 mb-0">
+                <cfif new_phone neq ""> 
+                  <span>#new_phone#</span><br />
+                </cfif>
+                <cfif new_email neq "">
+                  <span>#new_email#</span>
+                </cfif>
+              </p>
+
+              <!-- Link to remove member from team -->
+              <a href="/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=#myteam.contactid#"
+                 title="Remove from team"
+                 style="padding-left:10px; color:dimgrey;">
+                <span>
+                  <i class="fe-trash-2 font-10 text-muted"></i>
+                </span>
+              </a>
+            </div> <!-- end pt-3/pb-3 -->
+          </div> <!-- end card -->
+        </div> <!-- end col -->
+      </cfoutput>
+    </cfloop>
+  </div> <!-- end row -->
+</div> <!-- end container -->
+
 
 <h4>Team Share</h4>
 <cfoutput>
