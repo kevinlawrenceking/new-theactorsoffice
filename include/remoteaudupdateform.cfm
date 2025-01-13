@@ -262,6 +262,7 @@
 
     <!--- Location Container (only if 'In Person' is selected [=1]) --->
     <div class="row" id="hiddenLocation" style="display:none;">
+    <cfoutput>
         <div class="form-group col-md-12">
             <label for="new_parkingDetails">Parking Details</label>
             <input class="form-control"
@@ -350,18 +351,18 @@
                    placeholder="Enter Postal Code"
                    value="#aud_det.audzip#" />
         </div>
-
+</cfoutput>
         <!--- State/Region + Country --->
         <div class="form-group col-md-6">
             <label for="region_id">State/Region <span class="text-danger">*</span></label>
             <select id="region_id" name="new_region_id" class="form-control">
                 <option value="">--</option>
-                <cfloop query="regions">
+                <cfloop query="regions"><cfoutput>
                     <option value="#regions.region_id#"
                             data-chained="#regions.countryid#"
                             <cfif regions.region_id eq new_region_id>selected</cfif>>
                         #regions.regionname#
-                    </option>
+                    </cfoutput></option>
                 </cfloop>
             </select>
         </div>
@@ -375,11 +376,11 @@
                     data-parsley-error-message="Country is required"
                     onchange="filterRegions(this.value)">
                 <option value="">--</option>
-                <cfloop query="countries">
+                <cfloop query="countries"><cfoutput>
                     <option value="#countries.countryid#"
                       <cfif countries.countryid eq new_countryid>selected</cfif>>
                       #countries.countryname#
-                    </option>
+                   </cfoutput> </option>
                 </cfloop>
             </select>
         </div>
