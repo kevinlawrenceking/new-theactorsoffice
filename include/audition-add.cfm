@@ -251,11 +251,11 @@
           data-parsley-error-message="Start Time is required">
     <option value="">Select a Start Time</option>
 
-    <!-- Convert the MySQL TIME columns to strings ("HH:mm:ss") -->
+    <!--- Convert the MySQL TIME columns to strings ("HH:mm:ss") --->
     <cfset new_calstarttime = timeFormat(calstarttime, "HH:mm:ss") />
     <cfset new_calendtime   = timeFormat(calendtime,   "HH:mm:ss") />
 
-    <!-- Build date/time objects for today's date + the user's start/end times -->
+    <!--- Build date/time objects for today's date + the user's start/end times --->
     <cfset startTime = createODBCDateTime(
       dateFormat(now(), "yyyy-mm-dd") & " " & new_calstarttime
     ) />
@@ -263,7 +263,7 @@
       dateFormat(now(), "yyyy-mm-dd") & " " & new_calendtime
     ) />
 
-    <!-- Loop in 15-min increments from calstarttime to calendtime -->
+    <!--- Loop in 15-min increments from calstarttime to calendtime --->
     <cfloop condition="startTime LTE endTime">
       <cfset timeString  = timeFormat(startTime, "HH:mm:ss") />
       <cfset displayTime = timeFormat(startTime, "h:mm tt") />

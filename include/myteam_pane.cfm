@@ -38,7 +38,7 @@
 <div class="container-fluid">
     <div class="row">
         <!--- Loop through each team member --->
-<!-- Make sure you have a container or container-fluid around your row -->
+<!--- Make sure you have a container or container-fluid around your row --->
 <div class="container">
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-3">
     <cfloop query="myteam">
@@ -53,9 +53,9 @@
          
 
 <div class="card h-100 shadow-sm border-0">
-  <!-- Card Body -->
+  <!--- Card Body --->
   <div class="card-body text-center d-flex flex-column justify-content-center">
-    <!-- Avatar -->
+    <!--- Avatar --->
     <cfset contact_avatar_filename = "#session.userContactsPath#\#myteam.contactid#\avatar.jpg" />
     <cfif isimagefile(contact_avatar_filename)>
       <img 
@@ -71,14 +71,14 @@
       />
     </cfif>
 
-    <!-- Contact Name -->
+    <!--- Contact Name --->
     <h5 class="card-title mb-1">
       <a href="/app/contact/?contactid=#myteam.contactid#">
         #myteam.contactname#
       </a>
     </h5>
 
-    <!-- Tags (as badges) -->
+    <!--- Tags (as badges) --->
     <p class="card-text">
       <cfloop query="mytags">
         <cfoutput>
@@ -87,7 +87,7 @@
       </cfloop>
     </p>
 
-    <!-- Phone / Email -->
+    <!--- Phone / Email --->
     <cfif new_phone neq "" OR new_email neq "">
       <p class="text-muted small mb-0">
         <cfif new_phone neq "">
@@ -98,9 +98,9 @@
         </cfif>
       </p>
     </cfif>
-  </div> <!-- end .card-body -->
+  </div> <!--- end .card-body --->
 
-  <!-- Card Footer: Remove Button -->
+  <!--- Card Footer: Remove Button --->
   <div class="card-footer bg-transparent border-0 text-center">
     <a href="/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=#myteam.contactid#"
        title="Remove from team"
@@ -117,11 +117,11 @@
 
 
 
-        </div> <!-- end col -->
+        </div> <!--- end col --->
       </cfoutput>
     </cfloop>
-  </div> <!-- end row -->
-</div> <!-- end container -->
+  </div> <!--- end row --->
+</div> <!--- end container --->
 </div>
 </div>
 <h4>Team Share</h4>

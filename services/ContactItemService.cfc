@@ -1143,7 +1143,7 @@ WHERE itemid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.itemid
     </cfquery>
 
 
-    <!-- If a key is generated, return it -->
+    <!--- If a key is generated, return it --->
     <cfif structKeyExists(result, "generatedKey")>
         <cfset newId = result.generatedKey>
     </cfif>

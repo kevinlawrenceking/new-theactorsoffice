@@ -15,7 +15,7 @@
 <cfoutput>
     <div class="d-flex justify-content-between">
         <div class="float-left">
- <!-- Filter checkboxes -->
+ <!--- Filter checkboxes --->
 <label>
   <input type="checkbox" class="status-filter" value="completed" checked>
   Completed

@@ -4,7 +4,7 @@
     <cfargument name="filename" type="string" required="true">
     <cfargument name="debugDetails" type="string" required="true">
 
-    <!-- Ensure debugDetails is not appended repeatedly -->
+    <!--- Ensure debugDetails is not appended repeatedly --->
     <cfquery>
         INSERT INTO debugLog (filename, debugDetails, timestamp)
         VALUES (

@@ -493,7 +493,7 @@
 <cffunction output="false" name="UPDaudroles_24542" access="public" returntype="void">
     <cfargument name="audsourceid" type="numeric" required="true">
 
-    <!-- Execute the update query -->
+    <!--- Execute the update query --->
     <cfquery result="result">
         UPDATE audroles 
         SET submitsiteid = NULL, contactid = NULL, opencallid = NULL 
