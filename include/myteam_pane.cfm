@@ -52,7 +52,7 @@
         <div class="col">
          
 
-<div class="card h-100 shadow-sm border border-light text-center">
+<div class="card h-100 shadow-sm border border-dark text-center">
   <!--- Card Body --->
   <div class="card-body text-center d-flex flex-column justify-content-center">
     <!--- Avatar --->
