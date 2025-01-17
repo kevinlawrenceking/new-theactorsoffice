@@ -30,4 +30,4 @@
 <cfinclude template="/include/customicon_single.cfm" />
 
 <!--- Redirect to the target account page with the appropriate parameters --->
-<cflocation url="/app/#target#/?t1=1&target_id=#target_id###item#id#" />
+<cflocation url="/app/#target#/?t1=1&target_id=#target_id###item#id#" addtoken="false" />
