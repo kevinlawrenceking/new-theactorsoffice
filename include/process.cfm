@@ -3,12 +3,3 @@
 <cfset dbug = 'N'>
 <cfoutput>category: #category#</cfoutput><cfaborT>
 <!--- Check the category and redirect accordingly --->
-<cfif category eq "Contacts">
-    <cflocation url = "/app/contact/?contactid=#selectedid#"/>
-    
-<cfelseif category eq "Tags">
-    <cflocation url = "/app/contacts/?bytag=#selectedid#"/>
-    
-<cfelse>
-    <cflocation url = "/app/appoint-update/?eventid=#selectedid#&returnurl=calendar-appoint&rcontactid=0"/>
-</cfif>
