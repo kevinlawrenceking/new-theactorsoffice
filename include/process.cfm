@@ -22,7 +22,7 @@
     </table>
 </cfoutput>
 
- 
+<cfaborT>
 <!--- Check the category and redirect accordingly --->
 <cfif category eq "Contacts">
     <cflocation url = "/app/contact/?contactid=#selectedid#"/>
