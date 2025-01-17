@@ -1,2 +1,2 @@
-<cfset taoVersionService = createObject("component", "path.to.taoVersionService")>
+<cfset taoVersionService = createObject("component", "services.taoVersionService")>
 <cfset activeVersions = taoVersionService.getActiveTaoVersions()>
