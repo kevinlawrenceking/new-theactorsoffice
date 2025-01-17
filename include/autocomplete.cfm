@@ -1,7 +1,7 @@
 <cfquery  name="jsons">
             SELECT col1 from contacts_ss WHERE userid = #session.userid# and col1 not like '%#chr(34)#%'
         </cfquery>
-        <cfquery datasource="#dsn#" name="jsons_myteam">
+        <cfquery  name="jsons_myteam">
             SELECT DISTINCT
             CONCAT( (DATE_FORMAT(e.eventstart, '%m/%d/%Y')),": ",c.recordname," - ",e.eventtitle) AS col1
 
