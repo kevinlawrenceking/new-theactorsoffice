@@ -2,7 +2,7 @@
              output = "false">
 
                  <!--- Function to get active versions --->
-    <cffunction name="getActiveVersions" access="public" returntype="query" output="false" hint="Fetches active versions with 'Pending' status">
+    <cffunction name="getActiveTaoVersions" access="public" returntype="query" output="false" hint="Fetches active versions with 'Pending' status">
    
         <cfset var activeVersions = "">
 
