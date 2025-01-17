@@ -1,7 +1,7 @@
-<cfquery datasource="#dsn#" name="jsons">
+<cfquery  name="jsons">
             SELECT col1 from contacts_ss WHERE userid = #session.userid# and col1 not like '%#chr(34)#%'
         </cfquery>
-        <cfquery datasource="#dsn#" name="jsons_myteam">
+        <cfquery  name="jsons_myteam">
             SELECT DISTINCT
             CONCAT( (DATE_FORMAT(e.eventstart, '%m/%d/%Y')),": ",c.recordname," - ",e.eventtitle) AS col1
 
@@ -12,7 +12,7 @@
             WHERE e.userid = #session.userid# and t.userid = #session.userid#
             AND e.eventstart >= CURDATE()
         </cfquery>
-        <cfquery datasource="#dsn#" name="jtags">
+        <cfquery  name="jtags">
             SELECT tagname as col1 from tags_user where userid = #session.userid# order by tagname
         </cfquery>
 
