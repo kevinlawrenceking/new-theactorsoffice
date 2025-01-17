@@ -1,11 +1,13 @@
 <!--- This ColdFusion page allows users to submit feedback to the development team, including error reports and change requests. --->
 
-<cfset versionService = createObject("component", "services.VersionsService")>
-<cfset activeVersions = versionService.getActiveVersions()>
+<cfinclude template="/include/qry/agetActiveVersions.cfm" />
 <cfparam name="userrole" default="U" />
 
 <!--- Include user query template --->
-<cfinclude template="/include/qry/users_256_1.cfm" />
+<cfinclude template="/include/qry/getUsers.cfm" />
+
+       <!--- Include ticket types query template --->
+        <cfinclude template="/include/qry/types_256_2.cfm" />
 
 <cfset new_pgid = pgid />
 
@@ -47,8 +49,7 @@ Thank you!</p>
             </cfoutput>
         </cfif>
 
-        <!--- Include ticket types query template --->
-        <cfinclude template="/include/qry/types_256_2.cfm" />
+ 
 
         <div class="form-group col-md-6">
             <label for="tickettype">Type</label>

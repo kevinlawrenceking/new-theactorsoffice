@@ -672,6 +672,25 @@
 <cfreturn result>
 </cffunction>
 
+   <cffunction name="getUsers" access="public" returntype="query" output="false" hint="Fetches users grouped by record name">
+        <!--- Local variables scope --->
+        <cfset var users = "">
+
+        <!--- Query to fetch users --->
+        <cfquery name="users" >
+            SELECT 
+                MIN(u.userid) AS id,
+                u.recordname AS name
+            FROM taousers u
+            GROUP BY u.recordname
+            ORDER BY u.recordname
+        </cfquery>
+
+        <!--- Return the query result --->
+        <cfreturn users />
+    </cffunction>
+
+
 <!--- Function to get user details by ID, including related tables --->
     <cffunction output="false" name="getUserById" access="public" returntype="struct"  hint="Fetch user details by user ID along with related table data">
         <cfargument name="userId" type="numeric" required="true">

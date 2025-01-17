@@ -72,7 +72,7 @@
         <cfargument name="uploadid" type="numeric" required="true">
 
         <!--- Query --->
-        <cfquery name="result" datasource="#application.dsn#">
+        <cfquery name="result" >
             SELECT 
                 audprojectid 
             FROM 

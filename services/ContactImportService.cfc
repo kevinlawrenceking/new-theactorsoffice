@@ -7,7 +7,7 @@
     <cfargument name="id" type="numeric" required="true">
 
 
-        <cfquery datasource="#application.dsn#" name="update">
+        <cfquery  name="update">
             UPDATE CONTACTSIMPORT
             SET status = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.new_status#">,
                 contactid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.new_contactid#">

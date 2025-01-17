@@ -39,13 +39,6 @@
     </cfmail>
 
     <cfmail from="support@theactorsoffice.com" 
-            to="add.task.swxn8hp4jz4m0x79@todoist.net" 
-            bcc="kevinking7135@gmail.com" 
-            subject="#details.recid# - #details.ticketdetails# " 
-            type="HTML">
-    </cfmail>
-
-    <cfmail from="support@theactorsoffice.com" 
             failto="kking@theactorsoffice.com" 
             replyto="support@theactorsoffice.com" 
             to="#to_email#,Cansoff@gmail.com" 

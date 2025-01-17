@@ -16,7 +16,7 @@
 
     <cfset var systemID = "">
 
-    <cfquery name="findSystem" datasource="#application.dsn#">
+    <cfquery name="findSystem" >
         SELECT s.systemid
         FROM fusystems s
         WHERE s.systemtype = 'Maintenance List'

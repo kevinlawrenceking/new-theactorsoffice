@@ -1,6 +1,29 @@
 <cfcomponent displayname = "TaoVersionService" hint = "Handles operations for TaoVersion table" 
              output = "false">
 
+                 <!--- Function to get active versions --->
+    <cffunction name="getActiveVersions" access="public" returntype="query" output="false" hint="Fetches active versions with 'Pending' status">
+   
+        <cfset var activeVersions = "">
+
+        <!--- Query to fetch active versions --->
+        <cfquery name="activeVersions" >
+            SELECT 
+                v.verid AS id,
+                CONCAT(v.major, '.', v.minor, '.', v.patch, '.', v.version, '.', v.build, ' - ', v.versiontype) AS Name,
+                v.versionstatus
+            FROM taoversions v
+            WHERE v.versionstatus = 'Pending'
+            ORDER BY v.major, v.minor, v.patch, v.version, v.build
+        </cfquery>
+
+        <!--- Return the query result --->
+        <cfreturn activeVersions />
+    </cffunction>
+
+
+
+
               <cffunction name="versions_sel" access="public" returntype="query" output="false">
 
         <cfquery name="result">
