@@ -46,7 +46,7 @@
                     return {
                         value: e,
                         data: {
-                            category: "Appointments"
+                            category: "Contacts"
                         }
                     }
                 }),
