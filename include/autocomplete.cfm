@@ -70,15 +70,18 @@
 
                 });
 
+                 
+
+                
+           
                           $("#autocomplete2")
                 .devbridgeAutocomplete({
                     lookup: z,
                     minChars: 2,
                     width: "300",
                     maxheight: "400",
-                    onSelect: function(e) {
-                        $("#selection")
-                            .html("You selected: " + e.value + ", " + e.data.category)
+                 onSelect: function(event, ui) {
+                        $("#sel_client").submit();
                     },
                     showNoSuggestionNotice: !0,
                     noSuggestionNotice: "Sorry, no matching results",

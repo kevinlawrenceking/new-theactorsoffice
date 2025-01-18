@@ -7,7 +7,6 @@
     Select a Team Member from your existing relationships or add a new one.
 </p>
 
-<form class="app-search" action="/app/myaccount/?new_pgid=122" method="POST">
   <input type="hidden" name="ctaction" value="addmember"/>
   <div class="row" style="margin: auto;">
     <div class="col-md-2 p-2">Add a new person to your team:
@@ -20,6 +19,8 @@
       </a>
     </div>
   </div>
+  
+<form class="sel_client" action="/app/myaccount/?new_pgid=122" method="POST">
   <div class="row" style="margin: auto;">
     <div class="col-md-2 p-2">Or select an existing relationship:</div>
     <div class="col-md-4 p-2">
