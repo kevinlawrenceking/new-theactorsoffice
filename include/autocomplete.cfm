@@ -42,7 +42,14 @@
                         }
                     }
                 }),
-
+        z = $.map([ < cfloop query = "jsons_myteam" > < cfoutput > < cfif #jsons_myteam.currentrow # is not "1" > , < /cfif>"#Replace(jsons_myteam.col1,"""""","","all")#"</cfoutput > < /cfloop>], function(e) {
+                    return {
+                        value: e,
+                        data: {
+                            category: "Appointments"
+                        }
+                    }
+                }),
 
                 j = b;
             o = e.concat(a);
@@ -65,7 +72,7 @@
 
                           $("#autocomplete2")
                 .devbridgeAutocomplete({
-                    lookup: j,
+                    lookup: z,
                     minChars: 2,
                     width: "300",
                     maxheight: "400",
