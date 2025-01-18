@@ -133,3 +133,4 @@
         <BR>If you click on the button you will see your report.
     </p>
 </cfoutput>
+</div>
