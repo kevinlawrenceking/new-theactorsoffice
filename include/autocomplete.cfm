@@ -65,7 +65,7 @@
 
                           $("#autocomplete2")
                 .devbridgeAutocomplete({
-                    lookup: b,
+                    lookup: j,
                     minChars: 2,
                     width: "300",
                     maxheight: "400",
