@@ -3,10 +3,36 @@
 
 <h4>My Team</h4>
 
+<p>
+    Select a Team Member from your existing relationships or add a new one.
+</p>
+
+<form class="app-search" action="/app/myaccount/?new_pgid=122" method="POST">
+    <input type="hidden" name="ctaction" value="addmember" />
+  
+    <div class="row" style="margin: auto;">
+        <div class="col-md-2 p-2">Select an exising relationship:</div>
+        <div class="col-md-4 p-2">
+            <div class="input-group">
+                <input type="text" class="form-control" required placeholder="Start typing to find name" name="topsearch_myteam" required id="autocomplete2" placeholder="Search..." autocomplete="off" />
+                <div class="input-group-append">
+                    <button id="mybtns" type="submit" class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="background-color: #406e8e; border: #406e8e; height: 37px;">
+                        <i class="fe-plus"></i> Select 
+                    </button>
+                </div>
+            </div>
+        </div>
+</form>
 
 
+<div class="col-md-2 p-2">Or add a new one: </div>
+  <div class="col-md-4 p-2"><a href="remoteAddContact.cfm?src=account" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="#remoteAddContact">
+                    <button id="mybtns" type="submit" class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="background-color: #406e8e; border: #406e8e; height: 37px;">
+                        Add 
+                    </button></a>
+                </div>
 
-
+    </div>
 
 
 <div class="container-fluid">
@@ -26,7 +52,7 @@
         <div class="col">
          
 
-<div class="card h-100 shadow-sm border-small border-secondary text-center">
+<div class="card h-100 shadow-sm border border-dark text-center">
   <!--- Card Body --->
   <div class="card-body text-center d-flex flex-column justify-content-center">
     <!--- Avatar --->
@@ -106,5 +132,3 @@
         <BR>If you click on the button you will see your report.
     </p>
 </cfoutput>
-</div>
-</div>
