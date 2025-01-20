@@ -25,7 +25,7 @@
     --ct-box-shadow-sm: 0 .75rem 6rem #38414a08;
     --ct-box-shadow-lg: 0 0 45px 0 #0000001f;
     --ct-box-shadow-inset: inset 0 1px 2px #00000013;
-    --ct-component-active-color: #dee2e6;
+    --ct-component-active-color: white;
     --ct-component-active-bg: #1ABC9C;
     --ct-text-muted: #98a6ad;
     --ct-blockquote-footer-color: #98a6ad;
