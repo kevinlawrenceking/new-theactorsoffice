@@ -3,20 +3,35 @@
 <div class="navbar-custom">
     <div class="container-fluid">
         <ul class="list-unstyled topnav-menu float-end mb-0">
-            <li class="d-none d-lg-block">
-                <!--- Search Form for Desktop --->
-                <div class="form-group mb-3">
-    <label for="autocomplete">Search Contacts</label>
-    <input 
-        type="text" 
-        id="autocomplete" 
-        class="form-control" 
-        placeholder="Search contacts..." 
-        autocomplete="off" 
-    />
-</div>
-<ul id="contact-suggestions" class="dropdown-menu"></ul>
-            </li>
+<li class="d-none d-lg-block">
+    <!--- Search Form for Desktop with Autocomplete --->
+    <form class="app-search" id="submitform" action="/include/process.cfm" method="POST">
+        <div class="app-search-box dropdown">
+            <div class="input-group">
+                <!--- Autocomplete Input Field --->
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    name="topsearch" 
+                    id="autocomplete" 
+                    placeholder="Search..." 
+                    autocomplete="off" 
+                />
+                <!--- Hidden fields for ID and Category --->
+                <input type="hidden" name="selectedId" id="selectedId" />
+                <input type="hidden" name="category" id="category" />
+                <div class="input-group-append">
+                    <button class="btn" id="mybtn" type="submit">
+                        <i class="fe-search"></i>
+                    </button>
+                </div>
+            </div>
+            <!--- Autocomplete Suggestions Dropdown --->
+            <ul id="contact-suggestions" class="dropdown-menu"></ul>
+        </div>
+    </form>
+</li>
+
 
             <li class="dropdown d-inline-block d-lg-none">
                 <!--- Mobile Search Dropdown --->
@@ -141,48 +156,3 @@
         <div class="clearfix"></div>
     </div>
 </div>
-<script>
-    $(document).ready(function () {
-        const $input = $('#autocomplete');
-        const $suggestions = $('#contact-suggestions');
-
-        $input.on('input', function () {
-            const query = $input.val();
-            if (query.length >= 2) {
-                $.ajax({
-                    url: '/app/lookup_contacts.cfm',
-                    method: 'GET',
-                    data: { searchTerm: query },
-                    success: function (response) {
-                        $suggestions.empty();
-                        if (response.data && response.data.length > 0) {
-                            response.data.forEach(contact => {
-                                $suggestions.append(`
-                                    <li>
-                                        <a href="${contact.contact_url}">${contact.col1}</a>
-                                    </li>
-                                `);
-                            });
-                            $suggestions.show();
-                        } else {
-                            $suggestions.hide();
-                        }
-                    },
-                    error: function () {
-                        console.error('Error fetching contacts.');
-                        $suggestions.hide();
-                    }
-                });
-            } else {
-                $suggestions.hide();
-            }
-        });
-
-        // Hide suggestions on outside click
-        $(document).on('click', function (e) {
-            if (!$(e.target).closest('#autocomplete, #contact-suggestions').length) {
-                $suggestions.hide();
-            }
-        });
-    });
-</script>

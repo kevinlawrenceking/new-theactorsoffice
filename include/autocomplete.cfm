@@ -1,96 +1,46 @@
-<cfquery name="jsons">
-            SELECT col1, CONCAT('/app/contact/?contactid=', contactid) AS contact_url  from contacts_ss WHERE userid = #session.userid# and col1 not like '%#chr(34)#%'
-        </cfquery>
-        <cfquery  name="jsons_myteam">
-            SELECT DISTINCT
-            CONCAT( (DATE_FORMAT(e.eventstart, '%m/%d/%Y')),": ",c.recordname," - ",e.eventtitle) AS col1
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        const $input = $('#autocomplete');
+        const $suggestions = $('#contact-suggestions');
 
-            FROM events e INNER JOIN eventtypes_user t on t.eventtypename = e.eventtypename
-
-            INNER JOIN eventcontactsxref x ON x.eventID = e.eventid
-            INNER JOIN contactdetails c ON c.contactid = x.contactid
-            WHERE e.userid = #session.userid# and t.userid = #session.userid#
-            AND e.eventstart >= CURDATE()
-        </cfquery>
-        <cfquery  name="jtags">
-            SELECT tagname as col1 from tags_user where userid = #session.userid# order by tagname
-        </cfquery>
-
-        <script>
-            var e = $.map([ < cfloop query = "jtags" > < cfoutput > < cfif #jtags.currentrow # is not "1" > , < /cfif>"#Replace(jtags.col1,"""""","","all")#"</cfoutput > < /cfloop>], function(e) {
-                    return {
-                        value: e,
-                        data: {
-                            category: "Tags"
+        $input.on('input', function () {
+            const query = $input.val();
+            if (query.length >= 2) {
+                $.ajax({
+                    url: '/app/lookup_contacts.cfm',
+                    method: 'GET',
+                    data: { searchTerm: query },
+                    success: function (response) {
+                        $suggestions.empty();
+                        if (response.data && response.data.length > 0) {
+                            response.data.forEach(contact => {
+                                $suggestions.append(`
+                                    <li>
+                                        <a href="${contact.contact_url}">${contact.col1}</a>
+                                    </li>
+                                `);
+                            });
+                            $suggestions.show();
+                        } else {
+                            $suggestions.hide();
                         }
-                    }
-                }),
-                a = $.map([ < cfloop query = "jsons" > < cfoutput > < cfif #jsons.currentrow # is not "1" > , < /cfif>"#Replace(jsons.col1,"""""","","all")#"</cfoutput > < /cfloop>], function(e) {
-                    return {
-                        value: e,
-                        data: {
-                            category: "Contacts"
-                        }
-                    }
-                }),
-
-                b = $.map([ < cfloop query = "jsons_myteam" > < cfoutput > < cfif #jsons_myteam.currentrow # is not "1" > , < /cfif>"#Replace(jsons_myteam.col1,"""""","","all")#"</cfoutput > < /cfloop>], function(e) {
-                    return {
-                        value: e,
-                        data: {
-                            category: "Appointments"
-                        }
-                    }
-                }),
-        z = $.map([ < cfloop query = "jsons_myteam" > < cfoutput > < cfif #jsons_myteam.currentrow # is not "1" > , < /cfif>"#Replace(jsons_myteam.col1,"""""","","all")#"</cfoutput > < /cfloop>], function(e) {
-                    return {
-                        value: e,
-                        data: {
-                            category: "Contacts"
-                        }
-                    }
-                }),
-
-                j = b;
-            o = e.concat(a);
-            i = o.concat(b);
-
-            $("#autocomplete")
-                .devbridgeAutocomplete({
-                    lookup: i,
-                    minChars: 2,
-                    width: "300",
-                    maxheight: "400",
-                    onSelect: function(event, ui) {
-                        $("#submitform").submit();
                     },
-                    showNoSuggestionNotice: !0,
-                    noSuggestionNotice: "Sorry, no matching results",
-                    groupBy: "category"
-
+                    error: function () {
+                        console.error('Error fetching contacts.');
+                        $suggestions.hide();
+                    }
                 });
+            } else {
+                $suggestions.hide();
+            }
+        });
 
-                 
-
-                
-           
-                          $("#autocomplete2")
-                .devbridgeAutocomplete({
-                    lookup: i,
-                    minChars: 2,
-                    width: "300",
-                    maxheight: "400",
-                 onSelect: function(event, ui) {
-                        $("#sel_client").submit();
-                    },
-                    showNoSuggestionNotice: !0,
-                    noSuggestionNotice: "Sorry, no matching results",
-                    groupBy: "Contacts"
-                })
-                           
-                        
-                           
-                           
-                           
-
-        </script>
+        // Hide suggestions on outside click
+        $(document).on('click', function (e) {
+            if (!$(e.target).closest('#autocomplete, #contact-suggestions').length) {
+                $suggestions.hide();
+            }
+        });
+    });
+</script>
