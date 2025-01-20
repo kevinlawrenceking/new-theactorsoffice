@@ -6,7 +6,7 @@ $("#select-tag").selectize({
                 create: !0  ,
     
     
-    plugins: ["remove_button"],
+    plugins: ["remove-button"],
   delimiter: ",",
   persist: false,
   create: function (input) {

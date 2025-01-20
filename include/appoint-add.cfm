@@ -33,7 +33,7 @@
                 persist: false,
                 createOnBlur: true,
                 create: true,
-                plugins: ["remove_button"],
+                plugins: ["remove-button"],
                 delimiter: ",",
                 create: function (input) {
                   return {value: input, text: input};

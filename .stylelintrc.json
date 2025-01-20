@@ -1,0 +1,15 @@
+{
+  "extends": "stylelint-config-standard",
+  "plugins": [],
+  "defaultSeverity": "error",
+  "rules": {
+    "color-no-invalid-hex": [true, { "severity": "error" }],
+    "block-no-empty": [true, { "severity": "error" }],
+    "declaration-block-no-duplicate-properties": [true, { "severity": "error" }],
+    "declaration-block-trailing-semicolon": [true, { "severity": "error" }],
+    "string-quotes": ["double", { "severity": "warning" }],
+    "indentation": [2, { "severity": "warning" }],
+    "color-hex-length": ["short", { "severity": "warning" }],
+    "number-leading-zero": ["always", { "severity": "warning" }]
+  }
+}

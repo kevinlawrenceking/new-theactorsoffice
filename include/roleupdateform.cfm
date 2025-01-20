@@ -237,7 +237,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     createOnBlur: !0,
                     create: !0,
                     maxItems: 1,
-                    plugins: ["remove_button"],
+                    plugins: ["remove-button"],
                     delimiter: ",",
                     persist: false,
                     create: function(input) {
@@ -293,7 +293,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     createOnBlur: !0,
                     create: !0,
                     maxItems: 1,
-                    plugins: ["remove_button"],
+                    plugins: ["remove-button"],
                     delimiter: ",",
                     persist: false,
                     create: function(input) {
@@ -333,7 +333,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     createOnBlur: !0,
                     create: !0,
                     maxItems: 1,
-                    plugins: ["remove_button"],
+                    plugins: ["remove-button"],
                     delimiter: ",",
                     persist: false,
                     create: function(input) {
@@ -409,7 +409,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 persist: !1,
                 createOnBlur: !0,
                 create: !0,
-                plugins: ["remove_button"],
+                plugins: ["remove-button"],
                 delimiter: ",",
                 persist: false,
                 create: false
@@ -444,7 +444,7 @@ document.addEventListener("DOMContentLoaded", function () {
         persist: false,
         createOnBlur: false,
         create: false, // Prevents creation of new options
-        plugins: ["remove_button"],
+        plugins: ["remove-button"],
         delimiter: ","
     });
 </script>
@@ -476,7 +476,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 persist: !1,
                 createOnBlur: !0,
                 create: !0,
-                plugins: ["remove_button"],
+                plugins: ["remove-button"],
                 delimiter: ",",
                 persist: false,
                 create: function(input) {
@@ -517,7 +517,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     $("#select-genre").selectize({
                         persist: !1,
                         createOnBlur: !0,
-                        plugins: ["remove_button"],
+                        plugins: ["remove-button"],
                         delimiter: ",",
                         persist: false,
                         create: true
