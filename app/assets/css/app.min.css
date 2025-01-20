@@ -13,6 +13,7 @@
 
 :root {
     --ct-body-font-weight: 400;
+    --ct-font-weight: 400;
     --ct-white-rgb: 255, 255, 255;
     --ct-body-font-family: 'Source Sans Pro', sans-serif;
     --ct-link-color: #406E8E;
