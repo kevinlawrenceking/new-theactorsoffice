@@ -12,6 +12,7 @@
 }
 
 :root {
+    --ct-body-font-family: 'Source Sans Pro', sans-serif;
     --ct-link-color: #406E8E;
     --ct-link-hover-color: #2e4f65;
     --ct-border-color: #dee2e6;
@@ -222,6 +223,7 @@
 }
 
 body[data-layout-color="dark"] {
+    --ct-body-font-family: 'Source Sans Pro', sans-serif;
     --ct-body-bg: #303841;
     --ct-body-color: #94a0ad;
     --ct-link-color: #406E8E;
