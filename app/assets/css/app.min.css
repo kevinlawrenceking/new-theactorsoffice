@@ -154,7 +154,7 @@
     --ct-toast-header-color: #98a6ad;
     --ct-toast-header-background-color: #ffffffd9;
     --ct-toast-header-border-color: #0000000d;
-    --ct-badge-color: #f8f8ff;
+    --ct-badge-color: #6c757d;
     --ct-modal-content-bg: #fff;
     --ct-modal-content-box-shadow-xs: 0 .25rem .5rem #00000080;
     --ct-modal-content-box-shadow-sm-up: 0 .5rem 1rem #00000080;
@@ -367,7 +367,7 @@ body[data-layout-color="dark"] {
     --ct-toast-header-color: #cedeef;
     --ct-toast-header-background-color: #323a46d9;
     --ct-toast-header-border-color: #0000000d;
-    --ct-badge-color: #fff;
+    --ct-badge-color: #6c757d;
     --ct-modal-content-bg: #36404a;
     --ct-modal-content-box-shadow-xs: 0 .25rem .5rem #00000080;
     --ct-modal-content-box-shadow-sm-up: 0 .5rem 1rem #00000080;
