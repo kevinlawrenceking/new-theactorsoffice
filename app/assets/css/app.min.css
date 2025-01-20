@@ -12,6 +12,7 @@
 }
 
 :root {
+    --ct-body-font-weight: 600;
     --ct-white-rgb: 255, 255, 255;
     --ct-body-font-family: 'Source Sans Pro', sans-serif;
     --ct-link-color: #406E8E;
@@ -24086,7 +24087,7 @@ button.close {
     bottom: 0;
     width: 17px;
     text-align: center;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 12px;
     color: inherit;
     text-decoration: none;
@@ -24397,7 +24398,7 @@ button.close {
 }
 
 .autocomplete-suggestions strong {
-    font-weight: 700;
+    font-weight: 600;
     color: #323a46
 }
 
