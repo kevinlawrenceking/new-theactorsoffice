@@ -12,6 +12,7 @@
 }
 
 :root {
+    --ct-white-rgb: 255, 255, 255;
     --ct-body-font-family: 'Source Sans Pro', sans-serif;
     --ct-link-color: #406E8E;
     --ct-link-hover-color: #2e4f65;
@@ -15280,7 +15281,7 @@ button:focus {
 }
 
 th {
-    font-weight: 700
+    font-weight: 600
 }
 
 .table-centered td,
