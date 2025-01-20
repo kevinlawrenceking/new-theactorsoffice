@@ -1,5 +1,5 @@
-<cfquery  name="jsons">
-            SELECT col1 from contacts_ss WHERE userid = #session.userid# and col1 not like '%#chr(34)#%'
+<cfquery name="jsons">
+            SELECT col1, CONCAT('/app/contact/?contactid=', contactid) AS contact_url  from contacts_ss WHERE userid = #session.userid# and col1 not like '%#chr(34)#%'
         </cfquery>
         <cfquery  name="jsons_myteam">
             SELECT DISTINCT
