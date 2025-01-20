@@ -234,7 +234,7 @@ body[data-layout-color="dark"] {
     --ct-box-shadow-sm: 0 .75rem 6rem #38414a08;
     --ct-box-shadow-lg: 0 0 45px 0 #0000001f;
     --ct-box-shadow-inset: inset 0 -.1rem 0 #00000013;
-    --ct-component-active-color: #fff;
+    --ct-component-active-color: #6c757d;
     --ct-component-active-bg: #406E8E;
     --ct-text-muted: #8c98a5;
     --ct-blockquote-footer-color: #cedeef;
