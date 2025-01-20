@@ -1,33 +1,11 @@
 <cfset userid = url.userid>
 <cfset searchTerm = url.searchTerm>
 
-<cfquery result="result" name="tagData">
-    SELECT tagname AS col1, tagname as id
-    FROM tags_user
-    WHERE userid = <cfqueryparam value="#userid#" cfsqltype="cf_sql_integer">
-    AND LOWER(tagname) LIKE LOWER(<cfqueryparam value="%#searchTerm#%" cfsqltype="cf_sql_varchar">)
-    ORDER BY tagname
-</cfquery>
+<cfset lookupService = createObject("component", "services.LookupService")>
+<cfset tagData = lookupService.getTags(userid=userid, searchTerm=searchTerm)>
+<cfset contactData = lookupService.getContacts(userid=userid, searchTerm=searchTerm)>
+<cfset appointmentData = lookupService.getAppointments(userid=userid, searchTerm=searchTerm)>
 
-<cfquery result="result" name="contactData">
-    SELECT recordname AS col1, contactid as id
-    FROM contactdetails
-    WHERE userid = <cfqueryparam value="#userid#" cfsqltype="cf_sql_integer">
-    AND LOWER(recordname) LIKE LOWER(<cfqueryparam value="%#searchTerm#%" cfsqltype="cf_sql_varchar">)
-    ORDER BY recordname
-</cfquery>
-
-<cfquery result="result" name="appointmentData">
-    SELECT e.eventid as id, CONCAT(DATE_FORMAT(e.eventstart, '%m/%d/%Y'), ": ", c.recordname, " - ", e.eventtitle) AS col1
-    FROM events e
-    INNER JOIN eventtypes_user t ON t.eventtypename = e.eventtypename
-    INNER JOIN eventcontactsxref x ON x.eventID = e.eventid
-    INNER JOIN contactdetails c ON c.contactid = x.contactid
-    WHERE e.userid = <cfqueryparam value="#userid#" cfsqltype="cf_sql_integer">
-    AND t.userid = <cfqueryparam value="#userid#" cfsqltype="cf_sql_integer">
-    AND e.eventstart >= CURDATE()
-    AND LOWER(c.recordname) LIKE LOWER(<cfqueryparam value="%#searchTerm#%" cfsqltype="cf_sql_varchar">)
-</cfquery>
 
 <!--- Create suggestions array --->
 <cfset suggestions = [] />
