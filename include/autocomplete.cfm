@@ -8,7 +8,7 @@
             const query = $input.val();
             if (query.length >= 2) {
                 $.ajax({
-                    url: '/app/lookup_contacts.cfm',
+                    url: '/include/qry/lookup_contacts.cfm',
                     method: 'GET',
                     data: { searchTerm: query },
                     success: function (response) {
