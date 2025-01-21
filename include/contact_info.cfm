@@ -683,9 +683,10 @@ x</button>
 
         <div class="card h-100 mb-3">
 
-      <h4 class="card-card-header text-center text-white text-nowrap py-0" style="background-color: #406E8E;margin:0!important;padding:15px!important;" >
-                   Relationship Info
-                </h4>
+<h4 class="card-header text-center text-white text-nowrap py-0 relationship-header">
+    Relationship Info
+</h4>
+
 
 <cfoutput>
                          <h4 class="px-3 d-flex text-nowrap">
@@ -1051,6 +1052,8 @@ x</button>
                 <a href="#appointments" data-bs-toggle="tab" aria-expanded="<cfoutput>#appointments_expand#</cfoutput>" class="nav-link<cfif #appointments_expand# is 'true'> active</cfif>">Appointments
 
                     <cfif eventresults.recordcount neq 0>
+
+                        
 
                             <cfoutput>(#numberformat(eventresults.recordcount)#)</cfoutput>
 

@@ -24520,3 +24520,9 @@ label {
 .badge.badge-primary.badge-pill:active {
     color: white;
 }
+
+.relationship-header {
+    background-color: #406E8E;
+    margin: 0 !important;
+    padding: 15px !important;
+}
