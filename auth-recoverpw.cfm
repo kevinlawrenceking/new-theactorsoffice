@@ -103,13 +103,13 @@
                                     <div class="auth-logo">
                                         <a href="index.html" class="logo logo-dark text-center">
                                             <span class="logo-lg">
-                                                <img src="<cfoutput>#application.imagesUrl#/taowhite.png</cfoutput>" alt="" style="width:100%">
+                                                <img src="<cfoutput>#application.imagesUrl#/taowhite.png</cfoutput>" alt="" class="w-100">
                                             </span>
                                         </a>
                     
                                         <a href="index.html" class="logo logo-light text-center">
                                             <span class="logo-lg">
-                                                <img src="/media/shared/images/logo-dark.png" alt="" style="width:100%" />
+                                                <img src="/media/shared/images/logo-dark.png" alt="" class="w-100" />
                                             </span>
                                         </a>
                                         <h5><cfoutput>#header#</cfoutput></h5>

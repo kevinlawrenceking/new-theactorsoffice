@@ -83,13 +83,13 @@ Select * from taousers where recover = '#recover#'
                                     <div class="auth-logo">
                                         <a href="index.html" class="logo logo-dark text-center">
                                             <span class="logo-lg">
-                                                <img src="#img_loc#/taowhite.png" alt="" style="width:100%">
+                                                <img src="#img_loc#/taowhite.png" alt="" class="w-100">
                                             </span>
                                         </a>
                     
                                         <a href="index.html" class="logo logo-light text-center">
                                             <span class="logo-lg">
-                                                <img src="#img_loc#/logo-dark.png" alt="" style="width:100%">
+                                                <img src="#img_loc#/logo-dark.png" alt="" class="w-100" />
                                             </span>
                                         </a>
                                     </div>

@@ -531,10 +531,7 @@ x</button>
 
 </cfloop>
 
-<div class="row" style="width:100%;
-  margin:0;
-  padding:0;
-  display:flex;">
+<div class="row w-100 m-0 p-0 d-flex">
 
     <div class="col-md-6 col-sm-6 col-xs-12">
 
@@ -625,8 +622,8 @@ x</button>
 <cfif NOT fileExists(avatar_path)>
     <!--- Fallback to default avatar if the contact's avatar doesn't exist --->
     <img src="#default_avatar#" 
-         class="mr-3 rounded-circle gambar img-responsive img-thumbnail" 
-         style="max-width:180px;width:100%" 
+         class="mr-3 rounded-circle gambar img-responsive img-thumbnail w-100" 
+    style="max-width:180px;
          alt="profile-image" 
          id="item-img-output" />
     
@@ -650,8 +647,8 @@ x</button>
 <cfelse>
     <!--- Display the contact's avatar if it exists --->
     <img src="#contact_avatar#?rev=#rand()#" 
-         class="mr-3 rounded-circle gambar img-responsive img-thumbnail" 
-         style="max-width:180px;width:100%" 
+         class="mr-3 rounded-circle gambar img-responsive img-thumbnail w-100" 
+         style="max-width:180px;" 
          alt="profile-image" 
          id="item-img-output" />
 </cfif>

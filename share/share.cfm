@@ -15,7 +15,7 @@
     <cfset session.pgaction="view" />
 </cfif>
 <div class="row">
-    <div class="card mb-3" style="width:100%;">
+    <div class="card mb-3 w-100" >
         <div class="card-body">
             <div class="col-md-12">
                 <div class="media pt-3">

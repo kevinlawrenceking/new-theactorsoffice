@@ -245,7 +245,7 @@
 
     <div class="row">
         <div class="col-xl-12">
-            <div id="accordion_systems" class="mb-3" style="width:100%;">
+            <div id="accordion_systems" class="mb-3 w-100" >
                 <cfset k = 0 />
 
                 <!--- Loop through each note for mobile view --->
@@ -274,9 +274,9 @@
                         <cfset collapse_show = "collapse" />
                     </cfif>
 
-                    <div class="card mb-1" style="width:100%;">
+                    <div class="card mb-1 w-100" >
                         <div class="card-header" id="heading_system_<cfoutput>#notesaud.currentrow#</cfoutput>">
-                            <h5 class="m-0 align-middle" style="width:100%;">
+                            <h5 class="m-0 align-middle w-100">
                                 <a class="text-dark collapsed" data-bs-toggle="collapse" href="#collapse_system_<cfoutput>#notesaud.currentrow#</cfoutput>" aria-expanded="<cfoutput>#header_aria_exanded#</cfoutput>">
                                     <cfoutput> <strong>#this.formatDate('#notesaud.noteTimestamp#')#</strong> -  #timeformat('#notesaud.noteTimestamp#','short')# <i class="fe-menu"></i> </cfoutput>
                                     <span class="badge badge-sm badge-blue badge-pill float-end" style="font-size:.7em;">
