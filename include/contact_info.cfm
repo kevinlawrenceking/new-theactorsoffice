@@ -1031,7 +1031,7 @@ x</button>
 
             <li class="nav-item">
 
-                <a href="#notes" data-bs-toggle="tab" aria-expanded="<cfoutput>#notes_expand#</cfoutput>" class="nav-link<cfif #notes_expand# is "true"> active</cfif>">Notes
+                <a href="##notes" data-bs-toggle="tab" aria-expanded="<cfoutput>#notes_expand#</cfoutput>" class="nav-link<cfif #notes_expand# is "true"> active</cfif>">Notes
 
                     <cfif notesContact.recordcount neq 0>
 
