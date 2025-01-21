@@ -700,7 +700,7 @@ kbd {
 kbd kbd {
     padding: 0;
     font-size: 1em;
-    font-weight: 700
+    font-weight: 500
 }
 
 figure {
@@ -5613,7 +5613,7 @@ fieldset:disabled .btn {
 }
 
 .alert-link {
-    font-weight: 700
+    font-weight: 500
 }
 
 .alert-dismissible {
@@ -8610,7 +8610,7 @@ fieldset:disabled .btn {
 }
 
 .fw-bold {
-    font-weight: 700 !important
+    font-weight: 500 !important
 }
 
 .fw-bolder {
@@ -16418,7 +16418,7 @@ body[data-layout-color="dark"] .user-pro-dropdown {
 
 .logo .logo-lg-text-dark {
     color: #323a46;
-    font-weight: 700;
+    font-weight: 500;
     font-size: 22px;
     text-transform: uppercase
 }
@@ -18939,7 +18939,7 @@ body[data-layout-color="dark"] .auth-logo .logo-dark {
     text-align: center;
     border-radius: 50%;
     float: left;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 30px;
     background-color: #6658dd26
 }
@@ -19676,7 +19676,7 @@ body[data-layout-color="dark"] .gal-box .gall-info {
 
 .counter-number {
     font-size: 32px;
-    font-weight: 700;
+    font-weight: 500;
     color: #fff
 }
 
@@ -19806,7 +19806,7 @@ body[data-layout-color="dark"] .task-placeholder {
 .product-box .product-price-tag {
     height: 48px;
     line-height: 48px;
-    font-weight: 700;
+    font-weight: 500;
     font-size: 20px;
     background-color: #f3f7f9;
     text-align: center;
@@ -21834,7 +21834,7 @@ body[data-layout-color="dark"] .legendLabel {
 }
 
 .morris-hover.morris-default-style .morris-hover-row-label {
-    font-weight: 700;
+    font-weight: 500;
     margin: .25em 0;
     font-family: Lato , sans-serif
 }
@@ -22471,12 +22471,12 @@ body[data-layout-color="dark"] .responsive-table-plugin .btn-default {
     display: block;
     line-height: 2em;
     font-size: 1.2em;
-    font-weight: 700
+    font-weight: 500
 }
 
 .footable-row-detail-name {
     display: table-cell;
-    font-weight: 700;
+    font-weight: 500;
     padding-right: .5em
 }
 
@@ -22908,7 +22908,7 @@ body[data-layout-color="dark"] .ms-optgroup-label {
 }
 
 .autocomplete-group strong {
-    font-weight: 700;
+    font-weight: 500;
     font-size: 16px;
     color: #323a46;
     display: block
@@ -23900,7 +23900,7 @@ li.menuitem-active>a:not(.collapsed)>span.menu-arrow {
 
 .logo .logo-lg-text-light {
     color: #fff;
-    font-weight: 700;
+    font-weight: 500;
     font-size: 22px;
     text-transform: uppercase
 }
@@ -23956,13 +23956,13 @@ li.menuitem-active>a:not(.collapsed)>span.menu-arrow {
     font-family: Lato;
     src: url("../fonts/cerebrisans-bold.eot");
     src: local("Cerebri-sans Bold"), url("../fonts/cerebrisans-bold.woff") format("woff");
-    font-weight: 700
+    font-weight: 500
 }
 
 .close {
     float: right;
     font-size: 1.4rem;
-    font-weight: 700;
+    font-weight: 500;
     line-height: 1;
     color: #000;
     text-shadow: none;
@@ -24412,7 +24412,7 @@ button.close {
 }
 
 .add-new strong {
-    font-weight: 700;
+    font-weight: 500;
     font-size: 16px;
     color: #323a46;
     display: block
