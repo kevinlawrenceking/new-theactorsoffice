@@ -3564,12 +3564,7 @@ fieldset:disabled .btn {
     opacity: .65
 }
 
-input[type="file" i] {
-    color: #f8f8ff;
-    background-color: #406E8E;
-    border-color: #223a4a;
-    box-shadow: var(--ct-btn-box-shadow) #6c757d80
-}
+
 
 .btn-primary {
     color: #f8f8ff;
