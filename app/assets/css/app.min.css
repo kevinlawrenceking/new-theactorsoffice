@@ -157,7 +157,7 @@
     --ct-toast-header-color: #98a6ad;
     --ct-toast-header-background-color: #ffffffd9;
     --ct-toast-header-border-color: #0000000d;
-    --ct-badge-color: #6c757d;
+    --ct-badge-color: #ffffff;
     --ct-modal-content-bg: #fff;
     --ct-modal-content-box-shadow-xs: 0 .25rem .5rem #00000080;
     --ct-modal-content-box-shadow-sm-up: 0 .5rem 1rem #00000080;
@@ -8816,7 +8816,7 @@ fieldset:disabled .btn {
 
 .bg-secondary {
     --ct-bg-opacity: 1;
-    background-color: #ffffff !important
+    background-color: #6c757d !important
 }
 
 .bg-success {
