@@ -81,9 +81,9 @@
 
     <div class="form-group col-md-12">
         <label for="attachmenturl">Upload File (optional)</label>
-        <p>
+       
        <input name="file" type="file" id="fileUpload" style="display: none;">
-        </p><label for="fileUpload" class="btn btn-primary">Choose File</label>
+        </p><label for="fileUpload" class="btn btn-primary">Choose</label>
     </div>
 
     <div class="form-group text-center col-md-12">
