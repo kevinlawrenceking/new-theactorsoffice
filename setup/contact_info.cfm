@@ -374,7 +374,7 @@
 
 <p class="card-text">
 
-<A href="/app/image-upload/?contactid=<cfoutput>#contactid#&ref_pgid=#pgid#</cfoutput>">
+<A href="/app/image-upload/?contactid=<cfoutput>#contactid#&ref_pgid=#pgid#</cfoutput>"  class="no-hover-effect">
 
                             <figure>
 
