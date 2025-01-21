@@ -13498,7 +13498,7 @@ body[data-layout-color="dark"] .badge-outline-dark {
     margin-right: .5rem;
     font-size: 1rem; /* Match the font size of the text */
     line-height: inherit; /* Inherit line height from the breadcrumb item */
-    vertical-align: middle; /* Align the bullet with the text */
+    vertical-align: top; /* Align the bullet with the text */
 }
 
 
