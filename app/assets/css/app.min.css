@@ -24536,3 +24536,12 @@ label {
     text-align: center; /* Centered text */
     margin-top: 0.5rem; /* Spacing from the image */
 }
+
+a {
+    text-decoration: none; /* Optional: Remove underline by default */
+    transition: filter 0.3s ease; /* Smooth transition for the hover effect */
+}
+
+a:hover {
+    filter: brightness(1.2); /* Lightens the color by 20% */
+}
