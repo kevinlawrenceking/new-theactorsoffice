@@ -157,7 +157,7 @@
     --ct-toast-header-color: #98a6ad;
     --ct-toast-header-background-color: #ffffffd9;
     --ct-toast-header-border-color: #3333330d;
-    --ct-badge-color: #ffffff;
+    --ct-badge-color: #fff;
     --ct-modal-content-bg: #fff;
     --ct-modal-content-box-shadow-xs: 0 .25rem .5rem #33333380;
     --ct-modal-content-box-shadow-sm-up: 0 .5rem 1rem #33333380;
@@ -8706,6 +8706,7 @@ fieldset:disabled .btn {
 
 .text-primary {
     --ct-text-opacity: 1;
+
     color: #406E8E !important
 }
 
@@ -8811,31 +8812,37 @@ fieldset:disabled .btn {
 
 .bg-primary {
     --ct-bg-opacity: 1;
+
     background-color: #406E8E !important
 }
 
 .bg-secondary {
     --ct-bg-opacity: 1;
+
     background-color: #6c757d !important
 }
 
 .bg-success {
     --ct-bg-opacity: 1;
+
     background-color: #1abc9c !important
 }
 
 .bg-info {
     --ct-bg-opacity: 1;
+
     background-color: #DECE8E !important
 }
 
 .bg-warning {
     --ct-bg-opacity: 1;
+
     background-color: #dece8e !important
 }
 
 .bg-danger {
     --ct-bg-opacity: 1;
+
     background-color: #DECE8E !important
 }
 
@@ -15414,7 +15421,7 @@ body[data-layout-color="dark"] .bg-secondary {
 }
 
 body[data-layout-color="dark"] .bg-soft-secondary {
-    background-color: #ffffff !important
+    background-color: #fff !important
 }
 
 body[data-layout-color="dark"] .border-secondary {
@@ -24237,7 +24244,7 @@ button.close {
 
 body {
     overflow-y: scroll;
-    color: #333333
+    color: #333
 }
 
 body.modal-open {
@@ -24531,7 +24538,7 @@ label {
 }
 
 .text-muted-custom {
-    color: #cccccc; /* Light gray */
+    color: #ccc; /* Light gray */
     font-size: 0.8rem; /* Small font */
     text-align: center; /* Centered text */
     margin-top: 0.5rem; /* Spacing from the image */
