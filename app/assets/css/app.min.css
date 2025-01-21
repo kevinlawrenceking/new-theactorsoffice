@@ -24236,7 +24236,8 @@ button.close {
 }
 
 body {
-    overflow-y: scroll
+    overflow-y: scroll;
+    color: #333333
 }
 
 body.modal-open {
