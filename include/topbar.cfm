@@ -131,7 +131,7 @@
                      <img src="#application.imagesUrl#/logo-sm.png" alt="" height="30" />
                 </span>
                 <span class="logo-lg">
-                   <img src="#application.imagesUrl#/logo-sm.png" alt="" height="30" />
+                   <img src="#application.imagesUrl#/logo-light.png" alt="" height="30" />
                 </span>
             </a>
         </div>
