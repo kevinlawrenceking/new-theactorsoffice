@@ -689,7 +689,7 @@ x</button>
 
 
 <cfoutput>
-                    <p class="pt-3 py-3 pr-3 d-flex text-nowrap">
+                    <p >
 
 <span class="ms-auto">
 
