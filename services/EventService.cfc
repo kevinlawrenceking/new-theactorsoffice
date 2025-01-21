@@ -318,7 +318,7 @@ WHERE
         INNER JOIN audroles r ON r.audroleid = e.audroleid
         INNER JOIN audprojects p ON p.audprojectid = r.audprojectid
         SET e.eventtitle = p.projName,
-            e.eventdescription = LEFT(REPLACE(REPLACE(p.projDescription, CHAR(13), ''), CHAR(10), ''), 5000)
+            e.eventdescription = p.projDescription
         WHERE e.eventtitle != p.projName
     </cfquery>
 </cffunction>
