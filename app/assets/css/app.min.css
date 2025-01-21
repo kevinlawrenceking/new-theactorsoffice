@@ -24538,7 +24538,8 @@ label {
 }
 
 a {
-    text-decoration: none; /* Optional: Remove underline by default */
+    text-decoration: none;
+    color: blue; /* Optional: Remove underline by default */
     transition: filter 0.3s ease; /* Smooth transition for the hover effect */
 }
 
