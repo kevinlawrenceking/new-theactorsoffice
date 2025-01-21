@@ -689,7 +689,7 @@ x</button>
 
 
 <cfoutput>
-                    <p class="d-flex">
+                    <p class="d-flex" padding:5px;>
 
 <span class="ms-auto">
 
