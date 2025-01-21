@@ -110,7 +110,7 @@
     <cfoutput>
         <input type="hidden" name="audprojectid" value="#audprojectid#" />
     </cfoutput>
-    <select id="new_mediaid"  name="new_mediaid" onchange="this.form.submit()">
+    <select id="new_mediaid" class="form-control-short" name="new_mediaid" onchange="this.form.submit()">
         <option value="">Link Material</option>
         <cfoutput query="audmedia_picklist">
             <option value="#audmedia_picklist.mediaid#">#audmedia_picklist.mediatype#: #audmedia_picklist.medianame#</option>
