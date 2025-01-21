@@ -1035,11 +1035,11 @@ x</button>
 
                     <cfif notesContact.recordcount neq 0>
 
-                        <span class="badge  badge-primary badge-pill">
+                  
 
                             (#numberformat(notesContact.recordcount)#)
 
-                        </span>
+           
 
                     </cfif>
 
