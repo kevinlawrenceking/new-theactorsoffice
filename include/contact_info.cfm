@@ -689,7 +689,7 @@ x</button>
 
 
 <cfoutput>
-                         <p class="px-3 d-flex text-nowrap">
+                         <p class="px-3 py-3 d-flex text-nowrap">
 
 <span class="ms-auto">
 
@@ -703,7 +703,7 @@ x</button>
 
 <div class="card-body">
 
-<p class="mt-1 mb-0 pt-2 py-1 text-muted font-14">
+<p class="mt-1 mb-0 py-1 text-muted font-14">
 
                     <cfloop query="tagscontact">
 
