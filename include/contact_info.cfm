@@ -703,7 +703,7 @@ x</button>
 
 <div class="card-body">
 
-<p class="mt-1 mb-0 py-1 text-muted font-14">
+<p class="mt-1 mb-0 pt-2 py-1 text-muted font-14">
 
                     <cfloop query="tagscontact">
 
