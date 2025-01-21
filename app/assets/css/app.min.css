@@ -231,7 +231,7 @@
 body[data-layout-color="dark"] {
     --ct-body-font-family: 'Source Sans Pro', sans-serif;
     --ct-body-bg: #303841;
-    --ct-body-color: #333;
+    --ct-body-color: #6c757d;
     --ct-link-color: #406E8E;
     --ct-link-hover-color: #fff;
     --ct-border-color: #424e5a;
