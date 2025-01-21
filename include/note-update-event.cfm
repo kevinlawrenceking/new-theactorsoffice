@@ -47,7 +47,7 @@
                             <div class="form-group col-md-12">
                                 <label for="eventTypeName">Who can see your note?<span class="text-danger">*</span>
                                     &nbsp; <a class="primary" href="" data-bs-toggle="modal" data-bs-target="#helpmodal">
-                                        <i class="mdi mdi-help-circle fa-1x" style="color:black;"></i>
+                                        <i class="mdi mdi-help-circle" style="color:black; font-size:1em;"></i>
                                     </a>
                                 </label>
                                 <select class="form-control" style="max-width:300px;" name="isPublic" id="isPublic" data-parsley-required data-parsley-error-message="Note type is required">
