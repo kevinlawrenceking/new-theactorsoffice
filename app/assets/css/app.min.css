@@ -24543,5 +24543,5 @@ a {
 }
 
 a:hover {
-    filter: brightness(1.5); /* Lightens the color by 20% */
+    filter: brightness(1.2); /* Lightens the color by 20% */
 }
