@@ -13493,13 +13493,14 @@ body[data-layout-color="dark"] .badge-outline-dark {
 }
 
 .breadcrumb-item+.breadcrumb-item::before {
-    float: left;
-    font-family: "Material Design Icons";
-    padding-right: .5rem;
+    content: "•"; /* Or another bullet character */
     color: var(--ct-breadcrumb-divider-color);
-    content: "•"
-
+    margin-right: .5rem;
+    font-size: 1rem; /* Match the font size of the text */
+    line-height: inherit; /* Inherit line height from the breadcrumb item */
+    vertical-align: middle; /* Align the bullet with the text */
 }
+
 
 body[data-layout-color="dark"] .breadcrumb-item>a {
     color: #dee2e6
