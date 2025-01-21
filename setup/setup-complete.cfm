@@ -37,14 +37,14 @@
                                 
                                 <div class="text-center w-85 m-auto">
                                     <div class="auth-logo">
-                                        <a href="" class="logo logo-dark text-center">
-                                            <span class="logo-lg">
+                                        <a href="" class="logo no-hover-effect logo-dark text-center">
+                                            <span class="logo no-hover-effect-lg">
                                                 <img src="/assets/images/taowhite.png" alt="" height="60" />
                                             </span>
                                         </a>
                     
-                                        <a href="" class="logo logo-light text-center">
-                                            <span class="logo-lg">
+                                        <a href="" class="logo no-hover-effect logo-light text-center">
+                                            <span class="logo no-hover-effect-lg">
                                                 <img src="/assets/images/logo-dark.png" alt="" height="20" />
                                             </span>
                                         </a>

@@ -114,20 +114,20 @@
         </ul>
 
         <Cfoutput>
-            <div class="logo-box">
-                <a href="/app/" class="logo logo-dark text-center">
-                    <span class="logo-sm">
+            <div class="logo no-hover-effect-box">
+                <a href="/app/" class="logo no-hover-effect logo-dark text-center">
+                    <span class="logo no-hover-effect-sm">
                         <img src="#application.imagesUrl#/logo-sm.png" alt="" height="30" />
                     </span>
-                    <span class="logo-lg">
+                    <span class="logo no-hover-effect-lg">
                         <img src="#application.imagesUrl#/logo-sm.png" alt="" height="30" />
                     </span>
                 </a>
-                <a href="/app/" class="logo logo-light text-center">
-                    <span class="logo-sm">
+                <a href="/app/" class="logo no-hover-effect logo-light text-center">
+                    <span class="logo no-hover-effect-sm">
                         <img src="#application.imagesUrl#/logo-sm.png" alt="" height="30" />
                     </span>
-                    <span class="logo-lg">
+                    <span class="logo no-hover-effect-lg">
                         <img src="#application.imagesUrl#/logo-light.png" alt="" height="30" />
                     </span>
                 </a>

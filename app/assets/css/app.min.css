@@ -656,6 +656,21 @@ a:hover {
 
 }
 
+/* Prevent hover effects on the <a> element containing the image */
+.no-hover-effect {
+    text-decoration: none; /* No underline or hover decoration */
+    filter: none; /* Remove any default hover brightness */
+    transition: none; /* Disable transitions on hover */
+}
+
+/* Explicitly disable hover effects */
+.no-hover-effect:hover {
+    filter: none; /* Ensure no brightness or filter effect */
+    background-color: transparent; /* Prevent background changes */
+    color: inherit; /* Keep the color the same */
+}
+
+
 a:not([href], [class]),
 a:not([href], [class]):hover {
     color: inherit;

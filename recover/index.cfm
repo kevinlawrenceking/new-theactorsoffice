@@ -81,14 +81,14 @@ Select * from taousers where recover = '#recover#'
                                 <Cfoutput>
                                 <div class="text-center w-85 m-auto">
                                     <div class="auth-logo">
-                                        <a href="index.html" class="logo logo-dark text-center">
-                                            <span class="logo-lg">
+                                        <a href="index.html" class="logo no-hover-effect logo-dark text-center">
+                                            <span class="logo no-hover-effect-lg">
                                                 <img src="#img_loc#/taowhite.png" alt="" class="w-100">
                                             </span>
                                         </a>
                     
-                                        <a href="index.html" class="logo logo-light text-center">
-                                            <span class="logo-lg">
+                                        <a href="index.html" class="logo no-hover-effect logo-light text-center">
+                                            <span class="logo no-hover-effect-lg">
                                                 <img src="#img_loc#/logo-dark.png" alt="" class="w-100" />
                                             </span>
                                         </a>
