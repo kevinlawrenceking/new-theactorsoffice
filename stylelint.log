@@ -1,0 +1,47 @@
+
+app/assets/css/app.min.css
+      [2m1:1[22m   [31m[31m×[39m  Unknown rule order/order                                                                                                                      [2morder/order[22m
+      [2m1:1[22m   [31m[31m×[39m  Unknown rule order/properties-order                                                                                                           [2morder/properties-order[22m
+    [2m507:5[22m   [31m[31m×[39m  Unexpected shorthand "margin" after "margin-top"                                                                                              [2mdeclaration-block-no-shorthand-property-overrides[22m
+    [2m507:5[22m   [31m[31m×[39m  Unexpected shorthand "margin" after "margin-bottom"                                                                                           [2mdeclaration-block-no-shorthand-property-overrides[22m
+    [2m750:17[22m  [31m[31m×[39m  Unexpected unknown value "-webkit-match-parent" for property "text-align"                                                                     [2mdeclaration-property-value-no-unknown[22m
+   [2m4066:5[22m   [31m[31m×[39m  Cannot parse selector (Error: Expected a pseudo-class or pseudo-element.)                                                                     [2mparseError[22m
+   [2m4066:5[22m   [31m[31m×[39m  Cannot parse selector (Error: Expected a pseudo-class or pseudo-element.)                                                                     [2mparseError[22m
+   [2m4066:5[22m   [31m[31m×[39m  Cannot parse selector (Error: Expected a pseudo-class or pseudo-element.)                                                                     [2mparseError[22m
+   [2m4066:5[22m   [31m[31m×[39m  Cannot parse selector (Error: Expected a pseudo-class or pseudo-element.)                                                                     [2mparseError[22m
+   [2m4066:5[22m   [31m[31m×[39m  Cannot parse selector (Error: Expected a pseudo-class or pseudo-element.)                                                                     [2mparseError[22m
+   [2m4066:5[22m   [31m[31m×[39m  Cannot parse selector (Error: Expected a pseudo-class or pseudo-element.)                                                                     [2mparseError[22m
+   [2m4715:5[22m   [31m[31m×[39m  Unexpected duplicate selector ".navbar-expand-sm", first used at line 4710                                                                    [2mno-duplicate-selectors[22m
+   [2m5680:16[22m  [31m[31m×[39m  Expected "0.65625" to be "0.6563"                                                                                                             [2mnumber-max-precision[22m
+  [2m14858:12[22m  [31m[31m×[39m  Expected keyframe name "DropDownSlide" to be kebab-case                                                                                       [2mkeyframes-name-pattern[22m
+  [2m15425:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".text-warning", first used at line 8749                                                                        [2mno-duplicate-selectors[22m
+  [2m15558:1[22m   [31m[31m×[39m  Unexpected duplicate selector "body", first used at line 454                                                                                  [2mno-duplicate-selectors[22m
+  [2m17988:38[22m  [31m[31m×[39m  Unexpected unknown value "0" for property "box-shadow"                                                                                        [2mdeclaration-property-value-no-unknown[22m
+  [2m18404:12[22m  [31m[31m×[39m  Expected keyframe name "SpinnerAnimation" to be kebab-case                                                                                    [2mkeyframes-name-pattern[22m
+  [2m21209:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".close-jq-toast-single", first used at line 21110                                                              [2mno-duplicate-selectors[22m
+  [2m21221:1[22m   [31m[31m×[39m  Unexpected duplicate selector "body[data-layout-color="dark"] .close-jq-toast-single", first used at line 21213                               [2mno-duplicate-selectors[22m
+  [2m21947:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".responsive-table-plugin .checkbox-row input[type="checkbox"]:checked+label::after", first used at line 21931  [2mno-duplicate-selectors[22m
+  [2m22216:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".footable>thead>tr>th>span.footable-sort-indicator", first used at line 22076                                  [2mno-duplicate-selectors[22m
+  [2m22880:16[22m  [31m[31m×[39m  Expected "0.71094" to be "0.7109"                                                                                                             [2mnumber-max-precision[22m
+  [2m23101:18[22m  [31m[31m×[39m  Unexpected unknown value "dropify, sans-serif" for descriptor "font-family"                                                                   [2mat-rule-descriptor-value-no-unknown[22m
+  [2m23601:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".nav-second-level li a", first used at line 15587                                                              [2mno-duplicate-selectors[22m
+  [2m23616:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".menu-arrow", first used at line 15601                                                                         [2mno-duplicate-selectors[22m
+  [2m23682:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".logo-box", first used at line 16200                                                                           [2mno-duplicate-selectors[22m
+  [2m23762:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".selectize-control.multi .selectize-input>div", first used at line 5624                                        [2mno-duplicate-selectors[22m
+  [2m23954:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".selectize-control.multi .selectize-input>div.active", first used at line 23772                                [2mno-duplicate-selectors[22m
+  [2m24054:18[22m  [31m[31m×[39m  Expected "1.42857143" to be "1.4286"                                                                                                          [2mnumber-max-precision[22m
+  [2m24167:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".autocomplete-suggestion", first used at line 22670                                                            [2mno-duplicate-selectors[22m
+  [2m24197:1[22m   [31m[31m×[39m  Expected id selector "#nameResults" to be kebab-case                                                                                          [2mselector-id-pattern[22m
+  [2m24224:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".card-footer", first used at line 5257                                                                         [2mno-duplicate-selectors[22m
+  [2m24228:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".grid-item", first used at line 24213                                                                          [2mno-duplicate-selectors[22m
+  [2m24251:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".card-header", first used at line 5246                                                                         [2mno-duplicate-selectors[22m
+  [2m24255:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".card-footer", first used at line 5257                                                                         [2mno-duplicate-selectors[22m
+  [2m24263:1[22m   [31m[31m×[39m  Unexpected duplicate selector "body", first used at line 454                                                                                  [2mno-duplicate-selectors[22m
+  [2m24314:1[22m   [31m[31m×[39m  Expected id selector "#hiddenSelfTape" to be kebab-case                                                                                       [2mselector-id-pattern[22m
+  [2m24318:1[22m   [31m[31m×[39m  Expected id selector "#hiddenLocation" to be kebab-case                                                                                       [2mselector-id-pattern[22m
+  [2m24322:1[22m   [31m[31m×[39m  Expected id selector "#hiddenAddLocation" to be kebab-case                                                                                    [2mselector-id-pattern[22m
+  [2m24326:1[22m   [31m[31m×[39m  Expected id selector "#hiddenCasting" to be kebab-case                                                                                        [2mselector-id-pattern[22m
+  [2m24337:18[22m  [31m[31m×[39m  Unexpected unknown value "-pre-wrap" for property "white-space"                                                                               [2mdeclaration-property-value-no-unknown[22m
+  [2m24345:1[22m   [31m[31m×[39m  Expected id selector "#hidden_div" to be kebab-case                                                                                           [2mselector-id-pattern[22m
+  [2m24419:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".tooltip .tooltip-arrow, .popper .popper__arrow", first used at line 24410                                     [2mno-duplicate-selectors[22m
+

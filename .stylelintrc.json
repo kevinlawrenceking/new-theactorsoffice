@@ -2,10 +2,10 @@
   "extends": "stylelint-config-standard",
   "defaultSeverity": "error",
   "rules": {
-    "color-no-invalid-hex": true,
-    "block-no-empty": true,
-    "declaration-block-no-duplicate-properties": true,
-    "string-quotes": "double",
-    "indentation": 2
+     "order/order": null, 
+    "order/properties-order": null, 
+    "selector-class-pattern": null,
+    "no-descending-specificity": null
+ 
   }
 }

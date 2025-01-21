@@ -12,6 +12,8 @@
 }
 
 :root {
+    --ct-text-opacity: 1;
+    --ct-warning-rgb: #dece8e;
     --ct-body-font-weight: 400;
     --ct-font-weight: 400;
     --ct-white-rgb: 255, 255, 255;
@@ -229,7 +231,7 @@
 body[data-layout-color="dark"] {
     --ct-body-font-family: 'Source Sans Pro', sans-serif;
     --ct-body-bg: #303841;
-    --ct-body-color: #94a0ad;
+    --ct-body-color: #333;
     --ct-link-color: #406E8E;
     --ct-link-hover-color: #fff;
     --ct-border-color: #424e5a;
@@ -462,7 +464,9 @@ body {
     text-align: var(--ct-body-text-align);
     background-color: var(--ct-body-bg);
     text-size-adjust: 100%;
-    -webkit-tap-highlight-color: transparent
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 body.loading {
@@ -500,15 +504,12 @@ h3,
 h4,
 h5,
 h6 {
-    margin-top: 0;
-    margin-bottom: 1.5rem;
-    font-weight: 500;
+    margin: 10px 0 1.5rem; 
+    font-weight: 400;
     line-height: 1.1;
-    margin: 10px 0;
-    font-family: Lato , sans-serif;
-    color: #343a40
+    font-family: "Lato", sans-serif;  
+    color: #343a40;
 }
-
 .h1,
 h1 {
     font-size: calc(1.35rem + 1.2vw)
@@ -644,7 +645,6 @@ sup {
 
 a {
     color: var(--ct-link-color);
-    text-decoration: none;
     transition: filter 0.3s ease; /* Smooth transition for the hover effect */
     text-decoration: none
 }
@@ -748,9 +748,10 @@ caption {
 }
 
 th {
-    text-align: -webkit-match-parent;
-        font-weight: 600
+    text-align: inherit; 
+    font-weight: 400;
 }
+
 
 tbody,
 td,
@@ -4061,11 +4062,6 @@ fieldset:disabled .btn {
     background-color: transparent
 }
 
-    font-weight: 400;
-    color: var(--ct-link-color);
-
-    background-color: transparent
-
 .btn-link:hover {
     color: var(--ct-btn-link-hover-color);
     text-decoration: none;
@@ -4710,10 +4706,7 @@ fieldset:disabled .btn {
 @media (width >=576px) {
     .navbar-expand-sm {
         flex-wrap: nowrap;
-        justify-content: flex-start
-    }
-
-    .navbar-expand-sm {
+        justify-content: flex-start;
         flex-direction: row
     }
 
@@ -5678,7 +5671,7 @@ fieldset:disabled .btn {
     display: flex;
     height: .75rem;
     overflow: hidden;
-    font-size: .65625rem;
+    font-size: .6563rem;
     background-color: var(--ct-progress-bg);
     border-radius: .25rem
 }
@@ -15423,10 +15416,6 @@ body[data-layout-color="dark"] .bg-soft-primary {
     border-color: #dece8e !important
 }
 
-.text-warning {
-    color: #dece8e !important
-}
-
 body[data-layout-color="dark"] .border-primary {
     border-color: #406E8E !important
 }
@@ -15554,10 +15543,6 @@ body[data-layout-color="dark"] .text-body {
 html {
     position: relative;
     min-height: 100%
-}
-
-body {
-    overflow-x: hidden
 }
 
 #wrapper {
@@ -24259,11 +24244,6 @@ button.close {
 
 .hide-edit-icon {
     display: none
-}
-
-body {
-    overflow-y: scroll;
-    color: #333
 }
 
 body.modal-open {
