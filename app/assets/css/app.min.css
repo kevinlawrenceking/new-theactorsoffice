@@ -6364,7 +6364,8 @@ fieldset:disabled .btn {
     padding: 1rem;
     border-bottom: 0 solid var(--ct-modal-header-border-color);
     border-top-left-radius: .2rem;
-    border-top-right-radius: .2rem
+    border-top-right-radius: .2rem;
+    background-color: var(--ct-card-cap-bg);
 }
 
 .modal-header .btn-close {
