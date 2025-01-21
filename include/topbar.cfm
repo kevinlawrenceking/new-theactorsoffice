@@ -113,26 +113,29 @@
             </li>
         </ul>
 
-        <Cfoutput>
-            <div class="logo-box">
-                <a href="/app/" class="logo no-hover-effect logo-dark text-center">
-                    <span class="logo no-hover-effect-sm">
-                        <img src="#application.imagesUrl#/logo-sm.png" alt="" height="30" />
-                    </span>
-                    <span class="logo no-hover-effect-lg">
-                        <img src="#application.imagesUrl#/logo-sm.png" alt="" height="30" />
-                    </span>
-                </a>
-                <a href="/app/" class="logo no-hover-effect logo-light text-center">
-                    <span class="logo no-hover-effect-sm">
-                        <img src="#application.imagesUrl#/logo-sm.png" alt="" height="30" />
-                    </span>
-                    <span class="logo no-hover-effect-lg">
-                        <img src="#application.imagesUrl#/logo-light.png" alt="" height="30" />
-                    </span>
-                </a>
-            </div>
-        </cfoutput>
+
+        <div class="logo-box">
+            <a href="/app/" class="logo logo-dark text-center">
+                <span class="logo-sm">
+                    <img src="/assets/images/logo-sm.png" alt="" height="30">
+             
+                </span>
+                <span class="logo-lg">
+                    <img src="/assets/images/logo-sm.png" alt="" height="30">
+            
+                </span>
+            </a>
+    
+            <a href="/app/" class="logo logo-light text-center">
+                <span class="logo-sm">
+                    <img src="/assets/images/logo-sm.png" alt="" height="30">
+                </span>
+                <span class="logo-lg">
+                    <img src="/assets/images/logo-light.png" alt="" height="30">
+                </span>
+            </a>
+        </div>
+
 
         <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
             <li>
