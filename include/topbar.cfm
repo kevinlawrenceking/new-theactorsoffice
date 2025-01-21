@@ -114,7 +114,7 @@
         </ul>
 
         <Cfoutput>
-            <div class="logo no-hover-effect-box">
+            <div class="logo-box">
                 <a href="/app/" class="logo no-hover-effect logo-dark text-center">
                     <span class="logo no-hover-effect-sm">
                         <img src="#application.imagesUrl#/logo-sm.png" alt="" height="30" />
