@@ -654,15 +654,12 @@ a {
 a:hover {
     color: var(--ct-link-hover-color);
     text-decoration: none;
-    filter: brightness(1.1); /* Lightens the color by 20% */
 
 }
 
 /* Prevent hover effects on the <a> element containing the image */
 .no-hover-effect {
     text-decoration: none; /* No underline or hover decoration */
-    filter: none; /* Remove any default hover brightness */
-    transition: none; /* Disable transitions on hover */
 }
 
 /* Explicitly disable hover effects */
