@@ -24542,3 +24542,7 @@ label {
     text-align: center; /* Centered text */
     margin-top: 0.5rem; /* Spacing from the image */
 }
+
+.dataTables_wrapper {
+    font-family: 'Source Sans Pro', sans-serif;
+}
