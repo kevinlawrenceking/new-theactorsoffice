@@ -608,7 +608,7 @@ x</button>
 
                         </cfoutput>
 
-                        <A href="/app/image-upload-contact/?contactid=<cfoutput>#contactid#&ref_pgid=3</cfoutput>">
+                        <A class="no-hover-effect" href="/app/image-upload-contact/?contactid=<cfoutput>#contactid#&ref_pgid=3</cfoutput>">
 
 <figure>
 <cfoutput>
