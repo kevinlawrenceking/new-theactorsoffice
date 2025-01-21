@@ -86,7 +86,7 @@
     <p class="card-text">
       <cfloop query="mytags">
         <cfoutput>
-          <span class="badge bg-secondary me-1">#mytags.valuetext#</span>
+          <span class="badge badge-blue">#mytags.valuetext#</span>
         </cfoutput>
       </cfloop>
     </p>
