@@ -97,7 +97,7 @@
                         </cfoutput>
                     </div>
                 </cfoutput>
-                <div style="height:24px;">&nbsp;</div>
+                <div style="height:12px;">&nbsp;</div>
                 <ul class="nav nav-tabs">
                     <cfoutput>
                         <li class="nav-item">
