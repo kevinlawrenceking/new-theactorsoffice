@@ -1031,19 +1031,19 @@ x</button>
 
             <li class="nav-item">
 
-                <a href="##notes" data-bs-toggle="tab" aria-expanded="<cfoutput>#notes_expand#</cfoutput>" class="nav-link<cfif #notes_expand# is "true"> active</cfif>">Notes
+                <cfoutput><a href="##notes" data-bs-toggle="tab" aria-expanded="#notes_expand#" class="nav-link<cfif #notes_expand# is "true"> active</cfif>">Notes
 
                     <cfif notesContact.recordcount neq 0>
 
                         <span class="badge  badge-primary badge-pill">
 
-                            <cfoutput>(#numberformat(notesContact.recordcount)#)</cfoutput>
+                            (#numberformat(notesContact.recordcount)#)
 
                         </span>
 
                     </cfif>
 
-                </a>
+                </a></cfoutput>
 
             </li>
 
