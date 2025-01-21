@@ -2651,7 +2651,6 @@ progress {
 }
 
 .form-control-short {
-    display: block;
     max-width: 250px;
     height: calc(1.5em + .9rem + 2px);
     padding: .45rem .9rem;
