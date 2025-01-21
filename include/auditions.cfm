@@ -286,9 +286,12 @@
                                                 </cfif>
 
                                                 <cfif #results.col1#is not "">
-                                                    <a href="/app/audition/?audprojectid=#results.recid#" title="#this.formatDate('#results.col1#')#">
-                                                        <img src="#application.datesUrl#/#DateFormat('#results.col1#','mm-dd')#.png" style="max-width:75px;" alt="..." />
-                                                    </a>
+                                               <a href="/app/audition/?audprojectid=#results.recid#" title="#this.formatDate('#results.col1#')#">
+    <div class="text-center">
+        <img src="#application.datesUrl#/#DateFormat('#results.col1#','mm-dd')#.png" style="max-width:75px;" alt="Calendar Icon" />
+        <span class="d-block text-muted-custom">#dateformat('#results.col1#', 'YYYY')#</span>
+    </div>
+</a>
                                                 <cfelse>
                                                     <a href="/app/audition/?audprojectid=#results.recid#" title="#DateFormat('#results.col1b#','long')# at #timeformat('#results.col1b#')#">
                                                         <img src="#application.datesUrl#/#DateFormat('#results.col1b#','mm-dd')#.png" style="max-width:75px;" alt="..." />

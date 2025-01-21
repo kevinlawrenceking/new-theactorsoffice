@@ -24529,3 +24529,10 @@ label {
     margin: 0 !important;
     padding: 15px !important;
 }
+
+.text-muted-custom {
+    color: #cccccc; /* Light gray */
+    font-size: 0.8rem; /* Small font */
+    text-align: center; /* Centered text */
+    margin-top: 0.5rem; /* Spacing from the image */
+}
