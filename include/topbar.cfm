@@ -113,29 +113,29 @@
             </li>
         </ul>
 
-
-        <div class="logo-box">
+        <Cfoutput>
+                <div class="logo-box">
             <a href="/app/" class="logo logo-dark text-center">
                 <span class="logo-sm">
-                    <img src="/assets/images/logo-sm.png" alt="" height="30">
-             
+               <img src="#application.imagesUrl#/logo-sm.png" alt="" height="30" />
+              
                 </span>
                 <span class="logo-lg">
-                    <img src="/assets/images/logo-sm.png" alt="" height="30">
-            
+                 <img src="#application.imagesUrl#/logo-sm.png" alt="" height="30" />
+          
                 </span>
             </a>
     
             <a href="/app/" class="logo logo-light text-center">
                 <span class="logo-sm">
-                    <img src="/assets/images/logo-sm.png" alt="" height="30">
+                     <img src="#application.imagesUrl#/logo-sm.png" alt="" height="30" />
                 </span>
                 <span class="logo-lg">
-                    <img src="/assets/images/logo-light.png" alt="" height="30">
+                   <img src="#application.imagesUrl#/logo-sm.png" alt="" height="30" />
                 </span>
             </a>
         </div>
-
+        </cfoutput>
 
         <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
             <li>
