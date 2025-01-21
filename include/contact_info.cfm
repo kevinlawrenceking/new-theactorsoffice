@@ -1052,11 +1052,8 @@ x</button>
 
                     <cfif eventresults.recordcount neq 0>
 
-                        <span class="badge  badge-primary badge-pill">
-
                             <cfoutput>(#numberformat(eventresults.recordcount)#)</cfoutput>
 
-                        </span>
 
                     </cfif>
 
