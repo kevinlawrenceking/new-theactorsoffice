@@ -11,7 +11,7 @@
     <!--- Update the tao_files table with the cleaned qry_details --->
     <cfquery result="result" datasource="abod">
         UPDATE tao_files
-        SET qry_details = <cfqueryparam value="#TRIM(cleanQryDetails)#" cfsqltype="cf_sql_longvarchar">
+        SET qry_details = <cfqueryparam value="#TRIM(QryDetails)#" cfsqltype="cf_sql_longvarchar">
         WHERE id = <cfqueryparam value="#getFilesWithComments.id#" cfsqltype="cf_sql_integer">
     </cfquery>
 </cfloop>
