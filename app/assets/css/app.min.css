@@ -24768,3 +24768,7 @@ label {
     margin-bottom: .5rem;
     font-weight: 500
 }
+
+.badge.badge-primary.badge-pill:active {
+    color: white;
+}
