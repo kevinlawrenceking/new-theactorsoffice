@@ -37,7 +37,7 @@
 
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: #f3f7f9;">
+            <div class="modal-header" >
                 <h4 class="modal-title" id="standard-modalLabel">My Materials</h4>
                 <button type="button" class="close" data-bs-dismiss="modal" >
 

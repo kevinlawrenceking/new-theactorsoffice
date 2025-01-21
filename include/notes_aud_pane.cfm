@@ -108,7 +108,7 @@
 
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <div class="modal-header" style="background-color: ##f3f7f9;">
+                                    <div class="modal-header" >
                                         <h4 class="modal-title" id="standard-modalLabel">Note Links</h4>
                                         <button type="button" class="close" data-bs-dismiss="modal" >
 <i class="mdi mdi-close-thick"></i></button>
@@ -133,7 +133,7 @@
 
                             <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
                                 <div class="modal-content">
-                                    <div class="modal-header" style="background-color: ##f3f7f9;">
+                                    <div class="modal-header" >
                                         <h4 class="modal-title" id="standard-modalLabel">Note</h4>
                                         <button type="button" class="close" data-bs-dismiss="modal" >
 <i class="mdi mdi-close-thick"></i></button>
@@ -158,7 +158,7 @@
 
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <div class="modal-header" style="background-color: ##f3f7f9;">
+                                    <div class="modal-header" >
                                         <h4 class="modal-title" id="standard-modalLabel">Upload an Attachment</h4>
                                         <button type="button" class="close" data-bs-dismiss="modal" >
 <i class="mdi mdi-close-thick"></i></button>
