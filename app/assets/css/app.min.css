@@ -13497,7 +13497,7 @@ body[data-layout-color="dark"] .badge-outline-dark {
     font-family: "Material Design Icons";
     padding-right: .5rem;
     color: var(--ct-breadcrumb-divider-color);
-    content: var(--ct-breadcrumb-divider, "󰅂")
+    content: "•"
 
 }
 
