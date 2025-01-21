@@ -18,7 +18,7 @@
     --ct-body-font-family: 'Source Sans Pro', sans-serif;
     --ct-body-font-size: 1rem;
     --ct-link-color: #406E8E;
-    --ct-link-hover-color: #2e4f65;
+    --ct-link-hover-color: #1d80c2;
     --ct-border-color: #dee2e6;
     --ct-box-shadow: 0 0 35px 0 #9aa1ab26;
     --ct-box-shadow-sm: 0 .75rem 6rem #38414a08;
@@ -644,12 +644,16 @@ sup {
 
 a {
     color: var(--ct-link-color);
+    text-decoration: none;
+    transition: filter 0.3s ease; /* Smooth transition for the hover effect */
     text-decoration: none
 }
 
 a:hover {
     color: var(--ct-link-hover-color);
-    text-decoration: none
+    text-decoration: none;
+    filter: brightness(1.1); /* Lightens the color by 20% */
+
 }
 
 a:not([href], [class]),
@@ -24542,14 +24546,4 @@ label {
     font-size: 0.8rem; /* Small font */
     text-align: center; /* Centered text */
     margin-top: 0.5rem; /* Spacing from the image */
-}
-
-a {
-    text-decoration: none;
-    transition: filter 0.3s ease; /* Smooth transition for the hover effect */
-}
-
-a:hover {
-    filter: brightness(1.1); /* Lightens the color by 20% */
-    color: blue;
 }
