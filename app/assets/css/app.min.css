@@ -22655,6 +22655,7 @@ body[data-layout-color="dark"] .ms-optgroup-label {
     max-height: 200px !important;
     box-shadow: var(--ct-box-shadow)
 }
+
 .autocomplete-no-suggestion {
     padding: 5px
 }
@@ -24355,15 +24356,6 @@ body.modal-open {
     width: auto;
     font-size: .8rem;
     padding: .5em 1em;
-}
-
-.popper .popper__arrow,
-.tooltip .tooltip-arrow {
-    width: 0;
-    height: 0;
-    border-style: solid;
-    position: absolute;
-    margin: 5px;
 }
 
 .tooltip .tooltip-arrow,

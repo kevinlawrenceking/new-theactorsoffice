@@ -1,30 +1,17 @@
 
 app/assets/css/app.min.css
-      [2m1:1[22m   [31m[31m×[39m  Unknown rule order/order                                                                                                                      [2morder/order[22m
-      [2m1:1[22m   [31m[31m×[39m  Unknown rule order/properties-order                                                                                                           [2morder/properties-order[22m
-  [2m14878:12[22m  [31m[31m×[39m  Expected keyframe name "DropDownSlide" to be kebab-case                                                                                       [2mkeyframes-name-pattern[22m
-  [2m18417:12[22m  [31m[31m×[39m  Expected keyframe name "SpinnerAnimation" to be kebab-case                                                                                    [2mkeyframes-name-pattern[22m
-  [2m21222:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".close-jq-toast-single", first used at line 21123                                                              [2mno-duplicate-selectors[22m
-  [2m21234:1[22m   [31m[31m×[39m  Unexpected duplicate selector "body[data-layout-color="dark"] .close-jq-toast-single", first used at line 21226                               [2mno-duplicate-selectors[22m
-  [2m21960:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".responsive-table-plugin .checkbox-row input[type="checkbox"]:checked+label::after", first used at line 21944  [2mno-duplicate-selectors[22m
-  [2m22229:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".footable>thead>tr>th>span.footable-sort-indicator", first used at line 22089                                  [2mno-duplicate-selectors[22m
-  [2m23606:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".nav-second-level li a", first used at line 15599                                                              [2mno-duplicate-selectors[22m
-  [2m23621:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".menu-arrow", first used at line 15613                                                                         [2mno-duplicate-selectors[22m
-  [2m23687:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".logo-box", first used at line 16212                                                                           [2mno-duplicate-selectors[22m
-  [2m23767:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".selectize-control.multi .selectize-input>div", first used at line 5643                                        [2mno-duplicate-selectors[22m
-  [2m23959:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".selectize-control.multi .selectize-input>div.active", first used at line 23777                                [2mno-duplicate-selectors[22m
-  [2m24172:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".autocomplete-suggestion", first used at line 22683                                                            [2mno-duplicate-selectors[22m
-  [2m24202:1[22m   [31m[31m×[39m  Expected id selector "#nameResults" to be kebab-case                                                                                          [2mselector-id-pattern[22m
-  [2m24229:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".card-footer", first used at line 5276                                                                         [2mno-duplicate-selectors[22m
-  [2m24233:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".grid-item", first used at line 24218                                                                          [2mno-duplicate-selectors[22m
-  [2m24256:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".card-header", first used at line 5265                                                                         [2mno-duplicate-selectors[22m
-  [2m24260:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".card-footer", first used at line 5276                                                                         [2mno-duplicate-selectors[22m
-  [2m24314:1[22m   [31m[31m×[39m  Expected id selector "#hiddenSelfTape" to be kebab-case                                                                                       [2mselector-id-pattern[22m
-  [2m24318:1[22m   [31m[31m×[39m  Expected id selector "#hiddenLocation" to be kebab-case                                                                                       [2mselector-id-pattern[22m
-  [2m24322:1[22m   [31m[31m×[39m  Expected id selector "#hiddenAddLocation" to be kebab-case                                                                                    [2mselector-id-pattern[22m
-  [2m24326:1[22m   [31m[31m×[39m  Expected id selector "#hiddenCasting" to be kebab-case                                                                                        [2mselector-id-pattern[22m
-  [2m24344:1[22m   [31m[31m×[39m  Expected id selector "#hidden_div" to be kebab-case                                                                                           [2mselector-id-pattern[22m
-  [2m24418:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".tooltip .tooltip-arrow, .popper .popper__arrow", first used at line 24409                                     [2mno-duplicate-selectors[22m
+      [2m1:1[22m   [31m[31m×[39m  Unknown rule order/order                                                                                   [2morder/order[22m
+      [2m1:1[22m   [31m[31m×[39m  Unknown rule order/properties-order                                                                        [2morder/properties-order[22m
+  [2m14871:12[22m  [31m[31m×[39m  Expected keyframe name "DropDownSlide" to be kebab-case                                                    [2mkeyframes-name-pattern[22m
+  [2m18404:12[22m  [31m[31m×[39m  Expected keyframe name "SpinnerAnimation" to be kebab-case                                                 [2mkeyframes-name-pattern[22m
+  [2m23740:5[22m   [31m[31m×[39m  Unexpected shorthand "border" after "border-color"                                                         [2mdeclaration-block-no-shorthand-property-overrides[22m
+  [2m24166:1[22m   [31m[31m×[39m  Expected id selector "#nameResults" to be kebab-case                                                       [2mselector-id-pattern[22m
+  [2m24265:1[22m   [31m[31m×[39m  Expected id selector "#hiddenSelfTape" to be kebab-case                                                    [2mselector-id-pattern[22m
+  [2m24269:1[22m   [31m[31m×[39m  Expected id selector "#hiddenLocation" to be kebab-case                                                    [2mselector-id-pattern[22m
+  [2m24273:1[22m   [31m[31m×[39m  Expected id selector "#hiddenAddLocation" to be kebab-case                                                 [2mselector-id-pattern[22m
+  [2m24277:1[22m   [31m[31m×[39m  Expected id selector "#hiddenCasting" to be kebab-case                                                     [2mselector-id-pattern[22m
+  [2m24295:1[22m   [31m[31m×[39m  Expected id selector "#hidden_div" to be kebab-case                                                        [2mselector-id-pattern[22m
+  [2m24369:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".tooltip .tooltip-arrow, .popper .popper__arrow", first used at line 24360  [2mno-duplicate-selectors[22m
 
-[31m×[39m 25 problems ([31m25 errors[39m, [33m0 warnings[39m)
+[31m×[39m 12 problems ([31m12 errors[39m, [33m0 warnings[39m)
 
