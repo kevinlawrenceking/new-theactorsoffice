@@ -26,7 +26,7 @@
 
 
   <div class="row" style="margin: auto;">
-    <div class="col-md-2 p-2">Or select an existing relationship:
+    <div class="col-md-2 p-2">Add a new person to your audition:
     </div>
     <div class="col-md-4 p-2">
         <a href="remoteAddContact.cfm?src=account" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="#remoteAddContactAud">
@@ -44,9 +44,9 @@
         <input type="hidden" name="audprojectid" value="#audprojectid#" />
     </cfoutput>
 
-    <div class="row">
-        <div class="col-md-2 py-2">Add relationship:</div>
-        <div class="col-md-3 py-2">
+<div class="row" style="margin: auto;">
+        <div class="col-md-2 p-2">Or select an existing relationship:</div>
+        <div class="col-md-4 p-2">
             <div class="input-group">
                 <select class="form-control" name="autocomplete_aud" id="autocomplete_audx">
                     <option value="">Select Contact...</option>
