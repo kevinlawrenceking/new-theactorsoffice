@@ -749,6 +749,7 @@ caption {
 th {
     text-align: inherit; 
     font-weight: 600;
+    background-color: var(--ct-card-cap-bg) !important
 }
 
 
