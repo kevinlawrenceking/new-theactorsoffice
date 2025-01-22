@@ -69,9 +69,10 @@
         </div>
     </div>
 
-<div class="form-group text-center col-md-12">
+<div class="form-group text-end">
     <button class="btn btn-primary btn-sm" type="submit">Add</button>
 </div>
+
 
 
 </form>
