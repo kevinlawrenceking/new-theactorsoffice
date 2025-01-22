@@ -47,11 +47,6 @@ div.dtsr-confirmation,div.dtsr-creation{position:fixed;top:20%;left:50%;width:50
 .dataTables_wrapper {
     font-family: 'Source Sans Pro', sans-serif;
 }
-/* Target DataTables table */
-#basic-datatable {
-    border-collapse: separate !important; /* Allow spacing between cells */
-    border-spacing: 2px !important; /* Add 2px spacing between cells */
-}
 
 #basic-datatable th {
     text-align: inherit;
