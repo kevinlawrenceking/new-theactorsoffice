@@ -90,6 +90,7 @@
             <cfoutput>
                 <div class="col-xl-3 col-md-4 col-sm-6 col-xs-12" style="padding-bottom:20px;">
                   <div class="card h-100 shadow-sm border border-dark text-center">
+                    <div class="card-body text-center d-flex flex-column justify-content-center">
                         <div class="pt-1 pb-1">
                             <cfset contact_avatar_filename = "#session.userContactsPath#\#audcontacts.contactid#\avatar.jpg" />
 
@@ -128,6 +129,7 @@
                                     <span><i class="fe-trash-2 font-10 text-muted"></i></span>
                                 </a>
                             </cfif>
+                        </div>
                         </div>
                     </div><!--- end .padding --->
                 </div>
