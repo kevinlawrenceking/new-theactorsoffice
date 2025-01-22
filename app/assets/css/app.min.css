@@ -2742,6 +2742,15 @@ fieldset:disabled .btn {
     text-align: center !important
 }
 
+.text-start {
+    text-align: left !important
+}
+
+.text-end {
+    text-align: right !important
+}
+
+
 .text-uppercase {
     text-transform: uppercase !important
 }
