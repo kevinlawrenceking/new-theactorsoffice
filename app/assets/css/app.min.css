@@ -749,7 +749,8 @@ caption {
 th {
     text-align: inherit; 
     font-weight: 600;
-    background-color: var(--ct-card-cap-bg) !important
+    background-color: var(--ct-card-cap-bg) !important;
+    margin-right: 2px; /* Adds 2px spacing between nav items */
 }
 
 
