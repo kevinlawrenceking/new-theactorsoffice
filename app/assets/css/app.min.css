@@ -2394,7 +2394,10 @@ progress {
     --ct-table-bg: var(--ct-table-bg);
     --ct-table-striped-color: var(--ct-table-striped-color);
 
-    border-color: var(--ct-table-border-color)
+    border-color: var(--ct-table-border-color);
+        border-collapse: separate; /* Ensure spacing takes effect */
+        border-spacing: 2px; /* Space between cells */
+
 }
 
 .table>:not(caption)>*>* {
