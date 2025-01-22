@@ -132,8 +132,8 @@
                         </div>
                         </div>
                     </div><!--- end .padding --->
-                      <!--- Card Footer: Remove Button --->
-
+                    
+                </div>
             </cfoutput>
         </cfloop>
     </div>
