@@ -17997,12 +17997,13 @@ body[data-layout-color="dark"] .inbox-widget .inbox-item .inbox-item-date {
     transform: rotate(-45deg);
     width: 100px;
     display: block;
-    box-shadow: 0 0 24px 0 #3333330f 0 1px 0 0 #33333305;
+    box-shadow: 0 0 24px #3333330f, 0 1px 0 #33333305;
     position: absolute;
     top: 19px;
     left: -21px;
-    font-weight: 600
+    font-weight: 600;
 }
+
 
 .ribbon-box .ribbon-two span::before {
     content: "";
