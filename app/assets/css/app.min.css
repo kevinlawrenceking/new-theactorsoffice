@@ -12,7 +12,7 @@
 }
 
 :root {
-    --ct-danger-rgb: #e45649;
+    --ct-danger-rgb: #dc3545;
     --ct-body-bg: #f5f6f8;
     --ct-body-color: #595959;
     --ct-text-opacity: 1;
@@ -2775,7 +2775,7 @@ fieldset:disabled .btn {
 .text-danger {
     --ct-text-opacity: 1;
 
-    color: rgba(var(--ct-danger-rgb), var(--ct-text-opacity)) !important
+    color: var(--ct-danger-rgb) !important
 }
 
 .text-light {
