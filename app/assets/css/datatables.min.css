@@ -47,5 +47,13 @@ div.dtsr-confirmation,div.dtsr-creation{position:fixed;top:20%;left:50%;width:50
 .dataTables_wrapper {
     font-family: 'Source Sans Pro', sans-serif;
 }
+.table {
+    --ct-table-bg: var(--ct-table-bg);
+    --ct-table-striped-color: var(--ct-table-striped-color);
 
+    border-color: var(--ct-table-border-color);
+        border-collapse: separate; /* Ensure spacing takes effect */
+        border-spacing: 2px; /* Space between cells */
+
+}
 
