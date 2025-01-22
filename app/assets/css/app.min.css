@@ -4129,6 +4129,21 @@ table[data-toggle="table"] {
     color: #dece8e
 }
 
+.simplebar-content-wrapper {
+	direction: inherit;
+	box-sizing: border-box!important;
+	position: relative;
+	display: block;
+	height: 100%;
+	width: auto;
+	visibility: visible;
+	overflow: auto;
+	max-width: 100%;
+	max-height: 100%;
+	scrollbar-width: none
+}
+
+
 .nav-second-level li a:focus,
 .nav-second-level li a:hover,
 .nav-second-level li.active>a {
