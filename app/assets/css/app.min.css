@@ -12,7 +12,6 @@
 }
 
 :root {
-
     --ct-body-color: #595959;
     --ct-text-opacity: 1;
     --ct-warning-rgb: #dece8e;
@@ -467,8 +466,7 @@ body {
     background-color: var(--ct-body-bg);
     text-size-adjust: 100%;
     -webkit-tap-highlight-color: transparent;
-    overflow-x: hidden;
-    overflow-y: scroll;
+    overflow: hidden scroll;
 }
 
 body.loading {
@@ -509,9 +507,10 @@ h6 {
     margin: 10px 0 1.5rem; 
     font-weight: 400;
     line-height: 1.1;
-    font-family: "Lato", sans-serif;  
+    font-family: Lato, sans-serif;  
     color: #343a40;
 }
+
 .h1,
 h1 {
     font-size: calc(1.35rem + 1.2vw)
@@ -794,8 +793,8 @@ select {
 }
 
 select {
-    word-wrap: normal;
-    border-color: (--ct-input-border-color)
+    overflow-wrap: normal; /* Replace word-wrap with overflow-wrap */
+    border-color: var(--ct-input-border-color); /* Use var() for the CSS variable */
 }
 
 select:-internal-list-box {
@@ -4732,9 +4731,8 @@ fieldset:disabled .btn {
 
 @media (width >=576px) {
     .navbar-expand-sm {
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-        flex-direction: row
+        flex-flow: row nowrap;
+        justify-content: flex-start
     }
 
     .navbar-expand-sm .navbar-nav .dropdown-menu {
@@ -22891,7 +22889,7 @@ body[data-layout-color="dark"] .flatpickr-months .flatpickr-prev-month {
 
 .sp-container button {
     padding: .25rem .5rem;
-    font-size: .71094rem;
+    font-size: .7109rem;
     border-radius: .2rem;
     font-weight: 400;
     color: #323a46
@@ -24065,7 +24063,7 @@ button.close {
     background: #fff;
     cursor: default;
     font-size: 12px;
-    line-height: 1.42857143
+    line-height: 1.4286
 }
 
 .selectize-dropdown .active {
