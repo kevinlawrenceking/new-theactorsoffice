@@ -798,6 +798,10 @@ select {
     border-color: (--ct-input-border-color)
 }
 
+select:-internal-list-box {
+border-radius: 2px !important;
+}
+
 select:disabled {
     opacity: 1
 }
