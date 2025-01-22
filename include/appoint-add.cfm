@@ -68,12 +68,12 @@
             <label for="eventLocation">Location</label>
             <input class="form-control" type="text" id="eventLocation" autocomplete="off" name="eventLocation" placeholder="Location"/></div>
 
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-6 col-sm-12">
             <label for="eventStart">Start Date<span class="text-danger">*</span>
             </label>
             <input id="eventStart" class="form-control" autocomplete="off" name="eventStart" type="date" data-parsley-required="data-parsley-required" data-parsley-error-message="Start Date is required"/></div>
 
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-6 col-sm-12">
             <label for="eventTypeName">Type<span class="text-danger">*</span>
             </label>
             <select class="form-control" name="eventTypeName" id="eventTypeName" data-parsley-required="data-parsley-required" data-parsley-error-message="Type is required">
@@ -84,7 +84,7 @@
             </select>
           </div>
 
-<div class="form-group col-md-6">
+<div class="form-group col-md-6 col-sm-12">
   <label for="eventStartTime">Start Time<span class="text-danger">*</span>
   </label>
   <select class="form-control" 
@@ -125,7 +125,7 @@
 </div>
 
 
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-6 col-sm-12">
             <label for="new_durid">Duration</label>
             <select class="form-control" name="new_durid" autocomplete="off" id="new_durid">
               <cfoutput query="durations">
@@ -175,7 +175,7 @@
 </div>
 
 
-          <div class="form-group col-md-6" id="hidden_div">
+          <div class="form-group col-md-6 col-sm-12" id="hidden_div">
             <label for="eventStart">Recurring Until:</label>
             <input class="form-control" id="endRecur" name="endRecur" type="date"/></div>
         </div>
