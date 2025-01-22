@@ -140,26 +140,39 @@
             <label for="noteDetails">Note</label>
             <textarea class="form-control" type="text" id="noteDetails" name="noteDetails" placeholder="Note to be added to Notes Log" rows="4"></textarea>
           </div>
-
-          <div class="form-group col-md-12">
-            <label for="eventStopTime">Recurring every:</label>
-            <div id="checkboxes">
-              <input type="checkbox" name="dow" value="1" autocomplete="off" onchange="showDiv('hidden_div', this)"/>
-              Monday
-              <input type="checkbox" name="dow" value="2" onchange="showDiv('hidden_div', this)"/>
-              Tuesday
-              <input type="checkbox" name="dow" value="3" onchange="showDiv('hidden_div', this)"/>
-              Wednesday
-              <input type="checkbox" name="dow" value="4" onchange="showDiv('hidden_div', this)"/>
-              Thursday
-              <input type="checkbox" name="dow" value="5" onchange="showDiv('hidden_div', this)"/>
-              Friday
-              <input type="checkbox" name="dow" value="6" onchange="showDiv('hidden_div', this)"/>
-              Saturday
-              <input type="checkbox" name="dow" value="0" onchange="showDiv('hidden_div', this)"/>
-              Sunday
-            </div>
-          </div>
+<div class="form-group col-md-12">
+  <label for="eventStopTime">Recurring every:</label>
+  <div id="checkboxes" class="row">
+    <div class="col-12 col-sm-6 mb-2">
+      <input type="checkbox" name="dow" value="1" autocomplete="off" onchange="showDiv('hidden_div', this)" />
+      <label for="dow1">Monday</label>
+    </div>
+    <div class="col-12 col-sm-6 mb-2">
+      <input type="checkbox" name="dow" value="2" onchange="showDiv('hidden_div', this)" />
+      <label for="dow2">Tuesday</label>
+    </div>
+    <div class="col-12 col-sm-6 mb-2">
+      <input type="checkbox" name="dow" value="3" onchange="showDiv('hidden_div', this)" />
+      <label for="dow3">Wednesday</label>
+    </div>
+    <div class="col-12 col-sm-6 mb-2">
+      <input type="checkbox" name="dow" value="4" onchange="showDiv('hidden_div', this)" />
+      <label for="dow4">Thursday</label>
+    </div>
+    <div class="col-12 col-sm-6 mb-2">
+      <input type="checkbox" name="dow" value="5" onchange="showDiv('hidden_div', this)" />
+      <label for="dow5">Friday</label>
+    </div>
+    <div class="col-12 col-sm-6 mb-2">
+      <input type="checkbox" name="dow" value="6" onchange="showDiv('hidden_div', this)" />
+      <label for="dow6">Saturday</label>
+    </div>
+    <div class="col-12 col-sm-6 mb-2">
+      <input type="checkbox" name="dow" value="0" onchange="showDiv('hidden_div', this)" />
+      <label for="dow0">Sunday</label>
+    </div>
+  </div>
+</div>
 
           <div class="form-group col-md-6" id="hidden_div">
             <label for="eventStart">Recurring Until:</label>
