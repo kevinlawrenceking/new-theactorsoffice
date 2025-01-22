@@ -133,9 +133,6 @@
                         </div>
                     </div><!--- end .padding --->
                     
-                </div>
-
-
                   <div class="card-footer border-1 text-center">
     <a href=""
        title="Remove from team"
@@ -144,6 +141,9 @@
       <i class="fe-trash-2 me-1"></i> Remove
     </a>
                 </div>
+                </div>
+
+
 
 
             </cfoutput>
