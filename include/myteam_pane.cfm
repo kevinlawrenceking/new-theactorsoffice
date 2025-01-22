@@ -105,7 +105,7 @@
   </div> <!--- end .card-body --->
 
   <!--- Card Footer: Remove Button --->
-  <div class="card-footer bg-transparent border-0 text-center">
+  <div class="card-footer border-1 text-center">
     <a href="/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=#myteam.contactid#"
        title="Remove from team"
        class="btn btn-sm" style="background-color: ##fffff; border: none; color: ##2e4f65;"
