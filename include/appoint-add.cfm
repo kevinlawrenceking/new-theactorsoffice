@@ -35,7 +35,7 @@
     </label>
     <select 
       id="select-relationship" 
-      rows="4"
+
       name="relationships" 
       class="form-control" 
       autocomplete="off" 

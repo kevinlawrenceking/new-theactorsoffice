@@ -4918,3 +4918,10 @@ body[data-layout-color="dark"] .autocomplete-suggestions strong {
     white-space: nowrap !important;
     border: 0 !important
 }
+
+
+.form-select[multiple],
+.form-select[size]:not([size="1"]) {
+    padding-right: .9rem;
+    background-image: none
+}
