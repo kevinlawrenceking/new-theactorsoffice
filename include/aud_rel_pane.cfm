@@ -136,7 +136,7 @@
       <i class="fe-trash-2 me-1"></i> Remove
     </a>
     <cfelse>
-    <div style="line-height:24px;"> </div>
+    <div style="line-height:26px;"> </div>
     </cfif>
                 </div>
                     </div><!--- end .padding --->
