@@ -35,7 +35,7 @@
             Relationships <span class="text-danger" aria-hidden="true">*</span>
             <span class="visually-hidden">(required)</span>
           </label>
-              <select id="select-relationship" name="relationships" autocomplete="off" multiple="multiple" required="required" data-parsley-required="data-parsley-required" data-parsley-error-message="Relationship is required" class="demo-default selectize-close-btn w-100" placeholder="Select a Relationship..." value="">
+              <select id="select-relationship" name="relationships" autocomplete="off" multiple="multiple" required="required" data-parsley-required="data-parsley-required" data-parsley-error-message="Relationship is required"  placeholder="Select a Relationship..." value="">
                 <option value="">Select a Relationship...</option>
                 <cfloop query="relationships">
                   <cfoutput>
@@ -201,7 +201,7 @@
 
           <script>
             $(document).ready(function () {
-              $("#select-relationship").selectize({
+              $("#select-relationshixp").selectize({
                 persist: false,
                 createOnBlur: true,
                 create: true,
