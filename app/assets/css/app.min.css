@@ -24204,11 +24204,7 @@ button.close {
     transition: transform .2s
 }
 
-.card-body,
-.card-header,
-.card-footer {
-    padding: .3rem .5rem !important
-}
+
 
 
 
