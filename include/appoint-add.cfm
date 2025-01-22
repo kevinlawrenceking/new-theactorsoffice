@@ -31,8 +31,10 @@
 
           <div class="col-lg-12">
             <div class="form-group mb-3">
-              <label for="select-relationship">Relationships<span class="text-danger">*</span>
-              </label>
+          <label for="select-relationship" class="form-label">
+            Relationships <span class="text-danger" aria-hidden="true">*</span>
+            <span class="visually-hidden">(required)</span>
+          </label>
               <select id="select-relationship" name="relationships" autocomplete="off" multiple="multiple" required="required" data-parsley-required="data-parsley-required" data-parsley-error-message="Relationship is required" class="demo-default selectize-close-btn w-100" placeholder="Select a Relationship..." value="">
                 <option value="">Select a Relationship...</option>
                 <cfloop query="relationships">

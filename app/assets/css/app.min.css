@@ -12,6 +12,7 @@
 }
 
 :root {
+    --ct-danger-rgb: #e45649;
     --ct-body-bg: #f5f6f8;
     --ct-body-color: #595959;
     --ct-text-opacity: 1;
