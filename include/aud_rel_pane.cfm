@@ -131,9 +131,8 @@
                             </cfif>
                         </div>
                         </div>
-                    </div><!--- end .padding --->
                     
-                  <div class="card-footer border-1 text-center">
+                                      <div class="card-footer border-1 text-center">
     <a href=""
        title="Remove from team"
        class="btn btn-sm" style="background-color: ##fffff; border: none; color: ##2e4f65;"
@@ -141,6 +140,9 @@
       <i class="fe-trash-2 me-1"></i> Remove
     </a>
                 </div>
+                    </div><!--- end .padding --->
+                    
+
                 </div>
 
 
