@@ -4578,7 +4578,7 @@ fieldset {
 label {
     display: inline-block;
     margin-bottom: .5rem;
-    font-weight: 500
+    font-weight: 600
 }
 
 .badge.badge-primary.badge-pill:active {
