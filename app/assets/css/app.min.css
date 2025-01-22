@@ -12,6 +12,7 @@
 }
 
 :root {
+    --ct-body-bg: #f5f6f8;
     --ct-body-color: #595959;
     --ct-text-opacity: 1;
     --ct-warning-rgb: #dece8e;
