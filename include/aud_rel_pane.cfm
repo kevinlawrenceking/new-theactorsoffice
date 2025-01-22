@@ -132,7 +132,7 @@
                     
                                       <div class="card-footer border-1 text-center">
                                         <cfif "#projectDetails.contactid#" is not "#audcontacts.contactid#">
-  <a href="/app/audition/?audprojectid=#audprojectid#&ctaction=deleteContact&amp;deletecontactid=#audcontacts.contactid#&secid=175" title="Remove from Audition" style="padding-left:10px;color:dimgrey;">
+  <a class="btn btn-sm" href="/app/audition/?audprojectid=#audprojectid#&ctaction=deleteContact&amp;deletecontactid=#audcontacts.contactid#&secid=175" title="Remove from Audition" style="padding-left:10px;color:dimgrey;">
       <i class="fe-trash-2 me-1"></i> Remove
     </a>
     <cfelse>
