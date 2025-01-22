@@ -90,10 +90,10 @@
 
     <input type="hidden" name="deleteitem" value="0" />
 
-    <div class="form-group text-center col-md-12">
-        <button class="btn btn-primary editable-submit btn-sm waves-effect waves-light" type="submit" 
-                style="background-color: #406e8e; border: #406e8e;">Update</button>
-    </div>
+<div class="form-group text-end">
+    <button class="btn btn-primary btn-sm" type="submit">Add</button>
+</div>
+
 </form>
 
 <script>
