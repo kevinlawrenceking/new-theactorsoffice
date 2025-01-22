@@ -89,7 +89,7 @@
 
             <cfoutput>
                 <div class="col-xl-3 col-md-4 col-sm-6 col-xs-12" style="padding-bottom:20px;">
-                    <div class="text-center card-box border border-secondary border-1 h-100">
+                  <div class="card h-100 shadow-sm border border-dark text-center">
                         <div class="pt-1 pb-1">
                             <cfset contact_avatar_filename = "#session.userContactsPath#\#audcontacts.contactid#\avatar.jpg" />
 
