@@ -53,14 +53,9 @@ div.dtsr-confirmation,div.dtsr-creation{position:fixed;top:20%;left:50%;width:50
     border-spacing: 2px !important; /* Add 2px spacing between cells */
 }
 
-/* Optional: Style <th> elements specifically */
 #basic-datatable th {
-    text-align: inherit; 
+    text-align: inherit;
     font-weight: 600;
-    background-color: var(--ct-card-cap-bg) !important; /* Ensure custom background is applied */
-}
-
-/* Ensure DataTables header rows respect spacing */
-#basic-datatable thead tr {
-    background-color: var(--ct-card-cap-bg); /* Consistent header background */
+    background-color: var(--ct-card-cap-bg) !important;
+    box-shadow: inset -2px 0 0 white; /* Simulates a vertical border */
 }
