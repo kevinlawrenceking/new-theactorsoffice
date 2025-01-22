@@ -30,6 +30,20 @@
     </a> a new one. Check the dates to link them to the specific audition appointment.
 </p>
 
+  <div class="row" style="margin: auto;">
+    <div class="col-md-2 p-2">Add a new person to your audition:
+    </div>
+    <div class="col-md-4 p-2">
+        <a href="remoteAddContact.cfm?src=account" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="#remoteAddContactAud">
+        <button id="mybtns" type="submit" class="btn btn-sm btn-primary waves-effect mb-2 waves-light" style="background-color: #406e8e; border: #406e8e; height: 37px;">
+          Add
+        </button>
+      </a>
+    </div>
+  </div>
+
+
+
 <form class="app-search" action="/app/audition/?secid=175" method="POST">
     <cfoutput>  
         <input type="hidden" name="ctaction" value="addmember" />

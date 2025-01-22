@@ -3,17 +3,13 @@
 
 <h4>My Team</h4>
 
-<p>
-    Select a Team Member from your existing relationships or add a new one.
-</p>
-
   <input type="hidden" name="ctaction" value="addmember"/>
   <div class="row" style="margin: auto;">
     <div class="col-md-2 p-2">Add a new person to your team:
     </div>
     <div class="col-md-4 p-2">
       <a href="remoteAddContact.cfm?src=account" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="#remoteAddContact">
-        <button id="mybtns" type="submit" class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="background-color: #406e8e; border: #406e8e; height: 37px;">
+        <button id="mybtns" type="submit" class="btn btn-sm btn-primary waves-effect mb-2 waves-light" style="background-color: #406e8e; border: #406e8e; height: 37px;">
           Add
         </button>
       </a>
