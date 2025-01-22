@@ -124,21 +124,18 @@
                                     <span>Email: #new_email# &nbsp;</span>
                                 </cfif>
                             </p>
-                            <cfif "#projectDetails.contactid#" is not "#audcontacts.contactid#">
-                                <a href="/app/audition/?audprojectid=#audprojectid#&ctaction=deleteContact&amp;deletecontactid=#audcontacts.contactid#&secid=175" title="Remove from Audition" style="padding-left:10px;color:dimgrey;">
-                                    <span><i class="fe-trash-2 font-10 text-muted"></i></span>
-                                </a>
-                            </cfif>
+                          
+                               
+                                  
                         </div>
                         </div>
                     
                                       <div class="card-footer border-1 text-center">
-    <a href=""
-       title="Remove from team"
-       class="btn btn-sm" style="background-color: ##fffff; border: none; color: ##2e4f65;"
-       >
+                                        <cfif "#projectDetails.contactid#" is not "#audcontacts.contactid#">
+  <a href="/app/audition/?audprojectid=#audprojectid#&ctaction=deleteContact&amp;deletecontactid=#audcontacts.contactid#&secid=175" title="Remove from Audition" style="padding-left:10px;color:dimgrey;">
       <i class="fe-trash-2 me-1"></i> Remove
     </a>
+    </cfif>
                 </div>
                     </div><!--- end .padding --->
                     
