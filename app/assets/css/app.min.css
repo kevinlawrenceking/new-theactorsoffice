@@ -4846,3 +4846,26 @@ body[data-layout-color="dark"] .autocomplete-group strong,
 body[data-layout-color="dark"] .autocomplete-suggestions strong {
     color: #f3f7f9
 }
+
+/* modal backdrop */
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1050;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--ct-modal-backdrop-bg)
+}
+
+.modal-backdrop.fade {
+    opacity: 0
+}
+
+.modal-backdrop.show {
+    opacity: .5
+}
+
+
+
