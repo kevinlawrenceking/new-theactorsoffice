@@ -799,7 +799,7 @@ select {
 }
 
 select:-internal-list-box {
-border-radius: 2px !important;
+border-radius: 1px !important;
 }
 
 select:disabled {
