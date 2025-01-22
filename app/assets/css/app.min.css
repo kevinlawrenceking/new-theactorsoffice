@@ -794,7 +794,8 @@ select {
 }
 
 select {
-    word-wrap: normal
+    word-wrap: normal;
+    border-color: (--ct-input-border-color)
 }
 
 select:disabled {
