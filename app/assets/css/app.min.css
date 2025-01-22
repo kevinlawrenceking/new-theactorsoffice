@@ -4705,3 +4705,42 @@ pre {
 svg {
 	vertical-align: middle
 }
+
+
+/* autocomplete dropdown */
+
+
+.autocomplete-suggestions {
+    border: 1px solid var(--ct-dropdown-border-color);
+    background-color: var(--ct-dropdown-bg);
+    cursor: default;
+    overflow: auto;
+    max-height: 200px !important;
+    box-shadow: var(--ct-box-shadow)
+}
+
+.autocomplete-no-suggestion {
+    padding: 5px
+}
+
+.autocomplete-group {
+    padding: 5px;
+    font-weight: 500;
+    font-family: Lato , sans-serif
+}
+
+.autocomplete-group strong {
+    font-weight: 500;
+    font-size: 16px;
+    color: #323a46;
+    display: block
+}
+
+body[data-layout-color="dark"] .autocomplete-selected {
+    background: #36404a
+}
+
+body[data-layout-color="dark"] .autocomplete-group strong,
+body[data-layout-color="dark"] .autocomplete-suggestions strong {
+    color: #f3f7f9
+}
