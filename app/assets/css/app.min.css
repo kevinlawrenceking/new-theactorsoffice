@@ -4696,3 +4696,11 @@ pre {
         background: rgba(255, 255, 255, 0.8);
         z-index: 9999;
       }
+
+
+      /* vertical align menu icons */
+
+      img,
+svg {
+	vertical-align: middle
+}
