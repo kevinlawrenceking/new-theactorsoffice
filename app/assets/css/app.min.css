@@ -4143,6 +4143,9 @@ table[data-toggle="table"] {
 	scrollbar-width: none
 }
 
+#sidebar-menu > ul > li > a > span {
+    vertical-align: middle
+}
 
 .nav-second-level li a:focus,
 .nav-second-level li a:hover,
