@@ -23,15 +23,10 @@
 
 <h4>Audition Relationships</h4>
 
-<p>
-    Add a relationship from your existing relationships or 
-    <a href="remoteAddContact.cfm?src=account" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="#remoteAddContactAud">
-        <strong>Add</strong>
-    </a> a new one. Check the dates to link them to the specific audition appointment.
-</p>
+
 
   <div class="row" style="margin: auto;">
-    <div class="col-md-2 p-2">Add a new person to your audition:
+    <div class="col-md-2 p-2">Or select an existing relationship:
     </div>
     <div class="col-md-4 p-2">
         <a href="remoteAddContact.cfm?src=account" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="#remoteAddContactAud">
@@ -41,7 +36,6 @@
       </a>
     </div>
   </div>
-
 
 
 <form class="app-search" action="/app/audition/?secid=175" method="POST">
