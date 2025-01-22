@@ -135,6 +135,8 @@
   <a href="/app/audition/?audprojectid=#audprojectid#&ctaction=deleteContact&amp;deletecontactid=#audcontacts.contactid#&secid=175" title="Remove from Audition" style="padding-left:10px;color:dimgrey;">
       <i class="fe-trash-2 me-1"></i> Remove
     </a>
+    <cfelse>
+    <div style="line-height:28px;">&nsbsp;</div>
     </cfif>
                 </div>
                     </div><!--- end .padding --->
