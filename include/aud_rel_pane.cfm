@@ -134,6 +134,18 @@
                     </div><!--- end .padding --->
                     
                 </div>
+
+
+                  <div class="card-footer border-1 text-center">
+    <a href="/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=#myteam.contactid#"
+       title="Remove from team"
+       class="btn btn-sm" style="background-color: ##fffff; border: none; color: ##2e4f65;"
+       >
+      <i class="fe-trash-2 me-1"></i> Remove
+    </a>
+                </div>
+
+                
             </cfoutput>
         </cfloop>
     </div>
