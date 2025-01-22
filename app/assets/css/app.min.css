@@ -4709,7 +4709,6 @@ svg {
 
 /* autocomplete dropdown */
 
-
 .autocomplete-suggestions {
     border: 1px solid var(--ct-dropdown-border-color);
     background-color: var(--ct-dropdown-bg);
@@ -4735,6 +4734,82 @@ svg {
     color: #323a46;
     display: block
 }
+
+.autocomplete-suggestion {
+    padding: 5px 10px;
+    white-space: nowrap;
+    overflow: hidden
+}
+
+.autocomplete-selected {
+    background: #f7f7f7;
+    cursor: pointer
+}
+
+.autocomplete-suggestions strong {
+    font-weight: 500;
+    color: #323a46
+}
+
+.ui-autocomplete {
+    position: absolute;
+    z-index: 1051;
+    max-height: 200px;
+    overflow: hidden auto;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    list-style: none;
+    padding-left: 0;
+    box-shadow: 0 6px 12px #3333332d;
+    width: 100%
+}
+
+.ui-menu-item {
+    padding: 10px;
+    cursor: pointer
+}
+
+.ui-menu-item:hover {
+    background-color: #f0f0f0
+}
+
+.ui-autocomplete-input {
+    border-radius: 0;
+    padding: 10px
+}
+
+.ui-helper-hidden-accessible {
+    display: none
+}
+
+#hiddenSelfTape {
+    display: none;
+}
+
+#hiddenLocation {
+    display: none;
+}
+
+#hiddenAddLocation {
+    display: none;
+}
+
+#hiddenCasting {
+    display: none;
+}
+
+
+body[data-layout-color="dark"] .autocomplete-selected {
+    background: #36404a
+}
+
+body[data-layout-color="dark"] .autocomplete-group strong,
+body[data-layout-color="dark"] .autocomplete-suggestions strong {
+    color: #f3f7f9
+}
+
+
+
 
 body[data-layout-color="dark"] .autocomplete-selected {
     background: #36404a
