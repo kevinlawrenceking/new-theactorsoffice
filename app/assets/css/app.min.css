@@ -4587,7 +4587,7 @@ fieldset:disabled .btn {
     color: var(--ct-nav-tabs-link-active-color);
     background-color: var(--ct-nav-tabs-link-active-bg);
     border-color: var(--ct-nav-tabs-link-active-border-color);
-    margin-right: 2px
+
 }
 
 .nav-pills .nav-link {
@@ -24563,4 +24563,8 @@ label {
 
 .dataTables_wrapper {
     font-family: 'Source Sans Pro', sans-serif;
+}
+
+.nav-item {
+    margin-right: 2px; /* Adds 2px spacing between nav items */
 }
