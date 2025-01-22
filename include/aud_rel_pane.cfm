@@ -133,14 +133,7 @@
                         </div>
                     </div><!--- end .padding --->
                       <!--- Card Footer: Remove Button --->
-  <div class="card-footer border-1 text-center">
-    <a href=""
-       title="Remove from team"
-       class="btn btn-sm" style="background-color: ##fffff; border: none; color: ##2e4f65;"
-       >
-      <i class="fe-trash-2 me-1"></i> Remove
-    </a>
-                </div>
+
             </cfoutput>
         </cfloop>
     </div>
