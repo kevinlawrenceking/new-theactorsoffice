@@ -48,9 +48,13 @@ div.dtsr-confirmation,div.dtsr-creation{position:fixed;top:20%;left:50%;width:50
     font-family: 'Source Sans Pro', sans-serif;
 }
 
-#basic-datatable th {
+.dataTable th {
     text-align: inherit;
     font-weight: 600;
     background-color: var(--ct-card-cap-bg) !important;
-    box-shadow: inset -2px 0 0 white; /* Simulates a vertical border */
+    border-right: 2px solid white !important;
+}
+
+.dataTable th:last-child {
+    border-right: none !important;
 }
