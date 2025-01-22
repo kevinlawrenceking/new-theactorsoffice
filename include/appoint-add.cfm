@@ -27,26 +27,33 @@
             </div>
           </div>
 
+<div class="col-lg-12">
+  <div class="form-group mb-3">
+    <label for="select-relationship" class="form-label">
+      Select one or more Relationships <span class="text-danger" aria-hidden="true">*</span>
+      <span class="visually-hidden">(required)</span>
+    </label>
+    <select 
+      id="select-relationship" 
+      name="relationships" 
+      class="form-control" 
+      autocomplete="off" 
+      multiple="multiple" 
+      required="required" 
+      data-parsley-required="true" 
+      data-parsley-error-message="Relationship is required">
+      <option value="">Select one or more Relationships...</option>
+      <cfloop query="relationships">
+        <cfoutput>
+          <option value="#relationships.contactid#" <cfif "#relationships.contactid#" is "#rcontactid#">selected</cfif>>
+            #recordname#
+          </option>
+        </cfoutput>
+      </cfloop>
+    </select>
+  </div>
+</div>
 
-
-          <div class="col-lg-12">
-            <div class="form-group mb-3">
-          <label for="select-relationship" class="form-label">
-            Relationships <span class="text-danger" aria-hidden="true">*</span>
-            <span class="visually-hidden">(required)</span>
-          </label>
-              <select id="select-relationship" name="relationships" autocomplete="off" multiple="multiple" required="required" data-parsley-required="data-parsley-required" data-parsley-error-message="Relationship is required"  placeholder="Select a Relationship..." value="">
-                <option value="">Select a Relationship...</option>
-                <cfloop query="relationships">
-                  <cfoutput>
-                    <option value="#relationships.contactid#" <cfif "#relationships.contactid#" is "#rcontactid#">selected</cfif>>
-                      #recordname#
-                    </option>
-                  </cfoutput>
-                </cfloop>
-              </select>
-            </div>
-          </div>
 
           <div class="form-group col-md-12">
             <label for="eventDescription">Description</label>
