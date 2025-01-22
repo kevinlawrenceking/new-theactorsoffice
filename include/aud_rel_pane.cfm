@@ -137,7 +137,7 @@
 
 
                   <div class="card-footer border-1 text-center">
-    <a href="/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=#myteam.contactid#"
+    <a href=""
        title="Remove from team"
        class="btn btn-sm" style="background-color: ##fffff; border: none; color: ##2e4f65;"
        >
@@ -145,7 +145,7 @@
     </a>
                 </div>
 
-                
+
             </cfoutput>
         </cfloop>
     </div>
