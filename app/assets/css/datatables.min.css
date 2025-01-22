@@ -58,3 +58,26 @@ div.dtsr-confirmation,div.dtsr-creation{position:fixed;top:20%;left:50%;width:50
 .dataTable th:last-child {
     border-right: none !important;
 }
+
+/* Target rows in #notes-datatable specifically */
+#notes-datatable tr {
+    margin: 0 !important; /* Remove extra margin */
+    padding: 0 !important; /* Remove extra padding */
+}
+
+/* Optional: Adjust spacing for header rows */
+#notes-datatable thead tr {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Optional: Adjust spacing for body rows */
+#notes-datatable tbody tr {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Ensure there's no additional margin between table rows */
+#notes-datatable tbody tr + tr {
+    margin-top: 0 !important;
+}
