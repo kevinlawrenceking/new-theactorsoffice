@@ -40,7 +40,9 @@
 </cfoutput>
 
 <cfset i=0 />
+    <h4 class="p-1 d-flex">My Headshots
 
+    </h4>
 <cfoutput>
     <div class="col-md-12 col-lg-12 col-xl-12 p-1 d-flex">
         <center>
