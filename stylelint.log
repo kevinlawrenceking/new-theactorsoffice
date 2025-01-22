@@ -1,33 +1,26 @@
 
-app/assets/css/app.min.css
-      [2m1:1[22m   [31m[31m×[39m  Unknown rule order/order                                                                                                                      [2morder/order[22m
-      [2m1:1[22m   [31m[31m×[39m  Unknown rule order/properties-order                                                                                                           [2morder/properties-order[22m
-  [2m14878:12[22m  [31m[31m×[39m  Expected keyframe name "DropDownSlide" to be kebab-case                                                                                       [2mkeyframes-name-pattern[22m
-  [2m18000:38[22m  [31m[31m×[39m  Unexpected unknown value "0" for property "box-shadow"                                                                                        [2mdeclaration-property-value-no-unknown[22m
-  [2m18416:12[22m  [31m[31m×[39m  Expected keyframe name "SpinnerAnimation" to be kebab-case                                                                                    [2mkeyframes-name-pattern[22m
-  [2m21221:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".close-jq-toast-single", first used at line 21122                                                              [2mno-duplicate-selectors[22m
-  [2m21233:1[22m   [31m[31m×[39m  Unexpected duplicate selector "body[data-layout-color="dark"] .close-jq-toast-single", first used at line 21225                               [2mno-duplicate-selectors[22m
-  [2m21959:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".responsive-table-plugin .checkbox-row input[type="checkbox"]:checked+label::after", first used at line 21943  [2mno-duplicate-selectors[22m
-  [2m22228:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".footable>thead>tr>th>span.footable-sort-indicator", first used at line 22088                                  [2mno-duplicate-selectors[22m
-  [2m23113:18[22m  [31m[31m×[39m  Unexpected unknown value "dropify, sans-serif" for descriptor "font-family"                                                                   [2mat-rule-descriptor-value-no-unknown[22m
-  [2m23613:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".nav-second-level li a", first used at line 15599                                                              [2mno-duplicate-selectors[22m
-  [2m23628:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".menu-arrow", first used at line 15613                                                                         [2mno-duplicate-selectors[22m
-  [2m23694:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".logo-box", first used at line 16212                                                                           [2mno-duplicate-selectors[22m
-  [2m23774:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".selectize-control.multi .selectize-input>div", first used at line 5643                                        [2mno-duplicate-selectors[22m
-  [2m23966:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".selectize-control.multi .selectize-input>div.active", first used at line 23784                                [2mno-duplicate-selectors[22m
-  [2m24179:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".autocomplete-suggestion", first used at line 22682                                                            [2mno-duplicate-selectors[22m
-  [2m24209:1[22m   [31m[31m×[39m  Expected id selector "#nameResults" to be kebab-case                                                                                          [2mselector-id-pattern[22m
-  [2m24236:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".card-footer", first used at line 5276                                                                         [2mno-duplicate-selectors[22m
-  [2m24240:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".grid-item", first used at line 24225                                                                          [2mno-duplicate-selectors[22m
-  [2m24263:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".card-header", first used at line 5265                                                                         [2mno-duplicate-selectors[22m
-  [2m24267:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".card-footer", first used at line 5276                                                                         [2mno-duplicate-selectors[22m
-  [2m24321:1[22m   [31m[31m×[39m  Expected id selector "#hiddenSelfTape" to be kebab-case                                                                                       [2mselector-id-pattern[22m
-  [2m24325:1[22m   [31m[31m×[39m  Expected id selector "#hiddenLocation" to be kebab-case                                                                                       [2mselector-id-pattern[22m
-  [2m24329:1[22m   [31m[31m×[39m  Expected id selector "#hiddenAddLocation" to be kebab-case                                                                                    [2mselector-id-pattern[22m
-  [2m24333:1[22m   [31m[31m×[39m  Expected id selector "#hiddenCasting" to be kebab-case                                                                                        [2mselector-id-pattern[22m
-  [2m24344:18[22m  [31m[31m×[39m  Unexpected unknown value "-pre-wrap" for property "white-space"                                                                               [2mdeclaration-property-value-no-unknown[22m
-  [2m24352:1[22m   [31m[31m×[39m  Expected id selector "#hidden_div" to be kebab-case                                                                                           [2mselector-id-pattern[22m
-  [2m24426:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".tooltip .tooltip-arrow, .popper .popper__arrow", first used at line 24417                                     [2mno-duplicate-selectors[22m
 
-[31m×[39m 28 problems ([31m28 errors[39m, [33m0 warnings[39m)
+[2morder/properties-order[22m
+
+  [2m21222:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".close-jq-toast-single", first used at line 21123                                                              [2mno-duplicate-selectors[22m
+  [2m21234:1[22m   [31m[31m×[39m  Unexpected duplicate selector "body[data-layout-color="dark"] .close-jq-toast-single", first used at line 21226                               [2mno-duplicate-selectors[22m
+  [2m21960:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".responsive-table-plugin .checkbox-row input[type="checkbox"]:checked+label::after", first used at line 21944  [2mno-duplicate-selectors[22m
+  [2m22229:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".footable>thead>tr>th>span.footable-sort-indicator", first used at line 22089                                  [2mno-duplicate-selectors[22m
+  [2m23114:18[22m  [31m[31m×[39m  Unexpected unknown value "dropify, sans-serif" for descriptor "font-family"                                                                   [2mat-rule-descriptor-value-no-unknown[22m
+  [2m23614:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".nav-second-level li a", first used at line 15599                                                              [2mno-duplicate-selectors[22m
+  [2m23629:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".menu-arrow", first used at line 15613                                                                         [2mno-duplicate-selectors[22m
+  [2m23695:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".logo-box", first used at line 16212                                                                           [2mno-duplicate-selectors[22m
+  [2m23775:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".selectize-control.multi .selectize-input>div", first used at line 5643                                        [2mno-duplicate-selectors[22m
+  [2m23967:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".selectize-control.multi .selectize-input>div.active", first used at line 23785                                [2mno-duplicate-selectors[22m
+  [2m24180:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".autocomplete-suggestion", first used at line 22683                                                            [2mno-duplicate-selectors[22m                                                                                       [2mselector-id-pattern[22m
+  [2m24237:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".card-footer", first used at line 5276                                                                         [2mno-duplicate-selectors[22m
+  [2m24241:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".grid-item", first used at line 24226                                                                          [2mno-duplicate-selectors[22m
+  [2m24264:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".card-header", first used at line 5265                                                                         [2mno-duplicate-selectors[22m
+  [2m24268:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".card-footer", first used at line 5276                                                                         [2mno-duplicate-selectors[22m
+                                                                            
+  [2m24345:18[22m  [31m[31m×[39m  Unexpected unknown value "-pre-wrap" for property "white-space"                                                                               [2mdeclaration-property-value-no-unknown[22m
+                                                                                    
+  [2m24427:1[22m   [31m[31m×[39m  Unexpected duplicate selector ".tooltip .tooltip-arrow, .popper .popper__arrow", first used at line 24418                                     [2mno-duplicate-selectors[22m
+
+
 

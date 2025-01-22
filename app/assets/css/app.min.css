@@ -24337,12 +24337,11 @@ body.modal-open {
 
 /* Output text style */
 
-
-
 .wrapit {
-    /* CSS-3 */
-    word-wrap: break-word;
-    white-space: -pre-wrap;
+    /* Standard CSS */
+    word-wrap: break-word; /* Deprecated, use `overflow-wrap` instead */
+    white-space: pre-wrap; /* Correct standard value */
+    overflow-wrap: break-word; /* Modern equivalent to word-wrap */
 }
 
 .selectize-dropdown,
