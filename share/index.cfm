@@ -40,40 +40,6 @@
         </cfoutput>
       </cfloop>
 
-      <style>
-        .spinner {
-          display: inline-block;
-          width: 80px;
-          height: 80px;
-          border: 8px solid #f3f3f3;
-          border-radius: 50%;
-          border-top: 8px solid #3498db;
-          animation: spin 2s linear infinite;
-        }
-
-        @keyframes spin {
-          0% {
-            transform: rotate(0deg);
-          }
-          100% {
-            transform: rotate(360deg);
-          }
-        }
-
-        .loading {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 100%;
-          height: 100vh;
-          position: absolute;
-          top: 0;
-          left: 0;
-          background: rgba(255, 255, 255, 0.8);
-          z-index: 9999;
-        }
-      </style>
-
     </head>
 
     <body class="loading">

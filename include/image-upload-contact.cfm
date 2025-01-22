@@ -3,13 +3,7 @@
 <cfinclude template = "/include/qry/FindRefcontacts_135_2.cfm"/>
 
 <!--- Styling for disabled button --->
-<style>
-    .btn-success:disabled {
-    color: #fff;
-    background-color: #D3D3D3;
-    border-color: #D3D3D3;
-    }
-    </style>
+
 <!--- Set up dynamic ColdFusion variables --->
 <cfset dir_contact_avatar_filename = session.userContactsUrl & "/" & contactid & "/avatar.jpg"/>
 <cfset session.dir_contact_avatar_filename = session.userContactsUrl & "/" & contactid & "/avatar.jpg"/>

@@ -24498,3 +24498,128 @@ label {
 .nav-item {
     margin-right: 2px; /* Adds 2px spacing between nav items */
 }
+
+.box-row {
+    margin-bottom: 20px; /* Adjust the margin as per your requirement */
+}
+
+/* auditions.cfm */
+
+#basic-datatable span {
+    display: none;
+}
+
+.card img {
+    border-top-right-radius: 0;
+    border-bottom-left-radius: calc(0.25rem - 1px);
+}
+
+/*  companylookup.cfm  */
+
+#results {
+    border: 1px solid #ccc;
+    display: none;
+    position: absolute;
+}
+#results div {
+    padding: 5px;
+    cursor: pointer;
+}
+#results div:hover {
+    background-color: #f0f0f0;
+}
+.add-new {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    font-style: italic;
+}
+
+/*  contacts_table.cfm  */
+
+.exportcontacts, .updatetag, .updatesystem, .deletesystem, .addrelationship, .importhistory, .batchdelete, .searchtag, .import {
+    color: #fff;
+    background-color: #406E8E;
+    border-color: #223a4a;
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    padding: .25rem .5rem;
+    border-radius: .2rem;    
+    font-size: .87em;
+} 
+
+
+/* dash_rr.cfm  */
+
+.input-xs,
+select.input-xs {
+    height: 24px;
+    line-height: 24px;
+}
+
+/* debugging_log.cfm */
+
+pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* image-upload-contact.cfm & image-upload.cfm */
+
+.btn-success:disabled {
+    color: #fff;
+    background-color: #D3D3D3;
+    border-color: #D3D3D3;
+    }
+
+    /* results.cfm  */
+
+    table.dataTable tbody td {
+        word-break: break-word;
+        vertical-align: top;
+    }
+
+
+    /* percent.cfm */
+
+    .selectize-dropdown, .selectize-input {
+        line-height: 28px;
+    }
+
+    /*  share/index.cfm */
+
+    .spinner {
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+        border: 8px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 8px solid #3498db;
+        animation: spin 2s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: rgba(255, 255, 255, 0.8);
+        z-index: 9999;
+      }

@@ -6,25 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Auto Lookup Field</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-        #results {
-            border: 1px solid #ccc;
-            display: none;
-            position: absolute;
-        }
-        #results div {
-            padding: 5px;
-            cursor: pointer;
-        }
-        #results div:hover {
-            background-color: #f0f0f0;
-        }
-        .add-new {
-            background-color: #d1ecf1;
-            color: #0c5460;
-            font-style: italic;
-        }
-    </style>
+
 </head>
 <body>
 

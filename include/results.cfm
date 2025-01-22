@@ -2,12 +2,6 @@
 <cfparam name="details_recid" default="" />
 <cfparam name="details_pgid" default="" />
 
-<style>
-    table.dataTable tbody td {
-        word-break: break-word;
-        vertical-align: top;
-    }
-</style>
 
 <script>
     $(document).ready(function() {

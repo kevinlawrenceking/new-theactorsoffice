@@ -7,12 +7,6 @@
 <cfinclude template="/include/audition_check.cfm"/>
 <cfinclude template="/include/qry/audcategories_sel.cfm"/>
 
-<style>
-    #basic-datatable span {
-        display: none;
-    }
-</style>
-
 <cfparam name="isexport" default="N"/>
 <cfparam name="sel_audcatid" default="%"/>
 
@@ -88,14 +82,6 @@
 </cfif>
 
 <cfinclude template="/include/qry/up_31_1.cfm" />
-
-<style>
-    .card img {
-        border-top-right-radius: 0;
-        border-bottom-left-radius: calc(0.25rem - 1px);
-    }
-</style>
-
 <cfinclude template="/include/qry/audsteps_sel_31_2.cfm" />
 <cfinclude template="/include/qry/audtypes_sel_31_3.cfm" />
 

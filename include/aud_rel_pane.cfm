@@ -11,12 +11,6 @@
     });
 </script>
 
-<style>
-    .box-row {
-        margin-bottom: 20px; /* Adjust the margin as per your requirement */
-    }
-</style>
-
 <cfset modalid="remoteAddContactAud" />
 
 <cfset modaltitle="Add Contact" />
