@@ -4407,9 +4407,9 @@ button.close {
     opacity: 1
 }
 
-
-
-
+body.modal-open {
+    overflow: visible !important
+}
 
 .hide-edit-icon {
     display: none
@@ -4449,6 +4449,20 @@ button.close {
     word-wrap: break-word; /* Deprecated, use `overflow-wrap` instead */
     white-space: pre-wrap; /* Correct standard value */
     overflow-wrap: break-word; /* Modern equivalent to word-wrap */
+}
+
+.dataTables_wrapper .dataTables_filter {
+    float: right;
+    text-align: right;
+    visibility: hidden;
+}
+
+.responsive-tabs {
+    padding: 1rem;
+}
+
+.responsive-tabs .nav-tabs {
+    display: none;
 }
 
 
@@ -4808,6 +4822,19 @@ body[data-layout-color="dark"] .autocomplete-suggestions strong {
     color: #f3f7f9
 }
 
+/* Output text style */
+
+.wrapit {
+    /* Standard CSS */
+    word-wrap: break-word; /* Deprecated, use `overflow-wrap` instead */
+    white-space: pre-wrap; /* Correct standard value */
+    overflow-wrap: break-word; /* Modern equivalent to word-wrap */
+}
+
+.selectize-dropdown,
+.selectize-input {
+    line-height: 28px;
+}
 
 
 
