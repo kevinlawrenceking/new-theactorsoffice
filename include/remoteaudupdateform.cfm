@@ -41,6 +41,9 @@
     <cfparam name="new_workwithcoach" default="0" />
     <cfparam name="new_isDeleted" default="0" />
     <cfparam name="new_trackmileage" default="0" />
+    <Cfif #isdefined('audstepid')#>
+<cfset new_audstepid = audstepid />
+</cfif>
 
     <cfinclude template="/include/qry/auditions_ins_221_8.cfm" />
     <cfset eventid = result />
@@ -49,9 +52,7 @@
     <Cfset new_eventid = eventid />
 </cfif>
 
-<Cfif #isdefined('audstepid')#>
-<cfset new_audstepid = audstepid />
-</cfif>
+
 
 <!--- Fetch audition details --->
 <cfinclude template="/include/qry/aud_det_221_9.cfm" />
