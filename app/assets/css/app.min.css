@@ -4544,7 +4544,7 @@ button.close {
     margin: 0 3px 3px 0;
     padding: 1px 3px;
     background-color: #DECE8E;
-    color: #f8f8ff;
+    color: #fff;
     border: 1px solid #BDB079;
     border-radius: .25rem;
 }
