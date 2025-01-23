@@ -191,7 +191,7 @@
 <div class="row mt-4">
   <div class="col-12 d-flex justify-content-end">
     <a href="javascript:history.go(-1)" class="me-2">
-      <button type="button" class="btn btn-secondary btn-sm">Back</button>
+      <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light">Back</button>
     </a>
     <button type="submit" class="btn btn-primary btn-sm waves-effect waves-light" id="btn-save-event">Add</button>
   </div>
