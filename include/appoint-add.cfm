@@ -193,7 +193,7 @@
     <a href="javascript:history.go(-1)" class="me-2">
       <button type="button" class="btn btn-secondary btn-sm">Back</button>
     </a>
-    <button type="submit" class="btn btn-primary btn-sm" id="btn-save-event">Add</button>
+    <button type="submit" class="btn btn-primary btn-sm waves-effect waves-light" id="btn-save-event">Add</button>
   </div>
 </div>
 
