@@ -1,7 +1,7 @@
 <cfset eventService = createObject("component", "services.EventService")>
 
 <cfset dynamicArgs = structNew()>
-
+<cfoutput>#new_audroleid#</cfoutput>
 <!--- Always include required arguments --->
 <cfset dynamicArgs.new_userid = new_userid>
 
