@@ -1978,7 +1978,7 @@ fieldset:disabled .btn {
     border: 1px solid #e5e5e5;
     border-radius: 3px;
     box-shadow: var(--ct-card-box-shadow);
-    margin-bottom: 48px
+    margin-bottom: 24px
 }
 
 .card>hr {
