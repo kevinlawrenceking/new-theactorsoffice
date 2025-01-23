@@ -45,6 +45,8 @@
     <cfinclude template="/include/qry/auditions_ins_221_8.cfm" />
     <cfset eventid = result />
     <cfset new_eventid = result />
+    <Cfelse>
+    <Cfset new_eventid = eventid />
 </cfif>
 
 <!--- Fetch audition details --->
@@ -79,7 +81,7 @@
 
 
 <h4>
-    <cfoutput>#aud_det.audstep# appointment</cfoutput><cfoutput>zzzz#new_audroleid#</cfoutput> 
+    <cfoutput>#aud_det.audstep# appointment</cfoutput>
 </h4>
 
 <!--- Form to update existing audition data --->
