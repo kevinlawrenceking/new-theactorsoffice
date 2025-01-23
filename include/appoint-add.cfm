@@ -35,11 +35,11 @@
     </label>
     <select 
       id="select-relationship" 
-      size="4" 
       name="relationships" 
       class="form-control" 
       autocomplete="off" 
       multiple="multiple" 
+      size="4" 
       required="required" 
       data-parsley-required="true" 
       data-parsley-error-message="Relationship is required">
