@@ -49,6 +49,10 @@
     <Cfset new_eventid = eventid />
 </cfif>
 
+<Cfif #isdefined('audstepid')#>
+<cfset new_audstepid = audstepid />
+</cfif>
+
 <!--- Fetch audition details --->
 <cfinclude template="/include/qry/aud_det_221_9.cfm" />
 <cfset new_audcatid = aud_det.audcatid />
