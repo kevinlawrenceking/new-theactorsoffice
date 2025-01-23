@@ -30,7 +30,7 @@
 <div class="col-lg-12">
   <div class="form-group mb-3">
     <label for="select-relationship" class="form-label">
-      Select one or more Relationships <span class="text-danger" aria-hidden="true">*</span>
+     Relationships <span class="text-danger" aria-hidden="true">*</span>
       <span class="visually-hidden">(required)</span>
     </label>
     <select 
