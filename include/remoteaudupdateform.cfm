@@ -42,6 +42,7 @@
     <cfparam name="new_trackmileage" default="0" />
 
     <cfinclude template="/include/qry/auditions_ins_221_8.cfm" />
+    <cfset eventid = result />
     <cfset new_eventid = result />
 </cfif>
 
