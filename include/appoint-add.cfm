@@ -36,7 +36,7 @@
     <select 
       id="select-relationship" 
       name="relationships" 
-      class="form-control" 
+      class="form-select" 
       autocomplete="off" 
       multiple="multiple" 
       size="4" 
