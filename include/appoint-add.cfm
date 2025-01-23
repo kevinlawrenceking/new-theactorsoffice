@@ -207,20 +207,31 @@
 
 </div>
 
-          <script>
-            $(document).ready(function () {
-              $("#select-relationshixp").selectize({
-                persist: false,
-                createOnBlur: true,
-                create: true,
-                plugins: ["remove-button"],
-                delimiter: ",",
-                create: function (input) {
-                  return {value: input, text: input};
-                }
+      <script>
+          $(document).ready(function(){
+$("#select-relationship").selectize({
+
+      persist: !1,
+                createOnBlur: !0,
+                create: !0  ,
+    
+    
+    plugins: ["remove_button"],
+  delimiter: ",",
+  persist: false,
+  create: function (input) {
+    return {
+      value: input,
+      text: input,
+    };
+  },
+    
+    
+});
+              
               });
-            });
-          </script>
+</script>
+
 
 <script>
   $(document).ready(function () {
