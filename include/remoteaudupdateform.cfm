@@ -94,7 +94,7 @@
         <!--- Hidden fields carrying IDs & references --->
         <input type="hidden" name="audprojectid" value="#audprojectid#" />
         <input type="hidden" name="new_eventid" value="#new_eventid#" />
-        <input type="hidden" name="eventid" value="#eventid#" />
+        <input type="hidden" name="eventid" value="#new_eventid#" />
         <input type="hidden" name="new_audStepID" value="#aud_det.audstepid#" />
         <input type="hidden" name="new_audcatid" value="#aud_det.audcatid#" />
         <input type="hidden" name="new_audsubcatid" value="#aud_det.audsubcatid#" />
