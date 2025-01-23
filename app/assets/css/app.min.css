@@ -5148,3 +5148,10 @@ textarea.form-control.is-invalid {
 .form-check-inline .form-check-input~.invalid-feedback {
     margin-left: .5em
 }
+
+/* Target only select elements with the form-control class */
+select.form-control {
+    height: auto !important; /* Allow size to determine the height */
+    min-height: calc(1.5em + .9rem + 2px); /* Optional: Set a minimum height */
+    overflow-y: auto; /* Add scrolling if there are too many options */
+}
