@@ -209,13 +209,16 @@ $("#select-relationship").selectize({
             <input class="form-control" id="endRecur" name="endRecur" type="date"/></div>
         </div>
 <div class="row mt-4">
-  <div class="col-12  justify-content-end">
-    <a href="javascript:history.go(-1)" class="me-2">
-      <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light">Back</button>
+  <div class="col-12 d-flex flex-wrap justify-content-between align-items-center">
+    <a href="javascript:history.go(-1)" class="btn btn-secondary btn-sm waves-effect waves-light mb-2 mb-md-0">
+      Back
     </a>
-    <button type="submit" class="btn btn-primary btn-sm waves-effect waves-light" id="btn-save-event">Add</button>
+    <button type="submit" class="btn btn-primary btn-sm waves-effect waves-light mb-2 mb-md-0" id="btn-save-event">
+      Add
+    </button>
   </div>
 </div>
+
 
 
 
