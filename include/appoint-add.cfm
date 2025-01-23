@@ -208,15 +208,13 @@ $("#select-relationship").selectize({
             <label for="eventStart">Recurring Until:</label>
             <input class="form-control" id="endRecur" name="endRecur" type="date"/></div>
         </div>
- <!-- Main Content -->
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <div class="row mt-4">
-        <div class="col-12 d-flex flex-wrap justify-content-between align-items-center gap-2">
-          <a href="javascript:history.go(-1)" class="btn btn-secondary btn-sm">Back</a>
-          <button type="submit" class="btn btn-primary btn-sm" id="btn-save-event">Add</button>
-        </div>
-      </div>
-    </main>
+ 
+<div class="row mt-4">
+  <div class="col-12 text-end">
+    <a href="javascript:history.go(-1)" class="btn btn-secondary btn-sm me-2">Back</a>
+    <button type="submit" class="btn btn-primary btn-sm" id="btn-save-event">Add</button>
+  </div>
+</div>
 
 
 
