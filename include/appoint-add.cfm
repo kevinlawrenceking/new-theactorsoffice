@@ -204,8 +204,6 @@ $("#select-relationship").selectize({
     </div>
   </div>
 </div>
-
-
           <div class="form-group col-md-6 col-sm-12" id="hidden_div">
             <label for="eventStart">Recurring Until:</label>
             <input class="form-control" id="endRecur" name="endRecur" type="date"/></div>
