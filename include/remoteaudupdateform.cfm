@@ -79,7 +79,7 @@
 
 
 <h4>
-    <cfoutput>#aud_det.audstep# appointment</cfoutput>
+    <cfoutput>#aud_det.audstep# appointment</cfoutput><cfoutput>zzzz#new_audroleid#</cfoutput> 
 </h4>
 
 <!--- Form to update existing audition data --->
