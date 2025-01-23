@@ -73,7 +73,9 @@
     <cfset new_durid = 0 />
 </cfif>
 
-<!--- Generate a header for the form (e.g., "Audition Appointment" or "Callback Appointment") --->
+
+
+
 <h4>
     <cfoutput>#aud_det.audstep# appointment</cfoutput>
 </h4>
