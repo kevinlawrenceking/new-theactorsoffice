@@ -66,7 +66,7 @@ $("#select-relationship").selectize({
     <select id="select-relationship" name="relationships"  autocomplete="off"  multiple       data-parsley-required="true" 
       data-parsley-error-message="Relationship is required" data-parsley-required data-parsley-error-message="Relationship is required" class="demo-default selectize-close-btn" style="width: 100%" placeholder="Select a Relationship..." value=""
    
-      <option value="" disabled selected>SELECT ONE OR MORE RELATIONSHIPS...</option>
+   <option value="">Select one or more Relationships...</option>
         
         <cfloop query="relationships">
    
