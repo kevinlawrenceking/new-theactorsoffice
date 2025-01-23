@@ -315,7 +315,7 @@
         <div class="form-group col-md-12">
             <input class="form-control"
                    type="text"
-                   id="eventLocation"
+                   id="eventLocation#new_eventid#"
                    name="new_eventLocation"
                    placeholder="Location Name"
                    data-parsley-required
