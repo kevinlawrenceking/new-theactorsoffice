@@ -4545,13 +4545,13 @@ button.close {
     padding: 1px 3px;
     background-color: #DECE8E;
     color: #f8f8ff;
-    border: 1px solid #C7B97F;
+    border: 1px solid #BDB079;
     border-radius: .25rem;
 }
 
 
 .selectize-control.multi .selectize-input>div.active {
-    background: #C7B97F;
+    background: #BDB079;
     color: #fff;
     border: 0 solid #0000
 }
@@ -4611,7 +4611,7 @@ button.close {
 
 
     .selectize-control.multi .selectize-input > div.active {
-        background: #C7B97F;
+        background: #BDB079;
         color: #fff;
         border: 0 solid rgba(0,0,0,0)
     }
