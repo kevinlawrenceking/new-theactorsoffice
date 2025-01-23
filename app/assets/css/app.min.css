@@ -4539,6 +4539,24 @@ button.close {
     position: relative
 }
 
+.selectize-control.multi .selectize-input > div {
+    cursor: pointer;
+    margin: 0 3px 3px 0;
+    padding: 1px 3px;
+    background-color: #DECE8E;
+    color: #f8f8ff;
+    border: 1px solid #C7B97F;
+    border-radius: .25rem;
+}
+
+
+.selectize-control.multi .selectize-input>div.active {
+    background: #C7B97F;
+    color: #fff;
+    border: 0 solid #0000
+}
+
+
 .selectize-dropdown, .selectize-input, .selectize-input input {
     color: #333;
     font-family: inherit;
