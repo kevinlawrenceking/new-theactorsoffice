@@ -9,9 +9,13 @@
 <div class="col-xl-6 col-lg-8 col-md-12">
   <div class="card mb-3">
 
+
+
+
+
+
     <div class="card-body">
 
-      <!--- Form for adding an appointment --->
       <form method="post" action="/include/appoint-add2.cfm" class="parsley-examples" name="event-form" id="form-event" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" data-parsley-trigger="keyup" data-parsley-validate="data-parsley-validate">
         <cfoutput>
           <input type="hidden" name="returnurl" value="#returnurl#"/>
@@ -26,23 +30,15 @@
               <input class="form-control" autocomplete="off" placeholder="Insert Appointment Title" type="text" name="eventTitle" id="eventTitle" data-parsley-minlength="3" data-parsley-minlength-message="Min length 3 characters" data-parsley-maxlength="200" data-parsley-maxlength-message="Max length 200 characters" data-parsley-required="data-parsley-required" data-parsley-error-message="Title is required"/>
             </div>
           </div>
-
 <div class="col-lg-12">
   <div class="form-group mb-3">
     <label for="select-relationship" class="form-label">
      Relationships <span class="text-danger" aria-hidden="true">*</span>
       <span class="visually-hidden">(required)</span>
     </label>
-    <select 
-      id="select-relationship" 
-      name="relationships" 
-      class="form-select form-control" 
-      autocomplete="off" 
-      multiple="multiple" 
-      size="4" 
-      required="required" 
-      data-parsley-required="true" 
-      data-parsley-error-message="Relationship is required">
+    <select id="select-relationship" name="relationships"  autocomplete="off"  multiple       data-parsley-required="true" 
+      data-parsley-error-message="Relationship is required" data-parsley-required data-parsley-error-message="Relationship is required" class="demo-default selectize-close-btn" style="width: 100%" placeholder="Select a Relationship..." value=""
+   
       <option value="" disabled selected>SELECT ONE OR MORE RELATIONSHIPS...</option>
       <cfloop query="relationships">
         <cfoutput>
@@ -54,7 +50,6 @@
     </select>
   </div>
 </div>
-
 
           <div class="form-group col-md-12">
             <label for="eventDescription">Description</label>
