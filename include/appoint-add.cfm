@@ -209,12 +209,12 @@ $("#select-relationship").selectize({
             <input class="form-control" id="endRecur" name="endRecur" type="date"/></div>
         </div>
  
-<div class="row mt-4">
+ 
   <div class="col-12 text-end">
     <a href="javascript:history.go(-1)" class="btn btn-secondary btn-sm me-2">Back</a>
     <button type="submit" class="btn btn-primary btn-sm" id="btn-save-event">Add</button>
   </div>
-</div>
+ 
 
 
 
