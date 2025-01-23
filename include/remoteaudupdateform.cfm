@@ -12,6 +12,7 @@
 <cfinclude template="/include/qry/audplatforms_user_sel.cfm" />
 <cfinclude template="/include/qry/projectDetails_221_1.cfm" />
 <cfset audroleid = projectDetails.audroleid />
+<Cfset new_audroleid = audroleid />
 <cfinclude template="/include/qry/roleDetails_221_2.cfm" />
 <cfinclude template="/include/qry/locationDetails_492_1.cfm" />
     <cfset NEW_AUDSUBCATID = projectDetails.audsubcatid />
@@ -78,7 +79,7 @@
 
 
 <h4>
-    <cfoutput>#aud_det.audstep# appointment</cfoutput><cfoutput>zzzz#new_audroleid#</cfoutput> 
+    <cfoutput>#aud_det.audstep# appointment</cfoutput>
 </h4>
 
 <!--- Form to update existing audition data --->
