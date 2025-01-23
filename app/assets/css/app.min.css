@@ -5629,3 +5629,18 @@ select.form-control {
     min-height: calc(1.5em + .9rem + 2px); /* Optional: Set a minimum height */
     overflow-y: auto; /* Add scrolling if there are too many options */
 }
+
+.d-flex {
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 576px) {
+    .row {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .btn {
+      width: 100%; /* Buttons take full width */
+      margin-bottom: 10px; /* Add space between buttons */
+    }
+  }
