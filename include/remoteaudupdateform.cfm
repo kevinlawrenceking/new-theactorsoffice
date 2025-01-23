@@ -238,7 +238,7 @@
                   class="form-control"
                   data-parsley-required
                   data-parsley-error-message="Type is required"
-                  onChange="handleSelectChange(this);">
+                  onchange="handleSelectChange(this, '#events.eventid#')">
               <option value="">--</option>
               <cfoutput query="audtypes_sel">
                   <option value="#audtypes_sel.id#"
@@ -270,10 +270,10 @@
           </div>
       </cfif>
     </div>
-
-    <!--- Location Container (only if 'In Person' is selected [=1]) --->
-    <div class="row" id="hiddenLocation" style="display:none;">
     <cfoutput>
+    <!--- Location Container (only if 'In Person' is selected [=1]) --->
+    <div class="row" id="hiddenLocation#events.eventid#" style="display:none;">
+
         <div class="form-group col-md-12">
             <label for="new_parkingDetails">Parking Details</label>
             <input class="form-control"
@@ -398,8 +398,9 @@
     </div> <!-- end #hiddenLocation -->
 
     <!--- Self Tape Container (only if 'Self Tape' is selected [=2]) --->
-    <div class="row" id="hiddenSelfTape" style="display:none;">
-        <cfoutput>
+          <cfoutput>
+    <div class="row" id="hiddenSelfTape#events.eventid#" style="display:none;">
+  
             <div class="form-group col-md-12">
                 <label for="new_audLocation">Platform URL (optional)</label>
                 <input class="form-control"
@@ -413,7 +414,7 @@
         </cfoutput>
 
         <!--- Audition Platform Dropdown --->
-        <div class="form-group col-md-12">
+        <div class="form-group col-md-6">
             <label for="audplatformid">Audition Platform</label>
             <select id="audplatformid"
                     name="new_audplatformid"
@@ -439,7 +440,7 @@
         </div>
 
         <!--- Custom Platform Text Field (hidden by default) --->
-        <div class="form-group col-md-6" id="CustomPlatforms" style="display:none;">
+        <div class="form-group col-md-6" id="CustomPlatform" style="display:none;">
             <label for="CustomPlatform">Custom Platform</label>
             <input class="form-control"
                    type="text"
@@ -490,30 +491,31 @@
 
 <!--- Functions for toggling location/self-tape fields based on audtypeid (1,2, etc.) --->
 <script>
-  function handleSelectChange(element) {
+function handleSelectChange(element, eventId) {
     const typeValue = parseInt(element.value, 10);
 
     // Location (type=1 => in-person)
-    const hiddenLocation = document.getElementById('hiddenLocation');
-    const locationInput  = document.getElementById('eventLocation');
+    const hiddenLocation = document.getElementById('hiddenLocation' + eventId);
+    const locationInput = document.getElementById('eventLocation' + eventId);
     if (typeValue === 1) {
-      hiddenLocation.style.display = 'block';
-      locationInput.setAttribute('required', 'required');
-      locationInput.setAttribute('data-parsley-required', 'true');
+        hiddenLocation.style.display = 'block';
+        locationInput.setAttribute('required', 'required');
+        locationInput.setAttribute('data-parsley-required', 'true');
     } else {
-      hiddenLocation.style.display = 'none';
-      locationInput.removeAttribute('required');
-      locationInput.removeAttribute('data-parsley-required');
+        hiddenLocation.style.display = 'none';
+        locationInput.removeAttribute('required');
+        locationInput.removeAttribute('data-parsley-required');
     }
 
     // Self Tape (type=2 => self-tape)
-    const hiddenSelfTape = document.getElementById('hiddenSelfTape');
+    const hiddenSelfTape = document.getElementById('hiddenSelfTape' + eventId);
     if (typeValue === 2) {
-      hiddenSelfTape.style.display = 'block';
+        hiddenSelfTape.style.display = 'block';
     } else {
-      hiddenSelfTape.style.display = 'none';
+        hiddenSelfTape.style.display = 'none';
     }
-  }
+}
+
 </script>
 
 <!--- Filter Regions based on selected country (custom-chained logic) --->

@@ -13524,7 +13524,7 @@
                 
             </select>
         </div>
-    </div> <!-- end #hiddenLocation -->
+    </div> 
 
     
     <div class="row" id="hiddenSelfTape" style="display:none;">
