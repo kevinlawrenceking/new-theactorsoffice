@@ -43,7 +43,7 @@
       required="required" 
       data-parsley-required="true" 
       data-parsley-error-message="Relationship is required">
-      <option value="" style="font-weight:500;">Select one or more Relationships...</option>
+      <option value="" disabled selected>SELECT ONE OR MORE RELATIONSHIPS...</option>
       <cfloop query="relationships">
         <cfoutput>
           <option value="#relationships.contactid#" <cfif "#relationships.contactid#" is "#rcontactid#">selected</cfif>>
