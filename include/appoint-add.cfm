@@ -211,7 +211,7 @@ $("#select-relationship").selectize({
             <input class="form-control" id="endRecur" name="endRecur" type="date"/></div>
         </div>
 <div class="row mt-4">
-  <div class="col-12 d-flex justify-content-end">
+ <div class="form-group text-start col-md-12">
     <a href="javascript:history.go(-1)" class="me-2">
       <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light">Back</button>
     </a>
