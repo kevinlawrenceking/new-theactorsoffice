@@ -210,14 +210,15 @@ $("#select-relationship").selectize({
         </div>
  
  
-  <div class="col-12 text-end">
-    <a href="javascript:history.go(-1)" class="btn btn-secondary btn-sm me-2">Back</a>
-    <button type="submit" class="btn btn-primary btn-sm" id="btn-save-event">Add</button>
-  </div>
- 
-
-
-
+<div class="row mt-2">
+                         <div class="col-6">
+                
+                         </div>
+                         <div class="col-6 text-right">
+                      <a href="javascript:history.go(-1)"><button type="button" class="btn btn-light mr-1 btn-sm" data-bs-dismiss="modal">Back</button></a>
+                             <button type="submit" class="btn btn-primary btn-sm waves-effect waves-light" id="btn-save-event">Add</button>
+                         </div>
+                     </div>
 
       </form>
 
