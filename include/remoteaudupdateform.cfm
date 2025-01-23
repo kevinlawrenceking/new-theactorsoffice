@@ -238,7 +238,7 @@
                   class="form-control"
                   data-parsley-required
                   data-parsley-error-message="Type is required"
-                  onchange="handleSelectChange(this, '#new_eventid#')">
+                  onchange="handleSelectChange(this, '<cfoutput>#new_eventid#</cfoutput>')">
               <option value="">--</option>
               <cfoutput query="audtypes_sel">
                   <option value="#audtypes_sel.id#"
