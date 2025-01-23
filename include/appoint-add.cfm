@@ -6,6 +6,33 @@
 <cfinclude template="/include/qry/durations.cfm"/>
 <cfinclude template="/include/qry/eventtypes_user_443_2.cfm"/>
 
+
+      <script>
+          $(document).ready(function(){
+$("#select-relationship").selectize({
+
+      persist: !1,
+                createOnBlur: !0,
+                create: !0  ,
+    
+    
+    plugins: ["remove_button"],
+  delimiter: ",",
+  persist: false,
+  create: function (input) {
+    return {
+      value: input,
+      text: input,
+    };
+  },
+    
+    
+});
+              
+              });
+</script>
+
+
 <div class="col-xl-6 col-lg-8 col-md-12">
   <div class="card mb-3">
 
@@ -40,13 +67,13 @@
       data-parsley-error-message="Relationship is required" data-parsley-required data-parsley-error-message="Relationship is required" class="demo-default selectize-close-btn" style="width: 100%" placeholder="Select a Relationship..." value=""
    
       <option value="" disabled selected>SELECT ONE OR MORE RELATIONSHIPS...</option>
-      <cfloop query="relationships">
-        <cfoutput>
-          <option value="#relationships.contactid#" <cfif "#relationships.contactid#" is "#rcontactid#">selected</cfif>>
-            #recordname#
-          </option>
-        </cfoutput>
-      </cfloop>
+        
+        <cfloop query="relationships">
+   
+            <cfoutput>
+                <option value="#relationships.contactid#" <cfif "#relationships.contactid#" is "#rcontactid#">selected </cfif>>#recordname#</option>
+                </cfoutput>
+</cfloop>
     </select>
   </div>
 </div>
@@ -202,30 +229,6 @@
 
 </div>
 
-      <script>
-          $(document).ready(function(){
-$("#select-relationship").selectize({
-
-      persist: !1,
-                createOnBlur: !0,
-                create: !0  ,
-    
-    
-    plugins: ["remove_button"],
-  delimiter: ",",
-  persist: false,
-  create: function (input) {
-    return {
-      value: input,
-      text: input,
-    };
-  },
-    
-    
-});
-              
-              });
-</script>
 
 
 <script>
