@@ -5629,3 +5629,9 @@ select.form-control {
     min-height: calc(1.5em + .9rem + 2px); /* Optional: Set a minimum height */
     overflow-y: auto; /* Add scrolling if there are too many options */
 }
+#calendar-container {
+    position: relative;
+    padding-bottom: 20px; /* Add spacing to avoid overlap */
+    overflow: hidden;
+    height: calc(100vh - 100px); /* Adjust based on your layout */
+}
