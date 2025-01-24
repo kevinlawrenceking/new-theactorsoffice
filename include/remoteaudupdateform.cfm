@@ -272,7 +272,7 @@
     </div>
     <cfoutput>
     <!--- Location Container (only if 'In Person' is selected [=1]) --->
-    <div class="row" id="hiddenLocation#new_eventid#" style="display:none;">
+    <div class="row" id="hiddenLocation#new_eventid#" style="display:#IIF(aud_det.audtypeid EQ 1, 'block', 'none')#;">
 
         <div class="form-group col-md-12">
             <label for="new_parkingDetails">Parking Details</label>
@@ -399,7 +399,7 @@
 
     <!--- Self Tape Container (only if 'Self Tape' is selected [=2]) --->
           <cfoutput>
-    <div class="row" id="hiddenSelfTape#new_eventid#" style="display:none;">
+    <div class="row" id="hiddenSelfTape#new_eventid#" style="display:#IIF(aud_det.audtypeid EQ 2, 'block', 'none')#;">
   
             <div class="form-group col-md-12">
                 <label for="new_audLocation">Platform URL (optional)</label>
