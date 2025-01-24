@@ -271,7 +271,7 @@
       </cfif>
     </div>
 
-      <cfif aud_det.audtypeid eq 2>
+      <cfif aud_det.audtypeid eq 1>
     <Cfset hiddenlocdisplay = "block">
     <Cfelse>
     <cfset hiddenlocdisplay = "none">
