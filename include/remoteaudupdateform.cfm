@@ -270,9 +270,17 @@
           </div>
       </cfif>
     </div>
+
+      <cfif aud_det.audtypeid eq 2>
+    <Cfset hiddenlocdisplay = "block">
+    <Cfelse>
+    <cfset hiddenlocdisplay = "none">
+    </cfif>
+
+
     <cfoutput>
     <!--- Location Container (only if 'In Person' is selected [=1]) --->
-    <div class="row" id="hiddenLocation#new_eventid#" style="display:#IIF(aud_det.audtypeid EQ 1, 'block', 'none')#;">
+    <div class="row" id="hiddenLocation#new_eventid#" style="display:#hiddenlocdisplay#;">
 
         <div class="form-group col-md-12">
             <label for="new_parkingDetails">Parking Details</label>
@@ -398,8 +406,14 @@
     </div> <!-- end #hiddenLocation -->
 
     <!--- Self Tape Container (only if 'Self Tape' is selected [=2]) --->
+
+    <cfif aud_det.audtypeid eq 2>
+    <Cfset hiddenselfdisplay = "block">
+    <Cfelse>
+    <cfset hiddenselfdisplay = "none">
+    </cfif>
           <cfoutput>
-    <div class="row" id="hiddenSelfTape#new_eventid#" style="display:#IIF(aud_det.audtypeid EQ 2, 'block', 'none')#;">
+    <div class="row" id="hiddenSelfTape#new_eventid#" style="display:#hiddenselfdisplay#;">
   
             <div class="form-group col-md-12">
                 <label for="new_audLocation">Platform URL (optional)</label>
