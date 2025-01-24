@@ -2,7 +2,7 @@
 <cfparam name="new_contactid" default="0" />
 <cfparam name="select_userid" default="0" />
 <cfparam name="select_contactid" default="0" />
-
+<cfparam name="currentid" default="0" />
 <CFif new_contactid neq 0>
 <cfset currentid = new_contactid />
 </cfif>
