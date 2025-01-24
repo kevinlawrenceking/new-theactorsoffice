@@ -85,7 +85,7 @@
                 data-parsley-error-message="Relationship is required"
                 class="demo-default selectize-close-btn"
                 style="width: 100%"
-                placeholder="Select a Relationship..."
+                placeholder="Select one or more existing relationships or add new"
               >
                 <option value="">Select one or more Relationships...</option>
                 <cfloop query="relationships">
