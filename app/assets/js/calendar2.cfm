@@ -3,15 +3,19 @@
 <cfsavecontent variable="events_loop">
     <cfoutput>
     <cfloop query="events">
+    <cfset startRecur = DateFormat(events.col3, "yyyy-mm-dd")>
+    <cfif events.endrecur neq "">
+    <cfset endRecur = DateFormat(events.endrecur, "yyyy-mm-dd")>
+    </cfif>
         {
             <cfif events.dow neq "">
                 groupId: "recurring#events.eventid#",
-                startRecur: "#this.formatDate(events.col3)#",
+                startRecur: "#startRecur#",
                 daysOfWeek: [ "#replace(trim(events.dow), ',', "','")#" ],
                 startTime: "#timeformat(events.eventStartTime, 'HH:mm')#",
                 endTime: "#timeformat(events.eventstopTime, 'HH:mm')#",
                 <cfif events.endrecur neq "">
-                    endRecur: "#this.formatDate(DateAdd('d', 2, events.endrecur))#",
+                    endRecur: "#endRecur#",
                 </cfif>
             </cfif>
             title: "#replace(events.col1, "'", "\'", 'ALL')#",
