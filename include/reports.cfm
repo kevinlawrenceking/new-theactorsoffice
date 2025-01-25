@@ -204,7 +204,7 @@
             <cfset reportvalues = "#reportvalues#">
             <cfset reportlabels = "#reportlabels#">
 
-            REPORTLABELS 
+ 
 
     <cfset safeReportLabels = reportlabels>
     <cfset safeDatasetData = dataset_data>
