@@ -173,7 +173,7 @@
                         label: '#dataset_x.itemdataset#',
                         data: [#itemvalues#]
                         <cfif reports.reporttypename NEQ "bar">
-                            ,backgroundColor: [#reports.colorscheme#]
+                            ,backgroundColor: [#bgcolor#]
                         <cfelse>
                             #bgcolor#
                         </cfif>
