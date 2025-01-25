@@ -198,7 +198,7 @@
             <cfset reportlabels = "#reportlabels#">
 
             REPORTLABELS 
-       <cfoutput>
+
     <cfset safeReportLabels = reportlabels>
     <cfset safeDatasetData = dataset_data>
     <cfset scalesConfig = "" />
