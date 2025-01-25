@@ -5635,3 +5635,198 @@ select.form-control {
     overflow: hidden;
     height: calc(100vh - 100px); /* Adjust based on your layout */
 }
+
+
+body[data-leftbar-size=condensed] .logo-box {
+	width: 70px!important
+}
+
+body[data-leftbar-size=condensed] .user-lg {
+	display: none
+}
+
+body[data-leftbar-size=condensed] .user-sm {
+	display: block
+}
+
+
+
+
+body[data-leftbar-size=condensed] .logo span.logo-lg {
+	display: none
+}
+
+body[data-leftbar-size=condensed] .logo span.logo-sm {
+	display: block
+}
+
+body[data-leftbar-size=condensed] .left-side-menu {
+	position: absolute;
+	padding-top: 0;
+	width: 70px!important;
+	z-index: 5
+}
+
+body[data-leftbar-size=condensed] .left-side-menu .simplebar-content-wrapper,
+body[data-leftbar-size=condensed] .left-side-menu .simplebar-mask {
+	overflow: visible!important
+}
+
+body[data-leftbar-size=condensed] .left-side-menu .simplebar-scrollbar {
+	display: none!important
+}
+
+body[data-leftbar-size=condensed] .left-side-menu .simplebar-offset {
+	bottom: 0!important
+}
+
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu .badge,
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu .label,
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu .menu-arrow,
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu .menu-title {
+	display: none!important
+}
+
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu .nav.collapse {
+	height: inherit!important
+}
+
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu>ul>li {
+	position: relative;
+	white-space: nowrap
+}
+
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu>ul>li>a {
+	padding: 15px 20px;
+	min-height: 54px;
+	transition: none
+}
+
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu>ul>li>a:active,
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu>ul>li>a:focus,
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu>ul>li>a:hover {
+	color: var(--ct-menu-item-hover)
+}
+
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu>ul>li>a i {
+	font-size: 1.3rem;
+	margin-right: 20px;
+	margin-left: 5px
+}
+
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu>ul>li>a svg {
+	width: 18px;
+	height: 18px;
+	margin-left: 6px
+}
+
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu>ul>li>a span {
+	display: none;
+	padding-left: 25px
+}
+
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu>ul>li:hover>a {
+	position: relative;
+	width: calc(190px + 70px);
+	color: var(--ct-menu-item-active);
+	background-color: #f3f7f9;
+	box-shadow: inset var(--ct-box-shadow-condensed)
+}
+
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu>ul>li:hover>a span {
+	display: inline
+}
+
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu>ul>li:hover a.active :after,
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu>ul>li:hover a.open :after {
+	display: none
+}
+
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu>ul>li:hover>.collapse,
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu>ul>li:hover>.collapsing {
+	display: block!important;
+	height: auto!important;
+	transition: none!important
+}
+
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu>ul>li:hover>.collapse>ul,
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu>ul>li:hover>.collapsing>ul {
+	display: block!important;
+	left: 70px;
+	position: absolute;
+	width: 190px;
+	box-shadow: var(--ct-box-shadow-condensed)
+}
+
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu>ul>li:hover>.collapse>ul ul,
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu>ul>li:hover>.collapsing>ul ul {
+	box-shadow: var(--ct-box-shadow-condensed)
+}
+
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu>ul>li:hover>.collapse>ul a,
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu>ul>li:hover>.collapsing>ul a {
+	box-shadow: none;
+	padding: 8px 20px;
+	position: relative;
+	width: 190px;
+	z-index: 6
+}
+
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu>ul>li:hover>.collapse>ul a:hover,
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu>ul>li:hover>.collapsing>ul a:hover {
+	color: var(--ct-menu-item-hover)
+}
+
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu>ul ul {
+	padding: 5px 0;
+	z-index: 9999;
+	display: none;
+	background-color: var(--ct-bg-leftbar)
+}
+
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu>ul ul li:hover>.collapse,
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu>ul ul li:hover>.collapsing {
+	display: block!important;
+	height: auto!important;
+	transition: none!important
+}
+
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu>ul ul li:hover>.collapse>ul,
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu>ul ul li:hover>.collapsing>ul {
+	display: block;
+	left: 190px;
+	margin-top: -36px;
+	position: absolute;
+	width: 190px
+}
+
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu>ul ul li>a span.pull-right {
+	position: absolute;
+	right: 20px;
+	top: 12px;
+	transform: rotate(270deg)
+}
+
+body[data-leftbar-size=condensed] .left-side-menu #sidebar-menu>ul ul li.active a {
+	color: var(--ct-menu-item-active)
+}
+
+body[data-leftbar-size=condensed] .content-page {
+	margin-left: 70px!important
+}
+
+@media (min-width:992px) {
+	body[data-leftbar-size=condensed] .footer {
+		left: 70px!important
+	}
+}
+
+body[data-leftbar-size=condensed] .user-box {
+	display: none!important
+}
+
+@media (min-width:768px) {
+	body[data-leftbar-size=condensed]:not([data-layout=compact]) {
+		min-height: 1750px
+	}
+}
