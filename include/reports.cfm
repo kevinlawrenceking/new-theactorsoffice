@@ -160,7 +160,7 @@
         
         <!--- Generate the item values as a list --->
         <cfoutput>
-            <cfset itemvalues = ArrayToList(values_x.itemValueInt, ',')>
+       <cfset itemvalues = "#ValueList(values_x.itemValueInt, ',')#" />
         </cfoutput>
 
         <!--- Background color logic based on `k` --->
