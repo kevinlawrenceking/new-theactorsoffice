@@ -177,7 +177,7 @@
         <!--- Generate dataset output with safe labels --->
         <cfoutput>
             {
-                label: "#REReplace(dataset_x.itemdataset, '[\'\"]', '\\\1', 'all')#",
+                label: "<cfset dataset_x.itemdataset = REReplace(dataset_x.itemdataset, "'", "", "all") />",
                 data: [#itemvalues#]
                 <cfif reports.reporttypename NEQ "bar">
                     ,backgroundColor: [#reports.colorscheme#]
