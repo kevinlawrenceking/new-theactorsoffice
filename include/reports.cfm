@@ -160,7 +160,7 @@
         
         <!--- Generate the item values as a list --->
         <cfoutput>
-       <cfset itemvalues = "#ValueList(values_x.itemValueInt, ',')#" />
+        <cfset itemvalues = "#ValueList(values_x.itemValueInt, ',')#" />
         </cfoutput>
 
         <!--- Background color logic based on `k` --->
@@ -173,7 +173,8 @@
         <cfif k GT 1>,</cfif>
 
         <cfoutput>
-        <cfset safeLabel = ReplaceList(dataset_x.itemdataset, "'#chr(34)#", "\'")>
+        <!--- Sanitize labels to remove problematic characters --->
+        <cfset safeLabel = Replace(dataset_x.itemdataset, "[^a-zA-Z0-9 ]", "", "all")>
 
             {
                 label: "#safeLabel#",
@@ -187,6 +188,7 @@
         </cfoutput>
     </cfloop>
 </cfsavecontent>
+
 
 
         <!--- Prepare data for the chart --->
