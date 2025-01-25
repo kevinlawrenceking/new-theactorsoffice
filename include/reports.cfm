@@ -166,9 +166,9 @@
         <!--- Background color logic based on `k` --->
         <cfset k = k + 1 />
         <cfif k EQ 1 OR k EQ 3>
-            <cfset bgcolor = "'#406E8E'">
+            <cfset bgcolor = "'##406E8E'">
         <cfelse>
-            <cfset bgcolor = "'#1ABC9C'">
+            <cfset bgcolor = "'##1ABC9C'">
         </cfif>
         <cfif k GT 1>,</cfif>
 
@@ -188,7 +188,6 @@
 
 
         <!--- Prepare data for the chart --->
-<<<<<<< HEAD
         <cfscript>
             reportlabels = QuotedValueList(labels_x.itemLabel, ",");
             reportvalues = QuotedValueList(reportitems_x.itemValueInt, ",");
@@ -199,7 +198,6 @@
             <cfset reportlabels = "#reportlabels#">
 
             REPORTLABELS 
-=======
        <cfoutput>
     <cfset safeReportLabels = reportlabels>
     <cfset safeDatasetData = dataset_data>
@@ -211,7 +209,6 @@
     <cfif reports.reportid EQ 9>
         <cfset scalesConfig = "{ x: { stacked: true }, y: { stacked: true, ticks: { precision: 0 } } }">
     </cfif>
->>>>>>> f3ddabb1bb8fba01f31673758d05da730754d915
 
     <script>
         const chart_#reports.reportid# = document.getElementById('myChart_#reports.reportid#');
