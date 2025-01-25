@@ -173,8 +173,10 @@
         <cfif k GT 1>,</cfif>
 
         <cfoutput>
+        <cfset safeLabel = ReplaceList(dataset_x.itemdataset, "'#chr(34)#", "\'")>
+
             {
-                label: "#JavaScriptEncode(dataset_x.itemdataset)#",
+                label: "#safeLabel#",
                 data: [#itemvalues#]
                 <cfif reports.reporttypename NEQ "bar">
                     ,backgroundColor: [#reports.colorscheme#]
