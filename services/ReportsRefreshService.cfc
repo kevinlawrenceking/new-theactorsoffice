@@ -25,16 +25,12 @@
             FROM 
                 audgenres_audition_xref x  
             INNER JOIN 
-                audroles r ON r.audroleid = x.audroleid
-            INNER JOIN 
                 audgenres_user g ON g.audgenreid = x.audgenreid
-            INNER JOIN 
-                audprojects p ON p.audprojectid = r.audprojectid
-            INNER JOIN 
-                audsubcategories s ON s.audsubcatid = p.audsubcatid
+                inner join audroles r on r.audroleid = x.audroleid
+                inner join audprojects p on p.audprojectid = r.audprojectid
+                inner join audsubcategories s on s.audsubcatid = p.audsubcatid
             WHERE 
-                r.isdeleted = 0
-                AND p.isDeleted = 0
+                 p.isdeleted <> 1
                 AND p.projdate >= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangestart#">
                 AND p.projdate <= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangeend#">
                 AND p.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
@@ -119,18 +115,20 @@
                 c.audcatname AS label,
                 'Auditions' AS itemDataset
             FROM audprojects p
-            INNER JOIN audroles r ON p.audprojectID = r.audprojectID
-            INNER JOIN audroletypes rt ON rt.audroletypeid = r.audroletypeid
-            INNER JOIN audcategories c ON c.audcatid = rt.audcatid
-            WHERE 
-                r.isdeleted = 0
-                AND p.isDeleted = 0
-                AND p.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
-                AND p.projdate >= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangestart#">
+            INNER JOIN audsubcategories s ON s.audsubcatid = p.audsubcatid
+            inner join audcategories c on c.audcatid = s.audcatid
+       WHERE  p.isdeleted <> 1
+     
+
+                  AND p.projdate >= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangestart#">
                 AND p.projdate <= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangeend#">
+                AND p.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
+
+
             GROUP BY c.audcatname
             ORDER BY c.audcatname
         </cfquery>
+
 
 <!--- Update summary with total selected --->
         <cfset resultSummary.totalSelected = report_3.recordCount>
@@ -260,15 +258,14 @@
 
 <cfquery  name="Findit">
                 SELECT
-                count(r.audroleid) as totals
+                count(p.audprojectid) as totals
                 from
-                audtypes t
-                left join events a on a.audtypeid = t.audtypeid
-                left join audroles r on a.audroleid = r.audroleid
-                left join audprojects p on p.audprojectid = r.audprojectid
-                LEFT JOIN audsteps st ON st.audstepid = a.audstepid
-                WHERE a.isDeleted = 0
-                AND p.isdeleted = 0
+                events a
+                inner join audroles r on r.audroleid = a.audroleid
+                inner join audprojects p on p.audprojectid = r.audprojectid
+                inner join audtypes t on t.audtypeid = a.audtypeid
+                WHERE a.isdeleted <> 1
+                AND p.isdeleted <> 1
                 and a.audstepid = #report_4_loop.audstepid#
                 and t.audtypeid = #report_4_loop.new_audtypeid#
     AND p.projdate >= <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.rangestart#" /> 
@@ -321,17 +318,17 @@ AND p.userid=<cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#"
 <!--- Query to calculate essence totals --->
         <cfquery name="report_5">
             SELECT 
-                COUNT(p.audprojectid) AS totals,
+                COUNT(r.audroleid) AS totals,
                 e.essencename AS label,
                 'Auditions' AS itemDataset
-            FROM audprojects p
-            INNER JOIN audroles r ON p.audprojectID = r.audprojectID
+            FROM  audroles r
+            inner join audprojects p on p.audprojectid = r.audprojectid
             INNER JOIN audessences_audtion_xref x ON x.audroleid = r.audroleid
             INNER JOIN essences e ON e.essenceid = x.essenceid
             WHERE 
-                r.isdeleted = 0
-                AND p.isDeleted = 0
-                AND p.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
+                r.isdeleted <> 1
+                and p.isdeleted <> 1
+                AND r.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
                 AND p.projdate >= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangestart#">
                 AND p.projdate <= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangeend#">
             GROUP BY e.essencename
@@ -437,8 +434,8 @@ AND p.userid=<cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#"
             LEFT JOIN audsubmitsites_user ss ON ss.submitsiteid = r.submitsiteid
             LEFT JOIN audopencalloptions_user o ON o.opencallid = r.opencallid
             WHERE
-                r.isdeleted = 0
-                AND p.isDeleted = 0
+                r.isdeleted <> 1
+                AND p.isDeleted <> 1
                 AND p.projdate >= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangestart#">
                 AND p.projdate <= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangeend#">
                 AND p.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
@@ -532,16 +529,14 @@ AND p.userid=<cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#"
             INNER JOIN
                 audsubcategories s ON s.audsubcatid = p.audsubcatid
             WHERE
-                r.isdeleted = 0
-                AND p.isDeleted = 0
+                r.isdeleted <> 1
+                AND p.isdeleted <> 1
                 AND p.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
                 AND p.projdate >= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangestart#">
                 AND p.projdate <= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangeend#">
                 AND s.audcatid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audcatid#">
             GROUP BY
                 rt.audroletype
-            HAVING
-                rt.audroletype <> 'N/A'
             ORDER BY
                 rt.audroletype
         </cfquery>
@@ -617,19 +612,18 @@ AND p.userid=<cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#"
 
 <!--- Query to fetch report data --->
         <cfquery name="report_8">
-            SELECT
+         SELECT
                 COUNT(x.audprojectid) AS totals,
                 m.medianame AS label,
                 s.audcatid,
                 'Auditions' AS itemDataset
             FROM audmedia m
-            INNER JOIN audmedia_auditions_xref x ON x.mediaid = m.mediaid
-            INNER JOIN audmediatypes t ON t.mediaTypeID = m.mediatypeid
-            INNER JOIN audprojects p ON p.audprojectID = x.audprojectid
-            INNER JOIN audsubcategories s ON s.audsubcatid = p.audsubcatid
-            LEFT JOIN exttypes e ON e.mediaext = m.mediaext
+            Inner JOIN audmedia_auditions_xref x ON x.mediaid = m.mediaid
+            Inner JOIN audmediatypes t ON t.mediaTypeID = m.mediatypeid
+            Inner JOIN audprojects p ON p.audprojectID = x.audprojectid
+            Inner JOIN audsubcategories s ON s.audsubcatid = p.audsubcatid
             WHERE 
-                m.isdeleted = 0
+                m.isdeleted <> 1
                 AND x.audprojectid <> 0
                 AND p.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
                 AND s.audcatid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audcatid#">
@@ -725,15 +719,13 @@ AND p.userid=<cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#"
             INNER JOIN audageranges_audtion_xref x ON x.audroleid = r.audroleid
             INNER JOIN audageranges a ON a.rangeid = x.rangeid
             WHERE 
-                r.isdeleted = 0
-                AND p.isDeleted = 0
+                r.isdeleted <> 1
+                AND p.isdeleted <> 1
                 AND p.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
                 AND p.projdate >= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangestart#">
                 AND p.projdate <= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangeend#">
             GROUP BY 
                 a.rangename
-            HAVING 
-                a.rangename <> 'Unknown'
             ORDER BY 
                 a.rangename
         </cfquery>
@@ -813,8 +805,8 @@ AND p.userid=<cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#"
             FROM audprojects p
             INNER JOIN audroles r ON p.audprojectID = r.audprojectID
             WHERE 
-                r.isdeleted = 0
-                AND p.isDeleted = 0
+                r.isdeleted <> 1
+                AND p.isdeleted <> 1
                 AND r.iscallback = 1
                 AND p.userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#">
                 AND p.projdate >= <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_rangestart#">
@@ -902,8 +894,8 @@ AND p.userid=<cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#"
             FROM audprojects p
             INNER JOIN audroles r ON p.audprojectID = r.audprojectID
             WHERE 
-                r.isdeleted = 0
-                AND p.isDeleted = 0
+                r.isdeleted <> 1
+                AND p.isdeleted <> 1
                 AND r.isredirect = 1
                 AND p.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
                 AND p.projdate >= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangestart#">
@@ -987,8 +979,8 @@ AND p.userid=<cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#"
             FROM audprojects p
             INNER JOIN audroles r ON p.audprojectID = r.audprojectID
             WHERE 
-                r.isdeleted = 0
-                AND p.isDeleted = 0
+                r.isdeleted <> 1
+                AND p.isdeleted <> 1
                 AND r.ispin = 1
                 AND p.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
                 AND p.projdate >= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangestart#">
@@ -1073,8 +1065,8 @@ AND p.userid=<cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#"
             FROM audprojects p
             INNER JOIN audroles r ON p.audprojectID = r.audprojectID
             WHERE 
-                r.isdeleted = 0
-                AND p.isDeleted = 0
+                r.isdeleted <> 1
+                AND p.isdeleted <> 1
                 AND r.isbooked = 1
                 AND p.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
                 AND p.projdate >= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangestart#">
@@ -1158,8 +1150,8 @@ AND p.userid=<cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#"
             FROM audprojects p
             INNER JOIN audroles r ON p.audprojectID = r.audprojectID
             WHERE 
-                r.isdeleted = 0
-                AND p.isDeleted = 0
+                r.isdeleted <> 1
+                AND p.isdeleted <> 1
                 AND p.userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">
                 AND p.projdate >= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangestart#">
                 AND p.projdate <= <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.rangeend#">
@@ -1254,8 +1246,8 @@ AND p.userid=<cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#"
             INNER JOIN 
                 audsources s ON s.audsourceid = r.audsourceid 
             WHERE 
-                r.isdeleted = 0 
-                AND p.isDeleted = 0 
+                r.isdeleted = 0
+                AND p.isdeleted = 0
                 AND u.unionName = 'Non-Union' 
                 <cfif arguments.new_audsourceid neq 0>
                     AND s.audsourceid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audsourceid#">
@@ -1282,8 +1274,8 @@ SELECT
             INNER JOIN 
                 audsources s ON s.audsourceid = r.audsourceid 
             WHERE 
-                r.isdeleted = 0 
-                AND p.isDeleted = 0 
+                r.isdeleted <> 1 
+                AND p.isdeleted <> 1 
                 AND u.unionName <> 'Non-Union' 
                 <cfif arguments.new_audsourceid neq 0>
                     AND s.audsourceid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audsourceid#">

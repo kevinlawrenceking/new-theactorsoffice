@@ -10,7 +10,7 @@
 </cfif>
 
 <!--- Check if event start time is provided --->
-<cfif #eventStartTIme# is not "">
+<cfif eventStartTIme neq "">
 
     <!--- Include duration calculation template --->
 <cfinclude template="/include/qry/durations.cfm" />
@@ -33,9 +33,9 @@
 
 </cfif>
 
-<!--- Clean event description and limit its length --->
+<!--- Clean event description and limit its length 
 <cfset cleanData = REReplace(eventDescription, "[^a-zA-Z0-9,.!? ]", "", "ALL")>
-<cfset eventDescription = Left(cleanData, 5000)>
+<cfset eventDescription = Left(cleanData, 5000)>--->
 
 <!--- Include update and delete templates for event --->
 <cfinclude template="/include/qry/update_18_1.cfm" /> 

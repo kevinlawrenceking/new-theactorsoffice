@@ -11,6 +11,7 @@
     <!--- Hidden inputs for action details --->
     <cfoutput>
         <input type="hidden" name="id" value="#actiondetails.id#"  />
+         <input type="hidden" name="new_id" value="#actiondetails.id#"  />
         <input type="hidden" name="target_id_system" value="#actiondetails.systemid#"  />
     </cfoutput>
     

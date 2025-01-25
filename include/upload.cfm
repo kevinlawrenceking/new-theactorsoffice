@@ -1,6 +1,4 @@
-<!--- This ColdFusion page handles the import of contact data from a spreadsheet, processes the data, and updates the database accordingly. --->
 
-<cfset userid = userid />
 
 <cfset currentURL = cgi.server_name />
 <cfset host = ListFirst(currentURL, ".") />
@@ -10,6 +8,7 @@
 <cfset new_uploadid = result.generatedkey />
 
 <cfoutput>
+upload id: #new_uploadid#<BR>
     <cfset session.userMediaPath = "C:\home\theactorsoffice.com\wwwroot\#host#-subdomain\media-#host#\users\#userid#" />
 </cfoutput>
 
@@ -20,53 +19,41 @@
 
 <cffile action="upload" filefield="form.file" destination="#session.userMediaPath#\" nameconflict="MAKEUNIQUE" />
 
-<!--- Read the spreadsheet data into a query object --->
 <cfspreadsheet action="read" 
-    sheetname="TAO Import Template" 
+    
     src="#session.userMediaPath#\#cffile.serverfile#" 
     query="importdata" 
-    columnnames="FirstName,LastName,Tag1,Tag2,Tag3,BusinessEmail,PersonalEmail,WorkPhone,MobilePhone,HomePhone,Company,Address,Address2,City,State,Zip,Country,contactMeetingDate,contactMeetingLocation,Birthday,website,Notes" 
+    columnnames="FirstName,LastName,Tag1,Tag2,Tag3,BusinessEmail,PersonalEmail,WorkPhone,MobilePhone,HomePhone,Company,Address,
+    Address2,City,State,Zip,Country,contactMeetingDate,contactMeetingLoc,Birthday,website,Notes" 
     headerrow="1" />
 
-<!--- Create a variable to store the codes of products that could not be imported --->
-<cfset failedimports = "" />
 
-<!--- Loop through the query starting with the first row containing data (row 2) --->
-<cfloop query="importdata" startrow="2">
-    <!--- Check if the row contains valid data (all fields must contain a value and price must be numeric) --->
-    <Cfif LEN(importdata.FirstName) gt 0>
-        <cfinclude template="/include/qry/find_315_2.cfm" />
-    </Cfif>
-</cfloop>
 
-<cfinclude template="/include/qry/x_315_3.cfm" />
-<cfoutput>x: #x.recordcount#<BR></cfoutput>
 
-<cfloop query="x">
-    <cfinclude template="/include/qry/find_315_4.cfm" />
-    <cfoutput>find: #find.recordcount#<BR></cfoutput>
+<cfoutput>
+importdata: #importdata.recordcount#<BR>
+</cfoutput>
 
-    <cfif #find.recordcount# is "1">
-        <cfset new_status = "Duplicate" />
-        <cfset new_contactid = find.contactid />
-        <cfoutput>result:duplicate - #find.contactid#<BR></cfoutput>
-        <cfinclude template="/include/qry/update_315_5.cfm" />
-    <cfelse>
-        <cfinclude template="/include/qry/add_315_6.cfm" />
-        <cfset new_status = "Added" />
-        <cfset new_contactid = result.generatedkey />
-        <cfset contactid = result.generatedkey />
-        <cfinclude template="/include/birthday_fix.cfm" />
-        <cfoutput>result: added - #new_contactid#<BR></cfoutput>
 
-        <cfset select_userid = userid />
-        <cfset select_contactid = new_contactid />
+<cfinclude template="/include/qry/find_315_2.cfm" />
+<cfoutput>
+Contacts imported: #find#<BR>
+</cfoutput>
+
+<cfinclude template="/include/qry/getContactsImportByUploadID.cfm" />
+<cfoutput>contactimports to loop: #new.recordcount#<BR></cfoutput>
+<cfoutput>notes: #new.notes#<BR></cfoutput>
+<cfloop query="new">
+
+ <cfinclude template="/include/qry/add_315_6.cfm" />
+
+   <cfset select_userid = userid />
+        <cfset select_contactid = result.new_contactid />
         <cfinclude template="/include/folder_setup.cfm" />
-    </cfif>
 
-    <cfif #x.notes# is not ""> 
-        <cfset select_userid = userid />
-        <cfset select_contactid = new_contactid />
+
+     <cfif #new.notes# is not ""> 
+New notes arent empty <BR>
         <cfinclude template="/include/qry/find_note_315_7.cfm" />
         
         <cfif #find_Note.recordcount# is "0">
@@ -74,8 +61,9 @@
         </cfif> 
     </cfif>
 
-    <cfinclude template="/include/qry/update_315_5.cfm" />
+
 </cfloop>
+
 
 <cfinclude template="/include/qry/tag_315_10.cfm" />
 <cfloop query="tag">
@@ -84,14 +72,15 @@
 </cfloop>
 
 <cfinclude template="/include/qry/tag_315_12.cfm" />
-<cfloop query="tag">
-    <cfset new_tag2 = tag.tag2 />
+<cfloop query="tag2">
+    <cfset new_tag2 = tag2.tag2 />
+
     <cfinclude template="/include/qry/tag_insert_315_13.cfm" />
 </cfloop>
 
 <cfinclude template="/include/qry/tag_315_14.cfm" />
-<cfloop query="tag">
-    <cfset new_tag3 = tag.tag3 />
+<cfloop query="tag3">
+    <cfset new_tag3 = tag3.tag3 />
     <cfinclude template="/include/qry/tag_insert_315_15.cfm" />
 </cfloop>
 
@@ -138,6 +127,9 @@
     </cfif>
 </cfloop>
 
+
+
+<Cfif isdefined('usingMaint')>
 <cfinclude template="/include/qry/maints_315_32.cfm" />
 <Cfloop query="maints">
     <cfoutput>
@@ -164,8 +156,7 @@
         <cfloop query="addDaysNo">
             <cfinclude template="/include/qry/checkUnique_315_36.cfm" />
             <cfif #checkunique.recordcount# is "0">
-                <!--- for every action, calculate the start date based on the actionDaysNo field and the current date --->
-                <cfset notstartdate = dateAdd('d', actionDaysNo, currentstartdate) />
+             <cfset notstartdate = dateAdd('d', actionDaysNo, currentstartdate) />
                 <cfif notstartdate lte currentstartdate>
                     <cfinclude template="/include/qry/addNotification_315_37.cfm" />
                 <cfelse>
@@ -175,6 +166,9 @@
         </cfloop>
     </cfif>
 </Cfloop>
+     
+ 
+</cfif>
 
 <cflocation url="/app/contacts-import/?uploadid=#new_uploadid#">
 

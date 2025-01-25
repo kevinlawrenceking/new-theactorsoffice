@@ -5,7 +5,7 @@
     eventid = eventid
 )>
 
-<table id="<cfoutput>#contacts_table#</cfoutput>" style="width:100%;" class="table display dt-responsive nowrap w-100 table-striped" role="grid">
+<table id="<cfoutput>#contacts_table#</cfoutput>"  class="table display dt-responsive nowrap w-100 table-striped" role="grid">
     <thead>
         <tr>
      

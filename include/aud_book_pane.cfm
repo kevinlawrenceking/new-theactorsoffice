@@ -3,7 +3,7 @@
 <div class="row">
     
     <!--- Include the types query template --->
-    <cfinclude template="/include/qry/types_42_1.cfm" />
+    <cfinclude template="/include/qry/SEL_Media_types_material.cfm" />
     
     <!--- Loop through each type to create modals for media uploads --->
     <cfloop query="types">
@@ -21,7 +21,7 @@
 
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header" style="background-color: ##f3f7f9;">
+                        <div class="modal-header" >
                             <h4 class="modal-title" id="standard-modalLabel">Upload Media</h4>
                             <button type="button" class="close" data-bs-dismiss="modal" >
 <i class="mdi mdi-close-thick"></i></button>
@@ -58,7 +58,7 @@
 
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header" style="background-color: ##f3f7f9;">
+                        <div class="modal-header" >
                             <h4 class="modal-title" id="standard-modalLabel">Booking Update</h4>
                             <button type="button" class="close" data-bs-dismiss="modal" >
 <i class="mdi mdi-close-thick"></i></button>
@@ -84,7 +84,7 @@
 
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header" style="background-color: ##f3f7f9;">
+                    <div class="modal-header" >
                         <h4 class="modal-title" id="standard-modalLabel">Booking Appointment Add</h4>
                         <button type="button" class="close" data-bs-dismiss="modal" >
 <i class="mdi mdi-close-thick"></i></button>

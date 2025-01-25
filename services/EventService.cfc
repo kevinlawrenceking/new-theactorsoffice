@@ -23,7 +23,7 @@
             <cfif arguments.new_eventStopTime NEQ "00:00:00">
                 e.eventstoptime = <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.new_eventStopTime#">,
             </cfif>
-            e.eventid = e.eventid
+            e.eventid = e.eventid;
     </cfquery>
 </cffunction>
 
@@ -33,7 +33,7 @@
 <cfquery>
         UPDATE events_tbl 
         SET isdeleted = 0 
-        WHERE eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">
+        WHERE eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">;
     </cfquery>
 </cffunction>
 
@@ -318,7 +318,7 @@ WHERE
         INNER JOIN audroles r ON r.audroleid = e.audroleid
         INNER JOIN audprojects p ON p.audprojectid = r.audprojectid
         SET e.eventtitle = p.projName,
-            e.eventdescription = LEFT(REPLACE(REPLACE(p.projDescription, CHAR(13), ''), CHAR(10), ''), 5000)
+            e.eventdescription = p.projDescription
         WHERE e.eventtitle != p.projName
     </cfquery>
 </cffunction>
@@ -570,7 +570,9 @@ WHERE
             AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
-</cffunction> <cffunction output="false" name="INSevents_24096" access="public" returntype="numeric">
+</cffunction> 
+
+<cffunction output="false" name="INSevents_24096" access="public" returntype="numeric">
     <cfargument name="new_userid" type="string" required="yes">
     <cfargument name="new_audRoleID" type="string" required="no" default="">
     <cfargument name="new_audTypeID" type="string" required="no" default="">
@@ -623,7 +625,10 @@ WHERE
 
 <!--- Return the generated key --->
     <cfreturn result.generatedKey>
-</cffunction> <cffunction output="false" name="UPDevents_24108" access="public" returntype="void">
+</cffunction>
+
+
+ <cffunction output="false" name="UPDevents_24108" access="public" returntype="void">
     <cfargument name="eventId" type="numeric" required="true">
     <cfargument name="newEventStart" type="date" required="false" default="">
     <cfargument name="newEventStartTime" type="time" required="false" default="">
@@ -735,7 +740,7 @@ WHERE
 <cfreturn result>
 
 </cffunction> <cffunction output="false" name="DETevents_24492" access="public" returntype="query">
-    <cfargument name="eventid" type="numeric" required="true">
+    <cfargument name="eventid" type="numeric" default="0" required="true">
 
 <cfquery name="result" >
             SELECT
@@ -1022,7 +1027,7 @@ audzip = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_aud
     <cfargument name="new_audlocadd1" type="string" required="true">
     <cfargument name="new_audlocadd2" type="string" required="true">
     <cfargument name="new_audcity" type="string" required="true">
-    <cfargument name="new_region_id" type="numeric" required="true">
+    <cfargument name="new_region_id" type="string" required="true">
     <cfargument name="new_audzip" type="string" required="true">
     <cfargument name="new_eventStart" type="date" required="true">
     <cfargument name="new_eventStartTime" type="time" required="true">
@@ -1048,7 +1053,9 @@ audzip = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_aud
             audlocadd1 = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audlocadd1)#" maxlength="500">,
             audlocadd2 = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audlocadd2)#" maxlength="500">,
             audcity = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audcity)#" maxlength="500">,
+            <cfif #arguments.new_region_id# is not "">
             region_id = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_region_id#">,
+            </cfif>
             audzip = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_audzip)#" maxlength="10">,
             eventStart = <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.new_eventStart#">,
             eventStartTime = <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.new_eventStartTime#">,
@@ -1058,7 +1065,7 @@ audzip = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_aud
             parkingDetails = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_parkingDetails)#" null="#NOT len(trim(arguments.new_parkingDetails))#">,
             workwithcoach = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_workwithcoach#">
         WHERE
-            eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">
+            eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">;
     </cfquery>
 </cffunction> <cffunction output="false" name="UPDevents_24558" access="public" returntype="void">
     <cfargument name="new_eventid" type="numeric" required="true">
@@ -1078,7 +1085,7 @@ audzip = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_aud
         <cfif len(arguments.eventStopTime)>
             , eventStopTime = <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.eventStopTime#">
         </cfif>
-        WHERE eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">
+        WHERE eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">;
     </cfquery>
 </cffunction> <cffunction output="false" name="SELevents_24597" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">

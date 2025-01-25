@@ -12,7 +12,7 @@
             <!--- Process each field to determine its SQL type and prepare the values for insertion. --->
             <cfscript>
                 origText = x.type;
-                newText = reReplaceNoCase(origText, "\([0-9]*\).*$", "", "all");
+                newText = origText;
             </cfscript>
 
             <cfoutput>

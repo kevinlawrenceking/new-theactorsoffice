@@ -23594,12 +23594,12 @@ display:none
 border-top:0 none
 }
 
-.selectize-control.plugin-remove_button [data-value] {
+.selectize-control.plugin-remove-button [data-value] {
 position:relative;
 padding-right:24px!important
 }
 
-.selectize-control.plugin-remove_button [data-value] .remove {
+.selectize-control.plugin-remove-button [data-value] .remove {
 z-index:1;
 position:absolute;
 top:0;
@@ -23623,23 +23623,23 @@ border-radius:0 2px 2px 0;
 box-sizing:border-box
 }
 
-.selectize-control.plugin-remove_button [data-value] .remove:hover {
+.selectize-control.plugin-remove-button [data-value] .remove:hover {
 background:#0000000d
 }
 
-.selectize-control.plugin-remove_button [data-value].active .remove {
+.selectize-control.plugin-remove-button [data-value].active .remove {
 border-left-color:#0000
 }
 
-.selectize-control.plugin-remove_button .disabled [data-value] .remove:hover {
+.selectize-control.plugin-remove-button .disabled [data-value] .remove:hover {
 background:none
 }
 
-.selectize-control.plugin-remove_button .disabled [data-value] .remove {
+.selectize-control.plugin-remove-button .disabled [data-value] .remove {
 border-left-color:#4d4d4d00
 }
 
-.selectize-control.plugin-remove_button .remove-single {
+.selectize-control.plugin-remove-button .remove-single {
 position:absolute;
 right:0;
 top:0;
@@ -24025,12 +24025,12 @@ display:none
 border-top:0 none
 }
 
-.selectize-control.plugin-remove_button [data-value] {
+.selectize-control.plugin-remove-button [data-value] {
 position:relative;
 padding-right:24px!important
 }
 
-.selectize-control.plugin-remove_button [data-value] .remove {
+.selectize-control.plugin-remove-button [data-value] .remove {
 z-index:1;
 position:absolute;
 top:0;
@@ -24054,23 +24054,23 @@ border-radius:0 2px 2px 0;
 box-sizing:border-box
 }
 
-.selectize-control.plugin-remove_button [data-value] .remove:hover {
+.selectize-control.plugin-remove-button [data-value] .remove:hover {
 background:#0000000d
 }
 
-.selectize-control.plugin-remove_button [data-value].active .remove {
+.selectize-control.plugin-remove-button [data-value].active .remove {
 border-left-color:#0000
 }
 
-.selectize-control.plugin-remove_button .disabled [data-value] .remove:hover {
+.selectize-control.plugin-remove-button .disabled [data-value] .remove:hover {
 background:none
 }
 
-.selectize-control.plugin-remove_button .disabled [data-value] .remove {
+.selectize-control.plugin-remove-button .disabled [data-value] .remove {
 border-left-color:#4d4d4d00
 }
 
-.selectize-control.plugin-remove_button .remove-single {
+.selectize-control.plugin-remove-button .remove-single {
 position:absolute;
 right:0;
 top:0;

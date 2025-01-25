@@ -15,25 +15,40 @@
 <cfoutput>
     <div class="d-flex justify-content-between">
         <div class="float-left">
-            <form>
-                <cfoutput>
-                    <input type="hidden" name="contactid" value="#currentid#" />
-                    <input type="hidden" name="t4" value="1" />
-                </cfoutput>
-                <div class="checkbox checkbox-success form-check-inline">
-                    <input type="checkbox" id="hide_completed" value="Y" name="hide_completed" onChange="this.form.submit()" #hide_completed_check# />
-                    <label for="hide_completed"> Hide Completed &amp; Skipped </label>
-                </div>
-            </form>
+ <!--- Filter checkboxes --->
+<label>
+  <input type="checkbox" class="status-filter" value="completed" checked>
+  Completed
+</label>
+<label>
+  <input type="checkbox" class="status-filter" value="skipped" checked>
+  Skipped
+</label>
+<label>
+  <input type="checkbox" class="status-filter" value="upcoming" >
+  Upcoming
+</label>
+<label>
+  <input type="checkbox" class="status-filter" value="pending" checked>
+  Pending
+</label>
+
         </div>
     </div>
 </cfoutput>
 
 <div id="tab-relationship-view" style="flex: 1 1 auto;">
     <!--- Loop through active systems --->
-       
+     
     <cfloop query="sysActive">
-        <cfinclude template="/include/qry/notsInactive_510_2.cfm" /> 
+
+    <cfif #LCase(sysActive.sustatus)# is "active" >
+<cfset showstatus = "pending">
+<cfelse>
+<cfset showstatus = "#LCase(sysActive.sustatus)#">
+</cfif>
+
+        <cfinclude template="/include/qry/notsactive_510_1.cfm" />
         <cfoutput>
             <div class="row">
                 <div class="col-md-12">
@@ -55,6 +70,7 @@
             </div>
         </cfoutput>
 
+    
         <!--- Check if there are no active items --->
         <cfif #notsActive.recordcount# is "0">
             <p>No action items to show!</p>
@@ -62,86 +78,83 @@
 
         <!--- Loop through active notifications --->
         <cfif #notsActive.recordcount# is not "0">
-            <cfloop query="notsActive">
-                <cfoutput>
-                    <div class="col-md-12" style="padding-bottom:10px; margin-left:30px;">
-                        <!--- Check if notification status is pending --->
-                        <cfif #notsActive.notstatus# is "Pending">
-                            <a href="/include/complete_not.cfm?notid=#notsactive.notid#&notstatus=Completed&hide_completed=#hide_completed#">
-                        </cfif>
-                        <i class="mdi mdi-checkbox-#notsactive.checktype#-outline font-24 mr-1" style="vertical-align: middle;color:###notsactive.status_color#"></i>
-                        <cfif #notsActive.notstatus# is "Pending">
-                            </a>
-                        </cfif>
-                        #notsactive.delstart# #notsActive.actiondetails# #notsactive.delend#
-                        <!--- Check for end date --->
-                        <cfif #notsactive.notEndDate#is not "">
-                            (#notsactive.notstatus# #dateformat('#notsactive.notEndDate#','m/d')#)
-                        </cfif>
-                        <cfif #notsactive.notEndDate# is "">
-                            (Due Date #dateformat('#notsactive.notstartdate#','m/d')#)
-                        </cfif>
-                        <!--- Check if notification is past due --->
-                        <cfif #notsactive.ispastdue# is "1">
-                            <span class="badge badge-soft-danger">Past Due</span>
-                        </cfif>
-                        <a href="" title="click for details" data-bs-toggle="modal" data-bs-target="##action#notsActive.actionid#-modal">
-                            <i class="fe-info font-14 mr-1"></i>
-                        </a>
-                        <cfif #notsactive.notstatus# is "Pending">
-                            <a href="/include/complete_not.cfm?notid=#notsactive.notid#&notstatus=Skipped&hide_completed=#hide_completed#" title="Skip reminder"> 
-                                <span class="badge badge-blue" style="margin-left:10px">x Skip</span>    
-                            </a>               
-                        </cfif>
-                    </div> <!--- end col-md-12 --->
-                </cfoutput>
-            </cfloop>
-        </cfif>
+ 
+<cfloop query="notsActive">
 
-        <!--- Check if showstuff is defined and hide_completed is "N" --->
-        <cfif #isdefined('showstuff')#>
-            <cfif #hide_completed# is "N">
-                <cfif #notsinactive.recordcount# is not "0">
-                    <hr style="color:purple;" />
-                    <p style="color:purple;"><cfoutput>#zquery#</cfoutput></p>
-                    <p style="color:purple;">The reminders below are future and will NOT be shown to the user. These are shown for testing purposes only:</p>
-                </cfif>
-
-                <!--- Loop through inactive notifications --->
-                <cfloop query="notsInActive">
-                    <cfoutput>
-                        <div class="col-md-12" style="padding-bottom:10px; margin-left:30px;">
-                            <cfif #notsinactive.notstatus# is "Pending">
-                                <a href="/include/complete_not.cfm?notid=#notsinactive.notid#&notstatus=Completed&hide_completed=#hide_completed#">
-                            </cfif>
-                            <i class="mdi mdi-checkbox-#notsinactive.checktype#-outline font-24 mr-1" style="vertical-align: middle;color:###notsinactive.status_color#"></i>
-                            <cfif #notsinactive.notstatus# is "Pending">
-                                </a>
-                            </cfif>
-                            <span style="color:purple;">#notsinactive.delstart# #notsinactive.actiondetails# #notsinactive.delend#</span>
-                            <cfif #notsinactive.notstartDate#is not "">
-                                <span style="color:purple;">(FUTURE DATE: #dateformat('#notsinactive.notstartDate#','m/d')#)</span>  
-                            <cfelse>
-                                <span style="color:purple;">(FUTURE DATE: TBD)</span>  
-                            </cfif>
-                            <!--- Check if notification is past due --->
-                            <cfif #notsinactive.ispastdue# is "1">
-                                <span class="badge badge-soft-danger">Past Due</span>
-                            </cfif>
-                            <a href="" title="click for details" data-bs-toggle="modal" data-bs-target="##action#notsinactive.actionid#-modal">
-                                <i class="fe-info font-14 mr-1"></i>
-                            </a>
-                            <cfif #notsinactive.notstatus# is "Pending">
-                                <a href="/include/complete_not.cfm?notid=#notsinactive.notid#&notstatus=Skipped&hide_completed=#hide_completed#" title="Skip reminder"> 
-                                    <span class="badge badge-blue" style="margin-left:10px">x Skip</span>    
-                                </a>               
-                            </cfif>
-                        </div> <!--- end col-md-12 --->
-                    </cfoutput>
-                </cfloop>
+    <cfoutput>
+        <div class="col-md-12 reminder #LCase(notsactive.notstatus)#" style="padding-bottom:10px; margin-left:30px;">
+            <cfif notsActive.notstatus is "Pending" or notsActive.notstatus is "Upcoming">
+                <a href="/include/complete_not.cfm?notid=#notsactive.notid#&notstatus=Completed&hide_completed=#hide_completed#">
             </cfif>
+            <i class="mdi mdi-checkbox-#notsactive.checktype#-outline font-24 mr-1" 
+               style="vertical-align: middle;color:###notsactive.status_color#"></i>
+            <cfif notsActive.notstatus is "Pending" or notsActive.notstatus is "Upcoming">
+                </a>
+            </cfif>
+            
+            #notsactive.delstart# #notsActive.actiondetails# #notsactive.delend#
+
+            <cfif notsactive.notEndDate neq "">
+                (#notsactive.notstatus# #this.formatDate(notsactive.notEndDate)#)
+            <cfelse>
+                (Due Date #this.formatDate(notsactive.notstartdate)#)
+            </cfif>
+
+            <cfif notsactive.ispastdue eq "1">
+                <span class="badge badge-soft-danger">Past Due</span>
+            </cfif>
+
+            <a href="" title="Click for details" data-bs-toggle="modal" data-bs-target="##action#notsActive.actionid#-modal">
+                <i class="fe-info font-14 mr-1"></i>
+            </a>
+
+            <cfif notsActive.notstatus is "Pending" or notsActive.notstatus is "Upcoming">
+                <a href="/include/complete_not.cfm?notid=#notsactive.notid#&notstatus=Skipped&hide_completed=#hide_completed#" title="Skip reminder">
+                    <span class="badge badge-blue" style="margin-left:10px">x Skip</span>
+                </a>
+            </cfif>
+        </div>
+    </cfoutput>
+</cfloop>
         </cfif>
+
     </cfloop>
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // Get all checkboxes
+  const checkboxes = document.querySelectorAll('.status-filter');
+
+  // Attach event listeners
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', filterReminders);
+  });
+
+  // Initial run
+  filterReminders();
+});
+
+function filterReminders() {
+  // 1. Figure out which statuses are checked
+  const checkboxes = document.querySelectorAll('.status-filter');
+  let activeStatuses = [];
+  checkboxes.forEach(cb => {
+    if (cb.checked) {
+      activeStatuses.push(cb.value);
+    }
+  });
+
+  // 2. Show/hide reminders based on their class
+  const allReminders = document.querySelectorAll('.reminder');
+  allReminders.forEach(reminder => {
+    // e.g. "reminder completed"
+    const classes = reminder.className.split(" ");
+    // check if the reminder’s status is in the activeStatuses array
+    let shouldShow = classes.some(c => activeStatuses.includes(c));
+    // Toggle display
+    reminder.style.display = shouldShow ? '' : 'none';
+  });
+}
+</script>
 
 <cfset script_name_include="/include/#ListLast(GetCurrentTemplatePath(), " \ ")#" />

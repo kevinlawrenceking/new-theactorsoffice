@@ -89,7 +89,14 @@
 <cfset new_audsourceid = 0 />
 <cfset new_opencallid = 0 />
 </cfif>
+
+<Cfif #new_audsourceid# is "1">
+<cfset new_submitsiteid = 0 />
+<cfset new_opencallid = 0 />
+</cfif>
 <cfif #new_audSourceID# is "3">
+<cfset new_submitsiteid = 0 />
+<cfset new_opencallid = 0 />
     <cfif #referral# is not "">
         <cfinclude template="/include/qry/findg_287_19.cfm" />
         
@@ -118,22 +125,15 @@
             <cfinclude template="/include/folder_setup.cfm" />
         </cfif>
         <cfelse>
-        <cfset new_contact_id = 0 />
+        <cfset new_contactid = 0 />
     </cfif>
 </cfif>
 
 <!--- Handle submissions if new_audSourceID is 2. --->
 <cfif #new_audSourceID# is "2">
     <cfinclude template="/include/qry/find_subsite_287_21.cfm" />
-    
-    <cfif #dbug# is "Y">
-        <cfoutput>
-            SELECT submitsiteid as new_submitsiteid, catlist as new_catlist
-            FROM audsubmitsites_user
-            WHERE userid = #userid# and submitsitename = '#trim(new_submitsitename)#'<BR>
-            find_subsite.recordcount: #find_subsite.recordcount#<BR>
-        </cfoutput>
-    </cfif>
+    <cfset new_contactid = 0 />
+<cfset new_opencallid = 0 />
     
     <cfif #find_subsite.recordcount# is "1">
         <cfset new_submitsiteid = find_subsite.new_submitsiteid />
@@ -188,6 +188,8 @@
     </cfif>
 </cfif>
 
+
+
 <!--- Debugging output if dbug is enabled. --->
 <cfif #dbug# is "Y">
     <cfabort>
@@ -197,7 +199,6 @@
 <cfif #new_audDialectID# is "CustomDialect">
     <cfif #CustomDialect# is not "">  
         <cfinclude template="/include/qry/insert_287_24.cfm" />
-        <cfset new_audDialectID = resultk.generatedkey>
     <cfelse>
         <cfset new_dialectid = old_dialectid />
     </cfif>

@@ -1,23 +1,26 @@
-    minTime: "<cfoutput>#CalStarttime#</cfoutput>",
-            maxTime: "<cfoutput>#CalEndtime#</cfoutput>",
+
 
 <cfsavecontent variable="events_loop">
     <cfoutput>
     <cfloop query="events">
+    <cfset startRecur = DateFormat(events.col3, "yyyy-mm-dd")>
+    <cfif events.endrecur neq "">
+    <cfset endRecur = DateFormat(events.endrecur, "yyyy-mm-dd")>
+    </cfif>
         {
             <cfif events.dow neq "">
                 groupId: "recurring#events.eventid#",
-                startRecur: "#dateformat(events.col3, 'YYYY-mm-dd')#",
+                startRecur: "#startRecur#",
                 daysOfWeek: [ "#replace(trim(events.dow), ',', "','")#" ],
                 startTime: "#timeformat(events.eventStartTime, 'HH:mm')#",
                 endTime: "#timeformat(events.eventstopTime, 'HH:mm')#",
                 <cfif events.endrecur neq "">
-                    endRecur: "#dateformat(DateAdd('d', 2, events.endrecur), 'YYYY-mm-dd')#",
+                    endRecur: "#endRecur#",
                 </cfif>
             </cfif>
             title: "#replace(events.col1, "'", "\'", 'ALL')#",
-            start: "#dateformat(events.col3, 'YYYY-mm-dd')# #timeformat(events.eventStartTime, 'HH:mm')#",
-            end: "#dateformat(events.eventstop, 'YYYY-mm-dd')# #timeformat(events.eventstopTime, 'HH:mm')#",
+            start: "#dateFormat(events.col3, "yyyy-mm-dd")# #timeformat(events.eventStartTime, 'HH:mm')#",
+            end: "#dateFormat(events.eventstop, "yyyy-mm-dd")# #timeformat(events.eventstopTime, 'HH:mm')#",
             url: "<cfif events.audprojectid eq "">/app/appoint/?eventid=#events.eventid#&returnurl=calendar-appoint&rcontactid=0<cfelse>/app/audition/?focusid=#events.eventid#&audprojectid=#events.audprojectid#</cfif>",
             description: "#replace(events.col5, "'", "\'", 'ALL')#",
             className: "colorkey-#events.id#"
@@ -85,12 +88,3 @@ function() {
 }();
 </script>
     
-    <script>
-    #calendar-container {
-    position: relative;
-    padding-bottom: 20px; /* Add spacing to avoid overlap */
-    overflow: hidden;
-    height: calc(100vh - 100px); /* Adjust based on your layout */
-}
-</script>
-

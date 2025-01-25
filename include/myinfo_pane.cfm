@@ -13,10 +13,10 @@
     <!--- First Column: 20% Width --->
     <div class="col-md-2">
         <p class="card-text">
-            <a href="/app/image-upload/?contactid=<cfoutput>#contactid#&ref_pgid=7</cfoutput>">
+            <a  class="no-hover-effect" href="/app/image-upload/?contactid=<cfoutput>#contactid#&ref_pgid=7</cfoutput>"  class="no-hover-effect">
                 <center>
                     <figure>
-                        <img src="<cfoutput>#session.userAvatarUrl#?ver=#rand()#</cfoutput>" class="mr-2 rounded-circle gambar img-responsive img-thumbnail" title="User ID: <cfoutput>#userid#</cfoutput>" style="max-width:120px; width:100%;" alt="profile-image" id="item-img-output" />
+                        <img src="<cfoutput>#session.userAvatarUrl#?ver=#rand()#</cfoutput>" class="mr-2 rounded-circle gambar img-responsive img-thumbnail w-100" title="User ID: <cfoutput>#userid#</cfoutput>" style="max-width:120px" alt="profile-image" id="item-img-output" />
                         <figcaption>
                             <center><cfoutput>#avatarname#</cfoutput></center>
                         </figcaption>

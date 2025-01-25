@@ -1,2 +1,7 @@
-<cfinclude template="/include/qry/addNotification_326_1.cfm" />
-
+<cfset notificationService = createObject("component", "services.NotificationService")>
+<cfset new_notid = notificationService.addNotification(
+    actionID = NotificationDetails.actionID,
+    userid = userid,
+    suid = NewSuid,
+    notstartdate = newest_notstartdate
+)>

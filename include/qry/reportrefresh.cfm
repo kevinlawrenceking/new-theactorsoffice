@@ -51,13 +51,24 @@
             totalSelected = "Error",
             totalInserted = "Error"
         })>
-        <cfoutput><p>Error in Report ID #report.id#: #cfcatch.message#</p></cfoutput>
+        <cfoutput><p>Error in Report ID #report.id#: #cfcatch.message#</p>
+
+        <ul>
+        <li><strong>Message:</strong> #cfcatch.message#</li>
+        <li><strong>Detail:</strong> #cfcatch.detail#</li>
+        <li><strong>Error Code:</strong> #cfcatch.errorCode#</li>
+        <li><strong>Type:</strong> #cfcatch.type#</li>
+        <li><strong>Stack Trace:</strong> <pre>#cfcatch.stackTrace#</pre></li>
+    </ul>
+
+    </cfoutput>
     </cfcatch>
     </cftry>
 </cfloop>
 
 <!--- Display Report Summaries --->
 <div>
+<H1>CURRENTLY TESTING!</H1>
     <h3>Report Summaries</h3>
     <table border="1">
         <thead>
@@ -77,4 +88,4 @@
             </cfloop>
         </tbody>
     </table>
-</div>
+</div> 

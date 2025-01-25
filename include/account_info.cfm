@@ -136,7 +136,7 @@
 
     <div class="modal-content">
 
-      <div class="modal-header" style="background-color: ##f3f7f9;">
+      <div class="modal-header" >
 
         <h4 class="modal-title" id="standard-modalLabel">Default Settings Update</h4>
 
@@ -221,7 +221,7 @@
 
           </div>
 
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-12">
 
             <label for="defrows">Date Format
             </label>
@@ -230,7 +230,7 @@
 
               <cfoutput query="dateformats">
 
-                <option value="#dateformats.id#" <cfif #details.dateformatid# is "#dateformats.id#"> Selected </cfif>>#dateformats.formatexample#</option>
+                <option value="#dateformats.id#" <cfif #details.dateformatid# is "#dateformats.id#"> Selected </cfif>>#dateformats.formatexample# - (Example: #dateformat(now(),'#dateformats.formatexample#')#)</option>
 
               
 
@@ -301,7 +301,7 @@
 
                 <div class="modal-content">
 
-                  <div class="modal-header" style="background-color: ##f3f7f9;">
+                  <div class="modal-header" >
 
                     <h4 class="modal-title" id="standard-modalLabel">Default Settings Update</h4>
 

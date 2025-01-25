@@ -67,24 +67,24 @@
 
             <cfinclude template="/include/topmenu_main.cfm" />
 
-            <div class="logo-box">
-                <a href="<cfoutput>#home#</cfoutput>" class="logo logo-dark text-center">
-                    <span class="logo-sm">
-                        <span class="logo-lg-text-light">
+            <div class="logo no-hover-effect-box">
+                <a href="<cfoutput>#home#</cfoutput>" class="logo no-hover-effect logo-dark text-center">
+                    <span class="logo no-hover-effect-sm">
+                        <span class="logo no-hover-effect-lg-text-light">
                             <cfoutput>#appname#</cfoutput>
                         </span>
                     </span>
-                    <span class="logo-lg">
-                        <span class="logo-lg-text-light"></span>
+                    <span class="logo no-hover-effect-lg">
+                        <span class="logo no-hover-effect-lg-text-light"></span>
                     </span>
                 </a>
 
-                <a href="<cfoutput>#home#</cfoutput>" class="logo logo-light text-center">
-                    <span class="logo-sm">
+                <a href="<cfoutput>#home#</cfoutput>" class="logo no-hover-effect logo-light text-center">
+                    <span class="logo no-hover-effect-sm">
                         <img src="<cfoutput>#application.imagesUrl#</cfoutput>/logo-sm.png" alt="" height="22">
                     </span>
-                    <span class="logo-lg" style="min-width:200px !important;">
-                        <span class="logo-sm-text-light"></span>
+                    <span class="logo no-hover-effect-lg" style="min-width:200px !important;">
+                        <span class="logo no-hover-effect-sm-text-light"></span>
                         <img src="<cfoutput>#application.imagesUrl#</cfoutput>/<cfoutput>#findPage.appLogoName#?ver=5</cfoutput>" alt="" height="30">
                     </span>
                 </a>
@@ -199,7 +199,7 @@
 
                 <div class="modal-dialog">
                     <div class="modal-content">
-                        <div class="modal-header" style="background-color: #f3f7f9;">
+                        <div class="modal-header" >
                             <h4 class="modal-title" id="standard-modalLabel">Support Center</h4>
                             <button type="button" class="close" data-bs-dismiss="modal" >
 </button>

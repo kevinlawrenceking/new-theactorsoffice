@@ -82,7 +82,7 @@
 
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <div class="modal-header" style="background-color: ##f3f7f9;">
+                                    <div class="modal-header" >
                                         <h4 class="modal-title" id="standard-modalLabel">Note Links</h4>
                                         <button type="button" class="close" data-bs-dismiss="modal" >
 <i class="mdi mdi-close-thick"></i></button>
@@ -106,7 +106,7 @@
 
                             <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
                                 <div class="modal-content">
-                                    <div class="modal-header" style="background-color: ##f3f7f9;">
+                                    <div class="modal-header" >
                                         <h4 class="modal-title" id="standard-modalLabel">Note</h4>
                                         <button type="button" class="close" data-bs-dismiss="modal" >
 <i class="mdi mdi-close-thick"></i></button>
@@ -130,7 +130,7 @@
 
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <div class="modal-header" style="background-color: ##f3f7f9;">
+                                    <div class="modal-header" >
                                         <h4 class="modal-title" id="standard-modalLabel">Upload an Attachment</h4>
                                         <button type="button" class="close" data-bs-dismiss="modal" >
 <i class="mdi mdi-close-thick"></i></button>
@@ -148,7 +148,7 @@
                                 </a>
                             </td>
 
-                            <td class="text-nowrap">#dateformat('#NotesEvent.col1#','m-d-YYYY')#<BR />#timeformat('#NotesEvent.col2#','medium')#</td>
+                            <td class="text-nowrap">#this.formatDate(NotesEvent.col1)#<BR />#timeformat('#NotesEvent.col2#','medium')#</td>
 
                             <td class="text-nowrap">
                                 <cfif #NotesEvent.col4# is "1">Public<cfelse>Private</cfif>
@@ -223,7 +223,7 @@
 
         <div class="col-xl-12">
 
-            <div id="accordion_systems" class="mb-3" style="width:100%;">
+            <div id="accordion_systems" class="mb-3 w-100" >
                 <cfset k=0 />
 
                 <!--- Loop through each note in notesEvent for mobile display --->
@@ -252,12 +252,12 @@
                         <cfset collapse_show = "collapse" />
                     </cfif>
 
-                    <div class="card mb-1" style="width:100%;">
+                    <div class="card mb-1 w-100" >
                         <div class="card-header" id="heading_system_<cfoutput>#notesEvent.currentrow#</cfoutput>">
-                            <h5 class="m-0 align-middle" style="width:100%;">
+                            <h5 class="m-0 align-middle w-100" >
                                 <a class="text-dark collapsed" data-bs-toggle="collapse" href="#collapse_system_<cfoutput>#notesEvent.currentrow#</cfoutput>" aria-expanded="<cfoutput>#header_aria_exanded#</cfoutput>">
                                     <cfoutput>
-                                        <strong>#dateformat('#notesEvent.noteTimestamp#','short')#</strong> - #timeformat('#notesEvent.noteTimestamp#','short')# <i class="fe-menu"></i>
+                                        <strong>#this.formatDate(notesEvent.noteTimestamp)#</strong> - #timeformat('#notesEvent.noteTimestamp#','short')# <i class="fe-menu"></i>
                                     </cfoutput>
                                     <span class="badge badge-sm badge-blue badge-pill float-end" style="font-size:.7em;">
                                         <cfoutput>

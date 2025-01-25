@@ -34,7 +34,7 @@
                             <div class="media">
                                 <div class="media-body">
                                     <div class="mt-0 font-size-12">
-                                        #dateformat(details.timestamp)#
+                                        #this.formatDate(details.timestamp)#
                                     </div>
                                 </div>
                             </div>

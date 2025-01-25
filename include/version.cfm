@@ -17,7 +17,7 @@
 
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header" style="background-color: ##f3f7f9;">
+                    <div class="modal-header" >
                         <h4 class="modal-title" id="standard-modalLabel">Testing No. 0000#results.recid# - #results.col4# </h4>
                         <button type="button" class="close" data-bs-dismiss="modal" >
 x</button>
@@ -38,7 +38,7 @@ x</button>
 
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header" style="background-color: ##f3f7f9;">
+                <div class="modal-header" >
                     <h4 class="modal-title" id="standard-modalLabel">Version Release</h4>
                     <button type="button" class="close" data-bs-dismiss="modal" >
 </button>
@@ -56,7 +56,7 @@ x</button>
 
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header" style="background-color: ##f3f7f9;">
+                <div class="modal-header" >
                     <h4 class="modal-title" id="standard-modalLabel">Patch Notes</h4>
                     <button type="button" class="close" data-bs-dismiss="modal" >
 </button>
@@ -164,7 +164,7 @@ x</button>
                                     <div class="media-body">
                                         <div class="mt-0 font-size-12">
                                             
-                                                #dateformat("#details.reviewDate#","MM-dd-YYYY")#
+                                                #this.formatDate(details.reviewDate)#
                                         </div>
                                     </div>
                                 </div>
@@ -186,7 +186,7 @@ x</button>
                                 <div class="media">
                                     <div class="media-body">
                                         <div class="mt-0 font-size-12">
-                                            #dateformat("#details.releasedate#","MM-dd-YYYY")#
+                                            #this.formatDate(details.releasedate)#
                                         </div>
                                     </div>
                                 </div>
@@ -255,7 +255,7 @@ x</button>
 
                                         <div class="modal-dialog">
                                             <div class="modal-content">
-                                                <div class="modal-header" style="background-color: ##f3f7f9;">
+                                                <div class="modal-header" >
                                                     <h4 class="modal-title" id="standard-modalLabel">Testing No. 0000#results.recid# - #results.col4# </h4>
                                                     <button type="button" class="close" data-bs-dismiss="modal" >
 x</button>
@@ -370,7 +370,7 @@ x</button>
 
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
-                                                    <div class="modal-header" style="background-color: ##f3f7f9;">
+                                                    <div class="modal-header" >
                                                         <h4 class="modal-title" id="standard-modalLabel">No. 0000#results.recid# - #results.col4# </h4>
                                                         <button type="button" class="close" data-bs-dismiss="modal" >
 x</button>
@@ -390,7 +390,7 @@ x</button>
 
                                 <div class="modal-dialog">
                                     <div class="modal-content">
-                                        <div class="modal-header" style="background-color: #f3f7f9;">
+                                        <div class="modal-header" >
                                             <h4 class="modal-title" id="standard-modalLabel">Add</h4>
                                             <button type="button" class="close" data-bs-dismiss="modal" >
 x</button>

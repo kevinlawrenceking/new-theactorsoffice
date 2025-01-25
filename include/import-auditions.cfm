@@ -87,7 +87,7 @@
                                         <td>
                                             <a href="/app/audition/?audprojectid=#results.audprojectid#" class="text-body font-weight-semibold">
                                                 <cfset myDateTime = results.col1b>
-                                                <cfset myFormattedDateTime = DateFormat(myDateTime, "mm/dd/yyyy")>
+                                                <cfset myFormattedDateTime = this.formatDate(myDateTime)>
                                                 #myFormattedDateTime#
                                             </a>
                                         </td>
@@ -151,7 +151,7 @@
                                 <cfoutput>
                                     <tr>
                                         <td><a title="View" href="/app/auditions/?byimport=#imports.uploadid#">#imports.uploadid#</a></td>
-                                        <td>#dateformat(imports.timestamp)#</td>
+                                        <td>#this.formatDate(imports.timestamp)#</td>
                                         <td>#timeformat(imports.timestamp)#</td>
                                     </tr>
                                 </cfoutput>

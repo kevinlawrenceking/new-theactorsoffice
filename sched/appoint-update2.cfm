@@ -25,7 +25,7 @@
 
 </cfif>
 
-<cfset cleanData = REReplace(eventDescription, "[^a-zA-Z0-9,.!? ]", "", "ALL")>
+<cfset cleanData = eventDescription >
 <cfset eventDescription = Left(cleanData, 5000)>
 
 <cfinclude template="/include/qry/update_618_1.cfm" /> 

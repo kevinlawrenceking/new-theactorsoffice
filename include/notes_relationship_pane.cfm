@@ -92,7 +92,7 @@
 
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <div class="modal-header" style="background-color: ##f3f7f9;">
+                                    <div class="modal-header" >
                                         <h4 class="modal-title" id="standard-modalLabel">Note Links</h4>
                                         <button type="button" class="close" data-bs-dismiss="modal" >
 <i class="mdi mdi-close-thick"></i></button>
@@ -115,7 +115,7 @@
 
                             <div class="modal-dialog modal-lg modal-dialog-scrollable" role="document">
                                 <div class="modal-content">
-                                    <div class="modal-header" style="background-color: ##f3f7f9;">
+                                    <div class="modal-header" >
                                         <h4 class="modal-title" id="standard-modalLabel">Note</h4>
                                         <button type="button" class="close" data-bs-dismiss="modal" >
 <i class="mdi mdi-close-thick"></i></button>
@@ -138,7 +138,7 @@
 
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <div class="modal-header" style="background-color: ##f3f7f9;">
+                                    <div class="modal-header" >
                                         <h4 class="modal-title" id="standard-modalLabel">Upload an Attachment</h4>
                                         <button type="button" class="close" data-bs-dismiss="modal" >
 <i class="mdi mdi-close-thick"></i></button>
@@ -156,7 +156,7 @@
                                 </a>
                             </td>
 
-                            <td class="text-nowrap">#dateformat('#notesRelationship.col1#','m-d-YYYY')#<BR />#timeformat('#notesRelationship.col2#','medium')#</td>
+                            <td class="text-nowrap">#this.formatDate(notesRelationship.col1)#<BR />#timeformat('#notesRelationship.col2#','medium')#</td>
 
                             <td class="text-nowrap">
                                 <cfif #notesRelationship.col4# is "1">Public<cfelse>Private</cfif>
@@ -220,7 +220,7 @@
     <cfparam name="target_id" default="0" />
     <div class="row">
         <div class="col-xl-12">
-            <div id="accordion_systems" class="mb-3" style="width:100%;">
+            <div id="accordion_systems" class="mb-3" >
                 <cfset k=0 />
                 <!--- Loop through notes for mobile display --->
                 <cfloop query="notesRelationship">
@@ -246,11 +246,11 @@
                         <cfset collapse_show = "collapse" />
                     </cfif>
 
-                    <div class="card mb-1" style="width:100%;">
+                    <div class="card mb-1 w-100" >
                         <div class="card-header" id="heading_system_<cfoutput>#notesRelationship.currentrow#</cfoutput>">
-                            <h5 class="m-0 align-middle" style="width:100%;">
+                            <h5 class="m-0 align-middle w-100">
                                 <a class="text-dark collapsed" data-bs-toggle="collapse" href="#collapse_system_<cfoutput>#notesRelationship.currentrow#</cfoutput>" aria-expanded="<cfoutput>#header_aria_exanded#</cfoutput>">
-                                    <cfoutput> <strong>#dateformat('#notesRelationship.noteTimestamp#','short')#</strong> -  #timeformat('#notesRelationship.noteTimestamp#','short')# <i class="fe-menu"></i> </cfoutput>
+                                    <cfoutput> <strong>#this.formatDate(notesRelationship.noteTimestamp)#</strong> -  #timeformat('#notesRelationship.noteTimestamp#','short')# <i class="fe-menu"></i> </cfoutput>
                                     <span class="badge badge-sm badge-blue badge-pill float-end" style="font-size:.7em;">
                                         <cfoutput>  <cfif #notesRelationship.col4# is "1">Public<cfelse>Private</cfif></cfoutput>
                                     </span>

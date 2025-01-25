@@ -1,2 +1,3 @@
 <cfset contactItemService = createObject("component", "services.ContactItemService")>
-<cfset contactItemService.INScontactitems_24406(contactid=tag.contactid, new_tag2=new_tag2)>
+<cfset contactItemService.addContactItemsTag(contactid=tag2.contactid, new_tag=new_tag2)>
+<cfdump var="#result#" >

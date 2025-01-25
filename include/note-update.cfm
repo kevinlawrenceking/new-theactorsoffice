@@ -33,7 +33,7 @@
                                     persist: !1,
                                     createOnBlur: !0,
                                     create: !0,
-                                    plugins: ["remove_button"],
+                                    plugins: ["remove-button"],
                                     delimiter: ",",
                                     persist: false,
                                     create: function(input) {
@@ -70,7 +70,7 @@
                                 <option value="0" <cfif events.eventid is "0"> selected</cfif>>No event</option>
                                 <cfoutput query="events">
                                     <option value="#eventid#" <cfif events.eventid is note.eventid> selected</cfif> >
-                                        #dateformat(events.eventStart)# - #events.eventTitle#
+                                        #this.formatDate(events.eventStart)# - #events.eventTitle#
                                     </option>
                                 </cfoutput>
                             </select>

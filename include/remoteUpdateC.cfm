@@ -1,6 +1,5 @@
 <!--- This ColdFusion page handles the display and submission of a form for updating item details based on various categories. --->
 
-           <script src="/app/assets/js/libs/parsleyjs/parsley.min.js?ver=13"></script>
 <cfinclude template="/include/qry/fetchLocationService.cfm" />
 <cfinclude template="/include/qry/details_261_1.cfm" />
 
@@ -55,6 +54,7 @@
            </cfif>
             </cfoutput>
         </select>
+    </div>
     </div>
 </cfif>
 
@@ -116,7 +116,7 @@
             <cfoutput>
                 <div class="form-group col-md-12">
                     <label for="valuetext">#details.recordname#<span class="text-danger">*</span></label>
-                    <input class="form-control" type="text" id="valuetext" name="valuetext" value="#details.valuetext#" data-parsley-minlength="#minlength#" data-parsley-required="true" data-parsley-minlength-message="Min length #minlength# characters" data-parsley-maxlength="800" data-parsley-maxlength-message="Max length 800 characters" data-parsley-required data-parsley-error-message="Valid #details.recordname# is required" placeholder="Enter #details.recordname#" />
+                    <input class="form-control" type="text" id="valuetext" name="valuetext" value="#details.valuetext#" data-parsley-minlength="#minlength#"  data-parsley-phone data-parsley-required="true" data-parsley-minlength-message="Min length #minlength# characters" data-parsley-maxlength="800" data-parsley-maxlength-message="Max length 800 characters" data-parsley-required data-parsley-error-message="Valid #details.recordname# is required" placeholder="Enter #details.recordname#" />
                 </div>
             </cfoutput>
         </cfif>
@@ -233,13 +233,6 @@
 
 </cfif>
 
-<cfif new_catid is "2">
-<script src="/app/assets/js/jquery.chained.js?ver=13.4"></script>
-<script>
-    $("#region_id").chained("#countryid");
-</script>
-
-</cfif>
 
 <script>
     function toggleCustomField(select) {
@@ -311,17 +304,3 @@ if (window.Parsley) {
     }
 </script>
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    // Attach reset handler for modals
-    $('.modal').on('hidden.bs.modal', function () {
-        var modalForm = $(this).find("form")[0];
-        if (modalForm) {
-            modalForm.reset(); // Reset all fields
-            $(modalForm).parsley().reset(); // Reset Parsley validation state
-            $("#hidden_div").hide(); // Hide the custom type div
-            $("#special").hide(); // Hide the custom company name div
-        }
-    });
-});
-</script> 

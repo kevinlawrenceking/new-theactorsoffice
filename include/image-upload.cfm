@@ -3,14 +3,6 @@
 <cfinclude template="/include/qry/FindRefPage_136_1.cfm"/>
 <cfinclude template="/include/qry/FindRefcontacts_135_2.cfm"/>
 
-<style>
-  .btn-success:disabled {
-    color: #fff;
-    background-color: #D3D3D3;
-    border-color: #D3D3D3;
-  }
-</style>
-
 <cfoutput>
 
   <cfset subtitle="#userFirstName# #userLastName#"/>
@@ -18,9 +10,6 @@
   <cfset cookie.uploadDir="#session.userAvatarPath#"/>
   <cfset cookie.return_url="/app/myaccount/"/>
 
-<cfif isdefined('cookie.uploadDir')>
-            cookie.uploadDir: #cookie.uploadDir#<br />
-        </cfif>
 
 </cfoutput>
 

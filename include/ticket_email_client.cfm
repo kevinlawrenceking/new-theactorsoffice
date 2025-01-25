@@ -103,12 +103,12 @@
                 <p>&nbsp;</p>
                 <hr>
                 <h3>Ticket No #details.recid# Details</h3>      
-                <p> Submitted by #details.col1# on #Dateformat("#details.col2#","long")# at #TimeFormat("#details.col3#","medium")#</p>
+                <p> Submitted by #details.col1# on #this.formatDate(details.col2)# at #TimeFormat("#details.col3#","medium")#</p>
                 <p><strong>Type:</strong> #details.tickettype#</p>
                 <p><strong>Status:</strong> #details.col5#</p>
                 <p><strong>User Details:</strong> #details.ticketdetails#</p>
                 <p><strong>Support Response:</strong> #details.ticketresponse#</p>
-                <p> Completed by Kevin King on #Dateformat("#details.ticketCompletedDate#","long")# at #TimeFormat("#details.ticketCompletedDate#","medium")#</p>
+                <p> Completed by Kevin King on #this.formatDate(details.ticketCompletedDate)# at #TimeFormat("#details.ticketCompletedDate#","medium")#</p>
             </body>
         </HTML>
     </cfmail>

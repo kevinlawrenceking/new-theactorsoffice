@@ -34,7 +34,7 @@
                 <cfset strippedQueryBlock = trim(mid(fileContent, queryStart + 1, endQuery - (queryStart + 1)))>
 
                 <!--- Clean and remove extra spaces and carriage returns from the stripped query --->
-                <cfset qryDetails = REReplace(strippedQueryBlock, "[\s]+", " ", "ALL")>
+                <cfset qryDetails = (strippedQueryBlock, "[\s]+", " ", "ALL")>
 
                 <!--- Determine query type (SELECT, INSERT, UPDATE, DELETE) --->
                 <cfset qryTypePattern = "^(SELECT|INSERT|UPDATE|DELETE)">

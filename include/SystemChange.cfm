@@ -1,34 +1,31 @@
-<!--- This ColdFusion page processes system scope and type changes, including closing existing systems and inserting notes as necessary. --->
+<!--- Get system user details ---> 
+<cfset systemUserService = createObject("component", "services.SystemUserService")>
+<cfset oldSystemDetails = systemUserService.getOldSystemDetails(suid=suid)>
 
-<cfinclude template="/include/qry/reldetails_271_1.cfm" />
-<cfset old_systemscope = reldetails.systemscope />
+<cfset old_systemscope = oldSystemDetails.systemscope>
+<cfset old_systemtype = oldSystemDetails.systemtype>
 
-<cfinclude template="/include/qry/findscope_old_294_2.cfm" />
-<cfinclude template="/include/qry/findscope_294_3.cfm" />
+<!--- Get contact tag status --->
+<cfset contactItemService = createObject("component", "services.ContactItemService")>
+<cfset new_systemscope = contactItemService.getContactTagStatus(contactid=contactid, userid=userid)>
+<Cfoutput>
+old_systemscope: #old_systemscope#<BR>
+old_systemtype: #old_systemtype#<BR>
 
-<!--- Determine new system scope based on findscope record count --->
-<!--- Part aa --->
-<cfif findscope.recordcount is 1>
-    <cfset new_systemscope = "Casting Director">
-<cfelse>
-    <cfset new_systemscope = "Industry">
-</cfif>
 
-<!--- Part bb--->
-<!--- Determine old system type based on suid --->
-<cfif suid neq "0">
-    <cfset old_systemtype = reldetails.systemtype>
-<cfelse>
-    <cfset old_systemtype = "None">
-</cfif>
+
+<cfdump var="#new_systemscope#">
+
+</cfoutput>
 
 <!--- Part c--->
 <cfif old_systemtype neq new_systemtype>
 
     <!--- Close existing system if old system type is not "None" --->
     <cfif old_systemtype neq "None">
-        <cfinclude template="/include/qry/close_294_4.cfm" />
-        <cfinclude template="/include/qry/close2_294_5.cfm" />
+    <cfset systemUserService.closeSystem(suid=suid)>
+    <cfset notificationService = createObject("component", "services.notificationService")>
+       <cfset notificationService.deleteNotificationBySystem(suid=suid)>
     </cfif>
 
 <!--- part d --->

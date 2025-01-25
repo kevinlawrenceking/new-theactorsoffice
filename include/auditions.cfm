@@ -7,12 +7,6 @@
 <cfinclude template="/include/audition_check.cfm"/>
 <cfinclude template="/include/qry/audcategories_sel.cfm"/>
 
-<style>
-    #basic-datatable span {
-        display: none;
-    }
-</style>
-
 <cfparam name="isexport" default="N"/>
 <cfparam name="sel_audcatid" default="%"/>
 
@@ -42,7 +36,7 @@
 
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: #f3f7f9;">
+            <div class="modal-header" >
                 <h4 class="modal-title" id="standard-modalLabel">Audition Type</h4>
                 <button type="button" class="close" data-bs-dismiss="modal" >
 
@@ -68,7 +62,7 @@
 
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: #f3f7f9;">
+            <div class="modal-header" >
                 <h4 class="modal-title" id="standard-modalLabel">Direct Booking Type</h4>
                 <button type="button" class="close" data-bs-dismiss="modal" >
 
@@ -88,14 +82,6 @@
 </cfif>
 
 <cfinclude template="/include/qry/up_31_1.cfm" />
-
-<style>
-    .card img {
-        border-top-right-radius: 0;
-        border-bottom-left-radius: calc(0.25rem - 1px);
-    }
-</style>
-
 <cfinclude template="/include/qry/audsteps_sel_31_2.cfm" />
 <cfinclude template="/include/qry/audtypes_sel_31_3.cfm" />
 
@@ -286,9 +272,12 @@
                                                 </cfif>
 
                                                 <cfif #results.col1#is not "">
-                                                    <a href="/app/audition/?audprojectid=#results.recid#" title="#DateFormat('#results.col1#','long')#">
-                                                        <img src="#application.datesUrl#/#DateFormat('#results.col1#','mm-dd')#.png" style="max-width:75px;" alt="..." />
-                                                    </a>
+                                               <a href="/app/audition/?audprojectid=#results.recid#" title="#this.formatDate('#results.col1#')#">
+    <div class="text-center">
+        <img src="#application.datesUrl#/#DateFormat('#results.col1#','mm-dd')#.png" style="max-width:75px;" alt="Calendar Icon" />
+        <span class="d-block text-muted-custom">#dateformat('#results.col1#', 'YYYY')#</span>
+    </div>
+</a>
                                                 <cfelse>
                                                     <a href="/app/audition/?audprojectid=#results.recid#" title="#DateFormat('#results.col1b#','long')# at #timeformat('#results.col1b#')#">
                                                         <img src="#application.datesUrl#/#DateFormat('#results.col1b#','mm-dd')#.png" style="max-width:75px;" alt="..." />
@@ -367,7 +356,7 @@
                                     <cfif #results.recordcount# is not "0">
                                         <p>
                                             <cfoutput>
-                                                <strong>#results.recordcount#</strong> audition <cfif #results.recordcount# is not "1">s</cfif> found
+                                                <strong>#results.recordcount#</strong> audition<cfif #results.recordcount# is not "1">s</cfif> found
                                             </cfoutput>
                                         </p>
                                     </cfif>
@@ -418,8 +407,8 @@
                                                         </td>
 
                                                         <td style="word-break: break-all;">
-                                                            <span>#dateformat('#results.col1#','YYYYMMdd')#</span>
-                                                            #dateformat('#results.col1#','MM-dd-YYYY')#
+                                                            <span>#this.formatDate(results.col1)#</span>
+                                                            #this.formatDate(results.col1)#
                                                         </td>
 
                                                         <td style="word-break: break-all;">#results.col2#</td>

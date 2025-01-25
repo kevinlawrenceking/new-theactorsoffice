@@ -8,10 +8,6 @@
 
 <cfparam name="new_mediaName" default="" />
 
-<cfparam name="new_mediaFilename" default="" />
-
-<cfparam name="new_mediaExt" default="" />
-
 <cfparam name="new_userid" default="" />
 
 <cfparam name="new_isDeleted" default="0" />

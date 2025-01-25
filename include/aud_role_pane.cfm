@@ -4,7 +4,7 @@
 
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: #f3f7f9;">
+            <div class="modal-header" >
                 <h4 class="modal-title" id="standard-modalLabel">Essences</h4>
                 <button type="button" class="close" data-bs-dismiss="modal" >
 
@@ -45,7 +45,7 @@
 
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header" style="background-color: ##f3f7f9;">
+                <div class="modal-header" >
                     <h4 class="modal-title" id="standard-modalLabel">Role Update</h4>
                     <button type="button" class="close" data-bs-dismiss="modal" >
 
@@ -139,7 +139,7 @@
         </cfif>
     </cfif>
 
-    <cfif #new_audcatid# is "5">
+    <cfif #audcatid# is "5">
         <cfoutput>
             <div class="col-md-12 col-lg-6 col-xl-4 p-1 text-nowrap"><strong>Dialect: </strong>#roledetails.auddialect#</div>
         </cfoutput>

@@ -5,7 +5,7 @@
     <!--- Check if site URL is submitted --->
     <cfif structKeyExists(form, "siteurl")>
         <!--- Use CFQUERY to check for existing site URL for the user --->
-        <cfquery name="checkSiteUrl" datasource="#dsn#">
+        <cfquery name="checkSiteUrl" >
             SELECT COUNT(*) AS total_row
             FROM sitelinks_user
             WHERE userid = <cfqueryparam value="#userID#" cfsqltype="CF_SQL_INTEGER">

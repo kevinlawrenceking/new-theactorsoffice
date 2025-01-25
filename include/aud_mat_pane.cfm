@@ -17,7 +17,7 @@
 
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: #f3f7f9;">
+            <div class="modal-header" >
                 <h4 class="modal-title" id="standard-modalLabel">Link Media</h4>
                 <button type="button" class="close" data-bs-dismiss="modal" >
 
@@ -65,7 +65,7 @@
 
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header" style="background-color: ##f3f7f9;">
+                <div class="modal-header" >
                     <h4 class="modal-title" id="standard-modalLabel">Add Media</h4>
                     <button type="button" class="close" data-bs-dismiss="modal" >
 
@@ -79,37 +79,11 @@
     </div>
 </cfoutput>
 
-<cfoutput>
-    <script>
-        $(document).ready(function() {
-            $("##matupdate").on("show.bs.modal", function(event) {
-                
-                $(this).find(".modal-body").load("/include/audlinkadd.cfm?audroleid=<Cfoutput>#audroleid#</cfoutput>&eventid=<Cfoutput>#eventid#&audprojectid=#audprojectid#</cfoutput>&pgdir=audition");
-            });
-        });
-    </script>
-    <div id="matupdate" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" >
-
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header" style="background-color: ##f3f7f9;">
-                    <h4 class="modal-title" id="standard-modalLabel">Add Link</h4>
-                    <button type="button" class="close" data-bs-dismiss="modal" >
-
-                        <i class="mdi mdi-close-thick"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                </div>
-            </div>
-        </div>
-    </div>
-</cfoutput>
 
 <cfoutput>
     <h4 class="p-1 d-flex">Materials Submitted
         <span class="ms-auto text-muted">
-            <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##matupdate" data-bs-placement="top" title="Update Materials" data-bs-original-title="Update Materials">
+            <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##matupdate" data-bs-placement="top" title="Update Materials" data-bs-original-title="Update Materials"> 
             </a>
         </span>
     </h4>
@@ -136,7 +110,7 @@
     <cfoutput>
         <input type="hidden" name="audprojectid" value="#audprojectid#" />
     </cfoutput>
-    <select id="new_mediaid" name="new_mediaid" onchange="this.form.submit()">
+    <select id="new_mediaid" class="form-control-short" name="new_mediaid" onchange="this.form.submit()">
         <option value="">Link Material</option>
         <cfoutput query="audmedia_picklist">
             <option value="#audmedia_picklist.mediaid#">#audmedia_picklist.mediatype#: #audmedia_picklist.medianame#</option>
@@ -266,7 +240,7 @@
                                 <a href="#audmedia.mediaurl#" target="new" style="text-decoration: underline; color: blue;">#audmedia.mediaurl#</a>
                             </cfif>
                         </td>
-                        <td class="text-nowrap">#dateformat('#audmedia.mediacreated#','m-d-YYYY')#<br />#timeformat('#audmedia.mediacreated#','medium')#</td>
+                        <td class="text-nowrap">#this.formatDate('#audmedia.mediacreated#')#<br />#timeformat('#audmedia.mediacreated#','medium')#</td>
                     </tr>
 
                     <script type="text/javascript">

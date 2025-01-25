@@ -188,6 +188,7 @@
 
 
         <!--- Prepare data for the chart --->
+<<<<<<< HEAD
         <cfscript>
             reportlabels = QuotedValueList(labels_x.itemLabel, ",");
             reportvalues = QuotedValueList(reportitems_x.itemValueInt, ",");
@@ -198,7 +199,35 @@
             <cfset reportlabels = "#reportlabels#">
 
             REPORTLABELS 
+=======
+       <cfoutput>
+    <cfset safeReportLabels = reportlabels>
+    <cfset safeDatasetData = dataset_data>
+    <cfset scalesConfig = "" />
+    
+    <cfif reports.reportid EQ 4>
+        <cfset scalesConfig = "{ x: { stacked: true }, y: { stacked: true } }">
+    </cfif>
+    <cfif reports.reportid EQ 9>
+        <cfset scalesConfig = "{ x: { stacked: true }, y: { stacked: true, ticks: { precision: 0 } } }">
+    </cfif>
+>>>>>>> f3ddabb1bb8fba01f31673758d05da730754d915
 
+    <script>
+        const chart_#reports.reportid# = document.getElementById('myChart_#reports.reportid#');
+        new Chart(chart_#reports.reportid#, {
+            type: '#reports.reporttypename#',
+            data: {
+                labels: [#safeReportLabels#],
+                datasets: [#safeDatasetData#]
+            },
+            options: {
+                responsive: true
+                <cfif Len(scalesConfig) GT 0>, scales: #scalesConfig#</cfif>
+            }
+        });
+    </script>
+</cfoutput>
     </cfif>
 
 </cfloop>

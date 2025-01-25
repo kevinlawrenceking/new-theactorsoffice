@@ -1,5 +1,8 @@
-<!--- <CFINCLUDE template="/include/projdate_fix_user.cfm" /> --->
 
+<!---<CFINCLUDE template="/include/projdate_fix_user.cfm" /> --->
+    <cfquery >
+        CALL UpdateAudProjects();
+    </cfquery>
 <!--- Set default variables --->
 <cfparam name="focusid" default="" />
 <cfparam name="ctaction" default="" />
@@ -7,7 +10,7 @@
 <cfparam name="eventid" default="0" />
 <cfparam name="secid" default="176" />
 
-<!--- Consolidate submitsitefix into the main update --->
+<!--- Consolidate submitsitefix into the main update DONE --->
 <cfinclude template="/include/qry/submitsitefix_368_1.cfm" />
 
 <!--- Fetch project details --->
@@ -21,7 +24,7 @@
 <!--- Delete referral contacts --->
 <cfinclude template="/include/qry/delete_ref_368_4.cfm" />
 
-<!--- Fetch and consolidate event queries --->
+<!--- Fetch and consolidate event queries DONE --->
 <cfinclude template="/include/qry/events_368_5.cfm" />
 
 <!--- Fetch no-booking events --->
@@ -64,5 +67,9 @@
         <cfinclude template="/include/qry/add_cd_368_10.cfm" />
     </cfloop>
 </cfif>
+
+<cfset EventContactsXRefService = createObject("component", "services.EventContactsXRefService")>
+<cfset EventContactsXRefService.eventaudsync(audprojectid)>
+
 
 <cfinclude template="/include/qry/audageranges_audtion_xref_368_11.cfm" />

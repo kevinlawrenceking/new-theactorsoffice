@@ -15,9 +15,9 @@
 <cfparam name="new_isDeleted" default="0" />
 <cfparam name="new_trackmileage" default="0" />
 
-<!--- Clean the event description by removing unwanted characters and limit its length. --->
+<!--- Clean the event description by removing unwanted characters and limit its length.
 <cfset cleanData = REReplace(new_eventdescription, "[^a-zA-Z0-9,.!? ]", "", "ALL")>
-<cfset new_eventdescription = Left(cleanData, 5000) />
+<cfset new_eventdescription = Left(cleanData, 5000) /> --->
 
 <!--- Include the audition insertion template. --->
 <cfinclude template="/include/qry/auditions_ins_32_1.cfm" />

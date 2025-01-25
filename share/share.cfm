@@ -1,4 +1,4 @@
-<CFINCLUDE template="remote_load.cfm" />
+
 
 <cfparam name="contact_expand" default="true" />
 <cfparam name="a" default="0" />
@@ -15,14 +15,14 @@
     <cfset session.pgaction="view" />
 </cfif>
 <div class="row">
-    <div class="card mb-3" style="width:100%;">
+    <div class="card mb-3 w-100" >
         <div class="card-body">
             <div class="col-md-12">
-                <div class="media p-2">
+                <div class="media pt-3">
                     <figure>
                         <cfoutput>
                             <center>
-                                <img src="/media-#host#/users/#userid#/avatar.jpg?ver=#rand()#" class="mr-3 rounded-circle gambar img-responsive img-thumbnail" style="height:80px;" alt="profile-image" id="item-img-output" />
+                                <img src="#userAvatarUrl#?ver=#rand()#" class="mr-3 rounded-circle gambar img-responsive img-thumbnail" style="height:80px;" alt="profile-image" id="item-img-output" />
                                 <figcaption style="margin-left:-5px;"></figcaption>
                             </center>
                         </cfoutput>
@@ -33,7 +33,7 @@
                             <p class="mt-1 mb-0 text-muted font-12">
                                 <strong>Report Date:#dateformat('#now()#','medium')#</strong>
                                 <BR />
-                                <A HREF="https://#host#.theactorsoffice.com/share/export.cfm?u=#userid#" class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="background-color: ##406e8e; border: ##406e8e;"> Download <i class="fe-download"></i>
+                                <A HREF="https://#host#.theactorsoffice.com/share/export.cfm?userid=#userid#" class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="background-color: ##406e8e; border: ##406e8e;"> Download <i class="fe-download"></i>
                                 </A>
                             </p>
                         </div>
@@ -45,7 +45,7 @@
                     <tr>
                         <th></th>
                         <th>Name</th>
-                    <cfif #isdefined('auditions')#>  <th>Auditionz</th></cfif>  
+                    <cfif #isdefined('auditions')#>  <th>Audition</th></cfif>  
                         <th>Company</th>
                         <th>Title</th>
                          <th>Audition Status</th>

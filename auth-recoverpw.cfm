@@ -101,15 +101,15 @@
                                 
                                 <div class="text-center w-85 m-auto">
                                     <div class="auth-logo">
-                                        <a href="index.html" class="logo logo-dark text-center">
-                                            <span class="logo-lg">
-                                                <img src="<cfoutput>#application.imagesUrl#/taowhite.png</cfoutput>" alt="" style="width:100%">
+                                        <a href="index.html" class="logo no-hover-effect logo-dark text-center>
+                                            <span class="logo no-hover-effect-lg">
+                                                <img src="<cfoutput>#application.imagesUrl#/taowhite.png</cfoutput>" alt="" class="w-100">
                                             </span>
                                         </a>
                     
-                                        <a href="index.html" class="logo logo-light text-center">
-                                            <span class="logo-lg">
-                                                <img src="/media/shared/images/logo-dark.png" alt="" style="width:100%" />
+                                        <a href="index.html" class="logo no-hover-effect logo-light text-center">
+                                            <span class="logo no-hover-effect-lg">
+                                                <img src="/media/shared/images/logo-dark.png" alt="" class="w-100 no-hover-effect" />
                                             </span>
                                         </a>
                                         <h5><cfoutput>#header#</cfoutput></h5>

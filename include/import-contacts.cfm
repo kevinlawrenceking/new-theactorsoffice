@@ -91,7 +91,9 @@
             <div class="card mb-3">
                 <div class="card-body">
                     <h5>Step One: Import Template</h5>    
-                    <p>Download the <A href="/include/ImportTemplate2.xlsx" target="new"><strong><i class="fe-upload"></i> Import Template</strong></A> to copy and paste all the contacts you'd like to import. <strong>Imports must be in this format.</strong></p>
+                    <p>Download the <a href="/include/ImportTemplate2.xlsx" target="new" download="ImportTemplate2.xlsx"><strong><i class="fe-upload"></i> Import Template</strong></a> to copy and paste all the contacts you'd like to import. <strong>Imports must be in this format.</strong></p>
+
+            
                 
                     <p></p><p></p><p></p><p></p>
 
@@ -141,7 +143,7 @@
                                     <tr>
                                         <td><a title="View" href="/app/contacts/?byimport=#imports.uploadid#">#imports.total_adds#</a></td>
                                         <td>#imports.uploadid#</td>
-                                        <td>#dateFormat(imports.timestamp)#</td>
+                                        <td>#this.formatDate(imports.timestamp)#</td>
                                         <td>#timeFormat(imports.timestamp)#</td>
                                     </tr>
                                 </cfoutput>

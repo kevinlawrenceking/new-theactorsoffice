@@ -1,5 +1,19 @@
 <cfcomponent displayname="ContactService" hint="Handles operations for Contact table" >
 
+<cffunction name="updateContactUnique" access="public" returntype="void" output="false">
+    <!--- Arguments --->
+    <cfargument name="contactid" type="numeric" required="true">
+    <cfargument name="uniquename" type="string" required="true">
+
+    <!--- Update contact details --->
+    <cfquery name="updateContact">
+        UPDATE contactdetails
+        SET #arguments.uniquename# = 'Y'
+        WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_integer">
+    </cfquery>
+</cffunction>
+
+
 <cffunction name="addMembers" access="public" returntype="void" output="false">
     <!--- Arguments required for the function --->
     <cfargument name="userid" type="numeric" required="true">
@@ -337,6 +351,7 @@
 
 <cfreturn result>
 </cffunction>
+
 <cffunction output="false" name="UPDcontactdetails" access="public" returntype="void">
     <cfargument name="final_birthday" type="date" required="true">
     <cfargument name="New_contactid" type="numeric" required="true">
@@ -348,6 +363,7 @@
         </cfquery>
 
 </cffunction>
+ 
 <cffunction output="false" name="UPDcontactdetails_23816" access="public" returntype="void">
     <cfargument name="uniquename" type="string" required="true">
     <cfargument name="contactid" type="numeric" required="true">
@@ -660,7 +676,7 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="referral" type="string" required="true">
 
-<cfquery name="result" >
+<cfquery name="result" maxrows="1" >
             SELECT * 
             FROM contactdetails 
             WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> 
@@ -726,51 +742,101 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
 
 <cfreturn result>
 </cffunction>
-<cffunction output="false" name="INScontactdetails_24399" access="public" returntype="numeric">
-    <cfargument name="x" type="struct" required="true">
-    <cfset var queryStr = "">
-    <cfset var valuesStr = "">
-    <cfset var params = []>
 
-<!--- Build the query string dynamically --->
-        <cfset queryStr = "INSERT INTO contactdetails_tbl (contactfullname, userid">
-        <cfset valuesStr = "VALUES (?, ?">
 
-<!--- Check optional fields and add them to the query --->
-        <cfif structKeyExists(arguments.x, "contactmeetingDate") AND arguments.x.contactmeetingDate NEQ "">
-            <cfset queryStr &= ", contactMeetingDate">
-            <cfset valuesStr &= ", ?">
-            <cfset arrayAppend(params, {value=arguments.x.contactmeetingDate, cfsqltype="CF_SQL_DATE"})>
-        </cfif>
+<cffunction name="INScontactdetails_24399" access="public" returntype="struct" output="false">
+    <!--- Arguments --->
+    <cfargument name="new_x" type="struct" required="true">
+    <cfargument name="userid" type="numeric" required="true">
+  
+    <!--- Local variables --->
+    <cfset var result = {}>
 
-<cfif structKeyExists(arguments.x, "contactMeetingLoc") AND arguments.x.contactMeetingLoc NEQ "">
-            <cfset queryStr &= ", contactMeetingLoc">
-            <cfset valuesStr &= ", ?">
-            <cfset arrayAppend(params, {value=arguments.x.contactMeetingLoc, cfsqltype="CF_SQL_VARCHAR"})>
-        </cfif>
+    <!--- SQL Query --->
 
-<cfif structKeyExists(arguments.x, "birthday") AND arguments.x.birthday NEQ "">
-            <cfset queryStr &= ", contactBirthday">
-            <cfset valuesStr &= ", ?">
-            <cfset arrayAppend(params, {value=arguments.x.birthday, cfsqltype="CF_SQL_DATE"})>
-        </cfif>
+    <!--- Check if a record with the same first and last name exists --->
+    <cfquery name="checkExisting">
+        SELECT contactid
+        FROM contactdetails_tbl
+        WHERE contactfullname = '#trim(arguments.new_x.fname)# #trim(arguments.new_x.lname)#'
+        AND userid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#">
+    </cfquery>
 
-<!--- Close the SQL statement --->
-        <cfset queryStr &= ") ">
-        <cfset valuesStr &= ")">
-
-<!--- Execute the query --->
-        <cfquery result="result" name="insertQuery" >
-            #queryStr# #valuesStr#
-            <cfqueryparam value="#arguments.x.fname# #arguments.x.lname#" cfsqltype="CF_SQL_VARCHAR">
-            <cfqueryparam value="#userid#" cfsqltype="CF_SQL_INTEGER">
-            <cfloop array="#params#" index="param">
-                <cfqueryparam value="#param.value#" cfsqltype="#param.cfsqltype#">
-            </cfloop>
+    <cfif checkExisting.recordCount>
+        <!--- Update the existing record --->
+        <cfquery name="updateRecord">
+            UPDATE contactdetails_tbl
+            SET 
+                contactMeetingDate = <cfif len(trim(arguments.new_x.contactMeetingDate))>
+                                        <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_x.contactMeetingDate#">
+                                    <cfelse>NULL</cfif>,
+                contactMeetingLoc = <cfif len(trim(arguments.new_x.contactMeetingLoc))>
+                                        <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.new_x.contactMeetingLoc)#">
+                                    <cfelse>NULL</cfif>,
+                contactBirthday = <cfif len(trim(arguments.new_x.birthday))>
+                                        <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_x.birthday#">
+                                    <cfelse>NULL</cfif>
+            WHERE contactid = <cfqueryparam cfsqltype="cf_sql_integer" value="#checkExisting.contactid#">
         </cfquery>
 
-<cfreturn result.generatedKey>
+        <!--- Return success response for update --->
+        <cfset result.new_contactid = checkExisting.contactid />
+        <cfset result.success = true>
+        <cfset result.message = "Record updated successfully.">
+        <cfset result.status = "Duplicate">
+    <cfelse>
+        <!--- Insert a new record --->
+        <cfquery name="add" result="result">
+            INSERT INTO contactdetails_tbl (
+                contactfullname, userid
+                <cfif len(trim(arguments.new_x.contactMeetingDate))>
+                    , contactMeetingDate
+                </cfif>
+                <cfif len(trim(arguments.new_x.contactMeetingLoc))>
+                    , contactMeetingLoc
+                </cfif>
+                <cfif len(trim(arguments.new_x.birthday))>
+                    , contactBirthday
+                </cfif>
+            )
+            VALUES (
+                <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.new_x.fname)# #trim(arguments.new_x.lname)#">,
+                <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.userid#">
+                <cfif len(trim(arguments.new_x.contactMeetingDate))>
+                    , <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_x.contactMeetingDate#">
+                </cfif>
+                <cfif len(trim(arguments.new_x.contactMeetingLoc))>
+                    , <cfqueryparam cfsqltype="cf_sql_varchar" value="#trim(arguments.new_x.contactMeetingLoc)#">
+                </cfif>
+                <cfif len(trim(arguments.new_x.birthday))>
+                    , <cfqueryparam cfsqltype="cf_sql_date" value="#arguments.new_x.birthday#">
+                </cfif>
+            )
+        </cfquery>
+
+        <!--- Return success response for insert --->
+        <cfset result.new_contactid = result.generatedKey />
+        <cfset result.success = true>
+        <cfset result.message = "Record inserted successfully.">
+        <cfset result.status = "Added">
+    </cfif>
+<cfset var newContactId = result.new_contactid>
+    <!--- Update the importcontacts table --->
+    <cfquery name="updateImportContacts">
+        UPDATE contactsimport
+        SET 
+            contactid = <cfqueryparam value="#newContactId#" cfsqltype="cf_sql_integer">,
+            status = <cfqueryparam value="#result.status#" cfsqltype="cf_sql_varchar">
+        WHERE id = <cfqueryparam value="#arguments.new_x.new_id#" cfsqltype="cf_sql_integer">
+    </cfquery>
+
+    <!--- Return the final result --->
+    <cfreturn result>
 </cffunction>
+
+
+
+
 <cffunction output="false" name="SELcontactdetails_24433" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
     <cfargument name="selectContactId" type="numeric" required="false" default="0">

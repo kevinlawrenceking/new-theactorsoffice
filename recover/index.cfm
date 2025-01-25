@@ -59,12 +59,12 @@ Select * from taousers where recover = '#recover#'
         <meta content="The Actor's Office Application" name="description" />
         <meta content="Jodie Bentley" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <!-- App favicon -->
+        <!--- App favicon --->
         <link rel="shortcut icon" href="/app/assets/images/favicon.ico">
 
-        <!-- App css -->
+        <!--- App css --->
         <link href="/app/assets/css/app.min.css?ver=#rand()#" rel="stylesheet" type="text/css" id="app-style" />
-        <!-- icons -->
+        <!--- icons --->
         <link href="/app/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
 
     </head>
@@ -81,15 +81,15 @@ Select * from taousers where recover = '#recover#'
                                 <Cfoutput>
                                 <div class="text-center w-85 m-auto">
                                     <div class="auth-logo">
-                                        <a href="index.html" class="logo logo-dark text-center">
-                                            <span class="logo-lg">
-                                                <img src="#img_loc#/taowhite.png" alt="" style="width:100%">
+                                        <a href="index.html" class="logo no-hover-effect logo-dark text-center">
+                                            <span class="logo no-hover-effect-lg">
+                                                <img src="#img_loc#/taowhite.png" alt="" class="w-100">
                                             </span>
                                         </a>
                     
-                                        <a href="index.html" class="logo logo-light text-center">
-                                            <span class="logo-lg">
-                                                <img src="#img_loc#/logo-dark.png" alt="" style="width:100%">
+                                        <a href="index.html" class="logo no-hover-effect logo-light text-center">
+                                            <span class="logo no-hover-effect-lg">
+                                                <img src="#img_loc#/logo-dark.png" alt="" class="w-100" />
                                             </span>
                                         </a>
                                     </div>
@@ -149,31 +149,31 @@ Select * from taousers where recover = '#recover#'
 
 
                         
-                            </div> <!-- end card-body -->
+                            </div> <!--- end card-body --->
                         </div>
-                        <!-- end card -->
+                        <!--- end card --->
 
-                      <!-- end row -->
+                      <!--- end row --->
 
-                    </div> <!-- end col -->
+                    </div> <!--- end col --->
                 </div>
-                <!-- end row -->
+                <!--- end row --->
             </div>
-            <!-- end container -->
+            <!--- end container --->
         </div>
-        <!-- end page -->
+        <!--- end page --->
 
 
         <footer class="footer footer-alt text-white-50">
               &copy; 2021 The Actor's Office &trade; - All Right Reserved.
         </footer>
 
-        <!-- Vendor js -->
+        <!--- Vendor js --->
         <script src="/assets/js/vendor.min.js"></script>
 
         <script src="/assets/libs/parsleyjs/parsley.min.js"></script>
         
-        <!-- App js -->
+        <!--- App js --->
         <script src="/assets/js/app.min.js"></script>
  <script>      
  $(document).ready(function() {

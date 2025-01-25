@@ -11,7 +11,7 @@
     </cfoutput>
 
     <div class="card-body py-2 px-3 border-bottom border-light">
-        <A href="/app/image-upload/?contactid=<cfoutput>#contactid#&ref_pgid=#pgid#</cfoutput>">
+        <A  class="no-hover-effect" href="/app/image-upload/?contactid=<cfoutput>#contactid#&ref_pgid=#pgid#</cfoutput>">
             <figure>
                 <!--- Check if the browser contact avatar filename is an image file --->
                 <cfif isimagefile(browser_contact_avatar_filename)>
@@ -71,7 +71,7 @@
                     </p>
 
                     <cfif #details.contactmeetingdate# is not "">
-                        <cfset meetingdate="#dateformat('#details.contactmeetingdate#','medium')#" />
+                        <cfset meetingdate="#currentStartDate(etails.contactmeetingdate)#" />
                         <p class="mt-1 mb-0 text-muted font-14">
                             <cfoutput>
                                 <strong>Initial Meeting:</strong>

@@ -1,2 +1,2 @@
-<cfset contactService = createObject("component", "services.ContactService")>
-<cfset xx = contactService.SELcontactdetails_23806(contactid=contactid)>
+<cfset ContactService = createObject("component", "services.ContactService")>
+<cfset xx =  ContactService.SELcontactdetails_23806(contactid=contactid)>

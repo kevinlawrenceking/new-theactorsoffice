@@ -15,7 +15,7 @@
     <cffunction name="getUser" access="remote" returntype="struct" httpmethod="GET" output="false">
         <cfargument name="userId" type="numeric" required="true">
 
-<cfset var user = variables.userService.getUserById(arguments.userId)>
+<cfset var user = variables.userService.-(arguments.userId)>
         <cfif structIsEmpty(user)>
             <cfreturn {
                 "success": false,

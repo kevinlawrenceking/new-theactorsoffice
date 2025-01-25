@@ -7,7 +7,7 @@
     <cfif structKeyExists(form, "sitename")>
         
         <!--- Use CFQUERY to check for the sitename --->
-        <cfquery name="checkSiteName" datasource="#dsn#">
+        <cfquery name="checkSiteName" >
             SELECT COUNT(*) AS total_row
             FROM sitelinks_user
             WHERE userid = <cfqueryparam value="#userID#" cfsqltype="CF_SQL_INTEGER">

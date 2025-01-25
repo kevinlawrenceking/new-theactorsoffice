@@ -33,9 +33,9 @@
 
 </cfif>
 
-<!--- Clean event description and limit its length --->
+<!--- Clean event description and limit its length
 <cfset cleanData = REReplace(eventDescription, "[^a-zA-Z0-9,.!? ]", "", "ALL")>
-<cfset eventDescription = Left(cleanData, 5000)>
+<cfset eventDescription = Left(cleanData, 5000)> --->
 <!--- Now insert 'cleanData' into your database --->
 <cfif NOT isDate(endRecur)>
     <cfset endRecur = JavaCast("null", "")>

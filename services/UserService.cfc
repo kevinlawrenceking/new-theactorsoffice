@@ -1,5 +1,72 @@
 <cfcomponent displayname="UserService" hint="Handles operations for User table" >
 
+<cffunction name="dateformatpref" access="public" returntype="void" output="false" hint="Updates the date format preference for a user and refreshes the session.">
+    <cfargument name="userid" type="numeric" required="true" hint="The user ID whose preferences are being updated.">
+    <cfargument name="dateformatid" type="numeric" required="true" hint="The new date format ID.">
+
+    <!--- Update the date format in the database --->
+    <cfquery name="updateDateFormat">
+        UPDATE taousers
+        SET dateformatid = <cfqueryparam value="#arguments.dateformatid#" cfsqltype="CF_SQL_INTEGER">
+        WHERE userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+    </cfquery>
+
+    <!--- Fetch the updated date format preference --->
+    <cfquery name="getUpdatedPreferences">
+        SELECT 
+            u.dateformatid, 
+            d.formatExample
+        FROM 
+            taousers u
+        LEFT JOIN 
+            dateformats d ON u.dateformatid = d.id
+        WHERE 
+            u.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+    </cfquery>
+
+    <!--- Refresh session.user with updated preferences --->
+    <cfif getUpdatedPreferences.recordcount>
+        <cfset session.user.dateformatid = getUpdatedPreferences.dateformatid>
+        <cfset session.user.dateformatExample = getUpdatedPreferences.formatExample>
+    </cfif>
+</cffunction>
+
+
+
+<cffunction name="getUserByHash" access="public" returntype="query" output="false">
+        <!--- Arguments --->
+        <cfargument name="uid" type="string" required="true">
+
+        <!--- Query --->
+        <cfquery name="result" >
+            SELECT
+                u.userid,
+                u.recordname,
+                u.userFirstName,
+                u.userLastName,
+                u.userEmail,
+                u.contactid,
+                u.userRole,
+                u.IsBetaTester,
+                u.defRows,
+                u.defCountry,
+                u.defState,
+                u.calstarttime,
+                u.calendtime,
+                u.avatarname,
+                u.contactid AS userContactID,
+                u.tzid,
+                t.tzname,
+                u.customerid
+            FROM taousers u
+            LEFT JOIN timezones t ON t.tzid = u.tzid
+            WHERE LEFT(u.passwordhash, 10) = <cfqueryparam value="#arguments.uid#" cfsqltype="CF_SQL_CHAR">
+        </cfquery>
+
+        <!--- Return Query Result --->
+        <cfreturn result>
+    </cffunction>
+
 <cffunction name="update_cal" access="public" returntype="numeric" output="false">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="calstarttime" type="string" required="true">
@@ -605,6 +672,25 @@
 <cfreturn result>
 </cffunction>
 
+   <cffunction name="getUsers" access="public" returntype="query" output="false" hint="Fetches users grouped by record name">
+        <!--- Local variables scope --->
+        <cfset var users = "">
+
+        <!--- Query to fetch users --->
+        <cfquery name="users" >
+            SELECT 
+                MIN(u.userid) AS id,
+                u.recordname AS name
+            FROM taousers u
+            GROUP BY u.recordname
+            ORDER BY u.recordname
+        </cfquery>
+
+        <!--- Return the query result --->
+        <cfreturn users />
+    </cffunction>
+
+
 <!--- Function to get user details by ID, including related tables --->
     <cffunction output="false" name="getUserById" access="public" returntype="struct"  hint="Fetch user details by user ID along with related table data">
         <cfargument name="userId" type="numeric" required="true">
@@ -615,9 +701,10 @@
 <!--- SQL Query to join all related tables and select all fields --->
         <cfquery result="result" name="qUserDetails" >
             SELECT
-                u.*,  -- All fields from taousers
-                t.*,  -- All fields from timezones
+                u.*,  
+                t.*, 
                  tc.id, 
+                LEFT(u.passwordhash,10) as uid,
                 tc.userid, 
                 tc.CustomerFirst, 
                 tc.CustomerLast, 
@@ -646,7 +733,8 @@
                 tc.IsDemo, 
                 tc.IsDeleted, 
                 tc.canceldate,
-                df.formatexample,
+                df.formatexample as dateformatExample,
+                df.id as dateformatID,
                 pp.planName,
                 pr.BaseProductLabel,
                 r.*,  
@@ -668,7 +756,10 @@ INNER JOIN timezones t ON u.tzid = t.tzid
         <cfif qUserDetails.recordCount EQ 1>
              <cfset user = {
                 "user": {
+    "dateformatExample": qUserDetails.dateformatExample,
+    "dateformatID": qUserDetails.dateformatID,
     "userId": qUserDetails.userID,
+    "uid": qUserDetails.uid,
     "userfirstName": qUserDetails.userFirstName,
     "userlastName": qUserDetails.userLastName,
     "calendarName": qUserDetails.calendarName,
@@ -711,7 +802,6 @@ INNER JOIN timezones t ON u.tzid = t.tzid
     "dateFormatID": qUserDetails.dateFormatID,
     "datePrefID": qUserDetails.datePrefID,
     "region_id": qUserDetails.region_id,
-    "formatexample": qUserDetails.formatexample,      
     "planName": qUserDetails.planName,
     "BaseProductLabel": qUserDetails.BaseProductLabel
  },

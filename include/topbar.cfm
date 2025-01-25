@@ -3,25 +3,35 @@
 <div class="navbar-custom">
     <div class="container-fluid">
         <ul class="list-unstyled topnav-menu float-end mb-0">
-            <li class="d-none d-lg-block">
-                <!--- Search Form for Desktop --->
-                <form class="app-search" id="submitform" action="/include/process.cfm" method="POST">
-                    <div class="app-search-box dropdown">
-                        <div class="input-group">
-                            <!--- Autocomplete Input Field --->
-                            <input type="text" class="form-control" name="topsearch" id="autocomplete" placeholder="Search..." autocomplete="off" />
-                            <!--- Hidden fields for ID and Category --->
-                            <input type="hidden" name="selectedId" id="selectedId" />
-                            <input type="hidden" name="category" id="category" />
-                            <div class="input-group-append">
-                                <button class="btn" id="mybtn" type="submit">
-                                    <i class="fe-search"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </li>
+<li class="d-none d-lg-block">
+    <!--- Search Form for Desktop with Autocomplete --->
+    <form class="app-search" id="submitform" action="/include/process.cfm" method="POST">
+        <div class="app-search-box dropdown">
+            <div class="input-group">
+                <!--- Autocomplete Input Field --->
+                <input 
+                    type="text" 
+                    class="form-control" 
+                    name="topsearch" 
+                    id="autocomplete" 
+                    placeholder="Search..." 
+                    autocomplete="off" 
+                />
+                <!--- Hidden fields for ID and Category --->
+                <input type="hidden" name="selectedId" id="selectedId" />
+                <input type="hidden" name="category" id="category" />
+                <div class="input-group-append">
+                    <button class="btn" id="mybtn" type="submit">
+                        <i class="fe-search"></i>
+                    </button>
+                </div>
+            </div>
+            <!--- Autocomplete Suggestions Dropdown --->
+            <ul id="contact-suggestions" class="dropdown-menu"></ul>
+        </div>
+    </form>
+</li>
+
 
             <li class="dropdown d-inline-block d-lg-none">
                 <!--- Mobile Search Dropdown --->
@@ -104,24 +114,27 @@
         </ul>
 
         <Cfoutput>
-            <div class="logo-box">
-                <a href="/app/" class="logo logo-dark text-center">
-                    <span class="logo-sm">
-                        <img src="#application.imagesUrl#/logo-sm.png" alt="" height="30" />
-                    </span>
-                    <span class="logo-lg">
-                        <img src="#application.imagesUrl#/logo-sm.png" alt="" height="30" />
-                    </span>
-                </a>
-                <a href="/app/" class="logo logo-light text-center">
-                    <span class="logo-sm">
-                        <img src="#application.imagesUrl#/logo-sm.png" alt="" height="30" />
-                    </span>
-                    <span class="logo-lg">
-                        <img src="#application.imagesUrl#/logo-light.png" alt="" height="30" />
-                    </span>
-                </a>
-            </div>
+                <div class="logo-box">
+            <a href="/app/" class="logo logo-dark text-center">
+                <span class="logo-sm">
+               <img src="#application.imagesUrl#/logo-sm.png" alt="" height="30" />
+              
+                </span>
+                <span class="logo-lg">
+                 <img src="#application.imagesUrl#/logo-sm.png" alt="" height="30" />
+          
+                </span>
+            </a>
+    
+            <a href="/app/" class="logo logo-light text-center">
+                <span class="logo-sm">
+                     <img src="#application.imagesUrl#/logo-sm.png" alt="" height="30" />
+                </span>
+                <span class="logo-lg">
+                   <img src="#application.imagesUrl#/logo-light.png" alt="" height="30" />
+                </span>
+            </a>
+        </div>
         </cfoutput>
 
         <ul class="list-unstyled topnav-menu topnav-menu-left m-0">

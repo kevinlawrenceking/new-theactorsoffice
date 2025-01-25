@@ -16,7 +16,7 @@
 
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: #f3f7f9;">
+            <div class="modal-header" >
                 <h4 class="modal-title" id="standard-modalLabel">Audition Type</h4>
                 <button type="button" class="close" data-bs-dismiss="modal" >
 
@@ -45,10 +45,10 @@
     </div>
     
     <div>
-        <cfif #access_token# is "">
+        <cfif #access_token# is not "223">
             <cfoutput>
                 <cfset clientId = "764716537559-ncfiag8dl4p05v7c9kcoltss0ou3heki.apps.googleusercontent.com">
-                <cfset redirectUri = "https://dev.theactorsoffice.com/include/oauth_callback.cfm">
+                <cfset redirectUri = "https://app.theactorsoffice.com/include/oauth_callback.cfm">
                 <cfset scope = "https://www.googleapis.com/auth/calendar">
                 <cfset authUrl = "https://accounts.google.com/o/oauth2/v2/auth?response_type=code&client_id=#clientId#&redirect_uri=#redirectUri#&scope=#scope#&access_type=offline">
                 
@@ -104,5 +104,5 @@
         </div>
     </div>
 </div>
-
+<div class="mt-3"></div> 
 <div id="calendar"></div>

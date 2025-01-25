@@ -1,13 +1,14 @@
 
 <cfset userService = createObject("component", "services.UserService")>
+
 <cfset userData = userService.getUserById(userID)>
 
-<cfif structIsEmpty(userData)>
-    <cfoutput>Not found! #userid#</cfoutput>
-    <cfabort>
-</cfif>
+
+<cfset session.dateformatID = userData.user.dateformatID />
+<cfset session.dateformatExample = userData.user.dateformatExample />
 <cfset calendarName = UserData.user.calendarName />
 <cfset userId = UserData.user.userId />
+<cfset uid = UserData.user.uid />
 <cfset recordName = UserData.user.recordName />
 <cfset isDeleted = UserData.user.isDeleted />
 <cfset nletter_yn = UserData.user.nletter_yn />
@@ -49,7 +50,7 @@
 <cfset userLastName = UserData.user.userLastName />
 <cfset userEmail = UserData.user.useremail />
 <cfset userRole = UserData.user.userRole />
-<cfset formatexample = UserData.user.formatexample />
+
 
 <cfset planName = UserData.user.planName />
 <cfset BaseProductLabel = UserData.user.BaseProductLabel />

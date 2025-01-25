@@ -33,9 +33,9 @@
                     <div style="margin-left:25px;">
                         <label class="custom-control-label">
                             <cfif #updates.isvisible# is "1">
-                                <input type="checkbox" checked class="custom-control-input" id="isVisible" value="1" name="isVisible" data-parsley-multiple="isVisible" />
+                                <input type="checkbox" checked class="custom-control-input" id="isVisible" value="1" name="new_isVisible" data-parsley-multiple="isVisible" />
                             <cfelse>
-                                <input type="checkbox" class="custom-control-input" id="isVisible" value="1" name="isVisible" data-parsley-multiple="isVisible" />   
+                                <input type="checkbox" class="custom-control-input" id="isVisible" value="1" name="new_isVisible" data-parsley-multiple="isVisible" />   
                             </cfif>
                             <span class="custom-control-label" for="isVisible">Show on Dashboard</span>
                         </label>

@@ -1,44 +1,8 @@
 <!--- This ColdFusion page processes various queries and updates based on the debug mode. --->
 
-<cfset dbug = "N">
+<cfset dbug = "y">
 
-<!--- Check if debugging is enabled and output the current time. --->
-<cfif #dbug# is "Y">
-    <cfoutput>
-        #now()#
-        <br>
-    </cfoutput>
-</cfif>
 
-<!--- Include the first query template. --->
-<cfinclude template="/include/qry/del_191_1.cfm" />
-
-<!--- Include the second query template. --->
-<cfinclude template="/include/qry/x_191_2.cfm" />
-
-<!--- Check if debugging is enabled and output the record count of query x. --->
-<cfif #dbug# is "Y">
-    <cfoutput>
-        #x.recordcount#
-        <br>
-    </cfoutput>
-</cfif>
-
-<!--- Loop through query x and include the update template. --->
-<cfloop query="x">
-    <cfinclude template="/include/qry/update_191_3.cfm" />
-</cfloop>
-
-<!--- Include the third query template. --->
-<cfinclude template="/include/qry/y_191_4.cfm" />
-
-<!--- Check if debugging is enabled and output the record count of query y. --->
-<cfif #dbug# is "Y">
-    <cfoutput>
-        #y.recordcount#
-        <br>
-    </cfoutput>
-</cfif>
 
 <!--- Loop through query y and include the update template. --->
 <cfloop query="y">

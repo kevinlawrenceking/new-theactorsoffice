@@ -5,7 +5,7 @@
 <cfparam name="TEXT" default="" /> 
 
 <!--- Clean the note text by removing non-ASCII characters --->
-<cfset new_notetext = reReplace(notetext, "[^\x20-\x7E]", "", "ALL")>
+<cfset new_notetext = notetext >
 
 <!--- Include the first template for inserting a note --->
 <cfinclude template="/include/qry/InsertNote_169_1.cfm" />

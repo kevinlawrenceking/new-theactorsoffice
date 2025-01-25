@@ -1,42 +1,28 @@
-import os
-
-def find_mentioned_files(qry_removed_path, include_path):
-    # Get all filenames from the qry_REMOVED directory
-    removed_files = [
-        file for file in os.listdir(qry_removed_path)
-        if os.path.isfile(os.path.join(qry_removed_path, file))
-    ]
-    
-    # Get all .cfm files from the include directory and its subdirectories
-    include_files = []
-    for root, _, files in os.walk(include_path):
-        include_files.extend(
-            os.path.join(root, file) for file in files if file.endswith('.cfm')
-        )
-
-    # Search for each filename in the content of include files
-    mentioned_files = []
-    for removed_file in removed_files:
-        is_mentioned = False
-        for include_file in include_files:
-            with open(include_file, 'r', encoding='utf-8') as f:
-                content = f.read()
-                if removed_file in content:
-                    mentioned_files.append(removed_file)
-                    is_mentioned = True
-                    break
-        if not is_mentioned:
-            print(f"Not mentioned: {removed_file}")
-    
-    # Return the list of mentioned files
-    return mentioned_files
-
-# Paths to directories
-qry_removed_path = r"C:\Users\xkking\Documents\qry_REMOVED"
-include_path = r"C:\Users\xkking\Documents\new-actorsoffice\new-theactorsoffice\include"
-
-# Run the function and print the results
-mentioned_files = find_mentioned_files(qry_removed_path, include_path)
-print("\nMentioned files:")
-for file in mentioned_files:
-    print(file)
+<form class="app-search" action="/app/myaccount/?new_pgid=122" method="POST">
+  <input type="hidden" name="ctaction" value="addmember"/>
+  <div class="row" style="margin: auto;">
+    <div class="col-md-2 p-2">Add a new person to your team:
+    </div>
+    <div class="col-md-4 p-2">
+      <a href="remoteAddContact.cfm?src=account" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="#remoteAddContact">
+        <button id="mybtns" type="submit" class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="background-color: #406e8e; border: #406e8e; height: 37px;">
+          Add
+        </button>
+      </a>
+    </div>
+  </div>
+  <div class="row" style="margin: auto;">
+    <div class="col-md-2 p-2">Or select an existing relationship:</div>
+    <div class="col-md-4 p-2">
+      <div class="input-group">
+        <input type="text" class="form-control" required="required" placeholder="Search..." name="topsearch_myteam" id="autocomplete2" autocomplete="off"/>
+        <div class="input-group-append">
+          <button id="mybtns" type="submit" class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="background-color: #406e8e; border: #406e8e; height: 37px;">
+            <i class="fe-plus"></i>
+            Select
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

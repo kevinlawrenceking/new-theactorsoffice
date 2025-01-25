@@ -1,5 +1,5 @@
 <cfset objService = createObject("component", "services.AuditionNetworkUserService")>
-<cfset objService.INSaudnetworks_user(
+<cfset new_networkid = objService.INSaudnetworks_user(
     CustomNetwork = CustomNetwork,
     audcatid = audcatid,
     userid = userid

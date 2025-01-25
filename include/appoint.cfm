@@ -31,7 +31,7 @@
             persist: !1,
             createOnBlur: !0,
             create: !0,
-            plugins: ["remove_button"],
+            plugins: ["remove-button"],
             delimiter: ",",
             persist: false,
             create: function(input) {
@@ -47,7 +47,7 @@
 <cfset session.new_eventid = eventdetails.eventid />
 
 <div class="row">
-    <div class="card mb-3" style="width:100%;">
+    <div class="card mb-3 w-100" >
         <div class="card-body">
             <form method="post" action="/include/appoint-update2.cfm" class="parsley-examples" name="event-form" id="form-event" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" data-parsley-trigger="keyup" data-parsley-validate>
                 <cfoutput>
@@ -65,7 +65,7 @@
                             <div class="media-body">
                                 <cfoutput>
                                     <cfif #eventdetails.eventstart# is not "">
-                                        <i class="fe-calendar"></i> #dateformat(eventdetails.eventStart,'long')#<br>
+                                        <i class="fe-calendar"></i> #this.formatDate(eventdetails.eventStart)#<br>
                                     </cfif>
                                     <cfif #eventdetails.eventStartTime# is not "">
                                         <i class="fe-clock"></i> #timeformat(eventdetails.eventStartTime,'short')# 
@@ -97,7 +97,7 @@
                         </cfoutput>
                     </div>
                 </cfoutput>
-                <div style="height:24px;">&nbsp;</div>
+                <div style="height:12px;">&nbsp;</div>
                 <ul class="nav nav-tabs">
                     <cfoutput>
                         <li class="nav-item">

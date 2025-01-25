@@ -7,7 +7,7 @@
 <cfset currentURL = cgi.server_name />
 <cfset host = ListFirst(currentURL, ".") />
 
-<cfinclude template="/include/qry/attachdetails_26_1.cfm" />
+<cfinclude template="/include/qry/attachdetails_25_1.cfm" />
 
 <cfoutput>
     session.userMediaPath

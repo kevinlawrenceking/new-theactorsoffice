@@ -1,5 +1,141 @@
 <cfcomponent displayname="NotificationService" hint="Handles operations for Notification table" >
 
+<cffunction name="updateNotification" access="public" output="false" returntype="void">
+    <cfargument name="notid" type="numeric" required="true">
+    <cfargument name="notendDate" type="string" required="false" default="">
+    <cfargument name="notstatus" type="string" required="true" default="">
+    <cfargument name="notstartdate" type="string" required="false" default="">
+
+    <cfquery name="addNotification">
+        UPDATE funotifications
+        SET 
+            notStatus = <cfqueryparam value="#arguments.notstatus#" cfsqltype="CF_SQL_VARCHAR" maxlength="50">
+            <cfif len(trim(arguments.notstartdate))>
+                , notstartdate = <cfqueryparam value="#arguments.notstartdate#" cfsqltype="CF_SQL_DATE">
+            </cfif>
+            <cfif arguments.notstatus EQ "Completed" OR arguments.notstatus EQ "Skipped">
+                , notenddate = <cfqueryparam value="#arguments.notendDate#" cfsqltype="CF_SQL_DATE" null="#NOT len(trim(arguments.notendDate))#">
+            </cfif>
+        WHERE notid = <cfqueryparam value="#arguments.notid#" cfsqltype="CF_SQL_INTEGER">
+    </cfquery>
+</cffunction>
+
+
+
+
+
+<cffunction name="getNotifications" access="public" output="false" returntype="query">
+    <cfargument name="suid" type="numeric" required="false" default="0">
+<cfargument name="maxrow" type="numeric" required="true" default="9999999999">
+<cfquery name="result" >
+        SELECT 
+            n.notID, 
+            n.actionID, 
+            n.userID, 
+            n.suID, 
+            n.notTimeStamp, 
+            n.notStartDate, 
+            n.notEndDate, 
+            n.notStatus, 
+            n.notNotes, 
+            f.systemID, 
+            f.contactID, 
+            f.suTimeStamp, 
+            f.suStartDate, 
+            f.suEndDate, 
+            f.suStatus, 
+            f.suNotes, 
+            a.actionID, 
+            a.actionNo, 
+            a.actionDetails, 
+            a.actionTitle, 
+            a.navToURL, 
+            au.actionDaysNo, 
+            au.actionDaysRecurring, 
+            a.actionNotes, 
+            a.actionInfo, 
+            n.ispastdue, 
+            ns.checktype, 
+            ns.delstart, 
+            ns.delend, 
+            ns.status_color 
+        FROM 
+            funotifications n 
+        INNER JOIN 
+            fusystemusers f ON f.suID = n.suID 
+        INNER JOIN 
+            fuactions a ON a.actionID = n.actionID 
+        INNER JOIN 
+            actionusers au ON a.actionID = au.actionID 
+        INNER JOIN 
+            notstatuses ns ON ns.notstatus = n.notStatus 
+        WHERE 
+            n.suID = <cfqueryparam value="#arguments.suid#" cfsqltype="CF_SQL_INTEGER"> 
+            AND au.userID = f.userID 
+            AND n.notStatus = 'Pending' 
+            AND n.notStartDate IS NULL 
+        ORDER BY 
+            au.actionDaysNo, a.actionID
+        LIMIT <cfqueryparam value="#arguments.maxrow#" cfsqltype="cf_sql_integer">
+    </cfquery>
+
+<cfreturn result>
+</cffunction>
+
+<cffunction name="addNotification" access="public" returntype="numeric" output="false" hint="Adds a notification, ensuring only one 'Pending' notification exists at a time with a notstartdate.">
+    <!--- Arguments --->
+    <cfargument name="actionID" type="numeric" required="true" hint="The ID of the action.">
+    <cfargument name="userid" type="numeric" required="true" hint="The user ID associated with the notification.">
+    <cfargument name="suid" type="numeric" required="true" hint="The system user ID.">
+    <cfargument name="notstartdate" type="date" required="true" hint="The start date for the notification.">
+    <cfargument name="notstatus" type="string" required="true" default="Pending" hint="The status of the notification.">
+
+    <!--- Local variables --->
+    <cfset var local = {}>
+
+    <!--- Check for existing 'Pending' notifications with notstartdate --->
+    <cfquery name="checkExistingPending">
+        SELECT COUNT(*) AS pendingCount
+        FROM funotifications
+        WHERE 
+            userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER"> AND
+            suID = <cfqueryparam value="#arguments.suid#" cfsqltype="CF_SQL_INTEGER"> AND
+            notstatus = <cfqueryparam value="Pending" cfsqltype="CF_SQL_VARCHAR"> AND
+            notstartdate IS NOT NULL
+    </cfquery>
+
+    <!--- Determine the final notstartdate value --->
+    <cfif checkExistingPending.pendingCount GT 0>
+        <cfset local.finalNotStartDate = "">
+    <cfelse>
+        <cfset local.finalNotStartDate = arguments.notstartdate>
+    </cfif>
+
+    <!--- Insert the notification --->
+    <cfquery result="result">
+        INSERT INTO funotifications (
+            actionid, 
+            userid, 
+            suID, 
+            notstartdate, 
+            notstatus
+        ) VALUES (
+            <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.actionID#">,
+            <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.userid#">,
+            <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.suid#">,
+            <cfqueryparam cfsqltype="CF_SQL_DATE" value="#DateFormat(local.finalNotStartDate, 'yyyy-mm-dd')#" null="#NOT len(trim(local.finalNotStartDate))#">,
+            <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.notstatus#">
+        )
+    </cfquery>
+
+    <!--- Return the generated key for the inserted record --->
+    <cfreturn result.generatedKey>
+</cffunction>
+
+
+
+
+
 <cffunction name="INSfunotifications_23817" access="public" returntype="void" output="false">
     <cfargument name="actionID" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">
@@ -102,79 +238,6 @@
     </cfquery>
 </cffunction>
 
-<cffunction name="SELfunotifications_24713" access="public" output="false" returntype="query">
-    <cfargument name="newsuid" type="numeric" required="true">
-
-<cfquery name="result">
-        SELECT 
-            n.notID, 
-            n.actionID, 
-            n.userID, 
-            n.suID, 
-            n.notTimeStamp, 
-            n.notStartDate, 
-            n.notEndDate, 
-            n.notStatus, 
-            n.notNotes, 
-            f.systemID, 
-            f.contactID, 
-            f.suTimeStamp, 
-            f.suStartDate, 
-            f.suEndDate, 
-            f.suStatus, 
-            f.suNotes, 
-            a.actionID, 
-            a.actionNo, 
-            a.actionDetails, 
-            a.actionTitle, 
-            a.navToURL, 
-            au.actionDaysNo, 
-            au.actionDaysRecurring, 
-            a.actionNotes, 
-            a.actionInfo, 
-            n.ispastdue, 
-            ns.checktype, 
-            ns.delstart, 
-            ns.delend, 
-            ns.status_color 
-        FROM 
-            funotifications n 
-        INNER JOIN 
-            fusystemusers f ON f.suID = n.suID 
-        INNER JOIN 
-            fuactions a ON a.actionID = n.actionID 
-        INNER JOIN 
-            actionusers au ON a.actionID = au.actionID 
-        INNER JOIN 
-            notstatuses ns ON ns.notstatus = n.notStatus 
-        WHERE 
-            n.suID = <cfqueryparam value="#arguments.newsuid#" cfsqltype="CF_SQL_INTEGER"> 
-            AND au.userID = f.userID 
-            AND n.notStatus = 'Pending' 
-            AND n.notStartDate IS NULL 
-        ORDER BY 
-            au.actionDaysNo, a.actionID
-    </cfquery>
-
-<cfreturn result>
-</cffunction>
-
-<cffunction name="UPDfunotifications_23831" access="public" output="false" returntype="void">
-    <cfargument name="notid" type="numeric" required="true">
-    <cfargument name="notendDate" type="date" required="false" default="">
-    <cfargument name="notstatus" type="string" required="false" default="">
-
-<!--- Update notification --->
-    <cfquery name="addNotification">
-        UPDATE funotifications
-        SET 
-            notStatus = <cfqueryparam value="#arguments.notstatus#" cfsqltype="CF_SQL_VARCHAR" maxlength="50">
-            <cfif arguments.notstatus EQ "Completed" OR arguments.notstatus EQ "Skipped">
-                , notenddate = <cfqueryparam value="#arguments.notendDate#" cfsqltype="CF_SQL_DATE" null="#NOT len(trim(arguments.notendDate))#">
-            </cfif>
-        WHERE notid = <cfqueryparam value="#arguments.notid#" cfsqltype="CF_SQL_INTEGER">
-    </cfquery>
-</cffunction>
 
 <cffunction name="UPDfunotifications" access="public" output="false" returntype="void">
     <cfargument name="notid" type="numeric" required="true">
@@ -190,7 +253,7 @@
     </cfquery>
 </cffunction>
 
-<cffunction name="DETfunotifications" access="public" output="false" returntype="query">
+<cffunction name="GetNotificationByID" access="public" output="false" returntype="query">
     <cfargument name="notid" type="numeric" required="true">
 
 <cfquery name="result">
@@ -226,6 +289,7 @@
     </cfquery>
 
 <cfreturn result>
+
 </cffunction>
 
 <cffunction name="INSfunotifications_23941" access="public" returntype="numeric" output="false" hint="Adds a notification to the database">
@@ -294,17 +358,17 @@
 <cfreturn result.generatedKey>
     </cffunction>
 
-<cffunction  output="false" name="UPDfunotifications_24316" access="public" returntype="void">
+<cffunction  output="false" name="deleteNotificationBySystem" access="public" returntype="void">
     <cfargument name="suid" type="numeric" required="true">
 
 <cfquery  name="close2">
-        UPDATE funotifications
+        UPDATE funotifications_tbl
         SET isdeleted = 1
         WHERE suid = <cfqueryparam value="#arguments.suid#" cfsqltype="CF_SQL_INTEGER">
     </cfquery>
 </cffunction>
 
-<cffunction  output="false" name="fetchNotifications" access="public" returntype="void" hint="Marks orphaned notifications as deleted.">
+<cffunction  output="false" name="delSystemNotifications" access="public" returntype="void" hint="Marks orphaned notifications as deleted.">
    <cfargument name="userid" type="numeric" required="true">
     <cfquery name="del" >
        UPDATE funotifications_tbl 
@@ -390,6 +454,69 @@
               AND n.notStatus NOT IN ('Completed', 'Skipped')
             </cfif>
             ORDER BY FIELD(n.notStatus, 'Pending', 'Completed', 'Skipped'), n.notEndDate
+        </cfquery>
+
+<cfreturn notsActive>
+    </cffunction>
+
+    <cffunction output="false" name="SELfunotifications" access="public" returntype="query">
+        <cfargument name="currentid" type="numeric" required="true">
+        <cfargument name="sysActiveSuid" type="numeric" required="true">
+        <cfargument name="userid" type="numeric" required="true">
+
+<cfquery result="result" name="notsActive">
+            SELECT
+                n.notID,
+                n.actionID,
+                n.userID,
+                n.suID,
+                n.notTimeStamp,
+                n.notStartDate,
+                n.notEndDate,
+                CASE
+    WHEN n.notStatus = 'Pending' AND n.notStartDate > NOW() THEN 'Upcoming'
+    ELSE n.notStatus
+  END AS notStatus,
+                n.notNotes,
+                f.systemID,
+                f.contactID,
+                f.suTimeStamp,
+                f.suStartDate,
+                f.suEndDate,
+                f.suStatus,
+                f.suNotes,
+                a.actionID,
+                a.actionNo,
+                a.actionDetails,
+                a.actionTitle,
+                a.navToURL,
+                au.actionDaysNo,
+                au.actionDaysRecurring,
+                a.actionNotes,
+                a.actionInfo,
+                l.actionlinkid,
+                l.BtnName,
+                l.ActionLinkURL,
+                l.endlink,
+                l.targetlink,
+                n.ispastdue,
+                ns.checktype,
+                ns.delstart,
+                ns.delend,
+                ns.status_color
+            FROM funotifications n
+            INNER JOIN fusystemusers f ON f.suID = n.suID
+            INNER JOIN fusystems s ON s.systemID = f.systemID
+            INNER JOIN fuactions a ON a.actionID = n.actionID
+            INNER JOIN actionusers au ON a.actionID = au.actionID
+            INNER JOIN fuActionLinks l ON l.actionlinkid = a.actionlinkid
+            INNER JOIN notstatuses ns ON ns.notstatus = n.notStatus
+            WHERE f.contactID = <cfqueryparam value="#arguments.currentid#" cfsqltype="cf_sql_integer">
+              AND f.suID = <cfqueryparam value="#arguments.sysActiveSuid#" cfsqltype="cf_sql_integer">
+              AND au.userID = <cfqueryparam value="#arguments.userid#" cfsqltype="cf_sql_integer">
+              AND n.notStartDate IS NOT NULL
+         
+            ORDER BY n.notEndDate,n.notStartDate, n.notid
         </cfquery>
 
 <cfreturn notsActive>

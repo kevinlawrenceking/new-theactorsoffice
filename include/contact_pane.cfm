@@ -1,28 +1,28 @@
-<!-- Contact Card View (Optimized) -->
+<!--- Contact Card View (Optimized) --->
 <div id="contact-card-view2" class="d-flex flex-wrap mx-auto mt-3 px-2">
 
-    <!-- Loop through active categories -->
+    <!--- Loop through active categories --->
     <cfloop query="ActiveCategories">
 
         <cfif catid neq "0">
 
-            <!-- Include query for items in the current category -->
+            <!--- Include query for items in the current category --->
             <cfinclude template="/include/qry/itemsbycatActive.cfm" />
 
             <div class="flexit">
                 <div class="contact-info-section mb-4 position-relative ps-5">
 
                     <cfoutput>
-                        <!-- Icon for category -->
+                        <!--- Icon for category --->
                         <i class="#ActiveCategories.caticon# <cfif result.itemsbycatActive.recordcount eq 0>text-muted font-weight-lighter</cfif> font-26 position-absolute top-0 start-0"></i>
 
-                        <!-- Check for active items -->
+                        <!--- Check for active items --->
                         <cfif result.itemsbycatActive.recordcount gt 0>
-                            <!-- Loop through items by category -->
+                            <!--- Loop through items by category --->
                             <cfloop query="result.itemsbycatActive">
                                 
                                 
-                                <!-- Address Category -->
+                                <!--- Address Category --->
                                 <cfif ActiveCategories.catfieldset is "address">
                                     <h5 class="mb-2">
                                         #valuestreetaddress#
@@ -63,7 +63,7 @@
                                     <div class="text-uppercase font-13 text-left mb-1">#valuetype#</div>
                                 </cfif>
                                 
-                                <!-- Company Category -->
+                                <!--- Company Category --->
                                 <cfif ActiveCategories.catfieldset is "company">
                                     <h5 class="mb-2">
                                         #valueCompany#
@@ -82,10 +82,10 @@
                                     <div class="text-uppercase font-13 text-left mb-1">#valuetype#</div>
                                 </cfif>
 
-                                <!-- Date Category -->
+                                <!--- Date Category --->
                                 <cfif ActiveCategories.catfieldset is "date">
                                     <h5 class="mb-2">
-                                        #dateformat(itemdate, 'mm-dd-yyyy')#
+                                        #currentStartDate(itemdate)#
                                         <a href="javascript:;" class="ms-2" data-bs-toggle="modal" data-bs-target="##remoteUpdateC#itemid#" title="Update">
                                             <i class="mdi mdi-square-edit-outline"></i>
                                         </a>
@@ -93,13 +93,13 @@
                                     <div class="text-uppercase font-13 text-left mb-1">#valuetype#</div>
                                 </cfif>
 
-                                <!-- Long Text Category -->
+                                <!--- Long Text Category --->
                                 <cfif ActiveCategories.catfieldset is "long">
                                     <h5 class="mb-2">#itemnotes#</h5>
                                     <div class="text-uppercase font-13 text-left mb-1">#valuetype#</div>
                                 </cfif>
 
-                                <!-- Text Category (Phone or Email) -->
+                                <!--- Text Category (Phone or Email) --->
                                 <cfif ActiveCategories.catfieldset is "text">
                                     <cfif ActiveCategories.valueCategory is "Phone">
                                         <cfset phonenumber = valuetext />
@@ -121,7 +121,7 @@
                                         </h5>     <div class="text-uppercase font-13 text-left mb-1">#valuetype#</div>
                                     </cfif>
 <cfif ActiveCategories.valueCategory is "Social Profile" or ActiveCategories.valueCategory is "URL">
-    <!-- Ensure the URL starts with http:// -->
+    <!--- Ensure the URL starts with http:// --->
     <cfif Left(valuetext, 4) neq "http">
         <cfset valuetext = "http://" & valuetext>
     </cfif>
@@ -150,12 +150,12 @@
                             </cfloop>
                         </cfif>
 
-                        <!-- No items available -->
+                        <!--- No items available --->
                         <cfif result.itemsbycatActive.recordcount eq 0>
                             <h5 class="text-muted font-weight-lighter">Add #ActiveCategories.valueCategory#</h5>
                         </cfif>
 
-                        <!-- Add new item link -->
+                        <!--- Add new item link --->
                         <a href="javascript:;" data-bs-toggle="modal" data-bs-target="##remoteAddC#ActiveCategories.catid#" title="Add #ActiveCategories.valueCategory#">
                             <i class="fe-plus-circle"></i>
                         </a>

@@ -1,2 +1,3 @@
 <cfset contactImportService = createObject("component", "services.ContactImportService") />
-<cfset tag = contactImportService.SELcontactsimport_24405(new_uploadid=new_uploadid) />
+<cfset tag2 = contactImportService.getcontactsImportTag(uploadid=new_uploadid,tag_label="tag2") />
+<cfdump var="#tag2#" label="tag2" >

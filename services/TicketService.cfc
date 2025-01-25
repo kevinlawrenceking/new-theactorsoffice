@@ -169,9 +169,11 @@
 <cfquery name="result" >
             SELECT 
                 p.pgid, 
+                t.ticketID,
                 t.ticketID AS recID, 
                 t.ticketID AS pk, 
                 CONCAT(u.userfirstname, ' ', u.userlastname) AS col1, 
+                u.userid,
                 'User' AS head1, 
                 'Date' AS head2, 
                 'Time' AS head3, 
@@ -181,6 +183,7 @@
                 'Response' AS head7, 
                 'Completed' AS head8, 
                 t.ticketResponse, 
+                t.environ,
                 t.ticketCompletedDate, 
                 t.ticketdetails, 
                 t.ticketCreatedDate, 
@@ -198,6 +201,9 @@
                 p.pgdir, 
                 t.patchnote, 
                 t.complete_email, 
+                t.testingscript,
+                t.customTestPageName,
+                t.customTestPageLink,
                 t.initial_email
             FROM tickets t
             INNER JOIN taousers u ON u.userid = t.userid

@@ -53,15 +53,6 @@
     </cfquery>
 </cffunction>
 
-<cffunction output="false" name="UPDpgpanels_user_24135" access="public" returntype="void">
-    <cfargument name="pnid" type="numeric" required="true">
-    <cfquery result="result">
-        UPDATE pgpanels_user
-        SET isvisible = <cfqueryparam value="#arguments.isvisible#" cfsqltype="CF_SQL_BIT">
-        WHERE pnid = <cfqueryparam value="#arguments.pnid#" cfsqltype="CF_SQL_INTEGER">
-    </cfquery>
-</cffunction>
-
 <cffunction output="false" name="SELpgpanels_user_24136" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
 
@@ -82,14 +73,12 @@
 <cfreturn result>
 </cffunction>
 
-<cffunction output="false" name="UPDpgpanels_user_24137" access="public" returntype="void">
-    <cfargument name="correctTitle" type="string" required="true">
-    <cfargument name="pnid" type="numeric" required="true">
-
+<cffunction output="false" name="pgPanelsFix" access="public" returntype="void">
 <cfquery result="result">
-        UPDATE pgpanels_user 
-        SET pntitle = <cfqueryparam cfsqltype="cf_sql_varchar" value="#arguments.correctTitle#" /> 
-        WHERE pnid = <cfqueryparam cfsqltype="cf_sql_integer" value="#arguments.pnid#" />
+UPDATE pgpanels_user AS p
+INNER JOIN sitetypes_user AS s ON p.pnid = s.pnid
+SET 
+    p.pnTitle = CONCAT(s.sitetypename, ' Links');
     </cfquery>
 </cffunction>
 

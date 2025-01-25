@@ -1,5 +1,118 @@
 <cfcomponent displayname="PageService" hint="Handles operations for Page table" >
 
+    
+
+    <cffunction name="getLinksTop" access="public" returntype="query" output="false">
+        
+        <cfargument name="pgid" type="numeric" required="true">
+
+        <cfquery name="result" >
+            SELECT
+                l.linkid, l.linkurl, l.linkname, l.linktype,
+                l.link_no, l.linkloc_tb, l.pluginname,
+                l.rel, l.hrefid
+            FROM pgapplinks l
+            INNER JOIN pgplugins p ON p.pluginName = l.pluginname
+            INNER JOIN pgpagespluginsxref x ON x.pluginid = p.pluginid
+            INNER JOIN pgpages g ON g.pgid = x.pgid
+            WHERE g.pgid = <cfqueryparam value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER">
+              AND l.linkloc_tb = 't'
+            ORDER BY l.link_no
+        </cfquery>
+
+        <cfreturn result>
+    </cffunction>
+
+    <cffunction name="getLinksBottom" access="public" returntype="query" output="false">
+        
+        <cfargument name="pgid" type="numeric" required="true">
+
+        <cfquery name="result" >
+            SELECT
+                l.linkid, l.linkurl, l.linkname, l.linktype,
+                l.link_no, l.linkloc_tb, l.pluginname,
+                l.rel, l.hrefid
+            FROM pgapplinks l
+            INNER JOIN pgplugins p ON p.pluginName = l.pluginname
+            INNER JOIN pgpagespluginsxref x ON x.pluginid = p.pluginid
+            INNER JOIN pgpages g ON g.pgid = x.pgid
+            WHERE g.pgid = <cfqueryparam value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER">
+              AND l.linkloc_tb = 'b'
+              AND l.linkname NOT LIKE '%calendar - custom%'
+              AND l.linktype <> 'css'
+            ORDER BY l.link_no
+        </cfquery>
+
+        <cfreturn result>
+    </cffunction>
+
+    <cffunction name="getLinksExtra" access="public" returntype="query" output="false">
+        
+        <cfargument name="pgid" type="numeric" required="true">
+
+        <cfquery name="result" >
+            SELECT DISTINCT
+                l.pluginname
+            FROM pgapplinks l
+            INNER JOIN pgplugins p ON p.pluginName = l.pluginname
+            INNER JOIN pgpagespluginsxref x ON x.pluginid = p.pluginid
+            INNER JOIN pgpages g ON g.pgid = x.pgid
+            WHERE g.pgid = <cfqueryparam value="#arguments.pgid#" cfsqltype="CF_SQL_INTEGER">
+              AND l.linkloc_tb = 'b'
+              AND l.pluginname <> 'global'
+            ORDER BY l.link_no
+        </cfquery>
+
+        <cfreturn result>
+    </cffunction>
+
+    <cffunction name="getPagesByShare" access="public" returntype="query" output="false">
+
+        <cfquery name="result">
+            SELECT
+                a.appname, 
+                a.appAuthor, 
+                c.compname, 
+                p.pgname,
+                a.appId, 
+                a.appDescription, 
+                a.appLogoName,
+                a.colorTopBar, 
+                a.colorLeftSideBar, 
+                a.mocktoday,
+                a.mock_yn, 
+                c.compid, 
+                c.compDir, 
+                c.compTable,
+                c.compowner, 
+                c.compIcon, 
+                c.menuYN, 
+                c.menuOrder,
+                c.compInner, 
+                c.compRecordName, 
+                c.compActive,
+                p.pgid, 
+                p.pgDir, 
+                p.pgTitle, 
+                p.pgHeading, 
+                p.pgFilename,
+                p.datatables_YN, 
+                p.fullcalendar_YN, 
+                p.editable_YN,
+                p.newdatatables_YN, 
+                p.pk, 
+                p.update_type
+            FROM pgpages p
+            INNER JOIN pgcomps c ON c.compID = p.compID
+            INNER JOIN pgapps a ON a.appID = c.appid
+            WHERE p.pgDir = 'share'
+        </cfquery>
+
+        <!--- Return Query Result --->
+        <cfreturn result>
+    </cffunction>
+
+
 <cffunction name="SELpgpages_24740" access="public" returntype="query" output="false">
 
 <cfargument name="pgid" type="numeric" required="true">

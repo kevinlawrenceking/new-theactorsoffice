@@ -22,7 +22,7 @@
 <cfparam name="placeholder" default="" />
 <cfparam name="eventid" default="" />
 
-<cfinclude template="/include/qry/Type_208_1.cfm" />
+<cfinclude template="/include/qry/SEL_Media_types_material.cfm" />
 
 <form action="/include/remoteaddMaterial2.cfm" method="post" class="parsley-examples" enctype="multipart/form-data" id="upload" 
       data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" 
@@ -81,9 +81,9 @@
 
     <div class="form-group col-md-12">
         <label for="attachmenturl">Upload File (optional)</label>
-        <p>
-            <input name="file" type="file" />
-        </p>
+       
+       <input name="file" type="file" id="fileUpload" style="display: none;">
+        </p><label for="fileUpload" class="btn btn-primary btn-sm">Choose File</label>
     </div>
 
     <div class="form-group text-center col-md-12">

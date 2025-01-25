@@ -11,6 +11,8 @@
 
   <cfset host=ListFirst(cgi.server_name, ".")/>
 
+  <Cfset application.dbug = "Y" />
+
   <cfif host eq "app" or host eq "uat">
     <cfset application.dsn="abo"/>
     <cfset application.information_schema="actorsbusinessoffice"/>
@@ -28,8 +30,8 @@
     this.name = "TAO";
     this.datasource = application.dsn;
     this.sessionManagement = true;
-    this.applicationTimeout = createTimeSpan(1, 1, 0, 0);
-    this.sessionTimeout = createTimeSpan(0, 0, 20, 0);
+    this.applicationTimeout = createTimeSpan(11, 1, 0, 0);
+    this.sessionTimeout = createTimeSpan(0, 9, 20, 0);
     this.loginStorage = "session";
     this.logPath = expandPath("error.log");
     this.errorTemplate = "500.cfm";
@@ -67,6 +69,25 @@
     application.retinaIcons32Url = application.retinaIconsUrl & "/32";
   </cfscript>
 
+<cffunction name="formatDate" access="public" returntype="string" output="false" hint="Formats dates according to the user's preferences">
+  <cfargument name="dateValue" required="false" hint="The date to be formatted or could be NULL" />
+
+  <!--- Use session date format or default to mm/dd/yyyy --->
+  <cfset var dateFormatToUse = "mm/dd/yyyy">
+  <cfif structKeyExists(session, "dateformatExample")>
+    <cfset dateFormatToUse = session.dateformatExample>
+  </cfif>
+
+  <!--- Check if argument is missing, null, or not a valid date --->
+  <cfif NOT structKeyExists(arguments,"dateValue") OR isNull(arguments.dateValue) OR NOT isDate(arguments.dateValue)>
+    <cfreturn "" /> <!--- or return "N/A" or whatever you want --->
+  </cfif>
+
+  <!--- It's a valid date; format it --->
+  <cfreturn dateFormat(arguments.dateValue, dateFormatToUse)>
+</cffunction>
+
+
   <cffunction name="onApplicationStart" returntype="boolean" output="false">
     <cfreturn true/>
   </cffunction>
@@ -82,6 +103,7 @@
     </cfif>
 
     <cfif structKeyExists(session, "userid")>
+    <cfset userid = session.userid />
     <CFINCLUDE template="/include/qry/fetchUsers.cfm" />
       <cfscript>
         session.userMediaPath = application.baseMediaPath & "\users\" & session.userID;
@@ -104,6 +126,9 @@
 
         session.userAvatarPath = session.userMediaPath & "\avatar.jpg";
         session.userAvatarUrl = session.userMediaUrl & "/avatar.jpg";
+
+
+
       </cfscript>
 
       <cfif isdefined('contactid')>
@@ -127,6 +152,10 @@
 
     <cfreturn true/>
   </cffunction>
+
+
+
+
 
   <cffunction name="onRequest" returntype="void" output="true">
     <cfargument name="targetPage" required="true" type="string">

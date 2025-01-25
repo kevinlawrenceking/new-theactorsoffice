@@ -52,7 +52,7 @@
     </div>
     <div class="col-md-10 p-2">
         <cfoutput>
-            <a href="" title="Date format" data-bs-toggle="modal" data-bs-target="##updatecal">#formatExample#</a>
+<a href="" title="Date format" data-bs-toggle="modal" data-bs-target="##updatecal">#session.dateformatExample#</a>
         </cfoutput>
     </div>
 </div>
@@ -75,7 +75,7 @@
         </a>
     </div>
 </div>
-
+<div class="row" style="margin: auto;">
     <div class="col-md-2 p-2">
         <strong>Newsletter Link</strong>
     </div>
@@ -101,6 +101,9 @@
             </cfif>
         </cfif>
     </div>
+</div>
+
+
 
 <cfinclude template="/include/qry/subsites_189_1.cfm" />
 
@@ -167,7 +170,7 @@
 
             <div class="modal-dialog">
               <div class="modal-content">
-                <div class="modal-header" style="background-color: ##f3f7f9;">
+                <div class="modal-header" >
                   <h4 class="modal-title" id="standard-modalLabel">Newsletter Update</h4>
                   <button type="button" class="close" data-bs-dismiss="modal" >
 

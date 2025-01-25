@@ -438,7 +438,7 @@
 
     <cfloop query="xs">
         <cfoutput>
-            <cfinclude template="/include/qry/find_318_23.cfm" />
+            <cfinclude template="/include/qry/getActionUsers.cfm" />
 
             <!--- Check if find record count is zero --->
             <cfif #find.recordcount# is "0">

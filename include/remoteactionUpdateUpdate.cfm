@@ -3,9 +3,12 @@
 <cfparam name="deleteaction" default="0" /> 
 <cfparam name="ver" default="" />
 <cfparam name="actionDaysNo" default="0" />
+<Cfif deleteaction eq 1>
+    <cfset isDeleted = 1 />
+</cfif>
 
 <!--- Include the first query template for updates --->
-<cfinclude template="/include/qry/update_195_1.cfm" />
+<cfinclude template="/include/qry/updateActionUsersByActionUpdate.cfm" />
 
 <!--- Include the second query template for k_195 --->
 <cfinclude template="/include/qry/k_195_2.cfm" />

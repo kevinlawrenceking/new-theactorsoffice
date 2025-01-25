@@ -16,7 +16,7 @@
 
                 <p class="card-text">
 
-                    <A href="">
+                    <A href="" class="no-hover-effect">
 
                         <figure>
 

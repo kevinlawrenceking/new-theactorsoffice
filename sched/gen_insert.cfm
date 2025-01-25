@@ -26,7 +26,7 @@
                 #chr(60)#/cfif#chr(62)#
             #chr(60)#/cfloop#chr(62)#
 
-#chr(60)#cfquery datasource="your_datasource"#chr(62)#
+#chr(60)#cfquery #chr(62)#
                 INSERT INTO #getInsertFunctions.qry_table# (#columns#)
                 VALUES (#values#)
             #chr(60)#/cfquery#chr(62)#
@@ -88,7 +88,7 @@
             #chr(60)#/cfloop#chr(62)#
             
             <!--- Construct and execute the final INSERT query ---> 
-            #chr(60)#cfquery datasource="your_datasource"#chr(62)#
+            #chr(60)#cfquery #chr(62)#
                 INSERT INTO #getInsertFunctions.qry_table# (#columns#)
                 VALUES (#values#)
             #chr(60)#/cfquery#chr(62)#

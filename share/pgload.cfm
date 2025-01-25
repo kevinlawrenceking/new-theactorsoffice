@@ -1,5 +1,3 @@
-<CFINCLUDE template="remote_load.cfm" />
-
 <!--- Default Parameters --->
 <cfparam name="u" default="434F6AD485112F73A9" />
 <cfparam name="pgaction" default="view" />
@@ -20,12 +18,10 @@
 
 <!--- Load the UserService --->
 <cfset userService = createObject("component", "services.UserService")>
-
-<!--- Fetch the user data using the UserService --->
-<cfset userData = userService.getUserByHash(u) />
+<cfset userData = userService.getUserByHash(uid) />
 
 <!--- Check if user data was found --->
-<cfif structIsEmpty(userData)>
+<cfif userData.recordCount EQ 0>
     <cfoutput>Not found!</cfoutput>
     <cfabort>
 <cfelse>
@@ -41,74 +37,34 @@
     <cfset defState = userData.defState />
     <cfset tzid = userData.tzid />
     <cfset customerid = userData.customerid />
-    <cfset userFirstName = userData.firstName />
-    <cfset userLastName = userData.lastName />
-    <cfset userEmail = userData.email />
+    <cfset userFirstName = userData.userFirstName />
+    <cfset userLastName = userData.userLastName />
+    <cfset userEmail = userData.userEmail />
     <cfset userRole = userData.userRole />
 
     <cfif userContactid EQ contactid>
         <cfset catArea_UCB = "U" />
     </cfif>
 </cfif>
+<Cfset userAvatarUrl = "/media-" & dsn & "/users/" & userid & "/avatar.jpg" />
+<!--- Fetch shares --->
+<cfset ShareService = createObject("component", "services.ShareService")>
+<cfset shares = ShareService.shares(userid=userid)>
 
 <!--- Fetch page data --->
-<cfquery result="result" name="FindPage">
-    SELECT
-        a.appname, a.appAuthor, c.compname, p.pgname,
-        a.appId, a.appDescription, a.appLogoName,
-        a.colorTopBar, a.colorLeftSideBar, a.mocktoday,
-        a.mock_yn, c.compid, c.compDir, c.compTable,
-        c.compowner, c.compIcon, c.menuYN, c.menuOrder,
-        c.compInner, c.compRecordName, c.compActive,
-        p.pgid, p.pgDir, p.pgTitle, p.pgHeading, p.pgFilename,
-        p.datatables_YN, p.fullcalendar_YN, p.editable_YN,
-        p.newdatatables_YN, p.pk, p.update_type
-    FROM pgpages p
-    INNER JOIN pgcomps c ON c.compID = p.compID
-    INNER JOIN pgapps a ON a.appID = c.appid
-    WHERE p.pgDir = 'share'
-</cfquery>
+<cfset PageService = createObject("component", "services.PageService")>
+<cfset FindPage = PageService.getPagesByShare() />
 
 <cfif FindPage.RecordCount EQ 1>
     <!--- Fetch related links and components --->
-    <cfquery result="result" name="FindLinksT">
-        SELECT
-            l.linkid, l.linkurl, l.linkname, l.linktype,
-            l.link_no, l.linkloc_tb, l.pluginname,
-            l.rel, l.hrefid
-        FROM pgapplinks l
-        INNER JOIN pgplugins p ON p.pluginName = l.pluginname
-        INNER JOIN pgpagespluginsxref x ON x.pluginid = p.pluginid
-        INNER JOIN pgpages g ON g.pgid = x.pgid
-        WHERE g.pgid = 11 AND l.linkloc_tb = 't'
-        ORDER BY l.link_no
-    </cfquery>
-
-    <cfquery result="result" name="FindLinksB">
-        SELECT
-            l.linkid, l.linkurl, l.linkname, l.linktype,
-            l.link_no, l.linkloc_tb, l.pluginname,
-            l.rel, l.hrefid
-        FROM pgapplinks l
-        INNER JOIN pgplugins p ON p.pluginName = l.pluginname
-        INNER JOIN pgpagespluginsxref x ON x.pluginid = p.pluginid
-        INNER JOIN pgpages g ON g.pgid = x.pgid
-        WHERE g.pgid = 11 AND l.linkloc_tb = 'b'
-        AND l.linkname NOT LIKE '%calendar - custom%'
-        AND l.linktype <> 'css'
-        ORDER BY l.link_no
-    </cfquery>
-
-    <cfquery result="result" name="FindLinksExtra">
-        SELECT DISTINCT l.pluginname
-        FROM pgapplinks l
-        INNER JOIN pgplugins p ON p.pluginName = l.pluginname
-        INNER JOIN pgpagespluginsxref x ON x.pluginid = p.pluginid
-        INNER JOIN pgpages g ON g.pgid = x.pgid
-        WHERE g.pgid = 11 AND l.linkloc_tb = 'b'
-        AND l.pluginname <> 'global'
-        ORDER BY l.link_no
-    </cfquery>
+<cfset PageService = createObject("component", "services.PageService")>
+<cfset FindLinksT = PageService.getLinksTop(pgid=11)>
+ 
+<cfset PageService = createObject("component", "services.PageService")>
+<cfset FindLinksB = PageService.getLinksBottom(pgid=11)>
+ 
+ <cfset PageService = createObject("component", "services.PageService")>
+<cfset FindLinksExtra = PageService.getLinksExtra(pgid=11)>
 
     <!--- Set application variables --->
     <cfset appName = FindPage.appName />

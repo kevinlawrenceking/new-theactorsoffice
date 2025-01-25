@@ -18,7 +18,7 @@
 
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header" style="background-color: ##f3f7f9;">
+                    <div class="modal-header" >
                         <h4 class="modal-title">#steps.audstep#</h4>
                         <a href="/include/removestatus.cfm?audprojectid=#audprojectid#&STATUSFIELD=#STATUSFIELD#&new_audroleid=#audroleid#&new_audstepid=#steps.audstepid#">
                             <button type="button" class="close" >
@@ -125,7 +125,7 @@
 
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header" style="background-color: ##f3f7f9;">
+                    <div class="modal-header" >
                         <h4 class="modal-title" id="standard-modalLabel">Appointment Details</h4>
                         <button type="button" class="close" data-bs-dismiss="modal" >
 <i class="mdi mdi-close-thick"></i></button>
@@ -204,7 +204,7 @@
 
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <div class="modal-header" style="background-color: ##f3f7f9;">
+                    <div class="modal-header" >
                         <h4 class="modal-title" id="standard-modalLabel">Appointment Update</h4>
                         <button type="button" class="close" data-bs-dismiss="modal" >
 <i class="mdi mdi-close-thick"></i></button>
@@ -266,7 +266,7 @@
 
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header" style="background-color: ##f3f7f9;">
+                    <div class="modal-header" >
                         <h4 class="modal-title" id="standard-modalLabel">Appointment Add</h4>
                         <button type="button" class="close" data-bs-dismiss="modal" >
 <i class="mdi mdi-close-thick"></i></button>
@@ -291,7 +291,7 @@
 
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: #f3f7f9;">
+            <div class="modal-header" >
                 <h4 class="modal-title" id="standard-modalLabel">Category Update</h4>
                 <button type="button" class="close" data-bs-dismiss="modal" >
 <i class="mdi mdi-close-thick"></i></button>
@@ -314,7 +314,7 @@
 
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: #f3f7f9;">
+            <div class="modal-header" >
                 <h4 class="modal-title" id="standard-modalLabel">Project Update</h4>
                 <button type="button" class="close" data-bs-dismiss="modal" >
 <i class="mdi mdi-close-thick"></i></button>
@@ -337,7 +337,7 @@
 
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: #f3f7f9;">
+            <div class="modal-header" >
                 <h4 class="modal-title" id="standard-modalLabel">Audition Location Update</h4>
                 <button type="button" class="close" data-bs-dismiss="modal" >
 <i class="mdi mdi-close-thick"></i></button>
@@ -547,7 +547,7 @@ Appointments
 
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header" style="background-color: ##f3f7f9;">
+                    <div class="modal-header" >
                         <h4 class="modal-title" id="standard-modalLabel">Appointment Add</h4>
                         <button type="button" class="close" data-bs-dismiss="modal" >
 <i class="mdi mdi-close-thick"></i></button>
@@ -623,9 +623,9 @@ Appointments
 
                 <div class="modal-content">
 
-                    <div class="modal-header" style="background-color: ##f3f7f9;">
+                    <div class="modal-header" >
 
-                        <h4 class="modal-title" id="standard-modalLabel"><strong>#events.audstep#: </strong>#dateformat(events.eventStart,'long')#: Personal Assessment</h4>
+                        <h4 class="modal-title" id="standard-modalLabel"><strong>#events.audstep#: </strong>#this.formatDate(events.eventStart)#: Personal Assessment</h4>
 
                         <button type="button" class="close" data-bs-dismiss="modal" >
 <i class="mdi mdi-close-thick"></i>
@@ -696,7 +696,7 @@ Appointments
 </td>
 
 <td class="dt-nowrap">
-                                            <a title="View Details" href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##auditionDetails_#events.eventid#"> #DateFormat('#events.eventStart#','mm-dd-yy')#</a>
+                                            <a title="View Details" href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##auditionDetails_#events.eventid#"> #this.formatDate(events.eventStart)#</a>
                                         </td>
                                                <td class="dt-nowrap">
                                                    <a title="View Details" href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##auditionDetails_#events.eventid#">  #timeformat(events.eventStartTime,'short')#</a>
@@ -1073,7 +1073,7 @@ Appointments
 
                 <div class="modal-content">
 
-                    <div class="modal-header" style="background-color: ##f3f7f9;">
+                    <div class="modal-header" >
 
                         <h4 class="modal-title" id="standard-modalLabel">Warning</h4>
 

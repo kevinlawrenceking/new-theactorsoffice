@@ -6,7 +6,7 @@
             persist: !1,
             createOnBlur: !0,
             create: !0,
-            plugins: ["remove_button"],
+            plugins: ["remove-button"],
             delimiter: ",",
             persist: false,
             create: function(input) {
@@ -184,12 +184,6 @@
             </div>
         </div>
     </div>
-
-    <style>
-        .selectize-dropdown, .selectize-input {
-            line-height: 28px;
-        }
-    </style>
 
     <script>
         $(document).ready(function() {

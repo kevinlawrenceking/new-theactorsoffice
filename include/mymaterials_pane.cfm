@@ -37,7 +37,7 @@
 
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: #f3f7f9;">
+            <div class="modal-header" >
                 <h4 class="modal-title" id="standard-modalLabel">My Materials</h4>
                 <button type="button" class="close" data-bs-dismiss="modal" >
 
@@ -171,14 +171,14 @@
                             </a>
                         </td>
                         <td class="text-nowrap">
-                            <cfif materials_sel.mediaurl neq "">
+                         <cfif #materials_sel.mediaurl# is not "" and #materials_sel.mediaurl# is not "https://">
                                 <a href="#materials_sel.mediaurl#" target="_blank" style="text-decoration: underline; color: blue;">
                                     #materials_sel.mediaurl#
                                 </a>
                             </cfif>
                         </td>
                         <td class="text-nowrap">
-                            #dateformat(materials_sel.mediacreated, 'm-d-YYYY')#<br />#timeformat(materials_sel.mediacreated, 'medium')#
+                            #this.formatDate(materials_sel.mediacreated)#<br />#timeformat(materials_sel.mediacreated, 'medium')#
                         </td>
                         <td class="text-nowrap">
                             <cfif events.recordcount neq 0>
