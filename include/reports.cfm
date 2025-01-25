@@ -187,8 +187,7 @@
             reportlabels = QuotedValueList(labels_x.itemLabel, ",");
             reportvalues = QuotedValueList(reportitems_x.itemValueInt, ",");
         </cfscript>
-
-           <cfset reportlabels = REReplace(reportlabels "'", "", "all") />
+ 
         <cfset reportlabels = REReplace(reportlabels, "''", "", "all") />
 
 
