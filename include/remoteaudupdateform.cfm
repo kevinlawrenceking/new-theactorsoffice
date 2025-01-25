@@ -12,6 +12,7 @@
 <cfinclude template="/include/qry/audplatforms_user_sel.cfm" />
 <cfinclude template="/include/qry/projectDetails_221_1.cfm" />
 <cfset audroleid = projectDetails.audroleid />
+<Cfset new_audroleid = audroleid />
 <cfinclude template="/include/qry/roleDetails_221_2.cfm" />
 <cfinclude template="/include/qry/locationDetails_492_1.cfm" />
     <cfset NEW_AUDSUBCATID = projectDetails.audsubcatid />
@@ -40,10 +41,18 @@
     <cfparam name="new_workwithcoach" default="0" />
     <cfparam name="new_isDeleted" default="0" />
     <cfparam name="new_trackmileage" default="0" />
+    <Cfif #isdefined('audstepid')#>
+<cfset new_audstepid = audstepid />
+</cfif>
 
     <cfinclude template="/include/qry/auditions_ins_221_8.cfm" />
     <cfset eventid = result />
+    <cfset new_eventid = result />
+    <Cfelse>
+    <Cfset new_eventid = eventid />
 </cfif>
+
+
 
 <!--- Fetch audition details --->
 <cfinclude template="/include/qry/aud_det_221_9.cfm" />
@@ -73,7 +82,9 @@
     <cfset new_durid = 0 />
 </cfif>
 
-<!--- Generate a header for the form (e.g., "Audition Appointment" or "Callback Appointment") --->
+
+
+
 <h4>
     <cfoutput>#aud_det.audstep# appointment</cfoutput>
 </h4>
@@ -91,8 +102,8 @@
     <cfoutput>
         <!--- Hidden fields carrying IDs & references --->
         <input type="hidden" name="audprojectid" value="#audprojectid#" />
-        <input type="hidden" name="new_eventid" value="#eventid#" />
-        <input type="hidden" name="eventid" value="#eventid#" />
+        <input type="hidden" name="new_eventid" value="#new_eventid#" />
+        <input type="hidden" name="eventid" value="#new_eventid#" />
         <input type="hidden" name="new_audStepID" value="#aud_det.audstepid#" />
         <input type="hidden" name="new_audcatid" value="#aud_det.audcatid#" />
         <input type="hidden" name="new_audsubcatid" value="#aud_det.audsubcatid#" />
@@ -227,7 +238,7 @@
                   class="form-control"
                   data-parsley-required
                   data-parsley-error-message="Type is required"
-                  onChange="handleSelectChange(this);">
+                  onchange="handleSelectChange(this, '<cfoutput>#new_eventid#</cfoutput>')">
               <option value="">--</option>
               <cfoutput query="audtypes_sel">
                   <option value="#audtypes_sel.id#"
@@ -260,9 +271,17 @@
       </cfif>
     </div>
 
-    <!--- Location Container (only if 'In Person' is selected [=1]) --->
-    <div class="row" id="hiddenLocation" style="display:none;">
+      <cfif aud_det.audtypeid eq 1>
+    <Cfset hiddenlocdisplay = "block">
+    <Cfelse>
+    <cfset hiddenlocdisplay = "none">
+    </cfif>
+
+
     <cfoutput>
+    <!--- Location Container (only if 'In Person' is selected [=1]) --->
+    <div class="row" id="hiddenLocation#new_eventid#" style="display:#hiddenlocdisplay#;">
+
         <div class="form-group col-md-12">
             <label for="new_parkingDetails">Parking Details</label>
             <input class="form-control"
@@ -304,7 +323,7 @@
         <div class="form-group col-md-12">
             <input class="form-control"
                    type="text"
-                   id="eventLocation"
+                   id="eventLocation#new_eventid#"
                    name="new_eventLocation"
                    placeholder="Location Name"
                    data-parsley-required
@@ -387,8 +406,15 @@
     </div> <!-- end #hiddenLocation -->
 
     <!--- Self Tape Container (only if 'Self Tape' is selected [=2]) --->
-    <div class="row" id="hiddenSelfTape" style="display:none;">
-        <cfoutput>
+
+    <cfif aud_det.audtypeid eq 2>
+    <Cfset hiddenselfdisplay = "block">
+    <Cfelse>
+    <cfset hiddenselfdisplay = "none">
+    </cfif>
+          <cfoutput>
+    <div class="row" id="hiddenSelfTape#new_eventid#" style="display:#hiddenselfdisplay#;">
+  
             <div class="form-group col-md-12">
                 <label for="new_audLocation">Platform URL (optional)</label>
                 <input class="form-control"
@@ -402,7 +428,7 @@
         </cfoutput>
 
         <!--- Audition Platform Dropdown --->
-        <div class="form-group col-md-12">
+        <div class="form-group col-md-6">
             <label for="audplatformid">Audition Platform</label>
             <select id="audplatformid"
                     name="new_audplatformid"
@@ -428,7 +454,7 @@
         </div>
 
         <!--- Custom Platform Text Field (hidden by default) --->
-        <div class="form-group col-md-6" id="CustomPlatforms" style="display:none;">
+        <div class="form-group col-md-6" id="CustomPlatform" style="display:none;">
             <label for="CustomPlatform">Custom Platform</label>
             <input class="form-control"
                    type="text"
@@ -479,30 +505,31 @@
 
 <!--- Functions for toggling location/self-tape fields based on audtypeid (1,2, etc.) --->
 <script>
-  function handleSelectChange(element) {
+function handleSelectChange(element, eventId) {
     const typeValue = parseInt(element.value, 10);
 
     // Location (type=1 => in-person)
-    const hiddenLocation = document.getElementById('hiddenLocation');
-    const locationInput  = document.getElementById('eventLocation');
+    const hiddenLocation = document.getElementById('hiddenLocation' + eventId);
+    const locationInput = document.getElementById('eventLocation' + eventId);
     if (typeValue === 1) {
-      hiddenLocation.style.display = 'block';
-      locationInput.setAttribute('required', 'required');
-      locationInput.setAttribute('data-parsley-required', 'true');
+        hiddenLocation.style.display = 'block';
+        locationInput.setAttribute('required', 'required');
+        locationInput.setAttribute('data-parsley-required', 'true');
     } else {
-      hiddenLocation.style.display = 'none';
-      locationInput.removeAttribute('required');
-      locationInput.removeAttribute('data-parsley-required');
+        hiddenLocation.style.display = 'none';
+        locationInput.removeAttribute('required');
+        locationInput.removeAttribute('data-parsley-required');
     }
 
     // Self Tape (type=2 => self-tape)
-    const hiddenSelfTape = document.getElementById('hiddenSelfTape');
+    const hiddenSelfTape = document.getElementById('hiddenSelfTape' + eventId);
     if (typeValue === 2) {
-      hiddenSelfTape.style.display = 'block';
+        hiddenSelfTape.style.display = 'block';
     } else {
-      hiddenSelfTape.style.display = 'none';
+        hiddenSelfTape.style.display = 'none';
     }
-  }
+}
+
 </script>
 
 <!--- Filter Regions based on selected country (custom-chained logic) --->

@@ -14,13 +14,6 @@
 <cfset nots_total = notsActives.nots_total />
 
 </cfif>
-<style>
-    .input-xs,
-    select.input-xs {
-        height: 24px;
-        line-height: 24px;
-    }
-</style>
 
 <script type="text/javascript">
     $(document).ready(function() {

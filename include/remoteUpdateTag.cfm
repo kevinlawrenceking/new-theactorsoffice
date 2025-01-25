@@ -40,7 +40,7 @@
         <div class="col-lg-12">
             <div class="form-group mb-3">
                 <label for="select-tag">Click in the box to select a tag <strong>or</strong> type a new one:</label>
-                <select id="select-tag" name="tag" multiple class="demo-default selectize-close-btn" style="width: 100%" placeholder="Select a tag..." value="Publicist">
+                <select id="select-tag" name="tag" multiple class="demo-default selectize-close-btn w-100" placeholder="Select a tag..." value="Publicist">
                     <option value="">Select a tag...</option>
                     
                     <!--- Loop through the tags query to populate the select options --->

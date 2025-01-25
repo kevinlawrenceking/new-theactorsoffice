@@ -1,23 +1,5 @@
 <!--- This ColdFusion page manages contact data display and interactions, including importing, exporting, and managing tags and systems. --->
 
-<style>
-    .exportcontacts, .updatetag, .updatesystem, .deletesystem, .addrelationship, .importhistory, .batchdelete, .searchtag, .import {
-        color: #fff;
-        background-color: #406E8E;
-        border-color: #223a4a;
-        position: relative;
-        cursor: pointer;
-        display: inline-block;
-        overflow: hidden;
-        -webkit-user-select: none;
-        user-select: none;
-        -webkit-tap-highlight-color: transparent;
-        padding: .25rem .5rem;
-        border-radius: .2rem;    
-        font-size: .87em;
-    } 
-</style>
-
 <div class="table-responsive" id="<cfoutput>#contacts_table#_container</cfoutput>">
     <table id="<cfoutput>#contacts_table#</cfoutput>" class="table display nowrap table-striped dataTable w-100 dtr-inline dt-checkboxes-select dt-responsive">
         <thead>

@@ -57,13 +57,13 @@
                         <div class="card-body p-4">
                             <div class="text-center w-85 m-auto">
                                 <div class="auth-logo">
-                                    <a href="index.html" class="logo logo-dark text-center">
-                                        <span class="logo-lg">
+                                    <a href="index.html" class="logo no-hover-effect logo-dark text-center">
+                                        <span class="logo no-hover-effect-lg">
                                             <img src="/media/shared/taowhite.png" alt="" height="60" />
                                         </span>
                                     </a>
-                                    <a href="index.html" class="logo logo-light text-center">
-                                        <span class="logo-lg">
+                                    <a href="index.html" class="logo no-hover-effect logo-light text-center">
+                                        <span class="logo no-hover-effect-lg">
                                             <img src="/media/shared/images/logo-dark.png" alt="" height="22" />
                                         </span>
                                     </a>

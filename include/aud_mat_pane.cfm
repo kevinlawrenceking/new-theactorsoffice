@@ -17,7 +17,7 @@
 
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: #f3f7f9;">
+            <div class="modal-header" >
                 <h4 class="modal-title" id="standard-modalLabel">Link Media</h4>
                 <button type="button" class="close" data-bs-dismiss="modal" >
 
@@ -65,7 +65,7 @@
 
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header" style="background-color: ##f3f7f9;">
+                <div class="modal-header" >
                     <h4 class="modal-title" id="standard-modalLabel">Add Media</h4>
                     <button type="button" class="close" data-bs-dismiss="modal" >
 
@@ -110,7 +110,7 @@
     <cfoutput>
         <input type="hidden" name="audprojectid" value="#audprojectid#" />
     </cfoutput>
-    <select id="new_mediaid" name="new_mediaid" onchange="this.form.submit()">
+    <select id="new_mediaid" class="form-control-short" name="new_mediaid" onchange="this.form.submit()">
         <option value="">Link Material</option>
         <cfoutput query="audmedia_picklist">
             <option value="#audmedia_picklist.mediaid#">#audmedia_picklist.mediatype#: #audmedia_picklist.medianame#</option>

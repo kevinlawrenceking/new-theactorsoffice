@@ -153,82 +153,95 @@
         <cfset k = 0 />
 
         <!--- Generate dataset content --->
-        <cfsavecontent variable="dataset_data">
-         <cfloop query="dataset_x">
-           <cfinclude template="/include/qry/values_x_281_6.cfm" />
-                    <cfoutput>
-                        <cfset itemvalues = "#ValueList(values_x.itemValueInt, ',')#" />
-                    </cfoutput>
+<cfsavecontent variable="dataset_data">
+    <cfloop query="dataset_x">
+        <!--- Include necessary query values --->
+        <cfinclude template="/include/qry/values_x_281_6.cfm" />
+        
+        <!--- Generate the item values as a list --->
+        <cfoutput>
+            <cfset itemvalues = ValueList(values_x.itemValueInt, ',')>
+        </cfoutput>
 
-                <cfset k = k + 1 />
-                <cfif k EQ 1 OR k EQ 3>
-                    <cfset bgcolor = ",backgroundColor: ['##406E8E']" />
+        <!--- Background color logic based on `k` --->
+        <cfset k = k + 1 />
+        <cfif k EQ 1 OR k EQ 3>
+            <cfset bgcolor = "'##406E8E'">
+        <cfelse>
+            <cfset bgcolor = "'##1ABC9C'">
+        </cfif>
+
+        <!--- Handle commas between datasets --->
+        <cfif k GT 1>,</cfif>
+        
+        <!--- Generate dataset output with safe labels --->
+        <cfoutput>
+        <cfset safelabel = REReplace(dataset_x.itemdataset, "'", "", "all") />
+        <cfset safelabel = REReplace(safelabel, "''", "", "all") />
+            {
+                label: "#safelabel#",
+                data: [#itemvalues#]
+                <cfif reports.reporttypename NEQ "bar">
+                    ,backgroundColor: [#reports.colorscheme#]
                 <cfelse>
-                    <cfset bgcolor = ",backgroundColor: ['##1ABC9C']" />
+                    ,backgroundColor: [#bgcolor#]
                 </cfif>
+            }
+        </cfoutput>
+    </cfloop>
+</cfsavecontent>
 
-                <cfif k GT 1>,</cfif>
-                <cfoutput>
-                    {
-                        label: '#dataset_x.itemdataset#',
-                        data: [#itemvalues#]
-                        <cfif reports.reporttypename NEQ "bar">
-                            ,backgroundColor: [#reports.colorscheme#]
-                        <cfelse>
-                            #bgcolor#
-                        </cfif>
-                    }
-                </cfoutput>
-            </cfloop>
-        </cfsavecontent>
+
+
 
         <!--- Prepare data for the chart --->
         <cfscript>
             reportlabels = QuotedValueList(labels_x.itemLabel, ",");
             reportvalues = QuotedValueList(reportitems_x.itemValueInt, ",");
         </cfscript>
- 
-        <cfset reportlabels = REReplace(reportlabels, "''", "", "all") />
-
-
 
         <cfoutput>
             <cfset reportvalues = "#reportvalues#">
             <cfset reportlabels = "#reportlabels#">
 
-            <script>
-                const chart#reports.reportid# = document.getElementById('myChart_#reports.reportid#');
-                new Chart(chart#reports.reportid#, {
-                    type: '#reports.reporttypename#',
-                    data: {
-                        labels: [#reportlabels#],
-                        datasets: [#dataset_data#],
-                    },
-                    options: {
-                        responsive: true,
-                        <cfif reports.reportid EQ 4>
-                            scales: {
-                                x: { stacked: true },
-                                y: { stacked: true }
-                            },
-                        </cfif>
-                        <cfif reports.reportid EQ 9>
-                            scales: {
-                                x: { stacked: true },
-                                y: {
-                                    ticks: { precision: 0 },
-                                    stacked: true
-                                }
-                            },
-                        </cfif>
-                    }
-                });
-            </script>
-        </cfoutput>
+ 
 
+    <cfset safeReportLabels = reportlabels>
+    <cfset safeDatasetData = dataset_data>
+    <cfset scalesConfig = "" />
+    
+    <cfif reports.reportid EQ 4>
+        <cfset scalesConfig = "{ x: { stacked: true }, y: { stacked: true } }">
+    </cfif>
+    <cfif reports.reportid EQ 9>
+        <cfset scalesConfig = "{ x: { stacked: true }, y: { stacked: true, ticks: { precision: 0 } } }">
+    </cfif>
+
+    <script>
+        const chart_#reports.reportid# = document.getElementById('myChart_#reports.reportid#');
+        new Chart(chart_#reports.reportid#, {
+            type: '#reports.reporttypename#',
+            data: {
+                labels: [#safeReportLabels#],
+                datasets: [#safeDatasetData#]
+            },
+            options: {
+                responsive: true
+                <cfif Len(scalesConfig) GT 0>, scales: #scalesConfig#</cfif>
+            }
+        });
+    </script>
+</cfoutput>
     </cfif>
 
 </cfloop>
+
+
+
+
+
+
+
 
 <script>
   function toggleDateDiv(selectedValue) {

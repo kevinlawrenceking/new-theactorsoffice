@@ -374,15 +374,15 @@
 
 <p class="card-text">
 
-<A href="/app/image-upload/?contactid=<cfoutput>#contactid#&ref_pgid=#pgid#</cfoutput>">
+<A href="/app/image-upload/?contactid=<cfoutput>#contactid#&ref_pgid=#pgid#</cfoutput>"  class="no-hover-effect">
 
                             <figure>
 
                                 <cfif isimagefile(browser_contact_avatar_filename)>
 
-                                    <centeR><img src="<cfoutput>#browser_contact_avatar_filename#</cfoutput>?ver=<Cfoutput>#rand()#</cfoutput>" class="mr-3 rounded-circle gambar img-responsive img-thumbnail" style="max-width:120px;width:100%" alt="profile-image" id="item-img-output" />      </centeR>
+                                    <centeR><img src="<cfoutput>#browser_contact_avatar_filename#</cfoutput>?ver=<Cfoutput>#rand()#</cfoutput>" class="mr-3 rounded-circle gambar img-responsive img-thumbnail w-100" style="max-width:120px" alt="profile-image" id="item-img-output" />      </centeR>
                                     <CFELSE>
-                                        <center><img src="/media-<cfoutput>#host#</cfoutput>/defaults/avatar.jpg" class="mr-3 rounded-circle gambar img-responsive img-thumbnail" style="max-width:120px;width:100%;" alt="profile-image" id="item-img-output" /></center>
+                                        <center><img src="/media-<cfoutput>#host#</cfoutput>/defaults/avatar.jpg" class="mr-3 rounded-circle gambar img-responsive img-thumbnail w-100" style="max-width:120px;" alt="profile-image" id="item-img-output" /></center>
                                 </CFIF>
 
 </figure>

@@ -210,7 +210,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <cfinclude template="/include/qry/opencalls_286_1.cfm" />
             <div class="form-group">
                 <label for="select-opencall">Click in the box to select an open call option OR type a new one:</label>
-                <select id="select-opencall" name="new_opencallname" class="demo-default selectize-close-btn" style="width: 100%" placeholder="Select the option...">
+                <select id="select-opencall" name="new_opencallname" class="demo-default selectize-close-btn w-100" placeholder="Select the option...">
                     <option value="">Select an open call option...</option>
                     <cfloop query="opencalls">
                         <cfif #roledetails.opencallid# is "">
@@ -266,7 +266,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <cfinclude template="/include/qry/referrals_286_3.cfm" />
             <div class="form-group">
                 <label for="select-tag">Click in the box to select a Referral Source OR type a new one:</label>
-                <select id="select-referral" name="referral" class="demo-default selectize-close-btn" style="width: 100%" placeholder="Select the referral...">
+                <select id="select-referral" name="referral" class="demo-default selectize-close-btn w-100" placeholder="Select the referral...">
                     <option value="">Select a referral...</option>
                     <cfloop query="referrals">
                         <cfif #roledetails.contactid# is "">
@@ -312,7 +312,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <cfinclude template="/include/qry/subsites_286_5.cfm" />
             <div class="form-group">
                 <label for="select-submitsitename">Click in the box to select a Submission Site OR type a new one:</label>
-                <select id="select-submitsitename" name="new_submitsitename" class="demo-default selectize-close-btn" style="width: 100%" placeholder="Select the site...">
+                <select id="select-submitsitename" name="new_submitsitename" class="demo-default selectize-close-btn w-100" placeholder="Select the site...">
                     <option value="">Select the site...</option>
                     <cfloop query="subsites">
                         <cfif "#subsites.submitsiteid#" is "#roledetails.submitsiteid#">
@@ -351,7 +351,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <cfinclude template="/include/qry/ranges_286_6.cfm" />
         <div class="form-group mb-3">
             <label for="select-tag">Age Range:</label>
-            <select id="select-age" name="rangename" multiple class="demo-default selectize-close-btn" style="width: 100%" placeholder="Select an age range...">
+            <select id="select-age" name="rangename" multiple class="demo-default selectize-close-btn w-100" placeholder="Select an age range...">
                 <option value="">Select an age range...</option>
                 <cfloop query="ranges">
                     <cfset new_rangeid=ranges.rangeid />
@@ -422,7 +422,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <cfinclude template="/include/qry/vocals_286_8.cfm" />
             <div class="form-group">
                 <label for="select-tag">Click in the box to select a Vocal Quality OR type a new one:</label>
-                <select id="select-vocal" name="vocaltype" multiple class="demo-default selectize-close-btn" style="width: 100%" placeholder="Select a vocal type...">
+                <select id="select-vocal" name="vocaltype" multiple class="demo-default selectize-close-btn w-100" placeholder="Select a vocal type...">
                     <option value="">Click in the box to select a V OR type a new one</option>
                     <cfloop query="vocals">
                         <cfset new_vocaltypeid=vocals.vocaltypeid />
@@ -455,7 +455,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <cfinclude template="/include/qry/essences_286_10.cfm" />
         <div class="form-group">
             <label for="select-tag">Click in the box to select an Essence OR type a new one:</label>
-            <select id="select-essence" name="essence" multiple class="demo-default selectize-close-btn" style="width: 100%" placeholder="Select an essence...">
+            <select id="select-essence" name="essence" multiple class="demo-default selectize-close-btn w-100" placeholder="Select an essence...">
                 <option value="">Select an essence...</option>
                 <cfloop query="essences">
                     <cfinclude template="/include/qry/findg_286_11.cfm" />
@@ -497,7 +497,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <cfinclude template="/include/qry/genres_286_13.cfm" />
                 <div class="form-group">
                     <label for="select-tag">Click in the box to select a Genre OR type a new one:</label>
-                    <select id="select-genre" name="Genre" multiple class="demo-default selectize-close-btn" style="width: 100%" placeholder="Select a genre...">
+                    <select id="select-genre" name="Genre" multiple class="demo-default selectize-close-btn w-100" placeholder="Select a genre...">
                         <option value="">Select a genre...</option>
                         <cfloop query="genres">
                             <cfinclude template="/include/qry/findge_286_14.cfm" />

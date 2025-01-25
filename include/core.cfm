@@ -88,7 +88,7 @@
         <div id="z" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel">
           <div class="modal-dialog">
             <div class="modal-content">
-              <div class="modal-header" style="background-color: #f3f7f9;">
+              <div class="modal-header" >
                 <h4 class="modal-title" id="standard-modalLabel">Support Center</h4>
                 <button type="button" class="close" data-bs-dismiss="modal"></button>
               </div>
@@ -113,7 +113,7 @@
         <div id="remoteSupportForm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel">
           <div class="modal-dialog">
             <div class="modal-content">
-              <div class="modal-header" style="background-color: #f3f7f9;">
+              <div class="modal-header" >
                 <h4 class="modal-title" id="standard-modalLabel">Support Center</h4>
                 <button type="button" class="close" data-bs-dismiss="modal"></button>
               </div>

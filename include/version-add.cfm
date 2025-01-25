@@ -185,12 +185,6 @@
         </div>
     </div>
 
-    <style>
-        .selectize-dropdown, .selectize-input {
-            line-height: 28px;
-        }
-    </style>
-
     <script>
         $(document).ready(function() {
             $(".form-ticket").parsley();

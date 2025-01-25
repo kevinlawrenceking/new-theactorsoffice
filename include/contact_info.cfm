@@ -531,10 +531,7 @@ x</button>
 
 </cfloop>
 
-<div class="row" style="width:100%;
-  margin:0;
-  padding:0;
-  display:flex;">
+<div class="row w-100 m-0 p-0 d-flex">
 
     <div class="col-md-6 col-sm-6 col-xs-12">
 
@@ -611,7 +608,7 @@ x</button>
 
                         </cfoutput>
 
-                        <A href="/app/image-upload-contact/?contactid=<cfoutput>#contactid#&ref_pgid=3</cfoutput>">
+                        <A class="no-hover-effect" href="/app/image-upload-contact/?contactid=<cfoutput>#contactid#&ref_pgid=3</cfoutput>">
 
 <figure>
 <cfoutput>
@@ -625,8 +622,8 @@ x</button>
 <cfif NOT fileExists(avatar_path)>
     <!--- Fallback to default avatar if the contact's avatar doesn't exist --->
     <img src="#default_avatar#" 
-         class="mr-3 rounded-circle gambar img-responsive img-thumbnail" 
-         style="max-width:180px;width:100%" 
+         class="mr-3 rounded-circle gambar img-responsive img-thumbnail w-100" 
+    style="max-width:180px;
          alt="profile-image" 
          id="item-img-output" />
     
@@ -650,8 +647,8 @@ x</button>
 <cfelse>
     <!--- Display the contact's avatar if it exists --->
     <img src="#contact_avatar#?rev=#rand()#" 
-         class="mr-3 rounded-circle gambar img-responsive img-thumbnail" 
-         style="max-width:180px;width:100%" 
+         class="mr-3 rounded-circle gambar img-responsive img-thumbnail w-100" 
+         style="max-width:180px;" 
          alt="profile-image" 
          id="item-img-output" />
 </cfif>
@@ -686,26 +683,26 @@ x</button>
 
         <div class="card h-100 mb-3">
 
-      <h4 class="card-card-header text-center text-white text-nowrap py-0" style="background-color: #406E8E;margin:0!important;padding:15px!important;" >
-                   Relationship Info
-                </h4>
+<h4 class="card-header text-center text-white text-nowrap py-0 relationship-header">
+    Relationship Info
+</h4>
+
 
 <cfoutput>
-                         <h4 class="px-3 d-flex text-nowrap">
+<p class="pt-3 pr-3 d-flex text-nowrap">
+  <span class="ms-auto pe-3">
+    <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateName" data-bs-placement="top" title="Update Contact" data-bs-original-title="Update Contact">
+      <i class="mdi mdi-square-edit-outline"></i>
+    </a>
+  </span>
+</p>
 
-<span class="ms-auto">
-
-                          <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateName" data-bs-placement="top" title="Update Contact" data-bs-original-title="Update Contact"> <i class="mdi mdi-square-edit-outline"></i> </a>
-
-                           </span>
-
-                       </h4>
 
 </cfoutput>
 
 <div class="card-body">
 
-<p class="mt-1 mb-0 py-1 text-muted font-14">
+<p class="mt-1 mb-0 py-3">
 
                     <cfloop query="tagscontact">
 
@@ -1033,19 +1030,19 @@ x</button>
 
             <li class="nav-item">
 
-                <a href="#notes" data-bs-toggle="tab" aria-expanded="<cfoutput>#notes_expand#</cfoutput>" class="nav-link<cfif #notes_expand# is "true"> active</cfif>">Notes
+                <cfoutput><a href="##notes" data-bs-toggle="tab" aria-expanded="#notes_expand#" class="nav-link<cfif #notes_expand# is "true"> active</cfif>">Notes
 
                     <cfif notesContact.recordcount neq 0>
 
-                        <span class="badge  badge-primary badge-pill">
+                  
 
-                            <cfoutput>(#numberformat(notesContact.recordcount)#)</cfoutput>
+                            (#numberformat(notesContact.recordcount)#)
 
-                        </span>
+           
 
                     </cfif>
 
-                </a>
+                </a></cfoutput>
 
             </li>
 
@@ -1055,11 +1052,10 @@ x</button>
 
                     <cfif eventresults.recordcount neq 0>
 
-                        <span class="badge  badge-primary badge-pill">
+                        
 
                             <cfoutput>(#numberformat(eventresults.recordcount)#)</cfoutput>
 
-                        </span>
 
                     </cfif>
 

@@ -3,17 +3,13 @@
 
 <h4>My Team</h4>
 
-<p>
-    Select a Team Member from your existing relationships or add a new one.
-</p>
-
   <input type="hidden" name="ctaction" value="addmember"/>
   <div class="row" style="margin: auto;">
     <div class="col-md-2 p-2">Add a new person to your team:
     </div>
     <div class="col-md-4 p-2">
       <a href="remoteAddContact.cfm?src=account" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="#remoteAddContact">
-        <button id="mybtns" type="submit" class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="background-color: #406e8e; border: #406e8e; height: 37px;">
+        <button id="mybtns" type="submit" class="btn btn-sm btn-primary waves-effect mb-2 waves-light" style="background-color: #406e8e; border: #406e8e; height: 37px;">
           Add
         </button>
       </a>
@@ -86,7 +82,7 @@
     <p class="card-text">
       <cfloop query="mytags">
         <cfoutput>
-          <span class="badge bg-secondary me-1">#mytags.valuetext#</span>
+          <span class="badge badge-blue">#mytags.valuetext#</span>
         </cfoutput>
       </cfloop>
     </p>
@@ -105,7 +101,7 @@
   </div> <!--- end .card-body --->
 
   <!--- Card Footer: Remove Button --->
-  <div class="card-footer bg-transparent border-0 text-center">
+  <div class="card-footer border-1 text-center">
     <a href="/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=#myteam.contactid#"
        title="Remove from team"
        class="btn btn-sm" style="background-color: ##fffff; border: none; color: ##2e4f65;"

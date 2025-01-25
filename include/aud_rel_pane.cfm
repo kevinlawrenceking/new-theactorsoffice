@@ -11,12 +11,6 @@
     });
 </script>
 
-<style>
-    .box-row {
-        margin-bottom: 20px; /* Adjust the margin as per your requirement */
-    }
-</style>
-
 <cfset modalid="remoteAddContactAud" />
 
 <cfset modaltitle="Add Contact" />
@@ -29,12 +23,20 @@
 
 <h4>Audition Relationships</h4>
 
-<p>
-    Add a relationship from your existing relationships or 
-    <a href="remoteAddContact.cfm?src=account" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="#remoteAddContactAud">
-        <strong>Add</strong>
-    </a> a new one. Check the dates to link them to the specific audition appointment.
-</p>
+
+
+  <div class="row" style="margin: auto;">
+    <div class="col-md-2 p-2">Add a new person to your audition:
+    </div>
+    <div class="col-md-4 p-2">
+        <a href="remoteAddContact.cfm?src=account" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="#remoteAddContactAud">
+        <button id="mybtns" type="submit" class="btn btn-sm btn-primary waves-effect mb-2 waves-light" style="background-color: #406e8e; border: #406e8e; height: 37px;">
+          Add
+        </button>
+      </a>
+    </div>
+  </div>
+
 
 <form class="app-search" action="/app/audition/?secid=175" method="POST">
     <cfoutput>  
@@ -42,9 +44,9 @@
         <input type="hidden" name="audprojectid" value="#audprojectid#" />
     </cfoutput>
 
-    <div class="row">
-        <div class="col-md-2 py-2">Add relationship:</div>
-        <div class="col-md-3 py-2">
+<div class="row" style="margin: auto;">
+        <div class="col-md-2 p-2">Or select an existing relationship:</div>
+        <div class="col-md-4 p-2">
             <div class="input-group">
                 <select class="form-control" name="autocomplete_aud" id="autocomplete_audx">
                     <option value="">Select Contact...</option>
@@ -87,7 +89,8 @@
 
             <cfoutput>
                 <div class="col-xl-3 col-md-4 col-sm-6 col-xs-12" style="padding-bottom:20px;">
-                    <div class="text-center card-box border border-secondary border-1 h-100">
+                  <div class="card h-100 shadow-sm border border-dark text-center">
+                    <div class="card-body text-center d-flex flex-column justify-content-center">
                         <div class="pt-1 pb-1">
                             <cfset contact_avatar_filename = "#session.userContactsPath#\#audcontacts.contactid#\avatar.jpg" />
 
@@ -121,14 +124,29 @@
                                     <span>Email: #new_email# &nbsp;</span>
                                 </cfif>
                             </p>
-                            <cfif "#projectDetails.contactid#" is not "#audcontacts.contactid#">
-                                <a href="/app/audition/?audprojectid=#audprojectid#&ctaction=deleteContact&amp;deletecontactid=#audcontacts.contactid#&secid=175" title="Remove from Audition" style="padding-left:10px;color:dimgrey;">
-                                    <span><i class="fe-trash-2 font-10 text-muted"></i></span>
-                                </a>
-                            </cfif>
+                          
+                               
+                                  
                         </div>
-                    </div><!--- end .padding --->
+                        </div>
+                    
+                                      <div class="card-footer border-1 text-center">
+                                        <cfif "#projectDetails.contactid#" is not "#audcontacts.contactid#">
+  <a class="btn btn-sm" href="/app/audition/?audprojectid=#audprojectid#&ctaction=deleteContact&amp;deletecontactid=#audcontacts.contactid#&secid=175" title="Remove from Audition" >
+      <i class="fe-trash-2 me-1"></i> Remove
+    </a>
+    <cfelse>
+    <div style="line-height:26px;"> </div>
+    </cfif>
                 </div>
+                    </div><!--- end .padding --->
+                    
+
+                </div>
+
+
+
+
             </cfoutput>
         </cfloop>
     </div>

@@ -570,7 +570,9 @@ WHERE
             AND userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
-</cffunction> <cffunction output="false" name="INSevents_24096" access="public" returntype="numeric">
+</cffunction> 
+
+<cffunction output="false" name="INSevents_24096" access="public" returntype="numeric">
     <cfargument name="new_userid" type="string" required="yes">
     <cfargument name="new_audRoleID" type="string" required="no" default="">
     <cfargument name="new_audTypeID" type="string" required="no" default="">
@@ -623,7 +625,10 @@ WHERE
 
 <!--- Return the generated key --->
     <cfreturn result.generatedKey>
-</cffunction> <cffunction output="false" name="UPDevents_24108" access="public" returntype="void">
+</cffunction>
+
+
+ <cffunction output="false" name="UPDevents_24108" access="public" returntype="void">
     <cfargument name="eventId" type="numeric" required="true">
     <cfargument name="newEventStart" type="date" required="false" default="">
     <cfargument name="newEventStartTime" type="time" required="false" default="">

@@ -108,7 +108,7 @@
     <cfparam name="target_id" default="0" />
     <div class="row">
         <div class="col-xl-12">
-            <div id="accordion_systems" class="mb-3" style="width:100%;">
+            <div id="accordion_systems" class="mb-3 w-100" >
                 <cfset k=0 />
                 <!--- Loop through event results for mobile display --->
                 <cfloop query="eventresults.eventresults">
@@ -140,9 +140,9 @@
                     <Cfset heading_system = "heading_system_" & eventresults.eventresults.currentrow />
                     <Cfset collapse_system = "collapse_system_" & eventresults.eventresults.currentrow />
 
-                    <div class="card mb-1" style="width:100%;">
+                    <div class="card mb-1 w-100">
                         <div class="card-header" id="">
-                            <h5 class="m-0 align-middle" style="width:100%;">
+                            <h5 class="m-0 align-middle w-100" >
                                 <a class="text-dark collapsed" data-bs-toggle="collapse" 
                                    href="#heading_system#" 
                                    aria-expanded="#header_aria_expanded#">

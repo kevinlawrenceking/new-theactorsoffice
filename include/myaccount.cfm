@@ -17,7 +17,7 @@
 
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: #f3f7f9;">
+            <div class="modal-header" >
                 <h4 class="modal-title" id="standard-modalLabel">Account & Security</h4>
                 <button type="button" class="close" data-bs-dismiss="modal" >
 <i class="mdi mdi-close-thick"></i></button>
@@ -68,7 +68,7 @@
 
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header" style="background-color: #f3f7f9;">
+            <div class="modal-header" >
                 <h4 class="modal-title" id="standard-modalLabel">Account & Security</h4>
                 <button type="button" class="close" data-bs-dismiss="modal" >
 <i class="mdi mdi-close-thick"></i></button>
@@ -277,7 +277,7 @@
 
                                 <div class="modal-dialog">
                                     <div class="modal-content">
-                                        <div class="modal-header" style="background-color: ##f3f7f9;">
+                                        <div class="modal-header" >
                                             <h4 class="modal-title" id="standard-modalLabel">Add Custom #sitetypes.sitetypename# Link</h4>
                                             <button type="button" class="close" data-bs-dismiss="modal" >
 <i class="mdi mdi-close-thick"></i></button>
@@ -306,7 +306,7 @@
 
                                 <div class="modal-dialog">
                                     <div class="modal-content">
-                                        <div class="modal-header" style="background-color: ##f3f7f9;">
+                                        <div class="modal-header" >
                                             <h4 class="modal-title" id="standard-modalLabel">#mylinks.sitetypename# Link Update</h4>
                                             <button type="button" class="close" data-bs-dismiss="modal" >
 <i class="mdi mdi-close-thick"></i></button>
@@ -335,7 +335,7 @@
 
                                 <div class="modal-dialog">
                                     <div class="modal-content">
-                                        <div class="modal-header" style="background-color: ##f3f7f9;">
+                                        <div class="modal-header" >
                                             <h4 class="modal-title" id="standard-modalLabel">#actions.systemName# Action Update</h4>
                                             <button type="button" class="close" data-bs-dismiss="modal" >
 <i class="mdi mdi-close-thick"></i></button>
@@ -352,7 +352,7 @@
 
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <div class="modal-header" style="background-color: ##f3f7f9;">
+                                    <div class="modal-header" >
                                         <h4 class="modal-title" id="standard-modalLabel">Profile Link</h4>
                                         <button type="button" class="close" data-bs-dismiss="modal" >
 <i class="mdi mdi-close-thick"></i></button>
@@ -399,7 +399,7 @@
 
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <div class="modal-header" style="background-color: ##f3f7f9;">
+                                <div class="modal-header" >
                                     <h4 class="modal-title" id="standard-modalLabel">Default Settings Update</h4>
                                     <button type="button" class="close" data-bs-dismiss="modal" >
 <i class="mdi mdi-close-thick"></i></button>
