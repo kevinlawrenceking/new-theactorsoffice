@@ -187,40 +187,34 @@
             reportlabels = QuotedValueList(labels_x.itemLabel, ",");
             reportvalues = QuotedValueList(reportitems_x.itemValueInt, ",");
         </cfscript>
+<cfoutput>
+    <cfset safeReportLabels = SerializeJSON(reportlabels)>
+    <cfset safeDatasetData = SerializeJSON(dataset_data)>
+    <cfset scalesConfig = "" />
+    
+    <cfif reports.reportid EQ 4>
+        <cfset scalesConfig = "{ x: { stacked: true }, y: { stacked: true } }">
+    </cfif>
+    <cfif reports.reportid EQ 9>
+        <cfset scalesConfig = "{ x: { stacked: true }, y: { stacked: true, ticks: { precision: 0 } } }">
+    </cfif>
 
-        <cfoutput>
-            <cfset reportvalues = "#reportvalues#">
-            <cfset reportlabels = "#reportlabels#">
+    <script>
+        const chart_#reports.reportid# = document.getElementById('myChart_#reports.reportid#');
+        new Chart(chart_#reports.reportid#, {
+            type: '#reports.reporttypename#',
+            data: {
+                labels: #safeReportLabels#,
+                datasets: #safeDatasetData#
+            },
+            options: {
+                responsive: true
+                <cfif Len(scalesConfig) GT 0>, scales: #scalesConfig#</cfif>
+            }
+        });
+    </script>
+</cfoutput>
 
-            <script>
-                const chart#reports.reportid# = document.getElementById('myChart_#reports.reportid#');
-                new Chart(chart#reports.reportid#, {
-                    type: '#reports.reporttypename#',
-                    data: {
-                        labels: [#reportlabels#],
-                        datasets: [#dataset_data#],
-                    },
-                    options: {
-                        responsive: true,
-                        <cfif reports.reportid EQ 4>
-                            scales: {
-                                x: { stacked: true },
-                                y: { stacked: true }
-                            },
-                        </cfif>
-                        <cfif reports.reportid EQ 9>
-                            scales: {
-                                x: { stacked: true },
-                                y: {
-                                    ticks: { precision: 0 },
-                                    stacked: true
-                                }
-                            },
-                        </cfif>
-                    }
-                });
-            </script>
-        </cfoutput>
 
     </cfif>
 
