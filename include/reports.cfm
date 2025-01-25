@@ -183,13 +183,9 @@
         </cfsavecontent>
 
         <!--- Prepare data for the chart --->
-        <cfscript>
-            reportlabels = QuotedValueList(labels_x.itemLabel, ",");
-            reportvalues = QuotedValueList(reportitems_x.itemValueInt, ",");
-        </cfscript>
-<cfoutput>
-    <cfset safeReportLabels = SerializeJSON(reportlabels)>
-    <cfset safeDatasetData = SerializeJSON(dataset_data)>
+       <cfoutput>
+    <cfset safeReportLabels = reportlabels>
+    <cfset safeDatasetData = dataset_data>
     <cfset scalesConfig = "" />
     
     <cfif reports.reportid EQ 4>
@@ -204,8 +200,8 @@
         new Chart(chart_#reports.reportid#, {
             type: '#reports.reporttypename#',
             data: {
-                labels: #safeReportLabels#,
-                datasets: #safeDatasetData#
+                labels: [#safeReportLabels#],
+                datasets: [#safeDatasetData#]
             },
             options: {
                 responsive: true
@@ -214,8 +210,6 @@
         });
     </script>
 </cfoutput>
-
-
     </cfif>
 
 </cfloop>
