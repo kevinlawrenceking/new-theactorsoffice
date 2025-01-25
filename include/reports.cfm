@@ -176,8 +176,10 @@
         
         <!--- Generate dataset output with safe labels --->
         <cfoutput>
+        <cfset safelabel = REReplace(dataset_x.itemdataset, "'", "", "all") />
+        <cfset safelabel = REReplace(safelabel, "''", "", "all") />
             {
-                label: "<cfset dataset_x.itemdataset = REReplace(dataset_x.itemdataset, "'", "", "all") />",
+                label: "#safelabel#",
                 data: [#itemvalues#]
                 <cfif reports.reporttypename NEQ "bar">
                     ,backgroundColor: [#reports.colorscheme#]
