@@ -191,8 +191,7 @@
         <cfoutput>
             <cfset reportvalues = "#reportvalues#">
             <cfset reportlabels = "#reportlabels#">
-       <cfset reportlabels = REReplace(reportlabels, "'", "", "all") />
-        <cfset reportlabels = REReplace(reportlabels, "''", "", "all") />
+
             <script>
                 const chart#reports.reportid# = document.getElementById('myChart_#reports.reportid#');
                 new Chart(chart#reports.reportid#, {
