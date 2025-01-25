@@ -160,7 +160,7 @@
         
         <!--- Generate the item values as a list --->
         <cfoutput>
-        <cfset itemvalues = "#ValueList(values_x.itemValueInt, ',')#" />
+            <cfset itemvalues = ValueList(values_x.itemValueInt, ',')>
         </cfoutput>
 
         <!--- Background color logic based on `k` --->
@@ -170,14 +170,14 @@
         <cfelse>
             <cfset bgcolor = "'##1ABC9C'">
         </cfif>
+
+        <!--- Handle commas between datasets --->
         <cfif k GT 1>,</cfif>
-
+        
+        <!--- Generate dataset output with safe labels --->
         <cfoutput>
-        <!--- Sanitize labels to remove problematic characters --->
-        <cfset safeLabel = Replace(dataset_x.itemdataset, "[^a-zA-Z0-9 ]", "", "all")>
-
             {
-                label: "#safeLabel#",
+                label: "#REReplace(dataset_x.itemdataset, '[\'\"]', '\\\1', 'all')#",
                 data: [#itemvalues#]
                 <cfif reports.reporttypename NEQ "bar">
                     ,backgroundColor: [#reports.colorscheme#]
@@ -188,6 +188,7 @@
         </cfoutput>
     </cfloop>
 </cfsavecontent>
+
 
 
 
