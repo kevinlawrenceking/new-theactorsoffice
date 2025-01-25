@@ -24520,10 +24520,3 @@ label {
 .badge.badge-primary.badge-pill:active {
     color: white;
 }
-
-body[data-leftbar-size=condensed] .left-side-menu {
-	position: absolute;
-	padding-top: 0;
-	width: 70px!important;
-	z-index: 5
-}
