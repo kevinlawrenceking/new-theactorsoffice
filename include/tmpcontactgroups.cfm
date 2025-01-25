@@ -1,4 +1,4 @@
-<cfset dbug="n" />
+<cfset dbug="y" />
 
 <!--- Set default value for idlist --->
 <cfparam name="idlist" default="0" />
