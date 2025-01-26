@@ -113,7 +113,7 @@
     </cfloop>
   </div> <!--- end row --->
 </div> <!--- end container --->
-
+</div>
 </div>
 </div>
 <h4>Team Share</h4>
