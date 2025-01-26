@@ -42,6 +42,8 @@
 
 
 
+
+
 <div class="container">
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-3">
     <cfloop query="myteam">
@@ -109,6 +111,20 @@
 
             <!--- Card Footer --->
             <div class="card-footer border-1 text-center" style="padding-top: 1rem;">
+              <!--- Social Media Icons --->
+              <div class="mb-2">
+                <a href="#" class="text-decoration-none me-2" title="Facebook">
+                  <i class="fe-facebook"></i>
+                </a>
+                <a href="#" class="text-decoration-none me-2" title="Twitter">
+                  <i class="fe-twitter"></i>
+                </a>
+                <a href="#" class="text-decoration-none" title="LinkedIn">
+                  <i class="fe-linkedin"></i>
+                </a>
+              </div>
+
+              <!--- Remove Button --->
               <a href="/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=#myteam.contactid#"
                  title="Remove from team"
                  class="btn btn-sm p-0" style="background-color: transparent; border: none; color: ##2e4f65;">
@@ -121,8 +137,6 @@
     </cfloop>
   </div> <!--- end row --->
 </div> <!--- end container --->
-
-
 
 
 
