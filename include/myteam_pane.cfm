@@ -45,7 +45,7 @@
 
 
 <div class="container">
-  <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-xl-3 g-3">
+  <div class="row row-cols-4 row-cols-sm-1 row-cols-md-2 row-cols-xl-3 g-3">
     <cfloop query="myteam">
       <cfinclude template="/include/qry/mytags_167_1.cfm" />
       <cfinclude template="/include/qry/Findphone_167_2.cfm" />
