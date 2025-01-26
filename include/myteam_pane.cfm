@@ -39,7 +39,7 @@
 
 <div class="container">
   <!--- Start of card grid container --->
-  <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6 g-2">
+  <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-2">
     <!--- Loop through the myteam query --->
     <cfloop query="myteam">
       <!--- Include the phone query and set the new_phone variable --->
