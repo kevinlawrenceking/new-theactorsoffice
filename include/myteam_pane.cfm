@@ -64,9 +64,9 @@
             </div>
 
             <!--- Card Body --->
-            <div class="card-body d-flex">
+            <div class="card-body text-center">
               <!--- Avatar --->
-              <div class="me-3" style="flex: 1; text-align: center; align-self: flex-start;">
+              <div class="mb-3">
                 <cfset contact_avatar_filename = "#session.userContactsPath#\#myteam.contactid#\avatar.jpg" />
                 <cfif isimagefile(contact_avatar_filename)>
                   <img 
@@ -84,7 +84,7 @@
               </div>
 
               <!--- Contact Info --->
-              <div class="flex-grow-1" style="flex: 2;">
+              <div>
                 <!--- Title --->
                 <p class="mb-1" style="font-weight: bold;">
                   Makeup Artist
@@ -108,7 +108,7 @@
             </div> <!--- end .card-body --->
 
             <!--- Card Footer --->
-            <div class="card-footer border-1 text-center">
+            <div class="card-footer border-1 text-center" style="padding-top: 1rem;">
               <a href="/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=#myteam.contactid#"
                  title="Remove from team"
                  class="btn btn-sm p-0" style="background-color: transparent; border: none; color: ##2e4f65;">
