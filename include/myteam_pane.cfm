@@ -41,11 +41,8 @@
 
 
 
-
-
-
 <div class="container">
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-3">
+  <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-xl-6 g-2">
     <cfloop query="myteam">
       <cfinclude template="/include/qry/mytags_167_1.cfm" />
       <cfinclude template="/include/qry/Findphone_167_2.cfm" />
@@ -55,10 +52,10 @@
 
       <cfoutput>
         <div class="col">
-          <div class="card h-100 shadow-sm border border-dark">
+          <div class="card h-100 shadow-sm border border-dark" style="font-size: 0.85rem;">
 
             <!--- Card Header --->
-            <div class="card-header d-flex justify-content-between align-items-center" style="background-color: ##ededf1; color: ##595959; font-weight: bold;">
+            <div class="card-header d-flex justify-content-between align-items-center" style="background-color: ##ededf1; color: ##595959; font-weight: bold; padding: 0.5rem;">
               <a href="/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=#myteam.contactid#"
                  title="Remove from team"
                  class="text-decoration-none text-danger">
@@ -70,39 +67,41 @@
             </div>
 
             <!--- Card Body --->
-            <div class="card-body text-center">
+            <div class="card-body text-center" style="padding: 0.5rem;">
               <!--- Avatar --->
-              <div class="mb-3">
+              <div class="mb-2">
                 <cfset contact_avatar_filename = "#session.userContactsPath#\#myteam.contactid#\avatar.jpg" />
                 <cfif isimagefile(contact_avatar_filename)>
                   <img 
                     src="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg?ver=#rand()#" 
-                    class="rounded-circle img-thumbnail avatar-md" 
+                    class="rounded-circle img-thumbnail" 
+                    style="width: 50px; height: 50px;" 
                     alt="profile-image" 
                   />
                 <cfelse>
                   <img 
                     src="#application.defaultAvatarUrl#" 
-                    class="rounded-circle img-thumbnail avatar-md" 
+                    class="rounded-circle img-thumbnail" 
+                    style="width: 50px; height: 50px;" 
                     alt="profile-image" 
                   />
                 </cfif>
               </div>
 
               <!--- Full Name --->
-              <p class="mb-1" style="font-weight: bold; font-size: 1.2rem;">
+              <p class="mb-1" style="font-weight: bold; font-size: 1rem;">
                 #myteam.contactname#
               </p>
 
               <!--- Contact Info --->
               <div>
                 <!--- Title --->
-                <p class="mb-1" style="font-weight: bold;">
+                <p class="mb-1" style="font-weight: bold; font-size: 0.9rem;">
                   Makeup Artist
                 </p>
 
                 <!--- Company --->
-                <p class="mb-1" style="font-size: smaller; font-weight: bold; color: ##595959;">
+                <p class="mb-1" style="font-size: 0.8rem; font-weight: bold; color: ##595959;">
                   Dummy Company Name
                 </p>
 
@@ -119,7 +118,7 @@
             </div> <!--- end .card-body --->
 
             <!--- Card Footer --->
-            <div class="card-footer border-1 text-center" style="padding-top: 0.5rem;">
+            <div class="card-footer border-1 text-center" style="padding: 0.25rem;">
               <!--- Social Media Icons --->
               <div>
                 <a href="##" class="text-decoration-none me-2" title="Facebook">
@@ -139,6 +138,8 @@
     </cfloop>
   </div> <!--- end row --->
 </div> <!--- end container --->
+
+
 
 
 
