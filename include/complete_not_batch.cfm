@@ -13,7 +13,7 @@
 </cfif>
 
 <!--- Include notification details query --->
-<cfinclude template="/include/qry/notsdetails_513_1.cfm" />
+<cfinclude template="/include/qry/getNotificationByID.cfm" />
 
 <!--- Calculate the start date for notifications based on action days recurring --->
 <cfset notstartdate=dateAdd('d', numberformat(NotificationDetails.actionDaysRecurring), currentStartDate) />
