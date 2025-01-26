@@ -1,2 +1,2 @@
 <cfset systemUserService = createObject("component", "services.SystemUserService")>
-<cfset systemUserService.UPDfusystemusers(suid=newsuid)>
+<cfset systemUserService.updateSystemUser(suid=newsuid)>
