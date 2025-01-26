@@ -1,4 +1,3 @@
-<!--- This ColdFusion page retrieves notifications and related action details for a specific user. --->
-<cfinclude template="/include/qry/notsNext_514_1.cfm" />
-
-
+<cfset notificationService = createObject("component", "services.NotificationService") />
+<cfset notsNext = notificationService.getNotifications(suid=newsuid,maxrow=1) />
+<cfset notsAfter = notsNext.recordcount />
