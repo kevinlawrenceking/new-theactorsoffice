@@ -113,13 +113,13 @@
             <div class="card-footer border-1 text-center" style="padding-top: 1rem;">
               <!--- Social Media Icons --->
               <div class="mb-2">
-                <a href="#" class="text-decoration-none me-2" title="Facebook">
+                <a href="" class="text-decoration-none me-2" title="Facebook">
                   <i class="fe-facebook"></i>
                 </a>
-                <a href="#" class="text-decoration-none me-2" title="Twitter">
+                <a href="" class="text-decoration-none me-2" title="Twitter">
                   <i class="fe-twitter"></i>
                 </a>
-                <a href="#" class="text-decoration-none" title="LinkedIn">
+                <a href="" class="text-decoration-none" title="LinkedIn">
                   <i class="fe-linkedin"></i>
                 </a>
               </div>
