@@ -93,7 +93,7 @@
 
               <!--- Full Name --->
               <p class="mb-1" style="font-weight: bold; font-size: 1rem;">
-                #myteam.contactname#
+                <A href="">#myteam.contactname#</a>
               </p>
 
               <!--- Contact Info --->
