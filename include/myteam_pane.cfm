@@ -38,17 +38,13 @@
 
 
 <div class="container">
-  <div class="row row-cols-1 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6 g-2">
+  <!-- Ensure row-cols are properly applied -->
+  <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6 g-2">
     <cfloop query="myteam">
-      <cfinclude template="/include/qry/Findphone_167_2.cfm" />
-      <cfset new_phone = findphone.phone />
-
-      <cfinclude template="/include/qry/Findemail_167_3.cfm" />
-      <cfset new_email = Findemail.email />
-
       <cfoutput>
-        <div class="col">
+        <div class="col"> <!-- Ensure col is applied correctly -->
           <div class="card h-100 shadow-sm border border-dark" style="font-size: 0.85rem;">
+
             <!--- Card Header --->
             <div class="card-header d-flex justify-content-between align-items-center" style="background-color: ##ededf1; color: ##595959; font-weight: bold; padding: 0.5rem;">
               <a href="/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=#myteam.contactid#"
@@ -107,11 +103,12 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> <!--- end col --->
       </cfoutput>
     </cfloop>
-  </div>
+  </div> <!--- end row --->
 </div>
+
 
 
 
