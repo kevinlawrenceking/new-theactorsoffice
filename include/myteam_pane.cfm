@@ -72,7 +72,7 @@
             <!--- Card Body --->
             <div class="card-body text-center">
               <!--- Avatar --->
-              <div class="mb-1">
+              <div class="mb-3">
                 <cfset contact_avatar_filename = "#session.userContactsPath#\#myteam.contactid#\avatar.jpg" />
                 <cfif isimagefile(contact_avatar_filename)>
                   <img 
