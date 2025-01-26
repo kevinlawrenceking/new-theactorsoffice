@@ -90,7 +90,7 @@
               </div>
 
               <!--- Full Name --->
-              <p class="mb-2" style="font-weight: bold; font-size: 1.2rem;">
+              <p class="mb-1" style="font-weight: bold; font-size: 1.2rem;">
                 #myteam.contactname#
               </p>
 
