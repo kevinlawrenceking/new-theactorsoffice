@@ -87,4 +87,3 @@
     </cfif>
 </cfif>
 
-<cfoutput>#session.zquery#</cfoutput>
