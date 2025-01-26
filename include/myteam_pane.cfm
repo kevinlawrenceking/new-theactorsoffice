@@ -72,7 +72,7 @@
             <!--- Card Body --->
             <div class="card-body text-center">
               <!--- Avatar --->
-              <div class="mb-3">
+              <div class="mb-2">
                 <cfset contact_avatar_filename = "#session.userContactsPath#\#myteam.contactid#\avatar.jpg" />
                 <cfif isimagefile(contact_avatar_filename)>
                   <img 
@@ -90,7 +90,7 @@
               </div>
 
               <!--- Full Name --->
-              <p class="mb-2" style="font-weight: bold; font-size: 1.2rem;">
+              <p class="mb-1" style="font-weight: bold; font-size: 1.2rem;">
                 #myteam.contactname#
               </p>
 
@@ -102,7 +102,7 @@
                 </p>
 
                 <!--- Company --->
-                <p class="mb-2" style="font-size: smaller; font-weight: bold; color: ##595959;">
+                <p class="mb-1" style="font-size: smaller; font-weight: bold; color: ##595959;">
                   Dummy Company Name
                 </p>
 
