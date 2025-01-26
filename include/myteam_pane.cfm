@@ -45,7 +45,7 @@
 
 
 <div class="container">
-  <div class="row row-cols-4 row-cols-sm-1 row-cols-md-2 row-cols-xl-3 g-3">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-3">
     <cfloop query="myteam">
       <cfinclude template="/include/qry/mytags_167_1.cfm" />
       <cfinclude template="/include/qry/Findphone_167_2.cfm" />
@@ -72,7 +72,7 @@
             <!--- Card Body --->
             <div class="card-body text-center">
               <!--- Avatar --->
-              <div class="mb-2">
+              <div class="mb-1">
                 <cfset contact_avatar_filename = "#session.userContactsPath#\#myteam.contactid#\avatar.jpg" />
                 <cfif isimagefile(contact_avatar_filename)>
                   <img 
@@ -90,7 +90,7 @@
               </div>
 
               <!--- Full Name --->
-              <p class="mb-2" style="font-weight: bold; font-size: 1.2rem;">
+              <p class="mb-1" style="font-weight: bold; font-size: 1.2rem;">
                 #myteam.contactname#
               </p>
 
