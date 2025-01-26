@@ -58,9 +58,13 @@
           <div class="card h-100 shadow-sm border border-dark">
 
             <!--- Card Header --->
-            <div class="card-header text-center" style="background-color: ##ededf1; color: ##595959; font-weight: bold;">
-              #myteam.contactname#
-              <a href="/app/contact/?contactid=#myteam.contactid#" class="float-end text-decoration-none">
+            <div class="card-header d-flex justify-content-between align-items-center" style="background-color: ##ededf1; color: ##595959; font-weight: bold;">
+              <a href="/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=#myteam.contactid#"
+                 title="Remove from team"
+                 class="text-decoration-none text-danger">
+                <i class="fe-trash-2"></i>
+              </a>
+              <a href="/app/contact/?contactid=#myteam.contactid#" class="text-decoration-none">
                 <i class="fe-eye" title="View Details"></i>
               </a>
             </div>
@@ -84,6 +88,11 @@
                   />
                 </cfif>
               </div>
+
+              <!--- Full Name --->
+              <p class="mb-2" style="font-weight: bold; font-size: 1.2rem;">
+                #myteam.contactname#
+              </p>
 
               <!--- Contact Info --->
               <div>
@@ -112,24 +121,17 @@
             <!--- Card Footer --->
             <div class="card-footer border-1 text-center" style="padding-top: 1rem;">
               <!--- Social Media Icons --->
-              <div class="mb-2">
-                <a href="" class="text-decoration-none me-2" title="Facebook">
+              <div>
+                <a href="##" class="text-decoration-none me-2" title="Facebook">
                   <i class="fe-facebook"></i>
                 </a>
-                <a href="" class="text-decoration-none me-2" title="Twitter">
+                <a href="##" class="text-decoration-none me-2" title="Twitter">
                   <i class="fe-twitter"></i>
                 </a>
-                <a href="" class="text-decoration-none" title="LinkedIn">
+                <a href="##" class="text-decoration-none" title="LinkedIn">
                   <i class="fe-linkedin"></i>
                 </a>
               </div>
-
-              <!--- Remove Button --->
-              <a href="/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=#myteam.contactid#"
-                 title="Remove from team"
-                 class="btn btn-sm p-0" style="background-color: transparent; border: none; color: ##2e4f65;">
-                <i class="fe-trash-2"></i>
-              </a>
             </div>
           </div>
         </div> <!--- end col --->
