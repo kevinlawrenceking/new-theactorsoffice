@@ -38,20 +38,33 @@
 
 
 <div class="container">
-  <!-- Ensure row-cols are properly applied -->
+  <!--- Start of card grid container --->
   <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6 g-2">
+    <!--- Loop through the myteam query --->
     <cfloop query="myteam">
+      <!--- Include the phone query and set the new_phone variable --->
+      <cfinclude template="/include/qry/Findphone_167_2.cfm" />
+      <cfset new_phone = findphone.phone />
+
+      <!--- Include the email query and set the new_email variable --->
+      <cfinclude template="/include/qry/Findemail_167_3.cfm" />
+      <cfset new_email = findemail.email />
+
+      <!--- Start of card layout --->
       <cfoutput>
-        <div class="col"> <!-- Ensure col is applied correctly -->
+        <div class="col">
+          <!--- Card wrapper --->
           <div class="card h-100 shadow-sm border border-dark" style="font-size: 0.85rem;">
 
             <!--- Card Header --->
             <div class="card-header d-flex justify-content-between align-items-center" style="background-color: ##ededf1; color: ##595959; font-weight: bold; padding: 0.5rem;">
+              <!--- Remove button --->
               <a href="/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=#myteam.contactid#"
                  title="Remove from team"
                  class="text-decoration-none text-danger">
                 <i class="fe-trash-2"></i>
               </a>
+              <!--- View details button --->
               <a href="/app/contact/?contactid=#myteam.contactid#" class="text-decoration-none">
                 <i class="fe-eye" title="View Details"></i>
               </a>
@@ -85,29 +98,51 @@
 
               <!--- Contact Info --->
               <div>
-                <p class="mb-1" style="font-weight: bold; font-size: 0.9rem;">Makeup Artist</p>
-                <p class="mb-1" style="font-size: 0.8rem; font-weight: bold; color: ##595959;">Dummy Company Name</p>
+                <!--- Title --->
+                <p class="mb-1" style="font-weight: bold; font-size: 0.9rem;">
+                  Makeup Artist
+                </p>
+
+                <!--- Company --->
+                <p class="mb-1" style="font-size: 0.8rem; font-weight: bold; color: ##595959;">
+                  Dummy Company Name
+                </p>
+
+                <!--- Phone and Email --->
                 <p class="text-muted small mb-1">
-                  <cfif new_phone neq ""><i class="fe-phone me-1"></i> #new_phone#<br /></cfif>
-                  <cfif new_email neq ""><i class="fe-mail me-1"></i> #new_email#</cfif>
+                  <!--- Display phone if available --->
+                  <cfif new_phone neq "">
+                    <i class="fe-phone me-1"></i> #new_phone#<br />
+                  </cfif>
+                  <!--- Display email if available --->
+                  <cfif new_email neq "">
+                    <i class="fe-mail me-1"></i> #new_email#
+                  </cfif>
                 </p>
               </div>
             </div> <!--- end .card-body --->
 
             <!--- Card Footer --->
             <div class="card-footer border-1 text-center" style="padding: 0.25rem;">
+              <!--- Social Media Icons --->
               <div>
-                <a href="##" class="text-decoration-none me-2" title="Facebook"><i class="fe-facebook"></i></a>
-                <a href="##" class="text-decoration-none me-2" title="Twitter"><i class="fe-twitter"></i></a>
-                <a href="##" class="text-decoration-none" title="LinkedIn"><i class="fe-linkedin"></i></a>
+                <a href="##" class="text-decoration-none me-2" title="Facebook">
+                  <i class="fe-facebook"></i>
+                </a>
+                <a href="##" class="text-decoration-none me-2" title="Twitter">
+                  <i class="fe-twitter"></i>
+                </a>
+                <a href="##" class="text-decoration-none" title="LinkedIn">
+                  <i class="fe-linkedin"></i>
+                </a>
               </div>
-            </div>
-          </div>
+            </div> <!--- end .card-footer --->
+          </div> <!--- end .card --->
         </div> <!--- end col --->
       </cfoutput>
     </cfloop>
   </div> <!--- end row --->
-</div>
+</div> <!--- end container --->
 
 
 
