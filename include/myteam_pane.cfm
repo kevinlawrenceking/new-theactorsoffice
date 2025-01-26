@@ -119,7 +119,7 @@
             </div> <!--- end .card-body --->
 
             <!--- Card Footer --->
-            <div class="card-footer border-1 text-center" style="padding-top: 1rem;">
+            <div class="card-footer border-1 text-center" >
               <!--- Social Media Icons --->
               <div>
                 <a href="##" class="text-decoration-none me-2" title="Facebook">
