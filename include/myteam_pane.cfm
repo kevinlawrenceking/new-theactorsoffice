@@ -42,14 +42,8 @@
 
 
 <div class="container">
-  <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-xl-6 g-2">
+  <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 row-cols-xl-6 g-2">
     <cfloop query="myteam">
-      <cfinclude template="/include/qry/mytags_167_1.cfm" />
-      <cfinclude template="/include/qry/Findphone_167_2.cfm" />
-      <cfset new_phone = findphone.phone />
-      <cfinclude template="/include/qry/Findemail_167_3.cfm" />
-      <cfset new_email = Findemail.email />
-
       <cfoutput>
         <div class="col">
           <div class="card h-100 shadow-sm border border-dark" style="font-size: 0.85rem;">
@@ -70,8 +64,7 @@
             <div class="card-body text-center" style="padding: 0.5rem;">
               <!--- Avatar --->
               <div class="mb-2">
-                <cfset contact_avatar_filename = "#session.userContactsPath#\#myteam.contactid#\avatar.jpg" />
-                <cfif isimagefile(contact_avatar_filename)>
+                <cfif isimagefile("#session.userContactsPath#\#myteam.contactid#\avatar.jpg")>
                   <img 
                     src="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg?ver=#rand()#" 
                     class="rounded-circle img-thumbnail" 
@@ -95,49 +88,29 @@
 
               <!--- Contact Info --->
               <div>
-                <!--- Title --->
-                <p class="mb-1" style="font-weight: bold; font-size: 0.9rem;">
-                  Makeup Artist
-                </p>
-
-                <!--- Company --->
-                <p class="mb-1" style="font-size: 0.8rem; font-weight: bold; color: ##595959;">
-                  Dummy Company Name
-                </p>
-
-                <!--- Phone / Email --->
+                <p class="mb-1" style="font-weight: bold; font-size: 0.9rem;">Makeup Artist</p>
+                <p class="mb-1" style="font-size: 0.8rem; font-weight: bold; color: ##595959;">Dummy Company Name</p>
                 <p class="text-muted small mb-1">
-                  <cfif new_phone neq "">
-                    <i class="fe-phone me-1"></i> #new_phone#<br />
-                  </cfif>
-                  <cfif new_email neq "">
-                    <i class="fe-mail me-1"></i> #new_email#
-                  </cfif>
+                  <cfif new_phone neq ""><i class="fe-phone me-1"></i> #new_phone#<br /></cfif>
+                  <cfif new_email neq ""><i class="fe-mail me-1"></i> #new_email#</cfif>
                 </p>
               </div>
             </div> <!--- end .card-body --->
 
             <!--- Card Footer --->
             <div class="card-footer border-1 text-center" style="padding: 0.25rem;">
-              <!--- Social Media Icons --->
               <div>
-                <a href="##" class="text-decoration-none me-2" title="Facebook">
-                  <i class="fe-facebook"></i>
-                </a>
-                <a href="##" class="text-decoration-none me-2" title="Twitter">
-                  <i class="fe-twitter"></i>
-                </a>
-                <a href="##" class="text-decoration-none" title="LinkedIn">
-                  <i class="fe-linkedin"></i>
-                </a>
+                <a href="##" class="text-decoration-none me-2" title="Facebook"><i class="fe-facebook"></i></a>
+                <a href="##" class="text-decoration-none me-2" title="Twitter"><i class="fe-twitter"></i></a>
+                <a href="##" class="text-decoration-none" title="LinkedIn"><i class="fe-linkedin"></i></a>
               </div>
             </div>
           </div>
-        </div> <!--- end col --->
+        </div>
       </cfoutput>
     </cfloop>
-  </div> <!--- end row --->
-</div> <!--- end container --->
+  </div>
+</div>
 
 
 
