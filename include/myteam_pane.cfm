@@ -14,8 +14,8 @@
         </button>
       </a>
     </div>
-  </div>
-  
+</div>
+
 <form class="sel_client" action="/app/myaccount/?new_pgid=122" method="POST">
   <div class="row" style="margin: auto;">
     <div class="col-md-2 p-2">Or select an existing relationship:</div>
@@ -36,8 +36,102 @@
 
 
 
-</div>
-</div>
+
+
+
+
+
+
+<div class="container">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-3">
+    <cfloop query="myteam">
+      <cfinclude template="/include/qry/mytags_167_1.cfm" />
+      <cfinclude template="/include/qry/Findphone_167_2.cfm" />
+      <cfset new_phone = findphone.phone />
+      <cfinclude template="/include/qry/Findemail_167_3.cfm" />
+      <cfset new_email = Findemail.email />
+
+      <cfoutput>
+        <div class="col">
+          <div class="card h-100 shadow-sm border border-dark">
+
+            <!--- Card Header --->
+            <div class="card-header text-center" style="background-color: ##ededf1; color: ##595959; font-weight: bold;">
+              #myteam.contactname#
+              <a href="/app/contact/?contactid=#myteam.contactid#" class="float-end text-decoration-none">
+                <i class="fe-eye" title="View Details"></i>
+              </a>
+            </div>
+
+            <!--- Card Body --->
+            <div class="card-body d-flex">
+              <!--- Avatar --->
+              <div class="me-3" style="flex: 1; text-align: center; align-self: flex-start;">
+                <cfset contact_avatar_filename = "#session.userContactsPath#\#myteam.contactid#\avatar.jpg" />
+                <cfif isimagefile(contact_avatar_filename)>
+                  <img 
+                    src="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg?ver=#rand()#" 
+                    class="rounded-circle img-thumbnail avatar-md" 
+                    alt="profile-image" 
+                  />
+                <cfelse>
+                  <img 
+                    src="#application.defaultAvatarUrl#" 
+                    class="rounded-circle img-thumbnail avatar-md" 
+                    alt="profile-image" 
+                  />
+                </cfif>
+              </div>
+
+              <!--- Contact Info --->
+              <div class="flex-grow-1" style="flex: 2;">
+                <!--- Title --->
+                <p class="mb-1" style="font-weight: bold;">
+                  Makeup Artist
+                </p>
+
+                <!--- Company --->
+                <p class="mb-2" style="font-size: smaller; font-weight: bold; color: ##595959;">
+                  Dummy Company Name
+                </p>
+
+                <!--- Phone / Email --->
+                <p class="text-muted small mb-0">
+                  <cfif new_phone neq "">
+                    <i class="fe-phone me-1"></i> #new_phone#<br />
+                  </cfif>
+                  <cfif new_email neq "">
+                    <i class="fe-mail me-1"></i> #new_email#
+                  </cfif>
+                </p>
+              </div>
+            </div> <!--- end .card-body --->
+
+            <!--- Card Footer --->
+            <div class="card-footer border-1 text-center">
+              <a href="/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=#myteam.contactid#"
+                 title="Remove from team"
+                 class="btn btn-sm p-0" style="background-color: transparent; border: none; color: ##2e4f65;">
+                <i class="fe-trash-2"></i>
+              </a>
+            </div>
+          </div>
+        </div> <!--- end col --->
+      </cfoutput>
+    </cfloop>
+  </div> <!--- end row --->
+</div> <!--- end container --->
+
+
+
+
+
+
+
+
+
+
+
 <h4>Team Share</h4>
 <cfoutput>
     <p>
