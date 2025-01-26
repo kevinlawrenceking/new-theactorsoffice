@@ -722,6 +722,11 @@ summary {
     flex: 1 0 0
 }
 
+.row-cols-auto>* {
+    flex:0 0 auto;
+    width:auto
+    }
+
 .row-cols-1>* {
     flex: 0 0 auto;
     width: 100%
