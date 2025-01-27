@@ -1112,7 +1112,7 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
                     and isDeleted = 0
                 ) 
             ORDER BY 
-                d.card_name
+                d.col1
         </cfquery>
 
 <cfreturn result>
