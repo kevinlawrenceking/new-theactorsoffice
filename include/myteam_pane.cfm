@@ -118,7 +118,7 @@
 
               <!--- Full Name --->
                   <cfif card_name neq "">
-              <p class="mb-3" style="font-weight: bold; font-size: 1rem;">
+              <p class="mb-2" style="font-weight: bold; font-size: 1rem;">
           
                 <A href="">#card_name#</a>
 
