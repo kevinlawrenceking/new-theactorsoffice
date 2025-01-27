@@ -1092,10 +1092,9 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
 <cfquery name="result" >
             SELECT 
                 d.contactid, 
-                d.col1 AS contactname,
                 d.col1 AS card_name,
                 d.col4 as card_email,
-                d.col3 as card_phone
+                d.col3 as card_phone,
                 d.col5 as card_company,
                 d.col2 as card_title
             FROM 
@@ -1113,7 +1112,7 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
                     and isDeleted = 0
                 ) 
             ORDER BY 
-                d.contactfullname
+                d.card_name
         </cfquery>
 
 <cfreturn result>
