@@ -37,6 +37,8 @@
 
 
 
+
+
 <div class="container">
   <!--- Start of card grid container --->
   <div class="row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-2">
@@ -44,12 +46,20 @@
     <cfloop query="myteam">
       <!--- Include the phone query and set the new_phone variable --->
       <cfinclude template="/include/qry/Findphone_167_2.cfm" />
-      <cfset new_phone = findphone.phone />
-
+      
       <!--- Include the email query and set the new_email variable --->
       <cfinclude template="/include/qry/Findemail_167_3.cfm" />
-      <cfset new_email = findemail.email />
 
+      <!--- Variables for card --->
+      <cfset card_email = findemail.email />
+      <cfset card_phone = findphone.phone />
+      <cfset card_delete = "/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=" & myteam.contactid />
+      <cfset card_name = "" />
+      <cfset card_details = "/app/contact/?contactid=" & myteam.contactid />
+      <cfset card_facebook ="" />
+      <cfset card_twitter = "" />
+      <cfset card_linkedin = "" />
+      
       <!--- Start of card layout --->
       <cfoutput>
         <div class="col">
@@ -58,17 +68,29 @@
 
             <!--- Card Header --->
             <div class="card-header d-flex justify-content-between align-items-center" style="background-color: ##ededf1; color: ##595959; font-weight: bold; padding: 0.5rem;">
-              <!--- Remove button --->
-              <a href="/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=#myteam.contactid#"
+             
+            <!--- Remove button --->
+
+              <cfif #card_delete# is not "">
+
+              <a href="#card_delete#"
                  title="Remove from team"
                  class="text-decoration-none text-danger">
                 <i class="fe-trash-2"></i>
               </a>
+
+              </cfif>
+
               <!--- View details button --->
-              <a href="/app/contact/?contactid=#myteam.contactid#" class="text-decoration-none">
+
+              <cfif #card_delete# is not "">
+
+              <a href="#card_details#" class="text-decoration-none">
                 <i class="fe-eye" title="View Details"></i>
               </a>
             </div>
+
+            </cfif>
 
             <!--- Card Body --->
             <div class="card-body text-center" style="padding: 0.5rem;">
@@ -92,10 +114,14 @@
               </div>
 
               <!--- Full Name --->
+                  <cfif card_name neq "">
               <p class="mb-1" style="font-weight: bold; font-size: 1rem;">
+          
                 <A href="">#myteam.contactname#</a>
-              </p>
 
+              </p>
+      </cfif>
+      
               <!--- Contact Info --->
               <div>
                 <!--- Title --->
@@ -111,12 +137,12 @@
                 <!--- Phone and Email --->
                 <p class="text-muted small mb-1">
                   <!--- Display phone if available --->
-                  <cfif new_phone neq "">
-                    <i class="fe-phone me-1"></i> #new_phone#<br />
+                  <cfif card_phone neq "">
+                    <i class="fe-phone me-1"></i> #card_phone#<br />
                   </cfif>
                   <!--- Display email if available --->
-                  <cfif new_email neq "">
-                    <i class="fe-mail me-1"></i> #new_email#
+                  <cfif card_email neq "">
+                    <i class="fe-mail me-1"></i> #card_email#
                   </cfif>
                 </p>
               </div>
@@ -126,15 +152,21 @@
             <div class="card-footer border-1 text-center" style="padding: 0.25rem;">
               <!--- Social Media Icons --->
               <div>
+               <cfif card_facebook neq "">
                 <a href="##" class="text-decoration-none me-2" title="Facebook">
                   <i class="fe-facebook"></i>
                 </a>
+                </a>
+                <cfif card_twitter neq "">
                 <a href="##" class="text-decoration-none me-2" title="Twitter">
                   <i class="fe-twitter"></i>
                 </a>
+                </cfif>
+                <cfif card_linked neq "">
                 <a href="##" class="text-decoration-none" title="LinkedIn">
                   <i class="fe-linkedin"></i>
                 </a>
+                </cfif>
               </div>
             </div> <!--- end .card-footer --->
           </div> <!--- end .card --->
