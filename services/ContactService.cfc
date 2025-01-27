@@ -1092,10 +1092,14 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
 <cfquery name="result" >
             SELECT 
                 d.contactid, 
-                d.recordname AS contactname, 
-                d.contactStatus 
+                d.col1 AS contactname,
+                d.col1 AS card_name,
+                d.col4 as card_email,
+                d.col3 as card_phone
+                d.col5 as card_company,
+                d.col2 as card_title
             FROM 
-                contactdetails d 
+                contacts_ss d 
             INNER JOIN 
                 taousers u ON u.userid = d.userid 
             WHERE 

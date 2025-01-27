@@ -53,14 +53,15 @@
       <cfinclude template="/include/qry/profiles_516_1.cfm" />
 
       <!--- Variables for card --->
-      <cfset card_email = findemail.email />
-      <cfset card_phone = findphone.phone />
+      <cfset card_email = myteam.card_email />
+      <cfset card_phone = myteam.card_phone />
       <cfset card_delete = "/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=" & myteam.contactid />
-      <cfset card_name = myteam.contactname />
+      <cfset card_name = myteam.card_name />
       <cfset card_details = "/app/contact/?contactid=" & myteam.contactid />
       <cfset card_facebook ="" />
-      <cfset card_twitter = "" />
-      <cfset card_linkedin = "" />
+      <cfset card_title = myteam.card_title />
+      <Cfset card_company = myteam.card_company />
+
       
       <!--- Start of card layout --->
       <cfoutput>
@@ -119,7 +120,7 @@
                   <cfif card_name neq "">
               <p class="mb-1" style="font-weight: bold; font-size: 1rem;">
           
-                <A href="">#myteam.contactname#</a>
+                <A href="">#card_name#</a>
 
               </p>
       </cfif>
@@ -127,14 +128,18 @@
               <!--- Contact Info --->
               <div>
                 <!--- Title --->
+                <Cfif card_title neq "">
                 <p class="mb-1" style="font-weight: bold; font-size: 0.9rem;">
-                  Makeup Artist
+                  #card_title#
                 </p>
+                </cfif>
 
+                <Cfif card_company neq "">
                 <!--- Company --->
                 <p class="mb-1" style="font-size: 0.8rem; color: ##595959;">
-                  Dummy Company Name
+                  #card_company#
                 </p>
+                </cfif>
 
                 <!--- Phone and Email --->
                 <p class="text-muted small mb-1">
