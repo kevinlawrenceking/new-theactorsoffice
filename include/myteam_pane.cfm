@@ -54,7 +54,7 @@
       <cfset card_email = findemail.email />
       <cfset card_phone = findphone.phone />
       <cfset card_delete = "/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=" & myteam.contactid />
-      <cfset card_name = "" />
+      <cfset card_name = myteam.contactpane />
       <cfset card_details = "/app/contact/?contactid=" & myteam.contactid />
       <cfset card_facebook ="" />
       <cfset card_twitter = "" />
