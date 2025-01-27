@@ -132,7 +132,7 @@
                 </p>
 
                 <!--- Company --->
-                <p class="mb-1" style="font-size: 0.8rem; font-weight: bold; color: ##595959;">
+                <p class="mb-1" style="font-size: 0.8rem; color: ##595959;">
                   Dummy Company Name
                 </p>
 
