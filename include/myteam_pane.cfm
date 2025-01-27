@@ -1,6 +1,6 @@
 <!--- This ColdFusion page displays the user's team members and allows adding new members from existing relationships or creating new ones. --->
 <cfinclude template="/include/qry/myteam_499_1.cfm" />  
-
+<cfinclude template="/include/qry/profiles_516_1.cfm" />
 <h4>My Team</h4>
 
   <input type="hidden" name="ctaction" value="addmember"/>
@@ -151,23 +151,32 @@
             <!--- Card Footer --->
             <div class="card-footer border-1 text-center" style="padding: 0.25rem;">
               <!--- Social Media Icons --->
-              <div>
-               <cfif card_facebook neq "">
-                <a href="##" class="text-decoration-none me-2" title="Facebook">
-                  <i class="fe-facebook"></i>
-                </a>
-                </a>
-                <cfif card_twitter neq "">
-                <a href="##" class="text-decoration-none me-2" title="Twitter">
-                  <i class="fe-twitter"></i>
-                </a>
-                </cfif>
-                <cfif card_linked neq "">
-                <a href="##" class="text-decoration-none" title="LinkedIn">
-                  <i class="fe-linkedin"></i>
-                </a>
-                </cfif>
-              </div>
+
+
+ <div>
+                         <cfloop query="profiles">
+
+                                <cfoutput>
+
+                                    <a href="#profiles.valuetext#" class="text-white font-14 py-1 ps-o me-2   d-inline-block" data-bs- data-bs-placement="top" title="" target="#profiles.valuetext#" data-bs-original-title="#profiles.valuetype#">
+<cfif #profiles.typeicon# is "">
+                   <img src="#application.retinaIcons14Url#/customlink.png" title="#profiles.valuetext#"  width="32px" />                           
+
+<cfelse>
+          <img src="#application.retinaIcons14Url#/#profiles.typeicon#" title="#profiles.valuetext#"  width="32px" />
+                                        
+                                        </cfif>
+
+</a>
+
+                                </Cfoutput>
+
+                            </cfloop>
+</div>
+
+
+
+             
             </div> <!--- end .card-footer --->
           </div> <!--- end .card --->
         </div> <!--- end col --->
