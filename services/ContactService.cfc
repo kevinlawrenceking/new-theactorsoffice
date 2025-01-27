@@ -1103,7 +1103,7 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
                 taousers u ON u.userid = d.userid 
             WHERE 
                 u.userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 
-                AND d.contactStatus = <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR"> 
+                
                 AND d.contactid IN (
                     SELECT contactid 
                     FROM contactitems 
