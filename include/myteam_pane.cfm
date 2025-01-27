@@ -1,6 +1,6 @@
 <!--- This ColdFusion page displays the user's team members and allows adding new members from existing relationships or creating new ones. --->
 <cfinclude template="/include/qry/myteam_499_1.cfm" />  
-<cfinclude template="/include/qry/profiles_516_1.cfm" />
+
 <h4>My Team</h4>
 
   <input type="hidden" name="ctaction" value="addmember"/>
@@ -49,6 +49,8 @@
       
       <!--- Include the email query and set the new_email variable --->
       <cfinclude template="/include/qry/Findemail_167_3.cfm" />
+
+      <cfinclude template="/include/qry/profiles_516_1.cfm" />
 
       <!--- Variables for card --->
       <cfset card_email = findemail.email />
