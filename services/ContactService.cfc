@@ -1096,7 +1096,18 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
                 d.col4 as card_email,
                 d.col3 as card_phone,
                 d.col5 as card_company,
-                d.col2 as card_title
+               (
+        SELECT 
+            contactitems.valueText 
+        FROM 
+            new_development.contactitems 
+        WHERE 
+            contactitems.valueCategory = 'Tag'  
+            AND contactitems.valueText <> 'My Team'
+            AND contactitems.contactID = d.contactID 
+            AND contactitems.itemStatus = 'Active' 
+        LIMIT 1
+    ) AS card_title
             FROM 
                 contacts_ss d 
             INNER JOIN 
