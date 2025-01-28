@@ -97,6 +97,10 @@
 
             <!--- Card Body --->
             <div class="card-body text-center" style="padding: 0.5rem;">
+
+                <div class="ribbon ribbon-Redirect float-end">
+                                                            <i class="mdi mdi-access-point me-1"></i>Maintenance
+                                                        </div>
               <!--- Avatar --->
               <div class="mb-2">
                 <cfif isimagefile("#session.userContactsPath#\#myteam.contactid#\avatar.jpg")>
