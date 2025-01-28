@@ -143,7 +143,7 @@
                 </cfif>
 
                 <!--- Phone and Email --->
-                <p class="text-muted small mb-1">
+                <p class="text-muted small mb-3">
                   <!--- Display phone if available --->
                   <cfif card_phone neq "">
                     <i class="fe-phone me-1"></i> #card_phone#<br />
