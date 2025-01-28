@@ -4598,6 +4598,12 @@ li>a[aria-expanded="true"]>span.menu-arrow {
     color: #000
 }
 
+.ribbon-box .ribbon-card {
+    background: #ededf1;
+    color: #595959
+}
+
+
 .ribbon-box .ribbon-Pin::before {
     border-color: #F8EEC9 transparent transparent
 }
