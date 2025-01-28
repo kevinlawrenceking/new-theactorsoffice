@@ -14,8 +14,8 @@
   font-size: 24px; /* Size of the icon */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
 }
-
 </style>
+<link href="https://cdn.materialdesignicons.com/6.5.95/css/materialdesignicons.min.css" rel="stylesheet">
 
 <h4>My Team</h4>
 
@@ -116,11 +116,21 @@
 
               <!--- Avatar --->
               <div class="mb-2">
-
-               <div class="audition-avatar">
-  <i class="mdi mdi-film"></i>
-</div>
-
+                <cfif isimagefile("#session.userContactsPath#\#myteam.contactid#\avatar.jpg")>
+                  <img 
+                    src="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg?ver=#rand()#" 
+                    class="rounded-circle img-thumbnail" 
+                    style="width: 50px; height: 50px;" 
+                    alt="profile-image" 
+                  />
+                <cfelse>
+                  <img 
+                    src="#application.defaultAvatarUrl#" 
+                    class="rounded-circle img-thumbnail" 
+                    style="width: 50px; height: 50px;" 
+                    alt="profile-image" 
+                  />
+                </cfif>
               </div>
 
               <!--- Full Name --->
