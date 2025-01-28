@@ -1,6 +1,22 @@
 <!--- This ColdFusion page displays the user's team members and allows adding new members from existing relationships or creating new ones. --->
 <cfinclude template="/include/qry/myteam_499_1.cfm" />  
 
+<style>
+.audition-avatar {
+  width: 50px; /* Same size as the avatar */
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%; /* Makes it circular */
+  background-color: #406e8e; /* Background color */
+  color: #ffffff; /* Icon color */
+  font-size: 24px; /* Size of the icon */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+}
+
+</style>
+
 <h4>My Team</h4>
 
   <input type="hidden" name="ctaction" value="addmember"/>
@@ -108,13 +124,12 @@
                     alt="profile-image" 
                   />
                 <cfelse>
-                  <img 
-                    src="#application.defaultAvatarUrl#" 
-                    class="rounded-circle img-thumbnail" 
-                    style="width: 50px; height: 50px;" 
-                    alt="profile-image" 
-                  />
-                </cfif>
+                <div class="audition-avatar">
+  <i class="mdi mdi-film"></i>
+</div>
+
+
+
               </div>
 
               <!--- Full Name --->
