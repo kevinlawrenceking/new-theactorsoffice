@@ -156,7 +156,7 @@
               </div>
 
 
-                <div class="ribbon ribbon-Pin float-end">
+                <div class="ribbon ribbon-card float-end">
                                                             <i class="mdi mdi-access-point me-1"></i>Maintenance
                                                         </div>
             </div> <!--- end .card-body --->
