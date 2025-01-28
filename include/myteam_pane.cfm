@@ -82,7 +82,7 @@
       <Cfparam name="card_ribbon2" default="" />
 
 <Cfoutput query="rels" maxrows="2">
-<cfif rels.currentrow eq 1
+<cfif rels.currentrow eq 1>
 <Cfset card_ribbon1 = rels.systemType />
 <cfelseif rels.currentrow eq 2>
 <Cfset card_ribbon2 = rels.systemType />
