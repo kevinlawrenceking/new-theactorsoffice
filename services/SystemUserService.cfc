@@ -340,24 +340,14 @@
 
 </cffunction>
 
-<cffunction output="false" name="SELfusystemusers_24718" access="public" returntype="query">
+<cffunction output="false" name="getRemindersByRelationship" access="public" returntype="query">
     <cfargument name="currentid" type="numeric" required="true">
     <cfargument name="sessionUserId" type="numeric" required="true">
 
 <cfquery name="result" >
-            SELECT 
-                fc.suID, 
-                fc.contactid, 
-                fc.userid, 
-                fc.suStartDate, 
-                fc.suenddate, 
-                fc.suStatus, 
-                s.systemName, 
-                s.systemdescript, 
-                s.systemtype, 
-                s.systemscope, 
-                s.systemid, 
-                s.recordname
+   SELECT fc.suid,
+                s.systemtype,
+                s.systemscope
             FROM fusystemusers fc
             INNER JOIN fusystems s ON s.systemID = fc.systemID
             WHERE fc.contactID = <cfqueryparam value="#arguments.currentid#" cfsqltype="CF_SQL_INTEGER">

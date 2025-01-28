@@ -1,6 +1,6 @@
 <!--- This ColdFusion page displays the user's team members and allows adding new members from existing relationships or creating new ones. --->
 <cfinclude template="/include/qry/myteam_499_1.cfm" />  
-
+<cfinclude template="/include/qry/getRemindersByRelationship.cfm" /> 
 <style>
 .audition-avatar {
   width: 50px; /* Same size as the avatar */
@@ -78,6 +78,15 @@
       <cfset card_title = myteam.card_title />
       <Cfset card_company = myteam.card_company />
 
+      <Cfparam name="card_ribbon1" default="" />
+      <Cfparam name="card_ribbon2" default="" />
+
+<Cfoutput query="rels" maxrows="2">
+<cfif rels.currentrow eq 1
+<Cfset card_ribbon1 = rels.systemType />
+<cfelseif rels.currentrow eq 2>
+<Cfset card_ribbon2 = rels.systemType />
+</cfoutput>
       
       <!--- Start of card layout --->
       <cfoutput>
@@ -171,10 +180,16 @@
                 </p>
               </div>
 
-
-                <div class="ribbon ribbon-card float-end" style="position: absolute; bottom: 25px; right: 5px; margin-right: -15px;">
-                  <i class="mdi mdi-access-point me-1"></i>Maintenance
+<Cfif card_ribbon1 neq "">
+                <div class="ribbon ribbon-card ribbon-#card_ribbon1# float-end" style="position: absolute; bottom: 25px; right: 5px; margin-right: -15px;">
+                  <i class="mdi mdi-access-point me-1"></i>#card_ribbon1#
                 </div>
+<cfelse>
+<Cfif card_ribbon1 neq "">
+                <div class="ribbon ribbon-card ribbon-#card_ribbon2# float-end" style="position: absolute; bottom: 45px; right: 5px; margin-right: -15px;">
+                  <i class="mdi mdi-access-point me-1"></i>#card_ribbon2#
+                </div>
+                </cfif>
 
 
             </div> <!--- end .card-body --->

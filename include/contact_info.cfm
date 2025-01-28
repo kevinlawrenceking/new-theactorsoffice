@@ -155,7 +155,7 @@
 <!--- <cfinclude template="/include/qry/systemNotificationsActive.cfm" /> --->
 <cfinclude template="/include/qry/findscope.cfm" />
 <cfinclude template="/include/qry/sysAvail_539_3.cfm" />
-<cfinclude template="/include/qry/rels_519_1.cfm" />
+<cfinclude template="/include/qry/getRemindersByRelationship.cfm" />
 <cfinclude template="/include/qry/emailcheck_469_1.cfm" />
 <cfinclude template="/include/qry/phonecheck_515_1.cfm" />
 <!--- <cfinclude template="/include/qry/rels.cfm" /> --->
