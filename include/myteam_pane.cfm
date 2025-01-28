@@ -116,19 +116,10 @@
 
               <!--- Avatar --->
               <div class="mb-2">
-                <cfif isimagefile("#session.userContactsPath#\#myteam.contactid#\avatar.jpg")>
-                  <img 
-                    src="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg?ver=#rand()#" 
-                    class="rounded-circle img-thumbnail" 
-                    style="width: 50px; height: 50px;" 
-                    alt="profile-image" 
-                  />
-                <cfelse>
-                <div class="audition-avatar">
+
+               <div class="audition-avatar">
   <i class="mdi mdi-film"></i>
 </div>
-</cfif>
-
 
               </div>
 
