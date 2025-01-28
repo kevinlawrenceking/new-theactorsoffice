@@ -137,7 +137,7 @@
                   <cfif card_name neq "">
               <p class="mb-2" style="font-weight: bold; font-size: 1rem;">
           
-                <A href="">#card_name#</a>
+                <A href="#card_details#">#card_name#</a>
 
               </p>
       </cfif>
