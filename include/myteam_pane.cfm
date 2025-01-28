@@ -127,7 +127,7 @@
                 <div class="audition-avatar">
   <i class="mdi mdi-film"></i>
 </div>
-
+</cfif>
 
 
               </div>
