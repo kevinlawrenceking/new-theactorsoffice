@@ -149,8 +149,8 @@
                     <i class="fe-phone me-1"></i> #card_phone#<br /><cfelse>&nbsp;<BR>
                   </cfif>
                   <!--- Display email if available --->
-                  <cfif card_email neq "">
-                    <i class="fe-mail me-1 mb-3"></i> #card_email#
+                  <cfif card_email neq ""><A href="mailto:#card_email#">
+                    <i class="fe-mail me-1 mb-3"></i> #card_email#</a>
                   </cfif>
                 </p>
               </div>
@@ -167,26 +167,13 @@
             <div class="card-footer border-1 text-center" style="padding: 0.25rem;">
               <!--- Social Media Icons --->
 
+<div class="social-icons">
 
- <div>
-                         <cfloop query="profiles">
-
-                                <cfoutput>
-
-                                    <a href="#profiles.valuetext#" class="text-white font-14 py-1 ps-o me-2   d-inline-block" data-bs- data-bs-placement="top" title="" target="#profiles.valuetext#" data-bs-original-title="#profiles.valuetype#">
-<cfif #profiles.typeicon# is "">
-                   <img src="#application.retinaIcons14Url#/customlink.png" title="#profiles.valuetext#"  width="16px" />                           
-
-<cfelse>
-          <img src="#application.retinaIcons14Url#/#profiles.typeicon#" title="#profiles.valuetext#"  width="16px" />
-                                        
-                                        </cfif>
-
-</a>
-
-                                </Cfoutput>
-
-                            </cfloop>
+<cfloop query="profiles">
+  <cfoutput>
+    <a href="" class="me-2"><i class="mdi mdi-#site_mdi#"></i></a>
+  </Cfoutput>
+</cfloop>
 </div>
 
 
