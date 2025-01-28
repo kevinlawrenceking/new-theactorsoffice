@@ -150,7 +150,7 @@
                   </cfif>
                   <!--- Display email if available --->
                   <cfif card_email neq "">
-                    <i class="fe-mail me-1 mb-2"></i> #card_email#
+                    <i class="fe-mail me-1 mb-3"></i> #card_email#
                   </cfif>
                 </p>
               </div>
