@@ -67,7 +67,7 @@
       <cfoutput>
         <div class="col">
           <!--- Card wrapper --->
-          <div class="card h-100 shadow-sm border border-dark" style="font-size: 0.85rem;">
+          <div class="card h-100 shadow-sm border border-dark ribbon-box" style="font-size: 0.85rem;">
 
             <!--- Card Header --->
             <div class="card-header d-flex justify-content-between align-items-center" style="background-color: ##ededf1; color: ##595959; font-weight: bold; padding: 0.5rem;">
