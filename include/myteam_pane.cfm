@@ -98,7 +98,7 @@
             <!--- Card Body --->
             <div class="card-body text-center" style="padding: 0.5rem;">
 
-                <div class="ribbon ribbon-Redirect float-end">
+                <div class="ribbon float-end">
                                                             <i class="mdi mdi-access-point me-1"></i>Maintenance
                                                         </div>
               <!--- Avatar --->
