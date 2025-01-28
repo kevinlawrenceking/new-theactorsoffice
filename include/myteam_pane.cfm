@@ -156,7 +156,7 @@
               </div>
 
 
-                <div class="ribbon ribbon-card float-end" style="position: absolute; bottom: 20px; right: 10px;">
+                <div class="ribbon ribbon-card float-end" style="position: absolute; bottom: 15px; right: 5px;">
                   <i class="mdi mdi-access-point me-1"></i>Maintenance
                 </div>
 
