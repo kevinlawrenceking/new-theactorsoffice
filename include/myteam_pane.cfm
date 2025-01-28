@@ -146,7 +146,7 @@
                 <p class="text-muted small mb-3">
                   <!--- Display phone if available --->
                   <cfif card_phone neq "">
-                    <i class="fe-phone me-1"></i> #card_phone#<br />
+                    <i class="fe-phone me-1"></i> #card_phone#<br /><cfelse>&nbsp;<BR>
                   </cfif>
                   <!--- Display email if available --->
                   <cfif card_email neq "">
