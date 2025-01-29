@@ -274,6 +274,7 @@
         <Cfparam name="card_delete" default=""/>
         <Cfparam name="card_footer" default="No"/>
         <Cfparam name="card_social" default="No"/>
+        <Cfparam name="card_avatar" default="No"/>
 
         <!--- Assign card values dynamically --->
         <cfset card_header="Yes"/>

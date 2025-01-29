@@ -58,6 +58,8 @@
         <Cfparam name="card_delete" default=""/>
         <Cfparam name="card_footer" default="No"/>
         <Cfparam name="card_social" default="Yes"/>
+         <Cfparam name="card_avatar" default="No"/>
+          <Cfparam name="card_avatar" default="No"/>
 
         <!--- Assign card values dynamically --->
         <cfset card_header="Yes"/>
@@ -72,6 +74,16 @@
         <cfset card_social="Yes"/>
         <cfset card_ribbon1=""/>
         <cfset card_ribbon2=""/>
+        <Cfparam name="card_avatar" default="No"/>
+        <Cfparam name="card_image" default="No"/>
+               
+               
+               <cfif isimagefile("#session.userContactsPath#\#myteam.contactid#\avatar.jpg")>
+            <cfset card_image = "#session.userContactsUrl#/#myteam.contactid#/avatar.jpg" />
+          <cfelse>
+          <cfset card_image = "#application.defaultAvatarUrl#" />
+    
+          </cfif>
 
         <!--- Assign ribbon values dynamically --->
         <Cfloop query="rels">

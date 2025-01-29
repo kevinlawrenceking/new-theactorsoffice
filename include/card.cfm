@@ -25,14 +25,26 @@
       <div class="tao-card-body">
       
         <!--- Avatar --->
-        <div class="tao-card-avatar">
-        
+        <Cfif #card_avatar# is "Yes">
 
-            <!--- Avatar --->
         <div class="tao-card-avatar">
+          
             <img src="#card_image#?ver=#rand()#" alt="profile-image" />
-
+         
+  
         </div>
+        </cfif>
+
+        <Cfif card_image neq "No" and card_avater eq "No" >
+   <div class="tao-card-image">
+          
+            <img src="#card_image#?ver=#rand()#" alt="profile-image" />
+         
+  
+        </div>
+
+      </cfif>
+
         
         <!--- Full Name --->
         <cfif card_name neq "">
