@@ -4603,17 +4603,6 @@ li>a[aria-expanded="true"]>span.menu-arrow {
     color: #595959
 }
 
-.ribbon-card {
-    position: absolute;
-    bottom: 15px;
-    font-size: 0.75rem;
-    padding: 3px 8px;  
-    borer-radius: 4px;
-
-    color: #fff;
-    white-space: nowrap; /* Prevent text wrapping */
-    min-width: fit-content; /* Make it just wide enough for content */
-}
 
 
 .ribbon-box .ribbon-Pin::before {
