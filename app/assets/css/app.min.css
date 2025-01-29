@@ -7088,29 +7088,6 @@ body[data-leftbar-size=condensed] .user-box {
     border-radius: 8px; /* Optional: Maintain a smooth rounded edge */
   }
   
-  /* Adjust the ribbon to extend 5px past the right border */
-  .ribbon-card {
-    position: absolute;
-    bottom: 25px; /* Adjust vertical placement */
-    right: -5px; /* Extends the ribbon 5px past the card boundary */
-    font-size: 0.75rem;
-    padding: 5px 10px;
-    border-radius: 4px;
-    background: #007bff; /* Ribbon color */
-    color: #fff; /* Text color */
-    z-index: 10; /* Ensures ribbon appears on top */
-  }
-
-/* Shadow Fix */
-.ribbon-card::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    right: 0;
-    top: 0;
-    box-shadow: none; /* Removes any extra shadow from the ribbon */
-  }
 
 
 /* Card Header */
@@ -7237,13 +7214,44 @@ body[data-leftbar-size=condensed] .user-box {
   }
 
 /* Ribbon Labels */
+
+  /* Adjust the ribbon to extend 5px past the right border */
+  .ribbon-card {
+    position: absolute;
+    bottom: 25px; /* Adjust vertical placement */
+    right: -5px; /* Move it 5px past the card’s right edge */
+    font-size: 0.75rem;
+    padding: 4px 12px;
+    border-radius: 4px;
+    background: #007bff; /* Ribbon color */
+    color: #fff; /* Text color */
+    z-index: 10; /* Ensure it appears above the card */
+    white-space: nowrap; /* Prevent the text from wrapping */
+    min-width: fit-content; /* Ensure the ribbon is only as wide as its text */
+  }
+
+/* Shadow Fix */
+.ribbon-card::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    right: 0;
+    top: 0;
+    box-shadow: none;
+  }
+
 .ribbon-box {
-    position: relative;
+    position: relative; /* Ensure this is the positioning context */
 }
 
 .ribbon-card i {
     margin-right: 5px;  
   }
+  /* Fix unnecessary full-width issue */
+.ribbon-card.float-end {
+    float: none !important;
+}
 
 .audition-avatar {
     width: 50px; /* Same size as the avatar */
