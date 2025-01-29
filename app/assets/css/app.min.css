@@ -7204,7 +7204,7 @@ body[data-leftbar-size=condensed] .user-box {
 
 .tao-card-contact a:hover {
     text-decoration: underline;
-    min-height: 2rem; /* Slightly larger for multiple lines */
+    min-height: 2.5rem; /* Slightly larger for multiple lines */
     display: flex;
     flex-direction: column;
     align-items: center;
