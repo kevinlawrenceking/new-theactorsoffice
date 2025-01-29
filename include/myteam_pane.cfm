@@ -70,6 +70,8 @@
         <cfset card_delete="/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=" & myteam.contactid/>
         <cfset card_footer="Yes"/>
         <cfset card_social="Yes"/>
+        <cfset card_ribbon1=""/>
+        <cfset card_ribbon2=""/>
 
         <!--- Assign ribbon values dynamically --->
         <Cfloop query="rels">
