@@ -4556,6 +4556,7 @@ li>a[aria-expanded="true"]>span.menu-arrow {
     bottom: 35px; /* Adjust vertical placement */
     right: -5px; /* Extends the ribbon 5px past the card boundary */
     font-size: 0.75rem;
+    padding: 4px 10px;
     border-radius: 4px;
     background: #6c757d;
     background: darkgrey; /* Ribbon color */
