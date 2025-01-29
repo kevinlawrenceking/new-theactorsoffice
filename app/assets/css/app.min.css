@@ -4623,7 +4623,7 @@ li>a[aria-expanded="true"]>span.menu-arrow {
     top: -5px;
     z-index: 1;
     overflow: hidden;
-
+    width: 75px;
     height: 75px;
     text-align: right
 }
@@ -7163,7 +7163,7 @@ body[data-leftbar-size=condensed] .user-box {
     font-size: 0.8rem;
     color: #777;
     margin-bottom: 0.5rem;
-    min-height: 300px;
+    min-height: 2rem; /* Keep height even when empty */
     display: flex;
     flex-direction: column;
     align-items: center;
