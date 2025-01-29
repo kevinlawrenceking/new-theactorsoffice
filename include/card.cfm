@@ -3,7 +3,7 @@
   <div class="col">
 
 
-    <div class="tao-card-md ribbon-box">
+    <div class="card tao-card-md ribbon-box">
       
       <!--- Card Header --->
       <cfif card_header eq "Yes">
@@ -74,7 +74,7 @@
 
 
         <Cfif card_ribbon1 neq "">
-                <div class="ribbon ribbon-pin float-end">
+                <div class="ribbon ribbon-secondary float-end">
                   <i class="mdi mdi-access-point me-1"></i>#card_ribbon1#
                 </div>
 </cfif>
