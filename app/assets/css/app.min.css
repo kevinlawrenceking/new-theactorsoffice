@@ -4600,25 +4600,6 @@ li>a[aria-expanded="true"]>span.menu-arrow {
     background: #ededf1;
     color: #595959
 }
-/* Ensure ribbon does not stretch */
-.ribbon-card {
-    position: absolute;
-    bottom: 25px;
-    right: -5px; /* Move slightly outside the card */
-    font-size: 0.75rem;
-    padding: 4px 10px;
-    border-radius: 4px;
-    background: #007bff;
-    color: #fff;
-    z-index: 10;
-    
-    /* 🔹 Prevent Full-Width Issue */
-    display: inline-block; /* Ensure it only takes up as much space as needed */
-    white-space: nowrap; /* Keep it on one line */
-    width: auto; /* Prevent it from stretching */
-    min-width: unset; /* Reset any Bootstrap min-width */
-    max-width: fit-content; /* Ensures it stays the correct size */
-}
 
 /* Ensure the parent doesn't force it to full width */
 .ribbon-box {
