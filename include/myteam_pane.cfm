@@ -68,6 +68,8 @@
 
       <cfinclude template="/include/qry/profiles_516_1.cfm" />
 <Cfset currentid = myteam.contact_id />
+
+<cfinclude template="/include/qry/getRemindersByRelationship.cfm" />
       <!--- Variables for card --->
       <cfset card_email = myteam.card_email />
       <cfset card_phone = myteam.card_phone />
