@@ -7171,17 +7171,27 @@ body[data-leftbar-size=condensed] .user-box {
     justify-content: center;
 }
 
-/* Ensure icons align with their values */
+/* Ensure icons align properly with values */
 .tao-card-contact span {
     display: flex;
     align-items: center;
-
+    justify-content: center; /* Center icon and text */
+    gap: 6px; /* Space between icon and value */
+    min-width: 100px; /* Prevent shifting when empty */
 }
 
+/* Fix icon alignment */
 .tao-card-contact i {
-    visibility: hidden; /* Hide icon but keep spacing */
- 
+    font-size: 14px; /* Ensure consistent size */
+    vertical-align: middle; /* Align with text */
+    visibility: hidden; /* Default hidden to maintain spacing */
+    width: 16px; /* Consistent icon width */
+    height: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
+
 /* Show icons only when there's content */
 .tao-card-contact i.has-content {
     visibility: visible;
