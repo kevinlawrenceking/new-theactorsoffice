@@ -4561,7 +4561,7 @@ li>a[aria-expanded="true"]>span.menu-arrow {
     border-radius: 4px;
     background: #adb5bd;
     width: 150px;
-    color: #ddd; /* Text color */
+    color: #fff; /* Text color */
     z-index: 10; /* Ensures ribbon appears on top */
 
     /* Add subtle shadow */
@@ -7111,6 +7111,7 @@ body[data-leftbar-size=condensed] .user-box {
     justify-content: center;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
+    max-height: 26px;
 }
 
 .tao-card-social {
