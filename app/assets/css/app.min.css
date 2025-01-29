@@ -7244,13 +7244,3 @@ body[data-leftbar-size=condensed] .user-box {
 
 
 
-
-    .ribbon-box {
-        position: relative; /* Ensure this is the positioning context */
-    }
-    
-
-      /* Fix unnecessary full-width issue */
-    .ribbon-card.float-end {
-        float: none !important;
-    }
