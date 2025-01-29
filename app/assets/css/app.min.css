@@ -4602,7 +4602,23 @@ li>a[aria-expanded="true"]>span.menu-arrow {
     background: #ededf1;
     color: #595959
 }
-
+.ribbon-card {
+    position: absolute;
+    bottom: 25px; /* Adjust as needed */
+    right: -5px; /* Move slightly outside the card */
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: #007bff;
+    color: #fff;
+    z-index: 10;
+    white-space: nowrap; /* Prevent wrapping */
+    display: inline-flex; /* Shrink-wrap the width to fit content */
+    align-items: center;
+    justify-content: center;
+    min-width: auto; /* Prevent unwanted stretching */
+    max-width: fit-content; /* Keep width based on content */
+}
 
 
 .ribbon-box .ribbon-Pin::before {
