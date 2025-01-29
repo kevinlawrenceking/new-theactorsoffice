@@ -7245,17 +7245,6 @@ body[data-leftbar-size=condensed] .user-box {
 
 
 
-    /* Adjust the ribbon to extend 5px past the right border */
-    .ribbon-card {
-        position: absolute;
-        bottom: 25px; /* Adjust vertical placement */
-        right: -5px; /* Move it 5px past the card’s right edge */
-        font-size: 0.75rem;
-        padding: 4px 12px;
-        border-radius: 4px;
-       
-      }
-    
     .ribbon-box {
         position: relative; /* Ensure this is the positioning context */
     }
@@ -7263,6 +7252,7 @@ body[data-leftbar-size=condensed] .user-box {
     .ribbon-card i {
         margin-right: 5px;  
       }
+
       /* Fix unnecessary full-width issue */
     .ribbon-card.float-end {
         float: none !important;
