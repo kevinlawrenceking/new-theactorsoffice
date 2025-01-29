@@ -7147,20 +7147,6 @@ body[data-leftbar-size=condensed] .user-box {
   }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   .ribbon-box {
 	position: relative
 }
@@ -7198,7 +7184,9 @@ body[data-leftbar-size=condensed] .user-box {
 	border-radius: 3px 0 0 3px
 }
 
-
+.ribbon-box .ribbon.float-end:before {
+	right: 0
+}
 
 .ribbon-box .ribbon.float-center span {
 	margin: 0 auto 20px auto
