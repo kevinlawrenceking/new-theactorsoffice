@@ -7175,7 +7175,7 @@ body[data-leftbar-size=condensed] .user-box {
 .tao-card-contact span {
     display: flex;
     align-items: center;
-    gap: 5px; /* Space between icon and value */
+
 }
 
 .tao-card-contact i {
