@@ -56,10 +56,10 @@
 
   <p class="tao-card-contact">
     <cfif card_phone neq "NULL">
-      <i class="fe-phone me-1"></i> #card_phone#<br />
+         <cfif card_phone neq ""><i class="fe-phone me-1"></i></cfif> #card_phone#<br />
     </cfif>
     <cfif card_email neq "NULL">
-      <a href="mailto:#card_email#"><i class="fe-mail me-1"></i> #card_email#</a>
+      <a href="mailto:#card_email#"><cfif card_email neq ""><i class="fe-mail me-1"></i></cfif> #card_email#</a>
     </cfif>
   </p>
 </div>
