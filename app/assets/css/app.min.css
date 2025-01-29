@@ -7253,14 +7253,8 @@ body[data-leftbar-size=condensed] .user-box {
         font-size: 0.75rem;
         padding: 4px 12px;
         border-radius: 4px;
-        background: #007bff; /* Ribbon color */
-        color: #fff; /* Text color */
-        z-index: 10; /* Ensure it appears above the card */
-        white-space: nowrap; /* Prevent the text from wrapping */
-        min-width: fit-content; /* Ensure the ribbon is only as wide as its text */
+       
       }
-    
-
     
     .ribbon-box {
         position: relative; /* Ensure this is the positioning context */
