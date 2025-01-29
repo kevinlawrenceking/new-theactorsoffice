@@ -1,10 +1,5 @@
 <!--- This ColdFusion page manages contact data display and interactions, including importing, exporting, and managing tags and systems. --->
 
-<div class="view-toggle">
-    <button id="toggle-table" class="btn btn-primary">Table View</button>
-    <button id="toggle-gallery" class="btn btn-secondary">Gallery View</button>
-</div>
-
 <div class="table-responsive" id="<cfoutput>#contacts_table#_container</cfoutput>">
     <table id="<cfoutput>#contacts_table#</cfoutput>" class="table display nowrap table-striped dataTable w-100 dtr-inline dt-checkboxes-select dt-responsive">
         <thead>

@@ -123,7 +123,6 @@
         <div class="card mb-3">
 
             <div class="card-body">    
-            
                       <cfif #bytag# is not "">
                     <cfoutput>
                        <div class="container"> <cfset bytag="#bytag#"><A HREF="/app/contacts/"> <span class="badge badge-blue">#bytag# X</span></A></div>
@@ -169,7 +168,7 @@
                 <div id="collapse-A" class="collapse show" data-bs-parent="#content" role="tabpanel" aria-labelledby="heading-A">
                     <div class="card-body">
                         <cfset contacts_table="contacts_ss" />
-                        <cfinclude template="/include/contacts_grid.cfm" />
+                        <cfinclude template="/include/contacts_table.cfm" />
                     </div>
                 </div>
             </div>
@@ -608,77 +607,6 @@ $(document).ready(function() {
   });
 });
    </script> 
-
-
-   <script type="text/javascript">
-    $(document).ready(function() {
-        // Initialize DataTable
-        var table = $('#<cfoutput>#contacts_table#</cfoutput>').DataTable({
-            "pageLength": <cfoutput>#defrows#</cfoutput>,
-            "searching": true,
-            "stateSave": false,
-            dom: 'Bfrtip',
-            serverSide: true,
-            ajax: {
-                url: '/include/contacts_ss.cfm?contacts_table=<cfoutput>#contacts_table#</cfoutput>&userid=<cfoutput>#userid#</cfoutput>&bytag=<cfoutput>#bytag#</cfoutput>&byimport=<cfoutput>#byimport#</cfoutput>',
-                type: 'post'
-            }
-        });
-
-        // Toggle Views
-        $('#toggle-table').click(function() {
-            $('#<cfoutput>#contacts_table#_container</cfoutput>').removeClass('d-none');
-            $('#contacts-gallery-container').addClass('d-none');
-        });
-
-        $('#toggle-gallery').click(function() {
-            $('#<cfoutput>#contacts_table#_container</cfoutput>').addClass('d-none');
-            $('#contacts-gallery-container').removeClass('d-none');
-
-            // Fetch data if not already loaded
-            if ($('#contacts-gallery').children().length === 0) {
-                loadGallery();
-            }
-        });
-
-        // Function to Load Card Gallery
-        function loadGallery() {
-            $.ajax({
-                url: '/include/contacts_ss.cfm?contacts_table=<cfoutput>#contacts_table#</cfoutput>&userid=<cfoutput>#userid#</cfoutput>&bytag=<cfoutput>#bytag#</cfoutput>&byimport=<cfoutput>#byimport#</cfoutput>',
-                type: 'POST',
-                dataType: 'json',
-                success: function(response) {
-                    $('#contacts-gallery').empty(); // Clear existing cards
-
-                    $.each(response.data, function(index, contact) {
-                        let cardHtml = `
-                            <div class="col">
-                                <cfoutput>
-                                    <cfset card_header="Yes"/>
-                                    <cfset card_name="Name"/>
-                                    <cfset card_title="Title"/>
-                                    <cfset card_company="Company"/>
-                                    <cfset card_email="Email"/>
-                                    <cfset card_phone="Phone"/>
-                                    <cfset card_details="/app/contact/"/>
-                                    <cfset card_delete="/app/myaccount/"/>
-                                    <cfset card_footer="Yes"/>
-                                    <cfset card_social="Yes"/>
-                                    <cfset card_ribbon1=""/>
-                                    <cfset card_ribbon2=""/>
-                                    <Ccfset card_image="test.jpg" />
-                                    <cfinclude template="/include/card.cfm"/>
-                                </cfoutput>
-                            </div>
-                        `;
-                        $('#contacts-gallery').append(cardHtml);
-                    });
-                }
-            });
-        }
-    });
-</script>
-
 
 <cfset script_name_include="/include/#ListLast(GetCurrentTemplatePath(), " \")#" />
     <cfinclude template="/include/bigbrotherinclude.cfm" />
