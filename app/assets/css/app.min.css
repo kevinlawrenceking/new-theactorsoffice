@@ -2980,7 +2980,7 @@ fieldset:disabled .btn {
     border-radius: 3px;
     box-shadow: var(--ct-card-box-shadow);
     margin-bottom: 24px;
-    
+    z-index: -100
 }
 
 .card>hr {
