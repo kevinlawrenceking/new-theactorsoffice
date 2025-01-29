@@ -4541,132 +4541,44 @@ li>a[aria-expanded="true"]>span.menu-arrow {
 
  
 
-.ribbon-box .ribbon {
-    position: relative;
-    clear: both;
-    padding: 5px 12px;
-    margin-bottom: 15px;
-    box-shadow: 2px 5px 10px #323a4626;
-    color: #fff;
-    font-size: 13px;
-    font-weight: 600
-}
-
-.ribbon-box .ribbon::before {
-    content: " ";
-    border-style: solid;
-    border-width: 10px;
-    display: block;
+/* Ensure the card remains structured */
+.tao-card-md {
+    position: relative; /* Necessary for the absolute positioning of the ribbon */
+    overflow: visible; /* Ensure child elements (like the ribbon) can extend beyond */
+    background-color: #ffffff; /* Keep a clean white background */
+    border: 1px solid #ddd; /* Add a subtle border if needed */
+    border-radius: 8px; /* Optional: Maintain a smooth rounded edge */
+  }
+  
+  /* Ribbon Styling */
+  .ribbon-card {
     position: absolute;
-    bottom: -10px;
-    left: 0;
-    margin-bottom: -10px;
-    z-index: -1
-}
-
-.ribbon-box .ribbon.float-end {
-    margin-right: -30px;
-    border-radius: 3px 0 0 3px
-}
-
-.ribbon-box .ribbon.float-end::before {
-    right: 0
-}
-
-.ribbon-box .ribbon-Callback {
-    background: #A1D9EC;
-    color: #000
-}
-
-.ribbon-box .ribbon-Callback::before {
-    border-color: #84b1c0 transparent transparent
-}
-
-.ribbon-box .ribbon-Redirect {
-    background: #A1D9EC;
-    color: #000
-}
-
-.ribbon-box .ribbon-Redirect::before {
-    border-color: #A1D9EC transparent transparent
-}
-
-.ribbon-box .ribbon-Pin {
-    background: #F8EEC9;
-    color: #000
-}
-
-.ribbon-box .ribbon-card {
-    background: #ededf1;
-    color: #595959
-}
-
-/* Ensure the parent doesn't force it to full width */
-.ribbon-box {
-    position: relative;
-    display: inline-block; /* Prevent full width inheritance */
-}
-
-
-.ribbon-box .ribbon-Pin::before {
-    border-color: #F8EEC9 transparent transparent
-}
-
-.ribbon-box .ribbon-info {
-    background: #DECE8E
-}
-
-.ribbon-box .ribbon-info::before {
-    border-color: #25b7d8 transparent transparent
-}
-
-.ribbon-box .ribbon-two {
-    position: absolute;
-    left: -5px;
-    top: -5px;
-    z-index: 1;
-    overflow: hidden;
-    width: 75px;
-    height: 75px;
-    text-align: right
-}
-
-
-
-.ribbon-box .ribbon-two span::before {
+    bottom: 25px; /* Adjust vertical placement */
+    right: -5px; /* Extends the ribbon 5px past the card boundary */
+    font-size: 0.75rem;
+    padding: 5px 10px;
+    border-radius: 4px;
+    background: #007bff; /* Ribbon color */
+    color: #fff; /* Text color */
+    z-index: 10; /* Ensures ribbon appears on top */
+  }
+  
+  /* Shadow Fix */
+  .ribbon-card::before {
     content: "";
     position: absolute;
-    left: 0;
-    top: 100%;
-    z-index: -1;
-    border-right: 3px solid transparent;
-    border-bottom: 3px solid transparent
-}
-
-.ribbon-box .ribbon-two span::after {
-    content: "";
-    position: absolute;
+    width: 100%;
+    height: 100%;
     right: 0;
-    top: 100%;
-    z-index: -1;
-    border-left: 3px solid transparent;
-    border-bottom: 3px solid transparent
-}
-
-.ribbon-box .ribbon-two-success span {
-    background: #1abc9c
-}
-
-.ribbon-box .ribbon-two-success span::before {
-    border-left: 3px solid #117964;
-    border-top: 3px solid #117964
-}
-
-.ribbon-box .ribbon-two-success span::after {
-    border-right: 3px solid #117964;
-    border-top: 3px solid #117964
-}
-
+    top: 0;
+    box-shadow: none; /* Removes any extra shadow from the ribbon */
+  }
+  
+  /* Remove any unwanted box-shadow from the card */
+  .tao-card-md {
+    box-shadow: none !important;
+  }
+  
 
 @media print {
     .footer,
