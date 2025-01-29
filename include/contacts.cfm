@@ -609,5 +609,75 @@ $(document).ready(function() {
 });
    </script> 
 
+
+   <script type="text/javascript">
+    $(document).ready(function() {
+        // Initialize DataTable
+        var table = $('#<cfoutput>#contacts_table#</cfoutput>').DataTable({
+            "pageLength": <cfoutput>#defrows#</cfoutput>,
+            "searching": true,
+            "stateSave": false,
+            dom: 'Bfrtip',
+            serverSide: true,
+            ajax: {
+                url: '/include/contacts_ss.cfm?contacts_table=<cfoutput>#contacts_table#</cfoutput>&userid=<cfoutput>#userid#</cfoutput>&bytag=<cfoutput>#bytag#</cfoutput>&byimport=<cfoutput>#byimport#</cfoutput>',
+                type: 'post'
+            }
+        });
+
+        // Toggle Views
+        $('#toggle-table').click(function() {
+            $('#<cfoutput>#contacts_table#_container</cfoutput>').removeClass('d-none');
+            $('#contacts-gallery-container').addClass('d-none');
+        });
+
+        $('#toggle-gallery').click(function() {
+            $('#<cfoutput>#contacts_table#_container</cfoutput>').addClass('d-none');
+            $('#contacts-gallery-container').removeClass('d-none');
+
+            // Fetch data if not already loaded
+            if ($('#contacts-gallery').children().length === 0) {
+                loadGallery();
+            }
+        });
+
+        // Function to Load Card Gallery
+        function loadGallery() {
+            $.ajax({
+                url: '/include/contacts_ss.cfm?contacts_table=<cfoutput>#contacts_table#</cfoutput>&userid=<cfoutput>#userid#</cfoutput>&bytag=<cfoutput>#bytag#</cfoutput>&byimport=<cfoutput>#byimport#</cfoutput>',
+                type: 'POST',
+                dataType: 'json',
+                success: function(response) {
+                    $('#contacts-gallery').empty(); // Clear existing cards
+
+                    $.each(response.data, function(index, contact) {
+                        let cardHtml = `
+                            <div class="col">
+                                <cfoutput>
+                                    <cfset card_header="Yes"/>
+                                    <cfset card_name="#contact[2]#"/>
+                                    <cfset card_title="#contact[3]#"/>
+                                    <cfset card_company="#contact[4]#"/>
+                                    <cfset card_email="#contact[5]#"/>
+                                    <cfset card_phone="#contact[6]#"/>
+                                    <cfset card_details="/app/contact/?contactid=#contact[0]#"/>
+                                    <cfset card_delete="/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=#contact[0]#"/>
+                                    <cfset card_footer="Yes"/>
+                                    <cfset card_social="Yes"/>
+                                    <cfset card_ribbon1=""/>
+                                    <cfset card_ribbon2=""/>
+                                    <cfinclude template="/include/card.cfm"/>
+                                </cfoutput>
+                            </div>
+                        `;
+                        $('#contacts-gallery').append(cardHtml);
+                    });
+                }
+            });
+        }
+    });
+</script>
+
+
 <cfset script_name_include="/include/#ListLast(GetCurrentTemplatePath(), " \")#" />
     <cfinclude template="/include/bigbrotherinclude.cfm" />
