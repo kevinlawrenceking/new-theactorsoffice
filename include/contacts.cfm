@@ -168,7 +168,7 @@
                 <div id="collapse-A" class="collapse show" data-bs-parent="#content" role="tabpanel" aria-labelledby="heading-A">
                     <div class="card-body">
                         <cfset contacts_table="contacts_ss" />
-                        <cfinclude template="/include/contacts_table.cfm" />
+                        <cfinclude template="/include/contacts_grid.cfm" />
                     </div>
                 </div>
             </div>
