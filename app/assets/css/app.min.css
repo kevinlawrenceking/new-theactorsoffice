@@ -7203,13 +7203,7 @@ body[data-leftbar-size=condensed] .user-box {
     color: #fff;
 }
 
-.ribbon-card.float-end {
-    right: -15px;
-}
 
-.ribbon-card i {
-    margin-right: 5px;
-}
 
 .audition-avatar {
     width: 50px; /* Same size as the avatar */
