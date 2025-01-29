@@ -4700,6 +4700,40 @@ li>a[aria-expanded="true"]>span.menu-arrow {
     border-top: 3px solid #117964
 }
 
+
+
+/* Ensure the ribbon only takes as much space as needed */
+.ribbon-card {
+    position: absolute;
+    bottom: 25px;
+    right: -5px; /* Extend slightly beyond the card */
+    font-size: 0.75rem;
+    padding: 3px 10px;
+    border-radius: 4px;
+    background: #007bff;
+    color: #fff;
+    z-index: 10;
+
+    display: inline-flex; /* Makes the width only fit the content */
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap; /* Ensures text stays in a single line */
+    min-width: unset !important; /* Remove any inherited width issues */
+    max-width: fit-content !important; /* Force width to match content */
+}
+
+/* Debugging: Add a border to see what’s happening */
+.ribbon-card::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    right: 0;
+    top: 0;
+    border: 1px solid red; /* Temporary border for debugging */
+}
+
+
 @media print {
     .footer,
     .left-side-menu,
