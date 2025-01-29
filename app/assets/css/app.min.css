@@ -4548,6 +4548,7 @@ li>a[aria-expanded="true"]>span.menu-arrow {
     background-color: #ffffff; /* Keep a clean white background */
     border: 1px solid #ddd; /* Add a subtle border if needed */
     border-radius: 8px; /* Optional: Maintain a smooth rounded edge */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   }
   
   /* Ribbon Styling */
