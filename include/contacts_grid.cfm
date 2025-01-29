@@ -29,7 +29,7 @@
 <!-- Gallery View -->
 <div id="contacts-gallery-container" class="container-fluid d-none">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3" id="contacts-gallery">
-        <!-- Cards will be dynamically inserted here -->
+        <!--- Cards will be dynamically inserted here --->
     </div>
 </div>
 

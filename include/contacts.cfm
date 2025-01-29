@@ -655,13 +655,13 @@ $(document).ready(function() {
                             <div class="col">
                                 <cfoutput>
                                     <cfset card_header="Yes"/>
-                                    <cfset card_name="#contact[2]#"/>
-                                    <cfset card_title="#contact[3]#"/>
-                                    <cfset card_company="#contact[4]#"/>
-                                    <cfset card_email="#contact[5]#"/>
-                                    <cfset card_phone="#contact[6]#"/>
-                                    <cfset card_details="/app/contact/?contactid=#contact[0]#"/>
-                                    <cfset card_delete="/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=#contact[0]#"/>
+                                    <cfset card_name="Name"/>
+                                    <cfset card_title="Title"/>
+                                    <cfset card_company="Company"/>
+                                    <cfset card_email="Email"/>
+                                    <cfset card_phone="Phone"/>
+                                    <cfset card_details="/app/contact/"/>
+                                    <cfset card_delete="/app/myaccount/"/>
                                     <cfset card_footer="Yes"/>
                                     <cfset card_social="Yes"/>
                                     <cfset card_ribbon1=""/>
