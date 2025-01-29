@@ -55,13 +55,13 @@
   </p>
 
 <p class="tao-card-contact">
-    <!-- Phone -->
+    <!--- Phone --->
     <span>
         <i class="fe-phone me-1 <cfif card_phone neq ''>has-content</cfif>"></i>
         <cfif card_phone neq ''>#card_phone#</cfif>
     </span>
 
-    <!-- Email -->
+    <!--- Email --->
     <span>
         <i class="fe-mail me-1 <cfif card_email neq ''>has-content</cfif>"></i>
         <cfif card_email neq ''>
@@ -105,11 +105,11 @@
       </div> <!--- end .tao-card-body --->
       
       <!--- Card Footer --->
-  <!-- Card Footer -->
+  <!--- Card Footer --->
 <cfif card_footer eq "Yes">
   <div class="tao-card-footer">
     <div class="tao-card-social">
-      <!-- Loop through social icons -->
+      <!--- Loop through social icons --->
       <cfloop query="profiles">
         <cfif profiles.valuetext neq "NULL">
           <a href="#profiles.valuetext#" target="_blank" title="#profiles.valuetype#">
@@ -122,9 +122,9 @@
         </cfif>
       </cfloop>
 
-      <!-- Placeholder if no profiles are present -->
+      <!--- Placeholder if no profiles are present --->
       <cfif profiles.recordcount eq 0>
-        <!-- Add placeholder icons to maintain height -->
+        <!--- Add placeholder icons to maintain height --->
         <div class="tao-card-social-placeholder">
           <img src="#application.retinaIcons14Url#/placeholder.png" alt="placeholder" />
           <img src="#application.retinaIcons14Url#/placeholder.png" alt="placeholder" />
