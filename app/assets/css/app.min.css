@@ -7187,7 +7187,9 @@ body[data-leftbar-size=condensed] .user-box {
     background-color: #f8f9fa;
     border-top: 1px solid #ddd;
     text-align: center;
-    margin-top: auto; /* Pushes footer to the bottom of the card */
+    margin-top: auto; 
+    min-height: 1.5rem; 
+    display: flex 
 }
 
 /* Social Media Icons */
