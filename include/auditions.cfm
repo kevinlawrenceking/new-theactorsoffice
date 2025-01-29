@@ -281,10 +281,10 @@
         <cfset card_title=results.audsubcatname & " - " & results.col3 />
         <cfset card_company=results.col4 />
 
-        <cfset card_details="/app/contact/?contactid=" & myteam.contactid/>
-        <cfset card_delete="/app/audition/?audprojectid=" & results.recid/>
-        <cfset card_footer="Yes"/>
-        <cfset card_social="Yes"/>
+        <cfset card_details="/app/audition/?audprojectid=" & results.recid/>
+
+        <cfset card_footer="No"/>
+        <cfset card_social="No"/>
         <cfset card_ribbon1=""/>
         <cfset card_ribbon2=""/>
 
