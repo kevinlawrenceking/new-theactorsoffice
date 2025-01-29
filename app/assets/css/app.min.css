@@ -4553,7 +4553,7 @@ li>a[aria-expanded="true"]>span.menu-arrow {
   /* Ribbon Styling */
   .ribbon-card {
     position: absolute;
-    bottom: 25px; /* Adjust vertical placement */
+    bottom: 35px; /* Adjust vertical placement */
     right: -5px; /* Extends the ribbon 5px past the card boundary */
     font-size: 0.75rem;
     padding: 5px 10px;
@@ -4572,7 +4572,7 @@ li>a[aria-expanded="true"]>span.menu-arrow {
     height: 100%;
     right: 0;
     top: 0;
-    box-shadow: none; /* Removes any extra shadow from the ribbon */
+
   }
   
   /* Remove any unwanted box-shadow from the card */
