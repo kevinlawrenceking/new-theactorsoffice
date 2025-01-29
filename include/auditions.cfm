@@ -282,7 +282,7 @@
         <cfset card_company=results.col4 />
 
         <cfset card_details="/app/audition/?audprojectid=" & results.recid/>
-
+        <cfset card_image = "#application.datesUrl#/#DateFormat('#results.col1#','mm-dd')#.png" />
         <cfset card_footer="No"/>
         <cfset card_social="No"/>
         <cfset card_ribbon1=""/>
