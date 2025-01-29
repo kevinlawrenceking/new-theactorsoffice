@@ -80,24 +80,36 @@
       </div> <!--- end .tao-card-body --->
       
       <!--- Card Footer --->
-      <cfif card_footer eq "Yes">
-        <div class="tao-card-footer">
-          <div class="tao-card-social">
+  <!-- Card Footer -->
+<cfif card_footer eq "Yes">
+  <div class="tao-card-footer">
+    <div class="tao-card-social">
+      <!-- Loop through social icons -->
+      <cfloop query="profiles">
+        <cfif profiles.valuetext neq "NULL">
+          <a href="#profiles.valuetext#" target="_blank" title="#profiles.valuetype#">
+            <cfif profiles.typeicon neq "">
+              <img src="#application.retinaIcons14Url#/#profiles.typeicon#" alt="#profiles.valuetype#" />
+            <cfelse>
+              <img src="#application.retinaIcons14Url#/customlink.png" alt="#profiles.valuetype#" />
+            </cfif>
+          </a>
+        </cfif>
+      </cfloop>
 
-            <cfloop query="profiles">
-                <a href="#profiles.valuetext#" target="#profiles.valuetext#" title="#profiles.valuetype#">
-                  <cfif profiles.typeicon eq "">
-                    <img src="#application.retinaIcons14Url#/customlink.png" title="#profiles.valuetext#" />
-                  <cfelse>
-                    <img src="#application.retinaIcons14Url#/#profiles.typeicon#" title="#profiles.valuetext#" />
-                  </cfif>
-                </a>
-            </cfloop>
-
-
-          </div>
-        </div> <!--- end .tao-card-footer --->
+      <!-- Placeholder if no profiles are present -->
+      <cfif profiles.recordcount eq 0>
+        <!-- Add placeholder icons to maintain height -->
+        <div class="tao-card-social-placeholder">
+          <img src="#application.retinaIcons14Url#/placeholder.png" alt="placeholder" />
+          <img src="#application.retinaIcons14Url#/placeholder.png" alt="placeholder" />
+          <img src="#application.retinaIcons14Url#/placeholder.png" alt="placeholder" />
+        </div>
       </cfif>
+    </div>
+  </div>
+</cfif>
+
 
     </div> <!--- end .tao-card-md --->
 
