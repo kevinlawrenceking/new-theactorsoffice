@@ -666,6 +666,7 @@ $(document).ready(function() {
                                     <cfset card_social="Yes"/>
                                     <cfset card_ribbon1=""/>
                                     <cfset card_ribbon2=""/>
+                                    <Ccfset card_image="test.jpg" />
                                     <cfinclude template="/include/card.cfm"/>
                                 </cfoutput>
                             </div>

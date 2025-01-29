@@ -26,11 +26,12 @@
       
         <!--- Avatar --->
         <div class="tao-card-avatar">
-          <cfif isimagefile("#session.userContactsPath#\#myteam.contactid#\avatar.jpg")>
-            <img src="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg?ver=#rand()#" alt="profile-image" />
-          <cfelse>
-            <img src="#application.defaultAvatarUrl#" alt="profile-image" />
-          </cfif>
+        
+
+            <!--- Avatar --->
+        <div class="tao-card-avatar">
+            <img src="#card_image#?ver=#rand()#" alt="profile-image" />
+
         </div>
         
         <!--- Full Name --->
