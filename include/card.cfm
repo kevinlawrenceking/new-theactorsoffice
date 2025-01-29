@@ -57,6 +57,19 @@
             </cfif>
           </p>
         </div>
+
+        <Cfif card_ribbon1 neq "">
+                <div class="ribbon ribbon-card ribbon-#card_ribbon1# float-end" style="position: absolute; bottom: 25px; right: 5px; margin-right: -15px;">
+                  <i class="mdi mdi-access-point me-1"></i>#card_ribbon1#
+                </div>
+</cfif>
+
+<Cfif card_ribbon2 neq "">
+                <div class="ribbon ribbon-card ribbon-#card_ribbon2# float-end" style="position: absolute; bottom: 45px; right: 5px; margin-right: -15px;">
+                  <i class="mdi mdi-access-point me-1"></i>#card_ribbon2#
+                </div>
+                </cfif>
+
       </div> <!--- end .tao-card-body --->
       
       <!--- Card Footer --->
