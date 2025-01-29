@@ -7078,20 +7078,30 @@ body[data-leftbar-size=condensed] .user-box {
     color:var(--ct-menu-item)
     }
 
-    /* Tao Card - Medium Size */
+
+    /* Ensure card allows content to extend outside */
 .tao-card-md {
-    font-size: 0.85rem;
-    position: relative;
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    display: flex;
-    min-height: 300px;
-    flex-direction: column; /* Ensures consistent layout inside the card */
-    height: 100%; /* Makes all cards take up equal height within their column */
-}
+    position: relative; /* Ensure it's the reference point for absolute positioning */
+    overflow: visible; /* Allow the ribbon to extend outside */
+    box-shadow: none !important; /* Ensure the card doesn’t add an extra shadow */
+  }
+  
+  /* Adjust the ribbon to extend 5px past the right border */
+  .ribbon-card {
+    position: absolute;
+    bottom: 25px; /* Adjust based on placement */
+    right: -5px; /* Move it 5px past the card's right border */
+    font-size: 0.75rem;
+    padding: 5px 10px;
+    border-radius: 4px;
+    background: #007bff; /* Ribbon color */
+    color: #fff; /* Text color */
+    z-index: 10; /* Ensure it appears above the card */
+    box-shadow: none; /* Remove extra shadow if present */
+  }
+
+
+
 
 /* Card Header */
 .tao-card-header {
@@ -7219,18 +7229,6 @@ body[data-leftbar-size=condensed] .user-box {
 /* Ribbon Labels */
 .ribbon-box {
     position: relative;
-}
-
-.ribbon-card {
-  
-    bottom: 25px;
-    right: 5px;
-    font-size: 0.75rem;
-    padding: 5px 10px;
-    border-radius: 4px;
-    background: #007bff;
-    color: #fff;
-    z-index: 10 
 }
 
 .ribbon-card i {
