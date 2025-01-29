@@ -1271,7 +1271,7 @@ ORDER BY label
 
 <cfreturn result>
 </cffunction>
-<cffunction output="false" name="RESaudprojects" access="public" returntype="query">
+<cffunction output="false" name="getAuditions" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="byimport" type="string" required="false" default="">
     <cfargument name="sel_contactid" type="string" required="false" default="%">

@@ -21,7 +21,7 @@
 
 <cfset colist = valuelist(coss.contactid) />
 
-<cfinclude template="/include/qry/results_371_2.cfm" />
+<cfinclude template="/include/qry/getAuditions.cfm" />  <!--- results_371_2.cfm --->
 
 <cfset projectlist = valuelist(results.audprojectid) />    
 

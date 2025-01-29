@@ -215,11 +215,13 @@
 <div class="container p-3">
                 <div class="row">
                     <cfif #view# is "glry">
+
+
                         <cfif #results.recordcount# is "0">
                             <p>No events found</p>
                         </cfif>
 
-                        <cfif #results.recordcount# is not "0">
+                        <cfif #results.recordcount# is not "0"> 
                             <p>
                                 <cfoutput>
                                     <strong> #results.recordcount#</strong> audition<cfif #results.recordcount# is not "1">s</cfif> found
@@ -242,106 +244,55 @@
                                 </cfif>
                             </cfoutput>
 
-                            <cfoutput>
-                                <cfset i=#i# + 1/>
-                                <div class="col-lg-4">
-                                    <div class="card ribbon-box border-secondary">
-                                        <cfif #results.isbooked# is "1">
-                                            <div class="ribbon-two ribbon-two-success">
-                                                <span>Booked</span>
-                                            </div>
-                                        </cfif>
+    
 
-                                        <div class="card-header text-white bg-secondary d-flex" style="font-size:16px;">
-                                            <center>&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;#results.col2#</center>
-                                            <span class="ms-auto text-light">
-                                                <a href="/app/audition/?audprojectid=#results.audprojectid#" class="btn btn-xs btn-primary waves-effect waves-light">
-                                                    <i class="mdi mdi-eye-outline"></i>
-                                                </a>
-                                            </span>
-                                        </div>
 
-                                        <div class="row g-0">
-                                            <div class="col-md-4 p-2">
-                                                <cfif #isdefined('option1')#>
-                                                    <center>
-                                                        <img src="#application.datesUrl#/#DateFormat('#results.col1#','mm-dd')#.png" style="max-width:75px;" alt="..." />
-                                                    </center>
-                                                    <br>
-                                                    <center>#DateFormat('#results.col1#','yyyy')#</center>
-                                                </cfif>
 
-                                                <cfif #results.col1#is not "">
-                                               <a href="/app/audition/?audprojectid=#results.recid#" title="#this.formatDate('#results.col1#')#">
-    <div class="text-center">
-        <img src="#application.datesUrl#/#DateFormat('#results.col1#','mm-dd')#.png" style="max-width:75px;" alt="Calendar Icon" />
-        <span class="d-block text-muted-custom">#dateformat('#results.col1#', 'YYYY')#</span>
-    </div>
-</a>
-                                                <cfelse>
-                                                    <a href="/app/audition/?audprojectid=#results.recid#" title="#DateFormat('#results.col1b#','long')# at #timeformat('#results.col1b#')#">
-                                                        <img src="#application.datesUrl#/#DateFormat('#results.col1b#','mm-dd')#.png" style="max-width:75px;" alt="..." />
-                                                    </a>
-                                                </cfif>
-                                            </div>
 
-                                            <div class="col-md-8">
-                                                <div class="card-body">
-                                                    <cfif #results.ispin# is "1">
-                                                        <div class="ribbon ribbon-Pin float-end">
-                                                            <i class="mdi mdi-access-point me-1"></i>Pin
-                                                        </div>
-                                                    </cfif>
 
-                                                    <cfif #results.isredirect# is "1">
-                                                        <div class="ribbon ribbon-Redirect float-end">
-                                                            <i class="mdi mdi-access-point me-1"></i>Redirect
-                                                        </div>
-                                                    </cfif>
 
-                                                    <cfif #results.iscallback# is "1">
-                                                        <div class="ribbon ribbon-Callback float-end">
-                                                            <i class="mdi mdi-access-point me-1"></i>Callback
-                                                        </div>
-                                                    </cfif>
 
-                                                    <cfif #results.col4#is not "">
-                                                        <h5 class="card-title">#results.audcatname#</h5>
-                                                        <h6>#results.audsubcatname#</h6>
-                                                        <h7>#results.col4#</h7>
-                                                    <cfelse>
-                                                        <h5 class="card-title">#results.audcatname#</h5>
-                                                        <h6>#results.audsubcatname#</h6>
-                                                        <h7>Role: TBD</h7>
-                                                    </cfif>
 
-                                                    <p class="card-text">
-                                                        <small class="text-muted">
-                                                            Source: <cfif #results.col5#is not "">
-                                                                <cfif #results.col5# is "My Team" and #results.contactname#is not "">
-                                                                    #results.contactname#
-                                                                <cfelse>
-                                                                    #results.col5#
-                                                                </cfif>
-                                                            <cfelse>
-                                                                TBD
-                                                            </cfif>
-                                                        </small>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--- end card --->
-                            </cfoutput>
 
-                            <cfif #i# is "3">
-                                </div>
-                                <div class="row">
-                                    <cfset i=0>
-                            </cfif>
-                        </cfloop>
+
+
+
+
+
+
+
+
+
+     <!--- Variables for card --->
+        <Cfparam name="card_header" default="No"/>
+        <Cfparam name="card_name" default=""/>
+        <Cfparam name="card_title" default=""/>
+        <Cfparam name="card_company" default=""/>
+        <Cfparam name="card_email" default=""/>
+        <Cfparam name="card_phone" default=""/>
+        <Cfparam name="card_details" default=""/>
+        <Cfparam name="card_delete" default=""/>
+        <Cfparam name="card_footer" default="No"/>
+        <Cfparam name="card_social" default="No"/>
+
+        <!--- Assign card values dynamically --->
+        <cfset card_header="Yes"/>
+        <cfset card_name=results.col2 />
+        <cfset card_title=results.audsubcatname & " - " & results.col3 />
+        <cfset card_company=results.col4 />
+
+        <cfset card_details="/app/contact/?contactid=" & myteam.contactid/>
+        <cfset card_delete="/app/audition/?audprojectid=" & results.recid/>
+        <cfset card_footer="Yes"/>
+        <cfset card_social="Yes"/>
+        <cfset card_ribbon1=""/>
+        <cfset card_ribbon2=""/>
+
+ 
+
+        <cfinclude template="/include/card.cfm"/>
+
+</cfloop>
 
 </cfif>
 
