@@ -7077,3 +7077,128 @@ body[data-leftbar-size=condensed] .user-box {
     body[data-leftbar-color=gradient][data-leftbar-size=condensed] #wrapper .left-side-menu .nav-second-level li a,body[data-leftbar-color=gradient][data-leftbar-size=condensed] #wrapper .left-side-menu .nav-thrid-level li a {
     color:var(--ct-menu-item)
     }
+
+    /* Tao Card - Medium Size */
+.tao-card-md {
+    font-size: 0.85rem;
+    position: relative;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Card Header */
+.tao-card-header {
+    background-color: #ededf1;
+    color: #595959;
+    font-weight: bold;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Card Body */
+.tao-card-body {
+    text-align: center;
+    padding: 0.75rem;
+}
+
+/* Avatar */
+.tao-card-avatar img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+}
+
+/* Name */
+.tao-card-name {
+    font-weight: bold;
+    font-size: 1rem;
+    margin: 0.5rem 0;
+}
+
+.tao-card-name a {
+    text-decoration: none;
+    color: #333;
+}
+
+.tao-card-name a:hover {
+    color: #007bff;
+}
+
+/* Title */
+.tao-card-title {
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin: 0.25rem 0;
+}
+
+/* Company */
+.tao-card-company {
+    font-size: 0.8rem;
+    color: #595959;
+    margin: 0.25rem 0;
+}
+
+/* Contact Info */
+.tao-card-contact {
+    font-size: 0.8rem;
+    color: #777;
+    margin-bottom: 0.5rem;
+}
+
+.tao-card-contact a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.tao-card-contact a:hover {
+    text-decoration: underline;
+}
+
+/* Card Footer */
+.tao-card-footer {
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    border-top: 1px solid #ddd;
+    text-align: center;
+}
+
+/* Social Media Icons */
+.tao-card-social a {
+    margin: 0 5px;
+    display: inline-block;
+}
+
+.tao-card-social img {
+    width: 16px;
+    height: 16px;
+}
+
+/* Ribbon Labels */
+.ribbon-box {
+    position: relative;
+}
+
+.ribbon-card {
+    position: absolute;
+    bottom: 25px;
+    right: 5px;
+    font-size: 0.75rem;
+    padding: 5px 10px;
+    border-radius: 4px;
+    background: #007bff;
+    color: #fff;
+}
+
+.ribbon-card.float-end {
+    right: -10px;
+}
+
+.ribbon-card i {
+    margin-right: 5px;
+}

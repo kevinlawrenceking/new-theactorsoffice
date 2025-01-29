@@ -70,169 +70,54 @@
 <Cfset currentid = myteam.contactid />
 
 <cfinclude template="/include/qry/getRemindersByRelationship.cfm" />
-      <!--- Variables for card --->
-      <cfset card_email = myteam.card_email />
-      <cfset card_phone = myteam.card_phone />
-      <cfset card_delete = "/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=" & myteam.contactid />
-      <cfset card_name = myteam.card_name />
-      <cfset card_details = "/app/contact/?contactid=" & myteam.contactid />
-      <cfset card_facebook ="" />
-      <cfset card_title = myteam.card_title />
-      <Cfset card_company = myteam.card_company />
-
-      <Cfparam name="card_ribbon1" default="" />
-      <Cfparam name="card_ribbon2" default="" />
-
-<Cfloop query="rels" >
-<cfif rels.currentrow eq 1>
-<Cfset card_ribbon1 = rels.systemType />
-<cfelseif rels.currentrow eq 2>
-<Cfset card_ribbon2 = rels.systemType />
-</cfif>
-
-</cfloop>
-      
-      <!--- Start of card layout --->
-      <cfoutput>
-        <div class="col">
-          <!--- Card wrapper --->
-          <div class="card h-100 shadow-sm border border-dark ribbon-box" style="font-size: 0.85rem;position: relative">
-
-            <!--- Card Header --->
-            <div class="card-header d-flex justify-content-between align-items-center" style="background-color: ##ededf1; color: ##595959; font-weight: bold; padding: 0.5rem;">
-             
-            <!--- Remove button --->
-
-              <cfif #card_delete# is not "">
-
-              <a href="#card_delete#"
-                 title="Remove from team"
-                 class="text-decoration-none text-danger">
-                <i class="fe-trash-2"></i>
-              </a>
-
-              </cfif>
-
-              <!--- View details button --->
-
-              <cfif #card_delete# is not "">
-
-              <a href="#card_details#" class="text-decoration-none">
-                <i class="fe-eye" title="View Details"></i>
-              </a>
-            </div>
-
-            </cfif>
-
-            <!--- Card Body --->
-            <div class="card-body text-center" style="padding: 0.5rem;">
-
-              <!--- Avatar --->
-              <div class="mb-2">
-                <cfif isimagefile("#session.userContactsPath#\#myteam.contactid#\avatar.jpg")>
-                  <img 
-                    src="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg?ver=#rand()#" 
-                    class="rounded-circle img-thumbnail" 
-                    style="width: 50px; height: 50px;" 
-                    alt="profile-image" 
-                  />
-                <cfelse>
-                  <img 
-                    src="#application.defaultAvatarUrl#" 
-                    class="rounded-circle img-thumbnail" 
-                    style="width: 50px; height: 50px;" 
-                    alt="profile-image" 
-                  />
-                </cfif>
-              </div>
-
-              <!--- Full Name --->
-                  <cfif card_name neq "">
-              <p class="mb-2" style="font-weight: bold; font-size: 1rem;">
-          
-                <A href="#card_details#">#card_name#</a>
-
-              </p>
-      </cfif>
-      
-              <!--- Contact Info --->
-              <div>
-                <!--- Title --->
-                <Cfif card_title neq "">
-                <p class="mb-1" style="font-weight: bold; font-size: 0.9rem;">
-                  #card_title#
-                </p>
-                </cfif>
-
-                <Cfif card_company neq "">
-                <!--- Company --->
-                <p class="mb-1" style="font-size: 0.8rem; color: ##595959;">
-                  #card_company#
-                </p>
-                </cfif>
-
-                <!--- Phone and Email --->
-                <p class="text-muted small mb-3">
-                  <!--- Display phone if available --->
-                  <cfif card_phone neq "">
-                    <i class="fe-phone me-1"></i> #card_phone#<br /><cfelse>&nbsp;<BR>
-                  </cfif>
-                  <!--- Display email if available --->
-                  <cfif card_email neq ""><a href="mailto:#card_email#">
-                    <i class="fe-mail me-1 mb-3"></i> #card_email#</a>
-                  </cfif>
-                </p>
-              </div>
-
-<Cfif card_ribbon1 neq "">
-                <div class="ribbon ribbon-card ribbon-#card_ribbon1# float-end" style="position: absolute; bottom: 25px; right: 5px; margin-right: -15px;">
-                  <i class="mdi mdi-access-point me-1"></i>#card_ribbon1#
-                </div>
-</cfif>
-
-<Cfif card_ribbon2 neq "">
-                <div class="ribbon ribbon-card ribbon-#card_ribbon2# float-end" style="position: absolute; bottom: 45px; right: 5px; margin-right: -15px;">
-                  <i class="mdi mdi-access-point me-1"></i>#card_ribbon2#
-                </div>
-                </cfif>
-
-
-            </div> <!--- end .card-body --->
-
-            <!--- Card Footer --->
-            <div class="card-footer border-1 text-center" style="padding: 0.25rem;">
-              <!--- Social Media Icons --->
-
-
- <div>
-                         <cfloop query="profiles">
-
-                                <cfoutput>
-
-                                    <a href="#profiles.valuetext#" class="text-white font-14 py-1 ps-o me-2   d-inline-block" data-bs- data-bs-placement="top" title="" target="#profiles.valuetext#" data-bs-original-title="#profiles.valuetype#">
-<cfif #profiles.typeicon# is "">
-                   <img src="#application.retinaIcons14Url#/customlink.png" title="#profiles.valuetext#"  width="16px" />                           
-
-<cfelse>
-          <img src="#application.retinaIcons14Url#/#profiles.typeicon#" title="#profiles.valuetext#"  width="16px" />
-                                        
-                                        </cfif>
-
-</a>
-
-                                </Cfoutput>
-
-                            </cfloop>
-</div>
 
 
 
-             
-            </div> <!--- end .card-footer --->
-          </div> <!--- end .card --->
+<!--- Variables for card --->
+<Cfparam name="card_header" default="No" />
+<Cfparam name="card_name" default="" />
+<Cfparam name="card_title" default="" />
+<Cfparam name="card_company" default="" />
+<Cfparam name="card_email" default="" />
+<Cfparam name="card_phone" default="" />
+<Cfparam name="card_details" default="" />
+<Cfparam name="card_delete" default="" />
+<Cfparam name="card_footer" default="No" />
+<Cfparam name="card_social" default="Yes" />
+
+<!--- Assign card values dynamically --->
+<cfset card_header = "Yes" />  
+<cfset card_name = myteam.card_name />
+<cfset card_title = myteam.card_title />
+<cfset card_company = myteam.card_company />  
+<cfset card_email = myteam.card_email />
+<cfset card_phone = myteam.card_phone />
+<cfset card_details = "/app/contact/?contactid=" & myteam.contactid />
+<cfset card_delete = "/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=" & myteam.contactid />
+<cfset card_footer = "Yes" />  
+<cfset card_social = "Yes" />  
+
+<!--- Assign ribbon values dynamically --->
+<Cfloop query="rels">
+  <cfif rels.currentrow eq 1>
+    <Cfset card_ribbon1 = rels.systemType />
+  <cfelseif rels.currentrow eq 2>
+    <Cfset card_ribbon2 = rels.systemType />
+  </cfif>
+</Cfloop>
+
+
+
+<cfinclude template="/include/card.cfm" />
+
+
+
         </div> <!--- end col --->
+
       </cfoutput>
     </cfloop>
+
+
   </div> <!--- end row --->
 </div> <!--- end container --->
 
