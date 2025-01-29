@@ -7164,7 +7164,7 @@ body[data-leftbar-size=condensed] .user-box {
     font-size: 0.8rem;
     color: #777;
     margin-bottom: 0.5rem;
-    min-height: 2rem; /* Keep height even when empty */
+    min-height: 2.5rem; /* Keep height even when empty */
     display: flex;
     flex-direction: column;
     align-items: center;
