@@ -4604,7 +4604,7 @@ li>a[aria-expanded="true"]>span.menu-arrow {
 }
 .ribbon-card {
     position: absolute;
-    bottom: 25px; /* Adjust as needed */
+
     right: -5px; /* Move slightly outside the card */
     font-size: 0.75rem;
     padding: 4px 8px;
