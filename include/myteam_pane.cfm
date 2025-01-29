@@ -110,7 +110,6 @@
 
         </div> <!--- end col --->
 
-      </cfoutput>
     </cfloop>
 
 

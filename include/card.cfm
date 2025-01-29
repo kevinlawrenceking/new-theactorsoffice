@@ -61,7 +61,6 @@
         <div class="tao-card-footer">
           <div class="tao-card-social">
             <cfloop query="profiles">
-              <cfoutput>
                 <a href="#profiles.valuetext#" target="#profiles.valuetext#" title="#profiles.valuetype#">
                   <cfif profiles.typeicon eq "">
                     <img src="#application.retinaIcons14Url#/customlink.png" title="#profiles.valuetext#" />
@@ -69,7 +68,6 @@
                     <img src="#application.retinaIcons14Url#/#profiles.typeicon#" title="#profiles.valuetext#" />
                   </cfif>
                 </a>
-              </cfoutput>
             </cfloop>
           </div>
         </div> <!--- end .tao-card-footer --->
