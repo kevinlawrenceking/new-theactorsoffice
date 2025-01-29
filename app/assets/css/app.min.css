@@ -7111,7 +7111,7 @@ body[data-leftbar-size=condensed] .user-box {
     justify-content: center;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
-    max-height: 26px;
+    max-height: 20px;
 }
 
 .tao-card-social {
