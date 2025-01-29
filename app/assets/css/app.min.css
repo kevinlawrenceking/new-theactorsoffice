@@ -7215,14 +7215,14 @@ body[data-leftbar-size=condensed] .user-box {
 .tao-card-social-placeholder {
     visibility: hidden;
   }
-  
+
 /* Ribbon Labels */
 .ribbon-box {
     position: relative;
 }
 
 .ribbon-card {
-    position: absolute;
+  
     bottom: 25px;
     right: 5px;
     font-size: 0.75rem;
@@ -7230,9 +7230,12 @@ body[data-leftbar-size=condensed] .user-box {
     border-radius: 4px;
     background: #007bff;
     color: #fff;
+    z-index: 10 
 }
 
-
+.ribbon-card i {
+    margin-right: 5px;  
+  }
 
 .audition-avatar {
     width: 50px; /* Same size as the avatar */
