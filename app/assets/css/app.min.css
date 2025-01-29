@@ -7180,8 +7180,7 @@ body[data-leftbar-size=condensed] .user-box {
 
 .tao-card-contact i {
     visibility: hidden; /* Hide icon but keep spacing */
-    width: 16px; /* Keep consistent width */
-    height: 16px;
+ 
 }
 /* Show icons only when there's content */
 .tao-card-contact i.has-content {
