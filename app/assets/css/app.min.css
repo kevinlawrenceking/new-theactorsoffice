@@ -7092,14 +7092,18 @@ body[data-leftbar-size=condensed] .user-box {
 
 .tao-card-social {
     display: flex;
-    gap: 0.5rem; /* Add spacing between icons */
+    gap: 0.5rem; /* Ensures even spacing between icons */
+    justify-content: center; /* Centers icons in the footer */
+    align-items: center;
   }
 
 /* Social Media Icons */
 .tao-card-social a {
- display: inline-block;
-  width: 16px;
-  height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
 }
 
 .tao-card-social img {
