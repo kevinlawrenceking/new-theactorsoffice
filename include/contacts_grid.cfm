@@ -1,6 +1,17 @@
 
 <cfset defrows = defrows />
 
+
+<div class="view-toggle d-flex mb-3">
+    <button id="toggle-table" class="btn btn-primary me-2">
+        <i class="mdi mdi-menu fa-1x"></i>
+    </button>
+    <button id="toggle-gallery" class="btn btn-secondary">
+        <i class="mdi mdi-drag fa-1x"></i>
+    </button>
+</div>
+
+
 <div class="container">
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
     <cfloop query="myteam">
@@ -41,7 +52,7 @@
           </cfif>
         </Cfloop>
 
-        
+
       <cfinclude template="/include/card.cfm" />
     </cfloop>
   </div> <!--- end row --->

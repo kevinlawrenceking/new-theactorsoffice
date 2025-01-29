@@ -123,14 +123,7 @@
         <div class="card mb-3">
 
             <div class="card-body">    
-            <div class="view-toggle d-flex mb-3">
-    <button id="toggle-table" class="btn btn-primary me-2">
-        <i class="mdi mdi-menu fa-1x"></i>
-    </button>
-    <button id="toggle-gallery" class="btn btn-secondary">
-        <i class="mdi mdi-drag fa-1x"></i>
-    </button>
-</div>
+            
                       <cfif #bytag# is not "">
                     <cfoutput>
                        <div class="container"> <cfset bytag="#bytag#"><A HREF="/app/contacts/"> <span class="badge badge-blue">#bytag# X</span></A></div>
