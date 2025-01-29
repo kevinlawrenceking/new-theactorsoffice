@@ -2,6 +2,7 @@
 <cfoutput>
   <div class="col">
 
+
     <div class="tao-card-md ribbon-box">
       
       <!--- Card Header --->
@@ -22,7 +23,7 @@
       
       <!--- Card Body --->
       <div class="tao-card-body">
-
+      
         <!--- Avatar --->
         <div class="tao-card-avatar">
           <cfif isimagefile("#session.userContactsPath#\#myteam.contactid#\avatar.jpg")>
@@ -78,7 +79,9 @@
         </div> <!--- end .tao-card-footer --->
       </cfif>
 
-
     </div> <!--- end .tao-card-md --->
+
+
+  </div> <!--- end col --->
 </cfoutput>
 

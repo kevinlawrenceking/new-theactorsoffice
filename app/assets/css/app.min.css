@@ -7202,3 +7202,16 @@ body[data-leftbar-size=condensed] .user-box {
 .ribbon-card i {
     margin-right: 5px;
 }
+
+.audition-avatar {
+    width: 50px; /* Same size as the avatar */
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%; /* Makes it circular */
+    background-color: #406e8e; /* Background color */
+    color: #ffffff; /* Icon color */
+    font-size: 24px; /* Size of the icon */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+  }
