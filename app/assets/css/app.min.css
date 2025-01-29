@@ -4603,6 +4603,20 @@ li>a[aria-expanded="true"]>span.menu-arrow {
     color: #595959
 }
 
+.ribbon-card {
+    position: absolute;
+    bottom: 25px;
+    right: -5px; /* Extends slightly beyond the card */
+    font-size: 0.75rem;
+    padding: 3px 8px; /* Reduce padding to make it smaller */
+    border-radius: 4px;
+    background: #007bff;
+    color: #fff;
+    z-index: 10;
+    white-space: nowrap; /* Prevent text wrapping */
+    min-width: fit-content; /* Make it just wide enough for content */
+}
+
 
 .ribbon-box .ribbon-Pin::before {
     border-color: #F8EEC9 transparent transparent
@@ -7081,11 +7095,12 @@ body[data-leftbar-size=condensed] .user-box {
 
     /* Ensure card allows content to extend outside */
 .tao-card-md {
-    position: relative; /* Ensure it's the reference point for absolute positioning */
-    overflow: visible; /* Allow the ribbon to extend outside */
-    background-color: #ffffff; /* Keep a clean white background */
-    border: 1px solid #ddd; /* Add a subtle border if needed */
-    border-radius: 5px; /* Optional: Maintain a smooth rounded edge */
+    position: relative;
+    overflow: visible;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px; /* Adjusted to ensure smooth rounded edges */
+
   }
   
 /* Card Header */
@@ -7156,11 +7171,25 @@ body[data-leftbar-size=condensed] .user-box {
 }
 
 /* Contact Info */
+
 .tao-card-contact {
     font-size: 0.8rem;
     color: #777;
     margin-bottom: 0.5rem;
+    min-height: 2rem; /* Keep height even when empty */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
+
+.tao-card-contact i {
+    display: inline-block;
+    visibility: hidden; /* Hide icon but keep spacing */
+    width: 16px; /* Keep consistent width */
+    height: 16px;
+}
+
 
 .tao-card-contact a {
     color: #007bff;
@@ -7177,16 +7206,19 @@ body[data-leftbar-size=condensed] .user-box {
 }
 
 /* Card Footer */
+/* Fix bottom corners */
 .tao-card-footer {
     padding: 0.5rem;
     background-color: #f8f9fa;
     border-top: 1px solid #ddd;
     text-align: center;
     margin-top: auto; 
-    min-height: 2.5rem; /* Adjust based on desired footer height */
+    min-height: 2.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
 }
 
 .tao-card-social {
@@ -7210,6 +7242,19 @@ body[data-leftbar-size=condensed] .user-box {
 .tao-card-social-placeholder {
     visibility: hidden;
   }
+
+
+/* Show icon only if content exists */
+.tao-card-contact i.has-content {
+    visibility: visible;
+}
+
+/* Ensure social media icons don't shift */
+.tao-card-social {
+    display: flex;
+    gap: 0.5rem;
+}
+
 
 .audition-avatar {
     width: 50px; /* Same size as the avatar */

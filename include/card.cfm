@@ -54,15 +54,18 @@
     </cfif>
   </p>
 
-  <p class="tao-card-contact">
-    <cfif card_phone neq "NULL">
-       <i class="fe-phone me-1"></i> #card_phone#<br />
+<p class="tao-card-contact">
+ 
+    <i class="fe-phone me-1 <cfif card_phone neq ''>has-content</cfif>"></i>
+    <cfif card_phone neq ''>#card_phone#<br /></cfif>
+
+ 
+    <i class="fe-mail me-1 <cfif card_email neq ''>has-content</cfif>"></i>
+    <cfif card_email neq ''>
+        <a href="mailto:#card_email#">#card_email#</a>
     </cfif>
-    <cfif card_email neq "NULL">
-      <a href="mailto:#card_email#"><i class="fe-mail me-1"></i>#card_email#</a>
-    </cfif>
-  </p>
-  
+</p>
+
 </div>
 
 
