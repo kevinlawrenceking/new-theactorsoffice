@@ -3,7 +3,7 @@
   <div class="col">
 
 
-    <div class="card tao-card-md ribbon-box">
+    <div class="tao-card-md ribbon-box">
       
       <!--- Card Header --->
       <cfif card_header eq "Yes">
