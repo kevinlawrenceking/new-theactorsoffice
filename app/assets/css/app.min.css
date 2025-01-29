@@ -7249,9 +7249,6 @@ body[data-leftbar-size=condensed] .user-box {
         position: relative; /* Ensure this is the positioning context */
     }
     
-    .ribbon-card i {
-        margin-right: 5px;  
-      }
 
       /* Fix unnecessary full-width issue */
     .ribbon-card.float-end {
