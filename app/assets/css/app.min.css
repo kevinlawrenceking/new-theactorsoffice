@@ -4574,12 +4574,7 @@ li>a[aria-expanded="true"]>span.menu-arrow {
     top: 0;
 
   }
-  
-  /* Remove any unwanted box-shadow from the card */
-  .tao-card-md {
-    box-shadow: none !important;
-  }
-  
+ 
 
 @media print {
     .footer,
