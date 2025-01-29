@@ -55,14 +55,18 @@
   </p>
 
 <p class="tao-card-contact">
- 
-    <i class="fe-phone me-1 <cfif card_phone neq ''>has-content</cfif>"></i>
-    <cfif card_phone neq ''>#card_phone#<br /></cfif>
+    <!-- Phone -->
+    <cfif card_phone neq "">
+        <span><i class="fe-phone me-1 has-content"></i>#card_phone#</span>
+    <cfelse>
+        <span><i class="fe-phone me-1"></i>&nbsp;</span>
+    </cfif>
 
- 
-    <i class="fe-mail me-1 <cfif card_email neq ''>has-content</cfif>"></i>
-    <cfif card_email neq ''>
-        <a href="mailto:#card_email#">#card_email#</a>
+    <!-- Email -->
+    <cfif card_email neq "">
+        <span><i class="fe-mail me-1 has-content"></i><a href="mailto:#card_email#">#card_email#</a></span>
+    <cfelse>
+        <span><i class="fe-mail me-1"></i>&nbsp;</span>
     </cfif>
 </p>
 

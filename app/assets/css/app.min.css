@@ -7159,6 +7159,7 @@ body[data-leftbar-size=condensed] .user-box {
 
 /* Contact Info */
 
+/* Contact Info */
 .tao-card-contact {
     font-size: 0.8rem;
     color: #777;
@@ -7170,13 +7171,22 @@ body[data-leftbar-size=condensed] .user-box {
     justify-content: center;
 }
 
+/* Ensure icons align with their values */
+.tao-card-contact span {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Space between icon and value */
+}
+
 .tao-card-contact i {
-    display: inline-block;
     visibility: hidden; /* Hide icon but keep spacing */
     width: 16px; /* Keep consistent width */
     height: 16px;
 }
-
+/* Show icons only when there's content */
+.tao-card-contact i.has-content {
+    visibility: visible;
+}
 
 .tao-card-contact a {
     color: #007bff;
