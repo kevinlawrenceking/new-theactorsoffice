@@ -4611,6 +4611,8 @@ li>a[aria-expanded="true"]>span.menu-arrow {
     padding: 3px 8px; /* Reduce padding to make it smaller */
     border-radius: 4px;
 
+    color: #fff;
+    z-index: 10;
     white-space: nowrap; /* Prevent text wrapping */
     min-width: fit-content; /* Make it just wide enough for content */
 }
