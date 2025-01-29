@@ -7085,11 +7085,9 @@ body[data-leftbar-size=condensed] .user-box {
     overflow: visible; /* Allow the ribbon to extend outside */
     background-color: #ffffff; /* Keep a clean white background */
     border: 1px solid #ddd; /* Add a subtle border if needed */
-    border-radius: 8px; /* Optional: Maintain a smooth rounded edge */
+    border-radius: 5px; /* Optional: Maintain a smooth rounded edge */
   }
   
-
-
 /* Card Header */
 .tao-card-header {
     background-color: #ededf1;
@@ -7212,7 +7210,6 @@ body[data-leftbar-size=condensed] .user-box {
 .tao-card-social-placeholder {
     visibility: hidden;
   }
-
 
 .audition-avatar {
     width: 50px; /* Same size as the avatar */
