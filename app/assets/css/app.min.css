@@ -4559,7 +4559,7 @@ li>a[aria-expanded="true"]>span.menu-arrow {
     font-size: 0.75rem;
     padding: 4px 10px;
     border-radius: 4px;
-    background: #6c757d;
+    background: #adb5bd;
     width: 150px;
     color: #ddd; /* Text color */
     z-index: 10; /* Ensures ribbon appears on top */
