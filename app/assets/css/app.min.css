@@ -7148,7 +7148,7 @@ body[data-leftbar-size=condensed] .user-box {
 	position: relative;
 	clear: both;
 	padding: 5px 12px;
-	margin-bottom: 15px;
+	margin-bottom: 5px;
 	box-shadow: 2px 5px 10px rgba(50, 58, 70, .15);
 	color: #fff;
 	font-size: 13px;
@@ -7173,7 +7173,7 @@ body[data-leftbar-size=condensed] .user-box {
 }
 
 .ribbon-box .ribbon.float-end {
-	margin-right: -30px;
+	margin-right: -25px;
 	border-radius: 3px 0 0 3px
 }
 

@@ -73,15 +73,33 @@
 </div>
 
 
+<cfif card_ribbon1 eq "Follow Up" />
+  <cfset ribbon_icon = "calendar-check" />
+<Cfelseif card_ribbon1 eq "Targeted List" />
+  <cfset ribbon_icon = "crosshairs" />
+<Cfelseif card_ribbon1 eq "Maintenance List" />
+  <cfset ribbon_icon = "wrench" />
+</cfif>
+
+
+<cfif card_ribbon2 eq "Follow Up" />
+  <cfset ribbon_icon = "calendar-check" />
+<Cfelseif card_ribbon2 eq "Targeted List" />
+  <cfset ribbon_icon = "crosshairs" />
+<Cfelseif card_ribbon2 eq "Maintenance List" />
+  <cfset ribbon_icon = "wrench" />
+</cfif>
+
+
         <Cfif card_ribbon1 neq "">
                 <div class="ribbon ribbon-Pin float-end" >
-                  <i class="mdi mdi-access-point me-1"></i>#card_ribbon1#
+                  <i class="mdi mdi-#ribbon_icon# me-1"></i>#card_ribbon1#
                 </div>
 </cfif>
 
 <Cfif card_ribbon2 neq "">
                 <div class="ribbon ribbon-pin float-end" >
-                  <i class="mdi mdi-access-point me-1"></i>#card_ribbon2#
+                  <i class="mdi mdi-#ribbon_icon# me-1"></i>#card_ribbon2#
                 </div>
                 </cfif>
 
