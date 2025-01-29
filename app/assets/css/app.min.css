@@ -7169,31 +7169,6 @@ body[data-leftbar-size=condensed] .user-box {
 
 
 
-  .ribbon-box .ribbon {
-	position: relative;
-	clear: both;
-	padding: 5px 12px;
-	margin-bottom: 15px;
-	box-shadow: 2px 5px 10px rgba(50, 58, 70, .15);
-	color: #fff;
-	font-size: 13px;
-	font-weight: 600
-}
-
-.ribbon-box .ribbon:before {
-	content: " ";
-	border-style: solid;
-	border-width: 10px;
-	display: block;
-	position: absolute;
-	bottom: -10px;
-	left: 0;
-	margin-bottom: -10px;
-	z-index: -1
-}
-
-
-
 
 
 
