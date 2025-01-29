@@ -7176,7 +7176,7 @@ body[data-leftbar-size=condensed] .user-box {
     display: flex;
     align-items: center;
     justify-content: center; /* Center icon and text */
-    gap: 6px; /* Space between icon and value */
+
     min-width: 100px; /* Prevent shifting when empty */
 }
 
