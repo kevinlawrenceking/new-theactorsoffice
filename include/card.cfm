@@ -42,17 +42,17 @@
         
         <!--- Contact Info --->
         <div class="tao-card-info">
-          <cfif card_title neq "">
+          <cfif card_title neq "NULL">
             <p class="tao-card-title">#card_title#</p>
           </cfif>
-          <cfif card_company neq "">
+          <cfif card_company neq "NULL">
             <p class="tao-card-company">#card_company#</p>
           </cfif>
           <p class="tao-card-contact">
-            <cfif card_phone neq "">
+            <cfif card_phone neq "NULL">
               <i class="fe-phone me-1"></i> #card_phone#<br />
             </cfif>
-            <cfif card_email neq "">
+            <cfif card_email neq "NULL">
               <a href="mailto:#card_email#"><i class="fe-mail me-1"></i> #card_email#</a>
             </cfif>
           </p>
