@@ -87,6 +87,10 @@
 <cfelseif rels.currentrow eq 2>
 <Cfset card_ribbon2 = rels.systemType />
 </cfif>
+<Cfoutput>
+card_ribbon1: #card_ribbon1#<BR>
+card_ribbon2: #card_ribbon2#<BR>
+</cfoutput>
 </cfloop>
       
       <!--- Start of card layout --->
@@ -187,7 +191,7 @@
                 </div>
 </cfif>
 
-<Cfif card_ribbon1 neq "">
+<Cfif card_ribbon2 neq "">
                 <div class="ribbon ribbon-card ribbon-#card_ribbon2# float-end" style="position: absolute; bottom: 45px; right: 5px; margin-right: -15px;">
                   <i class="mdi mdi-access-point me-1"></i>#card_ribbon2#
                 </div>
