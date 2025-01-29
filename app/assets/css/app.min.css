@@ -6949,184 +6949,6 @@ body[data-leftbar-size=condensed] .user-box {
     }
 
 
-    /* Ensure card allows content to extend outside */
-.tao-card-md {
-    position: relative;
-    overflow: visible;
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 8px; /* Adjusted to ensure smooth rounded edges */
-
-  }
-  
-/* Card Header */
-.tao-card-header {
-    background-color: #ededf1;
-    color: #595959;
-    font-weight: bold;
-    padding: 0.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* Card Body */
-.tao-card-body {
-    text-align: center;
-    padding: 0.75rem;
-    flex-grow: 1; /* Makes the body flexible to fill available space */
- 
-    flex-direction: column;
-    justify-content: center; /* Ensures content stays centered vertically */
-}
-
-/* Avatar */
-.tao-card-avatar img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 2px solid #ccc;
-}
-
-/* Name */
-.tao-card-name {
-    font-weight: bold;
-    font-size: 1rem;
-    margin: 0.5rem 0;
-}
-
-.tao-card-name a {
-    text-decoration: none;
-    color: #333;
-}
-
-.tao-card-name a:hover {
-    color: #007bff;
-}
-
-/* Title */
-.tao-card-title {
-    font-weight: bold;
-    font-size: 0.9rem;
-    margin: 0.25rem 0;
-    min-height: 1.5rem; 
-    display: flex;
-    align-items: center;
-    justify-content: center
-}
-
-/* Company */
-.tao-card-company {
-    font-size: 0.8rem;
-    color: #595959;
-    margin: 0.25rem 0;
-    min-height: 1.5rem; /* Same height as title */
-    display: flex;
-    align-items: center;
-    justify-content: center
-}
-
-/* Contact Info */
-
-/* Contact Info */
-.tao-card-contact {
-    font-size: 0.8rem;
-    color: #777;
-    margin-bottom: 0.5rem;
-    min-height: 2.5rem; /* Keep height even when empty */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Ensure icons align properly with values */
-.tao-card-contact span {
-    display: flex;
-    align-items: center;
-    justify-content: center; /* Center icon and text */
-
-    min-width: 100px; /* Prevent shifting when empty */
-}
-
-/* Fix icon alignment */
-.tao-card-contact i {
-    font-size: 14px; /* Ensure consistent size */
-    vertical-align: middle; /* Align with text */
-    visibility: hidden; /* Default hidden to maintain spacing */
-    width: 16px; /* Consistent icon width */
-    height: 16px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* Show icons only when there's content */
-.tao-card-contact i.has-content {
-    visibility: visible;
-}
-
-.tao-card-contact a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-
-
-/* Card Footer */
-/* Fix bottom corners */
-.tao-card-footer {
-    padding: 0.5rem;
-    background-color: #f8f9fa;
-    border-top: 1px solid #ddd;
-    text-align: center;
-    margin-top: auto; 
-    min-height: 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    max-height: 20px;
-}
-
-.tao-card-social {
-    display: flex;
-    gap: 0.5rem; /* Ensures even spacing between icons */
-    justify-content: center; /* Centers icons in the footer */
-    align-items: center;
-  }
-
-/* Social Media Icons */
-.tao-card-social a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 24px;
-    height: 24px;
-}
-
-.tao-card-social img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-.tao-card-social-placeholder {
-    visibility: hidden;
-  }
-
-
-/* Show icon only if content exists */
-.tao-card-contact i.has-content {
-    visibility: visible;
-}
-
-/* Ensure social media icons don't shift */
-.tao-card-social {
-    display: flex;
-    gap: 0.5rem;
-}
 
 
 .audition-avatar {
@@ -7692,3 +7514,183 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 	border-right: 3px solid #c0d5e0;
 	border-top: 3px solid #c0d5e0
 }
+
+    /* Ensure card allows content to extend outside */
+    .tao-card-md {
+        position: relative;
+        overflow: visible;
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 8px; /* Adjusted to ensure smooth rounded edges */
+    
+      }
+      
+    /* Card Header */
+    .tao-card-header {
+        background-color: #ededf1;
+        color: #595959;
+        font-weight: bold;
+        padding: 0.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    /* Card Body */
+    .tao-card-body {
+        text-align: center;
+        padding: 0.75rem;
+        flex-grow: 1; /* Makes the body flexible to fill available space */
+     
+        flex-direction: column;
+        justify-content: center; /* Ensures content stays centered vertically */
+    }
+    
+    /* Avatar */
+    .tao-card-avatar img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 2px solid #ccc;
+    }
+    
+    /* Name */
+    .tao-card-name {
+        font-weight: bold;
+        font-size: 1rem;
+        margin: 0.5rem 0;
+    }
+    
+    .tao-card-name a {
+        text-decoration: none;
+        color: #333;
+    }
+    
+    .tao-card-name a:hover {
+        color: #007bff;
+    }
+    
+    /* Title */
+    .tao-card-title {
+        font-weight: bold;
+        font-size: 0.9rem;
+        margin: 0.25rem 0;
+        min-height: 1.5rem; 
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }
+    
+    /* Company */
+    .tao-card-company {
+        font-size: 0.8rem;
+        color: #595959;
+        margin: 0.25rem 0;
+        min-height: 1.5rem; /* Same height as title */
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }
+    
+    /* Contact Info */
+    
+    /* Contact Info */
+    .tao-card-contact {
+        font-size: 0.8rem;
+        color: #777;
+        margin-bottom: 0.5rem;
+        min-height: 2.5rem; /* Keep height even when empty */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Ensure icons align properly with values */
+    .tao-card-contact span {
+        display: flex;
+        align-items: center;
+        justify-content: center; /* Center icon and text */
+    
+        min-width: 100px; /* Prevent shifting when empty */
+    }
+    
+    /* Fix icon alignment */
+    .tao-card-contact i {
+        font-size: 14px; /* Ensure consistent size */
+        vertical-align: middle; /* Align with text */
+        visibility: hidden; /* Default hidden to maintain spacing */
+        width: 16px; /* Consistent icon width */
+        height: 16px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Show icons only when there's content */
+    .tao-card-contact i.has-content {
+        visibility: visible;
+    }
+    
+    .tao-card-contact a {
+        color: #007bff;
+        text-decoration: none;
+    }
+    
+    
+    
+    /* Card Footer */
+    /* Fix bottom corners */
+    .tao-card-footer {
+        padding: 0.5rem;
+        background-color: #f8f9fa;
+        border-top: 1px solid #ddd;
+        text-align: center;
+        margin-top: auto; 
+        min-height: 2.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        max-height: 20px;
+    }
+    
+    .tao-card-social {
+        display: flex;
+        gap: 0.5rem; /* Ensures even spacing between icons */
+        justify-content: center; /* Centers icons in the footer */
+        align-items: center;
+      }
+    
+    /* Social Media Icons */
+    .tao-card-social a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+    }
+    
+    .tao-card-social img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    
+    .tao-card-social-placeholder {
+        visibility: hidden;
+      }
+    
+    
+    /* Show icon only if content exists */
+    .tao-card-contact i.has-content {
+        visibility: visible;
+    }
+    
+    /* Ensure social media icons don't shift */
+    .tao-card-social {
+        display: flex;
+        gap: 0.5rem;
+    }
+    
