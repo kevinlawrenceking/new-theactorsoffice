@@ -89,10 +89,7 @@
 <cfelseif rels.currentrow eq 2>
 <Cfset card_ribbon2 = rels.systemType />
 </cfif>
-<Cfoutput>
-card_ribbon1: #card_ribbon1#<BR>
-card_ribbon2: #card_ribbon2#<BR>
-</cfoutput>
+
 </cfloop>
       
       <!--- Start of card layout --->
