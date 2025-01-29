@@ -91,13 +91,13 @@
 
 
         <Cfif card_ribbon1 neq "">
-                <div class="ribbon ribbon-Pin float-end" >
+                <div class="ribbon ribbon-Pin " >
                   <i class="mdi mdi-#ribbon_icon# me-1"></i>#card_ribbon1#
                 </div>
 </cfif>
 
 <Cfif card_ribbon2 neq "">
-                <div class="ribbon ribbon-pin float-end" >
+                <div class="ribbon ribbon-pin " >
                   <i class="mdi mdi-#ribbon_icon# me-1"></i>#card_ribbon2#
                 </div>
                 </cfif>
