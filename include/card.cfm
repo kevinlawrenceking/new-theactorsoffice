@@ -39,24 +39,31 @@
             <a href="#card_details#">#card_name#</a>
           </p>
         </cfif>
-        
-        <!--- Contact Info --->
-        <div class="tao-card-info">
-          <cfif card_title neq "NULL">
-            <p class="tao-card-title">#card_title#</p>
-          </cfif>
-          <cfif card_company neq "NULL">
-            <p class="tao-card-company">#card_company#</p>
-          </cfif>
-          <p class="tao-card-contact">
-            <cfif card_phone neq "NULL">
-              <i class="fe-phone me-1"></i> #card_phone#<br />
-            </cfif>
-            <cfif card_email neq "NULL">
-              <a href="mailto:#card_email#"><i class="fe-mail me-1"></i> #card_email#</a>
-            </cfif>
-          </p>
-        </div>
+
+<!--- Contact Info --->
+<div class="tao-card-info">
+  <p class="tao-card-title">
+    <cfif card_title neq "NULL">
+      #card_title#
+    </cfif>
+  </p>
+
+  <p class="tao-card-company">
+    <cfif card_company neq "NULL">
+      #card_company#
+    </cfif>
+  </p>
+
+  <p class="tao-card-contact">
+    <cfif card_phone neq "NULL">
+      <i class="fe-phone me-1"></i> #card_phone#<br />
+    </cfif>
+    <cfif card_email neq "NULL">
+      <a href="mailto:#card_email#"><i class="fe-mail me-1"></i> #card_email#</a>
+    </cfif>
+  </p>
+</div>
+
 
         <Cfif card_ribbon1 neq "">
                 <div class="ribbon ribbon-card ribbon-#card_ribbon1# float-end" style="position: absolute; bottom: 25px; right: 5px; margin-right: -15px;">
