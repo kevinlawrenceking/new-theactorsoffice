@@ -30,7 +30,7 @@
         </button>
       </a>
     </div>
-</div>
+  </div>
 
 <form class="sel_client" action="/app/myaccount/?new_pgid=122" method="POST">
   <div class="row" style="margin: auto;">
@@ -48,24 +48,21 @@
     </div>
   </div>
 </form>
-
-
-
-
-
-
+</div>
 
 <div class="container">
   <!--- Start of card grid container --->
   <div class="row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
     <!--- Loop through the myteam query --->
+    
+    
+    
+    
     <cfloop query="myteam">
-
-
-      <cfinclude template="/include/qry/profiles_516_1.cfm" />
 <Cfset currentid = myteam.contactid />
 
-<cfinclude template="/include/qry/getRemindersByRelationship.cfm" />
+      <cfinclude template="/include/qry/profiles_516_1.cfm" />
+      <cfinclude template="/include/qry/getRemindersByRelationship.cfm" />
 
 
 
@@ -93,6 +90,8 @@
 <cfset card_footer = "Yes" />  
 <cfset card_social = "Yes" />  
 
+
+
 <!--- Assign ribbon values dynamically --->
 <Cfloop query="rels">
   <cfif rels.currentrow eq 1>
@@ -108,7 +107,7 @@
 
 
 
-        </div> <!--- end col --->
+        </div> 
 
     </cfloop>
 

@@ -1,6 +1,7 @@
 <!--- Start of card layout --->
 <cfoutput>
   <div class="col">
+
     <div class="tao-card-md ribbon-box">
       
       <!--- Card Header --->
@@ -21,6 +22,7 @@
       
       <!--- Card Body --->
       <div class="tao-card-body">
+
         <!--- Avatar --->
         <div class="tao-card-avatar">
           <cfif isimagefile("#session.userContactsPath#\#myteam.contactid#\avatar.jpg")>
@@ -60,6 +62,7 @@
       <cfif card_footer eq "Yes">
         <div class="tao-card-footer">
           <div class="tao-card-social">
+
             <cfloop query="profiles">
                 <a href="#profiles.valuetext#" target="#profiles.valuetext#" title="#profiles.valuetype#">
                   <cfif profiles.typeicon eq "">
@@ -69,10 +72,13 @@
                   </cfif>
                 </a>
             </cfloop>
+
+
           </div>
         </div> <!--- end .tao-card-footer --->
       </cfif>
+
+
     </div> <!--- end .tao-card-md --->
-  </div> <!--- end col --->
 </cfoutput>
 
