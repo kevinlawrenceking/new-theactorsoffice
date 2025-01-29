@@ -7643,7 +7643,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 /* FIX RIBBON PLACEMENT */
 .ribbon-card {
     position: absolute;
-    bottom: 25px;
+    bottom: 30px;
     right: -5px; /* Extend slightly past the card */
     font-size: 0.75rem;
     padding: 4px 10px;
