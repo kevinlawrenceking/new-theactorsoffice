@@ -73,11 +73,11 @@
 </div>
 
 
-<cfif card_ribbon1 eq "Follow Up" />
+<cfif card_ribbon1 eq "Follow Up" >
   <cfset ribbon_icon = "calendar-check" />
-<Cfelseif card_ribbon1 eq "Targeted List" />
+<Cfelseif card_ribbon1 eq "Targeted List" >
   <cfset ribbon_icon = "crosshairs" />
-<Cfelseif card_ribbon1 eq "Maintenance List" />
+<Cfelseif card_ribbon1 eq "Maintenance List" >
   <cfset ribbon_icon = "wrench" />
 </cfif>
 
