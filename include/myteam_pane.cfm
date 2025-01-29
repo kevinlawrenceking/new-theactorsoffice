@@ -60,11 +60,7 @@
   <div class="row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
     <!--- Loop through the myteam query --->
     <cfloop query="myteam">
-      <!--- Include the phone query and set the new_phone variable --->
-      <cfinclude template="/include/qry/Findphone_167_2.cfm" />
-      
-      <!--- Include the email query and set the new_email variable --->
-      <cfinclude template="/include/qry/Findemail_167_3.cfm" />
+
 
       <cfinclude template="/include/qry/profiles_516_1.cfm" />
 <Cfset currentid = myteam.contactid />
