@@ -1,6 +1,6 @@
 
 <cfset defrows = defrows />
-
+<cfparam name="card_image" default="test.jpg">
 
 <div class="view-toggle d-flex mb-3">
     <button id="toggle-table" class="btn btn-primary me-2">
