@@ -4554,14 +4554,14 @@ li>a[aria-expanded="true"]>span.menu-arrow {
   /* Ribbon Styling */
   .ribbon-card {
     position: absolute;
-    bottom: 40px; /* Adjust vertical placement */
-    right: -5px; /* Extends the ribbon 5px past the card boundary */
+    bottom: 38px; /* Adjust vertical placement */
+    right: -7px; /* Extends the ribbon 5px past the card boundary */
     font-size: 0.75rem;
     padding: 4px 10px;
     border-radius: 4px;
     background: #6c757d;
-    width: 160px;
-    color: #fff; /* Text color */
+    width: 150px;
+    color: #ddd; /* Text color */
     z-index: 10; /* Ensures ribbon appears on top */
 
     /* Add subtle shadow */
