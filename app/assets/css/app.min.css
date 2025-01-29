@@ -7083,24 +7083,34 @@ body[data-leftbar-size=condensed] .user-box {
 .tao-card-md {
     position: relative; /* Ensure it's the reference point for absolute positioning */
     overflow: visible; /* Allow the ribbon to extend outside */
-    box-shadow: none !important; /* Ensure the card doesn’t add an extra shadow */
+    background-color: #ffffff; /* Keep a clean white background */
+    border: 1px solid #ddd; /* Add a subtle border if needed */
+    border-radius: 8px; /* Optional: Maintain a smooth rounded edge */
   }
   
   /* Adjust the ribbon to extend 5px past the right border */
   .ribbon-card {
     position: absolute;
-    bottom: 25px; /* Adjust based on placement */
-    right: -5px; /* Move it 5px past the card's right border */
+    bottom: 25px; /* Adjust vertical placement */
+    right: -5px; /* Extends the ribbon 5px past the card boundary */
     font-size: 0.75rem;
     padding: 5px 10px;
     border-radius: 4px;
     background: #007bff; /* Ribbon color */
     color: #fff; /* Text color */
-    z-index: 10; /* Ensure it appears above the card */
-    box-shadow: none; /* Remove extra shadow if present */
+    z-index: 10; /* Ensures ribbon appears on top */
   }
 
-
+/* Shadow Fix */
+.ribbon-card::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    right: 0;
+    top: 0;
+    box-shadow: none; /* Removes any extra shadow from the ribbon */
+  }
 
 
 /* Card Header */
