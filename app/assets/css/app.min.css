@@ -7088,6 +7088,7 @@ body[data-leftbar-size=condensed] .user-box {
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     display: flex;
+    min-height: 300px;
     flex-direction: column; /* Ensures consistent layout inside the card */
     height: 100%; /* Makes all cards take up equal height within their column */
 }
