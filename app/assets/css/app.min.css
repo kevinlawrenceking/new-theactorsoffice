@@ -7087,6 +7087,9 @@ body[data-leftbar-size=condensed] .user-box {
     border-radius: 8px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    display: flex;
+    flex-direction: column; /* Ensures consistent layout inside the card */
+    height: 100%; /* Makes all cards take up equal height within their column */
 }
 
 /* Card Header */
@@ -7104,6 +7107,10 @@ body[data-leftbar-size=condensed] .user-box {
 .tao-card-body {
     text-align: center;
     padding: 0.75rem;
+    flex-grow: 1; /* Makes the body flexible to fill available space */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Ensures content stays centered vertically */
 }
 
 /* Avatar */
@@ -7166,6 +7173,7 @@ body[data-leftbar-size=condensed] .user-box {
     background-color: #f8f9fa;
     border-top: 1px solid #ddd;
     text-align: center;
+    margin-top: auto; /* Pushes footer to the bottom of the card */
 }
 
 /* Social Media Icons */
