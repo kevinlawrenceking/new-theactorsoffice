@@ -35,7 +35,7 @@
         </div>
         </cfif>
 
-        <Cfif card_image neq "No" and card_avater eq "No" >
+        <Cfif card_image neq "No" and card_avatar eq "No" >
    <div class="tao-card-image">
           
             <img src="#card_image#?ver=#rand()#" alt="profile-image" />
