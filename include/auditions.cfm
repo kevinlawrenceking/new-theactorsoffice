@@ -214,88 +214,76 @@
                 </div>
 <div class="container p-3">
                 <div class="row">
-                    <cfif #view# is "glry">
 
 
-                        <cfif #results.recordcount# is "0">
-                            <p>No events found</p>
+<cfif view eq "glry">
+
+    <!--- Display Message if No Events Found --->
+    <cfif results.recordcount eq 0>
+        <p>No events found</p>
+    <cfelse>
+        <p>
+            <cfoutput>
+                <strong>#results.recordcount#</strong> audition<cfif results.recordcount neq 1>s</cfif> found
+            </cfoutput>
+        </p>
+
+        <!--- Audition Gallery Container --->
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+                
+                <cfloop query="results">
+                    <cfoutput>
+
+                        <!--- Determine Audition Status --->
+                        <cfset col6 = "Audition">
+                        <cfif results.isbooked eq "1">
+                            <cfset col6 = "Booked">
+                        <cfelseif results.ispin eq "1">
+                            <cfset col6 = "Pin">
+                        <cfelseif results.isredirect eq "1">
+                            <cfset col6 = "Redirect">
+                        <cfelseif results.iscallback eq "1">
+                            <cfset col6 = "Callback">
                         </cfif>
 
-                        <cfif #results.recordcount# is not "0"> 
-                            <p>
-                                <cfoutput>
-                                    <strong> #results.recordcount#</strong> audition<cfif #results.recordcount# is not "1">s</cfif> found
-                                </cfoutput>
-                            </p>
-                        </cfif>
+                        <!--- Card Layout --->
+                        <div class="col">
+                            <!--- Set Card Variables --->
+                            <cfset card_header = "Yes">
+                            <cfset card_name = results.col2>
+                            <cfset card_title = results.audsubcatname & " - " & results.col3>
+                            <cfset card_company = results.col4>
+                            <cfset card_details = "/app/audition/?audprojectid=" & results.recid>
+                            <cfset card_image = "#application.datesUrl#/#DateFormat(results.col1,'mm-dd')#.png">
+                            <cfset card_footer = "No">
+                            <cfset card_social = "No">
+                            <cfset card_ribbon1 = col6>
+                            <cfset card_ribbon2 = "">
+                            
+                            <!--- Include the Card Template --->
+                            <cfinclude template="/include/card.cfm"/>
+                        </div>
 
-                        <cfloop query="results">
-                            <cfoutput>
-                                <cfif #results.isbooked# is "1">
-                                    <cfset col6="Booked"/>
-                                <cfelseif #results.ispin# is "1">
-                                    <cfset col6="Pin"/>
-                                <cfelseif #results.isredirect# is "1">
-                                    <cfset col6="Redirect"/>
-                                <cfelseif #results.iscallback# is "1">
-                                    <cfset col6="Callback"/>
-                                <cfelse>
-                                    <cfset col6="Audition"/>
-                                </cfif>
-                            </cfoutput>
+                    </cfoutput>
+                </cfloop>
 
-    
+            </div> <!--- End Row --->
+        </div> <!--- End Container --->
 
+        <!--- Placeholder for Pagination (if needed) --->
+        <div class="pagination-container text-center mt-4">
+            <!-- Pagination will be added dynamically -->
+        </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-     <!--- Variables for card --->
-        <Cfparam name="card_header" default="No"/>
-        <Cfparam name="card_name" default=""/>
-        <Cfparam name="card_title" default=""/>
-        <Cfparam name="card_company" default=""/>
-        <Cfparam name="card_email" default=""/>
-        <Cfparam name="card_phone" default=""/>
-        <Cfparam name="card_details" default=""/>
-        <Cfparam name="card_delete" default=""/>
-        <Cfparam name="card_footer" default="No"/>
-        <Cfparam name="card_social" default="No"/>
-        <Cfparam name="card_avatar" default="No"/>
-
-        <!--- Assign card values dynamically --->
-        <cfset card_header="Yes"/>
-        <cfset card_name=results.col2 />
-        <cfset card_title=results.audsubcatname & " - " & results.col3 />
-        <cfset card_company=results.col4 />
-
-        <cfset card_details="/app/audition/?audprojectid=" & results.recid/>
-        <cfset card_image = "#application.datesUrl#/#DateFormat('#results.col1#','mm-dd')#.png" />
-        <cfset card_footer="No"/>
-        <cfset card_social="No"/>
-        <cfset card_ribbon1=""/>
-        <cfset card_ribbon2=""/>
-
- 
-
-        <cfinclude template="/include/card.cfm"/>
-
-</cfloop>
+    </cfif>
 
 </cfif>
+
+
+
+
+
 
                     <cfif #view# is "tbl">
                         <div class="container">
