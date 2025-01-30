@@ -286,6 +286,7 @@
                             <cfset card_ribbon2 = "">
                             <Cfset card_delete = "" />
                             <Cfset card_footer_text = this.formatdate(results.col1) />
+                            <Cfset card_icon = results.aud_cat_icon />
                             <!--- Include the Card Template --->
                             <cfinclude template="/include/card.cfm"/>
                         </div>
