@@ -1087,7 +1087,34 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
 <cfreturn result>
 </cffunction>
 
+<cffunction output="false" name="SELcontactdetails_24683" access="public" returntype="query">
+    <cfargument name="userId" type="numeric" required="true">
 
+<cfquery name="result" >
+            SELECT 
+                d.contactid, 
+                d.recordname AS contactname, 
+                d.contactStatus 
+            FROM 
+                contactdetails d 
+            INNER JOIN 
+                taousers u ON u.userid = d.userid 
+            WHERE 
+                u.userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 
+                AND d.contactStatus = <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR"> 
+                AND d.contactid IN (
+                    SELECT contactid 
+                    FROM contactitems 
+                    WHERE valuetext = <cfqueryparam value="My Team" cfsqltype="CF_SQL_VARCHAR"> 
+                    AND valuecategory = <cfqueryparam value="Tag" cfsqltype="CF_SQL_VARCHAR">
+                    and isDeleted = 0
+                ) 
+            ORDER BY 
+                d.contactfullname
+        </cfquery>
+
+<cfreturn result>
+</cffunction>
 
 <cffunction output="false" name="GetMyTeam" access="public" returntype="query">
     <cfargument name="userId" type="numeric" required="true">
@@ -1096,6 +1123,8 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
             SELECT 
                 d.contactid, 
                 d.col1 AS card_name,
+                d.recordname AS contactname, 
+                d.contactStatus,
                 d.col4 as card_email,
                 d.col3 as card_phone,
                 d.col5 as card_company,
@@ -1131,8 +1160,6 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
 
 <cfreturn result>
 </cffunction>
-
-
 <cffunction output="false" name="DETcontactdetails_24685" access="public" returntype="query">
     <cfargument name="rcontactid" type="numeric" required="true">
 
