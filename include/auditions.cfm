@@ -240,7 +240,7 @@
         <Cfparam name="card_social" default="Yes"/>
          <Cfparam name="card_avatar" default=""/>
           <Cfparam name="card_avatar" default=""/>
-   <Cfparam name="ribbon_icon" defaultNo"/>
+   <Cfparam name="ribbon_icon" default="" />
         <!--- Audition Gallery Container --->
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
