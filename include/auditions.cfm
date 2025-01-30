@@ -277,7 +277,7 @@
                             </cfif>
                             <cfset card_details = "/app/audition/?audprojectid=" & results.recid>
                             <cfset card_image = "#application.datesUrl#/#DateFormat(results.col1,'mm-dd')#.png">
-                            <cfset card_footer = "Yes">
+                            <cfset card_footer = "">
                             <cfset card_social = "">
                             <cfset card_ribbon1 = col6>
                             <cfset card_ribbon2 = "">
