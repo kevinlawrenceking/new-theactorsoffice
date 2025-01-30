@@ -30,8 +30,8 @@
 
 
           <cfif card_details neq "">
-            <a href="#card_details#" class="text-decoration-none">
-              <i class="fe-eye" title="View Details"></i>
+           <a href="#card_details#" class="text-decoration-none view-icon">
+              <i class="fe-eye view" title="View Details"></i>
             </a>
           </cfif>
 
