@@ -7330,14 +7330,6 @@ body[data-leftbar-size=condensed] .user-box {
 	border-top: 3px solid #285ca9
 }
 
-/* View Icon - Align Top Right */
-.tao-card-header .view-icon {
-    position: absolute;
-    top: 10px; /* Adjust as needed */
-    right: 10px; /* Push to the right */
-    font-size: 1.2rem; /* Adjust icon size */
-    color: #333; /* Adjust icon color */
-}
 
 
 .ribbon-box .ribbon-two-blue span:after {
@@ -7547,6 +7539,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 }
 */
 
+/* Ensure the header container is positioned correctly */
 .tao-card-header {
     position: relative; /* Allows absolute positioning of child elements */
     display: flex;
@@ -7558,6 +7551,14 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     padding: 0.5rem;
 }
 
+/* View Icon - Align Top Right */
+.tao-card-header .view-icon {
+    position: absolute;
+    top: 10px; /* Adjust as needed */
+    right: 10px; /* Push to the right */
+    font-size: 1.2rem; /* Adjust icon size */
+    color: #333; /* Adjust icon color */
+}
 
 
 /* Card Body */

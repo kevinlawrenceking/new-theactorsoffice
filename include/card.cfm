@@ -24,6 +24,8 @@
             <a href="#card_delete#" title="Remove from team" class="text-danger">
               <i class="fe-trash-2"></i>
             </a>
+
+      
           </cfif>
 
 
