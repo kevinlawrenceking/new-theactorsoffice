@@ -268,7 +268,7 @@
                             <!--- Set Card Variables --->
                             <cfset card_header = "Yes">
                             <cfset card_name = results.col2>
-                            <cfset card_title = results.audsubcatname & " - " & results.col3>
+                            <cfset card_title = chr(34) & results.audsubcatname & " - " & results.col3 & chr(32)>
                             <cfset card_company = results.col4>
                             <Cfif results.col5 neq "">
                             <cfset card_company = results.col4 & "<br> Source: " & results.col5 >
