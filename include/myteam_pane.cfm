@@ -1,5 +1,5 @@
 <!--- This ColdFusion page displays the user's team members and allows adding new members from existing relationships or creating new ones. --->
-<cfinclude template="/include/qry/myteam_499_1.cfm"/>
+<cfinclude template="/include/qry/getMyTeam.cfm"/>
 
 <link href="https://cdn.materialdesignicons.com/6.5.95/css/materialdesignicons.min.css" rel="stylesheet">
 
