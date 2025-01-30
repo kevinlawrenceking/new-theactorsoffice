@@ -284,6 +284,7 @@
                             <cfset card_social = "">
                             <cfif col6 neq "Booked" and col6 neq "Audition" />
                             <cfset card_ribbon1 = col6>
+                            </cfif>
                             <cfset card_ribbon2 = "">
                             <Cfset card_delete = "" />
                             <Cfset card_footer_text = this.formatdate(results.col1) />
