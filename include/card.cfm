@@ -30,7 +30,7 @@
 <div class="tao-card-image">
            <i class="mdi mdi-#card_icon#"></i>
            </cfif>
-</cfif>
+
 
         <Cfif #card_avatar# is "Yes">
 
