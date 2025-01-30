@@ -5,11 +5,11 @@
 
     <div class="tao-card-md ribbon-box">
 
-     <cfif #card_top_ribbon# neq "">
-                                            <div class="ribbon-two ribbon-two-success">
-                                                <span>#card_top_ribbon#</span>
-                                            </div>
-                                        </cfif>
+      <cfif #card_top_ribbon# neq "">
+  <div class="ribbon-two ribbon-two-success">
+    <span>#card_top_ribbon#</span>
+  </div>
+     </cfif>
       
       <!--- Card Header --->
       <cfif card_header eq "Yes">
