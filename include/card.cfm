@@ -126,7 +126,13 @@
   <!--- Card Footer --->
 <cfif card_footer eq "Yes">
 
+
+
   <div class="tao-card-footer">
+
+  <Cfif card_footer_text neq "">
+#card_footer_text#
+</cfif>
 
     <cfif card_social eq "Yes" >
     

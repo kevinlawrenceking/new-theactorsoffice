@@ -241,6 +241,7 @@
          <Cfparam name="card_avatar" default=""/>
           <Cfparam name="card_avatar" default=""/>
    <Cfparam name="ribbon_icon" default="" />
+   <Cfparam name="card_footer_text" default=""/>
         <!--- Audition Gallery Container --->
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
@@ -282,6 +283,7 @@
                             <cfset card_ribbon1 = col6>
                             <cfset card_ribbon2 = "">
                             <Cfset card_delete = "" />
+                            <Cfset card_footer_text = this.formatdate(results.col1) />
                             <!--- Include the Card Template --->
                             <cfinclude template="/include/card.cfm"/>
                         </div>

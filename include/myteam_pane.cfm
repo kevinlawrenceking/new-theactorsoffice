@@ -61,6 +61,7 @@
          <Cfparam name="card_avatar" default="No"/>
           <Cfparam name="card_avatar" default="No"/>
           <Cfparam name="card_social" default=""/>
+          <cfparam name="card_footer_text" default="" />
         <!--- Assign card values dynamically --->
         <cfset card_header="Yes"/>
          <cfset card_social="Yes"/>
