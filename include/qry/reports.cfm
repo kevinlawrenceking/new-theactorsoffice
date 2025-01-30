@@ -8,6 +8,14 @@
 <cfparam name="new_audcatid" default="1" />
 <cfparam name="refreshdata_yn" default="y" />
 
+<cfif DatePart("yyyy", customstart) EQ 2022>
+    <cfset customstart = DateFormat(Now(), 'yyyy-mm-dd')>
+</cfif>
+
+<cfif DatePart("yyyy", customstart) EQ 2025>
+    <cfset custocustomstartmend = DateFormat(Now(), 'yyyy-mm-dd')>
+</cfif>
+
 <!--- Check if reports exist for the user --->
 <cfinclude template="/include/qry/reportcheck_524_1.cfm" />
 
