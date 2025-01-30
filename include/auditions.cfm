@@ -256,11 +256,11 @@
                             <cfset card_company = results.col4>
                             <cfset card_details = "/app/audition/?audprojectid=" & results.recid>
                             <cfset card_image = "#application.datesUrl#/#DateFormat(results.col1,'mm-dd')#.png">
-                            <cfset card_footer = "No">
-                            <cfset card_social = "No">
+                            <cfset card_footer = "">
+                            <cfset card_social = "">
                             <cfset card_ribbon1 = col6>
                             <cfset card_ribbon2 = "">
-                            
+                            <Cfset card_delete = "" />
                             <!--- Include the Card Template --->
                             <cfinclude template="/include/card.cfm"/>
                         </div>
