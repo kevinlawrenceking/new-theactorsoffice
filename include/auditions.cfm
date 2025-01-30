@@ -274,7 +274,7 @@
   <cfset card_name=chr(34) & results.col2 & chr(34)/>
   <cfset card_title=results.col3 & " - " & results.audsubcatname/>
   <cfset card_company=results.col4/>
-  <Cfif results.col5 neq ""/>
+  <Cfif results.col5 neq "">
     <cfset card_company=results.col4 & "<br> Source: " & results.col5/>
   <cfelse>
     <cfset card_company=results.col4 & "<br> &nbsp;"/>
