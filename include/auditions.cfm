@@ -283,10 +283,10 @@
   <cfset card_image=""/>
   <cfset card_footer="Yes"/>
   <cfset card_social=""/>
-  <cfif col6 neq "Booked" and col6 neq "Audition"/>
+  <cfif col6 neq "Booked" and col6 neq "Audition">
     <cfset card_ribbon1=col6/>
   <cfelse>
-    <cfset card_ribbon1=""/>
+    <cfset card_ribbon1="">
   </cfif>
   <cfset card_ribbon2=""/>
   <Cfset card_delete=""/>
