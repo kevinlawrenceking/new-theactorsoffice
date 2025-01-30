@@ -109,6 +109,23 @@
             });
           });
         </script>
+<Script>
+        document.addEventListener("DOMContentLoaded", function () {
+    var searchForm = document.getElementById("submitform");
+    var autocompleteInput = document.getElementById("autocomplete");
+    var selectedIdInput = document.getElementById("selectedId");
+    var categoryInput = document.getElementById("category");
+
+    searchForm.addEventListener("submit", function (event) {
+        // Check if selectedId is empty (i.e., no valid selection made)
+        if (!selectedIdInput.value || !categoryInput.value) {
+            event.preventDefault(); // Prevent form submission
+            alert("Please select a valid option from the search results before submitting.");
+            autocompleteInput.focus();
+        }
+    });
+});
+</script>
 
         <div id="remoteSupportForm" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel">
           <div class="modal-dialog">
