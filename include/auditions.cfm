@@ -271,9 +271,9 @@
                             <cfset card_title = results.audsubcatname & " - " & results.col3>
                             <cfset card_company = results.col4>
                             <Cfif results.col5 neq "">
-                            <cfset card_company = results.col5 & "<br> Source: " & results.col5 >
+                            <cfset card_company = results.col4 & "<br> Source: " & results.col5 >
                             <cfelse>
-                             <cfset card_company = results.col5 & "<br> &nbsp;" >
+                             <cfset card_company = results.col4 & "<br> &nbsp;" >
                             </cfif>
                             <cfset card_details = "/app/audition/?audprojectid=" & results.recid>
                             <cfset card_image = "#application.datesUrl#/#DateFormat(results.col1,'mm-dd')#.png">
