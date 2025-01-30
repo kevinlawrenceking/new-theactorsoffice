@@ -2,7 +2,6 @@
 <cfparam name="new_rangeid" default="1" />
 <cfparam name="anchortag" default="" />
 <cfparam name="customstart" default="#DateFormat(Now(), 'yyyy-mm-dd')#" />
-
 <cfparam name="customend" default="#DateFormat(Now(), 'yyyy-mm-dd')#" />
 <cfparam name="new_audsourceid" default="0" />
 <cfparam name="new_audsourceidb" default="0" />
