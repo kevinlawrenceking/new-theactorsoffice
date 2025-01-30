@@ -29,6 +29,7 @@
         <Cfif #card_icon# neq "">
 <div class="tao-card-image">
            <i class="mdi mdi-#card_icon#"></i>
+           </div>
            </cfif>
 
 
