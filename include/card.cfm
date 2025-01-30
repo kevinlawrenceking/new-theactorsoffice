@@ -14,7 +14,7 @@
      
       
       <!--- Card Header --->
-cfif card_header eq "Yes">
+<cfif card_header eq "Yes">
     <div class="tao-card-header">
         <!--- Trash/Delete Icon on the Left --->
         <cfif card_delete neq "">
