@@ -58,14 +58,18 @@
         <Cfparam name="card_delete" default=""/>
         <Cfparam name="card_footer" default="No"/>
         <Cfparam name="card_social" default="Yes"/>
-         <Cfparam name="card_avatar" default="No"/>
-          <Cfparam name="card_avatar" default="No"/>
-          <Cfparam name="card_social" default=""/>
-          <cfparam name="card_footer_text" default="" />
-          <cfparam name="card_top_ribbon" default="" />
+        <Cfparam name="card_avatar" default="No"/>
+        <Cfparam name="card_avatar" default="No"/>
+        <Cfparam name="card_social" default=""/>
+        <cfparam name="card_footer_text" default=""/>
+        <cfparam name="card_top_ribbon" default=""/>
+        <Cfparam name="ribbon_icon" default=""/>
+        <Cfparam name="card_footer_text" default=""/>
+        <Cfparam name="card_icon" default=""/>
+
         <!--- Assign card values dynamically --->
         <cfset card_header="Yes"/>
-         <cfset card_social="Yes"/>
+        <cfset card_social="Yes"/>
         <cfset card_name=myteam.card_name/>
         <cfset card_title=myteam.card_title/>
         <cfset card_company=myteam.card_company/>
@@ -79,14 +83,13 @@
         <cfset card_ribbon2=""/>
         <Cfparam name="card_avatar" default="No"/>
         <Cfparam name="card_image" default="No"/>
-               
-               
-               <cfif isimagefile("#session.userContactsPath#\#myteam.contactid#\avatar.jpg")>
-            <cfset card_image = "#session.userContactsUrl#/#myteam.contactid#/avatar.jpg" />
-          <cfelse>
-          <cfset card_image = "#application.defaultAvatarUrl#" />
-    
-          </cfif>
+
+        <cfif isimagefile("#session.userContactsPath#\#myteam.contactid#\avatar.jpg")>
+          <cfset card_image="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg"/>
+        <cfelse>
+          <cfset card_image="#application.defaultAvatarUrl#"/>
+
+        </cfif>
 
         <!--- Assign ribbon values dynamically --->
         <Cfloop query="rels">
