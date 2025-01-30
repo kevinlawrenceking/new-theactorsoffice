@@ -236,11 +236,11 @@
         <Cfparam name="card_phone" default=""/>
         <Cfparam name="card_details" default=""/>
         <Cfparam name="card_delete" default=""/>
-        <Cfparam name="card_footer" default="No"/>
+        <Cfparam name="card_footer" default=""/>
         <Cfparam name="card_social" default="Yes"/>
-         <Cfparam name="card_avatar" default="No"/>
-          <Cfparam name="card_avatar" default="No"/>
-
+         <Cfparam name="card_avatar" default=""/>
+          <Cfparam name="card_avatar" default=""/>
+   <Cfparam name="ribbon_icon" defaultNo"/>
         <!--- Audition Gallery Container --->
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
