@@ -295,6 +295,8 @@
   <cfif col6 eq "Booked" and results.isbooked eq "1">
 
     <Cfset card_top_ribbon="Booked"/>
+    <Cfelse>
+    <Cfset card_top_ribbon=""/>
   </cfif>
 
   <!--- Include the Card Template --->
