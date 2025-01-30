@@ -151,11 +151,11 @@
 
               <img src="#application.retinaIcons14Url#/customlink.png" alt="#profiles.valuetype#" />
 
-              </cfif>
+              </cfif><!--- end profiles.valuetext neq "NULL" --->
 
             </a>
 
-        </cfif>
+        </cfif><!--- end card_social eq "Yes" --->
 
       </cfloop> 
       
@@ -177,7 +177,7 @@
 
 
 
-    </div>
+
   </div>
 </cfif>
 
