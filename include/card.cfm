@@ -27,7 +27,7 @@
         <!--- Avatar --->
 
         <Cfif #card_icon# neq "">
-<div class="tao-card-image">
+
        <!--- Audition Category Icon Instead of Avatar --->
 <div class="tao-card-avatar text-center">
     <i class="mdi mdi-#aud_cat_icon#" aria-hidden="true"></i>
