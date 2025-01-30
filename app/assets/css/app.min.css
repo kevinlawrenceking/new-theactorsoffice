@@ -7539,27 +7539,34 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 }
 */
 
-/* Ensure the header container is positioned correctly */
+/* Card Header - Ensure Minimum Height */
 .tao-card-header {
-    position: relative; /* Allows absolute positioning of child elements */
+    position: relative; /* Ensures absolute icons stay inside */
     display: flex;
-    justify-content: space-between; /* Space out items (trash left, view right) */
     align-items: center;
     background-color: #ededf1;
     color: #595959;
     font-weight: bold;
     padding: 0.5rem;
+    min-height: 40px; /* Ensure consistent height */
 }
 
-/* View Icon - Align Top Right */
+/* Trash Icon (Left Aligned) */
+.tao-card-header .trash-icon {
+    font-size: 1.2rem;
+    color: red;
+    margin-left: 10px; /* Adjust left padding */
+}
+
+/* View Icon - Top Right */
 .tao-card-header .view-icon {
     position: absolute;
-    top: 10px; /* Adjust as needed */
-    right: 10px; /* Push to the right */
-    font-size: 1.2rem; /* Adjust icon size */
-    color: #333; /* Adjust icon color */
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%); /* Centers icon vertically */
+    font-size: 1.3rem; /* Adjust icon size */
+    color: #333;
 }
-
 
 /* Card Body */
 .tao-card-body {
