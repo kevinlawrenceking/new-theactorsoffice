@@ -239,7 +239,7 @@
         <Cfparam name="card_footer" default=""/>
         <Cfparam name="card_social" default="Yes"/>
          <Cfparam name="card_avatar" default=""/>
-          <Cfparam name="card_avatar" default=""/>
+   
    <Cfparam name="ribbon_icon" default="" />
    <Cfparam name="card_footer_text" default=""/>
  <Cfparam name="card_icon" default=""/>
