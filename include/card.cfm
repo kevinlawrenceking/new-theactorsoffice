@@ -27,7 +27,7 @@
         <!--- Avatar --->
 
         <Cfif #card_icon# neq "">
-<div class="tao-card-image">
+<div class="tao-card-icon">
            <i class="mdi mdi-#card_icon#"></i>
            </div>
            </cfif>
