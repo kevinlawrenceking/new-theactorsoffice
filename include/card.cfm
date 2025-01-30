@@ -25,6 +25,13 @@
       <div class="tao-card-body">
       
         <!--- Avatar --->
+
+        <Cfif #card_icon# neq "">
+<div class="tao-card-image">
+           <i class="mdi mdi-#card_icon#"></i>
+           </cfif>
+</cfif>
+
         <Cfif #card_avatar# is "Yes">
 
         <div class="tao-card-avatar">

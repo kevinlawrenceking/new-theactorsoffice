@@ -242,6 +242,8 @@
           <Cfparam name="card_avatar" default=""/>
    <Cfparam name="ribbon_icon" default="" />
    <Cfparam name="card_footer_text" default=""/>
+ <Cfparam name="card_icon" default=""/>
+
         <!--- Audition Gallery Container --->
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
@@ -269,7 +271,7 @@
                             <!--- Set Card Variables --->
                             <cfset card_header = "Yes">
                             <cfset card_name = chr(34) & results.col2 & chr(34) >
-                            <cfset card_title = results.audsubcatname & " - " & results.col3>
+                            <cfset card_title = results.col3 & " - " & results.audsubcatname>
                             <cfset card_company = results.col4>
                             <Cfif results.col5 neq "">
                             <cfset card_company = results.col4 & "<br> Source: " & results.col5 >

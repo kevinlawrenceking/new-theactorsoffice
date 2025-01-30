@@ -1307,6 +1307,7 @@ ORDER BY label
                 p.audprojectdate AS col1b, 
                 p.projname AS col2, 
                 ca.audcatname AS col3, 
+                ca.aud_cat_icon,
                 r.audrolename AS col4, 
                 s.audsource AS col5, 
                 c2.recordname AS contactname, 
