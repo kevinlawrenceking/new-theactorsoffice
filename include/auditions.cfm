@@ -268,36 +268,38 @@
                         </cfif>
 
                         <!--- Card Layout --->
-                        <div class="col">
-                            <!--- Set Card Variables --->
-                            <cfset card_header = "Yes">
-                            <cfset card_name = chr(34) & results.col2 & chr(34) >
-                            <cfset card_title = results.col3 & " - " & results.audsubcatname>
-                            <cfset card_company = results.col4>
-                            <Cfif results.col5 neq "">
-                            <cfset card_company = results.col4 & "<br> Source: " & results.col5 >
-                            <cfelse>
-                             <cfset card_company = results.col4 & "<br> &nbsp;" >
-                            </cfif>
-                            <cfset card_details = "/app/audition/?audprojectid=" & results.recid>
-                            <cfset card_image = "">
-                            <cfset card_footer = "Yes">
-                            <cfset card_social = "">
-                            <cfif col6 neq "Booked" and col6 neq "Audition" >
-                            <cfset card_ribbon1 = col6>
-                            </cfif>
-                            <cfset card_ribbon2 = "">
-                            <Cfset card_delete = "" />
-                            <Cfset card_footer_text = this.formatdate(results.col1) />
-                            <Cfset card_icon = results.aud_cat_icon />
-                            <cfif col6 eq "Booked" and results.isbooked eq "1">
-                 
-                            <Cfset card_top_ribbon = "Booked">
-                           </cfif>
-                       
-                            <!--- Include the Card Template --->
-                            <cfinclude template="/include/card.cfm"/>
-                        </div>
+                <div class="col">
+  <!--- Set Card Variables --->
+  <cfset card_header="Yes"/>
+  <cfset card_name=chr(34) & results.col2 & chr(34)/>
+  <cfset card_title=results.col3 & " - " & results.audsubcatname/>
+  <cfset card_company=results.col4/>
+  <Cfif results.col5 neq ""/>
+    <cfset card_company=results.col4 & "<br> Source: " & results.col5/>
+  <cfelse>
+    <cfset card_company=results.col4 & "<br> &nbsp;"/>
+  </cfif>
+  <cfset card_details="/app/audition/?audprojectid=" & results.recid/>
+  <cfset card_image=""/>
+  <cfset card_footer="Yes"/>
+  <cfset card_social=""/>
+  <cfif col6 neq "Booked" and col6 neq "Audition"/>
+    <cfset card_ribbon1=col6/>
+  <cfelse>
+    <cfset card_ribbon1=""/>
+  </cfif>
+  <cfset card_ribbon2=""/>
+  <Cfset card_delete=""/>
+  <Cfset card_footer_text=this.formatdate(results.col1)/>
+  <Cfset card_icon=results.aud_cat_icon/>
+  <cfif col6 eq "Booked" and results.isbooked eq "1">
+
+    <Cfset card_top_ribbon="Booked"/>
+  </cfif>
+
+  <!--- Include the Card Template --->
+  <cfinclude template="/include/card.cfm"/>
+</div>
 
                     </cfoutput>
                 </cfloop>
