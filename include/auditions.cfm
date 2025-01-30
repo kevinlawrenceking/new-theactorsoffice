@@ -287,7 +287,7 @@
                             <Cfset card_delete = "" />
                             <Cfset card_footer_text = this.formatdate(results.col1) />
                             <Cfset card_icon = results.aud_cat_icon />
-                            <cfif results.col6 eq "Booked" and results.isbooked eq "1">
+                            <cfif col6 eq "Booked" and results.isbooked eq "1">
                  
                             <Cfset card_top_ribbon = "Booked">
                            </cfif>
