@@ -243,7 +243,8 @@
    <Cfparam name="ribbon_icon" default="" />
    <Cfparam name="card_footer_text" default=""/>
  <Cfparam name="card_icon" default=""/>
-
+ <Cfparam name="card_ribbon1" default=""/>
+  <Cfparam name="card_ribbon2" default=""/>
         <!--- Audition Gallery Container --->
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">

@@ -59,13 +59,14 @@
         <Cfparam name="card_footer" default="No"/>
         <Cfparam name="card_social" default="Yes"/>
         <Cfparam name="card_avatar" default="No"/>
-        <Cfparam name="card_avatar" default="No"/>
         <Cfparam name="card_social" default=""/>
         <cfparam name="card_footer_text" default=""/>
         <cfparam name="card_top_ribbon" default=""/>
         <Cfparam name="ribbon_icon" default=""/>
         <Cfparam name="card_footer_text" default=""/>
         <Cfparam name="card_icon" default=""/>
+        <Cfparam name="card_ribbon1" default=""/>
+        <Cfparam name="card_ribbon12" default=""/>
 
         <!--- Assign card values dynamically --->
         <cfset card_header="Yes"/>
