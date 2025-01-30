@@ -7546,7 +7546,6 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     align-items: center;
     background-color: #ededf1;
     color: #595959;
-    font-weight: bold;
     padding: 0.5rem;
     min-height: 40px; /* Ensure consistent height */
 }
