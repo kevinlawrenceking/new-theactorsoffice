@@ -1123,8 +1123,6 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
             SELECT 
                 d.contactid, 
                 d.col1 AS card_name,
-                d.recordname AS contactname, 
-                d.contactStatus,
                 d.col4 as card_email,
                 d.col3 as card_phone,
                 d.col5 as card_company,
