@@ -7564,7 +7564,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     right: 10px;
     transform: translateY(-50%); /* Centers icon vertically */
     font-size: 1.3rem; /* Adjust icon size */
-    color: #333;
+    color: var(--ct-bg-topbar-dark)
 }
 
 /* Card Body */
