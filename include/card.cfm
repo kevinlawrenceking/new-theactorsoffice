@@ -14,20 +14,23 @@
      
       
       <!--- Card Header --->
-      <cfif card_header eq "Yes">
-        <div class="tao-card-header">
-          <cfif card_delete neq "">
+cfif card_header eq "Yes">
+    <div class="tao-card-header">
+        <!--- Trash/Delete Icon on the Left --->
+        <cfif card_delete neq "">
             <a href="#card_delete#" title="Remove from team" class="text-danger">
-              <i class="fe-trash-2"></i>
+                <i class="mdi mdi-trash-can-outline"></i>
             </a>
-          </cfif>
-          <cfif card_details neq "">
-            <a href="#card_details#" class="text-decoration-none">
-              <i class="fe-eye" title="View Details"></i>
+        </cfif>
+
+        <!--- View Icon on the Right --->
+        <cfif card_details neq "">
+            <a href="#card_details#" class="text-decoration-none view-icon">
+                <i class="mdi mdi-eye"></i>
             </a>
-          </cfif>
-        </div>
-      </cfif>
+        </cfif>
+    </div>
+</cfif>
       
       <!--- Card Body --->
       <div class="tao-card-body">
