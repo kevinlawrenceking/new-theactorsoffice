@@ -228,11 +228,27 @@
             </cfoutput>
         </p>
 
+              <Cfparam name="card_header" default="No"/>
+        <Cfparam name="card_name" default=""/>
+        <Cfparam name="card_title" default=""/>
+        <Cfparam name="card_company" default=""/>
+        <Cfparam name="card_email" default=""/>
+        <Cfparam name="card_phone" default=""/>
+        <Cfparam name="card_details" default=""/>
+        <Cfparam name="card_delete" default=""/>
+        <Cfparam name="card_footer" default="No"/>
+        <Cfparam name="card_social" default="Yes"/>
+         <Cfparam name="card_avatar" default="No"/>
+          <Cfparam name="card_avatar" default="No"/>
+
         <!--- Audition Gallery Container --->
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
                 
                 <cfloop query="results">
+
+                        <!--- Variables for card --->
+  
                     <cfoutput>
 
                         <!--- Determine Audition Status --->
