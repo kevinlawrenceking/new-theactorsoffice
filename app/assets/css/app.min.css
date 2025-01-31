@@ -7531,7 +7531,22 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     overflow: hidden;
     border: 1px solid #ddd;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
   }
-  
+  .tao-card-footer {
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    border-top: 1px solid #ddd;
+    text-align: center;
+    margin-top: auto; /* Ensures footer stays at the bottom */
+    min-height: 2.5rem; /* Ensures consistent height */
+    max-height: 2.5rem; /* Prevents it from stretching */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap; /* Prevents social icons from stacking */
+    border-radius: 0 0 8px 8px; /* Rounded bottom corners */
+    width: 100%;
+}
+
 
 
 /* Card Header - Ensure Minimum Height */
