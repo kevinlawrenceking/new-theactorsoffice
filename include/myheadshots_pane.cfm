@@ -38,7 +38,25 @@
 </cfoutput>
 
 <div class="row pt-3 pb-3">
-    <cfloop query="headshots_sel">
+
+ 
+
+
+
+
+
+
+
+
+
+         <div class="container">
+    <!--- Start of card grid container --->
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
+      <!--- Loop through the myteam query --->
+
+      <cfloop query="headshots_sel">
+
+
         <cfoutput>
             <script>
                 $(document).ready(function() {
@@ -64,39 +82,59 @@
             </div>
         </cfoutput>
 
-        <cfoutput>
-            <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12">
-                <div class="p-3">
-                    <center>
-                        <cfif #headshots_sel.isValidImage# is "true">
-                            <a href="#session.userMediaUrl#/#headshots_sel.mediaFileName#?ver=#rand()#" data-toggle="lightbox" data-gallery="example-gallery">
-                        <cfelse>
-                            <a href="#session.userMediaUrl#/#headshots_sel.mediaFileName#?ver=#rand()#" data-toggle="lightbox" data-gallery="example-gallery">
-                        </cfif>
 
-                        <img src="#session.userMediaUrl#/#headshots_sel.mediaFileName#?ver=#rand()#" class="mr-2 rounded-square gambar img-thumbnail img-fluid p-0 m-0" title="User ID: 30" style="max-width:120px; height:120px; height:100%" alt="profile-image" id="item-img-output" />
-                        </a>
-                    </center>
-                </div>
-                <a href="javascript:;">
-                    <p class="p-0" style="padding:10px;">
-                        <center>
-                            #headshots_sel.medianame# 
-                            <a class="pt-0" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteDeleteaudmedia#headshots_sel.mediaid#" data-bs-placement="top" title="Delete media" data-bs-original-title="Delete media">
-                                <i class="mdi mdi-trash-can-outline"></i>
-                            </a>
-                        </center>
-                    </p>
-                    <br>
-                    <center>
-                        <a class="btn-lg" href="/include/download_media.cfm?mediaid=#headshots_sel.mediaid#"> 
-                            <i class="mdi mdi-cloud-download-outline"></i>
-                        </a>
-                    </center>
-                </a>
-                <span class="p-3">&nbsp;</span> 
-                <span class="p-3">&nbsp;</span>
-            </div>
-        </cfoutput>
-    </cfloop>
-</div>
+
+
+ 
+
+        <!--- Variables for card --->
+        <Cfparam name="card_header" default="No"/>
+        <Cfparam name="card_name" default=""/>
+        <Cfparam name="card_title" default=""/>
+        <Cfparam name="card_company" default=""/>
+        <Cfparam name="card_email" default=""/>
+        <Cfparam name="card_phone" default=""/>
+        <Cfparam name="card_details" default=""/>
+        <Cfparam name="card_delete" default=""/>
+        <Cfparam name="card_footer" default="No"/>
+        <Cfparam name="card_social" default="No"/>
+        <Cfparam name="card_avatar" default="No"/>
+        <Cfparam name="card_social" default=""/>
+        <cfparam name="card_footer_text" default=""/>
+        <cfparam name="card_top_ribbon" default=""/>
+        <Cfparam name="ribbon_icon" default=""/>
+        <Cfparam name="card_footer_text" default=""/>
+        <Cfparam name="card_icon" default=""/>
+        <Cfparam name="card_ribbon1" default=""/>
+        <Cfparam name="card_ribbon12" default=""/>
+
+        <!--- Assign card values dynamically --->
+        <cfset card_header="Yes"/>
+        <cfset card_social="No"/>
+        <cfset card_name=headshots_sel.medianame />
+
+
+        <cfset card_title=myteam.card_title/>
+        <cfset card_company=myteam.card_company/>
+        <cfset card_email=myteam.card_email/>
+        <cfset card_phone=myteam.card_phone/>
+        <cfset card_details="/app/contact/?contactid=" & myteam.contactid/>
+        <cfset card_delete="/include/download_media.cfm?mediaid=" & headshots_sel.mediaid />
+        <cfset card_footer="No"/>
+        <cfset card_social="No"/>
+        <cfset card_ribbon1=""/>
+        <cfset card_ribbon2=""/>
+        <Cfparam name="card_avatar" default="No"/>
+        <Cfparam name="card_image" default="Yes"/>
+
+ 
+          <cfset card_image="#session.userMediaUrl#/#headshots_sel.mediaFileName#?ver=#rand()#"/>
+   
+
+
+    </div>
+  </div>
+
+
+
+
