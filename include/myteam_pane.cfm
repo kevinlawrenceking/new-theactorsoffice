@@ -67,7 +67,7 @@
         <Cfparam name="card_icon" default=""/>
         <Cfparam name="card_ribbon1" default=""/>
         <Cfparam name="card_ribbon12" default=""/>
-
+<Cfparam name="aud_cat_icon" default=""/>
         <!--- Assign card values dynamically --->
         <cfset card_header="Yes"/>
         <cfset card_social="Yes"/>
