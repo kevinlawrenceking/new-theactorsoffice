@@ -7576,21 +7576,13 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
         position: absolute;
         top: 50%;
         right: 10px; /* Align to the right */
-        transform: translateY(-50%); /* Center vertically */
         font-size: 1.3rem;
         color: #333;
 }
 
 
 
-    .tao-card-header .view-icon {
-    position: absolute;
-    top: 50%;
-    right: 10px; /* Align to the right */
 
-    font-size: 1.3rem;
-    color: var(--ct-bg-topbar-dark)
-}
 
 /* Card Body */
 .tao-card-body {
