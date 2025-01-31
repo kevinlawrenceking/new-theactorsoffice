@@ -7596,6 +7596,15 @@ img.tao-card-avatar {
     display: block; /* Prevents extra spacing */
 }
 
+/* Contact Info Wrapper */
+.tao-card-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Keeps fields evenly spaced */
+    min-height: 100px; /* Ensures the block has a consistent height */
+}
+
 /* Right Section (Contact Info) */
 .tao-card-info-container {
     width: 67%;
