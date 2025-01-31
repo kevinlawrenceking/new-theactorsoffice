@@ -478,7 +478,7 @@
                    name="new_workwithcoach"
                    <cfif aud_det.workwithcoach eq "1">checked</cfif> />
             <label class="form-check-label" for="workwithcoach">
-              Worked with Coachs
+              Worked with Coach
             </label>
           </div>
         </div>
