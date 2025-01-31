@@ -7520,11 +7520,16 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     /* Ensure card allows content to extend outside */
 .tao-card-md {
     position: relative;
-    overflow: visible;
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 8px; /* Adjusted to ensure smooth rounded edges */
-
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    width: 100%; /* Make it full-width */
+    max-width: 500px; /* Adjust as needed */
+    height: auto;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #ddd;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
   }
   
 /* Card Header 
@@ -7572,17 +7577,36 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     text-align: center;
     padding: 0.75rem;
     flex-grow: 1; /* Makes the body flexible to fill available space */
- 
-    flex-direction: column;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
     justify-content: center; /* Ensures content stays centered vertically */
 }
 
-/* Avatar */
+
+/* Left third for avatar */
+.tao-card-avatar-container {
+    width: 33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Avatar/Image */
 .tao-card-avatar img {
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    border: 2px solid #ccc;
+}
+
+/* Right two-thirds for info */
+.tao-card-info-container {
+    width: 67%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 15px;
 }
 
 .tao-card-image img {
@@ -7606,10 +7630,12 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     font-size: 1rem;
     margin: 0.5rem 0;
 }
-
+/* Name Styling */
 .tao-card-name a {
-    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
     color: #333;
+    text-decoration: none;
 }
 
 .tao-card-name a:hover {
@@ -7656,9 +7682,8 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 .tao-card-contact span {
     display: flex;
     align-items: center;
-    justify-content: center; /* Center icon and text */
-
-    min-width: 100px; /* Prevent shifting when empty */
+    gap: 5px;
+    justify-content: center; /* Keep icons and text centered */
 }
 
 /* Fix icon alignment */
@@ -7714,15 +7739,15 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     background-color: #f8f9fa;
     border-top: 1px solid #ddd;
     text-align: center;
-    margin-top: auto; 
-    min-height: 2.5rem;
+    margin-top: auto; /* Pushes footer to bottom if needed */
+    min-height: 2.5rem; /* Ensures consistent height */
+    max-height: 2.5rem; /* Prevents it from stretching */
     display: flex;
     align-items: center;
     justify-content: center;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-    max-height: 20px;
+    border-radius: 0 0 8px 8px; /* Rounded bottom corners */
 }
+
 
 .tao-card-social {
     display: flex;
