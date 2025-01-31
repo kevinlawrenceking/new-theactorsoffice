@@ -42,6 +42,43 @@
         <cfreturn contactData>
     </cffunction>
 
+        <!--- Function to fetch contacts based on a search term --->
+    <cffunction name="getContactsNotTeam" access="public" returntype="query" output="false" hint="Fetches contacts for a given user ID and search term.">
+        <cfargument name="userid" type="numeric" required="true" hint="The user ID to filter contacts.">
+        <cfargument name="searchTerm" type="string" required="true" hint="The term to search for in contact names.">
+
+        <cfquery name="contactData">
+            SELECT 
+                recordname AS col1, 
+                contactid AS id
+            FROM 
+                contactdetails
+            WHERE 
+                userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+                AND LOWER(recordname) LIKE LOWER(<cfqueryparam value="%#arguments.searchTerm#%" cfsqltype="CF_SQL_VARCHAR">)
+          AND contactid NOT in 
+
+          (
+select contactitems.contactid 
+FROM 
+            new_development.contactitems 
+            inner  join contactdetails d on d.contactid = contactitems.contactid 
+        WHERE 
+            contactitems.valueCategory = 'Tag'  
+            AND contactitems.valueText = 'My Team'
+            AND contactitems.contactID = d.contactID 
+            AND contactitems.itemStatus = 'Active'
+            and d.userid =  <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+
+          )
+          
+            ORDER BY 
+                recordname
+        </cfquery>
+
+        <cfreturn contactData>
+    </cffunction>
+
     <!--- Function to fetch upcoming events based on a search term --->
     <cffunction name="getAppointments" access="public" returntype="query" output="false" hint="Fetches upcoming events for a given user ID and search term.">
         <cfargument name="userid" type="numeric" required="true" hint="The user ID to filter events.">
