@@ -331,59 +331,35 @@
     <cfargument name="contactID" type="numeric" required="true">
 
 <cfquery name="result" >
-(
-    SELECT DISTINCT
-        n.noteID, 
-        n.noteid AS recid, 
-        'Date' AS head1, 
-        'Time' AS head2, 
-        'Relationships' AS head3, 
-        'Status' AS head4, 
-        'Details' AS head5, 
-        n.noteTimestamp AS col1, 
-        n.noteTimestamp AS col2, 
-        d.contactfullname AS col3, 
-        n.isPublic AS col4, 
-        n.noteDetails AS col5, 
-        n.userID, 
-        n.contactID
-    FROM noteslog n
-    INNER JOIN contactDetails d ON d.contactid = n.contactid
-    WHERE n.userID = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
-    AND n.contactid = <cfqueryparam value="#arguments.contactID#" cfsqltype="CF_SQL_INTEGER">
-) 
-UNION  
-(
-    SELECT DISTINCT
-        n.noteID, 
-        n.noteid AS recid, 
-        'Date' AS head1, 
-        'Time' AS head2, 
-        'Relationships' AS head3, 
-        'Status' AS head4, 
-        'Details' AS head5, 
-        n.noteTimestamp AS col1, 
-        n.noteTimestamp AS col2, 
-        d.contactfullname AS col3, 
-        n.isPublic AS col4, 
-        n.noteDetails AS col5, 
-        n.userID, 
-        n.contactID
-    FROM noteslog n
-    INNER JOIN eventcontactsxref x ON x.contactid = n.contactID
-    INNER JOIN contactDetails d ON d.contactid = n.contactid
-    WHERE n.userID = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
-    AND x.contactID = <cfqueryparam value="#arguments.contactID#" cfsqltype="CF_SQL_INTEGER">
+SELECT DISTINCT
+    n.noteID, 
+    n.noteid AS recid, 
+    'Date' AS head1, 
+    'Time' AS head2, 
+    'Relationships' AS head3, 
+    'Status' AS head4, 
+    'Details' AS head5, 
+    n.noteTimestamp AS col1, 
+    n.noteTimestamp AS col2, 
+    d.contactfullname AS col3, 
+    n.isPublic AS col4, 
+    n.noteDetails AS col5, 
+    n.userID, 
+    n.contactID
+FROM noteslog n
+INNER JOIN contactDetails d ON d.contactid = n.contactid
+WHERE n.userID = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
+AND (
+  
+    n.contactID = <cfqueryparam value="#arguments.contactID#" cfsqltype="CF_SQL_INTEGER">
     
-    and n.noteid not in (    SELECT 
-        n.noteID
-    
-    FROM noteslog n
-    INNER JOIN contactDetails d ON d.contactid = n.contactid
-    WHERE n.userID = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
-    AND n.contactid = <cfqueryparam value="#arguments.contactID#" cfsqltype="CF_SQL_INTEGER">)
-) 
-ORDER BY col1 DESC;
+ 
+    OR n.contactID IN (
+        SELECT x.contactid FROM eventcontacts_xref x
+        WHERE x.contactid = <cfqueryparam value="#arguments.contactID#" cfsqltype="CF_SQL_INTEGER">
+    )
+)
+ORDER BY n.noteTimestamp DESC;
 
 
         </cfquery>
