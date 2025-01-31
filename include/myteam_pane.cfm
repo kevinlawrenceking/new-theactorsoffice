@@ -38,7 +38,7 @@
 
   <div class="container">
     <!--- Start of card grid container --->
-    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 row-cols-xl-6 g-3">
       <!--- Loop through the myteam query --->
 
       <cfloop query="myteam">
