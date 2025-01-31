@@ -7572,7 +7572,7 @@ img.tao-card-avatar {
 
 /* Left Section (Avatar) */
 .tao-card-avatar-container {
-    width: 33%;
+    width: 30%;
     display: flex;
     justify-content: center;
     align-items: center;
