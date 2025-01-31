@@ -87,9 +87,13 @@
     </cffunction>
 
     <cffunction name="auditionImports" access="public" returntype="query" hint="Returns a query of imports from auditionsimport table">
+              <cfargument name="userid" type="numeric" required="true">
+      
         <cfquery name="imports" >
-            SELECT uploadid, timestamp
-            FROM auditionsimport
+SELECT i.uploadid, i.timestamp, u.userid
+            FROM auditionsimport i
+           inner join uploads u on u.uploadid = i.uploadid
+           where u.userid = #arguments.userid#
         </cfquery>
         <cfreturn imports>
     </cffunction>
