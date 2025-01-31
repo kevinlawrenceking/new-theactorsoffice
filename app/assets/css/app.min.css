@@ -7546,7 +7546,27 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     border-radius: 0 0 8px 8px; /* Rounded bottom corners */
     width: 100%;
 }
+.tao-card-social {
+    display: flex;
+    justify-content: center; /* Ensures icons are centered */
+    align-items: center;
+    gap: 0.5rem; /* Adds spacing between icons */
+    width: 100%; /* Ensures it spans the full footer */
+}
 
+.tao-card-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+.tao-card-social img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
 
 
 /* Card Header - Ensure Minimum Height */
