@@ -7,23 +7,27 @@
 <cfinclude template="/include/qry/durations.cfm" />
 <cfinclude template="/include/qry/eventtypes_user_443_2.cfm" />
 
+
+
 <script>
-  $(document).ready(function () {
-    $("#select-relationship").selectize({
-      persist: false,
-      createOnBlur: true,
-      create: true,
-      plugins: ["remove_button"],
-      delimiter: ",",
-      create: function (input) {
-        return {
-          value: input,
-          text: input,
-        };
-      },
+    $(document).ready(function() {
+        $("#select-relationship").selectize({
+            persist: !1,
+            createOnBlur: !0,
+            create: !0,
+            plugins: ["remove-button"],
+            delimiter: ",",
+            persist: false,
+            create: function(input) {
+                return {
+                    value: input,
+                    text: input,
+                };
+            },
+        });
     });
-  });
 </script>
+
 
 <div class="col-xl-6 col-lg-8 col-md-12">
   <div class="card mb-3">
