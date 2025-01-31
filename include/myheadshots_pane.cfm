@@ -98,7 +98,7 @@
         <Cfparam name="card_delete" default=""/>
         <Cfparam name="card_footer" default="No"/>
         <Cfparam name="card_social" default="No"/>
-        <Cfparam name="card_avatar" default="No"/>
+        <Cfparam name="card_avatar" default=""/>
         <Cfparam name="card_social" default=""/>
         <cfparam name="card_footer_text" default=""/>
         <cfparam name="card_top_ribbon" default=""/>
