@@ -114,7 +114,7 @@
         <cfset card_name=headshots_sel.medianame />
 
 
-        <cfset card_title=myteam.card_title/>
+        <cfset card_title=""/>
         <cfset card_company=myteam.card_company/>
         <cfset card_email=myteam.card_email/>
         <cfset card_phone=myteam.card_phone/>
@@ -125,10 +125,8 @@
         <cfset card_ribbon1=""/>
         <cfset card_ribbon2=""/>
         <Cfparam name="card_avatar" default="No"/>
-        <Cfparam name="card_image" default="Yes"/>
-
- 
-          <cfset card_image="#session.userMediaUrl#/#headshots_sel.mediaFileName#?ver=#rand()#"/>
+   
+          <cfset card_image=session.userMediaUrl & "/" & headshots_sel.mediaFileName & "?ver=" & rand() />
    
  <cfinclude template="/include/card.cfm"/>
 
