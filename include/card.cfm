@@ -21,7 +21,7 @@
         
         <!--- Left Section: Avatar --->
         <div class="tao-card-avatar-container">
-          <img src="https://via.placeholder.com/80" alt="profile-image" class="tao-card-avatar">
+          <img src="#card_image#?ver=#rand()#" alt="profile-image"  class="tao-card-avatar">
         </div>
 
         <!--- Right Section: Contact Info --->
