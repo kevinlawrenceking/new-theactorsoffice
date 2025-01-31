@@ -7584,6 +7584,20 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     z-index: 2; 
 }
 
+.tao-card-image img {
+    width: 150px;
+}
+
+.tao-card-avatar i {
+    font-size: 3rem; /* Increase icon size (adjust as needed) */
+    padding: 10px; /* Add spacing around the icon */
+    color: var(--ct-bg-topbar-darkJ);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
 /* Left third for avatar */
 .tao-card-avatar-container {
     width: 33%;
