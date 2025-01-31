@@ -7574,10 +7574,11 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 
 /* Avatar */
 .tao-card-avatar img {
-    max-width: 75px;
-    max-height: 75px;
+    max-width: 75px !important;
+    max-height: 75px !important;
     border-radius: 50%;
     object-fit: cover;
+    display: block; /* Ensures it doesn't behave unexpectedly */
 }
 
 /* Right Section (Contact Info) */
