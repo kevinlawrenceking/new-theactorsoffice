@@ -21,7 +21,7 @@
         
         <!--- Left Section: Avatar --->
         <div class="tao-card-avatar-container">
-          <img src="#card_image#"  alt="profile-image" class="tao-card-avatar">
+          <img src="#card_image#" width="50px" alt="profile-image" class="tao-card-avatar">
         </div>
 
         <!--- Right Section: Contact Info --->
