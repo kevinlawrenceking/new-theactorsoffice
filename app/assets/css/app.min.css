@@ -7552,7 +7552,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 /* Left third for avatar */
 .tao-card-avatar-container {
     width: 33%;
-    display: flex;
+
     justify-content: center;
     align-items: center;
 }
