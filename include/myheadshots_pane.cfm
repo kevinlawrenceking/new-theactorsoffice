@@ -124,7 +124,7 @@
         <cfset card_social="No"/>
         <cfset card_ribbon1=""/>
         <cfset card_ribbon2=""/>
-        <Cfparam name="card_avatar" default=""/>
+        <Cfset card_avatar="" />
    
           <cfset card_image=session.userMediaUrl & "/" & headshots_sel.mediaFileName />
    
