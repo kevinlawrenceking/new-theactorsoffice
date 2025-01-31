@@ -7542,30 +7542,30 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     width: 100%; /* Make it span full width */
     height: 40px; /* Ensure proper height */
     display: flex;
-    justify-content: space-between; /* Keep delete icon left, view icon right */
+    justify-content: space-between; 
     align-items: center;
     padding: 0.5rem;
-    background-color: #ededf1; /* Background color to match */
-    z-index: 2; /* Keep it above other elements */
+    background-color: #ededf1;
+    z-index: 2; 
 }
 
-/* Trash Icon (Left Aligned) */
+
 .tao-card-header .trash-icon {
     font-size: 1.2rem;
     color: red;
-    margin-left: 10px; /* Adjust left padding */
+    margin-left: 10px; 
 }
 
-/* View Icon - Top Right */
+
 .tao-card-header .view-icon {
     position: absolute;
     top: 50%;
     right: 10px;
-    transform: translateY(-50%); /* Centers icon vertically */
+    transform: translateY(-50%); 
     font-size: 1.3rem; 
         position: absolute;
         top: 50%;
-        right: 10px; /* Align to the right */
+        right: 10px; 
         font-size: 1.3rem;
         color: #333;
 }

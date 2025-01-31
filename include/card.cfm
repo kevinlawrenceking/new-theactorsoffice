@@ -92,7 +92,6 @@
         </div>
       </div>
 
-      <!--- Ribbon (if exists) ---> 
       <cfif card_ribbon1 neq "">
         <div class="ribbon-card ribbon-Pin float-end">
           <i class="mdi mdi-#ribbon_icon# me-1"></i>#card_ribbon1#

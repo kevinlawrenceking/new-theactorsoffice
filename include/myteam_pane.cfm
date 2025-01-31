@@ -100,7 +100,7 @@
             <Cfset card_ribbon2=rels.systemType/>
           </cfif>
         </Cfloop>
-
+--->
         <cfinclude template="/include/card.cfm"/>
 
       </cfloop>
