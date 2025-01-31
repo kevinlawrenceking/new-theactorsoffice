@@ -249,7 +249,7 @@
                 </div>
             </div>
         </div>
-        </cfif
+        </cfif>
 
         <!--- Checkbox for Tracking Mileage --->
         <div class="form-group col-md-6">
