@@ -355,7 +355,7 @@ AND (
     
  
     OR n.contactID IN (
-        SELECT x.contactid FROM eventcontacts_xref x
+        SELECT x.contactid FROM eventcontactsxref x
         WHERE x.contactid = <cfqueryparam value="#arguments.contactID#" cfsqltype="CF_SQL_INTEGER">
     )
 )
