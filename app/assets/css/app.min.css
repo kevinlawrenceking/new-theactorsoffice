@@ -7549,6 +7549,20 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     z-index: 2; 
 }
 
+/* Left third for avatar */
+.tao-card-avatar-container {
+    width: 33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Avatar/Image */
+.tao-card-avatar img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
 
 .tao-card-header .trash-icon {
     font-size: 1.2rem;
