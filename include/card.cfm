@@ -80,7 +80,7 @@
             <!--- Phone --->
             <span>
               <i class="fe-phone me-1 <cfif card_phone neq ''>has-content</cfif>"></i>
-              <cfif card_phone neq ''>#card_phone#</cfif>
+             #card_phone#
             </span>
 
             <!--- Email --->
