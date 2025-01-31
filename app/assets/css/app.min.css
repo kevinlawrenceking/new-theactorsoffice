@@ -7596,6 +7596,17 @@ img.tao-card-avatar {
     display: block; /* Prevents extra spacing */
 }
 
+/* Contact Info Fields (Phone & Email) */
+.tao-card-contact span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: center;
+    min-width: 200px; /* Ensures text doesn't shift */
+    min-height: 20px; /* Allocates space even when empty */
+}
+
+
 /* Contact Info Wrapper */
 .tao-card-info {
     display: flex;
@@ -7639,6 +7650,16 @@ img.tao-card-avatar {
     gap: 3px;
 }
 
+/* Hide icons when content is missing, but keep space */
+.tao-card-contact i {
+    font-size: 14px;
+    visibility: hidden; /* Keeps the space reserved */
+}
+
+/* Show icon only if content exists */
+.tao-card-contact i.has-content {
+    visibility: visible;
+}
 
 /* Card Footer */
 .tao-card-footer {

@@ -26,8 +26,14 @@
 
         <!--- Right Section: Contact Info --->
         <div class="tao-card-info-container">
-          <p class="tao-card-name">John Doe</p>
-          <p class="tao-card-title"><span class="badge badge-blue">Actor / Performer</span></p>
+             <p class="tao-card-name">
+        <a href="#card_details#">#card_name#</a>
+    </p>
+      <!--- Title (Always Takes Space) --->
+    <p class="tao-card-title">
+        <cfif card_title neq "NULL"><span class="badge badge-blue">#card_title#</span><cfelse>&nbsp;</cfif>
+    </p
+       
           <p class="tao-card-contact">
             <span><i class="fe-phone"></i> (123) 456-7890</span>
             <span><i class="fe-mail"></i> johndoe@email.com</span>
