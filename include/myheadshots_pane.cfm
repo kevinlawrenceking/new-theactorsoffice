@@ -130,7 +130,9 @@
  
           <cfset card_image="#session.userMediaUrl#/#headshots_sel.mediaFileName#?ver=#rand()#"/>
    
+ <cfinclude template="/include/card.cfm"/>
 
+      </cfloop>
 
     </div>
   </div>
