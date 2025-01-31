@@ -465,6 +465,8 @@
     </div> <!-- end #hiddenSelfTape -->
 
     <!--- Worked with Coach? --->
+
+    <cfif new_audstepid neq 5>
     <div class="row">
       <cfoutput>
         <div class="form-group col-md-12">
@@ -482,6 +484,7 @@
         </div>
       </cfoutput>
     </div>
+</cfif>
 
     <!--- Submit button --->
     <div class="row">
