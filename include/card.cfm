@@ -61,7 +61,7 @@
             <a href="#card_details#" title="#card_name#">#card_name#</a>
         </p>
     </cfif>
-</div>
+
 
           <!--- Contact Info ---> 
           <div class="tao-card-info">
