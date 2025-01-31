@@ -53,13 +53,15 @@
         </div>
 
         <!--- Right Two-Thirds: Contact Info ---> 
-        <div class="tao-card-info-container">
-          <!--- Full Name ---> 
-          <cfif card_name neq "">
-            <p class="tao-card-name">
-              <a href="#card_details#">#card_name#</a>
-            </p>
-          </cfif>
+   <!--- Right Two-Thirds: Contact Info --->
+<div class="tao-card-info-container">
+    <!--- Full Name ---> 
+    <cfif card_name neq "">
+        <p class="tao-card-name">
+            <a href="#card_details#" title="#card_name#">#card_name#</a>
+        </p>
+    </cfif>
+</div>
 
           <!--- Contact Info ---> 
           <div class="tao-card-info">
