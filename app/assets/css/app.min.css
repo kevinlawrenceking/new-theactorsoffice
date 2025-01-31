@@ -7546,13 +7546,17 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 
 /* Card Header - Ensure Minimum Height */
 .tao-card-header {
-    position: relative; /* Ensures absolute icons stay inside */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Make it span full width */
+    height: 40px; /* Ensure proper height */
     display: flex;
+    justify-content: space-between; /* Keep delete icon left, view icon right */
     align-items: center;
-    background-color: #ededf1;
-    color: #595959;
     padding: 0.5rem;
-    min-height: 40px; /* Ensure consistent height */
+    background-color: #ededf1; /* Background color to match */
+    z-index: 2; /* Keep it above other elements */
 }
 
 /* Trash Icon (Left Aligned) */
@@ -7568,7 +7572,25 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     top: 50%;
     right: 10px;
     transform: translateY(-50%); /* Centers icon vertically */
-    font-size: 1.3rem; /* Adjust icon size */
+    font-size: 1.3rem; 
+        position: absolute;
+        top: 50%;
+        right: 10px; /* Align to the right */
+        transform: translateY(-50%); /* Center vertically */
+        font-size: 1.3rem;
+        color: #333;
+ )
+
+
+
+    .tao-card-header .view-icon {
+    position: absolute;
+    top: 50%;
+    right: 10px; /* Align to the right */
+    transform: translateY(-50%); /* Center vertically */
+    font-size: 1.3rem;
+    color: #333;
+}
     color: var(--ct-bg-topbar-dark)
 }
 
