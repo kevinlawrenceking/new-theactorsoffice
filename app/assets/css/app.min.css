@@ -7532,17 +7532,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     border: 1px solid #ddd;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
   }
   
-/* Card Header 
-.tao-card-header {
-    background-color: #ededf1;
-    color: #595959;
-    font-weight: bold;
-    padding: 0.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-*/
+
 
 /* Card Header - Ensure Minimum Height */
 .tao-card-header {
@@ -7586,15 +7576,13 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 
 /* Card Body */
 .tao-card-body {
-    text-align: center;
-    padding: 0.75rem;
-    flex-grow: 1; /* Makes the body flexible to fill available space */
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     width: 100%;
     padding: 10px;
-    justify-content: center; /* Ensures content stays centered vertically */
+    flex-wrap: nowrap; /* Prevents unintended wrapping */
 }
 
 .tao-card-header .trash-icon {
@@ -7650,17 +7638,14 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 /* Name */
 .tao-card-name {
     font-weight: bold;
-    font-size: 1rem;
-    margin: 0.5rem 0;
     font-size: 1.2rem;
-    font-weight: bold;
     color: #333;
-    white-space: nowrap; /* Prevents text from wrapping */
-    overflow: hidden; /* Ensures text doesn’t overflow */
-    text-overflow: ellipsis; /* Adds '...' when text is too long */
-    max-width: 100%; /* Prevents it from shrinking too much */
-    display: block; /* Ensures proper behavior in flexbox */
-
+    white-space: nowrap; /* Prevents line breaks */
+    overflow: hidden; /* Hides excess text instead of breaking layout */
+    text-overflow: ellipsis; /* Adds '...' for long names */
+    max-width: 100%;
+    min-width: 50px; /* Ensures the text always has space */
+    display: block;
 
 }
 /* Name Styling */
