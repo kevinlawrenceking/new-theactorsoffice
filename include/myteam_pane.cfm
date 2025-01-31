@@ -83,7 +83,7 @@
         <cfset card_ribbon1=""/>
         <cfset card_ribbon2=""/>
         <Cfparam name="card_avatar" default="Yes"/>
-        <Cfparam name="card_image" default="No"/>
+        <Cfparam name="card_image" default=""/>
 <cfset card_avatar eq "yes">
         <cfif isimagefile("#session.userContactsPath#\#myteam.contactid#\avatar.jpg")>
           <cfset card_image="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg"/>
