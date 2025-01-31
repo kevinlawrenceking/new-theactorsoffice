@@ -7607,6 +7607,15 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     justify-content: center; /* Ensures content stays centered vertically */
 }
 
+.tao-card-header .trash-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px; /* Align to the left */
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: red;
+}
+}
 
 /* Left third for avatar */
 .tao-card-avatar-container {
