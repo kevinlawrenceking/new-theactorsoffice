@@ -91,7 +91,7 @@
           <cfset card_image="#application.defaultAvatarUrl#"/>
 
         </cfif>
-
+<cfset card_icon = "Yes" />
         <!--- Assign ribbon values dynamically --->
         <Cfloop query="rels">
           <cfif rels.currentrow eq 1>
