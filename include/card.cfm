@@ -37,13 +37,24 @@
       </div> <!--- end tao-card-body --->
 
       <!--- Card Footer --->
-      <div class="tao-card-footer">
-        <div class="tao-card-social">
-          <a href="##"><img src="/path-to/facebook-icon.png" alt="Facebook"></a>
-          <a href="##"><img src="/path-to/twitter-icon.png" alt="Twitter"></a>
-          <a href="##"><img src="/path-to/linkedin-icon.png" alt="LinkedIn"></a>
-        </div>
-      </div>
+  <!--- Card Footer --->
+<div class="tao-card-footer">
+    <div class="tao-card-social">
+        <a href="https://facebook.com" target="_blank" title="Facebook">
+            <i class="mdi mdi-facebook"></i>
+        </a>
+        <a href="https://instagram.com" target="_blank" title="Instagram">
+            <i class="mdi mdi-instagram"></i>
+        </a>
+        <a href="https://twitter.com" target="_blank" title="Twitter">
+            <i class="mdi mdi-twitter"></i>
+        </a>
+        <a href="https://linkedin.com" target="_blank" title="LinkedIn">
+            <i class="mdi mdi-linkedin"></i>
+        </a>
+    </div>
+</div>
+
 
     </div> <!--- end .tao-card-md --->
   </div> <!--- end col --->
