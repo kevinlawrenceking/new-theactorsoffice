@@ -368,7 +368,7 @@ UNION
         n.userID, 
         n.contactID
     FROM noteslog n
-    INNER JOIN eventscontacts_xref x ON x.contactid = n.contactID
+    INNER JOIN eventcontacts_xref x ON x.contactid = n.contactID
     INNER JOIN contactDetails d ON d.contactid = n.contactid
     WHERE n.userID = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
     AND n.contactID = <cfqueryparam value="#arguments.contactID#" cfsqltype="CF_SQL_INTEGER">
