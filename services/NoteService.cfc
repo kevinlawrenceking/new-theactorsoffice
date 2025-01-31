@@ -372,6 +372,13 @@ UNION
     INNER JOIN contactDetails d ON d.contactid = n.contactid
     WHERE n.userID = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
     AND n.contactID = <cfqueryparam value="#arguments.contactID#" cfsqltype="CF_SQL_INTEGER">
+    and n.noteid not in (    SELECT DISTINCT
+        n.noteID
+    
+    FROM noteslog n
+    INNER JOIN contactDetails d ON d.contactid = n.contactid
+    WHERE n.userID = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
+    AND n.contactid = <cfqueryparam value="#arguments.contactID#" cfsqltype="CF_SQL_INTEGER">)
 ) 
 ORDER BY col1 DESC;
 
