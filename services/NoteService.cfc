@@ -324,6 +324,8 @@
 
 <cfreturn result>
 </cffunction>
+
+
 <cffunction output="false" name="SELnoteslog_24700" access="public" returntype="query">
     <cfargument name="userID" type="numeric" required="true">
     <cfargument name="contactID" type="numeric" required="true">
@@ -371,7 +373,7 @@ UNION
     INNER JOIN eventcontactsxref x ON x.contactid = n.contactID
     INNER JOIN contactDetails d ON d.contactid = n.contactid
     WHERE n.userID = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
-    AND n.contactID = <cfqueryparam value="#arguments.contactID#" cfsqltype="CF_SQL_INTEGER">
+    AND x.contactID = <cfqueryparam value="#arguments.contactID#" cfsqltype="CF_SQL_INTEGER">
     
     and n.noteid not in (    SELECT 
         n.noteID
