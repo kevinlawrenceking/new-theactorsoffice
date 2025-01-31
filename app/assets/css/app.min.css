@@ -7579,7 +7579,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
         transform: translateY(-50%); /* Center vertically */
         font-size: 1.3rem;
         color: #333;
- )
+}
 
 
 
@@ -7587,10 +7587,8 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     position: absolute;
     top: 50%;
     right: 10px; /* Align to the right */
-    transform: translateY(-50%); /* Center vertically */
+
     font-size: 1.3rem;
-    color: #333;
-}
     color: var(--ct-bg-topbar-dark)
 }
 
@@ -7638,7 +7636,6 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     display: flex;
     flex-direction: column;
     padding-left: 15px;
-
     flex-grow: 1;
     min-width: 0; /* Prevents flexbox from cutting off text */
     overflow: hidden;
@@ -7647,7 +7644,6 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 .tao-card-image img {
     width: 150px;
 }
-
 
 .tao-card-avatar i {
     font-size: 3rem; /* Increase icon size (adjust as needed) */
