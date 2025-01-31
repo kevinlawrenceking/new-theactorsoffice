@@ -237,6 +237,7 @@
             <input class="form-control" type="text" id="new_parkingDetails" autocomplete="off" name="new_parkingDetails" placeholder="Location" />
         </div>
 
+<cfif new_audstepid neq 5>
         <!--- Checkbox for Working with Coach --->
         <div class="form-group col-md-6">
             <div class="custom-group custom-checkbox">
@@ -248,6 +249,7 @@
                 </div>
             </div>
         </div>
+        </cfif
 
         <!--- Checkbox for Tracking Mileage --->
         <div class="form-group col-md-6">
