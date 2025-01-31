@@ -70,7 +70,7 @@ $(function() {
             $("#selectedId").val(ui.item.id);
             $("#category").val(ui.item.category);
 
-            $("#submitform").submit();
+           // $("#submitform").submit();
         },
         open: function() {
             var inputWidth = $("#autocomplete").outerWidth();
