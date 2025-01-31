@@ -7638,6 +7638,10 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     display: flex;
     flex-direction: column;
     padding-left: 15px;
+
+    flex-grow: 1;
+    min-width: 0; /* Prevents flexbox from cutting off text */
+    overflow: hidden;
 }
 
 .tao-card-image img {
@@ -7660,6 +7664,16 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     font-weight: bold;
     font-size: 1rem;
     margin: 0.5rem 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    white-space: nowrap; /* Prevents text from wrapping */
+    overflow: hidden; /* Ensures text doesn’t overflow */
+    text-overflow: ellipsis; /* Adds '...' when text is too long */
+    max-width: 100%; /* Prevents it from shrinking too much */
+    display: block; /* Ensures proper behavior in flexbox */
+
+
 }
 /* Name Styling */
 .tao-card-name a {

@@ -92,14 +92,14 @@
 
         </cfif>
 <cfset card_icon = "Yes" />
-        <!--- Assign ribbon values dynamically --->
+        <!--- Assign ribbon values dynamically 
         <Cfloop query="rels">
           <cfif rels.currentrow eq 1>
             <Cfset card_ribbon1=rels.systemType/>
           <cfelseif rels.currentrow eq 2>
             <Cfset card_ribbon2=rels.systemType/>
           </cfif>
-        </Cfloop>
+        </Cfloop>--->
 
         <cfinclude template="/include/card.cfm"/>
 
