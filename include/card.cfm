@@ -52,20 +52,17 @@
 
             <!--- Footer (Social Icons) --->
             <div class="tao-card-footer">
-                <div class="tao-card-social">
-                    <a href="https://facebook.com" target="_blank" title="Facebook">
-                        <i class="mdi mdi-facebook"></i>
-                    </a>
-                    <a href="https://instagram.com" target="_blank" title="Instagram">
-                        <i class="mdi mdi-instagram"></i>
-                    </a>
-                    <a href="https://twitter.com" target="_blank" title="Twitter">
-                        <i class="mdi mdi-twitter"></i>
-                    </a>
-                    <a href="https://linkedin.com" target="_blank" title="LinkedIn">
-                        <i class="mdi mdi-linkedin"></i>
-                    </a>
-                </div>
+               <cfif card_social eq "Yes">
+    <div class="tao-card-social">
+        <cfloop query="profiles">
+            <cfif profiles.valuetext neq "NULL">
+                <a href="#profiles.valuetext#" target="_blank" title="#profiles.valuetype#">
+                    <i class="mdi #profiles.typeiconmdi#"></i>
+                </a>
+            </cfif>
+        </cfloop>
+    </div>
+</cfif>
             </div>
 
         </div> <!--- end tao-card-md --->

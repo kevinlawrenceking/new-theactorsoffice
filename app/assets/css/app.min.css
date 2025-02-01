@@ -7639,15 +7639,22 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     border-top: 1px solid #ddd;
 }
 
+.tao-card-social {
+    display: flex;
+    justify-content: center; /* Centers icons */
+    gap: 8px; /* Adds spacing between icons */
+    padding: 10px 0;
+}
+
 .tao-card-social a {
-    font-size: 1.3rem;
-    color: #555;
-    margin: 0 8px;
-    transition: color 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    font-size: 1.2rem; /* Adjust icon size */
+    transition: color 0.2s ease-in-out;
 }
 
 .tao-card-social a:hover {
-    color: #007bff;
+    color: #007bff; /* Highlight on hover */
 }
 
 img.tao-card-avatar {
