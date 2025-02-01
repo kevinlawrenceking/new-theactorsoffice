@@ -7611,8 +7611,8 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 .tao-card-title {
     min-height: 24px; /* Ensures a fixed height */
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: left;
+    /* removed justify-content: center;*/
 }
 
 /* Keeps height but makes element invisible */
