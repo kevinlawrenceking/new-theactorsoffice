@@ -7596,8 +7596,6 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     font-style:italic;
     color: #595959;
     min-height: 1rem; /* Same height as title */
-    align-items: center;
-    justify-content: center
 }
 
 /* FIXED: Keep Icons Aligned with Values */
