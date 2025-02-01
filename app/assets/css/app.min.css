@@ -7612,6 +7612,19 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     gap: 5px;
 }
 
+.tao-card-title {
+    min-height: 24px; /* Ensures a fixed height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Keeps height but makes element invisible */
+.tao-card-title .invisible {
+    visibility: hidden;
+}
+
+
 /* FIXED: Only Show Icons When Content Exists */
 .tao-card-contact i {
     font-size: 14px;
