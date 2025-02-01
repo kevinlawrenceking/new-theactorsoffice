@@ -1503,6 +1503,7 @@ WHERE itemid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.itemid
                 AND t.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
                 and m.typeicon is not null 
                 and m.typeiconmdi is not null
+                order by t.typeid
         </cfquery>
 
 <cfreturn result>
