@@ -73,7 +73,7 @@
             </cfloop>
      
     <cfelseif card_footer_type eq "text">
-#card_footer_text#
+<span>#card_footer_text#</span>
     <cfelseif card_footer_type eq "icons">
     
     
