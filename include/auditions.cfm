@@ -280,7 +280,7 @@
     <cfset card_company=results.col4 & "<br> &nbsp;"/>
   </cfif>
   <cfset card_details="/app/audition/?audprojectid=" & results.recid/>
-  <cfset card_image="/media-#host#/dates/#DateFormat('#results.col1#','yyyy-mm-dd')#.png"/>
+  <cfset card_image="#application.datesUrl#/#DateFormat('#results.col1#','mm-dd')#.png"/>
   <cfset card_footer="Yes"/>
   <cfset card_social=""/>
   <cfif col6 neq "Booked" and col6 neq "Audition">
