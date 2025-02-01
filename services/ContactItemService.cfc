@@ -1477,6 +1477,38 @@ WHERE itemid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.itemid
 
 <cfreturn result>
 </cffunction>
+
+<cffunction output="false" name="getSocialIcons" access="public" returntype="query">
+    <cfargument name="contactid" type="numeric" required="true">
+    <cfargument name="userid" type="numeric" required="true">
+
+<cfquery name="result" >
+            SELECT DISTINCT 
+                i.valuetext, 
+                i.valuetype, 
+                t.typeIcon,
+                m.typeiconmdi 
+            FROM 
+                contactitems i 
+            INNER JOIN 
+                itemtypes_user t ON 
+                i.valueType = t.valueType 
+
+            inner JOIN itemtypes_tbl m on m.typeicon = t.typeicon
+            
+            WHERE 
+                i.valueCategory = <cfqueryparam value="Social Profile" cfsqltype="CF_SQL_VARCHAR"> 
+                AND i.contactID = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER"> 
+                AND i.itemstatus = <cfqueryparam value="Active" cfsqltype="CF_SQL_VARCHAR"> 
+                AND t.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
+                and m.typeicon is not null 
+                and m.typeiconmdi is not null
+        </cfquery>
+
+<cfreturn result>
+</cffunction>
+
+
 <cffunction output="false" name="SELcontactitems_24715" access="public" returntype="query">
     <cfargument name="contactid" type="numeric" required="true">
     <cfargument name="userid" type="numeric" required="true">

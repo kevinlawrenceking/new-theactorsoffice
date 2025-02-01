@@ -44,7 +44,7 @@
       <cfloop query="myteam">
         <Cfset currentid=myteam.contactid/>
 
-        <cfinclude template="/include/qry/profiles_516_1.cfm"/>
+        <cfinclude template="/include/qry/getSocialIcons.cfm"/>
         <cfinclude template="/include/qry/getRemindersByRelationship.cfm"/>
 
         <!--- Variables for card --->
