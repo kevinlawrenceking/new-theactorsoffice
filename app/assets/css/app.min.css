@@ -7666,7 +7666,8 @@ img.tao-card-avatar {
 }
 /* Company */
 .tao-card-company {
-    font-size: 0.8rem;
+    font-size:1rem;
+    font-style:italic;
     color: #595959;
     margin: 1 rem 0;
     min-height: 1.5rem; /* Same height as title */
