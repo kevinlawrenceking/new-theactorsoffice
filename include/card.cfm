@@ -35,10 +35,13 @@
                         <cfif card_company neq "NULL">#card_company#</cfif>
                     </p>
                     <p class="tao-card-contact">
+                        <!--- Phone (Only Show if Not NULL) --->
                         <span>
                             <i class="fe-phone me-1 <cfif card_phone neq ''>has-content</cfif>"></i>
                             <cfif card_phone neq ''>#card_phone#<cfelse>&nbsp;</cfif>
                         </span>
+
+                        <!--- Email (Only Show if Not NULL) --->
                         <span>
                             <i class="fe-mail me-1 <cfif card_email neq ''>has-content</cfif>"></i>
                             <cfif card_email neq ''><a href="mailto:#card_email#">#card_email#</a><cfelse>&nbsp;</cfif>

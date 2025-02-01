@@ -7549,7 +7549,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     color: #333;
 }
 
-/* Name - Now Full Width */
+/* Name - Full Width */
 .tao-card-name {
     font-weight: bold;
     font-size: 1.2rem;
@@ -7563,7 +7563,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     text-overflow: ellipsis;
 }
 
-/* Card Body: Divided into Left & Right */
+/* Card Body: Split into Avatar (Left) & Info (Right) */
 .tao-card-body {
     display: flex;
     flex-direction: row;
@@ -7581,6 +7581,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     overflow: hidden;
 }
 
+/* FIXED: Avatar Sizing */
 .tao-card-avatar img {
     width: 75px;
     height: 75px;
@@ -7602,6 +7603,30 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 .tao-card-contact {
     font-size: 0.9rem;
     color: #777;
+}
+
+/* FIXED: Keep Icons Aligned with Values */
+.tao-card-contact span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* FIXED: Only Show Icons When Content Exists */
+.tao-card-contact i {
+    font-size: 14px;
+    vertical-align: middle;
+    visibility: hidden;
+    width: 16px;
+    height: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Show icon only if content exists */
+.tao-card-contact i.has-content {
+    visibility: visible;
 }
 
 /* Social Media Icons */
