@@ -16,43 +16,39 @@
         </a>
       </div>
 
-      <!--- Card Body --->
-      <div class="tao-card-body">
-        
-        <!--- Left Section: Avatar --->
-        <div class="tao-card-avatar-container">
-          <img src="#card_image#"   alt="profile-image" class="tao-card-avatar">
-        </div>
+     <!--- Card Body --->
+<div class="tao-card-body">
 
-        <!--- Right Section: Contact Info --->
-        <div class="tao-card-info-container">
-             <p class="tao-card-name">
-        <a href="#card_details#">#card_name#</a>
-    </p>
-      <!--- Title (Always Takes Space) --->
-    <p class="tao-card-title">
-        <cfif card_title neq "NULL"><span class="badge badge-blue">#card_title#</span><cfelse>&nbsp;</cfif>
-    </p>
+    <!--- Full Name (Spanning Full Width) --->
+    <cfif card_name neq "">
+        <p class="tao-card-name">
+            <a href="#card_details#" title="#card_name#">#card_name#</a>
+        </p>
+    </cfif>
 
-         <!--- Contact Info (Phone & Email) --->
-    <p class="tao-card-contact">
-        <!--- Phone (Show Icon Only if Exists) --->
-        <span>
-            <i class="fe-phone me-1 <cfif card_phone neq ''>has-content</cfif>"></i>
-            <cfif card_phone neq ''>#card_phone#<cfelse>&nbsp;</cfif>
-        </span>
+    <!--- Left Section: Avatar --->
+    <div class="tao-card-avatar-container">
+        <img src="https://via.placeholder.com/80" alt="profile-image" class="tao-card-avatar">
+    </div>
 
-        <!--- Email (Show Icon Only if Exists) --->
-        <span>
-            <i class="fe-mail me-1 <cfif card_email neq ''>has-content</cfif>"></i>
-            <cfif card_email neq ''>
-                <a href="mailto:#card_email#">#card_email#</a>
-            <cfelse>&nbsp;</cfif>
-        </span>
-    </p>
-        </div>
+    <!--- Right Section: Contact Info --->
+    <div class="tao-card-info-container">
+        <p class="tao-card-title"><cfif card_title neq "NULL">#card_title#</cfif></p>
+        <p class="tao-card-company"><cfif card_company neq "NULL">#card_company#</cfif></p>
+        <p class="tao-card-contact">
+            <span>
+                <i class="fe-phone me-1 <cfif card_phone neq ''>has-content</cfif>"></i>
+                <cfif card_phone neq ''>#card_phone#<cfelse>&nbsp;</cfif>
+            </span>
+            <span>
+                <i class="fe-mail me-1 <cfif card_email neq ''>has-content</cfif>"></i>
+                <cfif card_email neq ''><a href="mailto:#card_email#">#card_email#</a><cfelse>&nbsp;</cfif>
+            </span>
+        </p>
+    </div>
 
-      </div> <!--- end tao-card-body --->
+</div> <!--- End Card Body --->
+
 
       <!--- Card Footer --->
   <!--- Card Footer --->

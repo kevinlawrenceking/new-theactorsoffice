@@ -7624,15 +7624,21 @@ img.tao-card-avatar {
     min-width: 0; /* Prevents flexbox text cut-off issues */
 }
 
-/* Contact Name */
+/* Ensure card name spans full width */
 .tao-card-name {
     font-weight: bold;
     font-size: 1.2rem;
     color: #333;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    text-align: center; /* Center the name */
+    padding: 0.5rem 10px;
+    white-space: nowrap; /* Prevent wrapping */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Add "..." for long names */
+    width: 100%; /* Ensures it spans the entire card width */
+    display: block;
+    background-color: #f5f5f5; /* Optional: Light gray background for contrast */
 }
+
 
 /* Contact Title */
 .tao-card-title {
