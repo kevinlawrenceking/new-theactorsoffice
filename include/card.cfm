@@ -71,14 +71,14 @@
                     </a>
                 </cfif>
             </cfloop>
-        </div>
-
+     
     <cfelseif card_footer_type eq "text">
 #card_footer_text#
     <cfelseif card_footer_type eq "icons">
     
     
     </cfif>
+   </div>
 
             </div>
 
