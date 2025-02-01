@@ -7598,7 +7598,6 @@ img.tao-card-avatar {
 
 /* Contact Info Fields (Phone & Email) */
 .tao-card-contact span {
-    display: flex;
     align-items: center;
     gap: 5px;
     justify-content: center;
