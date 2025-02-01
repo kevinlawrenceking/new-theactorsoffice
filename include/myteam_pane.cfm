@@ -47,52 +47,37 @@
         <cfinclude template="/include/qry/getSocialIcons.cfm"/>
         <cfinclude template="/include/qry/getRemindersByRelationship.cfm"/>
 
-        <!--- Variables for card --->
-        <Cfparam name="card_header" default="No"/>
-        <Cfparam name="card_name" default=""/>
-        <Cfparam name="card_title" default=""/>
-        <Cfparam name="card_company" default=""/>
-        <Cfparam name="card_email" default=""/>
-        <Cfparam name="card_phone" default=""/>
-        <Cfparam name="card_details" default=""/>
-        <Cfparam name="card_delete" default=""/>
-        <Cfparam name="card_footer" default="No"/>
-        <Cfparam name="card_social" default="Yes"/>
-        <Cfparam name="card_avatar" default="No"/>
-        <Cfparam name="card_social" default=""/>
-        <cfparam name="card_footer_text" default=""/>
-        <cfparam name="card_top_ribbon" default=""/>
-        <Cfparam name="ribbon_icon" default=""/>
-        <Cfparam name="card_footer_text" default=""/>
-        <Cfparam name="card_icon" default=""/>
-        <Cfparam name="card_ribbon1" default=""/>
-        <Cfparam name="card_ribbon12" default=""/>
-<Cfparam name="aud_cat_icon" default=""/>
+
         <!--- Assign card values dynamically --->
-        <cfset card_header="Yes"/>
-        <cfset card_social="Yes"/>
-        <cfset card_name=myteam.card_name/>
-        <cfset card_title=myteam.card_title/>
-        <cfset card_company=myteam.card_company/>
-        <cfset card_email=myteam.card_email/>
-        <cfset card_phone=myteam.card_phone/>
-        <cfset card_details="/app/contact/?contactid=" & myteam.contactid/>
-        <cfset card_delete="/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=" & myteam.contactid/>
-        <cfset card_footer="Yes"/>
-        <cfset card_social="Yes"/>
-        <cfset card_ribbon1=""/>
-        <cfset card_ribbon2=""/>
-        <Cfset card_avatar = "Yes">
-        <Cfparam name="card_image" default=""/>
+        <cfset card_header="Yes" />
+        <cfset card_social="Yes" />
+        <cfset card_name=myteam.card_name />
+        <cfset card_title=myteam.card_title />
+        <cfset card_company=myteam.card_company />
+        <cfset card_email=myteam.card_email />
+        <cfset card_phone=myteam.card_phone />
+        <cfset card_details="/app/contact/?contactid=" & myteam.contactid />
+        <cfset card_delete="/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=" & myteam.contactid />
+        <cfset card_footer="Yes" />
+        <cfset card_footer_text="Yes" />
+        <cfset card_ribbon1="" />
+        <cfset card_ribbon2="" />
+        <Cfset card_avatar = "Yes" />
+        <Cfset card_top_ribbon = "Yes" />
+        <Cfset ribbon_icon = "" />
+        <Cfset card_icon = "" />
+        <Cfset aud_cat_icon = "" />
+        <cfset card_image = "" />
+ 
 <cfset card_avatar eq "yes">
         <cfif isimagefile("#session.userContactsPath#\#myteam.contactid#\avatar.jpg")>
           <cfset card_image="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg"/>
         <cfelse>
           <cfset card_image="#application.defaultAvatarUrl#"/>
-
         </cfif>
+
 <cfset card_icon = "Yes" />
-        <!--- Assign ribbon values dynamically 
+        <!--- Assign ribbon values dynamically --->
         <Cfloop query="rels">
           <cfif rels.currentrow eq 1>
             <Cfset card_ribbon1=rels.systemType/>
@@ -100,7 +85,7 @@
             <Cfset card_ribbon2=rels.systemType/>
           </cfif>
         </Cfloop>
---->
+
         <cfinclude template="/include/card.cfm"/>
 
       </cfloop>
