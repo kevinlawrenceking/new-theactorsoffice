@@ -7637,6 +7637,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     justify-content: center;
     align-items: center;
     border-top: 1px solid #ddd;
+    max-height: 41px;
 }
 
 .tao-card-social {
