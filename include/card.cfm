@@ -39,7 +39,7 @@
     </p>
     
           <p class="tao-card-contact">
-            <span><i class="fe-phone"></i> /span>
+            <span><i class="fe-phone"></i>&nbsp;</span>
             <span><i class="fe-mail"></i> johndoe@email.com</span>
           </p>
         </div>
