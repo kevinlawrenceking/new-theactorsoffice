@@ -58,7 +58,7 @@
         <cfset card_phone=myteam.card_phone />
         <cfset card_details="/app/contact/?contactid=" & myteam.contactid />
         <cfset card_delete="/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=" & myteam.contactid />
-        <cfset card_footer_type="text" />
+        <cfset card_footer_type="social" />
         <cfset card_footer_text="Crd footer text" />
         <cfset card_ribbon1="" />
         <cfset card_ribbon2="" />
