@@ -3,7 +3,7 @@
         <div class="tao-card-md">
             
             <!--- Header --->
-            <cfif card_header_yn = "Y">
+            <cfif card_header_yn eq "Y">
             <div class="tao-card-header">
                 <a href="#card_delete#" title="Remove from team" class="text-danger trash-icon">
                     <i class="mdi mdi-trash-can-outline"></i>
