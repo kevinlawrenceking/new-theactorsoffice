@@ -7649,3 +7649,18 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 .tao-card-social a:hover {
     color: #007bff;
 }
+
+img.tao-card-avatar {
+    width: 75px !important;
+    height: 75px !important;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.tao-card-avatar-container img.tao-card-avatar {
+    width: 75px !important;
+    height: 75px !important;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block; /* Prevents extra spacing */
+}
