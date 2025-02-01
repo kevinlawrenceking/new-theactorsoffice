@@ -29,7 +29,7 @@
                 <!--- Right: Contact Info --->
                 <div class="tao-card-info-container">
                     <p class="tao-card-title">
-                        <cfif card_title neq "NULL">#card_title#</cfif>
+                        <cfif card_title neq "NULL"><span class="badge badge-blue">#card_title#</span></cfif>
                     </p>
                     <p class="tao-card-company">
                         <cfif card_company neq "NULL">#card_company#</cfif>
