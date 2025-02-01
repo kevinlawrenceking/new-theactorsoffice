@@ -49,8 +49,8 @@
 
 
         <!--- Assign card values dynamically --->
-        <cfset card_header="Yes" />
-        <cfset card_social="Yes" />
+        <cfset card_header_yn="Y" />
+        <cfset card_social_yn="Y" />
         <cfset card_name=myteam.card_name />
         <cfset card_title=myteam.card_title />
         <cfset card_company=myteam.card_company />
@@ -58,8 +58,8 @@
         <cfset card_phone=myteam.card_phone />
         <cfset card_details="/app/contact/?contactid=" & myteam.contactid />
         <cfset card_delete="/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=" & myteam.contactid />
-        <cfset card_footer="Yes" />
-        <cfset card_footer_text="Yes" />
+        <cfset card_footer_type="text" />
+        <cfset card_footer_text="Crd footer text" />
         <cfset card_ribbon1="" />
         <cfset card_ribbon2="" />
         <Cfset card_avatar = "Yes" />

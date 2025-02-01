@@ -3,6 +3,7 @@
         <div class="tao-card-md">
             
             <!--- Header --->
+            <cfif card_header_yn = "Y">
             <div class="tao-card-header">
                 <a href="#card_delete#" title="Remove from team" class="text-danger trash-icon">
                     <i class="mdi mdi-trash-can-outline"></i>
@@ -11,6 +12,7 @@
                     <i class="mdi mdi-eye"></i>
                 </a>
             </div>
+            </cfif>
 
             <!--- Name (Now Full Width) --->
             <cfif card_name neq "">
@@ -56,17 +58,28 @@
 
             <!--- Footer (Social Icons) --->
             <div class="tao-card-footer">
-               <cfif card_social eq "Yes">
+
+
+             
     <div class="tao-card-social">
-        <cfloop query="profiles">
-            <cfif profiles.valuetext neq "NULL">
-                <a href="#profiles.valuetext#" target="_blank" title="#profiles.valuetype#">
-                    <i class="mdi #profiles.typeiconmdi#"></i>
-                </a>
-            </cfif>
-        </cfloop>
-    </div>
-</cfif>
+
+      <cfif card_footer_type eq "social">
+            <cfloop query="profiles">
+                <cfif profiles.valuetext neq "NULL">
+                    <a href="#profiles.valuetext#" target="_blank" title="#profiles.valuetype#">
+                        <i class="mdi #profiles.typeiconmdi#"></i>
+                    </a>
+                </cfif>
+            </cfloop>
+        </div>
+
+    <cfelseif card_footer_type eq "text">
+#card_footer_text#
+    <cfelseif card_footer_type eq "icons">
+    
+    
+    </cfif>
+
             </div>
 
         </div> <!--- end tao-card-md --->
