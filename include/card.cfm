@@ -34,10 +34,22 @@
         <cfif card_title neq "NULL"><span class="badge badge-blue">#card_title#</span><cfelse>&nbsp;</cfif>
     </p>
 
-          <p class="tao-card-contact">
-            <span><i class="fe-phone"></i>&nbsp;</span>
-            <span><i class="fe-mail"></i> johndoe@email.com</span>
-          </p>
+         <!--- Contact Info (Phone & Email) --->
+    <p class="tao-card-contact">
+        <!--- Phone (Show Icon Only if Exists) --->
+        <span>
+            <i class="fe-phone me-1 <cfif card_phone neq ''>has-content</cfif>"></i>
+            <cfif card_phone neq ''>#card_phone#<cfelse>&nbsp;</cfif>
+        </span>
+
+        <!--- Email (Show Icon Only if Exists) --->
+        <span>
+            <i class="fe-mail me-1 <cfif card_email neq ''>has-content</cfif>"></i>
+            <cfif card_email neq ''>
+                <a href="mailto:#card_email#">#card_email#</a>
+            <cfelse>&nbsp;</cfif>
+        </span>
+    </p>
         </div>
 
       </div> <!--- end tao-card-body --->
