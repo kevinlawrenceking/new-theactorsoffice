@@ -271,7 +271,7 @@
                 <div class="col">
   <!--- Set Card Variables --->
   <cfset card_header="Yes"/>
-  <cfset card_name=chr(34) & results.col2 & chr(34)/>
+  <cfset card_name=results.col2/>
   <cfset card_title=results.col3 & " - " & results.audsubcatname/>
   <cfset card_company=results.col4/>
   <Cfif results.col5 neq "">
@@ -281,7 +281,7 @@
   </cfif>
   <cfset card_details="/app/audition/?audprojectid=" & results.recid/>
   <cfset card_image="#application.datesUrl#/#DateFormat('#results.col1#','mm-dd')#.png"/>
-  <cfset card_footer="Yes"/>
+  <cfset card_footer=""/>
   <cfset card_social=""/>
   <cfif col6 neq "Booked" and col6 neq "Audition">
     <cfset card_ribbon1=col6/>
