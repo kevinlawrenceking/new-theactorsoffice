@@ -33,11 +33,7 @@
     <p class="tao-card-title">
         <cfif card_title neq "NULL"><span class="badge badge-blue">#card_title#</span><cfelse>&nbsp;</cfif>
     </p>
-         <!--- Company (Always Takes Space) --->
-    <p class="tao-card-company">
-        <cfif card_company neq "NULL">#card_company#<cfelse>&nbsp;</cfif>
-    </p>
-    
+
           <p class="tao-card-contact">
             <span><i class="fe-phone"></i>&nbsp;</span>
             <span><i class="fe-mail"></i> johndoe@email.com</span>
