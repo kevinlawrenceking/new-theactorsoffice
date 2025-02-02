@@ -111,7 +111,7 @@
 
 <script>
     function confirmDelete(contactId) {
-        if (confirm("Are you sure you want to remove this person from your team?")) {
+        if (confirm("<cfoutput>#card_delete_msg#</cfoutput>")) {
             fetch('/include/delete_team.cfm', {
                 method: 'POST',
                 headers: {
