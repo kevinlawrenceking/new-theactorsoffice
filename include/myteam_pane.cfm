@@ -70,7 +70,8 @@
         <cfset card_title=myteam.card_title />
         <Cfset card_top_ribbon = "Yes" />
         <Cfset ribbon_icon = "" />
-
+        <Cfset card_reminder = "" />
+      
  
 <cfset card_avatar eq "yes">
         <cfif isimagefile("#session.userContactsPath#\#myteam.contactid#\avatar.jpg")>
@@ -79,14 +80,12 @@
           <cfset card_image="#application.defaultAvatarUrl#"/>
         </cfif>
 
-        <!--- Assign ribbon values dynamically --->
-        <Cfloop query="rels">
+        <!--- Assign reminder values dynamically --->
+        <cfloop query="rels">
           <cfif rels.currentrow eq 1>
-            <Cfset card_ribbon1=rels.systemType/>
-          <cfelseif rels.currentrow eq 2>
-            <Cfset card_ribbon2=rels.systemType/>
+            <Cfset card_reminder=rels.systemType/>
           </cfif>
-        </Cfloop>
+        </cfloop>
 
         <cfinclude template="/include/card.cfm"/>
 

@@ -60,7 +60,10 @@
               <i class="fe-phone me-1 <cfif card_phone neq ''>has-content</cfif>"></i>
               <cfif card_phone neq ''>#card_phone#<cfelse>&nbsp;</cfif>
             </span>
-        
+                 <span>
+              <i class="fe-Users me-1 <cfif card_reminder neq ''>has-content</cfif>"></i>
+              <cfif card_reminder neq ''>#card_reminder#<cfelse>&nbsp;</cfif>
+            </span>
           </p>
         </div> 
 
