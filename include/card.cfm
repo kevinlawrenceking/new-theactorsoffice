@@ -27,10 +27,10 @@
       <cfif card_ribbon1 neq "" OR card_ribbon2 neq "">
         <div class="tao-card-ribbon">
           <cfif card_ribbon1 neq "">
-            <span class="ribbon-card"><i class="mdi mdi-#card_ribbon1_icon#"></i> #card_ribbon1#</span>
+            <span class="ribbon-card"><i class="mdi mdi-Pin"></i> #card_ribbon1#</span>
           </cfif>
           <cfif card_ribbon2 neq "">
-            <span class="ribbon-card"><i class="mdi mdi-#card_ribbon2_icon#"></i> #card_ribbon2#</span>
+            <span class="ribbon-card"><i class="mdi mdi-Pin"></i> #card_ribbon2#</span>
           </cfif>
         </div>
       </cfif>
