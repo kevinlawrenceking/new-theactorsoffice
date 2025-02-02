@@ -228,7 +228,7 @@
             </cfoutput>
         </p>
 
-              <Cfparam name="card_header_yn" default="N"/>
+             
         <Cfparam name="card_name" default=""/>
         <Cfparam name="card_title" default=""/>
         <Cfparam name="card_company" default=""/>
@@ -270,7 +270,8 @@
                         <!--- Card Layout --->
                 <div class="col">
   <!--- Set Card Variables --->
-  <cfset card_header="Yes"/>
+  <cfset card_header_yn="Y"/>
+
   <cfset card_name=results.col2/>
          <cfset card_delete="" />
         <cfset card_delete_msg="" />
