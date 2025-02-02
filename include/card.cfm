@@ -23,17 +23,6 @@
         </div>
       </cfif>
 
-      <!--- Ribbon (Top Right) --->
-      <cfif card_ribbon1 neq "" OR card_ribbon2 neq "">
-        <div class="tao-card-ribbon">
-          <cfif card_ribbon1 neq "">
-            <span class="ribbon-card"><i class="mdi mdi-Pin"></i> #card_ribbon1#</span>
-          </cfif>
-          <cfif card_ribbon2 neq "">
-            <span class="ribbon-card"><i class="mdi mdi-Pin"></i> #card_ribbon2#</span>
-          </cfif>
-        </div>
-      </cfif>
 
       <!--- Contact Name (Full Width) --->
       <cfif card_name neq "">
@@ -77,6 +66,18 @@
             </span>
           </p>
         </div> 
+        
+      <!--- Ribbon (Top Right) --->
+      <cfif card_ribbon1 neq "" OR card_ribbon2 neq "">
+        <div class="tao-card-ribbon">
+          <cfif card_ribbon1 neq "">
+            <span class="ribbon-card"><i class="mdi mdi-Pin"></i> #card_ribbon1#</span>
+          </cfif>
+          <cfif card_ribbon2 neq "">
+            <span class="ribbon-card"><i class="mdi mdi-Pin"></i> #card_ribbon2#</span>
+          </cfif>
+        </div>
+      </cfif>
       </div>
       <!--- End Card Body --->
 
