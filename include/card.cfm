@@ -1,19 +1,21 @@
 <cfoutput>
-  <div class="col">
+  <div class="col" id="card-#id#">
     <div class="tao-card-md">
-
       <!--- Header --->
       <cfif card_header_yn eq "Y">
         <div class="tao-card-header">
+        <Cfoutput>
           <cfif card_delete neq "">
-            <a href="#card_delete#" 
-            <cfif card_delete_msg neq "">
-            onclick="confirmDelete('#card_delete#');" 
-            </cfif>
-            title="Remove from team" class="text-danger trash-icon">
-              <i class="mdi mdi-trash-can-outline"></i>
-            </a>
+           <a href="javascript:void(0);" 
+
+   class="text-danger trash-icon" 
+   onclick="confirmDelete('#card_id#');">
+    <i class="mdi mdi-trash-can-outline"></i>
+</a>
           </cfif>
+</cfoutput>
+
+
           <cfif card_details neq "">
             <a href="#card_details#" class="text-decoration-none view-icon">
               <i class="mdi mdi-eye"></i>

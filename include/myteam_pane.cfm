@@ -49,6 +49,7 @@
 
 
         <!--- Assign card values dynamically --->
+        <cfset card_id = myteam.contactid />
         <cfset card_header_yn="Y" />
         <cfset card_social_yn="Y" />
         <cfset card_name=myteam.card_name />
@@ -106,3 +107,27 @@
       <BR>If you click on the button you will see your report.
       </p>
     </cfoutput>
+
+
+<script>
+    function confirmDelete(contactId) {
+        if (confirm("Are you sure you want to remove this person from your team?")) {
+            fetch('/include/delete_team.cfm', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'contactid=' + encodeURIComponent(contactId)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('card-' + contactId).remove(); M
+                } else {
+                    alert("Error: " + data.message);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    }
+</script>
