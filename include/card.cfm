@@ -73,12 +73,14 @@
       <!--- Footer (Social Icons / Text) --->
       <div class="tao-card-footer">
         <div class="tao-card-social">
-           <a href="mailto:#card_email#" target="_blank" title="#card_email#">
-                  <i class="fe-mail"></i>
-                </a>
+      
 
           <cfif card_footer_type eq "social">
-
+          <cfif card_email neq "">
+     <a href="mailto:#card_email#" target="_blank" title="#card_email#">
+                  <i class="fe-mail"></i>
+                </a>
+                </cfif>
             <cfloop query="profiles">
               <cfif profiles.valuetext neq "NULL">
                 <a href="#profiles.valuetext#" target="_blank" title="#profiles.valuetype#">
