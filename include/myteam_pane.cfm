@@ -50,26 +50,27 @@
 
         <!--- Assign card values dynamically --->
         <cfset card_id = myteam.contactid />
-        <cfset card_header_yn="Y" />
-        <cfset card_social_yn="Y" />
-        <cfset card_name=myteam.card_name />
-        <cfset card_title=myteam.card_title />
+        <Cfset aud_cat_icon = "" />
+        <Cfset card_avatar = "Yes" />
         <cfset card_company=myteam.card_company />
-        <cfset card_email=myteam.card_email />
-        <cfset card_phone=myteam.card_phone />
-        <cfset card_details="/app/contact/?contactid=" & myteam.contactid />
-        <cfset card_delete="/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=" & myteam.contactid />
         <cfset card_delete_msg="Are you sure you want to remove this person from your team?" />
-        <cfset card_footer_type="social" />
+        <cfset card_delete="/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=" & myteam.contactid />
+        <cfset card_details="/app/contact/?contactid=" & myteam.contactid />
+        <cfset card_email=myteam.card_email />
         <cfset card_footer_text="Crd footer text" />
+        <cfset card_footer_type="social" />
+        <cfset card_header_yn="Y" />
+        <Cfset card_icon_yn = "Y" />
+        <cfset card_image = "" />
+        <cfset card_name=myteam.card_name />
+        <cfset card_phone=myteam.card_phone />
         <cfset card_ribbon1="" />
         <cfset card_ribbon2="" />
-        <Cfset card_avatar = "Yes" />
+        <cfset card_social_yn="Y" />
+        <cfset card_title=myteam.card_title />
         <Cfset card_top_ribbon = "Yes" />
         <Cfset ribbon_icon = "" />
-        <Cfset card_icon = "" />
-        <Cfset aud_cat_icon = "" />
-        <cfset card_image = "" />
+
  
 <cfset card_avatar eq "yes">
         <cfif isimagefile("#session.userContactsPath#\#myteam.contactid#\avatar.jpg")>
@@ -78,7 +79,6 @@
           <cfset card_image="#application.defaultAvatarUrl#"/>
         </cfif>
 
-<cfset card_icon = "Yes" />
         <!--- Assign ribbon values dynamically --->
         <Cfloop query="rels">
           <cfif rels.currentrow eq 1>

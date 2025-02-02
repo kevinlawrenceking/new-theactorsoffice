@@ -17,7 +17,7 @@
 
 
           <cfif card_details neq "">
-            <a href="#card_details#" class="text-decoration-none view-icon">
+            <a href="#card_details#" class="text-decoration-none view-icon" title="View Details">
               <i class="mdi mdi-eye"></i>
             </a>
         </cfif>
@@ -87,6 +87,19 @@
 
             </cfif>
           </div>
+
+               <!--- Ribbon (if exists) ---> 
+      <cfif card_ribbon1 neq "">
+        <div class="ribbon-card ribbon-Pin float-end">
+          <i class="mdi mdi-#ribbon_icon# me-1"></i>#card_ribbon1#
+        </div>
+      </cfif>
+
+      <cfif card_ribbon2 neq "">
+        <div class="ribbon-card ribbon-pin float-end">
+          <i class="mdi mdi-#ribbon_icon# me-1"></i>#card_ribbon2#
+        </div>
+      </cfif>
 
         </div>
 
