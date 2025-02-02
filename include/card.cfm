@@ -1,5 +1,5 @@
 <cfoutput>
-  <div class="col" id="card-#id#">
+  <div class="col" id="card-#card_id#">
     <div class="tao-card-md">
       <!--- Header --->
       <cfif card_header_yn eq "Y">
