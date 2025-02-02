@@ -20,7 +20,6 @@
             </a>
         </cfif>
           </div>
-        </div>
       </cfif>
 
       <!--- Name (Now Full Width) --->
@@ -94,7 +93,6 @@
     </div>
     <!--- end col --->
   </cfoutput>
-
 <cfif card_delete_msg neq "">
 <cfoutput>
 <script>
@@ -106,3 +104,4 @@
 </script>
 </cfoutput>
 </cfif>
+
