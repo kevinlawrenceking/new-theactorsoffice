@@ -228,7 +228,7 @@
             </cfoutput>
         </p>
 
-              <Cfparam name="card_header" default="No"/>
+              <Cfparam name="card_header_yn" default="N"/>
         <Cfparam name="card_name" default=""/>
         <Cfparam name="card_title" default=""/>
         <Cfparam name="card_company" default=""/>
