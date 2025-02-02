@@ -9,7 +9,7 @@
            <a href="javascript:void(0);" 
 
    class="text-danger trash-icon" 
-    onclick="confirmDelete('#id#');">
+    onclick="confirmDelete('#card_id#');">
     <i class="mdi mdi-trash-can-outline"></i>
 </a>
           </cfif>
