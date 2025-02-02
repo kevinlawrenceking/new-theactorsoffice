@@ -236,8 +236,8 @@
         <Cfparam name="card_phone" default=""/>
         <Cfparam name="card_details" default=""/>
         <Cfparam name="card_delete" default=""/>
-        <Cfparam name="card_footer" default=""/>
-        <Cfparam name="card_social" default="Yes"/>
+        <Cfparam name="card_footer_type" default="Text"/>
+        <Cfparam name="card_social" default="N"/>
          <Cfparam name="card_avatar" default=""/>
    <cfparam name="CARD_TOP_RIBBON" default="" />
    <Cfparam name="ribbon_icon" default="" />
