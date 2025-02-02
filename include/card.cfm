@@ -65,8 +65,7 @@
               </span>
             </p>
           </div>
-        </div>
-        <Cfif card_ribbon1 neq "">
+                <Cfif card_ribbon1 neq "">
               <div class="ribbon ribbon-card ribbon-#card_ribbon1# float-end" style="position: absolute; bottom: 25px; right: 5px; margin-right: -15px;">
                   <i class="mdi mdi-access-point me-1"></i>#card_ribbon1#
                 </div>
@@ -77,6 +76,8 @@
                   <i class="mdi mdi-access-point me-1"></i>#card_ribbon2#
                 </div>
                 </cfif>
+        </div>
+  
 
         <!--- Footer (Social Icons) --->
         <div class="tao-card-footer">
