@@ -7571,6 +7571,25 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     gap: 10px;
 }
 
+.ribbon-card {
+    position: absolute;
+    bottom: 30px; /* Increase from 25px to 30px to move it up by 5px */
+    right: -5px; /* Keep it slightly past the card edge */
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: 4px;
+    background: #f5e6b5; /* Restore previous gray/gold color */
+    color: #333;
+    z-index: 10;
+    
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    width: auto;
+    max-width: fit-content;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
 
 
 /* Right Section: Contact Info */
