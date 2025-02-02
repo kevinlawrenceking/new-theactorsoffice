@@ -272,6 +272,9 @@
   <!--- Set Card Variables --->
   <cfset card_header="Yes"/>
   <cfset card_name=results.col2/>
+         <cfset card_delete="" />
+        <cfset card_delete_msg="" />
+        <cfset card_footer_type="social" />
   <cfset card_title=results.col3 & " - " & results.audsubcatname/>
   <cfset card_company=results.col4/>
   <Cfif results.col5 neq "">
@@ -298,7 +301,7 @@
     <Cfelse>
     <Cfset card_top_ribbon=""/>
   </cfif>
-
+<cfset card_id = results.recid />
   <!--- Include the Card Template --->
   <cfinclude template="/include/card.cfm"/>
 </div>
