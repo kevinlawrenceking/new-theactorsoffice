@@ -61,7 +61,7 @@
               <cfif card_phone neq ''>#card_phone#<cfelse>&nbsp;</cfif>
             </span>
           <span>
-  <i class="mdi mdi-account-group-outline <cfif card_reminder neq ''>has-content</cfif>"></i>
+  <i class="mdi mdi-account-multiple <cfif card_reminder neq ''>has-content</cfif>"></i>
   <cfif card_reminder neq ''>#card_reminder#<cfelse>&nbsp;</cfif>
 </span>
 
