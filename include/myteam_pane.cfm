@@ -122,7 +122,7 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    document.getElementById('card-' + contactId).remove(); M
+                    document.getElementById('card-' + contactId).remove();
                 } else {
                     alert("Error: " + data.message);
                 }
@@ -131,3 +131,4 @@
         }
     }
 </script>
+
