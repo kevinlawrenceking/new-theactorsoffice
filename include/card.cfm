@@ -66,6 +66,16 @@
             </p>
           </div>
         </div>
+              <div class="ribbon ribbon-card ribbon-#card_ribbon1# float-end" style="position: absolute; bottom: 25px; right: 5px; margin-right: -15px;">
+                  <i class="mdi mdi-access-point me-1"></i>#card_ribbon1#
+                </div>
+</cfif>
+
+<Cfif card_ribbon2 neq "">
+                <div class="ribbon ribbon-card ribbon-#card_ribbon2# float-end" style="position: absolute; bottom: 45px; right: 5px; margin-right: -15px;">
+                  <i class="mdi mdi-access-point me-1"></i>#card_ribbon2#
+                </div>
+                </cfif>
 
         <!--- Footer (Social Icons) --->
         <div class="tao-card-footer">
@@ -88,21 +98,9 @@
             </cfif>
           </div>
 
-   
+          
 
         </div>
-                    <!--- Ribbon (if exists) ---> 
-      <cfif card_ribbon1 neq "">
-        <div class="ribbon-card ribbon-Pin float-end">
-          <i class="mdi mdi-#ribbon_icon# me-1"></i>#card_ribbon1#
-        </div>
-      </cfif>
-
-      <cfif card_ribbon2 neq "">
-        <div class="ribbon-card ribbon-pin float-end">
-          <i class="mdi mdi-#ribbon_icon# me-1"></i>#card_ribbon2#
-        </div>
-      </cfif>
 
       </div>
       <!--- end tao-card-md --->
