@@ -18,6 +18,7 @@
             <a href="#card_details#" class="text-decoration-none view-icon">
               <i class="mdi mdi-eye"></i>
             </a>
+        </cfif>
           </div>
         </div>
       </cfif>
