@@ -60,10 +60,7 @@
               <i class="fe-phone me-1 <cfif card_phone neq ''>has-content</cfif>"></i>
               <cfif card_phone neq ''>#card_phone#<cfelse>&nbsp;</cfif>
             </span>
-            <span>
-              <i class="fe-mail me-1 <cfif card_email neq ''>has-content</cfif>"></i>
-              <cfif card_email neq ''><a href="mailto:#card_email#">#card_email#</a><cfelse>&nbsp;</cfif>
-            </span>
+        
           </p>
         </div> 
 
