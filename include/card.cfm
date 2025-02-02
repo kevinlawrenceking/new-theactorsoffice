@@ -66,25 +66,19 @@
             </span>
           </p>
         </div> 
-        
-      <!--- Ribbon (Top Right) --->
-      <cfif card_ribbon1 neq "" OR card_ribbon2 neq "">
-        <div class="tao-card-ribbon">
-          <cfif card_ribbon1 neq "">
-            <span class="ribbon-card"><i class="mdi mdi-Pin"></i> #card_ribbon1#</span>
-          </cfif>
-          <cfif card_ribbon2 neq "">
-            <span class="ribbon-card"><i class="mdi mdi-Pin"></i> #card_ribbon2#</span>
-          </cfif>
-        </div>
-      </cfif>
+
       </div>
       <!--- End Card Body --->
 
       <!--- Footer (Social Icons / Text) --->
       <div class="tao-card-footer">
         <div class="tao-card-social">
+           <a href="mailto:#card_email#" target="_blank" title="#card_email#">
+                  <i class="fe-mail"></i>
+                </a>
+
           <cfif card_footer_type eq "social">
+
             <cfloop query="profiles">
               <cfif profiles.valuetext neq "NULL">
                 <a href="#profiles.valuetext#" target="_blank" title="#profiles.valuetype#">
