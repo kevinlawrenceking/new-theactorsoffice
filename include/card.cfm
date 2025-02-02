@@ -96,6 +96,7 @@
   </cfoutput>
 
 <cfif card_delete_msg neq "">
+<cfoutput>
 <script>
     function confirmDelete(deleteUrl) {
         if (confirm("#card_delete_msg#")) {
