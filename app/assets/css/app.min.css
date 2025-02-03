@@ -7668,7 +7668,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    margin-right: 15px; 
+
 }
 
 /* FIXED: Avatar Sizing */
@@ -7704,7 +7704,6 @@ img.tao-card-avatar {
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    margin-right: 15px;
 }
 
 /* FIXED: Calendar Image Sizing (No Border Radius) */
