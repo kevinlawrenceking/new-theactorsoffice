@@ -265,7 +265,7 @@
         <cfset ribbon_icon=""/>
         <cfset card_reminder=""/>
         <cfset card_image_type = "calendar"/>
-  
+  <cfset CARD_IMAGE_YN = "Y"/>
                     <cfoutput>
 
                         <!--- Determine Audition Status --->
