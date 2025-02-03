@@ -77,7 +77,7 @@
         <cfset card_reminder=""/>
         <cfset card_image_yn eq "yes">
         <cfset card_image_type = "avatar"/>
-
+        <cfset card_image_yn = "Y"/>
         <cfif isimagefile("#session.userContactsPath#\#myteam.contactid#\avatar.jpg")>
           <cfset card_image="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg"/>
         <cfelse>
