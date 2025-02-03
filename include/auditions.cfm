@@ -229,22 +229,34 @@
         </p>
 
              
-        <Cfparam name="card_name" default=""/>
-        <Cfparam name="card_title" default=""/>
-        <Cfparam name="card_company" default=""/>
-        <Cfparam name="card_email" default=""/>
-        <Cfparam name="card_phone" default=""/>
-        <Cfparam name="card_details" default=""/>
-        <Cfparam name="card_delete" default=""/>
-        <Cfparam name="card_footer_type" default="Text"/>
-        <Cfparam name="card_social" default="N"/>
-         <Cfparam name="card_avatar" default=""/>
-   <cfparam name="CARD_TOP_RIBBON" default="" />
-   <Cfparam name="ribbon_icon" default="" />
-   <Cfparam name="card_footer_text" default=""/>
- <Cfparam name="card_icon" default=""/>
- <Cfparam name="card_ribbon1" default=""/>
-  <Cfparam name="card_ribbon2" default=""/>
+     <!--- Assign card values dynamically --->
+        <cfset card_id=myteam.contactid/>
+        <cfset aud_cat_icon=""/>
+        <cfset card_avatar="Yes"/>
+        <Cfif results.col5 neq "">
+            <cfset card_company=results.col4 & "<br> Source: " & results.col5/>
+        <cfelse>
+            <cfset card_company=results.col4 & "<br> &nbsp;"/>
+        </cfif>
+        <cfset card_delete_msg=""/>
+        <cfset card_delete=""/>
+        <cfset card_details="/app/audition/?audprojectid=" & results.recid/>
+        <cfset card_email=myteam.card_email/>
+        <Cfset card_footer_text=""/>
+        <cfset card_footer_type="text"/>
+        <cfset card_header_yn="Y"/>
+        <cfset card_icon_yn="Y"/>
+        <cfset card_image="#application.datesUrl#/#DateFormat('#results.col1#','mm-dd')#.png"/>
+        <cfset card_name=results.col2/>
+        <cfset card_phone=""/>
+        <cfset card_ribbon1=""/>
+        <cfset card_ribbon2=""/>
+        <cfset card_social_yn="N"/>
+          <cfset card_title=results.col3 & " - " & results.audsubcatname/>
+        <cfset card_top_ribbon="Yes"/>
+        <cfset ribbon_icon=""/>
+        <cfset card_reminder=""/>
+        <cfset card_avatar eq "yes">
         <!--- Audition Gallery Container --->
         <div class="container">
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
@@ -270,31 +282,23 @@
                         <!--- Card Layout --->
                 <div class="col">
   <!--- Set Card Variables --->
-  <cfset card_header_yn="Y"/>
+ 
+ 
+   
 
-  <cfset card_name=results.col2/>
-         <cfset card_delete="" />
-        <cfset card_delete_msg="" />
-        <cfset card_footer_type="social" />
-  <cfset card_title=results.col3 & " - " & results.audsubcatname/>
-  <cfset card_company=results.col4/>
-  <Cfif results.col5 neq "">
-    <cfset card_company=results.col4 & "<br> Source: " & results.col5/>
-  <cfelse>
-    <cfset card_company=results.col4 & "<br> &nbsp;"/>
-  </cfif>
-  <cfset card_details="/app/audition/?audprojectid=" & results.recid/>
-  <cfset card_image="#application.datesUrl#/#DateFormat('#results.col1#','mm-dd')#.png"/>
-  <cfset card_footer=""/>
-  <cfset card_social=""/>
+ 
+
+  
+ 
+
   <cfif col6 neq "Booked" and col6 neq "Audition">
-    <cfset card_ribbon1=col6/>
+    <cfset card_footer_text=col6/>
   <cfelse>
-    <cfset card_ribbon1="">
+    <cfset card_footer_text="">
   </cfif>
   <cfset card_ribbon2=""/>
   <Cfset card_delete=""/>
-  <Cfset card_footer_text=this.formatdate(results.col1)/>
+ 
   <Cfset card_icon=results.aud_cat_icon/>
   <cfif col6 eq "Booked" and results.isbooked eq "1">
 
