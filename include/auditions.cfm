@@ -229,8 +229,16 @@
         </p>
 
              
-     <!--- Assign card values dynamically --->
-        <cfset card_id=myteam.contactid/>
+    
+        <!--- Audition Gallery Container --->
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+                
+                <cfloop query="results">
+
+                        <!--- Variables for card --->
+                         <!--- Assign card values dynamically --->
+        <cfset card_id=results.recid/>
         <cfset aud_cat_icon=""/>
         <cfset card_avatar="Yes"/>
         <Cfif results.col5 neq "">
@@ -257,13 +265,6 @@
         <cfset ribbon_icon=""/>
         <cfset card_reminder=""/>
         <cfset card_avatar eq "yes">
-        <!--- Audition Gallery Container --->
-        <div class="container">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
-                
-                <cfloop query="results">
-
-                        <!--- Variables for card --->
   
                     <cfoutput>
 
