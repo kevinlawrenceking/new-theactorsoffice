@@ -7663,7 +7663,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 
 /* Left Section: Avatar */
 .tao-card-avatar-container {
-    width: 25%;
+    width: 30%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -7698,7 +7698,7 @@ img.tao-card-avatar {
 
 /* Left Section: Calendar Image (No Border Radius) */
 .tao-card-calendar-container {
-    width: 25%;
+    width: 30%;
     display: flex;
     justify-content: center;
     align-items: center;
