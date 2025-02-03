@@ -545,7 +545,7 @@
                         </li>
 
                         <li class="nav-item">
-                          <a href="##mybrand" data-bs-toggle="tab" aria-expanded="#tab3_expand#" class="nav-link<cfif #tab3_expand# is 'true'> active</cfif>">Brand Essence</a>
+                          <a href="##mybrand" data-bs-toggle="tab" aria-expanded="#tab3_expand#" class="nav-link<cfif #tab3_expand# is 'true'> active</cfif>">My Essence</a>
                         </li>
 
                         <li class="nav-item">
