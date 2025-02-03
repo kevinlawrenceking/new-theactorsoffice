@@ -260,7 +260,7 @@
         <cfset card_ribbon1=""/>
         <cfset card_ribbon2=""/>
         <cfset card_social_yn="N"/>
-          <cfset card_title = "<i class=""mdi " & results.aud_cat_icon & """></i> - " & results.audsubcatname />
+          <cfset card_title = "<i class=""mdi mdi-" & results.aud_cat_icon & """></i> - " & results.audsubcatname />
 
         <cfset card_top_ribbon="Yes"/>
         <cfset ribbon_icon=""/>
