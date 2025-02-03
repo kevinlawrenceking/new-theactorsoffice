@@ -8,7 +8,7 @@
   <input type="hidden" name="ctaction" value="addmember"/>
 
   <div class="row" style="margin: auto;">
-    <div class="col-md-2 p-2">Add a new person to your team:
+    <div class="col-md-3 p-2">Add a new person to your team:
     </div>
     <div class="col-md-4 p-2">
       <a href="remoteAddContact.cfm?src=account" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="#remoteAddContact">
@@ -21,7 +21,7 @@
 
   <form class="sel_client" action="/app/myaccount/?new_pgid=122" method="POST">
     <div class="row" style="margin: auto;">
-      <div class="col-md-2 p-2">Or select an existing relationship:</div>
+      <div class="col-md-3 p-2">Or select an existing relationship:</div>
       <div class="col-md-4 p-2">
         <div class="input-group">
           <input type="text" class="form-control" required="required" placeholder="Search..." name="topsearch_myteam" id="autocomplete2" autocomplete="off"/>
