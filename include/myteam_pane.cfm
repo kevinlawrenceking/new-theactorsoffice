@@ -75,7 +75,8 @@
         <cfset card_top_ribbon="Yes"/>
         <cfset ribbon_icon=""/>
         <cfset card_reminder=""/>
-        <cfset card_avatar eq "yes">
+        <cfset card_image_yn eq "yes">
+        <cfset card_image_type = "avatar"/>
 
         <cfif isimagefile("#session.userContactsPath#\#myteam.contactid#\avatar.jpg")>
           <cfset card_image="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg"/>

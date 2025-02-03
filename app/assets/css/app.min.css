@@ -7567,30 +7567,9 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 10px;
+    padding: 6px;
     gap: 10px;
 }
-
-.ribbon-card {
-    position: absolute;
-    bottom: 30px; /* Increase from 25px to 30px to move it up by 5px */
-    right: -5px; /* Keep it slightly past the card edge */
-    font-size: 0.75rem;
-    padding: 4px 10px;
-    border-radius: 4px;
-    background: #f5e6b5; /* Restore previous gray/gold color */
-    color: #333;
-    z-index: 10;
-    
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap;
-    width: auto;
-    max-width: fit-content;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-}
-
 
 /* Right Section: Contact Info */
 .tao-card-info-container {
@@ -7691,14 +7670,6 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     overflow: hidden;
 }
 
-/* Left Section: Avatar */
-.tao-card-calendar-container {
-    width: 20%;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-}
-
 /* FIXED: Avatar Sizing */
 .tao-card-avatar img {
     width: 60px;
@@ -7707,20 +7678,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     object-fit: cover;
 }
 
-.tao-card-calendar img {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-}
-
 img.tao-card-avatar {
-    width: 100% !important;
-   
-    max-width: 100%;
-    max-height: 100%;
-}
-
-img.tao-card-calendar {
     width: 100% !important;
    
     max-width: 100%;
@@ -7738,3 +7696,30 @@ img.tao-card-calendar {
 
 
 
+/* Left Section: Calendar Image (No Border Radius) */
+.tao-card-calendar-container {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* FIXED: Calendar Image Sizing (No Border Radius) */
+.tao-card-calendar img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}
+
+img.tao-card-calendar {
+    width: 100% !important;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.tao-card-calendar-container img.tao-card-calendar {
+    width: 100% !important;
+    object-fit: cover;
+    display: block; /* Prevents extra spacing */
+}
