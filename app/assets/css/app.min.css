@@ -7694,7 +7694,6 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 /* Left Section: Avatar */
 .tao-card-calendar-container {
     width: 20%;
-    display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
