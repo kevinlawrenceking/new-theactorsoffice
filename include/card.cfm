@@ -34,9 +34,9 @@
       <!--- Card Body (Avatar & Contact Info) --->
       <div class="tao-card-body">
   
-
+  
         <div class="tao-card-avatar-container">
-          <img src="#card_image#" alt="profile-image" >
+          <img src="#card_image#" alt="profile-image" class="tao-card-calendar">
         </div>
 
         <!--- Right Section: Contact Info --->

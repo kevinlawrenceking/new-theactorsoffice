@@ -7699,6 +7699,12 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     object-fit: cover;
 }
 
+.tao-card-calendar img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}
+
 img.tao-card-avatar {
     width: 100% !important;
    
