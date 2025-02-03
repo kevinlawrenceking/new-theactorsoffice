@@ -35,7 +35,7 @@
       <div class="tao-card-body">
   
   
-        <div class="tao-card-avatar-container">
+        <div class="tao-card-calendar-container">
           <img src="#card_image#" alt="profile-image" class="tao-card-calendar">
         </div>
 
