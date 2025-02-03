@@ -39,7 +39,7 @@
     </div>
     <!--- end row --->
   </form>
-<div style="margin: 20px 0;">
+<div style="margin-bottom: 20px 0;">
   <div class="container my-5" >
     <!--- Start of card grid container --->
     <div class="row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
