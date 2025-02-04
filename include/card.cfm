@@ -37,6 +37,11 @@
 
         <div class="tao-card-#card_image_type#">
           <img src="#card_image#" alt="profile-image" class="tao-card-#card_image_type#">
+          <cfif card_image_type eq "calendar">
+ <BR>
+                              <center>
+                                #DateFormat('5/1/2025','yyyy')#</center>
+          </cfif>
         </div>
 
 </div>
