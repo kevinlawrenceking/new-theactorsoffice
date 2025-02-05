@@ -7528,25 +7528,31 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Header */
+/* Card Header - Ensures Consistent Spacing */
 .tao-card-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Keeps items spaced left and right */
     align-items: center;
-    padding: 8px 12px;
-    background-color: #ededf1;
+    padding: 0.5rem;
+    background-color: #ededf1; /* Matches card header background */
+    min-height: 40px; /* Ensures uniform height */
 }
 
-/* Trash Icon */
-.tao-card-header .trash-icon {
+/* Trash Icon (Left) - Appears Only If Present */
+.trash-icon {
     font-size: 1.2rem;
     color: red;
+    margin-left: 10px;
 }
 
-/* View Icon */
-.tao-card-header .view-icon {
+/* View Icon (Right) - Always Aligned */
+.view-icon {
+    margin-left: auto; /* Pushes to the right */
     font-size: 1.3rem;
+    color: #333;
+    margin-right: 10px; /* Keeps it aligned with the card's edge */
 }
+
 
 /* Name - Full Width */
 .tao-card-name {
