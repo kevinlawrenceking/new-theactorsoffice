@@ -7590,7 +7590,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 /* Company */
 .tao-card-company {
     font-size:.8rem;
-    font-style:italic;
+
     color: #595959;
     min-height: 1rem; /* Same height as title */
 }
