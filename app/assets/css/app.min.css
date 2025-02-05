@@ -7731,7 +7731,7 @@ img.tao-card-calendar {
     font-size: 1rem; /* Adjust font size */
     font-weight: bold;
     color: #333;
-    margin-top: -2px; /* Minimize spacing between image and year */
+    margin-top: 0px; /* Minimize spacing between image and year */
     text-align: center;
     line-height: 1; /* Reduce spacing between lines */
 }
