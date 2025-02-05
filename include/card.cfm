@@ -35,14 +35,13 @@
       <div class="tao-card-body">  <cfif card_image_yn eq "Y">
   <div class="tao-card-#card_image_type#-container">
 
-        <div class="tao-card-#card_image_type#">
-          <img src="#card_image#" alt="profile-image" class="tao-card-#card_image_type#">
-          <cfif card_image_type eq "calendar">
-
-                              <center>
-                                #DateFormat('5/1/2025','yyyy')#</center>
-          </cfif>
-        </div>
+<div class="tao-card-#card_image_type#">
+  <img src="#card_image#" alt="profile-image" class="tao-card-#card_image_type#">
+  
+  <cfif card_image_type eq "calendar">
+    <div class="calendar-year">#DateFormat('5/1/2025','yyyy')#</div>
+  </cfif>
+</div>
 
 </div>
  </cfif>
