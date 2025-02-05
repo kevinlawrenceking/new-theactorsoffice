@@ -242,9 +242,9 @@
         <cfset aud_cat_icon=""/>
         <cfset card_avatar="Yes"/>
         <Cfif results.col5 neq "">
-            <cfset card_company="Role: " & results.col4 & "<br> Source: " & results.col5/>
+            <cfset card_company="<strong>Role:</strong> " & results.col4 & "<br> <strong>Source:</strong> " & results.col5/>
         <cfelse>
-            <cfset card_company="Role: " & results.col4 & "<br> &nbsp;"/>
+            <cfset card_company=<strong>Role:</strong> " & results.col4 & "<br> &nbsp;"/>
         </cfif>
         <cfset card_delete_msg=""/>
         <cfset card_delete=""/>
