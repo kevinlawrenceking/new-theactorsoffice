@@ -64,7 +64,7 @@
 <cfoutput>
     <div class="col-md-12 col-lg-12 col-xl-12 p-1 d-flex">
         <center>
-            <a data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteselectheadshot" data-bs-placement="top" title="Select Headshots" data-bs-original-title="Add media" class="btn btn-xs btn-primary waves-effect waves-light">My Headshots</a>
+            <a data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteselectheadshot" data-bs-placement="top" title="Select Headshots" data-bs-original-title="Add media" class="btn btn-xs btn-primary waves-effect waves-light">My Headshotsz</a>
         </center>
     </div>
 </cfoutput>
