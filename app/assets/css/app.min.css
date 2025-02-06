@@ -7520,7 +7520,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 /* Top Ribbon (Success) */
 .ribbon-two {
     position: absolute;
-    background-color: #28a745; /* Green for booked, can be changed */
+
     color: #fff;
     padding: 5px 10px;
     font-size: 0.85rem;
