@@ -4,9 +4,32 @@
 <cfinclude template="/include/qry/types_44_1.cfm" />
 <cfinclude template="/include/qry/audlinks_44_2.cfm" />
 
-<cfset modalid="remoteselectheadshot" />
-<cfset modaltitle="Select a Headshot" />
-<cfinclude template="/include/modal.cfm" />
+<cfoutput>
+  <div id="remoteselectheadshot" class="modal fade" tabindex="-1" aria-labelledby="headshotModalLabel">
+    <div class="modal-dialog modal-lg"> <!-- Increased size for gallery -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="headshotModalLabel">Select a Headshot</h4>
+          <button type="button" class="close" data-bs-dismiss="modal">
+            <i class="mdi mdi-close-thick"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row g-2" id="headshot-gallery">
+            <cfloop query="headshots">
+              <div class="col-3"> <!-- Adjusted column size for small images -->
+                <a href="javascript:void(0);" class="headshot-select" data-mediaid="#headshots.mediaid#" data-filename="#headshots.mediaFileName#">
+                  <img src="#session.userMediaUrl#/#headshots.mediaFileName#?ver=#rand()#" class="headshot-thumbnail img-fluid rounded" alt="Headshot">
+                </a>
+              </div>
+            </cfloop>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</cfoutput>
+
 
 <cfset modalid="remoteselectmaterial" />
 <cfset modaltitle="Select Material" />
@@ -104,3 +127,29 @@
         </cfoutput>
     </cfloop>
 </div>
+<script>
+$(document).ready(function() {
+    $(".headshot-select").click(function() {
+        var mediaid = $(this).data("mediaid");
+        var audprojectid = $("#audprojectid").val(); // Get audition project ID
+
+        // Highlight selected image
+        $(".headshot-select img").removeClass("selected");
+        $(this).find("img").addClass("selected");
+
+        // Send AJAX request to update the selected headshot
+        $.ajax({
+            url: "/include/update_selected_headshot.cfm",
+            type: "POST",
+            data: { mediaid: mediaid, audprojectid: audprojectid },
+            success: function(response) {
+                console.log("Headshot selected successfully");
+                $("#remoteselectheadshot").modal("hide"); // Close modal after selection
+            },
+            error: function() {
+                alert("Error selecting headshot. Please try again.");
+            }
+        });
+    });
+});
+</script>

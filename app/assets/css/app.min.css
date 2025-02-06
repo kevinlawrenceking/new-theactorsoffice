@@ -7742,3 +7742,24 @@ img.tao-card-avatar {
     align-items: center;
     justify-content: center; /* Centers text */
 }
+
+/* Headshot thumbnails inside the modal */
+.headshot-thumbnail {
+    width: 100px; /* Smaller images */
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+}
+
+/* Hover effect */
+.headshot-thumbnail:hover {
+    transform: scale(1.1);
+    border: 2px solid #007bff;
+    cursor: pointer;
+}
+
+/* Selected image effect */
+.headshot-thumbnail.selected {
+    border: 3px solid #28a745;
+}

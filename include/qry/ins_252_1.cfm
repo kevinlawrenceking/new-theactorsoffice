@@ -1,2 +1,2 @@
-<cfset objService = createObject("component", "services.AuditionMediaXRefService")>
-<cfset objService.DELaudmedia_auditions_xref(mediaid=mediaid, audprojectid=audprojectid)>
+<cfset AuditionMediaXRefService = createObject("component", "services.AuditionMediaXRefService")>
+<cfset AuditionMediaXRefService.DELaudmedia_auditions_xref(mediaid=mediaid, audprojectid=audprojectid)>
