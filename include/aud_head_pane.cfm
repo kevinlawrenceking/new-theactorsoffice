@@ -123,10 +123,11 @@
     </cfloop>
 </div>
 <script>
+
 $(document).ready(function() {
     $("a[data-bs-target='#remoteselectheadshot']").click(function() {
         $("#headshotGalleryContainer").html('<p class="text-center">Loading headshots...</p>'); // Placeholder text
-        $("#headshotGalleryContainer").load("/include/load_headshot_gallery.cfm");
+        $("#headshotGalleryContainer").load("/include/load_headshot_gallery.cfm?selected_eventid=<Cfoutput>#eventid#&eventid=#eventid#&audprojectid=#audprojectid#&secid=177</cfoutput>");
     });
 
     // Handle headshot selection

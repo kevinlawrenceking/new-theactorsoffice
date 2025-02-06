@@ -35,7 +35,6 @@
 
 <cfoutput>
 
-
     <script>
         $(document).ready(function() {
             $("##remoteselectmaterial").on("show.bs.modal", function(event) {
