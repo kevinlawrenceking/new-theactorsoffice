@@ -466,7 +466,7 @@
 
     <!--- Worked with Coach? --->
 
-    <cfif new_audstepid neq 5>
+    <cfif aud_det.audstepid neq 5>
     <div class="row">
       <cfoutput>
         <div class="form-group col-md-12">
