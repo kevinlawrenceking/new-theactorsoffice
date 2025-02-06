@@ -34,14 +34,7 @@
 </div>
 
 <cfoutput>
-    <script>
-        $(document).ready(function() {
-            $("##remoteselectheadshot").on("show.bs.modal", function(event) {
-                
-                $(this).find(".modal-body").load("/include/remoteselectheadshot.cfm?selected_eventid=#eventid#&eventid=#eventid#&audprojectid=#audprojectid#&secid=177");
-            });
-        });
-    </script>
+
 
     <script>
         $(document).ready(function() {
