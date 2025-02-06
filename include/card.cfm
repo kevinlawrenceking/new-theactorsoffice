@@ -68,7 +68,7 @@
             
       
    <span>
-              <i class="fe-phone me-1 <cfif card_casting neq ''>has-content</cfif>"></i>
+             
            <strong>Casting:</strong> #card_casting#
             </span>
           <span>
