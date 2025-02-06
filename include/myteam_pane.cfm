@@ -73,7 +73,7 @@
         <cfset card_ribbon2=""/>
         <cfset card_social_yn="Y"/>
         <cfset card_title=myteam.card_title/>
-        <cfset card_top_ribbon="S"/>
+        <cfset card_top_ribbon=""/>
         <cfset ribbon_icon=""/>
         <cfset card_reminder=""/>
         <cfset card_image_type = "avatar"/>
