@@ -59,14 +59,22 @@
           <!--- Company Name --->
           <p class="tao-card-company">
             <cfif card_company neq "NULL">#card_company#</cfif>
-            <Cfif card_casting neq ""><cfif card_company neq ""><br/></cfif>
-            <strong>Casting:</strong> #card_casting#
-            
-            </cfif>
+           
           </p>
 
           <!--- Contact Details: Phone & Email --->
           <p class="tao-card-contact">
+           <Cfif card_casting neq "">
+            
+      
+   <span>
+              <i class="fe-phone me-1 <cfif card_casting neq ''>has-content</cfif>"></i>
+           <strong>Casting:</strong> #card_casting#
+            </span>
+          <span>
+      
+            </cfif>
+            
             <span>
               <i class="fe-phone me-1 <cfif card_phone neq ''>has-content</cfif>"></i>
               <cfif card_phone neq ''>#card_phone#<cfelse>&nbsp;</cfif>
