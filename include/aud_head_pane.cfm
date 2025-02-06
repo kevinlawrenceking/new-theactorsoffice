@@ -46,6 +46,8 @@
         });
     </script>
 
+<!--- new zzz --->
+
     <div id="remoteadd" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" >
 
         <div class="modal-dialog">
