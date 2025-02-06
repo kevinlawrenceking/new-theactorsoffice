@@ -7517,6 +7517,21 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 	border-top: 3px solid #c0d5e0
 }
 
+/* Top Ribbon (Success) */
+.ribbon-two {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #28a745; /* Green for booked, can be changed */
+    color: #fff;
+    padding: 5px 10px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    border-top-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+
 /* Card Layout */
 .tao-card-md {
     display: flex;
