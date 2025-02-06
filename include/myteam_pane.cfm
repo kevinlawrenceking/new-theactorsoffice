@@ -57,6 +57,7 @@
         <cfset aud_cat_icon=""/>
         <cfset card_avatar="Yes"/>
         <cfset card_company=myteam.card_company/>
+        <Cfset card_casting = "" />
         <cfset card_delete_msg="Are you sure you want to remove this person from your team?"/>
         <cfset card_delete="/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=" & myteam.contactid/>
         <cfset card_details="/app/contact/?contactid=" & myteam.contactid/>

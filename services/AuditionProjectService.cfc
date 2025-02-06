@@ -1311,6 +1311,7 @@ ORDER BY label
                 r.audrolename AS col4, 
                 s.audsource AS col5, 
                 c2.recordname AS contactname, 
+                c.recordname,
                 sc.audsubcatname, 
                 CONCAT_WS("|", p.projname, rt.audroletype, c.recordname, st.audstep, rt.audroletype, s.audsource, p.projdescription) AS search_query,
                 GROUP_CONCAT(c3.recordname) AS contacts_list
