@@ -3,7 +3,7 @@
 <cfinclude template="/include/qry/headshots_sel_unused.cfm" />
 <cfparam name="placeholder" default="" />
 <cfinclude template="/include/qry/types_45_1.cfm" />
-
+<CfaborT>
 <div class="row" />
 
     <!--- Loop through the headshots query to display each headshot if it's an image file --->
