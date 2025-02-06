@@ -4,31 +4,25 @@
 <cfinclude template="/include/qry/types_44_1.cfm" />
 <cfinclude template="/include/qry/audlinks_44_2.cfm" />
 
-<cfoutput>
-  <div id="remoteselectheadshot" class="modal fade" tabindex="-1" aria-labelledby="headshotModalLabel">
-    <div class="modal-dialog modal-lg"> <!-- Increased size for gallery -->
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title" id="headshotModalLabel">Select a Headshot</h4>
-          <button type="button" class="close" data-bs-dismiss="modal">
-            <i class="mdi mdi-close-thick"></i>
-          </button>
+<div id="remoteselectheadshot" class="modal fade" tabindex="-1" aria-labelledby="headshotModalLabel">
+    <div class="modal-dialog modal-lg"> <!-- Large modal for better viewing -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="headshotModalLabel">Select a Headshot</h4>
+                <button type="button" class="close" data-bs-dismiss="modal">
+                    <i class="mdi mdi-close-thick"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Content will be loaded dynamically -->
+                <div id="headshotGalleryContainer">
+                    <p class="text-center">Loading headshots...</p>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          <div class="row g-2" id="headshot-gallery">
-            <cfloop query="headshots">
-              <div class="col-3"> <!-- Adjusted column size for small images -->
-                <a href="javascript:void(0);" class="headshot-select" data-mediaid="#headshots.mediaid#" data-filename="#headshots.mediaFileName#">
-                  <img src="#session.userMediaUrl#/#headshots.mediaFileName#?ver=#rand()#" class="headshot-thumbnail img-fluid rounded" alt="Headshot">
-                </a>
-              </div>
-            </cfloop>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
-</cfoutput>
+</div>
+
 
 
 <cfset modalid="remoteselectmaterial" />
@@ -46,7 +40,6 @@
         });
     </script>
 
-<!--- new zzz --->
 
     <div id="remoteadd" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" >
 
@@ -131,27 +124,24 @@
 </div>
 <script>
 $(document).ready(function() {
-    $(".headshot-select").click(function() {
+    $("a[data-bs-target='#remoteselectheadshot']").click(function() {
+        $("#headshotGalleryContainer").html('<p class="text-center">Loading headshots...</p>'); // Placeholder text
+        $("#headshotGalleryContainer").load("/include/load_headshot_gallery.cfm");
+    });
+
+    // Handle headshot selection
+    $(document).on("click", ".select-headshot", function() {
         var mediaid = $(this).data("mediaid");
-        var audprojectid = $("#audprojectid").val(); // Get audition project ID
-
-        // Highlight selected image
-        $(".headshot-select img").removeClass("selected");
-        $(this).find("img").addClass("selected");
-
-        // Send AJAX request to update the selected headshot
-        $.ajax({
-            url: "/include/update_selected_headshot.cfm",
-            type: "POST",
-            data: { mediaid: mediaid, audprojectid: audprojectid },
-            success: function(response) {
-                console.log("Headshot selected successfully");
-                $("#remoteselectheadshot").modal("hide"); // Close modal after selection
-            },
-            error: function() {
-                alert("Error selecting headshot. Please try again.");
-            }
-        });
+        updateSelectedHeadshot(mediaid);
     });
 });
+
+// Function to update selected headshot (AJAX Call)
+function updateSelectedHeadshot(mediaid) {
+    $.post("/include/update_selected_headshot.cfm", { mediaid: mediaid }, function(response) {
+        alert("Headshot updated!");
+        $("#remoteselectheadshot").modal("hide");
+    });
+}
+
 </script>
