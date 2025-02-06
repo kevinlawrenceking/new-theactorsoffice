@@ -4,7 +4,7 @@
 
       <!--- Top Ribbon (e.g., "Booked") --->
       <cfif card_top_ribbon neq "">
-        <div class="ribbon-two ribbon-two-success">
+        <div class="ribbon-two ribbon-two-success" style="background-color: ##28a745;">
           <span>#card_top_ribbon#</span>
         </div>
       </cfif>
