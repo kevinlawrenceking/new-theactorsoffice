@@ -2,6 +2,13 @@
   <div class="col" id="card-#card_id#">
     <div class="tao-card-md">
 
+      <!--- Top Ribbon (e.g., "Booked") --->
+      <cfif card_top_ribbon neq "">
+        <div class="ribbon-two ribbon-two-success">
+          <span>#card_top_ribbon#</span>
+        </div>
+      </cfif>
+
       <!--- Header --->
       <cfif card_header_yn eq "Y">
         <div class="tao-card-header">
