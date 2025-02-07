@@ -252,7 +252,7 @@
         <Cfset card_footer_text=""/>
         <cfset card_footer_type=""/>
         <cfset card_footer_yn="N"/>
-        <cfset card_header_yn="N"/>
+        <cfset card_header_yn="Y"/>
         <cfset card_icon_yn="Y"/>
         <cfset card_image="#application.datesUrl#/#DateFormat('#results.col1#','mm-dd')#.png"/>
         <cfset card_name=results.col2/>

@@ -7773,22 +7773,32 @@ img.tao-card-avatar {
 }
 
 /* Light Theme */
-.tao-card-name-color-light {
+.tao-card-header-light, .tao-card-name-color-light {
     background-color: #edeff1; /* Light Gray */
     color: #333; /* Darker text for contrast */
-    padding: 5px 10px;
-    border-radius: 5px;
-    display: inline-block;
+    padding: 10px;
+    border-radius: 5px 5px 0 0; /* Rounded top corners */
+    font-weight: bold;
 }
 
 /* Medium Theme */
-.tao-card-name-color-medium {
+.tao-card-header-medium, .tao-card-name-color-medium {
     background-color: #8a9ba8; /* Soft Blue-Gray */
     color: #ffffff; /* White Text */
-    padding: 5px 10px;
-    border-radius: 5px;
-    display: inline-block;
+    padding: 10px;
+    border-radius: 5px 5px 0 0; /* Rounded top corners */
+    font-weight: bold;
 }
+
+/* Dark Theme */
+.tao-card-header-dark, .tao-card-name-color-dark {
+    background-color: #6c757d; /* Dark Gray */
+    color: #f8f8ff; /* Light Text */
+    padding: 10px;
+    border-radius: 5px 5px 0 0; /* Rounded top corners */
+    font-weight: bold;
+}
+
 
 .tao-card-md {
     transition: all 0.2s ease-in-out; /* Smooth transition */

@@ -11,22 +11,11 @@
 
       <!--- Header --->
       <cfif card_header_yn eq "Y">
-        <div class="tao-card-header">
+        <div class="tao-card-header tao-card-header-#namecolor#">
           <!--- Delete Icon (Left) --->
-          <cfif card_delete neq "">
-            <a href="javascript:void(0);" 
-               class="text-danger trash-icon" 
-               onclick="confirmDelete('#card_id#');">
-              <i class="mdi mdi-trash-can-outline"></i>
-            </a>
-          </cfif>
+         Header Text
 
-          <!--- View Details Icon (Right) --->
-          <cfif card_details neq "">
-            <a href="#card_details#" class="text-decoration-none view-icon" title="View Details">
-              <i class="mdi mdi-eye"></i>
-            </a>
-          </cfif>
+ 
         </div>
       </cfif>
 
