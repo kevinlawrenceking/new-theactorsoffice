@@ -139,13 +139,14 @@
 
 <script>
 $(document).ready(function() {
+    // Load headshot gallery when the modal opens
     $("a[data-bs-target='#remoteselectheadshot']").click(function() {
         var audprojectid = $(this).data("audprojectid");  
         $("#headshotGalleryContainer").html('<p class="text-center">Loading headshots...</p>');  
         $("#headshotGalleryContainer").load("/include/load_headshot_gallery.cfm?audprojectid=" + audprojectid);
     });
 
- 
+    // Handle headshot selection click
     $(document).on("click", ".select-headshot", function() {
         var mediaid = $(this).data("mediaid");
         var audprojectid = $(this).data("audprojectid");
@@ -153,7 +154,7 @@ $(document).ready(function() {
     });
 });
 
- 
+
 function updateSelectedHeadshot(mediaid, audprojectid) {
     console.log("Updating headshot for:", mediaid, audprojectid);
 
@@ -166,8 +167,8 @@ function updateSelectedHeadshot(mediaid, audprojectid) {
             if (jsonResponse.status === "success") {
                 alert(jsonResponse.message);
 
-                // Update the headshot in the main page
-                $("#selected-headshot").attr("src", "/media-abod/users/<cfoutput>#userid#</cfoutput>/headshots/" + mediaid + ".jpg?ver=" + Math.random());
+                // Reload the headshot gallery dynamically
+                reloadHeadshotGallery(audprojectid);
 
                 // Hide the modal after selection
                 $("#remoteselectheadshot").modal("hide");
@@ -181,5 +182,16 @@ function updateSelectedHeadshot(mediaid, audprojectid) {
     });
 }
 
+// Function to reload headshot gallery after update
+function reloadHeadshotGallery(audprojectid) {
+    console.log("Reloading headshot gallery for audprojectid:", audprojectid);
+
+    $.get("/include/load_headshot_gallery.cfm", { audprojectid: audprojectid }, function(response) {
+        $("#headshotGalleryContainer").html(response);
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+        console.error("AJAX error:", textStatus, errorThrown);
+        alert("Error loading updated headshot gallery.");
+    });
+}
 </script>
 
