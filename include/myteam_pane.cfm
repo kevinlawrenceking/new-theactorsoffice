@@ -79,7 +79,8 @@
         <cfset card_reminder=""/>
         <cfset card_image_type = "avatar"/>
         <cfset card_image_yn = "Y"/>
-          <cfset card_badge_yn = "N" />
+        <cfset card_badge_yn = "N" />
+        <cfset tao-card-name-color = "medium" />
           
         <cfif isimagefile("#session.userContactsPath#\#myteam.contactid#\avatar.jpg")>
           <cfset card_image="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg"/>
