@@ -69,7 +69,7 @@
         <cfset card_icon_yn="Y"/>
         <cfset card_image=""/>
         <cfset card_name=myteam.card_name/>
-        <Cfset tao-card-name-color = "medium"/>
+        <Cfset namecolor = "medium"/>
         <cfset card_phone=myteam.card_phone/>
         <cfset card_ribbon1=""/>
         <cfset card_ribbon2=""/>
