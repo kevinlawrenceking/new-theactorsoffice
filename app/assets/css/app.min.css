@@ -7827,3 +7827,21 @@ img.tao-card-avatar {
 .tao-card-md:active {
     transform: scale(0.98); /* Slight press effect */
 }
+
+/* Container for Calendar or Avatar */
+.tao-card-image-container {
+    display: flex;
+    align-items: center; /* Centers the image vertically */
+    justify-content: center; /* Centers the image horizontally */
+    width: 30%; /* Keep the image section width */
+    min-height: 100px; /* Ensures consistent height */
+    overflow: hidden;
+}
+
+/* Image (Calendar or Avatar) */
+.tao-card-image-container img {
+    width: 60px; /* Adjust as needed */
+    height: auto;
+    max-height: 100%;
+    object-fit: contain; /* Prevents distortion */
+}
