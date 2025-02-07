@@ -126,7 +126,7 @@
 
 $(document).ready(function() {
     $("a[data-bs-target='#remoteselectheadshot']").click(function() {
-        $("#headshotGalleryContainer").html('<p class="text-center">Loading headshots...</p>'); // Placeholder text
+        $("#headshotGalleryContainer").html('<p class="text-center">Loading headshots...</p>'); 
         $("#headshotGalleryContainer").load("/include/load_headshot_gallery.cfm?selected_eventid=<Cfoutput>#eventid#&eventid=#eventid#&audprojectid=#audprojectid#&secid=177</cfoutput>");
     });
 
