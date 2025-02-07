@@ -1,7 +1,7 @@
 <cfparam name="audprojectid" default="">
 
 <!--- Query to get latest headshots --->
-
+<cfset userid=30 />
 <cfinclude template="/include/qry/headshots_377_2.cfm" />
 <cfoutput>
     <pre>
