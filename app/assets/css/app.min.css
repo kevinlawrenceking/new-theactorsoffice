@@ -7792,7 +7792,7 @@ img.tao-card-avatar {
     color: #333; /* Darker text for contrast */
     padding: 10px;
     border-radius: 5px 5px 0 0; /* Rounded top corners */
-    font-weight: bold;
+
 }
 
 /* Medium Theme */
@@ -7801,7 +7801,7 @@ img.tao-card-avatar {
     color: #ffffff; /* White Text */
     padding: 10px;
     border-radius: 5px 5px 0 0; /* Rounded top corners */
-    font-weight: bold;
+
 }
 
 /* Dark Theme */
@@ -7810,7 +7810,7 @@ img.tao-card-avatar {
     color: #f8f8ff; /* Light Text */
     padding: 10px;
     border-radius: 5px 5px 0 0; /* Rounded top corners */
-    font-weight: bold;
+
 }
 
 
