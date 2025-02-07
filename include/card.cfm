@@ -22,7 +22,7 @@
 
       <!--- Contact Name (Full Width) --->
       <cfif card_name neq "">
-   <p class="tao-card-name tao-card-name-color-#namecolor#">
+   <p class="tao-card-name">
    #card_name#
 </p>
 
