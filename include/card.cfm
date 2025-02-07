@@ -1,5 +1,10 @@
 <cfoutput>
   <div class="col" id="card-#card_id#">
+
+
+        <cfif card_details neq "">
+            <a href="#card_details#"  title="View Details">
+            </cfif>
     <div class="tao-card-md">
 
 
@@ -137,6 +142,10 @@
 
     </div>
     <!--- End tao-card-md --->
+            <cfif card_details neq "">
+            </a>
+            </cfif>
+    <div class="tao-card-md">
   </div>
   <!--- End col --->
 </cfoutput>
