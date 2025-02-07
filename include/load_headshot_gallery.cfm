@@ -1,4 +1,4 @@
-<cfinclude template="/include/qry/audmedia.cfm" />
+<cfinclude template="/include/qry/headshots_sel_479_1.cfm" />
 
 
 <h2>headshots here<cfoutput>audprojectid: #audprojectid#<BR>#headshots.recordcount#</cfoutput></h2>
