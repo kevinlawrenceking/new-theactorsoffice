@@ -57,13 +57,13 @@
         <div class="tao-card-info-avatar">
           <!--- Title Badge --->
           <p class="tao-card-title">
-      <Cfif card_badge_yn eq "Y">
+      <Cfif card_badge_yn eq "N">
   <cfif card_title neq "NULL">
               <span ><strong>#card_title#</strong></span>
             <cfelse>
                <span ><strong>#card_title#</strong></span>
             </cfif>
-      <cfelse>
+      <cfelseif card_badge_yn eq "Y">
       <cfif card_title neq "NULL">
               <span class="badge badge-blue">#card_title#</span>
             <cfelse>
