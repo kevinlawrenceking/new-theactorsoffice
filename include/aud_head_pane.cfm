@@ -152,12 +152,19 @@ $(document).ready(function() {
 
  
 function updateSelectedHeadshot(mediaid, audprojectid) {
+    console.log("Sending AJAX request with:", mediaid, audprojectid); // Debugging
+
     $.post("/include/update_selected_headshot.cfm", 
         { mediaid: mediaid, audprojectid: audprojectid }, 
         function(response) {
-            alert("Headshot updated!");
+            console.log("Response received:", response); // Debugging
+            alert("Response: " + response); // Show full response for debugging
             $("#remoteselectheadshot").modal("hide");
         }
-    );
+    ).fail(function(jqXHR, textStatus, errorThrown) {
+        console.error("AJAX error:", textStatus, errorThrown); // Log errors if request fails
+        alert("Error updating headshot. Check console.");
+    });
 }
+
 </script>
