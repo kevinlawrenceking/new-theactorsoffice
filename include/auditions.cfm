@@ -309,7 +309,7 @@
   </cfif>
 <cfset card_id = results.recid />
 
-<Cfset card_casting = results.contactname /
+<Cfset card_casting = results.contactname />
   <!--- Include the Card Template --->
   <cfinclude template="/include/card.cfm"/>
 </div>
