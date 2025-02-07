@@ -68,6 +68,7 @@
     <a data-bs-remote="true" 
        data-bs-toggle="modal" 
        data-bs-target="##remoteselectheadshot" 
+       data-audprojectid="#audprojectid#"
        data-bs-placement="top" 
        title="Select Headshots" 
        data-bs-original-title="Add media" 
