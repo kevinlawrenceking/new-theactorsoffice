@@ -109,28 +109,31 @@
 
         <cfoutput>
             <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12">
-                <div class="p-3">
-                    <center>
-                        <a href="#session.userMediaUrl#/#headshots.mediaFileName#?ver=#rand()#" data-toggle="lightbox" data-gallery="example-gallery">
-                            <img src="#session.userMediaUrl#/#headshots.mediaFileName#?ver=#rand()#" class="mr-2 rounded-square gambar img-thumbnail img-fluid p-0 m-0" title="User ID: 30" style="max-width:120px; height:120px; height:100%" alt="profile-image" id="item-img-output" />
-                        </a>
-                    </center>
-                </div>
-                <a class="pt-0" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteDelete#headshots.mediaid#" data-bs-placement="top" title="Delete media" data-bs-original-title="Delete media">
-                    <p class="p-0" style="padding:10px;">
-                        <center>
-                            #headshots.medianame# <i class="mdi mdi-trash-can-outline"></i>
-                        </center>
-                    </p>
-                </a>
-                <br>
-                <center>
-                    <a class="btn-lg" href="/include/download_media.cfm?mediaid=#headshots.mediaid#"> <i class="mdi mdi-cloud-download-outline"></i></a>
-                </center>
-                <span class="p-3">&nbsp;</span>
-                <span class="p-3">&nbsp;</span>
-            </div>
-        </cfoutput>
+        <div class="p-3 text-center">
+            <a href="#session.userMediaUrl#/#headshots.mediaFileName#?ver=#rand()#" data-toggle="lightbox" data-gallery="example-gallery">
+                <img id="selected-headshot"
+                     src="#session.userMediaUrl#/#headshots.mediaFileName#?ver=#rand()#" 
+                     class="rounded img-thumbnail img-fluid"
+                     style="max-width:120px; height:auto;"
+                     alt="#headshots.medianame#">
+            </a>
+        </div>
+        
+        <!-- Delete Option -->
+        <a class="pt-0 text-center" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteDelete#headshots.mediaid#" title="Delete media">
+            <p class="p-0">
+                #headshots.medianame# <i class="mdi mdi-trash-can-outline"></i>
+            </p>
+        </a>
+
+        <!-- Download Button -->
+        <center>
+            <a class="btn-lg" href="/include/download_media.cfm?mediaid=#headshots.mediaid#">
+                <i class="mdi mdi-cloud-download-outline"></i>
+            </a>
+        </center>
+    </div>
+</cfoutput>
     </cfloop>
 </div>
 
@@ -152,17 +155,28 @@ $(document).ready(function() {
 
  
 function updateSelectedHeadshot(mediaid, audprojectid) {
-    console.log("Sending AJAX request with:", mediaid, audprojectid); // Debugging
+    console.log("Updating headshot for:", mediaid, audprojectid);
 
     $.post("/include/update_selected_headshot.cfm", 
         { mediaid: mediaid, audprojectid: audprojectid }, 
         function(response) {
-            console.log("Response received:", response); // Debugging
-            alert("Response: " + response); // Show full response for debugging
-            $("#remoteselectheadshot").modal("hide");
+            console.log("Response received:", response);
+            let jsonResponse = JSON.parse(response);
+
+            if (jsonResponse.status === "success") {
+                alert(jsonResponse.message);
+
+                // Update the headshot in the main page
+                $("#selected-headshot").attr("src", "/media-abod/users/<cfoutput>#userid#</cfoutput>/headshots/" + mediaid + ".jpg?ver=" + Math.random());
+
+                // Hide the modal after selection
+                $("#remoteselectheadshot").modal("hide");
+            } else {
+                alert("Error: " + jsonResponse.message);
+            }
         }
     ).fail(function(jqXHR, textStatus, errorThrown) {
-        console.error("AJAX error:", textStatus, errorThrown); // Log errors if request fails
+        console.error("AJAX error:", textStatus, errorThrown);
         alert("Error updating headshot. Check console.");
     });
 }
