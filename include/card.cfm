@@ -14,7 +14,10 @@
         <div class="tao-card-header tao-card-header-#namecolor#">
           <!--- Delete Icon (Left) --->
           <cfif card_header_text neq "">
+          <p class="tao-card-name">
          #card_header_text#
+         </p>
+         
 </cfif>
  
         </div>
@@ -23,7 +26,7 @@
 
       <!--- Contact Name (Full Width) --->
       <cfif card_name neq "">
-   <p class="tao-card-name">
+   
    #card_name#
 </p>
 
