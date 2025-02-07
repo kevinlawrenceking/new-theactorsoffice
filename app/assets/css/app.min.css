@@ -7543,10 +7543,12 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 .tao-card-header {
     display: flex;
     justify-content: space-between; /* Keeps items spaced left and right */
-    align-items: center;
+    align-items: left;
     padding: 0.5rem;
-    background-color: #ededf1; /* Matches card header background */
     min-height: 40px; /* Ensures uniform height */
+    white-space: nowrap; /* Prevents text wrapping */
+    overflow: hidden; /* Ensures it doesn’t overflow */
+    text-overflow: ellipsis; /* Adds '...' when text is too long */
 }
 
 /* Trash Icon (Left) - Appears Only If Present */
