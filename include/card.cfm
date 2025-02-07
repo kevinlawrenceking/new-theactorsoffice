@@ -14,7 +14,7 @@
         <div class="tao-card-header tao-card-header-#namecolor#">
           <!--- Delete Icon (Left) --->
           <cfif card_header_text neq "">
-         Header Text
+         #card_header_text#
 </cfif>
  
         </div>
