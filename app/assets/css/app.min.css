@@ -7800,3 +7800,6 @@ img.tao-card-avatar {
     transform: translateY(-2px); /* Slight lift effect */
     background-color: rgba(0, 0, 0, 0.03); /* Light background change */
 }
+.tao-card-md:active {
+    transform: scale(0.98); /* Slight press effect */
+}
