@@ -145,8 +145,8 @@
             <cfif card_details neq "">
             </a>
             </cfif>
-    <div class="tao-card-md">
-  </div>
+ </div>
+
   <!--- End col --->
 </cfoutput>
 
