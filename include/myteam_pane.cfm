@@ -69,6 +69,7 @@
         <cfset card_icon_yn="Y"/>
         <cfset card_image=""/>
         <cfset card_name=myteam.card_name/>
+        <Cfset tao-card-name-color = "medium"/>
         <cfset card_phone=myteam.card_phone/>
         <cfset card_ribbon1=""/>
         <cfset card_ribbon2=""/>
@@ -80,7 +81,7 @@
         <cfset card_image_type = "avatar"/>
         <cfset card_image_yn = "Y"/>
         <cfset card_badge_yn = "N" />
-        <cfset tao-card-name-color = "medium" />
+      
           
         <cfif isimagefile("#session.userContactsPath#\#myteam.contactid#\avatar.jpg")>
           <cfset card_image="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg"/>

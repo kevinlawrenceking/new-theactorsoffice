@@ -255,6 +255,7 @@
         <cfset card_icon_yn="Y"/>
         <cfset card_image="#application.datesUrl#/#DateFormat('#results.col1#','mm-dd')#.png"/>
         <cfset card_name=results.col2/>
+        <Cfset tao-card-name-color = "dark"/>
         <cfset card_phone=""/>
         <cfset card_ribbon1=""/>
         <cfset card_ribbon2=""/>
