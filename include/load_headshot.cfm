@@ -3,12 +3,7 @@
 <!--- Query to get latest headshots --->
 <cfset userid=30 />
 <cfinclude template="/include/qry/headshots_377_2.cfm" />
-<cfoutput>
-    <pre>
-        Debug: AudProjectID = #audprojectid#
-        Query Record Count: #headshots.recordcount#
-    </pre>
-</cfoutput>
+
 <!--- Return updated gallery --->
 <div class="row">
     <cfloop query="headshots">
