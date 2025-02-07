@@ -57,9 +57,9 @@
           <!--- Title Badge --->
           <p class="tao-card-title">
             <cfif card_title neq "NULL">
-              <span class="badge badge-blue">#card_title#</span>
+              <span ><strong>#card_title#</strong></span>
             <cfelse>
-              <span class="badge badge-blue invisible">&nbsp;</span>
+               <span ><strong>#card_title#</strong></span>
             </cfif>
           </p>
 
