@@ -6,7 +6,7 @@
 
 <!--- Return updated gallery --->
 <div class="row">
-    <cfloop query="headshots_sel">
+    <cfloop query="headshots">
         <cfoutput>
             <div class="col-md-3 col-sm-4 col-6">
                 <div class="p-2 text-center">
