@@ -7649,7 +7649,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 /* FIXED: Only Show Icons When Content Exists */
 .tao-card-contact i {
     font-size: 14px;
-    vertical-align: middle;
+
     visibility: hidden;
     width: 16px;
     height: 16px;
