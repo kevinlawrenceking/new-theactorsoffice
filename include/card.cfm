@@ -10,14 +10,13 @@
 
 
       <!--- Header --->
-      <cfif card_header_yn eq "Y">
-        <div class="tao-card-header tao-card-header-#namecolor#">
-
-          <cfif card_header_text neq "">
-         #card_header_text#
+<cfif card_header_yn eq "Y">
+    <div class="tao-card-header tao-card-header-#namecolor#">
+        <cfif card_header_text neq "">
+            <span class="tao-card-header-text">#card_header_text#</span>
+        </cfif>
+    </div>
 </cfif>
-        </div>
-      </cfif>
 
 
       <!--- Contact Name (Full Width) --->

@@ -7542,14 +7542,26 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 /* Card Header - Ensures Consistent Spacing */
 .tao-card-header {
     display: flex;
-    justify-content: space-between; /* Keeps items spaced left and right */
-    align-items: left;
+    align-items: center; /* Aligns content properly */
+    justify-content: flex-start; /* Forces left alignment */
     padding: 0.5rem;
-    min-height: 40px; /* Ensures uniform height */
-    white-space: nowrap; /* Prevents text wrapping */
-    overflow: hidden; /* Ensures it doesn’t overflow */
-    text-overflow: ellipsis; /* Adds '...' when text is too long */
+    min-height: 40px; /* Keeps a uniform height */
+    white-space: nowrap; /* Prevents text from wrapping */
+    overflow: hidden; /* Ensures it doesn’t exceed container */
+    text-overflow: ellipsis; /* Adds '...' for overflow */
+    max-width: 100%; /* Keeps it within the card */
 }
+
+/* Ensure the header text itself respects ellipsis */
+.tao-card-header-text {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%; /* Prevents overflow */
+    flex-grow: 1; /* Allows text to take up available space */
+}
+
 
 /* Trash Icon (Left) - Appears Only If Present */
 .trash-icon {
