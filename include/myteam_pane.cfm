@@ -64,6 +64,7 @@
         <cfset card_email=myteam.card_email/>
         <cfset card_footer_text="Crd footer text"/>
         <cfset card_footer_type="social"/>
+        <cfset card_footer_yn="Y"/>
         <cfset card_header_yn="Y"/>
         <cfset card_icon_yn="Y"/>
         <cfset card_image=""/>
@@ -78,6 +79,8 @@
         <cfset card_reminder=""/>
         <cfset card_image_type = "avatar"/>
         <cfset card_image_yn = "Y"/>
+          <cfset card_badge_yn = "N" />
+          
         <cfif isimagefile("#session.userContactsPath#\#myteam.contactid#\avatar.jpg")>
           <cfset card_image="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg"/>
         <cfelse>

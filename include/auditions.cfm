@@ -236,8 +236,6 @@
                 
                 <cfloop query="results">
 
-                        <!--- Variables for card --->
-                         <!--- Assign card values dynamically --->
         <cfset card_id=results.recid/>
         <cfset aud_cat_icon=""/>
         <cfset card_avatar="Yes"/>
@@ -251,8 +249,9 @@
         <cfset card_details="/app/audition/?audprojectid=" & results.recid/>
         <cfset card_email=""/>
         <Cfset card_footer_text=""/>
-        <cfset card_footer_type="text"/>
-        <cfset card_header_yn="Y"/>
+        <cfset card_footer_type=""/>
+        <cfset card_footer_yn="N"/>
+        <cfset card_header_yn="N"/>
         <cfset card_icon_yn="Y"/>
         <cfset card_image="#application.datesUrl#/#DateFormat('#results.col1#','mm-dd')#.png"/>
         <cfset card_name=results.col2/>
@@ -260,13 +259,15 @@
         <cfset card_ribbon1=""/>
         <cfset card_ribbon2=""/>
         <cfset card_social_yn="N"/>
-          <cfset card_title = "<i class=""mdi mdi-" & results.aud_cat_icon & """></i> " & results.audsubcatname />
+        <cfset card_title = "<i class=""mdi mdi-" & results.aud_cat_icon & """></i> " & results.audsubcatname />
         <cfset card_top_ribbon="Yes"/>
         <cfset ribbon_icon=""/>
         <cfset card_reminder=""/>
         <cfset card_image_type = "calendar"/>
-  <cfset CARD_IMAGE_YN = "Y"/>
-                    <cfoutput>
+        <cfset card_image_yn = "Y"/>
+        <cfset card_badge_yn = "N" />
+
+<cfoutput>
 
                         <!--- Determine Audition Status --->
                         <cfset col6 = "Audition">
@@ -282,16 +283,10 @@
 
                         <!--- Card Layout --->
                 <div class="col">
+
   <!--- Set Card Variables --->
  
  
-   
-
- 
-
-  
- 
-
   <cfif col6 neq "Booked" and col6 neq "Audition">
     <cfset card_footer_text=col6/>
   <cfelse>
@@ -308,8 +303,6 @@
     <Cfset card_top_ribbon=""/>
   </cfif>
 <cfset card_id = results.recid />
-
-<Cfset card_casting = results.contactname />
   <!--- Include the Card Template --->
   <cfinclude template="/include/card.cfm"/>
 </div>

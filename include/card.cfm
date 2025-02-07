@@ -10,7 +10,7 @@
       </cfif>
 
       <!--- Header --->
-      <cfif card_header_yn eq "x">
+      <cfif card_header_yn eq "Y">
         <div class="tao-card-header">
           <!--- Delete Icon (Left) --->
           <cfif card_delete neq "">
@@ -33,9 +33,10 @@
 
       <!--- Contact Name (Full Width) --->
       <cfif card_name neq "">
-        <p class="tao-card-name" style="background-color: ##6c757d; color:white;"><strong>#card_name#</strong>
-        
-        </p>
+   <p class="tao-card-name tao-card-name-color-#tao-card-name-color#">
+   #card_name#
+</p>
+
       </cfif>
 
       <!--- Card Body (Avatar & Contact Info) --->
@@ -56,11 +57,19 @@
         <div class="tao-card-info-avatar">
           <!--- Title Badge --->
           <p class="tao-card-title">
-            <cfif card_title neq "NULL">
+      <Cfif card_badge_yn eq "Y">
+  <cfif card_title neq "NULL">
               <span ><strong>#card_title#</strong></span>
             <cfelse>
                <span ><strong>#card_title#</strong></span>
             </cfif>
+      <cfelse>
+      <cfif card_title neq "NULL">
+              <span class="badge badge-blue">#card_title#</span>
+            <cfelse>
+              <span class="badge badge-blue invisible">&nbsp;</span>
+            </cfif>
+      </cfif>
           </p>
 
           <!--- Company Name --->
@@ -97,7 +106,8 @@
       </div>
       <!--- End Card Body --->
 
-      <!--- Footer (Social Icons / Text) 
+<Cfif card_footer_yn eq "Y">
+      <!--- Footer (Social Icons / Text) --->
       <div class="tao-card-footer">
         <div class="tao-card-social">
       
@@ -119,7 +129,8 @@
             <span>#card_footer_text#</span>
           </cfif>
         </div>
-      </div> --->
+      </div>  
+      </cfif>
 
     </div>
     <!--- End tao-card-md --->

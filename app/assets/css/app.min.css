@@ -7763,3 +7763,29 @@ img.tao-card-avatar {
 .headshot-thumbnail.selected {
     border: 3px solid #28a745;
 }
+/* Dark Theme */
+.tao-card-name-color-dark {
+    background-color: #6c757d; /* Dark Gray */
+    color: #f8f8ff; /* Ghost White */
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+/* Light Theme */
+.tao-card-name-color-light {
+    background-color: #edeff1; /* Light Gray */
+    color: #333; /* Darker text for contrast */
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+/* Medium Theme */
+.tao-card-name-color-medium {
+    background-color: #8a9ba8; /* Soft Blue-Gray */
+    color: #ffffff; /* White Text */
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
