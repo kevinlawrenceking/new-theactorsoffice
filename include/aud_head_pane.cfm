@@ -166,8 +166,8 @@ function updateSelectedHeadshot(mediaid, audprojectid) {
             if (jsonResponse.status === "success") {
                 alert(jsonResponse.message);
 
-                // Update the headshot in the main page
-                $("#selected-headshot").attr("src", "/media-abod/users/<cfoutput>#userid#</cfoutput>/headshots/" + mediaid + ".jpg?ver=" + Math.random());
+                // Reload the headshot gallery dynamically
+                reloadHeadshotGallery(audprojectid);
 
                 // Hide the modal after selection
                 $("#remoteselectheadshot").modal("hide");
@@ -180,5 +180,17 @@ function updateSelectedHeadshot(mediaid, audprojectid) {
         alert("Error updating headshot. Check console.");
     });
 }
+</script>
 
+<Script>
+function reloadHeadshotGallery(audprojectid) {
+    console.log("Reloading headshot gallery for audprojectid:", audprojectid);
+
+    $.get("/include/load_headshot_gallery.cfm", { audprojectid: audprojectid }, function(response) {
+        $("#headshot-gallery-container").html(response);
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+        console.error("AJAX error:", textStatus, errorThrown);
+        alert("Error loading updated headshot gallery.");
+    });
+}
 </script>
