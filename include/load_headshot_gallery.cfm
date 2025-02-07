@@ -6,6 +6,7 @@
 <pre>
    Query Record Count: #headshots_sel.recordcount#
    AudProjectID: #audprojectid#
+    userid: #userid#
 </pre>
 </cfoutput>
 <!--- Return updated gallery --->
