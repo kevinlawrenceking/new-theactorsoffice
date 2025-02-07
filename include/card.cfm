@@ -33,8 +33,8 @@
 
       <!--- Contact Name (Full Width) --->
       <cfif card_name neq "">
-        <p class="tao-card-name">
-          <a href="#card_details#" title="#card_name#">#card_name#</a>
+        <p class="tao-card-name">#card_name#
+        
         </p>
       </cfif>
 
