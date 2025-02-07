@@ -1,14 +1,14 @@
 <cfinclude template="/include/qry/headshots_sel_479_1.cfm" />
 
     <div class="row">
-        <cfloop query="headshots"><Cfoutput>
+        <cfloop query="headshots_sel"><Cfoutput>
             <div class="col-md-3 col-sm-4 col-6">
                 <div class="p-2 text-center">
-                    <a href="javascript:void(0);" class="select-headshot" data-mediaid="#headshots.mediaid#">
-                        <img src="#session.userMediaUrl#/#headshots.mediaFileName#" 
+                    <a href="javascript:void(0);" class="select-headshot" data-mediaid="#headshots_sel.mediaid#">
+                        <img src="#session.userMediaUrl#/#headshots_sel.mediaFileName#" 
                              class="img-thumbnail img-fluid rounded" 
                              style="max-width: 100px; height: auto;" 
-                             alt="#headshots.medianame#">
+                             alt="#headshots_sel.medianame#">
                     </a>
                 </div>
             </div>
