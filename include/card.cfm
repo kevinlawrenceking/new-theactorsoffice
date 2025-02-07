@@ -87,8 +87,7 @@
              
            <strong>Casting:</strong> #card_casting#
             </span>
-          <span>
-      
+ 
             </cfif>
             
             <span>

@@ -239,6 +239,7 @@
         <cfset card_id=results.recid/>
         <cfset aud_cat_icon=""/>
         <cfset card_avatar="Yes"/>
+        <Cfset card_casting="Casting"/>
         <Cfif results.col5 neq "">
             <cfset card_company="<strong>Role:</strong> " & results.col4 & "<br> <strong>Source:</strong> " & results.col5/>
         <cfelse>
