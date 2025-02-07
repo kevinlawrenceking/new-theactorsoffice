@@ -64,7 +64,18 @@
 <cfoutput>
     <div class="col-md-12 col-lg-12 col-xl-12 p-1 d-flex">
         <center>
-            <a data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteselectheadshot" data-bs-placement="top" title="Select Headshots" data-bs-original-title="Add media" class="btn btn-xs btn-primary waves-effect waves-light">My Headshotsz</a>
+<cfoutput>
+    <a data-bs-remote="true" 
+       data-bs-toggle="modal" 
+       data-bs-target="##remoteselectheadshot" 
+       data-bs-placement="top" 
+       title="Select Headshots" 
+       data-bs-original-title="Add media" 
+       class="btn btn-xs btn-primary waves-effect waves-light"
+       data-audprojectid="#audprojectid#">
+        My Headshots
+    </a>
+</cfoutput>
         </center>
     </div>
 </cfoutput>
@@ -122,27 +133,31 @@
         </cfoutput>
     </cfloop>
 </div>
-<script>
 
+<script>
 $(document).ready(function() {
     $("a[data-bs-target='#remoteselectheadshot']").click(function() {
-        $("#headshotGalleryContainer").html('<p class="text-center">Loading headshots...</p>'); 
-        $("#headshotGalleryContainer").load("/include/load_headshot_gallery.cfm?selected_eventid=<Cfoutput>#eventid#&eventid=#eventid#&audprojectid=#audprojectid#&secid=177</cfoutput>");
+        var audprojectid = $(this).data("audprojectid");  
+        $("#headshotGalleryContainer").html('<p class="text-center">Loading headshots...</p>');  
+        $("#headshotGalleryContainer").load("/include/load_headshot_gallery.cfm?audprojectid=" + audprojectid);
     });
 
-    // Handle headshot selection
+ 
     $(document).on("click", ".select-headshot", function() {
         var mediaid = $(this).data("mediaid");
-        updateSelectedHeadshot(mediaid);
+        var audprojectid = $("#remoteselectheadshot").data("audprojectid");  
+        updateSelectedHeadshot(mediaid, audprojectid);
     });
 });
 
-// Function to update selected headshot (AJAX Call)
-function updateSelectedHeadshot(mediaid) {
-    $.post("/include/update_selected_headshot.cfm", { mediaid: mediaid }, function(response) {
-        alert("Headshot updated!");
-        $("#remoteselectheadshot").modal("hide");
-    });
+ 
+function updateSelectedHeadshot(mediaid, audprojectid) {
+    $.post("/include/update_selected_headshot.cfm", 
+        { mediaid: mediaid, audprojectid: audprojectid }, 
+        function(response) {
+            alert("Headshot updated!");
+            $("#remoteselectheadshot").modal("hide");
+        }
+    );
 }
-
 </script>
