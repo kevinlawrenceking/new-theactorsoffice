@@ -7789,3 +7789,14 @@ img.tao-card-avatar {
     border-radius: 5px;
     display: inline-block;
 }
+
+.tao-card-md {
+    transition: all 0.2s ease-in-out; /* Smooth transition */
+    cursor: pointer; /* Indicate clickability */
+}
+
+.tao-card-md:hover {
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15); /* Adds a soft shadow */
+    transform: translateY(-2px); /* Slight lift effect */
+    background-color: rgba(0, 0, 0, 0.03); /* Light background change */
+}
