@@ -187,7 +187,7 @@ function updateSelectedHeadshot(mediaid, audprojectid) {
 function reloadHeadshotGallery(audprojectid) {
     console.log("Reloading headshot gallery for audprojectid:", audprojectid);
 
-    $.get("/include/load_headshot_gallery.cfm", { audprojectid: audprojectid }, function(response) {
+    $.get("/include/load_headshot.cfm", { audprojectid: audprojectid }, function(response) {
         $("#headshotGalleryContainer").html(response);
     }).fail(function(jqXHR, textStatus, errorThrown) {
         console.error("AJAX error:", textStatus, errorThrown);
