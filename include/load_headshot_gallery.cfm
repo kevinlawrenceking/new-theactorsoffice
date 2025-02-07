@@ -1,9 +1,9 @@
 <cfinclude template="/include/qry/audmedia.cfm" />
 
-<cfoutput>
-<h2>headshots here<cfoutput>#headshots.recordcount#</cfoutput></h2>
+
+<h2>headshots here<cfoutput>#headshots.recordcount#</h2>
     <div class="row">
-        <cfloop query="headshots">
+        <cfloop query="headshots"><Cfoutput>
             <div class="col-md-3 col-sm-4 col-6">
                 <div class="p-2 text-center">
                     <a href="javascript:void(0);" class="select-headshot" data-mediaid="#headshots.mediaid#">
@@ -14,6 +14,6 @@
                     </a>
                 </div>
             </div>
-        </cfloop>
+      </cfoutput> </cfloop>
     </div>
 </cfoutput>
