@@ -1,7 +1,7 @@
 <cfinclude template="/include/qry/audmedia.cfm" />
 
 <cfoutput>
-<h2>headshots here</h2>
+<h2>headshots here<cfoutput>#headshots.recordcount#</cfoutput></h2>
     <div class="row">
         <cfloop query="headshots">
             <div class="col-md-3 col-sm-4 col-6">
