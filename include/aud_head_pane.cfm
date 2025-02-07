@@ -145,7 +145,7 @@ $(document).ready(function() {
  
     $(document).on("click", ".select-headshot", function() {
         var mediaid = $(this).data("mediaid");
-        var audprojectid = $("#remoteselectheadshot").data("audprojectid");  
+        var audprojectid = $(this).data("audprojectid");
         updateSelectedHeadshot(mediaid, audprojectid);
     });
 });
