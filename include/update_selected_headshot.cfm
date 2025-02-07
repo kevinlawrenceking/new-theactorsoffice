@@ -14,7 +14,7 @@
     <cfset AuditionMediaXRefService.INSaudmedia_auditions_xref_24153(mediaid=mediaid, audprojectid=audprojectid)>
 
     <!-- Confirm update execution -->
-    <cfoutput>{"status": "success", "message": "mediaid: #mediaid# - audprojectid: #audprojectid# - Headshot selected!"}</cfoutput>
+    <cfoutput>{"status": "success", "message": "Headshot selected!"}</cfoutput>
 <cfelse>
     <cfoutput>{"status": "error", "message": "Missing media or project ID. mediaid=#mediaid#, audprojectid=#audprojectid#."}</cfoutput>
 </cfif>
