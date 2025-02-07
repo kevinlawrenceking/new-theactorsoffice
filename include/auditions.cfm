@@ -252,10 +252,11 @@
         <Cfset card_footer_text=""/>
         <cfset card_footer_type=""/>
         <cfset card_footer_yn="N"/>
+        <cfset card_header_text=results.col2/>
         <cfset card_header_yn="Y"/>
         <cfset card_icon_yn="Y"/>
         <cfset card_image="#application.datesUrl#/#DateFormat('#results.col1#','mm-dd')#.png"/>
-        <cfset card_name=results.col2/>
+        <cfset card_name=""/>
         <Cfset namecolor = "dark"/>
         <cfset card_phone=""/>
         <cfset card_ribbon1=""/>

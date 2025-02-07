@@ -13,8 +13,9 @@
       <cfif card_header_yn eq "Y">
         <div class="tao-card-header tao-card-header-#namecolor#">
           <!--- Delete Icon (Left) --->
+          <cfif card_header_text neq "">
          Header Text
-
+</cfif>
  
         </div>
       </cfif>
