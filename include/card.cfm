@@ -10,7 +10,7 @@
       </cfif>
 
       <!--- Header --->
-      <cfif card_header_yn eq "Y">
+      <cfif card_header_yn eq "x">
         <div class="tao-card-header">
           <!--- Delete Icon (Left) --->
           <cfif card_delete neq "">
@@ -97,7 +97,7 @@
       </div>
       <!--- End Card Body --->
 
-      <!--- Footer (Social Icons / Text) --->
+      <!--- Footer (Social Icons / Text) 
       <div class="tao-card-footer">
         <div class="tao-card-social">
       
@@ -119,7 +119,7 @@
             <span>#card_footer_text#</span>
           </cfif>
         </div>
-      </div>
+      </div> --->
 
     </div>
     <!--- End tao-card-md --->
