@@ -7646,9 +7646,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 /* Ensure Proper Spacing for Text Section */
 .tao-card-info-avatar {
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+margin-top:10px;
 }
 
 .tao-card-subtitle {
