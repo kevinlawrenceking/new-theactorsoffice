@@ -7793,7 +7793,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     height: auto; /* Maintain aspect ratio */
     object-fit: contain; /* Ensures proper fitting */
     min-width: 50px;
-    margin-top: -93px;
+    margin-top: -98px;
     padding: 5px;
     padding-bottom:2px;
 }
@@ -7806,5 +7806,5 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     font-weight: bold;
     color: #000;
     text-align: center;
-    margin-top: -23px; /* Reduce spacing */
+    margin-top: -26px; /* Reduce spacing */
 }
