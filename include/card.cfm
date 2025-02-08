@@ -33,18 +33,17 @@
             </div>
           </cfif>
 
-          <cfif card_image_yn eq "Y">
-            <div class="tao-card-#card_image_type#-container">
+<cfif card_image_yn eq "Y">
+  <div class="tao-card-image-container">
+    <div class="tao-card-#card_image_type#">
+      <img src="#card_image#" alt="profile-image" class="tao-card-#card_image_type#">
+      <cfif card_image_type eq "calendar">
+        <div class="calendar-year">#DateFormat(card_date, 'yyyy')#</div>
+      </cfif>
+    </div>
+  </div>
+</cfif>
 
-              <div class="tao-card-#card_image_type#">
-                <img src="#card_image#" alt="profile-image" class="tao-card-#card_image_type#">
-
-                  <cfif card_image_type eq "calendar">
-                    <div class="calendar-year">#DateFormat('5/1/2025','yyyy')#</div>
-                  </cfif>
-                </div>
-              </div>
-            </cfif>
 
             <!--- Right Section: Contact Info --->
             <div class="tao-card-info-avatar">

@@ -7757,6 +7757,14 @@ img.tao-card-avatar {
     justify-content: center; /* Centers text */
 }
 
+/* Calendar Year - Ensure Close Alignment */
+.calendar-year {
+
+    margin-top: -5px; /* Reduce space between the calendar and year */
+}
+
+
+
 /* Headshot thumbnails inside the modal */
 .headshot-thumbnail {
     width: 100px; /* Smaller images */
@@ -7831,16 +7839,18 @@ img.tao-card-avatar {
 /* Container for Calendar or Avatar */
 .tao-card-image-container {
     display: flex;
-    align-items: center; /* Centers the image vertically */
-    justify-content: center; /* Centers the image horizontally */
-    width: 30%; /* Keep the image section width */
-    min-height: 100px; /* Ensures consistent height */
+    flex-direction: column;
+    align-items: center; /* Centers horizontally */
+    justify-content: center; /* Centers vertically */
+    width: 30%; /* Adjust width */
+    min-height: 100px; /* Ensures section has enough height */
     overflow: hidden;
+    text-align: center;
 }
 
-/* Image (Calendar or Avatar) */
+/* Image (Avatar or Calendar) */
 .tao-card-image-container img {
-    width: 60px; /* Adjust as needed */
+    width: 60px; /* Adjust size */
     height: auto;
     max-height: 100%;
     object-fit: contain; /* Prevents distortion */
