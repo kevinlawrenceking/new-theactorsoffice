@@ -7538,12 +7538,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
     transition: all 0.2s ease-in-out;
     cursor: pointer;
-}
-
-.tao-card-md:hover {
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
-    background-color: rgba(0, 0, 0, 0.03);
+    min-height: 200px; /* Ensures uniform height */
 }
 
 /* HEADER */
@@ -7567,14 +7562,9 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     flex-grow: 1;
 }
 
-/* HEADER COLORS */
-.tao-card-header-light { background-color: #edeff1; color: #333; padding: 10px; border-radius: 5px 5px 0 0; }
-.tao-card-header-medium { background-color: #8a9ba8; color: #fff; padding: 10px; border-radius: 5px 5px 0 0; }
-.tao-card-header-dark { background-color: #6c757d; color: #f8f8ff; padding: 10px; border-radius: 5px 5px 0 0; }
-
 /* NAME */
 .tao-card-name {
-    font-weight: 400;
+    font-weight: 500;
     font-size: 1.2rem;
     color: #333;
     text-align: center;
@@ -7589,18 +7579,18 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 /* BODY */
 .tao-card-body {
     display: flex;
-    align-items: flex-start; /* Aligns everything to the top */
+    align-items: flex-start;
     padding: 8px;
-    height: 150px;
+    min-height: 150px; /* Fix uneven card height */
     gap: 10px;
 }
 
-/* IMAGE CONTAINER (LEFT) */
+/* IMAGE CONTAINER */
 .tao-card-image-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Ensures image stays at the top */
+    justify-content: flex-start;
     text-align: center;
     width: 80px;
     min-height: 100px;
@@ -7631,21 +7621,52 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     width: 70%;
 }
 
-/* Ensures Uniform Spacing */
-.tao-card-title, .tao-card-subtitle, .tao-card-company {
-    display: flex;
-    align-items: left;
+/* Title Badges */
+.tao-card-title span {
+    display: inline-block;
     font-size: 1.2rem;
-    min-height: 1.2rem;
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 4px;
 }
 
-/* CONTACT INFO */
+/* Ensure Role and Source Stay Separate */
+.tao-card-role-source {
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 5px;
+}
+
+/* Ensures Proper Line Spacing */
+.tao-card-role-source span {
+    display: block;
+    line-height: 1.2;
+}
+
+/* Company Name */
+.tao-card-company {
+    font-size: 0.9rem;
+    color: #595959;
+    min-height: 1rem;
+    margin-bottom: 4px;
+}
+
+/* Contact Info */
 .tao-card-contact {
-    font-size: 0.75rem !important;
+    font-size: 0.85rem;
     color: #777;
 }
 
-/* SOCIAL & FOOTER */
+/* Ensure Proper Spacing Between Contact Info */
+.tao-card-contact span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* FOOTER */
 .tao-card-footer {
     padding: 10px;
     background-color: #f8f9fa;
@@ -7653,9 +7674,10 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     justify-content: center;
     align-items: center;
     border-top: 1px solid #ddd;
-    max-height: 41px;
+    min-height: 40px;
 }
 
+/* Fix Social Icons */
 .tao-card-social {
     display: flex;
     justify-content: center;
