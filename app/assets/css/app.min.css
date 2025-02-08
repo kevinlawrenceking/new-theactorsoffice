@@ -7795,6 +7795,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     min-width: 50px;
     margin-top: -85px;
     padding: 5px;
+    padding-bottom:2px;
 }
 
 
