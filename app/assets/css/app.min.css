@@ -7578,8 +7578,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     overflow: hidden;
     text-overflow: ellipsis;
     background-color: #6c757d; /* Restore correct header background */
-    color: #f8f8ff; /* Light text for contrast */
-    font-weight: bold;
+    color: #fff; /* Light text for contrast */
 }
 
 /* HEADER TEXT */
