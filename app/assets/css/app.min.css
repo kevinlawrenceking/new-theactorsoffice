@@ -7781,7 +7781,8 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 }
 .calendar-year {
     font-size: 14px;
+    color: #000;
     font-weight: bold;
     text-align: center;
-    margin-top: -5px; /* Reduce spacing */
+    margin-top: -3px; /* Reduce spacing */
 }
