@@ -7633,10 +7633,10 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 /* FIX: UNIFORM HEIGHT FOR ALL CARDS */
 .tao-card-body {
     display: flex;
-    align-items: flex-start;
     padding: 8px;
     min-height: 170px; /* Ensures cards stay the same height */
     gap: 10px;
+    align-items: center; /* Ensures both the image and text stay aligned */
 }
 
 /* IMAGE CONTAINER - KEEPS IMAGE ALIGNED */
