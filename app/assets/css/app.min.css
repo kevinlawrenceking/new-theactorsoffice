@@ -7686,3 +7686,18 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 .tao-card-social a:hover {
     color: #007bff;
 }
+
+/* Hide icons unless they have content */
+.tao-card-contact i {
+    visibility: hidden;  /* Default: hidden */
+    width: 16px;
+    height: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Show icons only when content exists */
+.tao-card-contact i.has-content {
+    visibility: visible;
+}
