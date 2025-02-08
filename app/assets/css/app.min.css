@@ -7528,7 +7528,10 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     border-bottom-right-radius: 8px;
 }
 
-/* General Card Structure */
+
+
+
+/* Card Layout */
 .tao-card-md {
     display: flex;
     flex-direction: column;
@@ -7537,61 +7540,47 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s ease-in-out; /* Smooth transition */
-    cursor: pointer; /* Indicate clickability */
 }
 
-.tao-card-md:hover {
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15); /* Adds a soft shadow */
-    transform: translateY(-2px); /* Slight lift effect */
-    background-color: rgba(0, 0, 0, 0.03); /* Light background change */
-}
-
-.tao-card-md:active {
-    transform: scale(0.98); /* Slight press effect */
-}
-
-/* Header */
+/* Card Header - Ensures Consistent Spacing */
 .tao-card-header {
     display: flex;
-    align-items: center; 
+    align-items: center; /* Aligns content properly */
     justify-content: flex-start; /* Forces left alignment */
-    padding: 10px;
-    min-height: 40px; /* Uniform height */
-    white-space: nowrap; /* Prevents text wrapping */
+    padding: 0.5rem;
+    min-height: 40px; /* Keeps a uniform height */
+    white-space: nowrap; /* Prevents text from wrapping */
     overflow: hidden; /* Ensures it doesn’t exceed container */
     text-overflow: ellipsis; /* Adds '...' for overflow */
     max-width: 100%; /* Keeps it within the card */
 }
 
-/* Ensures header text does not overflow */
+/* Ensure the header text itself respects ellipsis */
 .tao-card-header-text {
     display: block;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    max-width: 100%;
+    max-width: 100%; /* Prevents overflow */
     flex-grow: 1; /* Allows text to take up available space */
 }
 
-/* Trash & View Icons */
+
+/* Trash Icon (Left) - Appears Only If Present */
 .trash-icon {
     font-size: 1.2rem;
     color: red;
     margin-left: 10px;
 }
 
+/* View Icon (Right) - Always Aligned */
 .view-icon {
     margin-left: auto; /* Pushes to the right */
     font-size: 1.3rem;
     color: #333;
-    margin-right: 10px;
+    margin-right: 10px; /* Keeps it aligned with the card's edge */
 }
 
-/* Header Colors */
-.tao-card-header-light { background-color: #edeff1; color: #333; padding: 10px; border-radius: 5px 5px 0 0; }
-.tao-card-header-medium { background-color: #8a9ba8; color: #fff; padding: 10px; border-radius: 5px 5px 0 0; }
-.tao-card-header-dark { background-color: #6c757d; color: #f8f8ff; padding: 10px; border-radius: 5px 5px 0 0; }
 
 /* Name - Full Width */
 .tao-card-name {
@@ -7601,46 +7590,21 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     text-align: center;
     padding: 8px 6px;
     width: 100%;
-    background-color: #f5f5f5; 
+    background-color: #f5f5f5; /* Light gray background */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-/* Body */
+/* Card Body: Split into Avatar (Left) & Info (Right) */
 .tao-card-body {
     display: flex;
+    flex-direction: row;
     align-items: center;
     padding: 8px;
-    height: 150px; /* Fixed height for alignment */
-}
-
-/* Image Container */
-.tao-card-image-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    text-align: center;
-    width: 80px;
-    min-height: 100px;
-}
-
-/* Avatar & Calendar Image Styling */
-.tao-card-avatar img,
-.tao-card-calendar img {
-    width: 60px;
-    height: auto;
-    object-fit: contain;
-}
-
-/* Calendar Year */
-.calendar-year {
-    font-size: 14px;
-    font-weight: bold;
-    color: #000;
-    text-align: center;
-    margin-top: 2px;
+    margin-top: 6px;
+    gap: 10px;
+    height: 150px;
 }
 
 /* Right Section: Contact Info */
@@ -7649,12 +7613,8 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     display: flex;
     flex-direction: column;
     padding-left: 15px;
+    flex-grow: 1;
     overflow: hidden;
-}
-
-/* Ensuring Consistent Spacing */
-.tao-card-info-avatar {
-    margin-top: 10px; /* Removed negative margins */
 }
 
 /* Contact Info */
@@ -7663,32 +7623,207 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     color: #777;
 }
 
-/* Title & Subtitle */
-.tao-card-title, .tao-card-subtitle {
+/* Company */
+.tao-card-company {
+    font-size:.8rem;
+
+    color: #595959;
+    min-height: 1rem; /* Same height as title */
+}
+
+/* FIXED: Keep Icons Aligned with Values */
+.tao-card-contact span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.tao-card-title {
+    min-height: 1.2rem; /* Ensures a fixed height */
     display: flex;
     align-items: left;
     font-size: 1.2rem;
-    min-height: 1.2rem;
+    /* removed justify-content: center;*/
 }
 
-/* Icons & Social */
-.tao-card-social {
+/* Ensure Proper Spacing for Text Section */
+.tao-card-info-avatar {
+
+margin-top:25px;
+}
+
+.tao-card-subtitle {
+    min-height: 1.1rem; /* Ensures a fixed height */
+    display: flex;
+    align-items: left;
+    font-size: 1.1rem;
+    /* removed justify-content: center;*/
+}
+/* Keeps height but makes element invisible */
+.tao-card-title .invisible {
+    visibility: hidden;
+}
+
+
+/* FIXED: Only Show Icons When Content Exists */
+.tao-card-contact i {
+    font-size: 14px;
+
+    visibility: hidden;
+    width: 16px;
+    height: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Show icon only if content exists */
+.tao-card-contact i.has-content {
+    visibility: visible;
+}
+
+/* Social Media Icons */
+.tao-card-footer {
+    padding: 10px;
+    background-color: #f8f9fa;
     display: flex;
     justify-content: center;
-    gap: 8px;
+    align-items: center;
+    border-top: 1px solid #ddd;
+    max-height: 41px;
+}
+
+.tao-card-social {
+    display: flex;
+    justify-content: center; /* Centers icons */
+    gap: 8px; /* Adds spacing between icons */
     padding: 10px 0;
 }
 
 .tao-card-social a {
     text-decoration: none;
     color: inherit;
-    font-size: 1.2rem;
+    font-size: 1.2rem; /* Adjust icon size */
     transition: color 0.2s ease-in-out;
 }
 
 .tao-card-social a:hover {
-    color: #007bff;
+    color: #007bff; /* Highlight on hover */
+}
+
+/* Headshot thumbnails inside the modal */
+.headshot-thumbnail {
+    width: 100px; /* Smaller images */
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+}
+
+/* Hover effect */
+.headshot-thumbnail:hover {
+    transform: scale(1.1);
+    border: 2px solid #007bff;
+    cursor: pointer;
+}
+
+/* Selected image effect */
+.headshot-thumbnail.selected {
+    border: 3px solid #28a745;
+}
+/* Dark Theme */
+.tao-card-name-color-dark {
+    background-color: #6c757d; /* Dark Gray */
+    color: #f8f8ff; /* Ghost White */
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+/* Light Theme */
+.tao-card-header-light, .tao-card-name-color-light {
+    background-color: #edeff1; /* Light Gray */
+    color: #333; /* Darker text for contrast */
+    padding: 10px;
+    border-radius: 5px 5px 0 0; /* Rounded top corners */
+
+}
+
+/* Medium Theme */
+.tao-card-header-medium, .tao-card-name-color-medium {
+    background-color: #8a9ba8; /* Soft Blue-Gray */
+    color: #ffffff; /* White Text */
+    padding: 10px;
+    border-radius: 5px 5px 0 0; /* Rounded top corners */
+
+}
+
+/* Dark Theme */
+.tao-card-header-dark, .tao-card-name-color-dark {
+    background-color: #6c757d; /* Dark Gray */
+    color: #f8f8ff; /* Light Text */
+    padding: 10px;
+    border-radius: 5px 5px 0 0; /* Rounded top corners */
+
+}
+
+
+.tao-card-md {
+    transition: all 0.2s ease-in-out; /* Smooth transition */
+    cursor: pointer; /* Indicate clickability */
+}
+
+.tao-card-md:hover {
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15); /* Adds a soft shadow */
+    transform: translateY(-2px); /* Slight lift effect */
+    background-color: rgba(0, 0, 0, 0.03); /* Light background change */
+}
+.tao-card-md:active {
+    transform: scale(0.98); /* Slight press effect */
 }
 
 
 
+.calendar-year {
+    font-size: 14px;
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+    margin-top: -3px; /* Reduce spacing */
+}
+
+/* Outer Container for Image (Calendar or Avatar) */
+.tao-card-image-container {
+
+
+
+    align-items: center;      /* Centers horizontally */
+    text-align: center;
+    width: 80px;   /*Ensures consistent width */
+    min-height: 100px; /* Prevents shrinking */
+    vertical-align: top !important;
+}
+
+
+/* Fixed Sizing for Calendar Image */
+.tao-card-calendar img {
+    width: 60px;  /* Fixed width */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensures proper fitting */
+    min-width: 50px;
+    margin-top:-20px;
+vertical-align:top;
+   
+}
+
+
+
+/* Calendar Year Styling */
+.calendar-year {
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    text-align: center;
+    margin-top:2px;
+
+}
