@@ -7791,6 +7791,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     width: 90%;  /* Fixed width */
     height: auto; /* Maintain aspect ratio */
     object-fit: contain; /* Ensures proper fitting */
+    min-width: 50px;
 }
 
 
