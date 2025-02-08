@@ -7636,12 +7636,20 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 }
 
 .tao-card-title {
-    min-height: 24px; /* Ensures a fixed height */
+    min-height: 1.2rem; /* Ensures a fixed height */
     display: flex;
     align-items: left;
+    font-size: 1.2rem;
     /* removed justify-content: center;*/
 }
 
+.tao-card-subtitle {
+    min-height: 1.1rem; /* Ensures a fixed height */
+    display: flex;
+    align-items: left;
+    font-size: 1.1rem;
+    /* removed justify-content: center;*/
+}
 /* Keeps height but makes element invisible */
 .tao-card-title .invisible {
     visibility: hidden;
