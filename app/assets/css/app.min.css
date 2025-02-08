@@ -7762,3 +7762,26 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 .tao-card-md:active {
     transform: scale(0.98); /* Slight press effect */
 }
+
+
+/* Calendar Container - Ensures Proper Alignment */
+.tao-card-calendar {
+    display: flex;
+    flex-direction: column; /* Stack calendar image & year */
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    text-align: center;
+    width: 100%; /* Ensures it doesn't shrink */
+    max-width: 100%;
+}
+.tao-card-calendar img {
+    width: 80px; /* Fixed width for uniformity */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Prevents stretching */
+}
+.calendar-year {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: -5px; /* Reduce spacing */
+}
