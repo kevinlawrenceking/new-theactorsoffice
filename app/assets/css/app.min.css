@@ -7598,7 +7598,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 6px;
+    padding: 8px;
     gap: 10px;
 }
 
