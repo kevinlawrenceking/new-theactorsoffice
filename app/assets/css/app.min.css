@@ -7780,11 +7780,9 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     justify-content: center; /* Centers vertically */
     align-items: center;      /* Centers horizontally */
     text-align: center;
-    width: 100%;  /* Ensures consistent width */
-    min-height: 100px; /* Prevents shrinking */
+    /*width: 100%;   Ensures consistent width */
+   /* min-height: 100px; /* Prevents shrinking */
 }
-
-
 
 /* Calendar Container - Ensures Proper Alignment */
 .tao-card-calendar {
@@ -7796,11 +7794,18 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     width: 100%; /* Ensures it doesn't shrink */
     max-width: 100%;
 }
+
+
+/* Fixed Sizing for Calendar Image */
 .tao-card-calendar img {
-    width: 60px; /* Fixed width for uniformity */
+    width: 60px;  /* Fixed width */
     height: auto; /* Maintain aspect ratio */
-    object-fit: contain; /* Prevents stretching */
+    object-fit: contain; /* Ensures proper fitting */
 }
+
+
+
+
 
 
 /* Calendar Year Styling */
