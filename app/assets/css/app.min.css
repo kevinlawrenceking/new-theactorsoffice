@@ -7788,7 +7788,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 
 /* Fixed Sizing for Calendar Image */
 .tao-card-calendar img {
-    width: 60px;  /* Fixed width */
+    width: 65px;  /* Fixed width */
     height: auto; /* Maintain aspect ratio */
     object-fit: contain; /* Ensures proper fitting */
     min-width: 50px;
