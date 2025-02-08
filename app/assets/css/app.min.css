@@ -7776,9 +7776,9 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 
 /* Outer Container for Image (Calendar or Avatar) */
 .tao-card-image-container {
-    display: flex;
-    flex-direction: column;  /* Ensures elements stack vertically */
-    justify-content: center; /* Centers vertically */
+
+
+
     align-items: center;      /* Centers horizontally */
     text-align: center;
     width: 80px;   /*Ensures consistent width */
