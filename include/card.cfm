@@ -49,7 +49,8 @@
 
 
 
-        <!--- Right Section: Contact Info --->
+     
+<!--- Right Section: Contact Info --->
 <div class="tao-card-info-avatar">
   <!--- Title Badge --->
   <p class="tao-card-title">
@@ -59,9 +60,13 @@
       </span>
     <cfelse>
       #card_title#
-      <cfif card_subtitle neq ""><br>#card_subtitle#</cfif>
+      <cfif card_subtitle neq "">
+        <br><span class="tao-card-subtitle">#card_subtitle#</span>
+      </cfif>
     </cfif>
   </p>
+
+
 
 
 
