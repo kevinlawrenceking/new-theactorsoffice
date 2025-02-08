@@ -49,31 +49,20 @@
 
 
 
-            <!--- Right Section: Contact Info --->
-            <div class="tao-card-info-avatar">
-              <!--- Title Badge --->
-              <p class="tao-card-title">
-                <Cfif card_badge_yn eq "N">
-                  <cfif card_title neq "NULL">
-                    <span >
-                      <strong>#card_title#</strong>
-                        <br>#card_subtitle#
-                    </span>
-                  <cfelse>
-                    <span >
-                      <strong>#card_title#</strong>
-                        <br>#card_subtitle#
-                    </span>
-                  </cfif>
-                <cfelseif card_badge_yn eq "Y">
-                  <cfif card_title neq "NULL">
-                    <span class="badge badge-blue">#card_title#</span>
-                  <cfelse>
-                    <span class="badge badge-blue invisible">&nbsp;</span>
-                  </cfif>
-                
-                </cfif>
-              </p>
+        <!--- Right Section: Contact Info --->
+<div class="tao-card-info-avatar">
+  <!--- Title Badge --->
+  <p class="tao-card-title">
+    <cfif card_badge_yn eq "Y">
+      <span class="badge badge-blue">
+        <cfif card_title neq "NULL">#card_title#<cfelse>&nbsp;</cfif>
+      </span>
+    <cfelse>
+      <strong>#card_title#</strong><br>#card_subtitle#
+    </cfif>
+  </p>
+
+
 
  
               <!--- Company Name --->
