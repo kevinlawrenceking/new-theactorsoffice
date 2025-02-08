@@ -7780,7 +7780,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     justify-content: center; /* Centers vertically */
     align-items: center;      /* Centers horizontally */
     text-align: center;
-    width: 30%;   /*Ensures consistent width */
+    width: 33%;   /*Ensures consistent width */
     min-height: 100px; /* Prevents shrinking */
     vertical-align: top !important;
 }
@@ -7792,6 +7792,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     height: auto; /* Maintain aspect ratio */
     object-fit: contain; /* Ensures proper fitting */
     min-width: 50px;
+    margin-top: -15px;
 }
 
 
