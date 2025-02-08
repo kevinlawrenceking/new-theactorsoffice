@@ -7780,8 +7780,8 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     justify-content: center; /* Centers vertically */
     align-items: center;      /* Centers horizontally */
     text-align: center;
-    /*width: 100%;   Ensures consistent width */
-   /* min-height: 100px; /* Prevents shrinking */
+    width: 100%;   /*Ensures consistent width */
+    min-height: 100px; /* Prevents shrinking */
 }
 
 /* Calendar Container - Ensures Proper Alignment */
