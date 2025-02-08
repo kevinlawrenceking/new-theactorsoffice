@@ -7527,7 +7527,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     border-bottom-right-radius: 8px;
 }
 
-/* Card Layout */
+/* CARD LAYOUT */
 .tao-card-md {
     display: flex;
     flex-direction: column;
@@ -7538,10 +7538,10 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
     transition: all 0.2s ease-in-out;
     cursor: pointer;
-    min-height: 200px; /* Ensures uniform height */
+    min-height: 230px; /* Ensures all cards have uniform height */
 }
 
-/* HEADER */
+/* HEADER - RESTORED FORMATTING */
 .tao-card-header {
     display: flex;
     align-items: center;
@@ -7551,9 +7551,12 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 100%;
+    background-color: #6c757d; /* Restore correct header background */
+    color: #f8f8ff; /* Light text for contrast */
+    font-weight: bold;
 }
 
+/* HEADER TEXT */
 .tao-card-header-text {
     display: block;
     overflow: hidden;
@@ -7562,7 +7565,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     flex-grow: 1;
 }
 
-/* NAME */
+/* FIXED: NAME */
 .tao-card-name {
     font-weight: 500;
     font-size: 1.2rem;
@@ -7576,16 +7579,43 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     text-overflow: ellipsis;
 }
 
-/* BODY */
+/* FIXED: TITLE - REMOVE BLUE HYPERLINK COLOR */
+.tao-card-title {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #333; /* Ensures text is black/gray */
+    margin-bottom: 4px;
+}
+
+/* FIXED: Prevent text from running together */
+.tao-card-role-source {
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 5px;
+    white-space: normal;
+}
+
+/* FIXED: Prevent text cutoff */
+.tao-card-role-source span {
+    display: block;
+    line-height: 1.2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
+
+/* FIX: UNIFORM HEIGHT FOR ALL CARDS */
 .tao-card-body {
     display: flex;
     align-items: flex-start;
     padding: 8px;
-    min-height: 150px; /* Fix uneven card height */
+    min-height: 170px; /* Ensures cards stay the same height */
     gap: 10px;
 }
 
-/* IMAGE CONTAINER */
+/* IMAGE CONTAINER - KEEPS IMAGE ALIGNED */
 .tao-card-image-container {
     display: flex;
     flex-direction: column;
@@ -7597,14 +7627,14 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     flex-shrink: 0;
 }
 
-/* IMAGE */
-.tao-card-avatar img, .tao-card-calendar img {
+/* ENSURE PROPER SPACING FOR CALENDAR IMAGE */
+.tao-card-calendar img {
     width: 60px;
     height: auto;
     object-fit: contain;
 }
 
-/* Calendar Year */
+/* CALENDAR YEAR */
 .calendar-year {
     font-size: 14px;
     font-weight: bold;
@@ -7613,57 +7643,18 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     margin-top: 2px;
 }
 
-/* RIGHT SIDE (INFO) */
-.tao-card-info-avatar {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    width: 70%;
-}
-
-/* Title Badges */
-.tao-card-title span {
-    display: inline-block;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #007bff;
-    margin-bottom: 4px;
-}
-
-/* Ensure Role and Source Stay Separate */
-.tao-card-role-source {
-    display: flex;
-    flex-direction: column;
-    font-size: 1rem;
-    color: #444;
-    margin-bottom: 5px;
-}
-
-/* Ensures Proper Line Spacing */
-.tao-card-role-source span {
-    display: block;
-    line-height: 1.2;
-}
-
-/* Company Name */
-.tao-card-company {
-    font-size: 0.9rem;
-    color: #595959;
-    min-height: 1rem;
-    margin-bottom: 4px;
-}
-
-/* Contact Info */
+/* CONTACT INFO */
 .tao-card-contact {
     font-size: 0.85rem;
     color: #777;
 }
 
-/* Ensure Proper Spacing Between Contact Info */
-.tao-card-contact span {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+/* COMPANY NAME */
+.tao-card-company {
+    font-size: 0.9rem;
+    color: #595959;
+    min-height: 1rem;
+    margin-bottom: 4px;
 }
 
 /* FOOTER */
@@ -7677,7 +7668,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     min-height: 40px;
 }
 
-/* Fix Social Icons */
+/* SOCIAL ICONS */
 .tao-card-social {
     display: flex;
     justify-content: center;
