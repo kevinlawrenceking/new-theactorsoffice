@@ -7736,14 +7736,6 @@ img.tao-card-avatar {
     overflow: hidden;
 }
 
-.tao-card-calendar,
-.tao-card-avatar {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center horizontally */
-    justify-content: center; /* Ensure vertical alignment */
-}
-
 
 /* Calendar Image */
 .tao-card-calendar img {
@@ -7766,22 +7758,12 @@ img.tao-card-avatar {
     justify-content: center; /* Centers text */
 }
 
-
-/* Fix Image Sizing */
-.tao-card-calendar img,
-.tao-card-avatar img {
-    width: 70px; /* Adjust size */
-    height: auto;
-    object-fit: contain; /* Prevents stretching */
-}
-
-/* Ensure Calendar Year is Closer */
+/* Calendar Year - Ensure Close Alignment */
 .calendar-year {
-    font-size: 14px;
-    font-weight: bold;
-    text-align: center;
-    margin-top: -5px; /* Reduce spacing */
+
+    margin-top: -5px; /* Reduce space between the calendar and year */
 }
+
 
 
 /* Headshot thumbnails inside the modal */
@@ -7859,17 +7841,39 @@ img.tao-card-avatar {
 .tao-card-image-container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centers content horizontally */
-    justify-content: center; /* Ensures vertical centering */
-    width: 30%; /* Adjust width */
-    min-height: 100%; /* Take full height */
+    align-items: center; /* Centers horizontally */
+    justify-content: center; /* Forces vertical alignment */
+    width: 30%; /* Ensures it takes up correct space */
+    height: 100%; /* Full height */
+    min-height: 120px; /* Prevents collapsing */
     text-align: center;
+    position: relative; /* Helps with absolute positioning */
 }
 
-/* Image (Avatar or Calendar) */
-.tao-card-image-container img {
-    width: 60px; /* Adjust size */
+/* Image Styling (For Both Avatar & Calendar) */
+.tao-card-calendar,
+.tao-card-avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Ensure it stays centered */
+    justify-content: center;
+    width: 100%; /* Prevents unnecessary shrinking */
+    max-width: 100%;
+}
+/* Fix Image Sizing */
+.tao-card-calendar img,
+.tao-card-avatar img {
+    width: 80px; /* Adjust size */
     height: auto;
-    max-height: 100%;
-    object-fit: contain; /* Prevents distortion */
+    object-fit: contain; /* Prevents stretching */
+}
+
+/* Ensure Calendar Year is Closer */
+.calendar-year {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: -5px; /* Reduce spacing */
+    position: absolute;
+    bottom: -5px; /* Move closer to image */
 }
