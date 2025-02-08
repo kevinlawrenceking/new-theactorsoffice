@@ -7643,6 +7643,14 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     /* removed justify-content: center;*/
 }
 
+/* Ensure Proper Spacing for Text Section */
+.tao-card-info-avatar {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 .tao-card-subtitle {
     min-height: 1.1rem; /* Ensures a fixed height */
     display: flex;
