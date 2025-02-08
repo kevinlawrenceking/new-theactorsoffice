@@ -7541,6 +7541,9 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     flex-grow: 1; /* Allows cards to stretch to match the tallest */
 }
 
+
+
+
 /* Ensures all cards in a row have the same height */
 .row {
     display: flex;
@@ -7555,6 +7558,12 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 
 @media (max-width: 768px) {
     .col-md-6 { width: 100%; } /* 1 column for small screens */
+}
+
+.tao-card-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch; /* Ensures all cards are the same height */
 }
 
 
