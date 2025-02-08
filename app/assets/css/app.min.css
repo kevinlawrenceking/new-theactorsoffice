@@ -7794,6 +7794,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     height: auto; /* Maintain aspect ratio */
     object-fit: contain; /* Ensures proper fitting */
     min-width: 50px;
+    margin-top:-60px;
 vertical-align:top;
    
 }
