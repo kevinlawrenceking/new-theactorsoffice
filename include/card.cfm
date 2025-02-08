@@ -58,7 +58,8 @@
         <cfif card_title neq "NULL">#card_title#<cfelse>&nbsp;</cfif>
       </span>
     <cfelse>
-      <strong>#card_title#</strong><br>#card_subtitle#
+      #card_title#
+      <cfif card_subtitle neq ""><br>#card_subtitle#</cfif>
     </cfif>
   </p>
 
