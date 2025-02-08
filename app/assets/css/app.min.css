@@ -7528,18 +7528,35 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 }
 
 /* CARD LAYOUT */
+/* Ensures consistent card height without fixed values */
 .tao-card-md {
     display: flex;
     flex-direction: column;
+    justify-content: space-between; /* Keeps content evenly spaced */
     width: 100%;
     background-color: #fff;
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s ease-in-out;
-    cursor: pointer;
-    min-height: 230px; /* Ensures all cards have uniform height */
+    flex-grow: 1; /* Allows cards to stretch to match the tallest */
 }
+
+/* Ensures all cards in a row have the same height */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch; /* Ensures all items stretch to the same height */
+}
+
+/* Responsive Grid Layout */
+@media (max-width: 1200px) {
+    .col-lg-3 { width: 50%; } /* 2 columns */
+}
+
+@media (max-width: 768px) {
+    .col-md-6 { width: 100%; } /* 1 column for small screens */
+}
+
 
 /* HEADER - RESTORED FORMATTING */
 .tao-card-header {
