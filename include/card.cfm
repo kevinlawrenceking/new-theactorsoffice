@@ -57,10 +57,12 @@
                   <cfif card_title neq "NULL">
                     <span >
                       <strong>#card_title#</strong>
+                        <br>#card_subtitle#
                     </span>
                   <cfelse>
                     <span >
                       <strong>#card_title#</strong>
+                        <br>#card_subtitle#
                     </span>
                   </cfif>
                 <cfelseif card_badge_yn eq "Y">
@@ -69,7 +71,7 @@
                   <cfelse>
                     <span class="badge badge-blue invisible">&nbsp;</span>
                   </cfif>
-                  <br>#card_subtitle#
+                
                 </cfif>
               </p>
 
