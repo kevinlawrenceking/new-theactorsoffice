@@ -7845,6 +7845,7 @@ img.tao-card-avatar {
     width: 30%; /* Adjust width */
     min-height: 100px; /* Ensures section has enough height */
     overflow: hidden;
+    height: 100%;
     text-align: center;
 }
 
