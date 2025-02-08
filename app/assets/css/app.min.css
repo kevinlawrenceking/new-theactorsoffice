@@ -7780,21 +7780,12 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     justify-content: center; /* Centers vertically */
     align-items: center;      /* Centers horizontally */
     text-align: center;
-    width: 100%;   /*Ensures consistent width */
+    width: 30%;   /*Ensures consistent width */
     min-height: 100px; /* Prevents shrinking */
 }
 
 
-/* Calendar Container - Ensures Proper Alignment */
-.tao-card-calendar {
-    display: flex;
-    flex-direction: column; /* Stack calendar image & year */
-    align-items: center; /* Center horizontally */
-    justify-content: center; /* Center vertically */
-    text-align: center;
-width: 25%;
 
-}
 
 
 /* Fixed Sizing for Calendar Image */
