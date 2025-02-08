@@ -7792,7 +7792,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     align-items: center; /* Center horizontally */
     justify-content: center; /* Center vertically */
     text-align: center;
-    width: 100%; /* Ensures it doesn't shrink */
+
     max-width: 100%;
 }
 
