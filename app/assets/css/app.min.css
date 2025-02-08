@@ -7764,21 +7764,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 }
 
 
-/* Calendar Container - Ensures Proper Alignment */
-.tao-card-calendar {
-    display: flex;
-    flex-direction: column; /* Stack calendar image & year */
-    align-items: center; /* Center horizontally */
-    justify-content: center; /* Center vertically */
-    text-align: center;
-    width: 100%; /* Ensures it doesn't shrink */
-    max-width: 100%;
-}
-.tao-card-calendar img {
-    width: 80px; /* Fixed width for uniformity */
-    height: auto; /* Maintain aspect ratio */
-    object-fit: contain; /* Prevents stretching */
-}
+
 .calendar-year {
     font-size: 14px;
     color: #000;
@@ -7796,6 +7782,41 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     text-align: center;
     width: 100%;  /* Ensures consistent width */
     min-height: 100px; /* Prevents shrinking */
+}
+
+/* Inner Calendar Styling */
+.tao-card-calendar {
+    display: flex;
+    flex-direction: column; /* Stack calendar image & year */
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Fixed Sizing for Calendar Image */
+.tao-card-calendar img {
+    width: 80px;  /* Fixed width */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Ensures proper fitting */
+}
+
+
+/* Calendar Container - Ensures Proper Alignment */
+.tao-card-calendar {
+    display: flex;
+    flex-direction: column; /* Stack calendar image & year */
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    text-align: center;
+    width: 100%; /* Ensures it doesn't shrink */
+    max-width: 100%;
+}
+.tao-card-calendar img {
+    width: 80px; /* Fixed width for uniformity */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Prevents stretching */
 }
 
 
