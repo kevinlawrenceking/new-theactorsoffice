@@ -7782,6 +7782,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     text-align: center;
     width: 30%;   /*Ensures consistent width */
     min-height: 100px; /* Prevents shrinking */
+    vertical-align: top !important;
 }
 
 
