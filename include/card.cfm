@@ -72,6 +72,10 @@
                 </cfif>
               </p>
 
+   <p class="tao-card-subtitle">
+#card_subtitle#
+   </p>
+
               <!--- Company Name --->
               <p class="tao-card-company">
                 <cfif card_company neq "NULL">#card_company#</cfif>
