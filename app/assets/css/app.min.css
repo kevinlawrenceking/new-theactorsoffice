@@ -7659,7 +7659,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     padding-top: 7px;
     display: flex;
     align-items: center; /* Ensures the image aligns with text */
-    justify-content: center;
+    justify-self: center;
 }
 
 /* CALENDAR YEAR */
