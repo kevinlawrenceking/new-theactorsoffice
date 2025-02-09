@@ -7284,8 +7284,7 @@ body[data-leftbar-size=condensed] .user-box {
     justify-content: flex-start;
     padding: 2px 6px;
     border-radius: 3px;
-    font-size: 13px;
-    font-weight: 600;
+    font-size: 12px;
     box-shadow: 2px 5px 10px rgba(50, 58, 70, .15);
     white-space: nowrap; /* Prevents text from wrapping */
 }
