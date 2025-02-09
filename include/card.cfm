@@ -73,7 +73,7 @@
 <p class="tao-card-contact">
   <cfif card_source neq "">
     <span class="contact-item">
-      <i class="mdi mdi-map-marker-question-outline <cfif card_source neq ''>has-content</cfif>"></i>
+      <i class="mdi mdi-pin <cfif card_source neq ''>has-content</cfif>"></i>
       <cfif card_source neq ''>#card_source#<cfelse>&nbsp;</cfif>
     </span>
   </cfif>
