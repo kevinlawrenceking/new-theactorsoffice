@@ -7211,14 +7211,14 @@ body[data-leftbar-size=condensed] .user-box {
     overflow: visible !important; /* Prevents clipping */
     width: 80px; /* Reduced width */
     height: 80px; /* Reduced height */
-    z-index: 50; /* Higher than .tao-card-md */
+    z-index: 999; /* Higher than .tao-card-md */
     overflow: visible !important;
     pointer-events: none;
 }
 
 /* When card is hovered, prevent the ribbon from disappearing */
 .tao-card-md:hover .ribbon {
-    z-index: 100 !important; /* Keeps it on top */
+    z-index: 9999 !important; /* Keeps it on top */
 }
 
 /* Ribbon Styling */
