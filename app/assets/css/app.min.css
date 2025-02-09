@@ -7203,7 +7203,7 @@ body[data-leftbar-size=condensed] .user-box {
 .ribbon {
     position: absolute;
     right: -6px; /* Moved 2px right */
-    top: -2px; /* Moved 2px up */
+    top: 1px; /* Moved 2px up */
     z-index: 10; /* Keeps it above content */
     overflow: visible !important; /* Prevents clipping */
     width: 80px; /* Reduced width */
