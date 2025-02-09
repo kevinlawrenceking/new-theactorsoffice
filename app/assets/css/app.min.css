@@ -7202,33 +7202,34 @@ body[data-leftbar-size=condensed] .user-box {
 /* Ribbon Positioned on Top-Right */
 .ribbon {
     position: absolute;
-    right: -4px; /* Pulls it closer */
-    top: -4px; /* Brings it tighter to the corner */
-    z-index: 10; /* Ensures it's above the card */
+    right: -2px; /* Moved 2px right */
+    top: -2px; /* Moved 2px up */
+    z-index: 10; /* Keeps it above content */
     overflow: visible !important; /* Prevents clipping */
-    width: 90px; /* Adjusted */
-    height: 90px;
+    width: 80px; /* Reduced width */
+    height: 80px; /* Reduced height */
 }
 
 /* Ribbon Styling */
 .ribbon span {
-    font-size: 0.8rem;
+    font-size: 0.75rem; /* Slightly smaller text */
     color: #fff;
     text-transform: uppercase;
     text-align: center;
     font-weight: bold;
-    line-height: 32px;
+    line-height: 28px; /* Reduced line height */
     transform: rotate(45deg);
-    width: 120px;
+    width: 110px; /* Reduced width */
     display: block;
     background: #28a745;
     box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 0.8);
     position: absolute;
-    top: 15px; /* Slightly higher */
-    right: -30px; /* Adjusted */
+    top: 13px; /* Adjusted for better fit */
+    right: -27px; /* Slightly moved to align */
+    padding: 3px 5px; /* Less padding */
 }
 
-/* Fixes the Bottom Triangle */
+/* Triangle Fix */
 .ribbon span::before,
 .ribbon span::after {
     content: '';
@@ -7240,17 +7241,17 @@ body[data-leftbar-size=condensed] .user-box {
 /* Left Side Triangle */
 .ribbon span::before {
     left: 0px;
-    border-left: 5px solid #1e7e34;
-    border-right: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-top: 5px solid #1e7e34;
+    border-left: 4px solid #1e7e34;
+    border-right: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-top: 4px solid #1e7e34;
 }
 
 /* Right Side Triangle */
 .ribbon span::after {
     right: 0px;
-    border-right: 5px solid #1e7e34;
-    border-left: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-top: 5px solid #1e7e34;
+    border-right: 4px solid #1e7e34;
+    border-left: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-top: 4px solid #1e7e34;
 }
