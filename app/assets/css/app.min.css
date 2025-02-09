@@ -7668,11 +7668,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     margin-top: 2px;
 }
 
-/* CONTACT INFO */
-.tao-card-contact {
-    font-size: 0.75rem;
-    color: #777;
-}
+
 
 /* COMPANY NAME */
 .tao-card-company {
@@ -7722,8 +7718,10 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     flex-direction: column; /* Forces items to stack vertically */
     align-items: flex-start; /* Aligns items to the left */
     gap: 5px; /* Adds spacing between lines */
+    color: #777;
+    font-size: 0.75rem!important;
+    max-width: 100%; /* Prevents overflow */
 }
-
 
 .contact-item {
     display: flex; /* Allows icon and text to align properly */
