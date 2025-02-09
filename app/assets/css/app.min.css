@@ -6968,8 +6968,8 @@ body[data-leftbar-size=condensed] .user-box {
 /* Ribbon Positioned on Top-Right */
 .ribbon-box {
     position: absolute;  /* Absolute to align inside .tao-card-md */
-    top: -5px;  /* Adjust to perfectly touch the card edge */
-    right: -5px;  /* Adjust for proper placement */
+    top: 15px;  /* Adjust to perfectly touch the card edge */
+    right: 65px;  /* Adjust for proper placement */
     z-index: 10;  /* Ensure it's above content */
     overflow: visible !important; /* Prevents clipping */
 }
