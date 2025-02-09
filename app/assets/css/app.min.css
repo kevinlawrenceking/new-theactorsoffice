@@ -7574,7 +7574,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 
   .ribbon {
     position: absolute;
-    right: -4px;
+    right: -3px;
     top: -3px;
     z-index: 1;
     overflow: hidden;
@@ -7618,6 +7618,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
      border-left: 3px solid transparent;
      border-bottom: 3px solid transparent;
      border-top: 3px solid #79A70A;
+     background-color: #000;
   }
   
   
