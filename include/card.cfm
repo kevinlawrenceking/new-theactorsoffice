@@ -8,13 +8,17 @@
               <!--- Top Ribbon (e.g., "Booked") ---> 
 
 
-<div class="gox">
-  <div class="ribbon"><span>Booked</span></div>
-</div>
+ 
+
+ 
 
         <!--- Header --->
         <cfif card_header_yn eq "Y">
           <div class="tao-card-header tao-card-header-#namecolor#">
+
+            <div class="ribbon"><span>Booked</span></div>
+
+            
             <cfif card_header_text neq "">
               <span class="tao-card-header-text">#card_header_text#</span>
             </cfif>
