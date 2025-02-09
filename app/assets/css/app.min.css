@@ -6982,7 +6982,10 @@ body[data-leftbar-size=condensed] .user-box {
     transition: all 0.2s ease-in-out; /* Smooth transition */
     cursor: pointer; /* Indicate clickability */
     position: relative;  /* Required for the ribbon positioning */
-    overflow: visible;   /* Prevents clipping */
+    overflow: visible !important;   /* Prevents clipping */
+    z-index: 5;  /* Ensures it's above adjacent cards */
+
+
 }
 
 /* Ensures all cards in a row have the same height */
