@@ -7222,16 +7222,15 @@ body[data-leftbar-size=condensed] .user-box {
 
 /* Ribbon Styling */
 .ribbon span {
-    font-size: 0.75rem; /* Slightly smaller text */
+    font-size: 0.7rem; /* Slightly smaller text */
     color: #fff;
     text-transform: uppercase;
     text-align: center;
-    font-weight: bold;
     line-height: 20px; /* Reduced line height */
     transform: rotate(45deg);
     width: 110px; /* Reduced width */
     display: block;
-    background: #28a745;
+    background: #1abc9c;
     box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 0.8);
     position: absolute;
     top: 13px; /* Adjusted for better fit */
