@@ -6,6 +6,13 @@
       </cfif>
       <div class="tao-card-md">
 
+              <!--- Top Ribbon (e.g., "Booked") ---> 
+<cfif card_top_ribbon neq ""> 
+    <div class="ribbon-box">
+        <div class="ribbon-two">#card_top_ribbon#</div>
+    </div> 
+</cfif>
+
         <!--- Header --->
         <cfif card_header_yn eq "Y">
           <div class="tao-card-header tao-card-header-#namecolor#">
@@ -26,12 +33,7 @@
         <!--- Card Body (Avatar & Contact Info) --->
         <div class="tao-card-body">
 
-        <!--- Top Ribbon (e.g., "Booked") ---> 
-<cfif card_top_ribbon neq ""> 
-    <div class="ribbon-box">
-        <div class="ribbon-two">#card_top_ribbon#</div>
-    </div> 
-</cfif>
+
 
           <cfif card_image_yn eq "Y">
             <div class="tao-card-image-container">
