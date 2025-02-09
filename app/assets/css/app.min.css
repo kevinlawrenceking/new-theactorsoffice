@@ -6992,7 +6992,7 @@ body[data-leftbar-size=condensed] .user-box {
 .ribbon-two::before {
     content: "";
     position: absolute;
-    top: -20px;  /* Adjust to perfectly touch the card edge */
+    top: -10px;  /* Adjust to perfectly touch the card edge */
     right: 9px;  
     transform: translateX(50%);
     border-style: solid;
