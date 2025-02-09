@@ -6964,11 +6964,6 @@ body[data-leftbar-size=condensed] .user-box {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
   }
 
-/* Ensure the card is positioned relative for absolute positioning */
-.tao-card-md {
-    position: relative;  /* Required for the ribbon positioning */
-    overflow: visible;   /* Prevents clipping */
-}
 
 /* Ribbon Positioned on Top-Right */
 .ribbon-box {
@@ -7367,8 +7362,9 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     flex-grow: 1; /* Allows cards to stretch to match the tallest */
     transition: all 0.2s ease-in-out; /* Smooth transition */
     cursor: pointer; /* Indicate clickability */
+    position: relative;  /* Required for the ribbon positioning */
+    overflow: visible;   /* Prevents clipping */
 }
-
 
 /* Ensures all cards in a row have the same height */
 .row {
