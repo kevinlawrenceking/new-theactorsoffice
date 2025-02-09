@@ -6983,7 +6983,6 @@ body[data-leftbar-size=condensed] .user-box {
     cursor: pointer; /* Indicate clickability */
     position: relative;  /* Required for the ribbon positioning */
     overflow: visible;   /* Prevents clipping */
-    z-index: 2;  /* Ensures it's above adjacent cards */
 
 
 }
