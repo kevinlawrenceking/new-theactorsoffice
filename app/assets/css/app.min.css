@@ -7579,10 +7579,10 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     float: left;
     margin: 20px;
   }
-  
+
   .ribbon {
     position: absolute;
-    right: -3px;
+    right: -2px;
     top: -3px;
     z-index: 1;
     overflow: hidden;
