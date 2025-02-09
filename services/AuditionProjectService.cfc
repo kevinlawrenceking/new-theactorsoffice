@@ -1313,6 +1313,7 @@ ORDER BY label
                 c2.recordname AS contactname, 
                 c.recordname,
                 sc.audsubcatname, 
+                rt.audroletype,
                 CONCAT_WS("|", p.projname, rt.audroletype, c.recordname, st.audstep, rt.audroletype, s.audsource, p.projdescription) AS search_query,
                 GROUP_CONCAT(c3.recordname) AS contacts_list
             FROM audprojects p
