@@ -134,6 +134,17 @@
                 </div>
               </div>
             </cfif>
+<div class="ribbon-straight-box">
+    <div class="ribbon-straight ribbon-straight-pin">
+        <i class="mdi mdi-map-marker"></i> Pin
+    </div>
+    <div class="ribbon-straight ribbon-straight-redirect">
+        <i class="mdi mdi-swap-horizontal"></i> Redirect
+    </div>
+    <div class="ribbon-straight ribbon-straight-callback">
+        <i class="mdi mdi-phone-incoming"></i> Callback
+    </div>
+</div>
 
           </div>
           <!--- End tao-card-md --->
