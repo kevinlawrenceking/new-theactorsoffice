@@ -274,6 +274,7 @@
         <cfset card_image_type = "calendar"/>
         <cfset card_image_yn = "Y"/>
         <cfset card_badge_yn = "N" />
+    
 
 <cfoutput>
 
@@ -288,6 +289,8 @@
                         <cfelseif results.iscallback eq "1">
                             <cfset col6 = "Callback">
                         </cfif>
+
+    <cfset card_ribbon_straight = col6 />
 
                         <!--- Card Layout --->
                 <div class="col">
