@@ -7570,3 +7570,11 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 .tao-card-md:active {
     transform: scale(0.98); /* Slight press effect */
 }
+.ribbon-box .ribbon-Callback {
+	background: #A1D9EC;
+    color: #000
+}
+
+.ribbon-box .ribbon-Callback:before {
+	border-color: #84b1c0 transparent transparent
+}
