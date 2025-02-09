@@ -16,7 +16,7 @@
         <cfif card_header_yn eq "Y">
           <div class="tao-card-header tao-card-header-#namecolor#">
 
-            <div class="ribbon"><span>Booked</span></div>
+            <div class="ribbon"><span>#card_top_ribbon#</span></div>
 
             
             <cfif card_header_text neq "">
