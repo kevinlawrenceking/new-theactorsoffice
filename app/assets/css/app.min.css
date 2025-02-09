@@ -7539,9 +7539,9 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     overflow: hidden;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
     flex-grow: 1; /* Allows cards to stretch to match the tallest */
+    transition: all 0.2s ease-in-out; /* Smooth transition */
+    cursor: pointer; /* Indicate clickability */
 }
-
-
 
 
 /* Ensures all cards in a row have the same height */
@@ -7742,4 +7742,17 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     font-size: 1.1rem; /* Slightly smaller than title */
     color: #555; /* Subtle, but not too faded */
     display: block; /* Ensures it sits below the title */
+}
+
+
+/* Hover Effect - Subtle Shadow & Lift */
+.tao-card-md:hover {
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15); /* Adds a soft shadow */
+    transform: translateY(-2px); /* Slight lift effect */
+    background-color: rgba(0, 0, 0, 0.03); /* Light background change */
+}
+
+/* Active State - Slight Press Effect */
+.tao-card-md:active {
+    transform: scale(0.98); /* Slight press effect */
 }
