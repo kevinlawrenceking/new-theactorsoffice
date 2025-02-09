@@ -7270,7 +7270,7 @@ body[data-leftbar-size=condensed] .user-box {
 .ribbon-straight-box {
     position: absolute;
     bottom: 10px; /* Anchored to the bottom */
-    right: 10px; /* Anchored to the right */
+    right: -10px; /* Anchored to the right */
     display: flex;
     flex-direction: column; /* Stacks multiple ribbons */
     gap: 5px; /* Space between multiple ribbons */
@@ -7282,7 +7282,7 @@ body[data-leftbar-size=condensed] .user-box {
     display: inline-flex;
     align-items: center;
     justify-content: flex-start;
-    padding: 5px 12px;
+    padding: 2px 6px;
     border-radius: 3px;
     font-size: 13px;
     font-weight: 600;
