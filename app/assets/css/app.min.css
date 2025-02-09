@@ -6993,6 +6993,7 @@ body[data-leftbar-size=condensed] .user-box {
     display: flex;
     flex-wrap: wrap;
     align-items: stretch; /* Ensures all items stretch to the same height */
+    overflow: visible !important; /* Allows ribbon overflow */
 }
 
 /* Responsive Grid Layout */
