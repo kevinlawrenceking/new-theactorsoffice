@@ -7337,15 +7337,6 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 	border-top: 3px solid #c0d5e0
 }
 
-/* Top Ribbon (Success) */
-.ribbon-two {
-    position: absolute;
-    color: #fff;
-    padding: 5px 10px;
-    font-size: 0.85rem;
-    border-top-left-radius: 8px;
-    border-bottom-right-radius: 8px;
-}
 
 /* CARD LAYOUT */
 /* Ensures consistent card height without fixed values */
