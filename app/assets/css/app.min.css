@@ -7607,7 +7607,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 /* FIXED: TITLE - REMOVE BLUE HYPERLINK COLOR */
 .tao-card-title {
     font-weight: 500;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: #333; /* Ensures text is black/gray */
 }
 
