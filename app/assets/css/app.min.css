@@ -7216,6 +7216,11 @@ body[data-leftbar-size=condensed] .user-box {
     pointer-events: none;
 }
 
+/* When card is hovered, prevent the ribbon from disappearing */
+.tao-card-md:hover .ribbon {
+    z-index: 100 !important; /* Keeps it on top */
+}
+
 /* Ribbon Styling */
 .ribbon span {
     font-size: 0.75rem; /* Slightly smaller text */
