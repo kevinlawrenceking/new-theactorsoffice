@@ -26,12 +26,12 @@
         <!--- Card Body (Avatar & Contact Info) --->
         <div class="tao-card-body">
 
-          <!--- Top Ribbon (e.g., "Booked") --->
-          <cfif card_top_ribbon neq "">
-            <div class="ribbon-two ribbon-two-success" style="background-color: ##28a745;">
-              <span>#card_top_ribbon#</span>
-            </div>
-          </cfif>
+        <!--- Top Ribbon (e.g., "Booked") ---> 
+<cfif card_top_ribbon neq ""> 
+    <div class="ribbon-box">
+        <div class="ribbon-two">#card_top_ribbon#</div>
+    </div> 
+</cfif>
 
           <cfif card_image_yn eq "Y">
             <div class="tao-card-image-container">
