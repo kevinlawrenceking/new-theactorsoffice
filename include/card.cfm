@@ -35,11 +35,11 @@
 
         <!--- Card Body (Avatar & Contact Info) --->
         <div class="tao-card-body">
-
+<cfif #isdefined('asdfsdf')#>
 <div class="ribbon ribbon-Callback float-end">
                                     <i class="mdi mdi-access-point me-1"></i>
                                     Callback</div>
-
+</cfif>
 
           <cfif card_image_yn eq "Y">
             <div class="tao-card-image-container">
