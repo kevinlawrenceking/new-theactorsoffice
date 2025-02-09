@@ -7135,15 +7135,20 @@ body[data-leftbar-size=condensed] .user-box {
 	border-color: #2d67be transparent transparent
 }
 
-.ribbon-box .ribbon-two {
-	position: absolute;
-	left: -5px;
-	top: -5px;
-	z-index: 1;
-	overflow: hidden;
-	width: 75px;
-	height: 75px;
-	text-align: right
+/* Ribbon Positioned on Top-Right */
+.ribbon-two {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #28a745; /* Success Green */
+    color: white;
+    padding: 8px 15px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transform: rotate(45deg);
+    transform-origin: top right;
+    box-shadow: 2px 5px 10px rgba(50, 58, 70, 0.15);
 }
 
 .ribbon-box .ribbon-two span {
@@ -7159,6 +7164,17 @@ body[data-leftbar-size=condensed] .user-box {
 	top: 19px;
 	left: -21px;
 	font-weight: 600
+}
+
+/* Optional: If You Want a Shadow Underneath */
+.ribbon-two::before {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid rgba(0, 0, 0, 0.2);
 }
 
 .ribbon-box .ribbon-two span:before {
@@ -7536,6 +7552,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     width: 100%;
     background-color: #fff;
     border-radius: 8px;
+    position: relative;
     overflow: hidden;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
     flex-grow: 1; /* Allows cards to stretch to match the tallest */
