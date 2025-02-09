@@ -5,7 +5,12 @@
       <a href="#card_details#" title="View Details">
       </cfif>
       <div class="tao-card-md">
-
+              <!--- Top Ribbon (e.g., "Booked") ---> 
+<cfif card_top_ribbon neq ""> 
+    <div class="ribbon-box">
+        <div class="ribbon-two">#card_top_ribbon#</div>
+    </div> 
+</cfif>
 
 
         <!--- Header --->
@@ -24,12 +29,7 @@
           </p>
 
         </cfif>
-              <!--- Top Ribbon (e.g., "Booked") ---> 
-<cfif card_top_ribbon neq ""> 
-    <div class="ribbon-box">
-        <div class="ribbon-two">#card_top_ribbon#</div>
-    </div> 
-</cfif>
+
         <!--- Card Body (Avatar & Contact Info) --->
         <div class="tao-card-body">
 

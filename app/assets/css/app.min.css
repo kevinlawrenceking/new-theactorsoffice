@@ -7135,19 +7135,26 @@ body[data-leftbar-size=condensed] .user-box {
 	border-color: #2d67be transparent transparent
 }
 
+/* Ensure the card is positioned relative for absolute positioning */
+.tao-card-md {
+    position: relative;  /* Required for the ribbon positioning */
+    overflow: visible;   /* Prevents clipping */
+}
+
 /* Ribbon Positioned on Top-Right */
 .ribbon-box {
-    position: relative;
-    top: 26px;  /* Adjusted position */
-    right: -14px;  /* Adjusted to the corner */
+    position: absolute;  /* Absolute to align inside .tao-card-md */
+    top: -5px;  /* Adjust to perfectly touch the card edge */
+    right: -5px;  /* Adjust for proper placement */
     z-index: 10;  /* Ensure it's above content */
     overflow: visible !important; /* Prevents clipping */
 }
 
+/* Actual Ribbon */
 .ribbon-two {
     background-color: #28a745;
     color: #fff;
-    padding: 5px 10px;
+    padding: 5px 15px;
     font-size: 12px;
     font-weight: bold;
     text-transform: uppercase;
@@ -7157,37 +7164,18 @@ body[data-leftbar-size=condensed] .user-box {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
+/* Triangle to blend into the card */
 .ribbon-two::before {
     content: "";
     position: absolute;
     bottom: -5px;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     border-style: solid;
     border-width: 5px;
     border-color: transparent transparent #1e7e34 transparent;
 }
 
-
-
-
-.ribbon-box .ribbon-two span:before {
-	content: "";
-
-    top: 26px;
-    right:  -14px;
-	z-index: -1;
-	border-right: 3px solid transparent;
-	border-bottom: 3px solid transparent
-}
-
-.ribbon-box .ribbon-two span:after {
-	content: "";
-    top: 26px;
-    right:  -14px;
-	z-index: -1;
-	border-left: 3px solid transparent;
-	border-bottom: 3px solid transparent
-}
 
 .ribbon-box .ribbon-two-primary span {
 	background: #406E8E
