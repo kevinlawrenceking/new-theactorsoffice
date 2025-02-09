@@ -7,7 +7,7 @@
       <div class="tao-card-md">
               <!--- Top Ribbon (e.g., "Booked") ---> 
 
-<cfif #card_top_ribbon# is not "">
+<cfif card_top_ribbon neq "">
     <div class="ribbon"><span>#card_top_ribbon#</span></div>
 </cfif>
  
