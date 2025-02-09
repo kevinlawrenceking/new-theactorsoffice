@@ -7646,14 +7646,14 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     align-items: center;
     justify-content: flex-start;
     text-align: center;
-    width: 60px;
+    width: 80px;
     min-height: 100px;
     flex-shrink: 0;
 }
 
 /* ENSURE PROPER SPACING FOR CALENDAR IMAGE */
 .tao-card-calendar img {
-    width: 50px;
+    width: 60px;
     height: auto;
     object-fit: contain;
     padding-top: 7px;
