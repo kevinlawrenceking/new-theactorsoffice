@@ -6982,8 +6982,8 @@ body[data-leftbar-size=condensed] .user-box {
     transition: all 0.2s ease-in-out; /* Smooth transition */
     cursor: pointer; /* Indicate clickability */
     position: relative;  /* Required for the ribbon positioning */
-    overflow: visible !important;   /* Prevents clipping */
-    z-index: 5;  /* Ensures it's above adjacent cards */
+    overflow: visible;   /* Prevents clipping */
+    z-index: 2;  /* Ensures it's above adjacent cards */
 
 
 }
@@ -7211,7 +7211,8 @@ body[data-leftbar-size=condensed] .user-box {
     overflow: visible !important; /* Prevents clipping */
     width: 80px; /* Reduced width */
     height: 80px; /* Reduced height */
-    z-index: 20; /* Increased so it's above adjacent elements */
+    z-index: 50; /* Higher than .tao-card-md */
+    pointer-events: none; /* Prevents it from interfering with hover effects
 }
 
 /* Ribbon Styling */
