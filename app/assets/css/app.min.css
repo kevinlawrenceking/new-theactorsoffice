@@ -7717,10 +7717,19 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     visibility: hidden;  /* Default: hidden */
     width: 16px;
     height: 16px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    display: flex;
+    flex-direction: column; /* Forces items to stack vertically */
+    align-items: flex-start; /* Aligns items to the left */
+    gap: 5px; /* Adds spacing between lines */
 }
+
+
+.contact-item {
+    display: flex; /* Allows icon and text to align properly */
+    align-items: center;
+    gap: 5px; /* Space between icon and text */
+}
+
 
 /* Show icons only when content exists */
 .tao-card-contact i.has-content {
