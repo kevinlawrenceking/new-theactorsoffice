@@ -81,12 +81,11 @@
               <p class="tao-card-contact">
                 <Cfif card_casting neq "">
 
-                  <span>
 
-                    <strong>Casting:</strong>
-                    #card_casting#
-                  </span>
-
+                         <span>
+                  <i class="mdi mdi-clipboard-account <cfif card_casting neq ''>has-content</cfif>"></i>
+                  <cfif card_casting neq ''>#card_casting#<cfelse>&nbsp;</cfif>
+                </span>
                 </cfif>
 
                 <span>
