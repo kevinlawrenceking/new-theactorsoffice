@@ -7212,7 +7212,8 @@ body[data-leftbar-size=condensed] .user-box {
     width: 80px; /* Reduced width */
     height: 80px; /* Reduced height */
     z-index: 50; /* Higher than .tao-card-md */
-    pointer-events: none; /* Prevents it from interfering with hover effects
+    overflow: visible !important;
+    pointer-events: none;
 }
 
 /* Ribbon Styling */
