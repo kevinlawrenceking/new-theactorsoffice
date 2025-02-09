@@ -6,12 +6,11 @@
       </cfif>
       <div class="tao-card-md">
               <!--- Top Ribbon (e.g., "Booked") ---> 
-<cfif card_top_ribbon neq ""> 
-    <div class="ribbon-box">
-        <div class="ribbon-two">#card_top_ribbon#</div>
-    </div> 
-</cfif>
 
+
+<div class="gox">
+  <div class="ribbon"><span>Booked</span></div>
+</div>
 
         <!--- Header --->
         <cfif card_header_yn eq "Y">
