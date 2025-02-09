@@ -6992,8 +6992,8 @@ body[data-leftbar-size=condensed] .user-box {
 .ribbon-two::before {
     content: "";
     position: absolute;
-    top: 11px;  /* Adjust to perfectly touch the card edge */
-    right: 66px;  
+    top: 31px;  /* Adjust to perfectly touch the card edge */
+    right: 16px;  
     transform: translateX(50%);
     border-style: solid;
     border-width: 5px;
