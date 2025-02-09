@@ -7597,7 +7597,7 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     text-align: center;
     font-weight: bold;
     line-height: 32px;
-   
+    transform: rotate(45deg);
     width: 125px;
     display: block;
     background: green;
