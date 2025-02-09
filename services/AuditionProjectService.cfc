@@ -1312,6 +1312,7 @@ ORDER BY label
                 s.audsource AS col5, 
                 c2.recordname AS contactname, 
                 c.recordname,
+                c.recordname as castingfullname,
                 sc.audsubcatname, 
                 rt.audroletype,
                 CONCAT_WS("|", p.projname, rt.audroletype, c.recordname, st.audstep, rt.audroletype, s.audsource, p.projdescription) AS search_query,
