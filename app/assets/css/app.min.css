@@ -7182,9 +7182,8 @@ body[data-leftbar-size=condensed] .user-box {
 
 .ribbon-box .ribbon-two span:after {
 	content: "";
-	position: absolute;
-	right: 0;
-	top: 100%;
+    top: 26px;
+    right:  -14px;
 	z-index: -1;
 	border-left: 3px solid transparent;
 	border-bottom: 3px solid transparent
