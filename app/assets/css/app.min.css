@@ -7723,6 +7723,14 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
     max-width: 100%; /* Prevents overflow */
 }
 
+.tao-card-contact span {
+    display: block;
+    white-space: nowrap; /* Prevents word wrapping */
+    overflow: hidden; /* Hides overflow */
+    text-overflow: ellipsis; /* Adds "..." for long text */
+    max-width: 100%; /* Ensures it doesn’t exceed the container */
+}
+
 .contact-item {
     display: flex; /* Allows icon and text to align properly */
     align-items: center;
