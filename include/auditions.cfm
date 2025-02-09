@@ -241,7 +241,12 @@
         <cfset aud_cat_icon=""/>
         <cfset card_avatar="Yes"/>
         <Cfset card_casting="Casting"/>
-        <cfset card_company = results.col4 & " (" & results.audroletype & ")" />
+      <cfif results.audroletype neq "">
+    <cfset card_company = results.col4 & " (" & results.audroletype & ")" />
+<cfelse>
+    <cfset card_company = results.col4 />
+</cfif>
+
  
         <cfset card_delete_msg=""/>
         <cfset card_delete=""/>
