@@ -79,10 +79,16 @@
 
               <!--- Contact Details: Phone & Email --->
               <p class="tao-card-contact">
-                <Cfif card_casting neq "">
+                <Cfif card_source neq "">
+                <span><A href="" target="Source">
+                  <i class="mdi mdi-map-marker-question-outline <cfif card_source neq ''>has-content</cfif>"></i>
+                  <cfif card_source neq ''>#card_source#<cfelse>&nbsp;</cfif>
+                </span>
+                </a>
+                </cfif>
 
-
-                         <span>
+                                <Cfif card_casting neq "">
+                <span>
                   <i class="mdi mdi-clipboard-account <cfif card_casting neq ''>has-content</cfif>"></i>
                   <cfif card_casting neq ''>#card_casting#<cfelse>&nbsp;</cfif>
                 </span>
