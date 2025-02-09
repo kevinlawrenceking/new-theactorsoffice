@@ -93,16 +93,18 @@
                   <cfif card_casting neq ''>#card_casting#<cfelse>&nbsp;</cfif>
                 </span>
                 </cfif>
-
+<cfif card_phone neq "">
                 <span>
                   <i class="fe-phone me-1 <cfif card_phone neq ''>has-content</cfif>"></i>
                   <cfif card_phone neq ''>#card_phone#<cfelse>&nbsp;</cfif>
                 </span>
+                </cfif>
+              <cfif card_reminder neq "">  
                 <span>
                   <i class="mdi mdi-account-multiple <cfif card_reminder neq ''>has-content</cfif>"></i>
                   <cfif card_reminder neq ''>#card_reminder#<cfelse>&nbsp;</cfif>
                 </span>
-
+</cfif>
               </p>
             </div>
 
