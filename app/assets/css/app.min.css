@@ -7217,7 +7217,7 @@ body[data-leftbar-size=condensed] .user-box {
     text-transform: uppercase;
     text-align: center;
     font-weight: bold;
-    line-height: 26px; /* Reduced line height */
+    line-height: 20px; /* Reduced line height */
     transform: rotate(45deg);
     width: 110px; /* Reduced width */
     display: block;
