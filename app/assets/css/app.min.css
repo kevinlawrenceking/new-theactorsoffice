@@ -7137,7 +7137,7 @@ body[data-leftbar-size=condensed] .user-box {
 
 /* Ribbon Positioned on Top-Right */
 .ribbon-box {
-    position: absolute;
+    position: relative;
     top: 26px;  /* Adjusted position */
     right: -14px;  /* Adjusted to the corner */
     z-index: 10;  /* Ensure it's above content */
