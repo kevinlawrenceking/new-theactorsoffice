@@ -7588,3 +7588,116 @@ body[data-layout-color=dark] .ribbon-box .ribbon-two-dark span:after {
 	font-size: 13px;
 	font-weight: 600
 }
+
+.ribbon-box .ribbon-Callback {
+	background: #A1D9EC;
+    color: #000
+}
+.ribbon-box .ribbon {
+	position: relative;
+	clear: both;
+	padding: 5px 12px;
+	margin-bottom: 15px;
+	box-shadow: 2px 5px 10px rgba(50, 58, 70, .15);
+	color: #fff;
+	font-size: 13px;
+	font-weight: 600
+}
+
+.ribbon-box .ribbon:before {
+	content: " ";
+	border-style: solid;
+	border-width: 10px;
+	display: block;
+	position: absolute;
+	bottom: -10px;
+	left: 0;
+	margin-bottom: -10px;
+	z-index: -1
+}
+
+.ribbon-box .ribbon.float-start {
+	margin-left: -30px;
+	border-radius: 0 3px 3px 0
+}
+
+.ribbon-box .ribbon.float-end {
+	margin-right: -30px;
+	border-radius: 3px 0 0 3px
+}
+
+.ribbon-box .ribbon.float-end:before {
+	right: 0
+}
+
+.ribbon-box .ribbon.float-center span {
+	margin: 0 auto 20px auto
+}
+
+.ribbon-box .ribbon-content {
+	clear: both
+}
+
+.ribbon-box .ribbon-primary {
+	background: #406E8E
+}
+
+.ribbon-box .ribbon-primary:before {
+	border-color: #3f2ed4 transparent transparent
+}
+
+.ribbon-box .ribbon-secondary {
+	background: #6c757d
+}
+
+.ribbon-box .ribbon-secondary:before {
+	border-color: #545b62 transparent transparent
+}
+
+.ribbon-box .ribbon-success {
+	background: #1abc9c
+}
+
+.ribbon-box .ribbon-success:before {
+	border-color: #148f77 transparent transparent
+}
+
+.ribbon-box .ribbon-Callback {
+	background: #A1D9EC;
+    color: #000
+}
+
+.ribbon-box .ribbon-Callback:before {
+	border-color: #84b1c0 transparent transparent
+}
+
+.ribbon-box .ribbon-Booking {
+	background: #1ABC9C;
+    color: #FFF
+}
+
+.ribbon-box .ribbon-Booking:before {
+	border-color: #1ABC9C transparent transparent
+}
+
+.ribbon-box .ribbon-Redirect {
+	background: #A1D9EC;
+    color: #000
+}
+
+.ribbon-box .ribbon-Redirect:before {
+	border-color: #A1D9EC transparent transparent;
+}
+
+.ribbon-box .ribbon-Pin {
+	background: #F8EEC9;
+    color: #000
+}
+
+.ribbon-box .ribbon-Pin:before {
+	border-color: #F8EEC9 transparent transparent
+}
+
+
+ 
+ 
