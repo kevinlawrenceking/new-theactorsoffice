@@ -7217,7 +7217,7 @@ body[data-leftbar-size=condensed] .user-box {
     text-transform: uppercase;
     text-align: center;
     font-weight: bold;
-    line-height: 28px; /* Reduced line height */
+    line-height: 26px; /* Reduced line height */
     transform: rotate(45deg);
     width: 110px; /* Reduced width */
     display: block;
@@ -7226,7 +7226,7 @@ body[data-leftbar-size=condensed] .user-box {
     position: absolute;
     top: 13px; /* Adjusted for better fit */
     right: -27px; /* Slightly moved to align */
-    padding: 3px 5px; /* Less padding */
+    padding: 2px 4px; /* Less padding */
 }
 
 /* Triangle Fix */
