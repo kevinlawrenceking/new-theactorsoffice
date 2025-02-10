@@ -90,6 +90,13 @@
         <cfinclude template="/include/qry/getRemindersByRelationship.cfm"/>
 
         <!--- Assign card values dynamically --->
+        <cfset card_badge_yn = ""/>
+<cfset card_header_text = ""/>
+<cfset card_icon = ""/>
+<cfset card_ribbon_straight = ""/>
+<cfset card_source = ""/>
+<cfset card_subtitle = ""/>
+
         <cfset card_id=myteam.contactid/>
         <cfset aud_cat_icon=""/>
         <cfset card_avatar="Yes"/>

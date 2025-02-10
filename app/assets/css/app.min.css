@@ -7095,6 +7095,16 @@ body[data-leftbar-size=condensed] .user-box {
     flex-shrink: 0;
 }
 
+
+.tao-card-avatar img {
+    width: 60px;
+    height: auto;
+    object-fit: contain;
+    padding-top: 7px;
+    border-radius: 50% !important
+}
+
+
 /* ENSURE PROPER SPACING FOR CALENDAR IMAGE */
 .tao-card-calendar img {
     width: 60px;
