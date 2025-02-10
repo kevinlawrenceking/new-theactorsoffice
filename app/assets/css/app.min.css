@@ -7162,7 +7162,6 @@ body[data-leftbar-size=condensed] .user-box {
 .tao-card-contact i {
     visibility: hidden;  /* Default: hidden */
     width: 16px;
-    height: 16px;
     display: flex;
     flex-direction: column; /* Forces items to stack vertically */
     align-items: flex-start; /* Aligns items to the left */
