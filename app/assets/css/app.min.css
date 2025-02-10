@@ -7306,16 +7306,16 @@ contact-item i {
 /* Ribbon Colors */
 .ribbon-straight-pin {
     background: #FBE8A6;
-    color: #000;
+    color: #333;
 }
 
 .ribbon-straight-callback {
     background: #A1D9EC;
-    color: #000;
+    color: #333;
 }
 
 .ribbon-straight-redirect {
     background: #74C0FC;
-    color: #000;
+    color: #333;
 }
 
