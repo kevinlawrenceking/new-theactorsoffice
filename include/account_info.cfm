@@ -441,13 +441,17 @@
 
   </div>
 </div>
-<!--- /btn-group  --->
+<!---   <cfif #pgid# is "122">
+    <cfinclude template="/include/myteam_pane.cfm"/>
+  </cfif>
+  --->
 
 <div class="card-body">
 
   <cfif #pgid# is "121">
     <cfinclude template="/include/mylinks_pane.cfm"/>
   </cfif>
+
 
   <cfif #pgid# is "124">
     <cfinclude template="/include/prefs_pane.cfm"/>
