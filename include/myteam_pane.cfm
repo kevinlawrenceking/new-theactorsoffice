@@ -106,7 +106,7 @@
           </cfif>
         </cfloop>
 
-        <cfinclude template="/include/card.cfm"/>
+      <!---  <cfinclude template="/include/card.cfm"/> --->
 
       </div> <!--- End of col div --->
 
