@@ -87,7 +87,7 @@
 
  
 
-        <!--- Variables for card --->
+        <!--- Variables for card 
         <Cfparam name="card_header" default="No"/>
         <Cfparam name="card_name" default=""/>
         <Cfparam name="card_title" default=""/>
@@ -115,7 +115,7 @@
 
 
         <cfset card_title=""/>
-        <cfset card_company=myteam.card_company/>
+        <cfset card_company=""/>
         <cfset card_email=myteam.card_email/>
         <cfset card_phone=myteam.card_phone/>
         <cfset card_details="/app/contact/?contactid=" & myteam.contactid/>
@@ -127,8 +127,10 @@
         <Cfset card_avatar="" />
    
           <cfset card_image=session.userMediaUrl & "/" & headshots_sel.mediaFileName />
+
+          --->
    
- <cfinclude template="/include/card.cfm"/>
+ <!--- cfinclude template="/include/card.cfm"  --->
 
       </cfloop>
 
