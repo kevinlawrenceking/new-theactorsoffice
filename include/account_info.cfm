@@ -8,86 +8,80 @@
 
 <cfinclude template="/include/qry/regions_518_1.cfm"/>
 
-<cfinclude template="/include/qry/timezones_547_1.cfm" />
+<cfinclude template="/include/qry/timezones_547_1.cfm"/>
 
-<cfinclude template="/include/qry/timezones_min_547_2.cfm" />
+<cfinclude template="/include/qry/timezones_min_547_2.cfm"/>
 
 <cfinclude template="/include/qry/dateformats_463_1.cfm"/>
 
-       <cfif #ctaction# is "deleteitem">
+<cfif #ctaction# is "deleteitem">
 
-                <cfinclude template="/include/qry/deleteTeam.cfm"/>
+  <cfinclude template="/include/qry/deleteTeam.cfm"/>
 
-                      <cfset ctaction="view"/>
+  <cfset ctaction="view"/>
 
-                <cfset teamaction="view"/>
+  <cfset teamaction="view"/>
 
-                <cfset t2=1/>
+  <cfset t2=1/>
 
-              </cfif>
+</cfif>
 
+<cfif #ctaction# is "addmember">
 
-           <cfif #ctaction# is "addmember">
+  <cfinclude template="/include/qry/addTeam.cfm"/>
 
-                <cfinclude template="/include/qry/addTeam.cfm"/>
+  <cfset ctaction="view"/>
 
-                      <cfset ctaction="view"/>
+  <cfset teamaction="view"/>
 
-                <cfset teamaction="view"/>
+  <cfset t2=1/>
 
-                <cfset t2=1/>
+</cfif>
 
-              </cfif>
+<cfif #new_region_id# is "" and #def_region_id# is not "">
 
+  <cfset new_region_id=def_region_id/>
 
+</cfif>
 
-    <cfif #new_region_id# is "" and #def_region_id# is not "">
+<cfif #new_countryid# is "" and #def_countryid# is not "">
 
-        <cfset new_region_id=def_region_id />
+  <cfset new_countryid=def_countryid/>
 
-    </cfif>
+</cfif>
 
+<cfparam name="t2" default="0"/>
 
-    <cfif #new_countryid# is "" and #def_countryid# is not "">
+<cfif #devicetype# is "mobile">
 
-        <cfset new_countryid=def_countryid />
+  <cfif #t2# is "1">
 
-    </cfif>
+    <Cflocation url="/app/contact/?contactid=#contactid#&new_pgid=122"/>
 
-    <cfparam name="t2" default="0" />
+  </cfif>
 
-    <cfif #devicetype# is "mobile">
+  <cfparam name="t3" default="0"/>
 
+  <cfif #t3# is "1">
 
-        <cfif #t2# is "1">
+    <Cflocation url="/app/contact/?contactid=#contactid#&new_pgid=124"/>
 
-            <Cflocation url="/app/contact/?contactid=#contactid#&new_pgid=122" />
+  </cfif>
 
-        </cfif>
+  <cfparam name="t7" default="0"/>
 
-        <cfparam name="t3" default="0" />
+  <cfif #t7# is "1">
 
-        <cfif #t3# is "1">
+    <Cflocation url="/app/contact/?contactid=#contactid#&new_pgid=125"/>
 
-            <Cflocation url="/app/contact/?contactid=#contactid#&new_pgid=124" />
-
-        </cfif>
-
-        <cfparam name="t7" default="0" />
-
-        <cfif #t7# is "1">
-
-            <Cflocation url="/app/contact/?contactid=#contactid#&new_pgid=125" />
-
-        </cfif>
-
+  </cfif>
 
 </cfif>
 
 <script>
   $(document).ready(function () {
     $("#dashboardupdate").on("show.bs.modal", function (event) {
-      
+
       $(this)
         .find(".modal-body")
         .load("<cfoutput>/include/dashboardupdate.cfm?userid=#userid#</cfoutput>");
@@ -129,24 +123,24 @@
 
 <cfinclude template="/include/qry/details_1693_1.cfm"/>
 
-<div id="updatecal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" >
-
+<div id="updatecal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel">
 
   <div class="modal-dialog">
 
     <div class="modal-content">
 
-      <div class="modal-header" >
+      <div class="modal-header">
 
         <h4 class="modal-title" id="standard-modalLabel">Default Settings Update</h4>
 
-        <button type="button" class="close" data-bs-dismiss="modal" >
+        <button type="button" class="close" data-bs-dismiss="modal">
 
           <i class="mdi mdi-close-thick"></i>
 
         </button>
 
       </div>
+      <!--- end modal-header --->
 
       <div class="modal-body">
 
@@ -154,51 +148,52 @@
 
         <form action="/include/update_cal.cfm" method="post" class="parsley-examples" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" data-parsley-trigger="keyup" data-parsley-validate="data-parsley-validate" id="preferences">
 
-    
           <cfoutput>
-    <input type="hidden" name="userid" value="#userid#"/>
-    </cfoutput>
+            <input type="hidden" name="userid" value="#userid#"/>
+          </cfoutput>
           <input type="hidden" name="ctaction" value="update_cal"/>
 
           <input type="hidden" name="t4" value="1"/>
 
-<!--- Start and End times for the loop --->
-<cfset startTime = createTime(5, 0, 0)>
-<cfset endTime = createTime(23, 45, 0)>
+          <!--- Start and End times for the loop --->
+          <cfset startTime=createTime(5, 0, 0)>
+          <cfset endTime=createTime(23, 45, 0)>
 
-<!--- Start Time Selection --->
-    <div class="form-group col-md-6">
-        <label for="calstarttime">Start Time<span class="text-danger">*</span></label>
-        <select class="form-control" name="calstarttime" id="calstarttime">
-            <cfloop from="#startTime#" to="#endTime#" step="#createTimeSpan(0, 0, 15, 0)#" index="timeSlot">
-                      <cfset formattedTime = timeFormat(timeSlot, "HH:mm:ss")>
-                <cfset displayTime = timeFormat(timeSlot, "h:mm tt")>
-            <cfoutput>
-      
-                <option value="#formattedTime#" <cfif timeFormat(details.calstarttime) EQ formattedTime>selected</cfif>>
+          <!--- Start Time Selection --->
+          <div class="form-group col-md-6">
+            <label for="calstarttime">Start Time<span class="text-danger">*</span>
+            </label>
+            <select class="form-control" name="calstarttime" id="calstarttime">
+              <cfloop from="#startTime#" to="#endTime#" step="#createTimeSpan(0, 0, 15, 0)#" index="timeSlot">
+                <cfset formattedTime=timeFormat(timeSlot, "HH:mm:ss")>
+                <cfset displayTime=timeFormat(timeSlot, "h:mm tt")>
+                <cfoutput>
+
+                  <option value="#formattedTime#" <cfif timeFormat(details.calstarttime) EQ formattedTime>selected</cfif>>
                     #displayTime#
-                </option>
+                  </option>
                 </cfoutput>
-            </cfloop>
-        </select>
-    </div>
-<Cfoutput>
-    <!--- End Time Selection --->
-    <div class="form-group col-md-6">
-        <label for="calendtime">End Time<span class="text-danger">*</span></label>
-        <select class="form-control" name="calendtime" id="calendtime">
-            <cfloop from="#startTime#" to="#endTime#" step="#createTimeSpan(0, 0, 15, 0)#" index="timeSlot">
-                <cfset formattedTime = timeFormat(timeSlot, "HH:mm:ss")>
-                <cfset displayTime = timeFormat(timeSlot, "h:mm tt")>
-                <option value="#formattedTime#" <cfif timeFormat(details.calendtime) EQ formattedTime>selected</cfif>>
+              </cfloop>
+            </select>
+          </div>
+          <Cfoutput>
+            <!--- End Time Selection --->
+            <div class="form-group col-md-6">
+              <label for="calendtime">End Time<span class="text-danger">*</span>
+              </label>
+              <select class="form-control" name="calendtime" id="calendtime">
+                <cfloop from="#startTime#" to="#endTime#" step="#createTimeSpan(0, 0, 15, 0)#" index="timeSlot">
+                  <cfset formattedTime=timeFormat(timeSlot, "HH:mm:ss")>
+                  <cfset displayTime=timeFormat(timeSlot, "h:mm tt")>
+                  <option value="#formattedTime#" <cfif timeFormat(details.calendtime) EQ formattedTime>selected</cfif>>
                     #displayTime#
-                </option>
-            </cfloop>
-        </select>
-    </div>
-</cfoutput>
+                  </option>
+                </cfloop>
+              </select>
+            </div>
+          </cfoutput>
 
-<div class="form-group col-md-6">
+          <div class="form-group col-md-6">
 
             <label for="defrows">Rows Per Page<span class="text-danger">*</span>
             </label>
@@ -231,8 +226,6 @@
               <cfoutput query="dateformats">
 
                 <option value="#dateformats.id#" <cfif #details.dateformatid# is "#dateformats.id#"> Selected </cfif>>#dateformats.formatexample# - (Example: #dateformat(now(),'#dateformats.formatexample#')#)</option>
-
-              
 
               </cfoutput>
 
@@ -282,358 +275,341 @@
 <!--- modal-dialog end  --->
 
 </div>
-<!--- modal end 
-<cfinclude template="/include/qry/FindUser_1694_2.cfm"/> --->
-
-
+<!--- modal end  --->
+<cfinclude template="/include/qry/FindUser_1694_2.cfm"/>
 
 <cfparam name="ctaction" default="view"/>
 
+<div id="updatecal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel">
 
+<div class="modal-dialog">
 
+  <div class="modal-content">
 
+    <div class="modal-header">
 
-         
-<div id="updatecal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" >
+      <h4 class="modal-title" id="standard-modalLabel">Default Settings Update</h4>
 
+      <button type="button" class="close" data-bs-dismiss="modal">
 
-              <div class="modal-dialog">
+        <i class="mdi mdi-close-thick"></i>
 
-                <div class="modal-content">
+      </button>
 
-                  <div class="modal-header" >
+    </div>
 
-                    <h4 class="modal-title" id="standard-modalLabel">Default Settings Update</h4>
+    <div class="modal-body">
 
-                    <button type="button" class="close" data-bs-dismiss="modal" >
+      <p>Update your default settings.</p>
 
-                      <i class="mdi mdi-close-thick"></i>
+      <form action="/include/update_pref.cfm" method="post" class="parsley-examples" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" data-parsley-trigger="keyup" data-parsley-validate="data-parsley-validate" id="preferences">
 
-                    </button>
+        <input type="hidden" name="ctaction" value="update_cal"/>
 
-                  </div>
+        <input type="hidden" name="t4" value="1"/>
 
-                  <div class="modal-body">
-
-                    <p>Update your default settings.</p>
-
-                    <form action="/include/update_pref.cfm" method="post" class="parsley-examples" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" data-parsley-trigger="keyup" data-parsley-validate="data-parsley-validate" id="preferences">
-
-               
-
-                      <input type="hidden" name="ctaction" value="update_cal"/>
-
-                      <input type="hidden" name="t4" value="1"/>
-
-              <!--- Start Time Selection --->
-              <cfoutput>
-    <div class="form-group col-md-6">
-        <label for="calstarttime">Start Time<span class="text-danger">*</span></label>
-        <select class="form-control" name="calstarttime" id="calstarttime">
-            <cfloop from="#startTime#" to="#endTime#" step="#createTimeSpan(0, 0, 15, 0)#" index="timeSlot">
-                <cfset formattedTime = timeFormat(timeSlot, "HH:mm:ss")>
-                <cfset displayTime = timeFormat(timeSlot, "h:mm tt")>
+        <!--- Start Time Selection --->
+        <cfoutput>
+          <div class="form-group col-md-6">
+            <label for="calstarttime">Start Time<span class="text-danger">*</span>
+            </label>
+            <select class="form-control" name="calstarttime" id="calstarttime">
+              <cfloop from="#startTime#" to="#endTime#" step="#createTimeSpan(0, 0, 15, 0)#" index="timeSlot">
+                <cfset formattedTime=timeFormat(timeSlot, "HH:mm:ss")>
+                <cfset displayTime=timeFormat(timeSlot, "h:mm tt")>
                 <option value="#formattedTime#" <cfif timeFormat(details.calstarttime) EQ formattedTime>selected</cfif>>
-                    #displayTime#
+                  #displayTime#
                 </option>
-            </cfloop>
-        </select>
-    </div>
-
-    <!--- End Time Selection --->
-    <div class="form-group col-md-6">
-        <label for="calendtime">End Time<span class="text-danger">*</span></label>
-        <select class="form-control" name="calendtime" id="calendtime">
-            <cfloop from="#startTime#" to="#endTime#" step="#createTimeSpan(0, 0, 15, 0)#" index="timeSlot">
-                <cfset formattedTime = timeFormat(timeSlot, "HH:mm:ss")>
-                <cfset displayTime = timeFormat(timeSlot, "h:mm tt")>
-                <option value="#formattedTime#" <cfif timeFormat(details.calendtime) EQ formattedTime>selected</cfif>>
-                    #displayTime#
-                </option>
-            </cfloop>
-        </select>
-    </div>
-</cfoutput>
-                      <div class="form-group col-md-6">
-
-                        <label for="defrows">Rows Per Page<span class="text-danger">*</span>
-                        </label>
-
-                        <select class="form-control" name="defrows" id="defrows">
-
-                          <cfoutput>
-
-                            <option value="10" <cfif #details.defrows# is "10"> Selected </cfif>>10</option>
-
-                            <option value="25" <cfif #details.defrows# is "25"> Selected </cfif>>25</option>
-
-                            <option value="50" <cfif #details.defrows# is "50"> Selected </cfif>>50</option>
-
-                            <option value="100" <cfif #details.defrows# is "100"> Selected </cfif>>100</option>
-
-                          </cfoutput>
-
-                        </select>
-
-                      </div>
-
-                      <cfoutput>
-
-                        <input type="hidden" name="viewtypeid" value="#details.viewtypeid#"/>
-
-                      </cfoutput>
-
-                      <div class="form-group col-md-12">
-
-                        <label for="tzid">Timezone<span class="text-danger">*</span>
-                        </label>
-
-                        <select class="form-control" name="tzid" id="tzid" data-parsley-required="data-parsley-required" data-parsley-error-message="Timezone is required">
-
-                          <cfoutput query="timezones">
-
-                            <option value="#timezones.tzid#" <cfif #details.tzid# is "#timezones.tzid#"> Selected </cfif>>(#timezones.gmt#) #timezones.tzname#</option>
-
-                          </cfoutput>
-
-                        </select>
-
-                      </div>
-
-                      <div class="form-group text-center col-md-12">
-
-                        <button class=" btn btn-primary editable-submit btn-sm waves-effect waves-light" type="submit" style="background-color: ##406e8e; border: ##406e8e;">Update</button>
-
-                      </div>
-
-                    </div>
-                    <!--- row end  --->
-                  </form>
-
-                </div>
-                <!--- modal-body end  --->
-              </div>
-              <!--- modal-content end  --->
-
-            </div>
-            <!--- modal-dialog end  --->
-
+              </cfloop>
+            </select>
           </div>
-          <!--- modal end  --->
 
+          <!--- End Time Selection --->
+          <div class="form-group col-md-6">
+            <label for="calendtime">End Time<span class="text-danger">*</span>
+            </label>
+            <select class="form-control" name="calendtime" id="calendtime">
+              <cfloop from="#startTime#" to="#endTime#" step="#createTimeSpan(0, 0, 15, 0)#" index="timeSlot">
+                <cfset formattedTime=timeFormat(timeSlot, "HH:mm:ss")>
+                <cfset displayTime=timeFormat(timeSlot, "h:mm tt")>
+                <option value="#formattedTime#" <cfif timeFormat(details.calendtime) EQ formattedTime>selected</cfif>>
+                  #displayTime#
+                </option>
+              </cfloop>
+            </select>
+          </div>
+        </cfoutput>
+        <div class="form-group col-md-6">
 
-    
+          <label for="defrows">Rows Per Page<span class="text-danger">*</span>
+          </label>
 
-                <CFOUTPUT>
+          <select class="form-control" name="defrows" id="defrows">
 
-                  <CFSET CURRENTID=#userContactid#/>
+            <cfoutput>
 
-                </CFOUTPUT>
+              <option value="10" <cfif #details.defrows# is "10"> Selected </cfif>>10</option>
 
-                <cfparam name="ITEMIDD" default="0"/>
+              <option value="25" <cfif #details.defrows# is "25"> Selected </cfif>>25</option>
 
-          
+              <option value="50" <cfif #details.defrows# is "50"> Selected </cfif>>50</option>
 
-       
+              <option value="100" <cfif #details.defrows# is "100"> Selected </cfif>>100</option>
 
-              <cfparam name="currentid" default="0"/>
+            </cfoutput>
 
-              <cfset session.pgrtn="P"/>
+          </select>
 
-              <cfset pgrtn="P"/>
+        </div>
 
-              <cfif #devicetype# is "mobilez">
-                <div class="card mb-3">
+        <cfoutput>
 
-                  <div class="btn-group col-md-12">
+          <input type="hidden" name="viewtypeid" value="#details.viewtypeid#"/>
 
-                    <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        </cfoutput>
 
-                      <Cfoutput>#pgname#</Cfoutput>
-                      <i class="fe-menu"></i>
+        <div class="form-group col-md-12">
 
-                    </button>
-                    <div class="dropdown-menu">
+          <label for="tzid">Timezone<span class="text-danger">*</span>
+          </label>
 
-                      <cfloop query="FindOptions">
-                        <cfoutput>
-                          <a class="dropdown-item" href="/app/#pgDir#/?new_pgid=#FindOptions.pgid#">#FindOptions.pgname#</a>
-                        </cfoutput>
-                      </cfloop>
+          <select class="form-control" name="tzid" id="tzid" data-parsley-required="data-parsley-required" data-parsley-error-message="Timezone is required">
 
-                    </div>
-                  </div>
-                  <!--- /btn-group  --->
+            <cfoutput query="timezones">
 
-                  <div class="card-body">
+              <option value="#timezones.tzid#" <cfif #details.tzid# is "#timezones.tzid#"> Selected </cfif>>(#timezones.gmt#) #timezones.tzname#</option>
 
-                    <cfif #pgid# is "121">
-                      <cfinclude template="/include/mylinks_pane.cfm"/>
-                    </cfif>
+            </cfoutput>
 
-                    <cfif #pgid# is "122">
-                      <cfinclude template="/include/myteam_pane.cfm"/>
-                    </cfif>
+          </select>
 
-                    <cfif #pgid# is "124">
-                      <cfinclude template="/include/prefs_pane.cfm"/>
-                    </cfif>
+        </div>
 
-                    <cfif #pgid# is "125">
-                      <cfinclude template="/include/systemprefs_pane.cfm"/>
-                    </cfif>
+        <div class="form-group text-center col-md-12">
 
-                  </div>
-                </div>
+          <button class=" btn btn-primary editable-submit btn-sm waves-effect waves-light" type="submit" style="background-color: ##406e8e; border: ##406e8e;">Update</button>
 
-              </cfif>
+        </div>
 
-              <cfif #devicetype# is not "mobile">
+      </div>
+      <!--- row end  --->
+    </form>
 
-                <cfinclude template="/include/tab_check_account.cfm"/>
+  </div>
+  <!--- modal-body end  --->
+</div>
+<!--- modal-content end  --->
 
-                <cfparam name="tab1_expand" default="false"/>
+</div>
+<!--- modal-dialog end  --->
 
-                <cfparam name="tab2_expand" default="false"/>
+</div>
+<!--- modal end  --->
 
-                <cfparam name="tab3_expand" default="false"/>
+<CFOUTPUT>
 
-                <cfparam name="tab4_expand" default="false"/>
+<CFSET CURRENTID=#userContactid#/>
 
-                <cfparam name="tab5_expand" default="false"/>
+</CFOUTPUT>
 
-                <cfparam name="tab6_expand" default="false"/>
+<cfparam name="ITEMIDD" default="0"/>
 
-                <cfparam name="tab7_expand" default="false"/>
+<cfparam name="currentid" default="0"/>
 
-                <cfparam name="tab8_expand" default="false"/>
+<cfset session.pgrtn="P"/>
 
-                <cfparam name="tab9_expand" default="false"/>
+<cfset pgrtn="P"/>
 
-                <cfparam name="tab0_expand" default="false"/>
+<cfif #devicetype# is "mobilez">
+<div class="card mb-3">
 
-                <cfparam name="tab10_expand" default="false"/>
+<div class="btn-group col-md-12">
 
-                <cfif #tab1_expand# is "false" and #tab2_expand# is "false" and #tab3_expand# is "false" and #tab4_expand# is "false" and #tab7_expand# is "false" and #tab8_expand# is "false" and #tab9_expand# is "false" and #tab0_expand# is "false" and #tab10_expand# is "false">
+  <button type="button" class="btn btn-primary btn-lg dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
-                  <cfset tab0_expand="true"/>
+    <Cfoutput>#pgname#</Cfoutput>
+    <i class="fe-menu"></i>
 
-                  <cfset t0=1/>
+  </button>
+  <div class="dropdown-menu">
 
-                </cfif>
+    <cfloop query="FindOptions">
+      <cfoutput>
+        <a class="dropdown-item" href="/app/#pgDir#/?new_pgid=#FindOptions.pgid#">#FindOptions.pgname#</a>
+      </cfoutput>
+    </cfloop>
 
-                <div class="card mb-3">
+  </div>
+</div>
+<!--- /btn-group  --->
 
-                  <div class="card-body">
+<div class="card-body">
 
-                    <ul class="nav nav-pills navtab-bg nav-justified p-1">
+  <cfif #pgid# is "121">
+    <cfinclude template="/include/mylinks_pane.cfm"/>
+  </cfif>
 
-                      <cfoutput>
+  <cfif #pgid# is "122">
+    <cfinclude template="/include/myteam_pane.cfm"/>
+  </cfif>
 
-                        <li class="nav-item">
-                          <a href="##info" data-bs-toggle="tab" aria-expanded="#tab0_expand#" class="nav-link<cfif #tab0_expand# is 'true'> active</cfif>">Info
-                          </a>
-                        </li>
+  <cfif #pgid# is "124">
+    <cfinclude template="/include/prefs_pane.cfm"/>
+  </cfif>
 
-                        <li class="nav-item">
-                          <a href="##profile" data-bs-toggle="tab" aria-expanded="#tab1_expand#" class="nav-link<cfif #tab1_expand# is 'true'> active</cfif>">Dashboard
-                          </a>
-                        </li>
+  <cfif #pgid# is "125">
+    <cfinclude template="/include/systemprefs_pane.cfm"/>
+  </cfif>
 
-                        <li class="nav-item">
-                          <a href="##myteam" data-bs-toggle="tab" aria-expanded="#tab2_expand#" class="nav-link<cfif #tab2_expand# is 'true'> active</cfif>">My Team</a>
-                        </li>
+</div>
+</div>
 
-                        <li class="nav-item">
-                          <a href="##mybrand" data-bs-toggle="tab" aria-expanded="#tab3_expand#" class="nav-link<cfif #tab3_expand# is 'true'> active</cfif>">My Essence</a>
-                        </li>
+</cfif>
 
-                        <li class="nav-item">
-                          <a href="##myheadshots" data-bs-toggle="tab" aria-expanded="#tab8_expand#" class="nav-link<cfif #tab8_expand# is 'true'> active</cfif>">Headshots</a>
-                        </li>
+<cfif #devicetype# is not "mobile">
 
-                        <li class="nav-item">
-                          <a href="##mymaterials" data-bs-toggle="tab" aria-expanded="#tab9_expand#" class="nav-link<cfif #tab9_expand# is 'true'> active</cfif>">Materials</a>
-                        </li>
+<cfinclude template="/include/tab_check_account.cfm"/>
 
-                        <li class="nav-item">
-                          <a href="##pref" data-bs-toggle="tab" aria-expanded="#tab4_expand#" class="nav-link<cfif #tab4_expand# is 'true'> active</cfif>">Preferences</a>
-                        </li>
+<cfparam name="tab1_expand" default="false"/>
 
-                        <li class="nav-item">
-                          <a href="##systems" data-bs-toggle="tab" aria-expanded="#tab7_expand#" class="nav-link<cfif #tab7_expand# is 'true'> active</cfif>">Systems</a>
-                        </li>
+<cfparam name="tab2_expand" default="false"/>
 
-                        <li class="nav-item">
-                          <a href="##billing" data-bs-toggle="tab" aria-expanded="#tab10_expand#" class="nav-link<cfif #tab10_expand# is 'true'> active</cfif>">Billing</a>
-                        </li>
+<cfparam name="tab3_expand" default="false"/>
 
-                        <span class="ml-auto padding-bottom:11px;text-nowrap border border-top-0 !important border-left-0 !important border-right-0 !important" style="border-top:0 !important;border-left:0 !important;border-right:0 !important;"></span>
+<cfparam name="tab4_expand" default="false"/>
 
-                      </cfoutput>
+<cfparam name="tab5_expand" default="false"/>
 
-                    </ul>
+<cfparam name="tab6_expand" default="false"/>
 
-                    <div class="tab-content">
+<cfparam name="tab7_expand" default="false"/>
 
-                      <div class="tab-pane<cfif #tab0_expand# is 'true'> show active</cfif>" id="info">
+<cfparam name="tab8_expand" default="false"/>
 
-                        <cfinclude template="/include/myinfo_pane.cfm"/>
+<cfparam name="tab9_expand" default="false"/>
 
-                      </div>
+<cfparam name="tab0_expand" default="false"/>
 
-                      <div class="tab-pane<cfif #tab1_expand# is 'true'> show active</cfif>" id="profile">
+<cfparam name="tab10_expand" default="false"/>
 
-                        <cfinclude template="/include/mylinks_pane.cfm"/>
+<cfif #tab1_expand# is "false" and #tab2_expand# is "false" and #tab3_expand# is "false" and #tab4_expand# is "false" and #tab7_expand# is "false" and #tab8_expand# is "false" and #tab9_expand# is "false" and #tab0_expand# is "false" and #tab10_expand# is "false">
 
-                      </div>
+<cfset tab0_expand="true"/>
 
-                      <div class="tab-pane<cfif #tab2_expand# is 'true'> show active</cfif>" id="myteam">
+<cfset t0=1/>
 
-                        <cfinclude template="/include/myteam_pane.cfm"/>
+</cfif>
 
-                      </div>
+<div class="card mb-3">
 
-                      <div class="tab-pane<cfif #tab3_expand# is 'true'> show active</cfif>" id="mybrand">
+<div class="card-body">
 
-                        <cfinclude template="/include/mybrand_pane.cfm"/>
+  <ul class="nav nav-pills navtab-bg nav-justified p-1">
 
-                      </div>
+    <cfoutput>
 
-                      <div class="tab-pane<cfif #tab8_expand# is 'true'> show active</cfif>" id="myheadshots">
+      <li class="nav-item">
+        <a href="##info" data-bs-toggle="tab" aria-expanded="#tab0_expand#" class="nav-link<cfif #tab0_expand# is 'true'> active</cfif>">Info
+        </a>
+      </li>
 
-                        <cfinclude template="/include/myheadshots_pane.cfm"/>
+      <li class="nav-item">
+        <a href="##profile" data-bs-toggle="tab" aria-expanded="#tab1_expand#" class="nav-link<cfif #tab1_expand# is 'true'> active</cfif>">Dashboard
+        </a>
+      </li>
 
-                      </div>
+      <li class="nav-item">
+        <a href="##myteam" data-bs-toggle="tab" aria-expanded="#tab2_expand#" class="nav-link<cfif #tab2_expand# is 'true'> active</cfif>">My Team</a>
+      </li>
 
-                      <div class="tab-pane<cfif #tab9_expand# is 'true'> show active</cfif>" id="mymaterials">
+      <li class="nav-item">
+        <a href="##mybrand" data-bs-toggle="tab" aria-expanded="#tab3_expand#" class="nav-link<cfif #tab3_expand# is 'true'> active</cfif>">My Essence</a>
+      </li>
 
-                        <cfinclude template="/include/mymaterials_pane.cfm"/>
+      <li class="nav-item">
+        <a href="##myheadshots" data-bs-toggle="tab" aria-expanded="#tab8_expand#" class="nav-link<cfif #tab8_expand# is 'true'> active</cfif>">Headshots</a>
+      </li>
 
-                      </div>
+      <li class="nav-item">
+        <a href="##mymaterials" data-bs-toggle="tab" aria-expanded="#tab9_expand#" class="nav-link<cfif #tab9_expand# is 'true'> active</cfif>">Materials</a>
+      </li>
 
-                      <div class="tab-pane<cfif #tab4_expand# is 'true'> show active</cfif>" id="pref">
+      <li class="nav-item">
+        <a href="##pref" data-bs-toggle="tab" aria-expanded="#tab4_expand#" class="nav-link<cfif #tab4_expand# is 'true'> active</cfif>">Preferences</a>
+      </li>
 
-                        <cfinclude template="/include/prefs_pane.cfm"/>
+      <li class="nav-item">
+        <a href="##systems" data-bs-toggle="tab" aria-expanded="#tab7_expand#" class="nav-link<cfif #tab7_expand# is 'true'> active</cfif>">Systems</a>
+      </li>
 
-                      </div>
+      <li class="nav-item">
+        <a href="##billing" data-bs-toggle="tab" aria-expanded="#tab10_expand#" class="nav-link<cfif #tab10_expand# is 'true'> active</cfif>">Billing</a>
+      </li>
 
-                      <div class="tab-pane<cfif #tab7_expand# is 'true'> show active</cfif>" id="systems">
+      <span class="ml-auto padding-bottom:11px;text-nowrap border border-top-0 !important border-left-0 !important border-right-0 !important" style="border-top:0 !important;border-left:0 !important;border-right:0 !important;"></span>
 
-                        <cfinclude template="/include/systemprefs_pane.cfm"/>
+    </cfoutput>
 
-                      </div>
+  </ul>
 
-                      <div class="tab-pane<cfif #tab10_expand# is 'true'> show active</cfif>" id="billing">
+  <div class="tab-content">
 
-                        <cfinclude template="/include/mybilling_pane.cfm"/>
+    <div class="tab-pane<cfif #tab0_expand# is 'true'> show active</cfif>" id="info">
 
-                      </div>
+      <cfinclude template="/include/myinfo_pane.cfm"/>
 
-                    </div>
+    </div>
 
-                  </div>
+    <div class="tab-pane<cfif #tab1_expand# is 'true'> show active</cfif>" id="profile">
 
-                </cfif>
+      <cfinclude template="/include/mylinks_pane.cfm"/>
 
-              
+    </div>
+
+    <div class="tab-pane<cfif #tab2_expand# is 'true'> show active</cfif>" id="myteam">
+
+      <cfinclude template="/include/myteam_pane.cfm"/>
+
+    </div>
+
+    <div class="tab-pane<cfif #tab3_expand# is 'true'> show active</cfif>" id="mybrand">
+
+      <cfinclude template="/include/mybrand_pane.cfm"/>
+
+    </div>
+
+    <div class="tab-pane<cfif #tab8_expand# is 'true'> show active</cfif>" id="myheadshots">
+
+      <cfinclude template="/include/myheadshots_pane.cfm"/>
+
+    </div>
+
+    <div class="tab-pane<cfif #tab9_expand# is 'true'> show active</cfif>" id="mymaterials">
+
+      <cfinclude template="/include/mymaterials_pane.cfm"/>
+
+    </div>
+
+    <div class="tab-pane<cfif #tab4_expand# is 'true'> show active</cfif>" id="pref">
+
+      <cfinclude template="/include/prefs_pane.cfm"/>
+
+    </div>
+
+    <div class="tab-pane<cfif #tab7_expand# is 'true'> show active</cfif>" id="systems">
+
+      <cfinclude template="/include/systemprefs_pane.cfm"/>
+
+    </div>
+
+    <div class="tab-pane<cfif #tab10_expand# is 'true'> show active</cfif>" id="billing">
+
+      <cfinclude template="/include/mybilling_pane.cfm"/>
+
+    </div>
+
+  </div>
+
+</div>
+
+</cfif>
