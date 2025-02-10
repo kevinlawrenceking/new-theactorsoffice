@@ -410,11 +410,7 @@
 
     </div>
 
-    <div class="tab-pane<cfif #tab2_expand# is 'true'> show active</cfif>" id="myteam">
-
-      <cfinclude template="/include/myteam_pane.cfm"/>
-
-    </div>
+<!--- insert myteam here --->
 
     <div class="tab-pane<cfif #tab3_expand# is 'true'> show active</cfif>" id="mybrand">
 
