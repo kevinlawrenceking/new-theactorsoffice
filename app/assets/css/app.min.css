@@ -7174,8 +7174,13 @@ body[data-leftbar-size=condensed] .user-box {
     display: flex; /* Allows icon and text to align properly */
     align-items: center;
     gap: 5px; /* Space between icon and text */
+
 }
 
+contact-item i {
+    vertical-align: middle;
+    font-size: 1.2em; /* Adjust icon size if necessary */
+}
 
 /* Show icons only when content exists */
 .tao-card-contact i.has-content {
