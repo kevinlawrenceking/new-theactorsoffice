@@ -37,6 +37,11 @@
   </div>
 </form>
 
+
+
+
+
+
 <!--- Start of card grid container --->
 <div class="container mb-8">
   <div class="row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
@@ -47,26 +52,59 @@
       <!--- Each team member card should be inside a column div --->
       <div class="col">
         
-        <cfset card_id=myteam.contactid/>
-        <cfset card_name=myteam.card_name/>
-        <cfset card_company=myteam.card_company/>
-        <cfset card_email=myteam.card_email/>
-        <cfset card_phone=myteam.card_phone/>
-        <cfset card_title=myteam.card_title/>
-        <cfset card_delete_msg="Are you sure you want to remove this person from your team?"/>
-        <cfset card_delete="/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=" & myteam.contactid/>
-        <cfset card_details="/app/contact/?contactid=" & myteam.contactid/>
-
-        <cfset card_avatar="Yes"/>
+        <!--- Restored all variable assignments --->
+        <cfset aud_cat_icon = ""/>
+        <cfset card_avatar = "Yes"/>
+        <cfset card_badge_yn = "N"/>
+        <cfset card_casting = ""/>
+        <cfset card_company = myteam.card_company/>
+        <cfset card_delete = "/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=" & myteam.contactid/>
+        <cfset card_delete_msg = "Are you sure you want to remove this person from your team?"/>
+        <cfset card_details = "/app/contact/?contactid=" & myteam.contactid/>
+        <cfset card_email = myteam.card_email/>
+        <cfset card_footer_text = "Crd footer text"/>
+        <cfset card_footer_type = "social"/>
+        <cfset card_footer_yn = "Y"/>
+        <cfset card_header_text = ""/>
+        <cfset card_header_yn = "Y"/>
+        <cfset card_icon = ""/>
+        <cfset card_icon_yn = "Y"/>
+        <cfset card_id = myteam.contactid/>
+        <cfset card_image = ""/>
         <cfset card_image_type = "avatar"/>
         <cfset card_image_yn = "Y"/>
+        <cfset card_name = myteam.card_name/>
+        <cfset card_phone = myteam.card_phone/>
+        <cfset card_reminder = ""/>
+        <cfset card_ribbon1 = ""/>
+        <cfset card_ribbon2 = ""/>
+        <cfset card_ribbon_straight = ""/>
+        <cfset card_social_yn = "Y"/>
+        <cfset card_source = ""/>
+        <cfset card_subtitle = ""/>
+        <cfset card_title = myteam.card_title/>
+        <cfset card_top_ribbon = ""/>
+        <cfset namecolor = "medium"/>
+        <cfset ribbon_icon = ""/>
 
-        <!--- Assigning default avatar if no image exists --->
+        <cfset currentid = myteam.contactid/>
+
+        <cfinclude template="/include/qry/getSocialIcons.cfm"/>
+        <cfinclude template="/include/qry/getRemindersByRelationship.cfm"/>
+
+        <!--- Assign default avatar if no image exists --->
         <cfif isimagefile("#session.userContactsPath#\#myteam.contactid#\avatar.jpg")>
           <cfset card_image="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg"/>
         <cfelse>
           <cfset card_image="#application.defaultAvatarUrl#"/>
         </cfif>
+
+        <!--- Assign reminder values dynamically --->
+        <cfloop query="rels">
+          <cfif rels.currentrow eq 1>
+            <cfset card_reminder = rels.systemType/>
+          </cfif>
+        </cfloop>
 
         <cfinclude template="/include/card.cfm"/>
 
@@ -76,6 +114,11 @@
 
   </div> <!--- end row div --->
 </div> <!--- end container div --->
+
+
+
+
+
 
 <!--- Team Share Section (Only One Copy Now) --->
 <h4>Team Share</h4>
