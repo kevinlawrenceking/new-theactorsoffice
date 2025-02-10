@@ -123,288 +123,176 @@
 
 <cfinclude template="/include/qry/details_1693_1.cfm"/>
 
+<!--- modal placement --->
 <div id="updatecal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel">
 
-  <div class="modal-dialog">
-
-    <div class="modal-content">
-
-      <div class="modal-header">
-
-        <h4 class="modal-title" id="standard-modalLabel">Default Settings Update</h4>
-
-        <button type="button" class="close" data-bs-dismiss="modal">
-
-          <i class="mdi mdi-close-thick"></i>
-
-        </button>
-
-      </div>
-      <!--- end modal-header --->
-
-      <div class="modal-body">
-
-        <p>Update your default settings.</p>
-
-        <form action="/include/update_cal.cfm" method="post" class="parsley-examples" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" data-parsley-trigger="keyup" data-parsley-validate="data-parsley-validate" id="preferences">
-
-          <cfoutput>
-            <input type="hidden" name="userid" value="#userid#"/>
-          </cfoutput>
-          <input type="hidden" name="ctaction" value="update_cal"/>
-
-          <input type="hidden" name="t4" value="1"/>
-
-          <!--- Start and End times for the loop --->
-          <cfset startTime=createTime(5, 0, 0)>
-          <cfset endTime=createTime(23, 45, 0)>
-
-          <!--- Start Time Selection --->
-          <div class="form-group col-md-6">
-            <label for="calstarttime">Start Time<span class="text-danger">*</span>
-            </label>
-            <select class="form-control" name="calstarttime" id="calstarttime">
-              <cfloop from="#startTime#" to="#endTime#" step="#createTimeSpan(0, 0, 15, 0)#" index="timeSlot">
-                <cfset formattedTime=timeFormat(timeSlot, "HH:mm:ss")>
-                <cfset displayTime=timeFormat(timeSlot, "h:mm tt")>
-                <cfoutput>
-
-                  <option value="#formattedTime#" <cfif timeFormat(details.calstarttime) EQ formattedTime>selected</cfif>>
-                    #displayTime#
-                  </option>
-                </cfoutput>
-              </cfloop>
-            </select>
-          </div>
-          <Cfoutput>
-            <!--- End Time Selection --->
+    <div class="modal-dialog">
+  
+      <div class="modal-content">
+  
+        <div class="modal-header">
+  
+          <h4 class="modal-title" id="standard-modalLabel">Default Settings Update</h4>
+  
+          <button type="button" class="close" data-bs-dismiss="modal">
+  
+            <i class="mdi mdi-close-thick"></i>
+  
+          </button>
+  
+        </div>
+        <!--- end modal-header --->
+  
+        <div class="modal-body">
+  
+          <p>Update your default settings.</p>
+  
+          <form action="/include/update_cal.cfm" method="post" class="parsley-examples" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" data-parsley-trigger="keyup" data-parsley-validate="data-parsley-validate" id="preferences">
+  
+            <cfoutput>
+              <input type="hidden" name="userid" value="#userid#"/>
+            </cfoutput>
+            <input type="hidden" name="ctaction" value="update_cal"/>
+  
+            <input type="hidden" name="t4" value="1"/>
+  
+            <!--- Start and End times for the loop --->
+            <cfset startTime=createTime(5, 0, 0)>
+            <cfset endTime=createTime(23, 45, 0)>
+  
+            <!--- Start Time Selection --->
             <div class="form-group col-md-6">
-              <label for="calendtime">End Time<span class="text-danger">*</span>
+              <label for="calstarttime">Start Time<span class="text-danger">*</span>
               </label>
-              <select class="form-control" name="calendtime" id="calendtime">
+              <select class="form-control" name="calstarttime" id="calstarttime">
                 <cfloop from="#startTime#" to="#endTime#" step="#createTimeSpan(0, 0, 15, 0)#" index="timeSlot">
                   <cfset formattedTime=timeFormat(timeSlot, "HH:mm:ss")>
                   <cfset displayTime=timeFormat(timeSlot, "h:mm tt")>
-                  <option value="#formattedTime#" <cfif timeFormat(details.calendtime) EQ formattedTime>selected</cfif>>
-                    #displayTime#
-                  </option>
+                  <cfoutput>
+  
+                    <option value="#formattedTime#" <cfif timeFormat(details.calstarttime) EQ formattedTime>selected</cfif>>
+                      #displayTime#
+                    </option>
+                  </cfoutput>
                 </cfloop>
               </select>
             </div>
-          </cfoutput>
-
-          <div class="form-group col-md-6">
-
-            <label for="defrows">Rows Per Page<span class="text-danger">*</span>
-            </label>
-
-            <select class="form-control" name="defrows" id="defrows">
-
-              <cfoutput>
-
-                <option value="10" <cfif #details.defrows# is "10"> Selected </cfif>>10</option>
-
-                <option value="25" <cfif #details.defrows# is "25"> Selected </cfif>>25</option>
-
-                <option value="50" <cfif #details.defrows# is "50"> Selected </cfif>>50</option>
-
-                <option value="100" <cfif #details.defrows# is "100"> Selected </cfif>>100</option>
-
-              </cfoutput>
-
-            </select>
-
+            <Cfoutput>
+              <!--- End Time Selection --->
+              <div class="form-group col-md-6">
+                <label for="calendtime">End Time<span class="text-danger">*</span>
+                </label>
+                <select class="form-control" name="calendtime" id="calendtime">
+                  <cfloop from="#startTime#" to="#endTime#" step="#createTimeSpan(0, 0, 15, 0)#" index="timeSlot">
+                    <cfset formattedTime=timeFormat(timeSlot, "HH:mm:ss")>
+                    <cfset displayTime=timeFormat(timeSlot, "h:mm tt")>
+                    <option value="#formattedTime#" <cfif timeFormat(details.calendtime) EQ formattedTime>selected</cfif>>
+                      #displayTime#
+                    </option>
+                  </cfloop>
+                </select>
+              </div>
+            </cfoutput>
+  
+            <div class="form-group col-md-6">
+  
+              <label for="defrows">Rows Per Page<span class="text-danger">*</span>
+              </label>
+  
+              <select class="form-control" name="defrows" id="defrows">
+  
+                <cfoutput>
+  
+                  <option value="10" <cfif #details.defrows# is "10"> Selected </cfif>>10</option>
+  
+                  <option value="25" <cfif #details.defrows# is "25"> Selected </cfif>>25</option>
+  
+                  <option value="50" <cfif #details.defrows# is "50"> Selected </cfif>>50</option>
+  
+                  <option value="100" <cfif #details.defrows# is "100"> Selected </cfif>>100</option>
+  
+                </cfoutput>
+  
+              </select>
+  
+            </div>
+  
+            <div class="form-group col-md-12">
+  
+              <label for="defrows">Date Format
+              </label>
+  
+              <select class="form-control" name="dateformatid" id="dateformatid">
+  
+                <cfoutput query="dateformats">
+  
+                  <option value="#dateformats.id#" <cfif #details.dateformatid# is "#dateformats.id#"> Selected </cfif>>#dateformats.formatexample# - (Example: #dateformat(now(),'#dateformats.formatexample#')#)</option>
+  
+                </cfoutput>
+  
+              </select>
+  
+            </div>
+  
+            <cfoutput>
+  
+              <input type="hidden" name="viewtypeid" value="#details.viewtypeid#"/>
+  
+            </cfoutput>
+  
+            <div class="form-group col-md-12">
+  
+              <label for="tzid">Timezone<span class="text-danger">*</span>
+              </label>
+  
+              <select class="form-control" name="tzid" id="tzid" data-parsley-required="data-parsley-required" data-parsley-error-message="Timezone is required">
+  
+                <cfoutput query="timezones_min">
+  
+                  <option value="#timezones_min.tzid#" <cfif #details.tzid# is "#timezones_min.tzid#"> Selected </cfif>>(#timezones_min.gmt#) #timezones_min.tzgeneral#</option>
+  
+                </cfoutput>
+  
+              </select>
+  
+            </div>
+  
+            <div class="form-group text-center col-md-12">
+  
+              <button class=" btn btn-primary editable-submit btn-sm waves-effect waves-light" type="submit" style="background-color: ##406e8e; border: ##406e8e;">Update</button>
+  
+            </div>
+  
           </div>
-
-          <div class="form-group col-md-12">
-
-            <label for="defrows">Date Format
-            </label>
-
-            <select class="form-control" name="dateformatid" id="dateformatid">
-
-              <cfoutput query="dateformats">
-
-                <option value="#dateformats.id#" <cfif #details.dateformatid# is "#dateformats.id#"> Selected </cfif>>#dateformats.formatexample# - (Example: #dateformat(now(),'#dateformats.formatexample#')#)</option>
-
-              </cfoutput>
-
-            </select>
-
-          </div>
-
-          <cfoutput>
-
-            <input type="hidden" name="viewtypeid" value="#details.viewtypeid#"/>
-
-          </cfoutput>
-
-          <div class="form-group col-md-12">
-
-            <label for="tzid">Timezone<span class="text-danger">*</span>
-            </label>
-
-            <select class="form-control" name="tzid" id="tzid" data-parsley-required="data-parsley-required" data-parsley-error-message="Timezone is required">
-
-              <cfoutput query="timezones_min">
-
-                <option value="#timezones_min.tzid#" <cfif #details.tzid# is "#timezones_min.tzid#"> Selected </cfif>>(#timezones_min.gmt#) #timezones_min.tzgeneral#</option>
-
-              </cfoutput>
-
-            </select>
-
-          </div>
-
-          <div class="form-group text-center col-md-12">
-
-            <button class=" btn btn-primary editable-submit btn-sm waves-effect waves-light" type="submit" style="background-color: ##406e8e; border: ##406e8e;">Update</button>
-
-          </div>
-
-        </div>
-        <!--- row end  --->
-      </form>
-
+          <!--- row end  --->
+        </form>
+  
+      </div>
+      <!--- modal-body end  --->
     </div>
-    <!--- modal-body end  --->
+    <!--- modal-content end  --->
+  
   </div>
-  <!--- modal-content end  --->
+  <!--- modal-dialog end  --->
+  
+  </div>
+  <!--- modal end  --->
+  
 
-</div>
-<!--- modal-dialog end  --->
 
-</div>
-<!--- modal end  --->
+
+
+
 <cfinclude template="/include/qry/FindUser_1694_2.cfm"/>
 
 <cfparam name="ctaction" default="view"/>
 
-<div id="updatecal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel">
 
-<div class="modal-dialog">
 
-  <div class="modal-content">
 
-    <div class="modal-header">
 
-      <h4 class="modal-title" id="standard-modalLabel">Default Settings Update</h4>
 
-      <button type="button" class="close" data-bs-dismiss="modal">
-
-        <i class="mdi mdi-close-thick"></i>
-
-      </button>
-
-    </div>
-
-    <div class="modal-body">
-
-      <p>Update your default settings.</p>
-
-      <form action="/include/update_pref.cfm" method="post" class="parsley-examples" data-parsley-excluded="input[type=button], input[type=submit], input[type=reset], input[type=hidden], [disabled], :hidden" data-parsley-trigger="keyup" data-parsley-validate="data-parsley-validate" id="preferences">
-
-        <input type="hidden" name="ctaction" value="update_cal"/>
-
-        <input type="hidden" name="t4" value="1"/>
-
-        <!--- Start Time Selection --->
-        <cfoutput>
-          <div class="form-group col-md-6">
-            <label for="calstarttime">Start Time<span class="text-danger">*</span>
-            </label>
-            <select class="form-control" name="calstarttime" id="calstarttime">
-              <cfloop from="#startTime#" to="#endTime#" step="#createTimeSpan(0, 0, 15, 0)#" index="timeSlot">
-                <cfset formattedTime=timeFormat(timeSlot, "HH:mm:ss")>
-                <cfset displayTime=timeFormat(timeSlot, "h:mm tt")>
-                <option value="#formattedTime#" <cfif timeFormat(details.calstarttime) EQ formattedTime>selected</cfif>>
-                  #displayTime#
-                </option>
-              </cfloop>
-            </select>
-          </div>
-
-          <!--- End Time Selection --->
-          <div class="form-group col-md-6">
-            <label for="calendtime">End Time<span class="text-danger">*</span>
-            </label>
-            <select class="form-control" name="calendtime" id="calendtime">
-              <cfloop from="#startTime#" to="#endTime#" step="#createTimeSpan(0, 0, 15, 0)#" index="timeSlot">
-                <cfset formattedTime=timeFormat(timeSlot, "HH:mm:ss")>
-                <cfset displayTime=timeFormat(timeSlot, "h:mm tt")>
-                <option value="#formattedTime#" <cfif timeFormat(details.calendtime) EQ formattedTime>selected</cfif>>
-                  #displayTime#
-                </option>
-              </cfloop>
-            </select>
-          </div>
-        </cfoutput>
-        <div class="form-group col-md-6">
-
-          <label for="defrows">Rows Per Page<span class="text-danger">*</span>
-          </label>
-
-          <select class="form-control" name="defrows" id="defrows">
-
-            <cfoutput>
-
-              <option value="10" <cfif #details.defrows# is "10"> Selected </cfif>>10</option>
-
-              <option value="25" <cfif #details.defrows# is "25"> Selected </cfif>>25</option>
-
-              <option value="50" <cfif #details.defrows# is "50"> Selected </cfif>>50</option>
-
-              <option value="100" <cfif #details.defrows# is "100"> Selected </cfif>>100</option>
-
-            </cfoutput>
-
-          </select>
-
-        </div>
-
-        <cfoutput>
-
-          <input type="hidden" name="viewtypeid" value="#details.viewtypeid#"/>
-
-        </cfoutput>
-
-        <div class="form-group col-md-12">
-
-          <label for="tzid">Timezone<span class="text-danger">*</span>
-          </label>
-
-          <select class="form-control" name="tzid" id="tzid" data-parsley-required="data-parsley-required" data-parsley-error-message="Timezone is required">
-
-            <cfoutput query="timezones">
-
-              <option value="#timezones.tzid#" <cfif #details.tzid# is "#timezones.tzid#"> Selected </cfif>>(#timezones.gmt#) #timezones.tzname#</option>
-
-            </cfoutput>
-
-          </select>
-
-        </div>
-
-        <div class="form-group text-center col-md-12">
-
-          <button class=" btn btn-primary editable-submit btn-sm waves-effect waves-light" type="submit" style="background-color: ##406e8e; border: ##406e8e;">Update</button>
-
-        </div>
-
-      </div>
-      <!--- row end  --->
-    </form>
-
-  </div>
-  <!--- modal-body end  --->
-</div>
-<!--- modal-content end  --->
-
-</div>
-<!--- modal-dialog end  --->
-
-</div>
-<!--- modal end  --->
+<!--- second update_cal --->
 
 <CFOUTPUT>
 
