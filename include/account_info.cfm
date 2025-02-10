@@ -1,5 +1,5 @@
 <cfset modalid="dashboardupdate"/>
-
+<cfabort>
 <cfset modaltitle="Dashboard Preferences"/>
 
 <cfinclude template="/include/modal.cfm"/>
