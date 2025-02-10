@@ -7309,8 +7309,3 @@ body[data-leftbar-size=condensed] .user-box {
     color: #000;
 }
 
-/* Ensure .tao-card-md allows absolute positioning */
-.tao-card-md {
-    position: relative;
-    overflow: visible !important;
-}
