@@ -136,7 +136,7 @@
         <cfelse>
           <cfset card_image="#application.defaultAvatarUrl#"/>
         </cfif>
-
+<cfabort>
         <!--- Assign reminder values dynamically --->
         <cfloop query="rels">
           <cfif rels.currentrow eq 1>
