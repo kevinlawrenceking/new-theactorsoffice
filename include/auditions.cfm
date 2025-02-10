@@ -314,6 +314,8 @@
     <Cfset card_top_ribbon=""/>
   </cfif>
 <cfset card_id = results.recid />
+
+
   <!--- Include the Card Template --->
   <cfinclude template="/include/card.cfm"/>
 </div>

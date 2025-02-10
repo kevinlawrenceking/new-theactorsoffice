@@ -47,6 +47,43 @@
       <!--- Loop through the myteam query --->
 
       <cfloop query="myteam">
+
+
+      <cfset aud_cat_icon = ""/>
+<cfset card_avatar = ""/>
+<cfset card_badge_yn = ""/>
+<cfset card_casting = ""/>
+<cfset card_company = ""/>
+<cfset card_delete = ""/>
+<cfset card_delete_msg = ""/>
+<cfset card_details = ""/>
+<cfset card_email = ""/>
+<cfset card_footer_text = ""/>
+<cfset card_footer_type = ""/>
+<cfset card_footer_yn = ""/>
+<cfset card_header_text = ""/>
+<cfset card_header_yn = ""/>
+<cfset card_icon = ""/>
+<cfset card_icon_yn = ""/>
+<cfset card_id = ""/>
+<cfset card_image = ""/>
+<cfset card_image_type = ""/>
+<cfset card_image_yn = ""/>
+<cfset card_name = ""/>
+<cfset card_phone = ""/>
+<cfset card_reminder = ""/>
+<cfset card_ribbon1 = ""/>
+<cfset card_ribbon2 = ""/>
+<cfset card_ribbon_straight = ""/>
+<cfset card_social_yn = ""/>
+<cfset card_source = ""/>
+<cfset card_subtitle = ""/>
+<cfset card_title = ""/>
+<cfset card_top_ribbon = ""/>
+<cfset namecolor = ""/>
+<cfset ribbon_icon = ""/>
+
+
         <cfset currentid=myteam.contactid/>
 
         <cfinclude template="/include/qry/getSocialIcons.cfm"/>
@@ -81,6 +118,10 @@
         <cfset card_image_type = "avatar"/>
         <cfset card_image_yn = "Y"/>
         <cfset card_badge_yn = "N" />
+
+
+
+
       
           
         <cfif isimagefile("#session.userContactsPath#\#myteam.contactid#\avatar.jpg")>
