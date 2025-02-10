@@ -442,7 +442,7 @@
   </div>
 </div>
 <!--- /btn-group  --->
-<Cfabort>
+
 <div class="card-body">
 
   <cfif #pgid# is "121">
