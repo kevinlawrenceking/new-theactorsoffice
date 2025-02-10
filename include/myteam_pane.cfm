@@ -40,49 +40,50 @@
     <!--- end row --->
   </form>
 <div style="margin-bottom: 20px;">
-  <div class="container mb-8" >
-    <!--- Start of card grid container --->
-    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
 
-      <!--- Loop through the myteam query --->
-
-      <cfloop query="myteam">
-
-
-      <cfset aud_cat_icon = ""/>
-<cfset card_avatar = ""/>
-<cfset card_badge_yn = ""/>
-<cfset card_casting = ""/>
-<cfset card_company = ""/>
-<cfset card_delete = ""/>
-<cfset card_delete_msg = ""/>
-<cfset card_details = ""/>
-<cfset card_email = ""/>
-<cfset card_footer_text = ""/>
-<cfset card_footer_type = ""/>
-<cfset card_footer_yn = ""/>
-<cfset card_header_text = ""/>
-<cfset card_header_yn = ""/>
-<cfset card_icon = ""/>
-<cfset card_icon_yn = ""/>
-<cfset card_id = ""/>
-<cfset card_image = ""/>
-<cfset card_image_type = ""/>
-<cfset card_image_yn = ""/>
-<cfset card_name = ""/>
-<cfset card_phone = ""/>
-<cfset card_reminder = ""/>
-<cfset card_ribbon1 = ""/>
-<cfset card_ribbon2 = ""/>
-<cfset card_ribbon_straight = ""/>
-<cfset card_social_yn = ""/>
-<cfset card_source = ""/>
-<cfset card_subtitle = ""/>
-<cfset card_title = ""/>
-<cfset card_top_ribbon = ""/>
-<cfset namecolor = ""/>
-<cfset ribbon_icon = ""/>
-
+<!--- Start of card grid container --->
+<div class="container mb-8">
+  <div class="row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
+    
+    <!--- Loop through the myteam query --->
+    <cfloop query="myteam">
+      
+      <!--- Each team member card should be inside a column div --->
+      <div class="col">
+        
+        <cfset aud_cat_icon = ""/>
+        <cfset card_avatar = ""/>
+        <cfset card_badge_yn = ""/>
+        <cfset card_casting = ""/>
+        <cfset card_company = ""/>
+        <cfset card_delete = ""/>
+        <cfset card_delete_msg = ""/>
+        <cfset card_details = ""/>
+        <cfset card_email = ""/>
+        <cfset card_footer_text = ""/>
+        <cfset card_footer_type = ""/>
+        <cfset card_footer_yn = ""/>
+        <cfset card_header_text = ""/>
+        <cfset card_header_yn = ""/>
+        <cfset card_icon = ""/>
+        <cfset card_icon_yn = ""/>
+        <cfset card_id = ""/>
+        <cfset card_image = ""/>
+        <cfset card_image_type = ""/>
+        <cfset card_image_yn = ""/>
+        <cfset card_name = ""/>
+        <cfset card_phone = ""/>
+        <cfset card_reminder = ""/>
+        <cfset card_ribbon1 = ""/>
+        <cfset card_ribbon2 = ""/>
+        <cfset card_ribbon_straight = ""/>
+        <cfset card_social_yn = ""/>
+        <cfset card_source = ""/>
+        <cfset card_subtitle = ""/>
+        <cfset card_title = ""/>
+        <cfset card_top_ribbon = ""/>
+        <cfset namecolor = ""/>
+        <cfset ribbon_icon = ""/>
 
         <cfset currentid=myteam.contactid/>
 
@@ -91,17 +92,17 @@
 
         <!--- Assign card values dynamically --->
         <cfset card_badge_yn = ""/>
-<cfset card_header_text = ""/>
-<cfset card_icon = ""/>
-<cfset card_ribbon_straight = ""/>
-<cfset card_source = ""/>
-<cfset card_subtitle = ""/>
+        <cfset card_header_text = ""/>
+        <cfset card_icon = ""/>
+        <cfset card_ribbon_straight = ""/>
+        <cfset card_source = ""/>
+        <cfset card_subtitle = ""/>
 
         <cfset card_id=myteam.contactid/>
         <cfset aud_cat_icon=""/>
         <cfset card_avatar="Yes"/>
         <cfset card_company=myteam.card_company/>
-        <Cfset card_casting = "" />
+        <cfset card_casting = "" />
         <cfset card_delete_msg="Are you sure you want to remove this person from your team?"/>
         <cfset card_delete="/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=" & myteam.contactid/>
         <cfset card_details="/app/contact/?contactid=" & myteam.contactid/>
@@ -113,7 +114,7 @@
         <cfset card_icon_yn="Y"/>
         <cfset card_image=""/>
         <cfset card_name=myteam.card_name/>
-        <Cfset namecolor = "medium"/>
+        <cfset namecolor = "medium"/>
         <cfset card_phone=myteam.card_phone/>
         <cfset card_ribbon1=""/>
         <cfset card_ribbon2=""/>
@@ -126,11 +127,6 @@
         <cfset card_image_yn = "Y"/>
         <cfset card_badge_yn = "N" />
 
-
-
-
-      
-          
         <cfif isimagefile("#session.userContactsPath#\#myteam.contactid#\avatar.jpg")>
           <cfset card_image="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg"/>
         <cfelse>
@@ -143,16 +139,41 @@
             <cfset card_reminder=rels.systemType/>
           </cfif>
         </cfloop>
+        <!--- end query="rels" --->
 
         <cfinclude template="/include/card.cfm"/>
 
-      </cfloop><!--- end query="rels" --->
+      </div>
+      <!--- End of col div --->
 
-    </div>
-    <!--- end row --->
+    </cfloop>
+    <!--- end cfloop --->
+
   </div>
-  <!--- end container --->
+  <!--- end row div --->
 </div>
+<!--- end container div --->
+
+
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <h4>Team Share</h4>
   <cfoutput>
     <p>
