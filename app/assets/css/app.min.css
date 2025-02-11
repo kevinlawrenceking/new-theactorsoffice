@@ -7348,7 +7348,7 @@ contact-item i {
 .ribbon-two {
     position: absolute;
     left: -5px;
-    top: -10px; /* Adjusted to lift it above the card */
+    top: -7px; /* Adjusted to lift it above the card */
     z-index: 2; /* Ensures it stays above the card */
     overflow: hidden;
     width: 75px;
@@ -7370,7 +7370,7 @@ contact-item i {
     background: #1abc9c;
     box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 0.8);
     position: absolute;
-    top: 13px;
+    top: 15px;
     left: -25px;
     padding: 4px 6px;
 }
