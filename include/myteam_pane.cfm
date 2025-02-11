@@ -65,14 +65,14 @@
         <cfset card_footer_text = "Crd footer text"/>
         <cfset card_footer_type = "social"/>
         <cfset card_footer_yn = "Y"/>
-      <cfset card_header_text = myteam.card_name/>
+        <cfset card_header_text = myteam.card_name/>
         <cfset card_header_yn = "Y"/>
         <cfset card_icon = ""/>
         <cfset card_icon_yn = "Y"/>
         <cfset card_id = myteam.contactid/>
         <cfset card_image_type = "avatar"/>
         <cfset card_image_yn = "Y"/>
-  
+        <cfset card_image = "" />
         <cfset card_phone = myteam.card_phone/>
         <cfset card_reminder = ""/>
         <cfset card_ribbon1 = ""/>
@@ -85,7 +85,6 @@
         <cfset card_top_ribbon = ""/>
         <cfset namecolor = "medium"/>
         <cfset ribbon_icon = ""/>
-
         <cfset currentid = myteam.contactid/>
 
         <cfinclude template="/include/qry/getSocialIcons.cfm"/>

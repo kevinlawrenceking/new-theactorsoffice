@@ -85,52 +85,49 @@
 
 
 
- 
-
-        <!--- Variables for card 
-        <Cfparam name="card_header" default="No"/>
-        <Cfparam name="card_name" default=""/>
-        <Cfparam name="card_title" default=""/>
-        <Cfparam name="card_company" default=""/>
-        <Cfparam name="card_email" default=""/>
-        <Cfparam name="card_phone" default=""/>
-        <Cfparam name="card_details" default=""/>
-        <Cfparam name="card_delete" default=""/>
-        <Cfparam name="card_footer" default="No"/>
-        <Cfparam name="card_social" default="No"/>
-        <Cfparam name="card_avatar" default=""/>
-        <Cfparam name="card_social" default=""/>
-        <cfparam name="card_footer_text" default=""/>
-        <cfparam name="card_top_ribbon" default=""/>
-        <Cfparam name="ribbon_icon" default=""/>
-        <Cfparam name="card_footer_text" default=""/>
-        <Cfparam name="card_icon" default=""/>
-        <Cfparam name="card_ribbon1" default=""/>
-        <Cfparam name="card_ribbon12" default=""/>
+         <cfset aud_cat_icon = ""/>
+        <cfset card_avatar = "Yes"/>
+        <cfset card_badge_yn = "N"/>
+        <cfset card_casting = ""/>
+        <cfset card_company = "" />
+       <cfset card_delete="/include/download_media.cfm?mediaid=" & headshots_sel.mediaid />
+        <cfset card_delete_msg = "Are you sure you want to delete this headshot?"/>
+        <cfset card_details = "" />
+        <cfset card_email = ""/>
+        <cfset card_footer_text = "Crd footer text"/>
+        <cfset card_footer_type = ""/>
+        <cfset card_footer_yn = "N"/>
+        <cfset card_header_text = myteam.card_name/>
+        <cfset card_header_yn = "N"/>
+        <cfset card_icon = ""/>
+        <cfset card_icon_yn = "N"/>
+        <cfset card_id = myteam.contactid/>
+        <cfset card_image_type = "image"/>
+        <cfset card_image_yn = "Y"/>
+         <cfset card_image=session.userMediaUrl & "/" & headshots_sel.mediaFileName />
+         <cfset card_name = headshots_sel.medianame  />
+        <cfset card_phone = "" />
+        <cfset card_reminder = ""/>
+        <cfset card_ribbon1 = ""/>
+        <cfset card_ribbon2 = ""/>
+        <cfset card_ribbon_straight = ""/>
+        <cfset card_social_yn = "N"/>
+        <cfset card_source = ""/>
+        <cfset card_subtitle = ""/>
+        <cfset card_title = "title" />
+        <cfset card_top_ribbon = ""/>
+        <cfset namecolor = "medium"/>
+        <cfset ribbon_icon = ""/>
+        <cfset currentid = headshots_sel.mediaid/>
 
         <!--- Assign card values dynamically --->
-        <cfset card_header="Yes"/>
-        <cfset card_social="No"/>
-        <cfset card_name=headshots_sel.medianame />
+ 
+
+        <cfset card_name=/>
 
 
-        <cfset card_title=""/>
-        <cfset card_company=""/>
-        <cfset card_email=myteam.card_email/>
-        <cfset card_phone=myteam.card_phone/>
-        <cfset card_details="/app/contact/?contactid=" & myteam.contactid/>
-        <cfset card_delete="/include/download_media.cfm?mediaid=" & headshots_sel.mediaid />
-        <cfset card_footer="No"/>
-        <cfset card_social="No"/>
-        <cfset card_ribbon1=""/>
-        <cfset card_ribbon2=""/>
-        <Cfset card_avatar="" />
    
-          <cfset card_image=session.userMediaUrl & "/" & headshots_sel.mediaFileName />
-
-          --->
-   
- <!--- cfinclude template="/include/card.cfm"  --->
+ <cfinclude template="/include/card.cfm"/>
 
       </cfloop>
 
