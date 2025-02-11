@@ -7289,7 +7289,7 @@ contact-item i {
     flex-direction: column; /* Stacks multiple ribbons */
     gap: 5px; /* Space between multiple ribbons */
     pointer-events: none; /* Prevents hover from affecting it */
-    z-index: -5;
+
 }
 
 /* Individual Ribbon */
