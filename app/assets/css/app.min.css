@@ -7318,9 +7318,11 @@ contact-item i {
     border-style: solid;
     border-width: 6px 6px 0 6px; /* Downward-pointing triangle */
     border-color: #000 transparent transparent transparent;
-    z-index: -1; /* Pushes triangle behind card */
+    z-index: -11; /* Pushes triangle behind card */
     pointer-events: none; /* Prevents hover from affecting it */
     bottom: -4px; /* Moves up slightly to remove extra space */
+        /* Hide the extra triangle portion */
+        clip-path: polygon(0% 0%, 100% 0%, 75% 100%, 0% 100%);
 }
 
 /* Ribbon Colors with Matching Triangle */
