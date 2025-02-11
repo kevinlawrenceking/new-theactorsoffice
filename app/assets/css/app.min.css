@@ -7198,7 +7198,7 @@ contact-item i {
 
 /* Subtitle - Slightly smaller than title but still prominent */
 .tao-card-subtitle {
-    font-size: 1.1rem; /* Slightly smaller than title */
+    font-size: 1rem; /* Slightly smaller than title */
     color: #555; /* Subtle, but not too faded */
     display: block; /* Ensures it sits below the title */
 }
