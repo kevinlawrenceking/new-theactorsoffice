@@ -7419,8 +7419,8 @@ contact-item i {
 .ribbon-two span::after,
 .ribbon-three span::after {
     right: 0px;
-    border-right: 4px solid #1e7e34;
-    border-left: 4px solid transparent;
-    border-bottom: 4px solid transparent;
-    border-top: 4px solid #1e7e34;
+    border-right: 3px solid #1e7e34;
+    border-left: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid #1e7e34;
 }
