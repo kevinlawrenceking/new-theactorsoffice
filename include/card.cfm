@@ -119,7 +119,7 @@
 <style>
 /* Bottom-Right Triangle */
 .ribbon-straight {
-    bottom: -24px; /* Moves up slightly to remove extra space */
+    bottom: 44px; /* Moves up slightly to remove extra space */
 
 }
 </style>
