@@ -7433,3 +7433,15 @@ contact-item i {
     border-bottom: 4px solid transparent;
     border-top: 4px solid #1e7e34;
 }
+
+/* Triangle Fix - Works for Both */
+.ribbon-two span::before,
+.ribbon-two span::after,
+.ribbon-three span::before,
+.ribbon-three span::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    z-index: -2; /* Keeps it below everything */
+    pointer-events: none; /* Prevents hover interactions */
+}
