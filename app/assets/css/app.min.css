@@ -7023,6 +7023,7 @@ body[data-leftbar-size=condensed] .user-box {
     text-overflow: ellipsis;
     background-color: #6c757d; /* Restore correct header background */
     color: #fff; /* Light text for contrast */
+
 }
 
 /* HEADER TEXT */
@@ -7032,6 +7033,7 @@ body[data-leftbar-size=condensed] .user-box {
     text-overflow: ellipsis;
     white-space: nowrap;
     flex-grow: 1;
+    font-size:1.2rem;
 }
 
 /* FIXED: NAME */
