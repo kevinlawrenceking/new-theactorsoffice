@@ -7421,6 +7421,6 @@ contact-item i {
     right: 0px;
     border-right: 4px solid #1e7e34;
     border-left: 4px solid transparent;
-    border-bottom: 4px solid transparent;
+    border-bottom: 5px solid transparent;
     border-top: 4px solid #1e7e34;
 }
