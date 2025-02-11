@@ -162,7 +162,7 @@
 
        <!--- Ribbons (Properly Closed) --->
       <cfif card_ribbon_straight_body neq "">
-        <div class=".ribbon-straight-box-box">
+        <div class="ribbon-straight-box-body">
 
 
 
