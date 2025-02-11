@@ -273,7 +273,7 @@
         <cfset card_image_type = "calendar"/>
         <cfset card_image_yn = "Y"/>
         <cfset card_badge_yn = "N" />
-    
+        <cfset card_ribbon_straight_body =  />
 
 <cfoutput>
 
