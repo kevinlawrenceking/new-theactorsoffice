@@ -7289,7 +7289,7 @@ contact-item i {
     flex-direction: column; /* Stacks multiple ribbons */
     gap: 5px; /* Space between multiple ribbons */
     pointer-events: none; /* Prevents hover from affecting it */
-    z-index: 5;
+    z-index: 5px;
 }
 
 /* Individual Ribbon */
@@ -7320,7 +7320,6 @@ contact-item i {
     z-index: -255; /* Pushes triangle behind card */
     pointer-events: none; /* Prevents hover from affecting it */
     bottom: -4px; /* Moves up slightly to remove extra space */
-    clip-path: polygon(0% 0%, 100% 0%, 75% 100%, 0% 100%);
 }
 
 /* Ribbon Colors with Matching Triangle */
