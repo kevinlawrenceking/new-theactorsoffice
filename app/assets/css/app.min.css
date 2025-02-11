@@ -7221,7 +7221,7 @@ contact-item i {
     position: absolute;
     right: -3px; /* Moved 2px right */
     top: 0px; /* Moved 2px up */
-    overflow: visible !important; /* Prevents clipping */
+    overflow: hidden !important; /* Prevents clipping */
     width: 80px; /* Reduced width */
     height: 80px; /* Reduced height */
     z-index: 999; /* Higher than .tao-card-md */
@@ -7250,7 +7250,7 @@ contact-item i {
     top: 13px; /* Adjusted for better fit */
     right: -27px; /* Slightly moved to align */
     padding: 2px 4px; /* Less padding */
-    overflow: hidden;
+    
 }
 
 /* Triangle Fix */
