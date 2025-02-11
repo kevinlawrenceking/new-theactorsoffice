@@ -7337,14 +7337,13 @@ contact-item i {
     background: #74C0FC;
     color: #333;
 }
-
 /* Ensures the Ribbon is Slightly Raised */
 .ribbon-box {
     position: relative;
-    overflow: visible; /* Allow the ribbon to extend beyond the card */
+    overflow: visible; /* Allows ribbons to extend beyond the card */
 }
 
-/* Ribbon Positioned on Top-Left */
+/* Top-Left Ribbon (Existing) */
 .ribbon-two {
     position: absolute;
     left: -5px;
@@ -7356,18 +7355,31 @@ contact-item i {
     text-align: right;
 }
 
-/* Ribbon Styling */
-.ribbon-two span {
+/* Top-Right Ribbon */
+.ribbon-three {
+    position: absolute;
+    right: -5px; /* Align to the top-right corner */
+    top: -8px; /* Same lift above the card */
+    z-index: 2; /* Ensures it stays above the card */
+    overflow: hidden;
+    width: 75px;
+    height: 75px;
+    text-align: left;
+}
+
+/* Ribbon Styling - Same for Both */
+.ribbon-two span,
+.ribbon-three span {
     font-size: 0.7rem;
     font-weight: bold;
     color: #fff;
     text-transform: uppercase;
     text-align: center;
     line-height: 20px;
-    transform: rotate(-45deg);
+    transform: rotate(-45deg); /* Default rotation for left */
     width: 100px;
     display: block;
-    background: #1abc9c;
+    background: #1abc9c; /* Same color */
     box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 0.8);
     position: absolute;
     top: 15px;
@@ -7375,9 +7387,18 @@ contact-item i {
     padding: 4px 6px;
 }
 
-/* Triangle Fix */
+/* Adjust Rotation for Right Ribbon */
+.ribbon-three span {
+    transform: rotate(45deg); /* Flipped for right side */
+    right: -25px; /* Move it to align properly */
+    left: auto;
+}
+
+/* Triangle Fix - Same for Both */
 .ribbon-two span::before,
-.ribbon-two span::after {
+.ribbon-two span::after,
+.ribbon-three span::before,
+.ribbon-three span::after {
     content: '';
     position: absolute; 
     top: 100%;
@@ -7385,7 +7406,8 @@ contact-item i {
 }
 
 /* Left Side Triangle */
-.ribbon-two span::before {
+.ribbon-two span::before,
+.ribbon-three span::before {
     left: 0px;
     border-left: 4px solid #1e7e34;
     border-right: 4px solid transparent;
@@ -7394,7 +7416,8 @@ contact-item i {
 }
 
 /* Right Side Triangle */
-.ribbon-two span::after {
+.ribbon-two span::after,
+.ribbon-three span::after {
     right: 0px;
     border-right: 4px solid #1e7e34;
     border-left: 4px solid transparent;
