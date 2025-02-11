@@ -127,7 +127,7 @@
     height: 0;
     border-style: solid;
     border-width: 6px 6px 0 6px; /* Downward-pointing triangle */
-    border-color: #000 transparent transparent transparent;
+    border-color: ##000 transparent transparent transparent;
     z-index: -255; /* Pushes triangle behind card */
     pointer-events: none; /* Prevents hover from affecting it */
     bottom: -4px; /* Moves up slightly to remove extra space */
