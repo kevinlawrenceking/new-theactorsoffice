@@ -7358,7 +7358,7 @@ contact-item i {
 /* Top-Right Ribbon */
 .ribbon-three {
     position: absolute;
-    right: -5px; /* Align to the top-right corner */
+    right: -7px; /* Align to the top-right corner */
     top: -5px; /* Same lift above the card */
     z-index: 2; /* Ensures it stays above the card */
     overflow: hidden;
