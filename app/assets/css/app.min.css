@@ -7280,6 +7280,16 @@ contact-item i {
     border-top: 4px solid #1e7e34;
 }
 
+/* Container for Bottom-Right Ribbons */
+.ribbon-straight-box {
+    position: absolute;
+    bottom: 10px; /* Anchored to the bottom */
+    right: 10px; /* Anchored to the right */
+    display: flex;
+    flex-direction: column; /* Stacks multiple ribbons */
+    gap: 5px; /* Space between multiple ribbons */
+}
+
 /* Individual Ribbon */
 .ribbon-straight {
     position: relative;
@@ -7297,12 +7307,13 @@ contact-item i {
 .ribbon-straight::after {
     content: "";
     position: absolute;
-    bottom: -6px; /* Places it at the bottom */
-    right: 0px; /* Anchors it to the right */
+    bottom: -4px; /* Moves up slightly to remove space */
+    right: 0px; /* Keeps it at the bottom-right */
     width: 0;
     height: 0;
     border-style: solid;
     border-width: 6px 6px 0 6px; /* Creates a downward-pointing triangle */
+    border-color: #000 transparent transparent transparent;
     transform: translateY(0%);
 }
 
