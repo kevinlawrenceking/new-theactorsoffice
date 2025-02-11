@@ -7231,7 +7231,7 @@ contact-item i {
 
 /* When card is hovered, prevent the ribbon from disappearing */
 .tao-card-md:hover .ribbon {
-    z-index: 9999 !important; /* Keeps it on top */
+    z-index: 2 !important; /* Keeps it on top */
 }
 
 /* Ribbon Styling */
@@ -7296,7 +7296,7 @@ contact-item i {
     display: inline-flex;
     align-items: center;
     justify-content: flex-start;
-    padding: 5px 12px;
+    padding: 5px 16px;
     border-radius: 3px;
     font-size: 12px;
     box-shadow: 2px 5px 10px rgba(50, 58, 70, .15);
@@ -7315,7 +7315,7 @@ contact-item i {
     border-width: 6px 6px 0 6px; /* Creates a downward-pointing triangle */
     border-color: #000 transparent transparent transparent;
     transform: translateY(0%);
-    z-index: -227;
+    z-index: -1;
 }
 
 /* Ribbon Colors with Matching Triangle */
