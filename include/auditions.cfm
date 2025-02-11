@@ -260,7 +260,6 @@
         <cfset card_header_yn="Y"/>
         <cfset card_icon_yn="Y"/>
         <cfset card_image="#application.datesUrl#/#DateFormat('#results.col1#','mm-dd')#.png"/>
-        <cfset card_name=""/>
         <Cfset namecolor = "dark"/>
         <cfset card_phone=""/>
         <cfset card_ribbon1=""/>
