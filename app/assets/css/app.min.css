@@ -7320,6 +7320,7 @@ contact-item i {
     z-index: -255; /* Pushes triangle behind card */
     pointer-events: none; /* Prevents hover from affecting it */
     bottom: -4px; /* Moves up slightly to remove extra space */
+    
 }
 
 /* Ribbon Colors with Matching Triangle */
