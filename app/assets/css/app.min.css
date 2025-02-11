@@ -7315,7 +7315,7 @@ contact-item i {
     border-width: 6px 6px 0 6px; /* Creates a downward-pointing triangle */
     border-color: #000 transparent transparent transparent;
     transform: translateY(0%);
-    z-index: -22;
+    z-index: -227;
 }
 
 /* Ribbon Colors with Matching Triangle */
