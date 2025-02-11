@@ -123,8 +123,6 @@
         <!--- Assign card values dynamically --->
  
 
-        <cfset card_name=/>
-
 
    
  <cfinclude template="/include/card.cfm"/>
