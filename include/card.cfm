@@ -115,10 +115,6 @@
         </div>
       </cfif>
 
-
-      
-
-
       <!--- Ribbons (Properly Closed) --->
       <cfif card_ribbon_straight neq "">
         <div class="ribbon-straight-box">
@@ -134,9 +130,6 @@
           </cfif>
           <cfif card_ribbon_straight eq "Callback">
             <div class="ribbon-straight ribbon-straight-callback">
-              <i class="mdi mdi-phone-incoming"></i> Callback
-            </div>
-                <div class="ribbon-straight ribbon-straight-callback">
               <i class="mdi mdi-phone-incoming"></i> Callback
             </div>
           </cfif>
