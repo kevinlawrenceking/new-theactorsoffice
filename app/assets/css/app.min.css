@@ -7051,7 +7051,7 @@ body[data-leftbar-size=condensed] .user-box {
 /* FIXED: TITLE - REMOVE BLUE HYPERLINK COLOR */
 .tao-card-title {
     font-weight: 500;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: #333; /* Ensures text is black/gray */
 }
 
