@@ -80,12 +80,12 @@
                 <cfif card_phone neq ''>#card_phone#<cfelse>&nbsp;</cfif>
               </span>
             </cfif>
-            <cfif card_reminder neq "">
+          <!---  <cfif card_reminder neq "">
               <span class="contact-item">
                 <i class="mdi mdi-account-multiple <cfif card_reminder neq ''>has-content</cfif>"></i>
                 <cfif card_reminder neq ''>#card_reminder#<cfelse>&nbsp;</cfif>
               </span>
-            </cfif>
+            </cfif> --->
           </p>
         </div>
       </div>
