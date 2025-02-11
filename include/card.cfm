@@ -121,7 +121,7 @@
        /* Container for Bottom-Right Ribbons */
 .ribbon-straight-box {
     position: absolute;
-    bottom: 40px; /* Anchored to the bottom */
+    bottom: -20px; /* Anchored to the bottom */
     right: -7px; /* Anchored to the right */
     display: flex;
     flex-direction: column; /* Stacks multiple ribbons */
