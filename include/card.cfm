@@ -118,21 +118,44 @@
       <!--- Ribbons (Properly Closed) --->
       <cfif card_ribbon_straight neq "">
         <div class="ribbon-straight-box">
+
           <cfif card_ribbon_straight eq "Pin">
             <div class="ribbon-straight ribbon-straight-pin">
               <i class="mdi mdi-map-marker"></i> Pin
             </div>
           </cfif>
+
           <cfif card_ribbon_straight eq "Redirect">
             <div class="ribbon-straight ribbon-straight-redirect">
               <i class="mdi mdi-swap-horizontal"></i> Redirect
             </div>
           </cfif>
+
           <cfif card_ribbon_straight eq "Callback">
             <div class="ribbon-straight ribbon-straight-callback">
               <i class="mdi mdi-phone-incoming"></i> Callback
             </div>
           </cfif>
+
+
+          <cfif card_ribbon_straight eq "Follow Up">
+            <div class="ribbon-straight ribbon-straight-pin">
+              <i class="mdi mdi-map-marker"></i> Follow-Up
+            </div>
+          </cfif>
+ 
+    <cfif card_ribbon_straight eq "Targeted List">
+            <div class="ribbon-straight ribbon-straight-redirect">
+              <i class="mdi mdi-bullseye-arrow"></i> Targeted
+            </div>
+          </cfif>
+
+          <cfif card_ribbon_straight eq "Maintenance List">
+            <div class="ribbon-straight ribbon-straight-callback">
+              <i class="mdi mdi-wrench"></i> a
+            </div>
+          </cfif>
+
         </div>
       </cfif>
 
