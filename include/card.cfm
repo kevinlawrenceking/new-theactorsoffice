@@ -115,6 +115,10 @@
         </div>
       </cfif>
 
+
+      
+
+
       <!--- Ribbons (Properly Closed) --->
       <cfif card_ribbon_straight neq "">
         <div class="ribbon-straight-box">
