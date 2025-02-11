@@ -152,7 +152,7 @@
 
           <cfif card_ribbon_straight eq "Maintenance List">
             <div class="ribbon-straight ribbon-straight-callback">
-              <i class="mdi mdi-wrench"></i> a
+              <i class="mdi mdi-wrench"></i> Maintenance
             </div>
           </cfif>
 
