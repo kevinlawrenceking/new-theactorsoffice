@@ -7133,13 +7133,13 @@ body[data-leftbar-size=condensed] .user-box {
 
 /* FOOTER */
 .tao-card-footer {
-    padding: 10px;
+    padding: 5px;
     background-color: #f8f9fa;
     display: flex;
     justify-content: center;
     align-items: center;
     border-top: 1px solid #ddd;
-    min-height: 40px;
+    min-height: 18px;
 }
 
 /* SOCIAL ICONS */
