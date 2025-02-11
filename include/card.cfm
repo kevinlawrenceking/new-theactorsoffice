@@ -115,28 +115,6 @@
         </div>
       </cfif>
 
-      <!--- Ribbons (Properly Closed) --->
-      <cfif card_ribbon_straight neq "">
-        <div class="ribbon-straight-box">
-
-          <cfif card_ribbon_straight eq "Pin">
-            <div class="ribbon-straight ribbon-straight-pin">
-              <i class="mdi mdi-map-marker"></i> &nbsp; Pin
-            </div>
-          </cfif>
-
-          <cfif card_ribbon_straight eq "Redirect">
-            <div class="ribbon-straight ribbon-straight-redirect">
-              <i class="mdi mdi-swap-horizontal"></i> &nbsp;  Redirect
-            </div>
-          </cfif>
-
-
-          </cfif>
-
-        </div>
-      </cfif>
-
 
        <!--- Ribbons (Properly Closed) --->
 <!--- Ribbons (Properly Closed) --->
