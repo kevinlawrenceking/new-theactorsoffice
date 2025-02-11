@@ -132,6 +132,9 @@
             <div class="ribbon-straight ribbon-straight-callback">
               <i class="mdi mdi-phone-incoming"></i> Callback
             </div>
+                <div class="ribbon-straight ribbon-straight-callback">
+              <i class="mdi mdi-phone-incoming"></i> Callback
+            </div>
           </cfif>
         </div>
       </cfif>

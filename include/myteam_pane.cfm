@@ -56,7 +56,7 @@
         <cfset aud_cat_icon = ""/>
         <cfset card_avatar = "Yes"/>
         <cfset card_badge_yn = "N"/>
-        <cfset card_casting = "Casting"/>
+        <cfset card_casting = "Casing"/>
         <cfset card_company = myteam.card_company/>
         <cfset card_delete = "/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=" & myteam.contactid/>
         <cfset card_delete_msg = "Are you sure you want to remove this person from your team?"/>
