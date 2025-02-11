@@ -7307,15 +7307,15 @@ contact-item i {
 .ribbon-straight::after {
     content: "";
     position: absolute;
-    bottom: -4px; /* Moves up slightly to remove space */
-    right: 0px; /* Keeps it at the bottom-right */
+    bottom: -4px; /* Moves up slightly to remove extra space */
+    right: 0px; /* Ensures it's at the bottom-right */
     width: 0;
     height: 0;
     border-style: solid;
-    border-width: 6px 6px 0 6px; /* Creates a downward-pointing triangle */
+    border-width: 6px 6px 0 6px; /* Downward-pointing triangle */
     border-color: #000 transparent transparent transparent;
-    transform: translateY(0%);
-    z-index: -1;
+    z-index: -2; /* Pushes triangle behind card */
+    pointer-events: none; /* Prevents hover from affecting it */
 }
 
 /* Ribbon Colors with Matching Triangle */
@@ -7434,14 +7434,3 @@ contact-item i {
     border-top: 4px solid #1e7e34;
 }
 
-/* Triangle Fix - Works for Both */
-.ribbon-two span::before,
-.ribbon-two span::after,
-.ribbon-three span::before,
-.ribbon-three span::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    z-index: -2; /* Keeps it below everything */
-    pointer-events: none; /* Prevents hover interactions */
-}
