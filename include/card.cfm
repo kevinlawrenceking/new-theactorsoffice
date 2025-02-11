@@ -118,7 +118,7 @@
 
 <style>
 /* Bottom-Right Triangle */
-.ribbon-straight::after {
+.ribbon-straight {
     bottom: -24px; /* Moves up slightly to remove extra space */
 
 }
