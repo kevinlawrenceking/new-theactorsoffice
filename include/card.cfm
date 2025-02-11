@@ -116,13 +116,7 @@
       </cfif>
 
 
-<style>
-/* Bottom-Right Triangle */
-.ribbon-straight {
-    bottom: 44px; /* Moves up slightly to remove extra space */
 
-}
-</style>
 
 
 <!--- Ribbons (Properly Closed) --->

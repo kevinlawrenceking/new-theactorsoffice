@@ -109,6 +109,14 @@
 
         </cfloop>
 
+        <style>
+/* Bottom-Right Triangle */
+.ribbon-straight {
+    bottom: 44px; /* Moves up slightly to remove extra space */
+
+}
+</style>
+
         <cfinclude template="/include/card.cfm"/>
 
       </div> <!--- End of col div --->
