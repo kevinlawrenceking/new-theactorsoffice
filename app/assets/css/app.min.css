@@ -7284,7 +7284,7 @@ contact-item i {
 .ribbon-straight-box {
     position: absolute;
     bottom: 10px; /* Anchored to the bottom */
-    right: -10px; /* Anchored to the right */
+    right: -7px; /* Anchored to the right */
     display: flex;
     flex-direction: column; /* Stacks multiple ribbons */
     gap: 5px; /* Space between multiple ribbons */
