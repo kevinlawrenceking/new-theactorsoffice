@@ -117,6 +117,20 @@
 
 
        <!--- Ribbons (Properly Closed) --->
+<style>
+       /* Container for Bottom-Right Ribbons */
+.ribbon-straight-box {
+    position: absolute;
+    bottom: 40px; /* Anchored to the bottom */
+    right: -7px; /* Anchored to the right */
+    display: flex;
+    flex-direction: column; /* Stacks multiple ribbons */
+    gap: 5px; /* Space between multiple ribbons */
+    pointer-events: none; /* Prevents hover from affecting it */
+    z-index: 5px;
+}
+</style>
+
 <!--- Ribbons (Properly Closed) --->
 <cfif card_ribbon_straight neq "">
     <div class="ribbon-straight-box">

@@ -103,7 +103,7 @@
           <cfif rels.currentrow eq 1>
             <cfset card_reminder = rels.systemType/>
                  <cfset card_ribbon_straight_body = rels.systemType/>
-                    <cfset card_ribbon_straight = rels.systemType/>
+         
           
           </cfif>
 
