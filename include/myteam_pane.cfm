@@ -92,7 +92,7 @@
         <cfinclude template="/include/qry/getRemindersByRelationship.cfm"/>
 
         <!--- Assign default avatar if no image exists --->
-        <cfif isimagefile("#session.userContactsPath#\#myteam.contactid#\avatar.jpg")>
+        <cfif isimagefile("#session.userContactsPath#\#myteam.contactid#\avatar.jpg?ver=#rand()#")>
           <cfset card_image="#session.userContactsUrl#/#myteam.contactid#/avatar.jpg"/>
         <cfelse>
           <cfset card_image="#application.defaultAvatarUrl#"/>
