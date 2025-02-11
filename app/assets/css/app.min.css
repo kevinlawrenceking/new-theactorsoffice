@@ -7338,17 +7338,18 @@ contact-item i {
     color: #333;
 }
 
+/* Ensures the Ribbon is Slightly Raised */
 .ribbon-box {
     position: relative;
-    overflow: hidden; /* Clips the ribbon */
+    overflow: visible; /* Allow the ribbon to extend beyond the card */
 }
 
 /* Ribbon Positioned on Top-Left */
 .ribbon-two {
     position: absolute;
     left: -5px;
-    top: -5px;
-    z-index: 1;
+    top: -10px; /* Adjusted to lift it above the card */
+    z-index: 2; /* Ensures it stays above the card */
     overflow: hidden;
     width: 75px;
     height: 75px;
