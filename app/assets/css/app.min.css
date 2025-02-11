@@ -7288,6 +7288,7 @@ contact-item i {
     display: flex;
     flex-direction: column; /* Stacks multiple ribbons */
     gap: 5px; /* Space between multiple ribbons */
+    pointer-events: none; /* Prevents hover from affecting it */
 }
 
 /* Individual Ribbon */
@@ -7301,6 +7302,7 @@ contact-item i {
     font-size: 12px;
     box-shadow: 2px 5px 10px rgba(50, 58, 70, .15);
     white-space: nowrap; /* Prevents text from wrapping */
+    pointer-events: none; /* Prevents hover from affecting it */
 }
 
 /* Bottom-Right Triangle */
