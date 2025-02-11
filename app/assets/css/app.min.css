@@ -7280,76 +7280,40 @@ contact-item i {
     border-top: 4px solid #1e7e34;
 }
 
-/* Container for Bottom-Right Ribbons */
-.ribbon-straight-box {
-    position: absolute;
-    bottom: 10px; /* Anchored to the bottom */
-    right: -7px; /* Anchored to the right */
-    display: flex;
-    flex-direction: column; /* Stacks multiple ribbons */
-    gap: 5px; /* Space between multiple ribbons */
-}
-
-.ribbon-straight-box-body {
-    position: absolute;
-    bottom: 50px; /* Anchored to the bottom */
-    right: -7px; /* Anchored to the right */
-    display: flex;
-    flex-direction: column; /* Stacks multiple ribbons */
-    gap: 5px; /* Space between multiple ribbons */
-}
-
 /* Individual Ribbon */
 .ribbon-straight {
     position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: flex-start;
-    padding: 2px 10px;
+    padding: 5px 12px;
     border-radius: 3px;
     font-size: 12px;
     box-shadow: 2px 5px 10px rgba(50, 58, 70, .15);
     white-space: nowrap; /* Prevents text from wrapping */
 }
 
-/* Triangle Ends */
-.ribbon-straight::before,
+/* Bottom-Right Triangle */
 .ribbon-straight::after {
     content: "";
     position: absolute;
-    top: 50%;
+    bottom: -6px; /* Places it at the bottom */
+    right: 0px; /* Anchors it to the right */
     width: 0;
     height: 0;
     border-style: solid;
-    transform: translateY(-50%);
+    border-width: 6px 6px 0 6px; /* Creates a downward-pointing triangle */
+    transform: translateY(0%);
 }
 
-/* Left Side Triangle */
-.ribbon-straight::before {
-    left: -6px;
-    border-width: 6px 6px 6px 0;
-}
-
-/* Right Side Triangle */
-.ribbon-straight::after {
-    right: -6px;
-    border-width: 6px 0 6px 6px;
-}
-
-/* Ribbon Icons (for visual consistency) */
-.ribbon-straight i {
-    margin-right: 5px;
-}
-
-/* Ribbon Colors with Matching Triangle Ends */
+/* Ribbon Colors with Matching Triangle */
 .ribbon-straight-pin {
     background: #FBE8A6;
     color: #333;
 }
 
-.ribbon-straight-pin::before,
 .ribbon-straight-pin::after {
-    border-color: transparent #FBE8A6 transparent transparent;
+    border-color: #FBE8A6 transparent transparent transparent;
 }
 
 .ribbon-straight-callback {
@@ -7357,9 +7321,8 @@ contact-item i {
     color: #333;
 }
 
-.ribbon-straight-callback::before,
 .ribbon-straight-callback::after {
-    border-color: transparent #A1D9EC transparent transparent;
+    border-color: #A1D9EC transparent transparent transparent;
 }
 
 .ribbon-straight-redirect {
@@ -7367,9 +7330,8 @@ contact-item i {
     color: #333;
 }
 
-.ribbon-straight-redirect::before,
 .ribbon-straight-redirect::after {
-    border-color: transparent #74C0FC transparent transparent;
+    border-color: #74C0FC transparent transparent transparent;
 }
 
 /* Ensures the Ribbon is Slightly Raised */
