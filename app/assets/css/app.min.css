@@ -7359,7 +7359,7 @@ contact-item i {
 .ribbon-three {
     position: absolute;
     right: -5px; /* Align to the top-right corner */
-    top: -6px; /* Same lift above the card */
+    top: -5px; /* Same lift above the card */
     z-index: 2; /* Ensures it stays above the card */
     overflow: hidden;
     width: 75px;
@@ -7410,8 +7410,8 @@ contact-item i {
 .ribbon-three span::before {
     left: 0px;
     border-left: 4px solid #1e7e34;
-    border-right: 5px solid transparent;
-    border-bottom: 6px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 4px solid transparent;
     border-top: 4px solid #1e7e34;
 }
 
