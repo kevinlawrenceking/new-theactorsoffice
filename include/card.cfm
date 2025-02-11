@@ -131,29 +131,7 @@
             </div>
           </cfif>
 
-          <cfif card_ribbon_straight eq "Callback">
-            <div class="ribbon-straight ribbon-straight-callback">
-              <i class="mdi mdi-phone-incoming"></i> &nbsp;  Callback
-            </div>
-          </cfif>
 
-
-          <cfif card_ribbon_straight eq "Follow Up">
-            <div class="ribbon-straight ribbon-straight-pin">
-              <i class="mdi mdi-map-marker"></i> &nbsp;  Follow-Up
-            </div>
-          </cfif>
- 
-          <cfif card_ribbon_straight eq "Targeted List">
-            <div class="ribbon-straight ribbon-straight-redirect">
-              <i class="mdi mdi-bullseye-arrow"></i> &nbsp;  Targeted
-            </div>
-          </cfif>
-
-          <cfif card_ribbon_straight eq "Maintenance List">
-            <div class="ribbon-straight ribbon-straight-callback">
-              <i class="mdi mdi-wrench"></i> &nbsp;  Maintenance
-            </div>
           </cfif>
 
         </div>
@@ -161,31 +139,52 @@
 
 
        <!--- Ribbons (Properly Closed) --->
-      <cfif card_ribbon_straight_body neq "">
-        <div class="ribbon-straight-box-body">
+<!--- Ribbons (Properly Closed) --->
+<cfif card_ribbon_straight neq "">
+    <div class="ribbon-straight-box">
 
+        <!--- Loop through each value in the list --->
+        <cfloop list="#card_ribbon_straight#" index="ribbonType">
+            <cfif ribbonType eq "Pin">
+                <div class="ribbon-straight ribbon-straight-pin">
+                    <i class="mdi mdi-map-marker"></i> &nbsp; Pin
+                </div>
+            </cfif>
 
+            <cfif ribbonType eq "Redirect">
+                <div class="ribbon-straight ribbon-straight-redirect">
+                    <i class="mdi mdi-swap-horizontal"></i> &nbsp; Redirect
+                </div>
+            </cfif>
 
-          <cfif card_ribbon_straight_body eq "Follow Up">
-            <div class="ribbon-straight ribbon-straight-pin">
-              <i class="mdi mdi-map-marker"></i> &nbsp;  Follow-Up
-            </div>
-          </cfif>
- 
-          <cfif card_ribbon_straight_body eq "Targeted List">
-            <div class="ribbon-straight ribbon-straight-redirect">
-              <i class="mdi mdi-bullseye-arrow"></i> &nbsp;  Targeted
-            </div>
-          </cfif>
+            <cfif ribbonType eq "Callback">
+                <div class="ribbon-straight ribbon-straight-callback">
+                    <i class="mdi mdi-phone-incoming"></i> &nbsp; Callback
+                </div>
+            </cfif>
 
-          <cfif card_ribbon_straight_body eq "Maintenance List">
-            <div class="ribbon-straight ribbon-straight-callback">
-              <i class="mdi mdi-wrench"></i> &nbsp;  Maintenance
-            </div>
-          </cfif>
+            <cfif ribbonType eq "Follow Up">
+                <div class="ribbon-straight ribbon-straight-pin">
+                    <i class="mdi mdi-map-marker"></i> &nbsp; Follow-Up
+                </div>
+            </cfif>
 
-        </div>
-      </cfif>
+            <cfif ribbonType eq "Targeted List">
+                <div class="ribbon-straight ribbon-straight-redirect">
+                    <i class="mdi mdi-bullseye-arrow"></i> &nbsp; Targeted
+                </div>
+            </cfif>
+
+            <cfif ribbonType eq "Maintenance List">
+                <div class="ribbon-straight ribbon-straight-callback">
+                    <i class="mdi mdi-wrench"></i> &nbsp; Maintenance
+                </div>
+            </cfif>
+        </cfloop>
+
+    </div>
+</cfif>
+
 
       <cfif card_details neq ""></a></cfif>
 

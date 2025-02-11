@@ -279,15 +279,25 @@
 
                         <!--- Determine Audition Status --->
                         <cfset col6 = "Audition">
-                        <cfif results.isbooked eq "1">
-                            <cfset col6 = "Booked">
-                        <cfelseif results.ispin eq "1">
-                            <cfset col6 = "Pin">
-                        <cfelseif results.isredirect eq "1">
-                            <cfset col6 = "Redirect">
-                        <cfelseif results.iscallback eq "1">
-                            <cfset col6 = "Callback">
-                        </cfif>
+
+    <cfset col6 = "">
+
+<cfif results.isbooked eq "1">
+    <cfset col6 = listAppend(col6, "Booked")>
+</cfif>
+
+<cfif results.ispin eq "1">
+    <cfset col6 = listAppend(col6, "Pin")>
+</cfif>
+
+<cfif results.isredirect eq "1">
+    <cfset col6 = listAppend(col6, "Redirect")>
+</cfif>
+
+<cfif results.iscallback eq "1">
+    <cfset col6 = listAppend(col6, "Callback")>
+</cfif>
+
 
     <cfset card_ribbon_straight = col6 />
 
