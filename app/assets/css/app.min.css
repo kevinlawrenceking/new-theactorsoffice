@@ -7250,6 +7250,7 @@ contact-item i {
     top: 13px; /* Adjusted for better fit */
     right: -27px; /* Slightly moved to align */
     padding: 2px 4px; /* Less padding */
+    overflow: hidden;
 }
 
 /* Triangle Fix */
