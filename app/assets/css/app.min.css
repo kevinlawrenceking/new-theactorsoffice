@@ -7115,6 +7115,15 @@ body[data-leftbar-size=condensed] .user-box {
     padding-top: 7px;
 }
 
+/* ENSURE PROPER SPACING FOR CALENDAR IMAGE */
+.tao-card-image img {
+    width: 60px;
+    height: auto;
+    object-fit: contain;
+    padding-top: 7px;
+}
+
+
 /* CALENDAR YEAR */
 .calendar-year {
     font-size: 14px;
