@@ -7434,14 +7434,3 @@ contact-item i {
     border-top: 4px solid #1e7e34;
 }
 
-/* Triangle Fix - Hide Extra Triangle */
-.ribbon-two span::before,
-.ribbon-two span::after,
-.ribbon-three span::before,
-.ribbon-three span::after {
-    content: '';
-    position: absolute;
-    top: 100%;
-    z-index: -2; /* Pushes the triangle behind the card */
-    pointer-events: none; /* Prevents interaction */
-}
