@@ -22,7 +22,7 @@
             <a href="javascript:void(0);" 
                class="text-danger trash-icon" data-tooltip="Remove Contact from Team"
                onclick="confirmRemove('#card_id#');">
-              <i class="mdi mdi-minus-circle"></i>
+              <i class="mdi mdi-minus-circle" style="color:white;"></i>
             </a>
           </cfif>
 
