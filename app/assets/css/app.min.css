@@ -7556,4 +7556,5 @@ contact-item i {
 
 .tao-card-header .trash-icon {
     margin-right: 10px; /* Ensures spacing between icons */
+    color: #ddd;
 }
