@@ -6964,7 +6964,22 @@ body[data-leftbar-size=condensed] .user-box {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
   }
 
+/* Ensures all cards in a row have the same height */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch; /* Ensures all items stretch to the same height */
+    overflow: visible !important; /* Allows ribbon overflow */
+}
 
+/* Responsive Grid Layout */
+@media (max-width: 1200px) {
+    .col-lg-3 { width: 50%; } /* 2 columns */
+}
+
+@media (max-width: 768px) {
+    .col-md-6 { width: 100%; } /* 1 column for small screens */
+}
 
 /* CARD LAYOUT */
 /* Ensures consistent card height without fixed values */
@@ -6987,22 +7002,7 @@ body[data-leftbar-size=condensed] .user-box {
 
 }
 
-/* Ensures all cards in a row have the same height */
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch; /* Ensures all items stretch to the same height */
-    overflow: visible !important; /* Allows ribbon overflow */
-}
 
-/* Responsive Grid Layout */
-@media (max-width: 1200px) {
-    .col-lg-3 { width: 50%; } /* 2 columns */
-}
-
-@media (max-width: 768px) {
-    .col-md-6 { width: 100%; } /* 1 column for small screens */
-}
 
 .tao-card-row {
     display: flex;
@@ -7450,3 +7450,36 @@ contact-item i {
     border-top: 4px solid #1e7e34;
 }
 
+.tao-card-photo {
+    width: 250px; /* Adjust size as needed */
+    height: 250px;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tao-card-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image fills the square properly */
+}
+
+.tao-card-photo .tao-card-header,
+.tao-card-photo .tao-card-footer {
+    background-color: rgba(0, 0, 0, 0.7); /* Dark overlay */
+    color: white;
+    text-align: center;
+    padding: 8px;
+    position: absolute;
+    width: 100%;
+}
+
+.tao-card-photo .tao-card-header {
+    top: 0;
+}
+
+.tao-card-photo .tao-card-footer {
+    bottom: 0;
+}
