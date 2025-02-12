@@ -7558,3 +7558,12 @@ contact-item i {
     margin-right: 10px; /* Ensures spacing between icons */
     color: #ddd;
 }
+/* View (Eye) Icon - Default and Hover */
+.tao-card-header .view-icon {
+    color: #ddd; /* Default color */
+    transition: color 0.2s ease-in-out;
+}
+
+.tao-card-header .view-icon:hover {
+    color: #406E8E; /* Blueish on hover */
+}
