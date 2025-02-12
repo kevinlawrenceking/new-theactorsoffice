@@ -7497,9 +7497,24 @@ contact-item i {
     gap: 15px; /* Adds spacing between cards */
 }
 
-/* Hover Effect - Subtle Shadow & Lift */
+/* Lighten image on hover */
+.tao-card-photo:hover img {
+    filter: brightness(1.1); /* Slightly increases brightness */
+}
+
+/* Optional: Add a slight lift effect */
 .tao-card-photo:hover {
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15); /* Adds a soft shadow */
-    transform: translateY(-2px); /* Slight lift effect */
-    background-color: rgba(0, 0, 0, 0.03); /* Light background change */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+/* Prevents long names from overflowing */
+.tao-card-footer .photo-name {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    white-space: nowrap; /* Keeps text in a single line */
+    overflow: hidden; /* Hides overflow */
+    text-overflow: ellipsis; /* Adds "..." when text is too long */
+    max-width: 80%; /* Prevents stretching too far */
 }
