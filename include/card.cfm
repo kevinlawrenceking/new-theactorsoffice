@@ -20,9 +20,9 @@
           <!--- Remove  --->
           <cfif card_remove neq "">
             <a href="javascript:void(0);" 
-               class="text-danger trash-icon" title="Remove Contact from Team"
+               class="trash-icon" title="Remove Contact from Team"
                onclick="confirmRemove('#card_id#');">
-              <i class="mdi mdi-minus-circle" style="color:white;"></i>
+              <i class="mdi mdi-minus-circle" ></i>
             </a>
           </cfif>
 
