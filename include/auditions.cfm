@@ -271,6 +271,8 @@
         <cfset card_top_ribbon="Yes"/>
         <cfset ribbon_icon=""/>
         <cfset card_reminder=""/>
+        <cfset card_remove = ""/>
+        <cfset card_remove_msg = ""/>
         <cfset card_image_type = "calendar"/>
         <cfset card_image_yn = "Y"/>
         <cfset card_badge_yn = "N" />
