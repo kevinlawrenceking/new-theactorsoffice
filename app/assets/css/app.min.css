@@ -7473,20 +7473,31 @@ contact-item i {
     display: block;
 }
 
+/* FOOTER */
+.tao-card-footer {
+    padding: 5px;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #ddd;
+    min-height: 18px;
+}
+
+
 /* Footer styling */
 .tao-card-image-footer {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: #f8f9fa;
     color: white;
     text-align: center;
-    padding-left: 9px;
-    padding-right: 9px;
-    padding-top:0px;
+    padding: 5px;
     position: absolute;
     width: 100%;
     bottom: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-top: 1px solid #ddd;
 }
 
 /* Truncate long names */
