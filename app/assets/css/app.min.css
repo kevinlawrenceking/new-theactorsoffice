@@ -7567,3 +7567,7 @@ contact-item i {
 .tao-card-header .view-icon:hover {
     color: #406E8E; /* Blueish on hover */
 }
+
+.tao-card-header .trash-icon:hover {
+    color: #FF0000; /* Bright red on hover */
+}
