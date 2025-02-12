@@ -11,7 +11,7 @@
         </div>
 
         <!-- Footer with Name, Lighthouse, and Trash Icons -->
-        <div class="tao-card-footer">
+        <div class="tao-card-image-footer">
             <div class="photo-name">#card_name#</div>
             <div class="icon-container">
     
