@@ -1,28 +1,45 @@
-<form class="app-search" action="/app/myaccount/?new_pgid=122" method="POST">
-  <input type="hidden" name="ctaction" value="addmember"/>
-  <div class="row" style="margin: auto;">
-    <div class="col-md-2 p-2">Add a new person to your team:
-    </div>
-    <div class="col-md-4 p-2">
-      <a href="remoteAddContact.cfm?src=account" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="#remoteAddContact">
-        <button id="mybtns" type="submit" class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="background-color: #406e8e; border: #406e8e; height: 37px;">
-          Add
-        </button>
-      </a>
-    </div>
-  </div>
-  <div class="row" style="margin: auto;">
-    <div class="col-md-2 p-2">Or select an existing relationship:</div>
-    <div class="col-md-4 p-2">
-      <div class="input-group">
-        <input type="text" class="form-control" required="required" placeholder="Search..." name="topsearch_myteam" id="autocomplete2" autocomplete="off"/>
-        <div class="input-group-append">
-          <button id="mybtns" type="submit" class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="background-color: #406e8e; border: #406e8e; height: 37px;">
-            <i class="fe-plus"></i>
-            Select
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Button</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css">
+    <style>
+        .remove-btn {
+            display: flex;
+            align-items: center;
+            background-color: #f5f5f5;
+            border: none;
+            padding: 8px 12px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .remove-btn:hover {
+            background-color: #e0e0e0;
+        }
+
+        .remove-btn .mdi {
+            font-size: 20px;
+            margin-right: 8px;
+            color: #d32f2f; /* Red tone for visibility */
+        }
+    </style>
+</head>
+<body>
+
+    <button class="remove-btn" onclick="removeAssociation()">
+        <span class="mdi mdi-minus-circle"></span> Remove Link
+    </button>
+
+    <script>
+        function removeAssociation() {
+            alert("Association removed!");
+            // Here you can add an AJAX call to remove the association
+        }
+    </script>
+
+</body>
+</html>
