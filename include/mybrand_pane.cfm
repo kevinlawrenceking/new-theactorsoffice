@@ -68,20 +68,7 @@
         <cfloop query="essence_sel">
             <div class="col">
                 <cfoutput>
-                    <script>
-                        $(document).ready(function() {
-                            $("##remoteUpdateEssenceContact_#essence_sel.id#").on("show.bs.modal", function(event) {
-                                $(this).find(".modal-body").load("/include/remoteUpdateEssenceContact.cfm?userid=#userid#&src=account&essenceid=#essence_sel.id#");
-                            });
-                        });
-                    </script>
-
-                    <cfset modalid="remoteUpdateEssenceContact_#essence_sel.id#" />
-                    <cfset modaltitle="Update Essence" />
-                    <cfinclude template="/include/modal.cfm" />
-
-                    <!--- Card Layout --->
-                    <div class="card shadow-sm border-0 rounded">
+                    <div class="card shadow-sm border rounded p-3" style="border: 1px solid #ddd; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
                         <div class="card-body text-center">
                             <h5 class="card-title mb-2">#Essence_sel.Name#</h5>
                             <div class="d-flex justify-content-center gap-2">
@@ -99,6 +86,7 @@
         </cfloop>
     </div>
 </div>
+
 
 <script>
     function deleteEssence(id) {
