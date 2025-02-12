@@ -10,8 +10,10 @@
             </a>
         </div>
 
-          <div class="tao-card-footer">
-        <span>#card_name#</span>
+        <!-- Footer with Name, Lighthouse, and Trash Icons -->
+        <div class="tao-card-image-footer">
+            <div class="photo-name">#card_name#</div>
+            <div class="icon-container">
     
                 <i class="mdi mdi-trash-can" data-bs-toggle="modal" data-bs-target="##remoteDeleteaudmedia#currentid#"></i> <!-- Trash Icon -->
             </div>
