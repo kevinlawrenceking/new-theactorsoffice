@@ -66,6 +66,20 @@
 <div class="container mt-3">
     <div class="row row-cols-md-3 row-cols-1 g-3">
         <cfloop query="essence_sel">
+<Cfoutput>
+                            <script>
+                        $(document).ready(function() {
+                            // Show modal and load content for updating essence
+                            $("##remoteUpdateEssenceContact_#essence_sel.id#").on("show.bs.modal", function(event) {
+                                $(this).find(".modal-body").load("/include/remoteUpdateEssenceContact.cfm?userid=#userid#&src=account&essenceid=#essence_sel.id#");
+                            });
+                        });
+                    </script>
+
+                    <cfset modalid="remoteUpdateEssenceContact_#essence_sel.id#" />
+                    <cfset modaltitle="Update Essence" />
+                    <cfinclude template="/include/modal.cfm" />
+                    </cfoutput>
             <div class="col">
                 <cfoutput>
                     <div class="card shadow-sm border rounded p-3" style="border: 1px solid ##ddd; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
