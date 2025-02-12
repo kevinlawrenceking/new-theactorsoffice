@@ -7463,6 +7463,7 @@ contact-item i {
     background: #f0f0f0;
     margin: 10px;
     border: 2px solid rgba(0, 0, 0, 0.15); /* Subtle darker border */
+    padding-top:8px;
 }
 /* Ensure image is properly cropped */
 .tao-card-photo img {
