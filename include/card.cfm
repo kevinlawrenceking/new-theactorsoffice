@@ -26,7 +26,7 @@
             </a>
           </cfif>
 
-                    <cfif card_details neq "">
+                    <cfif card_details neq "" and card_view_icon_yn eq "Y">
             <a href="#card_details#" class="text-decoration-none view-icon" title="View Details">
               <i class="mdi mdi-eye"></i>
             </a>

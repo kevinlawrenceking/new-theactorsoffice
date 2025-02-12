@@ -248,7 +248,7 @@
     <cfset card_company = results.col4 />
 </cfif>
 
- 
+  <cfset card_view_icon_yn = "N">
         <cfset card_delete_msg=""/>
         <cfset card_delete=""/>
         <cfset card_details="/app/audition/?audprojectid=" & results.recid/>

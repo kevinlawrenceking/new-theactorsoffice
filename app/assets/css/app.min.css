@@ -7551,5 +7551,9 @@ contact-item i {
 
 .tao-card-header .view-icon {
     margin-left: auto; /* Pushes the eye icon to the right */
-    color: white;
+    color: #ddd;
+}
+
+.tao-card-header .trash-icon {
+    margin-right: 10px; /* Ensures spacing between icons */
 }

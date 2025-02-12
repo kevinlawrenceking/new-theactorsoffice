@@ -54,6 +54,7 @@
         
         <!--- Restored all variable assignments --->
         <cfset aud_cat_icon = ""/>
+        <cfset card_view_icon_yn = "Y">
         <cfset card_avatar = "Yes"/>
         <cfset card_badge_yn = "Y"/>
         <cfset card_casting = ""/>
