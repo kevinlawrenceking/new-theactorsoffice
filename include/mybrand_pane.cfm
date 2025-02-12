@@ -68,7 +68,7 @@
         <cfloop query="essence_sel">
             <div class="col">
                 <cfoutput>
-                    <div class="card shadow-sm border rounded p-3" style="border: 1px solid #ddd; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                    <div class="card shadow-sm border rounded p-3" style="border: 1px solid ##ddd; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
                         <div class="card-body text-center">
                             <h5 class="card-title mb-2">#Essence_sel.Name#</h5>
                             <div class="d-flex justify-content-center gap-2">
