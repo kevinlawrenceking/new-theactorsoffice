@@ -7459,11 +7459,11 @@ contact-item i {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
     background: #f0f0f0;
     margin: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.15); /* Subtle darker border */
 }
-
 /* Ensure image is properly cropped */
 .tao-card-photo img {
     width: 100%;
@@ -7539,4 +7539,9 @@ contact-item i {
 /* Show magnifying glass when hovering over card */
 .tao-card-photo:hover .image-overlay {
     opacity: 1;
+}
+
+/* Optional: Darken the border slightly on hover */
+.tao-card-photo:hover {
+    border-color: rgba(0, 0, 0, 0.25);
 }
