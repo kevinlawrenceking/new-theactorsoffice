@@ -7548,3 +7548,8 @@ contact-item i {
 .tao-card-photo:hover {
     border-color: rgba(0, 0, 0, 0.25);
 }
+
+.tao-card-header .view-icon {
+    margin-left: auto; /* Pushes the eye icon to the right */
+    color: white;
+}
