@@ -7513,7 +7513,7 @@ contact-item i {
 }
 
 .tao-card-footer .icon-container i:hover {
-    color: #ffcc00; /* Highlight effect */
+    color: red; /* Highlight effect */
 }
 
 /* Magnifying Glass Icon (Centered) */
