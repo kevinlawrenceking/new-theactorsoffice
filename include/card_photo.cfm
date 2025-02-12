@@ -14,7 +14,7 @@
         <div class="tao-card-footer">
             <div class="photo-name">#card_name#</div>
             <div class="icon-container">
-                <i class="mdi mdi-lightbulb-outline"></i> <!-- Lighthouse Icon -->
+    
                 <i class="mdi mdi-trash-can" data-bs-toggle="modal" data-bs-target="##remoteDeleteaudmedia#currentid#"></i> <!-- Trash Icon -->
             </div>
         </div>
