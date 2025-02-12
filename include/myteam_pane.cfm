@@ -58,8 +58,10 @@
         <cfset card_badge_yn = "Y"/>
         <cfset card_casting = ""/>
         <cfset card_company = myteam.card_company/>
-        <cfset card_delete = "/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=" & myteam.contactid/>
-        <cfset card_delete_msg = "Are you sure you want to remove this person from your team?"/>
+        <cfset card_delete = ""/>
+        <cfset card_delete_msg = ""/>
+        <cfset card_remove = "/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=" & myteam.contactid/>
+        <cfset card_remove_msg = "Are you sure you want to remove this person from your team?"/>
         <cfset card_details = "/app/contact/?contactid=" & myteam.contactid/>
         <cfset card_email = myteam.card_email/>
         <cfset card_footer_text = "Crd footer text"/>
@@ -147,7 +149,7 @@
 
 <!--- JavaScript for deleting a team member --->
 <script>
-  function confirmDelete(contactId) {
+  function confirmRemove(contactId) {
     if (confirm("<cfoutput>#card_delete_msg#</cfoutput>")) {
       fetch('/include/delete_team.cfm', {
         method: 'POST',

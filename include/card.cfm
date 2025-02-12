@@ -16,6 +16,17 @@
       <!--- Header --->
       <cfif card_header_yn eq "Y">
         <div class="tao-card-header tao-card-header-#namecolor#">
+
+          <!--- Remove  --->
+          <cfif card_remove neq "">
+            <a href="javascript:void(0);" 
+               class="text-danger trash-icon" 
+               onclick="confirmRemove('#card_id#');">
+              <i class="mdi mdi-minus-circle"></i>
+            </a>
+          </cfif>
+
+
           <cfif card_header_text neq "">
             <span class="tao-card-header-text">#card_header_text#</span>
           </cfif>
