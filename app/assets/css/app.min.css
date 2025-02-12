@@ -7482,24 +7482,9 @@ contact-item i {
     align-items: center;
 }
 
-.tao-card-photo .tao-card-footer .photo-name {
+.tao-card-photo .photo-name {
     flex-grow: 1;
     text-align: center;
     font-size: 16px;
     font-weight: bold;
 }
-
-.tao-card-photo .tao-card-footer .icon-container {
-    padding: 5px;
-}
-
-.tao-card-photo .tao-card-footer .icon-container i {
-    font-size: 20px;
-    color: white;
-    cursor: pointer;
-}
-
-.tao-card-photo .tao-card-footer .icon-container i:hover {
-    color: red;
-}
-

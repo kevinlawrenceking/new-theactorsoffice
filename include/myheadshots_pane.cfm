@@ -59,7 +59,7 @@
          <cfset card_image=session.userMediaUrl & "/" & headshots_sel.mediaFileName />
          <cfset card_name = headshots_sel.medianame  />
 
-        <cfset currentid = headshots_sel.mediaid/>
+        <cfset currentid = headshots_sel.mediai d/>
  
 
         <cfoutput>
