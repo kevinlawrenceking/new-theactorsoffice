@@ -7460,6 +7460,7 @@ contact-item i {
     justify-content: center;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     background: #f0f0f0; /* Fallback color */
+    margin: 10px; /* Adds space between cards */
 }
 
 .tao-card-photo img {
@@ -7490,3 +7491,8 @@ contact-item i {
 }
 
 
+.tao-card-container {
+    display: flex;
+    flex-wrap: wrap; /* Ensures cards wrap if they don’t fit */
+    gap: 15px; /* Adds spacing between cards */
+}
