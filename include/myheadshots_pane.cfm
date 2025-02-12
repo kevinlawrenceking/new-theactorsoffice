@@ -60,7 +60,7 @@
          <cfset card_name = headshots_sel.medianame  />
 
         <cfset currentid = headshots_sel.mediaid/>
-<cfset id =  /
+ 
 
         <cfoutput>
             <script>
