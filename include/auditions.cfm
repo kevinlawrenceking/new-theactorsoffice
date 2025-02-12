@@ -253,6 +253,7 @@
         <cfset card_delete=""/>
         <cfset card_details="/app/audition/?audprojectid=" & results.recid/>
         <cfset card_email=""/>
+        <cfset card_name = ""/>
         <Cfset card_footer_text=""/>
         <cfset card_footer_type=""/>
         <cfset card_footer_yn="N"/>

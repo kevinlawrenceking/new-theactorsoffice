@@ -25,6 +25,11 @@
  
       <!--- Card Body (Avatar & Contact Info) --->
       <div class="tao-card-body">
+   <Cfif card_name neq "">
+       <div class="card-name">
+       #card_name#
+    </div>
+</cfif>
 
         <cfif card_image_yn eq "Y">
           <div class="tao-card-image-container">

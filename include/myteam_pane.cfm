@@ -65,7 +65,8 @@
         <cfset card_footer_text = "Crd footer text"/>
         <cfset card_footer_type = "social"/>
         <cfset card_footer_yn = "Y"/>
-        <cfset card_header_text = myteam.card_name/>
+        <cfset card_header_text = ""/>
+        <cfset card_name = myteam.card_name/>
         <cfset card_header_yn = "Y"/>
         <cfset card_icon = ""/>
         <cfset card_icon_yn = "Y"/>
