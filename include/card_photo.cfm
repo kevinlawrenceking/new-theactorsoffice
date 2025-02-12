@@ -1,13 +1,14 @@
 <cfoutput>
-  <div class="col" id="card-#card_id#">
+ <div class="tao-card-photo">
+        <img src="#card_image#" alt="#card_name#">
+        <div class="tao-card-footer">
+            <div class="photo-name">#card_name#</div>
+            <div class="icon-container">
 
-<div class="card tao-card-photo">
-    <div class="tao-card-header">#card_name#</div>
-    <img src="#card_image#" alt="#card_name#" style="width:100%;">
-</div>
-    <!--- End tao-card-md --->
-  </div>
-  <!--- End col --->
+                <i class="mdi mdi-trash-can" data-bs-toggle="modal" data-bs-target="##remoteDeleteaudmedia#currentid#"></i>
+            </div>
+        </div>
+    </div>
 </cfoutput>
 
 

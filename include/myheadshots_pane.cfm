@@ -56,18 +56,23 @@
 
       <cfloop query="headshots_sel">
 
+         <cfset card_image=session.userMediaUrl & "/" & headshots_sel.mediaFileName />
+         <cfset card_name = headshots_sel.medianame  />
+
+        <cfset currentid = headshots_sel.mediaid/>
+<cfset id =  /
 
         <cfoutput>
             <script>
                 $(document).ready(function() {
-                    $("##remoteDeleteaudmedia#headshots_sel.mediaid#").on("show.bs.modal", function(event) {
+                    $("##remoteDeleteaudmedia#currentid#").on("show.bs.modal", function(event) {
                         <!--- Load the HTML for deleting a headshot into the modal body --->
-                        $(this).find(".modal-body").load("/include/remoteDeleteaudmedia.cfm?mediaid=#headshots_sel.mediaid#&new_secid=999");
+                        $(this).find(".modal-body").load("/include/remoteDeleteaudmedia.cfm?mediaid=#currentid#&new_secid=999");
                     });
                 });
             </script>
 
-            <div id="remoteDeleteaudmedia#headshots_sel.mediaid#" class="modal fade" tabindex="-1" role="dialog" >
+            <div id="remoteDeleteaudmedia#currentid#" class="modal fade" tabindex="-1" role="dialog" >
 
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -84,12 +89,7 @@
 
 
 
-
-         <cfset card_image=session.userMediaUrl & "/" & headshots_sel.mediaFileName />
-         <cfset card_name = headshots_sel.medianame  />
-
-        <cfset currentid = headshots_sel.mediaid/>
-
+>
  
  
 
