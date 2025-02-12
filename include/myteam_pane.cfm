@@ -150,7 +150,7 @@
 <!--- JavaScript for deleting a team member --->
 <script>
   function confirmRemove(contactId) {
-    if (confirm("<cfoutput>#card_delete_msg#</cfoutput>")) {
+    if (confirm("<cfoutput>#card_remove_msg#</cfoutput>")) {
       fetch('/include/delete_team.cfm', {
         method: 'POST',
         headers: {
