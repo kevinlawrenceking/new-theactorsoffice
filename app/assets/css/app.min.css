@@ -7496,3 +7496,10 @@ contact-item i {
     flex-wrap: wrap; /* Ensures cards wrap if they don’t fit */
     gap: 15px; /* Adds spacing between cards */
 }
+
+/* Hover Effect - Subtle Shadow & Lift */
+.tao-card-photo:hover {
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15); /* Adds a soft shadow */
+    transform: translateY(-2px); /* Slight lift effect */
+    background-color: rgba(0, 0, 0, 0.03); /* Light background change */
+}
