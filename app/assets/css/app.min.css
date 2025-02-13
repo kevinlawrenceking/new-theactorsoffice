@@ -7306,7 +7306,10 @@ contact-item i {
     box-shadow: 2px 5px 10px rgba(50, 58, 70, .15);
     white-space: nowrap; /* Prevents text from wrapping */
     pointer-events: none; /* Prevents hover from affecting it */
+    bottom: 44px; /* Moves up slightly to remove extra space */
 }
+
+ 
 
 /* Bottom-Right Triangle */
 .ribbon-straight::after {

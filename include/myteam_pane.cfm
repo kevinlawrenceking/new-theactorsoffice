@@ -28,7 +28,7 @@
       <div class="input-group">
         <input type="text" class="form-control" required="required" placeholder="Search..." name="topsearch_myteam" id="autocomplete2" autocomplete="off"/>
         <div class="input-group-append">
-          <button id="mybtns" type="submit" class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="background-color: #406e8e; border: #406e8e; height: 37px;">
+          <button id="select_contact" type="submit" class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="background-color: #406e8e; border: #406e8e; height: 37px;">
             <i class="fe-plus"></i> Select
           </button>
         </div>
@@ -36,11 +36,6 @@
     </div>
   </div>
 </form>
-
-
-
-
-
 
 <!--- Start of card grid container --->
 <div class="container mb-8">
