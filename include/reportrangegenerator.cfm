@@ -57,6 +57,30 @@
     <cfset new_rangeend = Now()>
 </cfif>
 
+<cfif x.rangename EQ "Last Month">
+    <!---
+      End of last month is the day before the 1st of this month.
+      For example, if today is March 10:
+        CreateDate(Year(Now()), Month(Now()), 1) --> March 1
+        DateAdd("d", -1, thatDate) --> February 28 (end of last month)
+    --->
+    <cfset lastMonthEnd = DateAdd("d", -1, CreateDate(Year(Now()), Month(Now()), 1))>
+
+    <!--- Start of last month is the 1st day of that month --->
+    <cfset lastMonthStart = CreateDate(Year(lastMonthEnd), Month(lastMonthEnd), 1)>
+
+    <cfset new_rangestart = lastMonthStart>
+    <cfset new_rangeend   = lastMonthEnd>
+</cfif>
+
+<cfif x.rangename EQ "Last 30 Days">
+    <!--- A rolling 30-day window ending now --->
+    <cfset new_rangestart = DateAdd("d", -30, Now())>
+    <cfset new_rangeend   = Now()>
+</cfif>
+
+
+
 <cfif #dbug# is "Y">
 <Cfoutput>
 <h2>#x.rangename#</h2>
