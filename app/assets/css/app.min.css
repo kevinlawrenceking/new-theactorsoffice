@@ -7497,7 +7497,7 @@ contact-item i {
     justify-content: center;
     align-items: center;
     border-top: 1px solid #ddd;
-    min-height: 18px;
+    min-height: 45px;
 }
 
 /* Footer mimicking 
