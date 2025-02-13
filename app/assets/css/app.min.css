@@ -7142,16 +7142,7 @@ body[data-leftbar-size=condensed] .user-box {
     font-weight: 500;
 }
 
-/* FOOTER */
-.tao-card-footer {
-    padding: 5px;
-    background-color: #f8f9fa;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-top: 1px solid #ddd;
-    min-height: 18px;
-}
+
 
 /* SOCIAL ICONS */
 .tao-card-social {
@@ -7498,9 +7489,20 @@ contact-item i {
     display: block;
 }
 
-/* Footer mimicking printed headshot name */
+/* FOOTER */
 .tao-card-footer {
-    height: 15%; /* Matches the proportion of real headshots */
+    padding: 5px;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #ddd;
+    min-height: 18px;
+}
+
+/* Footer mimicking 
+.tao-card-footer {
+    height: 15%;  
     background-color: white;
     color: black;
     display: flex;
@@ -7511,7 +7513,7 @@ contact-item i {
     text-transform: uppercase;
     letter-spacing: 1px;
     border-top: 2px solid #ddd;
-}
+}printed headshot name */
 
 /* Optional: Slight shadow effect on hover */
 .tao-card-photo:hover {
