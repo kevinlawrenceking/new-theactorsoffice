@@ -22,6 +22,7 @@
 
 <!--- Section to select an existing relationship --->
 <form class="sel_client" action="/app/myaccount/?new_pgid=122" method="POST">
+  <input type="hidden" name="ctaction" value="addmember" />
   <div class="row justify-content-center">
     <div class="col-md-3 p-2">Or select an existing relationship:</div>
     <div class="col-md-4 p-2">
@@ -123,9 +124,6 @@
 
   </div> <!--- end row div --->
 </div> <!--- end container div --->
-
-
-
 
 
 
