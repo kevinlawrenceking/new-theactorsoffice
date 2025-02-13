@@ -82,7 +82,7 @@
                     </cfoutput>
             <div class="col">
                 <cfoutput>
-                    <div class="tao-card-md shadow-sm border rounded p-3" style="border: 1px solid ##ddd; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+                    <div class="tao-card-md shadow-sm border rounded p-3" >
                         <div class="card-body text-center">
                             <h5 class="card-title mb-2">#Essence_sel.Name#</h5>
                             <div class="d-flex justify-content-center gap-2">
