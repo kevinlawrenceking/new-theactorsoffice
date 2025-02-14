@@ -7582,3 +7582,12 @@ contact-item i {
     text-overflow: ellipsis;
     padding: 5px;
 }
+.tao-card-photo-header {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+
+    padding: 4px;
+
+    z-index: 10; /* Ensures it's always on top */
+}
