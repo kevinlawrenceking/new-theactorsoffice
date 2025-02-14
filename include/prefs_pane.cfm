@@ -136,8 +136,8 @@
     </div>
 </div>
 
-<div class="container-fluid">
-    <div class="row">
+<div class="container mt-3">
+    <div class="row row-cols-md-3 row-cols-1 g-3">
         <cfloop query="subsites">
 
    
@@ -173,7 +173,7 @@
   </cfoutput>
  
         </cfloop>
- 
+ </div>
 </div>
 
 <div id="updatenewsletter" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" >
