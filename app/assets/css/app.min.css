@@ -7467,3 +7467,108 @@ contact-item i {
     color: #FF0000; /* Bright red on hover */
 }
 
+/*  Main card styling - 8x10 Aspect Ratio for Headshots */
+.tao-card-photo {
+    width: 200px; /* Adjust if needed */
+    height: 280px; /* Keeps 8x10 aspect ratio */
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    background: #fff; /* White background to match real headshots */
+    margin: 10px;
+    border: 3px solid #ddd; /* Subtle darker border */
+    padding-top: 8px; /* Adds white space at the top */
+}
+
+/*  Header - Trash Icon (Fixed to Top Left) */
+.tao-card-photo-header {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 4px;
+    border-radius: 50%;
+    z-index: 10; /* Ensures it's always on top */
+}
+
+/* Trash icon styling */
+.tao-card-photo-header i {
+    font-size: 18px;
+    color: red;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+.tao-card-photo-header i:hover {
+    color: darkred;
+}
+
+/*  Card Body - Image */
+.tao-card-photo-body {
+    width: 100%;
+    height: 85%; /* Keeps image proportion */
+    position: relative; /* Needed for absolute overlay */
+}
+
+/* Ensure image fills properly */
+.tao-card-photo-body img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* 🔍 Magnifying Glass Overlay */
+.image-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 15; /* Ensures it's above the image */
+}
+
+/* Magnifying glass icon inside the overlay */
+.image-overlay i {
+    font-size: 24px;
+    color: white;
+}
+
+/* Show overlay on hover */
+.tao-card-photo-body:hover .image-overlay {
+    opacity: 1;
+}
+
+/*  Footer - Name */
+.tao-card-photo-footer {
+    height: 15%; /* Adjusted height for proper balance */
+    background-color: white;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 2px solid #ddd;
+}
+
+/* Name - Prevent Wrapping */
+.tao-card-photo-footer .photo-name {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 5px;
+}

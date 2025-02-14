@@ -1,12 +1,12 @@
 <cfoutput>
     <div class="tao-card-photo">
         <!-- Trash Icon in Header -->
-        <div class="tao-card-header">
+        <div class="tao-card-photo-header">
             <i class="mdi mdi-trash-can" data-bs-toggle="modal" data-bs-target="##remoteDeleteaudmedia#currentid#"></i>
         </div>
 
         <!-- Card Body: Image + Overlay -->
-        <div class="tao-card-body">
+        <div class="tao-card-photo-body">
             <img src="#card_image#" alt="#card_name#">
             
             <!-- Magnifying Glass Icon (Opens Lightbox) -->
@@ -18,7 +18,7 @@
         </div>
 
         <!-- Footer with Name -->
-        <div class="tao-card-footer">
+        <div class="tao-card-photo-footer">
             <div class="photo-name">#card_name#</div>
         </div>
     </div>
