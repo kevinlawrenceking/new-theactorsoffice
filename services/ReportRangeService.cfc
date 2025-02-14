@@ -6,7 +6,7 @@
         FROM reportranges
         where rangeid not in (1,7,9,10)
     </cfquery>
-<CFabort>
+
 <cfreturn qryResult>
 </cffunction>
 

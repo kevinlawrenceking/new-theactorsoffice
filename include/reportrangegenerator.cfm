@@ -57,9 +57,6 @@
     <cfset new_rangeend = Now()>
 </cfif>
 
-
-
-
 <cfif #dbug# is "Y">
 <Cfoutput>
 <h2>#x.rangename#</h2>
