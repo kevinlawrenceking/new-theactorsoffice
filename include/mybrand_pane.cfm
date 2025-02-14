@@ -86,12 +86,7 @@
                     <div class="tao-card-md shadow-sm border rounded p-3" >
                         <div class="card-body text-center">
                             <h5 class="card-title mb-9" >#Essence_sel.Name#</h5>
-                            <div class="d-flex justify-content-center gap-2">
-                            <!---    <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="##remoteUpdateEssenceContact_#essence_sel.id#">
-                                    <i class="mdi mdi-pencil"></i> Edit
-                                </button> --->
-                      
-                            </div>
+              
                         </div>
                     </div>
                 </cfoutput>
