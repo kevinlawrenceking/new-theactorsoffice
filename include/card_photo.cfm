@@ -1,5 +1,5 @@
 <cfoutput>
-    <div class="tao-card-photo">
+    <div class="tao-card-md">
         <!-- Trash Icon in Header -->
         <div class="tao-card-header">
             <i class="mdi mdi-trash-can" data-bs-toggle="modal" data-bs-target="##remoteDeleteaudmedia#currentid#"></i>
