@@ -7587,8 +7587,12 @@ contact-item i {
     position: absolute;
     top: 5px;
     left: 5px;
-color: white;
+    color: #edeff1;
     padding: 4px;
-
     z-index: 10; /* Ensures it's always on top */
+    transition: color 0.2s ease-in-out; /* Smooth transition */
+}
+
+.tao-card-photo-header:hover {
+    color: white;
 }
