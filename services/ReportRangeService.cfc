@@ -1,14 +1,12 @@
 <cfcomponent displayname="ReportRangeService" hint="Handles operations for ReportRange table" >
 
 <cffunction output="false" name="SELreportranges" access="public" returntype="query">
-    <!--- Function to retrieve report ranges excluding specific IDs provided as a comma-separated string. --->
-
 <cfquery name="qryResult">
         SELECT rangeid, rangename, rangestart, rangeend
         FROM reportranges
         where rangeid not in (1,7,9,10)
     </cfquery>
-
+<CFabort>
 <cfreturn qryResult>
 </cffunction>
 
