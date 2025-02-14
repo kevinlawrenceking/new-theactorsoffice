@@ -7467,78 +7467,6 @@ contact-item i {
     color: #FF0000; /* Bright red on hover */
 }
 
-/* Main card styling - 8x10 Aspect Ratio */
-.tao-card-photo {
-    width: 200px; /* Adjust based on preference */
-    height: 250px; /* 8x10 aspect ratio */
-    border-radius: 4px;
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
-    background: #fff; /* White background to match actual headshots */
-    margin: 10px;
-    border: 3px solid #ddd; /* Subtle darker border */
-    padding-top: 8px; /* Adds white space at the top */
-}
-
-/* Ensure image fits properly */
-.tao-card-photo img {
-    width: 100%;
-    height: 80%; /* Leaves space for footer */
-    object-fit: cover;
-    display: block;
-}
-
-/* FOOTER - Trash icon + Name */
-.tao-card-footer {
-    height: 20%; /* Adjusted height for new layout */
-    background-color: white;
-    color: black;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px;
-    border-top: 2px solid #ddd;
-}
-
-/* Trash icon (aligned left) */
-.tao-card-footer .icon-container {
-    display: flex;
-    justify-content: flex-start;
-    width: 100%;
-    padding-left: 5px;
-}
-
-.tao-card-footer .icon-container i {
-    font-size: 18px;
-    color: red;
-    cursor: pointer;
-    transition: color 0.2s ease-in-out;
-}
-
-.tao-card-footer .icon-container i:hover {
-    color: darkred;
-}
-
-/* Name - ellipsis to prevent wrapping */
-.tao-card-footer .photo-name {
-    width: 100%;
-    text-align: center;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding-top: 3px;
-}
-
-
 /* Optional: Slight shadow effect on hover */
 .tao-card-photo:hover {
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
@@ -7561,4 +7489,76 @@ contact-item i {
 .image-overlay i {
     font-size: 24px;
     color: white;
+}
+
+/* Main card styling - 8x10 Aspect Ratio */
+.tao-card-photo {
+    width: 200px;
+    height: 250px;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    background: #fff; /* White background to match actual headshots */
+    margin: 10px;
+    border: 3px solid #ddd; /* Subtle darker border */
+    padding-top: 8px; /* Adds white space at the top */
+}
+
+/* Ensure image fits properly */
+.tao-card-photo img {
+    width: 100%;
+    height: 80%; /* Leaves space for footer */
+    object-fit: cover;
+    display: block;
+}
+
+/* HEADER - Contains Trash Icon */
+.tao-card-header {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    padding: 5px;
+    border-radius: 50%;
+}
+
+/* Trash icon (aligned top-left) */
+.tao-card-header i {
+    font-size: 18px;
+    color: red;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+.tao-card-header i:hover {
+    color: darkred;
+}
+
+/* FOOTER - Only for Name */
+.tao-card-footer {
+    height: 20%; /* Adjusted height for new layout */
+    background-color: white;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 2px solid #ddd;
+}
+
+/* Name - Ellipsis to prevent wrapping */
+.tao-card-footer .photo-name {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 5px;
 }
