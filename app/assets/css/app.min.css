@@ -7469,19 +7469,19 @@ contact-item i {
 
 /* Main card styling - 8x10 Aspect Ratio */
 .tao-card-photo {
-    width: 200px;
-    height: 250px;
+    width: 200px; 
+    height: 280px; /* Increased height to maintain proportion */
     border-radius: 4px;
     overflow: hidden;
-    position: relative; /* Ensures child elements position correctly */
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    background: #fff; /* White background to match actor headshots */
+    background: #fff;
     margin: 10px;
-    border: 3px solid #ddd; /* Subtle darker border */
+    border: 3px solid #ddd;
     padding-top: 8px; /* Adds white space at the top */
 }
 
@@ -7490,10 +7490,10 @@ contact-item i {
     position: absolute;
     top: 5px;
     left: 5px;
-    background: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    background: rgba(255, 255, 255, 0.8);
     padding: 4px;
     border-radius: 50%;
-    z-index: 10; /* Ensures it stays on top */
+    z-index: 10;
 }
 
 /* Trash icon styling */
@@ -7511,8 +7511,8 @@ contact-item i {
 /* NEW: Card Body for Image */
 .tao-card-body {
     width: 100%;
-    height: 80%; /* Leaves space for footer */
-    position: relative; /* Needed for absolute overlay */
+    height: 85%; /* Leaves proper space for footer */
+    position: relative;
 }
 
 /* Ensure image fits properly inside the body */
@@ -7535,7 +7535,7 @@ contact-item i {
     cursor: pointer;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
-    z-index: 15; /* Ensures it's above the image */
+    z-index: 15;
 }
 
 /* Magnifying glass icon inside the overlay */
@@ -7544,31 +7544,4 @@ contact-item i {
     color: white;
 }
 
-/* Show overlay on hover */
-.tao-card-body:hover .image-overlay {
-    opacity: 1;
-}
-
-/* FOOTER - Name Only */
-.tao-card-footer {
-    height: 20%;
-    background-color: white;
-    color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-top: 2px solid #ddd;
-}
-
-/* Name - Prevent Wrapping */
-.tao-card-footer .photo-name {
-    width: 100%;
-    text-align: center;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding: 5px;
-}
+/* Show overlay o
