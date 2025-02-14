@@ -7467,37 +7467,13 @@ contact-item i {
     color: #FF0000; /* Bright red on hover */
 }
 
-/* Optional: Slight shadow effect on hover */
-.tao-card-photo:hover {
-    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
-    border-color: rgba(0, 0, 0, 0.3);
-}
-.image-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.5);
-    padding: 10px;
-    border-radius: 50%;
-    cursor: pointer;
-    opacity: 0;
-    transition: opacity 0.2s ease-in-out;
-}
-
-/* Magnifying glass icon inside the overlay */
-.image-overlay i {
-    font-size: 24px;
-    color: white;
-}
-
 /* Main card styling - 8x10 Aspect Ratio */
 .tao-card-photo {
     width: 200px;
     height: 250px;
     border-radius: 4px;
     overflow: hidden;
-    position: relative; /* Needed for absolute positioning of header */
+    position: relative; /* Needed for absolute positioning of header & overlay */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7523,9 +7499,9 @@ contact-item i {
     top: 5px;
     left: 5px;
     background: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
-    padding: 6px;
+    padding: 4px;
     border-radius: 50%;
-    z-index: 10; /* Ensures it stays on top */
+    z-index: 20; /* Ensures it stays on top */
 }
 
 /* Trash icon styling */
@@ -7562,4 +7538,30 @@ contact-item i {
     overflow: hidden;
     text-overflow: ellipsis;
     padding: 5px;
+}
+
+/* Magnifying Glass Overlay */
+.image-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 15; /* Ensures it's above the image */
+}
+
+/* Magnifying glass icon inside the overlay */
+.image-overlay i {
+    font-size: 24px;
+    color: white;
+}
+
+/* Show overlay on hover */
+.tao-card-photo:hover .image-overlay {
+    opacity: 1;
 }
