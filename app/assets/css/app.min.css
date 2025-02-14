@@ -7596,3 +7596,30 @@ contact-item i {
 .tao-card-photo-header:hover {
     color: white;
 }
+
+/* Ensure nav-tabs wrap on smaller screens */
+.nav-pills {
+    display: flex;
+    flex-wrap: wrap; /* Allows tabs to wrap when needed */
+    justify-content: center; /* Centers the tabs when they wrap */
+}
+
+/* Adjust spacing between tabs */
+.nav-pills .nav-item {
+    flex-grow: 1; /* Makes tabs evenly distributed */
+    text-align: center;
+    margin: 5px; /* Adds spacing between items */
+}
+
+/* Reduce tab size for smaller screens */
+@media (max-width: 768px) {
+    .nav-pills .nav-item {
+        flex: 0 0 48%; /* Makes tabs take up 48% of the width, creating two columns */
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-pills .nav-item {
+        flex: 0 0 100%; /* On very small screens, tabs become full-width */
+    }
+}
