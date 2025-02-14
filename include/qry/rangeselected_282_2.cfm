@@ -1,2 +1,2 @@
-<cfoutput>new_rangeid:#new_rangeid#</cfoutput><cfabort>
+<cfoutput>new_rangeid:[#new_rangeid#]</cfoutput><cfabort>
 <cfset reportRangeService = createObject("component", "services.ReportRangeService") />
