@@ -7497,12 +7497,12 @@ contact-item i {
     height: 250px;
     border-radius: 4px;
     overflow: hidden;
-    position: relative;
+    position: relative; /* Needed for absolute positioning of header */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     background: #fff; /* White background to match actual headshots */
     margin: 10px;
     border: 3px solid #ddd; /* Subtle darker border */
@@ -7517,17 +7517,18 @@ contact-item i {
     display: block;
 }
 
-/* HEADER - Contains Trash Icon */
+/* HEADER - Trash Icon (Fixed to Top Left) */
 .tao-card-header {
     position: absolute;
     top: 5px;
     left: 5px;
     background: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
-    padding: 5px;
+    padding: 6px;
     border-radius: 50%;
+    z-index: 10; /* Ensures it stays on top */
 }
 
-/* Trash icon (aligned top-left) */
+/* Trash icon styling */
 .tao-card-header i {
     font-size: 18px;
     color: red;
@@ -7539,9 +7540,9 @@ contact-item i {
     color: darkred;
 }
 
-/* FOOTER - Only for Name */
+/* FOOTER - Name Only */
 .tao-card-footer {
-    height: 20%; /* Adjusted height for new layout */
+    height: 20%;
     background-color: white;
     color: black;
     display: flex;
@@ -7550,7 +7551,7 @@ contact-item i {
     border-top: 2px solid #ddd;
 }
 
-/* Name - Ellipsis to prevent wrapping */
+/* Name - Prevent Wrapping */
 .tao-card-footer .photo-name {
     width: 100%;
     text-align: center;
