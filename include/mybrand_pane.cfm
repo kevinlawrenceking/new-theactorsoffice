@@ -82,18 +82,20 @@
                     </cfoutput>
             <div class="col">
                 <cfoutput>
+                <A href="" data-bs-toggle="modal" data-bs-target="##remoteUpdateEssenceContact_#essence_sel.id#">
                     <div class="tao-card-md shadow-sm border rounded p-3" >
                         <div class="card-body text-center">
                             <h5 class="card-title mb-9" style="font-size:1.3em;">#Essence_sel.Name#</h5>
                             <div class="d-flex justify-content-center gap-2">
-                                <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="##remoteUpdateEssenceContact_#essence_sel.id#">
+                            <!---    <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="##remoteUpdateEssenceContact_#essence_sel.id#">
                                     <i class="mdi mdi-pencil"></i> Edit
-                                </button>
+                                </button> --->
                       
                             </div>
                         </div>
                     </div>
                 </cfoutput>
+                </a>
             </div>
         </cfloop>
     </div>
