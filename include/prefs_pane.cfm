@@ -156,7 +156,7 @@
                     <cfinclude template="/include/modal.cfm" />
 
                                 <div class="col">
-                <cfoutput>
+   
                 <A href="" data-bs-toggle="modal" data-bs-target="##remoteUpdateaudsubmitsite_#subsites.submitsiteid#">
                     <div class="tao-card-md shadow-sm border rounded p-3" >
                         <div class="card-body text-center">
@@ -172,10 +172,6 @@
 
   </cfoutput>
  
-    
-
-
-
         </cfloop>
  
 </div>
