@@ -7509,6 +7509,7 @@ contact-item i {
     width: 28px; /* Fixed size to prevent stretching */
     height: 28px;
     border-radius: 50%;
+    color: white;
     display: flex;
     align-items: center;
     justify-content: center;
