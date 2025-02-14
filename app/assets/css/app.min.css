@@ -7467,10 +7467,10 @@ contact-item i {
     color: #FF0000; /* Bright red on hover */
 }
 
-/*  Main card styling - 8x10 Aspect Ratio for Headshots */
+/* Main card styling - 8x10 Aspect Ratio */
 .tao-card-photo {
-    width: 200px; /* Adjust if needed */
-    height: 280px; /* Keeps 8x10 aspect ratio */
+    width: 200px; 
+    height: 280px; /* Ensures 8x10 proportion */
     border-radius: 4px;
     overflow: hidden;
     position: relative;
@@ -7479,40 +7479,17 @@ contact-item i {
     align-items: center;
     justify-content: flex-start;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    background: #fff; /* White background to match real headshots */
+    background: #fff;
     margin: 10px;
-    border: 3px solid #ddd; /* Subtle darker border */
-    padding-top: 8px; /* Adds white space at the top */
+    border: 3px solid #ddd;
+    padding-top: 8px;
 }
 
-/*  Header - Trash Icon (Fixed to Top Left) */
-.tao-card-photo-header {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 4px;
-    border-radius: 50%;
-    z-index: 10; /* Ensures it's always on top */
-}
-
-/* Trash icon styling */
-.tao-card-photo-header i {
-    font-size: 18px;
-    color: red;
-    cursor: pointer;
-    transition: color 0.2s ease-in-out;
-}
-
-.tao-card-photo-header i:hover {
-    color: darkred;
-}
-
-/*  Card Body - Image */
+/* Card Body - Image */
 .tao-card-photo-body {
     width: 100%;
-    height: 85%; /* Keeps image proportion */
-    position: relative; /* Needed for absolute overlay */
+    height: 85%;
+    position: relative;
 }
 
 /* Ensure image fills properly */
@@ -7523,24 +7500,57 @@ contact-item i {
     display: block;
 }
 
-/* 🔍 Magnifying Glass Overlay */
+/* Trash Icon (Fixed in Top-Left of Image) */
+.tao-card-photo-trash {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background: rgba(255, 255, 255, 0.8);
+    width: 28px; /* Fixed size to prevent stretching */
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    aspect-ratio: 1/1; /* Keeps it circular */
+}
+
+/* Trash Icon */
+.tao-card-photo-trash i {
+    font-size: 16px;
+    color: red;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+.tao-card-photo-trash i:hover {
+    color: darkred;
+}
+
+/* Magnifying Glass Overlay */
 .image-overlay {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background: rgba(0, 0, 0, 0.5);
-    padding: 10px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
-    z-index: 15; /* Ensures it's above the image */
+    z-index: 15;
+    aspect-ratio: 1/1; /* Ensures it's always circular */
 }
 
 /* Magnifying glass icon inside the overlay */
 .image-overlay i {
-    font-size: 24px;
+    font-size: 20px;
     color: white;
 }
 
@@ -7549,9 +7559,9 @@ contact-item i {
     opacity: 1;
 }
 
-/*  Footer - Name */
+/* Footer - Name */
 .tao-card-photo-footer {
-    height: 15%; /* Adjusted height for proper balance */
+    height: 15%;
     background-color: white;
     color: black;
     display: flex;
