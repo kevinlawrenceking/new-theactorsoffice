@@ -60,7 +60,7 @@
     Add an 
     <a href="remoteAddContact.cfm?src=account" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="#remoteAddEssenceContact">
         <strong>Essence</strong>
-    </a>
+    </a> or click to edit.
 </p>
 
 <div class="container mt-3">
