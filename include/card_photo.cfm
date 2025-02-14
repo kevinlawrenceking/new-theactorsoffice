@@ -5,8 +5,17 @@
             <i class="mdi mdi-trash-can" data-bs-toggle="modal" data-bs-target="##remoteDeleteaudmedia#currentid#"></i>
         </div>
 
-        <!-- Headshot Image -->
-        <img src="#card_image#" alt="#card_name#">
+        <!-- Card Body: Image + Overlay -->
+        <div class="tao-card-body">
+            <img src="#card_image#" alt="#card_name#">
+            
+            <!-- Magnifying Glass Icon (Opens Lightbox) -->
+            <div class="image-overlay">
+                <a href="#card_image#" data-lightbox="headshots" data-title="#card_name#">
+                    <i class="mdi mdi-magnify"></i>
+                </a>
+            </div>
+        </div>
 
         <!-- Footer with Name -->
         <div class="tao-card-footer">

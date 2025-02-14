@@ -7473,24 +7473,16 @@ contact-item i {
     height: 250px;
     border-radius: 4px;
     overflow: hidden;
-    position: relative; /* Needed for absolute positioning of header & overlay */
+    position: relative; /* Ensures child elements position correctly */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    background: #fff; /* White background to match actual headshots */
+    background: #fff; /* White background to match actor headshots */
     margin: 10px;
     border: 3px solid #ddd; /* Subtle darker border */
     padding-top: 8px; /* Adds white space at the top */
-}
-
-/* Ensure image fits properly */
-.tao-card-photo img {
-    width: 100%;
-    height: 80%; /* Leaves space for footer */
-    object-fit: cover;
-    display: block;
 }
 
 /* HEADER - Trash Icon (Fixed to Top Left) */
@@ -7501,7 +7493,7 @@ contact-item i {
     background: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
     padding: 4px;
     border-radius: 50%;
-    z-index: 20; /* Ensures it stays on top */
+    z-index: 10; /* Ensures it stays on top */
 }
 
 /* Trash icon styling */
@@ -7516,28 +7508,19 @@ contact-item i {
     color: darkred;
 }
 
-/* FOOTER - Name Only */
-.tao-card-footer {
-    height: 20%;
-    background-color: white;
-    color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-top: 2px solid #ddd;
+/* NEW: Card Body for Image */
+.tao-card-body {
+    width: 100%;
+    height: 80%; /* Leaves space for footer */
+    position: relative; /* Needed for absolute overlay */
 }
 
-/* Name - Prevent Wrapping */
-.tao-card-footer .photo-name {
+/* Ensure image fits properly inside the body */
+.tao-card-body img {
     width: 100%;
-    text-align: center;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding: 5px;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 /* Magnifying Glass Overlay */
@@ -7562,6 +7545,30 @@ contact-item i {
 }
 
 /* Show overlay on hover */
-.tao-card-photo:hover .image-overlay {
+.tao-card-body:hover .image-overlay {
     opacity: 1;
+}
+
+/* FOOTER - Name Only */
+.tao-card-footer {
+    height: 20%;
+    background-color: white;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 2px solid #ddd;
+}
+
+/* Name - Prevent Wrapping */
+.tao-card-footer .photo-name {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 5px;
 }
