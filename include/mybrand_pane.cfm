@@ -80,6 +80,8 @@
                     <cfset modaltitle="Update Essence" />
                     <cfinclude template="/include/modal.cfm" />
                     </cfoutput>
+
+
             <div class="col">
                 <cfoutput>
                 <A href="" data-bs-toggle="modal" data-bs-target="##remoteUpdateEssenceContact_#essence_sel.id#">
@@ -90,8 +92,14 @@
                         </div>
                     </div>
                 </cfoutput>
+
                 </a>
+
             </div>
+
+
+
+            
         </cfloop>
     </div>
 </div>

@@ -139,7 +139,8 @@
 <div class="container-fluid">
     <div class="row">
         <cfloop query="subsites">
-            <div class="col-md-2 col-lg-3 col-sm-12"> 
+
+   
                 <cfoutput>                         
                     <script>
                         $(document).ready(function() {
@@ -154,16 +155,29 @@
                     <cfset modaltitle="Update Submission Site" />
                     <cfinclude template="/include/modal.cfm" />
 
-                    <p class="p-2">
-                        <a href="" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateaudsubmitsite_#subsites.submitsiteid#"> 
-                            <button type="button" class="btn btn-soft-secondary rounded-pill waves-effect">#subsites.submitsitename#</button> 
-                        </a>
-                    </p>              
-                </cfoutput>
-                <br>
+                                <div class="col">
+                <cfoutput>
+                <A href="" data-bs-toggle="modal" data-bs-target="##remoteUpdateaudsubmitsite_#subsites.submitsiteid#">
+                    <div class="tao-card-md shadow-sm border rounded p-3" >
+                        <div class="card-body text-center">
+                            <h5 class="card-title mb-9" >#subsites.submitsitename#</h5>
+              
+                        </div>
+                    </div>
+              
+
+                </a>
+
             </div>
+
+  </cfoutput>
+ 
+    
+
+
+
         </cfloop>
-    </div>
+ 
 </div>
 
 <div id="updatenewsletter" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="standard-modalLabel" >
