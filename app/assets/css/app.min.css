@@ -7467,21 +7467,21 @@ contact-item i {
     color: #FF0000; /* Bright red on hover */
 }
 
-/* Main card styling - 8x10 Aspect Ratio */
+/* Ensure parent is positioned properly for absolute positioning */
 .tao-card-photo {
-    width: 200px; /* Adjust based on preference */
-    height: 250px; /* 8x10 aspect ratio */
+    width: 200px;
+    height: 250px;
     border-radius: 4px;
     overflow: hidden;
-    position: relative;
+    position: relative; /* Ensure overlay is positioned relative to this */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
-    background: #fff; /* White background to match actual headshots */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    background: #fff;
     margin: 10px;
-    border: 3px solid #ddd; /* Subtle darker border */
+    border: 3px solid #ddd;
 }
 
 /* Ensure image fits properly */
@@ -7492,37 +7492,7 @@ contact-item i {
     display: block;
 }
 
-/* FOOTER */
-.tao-card-footer {
-    padding: 5px;
-    background-color: #f8f9fa;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-top: 1px solid #ddd;
-    min-height: 45px;
-}
-
-/* Footer mimicking 
-.tao-card-footer {
-    height: 15%;  
-    background-color: white;
-    color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-top: 2px solid #ddd;
-}printed headshot name */
-
-/* Optional: Slight shadow effect on hover */
-.tao-card-photo:hover {
-    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.2);
-    border-color: rgba(0, 0, 0, 0.3);
-}
+/* Magnifying Glass Overlay */
 .image-overlay {
     position: absolute;
     top: 50%;
@@ -7533,11 +7503,17 @@ contact-item i {
     border-radius: 50%;
     cursor: pointer;
     opacity: 0;
-    transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 10; /* Ensure it appears above the image */
 }
 
 /* Magnifying glass icon inside the overlay */
 .image-overlay i {
     font-size: 24px;
     color: white;
+}
+
+/* Make the overlay appear on hover */
+.tao-card-photo:hover .image-overlay {
+    opacity: 1;
 }
