@@ -89,9 +89,7 @@
                                 <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="##remoteUpdateEssenceContact_#essence_sel.id#">
                                     <i class="mdi mdi-pencil"></i> Edit
                                 </button>
-                                <button class="btn btn-outline-danger btn-sm" onclick="deleteEssence(#essence_sel.id#)">
-                                    <i class="mdi mdi-trash-can"></i> Delete
-                                </button>
+                      
                             </div>
                         </div>
                     </div>
