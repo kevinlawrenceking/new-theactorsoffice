@@ -7623,3 +7623,15 @@ contact-item i {
         flex: 0 0 100%; /* On very small screens, tabs become full-width */
     }
 }
+
+.table-responsive {
+    overflow-x: hidden !important; /* Prevent horizontal scroll */
+}
+
+.dataTables_wrapper {
+    max-width: 100% !important;  /* Ensure table wrapper does not exceed page width */
+}
+
+.dataTables_scrollBody {
+    overflow-x: hidden !important;
+}
