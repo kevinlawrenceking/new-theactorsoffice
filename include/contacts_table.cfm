@@ -29,10 +29,17 @@
 <cfset defrows = defrows />
 
 <script type="text/javascript">
-    $(document).ready(function() {
+     $(document).ready(function() {
+        <!--- Convert defrows to -1 if it equals "All" --->
+        <cfset defaultRowsValue = defrows>
+        <cfif defrows EQ "All">
+            <cfset defaultRowsValue = -1>
+        </cfif>
+
         // Initialize DataTable
         var table = $('#<cfoutput>#contacts_table#</cfoutput>').DataTable({
-            "pageLength": <cfoutput>#defrows#</cfoutput>,
+            "pageLength": <cfoutput>#defaultRowsValue#</cfoutput>,
+            "lengthMenu": [[10, 25, 50, 100, 500, -1], [10, 25, 50, 100, 500, "All"]],
             filter: true,
             "searching": true,
             stateSave: false,
