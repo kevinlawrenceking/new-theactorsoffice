@@ -39,7 +39,7 @@
         // Initialize DataTable
         var table = $('#<cfoutput>#contacts_table#</cfoutput>').DataTable({
             "pageLength": <cfoutput>#defaultRowsValue#</cfoutput>,
-            "lengthMenu": [[10, 25, 50, 100, 500, -1], [10, 25, 50, 100, 500, "All"]],
+            "lengthMenu": [[10, 25, 50, 100, 500, 9999999], [10, 25, 50, 100, 500, "All"]],
             filter: true,
             "searching": true,
             stateSave: false,
