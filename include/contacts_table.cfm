@@ -29,296 +29,159 @@
 <cfset defrows = defrows />
 
 <script type="text/javascript">
-     $(document).ready(function() {
-        <!--- Convert defrows to -1 if it equals "All" --->
-        <cfset defaultRowsValue = defrows>
-        <cfif defrows EQ "All">
-            <cfset defaultRowsValue = -1>
-        </cfif>
+    $(document).ready(function() {
+    // Convert defrows to -1 if it equals "All"
+    <cfset defaultRowsValue = defrows>
+    <cfif defrows EQ "All">
+        <cfset defaultRowsValue = -1>
+    </cfif>
 
-        // Initialize DataTable
-        var table = $('#<cfoutput>#contacts_table#</cfoutput>').DataTable({
-            "pageLength": <cfoutput>#defaultRowsValue#</cfoutput>,
-            "lengthMenu": [[10, 25, 50, 100, 500, 9999999], [10, 25, 50, 100, 500, "All"]],
-            filter: true,
-            "searching": true,
-            stateSave: false,
-            dom: '<"row"<"col-sm-12"l>> <"row"<"col-sm-12"B>>frtip',
-            responsive: {
-                details: {
-                    type: 'column'
+    // Initialize DataTable
+    var table = $('#<cfoutput>#contacts_table#</cfoutput>').DataTable({
+        "pageLength": <cfoutput>#defaultRowsValue#</cfoutput>,
+        "lengthMenu": [[10, 25, 50, 100, 500, 9999999], [10, 25, 50, 100, 500, "All"]],
+        "searching": true,  // Ensure search field is enabled
+        stateSave: false,
+        dom: '<"row"<"col-sm-12"f>> <"row"<"col-sm-12"B>> <"row"<"col-sm-12"l>>rtip',  // Move search field to the top
+        responsive: {
+            details: {
+                type: 'column'
+            }
+        },
+        serverSide: true,
+        ajax: {
+            url: '/include/contacts_ss.cfm?contacts_table=<cfoutput>#contacts_table#</cfoutput>&userid=<cfoutput>#userid#</cfoutput>&bytag=<cfoutput>#bytag#</cfoutput>&byimport=<cfoutput>#byimport#</cfoutput>',
+            type: 'post'
+        },
+        buttons: [
+            {
+                text: 'Add',
+                className: 'addrelationship',
+                action: function(e, node, config) {
+                    $('#remoteAddName').modal('show');
                 }
             },
-            serverSide: true,
-            ajax: {
-                url: '/include/contacts_ss.cfm?contacts_table=<cfoutput>#contacts_table#</cfoutput>&userid=<cfoutput>#userid#</cfoutput>&bytag=<cfoutput>#bytag#</cfoutput>&byimport=<cfoutput>#byimport#</cfoutput>',
-                type: 'post'
+            {
+                text: 'Search Tag',
+                className: 'searchtag',
+                action: function(e, node, config) {
+                    $('#exampleModal2').modal('show');
+                }
             },
-            buttons: [
-                {
-                    text: 'Add',
-                    className: 'addrelationship',
-                    action: function(e, node, config) {
-                        $('#remoteAddName').modal('show');
-                    },
-                    enabled: true
+            {
+                text: 'Add/Delete Tag',
+                className: 'updatetag',
+                action: function(e, node, config) {
+                    $('#exampleModal4').modal('show');
                 },
-                {
-                    text: 'Search Tag',
-                    className: 'searchtag',
-                    action: function(e, node, config) {
-                        $('#exampleModal2').modal('show');
-                    },
-                    enabled: true
+                enabled: false
+            },
+            {
+                text: 'Add System',
+                className: 'updatesystem',
+                action: function(e, node, config) {
+                    $('#exampleModal3').modal('show');
                 },
-                {
-                    text: 'Add/Delete Tag',
-                    className: 'updatetag',
-                    action: function(e, node, config) {
-                        $('#exampleModal4').modal('show');
-                    },
-                    enabled: false
+                enabled: false
+            },
+            {
+                text: 'Delete System',
+                className: 'deletesystem',
+                action: function(e, node, config) {
+                    $('#exampleModal99').modal('show');
                 },
+                enabled: false
+            },
+            {
+                text: 'Import',
+                className: 'import',
+                action: function(e, dt, button, config) {
+                    window.location = '/app/contacts-import/';
+                }
+            },
+            <cfif #imports.recordcount# is not "0">
                 {
-                    text: 'Add System',
-                    className: 'updatesystem',
+                    text: 'Import History',
+                    className: 'importhistory',
                     action: function(e, node, config) {
-                        $('#exampleModal3').modal('show');
-                    },
-                    enabled: false
-                },
-                {
-                    text: 'Delete System',
-                    className: 'deletesystem',
-                    action: function(e, node, config) {
-                        $('#exampleModal99').modal('show');
-                    },
-                    enabled: false
-                },
-                {
-                    text: 'Import',
-                    className: 'import',
-                    enabled: true,
-                    action: function(e, dt, button, config) {
-                        window.location = '/app/contacts-import/';
+                        $('#exampleModal22').modal('show');
                     }
                 },
-                <cfif #imports.recordcount# is not "0">
-                    {
-                        text: 'Import History',
-                        className: 'importhistory',
-                        action: function(e, node, config) {
-                            $('#exampleModal22').modal('show');
-                        },
-                        enabled: true
-                    },
-                </cfif>
-                {
-                    text: 'Delete',
-                    className: 'batchdelete',
-                    action: function(e, node, config) {
-                        $('#exampleModaldelete').modal('show');
-                    },
-                    enabled: false
+            </cfif>
+            {
+                text: 'Delete',
+                className: 'batchdelete',
+                action: function(e, node, config) {
+                    $('#exampleModaldelete').modal('show');
                 },
-                {
-                    text: 'Export',
-                    className: 'exportcontacts',
-                    action: function(e, node, config) {
-                        var formexport = $('#myformexport')[0];
-
-                        // Clear the form first, in case this is not the first time submitting
-                        $('input[name="idlist"]', formexport).remove();
-
-                        var rows_selectedexport = table.column(0).checkboxes.selected();
-
-                        // Iterate over all selected checkboxes
-                        $.each(rows_selectedexport, function(index, rowId) {
-                            // Create a hidden element 
-                            $(formexport).append(
-                                $('<input>')
-                                .attr('type', 'hidden')
-                                .attr('name', 'idlist')
-                                .val(rowId)
-                            );
-                        });
-
-                        // Submit the form
-                        formexport.submit();
-                    },
-                    enabled: false
-                }
-            ],
-            columnDefs: [{
-                targets: 0,
-                checkboxes: {
-                    selectRow: true
-                }
-            }],
-            select: {
-                style: 'multi'
+                enabled: false
             },
-            order: [
-                [1, 'asc']
-            ],
-            language: {
-                infoEmpty: "No records available"
+            {
+                text: 'Export',
+                className: 'exportcontacts',
+                action: function(e, node, config) {
+                    var formexport = $('#myformexport')[0];
+                    $('input[name="idlist"]', formexport).remove();
+                    var rows_selectedexport = table.column(0).checkboxes.selected();
+                    $.each(rows_selectedexport, function(index, rowId) {
+                        $(formexport).append(
+                            $('<input>').attr('type', 'hidden').attr('name', 'idlist').val(rowId)
+                        );
+                    });
+                    formexport.submit();
+                },
+                enabled: false
             }
-        });
-
-        // Enable/disable buttons based on selection
-        $('#<cfoutput>#contacts_table#</cfoutput>').on('select.dt deselect.dt', function() {
-            table.buttons(['.exportcontacts']).enable(
-                table.rows({
-                    selected: true
-                }).indexes().length === 0 ? false : true
-            );
-        });
-
-        $('#<cfoutput>#contacts_table#</cfoutput>').on('select.dt deselect.dt', function() {
-            table.buttons(['.updatetag']).enable(
-                table.rows({
-                    selected: true
-                }).indexes().length === 0 ? false : true
-            );
-        });
-
-        $('#<cfoutput>#contacts_table#</cfoutput>').on('select.dt deselect.dt', function() {
-            table.buttons(['.updatesystem']).enable(
-                table.rows({
-                    selected: true
-                }).indexes().length === 0 ? false : true
-            );
-        });
-
-        $('#<cfoutput>#contacts_table#</cfoutput>').on('select.dt deselect.dt', function() {
-            table.buttons(['.deletesystem']).enable(
-                table.rows({
-                    selected: true
-                }).indexes().length === 0 ? false : true
-            );
-        });
-
-        $('#<cfoutput>#contacts_table#</cfoutput>').on('select.dt deselect.dt', function() {
-            table.buttons(['.batchdelete']).enable(
-                table.rows({
-                    selected: true
-                }).indexes().length === 0 ? false : true
-            );
-        });
-
-        $('#<cfoutput>#contacts_table#_container</cfoutput>').css('display', 'table');
-
-        // Handle form submission event 
-        $('#meform').on('submit', function(e) {
-            var form = this;
-            var rows_selected = table.column(0).checkboxes.selected();
-
-            // Iterate over all selected checkboxes
-            $.each(rows_selected, function(index, rowId) {
-                // Create a hidden element 
-                $(form).append(
-                    $('<input>')
-                    .attr('type', 'hidden')
-                    .attr('name', 'idlist')
-                    .val(rowId)
-                );
-            });
-        });
-
-        // Handle form submission event for delete
-        $('#myformdelete').on('submit', function(e) {
-            var formdelete = this;
-            var rows_selecteddelete = table.column(0).checkboxes.selected();
-
-            // Iterate over all selected checkboxes
-            $.each(rows_selecteddelete, function(index, rowId) {
-                // Create a hidden element 
-                $(formdelete).append(
-                    $('<input>')
-                    .attr('type', 'hidden')
-                    .attr('name', 'idlist')
-                    .val(rowId)
-                );
-            });
-        });
-
-        // Handle form submission event for export
-        $('#myformexport').on('submit', function(e) {
-            var formexport = this;
-            var rows_selectedexport = table.column(0).checkboxes.selected();
-
-            // Iterate over all selected checkboxes
-            $.each(rows_selectedexport, function(index, rowId) {
-                // Create a hidden element 
-                $(formexport).append(
-                    $('<input>')
-                    .attr('type', 'hidden')
-                    .attr('name', 'idlist')
-                    .val(rowId)
-                );
-            });
-        });
-
-        // Handle form submission event for tag
-        $('#myformtag').on('submit', function(e) {
-            var formtag = this;
-            var rows_selectedtag = table.column(0).checkboxes.selected();
-
-            // Iterate over all selected checkboxes
-            $.each(rows_selectedtag, function(index, rowId) {
-                // Create a hidden element 
-                $(formtag).append(
-                    $('<input>')
-                    .attr('type', 'hidden')
-                    .attr('name', 'idlist')
-                    .val(rowId)
-                );
-            });
-        });
-
-        // Handle form submission event for system
-        $('#myformsystem').on('submit', function(e) {
-            var formsystem = this;
-            var rows_selectedsystem = table.column(0).checkboxes.selected();
-
-            // Iterate over all selected checkboxes
-            $.each(rows_selectedsystem, function(index, rowId) {
-                // Create a hidden element 
-                $(formsystem).append(
-                    $('<input>')
-                    .attr('type', 'hidden')
-                    .attr('name', 'idlist')
-                    .val(rowId)
-                );
-            });
-        });
-
-        // Handle form submission event for system delete
-        $('#myformsystemdelete').on('submit', function(e) {
-            var formsystem = this;
-            var rows_selectedsystem = table.column(0).checkboxes.selected();
-
-            // Iterate over all selected checkboxes
-            $.each(rows_selectedsystem, function(index, rowId) {
-                // Create a hidden element 
-                $(formsystem).append(
-                    $('<input>')
-                    .attr('type', 'hidden')
-                    .attr('name', 'idlist')
-                    .val(rowId)
-                );
-            });
-        });
-
-        $('#<cfoutput>#contacts_table#_container</cfoutput>').css('display', 'block');
-        table.columns.adjust().draw();
-
-        $('#<cfoutput>#contacts_table#_container</cfoutput>').on('click', 'input[type="text"]', function(event) {
-            event.stopPropagation();
-            return false;
-        });
+        ],
+        columnDefs: [{
+            targets: 0,
+            checkboxes: {
+                selectRow: true
+            }
+        }],
+        select: {
+            style: 'multi'
+        },
+        order: [
+            [1, 'asc']
+        ],
+        language: {
+            infoEmpty: "No records available"
+        }
     });
+
+    // Ensure search field is visible
+    $('.dataTables_filter').show();
+
+    // Enable/disable buttons based on selection
+    $('#<cfoutput>#contacts_table#</cfoutput>').on('select.dt deselect.dt', function() {
+        var hasSelection = table.rows({ selected: true }).indexes().length > 0;
+        table.buttons(['.exportcontacts', '.updatetag', '.updatesystem', '.deletesystem', '.batchdelete']).enable(hasSelection);
+    });
+
+    $('#<cfoutput>#contacts_table#_container</cfoutput>').css('display', 'block');
+    table.columns.adjust().draw();
+
+    // Stop event propagation for inputs inside table
+    $('#<cfoutput>#contacts_table#_container</cfoutput>').on('click', 'input[type="text"]', function(event) {
+        event.stopPropagation();
+        return false;
+    });
+
+    // Count checked checkboxes and update UI
+    var countChecked = function() {
+        var n = $("input:checked").length;
+        $("#count").text(n + (n === 1 ? " is" : " zijn") + " aangevinkt!");
+        if (n == 0) {
+            $("#batchbutton_<cfoutput>#contacts_table#</cfoutput>:visible").fadeOut();
+        } else {
+            $("#batchbutton_<cfoutput>#contacts_table#</cfoutput>:hidden").fadeIn();
+        }
+    };
+    countChecked();
+    $("input[type=checkbox]").on("click", countChecked);
+});
+
 </script>
 
 <script>
