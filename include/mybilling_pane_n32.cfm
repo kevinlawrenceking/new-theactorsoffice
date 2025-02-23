@@ -1,27 +1,31 @@
+<!--- This ColdFusion page displays billing information including invoice ID, purchase date, trial end date, product, and plan details. --->
 
-<h4 class="text-nowrap">
-    My Billing
-</h4>
-<div class="row" style="margin: auto;">
 
+<iframe width="100%" scrolling="no" frameborder="0" src="https://app.paykickstart.com/billing?portal=uGz4JGGnPi9VaXn73gSYxd3SqQRtMPY648otrWR5eGKKNquowi"></iframe><script src="https://app.paykickstart.com/billing-portal/js/uGz4JGGnPi9VaXn73gSYxd3SqQRtMPY648otrWR5eGKKNquowi"></script>
+
+
+<cfset apiUrl = "https://app.paykickstart.com/api/billing-customer">
+<cfset apiKey = "your_api_key"> <!-- Replace with your actual API key -->
+<cfset customerId = "123456"> <!-- Replace with actual Customer ID -->
+<cfset subscriptionId = "abcdef"> <!-- Or use Subscription ID -->
+
+<!--- Make API Request --->
+<cfhttp url="#apiUrl#" method="post" result="apiResponse">
+    <cfhttpparam type="header" name="Authorization" value="Bearer #apiKey#">
+    <cfhttpparam type="formfield" name="customer_id" value="#customerId#">
+</cfhttp>
+
+<!--- Parse JSON Response --->
+<cfset responseData = DeserializeJSON(apiResponse.FileContent)>
+
+<!--- Handle Response --->
+<cfif StructKeyExists(responseData, "billing_url")>
+    <cfset billingPortalUrl = responseData.billing_url>
     <cfoutput>
-        <div class="col-md-12 col-lg-6 p-1"><strong>Invoice ID: </strong>#invoiceid#</div>
-        <div class="col-md-12 col-lg-6 p-1"><strong>Purchase Date: </strong>#dateformat(purchasedate)#</div>
-        
-        <cfif #dateformat(trialenddate)# is not "">
-            <div class="col-md-12 col-lg-6 p-1"><strong>Trial End Date: </strong>#dateformat(trialenddate)#</div>
-        </cfif>
-
-        <div class="col-md-12 col-lg-6 p-1"><strong>Product: </strong>#baseproductlabel#</div>
-        <div class="col-md-12 col-lg-6 p-1"><strong>Plan: </strong>#planname#</div>
+        <p>Access your billing portal here: <a href="#billingPortalUrl#">Billing Portal</a></p>
     </cfoutput>
-
-    <div class="col-md-12 col-lg-6 p-1">
-        <strong>Have questions and want to cancel? </strong>
-        <a href="mailto:support@theactorsoffice.com">Email</a> us
-    </div>
-
-</div>
-
-
-
+<cfelse>
+    <cfoutput>
+        Failed to retrieve billing URL: #responseData.error#
+    </cfoutput>
+</cfif>
