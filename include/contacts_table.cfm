@@ -43,7 +43,7 @@
             filter: true,
             "searching": true,
             stateSave: false,
-            dom: 'Bfrtip',
+            dom: 'lBfrtip',
             responsive: {
                 details: {
                     type: 'column'
