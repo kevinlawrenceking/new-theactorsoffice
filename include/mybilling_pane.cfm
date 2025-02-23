@@ -17,7 +17,7 @@
         </div>
         
         <!--- Check if trial end date is available --->
-        <cfif #this.formatDate(trialenddate)# is not "">
+        <cfif #(trialenddate)# is not "">
             <div class="col-md-12 col-lg-6 p-1">
                 <strong>Trial End Date: </strong>#this.formatDate(trialenddate)#
             </div>
