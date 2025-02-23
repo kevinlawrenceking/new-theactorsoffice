@@ -43,7 +43,8 @@
             filter: true,
             "searching": true,
             stateSave: false,
-            dom: '<"row"<"col-sm-12"l>> <"row"<"col-sm-12"B>>frtip',
+            dom: '<"row"<"col-sm-12"l>> <"row"<"col-sm-12"B>> <"row"<"col-sm-12"f>>rtip',
+
             responsive: {
                 details: {
                     type: 'column'
