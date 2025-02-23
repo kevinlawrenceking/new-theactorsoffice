@@ -7635,3 +7635,10 @@ contact-item i {
 .dataTables_scrollBody {
     overflow-x: hidden !important;
 }
+
+.dataTables_filter {
+    display: block !important;  /* Ensure visibility */
+    visibility: visible !important;
+    text-align: left;  /* Align properly */
+    margin-bottom: 10px; /* Add spacing */
+}
