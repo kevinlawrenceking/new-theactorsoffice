@@ -43,7 +43,7 @@
             filter: true,
             "searching": true,
             stateSave: false,
-            dom: 'lBfrtip',
+            dom: '<"row"<"col-sm-12"l>> <"row"<"col-sm-12"B>>frtip',
             responsive: {
                 details: {
                     type: 'column'
