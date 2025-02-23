@@ -80,6 +80,3 @@
         </cfif>
     </cfif>
 </cfif>
-
-<cfoutput>#session.zquery#</cfoutput>
-
