@@ -163,7 +163,7 @@
             INNER JOIN fuactions a ON s.systemid = a.systemid
             INNER JOIN actionusers au ON au.actionid = a.actionid
             WHERE s.systemID = <cfqueryparam value="#arguments.new_systemid#" cfsqltype="CF_SQL_INTEGER">
-            AND au.userid = <cfqueryparam value="#arguments.session_userid#" cfsqltype="CF_SQL_INTEGER">
+            AND au.userid = <cfqueryparam value="#arguments.userid#" cfsqltype="CF_SQL_INTEGER">
             ORDER BY a.actionNo
         </cfquery>
 
