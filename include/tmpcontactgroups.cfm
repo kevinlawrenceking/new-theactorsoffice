@@ -4,13 +4,13 @@
 <cfparam name="idlist" default="0" />
 
 <!--- Check if session idlist is not defined, then set it to idlist --->
-<Cfif not #isdefined('session.idlist')#>
-    <cfset session.idlist = idlist />
+<Cfif not #isdefined('idlist')#>
+    <cfset idlist = idlist />
 </cfif>
 
 <!--- If idlist is "0" and session idlist is not "0", set idlist to session idlist --->
-<cfif #idlist# is "0" and #session.idlist# is not "0">
-    <cfset idlist = session.idlist />
+<cfif #idlist# is "0" and #idlist# is not "0">
+    <cfset idlist = idlist />
 </cfif>
 
 <!--- Include BatchDetails template --->
@@ -34,7 +34,7 @@
 <cfinclude template="/include/qry/lastupdates.cfm" />
 
 <!--- Set session idlist to idlist --->
-<cfset session.idlist = idlist />
+<cfset idlist = idlist />
 
 <!--- Initialize counters --->
 <cfset no_deleted = 0 />
@@ -206,7 +206,7 @@
 
 <!--- Output summary of operations --->
 <cfoutput>
-    <p>ID LIST: #session.idlist#<br>System: #new_systemtype#<br>KEEPLIST: #keeplist#</p>
+    <p>ID LIST: #idlist#<br>System: #new_systemtype#<br>KEEPLIST: #keeplist#</p>
     <p>no_skipped: #no_skipped#<br>no_deleted: #no_deleted#<br>no_added: #no_added#</p>
 </cfoutput>
 

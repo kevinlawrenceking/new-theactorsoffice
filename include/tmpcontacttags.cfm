@@ -4,9 +4,9 @@
 <cfparam name="contact_expand" default="true" />
 <cfparam name="idlist" default="0" />
 
-<!--- Check if idlist is 0 and session.idlist is not 0, then set idlist from session --->
-<cfif #idlist# is "0" and #session.idlist# is not "0">
-    <cfset idlist = session.idlist />
+<!--- Check if idlist is 0 and idlist is not 0, then set idlist from session --->
+<cfif #idlist# is "0" and #idlist# is not "0">
+    <cfset idlist = idlist />
 </cfif>
 
 <!--- If debugging is off, check if idlist is 0 and redirect if true --->
@@ -30,7 +30,7 @@
 <cfinclude template="/include/qry/lastupdates.cfm" />
 
 <!--- Set session idlist to the current idlist --->
-<cfset session.idlist=idlist />
+<cfset idlist=idlist />
 
 <!--- Initialize counters for added, skipped, and deleted records --->
 <cfset no_deleted=0 />
@@ -103,7 +103,7 @@
 
 <!--- Output the results of the processing --->
 <cfoutput>
-    <P>ID LIST: #session.idlist#<BR>Tag: #new_tagname#<BR>action: #addremove#</P>
+    <P>ID LIST: #idlist#<BR>Tag: #new_tagname#<BR>action: #addremove#</P>
     <p>no_skipped: #no_skipped#<BR>no_deleted: #no_deleted#<BR>no_added: #no_added#</p>
 </cfoutput>
 

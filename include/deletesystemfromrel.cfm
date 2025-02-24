@@ -4,14 +4,14 @@
 
 <cfparam name="idlist" default="0" />
 
-<!--- Check if session.idlist is not defined and set it to idlist if true --->
-<Cfif not isdefined('session.idlist')>
-    <cfset session.idlist = idlist />
+<!--- Check if idlist is not defined and set it to idlist if true --->
+<Cfif not isdefined('idlist')>
+    <cfset idlist = idlist />
 </Cfif>
 
-<!--- If idlist is "0" and session.idlist is not "0", set idlist to session.idlist --->
-<cfif idlist is "0" and session.idlist is not "0">
-    <cfset idlist = session.idlist />
+<!--- If idlist is "0" and idlist is not "0", set idlist to idlist --->
+<cfif idlist is "0" and idlist is not "0">
+    <cfset idlist = idlist />
 </cfif>
 
 <!--- Set the session action to "bulk" --->
