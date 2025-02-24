@@ -48,6 +48,29 @@ $(document).ready(function() {
         },
         buttons: [
             {
+                text: 'Add',
+                className: 'addrelationship',
+                action: function() {
+                    $('#remoteAddName').modal('show');
+                }
+            },
+            {
+                text: 'Search Tag',
+                className: 'searchtag',
+                action: function() {
+                    $('#exampleModal2').modal('show');
+                }
+            },
+            {
+                text: 'Add/Delete Tag',
+                className: 'updatetag',
+                action: function() {
+                    updateIdList('#myformtag');
+                    $('#exampleModal4').modal('show');
+                },
+                enabled: false
+            },
+            {
                 text: 'Add System',
                 className: 'updatesystem',
                 action: function() {
@@ -56,6 +79,31 @@ $(document).ready(function() {
                 },
                 enabled: false
             },
+            {
+                text: 'Delete System',
+                className: 'deletesystem',
+                action: function() {
+                    updateIdList('#myformsystemdelete');
+                    $('#exampleModal99').modal('show');
+                },
+                enabled: false
+            },
+            {
+                text: 'Import',
+                className: 'import',
+                action: function() {
+                    window.location = '/app/contacts-import/';
+                }
+            },
+            <cfif #imports.recordcount# is not "0">
+                {
+                    text: 'Import History',
+                    className: 'importhistory',
+                    action: function() {
+                        $('#exampleModal22').modal('show');
+                    }
+                },
+            </cfif>
             {
                 text: 'Delete',
                 className: 'batchdelete',
@@ -83,25 +131,52 @@ $(document).ready(function() {
         }],
         select: {
             style: 'multi'
+        },
+        order: [
+            [1, 'asc']
+        ],
+        language: {
+            infoEmpty: "No records available"
         }
     });
 
-    // Function to update ID list before showing the modal
+    // Function to update ID list before opening a modal
     function updateIdList(formSelector) {
         var selectedIds = table.column(0).checkboxes.selected().toArray().join(",");
-        $(formSelector).find('input[name="id_list"]').remove(); // Remove existing hidden input
+        $(formSelector).find('input[name="id_list"]').remove(); // Remove old hidden input
         $(formSelector).append(
             $('<input>').attr('type', 'hidden').attr('name', 'id_list').val(selectedIds)
         );
     }
 
-    // Enable/disable buttons based on selection
+    // Enable/disable buttons based on checkbox selection
     $('#<cfoutput>#contacts_table#</cfoutput>').on('select.dt deselect.dt', function() {
         var hasSelection = table.rows({ selected: true }).indexes().length > 0;
-        table.buttons(['.exportcontacts', '.updatesystem', '.batchdelete']).enable(hasSelection);
+        table.buttons(['.exportcontacts', '.updatetag', '.updatesystem', '.deletesystem', '.batchdelete']).enable(hasSelection);
     });
-});
 
+    $('#<cfoutput>#contacts_table#_container</cfoutput>').css('display', 'block');
+    table.columns.adjust().draw();
+
+    // Stop event propagation for inputs inside table
+    $('#<cfoutput>#contacts_table#_container</cfoutput>').on('click', 'input[type="text"]', function(event) {
+        event.stopPropagation();
+        return false;
+    });
+
+    // Checkbox count and batch button visibility
+    var countChecked = function() {
+        var n = $("input:checked").length;
+        $("#count").text(n + (n === 1 ? " is" : " zijn") + " aangevinkt!");
+        if (n == 0) {
+            $("#batchbutton_<cfoutput>#contacts_table#</cfoutput>:visible").fadeOut();
+        } else {
+            $("#batchbutton_<cfoutput>#contacts_table#</cfoutput>:hidden").fadeIn();
+        }
+    };
+    countChecked();
+    $("input[type=checkbox]").on("click", countChecked);
+});
 
 </script>
 
