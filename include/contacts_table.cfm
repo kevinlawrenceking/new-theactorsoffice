@@ -46,83 +46,84 @@ $(document).ready(function() {
             url: '/include/contacts_ss.cfm?contacts_table=<cfoutput>#contacts_table#</cfoutput>&userid=<cfoutput>#userid#</cfoutput>&bytag=<cfoutput>#bytag#</cfoutput>&byimport=<cfoutput>#byimport#</cfoutput>',
             type: 'post'
         },
-        buttons: [
-            {
-                text: 'Add',
-                className: 'addrelationship',
-                action: function() {
-                    $('#remoteAddName').modal('show');
-                }
-            },
-            {
-                text: 'Search Tag',
-                className: 'searchtag',
-                action: function() {
-                    $('#exampleModal2').modal('show');
-                }
-            },
-            {
-                text: 'Add/Delete Tag',
-                className: 'updatetag',
-                action: function() {
-                    updateIdList('#myformtag');
-                    $('#exampleModal4').modal('show');
-                },
-                enabled: false
-            },
-            {
-                text: 'Add System',
-                className: 'updatesystem',
-                action: function() {
-                    updateIdList('#myformsystem');
-                    $('#exampleModal3').modal('show');
-                },
-                enabled: false
-            },
-            {
-                text: 'Delete System',
-                className: 'deletesystem',
-                action: function() {
-                    updateIdList('#myformsystemdelete');
-                    $('#exampleModal99').modal('show');
-                },
-                enabled: false
-            },
-            {
-                text: 'Import',
-                className: 'import',
-                action: function() {
-                    window.location = '/app/contacts-import/';
-                }
-            },
-            <cfif #imports.recordcount# is not "0">
-                {
-                    text: 'Import History',
-                    className: 'importhistory',
-                    action: function() {
-                        $('#exampleModal22').modal('show');
-                    }
-                },
-            </cfif>
-            {
-                text: 'Delete',
-                className: 'batchdelete',
-                action: function() {
-                    updateIdList('#myformdelete');
-                    $('#exampleModaldelete').modal('show');
-                },
-                enabled: false
-            },
-            {
-                text: 'Export',
-                className: 'exportcontacts',
-                action: function() {
-                    updateIdList('#myformexport');
-                    $('#exampleModal5').modal('show');
-                },
-                enabled: false
+       buttons: [
+    {
+        text: 'Add',
+        className: 'addrelationship',
+        action: function() {
+            $('#remoteAddName').modal('show');
+        }
+    },
+    {
+        text: 'Search Tag',
+        className: 'searchtag',
+        action: function() {
+            $('#exampleModal2').modal('show');
+        }
+    },
+    {
+        text: 'Add/Delete Tag',
+        className: 'updatetag',
+        action: function() {
+            updateIdList('#myformtag');  // Ensure idlist is set
+            $('#exampleModal4').modal('show');
+        },
+        enabled: false
+    },
+    {
+        text: 'Add System',
+        className: 'updatesystem',
+        action: function() {
+            updateIdList('#myformsystem');  // Ensure idlist is set
+            $('#exampleModal3').modal('show');
+        },
+        enabled: false
+    },
+    {
+        text: 'Delete System',
+        className: 'deletesystem',
+        action: function() {
+            updateIdList('#myformsystemdelete');  // Ensure idlist is set
+            $('#exampleModal99').modal('show');
+        },
+        enabled: false
+    },
+    {
+        text: 'Import',
+        className: 'import',
+        action: function() {
+            window.location = '/app/contacts-import/';
+        }
+    },
+    <cfif #imports.recordcount# is not "0">
+        {
+            text: 'Import History',
+            className: 'importhistory',
+            action: function() {
+                $('#exampleModal22').modal('show');
             }
-        ],
+        },
+    </cfif>
+    {
+        text: 'Delete',
+        className: 'batchdelete',
+        action: function() {
+            updateIdList('#myformdelete');  // Ensure idlist is set
+            $('#exampleModaldelete').modal('show');
+        },
+        enabled: false
+    },
+    {
+        text: 'Export',
+        className: 'exportcontacts',
+        action: function() {
+            updateIdList('#myformexport');  // Ensure idlist is set
+            $('#exampleModal5').modal('show');
+        },
+        enabled: false
+    }
+],
+
         columnDefs: [{
             targets: 0,
             checkboxes: {
