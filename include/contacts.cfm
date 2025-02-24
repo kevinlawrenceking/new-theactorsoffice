@@ -328,6 +328,7 @@ X</span>
 
                     </div>
 
+<input type="hidden" name="id_list" value="">
 </form>
 
 </div>
@@ -379,6 +380,7 @@ $(document).ready(function() {
 
                     </div>
 
+<input type="hidden" name="id_list" value="">
 </form>
 
 </div>
@@ -419,6 +421,7 @@ $(document).ready(function() {
 
                     </div>
 
+<input type="hidden" name="id_list" value="">
 </form>
 
 </div>
@@ -497,6 +500,7 @@ $(document).ready(function() {
 
                     </div>
 
+<input type="hidden" name="id_list" value="">
 </form>
 
 <script>      
@@ -583,7 +587,8 @@ $(document).ready(function() {
 
                     </div>
 
-                </form>
+                <input type="hidden" name="id_list" value="">
+</form>
 
             </div>
             
