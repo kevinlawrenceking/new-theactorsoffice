@@ -131,18 +131,14 @@ $(document).ready(function() {
         }],
         select: {
             style: 'multi'
-        },
-        order: [
-            [1, 'asc']
-        ],
-        language: {
-            infoEmpty: "No records available"
         }
     });
 
-    // Function to update ID list before opening a modal
+    // Function to update idlist and log for debugging
     function updateIdList(formSelector) {
         var selectedIds = table.column(0).checkboxes.selected().toArray().join(",");
+        console.log("idlist: ", selectedIds);  // Debugging: log idlist to console
+        
         $(formSelector).find('input[name="idlist"]').remove(); // Remove old hidden input
         $(formSelector).append(
             $('<input>').attr('type', 'hidden').attr('name', 'idlist').val(selectedIds)
@@ -167,6 +163,7 @@ $(document).ready(function() {
     // Checkbox count and batch button visibility
     var countChecked = function() {
         var n = $("input:checked").length;
+        console.log("Checked count: ", n); // Debugging: log checkbox count
         $("#count").text(n + (n === 1 ? " is" : " zijn") + " aangevinkt!");
         if (n == 0) {
             $("#batchbutton_<cfoutput>#contacts_table#</cfoutput>:visible").fadeOut();
