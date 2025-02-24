@@ -741,12 +741,12 @@
                 c.*  
             FROM
                 taousers u
-            INNER JOIN dateformats df ON u.dateformatid = df.id
+            LEFT JOIN dateformats df ON u.dateformatid = df.id
 
-INNER JOIN timezones t ON u.tzid = t.tzid
-            INNER JOIN thrivecart tc ON u.customerid = tc.id  
-            INNER JOIN paymentplans pp ON pp.BasePaymentPlanId = tc.BasePaymentPlanId
-            INNER JOIN products pr ON pr.BaseProductId = tc.BaseProductId
+LEFT JOIN timezones t ON u.tzid = t.tzid
+            LEFT JOIN thrivecart tc ON u.customerid = tc.id  
+            LEFT JOIN paymentplans pp ON pp.BasePaymentPlanId = tc.BasePaymentPlanId
+            LEFT JOIN products pr ON pr.BaseProductId = tc.BaseProductId
             LEFT JOIN regions r ON u.region_id = r.region_id
             LEFT JOIN countries c ON u.countryid = c.countryid
             WHERE u.userid = <cfqueryparam value="#arguments.userId#" cfsqltype="cf_sql_integer">
