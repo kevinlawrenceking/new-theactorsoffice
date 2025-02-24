@@ -135,15 +135,19 @@ $(document).ready(function() {
     });
 
     // Function to update idlist and log for debugging
-    function updateIdList(formSelector) {
-        var selectedIds = table.column(0).checkboxes.selected().toArray().join(",");
-        console.log("idlist: ", selectedIds);  // Debugging: log idlist to console
-        
-        $(formSelector).find('input[name="idlist"]').remove(); // Remove old hidden input
-        $(formSelector).append(
-            $('<input>').attr('type', 'hidden').attr('name', 'idlist').val(selectedIds)
-        );
-    }
+function updateIdList(formSelector) {
+    var selectedIds = table.column(0).checkboxes.selected().toArray().join(",");
+    console.log("idlist: ", selectedIds);  // Debugging: log idlist to console
+
+    var form = $(formSelector);
+
+    // Remove any existing idlist input and ensure it's set inside the modal
+    form.find('input[name="idlist"]').remove();
+    form.append('<input type="hidden" name="idlist" value="' + selectedIds + '">');
+
+    // Debugging: Confirm that the hidden input is updated in the modal
+    console.log("Updated idlist in modal:", form.find('input[name="idlist"]').val());
+}
 
     // Enable/disable buttons based on checkbox selection
     $('#<cfoutput>#contacts_table#</cfoutput>').on('select.dt deselect.dt', function() {
