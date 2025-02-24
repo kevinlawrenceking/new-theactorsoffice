@@ -29,20 +29,13 @@
 <cfset defrows = defrows />
 
 <script type="text/javascript">
-    $(document).ready(function() {
-    // Convert defrows to -1 if it equals "All"
-    <cfset defaultRowsValue = defrows>
-    <cfif defrows EQ "All">
-        <cfset defaultRowsValue = -1>
-    </cfif>
-
-    // Initialize DataTable
+$(document).ready(function() {
     var table = $('#<cfoutput>#contacts_table#</cfoutput>').DataTable({
         "pageLength": <cfoutput>#defaultRowsValue#</cfoutput>,
         "lengthMenu": [[10, 25, 50, 100, 500, 9999999], [10, 25, 50, 100, 500, "All"]],
-        "searching": true,  // Ensure search field is enabled
+        "searching": true,
         stateSave: false,
-        dom: '<"row"<"col-sm-12"f>> <"row"<"col-sm-12"B>> <"row"<"col-sm-12"l>>rtip',  // Move search field to the top
+        dom: '<"row"<"col-sm-12"f>> <"row"<"col-sm-12"B>> <"row"<"col-sm-12"l>>rtip',
         responsive: {
             details: {
                 type: 'column'
@@ -55,63 +48,19 @@
         },
         buttons: [
             {
-                text: 'Add',
-                className: 'addrelationship',
-                action: function(e, node, config) {
-                    $('#remoteAddName').modal('show');
-                }
-            },
-            {
-                text: 'Search Tag',
-                className: 'searchtag',
-                action: function(e, node, config) {
-                    $('#exampleModal2').modal('show');
-                }
-            },
-            {
-                text: 'Add/Delete Tag',
-                className: 'updatetag',
-                action: function(e, node, config) {
-                    $('#exampleModal4').modal('show');
-                },
-                enabled: false
-            },
-            {
                 text: 'Add System',
                 className: 'updatesystem',
-                action: function(e, node, config) {
+                action: function() {
+                    updateIdList('#myformsystem');
                     $('#exampleModal3').modal('show');
                 },
                 enabled: false
             },
             {
-                text: 'Delete System',
-                className: 'deletesystem',
-                action: function(e, node, config) {
-                    $('#exampleModal99').modal('show');
-                },
-                enabled: false
-            },
-            {
-                text: 'Import',
-                className: 'import',
-                action: function(e, dt, button, config) {
-                    window.location = '/app/contacts-import/';
-                }
-            },
-            <cfif #imports.recordcount# is not "0">
-                {
-                    text: 'Import History',
-                    className: 'importhistory',
-                    action: function(e, node, config) {
-                        $('#exampleModal22').modal('show');
-                    }
-                },
-            </cfif>
-            {
                 text: 'Delete',
                 className: 'batchdelete',
-                action: function(e, node, config) {
+                action: function() {
+                    updateIdList('#myformdelete');
                     $('#exampleModaldelete').modal('show');
                 },
                 enabled: false
@@ -119,16 +68,9 @@
             {
                 text: 'Export',
                 className: 'exportcontacts',
-                action: function(e, node, config) {
-                    var formexport = $('#myformexport')[0];
-                    $('input[name="idlist"]', formexport).remove();
-                    var rows_selectedexport = table.column(0).checkboxes.selected();
-                    $.each(rows_selectedexport, function(index, rowId) {
-                        $(formexport).append(
-                            $('<input>').attr('type', 'hidden').attr('name', 'idlist').val(rowId)
-                        );
-                    });
-                    formexport.submit();
+                action: function() {
+                    updateIdList('#myformexport');
+                    $('#exampleModal5').modal('show');
                 },
                 enabled: false
             }
@@ -141,46 +83,25 @@
         }],
         select: {
             style: 'multi'
-        },
-        order: [
-            [1, 'asc']
-        ],
-        language: {
-            infoEmpty: "No records available"
         }
     });
 
-    // Ensure search field is visible
-    $('.dataTables_filter').show();
+    // Function to update ID list before showing the modal
+    function updateIdList(formSelector) {
+        var selectedIds = table.column(0).checkboxes.selected().toArray().join(",");
+        $(formSelector).find('input[name="id_list"]').remove(); // Remove existing hidden input
+        $(formSelector).append(
+            $('<input>').attr('type', 'hidden').attr('name', 'id_list').val(selectedIds)
+        );
+    }
 
     // Enable/disable buttons based on selection
     $('#<cfoutput>#contacts_table#</cfoutput>').on('select.dt deselect.dt', function() {
         var hasSelection = table.rows({ selected: true }).indexes().length > 0;
-        table.buttons(['.exportcontacts', '.updatetag', '.updatesystem', '.deletesystem', '.batchdelete']).enable(hasSelection);
+        table.buttons(['.exportcontacts', '.updatesystem', '.batchdelete']).enable(hasSelection);
     });
-
-    $('#<cfoutput>#contacts_table#_container</cfoutput>').css('display', 'block');
-    table.columns.adjust().draw();
-
-    // Stop event propagation for inputs inside table
-    $('#<cfoutput>#contacts_table#_container</cfoutput>').on('click', 'input[type="text"]', function(event) {
-        event.stopPropagation();
-        return false;
-    });
-
-    // Count checked checkboxes and update UI
-    var countChecked = function() {
-        var n = $("input:checked").length;
-        $("#count").text(n + (n === 1 ? " is" : " zijn") + " aangevinkt!");
-        if (n == 0) {
-            $("#batchbutton_<cfoutput>#contacts_table#</cfoutput>:visible").fadeOut();
-        } else {
-            $("#batchbutton_<cfoutput>#contacts_table#</cfoutput>:hidden").fadeIn();
-        }
-    };
-    countChecked();
-    $("input[type=checkbox]").on("click", countChecked);
 });
+
 
 </script>
 
