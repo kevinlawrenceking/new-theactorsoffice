@@ -138,7 +138,7 @@
 
 <cffunction output="false" name="SELfusystems" access="public" returntype="query">
     <cfargument name="new_systemid" type="numeric" required="true">
-    <cfargument name="session_userid" type="numeric" required="true">
+    <cfargument name="userid" type="numeric" required="true">
 
 <cfquery name="result" >
             SELECT 
