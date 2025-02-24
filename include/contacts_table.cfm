@@ -143,9 +143,9 @@ $(document).ready(function() {
     // Function to update ID list before opening a modal
     function updateIdList(formSelector) {
         var selectedIds = table.column(0).checkboxes.selected().toArray().join(",");
-        $(formSelector).find('input[name="id_list"]').remove(); // Remove old hidden input
+        $(formSelector).find('input[name="idlist"]').remove(); // Remove old hidden input
         $(formSelector).append(
-            $('<input>').attr('type', 'hidden').attr('name', 'id_list').val(selectedIds)
+            $('<input>').attr('type', 'hidden').attr('name', 'idlist').val(selectedIds)
         );
     }
 
