@@ -26,7 +26,7 @@
 </div>
 
 <cfinclude template="/include/qry/imports.cfm" />
-<cfset defrows = defaultRowsValue />
+<cfset defaultRowsValue = defrows />
 
 <script type="text/javascript">
 $(document).ready(function() {
