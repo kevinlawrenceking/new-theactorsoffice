@@ -47,7 +47,7 @@
         <cfset userid = loginQuery.userid />
         <cfset session.userid = loginQuery.userid />        
         <!--- Redirect to the user's status URL --->
-       <cfoutput> userid: #session.userid#</cfoutput>
+       <cfoutput> userid: #session.userid#</cfoutput><cfabort>
         <cflocation url="#loginQuery.status_url#" addtoken="false" />
     </cfif>
      
