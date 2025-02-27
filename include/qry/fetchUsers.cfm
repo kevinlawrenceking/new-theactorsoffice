@@ -1,6 +1,6 @@
 
 <cfset userService = createObject("component", "services.UserService")>
-<cfoutput>User id: #userid#</cfoutput><cfabort>
+
 <cfset userData = userService.getUserById(userID)>
 <!--- Check if userData contains a valid user key --->
 
