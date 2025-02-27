@@ -1,10 +1,10 @@
 <cfset userService = createObject("component", "services.UserService")>
-<cfset userData = userService.getUserById(userID)>
+<cfset userData = userService.getUserById(session.userID)>
 <cfset session.dateformatID = userData.dateformatID>
 <cfset session.dateformatExample = userData.dateformatExample>
 <cfset calendarName = userData.calendarName>
 <cfset userId = userData.userId>
-<cfset uid = userData.uid>
+<cfset uuid = userData.uuid>
 <cfset recordName = userData.recordName>
 <cfset isDeleted = userData.isDeleted>
 <cfset nletter_yn = userData.nletter_yn>
