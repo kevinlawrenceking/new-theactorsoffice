@@ -2,7 +2,7 @@
 <cfset userService = createObject("component", "services.UserService")>
 
 <cfset userData = userService.getUserById(userID)>
-
+<cfoutput>#userdata.recordcount#</cfoutput>
 
 <cfset session.dateformatID = userData.user.dateformatID />
 <cfset session.dateformatExample = userData.user.dateformatExample />
