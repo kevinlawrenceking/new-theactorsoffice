@@ -39,10 +39,10 @@
 <!--- Check if the user exists --->
 <cfif loginQuery.recordcount eq 1>
     <!--- Hash the provided password with the stored salt --->
-    <!--- <cfset userpassword2 = Hash(j_password & loginQuery.passwordSalt, "SHA-512") /> --->
+<cfset userpassword2 = Hash(j_password & loginQuery.passwordSalt, "SHA-512") /> 
 
     <!--- Validate the password --->
-   <!---   <cfif loginQuery.passwordHash eq userpassword2> --->
+  <cfif loginQuery.passwordHash eq userpassword2> 
         <!--- Set the session variable ---> 
         <cfset userid = loginQuery.userid />
         <cfset session.userid = loginQuery.userid />        
