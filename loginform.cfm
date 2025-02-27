@@ -1,3 +1,5 @@
+<cfapplication name="TAO" sessionmanagement="true">
+
 <cfset currentURL = cgi.server_name />
 <cfset host = ListFirst(currentURL, ".") />
 
@@ -12,17 +14,17 @@
     <cfset information_schema = "new_development" />
 </cfif>
 
-<cfif #isdefined('cookie.userid')# > 
-    
- <cfset StructDelete(cookie, "userid")>
-     
-    </cfif>  
+<cfif structKeyExists(cookie, "userid")>
+    <cfset structDelete(cookie, "userid")>
+</cfif>
 
-<cfif #isdefined('session.userid')# > 
-    
- <cfset StructDelete(Session, "userid")>
-     
-    </cfif> 
+
+
+<cfif structKeyExists(session, "userid")>
+    <cfset structDelete(session, "userid")>
+</cfif>
+
+
 
 <cfquery result="result" name="fix" datasource="#dsn#"> 
     SELECT u.userID  

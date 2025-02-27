@@ -95,9 +95,7 @@
   <cffunction name="onRequestStart" returntype="boolean" output="false">
     <cfargument name="targetPage" required="true" type="string">
 
-    <cfif isdefined('U')>
-      <cfset session.userid=U/>
-    </cfif>
+    
     <cfif NOT structKeyExists(session, "userid") AND NOT ListFindNoCase(arguments.targetPage, "loginform.cfm,login2.cfm") AND NOT ListFindNoCase(CGI.SCRIPT_NAME, "/app/login2.cfm")>
       <cflocation url="/loginform.cfm" addToken="false">
     </cfif>
