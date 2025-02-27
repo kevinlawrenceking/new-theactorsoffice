@@ -8,6 +8,12 @@
         dsn = "abod";
     }
 </cfscript>
+
+<cfif #isdefined('userid')# > 
+    
+ <cfset StructDelete(Session, "userid")>
+     
+    </cfif>  
 <cfparam name="j_password" default="" />
 <cfparam name="j_username" default="" />
 
@@ -47,7 +53,7 @@
         <cfset userid = loginQuery.userid />
         <cfset session.userid = loginQuery.userid />        
         <!--- Redirect to the user's status URL --->
-       <cfoutput> userid: #session.userid#</cfoutput><cfabort>
+     
         <cflocation url="#loginQuery.status_url#" addtoken="false" />
     </cfif>
      
