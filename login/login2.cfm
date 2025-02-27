@@ -47,10 +47,15 @@
         <cfset userid = loginQuery.userid />
         <cfset session.userid = loginQuery.userid />        
         <!--- Redirect to the user's status URL --->
+       <cfoutput> userid: #session.userid#</cfoutput>
         <cflocation url="#loginQuery.status_url#" addtoken="false" />
     </cfif>
      
        
     </cfif>
-
+<cfif #isdefined('userid')# > 
+    
+ <cfset StructDelete(Session, "userid")>
+     
+    </cfif>  
  <cflocation url="/loginform.cfm?pwrong=Y" addtoken="false" />
