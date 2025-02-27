@@ -722,12 +722,14 @@
         WHERE u.userid = <cfqueryparam value="#arguments.userId#" cfsqltype="cf_sql_integer">
     </cfquery>
 
-    <cfif qUserDetails.recordCount EQ 1>
-        <!--- Assign query fields directly to struct --->
-        <cfset user = structNew()>
-        <cfloop list="#qUserDetails.columnList#" index="col">
-            <cfset user[col] = qUserDetails[col]>
-        </cfloop>
+<cfloop list="#qUserDetails.columnList#" index="col">
+    <!--- Check if the field is NULL and assign a default value --->
+    <cfif isNull(qUserDetails[col])>
+        <cfset user[col] = ""> <!--- Default empty string for NULL values --->
+    <cfelse>
+        <cfset user[col] = qUserDetails[col]>
+    </cfif>
+</cfloop>
 
         <!--- Additional Computed Fields --->
         <cfset user.calendarName = REPLACE(REPLACE(user.recordName, " ", ""), "-", "")>
