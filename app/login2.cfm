@@ -36,7 +36,7 @@
         <!--- Set the session variable --->
         <cfset userid = loginQuery.userid />
         <cfset session.userid = userid />
-
+here<cfabort>
         <cflocation url="#loginQuery.status_url#" addtoken="false" />
  <cfelse> 
         <!--- Invalid password, redirect to login with error message --->
