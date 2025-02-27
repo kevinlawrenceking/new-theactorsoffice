@@ -12,6 +12,18 @@
     <cfset information_schema = "new_development" />
 </cfif>
 
+<cfif #isdefined('cookie.userid')# > 
+    
+ <cfset StructDelete(cookie, "userid")>
+     
+    </cfif>  
+
+<cfif #isdefined('session.userid')# > 
+    
+ <cfset StructDelete(Session, "userid")>
+     
+    </cfif> 
+
 <cfquery result="result" name="fix" datasource="#dsn#"> 
     SELECT u.userID  
     FROM taousers u

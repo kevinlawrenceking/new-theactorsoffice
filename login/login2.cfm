@@ -9,6 +9,12 @@
     }
 </cfscript>
 <cfset userid = 0 />
+<cfif #isdefined('cookie.userid')# > 
+    
+ <cfset StructDelete(cookie, "userid")>
+     
+    </cfif>  
+
 <cfif #isdefined('session.userid')# > 
     
  <cfset StructDelete(Session, "userid")>
