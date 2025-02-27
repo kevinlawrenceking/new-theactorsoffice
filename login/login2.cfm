@@ -9,7 +9,7 @@
     }
 </cfscript>
 
-<cfif #isdefined('userid')# > 
+<cfif #isdefined('session.userid')# > 
     
  <cfset StructDelete(Session, "userid")>
      
@@ -59,7 +59,7 @@
      
        
     </cfif>
-<cfif #isdefined('userid')# > 
+<cfif #isdefined('session.userid')# > 
     
  <cfset StructDelete(Session, "userid")>
      
