@@ -5,6 +5,7 @@
 <cfset calendarName = userData.calendarName>
 <cfset userId = userData.userId>
 <cfset uuid = userData.uuid>
+<cfset uid = userData.uuid>
 <cfset recordName = userData.recordName>
 <cfset isDeleted = userData.isDeleted>
 <cfset nletter_yn = userData.nletter_yn>
