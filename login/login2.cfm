@@ -8,7 +8,7 @@
         dsn = "abod";
     }
 </cfscript>
-
+<cfset userid = 0 />
 <cfif #isdefined('session.userid')# > 
     
  <cfset StructDelete(Session, "userid")>
