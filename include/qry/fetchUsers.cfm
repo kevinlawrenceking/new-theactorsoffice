@@ -2,7 +2,9 @@
 <cfset userService = createObject("component", "services.UserService")>
 
 <cfset userData = userService.getUserById(userID)>
-<cfoutput>#userdata.recordcount#</cfoutput>
+<!--- Check if userData contains a valid user key --->
+<cfif structKeyExists(userData, "user") AND structKeyExists(userData.user, "userId")>
+    <cfoutput>User found.</cfoutput><cfabort></cfif>
 
 <cfset session.dateformatID = userData.user.dateformatID />
 <cfset session.dateformatExample = userData.user.dateformatExample />
