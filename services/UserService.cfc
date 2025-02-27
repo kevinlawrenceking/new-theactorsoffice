@@ -722,7 +722,8 @@
         WHERE u.userid = <cfqueryparam value="#arguments.userId#" cfsqltype="cf_sql_integer">
     </cfquery>
 
-<cfloop list="#qUserDetails.columnList#" index="col">
+    <cfif qUserDetails.recordCount EQ 1>
+       <cfloop list="#qUserDetails.columnList#" index="col">
     <!--- Check if the field is NULL and assign a default value --->
     <cfif isNull(qUserDetails[col])>
         <cfset user[col] = ""> <!--- Default empty string for NULL values --->
