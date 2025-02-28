@@ -2,7 +2,7 @@
     <div class="tao-card-photo">
         <!-- Trash Icon in Header -->
         <div class="tao-card-photo-header">
-            <i class="mdi mdi-square-edit-outline" data-bs-toggle="modal" data-bs-target="##remoteDeleteaudmedia#currentid#"></i>
+            <i class="mdi mdi-trash-can-outline" data-bs-toggle="modal" data-bs-target="##remoteDeleteaudmedia#currentid#"></i>
         </div>
 
         <!-- Card Body: Image + Overlay -->
