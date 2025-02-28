@@ -7660,10 +7660,9 @@ contact-item i {
     cursor: pointer;
     font-size: 14px;
     font-weight: bold;
-    padding: 2px 8px; /* Less padding */
+    padding: 4px 8px; /* Less padding */
     text-align: center;
-    margin-top: 8px;
-    margin-bottom: 8px;
+  
 }
 
 /* Ensures the edit input matches the card size */
