@@ -85,7 +85,7 @@
             <div class="col">
                 <cfoutput>
                 <A href="" data-bs-toggle="modal" data-bs-target="##remoteUpdateEssenceContact_#essence_sel.id#">
-                    <div class="tao-card-small shadow-sm border rounded p-3" >
+                    <div class="tao-card-small shadow-sm border rounded\" >
                         <div class="card-body text-center">
                             <h5 class="card-title mb-9" >#Essence_sel.Name#</h5>
               

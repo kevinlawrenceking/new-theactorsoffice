@@ -7662,6 +7662,8 @@ contact-item i {
     font-weight: bold;
     padding: 2px 8px; /* Less padding */
     text-align: center;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 /* Ensures the edit input matches the card size */
