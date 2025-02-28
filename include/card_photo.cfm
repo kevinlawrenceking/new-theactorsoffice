@@ -44,8 +44,8 @@
                 input.addEventListener("keypress", function (e) {
                     if (e.key === "Enter") {
                         let newText = input.value.trim();
-                        if (newText && newText !== originalText) {
-                            fetch("/update_media_name.cfm", {
+                        if (newText && newText !== originalText) {`
+                            fetch("/include/update_media_name.cfm", {
                                 method: "POST",
                                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                                 body: `mediaid=${mediaId}&medianame=${encodeURIComponent(newText)}`
