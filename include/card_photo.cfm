@@ -1,8 +1,8 @@
 <cfoutput>
     <div class="tao-card-photo">
         <!-- Trash Icon in Header -->
-        <div class="tao-card-photo-header">  
-            <i class="mdi mdi-trash-can-outline" data-bs-toggle="modal" data-bs-target="##remoteDeleteaudmedia#currentid#"></i>
+        <div class="tao-card-photo-header">
+            <i class="mdi mdi-square-edit-outline" data-bs-toggle="modal" data-bs-target="##remoteDeleteaudmedia#currentid#"></i>
         </div>
 
         <!-- Card Body: Image + Overlay -->
@@ -17,20 +17,22 @@
             </div>
         </div>
 
-        <!-- Footer with Editable Name -->
+        <!-- Footer with Editable Name & Edit Icon -->
         <div class="tao-card-photo-footer">
-            <div class="photo-name editable" data-id="#currentid#">#card_name#</div>
+            <div class="photo-name" data-id="#currentid#">#card_name#</div>
+            <i class="mdi mdi-square-edit-outline edit-icon" title="Edit Name"></i>
         </div>
     </div>
 </cfoutput>
+
 
 <!-- AJAX Script -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
     document.body.addEventListener("click", function (event) {
-        if (event.target.classList.contains("photo-name")) {
-            let element = event.target;
-            if (element.querySelector("input")) return; // Prevent multiple inputs
+        if (event.target.classList.contains("edit-icon")) {
+            let element = event.target.previousElementSibling; // Target the name div
+            if (!element || element.querySelector("input")) return; // Prevent multiple inputs
 
             let mediaId = element.getAttribute("data-id");
             let lastValidText = element.innerText.trim(); // Store the last valid name
