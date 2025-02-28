@@ -1,41 +1,22 @@
 <!--- This ColdFusion page displays billing information including invoice ID, purchase date, trial end date, product, and plan details. --->
+<cfset authToken = "4OWaGHPXFibE">
+<cfset userEmail = "kevinking7135@gmail.com">
+<cfset apiUrl = "https://app.paykickstart.com/api/billing-customer?auth_token=#authToken#&email=#urlEncodedFormat(userEmail)#">
 
-<h4 class="text-nowrap">
-    My Billing
-</h4>
-<div class="row" style="margin: auto;">
-    
-    <!--- Output billing information --->
-    <cfoutput>
-        
-        <div class="col-md-12 col-lg-6 p-1">
-            <strong>Invoice ID: </strong>#invoiceid#
-        </div>
-        
-        <div class="col-md-12 col-lg-6 p-1">
-            <strong>Purchase Date: </strong>#this.formatDate(purchasedate)#
-        </div>
-        
-        <!--- Check if trial end date is available --->
-        <cfif #trialenddate# is not "">
-            <div class="col-md-12 col-lg-6 p-1">
-                <strong>Trial End Date: </strong>#this.formatDate(trialenddate)#
-            </div>
-        </cfif>
-        
-        <div class="col-md-12 col-lg-6 p-1">
-            <strong>Product: </strong>#baseproductlabel#
-        </div>
-        
-        <div class="col-md-12 col-lg-6 p-1">
-            <strong>Plan: </strong>#planname#
-        </div>
-        
-    </cfoutput>
-    
-    <div class="col-md-12 col-lg-6 p-1">
-        <strong>Have questions and want to cancel? </strong> 
-        <a href="mailto:support@theactorsoffice.com">Email</A> us
-    </div>
-    
-</div>
+<!--- Make API request to fetch the secret --->
+<cfhttp url="#apiUrl#" method="post" result="apiResponse">
+    <cfhttpparam type="header" name="Cookie" value="laravel_session=YOUR_SESSION_COOKIE">
+</cfhttp>
+
+<!--- Parse the JSON response --->
+<cfset responseData = DeserializeJSON(apiResponse.fileContent)>
+
+<!--- Extract the secret --->
+<cfif structKeyExists(responseData, "status") AND responseData.status EQ true>
+    <cfset secret = responseData.secret>
+<cfelse>
+    <cfset secret = "">
+</cfif>
+
+<!--- Debug Output (Remove in Production) --->
+<cfdump var="#responseData#" label="API Response">
