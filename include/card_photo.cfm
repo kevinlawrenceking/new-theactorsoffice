@@ -20,7 +20,7 @@
         <!-- Footer with Editable Name & Edit Icon -->
         <div class="tao-card-photo-footer">
             <div class="photo-name" data-id="#currentid#">#card_name#</div>
-            <i class="mdi mdi-square-edit-outline edit-icon" title="Edit Name" style="color:##ccc;"></i>
+            <i class="mdi mdi-square-edit-outline edit-icon" title="Edit Name" style="color:##1d80c2;"></i>
         </div>
     </div>
 </cfoutput>
