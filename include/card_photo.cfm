@@ -27,20 +27,21 @@
 <!-- AJAX Script -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".photo-name").forEach(function (element) {
-        element.addEventListener("click", function () {
-            if (this.querySelector("input")) return; // Prevent multiple inputs
+    document.body.addEventListener("click", function (event) {
+        if (event.target.classList.contains("photo-name")) {
+            let element = event.target;
+            if (element.querySelector("input")) return; // Prevent multiple inputs
 
-            let originalText = this.innerText;
-            let mediaId = this.getAttribute("data-id");
+            let originalText = element.innerText;
+            let mediaId = element.getAttribute("data-id");
 
             // Create input field
             let input = document.createElement("input");
             input.type = "text";
             input.value = originalText;
             input.classList.add("edit-input");
-            this.innerHTML = ""; // Clear existing content
-            this.appendChild(input);
+            element.innerHTML = ""; // Clear existing content
+            element.appendChild(input);
             input.focus();
 
             // Handle save on Enter key
@@ -48,57 +49,29 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (e.key === "Enter") {
                     let newText = input.value.trim();
                     if (newText && newText !== originalText) {
-                        fetch("/include/update_media_name.cfm", { // Updated fetch path
+                        fetch("/include/update_media_name.cfm", {
                             method: "POST",
                             headers: { "Content-Type": "application/x-www-form-urlencoded" },
                             body: `mediaid=${mediaId}&medianame=${encodeURIComponent(newText)}`
                         })
                         .then(response => response.text())
                         .then(data => {
-                            if (data === "success") {
-                                // Create a new div with the updated name
-                                let newDiv = document.createElement("div");
-                                newDiv.classList.add("photo-name", "editable");
-                                newDiv.setAttribute("data-id", mediaId);
-                                newDiv.innerText = newText;
-                                
-                                // Replace the input with the new name
-                                input.replaceWith(newDiv);
-                                
-                                // Reattach event listener to allow future edits
-                                newDiv.addEventListener("click", function () {
-                                    this.dispatchEvent(new Event("click"));
-                                });
-
-                            } else {
-                                input.replaceWith(createTextDiv(originalText, mediaId));
-                            }
+                            element.innerText = data === "success" ? newText : originalText;
                         })
                         .catch(() => {
-                            input.replaceWith(createTextDiv(originalText, mediaId));
+                            element.innerText = originalText;
                         });
                     } else {
-                        input.replaceWith(createTextDiv(originalText, mediaId));
+                        element.innerText = originalText; // Restore original name if empty
                     }
                 }
             });
 
             // Revert if clicked outside
             input.addEventListener("blur", function () {
-                input.replaceWith(createTextDiv(originalText, mediaId));
+                element.innerText = originalText;
             });
-
-            function createTextDiv(text, id) {
-                let div = document.createElement("div");
-                div.classList.add("photo-name", "editable");
-                div.setAttribute("data-id", id);
-                div.innerText = text;
-                div.addEventListener("click", function () {
-                    this.dispatchEvent(new Event("click"));
-                });
-                return div;
-            }
-        });
+        }
     });
 });
 

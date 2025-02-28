@@ -15,12 +15,10 @@
         <cfset rev = rand() />
         <cfset suffix = "" />
     </cfif>
-    
-
-
+ 
 
 <cfif isNumeric(mediaid) AND len(trim(medianame)) GT 0>
-    <cfquery datasource="#dsn#">
+    <cfquery datasource="your_datasource">
         UPDATE audmedia
         SET medianame = <cfqueryparam value="#medianame#" cfsqltype="CF_SQL_VARCHAR">
         WHERE mediaid = <cfqueryparam value="#mediaid#" cfsqltype="CF_SQL_INTEGER">
