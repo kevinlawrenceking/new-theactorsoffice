@@ -32,6 +32,8 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.addEventListener("click", function (event) {
         if (event.target.classList.contains("edit-icon")) {
             let element = event.target.previousElementSibling; // Target the name div
+            let icon = event.target; // Store the edit icon reference
+
             if (!element || element.querySelector("input")) return; // Prevent multiple inputs
 
             let mediaId = element.getAttribute("data-id");
@@ -43,6 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             element.innerHTML = ""; // Clear existing content
             element.appendChild(input);
+            icon.style.visibility = "hidden"; // Hide the edit icon
             input.focus();
 
             // Handle save on Enter key
@@ -51,6 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     let newText = input.value.trim();
                     if (newText) {
                         element.innerText = newText; // Update UI immediately
+                        icon.style.visibility = "visible"; // Show the icon again
 
                         fetch("/include/update_media_name.cfm", {
                             method: "POST",
@@ -60,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         .catch(error => console.error("Update failed:", error)); // Log errors but don't revert UI
                     } else {
                         element.innerText = lastValidText; // Restore last valid name if empty
+                        icon.style.visibility = "visible"; // Show the icon again
                     }
                 }
             });
@@ -68,6 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
             input.addEventListener("blur", function () {
                 let newText = input.value.trim();
                 element.innerText = newText || lastValidText; // Keep last valid name if empty
+                icon.style.visibility = "visible"; // Show the icon again
             });
         }
     });
@@ -76,22 +82,23 @@ document.addEventListener("DOMContentLoaded", function () {
 </script>
 
 <style>
-    .photo-name {
-        cursor: pointer;
-        font-weight: bold;
-        transition: 0.2s;
-    }
-    .photo-name:hover {
-        text-decoration: underline;
-    }
-    .edit-input {
-        width: 100%;
-        font-size: inherit;
-        padding: 5px;
-        border: 1px solid #ccc;
-        border-radius: 3px;
-    }
-    .updated {
-        color: #28a745; /* Green text after updating */
-    }
+.photo-name {
+    cursor: default;
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.edit-icon {
+    cursor: pointer;
+    font-size: 16px;
+    color: #007bff;
+    transition: 0.2s;
+    visibility: visible; /* Default visibility */
+}
+
+.edit-icon:hover {
+    color: #0056b3;
+}
+
 </style>
