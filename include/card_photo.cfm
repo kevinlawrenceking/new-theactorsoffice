@@ -26,59 +26,82 @@
 
 <!-- AJAX Script -->
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll(".photo-name").forEach(function (element) {
-            element.addEventListener("click", function () {
-                if (this.querySelector("input")) return; // Prevent multiple inputs from being created
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".photo-name").forEach(function (element) {
+        element.addEventListener("click", function () {
+            if (this.querySelector("input")) return; // Prevent multiple inputs
 
-                let originalText = this.innerText;
-                let mediaId = this.getAttribute("data-id");
+            let originalText = this.innerText;
+            let mediaId = this.getAttribute("data-id");
 
-                // Create input field
-                let input = document.createElement("input");
-                input.type = "text";
-                input.value = originalText;
-                input.classList.add("edit-input");
-                input.setAttribute("data-id", mediaId);
-                this.innerHTML = ""; // Clear existing content
-                this.appendChild(input);
-                input.focus();
+            // Create input field
+            let input = document.createElement("input");
+            input.type = "text";
+            input.value = originalText;
+            input.classList.add("edit-input");
+            this.innerHTML = ""; // Clear existing content
+            this.appendChild(input);
+            input.focus();
 
-                // Handle save on Enter key
-                input.addEventListener("keypress", function (e) {
-                    if (e.key === "Enter") {
-                        let newText = input.value.trim();
-                        if (newText && newText !== originalText) {
-                            fetch("/include/update_media_name.cfm", {
-                                method: "POST",
-                                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                                body: `mediaid=${mediaId}&medianame=${encodeURIComponent(newText)}`
-                            })
-                            .then(response => response.text())
-                            .then(data => {
-                                if (data === "success") {
-                                    element.innerHTML = newText; // Update immediately
-                                    element.classList.add("updated"); // Optional: Add style effect
-                                } else {
-                                    element.innerHTML = originalText; // Revert if error
-                                }
-                            })
-                            .catch(() => {
-                                element.innerHTML = originalText; // Revert if error
-                            });
-                        } else {
-                            element.innerHTML = originalText; // Restore original name if empty
-                        }
+            // Handle save on Enter key
+            input.addEventListener("keypress", function (e) {
+                if (e.key === "Enter") {
+                    let newText = input.value.trim();
+                    if (newText && newText !== originalText) {
+                        fetch("/include/update_media_name.cfm", { // Updated fetch path
+                            method: "POST",
+                            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                            body: `mediaid=${mediaId}&medianame=${encodeURIComponent(newText)}`
+                        })
+                        .then(response => response.text())
+                        .then(data => {
+                            if (data === "success") {
+                                // Create a new div with the updated name
+                                let newDiv = document.createElement("div");
+                                newDiv.classList.add("photo-name", "editable");
+                                newDiv.setAttribute("data-id", mediaId);
+                                newDiv.innerText = newText;
+                                
+                                // Replace the input with the new name
+                                input.replaceWith(newDiv);
+                                
+                                // Reattach event listener to allow future edits
+                                newDiv.addEventListener("click", function () {
+                                    this.dispatchEvent(new Event("click"));
+                                });
+
+                            } else {
+                                input.replaceWith(createTextDiv(originalText, mediaId));
+                            }
+                        })
+                        .catch(() => {
+                            input.replaceWith(createTextDiv(originalText, mediaId));
+                        });
+                    } else {
+                        input.replaceWith(createTextDiv(originalText, mediaId));
                     }
-                });
-
-                // Revert if clicked outside
-                input.addEventListener("blur", function () {
-                    element.innerHTML = originalText;
-                });
+                }
             });
+
+            // Revert if clicked outside
+            input.addEventListener("blur", function () {
+                input.replaceWith(createTextDiv(originalText, mediaId));
+            });
+
+            function createTextDiv(text, id) {
+                let div = document.createElement("div");
+                div.classList.add("photo-name", "editable");
+                div.setAttribute("data-id", id);
+                div.innerText = text;
+                div.addEventListener("click", function () {
+                    this.dispatchEvent(new Event("click"));
+                });
+                return div;
+            }
         });
     });
+});
+
 </script>
 
 <style>
