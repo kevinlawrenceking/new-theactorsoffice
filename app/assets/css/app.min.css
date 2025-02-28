@@ -7642,3 +7642,49 @@ contact-item i {
     text-align: left;  /* Align properly */
     margin-bottom: 10px; /* Add spacing */
 }
+
+.tao-card-small {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers content vertically */
+    align-items: center;
+    width: 100%;
+    height: 40px; /* Fixed height */
+    background-color: #fff;
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+    flex-grow: 0; /* No stretching */
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 2px 8px; /* Less padding */
+    text-align: center;
+}
+
+/* Ensures the edit input matches the card size */
+.tao-card-small .edit-input {
+    width: 100%;
+    height: 100%;
+    font-size: inherit;
+    text-align: center;
+    padding: 2px 4px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Edit icon styling */
+.tao-card-small .edit-icon {
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 6px;
+    color: #007bff;
+    transition: 0.2s;
+}
+
+.tao-card-small .edit-icon:hover {
+    color: #0056b3;
+}
