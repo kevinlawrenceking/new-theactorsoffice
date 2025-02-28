@@ -20,7 +20,7 @@
         <!-- Footer with Editable Name & Edit Icon -->
         <div class="tao-card-photo-footer">
             <div class="photo-name" data-id="#currentid#">#card_name#</div>
-            <i class="mdi mdi-square-edit-outline edit-icon" title="Edit Name" style="color:##6c757d;"></i>
+            <i class="mdi mdi-square-edit-outline edit-icon" title="Edit Name" style="color:##ddd;"></i>
         </div>
     </div>
 </cfoutput>
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
     width: 100%; /* Ensures it fills the div properly */
     font-size: inherit;
     padding: 5px;
-    border: 1px solid #ccc; /* Ensures all borders are visible */
+    border: 1px solid #ddd; /* Ensures all borders are visible */
     border-radius: 3px;
     box-sizing: border-box; /* Prevents border from shifting layout */
 }
@@ -100,7 +100,6 @@ document.addEventListener("DOMContentLoaded", function () {
 .edit-icon {
     cursor: pointer;
     font-size: 16px;
-    color: #007bff;
     transition: 0.2s;
     visibility: visible; /* Default visibility */
 }
