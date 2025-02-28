@@ -88,6 +88,14 @@ document.addEventListener("DOMContentLoaded", function () {
     font-weight: bold;
     margin-right: 8px;
 }
+.edit-input {
+    width: 100%; /* Ensures it fills the div properly */
+    font-size: inherit;
+    padding: 5px;
+    border: 1px solid #ccc; /* Ensures all borders are visible */
+    border-radius: 3px;
+    box-sizing: border-box; /* Prevents border from shifting layout */
+}
 
 .edit-icon {
     cursor: pointer;
