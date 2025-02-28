@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
     width: 100%; /* Ensures it fills the div properly */
     font-size: inherit;
     padding: 3px;
-    border: 1px solid #ddd; /* Ensures all borders are visible */
+    border: 1px solid #6c757d; /* Ensures all borders are visible */
     border-radius: 3px;
     box-sizing: border-box; /* Prevents border from shifting layout */
 }
