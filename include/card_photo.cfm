@@ -45,7 +45,7 @@
                     if (e.key === "Enter") {
                         let newText = input.value.trim();
                         if (newText && newText !== originalText) {
-                            fetch("/update_media_name.cfm", {
+                            fetch("/include/update_media_name.cfm", {
                                 method: "POST",
                                 headers: { "Content-Type": "application/x-www-form-urlencoded" },
                                 body: `mediaid=${mediaId}&medianame=${encodeURIComponent(newText)}`
