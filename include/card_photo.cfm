@@ -29,6 +29,8 @@
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll(".photo-name").forEach(function (element) {
             element.addEventListener("click", function () {
+                if (this.querySelector("input")) return; // Prevent multiple inputs from being created
+
                 let originalText = this.innerText;
                 let mediaId = this.getAttribute("data-id");
 
@@ -37,7 +39,9 @@
                 input.type = "text";
                 input.value = originalText;
                 input.classList.add("edit-input");
-                this.replaceWith(input);
+                input.setAttribute("data-id", mediaId);
+                this.innerHTML = ""; // Clear existing content
+                this.appendChild(input);
                 input.focus();
 
                 // Handle save on Enter key
@@ -53,43 +57,25 @@
                             .then(response => response.text())
                             .then(data => {
                                 if (data === "success") {
-                                    let newDiv = document.createElement("div");
-                                    newDiv.classList.add("photo-name", "editable");
-                                    newDiv.setAttribute("data-id", mediaId);
-                                    newDiv.innerText = newText;
-                                    input.replaceWith(newDiv);
-                                    addEventListeners(); // Re-add event listeners
+                                    element.innerHTML = newText; // Update immediately
+                                    element.classList.add("updated"); // Optional: Add style effect
                                 } else {
-                                    input.replaceWith(createTextDiv(originalText, mediaId));
+                                    element.innerHTML = originalText; // Revert if error
                                 }
                             })
-                            .catch(() => input.replaceWith(createTextDiv(originalText, mediaId)));
+                            .catch(() => {
+                                element.innerHTML = originalText; // Revert if error
+                            });
                         } else {
-                            input.replaceWith(createTextDiv(originalText, mediaId));
+                            element.innerHTML = originalText; // Restore original name if empty
                         }
                     }
                 });
 
                 // Revert if clicked outside
                 input.addEventListener("blur", function () {
-                    input.replaceWith(createTextDiv(originalText, mediaId));
+                    element.innerHTML = originalText;
                 });
-
-                function createTextDiv(text, id) {
-                    let div = document.createElement("div");
-                    div.classList.add("photo-name", "editable");
-                    div.setAttribute("data-id", id);
-                    div.innerText = text;
-                    return div;
-                }
-
-                function addEventListeners() {
-                    document.querySelectorAll(".photo-name").forEach(el => {
-                        el.addEventListener("click", function () {
-                            this.dispatchEvent(new Event("click"));
-                        });
-                    });
-                }
             });
         });
     });
@@ -111,5 +97,8 @@
         padding: 5px;
         border: 1px solid #ccc;
         border-radius: 3px;
+    }
+    .updated {
+        color: #28a745; /* Green text after updating */
     }
 </style>
