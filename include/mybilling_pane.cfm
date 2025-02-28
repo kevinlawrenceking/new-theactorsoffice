@@ -1,6 +1,6 @@
 <!--- This ColdFusion page displays billing information including invoice ID, purchase date, trial end date, product, and plan details. --->
 <cfset authToken = "4OWaGHPXFibE">
-<cfset userEmail = "kevinking7135@gmail.com">
+<cfset userEmail eq userEmail>
 <cfset apiUrl = "https://app.paykickstart.com/api/billing-customer?auth_token=#authToken#&email=#urlEncodedFormat(userEmail)#">
 
 <!--- Make API request to fetch the secret --->
@@ -18,5 +18,15 @@
     <cfset secret = "">
 </cfif>
 
-<!--- Debug Output (Remove in Production) --->
+<!--- Debug Output (Remove in Production) 
 <cfdump var="#responseData#" label="API Response">
+--->
+
+
+<cfoutput>
+    <iframe width="100%" scrolling="no" frameborder="0" 
+        src="https://app.paykickstart.com/billing?portal=uGz4JGGnPi9VaXn73gSYxd3SqQRtMPY648otrWR5eGKKNquowi&secret=#secret#">
+    </iframe>
+    
+    <script src="https://app.paykickstart.com/billing-portal/js/uGz4JGGnPi9VaXn73gSYxd3SqQRtMPY648otrWR5eGKKNquowi"></script>
+</cfoutput>
