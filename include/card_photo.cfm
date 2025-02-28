@@ -32,14 +32,12 @@ document.addEventListener("DOMContentLoaded", function () {
             let element = event.target;
             if (element.querySelector("input")) return; // Prevent multiple inputs
 
-            let originalText = element.innerText;
             let mediaId = element.getAttribute("data-id");
-
-            // Create input field
             let input = document.createElement("input");
             input.type = "text";
-            input.value = originalText;
+            input.value = element.innerText.trim();
             input.classList.add("edit-input");
+
             element.innerHTML = ""; // Clear existing content
             element.appendChild(input);
             input.focus();
@@ -48,32 +46,27 @@ document.addEventListener("DOMContentLoaded", function () {
             input.addEventListener("keypress", function (e) {
                 if (e.key === "Enter") {
                     let newText = input.value.trim();
-                    if (newText && newText !== originalText) {
+                    if (newText) {
+                        element.innerText = newText; // Update UI immediately
+
                         fetch("/include/update_media_name.cfm", {
                             method: "POST",
                             headers: { "Content-Type": "application/x-www-form-urlencoded" },
                             body: `mediaid=${mediaId}&medianame=${encodeURIComponent(newText)}`
                         })
-                        .then(response => response.text())
-                        .then(data => {
-                            element.innerText = data === "success" ? newText : originalText;
-                        })
-                        .catch(() => {
-                            element.innerText = originalText;
-                        });
-                    } else {
-                        element.innerText = originalText; // Restore original name if empty
+                        .catch(error => console.error("Update failed:", error)); // Log errors but don't revert UI
                     }
                 }
             });
 
-            // Revert if clicked outside
+            // Keep whatever the user entered if they click away
             input.addEventListener("blur", function () {
-                element.innerText = originalText;
+                element.innerText = input.value.trim() || element.innerText; // Use new value or fallback to last value
             });
         }
     });
 });
+
 
 </script>
 
