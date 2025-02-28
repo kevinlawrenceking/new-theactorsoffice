@@ -33,9 +33,10 @@ document.addEventListener("DOMContentLoaded", function () {
             if (element.querySelector("input")) return; // Prevent multiple inputs
 
             let mediaId = element.getAttribute("data-id");
+            let lastValidText = element.innerText.trim(); // Store the last valid name
             let input = document.createElement("input");
             input.type = "text";
-            input.value = element.innerText.trim();
+            input.value = lastValidText;
             input.classList.add("edit-input");
 
             element.innerHTML = ""; // Clear existing content
@@ -55,18 +56,20 @@ document.addEventListener("DOMContentLoaded", function () {
                             body: `mediaid=${mediaId}&medianame=${encodeURIComponent(newText)}`
                         })
                         .catch(error => console.error("Update failed:", error)); // Log errors but don't revert UI
+                    } else {
+                        element.innerText = lastValidText; // Restore last valid name if empty
                     }
                 }
             });
 
-            // Keep whatever the user entered if they click away
+            // If user clicks away without entering a valid name, restore last valid name
             input.addEventListener("blur", function () {
-                element.innerText = input.value.trim() || element.innerText; // Use new value or fallback to last value
+                let newText = input.value.trim();
+                element.innerText = newText || lastValidText; // Keep last valid name if empty
             });
         }
     });
 });
-
 
 </script>
 
