@@ -20,7 +20,7 @@
         <!-- Footer with Editable Name & Edit Icon -->
         <div class="tao-card-photo-footer">
             <div class="photo-name" data-id="#currentid#">#card_name#</div>
-            <i class="mdi mdi-square-edit-outline edit-icon" title="Edit Name" style="color:##ddd;"></i>
+            <i class="mdi mdi-square-edit-outline edit-icon" title="Edit Name" style="color:##ccc;"></i>
         </div>
     </div>
 </cfoutput>
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
 .edit-input {
     width: 100%; /* Ensures it fills the div properly */
     font-size: inherit;
-    padding: 5px;
+    padding: 3px;
     border: 1px solid #ddd; /* Ensures all borders are visible */
     border-radius: 3px;
     box-sizing: border-box; /* Prevents border from shifting layout */
