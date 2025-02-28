@@ -20,7 +20,7 @@
         <!-- Footer with Editable Name & Edit Icon -->
         <div class="tao-card-photo-footer">
             <div class="photo-name" data-id="#currentid#">#card_name#</div>
-            <i class="mdi mdi-square-edit-outline edit-icon" title="Edit Name"></i>
+            <i class="mdi mdi-square-edit-outline edit-icon" title="Edit Name" style="color:##6c757d;"></i>
         </div>
     </div>
 </cfoutput>
@@ -78,7 +78,6 @@ document.addEventListener("DOMContentLoaded", function () {
 <style>
     .photo-name {
         cursor: pointer;
-        color: #007bff;
         font-weight: bold;
         transition: 0.2s;
     }
