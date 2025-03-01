@@ -6998,7 +6998,7 @@ body[data-leftbar-size=condensed] .user-box {
     cursor: pointer; /* Indicate clickability */
     position: relative;  /* Required for the ribbon positioning */
     overflow: visible;   /* Prevents clipping */
-
+    transition: opacity 0.3s, transform 0.3s ease-in-out;
 
 }
 
@@ -7015,7 +7015,7 @@ body[data-leftbar-size=condensed] .user-box {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 250px; /* Adjust for grid layout */
+    width: 300px; /* Adjust for grid layout */
     background-color: #fff;
     border-radius: 8px;
     position: relative;
