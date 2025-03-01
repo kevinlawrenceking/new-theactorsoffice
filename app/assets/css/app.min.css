@@ -7646,10 +7646,10 @@ contact-item i {
 .tao-card-small {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Ensures vertical centering */
+    justify-content: center;  /* Ensures vertical centering */
     align-items: center;
     width: 100%;
-    height: 50px;
+    min-height: 50px; /* Allow for multi-line content */
     background-color: #fff;
     border-radius: 6px;
     position: relative;
@@ -7659,13 +7659,25 @@ contact-item i {
     transition: all 0.2s ease-in-out;
     cursor: pointer;
     font-weight: bold;
-    padding: 4px 8px; /* Even padding for balanced spacing */
+    padding: 4px 8px;
     text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    line-height: 1.2; /* Helps with vertical centering */
+    white-space: normal; /* Allow text to wrap */
+    word-break: break-word; /* Ensure wrapping works properly */
+    line-height: 1.3; /* Better readability */
 }
+
+/* Ensures text remains centered inside tao-card-small */
+.tao-card-small .essence-text {
+    display: flex;
+    align-items: center; /* Vertical centering */
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    font-weight: bold;
+    padding: 4px;
+}
+
 
 /* Dynamically adjust font size based on length */
 .tao-card-small[data-length="1"] { font-size: 24px; }

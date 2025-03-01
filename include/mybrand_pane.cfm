@@ -120,13 +120,11 @@
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".tao-card-small .essence-text").forEach(textElement => {
         let textLength = textElement.innerText.trim().length;
-        let lengthCategory = Math.min(textLength, 12); // Cap at 12 to prevent tiny text
-        textElement.setAttribute("data-length", lengthCategory);
+        let lengthCategory = Math.min(textLength, 20); // Cap at 20 to avoid tiny text
 
-        // Dynamically set font size based on length
-        let newFontSize = 24 - (lengthCategory * 1.5); // Decreases font size for longer text
+        // Adjust font size but allow wrapping
+        let newFontSize = Math.max(18 - (lengthCategory * 0.6), 12); // Ensures minimum font size of 12px
         textElement.style.fontSize = newFontSize + "px";
     });
 });
-
 </script>
