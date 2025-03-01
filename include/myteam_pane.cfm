@@ -47,7 +47,7 @@
 </div>
 
 <!--- Card Grid Container (left-aligned) --->
-<div class="team-card-container mb-5">
+<div class="container mb-5">
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
     
     <!--- Loop through the myteam query to display cards --->
