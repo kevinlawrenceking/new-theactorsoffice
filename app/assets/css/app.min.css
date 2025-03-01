@@ -7664,6 +7664,7 @@ contact-item i {
     white-space: normal; /* Allow text to wrap */
     word-break: break-word; /* Ensure wrapping works properly */
     line-height: 1.3; /* Better readability */
+    max-height: 100px;
 }
 
 /* Ensures text remains centered inside tao-card-small */
