@@ -64,7 +64,7 @@
 </p>
 
 <div class="container mt-3">
-    <div class="row row-cols-lg-2 row-cols-md-2 row-cols-sm-1 g-3">
+    <div class="row row-cols-lg-2 row-cols-xl-3 row-cols-md-2 row-cols-sm-1 g-3">
         <cfloop query="essence_sel">
 <Cfoutput>
                             <script>
