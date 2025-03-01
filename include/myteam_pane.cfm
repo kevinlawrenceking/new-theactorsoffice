@@ -47,7 +47,7 @@
 </div>
 
 <!--- Card Grid Container (left-aligned) --->
-<div class="container mb-5">
+<div class="container team-card-container mb-5">
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
     
     <!--- Loop through the myteam query to display cards --->
@@ -141,27 +141,30 @@
 
 <!--- JavaScript for deleting a team member via fetch() --->
 <script>
-  function confirmRemove(contactId) {
-    // 'card_remove_msg' could be dynamic if you wanted, but here is a default:
+function confirmRemove(contactId) {
     if (confirm("Are you sure you want to remove this person from your team?")) {
-      fetch('/include/delete_team.cfm', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: 'contactid=' + encodeURIComponent(contactId)
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          // Remove the card from the DOM
-          let cardEl = document.getElementById('card-' + contactId);
-          if(cardEl) cardEl.remove();
-        } else {
-          alert("Error: " + data.message);
-        }
-      })
-      .catch(error => console.error('Error:', error));
+        fetch('/include/delete_team.cfm', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: 'contactid=' + encodeURIComponent(contactId)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                let cardEl = document.getElementById('card-' + contactId);
+                if (cardEl) {
+                    cardEl.classList.add('removing'); // Start animation
+                    setTimeout(() => {
+                        cardEl.remove(); // Fully remove after animation
+                    }, 300); // Wait for CSS transition to finish
+                }
+            } else {
+                alert("Error: " + data.message);
+            }
+        })
+        .catch(error => console.error('Error:', error));
     }
-  }
+}
 </script>

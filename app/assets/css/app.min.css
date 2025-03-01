@@ -7002,6 +7002,37 @@ body[data-leftbar-size=condensed] .user-box {
 
 }
 
+/* Card container specific for team members */
+.team-card-container {
+    display: flex;
+    flex-wrap: wrap; /* Ensures cards realign properly */
+    gap: 16px; /* Maintains spacing between cards */
+    transition: all 0.3s ease-in-out; /* Smooth repositioning */
+}
+
+/* Team member card */
+.tao-card-md {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 250px; /* Adjust for grid layout */
+    background-color: #fff;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    flex-grow: 0; /* Prevent stretching */
+    transition: opacity 0.3s, transform 0.3s ease-in-out;
+}
+
+/* Animation for removing card */
+.tao-card-md.removing {
+    opacity: 0;
+    transform: scale(0.8); /* Shrinks before disappearing */
+    transition: opacity 0.3s, transform 0.3s ease-in-out;
+}
+
+
 
 
 .tao-card-row {
