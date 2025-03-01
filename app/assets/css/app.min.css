@@ -7646,24 +7646,41 @@ contact-item i {
 .tao-card-small {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Centers content vertically */
+    justify-content: center; /* Ensures vertical centering */
     align-items: center;
     width: 100%;
-    height: 50px; /* Fixed height */
+    height: 50px;
     background-color: #fff;
     border-radius: 6px;
     position: relative;
     overflow: hidden;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
-    flex-grow: 0; /* No stretching */
+    flex-grow: 0;
     transition: all 0.2s ease-in-out;
     cursor: pointer;
-    font-size: 14px;
     font-weight: bold;
-    padding: 8px 8px; /* Less padding */
+    padding: 4px 8px; /* Even padding for balanced spacing */
     text-align: center;
-  
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.2; /* Helps with vertical centering */
 }
+
+/* Dynamically adjust font size based on length */
+.tao-card-small[data-length="1"] { font-size: 24px; }
+.tao-card-small[data-length="2"] { font-size: 22px; }
+.tao-card-small[data-length="3"] { font-size: 20px; }
+.tao-card-small[data-length="4"] { font-size: 18px; }
+.tao-card-small[data-length="5"] { font-size: 16px; }
+.tao-card-small[data-length="6"] { font-size: 15px; }
+.tao-card-small[data-length="7"] { font-size: 14px; }
+.tao-card-small[data-length="8"] { font-size: 13px; }
+.tao-card-small[data-length="9"] { font-size: 12px; }
+.tao-card-small[data-length="10"] { font-size: 11px; }
+.tao-card-small[data-length="11"] { font-size: 10px; }
+.tao-card-small[data-length="12"] { font-size: 9px; }
+
 
 /* Ensures the edit input matches the card size */
 .tao-card-small .edit-input {

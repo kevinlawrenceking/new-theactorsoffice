@@ -112,3 +112,13 @@
         }
     }
 </script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".tao-card-small").forEach(card => {
+        let textLength = card.innerText.length;
+        let lengthCategory = Math.min(textLength, 12); // Cap at 12 to avoid tiny text
+        card.setAttribute("data-length", lengthCategory);
+    });
+});
+</script>
