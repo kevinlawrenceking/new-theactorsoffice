@@ -83,15 +83,18 @@
 
 
             <div class="col">
-                <cfoutput>
-                <A href="" data-bs-toggle="modal" data-bs-target="##remoteUpdateEssenceContact_#essence_sel.id#">
-                    <div class="tao-card-small shadow-sm border rounded\" >
-                        <div class="card-body text-center">
-                            <h5 class="card-title mb-9" >#Essence_sel.Name#</h5>
-              
-                        </div>
-                    </div>
-                </cfoutput>
+               <cfoutput>
+    <div class="col">
+        <a href="" data-bs-toggle="modal" data-bs-target="##remoteUpdateEssenceContact_#essence_sel.id#">
+            <div class="tao-card-small shadow-sm border rounded">
+                <div class="card-body text-center">
+                    <h5 class="card-title essence-text">#Essence_sel.Name#</h5>
+                </div>
+            </div>
+        </a>
+    </div>
+</cfoutput>
+
 
                 </a>
 
@@ -115,10 +118,15 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".tao-card-small").forEach(card => {
-        let textLength = card.innerText.length;
-        let lengthCategory = Math.min(textLength, 12); // Cap at 12 to avoid tiny text
-        card.setAttribute("data-length", lengthCategory);
+    document.querySelectorAll(".tao-card-small .essence-text").forEach(textElement => {
+        let textLength = textElement.innerText.trim().length;
+        let lengthCategory = Math.min(textLength, 12); // Cap at 12 to prevent tiny text
+        textElement.setAttribute("data-length", lengthCategory);
+
+        // Dynamically set font size based on length
+        let newFontSize = 24 - (lengthCategory * 1.5); // Decreases font size for longer text
+        textElement.style.fontSize = newFontSize + "px";
     });
 });
+
 </script>
