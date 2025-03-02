@@ -44,9 +44,9 @@
     </div>
 
     <div class="form-group col-md-12">
-        <label for="attachname">Name (Optional)</label>
+        <label for="attachname">Name<span class="text-danger">*</span></label>
         <input class="form-control" type="text" id="attachname" name="attachname" 
-               data-parsley-maxlength="800" 
+               data-parsley-maxlength="800" data-parsley-required="true" data-parsley-error-message="Valid Name is required"
                data-parsley-maxlength-message="Max length 800 characters" 
                placeholder="Add a name/brief description">
     </div>

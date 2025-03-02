@@ -7097,7 +7097,7 @@ body[data-leftbar-size=condensed] .user-box {
 .tao-card-body {
     display: flex;
     align-items: flex-start;
-    padding: 8px;
+    padding: 10px;
     min-height: 160px; /* Ensures cards stay the same height */
     gap: 10px;
 }

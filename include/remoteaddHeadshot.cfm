@@ -56,8 +56,8 @@
     </div>
 
     <div class="form-group col-md-12">
-        <label for="attachname">Name (Optional)</label>
-        <input class="form-control" type="text" id="new_medianame" name="new_medianame" data-parsley-maxlength="800" data-parsley-maxlength-message="Max length 800 characters" placeholder="Add a name/brief description" />
+        <label for="new_medianame">Name<span class="text-danger">*</span></label>
+        <input class="form-control" type="text" id="new_medianame" data-parsley-required="true" data-parsley-error-message="Valid Name is required" name="new_medianame" data-parsley-maxlength="800" data-parsley-maxlength-message="Max length 800 characters" placeholder="Add a name/brief description" />
     </div>
 </form>
 
