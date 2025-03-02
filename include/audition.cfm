@@ -595,7 +595,7 @@ Appointments
 
                                 <th>Stage</th>
                                 <th class="show-xs show-sm hide-md hide-lg show-xl">Type</th>
-                             <th class="show-xs show-sm hide-md hide-lg show-xl">Assess</th>
+                  
  
                             </tr>
 
@@ -692,7 +692,15 @@ Appointments
                                                 <i class="fe-trash-2"></i>
 
                                             </a>
+                                            
 
+                                            <cfif events.eventstart lte now()>
+ <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateAnswer_#events.eventid#" toggle="tooltip" data-bs-placement="top" title="Update Assessment" data-bs-original-title="Update Answer">
+
+                                                      <i class="mdi mdi-clipboard-check-outline"></i> 
+
+                                                  </a> 
+</cfif>
 </td>
 
 <td class="dt-nowrap">
@@ -704,16 +712,7 @@ Appointments
 
                                         <td  class="dt-nowrap show-xs show-sm hide-md hide-lg show-xl">   <a title="View Details" href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##auditionDetails_#events.eventid#">#events.audtype#</a> <cfif #events.workwithcoach# is "1"><BR>(coached)</cfif>    </td>
                                         
- <TD  class="dt-nowrap show-xs show-sm hide-md hide-lg show-xl"><center>
-<cfif events.eventstart lte now()>
- <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateAnswer_#events.eventid#" toggle="tooltip" data-bs-placement="top" title="Update Answer" data-bs-original-title="Update Answer">
 
-                                                      <i class="mdi mdi-clipboard-check-outline"></i> 
-
-                                                  </a> 
-</cfif>
-</center>
-                                            </td>
 
 </tr>
 
