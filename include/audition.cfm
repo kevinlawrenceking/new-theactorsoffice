@@ -590,7 +590,7 @@ Appointments
                             </cfif>
 
                             <tr class="#rowtype#">
-                                <th width="75">Action</th>
+                                <th >Action</th>
                                 <th>Time</th>
 
                                 <th>Stage</th>
@@ -680,7 +680,7 @@ Appointments
 
 <tr>
 
-                                        <td style="word-break: break-all;">
+                                        <td  class="dt-nowrap">
 
 <a title="Edit" href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##auditionupdate_#events.eventid#">
 
