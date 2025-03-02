@@ -591,8 +591,8 @@ Appointments
 
                             <tr class="#rowtype#">
                                 <th width="75">Action</th>
-                                <th>Date</th>
                                 <th>Time</th>
+
                                 <th>Stage</th>
                                 <th class="show-xs show-sm hide-md hide-lg show-xl">Type</th>
                              <th class="show-xs show-sm hide-md hide-lg show-xl">Assessment</th>
@@ -696,11 +696,9 @@ Appointments
 </td>
 
 <td class="dt-nowrap">
-                                            <a title="View Details" href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##auditionDetails_#events.eventid#"> #this.formatDate(events.eventStart)#</a>
+                                            <a title="View Details" href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##auditionDetails_#events.eventid#"> #this.formatDate(events.eventStart)#<BR>#timeformat(events.eventStartTime,'short')#</a>
                                         </td>
-                                               <td class="dt-nowrap">
-                                                   <a title="View Details" href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##auditionDetails_#events.eventid#">  #timeformat(events.eventStartTime,'short')#</a>
-                                        </td>
+                           
 
                                         <td class="dt-nowrap">   <a title="View Details" href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##auditionDetails_#events.eventid#">#events.audstep#</a></td>
 
