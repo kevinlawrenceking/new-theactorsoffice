@@ -7744,3 +7744,10 @@ left: auto;
 .tao-card-small .edit-icon:hover {
     color: #0056b3;
 }
+
+@media (max-width: 768px) {
+    .hide-md-down {
+      display: none !important;
+    }
+  }
+  
