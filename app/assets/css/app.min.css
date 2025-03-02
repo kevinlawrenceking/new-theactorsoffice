@@ -7746,4 +7746,43 @@ left: auto;
 }
 
 
- 
+ /* Extra Small Devices (less than 576px) */
+@media (max-width: 575.98px) {
+    .hide-xs { display: none !important; }
+    .show-xs { display: block !important; }
+    /* Override for table cells */
+    th.show-xs, td.show-xs { display: table-cell !important; }
+  }
+  
+  /* Small Devices (576px to 767.98px) */
+  @media (min-width: 576px) and (max-width: 767.98px) {
+    .hide-sm { display: none !important; }
+    .show-sm { display: block !important; }
+    /* Override for table cells */
+    th.show-sm, td.show-sm { display: table-cell !important; }
+  }
+  
+  /* Medium Devices (768px to 991.98px) */
+  @media (min-width: 768px) and (max-width: 991.98px) {
+    .hide-md { display: none !important; }
+    .show-md { display: block !important; }
+    /* Override for table cells */
+    th.show-md, td.show-md { display: table-cell !important; }
+  }
+  
+  /* Large Devices (992px to 1199.98px) */
+  @media (min-width: 992px) and (max-width: 1199.98px) {
+    .hide-lg { display: none !important; }
+    .show-lg { display: block !important; }
+    /* Override for table cells */
+    th.show-lg, td.show-lg { display: table-cell !important; }
+  }
+  
+  /* Extra Large Devices (1200px and up) */
+  @media (min-width: 1200px) {
+    .hide-xl { display: none !important; }
+    .show-xl { display: block !important; }
+    /* Override for table cells */
+    th.show-xl, td.show-xl { display: table-cell !important; }
+  }
+  
