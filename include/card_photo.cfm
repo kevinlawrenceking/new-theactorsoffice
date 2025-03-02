@@ -11,8 +11,8 @@
         </div>
 
         <!-- DOWNLOAD ICON (top-right) -->
-        <div class="tao-card-photo-header" 
-             style="position: absolute; top: 5px; right: 4px; left: auto;">
+        <div class="tao-card-photo-header header-right" 
+             >
             <a href="/include/download_media.cfm?mediaid=#currentid#"
                style="color: inherit;">
                 <i class="mdi mdi-cloud-download-outline"></i>

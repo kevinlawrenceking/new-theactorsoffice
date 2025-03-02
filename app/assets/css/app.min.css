@@ -7614,6 +7614,14 @@ contact-item i {
     color: white;
 }
 
+.header-right {
+position: absolute; 
+top: 5px; 
+right: 8px; 
+left: auto;
+}
+
+
 /* Ensure nav-tabs wrap on smaller screens */
 .nav-pills {
     display: flex;
