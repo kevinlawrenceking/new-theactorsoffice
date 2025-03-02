@@ -526,7 +526,7 @@
     <cfargument name="userID" type="numeric" required="true">
 
 <cfquery name="result">
-SELECT 
+  SELECT 
     c.recordname, 
     f.contactID, 
     n.notID, 
@@ -536,14 +536,25 @@ FROM
 INNER JOIN 
     fusystemusers f ON f.suID = n.suID
 INNER JOIN 
+    fusystems s ON s.systemID = f.systemID
+INNER JOIN 
     fuactions a ON a.actionID = n.actionID
 INNER JOIN 
     actionusers au ON a.actionID = au.actionID
 INNER JOIN 
+    fuActionLinks l ON l.actionlinkid = a.actionlinkid
+INNER JOIN 
+    notstatuses ns ON ns.notstatus = n.notStatus
+INNER JOIN 
     contactdetails c ON c.contactid = f.contactid
 WHERE 
-    au.userid = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
+    au.userid = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER"> 
+    AND c.userid = au.userid 
+    AND n.notstartdate IS NOT NULL 
+    AND DATE(n.notstartdate) <= <cfqueryparam value="#DateFormat(Now(),'yyyy-mm-dd')#" cfsqltype="CF_SQL_DATE"> 
+    AND n.notstatus = <cfqueryparam value="Pending" cfsqltype="CF_SQL_VARCHAR">
     AND n.notID = (
+        -- Select the smallest notID per contactID
         SELECT MIN(n2.notID) 
         FROM funotifications n2
         INNER JOIN fusystemusers f2 ON f2.suID = n2.suID
@@ -551,9 +562,6 @@ WHERE
         WHERE f2.contactID = f.contactID 
           AND au2.userid = au.userid
     )
-    AND n.notstartdate IS NOT NULL 
-    AND DATE(n.notstartdate) <= <cfqueryparam value="#DateFormat(Now(),'yyyy-mm-dd')#" cfsqltype="CF_SQL_DATE"> 
-    AND n.notstatus = <cfqueryparam value="Pending" cfsqltype="CF_SQL_VARCHAR">
 ORDER BY 
     n.notstartdate;
     </cfquery>
