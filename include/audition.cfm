@@ -595,7 +595,7 @@ Appointments
 
                                 <th>Stage</th>
                                 <th class="show-xs show-sm hide-md hide-lg show-xl">Type</th>
-                             <th class="show-xs show-sm hide-md hide-lg show-xl">Assessment</th>
+                             <th class="show-xs show-sm hide-md hide-lg show-xl">Assess</th>
  
                             </tr>
 
