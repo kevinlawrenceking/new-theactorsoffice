@@ -1,8 +1,22 @@
 <cfoutput>
     <div class="tao-card-photo">
-        <!-- Trash Icon in Header -->
+       
+ <!-- TRASH ICON (top-left) -->
         <div class="tao-card-photo-header">
-            <i class="mdi mdi-trash-can-outline" style="color:red;" data-bs-toggle="modal" data-bs-target="##remoteDeleteaudmedia#currentid#"></i>
+            <i class="mdi mdi-trash-can-outline" 
+               style="color:red;" 
+               data-bs-toggle="modal" 
+               data-bs-target="##remoteDeleteaudmedia#currentid#">
+            </i>
+        </div>
+
+        <!-- DOWNLOAD ICON (top-right) -->
+        <div class="tao-card-photo-header" 
+             style="position: absolute; top: 5px; right: 5px; left: auto;">
+            <a href="/include/download_media.cfm?mediaid=#currentid#"
+               style="color: inherit;">
+                <i class="mdi mdi-cloud-download-outline"></i>
+            </a>
         </div>
 
         <!-- Card Body: Image + Overlay -->
