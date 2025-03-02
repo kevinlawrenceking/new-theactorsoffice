@@ -526,39 +526,36 @@
     <cfargument name="userID" type="numeric" required="true">
 
 <cfquery name="result">
-        SELECT 
-            s.Systemtype, n.notID, n.actionID, n.userID, n.suID, n.notTimeStamp, 
-            n.notStartDate, n.notEndDate, n.notStatus, n.notNotes, f.systemID, 
-            f.contactID, f.suTimeStamp, f.suStartDate, f.suEndDate, f.suStatus, 
-            f.suNotes, a.actionID, a.actionNo, a.actionDetails, a.actionTitle, 
-            a.navToURL, au.actionDaysNo, au.actionDaysRecurring, a.actionNotes, 
-            a.actionInfo, l.actionlinkid, l.BtnName, l.ActionLinkURL, l.endlink,
-            l.targetlink, n.ispastdue, ns.checktype, ns.delstart, ns.delend,
-            ns.status_color, c.recordname
-        FROM 
-            funotifications n
-        INNER JOIN 
-            fusystemusers f ON f.suID = n.suID
-        INNER JOIN 
-            fusystems s ON s.systemID = f.systemID
-        INNER JOIN 
-            fuactions a ON a.actionID = n.actionID
-        INNER JOIN 
-            actionusers au ON a.actionID = au.actionID
-        INNER JOIN 
-            fuActionLinks l ON l.actionlinkid = a.actionlinkid
-        INNER JOIN 
-            notstatuses ns ON ns.notstatus = n.notStatus
-        INNER JOIN 
-            contactdetails c ON c.contactid = f.contactid
-        WHERE 
-            au.userid = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER"> 
-            AND c.userid = au.userid 
-            AND n.notstartdate IS NOT NULL 
-            AND DATE(n.notstartdate) <= <cfqueryparam value="#DateFormat(Now(),'yyyy-mm-dd')#" cfsqltype="CF_SQL_DATE"> 
-            AND n.notstatus = <cfqueryparam value="Pending" cfsqltype="CF_SQL_VARCHAR">
-        ORDER BY 
-            s.systemtype, n.notstartdate
+SELECT 
+    c.recordname, 
+    f.contactID, 
+    n.notID, 
+    a.actionDetails
+FROM 
+    funotifications n
+INNER JOIN 
+    fusystemusers f ON f.suID = n.suID
+INNER JOIN 
+    fuactions a ON a.actionID = n.actionID
+INNER JOIN 
+    actionusers au ON a.actionID = au.actionID
+INNER JOIN 
+    contactdetails c ON c.contactid = f.contactid
+WHERE 
+    au.userid = <cfqueryparam value="#arguments.userID#" cfsqltype="CF_SQL_INTEGER">
+    AND n.notID = (
+        SELECT MIN(n2.notID) 
+        FROM funotifications n2
+        INNER JOIN fusystemusers f2 ON f2.suID = n2.suID
+        INNER JOIN actionusers au2 ON n2.actionID = au2.actionID
+        WHERE f2.contactID = f.contactID 
+          AND au2.userid = au.userid
+    )
+    AND n.notstartdate IS NOT NULL 
+    AND DATE(n.notstartdate) <= <cfqueryparam value="#DateFormat(Now(),'yyyy-mm-dd')#" cfsqltype="CF_SQL_DATE"> 
+    AND n.notstatus = <cfqueryparam value="Pending" cfsqltype="CF_SQL_VARCHAR">
+ORDER BY 
+    n.notstartdate;
     </cfquery>
 
 <cfreturn result>
