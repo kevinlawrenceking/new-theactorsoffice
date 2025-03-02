@@ -594,8 +594,8 @@ Appointments
                                 <th>Date</th>
                                 <th>Time</th>
                                 <th>Stage</th>
-                                <th class="show-xs show-sm show-md hide-xl show-lg">Type</th>
-                             <th class="show-xs show-sm show-md hide-xl show-lg">Assessment</th>
+                                <th class="show-xs show-sm hide-md show-xl hide-lg">Type</th>
+                             <th class="show-xs show-sm hide-md hide-lg show-xl">Assessment</th>
  
                             </tr>
 
@@ -704,9 +704,9 @@ Appointments
 
                                         <td class="dt-nowrap">   <a title="View Details" href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##auditionDetails_#events.eventid#">#events.audstep#</a></td>
 
-                                        <td  class="dt-nowrap show-xs show-sm show-md hide-xl show-lg">   <a title="View Details" href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##auditionDetails_#events.eventid#">#events.audtype#</a> <cfif #events.workwithcoach# is "1"><BR>(coached)</cfif>    </td>
+                                        <td  class="dt-nowrap show-xs show-sm hide-md hide-lg show-xl">   <a title="View Details" href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##auditionDetails_#events.eventid#">#events.audtype#</a> <cfif #events.workwithcoach# is "1"><BR>(coached)</cfif>    </td>
                                         
- <TD  class="dt-nowrap show-xs show-sm show-md hide-xl show-lg"><center>
+ <TD  class="dt-nowrap show-xs show-sm hide-md hide-lg show-xl"><center>
 <cfif events.eventstart lte now()>
  <a href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteUpdateAnswer_#events.eventid#" toggle="tooltip" data-bs-placement="top" title="Update Answer" data-bs-original-title="Update Answer">
 
