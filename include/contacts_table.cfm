@@ -34,7 +34,7 @@ $(document).ready(function() {
         "pageLength": <cfoutput>#defaultRowsValue#</cfoutput>,
         "lengthMenu": [[10, 25, 50, 100, 500, 9999999], [10, 25, 50, 100, 500, "All"]],
         "searching": true,
-        order: [[0, 'asc']],
+        order: [[1, 'asc']],
         stateSave: false,
         dom: '<"row"<"col-sm-12"f>> <"row"<"col-sm-12"B>> <"row"<"col-sm-12"l>>rtip',
         responsive: {
