@@ -141,72 +141,23 @@
 
 
 
+      <!--- Optionally retrieve social icons or reminders for this contact --->
+        <cfinclude template="/include/qry/getSocialIcons.cfm"/>
+        <cfinclude template="/include/qry/getRemindersByRelationship.cfm"/>
 
 
+        <!--- This style was in original code (for ribbon-straight) --->
+        <style>
+          .ribbon-straight {
+            bottom: 44px; /* Moves up slightly to remove extra space */
+          }
+        </style>
 
+        <!--- Finally, include the actual card display template --->
+        <cfinclude template="/include/card.cfm" />
 
-
-
-
-
-            <cfoutput>
-                <div class="col-xl-3 col-md-4 col-sm-6 col-xs-12" style="padding-bottom:20px;">
-                  <div class="card h-100 shadow-sm border border-dark text-center">
-                    <div class="card-body text-center d-flex flex-column justify-content-center">
-                        <div class="pt-1 pb-1">
-                            <cfset contact_avatar_filename = "#session.userContactsPath#\#audcontacts.contactid#\avatar.jpg" />
-
-                          
-
-                            <h4 class="mt-2">
-                                <a href="/app/contact/?contactid=#audcontacts.contactid#">#audcontacts.contactname#</a>
-                            </h4>
-
-                            <p class="mt-1">
-                                <cfset z = 0>
-                                <cfloop query="mytags">
-                                    <cfset z = #z# + 1>
-                                    <cfif #z# is "1">
-                                        <cfoutput><span class="badge badge-blue">#mytags.valuetext#&nbsp;</span></cfoutput>
-                                    </cfif>
-                                </cfloop>
-                            </p>
-                            <p class="small mt-1">
-                                <cfif #new_phone# is not "">
-                                    <br>
-                                    <span>Phone: #new_phone# &nbsp;</span>
-                                </cfif>
-
-                                <cfif #new_email# is not "">
-                                    <br>
-                                    <span>Email: #new_email# &nbsp;</span>
-                                </cfif>
-                            </p>
-                          
-                               
-                                  
-                        </div>
-                        </div>
-                    
-                                      <div class="card-footer border-1 text-center">
-                                        <cfif "#projectDetails.contactid#" is not "#audcontacts.contactid#">
-  <a class="btn btn-sm" href="/app/audition/?audprojectid=#audprojectid#&ctaction=deleteContact&amp;deletecontactid=#audcontacts.contactid#&secid=175" title="Remove from Audition" >
-      <i class="fe-trash-2 me-1"></i> Remove
-    </a>
-    <cfelse>
-    <div style="line-height:26px;"> </div>
-    </cfif>
-                </div>
-                    </div><!--- end .padding --->
-                    
-
-                </div>
-
-
-
-
-            </cfoutput>
-        </cfloop>
+      </div> <!--- End .col --->
+    </cfloop>
     </div>
 
     <p>&nbsp;</p><!--- end card-box --->
