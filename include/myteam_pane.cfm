@@ -57,7 +57,7 @@
 
         <!--- All the variable assignments that card.cfm depends on --->
         <cfset aud_cat_icon           = "" />
-        <cfset card_view_icon_yn      = "N" />
+        <cfset card_view_icon_yn      = "Y" />
         <cfset card_avatar            = "Yes" />
         <cfset card_badge_yn          = "Y" />
         <cfset card_casting           = "" />

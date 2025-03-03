@@ -26,15 +26,16 @@
             </a>
           </cfif>
 
-                    <cfif card_details neq "" and card_view_icon_yn eq "Y">
-            <a href="#card_details#" class="text-decoration-none view-icon" title="View Details">
-              <i class="mdi mdi-eye"></i>
-            </a>
-          </cfif>
+    
 
 
           <cfif card_header_text neq "">
             <span class="tao-card-header-text">#card_header_text#</span>
+          </cfif>
+                          <cfif card_details neq "" and card_view_icon_yn eq "Y">
+            <a href="#card_details#" class="text-decoration-none view-icon" title="View Details">
+              <i class="mdi mdi-eye"></i>
+            </a>
           </cfif>
         </div>
       </cfif>
