@@ -684,12 +684,12 @@ Appointments
 
 <a title="Edit" href="javascript:;" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##auditionupdate_#events.eventid#">
 
-                                                <i class="mdi mdi-square-edit-outline mr-1"></i>
+                                                <i class="mdi mdi-square-edit-outline mr-1 me-2"></i>
                                             </a>
 
 <a title="Delete Audition" href="DeleteModal.cfm?rpgid=175" data-bs-toggle="modal" data-bs-target="##remoteDeleteAud#events.eventid#">
 
-                                                <i class="fe-trash-2"></i>
+                                                <i class="fe-trash-2 me-2"></i>
 
                                             </a>
                                             
