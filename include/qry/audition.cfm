@@ -1,5 +1,6 @@
 
 <!---<CFINCLUDE template="/include/projdate_fix_user.cfm" /> --->
+<cfinclude template=""
     <cfquery >
         CALL UpdateAudProjects();
     </cfquery>

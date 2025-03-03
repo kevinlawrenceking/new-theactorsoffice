@@ -124,7 +124,7 @@
 </cfoutput>
 
 <div class="row pt-3 pb-3">
-    <table id="basic-datatable" class="table dt-responsive nowrap w-100 table-striped" role="grid">
+    <table id="materials_tbl" class="table dt-responsive nowrap w-100 table-striped" role="grid">
         <thead>
             <tr class="#rowtype#">
                 <th width="50">Action</th>
@@ -251,3 +251,13 @@
     </table>
 </div>
 
+<!--- DataTables Initialization Script --->
+<script>
+$(document).ready(function(){
+    $('#materials_tbl').DataTable({
+        responsive: true,
+        ordering: true,
+        searching: true
+    });
+});
+</script>
