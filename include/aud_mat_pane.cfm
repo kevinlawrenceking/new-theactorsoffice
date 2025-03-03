@@ -4,7 +4,6 @@
 <cfinclude template="/include/qry/audmedia_picklist.cfm" />
 <cfinclude template="/include/qry/types_45_1.cfm" />
 <cfinclude template="/include/qry/audlinks_44_2.cfm" />
-<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <cfset modalid="remoteselectheadshot" />
 <cfset modaltitle="Select a Headshot" />
 <cfinclude template="/include/modal.cfm" />
@@ -252,13 +251,17 @@
     </table>
 </div>
 
-<!--- DataTables Initialization Script --->
 <script>
 $(document).ready(function(){
-    $('#materials_tbl').DataTable({
-        responsive: true,
-        ordering: true,
-        searching: true
+    var table = $('#materials_tbl').DataTable({
+         responsive: true,
+         ordering: true,
+         searching: true
+    });
+    
+    // If the table is in a Bootstrap tab, adjust columns when the tab is shown
+    $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function(e) {
+        table.columns.adjust();
     });
 });
 </script>
