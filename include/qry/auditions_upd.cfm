@@ -66,7 +66,7 @@ workwithcoach: #new_workwithcoach#<BR>
     new_eventStopTime: #new_eventStopTime#<BR>
     
 </cfoutput>
-<cfabort>
+
 </cfif>
 
 <cfinclude template="/include/qry/auditions_ins_374_1.cfm" />
