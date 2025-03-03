@@ -36,7 +36,7 @@ $(document).ready(function() {
         "searching": true,
         order: [[1, 'asc']],
         stateSave: false,
-        dom: '<"row"<"col-sm-12"f>> <"row"<"col-sm-12"B>> <"row"<"col-sm-12"l>>rtip',
+        dom: '<"row"<"col-sm-6"l><"col-sm-6"f>> <"row"<"col-sm-12"B>> <"row"rtip>',
         responsive: {
             details: {
                 type: 'column'
