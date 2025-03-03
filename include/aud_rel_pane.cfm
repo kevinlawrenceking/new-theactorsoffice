@@ -91,11 +91,12 @@
 
  <div class="col" id="<cfoutput>card-#audcontacts.contactid#</cfoutput>">
 <Cfoutput>
-   <cfif isimagefile(contact_avatar_filename)>
-                                <cfset card_image ="#session.userContactsUrl#/#audcontacts.contactid#/avatar.jpg?ver=#rand()#"/>
-                            <cfelse>
-                                <cfset card_image ="#application.defaultAvatarUrl#" />
-                            </cfif>
+    <!--- If there's an avatar file, use it; otherwise use defaultAvatarUrl --->
+        <cfif isImageFile("#session.userContactsPath#/#audcontacts.contactid#/avatar.jpg")>
+          <cfset card_image = session.userContactsUrl & "/" & audcontacts.contactid & "/avatar.jpg?ver=#rand()#" />
+        <cfelse>
+          <cfset card_image = application.defaultAvatarUrl />
+        </cfif>
 
 </cfoutput>
 
