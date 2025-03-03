@@ -43,8 +43,6 @@
       <!--- Card Body (Avatar & Contact Info) --->
       <div class="tao-card-body">
 
-   
-
         <cfif card_image_yn eq "Y">
           <div class="tao-card-image-container">
             <div class="tao-card-#card_image_type#">
