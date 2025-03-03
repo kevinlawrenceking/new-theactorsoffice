@@ -53,7 +53,7 @@
     <!--- Loop through the myteam query to display cards --->
     <cfloop query="myteam">
       <!--- Wrap each card in a col, give it a unique ID for removal logic --->
-      <div class="col" id="card-#myteam.contactid#">
+      <div class="col" id="<cfoutput>card-#myteam.contactid#</cfoutput>">
 
         <!--- All the variable assignments that card.cfm depends on --->
         <cfset aud_cat_icon           = "" />
