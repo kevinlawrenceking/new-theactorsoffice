@@ -4,7 +4,7 @@
 <cfinclude template="/include/qry/audmedia_picklist.cfm" />
 <cfinclude template="/include/qry/types_45_1.cfm" />
 <cfinclude template="/include/qry/audlinks_44_2.cfm" />
-
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <cfset modalid="remoteselectheadshot" />
 <cfset modaltitle="Select a Headshot" />
 <cfinclude template="/include/modal.cfm" />
