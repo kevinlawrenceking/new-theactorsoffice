@@ -25,10 +25,14 @@
     <cfargument name="new_durid" type="numeric" required="true">
 
 <cfquery name="result">
-        SELECT durid, durhours, durhours * 3600 AS durseconds, durname
-        FROM mtgdurations
-        WHERE durid = <cfqueryparam value="#arguments.new_durid#" cfsqltype="CF_SQL_INTEGER">
-    </cfquery>
+    SELECT durid, 
+           durhours, 
+           CAST(durhours * 3600 AS decimal(20,2)) AS durseconds, 
+           durname
+    FROM mtgdurations
+    WHERE durid = <cfqueryparam value="#arguments.new_durid#" cfsqltype="CF_SQL_INTEGER">
+</cfquery>
+
 
 <cfreturn result>
 </cffunction>
@@ -68,7 +72,7 @@
 
 <cffunction name="SELdurations" access="public" returntype="query" output="false">
     <cfquery name="durationsQuery">
-        SELECT durid, durhours, durname, (COALESCE(durhours, 0) * 3600) AS durseconds
+        SELECT durid, durhours, durname, CAST(durhours * 3600 AS decimal(20,2)) AS durseconds, 
         FROM mtgdurations 
         ORDER BY durid
     </cfquery>
