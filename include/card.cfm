@@ -4,7 +4,7 @@
     <div class="tao-card-md ribbon-box">
       
       <!--- Clickable Card (Only Wrap Image) --->
-      <cfif card_details neq "">
+      <cfif card_details neq "" and card_view_icon_yn eq "N">
         <a href="#card_details#" title="View Details">
       </cfif>
 
@@ -185,10 +185,10 @@
 
 
 
-      <cfif card_details neq ""></a></cfif>
-
+ 
     </div>
     <!--- End tao-card-md --->
+     <cfif card_details neq "" and card_view_icon_yn eq "N">
   </div>
   <!--- End col --->
 </cfoutput>
