@@ -57,7 +57,7 @@
 
         <!--- All the variable assignments that card.cfm depends on --->
         <cfset aud_cat_icon           = "" />
-        <cfset card_view_icon_yn      = "Y" />
+        <cfset card_view_icon_yn      = "N" />
         <cfset card_avatar            = "Yes" />
         <cfset card_badge_yn          = "Y" />
         <cfset card_casting           = "" />
@@ -71,8 +71,8 @@
         <cfset card_footer_text       = "Crd footer text" />
         <cfset card_footer_type       = "social" />
         <cfset card_footer_yn         = "Y" />
-        <cfset card_header_text       = myteam.card_title  />
-        <cfset card_name              = myteam.card_name />
+        <cfset card_header_text       = myteam.card_name  />
+        <cfset card_name              = "" />
         <cfset card_header_yn         = "Y" />
         <cfset card_icon              = "" />
         <cfset card_icon_yn           = "Y" />
