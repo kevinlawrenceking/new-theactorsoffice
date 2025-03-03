@@ -77,7 +77,8 @@
 
 <!--- Table for listing materials --->
 <div class="row pt-3 pb-3">
-    <table id="materials_tbl" class="table dt-responsive nowrap w-100 table-striped">
+ 
+       <table id="materials_tbl" class="table display nowrap table-striped dataTable w-95 dtr-inline dt-checkboxes-select dt-responsive">
         <thead>
             <tr>
                 <th width="50">Action</th>
