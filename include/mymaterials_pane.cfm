@@ -77,7 +77,7 @@
 
 <!--- Table for listing materials --->
 <div class="row pt-3 pb-3">
-    <table id="basic-datatable" class="table dt-responsive nowrap w-100 table-striped">
+    <table id="materials_tbl" class="table dt-responsive nowrap w-100 table-striped">
         <thead>
             <tr>
                 <th width="50">Action</th>
@@ -206,3 +206,17 @@
         </tbody>
     </table>
 </div>
+<script>
+$(document).ready(function(){
+    var table = $('#materials_tbl').DataTable({
+         responsive: true,
+         ordering: true,
+         searching: true
+    });
+    
+    // If the table is in a Bootstrap tab, adjust columns when the tab is shown
+    $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function(e) {
+        table.columns.adjust();
+    });
+});
+</script>
