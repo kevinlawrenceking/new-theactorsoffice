@@ -7793,6 +7793,7 @@ left: auto;
     justify-content: center;
     align-items: center;
     border-top: 2px solid #ddd;
+    min-height:36px;
 }
 
 /* Name - Prevent Wrapping */
