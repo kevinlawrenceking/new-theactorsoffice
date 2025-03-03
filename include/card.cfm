@@ -188,7 +188,7 @@
  
     </div>
     <!--- End tao-card-md --->
-     <cfif card_details neq "" and card_view_icon_yn eq "N">
+     <cfif card_details neq "" and card_view_icon_yn eq "N"></a></cfif>
   </div>
   <!--- End col --->
 </cfoutput>
