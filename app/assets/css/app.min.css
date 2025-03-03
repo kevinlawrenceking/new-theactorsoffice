@@ -7785,4 +7785,26 @@ left: auto;
     /* Override for table cells */
     th.show-xl, td.show-xl { display: table-cell !important; }
   }
-  
+
+  .tao-card-footer {
+    height: 15%; /* Adjusted height for proper balance */
+    background-color: white;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 2px solid #ddd;
+}
+
+/* Name - Prevent Wrapping */
+.tao-card-footer .photo-name {
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 5px;
+}
