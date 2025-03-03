@@ -7788,8 +7788,7 @@ left: auto;
 
   .tao-card-footer {
     height: 15%; /* Adjusted height for proper balance */
-    background-color: white;
-    color: black;
+    background-color: #6c757d;
     display: flex;
     justify-content: center;
     align-items: center;
