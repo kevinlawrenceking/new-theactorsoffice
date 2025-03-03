@@ -87,6 +87,68 @@
             <cfinclude template="/include/qry/Findemail_48_3.cfm" />
             <cfset new_email = Findemail.email />
 
+
+
+ <div class="col" id="<cfoutput>card-#audcontacts.contactid#</cfoutput>">
+<Cfoutput>
+   <cfif isimagefile(contact_avatar_filename)>
+                                <cfset card_image ="#session.userContactsUrl#/#audcontacts.contactid#/avatar.jpg?ver=#rand()#"/>
+                            <cfelse>
+                                <cfset card_image ="#application.defaultAvatarUrl#" />
+                            </cfif>
+
+</cfoutput>
+
+        <!--- All the variable assignments that card.cfm depends on --->
+        <cfset aud_cat_icon           = "" />
+        <cfset card_view_icon_yn      = "Y" />
+        <cfset card_avatar            = "Yes" />
+        <cfset card_badge_yn          = "Y" />
+        <cfset card_casting           = "" />
+        <cfset card_company           = "Company" />
+        <cfset card_delete            = "" />
+        <cfset card_delete_msg        = "" />
+        <cfset card_remove            = "/app/audition/?audprojectid=" & audprojectid & "&ctaction=deleteContact&amp;deletecontactid=" & audcontacts.contactid & "&secid=175" />
+        <cfset card_remove_msg        = "Are you sure you want to remove this person from this audition?" />
+        <cfset card_details           = "/app/contact/?contactid=" & audcontacts.contactid />
+        <cfset card_email             = new_email />
+        <cfset card_footer_text       = "" />
+        <cfset card_footer_type       = "social" />
+        <cfset card_footer_yn         = "Y" />
+        <cfset card_header_text       = audcontacts.contactname  />
+        <cfset card_name              = "" />
+        <cfset card_header_yn         = "Y" />
+        <cfset card_icon              = "" />
+        <cfset card_icon_yn           = "Y" />
+        <cfset card_id                = audcontacts.contactid />
+        <cfset card_image_type        = "avatar" />
+        <cfset card_image_yn          = "Y" />
+        <cfset card_image             = "" />
+        <cfset card_phone             = new_phone />
+        <cfset card_reminder          = "" />
+        <cfset card_ribbon1           = "" />
+        <cfset card_ribbon2           = "" />
+        <cfset card_ribbon_straight   = "" />
+        <cfset card_social_yn         = "Y" />
+        <cfset card_source            = "" />
+        <cfset card_subtitle          = "" />
+        <cfset card_title             = "" />
+        <cfset card_top_ribbon        = "" />
+        <cfset namecolor              = "medium" />
+        <cfset ribbon_icon            = "" />
+        <cfset currentid              = audcontacts.contactid />
+
+
+
+
+
+
+
+
+
+
+
+
             <cfoutput>
                 <div class="col-xl-3 col-md-4 col-sm-6 col-xs-12" style="padding-bottom:20px;">
                   <div class="card h-100 shadow-sm border border-dark text-center">
@@ -94,11 +156,7 @@
                         <div class="pt-1 pb-1">
                             <cfset contact_avatar_filename = "#session.userContactsPath#\#audcontacts.contactid#\avatar.jpg" />
 
-                            <cfif isimagefile(contact_avatar_filename)>
-                                <img src="#session.userContactsUrl#/#audcontacts.contactid#/avatar.jpg?ver=#rand()#" class="rounded-circle img-thumbnail avatar-xl" alt="profile-image" />
-                            <cfelse>
-                                <img src="#application.defaultAvatarUrl#" class="rounded-circle img-thumbnail avatar-xl" alt="profile-image" />
-                            </cfif>
+                          
 
                             <h4 class="mt-2">
                                 <a href="/app/contact/?contactid=#audcontacts.contactid#">#audcontacts.contactname#</a>
