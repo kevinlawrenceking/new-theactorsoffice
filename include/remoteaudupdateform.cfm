@@ -3,10 +3,10 @@
 <cfparam name="pgaction" default="view" />
 <cfparam name="old_callbacktypeid" default="0" />
 <cfparam name="isdirect" default="0" />
-<cfparam name="valuetext" default="" />
+<cfparam name="valuetext" default="" /><cfabort>
 
 <!--- Include necessary queries and data lookups --->
-<cfinclude template="/include/qry/durations.cfm" /><cfabort>
+<cfinclude template="/include/qry/durations.cfm" />
 <cfinclude template="/include/qry/fetchLocationService.cfm" />
 <cfinclude template="/include/qry/fetchusers.cfm" />
 <cfinclude template="/include/qry/audplatforms_user_sel.cfm" />
