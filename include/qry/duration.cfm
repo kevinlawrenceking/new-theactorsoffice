@@ -2,3 +2,4 @@
 
 <cfinclude template="/include/qry/duration_467_1.cfm" />
 
+<cfoutput>#new_durid#</cfoutput><cfabort>
