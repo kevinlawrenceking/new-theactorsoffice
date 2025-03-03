@@ -6,7 +6,7 @@
 <cfparam name="valuetext" default="" />
 
 <!--- Include necessary queries and data lookups --->
-<cfinclude template="/include/qry/durations.cfm" />
+<cfinclude template="/include/qry/durations.cfm" /><cfabort>
 <cfinclude template="/include/qry/fetchLocationService.cfm" />
 <cfinclude template="/include/qry/fetchusers.cfm" />
 <cfinclude template="/include/qry/audplatforms_user_sel.cfm" />
