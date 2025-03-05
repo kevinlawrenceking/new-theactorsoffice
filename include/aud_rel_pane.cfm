@@ -141,7 +141,6 @@
         <cfset currentid              = audcontacts.contactid />
 
 
-'#card_id#'
 
       <!--- Optionally retrieve social icons or reminders for this contact --->
         <cfinclude template="/include/qry/getSocialIcons.cfm"/>
