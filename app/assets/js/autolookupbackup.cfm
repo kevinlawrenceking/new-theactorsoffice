@@ -88,6 +88,21 @@ j = a;
                     showNoSuggestionNotice: !0,
                     noSuggestionNotice: "Sorry, no matching results",
                     groupBy: "Contacts"
+                });
+
+                  $("#autocomplete9")
+                .devbridgeAutocomplete({
+                    lookup: j,
+                    minChars: 2,
+                    width: "300",
+                    maxheight: "400",
+                    onSelect: function(e) {
+                        $("#selection")
+                            .html("You selected: " + e.value + ", " + e.data.category)
+                    },
+                    showNoSuggestionNotice: !0,
+                    noSuggestionNotice: "Sorry, no matching results",
+                    groupBy: "Contacts"
                 })
 
         </script>

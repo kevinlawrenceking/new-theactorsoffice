@@ -23,32 +23,33 @@
 
 <h4>Audition Relationships</h4>
 
+<!--- Single row with two columns: “Add New Person” on the left, “Select Existing Relationship” on the right --->
+<div class="row mb-3">
+  <!--- Add New Person Column --->
+  <div class="col-12 col-md-6 mb-2">
+    <p class="fw-semibold">Add a new relationship to your audition:</p>
+     <a href="remoteAddContact.cfm?src=account" 
+     data-bs-remote="true" data-bs-toggle="modal" 
+     data-bs-target="#remoteAddContactAud">
 
-
-  <div class="row" style="margin: auto;">
-    <div class="col-md-2 p-2">Add a new person to your audition:
-    </div>
-    <div class="col-md-4 p-2">
-        <a href="remoteAddContact.cfm?src=account" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="#remoteAddContactAud">
-        <button id="mybtns" type="submit" class="btn btn-sm btn-primary waves-effect mb-2 waves-light" style="background-color: #406e8e; border: #406e8e; height: 37px;">
-          Add
-        </button>
-      </a>
-    </div>
+      <button type="button" 
+              class="btn btn-sm btn-primary waves-effect waves-light"
+              style="background-color: #406e8e; border: #406e8e;">
+        Add
+      </button>
+    </a>
   </div>
 
-
-<form class="app-search" action="/app/audition/?secid=175" method="POST">
-    <cfoutput>  
+  <!--- Select Existing Relationship Column --->
+  <div class="col-12 col-md-6 mb-2">
+    <p class="fw-semibold">Or select an existing relationship:</p>
+    <form class="sel_client" action="/app/audition/?secid=175" method="POST">
+       <cfoutput>  
         <input type="hidden" name="ctaction" value="addmember" />
         <input type="hidden" name="audprojectid" value="#audprojectid#" />
     </cfoutput>
-
-<div class="row" style="margin: auto;">
-        <div class="col-md-2 p-2">Or select an existing relationship:</div>
-        <div class="col-md-4 p-2">
-            <div class="input-group">
-                <select class="form-control" name="autocomplete_aud" id="autocomplete_audx">
+      <div class="input-group">
+         <select class="form-control" name="autocomplete_aud" id="autocomplete_audx">
                     <option value="">Select Contact...</option>
                     <!--- Loop through the audcontacts query to populate the select list --->
                     <cfloop query="audcontacts_sel">
@@ -57,14 +58,21 @@
                         </cfoutput>
                     </cfloop>
                 </select>
-                <div class="input-group-append">
-                    <button id="mybtns" type="submit" class="btn btn-xs btn-primary waves-effect mb-2 waves-light" style="height: 37.3889px">
-                        <i class="fe-plus"></i> Add 
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+        <button id="select_contact" 
+                type="submit" 
+                class="btn btn-xs btn-primary waves-effect waves-light"
+                style="background-color: #406e8e; border: #406e8e;">
+          <i class="fe-plus"></i> Select
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+
+
 
     <!--- Check if there are any events without booking --->
     <cfif events_nobooking.recordcount gt 0>
