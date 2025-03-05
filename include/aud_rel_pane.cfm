@@ -106,12 +106,12 @@
         <cfset card_avatar            = "Yes" />
         <cfset card_badge_yn          = "Y" />
         <cfset card_casting           = "" />
-        <cfset card_company           = "Company" />
+        <cfset card_company           = "" />
         <cfset card_delete            = "" />
         <cfset card_delete_msg        = "" />
         <cfset card_remove            = "/app/audition/?audprojectid=" & audprojectid & "&ctaction=deleteContact&amp;deletecontactid=" & audcontacts.contactid & "&secid=175" />
         <cfset card_remove_msg        = "Are you sure you want to remove this person from this audition?" />
-        <cfset card_details           = "/app/contact/?contactid=" & audcontacts.contactid />
+        <cfset card_details           = audcontacts.hlink />
         <cfset card_email             = new_email />
         <cfset card_footer_text       = "" />
         <cfset card_footer_type       = "social" />
@@ -124,7 +124,7 @@
         <cfset card_id                = audcontacts.contactid />
         <cfset card_image_type        = "avatar" />
         <cfset card_image_yn          = "Y" />
-        <cfset card_image             = "" />
+        <cfset card_image             = audcontacts.avatar />
         <cfset card_phone             = new_phone />
         <cfset card_reminder          = "" />
         <cfset card_ribbon1           = "" />
