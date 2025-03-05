@@ -873,26 +873,7 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
 
 <cfreturn result>
 </cffunction>
-<cffunction output="false" name="SELcontactdetails_24514" access="public" returntype="query">
-    <cfargument name="audprojectid" type="numeric" required="true">
 
-<cfquery name="result" >
-            SELECT DISTINCT 
-                d.contactid, 
-                d.recordname AS contactname, 
-                d.contactStatus 
-            FROM 
-                contactdetails d 
-            INNER JOIN 
-                audcontacts_auditions_xref x ON x.contactid = d.contactid 
-            WHERE 
-                x.audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER"> 
-            ORDER BY 
-                d.recordname
-        </cfquery>
-
-<cfreturn result>
-</cffunction>
 <cffunction output="false" name="SELcontactdetails_24515" access="public" returntype="query">
     <cfargument name="userid" type="numeric" required="true">
     <cfargument name="audprojectid" type="numeric" required="true">
@@ -1156,6 +1137,54 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
                 ) 
             ORDER BY 
                 d.col1
+        </cfquery>
+
+<cfreturn result>
+</cffunction>
+
+<cffunction output="false" name="getContactsByAudProject" access="public" returntype="query">
+    <cfargument name="audprojectid" type="numeric" required="true">
+
+<cfquery name="result" >
+      SELECT 
+                d.contactid, 
+                d.col1 AS contactname, 
+   
+                d.col1 AS card_name,
+                d.col4 as card_email,
+                d.col3 as card_phone,
+                d.col5 as card_company,
+               (
+        SELECT 
+            contactitems.valueText 
+        FROM 
+            new_development.contactitems 
+        WHERE 
+            contactitems.valueCategory = 'Tag'  
+            AND contactitems.valueText <> 'My Team'
+            AND contactitems.contactID = d.contactID 
+            AND contactitems.itemStatus = 'Active' 
+        LIMIT 1
+    ) AS card_title
+            FROM 
+                contacts_ss d 
+            INNER JOIN 
+                taousers u ON u.userid = d.userid 
+                INNER JOIN 
+                audcontacts_auditions_xref x ON x.contactid = d.contactid 
+            WHERE 
+            x.audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">             
+                AND d.contactid IN (
+                    SELECT contactid 
+                    FROM contactitems 
+                    WHERE valuetext = <cfqueryparam value="My Team" cfsqltype="CF_SQL_VARCHAR"> 
+                    AND valuecategory = <cfqueryparam value="Tag" cfsqltype="CF_SQL_VARCHAR">
+                    and isDeleted = 0
+                ) 
+            ORDER BY 
+                d.col1
+
+    
         </cfquery>
 
 <cfreturn result>
