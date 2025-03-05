@@ -1176,12 +1176,7 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
             WHERE 
             x.audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">              
             
-            AND d.contactid IN (
-                    SELECT contactid 
-                    FROM contactitems 
-                    where valuecategory = 'Tag'
-                    and isDeleted = 0
-                ) 
+      
                 
             ORDER BY 
                 d.col1
