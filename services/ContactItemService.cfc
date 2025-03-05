@@ -51,7 +51,15 @@ FROM contactitems
         LIMIT 1
     </cfquery>
 </cffunction>
-
+<cffunction name="deleteAudContact" access="public" returntype="void" output="false">
+    <cfargument name="contactid" type="numeric" required="true">
+     <cfargument name="audprojectid" type="numeric" required="true">
+    <cfquery>
+           DELETE from audcontacts_auditions_xref
+            WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="CF_SQL_INTEGER">
+            AND audprojectid = <cfqueryparam value="#arguments.audprojectid#" cfsqltype="CF_SQL_INTEGER">
+    </cfquery>
+</cffunction>
 
 <cffunction name="deleteTeam" access="public" returntype="void" output="false">
     <cfargument name="contactid" type="numeric" required="true">

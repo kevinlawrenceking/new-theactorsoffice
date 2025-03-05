@@ -167,3 +167,35 @@
 
     <p>&nbsp;</p><!--- end card-box --->
 </div><br>
+
+
+<!--- JavaScript for deleting a contact via fetch() --->
+<script>
+function confirmRemove(contactId, audProjectId) {
+    if (confirm("Are you sure you want to remove this contact from your project?")) {
+        fetch('/include/delete_audcontact.cfm', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: 'contactid=' + encodeURIComponent(contactId) + 
+                  '&audprojectid=' + encodeURIComponent(audProjectId)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                let cardEl = document.getElementById('card-' + contactId);
+                if (cardEl) {
+                    cardEl.classList.add('removing'); // Start animation
+                    setTimeout(() => {
+                        cardEl.remove(); // Fully remove after animation
+                    }, 300); // Wait for CSS transition to finish
+                }
+            } else {
+                alert("Error: " + data.message);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    }
+}
+</script>
