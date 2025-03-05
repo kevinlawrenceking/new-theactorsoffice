@@ -111,7 +111,7 @@
         <cfset card_delete_msg        = "" />
         <cfset card_remove            = "/app/audition/?audprojectid=" & audprojectid & "&ctaction=deleteContact&amp;deletecontactid=" & audcontacts.contactid & "&secid=175" />
         <cfset card_remove_msg        = "Are you sure you want to remove this person from this audition?" />
-        <cfset card_details           = "app/contact/?contactid=" & audcontacts.contactid /> 
+        <cfset card_details           = "/app/contact/?contactid=" & audcontacts.contactid /> 
         <cfset card_email             = new_email />
         <cfset card_footer_text       = "" />
         <cfset card_footer_type       = "social" />
