@@ -77,8 +77,8 @@
     </cfoutput>
 </form>
 
-<div class="container-fluid">
-    <div class="row box-row mb-3">
+<div class="container">
+           <div class="row tao-card-row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-2 row-cols-xl-3 g-3">
         <!--- Loop through the audcontacts to display each contact's details --->
         <cfloop query="audcontacts">
             <cfinclude template="/include/qry/mytags_48_1.cfm" />
