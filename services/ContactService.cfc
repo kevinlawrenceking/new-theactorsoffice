@@ -1146,7 +1146,7 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
     <cfargument name="audprojectid" type="numeric" required="true">
 
 <cfquery name="result" >
-      SELECT 
+      SELECT distinct 
                 d.contactid, 
                 d.col1 AS contactname, 
                 d.avatar,
