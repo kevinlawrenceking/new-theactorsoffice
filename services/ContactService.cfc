@@ -1103,17 +1103,19 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
     <cfargument name="userId" type="numeric" required="true">
 
 <cfquery name="result" >
-            SELECT 
+          SELECT 
                 d.contactid, 
+                d.col1 AS contactname, 
+   
                 d.col1 AS card_name,
                 d.col4 as card_email,
                 d.col3 as card_phone,
                 d.col5 as card_company,
-               (
+                (
         SELECT 
             contactitems.valueText 
         FROM 
-            new_development.contactitems 
+            contactitems 
         WHERE 
             contactitems.valueCategory = 'Tag'  
             AND contactitems.valueText <> 'My Team'
@@ -1121,11 +1123,15 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
             AND contactitems.itemStatus = 'Active' 
         LIMIT 1
     ) AS card_title
+       
             FROM 
                 contacts_ss d 
             INNER JOIN 
                 taousers u ON u.userid = d.userid 
+                INNER JOIN 
+                audcontacts_auditions_xref x ON x.contactid = d.contactid 
             WHERE 
+            x.audprojectid = 744            
                 u.userid = <cfqueryparam value="#arguments.userId#" cfsqltype="CF_SQL_INTEGER"> 
                 
                 AND d.contactid IN (
