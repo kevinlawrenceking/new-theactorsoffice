@@ -146,7 +146,11 @@
         <cfinclude template="/include/qry/getSocialIcons.cfm"/>
         <cfinclude template="/include/qry/getRemindersByRelationship.cfm"/>
 
-
+    <cfif isImageFile("#session.userContactsPath#/#audcontacts.contactid#/avatar.jpg")>
+          <cfset card_image = session.userContactsUrl & "/" & audcontacts.contactid & "/avatar.jpg?ver=#rand()#" />
+        <cfelse>
+          <cfset card_image = application.defaultAvatarUrl />
+        </cfif>
         <!--- This style was in original code (for ribbon-straight) --->
         <style>
           .ribbon-straight {
