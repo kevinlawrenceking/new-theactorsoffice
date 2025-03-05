@@ -66,6 +66,7 @@
         <cfset card_delete_msg        = "" />
         <cfset card_remove            = "/app/myaccount/?new_pgid=122&ctaction=deleteitem&deletecontactid=" & myteam.contactid />
         <cfset card_remove_msg        = "Are you sure you want to remove this person from your team?" />
+        <cfset card_remove_value      = "'" & myteam.contactid & "'" />
         <cfset card_details           = "/app/contact/?contactid=" & myteam.contactid />
         <cfset card_email             = myteam.card_email />
         <cfset card_footer_text       = "Crd footer text" />

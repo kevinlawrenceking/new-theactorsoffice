@@ -111,6 +111,7 @@
         <cfset card_delete_msg        = "" />
         <cfset card_remove            = "/app/audition/?audprojectid=" & audprojectid & "&ctaction=deleteContact&amp;deletecontactid=" & audcontacts.contactid & "&secid=175" />
         <cfset card_remove_msg        = "Are you sure you want to remove this person from this audition?" />
+        <cfset card_remove_value      = "'" & audcontacts.contactid & "','" & audcontact.audprojectid & "'" />
         <cfset card_details           = "/app/contact/?contactid=" & audcontacts.contactid /> 
         <cfset card_email             = new_email />
         <cfset card_footer_text       = "" />
@@ -140,7 +141,7 @@
         <cfset currentid              = audcontacts.contactid />
 
 
-
+'#card_id#'
 
       <!--- Optionally retrieve social icons or reminders for this contact --->
         <cfinclude template="/include/qry/getSocialIcons.cfm"/>
