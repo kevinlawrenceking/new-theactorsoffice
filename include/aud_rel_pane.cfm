@@ -133,7 +133,7 @@
         <cfset card_social_yn         = "Y" />
         <cfset card_source            = "" />
         <cfset card_subtitle          = "" />
-        <cfset card_title             = "" />
+        <cfset card_title             = audcontacts.card_title />
         <cfset card_top_ribbon        = "" />
         <cfset namecolor              = "medium" />
         <cfset ribbon_icon            = "" />
