@@ -124,7 +124,7 @@
         <cfset card_id                = audcontacts.contactid />
         <cfset card_image_type        = "avatar" />
         <cfset card_image_yn          = "Y" />
-        <cfset card_image             = audcontacts.avatar />
+        <cfset card_image             = "" />
         <cfset card_phone             = new_phone />
         <cfset card_reminder          = "" />
         <cfset card_ribbon1           = "" />
