@@ -55,16 +55,16 @@
             </div>
         </div>
     </div>
-</cfoutput>
+ 
 
 <cfset i=0 />
     <h4 class="p-1 d-flex">My Headshots
 
     </h4>
-<cfoutput>
+ 
     <div class="col-md-12 col-lg-12 col-xl-12 p-1 d-flex">
         <center>
-<cfoutput>
+ 
     <a data-bs-remote="true" 
        data-bs-toggle="modal" 
        data-bs-target="##remoteselectheadshot" 
@@ -78,21 +78,8 @@
     </a>
 </cfoutput>
         </center>
-    </div>
-</cfoutput>
 
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 
@@ -146,61 +133,12 @@
       </cfloop>
 
 
+</div>
 
 
-
-
-    </div>
+ </div>
   </div>
 
-</div>
-
-<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
 
 <script>
 $(document).ready(function() {
@@ -218,7 +156,6 @@ $(document).ready(function() {
         updateSelectedHeadshot(mediaid, audprojectid);
     });
 });
-
 
 function updateSelectedHeadshot(mediaid, audprojectid) {
     console.log("Updating headshot for:", mediaid, audprojectid);
@@ -260,3 +197,6 @@ function reloadHeadshotGallery(audprojectid) {
 }
 </script>
 
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
