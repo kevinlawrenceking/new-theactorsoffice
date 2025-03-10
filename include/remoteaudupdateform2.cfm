@@ -34,7 +34,7 @@
 <cfset new_projname = projectDetails.projName />
 <cfset new_projDescription = projectDetails.projDescription />
 
-<cfinclude template="/include/qry/FindEvent_222_4.cfm" />
+<!---<cfinclude template="/include/qry/FindEvent_222_4.cfm" /> --->
 
 <!--- Prepare return URL for redirection --->
 <cfoutput>
