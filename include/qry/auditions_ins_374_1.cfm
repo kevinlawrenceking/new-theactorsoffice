@@ -30,12 +30,12 @@
 </cfif>
 
 <!--- Include optional date arguments if valid date --->
-<cfif isDate(new_eventStart)>
+ 
     <cfset eventArguments["new_eventStart"] = new_eventStart>
-</cfif>
-<cfif isDate(new_eventStartTime)>
+ 
+ 
     <cfset eventArguments["new_eventStartTime"] = new_eventStartTime>
-</cfif>
+ 
  
     <cfset eventArguments["new_eventStopTime"] = new_eventStopTime>
  
