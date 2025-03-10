@@ -159,7 +159,7 @@
         <div class="form-group col-md-12" id="special" style="display:none">
             <cfoutput>
                 <input class="form-control" type="text" id="custom" name="custom" style="display:none;" value="" placeholder="Enter Custom #details.recordname#" />
-            </cfoutput>
+   
         </div>
 
         <div class="form-group col-md-12">

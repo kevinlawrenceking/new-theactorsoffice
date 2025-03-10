@@ -19,6 +19,5 @@
                 <cfqueryparam value="#arguments.newuserid#" cfsqltype="CF_SQL_INTEGER">
             )
         </cfquery>
-        <cffunction output="false" name="INSnotifications" access="public" returntype="numeric">
     </cffunction>
 </cfcomponent>

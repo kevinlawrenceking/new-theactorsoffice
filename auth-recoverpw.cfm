@@ -80,7 +80,7 @@
         <meta content="The Actor's Office Application" name="description" />
         <meta content="Jodie Bentley" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <link rel="shortcut icon" href="/media/shared/images/favicon.ico</cfoutput>">
+        <link rel="shortcut icon" href="/media/shared/images/favicon.ico">
 
         <!--- App css --->
         <link href="/app/assets/css/app.min.css?ver=#rand()#" rel="stylesheet" type="text/css" id="app-style" />

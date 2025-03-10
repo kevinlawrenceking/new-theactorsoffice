@@ -22,7 +22,7 @@
 </cfif>
 
         <cfscript>
-           userid = select_userid/
+           userid = select_userid;
 
     baseMediaPath = "C:\home\theactorsoffice.com\media-" & dsn;
     baseMediaUrl = "/media-" & dsn;

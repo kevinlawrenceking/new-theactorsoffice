@@ -64,9 +64,12 @@
 
                     <cfoutput>QRY filename created: #newQueryFilename#<br></cfoutput>
 
-                    <!--- Replace the specific cfquery block with the cfinclude tag --->
-                    <cfset cfIncludeTag = '<cfinclude template="/include/qry/#newQueryFilename#" />'>
-                    <cfset fileContent = Left(fileContent, startQuery - 1) & cfIncludeTag & Mid(fileContent, endQuery + 10)>
+                  <!--- Replace the specific cfquery block with the cfinclude tag --->
+<cfset cfIncludeTag = '<cfinclude template="/include/qry/#newQueryFilename#" />'>
+
+<!--- Correct Mid() function usage with a calculated length --->
+<cfset fileContent = Left(fileContent, startQuery - 1) & cfIncludeTag & Mid(fileContent, endQuery + 1, Len(fileContent) - endQuery)>
+
 
                     <!--- Update startPos to continue searching after the cfinclude tag --->
                     <cfset startPos = startQuery + Len(cfIncludeTag)>

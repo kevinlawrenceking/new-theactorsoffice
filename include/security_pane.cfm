@@ -24,9 +24,10 @@
         </cfloop>
     </ul>
 <cfelse>
-    <cfif structKeyExists(errorMessage)>
-        <p>#errorMessage#</p> <!--- Display error message if present --->
-    <cfelse>
-        <p>No user data available.</p> <!--- Message for no user data --->
-    </cfif>
+<cfif structKeyExists(variables, "errorMessage") AND Len(errorMessage)>
+    <p>#encodeForHTML(errorMessage)#</p> <!--- Display error message if present --->
+<cfelse>
+    <p>No user data available.</p> <!--- Message for no user data --->
+</cfif>
+
 </cfif>

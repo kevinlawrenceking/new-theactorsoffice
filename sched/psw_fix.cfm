@@ -3,9 +3,10 @@ SELECT contactid,contactbirthday FROM contactdetails WHERE contactbirthday IS no
 </cfquery>  
 <cfloop query="z">
 <cfoutput>
-<cfset newest_contactid = #z.contactid# />
+<cfset newest_contactid = z.contactid />
 <cfset new_contactbirthday = "#z.contactbirthday#" />
-</cfoutput>       
+</cfoutput>  
+     
 <Cfif #isdate(new_contactbirthday)# is "false">
     <cfquery result="result"  name="update"  >   
     update contactdetails
@@ -45,8 +46,8 @@ SELECT contactid,contactbirthday FROM contactdetails WHERE contactbirthday IS no
 <cfloop query="getUsers">
   <cfquery result="result"  name="setPasswordHash"   >
     UPDATE taousers
-    SET passwordHash = <cfqueryparam cfsqltype="char" value="#hash(Password,’SHA’)#">
-    WHERE (userID = <cfqueryparam cfsqltype="integer" value="#userID#">
+    SET passwordHash = <cfqueryparam cfsqltype="char" value="#hash(Password,'SHA')#">
+    WHERE userID = <cfqueryparam cfsqltype="integer" value="#userID#">
   </cfquery>
 </cfloop>
 

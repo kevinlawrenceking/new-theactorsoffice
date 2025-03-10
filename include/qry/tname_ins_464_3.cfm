@@ -72,7 +72,7 @@
                 </cfif>
 
                 <cfif #x.currentrow# is not "1">,</cfif>
-                <cfif #new_maxvalue# is not="">
+                <cfif #new_maxvalue# is not "">
                     <cfqueryparam cfsqltype="#new_cfsqltype#" value="#new_field#" maxlength="#new_maxvalue#" null="#NOT len(trim(new_field))#" />
                 <cfelse>
                     <cfqueryparam cfsqltype="#new_cfsqltype#" value="#new_field#" null="#NOT len(trim(new_field))#" />

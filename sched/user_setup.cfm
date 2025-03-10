@@ -172,7 +172,7 @@
 
 </cfloop>
 
-</cfloop>
+ 
 
 <cfoutput><cfset endtime = "#timeformat(NOw(),'HHMMSS')#" />
 
