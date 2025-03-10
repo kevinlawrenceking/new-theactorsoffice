@@ -122,7 +122,7 @@ ORDER BY e.eventstart DESC
             </cfif>
             <cfif structKeyExists(arguments, "eventStartTime")>
                 , eventStartTime
-                , eventStopTime <!-- Calculating dynamically -->
+                , eventStopTime 
             </cfif>
             <cfif structKeyExists(arguments, "dow") and len(arguments.dow) gt 0>
                 , dow
