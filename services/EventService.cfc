@@ -1087,7 +1087,7 @@ audzip = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_aud
         </cfif>
         WHERE eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">;
     </cfquery>
-</cffunction> <cffunction output="false" name="SELevents_24597" access="public" returntype="query">
+</cffunction><cfabort> <cffunction output="false" name="SELevents_24597" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     <cfargument name="focusid" type="numeric" default="0">
 
