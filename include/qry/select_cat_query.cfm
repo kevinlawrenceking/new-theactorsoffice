@@ -27,24 +27,6 @@
         <!--- Query to select records for the current category --->
         <cfinclude template="/include/qry/bycat_529_3.cfm" />
 
-        <cfif #cookie.userid# is "30">
-            <cfoutput>
-                <p>SELECT a.#fid# as ID, 
-                   a.#fname# as NAME, 
-                   ac.audCatName, 
-                   ac.audcatid
-                   FROM #tname# a
-                   INNER JOIN audcategories ac ON ac.audcatid = a.audcatid
-                   WHERE a.isDeleted IS FALSE
-
-                   <cfif #new_audcatid# is not "0">
-                       AND a.audcatid = #new_audcatid#
-                   </cfif>
-                   ORDER BY a.#orderby#</p>
-            </cfoutput>
-            <br>
-        </cfif>
-
         <h3>
             <cfoutput>#tname# - [#cats.audcatid#] #cats.audcatname#</cfoutput>
         </h3>

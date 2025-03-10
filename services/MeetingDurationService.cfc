@@ -72,11 +72,12 @@
 
 <cffunction name="SELdurations" access="public" returntype="query" output="false">
     <cfquery name="durationsQuery">
-        SELECT durid, durhours, durname, CAST(durhours * 3600 AS decimal(20,2)) AS durseconds
+        SELECT durid, durhours, durname, (durhours * 3600) AS durseconds
         FROM mtgdurations 
         ORDER BY durid
     </cfquery>
     <cfreturn durationsQuery>
 </cffunction>
+
 
 </cfcomponent>
