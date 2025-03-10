@@ -1072,7 +1072,7 @@ audzip = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_aud
          SEC_TO_TIME(<cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_durseconds#">)
      ), '%H:%i:%s.%f'
 )
-
+,
         audplatformID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audplatformid#">,
         audStepID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audStepID#">,
         parkingDetails = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_parkingDetails)#" null="#NOT len(trim(arguments.new_parkingDetails))#">,
