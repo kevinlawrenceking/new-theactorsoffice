@@ -140,7 +140,7 @@
 
                     <cfif #action_user_del.recordcount# is not "0">
 
-                      <form action="/app/myaccount/">
+                      <form action="/app/myaccount/?t7=1&target_id_system=#mysystems.systemid#">
                         <cfoutput>
                           <input type="hidden" name="new_pgid" value="125" />
                             <input type="hidden" name="ctaction" value="includeaction" />
