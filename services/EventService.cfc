@@ -1066,12 +1066,12 @@ audzip = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_aud
         eventStartTime = <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.new_eventStartTime#">,
 
         <!--- Calculate eventStopTime dynamically in MySQL --->
-        eventStopTime = CAST(
-            ADDTIME(
-                <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_eventStartTime#">,
-                SEC_TO_TIME(<cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_durseconds#">)
-            ) AS TIME(3)
-        ),
+        eventStopTime = STR_TO_DATE(
+     ADDTIME(
+         <cfqueryparam cfsqltype="CF_SQL_TIME" value="#arguments.new_eventStartTime#">,
+         SEC_TO_TIME(<cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_durseconds#">)
+     ), '%H:%i:%s.%f'
+)
 
         audplatformID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audplatformid#">,
         audStepID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audStepID#">,
