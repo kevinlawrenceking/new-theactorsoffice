@@ -1080,7 +1080,7 @@ audzip = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_aud
         <cfset arguments.eventStopTime = ListFirst(arguments.eventStopTime, ".")>
     </cfif>
 
-    <cfquery datasource="yourDatasource">
+    <cfquery >
         UPDATE events
         SET eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">
         <cfif len(arguments.eventStart)>
