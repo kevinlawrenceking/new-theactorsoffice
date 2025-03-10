@@ -15,8 +15,8 @@
 <Cfabort>
      
         <cfoutput>Processing file: #filename#<br></cfoutput>
- 
-        <cfset queryNameMatch = REMatchNoCase("name\s*=\s*['\"]([a-zA-Z0-9_-]+)['\"]", fileContent)>
+<cfset queryNameMatch = REMatchNoCase("name\s*=\s*['\"]([^'\"]+)['\"]", fileContent)>
+
 
 <cfoutput>
             Found Matches: #arrayLen(queryNameMatch)# for file: #filename#<br>
@@ -28,8 +28,11 @@
             <cfset extractedQueryName = queryNameMatch[1]>
 
 <cfset extractedQueryName = trim(replace(replace(extractedQueryName, "name=", "", "ALL"), '"', "", "ALL"))>
-
-    file: #filename#<br></cfoutput>
+<cfoutput>
+    file: #filename#
+    
+    <br/>
+    </cfoutput>
 
 <cfquery result="result" datasource="abod">
                 UPDATE tao_files

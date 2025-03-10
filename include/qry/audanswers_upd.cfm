@@ -1,6 +1,6 @@
 
 
-<cfparam name="neventidefault="0" />
+ 
 
 <cfparam name="new_eventid" default="0" />
 
