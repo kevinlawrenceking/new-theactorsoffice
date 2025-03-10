@@ -18,7 +18,8 @@
     new_workwithcoach = new_workwithcoach,
     new_trackmileage = new_trackmileage,
     new_isDeleted = new_isDeleted,
-    new_eventid = new_eventid
+    new_eventid = new_eventid,
+    new_durseconds = new_durseconds
 }>
 
 <!--- Include optional numeric arguments if numeric --->
@@ -37,7 +38,7 @@
     <cfset eventArguments["new_eventStartTime"] = new_eventStartTime>
  <cfset eventArguments["new_eventStopTime"] = new_eventStopTime>
  
-    <cfset eventArguments["new_eventStopTime"] = new_eventStopTime>
+    <cfset eventArguments["new_durseconds"] = new_durseconds>
  
 <cfoutput>#new_eventStopTime#</cfoutput>
 <!--- Call the function with filtered arguments --->
