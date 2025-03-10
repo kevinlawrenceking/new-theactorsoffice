@@ -1080,7 +1080,7 @@ audzip = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_aud
         <cfset arguments.eventStopTime = ListFirst(arguments.eventStopTime, ".")>
     </cfif>
 
-    <cfquery >
+    <cfquery name="resultQuery" result="queryResult">
         UPDATE events
         SET eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">
         <cfif len(arguments.eventStart)>
@@ -1094,6 +1094,10 @@ audzip = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_aud
         </cfif>
         WHERE eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">;
     </cfquery>
+
+
+<!--- Dump the query execution details --->
+<cfdump var="#queryResult#" label="Query Debug"><cfabort>
 </cffunction>
 
 
