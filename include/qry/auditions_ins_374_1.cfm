@@ -39,7 +39,7 @@
  
     <cfset eventArguments["new_eventStopTime"] = new_eventStopTime>
  
-
+<cfoutput>#new_eventStopTime#</cfoutput><cfabort>
 <!--- Call the function with filtered arguments --->
 <cfset eventService.UPDevents_24557(argumentCollection=eventArguments)>
 
