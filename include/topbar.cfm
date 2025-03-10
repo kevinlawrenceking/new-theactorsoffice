@@ -11,6 +11,7 @@
                 <!--- Autocomplete Input Field --->
                 <input 
                     type="text" 
+                    required="required" 
                     class="form-control" 
                     name="topsearch" 
                     id="autocomplete" 
