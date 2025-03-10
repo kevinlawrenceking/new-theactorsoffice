@@ -1074,7 +1074,7 @@ audzip = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_aud
         workwithcoach = <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.new_workwithcoach#">
     WHERE
         eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">;
-</cfquery>
+</cfquery><Cfabort>
 
 </cffunction> 
 
