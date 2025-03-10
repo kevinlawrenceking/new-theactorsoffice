@@ -14,6 +14,17 @@
 
 <cfinclude template="/include/qry/dateformats_463_1.cfm"/>
 
+
+<cfif #ctaction# is "includeaction">
+    <cfquery  name="update">
+        UPDATE actionusers_tbl
+        SET isdeleted = 0
+
+        WHERE id = #new_id#
+    </cfquery>
+    <cfset ctaction="view" />
+</cfif>
+
 <cfif #ctaction# is "deleteitem">
 
   <cfinclude template="/include/qry/deleteTeam.cfm"/>
