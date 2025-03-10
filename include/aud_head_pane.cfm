@@ -55,16 +55,16 @@
             </div>
         </div>
     </div>
-</cfoutput>
+ 
 
 <cfset i=0 />
     <h4 class="p-1 d-flex">My Headshots
 
     </h4>
-<cfoutput>
+ 
     <div class="col-md-12 col-lg-12 col-xl-12 p-1 d-flex">
         <center>
-<cfoutput>
+ 
     <a data-bs-remote="true" 
        data-bs-toggle="modal" 
        data-bs-target="##remoteselectheadshot" 
@@ -78,65 +78,67 @@
     </a>
 </cfoutput>
         </center>
-    </div>
-</cfoutput>
 
-<div class="row pt-3 pb-3">
+ 
+
+
+
+
+  <div class="container">
+    <!--- Start of card grid container --->
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-3">
+      <!--- Loop through the myteam query --->
+
+
     <cfloop query="headshots">
+
+
+
+     <cfset card_image=session.userMediaUrl & "/" & headshots.mediaFileName/>
+        <cfset card_name=headshots.medianame/>
+
+        <cfset currentid=headshots.mediaid/>
+
         <cfoutput>
-            <script>
-                $(document).ready(function() {
-                    $("##remoteDelete#headshots.mediaid#").on("show.bs.modal", function(event) {
-                        <!--- Load delete media modal content --->
-                        $(this).find(".modal-body").load("/include/remoteDeleteheadshots_auditions_xref.cfm?mediaid=#headshots.mediaid#&secid=196&audprojectid=#audprojectid#");
-                    });
-                });
-            </script>
+          <script>
+            $(document).ready(function () {
+              $("##remoteDeleteaudmedia#currentid#").on("show.bs.modal", function (event) {
+                <!--- Load the HTML for deleting a headshot into the modal body --->
 
-            <div id="remoteDelete#headshots.mediaid#" class="modal fade" tabindex="-1" role="dialog" >
+                $(this)
+                  .find(".modal-body")
+                  .load("/include/remoteDeleteaudmedia.cfm?mediaid=#currentid#&new_secid=999");
+              });
+            });
+          </script>
 
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header" style="background-color: red;">
-                            <h4 class="modal-title">Delete Media</h4>
-                            <button type="button" class="close" data-bs-dismiss="modal" >
-<i class="mdi mdi-close-thick"></i></button>
-                        </div>
-                        <div class="modal-body"></div>
-                    </div>
+          <div id="remoteDeleteaudmedia#currentid#" class="modal fade" tabindex="-1" role="dialog">
+
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header" style="background-color: red;">
+                  <h4 class="modal-title">Delete Headshot</h4>
+                  <button type="button" class="close" data-bs-dismiss="modal">
+                    <i class="mdi mdi-close-thick"></i>
+                  </button>
                 </div>
+                <div class="modal-body"></div>
+              </div>
             </div>
+          </div>
         </cfoutput>
 
-        <cfoutput>
-            <div class="col-xl-2 col-lg-4 col-md-6 col-sm-12">
-        <div class="p-3 text-center">
-            <a href="#session.userMediaUrl#/#headshots.mediaFileName#?ver=#rand()#" data-toggle="lightbox" data-gallery="example-gallery">
-                <img id="selected-headshot"
-                     src="#session.userMediaUrl#/#headshots.mediaFileName#?ver=#rand()#" 
-                     class="rounded img-thumbnail img-fluid"
-                     style="max-width:120px; height:auto;"
-                     alt="#headshots.medianame#">
-            </a>
-        </div>
-        
-        <!-- Delete Option -->
-        <a class="pt-0 text-center" data-bs-remote="true" data-bs-toggle="modal" data-bs-target="##remoteDelete#headshots.mediaid#" title="Delete media">
-            <p class="p-0">
-                #headshots.medianame# <i class="mdi mdi-trash-can-outline"></i>
-            </p>
-        </a>
+        <cfinclude template="/include/card_photo.cfm"/>
 
-        <!-- Download Button -->
-        <center>
-            <a class="btn-lg" href="/include/download_media.cfm?mediaid=#headshots.mediaid#">
-                <i class="mdi mdi-cloud-download-outline"></i>
-            </a>
-        </center>
-    </div>
-</cfoutput>
-    </cfloop>
+      </cfloop>
+
+
 </div>
+
+
+ </div>
+  </div>
+
 
 <script>
 $(document).ready(function() {
@@ -154,7 +156,6 @@ $(document).ready(function() {
         updateSelectedHeadshot(mediaid, audprojectid);
     });
 });
-
 
 function updateSelectedHeadshot(mediaid, audprojectid) {
     console.log("Updating headshot for:", mediaid, audprojectid);
@@ -196,3 +197,6 @@ function reloadHeadshotGallery(audprojectid) {
 }
 </script>
 
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
