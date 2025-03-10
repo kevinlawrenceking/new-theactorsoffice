@@ -69,6 +69,7 @@ workwithcoach: #new_workwithcoach#<BR>
 <cfabort>
 </cfif>
 
+
 <cfinclude template="/include/qry/auditions_ins_374_1.cfm" />
 
 <cfoutput>
