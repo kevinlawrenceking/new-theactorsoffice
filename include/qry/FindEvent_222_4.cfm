@@ -17,6 +17,6 @@
     new_eventid=new_eventid,
     new_eventStart=new_eventstart,
     new_eventStartTime=new_eventStartTime,
-    new_eventStopTime=new_eventStopTime
+    new_durseconds=new_durseconds
 )>
-<cfoutput>#new_eventStopTime#</cfoutput>here<cfabort>
+<cfoutput>#new_eventStopTime#</cfoutput> 
