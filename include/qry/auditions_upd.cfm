@@ -65,7 +65,7 @@ workwithcoach: #new_workwithcoach#<BR>
     
     new_eventStopTime: #new_eventStopTime#<BR>
     
-</cfoutput><Cfabort>
+</cfoutput>
 
 </cfif>
 
