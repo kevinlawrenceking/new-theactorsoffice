@@ -39,7 +39,7 @@
  
     <cfset eventArguments["new_durseconds"] = new_durseconds>
  
-<cfoutput>were now here: #new_durseconds#</cfoutput><cfabort>
+<cfoutput>were now here: #new_durseconds#</cfoutput>
 <!--- Call the function with filtered arguments --->
 <cfset eventService.UPDevents_24557(argumentCollection=eventArguments)>
 
