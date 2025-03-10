@@ -1097,7 +1097,7 @@ audzip = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_aud
 
 
 <!--- Dump the query execution details --->
-<cfdump var="#queryResult#" label="Query Debug"><cfabort>
+<cfdump var="#queryResult#" label="Query Debug">
 </cffunction>
 
 
