@@ -8,7 +8,7 @@
     new_audLocation=new_audLocation,
     new_eventStart=new_eventStart,
     new_eventStartTime=new_eventStartTime,
-    new_eventStopTime=new_eventStopTime,
+    new_durseconds=new_durseconds,
     new_audplatformid=new_audplatformid,
     new_audStepID=new_audStepID,
     new_parkingDetails=new_parkingDetails,

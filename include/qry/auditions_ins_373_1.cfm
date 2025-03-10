@@ -11,7 +11,7 @@
 
 <!--- Default handling for times --->
 <cfif NOT len(trim(new_eventStartTime))><cfset new_eventStartTime = "00:00:00"></cfif>
-<cfif NOT len(trim(new_eventStopTime))><cfset new_eventStopTime = "00:00:00"></cfif>
+<cfif NOT len(trim(new_durseconds))><cfset new_durseconds = "0"></cfif>
 
 <cfset new_eventid = eventService.INSevents_24555(
     new_userid = new_userid,
@@ -20,7 +20,7 @@
     new_audLocation = new_audLocation,
     new_eventStart = new_eventStart,
     new_eventStartTime = new_eventStartTime,
-    new_eventStopTime = new_eventStopTime,
+    new_durseconds = new_durseconds,
     new_audplatformid = new_audplatformid,
     new_audStepID = new_audStepID,
     new_parkingDetails = new_parkingDetails,

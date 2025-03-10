@@ -21,8 +21,8 @@
 <cfif len(trim(new_eventStartTime))>
     <cfset dynamicArgs.new_eventStartTime = new_eventStartTime>
 </cfif>
-<cfif len(trim(new_eventStopTime))>
-    <cfset dynamicArgs.new_eventStopTime = new_eventStopTime>
+<cfif len(trim(new_durseconds))>
+    <cfset dynamicArgs.new_durseconds = new_durseconds>
 </cfif>
 <cfif isNumeric(new_audplatformid)>
     <cfset dynamicArgs.new_audplatformid = new_audplatformid>
