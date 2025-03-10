@@ -1051,7 +1051,7 @@ audzip = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_aud
     <cfargument name="new_durseconds" type="numeric" required="true">
 
     <cfquery name="result" result="queryResult">
-        UPDATE events_tbl
+        UPDATE events
         SET
             userid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_userid#">,
             audRoleID = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audRoleID#">,
