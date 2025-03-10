@@ -142,7 +142,8 @@
 
                       <form action="/app/myaccount/?t7=1&target_id_system=#mysystems.systemid#">
                         <cfoutput>
-                          <input type="hidden" name="new_pgid" value="125" />
+                      
+                          <input type="hidden" name="t7" value="1" />
                             <input type="hidden" name="ctaction" value="includeaction" />
                               <input type="hidden" name="target_id_system" value="#mysystems.systemid#" />
                               </cfoutput>
