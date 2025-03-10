@@ -79,7 +79,7 @@ workwithcoach: #new_workwithcoach#<BR>
         <cfset eventStartTime="#new_eventStartTime#" />
 
         <cfset eventStopTime="#new_eventStopTime#" />
-eventstop: #new_eventStopTime#<Cfabort>
+eventstop: #new_eventStopTime#
     </cfoutput>
 
 <cfinclude template="/include/qry/FInd_374_2.cfm" />  
