@@ -4,4 +4,4 @@
     eventStart=eventStart,
     eventStartTime=eventStartTime,
     eventStopTime=eventStopTime
-)><cfoutput>#eventStopTime#</cfoutput><cfabort>S
+)>

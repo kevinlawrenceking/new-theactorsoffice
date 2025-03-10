@@ -1067,13 +1067,20 @@ audzip = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_aud
         WHERE
             eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">;
     </cfquery>
-</cffunction> <cffunction output="false" name="UPDevents_24558" access="public" returntype="void">
+</cffunction> 
+
+<cffunction output="false" name="UPDevents_24558" access="public" returntype="void">
     <cfargument name="new_eventid" type="numeric" required="true">
     <cfargument name="eventStart" type="date" required="false" default="">
     <cfargument name="eventStartTime" type="string" required="false" default="">
     <cfargument name="eventStopTime" type="string" required="false" default="">
 
-<cfquery>
+    <!--- Ensure eventStopTime doesn't contain milliseconds --->
+    <cfif len(arguments.eventStopTime)>
+        <cfset arguments.eventStopTime = ListFirst(arguments.eventStopTime, ".")>
+    </cfif>
+
+    <cfquery datasource="yourDatasource">
         UPDATE events
         SET eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">
         <cfif len(arguments.eventStart)>
@@ -1087,7 +1094,10 @@ audzip = <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#trim(arguments.new_aud
         </cfif>
         WHERE eventid = <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_eventid#">;
     </cfquery>
-</cffunction><cffunction output="false" name="SELevents_24597" access="public" returntype="query">
+</cffunction>
+
+
+<cffunction output="false" name="SELevents_24597" access="public" returntype="query">
     <cfargument name="audroleid" type="numeric" required="true">
     <cfargument name="focusid" type="numeric" default="0">
 
