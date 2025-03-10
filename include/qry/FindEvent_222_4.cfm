@@ -19,4 +19,4 @@
     new_eventStartTime=new_eventStartTime,
     new_eventStopTime=new_eventStopTime
 )>
-<cfoutput>#new_eventStopTime#</cfoutput>
+<cfoutput>#new_eventStopTime#</cfoutput>here
