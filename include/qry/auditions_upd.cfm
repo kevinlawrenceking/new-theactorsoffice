@@ -82,5 +82,4 @@ workwithcoach: #new_workwithcoach#<BR>
 eventstop: #new_eventStopTime#
     </cfoutput>
 
-<cfinclude template="/include/qry/FInd_374_2.cfm" />  
 

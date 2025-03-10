@@ -3,5 +3,6 @@
     new_eventid=new_eventid,
     eventStart=eventStart,
     eventStartTime=eventStartTime,
-    eventStopTime=eventStopTime
+    eventStopTime=eventStopTime,
+    durmins=durmins
 )>

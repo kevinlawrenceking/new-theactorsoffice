@@ -35,7 +35,7 @@
  
  
     <cfset eventArguments["new_eventStartTime"] = new_eventStartTime>
- 
+ <cfset eventArguments["new_eventStopTime"] = new_eventStopTime>
  
     <cfset eventArguments["new_eventStopTime"] = new_eventStopTime>
  
