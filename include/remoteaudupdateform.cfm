@@ -4,6 +4,7 @@
 <cfparam name="old_callbacktypeid" default="0" />
 <cfparam name="isdirect" default="0" />
 <cfparam name="valuetext" default="" />
+<cfparam name="new_durseconds" default="0" />
 
 <!--- Include necessary queries and data lookups --->
 <cfinclude template="/include/qry/durations.cfm" />
