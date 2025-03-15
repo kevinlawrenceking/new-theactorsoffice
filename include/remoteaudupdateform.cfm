@@ -74,7 +74,7 @@
 <cfelse>
     <cfset new_durhours = aud_det.new_durhours />
 </cfif>
-<cfoutput><h2>dur hours: #new_durhours#</h2></cfoutput><cfabort>
+
 <!--- Include a query to find durations --->
 <cfinclude template="/include/qry/findd_221_10.cfm" />
 <cfif findd.recordcount eq 1>
@@ -182,7 +182,7 @@
     <!--- Duration --->
     <div class="row">
       <div class="form-group col-md-6">
-          <label for="new_durid">Duration</label>
+          <label for="new_durid">Duration<cfoutput><h2>dur hours: #new_durhours#</h2></cfoutput><cfabort></label>
           <select class="form-control" name="new_durid" id="new_durid">
               <cfoutput query="durations">
                   <option value="#durations.durid#"
