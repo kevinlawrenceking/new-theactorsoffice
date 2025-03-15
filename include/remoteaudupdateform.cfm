@@ -182,7 +182,7 @@
     <!--- Duration --->
     <div class="row">
       <div class="form-group col-md-6">
-          <label for="new_durid">Duration<cfoutput><h2>dur hours: #new_durhours# new_dur_id: #new_dur_id#</h2></cfoutput><cfabort></label>
+          <label for="new_durid">Duration<cfoutput><h2>dur hours: #new_durhours# new_dur_id: #new_durid#</h2></cfoutput><cfabort></label>
           <select class="form-control" name="new_durid" id="new_durid">
               <cfoutput query="durations">
                   <option value="#durations.durid#"
