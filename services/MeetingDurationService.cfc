@@ -16,7 +16,7 @@
 <cfquery name="result">
         SELECT durid AS new_durid
         FROM mtgdurations
-        WHERE durhours = <cfqueryparam value="#arguments.new_durhours#" cfsqltype="CF_SQL_INTEGER">
+        WHERE durhours = <cfqueryparam value="#arguments.new_durhours#" cfsqltype="CF_SQL_decimal">
     </cfquery>
 
 <cfreturn result>
