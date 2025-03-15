@@ -74,7 +74,7 @@
 <cfelse>
     <cfset new_durhours = aud_det.new_durhours />
 </cfif>
-
+<cfoutput><h2>dur hours</h2></cfoutput><cfabort>
 <!--- Include a query to find durations --->
 <cfinclude template="/include/qry/findd_221_10.cfm" />
 <cfif findd.recordcount eq 1>
