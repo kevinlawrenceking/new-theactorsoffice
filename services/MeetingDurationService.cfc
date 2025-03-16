@@ -5,7 +5,7 @@
     <cfquery name="result">
         SELECT durid AS new_durid
         FROM mtgdurations
-        WHERE durhours = <cfqueryparam value="#DecimalFormat(arguments.new_durhours, '0.######')#" cfsqltype="CF_SQL_DOUBLE">
+        WHERE durhours = <cfqueryparam value="#DecimalFormat(arguments.new_durhours)#" cfsqltype="CF_SQL_DOUBLE">
     </cfquery>
 
     <cfreturn result>
@@ -18,7 +18,7 @@
 <cfquery name="result">
         SELECT durid AS new_durid
         FROM mtgdurations
-        WHERE durhours = <cfqueryparam value="#DecimalFormat(arguments.new_durhours, '0.######')#" cfsqltype="CF_SQL_DOUBLE">
+        WHERE durhours = <cfqueryparam value="#DecimalFormat(arguments.new_durhours)#" cfsqltype="CF_SQL_DOUBLE">
     </cfquery>
 
 <cfreturn result>
