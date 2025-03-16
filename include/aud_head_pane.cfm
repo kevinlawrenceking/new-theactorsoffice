@@ -169,11 +169,8 @@ function updateSelectedHeadshot(mediaid, audprojectid) {
             if (jsonResponse.status === "success") {
                 alert(jsonResponse.message);
 
-                // Reload the headshot gallery dynamically
-                reloadHeadshotGallery(audprojectid);
-
-                // Hide the modal after selection
-                $("#remoteselectheadshot").modal("hide");
+                // Refresh the page to show the newly added headshot
+                window.location.href = "/app/audition/?audprojectid=" + audprojectid + "&secid=177";
             } else {
                 alert("Error: " + jsonResponse.message);
             }
@@ -183,6 +180,7 @@ function updateSelectedHeadshot(mediaid, audprojectid) {
         alert("Error updating headshot. Check console.");
     });
 }
+
 
 // Function to reload headshot gallery after update
 function reloadHeadshotGallery(audprojectid) {
