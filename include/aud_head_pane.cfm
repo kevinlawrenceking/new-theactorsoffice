@@ -92,8 +92,6 @@
 
     <cfloop query="headshots">
 
-
-
      <cfset card_image=session.userMediaUrl & "/" & headshots.mediaFileName/>
         <cfset card_name=headshots.medianame/>
 
