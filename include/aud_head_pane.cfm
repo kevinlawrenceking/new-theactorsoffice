@@ -187,14 +187,19 @@ function updateSelectedHeadshot(mediaid, audprojectid) {
 // Function to reload headshot gallery after update
 function reloadHeadshotGallery(audprojectid) {
     console.log("Reloading headshot gallery for audprojectid:", audprojectid);
-
-    $.get("/include/load_headshot.cfm", { audprojectid: audprojectid }, function(response) {
-        $("#headshotGalleryContainer").html(response);
-    }).fail(function(jqXHR, textStatus, errorThrown) {
+    
+    // Append a timestamp to bypass caching
+    $.get("/include/load_headshot_gallery.cfm", 
+        { audprojectid: audprojectid, t: new Date().getTime() }, 
+        function(response) {
+            $("#headshotGalleryContainer").html(response);
+        }
+    ).fail(function(jqXHR, textStatus, errorThrown) {
         console.error("AJAX error:", textStatus, errorThrown);
         alert("Error loading updated headshot gallery.");
     });
 }
+
 </script>
 
 
