@@ -12,7 +12,7 @@
 <cfparam name="secid" default="176" />
 
 <!--- Consolidate submitsitefix into the main update DONE --->
-<cfinclude template="/include/qry/submitsitefix_368_1.cfm" />
+<cfinclude template="/include/qry/p.cfm" />
 
 <!--- Fetch project details --->
 <cfinclude template="/include/qry/projectDetails_368_2.cfm" />

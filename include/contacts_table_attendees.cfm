@@ -1,4 +1,5 @@
 <cfset contactService = createObject("component", "services.ContactService")>
+<Cfoutput>eventid: #eventid#</cfoutput><Cfabort>
 <cfset qFiltered = contactService.getFilteredContactsByEvent(
     contacts_table = contacts_table,
     userid = userid,
