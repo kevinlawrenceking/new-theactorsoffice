@@ -2,21 +2,23 @@
 <cffunction output="false" name="SELmtgdurations" access="public" returntype="query">
     <cfargument name="new_durhours" type="numeric" required="true">
 
-<cfquery name="result">
+    <cfquery name="result">
         SELECT durid AS new_durid
         FROM mtgdurations
-        WHERE durhours = <cfqueryparam value="#arguments.new_durhours#" cfsqltype="CF_SQL_decimal">
+        WHERE durhours = <cfqueryparam value="#DecimalFormat(arguments.new_durhours, '0.######')#" cfsqltype="CF_SQL_DOUBLE">
     </cfquery>
 
-<cfreturn result>
+    <cfreturn result>
 </cffunction>
+
+
 <cffunction output="false" name="SELmtgdurations_24493" access="public" returntype="query">
     <cfargument name="new_durhours" type="numeric" required="true">
 
 <cfquery name="result">
         SELECT durid AS new_durid
         FROM mtgdurations
-        WHERE durhours = <cfqueryparam value="#arguments.new_durhours#" cfsqltype="CF_SQL_decimal">
+        WHERE durhours = <cfqueryparam value="#DecimalFormat(arguments.new_durhours, '0.######')#" cfsqltype="CF_SQL_DOUBLE">
     </cfquery>
 
 <cfreturn result>
