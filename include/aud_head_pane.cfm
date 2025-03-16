@@ -107,7 +107,7 @@
 
                 $(this)
                   .find(".modal-body")
-                  .load("/include/remoteDeleteaudmedia.cfm?mediaid=#currentid#&new_secid=999");
+                  .load("/include/remoteDeleteaudmedia.cfm?mediaid=#currentid#&new_secid=196");
               });
             });
           </script>
@@ -170,7 +170,7 @@ function updateSelectedHeadshot(mediaid, audprojectid) {
                 alert(jsonResponse.message);
 
                 // Refresh the page to show the newly added headshot
-                window.location.href = "/app/audition/?audprojectid=" + audprojectid + "&secid=177";
+                window.location.href = "/app/audition/?audprojectid=" + audprojectid + "&secid=196";
             } else {
                 alert("Error: " + jsonResponse.message);
             }
