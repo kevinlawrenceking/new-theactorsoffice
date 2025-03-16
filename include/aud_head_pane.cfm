@@ -105,11 +105,11 @@
 
                 $(this)
                   .find(".modal-body")
-                  .load("/include/remoteDeleteaudmedia.cfm?mediaid=#currentid#&new_secid=196");
+                  .load("/include/remoteDeleteheadshots_auditions_xref.cfm?mediaid=#currentid#&secid=196&audprojectid=#audprojectid#");
               });
             });
           </script>
-
+$(this).find(".modal-body").load("/include/remoteDeleteheadshots_auditions_xref.cfm?mediaid=166&secid=196&audprojectid=2814"
           <div id="remoteDeleteaudmedia#currentid#" class="modal fade" tabindex="-1" role="dialog">
 
             <div class="modal-dialog">
