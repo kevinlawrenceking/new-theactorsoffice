@@ -1,9 +1,7 @@
 
 <!---<CFINCLUDE template="/include/projdate_fix_user.cfm" /> --->
 
-    <cfquery >
-        CALL UpdateAudProjects();
-    </cfquery>
+
 <!--- Set default variables --->
 <cfparam name="focusid" default="" />
 <cfparam name="ctaction" default="" />
