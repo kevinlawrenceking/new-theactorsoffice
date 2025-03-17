@@ -1,4 +1,4 @@
-<cfset dbug="n" />
+<cfset dbug="y" />
 
 <!--- Set default value for idlist --->
 <cfparam name="idlist" default="0" />
@@ -29,7 +29,7 @@
 <cfparam name="all_expand" default="false" />
 <cfparam name="pgaction" default="view" />
 <cfparam name="systemID" default="0" />
-<cfset systemid eq new_systemtype />
+
 <!--- Include last updates template --->
 <cfinclude template="/include/qry/lastupdates.cfm" />
 
@@ -53,7 +53,7 @@
 
     <!--- Set new contact id --->
     <cfset new_contactid = BatchDetails.contactid />
-    <cfset new_systemtype = new_systemtype />
+    <cfset new_systemtype = form.new_systemtype />
     <Cfset new_suStartDate = dateFormat(Now(), 'yyyy-mm-dd') />
     <Cfset new_currentStartDate = dateFormat(Now(), 'yyyy-mm-dd') />
 
