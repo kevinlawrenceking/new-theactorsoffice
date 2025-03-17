@@ -3,7 +3,7 @@
 <cffunction name="updateEventData" access="public" returntype="void">
     <cftry>
         <cftransaction>
-            <cfquery datasource="your_datasource">
+            <cfquery >
                 --  Insert into eventcontactsxref (Avoid duplicates)
                 INSERT INTO eventcontactsxref (eventid, contactid)
                 SELECT DISTINCT e.eventid, c.contactid

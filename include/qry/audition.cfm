@@ -1,7 +1,9 @@
-
+<cfinclude template="/include/qry/submitsitefix_368_1.cfm" />
 <!---<CFINCLUDE template="/include/projdate_fix_user.cfm" /> --->
-<cfinclude template="/include/qry/updateEventData.cfm" />
 
+    <cfquery >
+        CALL UpdateAudProjects();
+    </cfquery>
 <!--- Set default variables --->
 <cfparam name="focusid" default="" />
 <cfparam name="ctaction" default="" />
@@ -9,8 +11,8 @@
 <cfparam name="eventid" default="0" />
 <cfparam name="secid" default="176" />
 
-<!--- Consolidate submitsitefix into the main update DONE --->
-<cfinclude template="/include/qry/p.cfm" />
+<!--- Consolidate submitsitefix into the main update DONE 
+<cfinclude template="/include/qry/submitsitefix_368_1.cfm" />--->
 
 <!--- Fetch project details --->
 <cfinclude template="/include/qry/projectDetails_368_2.cfm" />
