@@ -29,7 +29,7 @@
 <cfparam name="all_expand" default="false" />
 <cfparam name="pgaction" default="view" />
 <cfparam name="systemID" default="0" />
-
+<cfset systemid eq new_systemtype />
 <!--- Include last updates template --->
 <cfinclude template="/include/qry/lastupdates.cfm" />
 
