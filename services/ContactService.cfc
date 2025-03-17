@@ -703,9 +703,9 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
 <cffunction output="false" name="DETcontactdetails_24340" access="public" returntype="query">
     <cfargument name="idList" type="string" required="true">
 
-<cfif len(trim(arguments.idList)) eq 0 or arguments.idList eq "0">
+<cfif len(trim(arguments.idList)) neq 0 and arguments.idList neq "0">
 
-</cfif>
+
 
 <cfquery name="result">
         SELECT contactid, recordname
@@ -716,6 +716,7 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
     </cfquery>
 
 <cfreturn result>
+</cfif>
 </cffunction>
 
 <cffunction output="false" name="SELcontactdetails_24364" access="public" returntype="query">
