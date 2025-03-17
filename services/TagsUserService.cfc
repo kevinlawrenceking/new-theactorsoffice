@@ -130,7 +130,7 @@
 <cffunction output="false" name="SELtags_user_24341" access="public" returntype="query">
     <cfargument name="new_contactid" type="numeric" required="true">
 
-<cfquery name="result">
+<cfquery name="result" maxrows="1">
         SELECT d.contactid 
         FROM tags_user tu 
         INNER JOIN taousers u ON u.userid = tu.userid 
