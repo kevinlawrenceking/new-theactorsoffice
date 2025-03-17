@@ -1,5 +1,80 @@
 <cfcomponent displayname="EventService" hint="Handles operations for Event table">
 
+<cffunction name="updateEventData" access="public" returntype="void">
+    <cftry>
+        <cftransaction>
+            <cfquery datasource="your_datasource">
+                --  Insert into eventcontactsxref (Avoid duplicates)
+                INSERT INTO eventcontactsxref (eventid, contactid)
+                SELECT DISTINCT e.eventid, c.contactid
+                FROM audprojects p
+                INNER JOIN audcontacts_auditions_xref ax ON ax.audprojectid = p.audprojectid
+                INNER JOIN contactdetails c ON c.contactid = ax.contactid
+                INNER JOIN audroles r ON r.audprojectID = p.audprojectid
+                INNER JOIN events e ON e.audRoleID = r.audroleid
+                LEFT JOIN eventcontactsxref ecx ON ecx.eventid = e.eventid AND ecx.contactid = c.contactid
+                WHERE p.isdeleted = 0 
+                  AND c.isdeleted = 0 
+                  AND e.isdeleted = 0 
+                  AND r.isdeleted = 0 
+                  AND ecx.eventid IS NULL;
+
+                -- Update eventtitle in events when projname changes
+                UPDATE events_tbl e
+                INNER JOIN audroles r ON e.audRoleID = r.audroleid
+                INNER JOIN audprojects p ON r.audprojectid = p.audprojectid
+                SET e.eventtitle = p.projname
+                WHERE e.eventtitle <> p.projname;
+
+                -- Soft delete events where eventStart is NULL
+                UPDATE events_tbl
+                SET isdeleted = 1
+                WHERE isdeleted = 0
+                  AND eventStart IS NULL;
+
+                -- 4Delete orphaned records from eventcontactsxref (where eventid no longer exists)
+                DELETE FROM eventcontactsxref
+                WHERE eventid NOT IN (SELECT eventid FROM events);
+
+                -- Delete orphaned eventcontactsxref records when an event is deleted
+                DELETE FROM eventcontactsxref
+                WHERE eventid IN (SELECT eventid FROM events WHERE isdeleted = 1);
+
+                -- Update dateadded for contacts based on related events or system users
+                UPDATE contactdetails_tbl d
+                INNER JOIN (
+                    SELECT su.contactid, MIN(su.sustartdate) AS new_dateadded
+                    FROM fusystemusers su
+                    WHERE su.systemID IN (3,4)
+                    GROUP BY su.contactid
+
+                    UNION ALL
+
+                    SELECT e.contactid, MIN(e.eventstart) AS new_dateadded
+                    FROM events_tbl e
+                    INNER JOIN contactitems i ON i.contactid = e.contactid
+                    INNER JOIN tags_user tu ON (CONVERT(tu.tagname USING utf8) = i.valueText)
+                    WHERE e.eventstatus = 'Completed'
+                    AND e.eventtypename IN ('Meeting', 'Audition')
+                    AND tu.tagtype = 'C'
+                    GROUP BY e.contactid
+                ) sub ON d.contactid = sub.contactid
+                SET d.dateadded = LEAST(COALESCE(d.dateadded, sub.new_dateadded), sub.new_dateadded)
+                WHERE d.isdeleted = 0
+                AND d.dateadded IS NULL;
+            </cfquery>
+        </cftransaction>
+
+        <cfcatch type="any">
+            <cftransaction action="rollback">
+            <cfoutput>Error: #cfcatch.message#</cfoutput>
+        </cfcatch>
+    </cftry>
+</cffunction>
+
+
+
+
 <cffunction name="SELevents_24105" access="public" returntype="void" output="false">
     <cfargument name="new_eventid" type="numeric" required="true">
     <cfargument name="new_eventStart" type="date" required="false" default="">
