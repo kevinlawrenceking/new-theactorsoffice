@@ -33,9 +33,7 @@
     this.applicationTimeout = createTimeSpan(11, 1, 0, 0);
     this.sessionTimeout = createTimeSpan(0, 9, 20, 0);
     this.loginStorage = "session";
-    this.logPath = expandPath("error.log");
-    this.errorTemplate = "500.cfm";
-    this.errorTemplateNotFound = "404.cfm";
+
 
     application.baseMediaPath = "C:\home\theactorsoffice.com\media-" & this.datasource;
     application.baseMediaUrl = "/media-" & this.datasource;
