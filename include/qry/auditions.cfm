@@ -1,6 +1,6 @@
-<!--- ignore for now <CFINCLUDE template="/include/projdate_fix_user.cfm" /> --->
+<!--- ignore for now <CFINCLUDE template="/include/projdate_fix_user.cfm" /> ---><cfabort>
 <cfinclude template="/include/qry/updateEventData.cfm" />
-<cfabort>
+
 <cfparam name="sel_audcatid" default="%" />
 <cfparam name="SEL_AUDSTEPID" default="0" />
 
