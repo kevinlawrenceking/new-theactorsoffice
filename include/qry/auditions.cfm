@@ -1,4 +1,4 @@
-<!--- ignore for now <CFINCLUDE template="/include/projdate_fix_user.cfm" /> ---><cfabort>
+<!--- ignore for now <CFINCLUDE template="/include/projdate_fix_user.cfm" /> --->
 <cfinclude template="/include/qry/updateEventData.cfm" />
 
 <cfparam name="sel_audcatid" default="%" />

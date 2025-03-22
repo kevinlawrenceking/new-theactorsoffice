@@ -1,7 +1,7 @@
 <cfcomponent displayname="EventService" hint="Handles operations for Event table">
 
 <cffunction name="updateEventData" access="public" returntype="void">
-    <cftry>
+
         <cftransaction>
             <cfquery >
                 --  Insert into eventcontactsxref (Avoid duplicates)
@@ -65,11 +65,7 @@
             </cfquery>
         </cftransaction>
 
-        <cfcatch type="any">
-            <cftransaction action="rollback">
-            <cfoutput>Error: #cfcatch.message#</cfoutput>
-        </cfcatch>
-    </cftry>
+
 </cffunction>
 
 
