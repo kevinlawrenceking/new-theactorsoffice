@@ -11,7 +11,7 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item">
-                   <cfoutput> <a href="/app/#compDir#"></cfoutput>
+                    <a href="javascript:void(0);" onclick="history.back();">
                         <cfoutput>#compName#</cfoutput>
                     </a>
                 </li>
