@@ -83,7 +83,7 @@
 
     <!--- Include FindSystem template --->
     <cfinclude template="/include/qry/FindSystem_304_3.cfm" />
-<cfabort>
+
     <!--- Check if system is found --->
     <cfif #findsystem.recordcount# is "1">
         <cfset new_systemid = findsystem.systemid />
@@ -94,7 +94,7 @@
                 <p>new_systemid: #findsystem.systemid#</p>
             </cfoutput>
         </cfif>
-
+<cfabort>
         <!--- Include FindActive template --->
         <cfinclude template="/include/qry/FindActive_304_4.cfm" />
 
