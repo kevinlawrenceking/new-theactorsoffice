@@ -52,8 +52,8 @@ WHERE th.STATUS = 'Emailed' and th.uuid = '#uuid#'
                 
                     <script src="/app/assets/js/jquery.chained.js?version=1.4"></script>
                     
-                                <link href="/app/assets/css/app.min.css"  rel="stylesheet"
-                 type="text/css" id="app-style" />
+                     
+              <link href="/app/assets/css/app.min.css?ver=13.3.1.20.102243915958" rel="stylesheet"  type="text/css" id="app-style"/>
                 
                                 <link href="/app/assets/css/dragula.min.css"  type="text/css"  />
 
