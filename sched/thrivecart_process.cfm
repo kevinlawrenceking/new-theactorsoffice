@@ -54,8 +54,12 @@
         where id = #new_id#
     </cfquery>
 
-<cfmail from="support@theactorsoffice.com" to="#new_customerEmail#" bcc="kevinking7135@gmail.com" subject="#new_customerfirst#, set up your profile for The Actor's Office!" type="HTML">
-        <HTML>
+    <cfmail 
+    from="support@theactorsoffice.com" 
+    to="#new_customerEmail#"  bcc="kevinking7135@gmail.com"
+    subject="#new_customerfirst#, set up your profile for The Actor's Office!" 
+    type="HTML">
+<HTML>
 
         <head>
             <title>The Actor's Office</title>
@@ -92,7 +96,7 @@
 </body>
 
         </HTML>
-    </cfmail>
+</cfmail>
 
     <cfquery result="result"  name="update" datasource="#dsn#">
         UPDATE thrivecart
