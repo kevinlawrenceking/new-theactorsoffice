@@ -1,4 +1,4 @@
-<cfset dbug="n" />
+<cfset dbug="Y" />
 
 <!--- Set default value for idlist --->
 <cfparam name="idlist" default="0" />
@@ -83,7 +83,7 @@
 
     <!--- Include FindSystem template --->
     <cfinclude template="/include/qry/FindSystem_304_3.cfm" />
-
+<cfabort>
     <!--- Check if system is found --->
     <cfif #findsystem.recordcount# is "1">
         <cfset new_systemid = findsystem.systemid />
