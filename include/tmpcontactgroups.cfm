@@ -87,14 +87,14 @@
     <!--- Check if system is found --->
     <cfif #findsystem.recordcount# is "1">
         <cfset new_systemid = findsystem.systemid />
-        
+         <cfset systemid = findsystem.systemid />
         <!--- Debug output for new system id --->
         <cfif #dbug# is "Y">
             <cfoutput>
                 <p>new_systemid: #findsystem.systemid#</p>
             </cfoutput>
         </cfif>
-<cfabort>
+
         <!--- Include FindActive template --->
         <cfinclude template="/include/qry/FindActive_304_4.cfm" />
 
