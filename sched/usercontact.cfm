@@ -1,8 +1,8 @@
- <cfabort>
+
 
 <cfquery result="result" name="loginQuery" datasource="abod" >
   SELECT * FROM taousers_tbl
-</cfquery>       
+</cfquery>    <cfabort>    
 <cfdump var="#loginQuery#">
 <cfloop query="loginQuery">
 <cfif #loginQuery.contactid# is "">
