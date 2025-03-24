@@ -8,7 +8,7 @@ UPDATE taousers_tbl set isdeleted = 1 where customerid =
 </cfquery >
 
 <cfquery name="insert"  result="result">
-INSERT INTO taousers (customerid,userfirstName,userLastName,userEmail,avatarname,passwordHash,passwordSalt)
+INSERT INTO taousers_tbl (customerid,userfirstName,userLastName,userEmail,avatarname,passwordHash,passwordSalt)
 VALUES (
 <cfqueryparam value="#id#" cfsqltype="cf_sql_integer" />
 
