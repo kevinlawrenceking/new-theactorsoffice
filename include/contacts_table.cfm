@@ -1,5 +1,11 @@
 <!--- This ColdFusion page manages contact data display and interactions, including importing, exporting, and managing tags and systems. --->
 
+<style>
+table.dataTable tbody th,table.dataTable tbody td {
+    /* padding:0px 0px; */
+}
+</style>
+
 <div class="table-responsive" id="<cfoutput>#contacts_table#_container</cfoutput>">
     <table id="<cfoutput>#contacts_table#</cfoutput>" class="table display nowrap table-striped dataTable w-100 dtr-inline dt-checkboxes-select dt-responsive">
         <thead>
