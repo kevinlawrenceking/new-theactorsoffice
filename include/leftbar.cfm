@@ -20,13 +20,13 @@
                 <ul id="side-menu">
                 <li>
                     <div class="user-lg text-center">
-                        <a href="/app/image-upload/?ref_pgid=7" style="text-align:center;">
+                       <center> <a href="/app/image-upload/?ref_pgid=7" style="text-align:center;">
                             <cfoutput>
                                 <img src="#session.userAvatarUrl#?ver=#rand()#" alt="user-image" id="mobile" class="rounded-circle avatar-md text-center" />
                                 <br />
                                 <span class="pro-user-name ml-1 text-center">#avatarname#</span>
                             </cfoutput>
-                        </a>
+                        </a></center>
                     </div>
                 </li>
                 
