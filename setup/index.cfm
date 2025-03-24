@@ -59,7 +59,7 @@ WHERE th.STATUS = 'Emailed' and th.uuid = '#uuid#'
 
     </head>
 
-    <body class="loading" style="background-color: #406E8E;  font-family: 'Source Sans Pro', sans-serif;">
+    <body class="loading" style="background-color: white;  font-family: 'Source Sans Pro', sans-serif;">
 
         <div class="account-pages mt-5 mb-5">
             <div class="container">
