@@ -125,12 +125,19 @@ $(document).ready(function() {
     }
 ],
 
-        columnDefs: [{
-            targets: 0,
-            checkboxes: {
-                selectRow: true
-            }
-        }],
+       columnDefs: [
+    {
+        targets: 0,
+        checkboxes: {
+            selectRow: true
+        }
+    },
+    {
+        targets: [1, 2],
+        orderable: false
+    }
+],
+
         select: {
             style: 'multi'
         }
