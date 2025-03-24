@@ -7513,10 +7513,11 @@ contact-item i {
 /* Ensure image fills properly */
 .tao-card-photo-body img {
     width: 100%;
-    height: 100%;
+    height: auto;
     object-fit: cover;
     display: block;
 }
+
 
 /* Trash Icon (Fixed in Top-Left of Image) */
 .tao-card-photo-trash {
@@ -7696,14 +7697,15 @@ left: auto;
 /* Ensures text remains centered inside tao-card-small */
 .tao-card-small .essence-text {
     display: flex;
-    align-items: center; /* Vertical centering */
-    justify-content: center;
-    text-align: center;
-    width: 100%;
-    height: 100%;
+    align-items: center;         /* Vertical centering */
+    justify-content: center;     /* Horizontal centering */
     font-weight: bold;
     padding: 4px;
+    width: 100%;
+    text-align: center;
+    /* height: 100%; ← only include if parent has a known height */
 }
+
 
 
 /* Dynamically adjust font size based on length */
@@ -7724,7 +7726,7 @@ left: auto;
 /* Ensures the edit input matches the card size */
 .tao-card-small .edit-input {
     width: 100%;
-    height: 100%;
+
     font-size: inherit;
     text-align: center;
     padding: 2px 4px;
