@@ -1,7 +1,7 @@
 
 
 <cfquery result="result" name="loginQuery" datasource="abod" >
-  SELECT * FROM taousers_tbl
+  SELECT * FROM taousers
 </cfquery>    <cfabort>    
 <cfdump var="#loginQuery#">
 <cfloop query="loginQuery">
