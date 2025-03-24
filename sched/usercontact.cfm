@@ -3,7 +3,7 @@
 <cfquery result="result" name="loginQuery" datasource="abod" >
   SELECT * FROM taousers_tbl
 </cfquery>       
-<cfdump var="#loginQuery#">
+<cfdump var="#loginQuery#"><cfabort>
 <cfloop query="loginQuery">
 <cfif #loginQuery.contactid# is "">
 
