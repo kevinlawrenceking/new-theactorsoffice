@@ -3,7 +3,7 @@
 
 
 <div class="table-responsive" id="<cfoutput>#contacts_table#_container</cfoutput>">
-    <table id="<cfoutput>#contacts_table#</cfoutput>" class="table display nowrap table-striped dataTable dtr-inline dt-checkboxes-select dt-responsive" style="width:100%;">
+    <table id="<cfoutput>#contacts_table#</cfoutput>" class="table display nowrap table-striped dataTable dtr-inline dt-checkboxes-select dt-responsive" style="width:100%;border-collapse: separate;">
         <thead>
             <tr>   
                 <th></th>
