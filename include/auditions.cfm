@@ -319,7 +319,7 @@
   <Cfset card_delete=""/>
  
   <Cfset card_icon=results.aud_cat_icon/>
-  <cfif col6 eq "Booked" and results.isbooked eq "1">
+  <cfif col6 eq "Booked" >
 
     <Cfset card_top_ribbon="Booked"/>
     <Cfelse>
