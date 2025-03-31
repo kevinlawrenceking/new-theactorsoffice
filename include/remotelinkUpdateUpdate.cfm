@@ -21,7 +21,14 @@
 <cfelse>
     <cfset corrected_new_siteurl = new_siteurl />
 </cfif>
-
+<cfoutput>
+  new_id = new_id, 
+    userid = #userid#<BR>
+    new_sitename = #new_sitename#<BR>
+    new_siteurl = #new_siteurl# <BR>
+    new_iscustom = #new_iscustom#<BR>
+    deletelink = #deletelink#<BR>
+    </cfoutput><cfabort>
 <!--- Call the update function from SiteLinksService --->
 <cfset siteLinksService.updateSiteLink(
     new_id = new_id,
