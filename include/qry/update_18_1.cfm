@@ -1,6 +1,6 @@
 <cfset eventService = createObject("component", "services.EventService")>
 <cfif NOT isDate(endRecur)>
-    <cfset endRecur = JavaCast("null", "")>
+    <cfset endRecur = "">
 </cfif>
 
 <cfset eventService.UPDevents_23733(
