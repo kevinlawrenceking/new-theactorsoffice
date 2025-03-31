@@ -131,7 +131,7 @@
                         </cfoutput>
 
                         <div class="form-group col-md-6">
-                            <label for="new_eventStopTime"><cfoutput>#durid#</cfoutput>Duration</label>
+                            <label for="new_eventStopTime">Duration</label>
                             <select class="form-control" name="new_durid" autocomplete="off" id="new_durid">
                                 <cfoutput query="durations">
                                     <option value="#durations.durid#" <cfif #durations.durid# is "#durid#"> selected </cfif> >#durations.durname#</option>
