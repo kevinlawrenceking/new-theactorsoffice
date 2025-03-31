@@ -57,9 +57,9 @@
         </cfif>
     <cfelse>
         <cfinclude template="/include/qry/add_14_6.cfm" />
-        <cfset currentid = result.generated_key />
-        <cfset contactid = result.generated_key />
-        <cfset new_contactid = result.generated_key />
+        <cfset currentid =newcontactid />
+        <cfset contactid = newcontactid />
+        <cfset new_contactid = newcontactid />
         <cfset select_userid = userid />
         <cfset select_contactid = currentid />
         <cfinclude template="/include/folder_setup.cfm" />
