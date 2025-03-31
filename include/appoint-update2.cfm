@@ -32,7 +32,7 @@
     </cfoutput>
 
 </cfif>
-
+<cfaborT>
 <!--- Clean event description and limit its length 
 <cfset cleanData = REReplace(eventDescription, "[^a-zA-Z0-9,.!? ]", "", "ALL")>
 <cfset eventDescription = Left(cleanData, 5000)>--->
