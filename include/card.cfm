@@ -51,7 +51,9 @@
 
               <!--- Show Year if Calendar Type --->
               <cfif card_image_type eq "calendar">
-                <div class="calendar-year">#DateFormat('5/1/2025', 'yyyy')#</div>
+              <cfif isdefined('cardyear')>
+                <div class="calendar-year">#cardYear#</div>
+                </cfif>
               </cfif>
             </div>
           </div>
