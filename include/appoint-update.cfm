@@ -6,7 +6,7 @@
 <cfinclude template="/include/qry/durations.cfm" />
 <cfinclude template="/include/qry/relationships_13_1.cfm" />
 <cfinclude template="/include/qry/eventtypes_user_443_2.cfm" />
-
+<cfset current_dur_id = eventdetails.durid />
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const hiddenDiv = document.getElementById("hidden_div");
@@ -38,6 +38,8 @@
         });
     });
 </script>
+
+
 
 <div class="row">
     <div class="col-xl-6 col-lg-8 col-md-12">
@@ -134,7 +136,7 @@
                             <label for="new_eventStopTime">Duration</label>
                             <select class="form-control" name="new_durid" autocomplete="off" id="new_durid">
                                 <cfoutput query="durations">
-                                    <option value="#durations.durid#" <cfif #durations.durid# is "#durid#"> selected </cfif> >#durations.durname#</option>
+                                    <option value="#durations.durid#" <cfif #durations.durid# is "#current_dur_id#"> selected </cfif> >#durations.durname#</option>
                                 </cfoutput>
                             </select>
                         </div>

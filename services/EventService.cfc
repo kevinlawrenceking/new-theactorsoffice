@@ -807,24 +807,45 @@ WHERE
     <cfargument name="eventid" type="numeric" required="true">
 
 <cfquery name="result" >
-            SELECT
-                e.eventID,
-                e.eventID AS recid,
-                e.eventTitle,
-                e.eventDescription,
-                e.eventLocation,
-                e.eventStatus,
-                e.eventCreation,
-                e.eventStart,
-                e.eventStop,
-                e.eventTypeName,
-                e.userid,
-                e.eventStartTime,
-                e.eventStopTime,
-                e.contactid,
-                e.dow,
-                e.endRecur
-            FROM events e
+           SELECT
+        e.eventID,
+        e.eventID AS recid,
+        e.eventTitle,
+        e.eventDescription,
+        e.eventLocation,
+        e.eventStatus,
+        e.eventCreation,
+        e.eventStart,
+        e.eventStop,
+        e.eventTypeName,
+        e.userid,
+        e.eventStartTime,
+        e.eventStopTime,
+        e.contactid,
+        e.dow,
+        e.endRecur,
+
+ 
+        CASE
+            WHEN e.eventStartTime IS NOT NULL AND e.eventStopTime IS NOT NULL
+            THEN TIME_TO_SEC(TIMEDIFF(e.eventStopTime, e.eventStartTime))
+            ELSE NULL
+        END AS eventDurationSeconds,
+
+  
+        d.durID,
+        d.durName
+
+    FROM events e
+
+ 
+    LEFT JOIN mtgdurations d ON
+        d.durHours IS NOT NULL AND
+        CASE
+            WHEN e.eventStartTime IS NOT NULL AND e.eventStopTime IS NOT NULL
+            THEN TIME_TO_SEC(TIMEDIFF(e.eventStopTime, e.eventStartTime))
+            ELSE NULL
+        END = ROUND(d.durHours * 3600)
             WHERE e.eventid = <cfqueryparam value="#arguments.eventid#" cfsqltype="CF_SQL_INTEGER">
         </cfquery>
 
