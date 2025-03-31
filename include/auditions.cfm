@@ -93,11 +93,6 @@
 
                     <cfset i=0>
 
-                    <form action="/app/auditions/">
-
-                        <cfoutput>
-                            <input type="hidden" name="view" value="#view#"/>
-                        </cfoutput>
 
                         <div class="row">
                             <div class="col-lg-4 pb-1">
@@ -110,6 +105,11 @@
                                 </a>
                             </div>
 
+                    <form action="/app/auditions/">
+
+                        <cfoutput>
+                            <input type="hidden" name="view" value="#view#"/>
+                        </cfoutput>
                             <div class="col-lg-4 pb-1">
                                 <select id="audstepid" name="sel_audstepid" class="form-control" onchange="this.form.submit()">
                                     <option value="%">All Statuses</option>
