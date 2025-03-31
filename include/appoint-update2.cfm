@@ -15,9 +15,15 @@
     <!--- Include duration calculation template --->
 <cfinclude template="/include/qry/durations.cfm" />
 
-    <cfset new_durseconds = durations.durseconds />
-    
-    <cfset eventStopTime = "#DateAdd("s","#eventStartTIme#","#new_durseconds#")#" />
+
+    <cfif #eventStartTime# is not "">
+    <cfinclude template="/include/qry/duration_467_1.cfm" />
+    <cfset new_durseconds = duration.durseconds />
+    <cfset new_eventStopTime = "#timeformat(DateAdd("s", "#new_durseconds#", "#eventStartTime#"), 'HH:MM:SS')#" />
+
+</cfif>
+
+
 
     <cfoutput>
         eventStartTIme: #timeformat(eventStartTime,'HH:MM:SS')#<BR>
@@ -25,7 +31,7 @@
         statement: SELECT ADDTIME("#timeformat('#eventStartTIme#','HH:MM:SS')#", "#new_durseconds#") as new_eventStopTime <BR>  
     </cfoutput>
     
-    <cfset new_eventStopTime="#timeformat(DateAdd("s","#new_durseconds#","#eventStartTIme#"),'HH:MM:SS')#" />
+    
     
     <cfoutput>
         new_eventStopTime: #new_eventStopTime#<BR>
