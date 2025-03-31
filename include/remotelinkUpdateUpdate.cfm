@@ -25,7 +25,7 @@
   new_id = #new_id#<BR> 
     userid = #userid#<BR>
     new_sitename = #new_sitename#<BR>
-    corrected_new_site_url = #corrected_new_site_url# <BR>
+    corrected_new_site_url = #corrected_new_siteurl# <BR>
     new_iscustom = #new_iscustom#<BR>
     deletelink = #deletelink#<BR>
     </cfoutput><cfabort>
