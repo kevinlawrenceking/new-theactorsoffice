@@ -51,9 +51,10 @@
 
               <!--- Show Year if Calendar Type --->
               <cfif card_image_type eq "calendar">
-              <cfif isdefined('cardyear')>
-                <div class="calendar-year">#cardYear#</div>
-                </cfif>
+          <cfif isDefined("cardYear")>
+    <div class="calendar-year">#cardYear#</div>
+</cfif>
+
               </cfif>
             </div>
           </div>

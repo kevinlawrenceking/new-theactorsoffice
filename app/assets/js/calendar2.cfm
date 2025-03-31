@@ -3,10 +3,10 @@
 <cfsavecontent variable="events_loop">
     <cfoutput>
     <cfloop query="events">
-    <cfset startRecur = DateFormat(events.col3, "yyyy-mm-dd")>
-    <cfif events.endrecur neq "">
-    <cfset endRecur = DateFormat(events.endrecur, "yyyy-mm-dd")>
-    </cfif>
+        <cfset startRecur = DateFormat(events.col3, "yyyy-mm-dd")>
+        <cfif events.endrecur neq "">
+            <cfset endRecur = DateFormat(events.endrecur, "yyyy-mm-dd")>
+        </cfif>
         {
             <cfif events.dow neq "">
                 groupId: "recurring#events.eventid#",
@@ -18,16 +18,17 @@
                     endRecur: "#endRecur#",
                 </cfif>
             </cfif>
-            title: "#replace(events.col1, "'", "\'", 'ALL')#",
+            title: "#JSStringFormat(events.col1)#",
             start: "#dateFormat(events.col3, "yyyy-mm-dd")# #timeformat(events.eventStartTime, 'HH:mm')#",
             end: "#dateFormat(events.eventstop, "yyyy-mm-dd")# #timeformat(events.eventstopTime, 'HH:mm')#",
             url: "<cfif events.audprojectid eq "">/app/appoint/?eventid=#events.eventid#&returnurl=calendar-appoint&rcontactid=0<cfelse>/app/audition/?focusid=#events.eventid#&audprojectid=#events.audprojectid#</cfif>",
-            description: "#replace(events.col5, "'", "\'", 'ALL')#",
+            description: "#JSStringFormat(events.col5)#",
             className: "colorkey-#events.id#"
         }<cfif events.currentrow lt events.recordcount>,</cfif>
     </cfloop>
     </cfoutput>
 </cfsavecontent>
+
 
 <script>
 ! function(l) {
