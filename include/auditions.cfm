@@ -11,24 +11,25 @@
 <cfparam name="sel_audcatid" default="%"/>
 
 <script>
-document.getElementById('remoteaudadd').addEventListener('show.bs.modal', function (event) {
-    const modal = this;
-    const cacheBuster = new Date().getTime();
-    const loadUrl = "/include/remoteaudadd.cfm?userid=#userid#&isdirect=0&_=" + cacheBuster;
+    $(document).ready(function () {
 
-    modal.querySelector('.modal-body').innerHTML = '<p>Loading...</p>';
+        $("#remoteaudadd").on("show.bs.modal", function (event) {
+            var $modal = $(this);
+            var cacheBuster = new Date().getTime(); 
+            var loadUrl = "/include/remoteaudadd.cfm?userid=<cfoutput>#userid#</cfoutput>&isdirect=0&_=" + cacheBuster;
 
-    fetch(loadUrl)
-        .then(response => response.text())
-        .then(html => {
-            modal.querySelector('.modal-body').innerHTML = html;
-            modal.querySelector('.modal-body').focus();
-        })
-        .catch(() => {
-            modal.querySelector('.modal-body').innerHTML = '<p>Error loading content. Please try again.</p>';
+            $modal.find(".modal-body").html("<p>Loading...</p>");
+
+           $modal.find(".modal-body").load(loadUrl, function (response, status, xhr) {
+                if (status === "error") {
+                     $modal.find(".modal-body").html("<p>Error loading content. Please try again.</p>");
+                } else {
+                 
+                    $modal.find(".modal-body").focus();
+                }
+            });
         });
-});
-
+    });
 </script>
 
 <div id="remoteaudadd" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" >
@@ -92,6 +93,11 @@ document.getElementById('remoteaudadd').addEventListener('show.bs.modal', functi
 
                     <cfset i=0>
 
+                    <form action="/app/auditions/">
+
+                        <cfoutput>
+                            <input type="hidden" name="view" value="#view#"/>
+                        </cfoutput>
 
                         <div class="row">
                             <div class="col-lg-4 pb-1">
@@ -104,11 +110,6 @@ document.getElementById('remoteaudadd').addEventListener('show.bs.modal', functi
                                 </a>
                             </div>
 
-                    <form action="/app/auditions/">
-
-                        <cfoutput>
-                            <input type="hidden" name="view" value="#view#"/>
-                        </cfoutput>
                             <div class="col-lg-4 pb-1">
                                 <select id="audstepid" name="sel_audstepid" class="form-control" onchange="this.form.submit()">
                                     <option value="%">All Statuses</option>
