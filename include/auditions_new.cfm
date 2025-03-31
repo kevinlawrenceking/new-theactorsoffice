@@ -248,12 +248,11 @@
     <cfset card_company = results.col4 />
 </cfif>
 
-  <cfset card_view_icon_yn = "N">
+ 
         <cfset card_delete_msg=""/>
         <cfset card_delete=""/>
         <cfset card_details="/app/audition/?audprojectid=" & results.recid/>
         <cfset card_email=""/>
-        <cfset card_name = ""/>
         <Cfset card_footer_text=""/>
         <cfset card_footer_type=""/>
         <cfset card_footer_yn="N"/>
@@ -271,8 +270,6 @@
         <cfset card_top_ribbon="Yes"/>
         <cfset ribbon_icon=""/>
         <cfset card_reminder=""/>
-        <cfset card_remove = ""/>
-        <cfset card_remove_msg = ""/>
         <cfset card_image_type = "calendar"/>
         <cfset card_image_yn = "Y"/>
         <cfset card_badge_yn = "N" />
