@@ -1,4 +1,4 @@
-<cfif isdefined('isexport') and isexport EQ "Y">
+<cfif isdefined('isexport') and isexport EQ "audtions">
 <Cfset session.projectlist = projectlist />
 <Cflocation url="/include/export_auditions.cfm" />
 </cfif>
@@ -247,7 +247,7 @@
 <cfelse>
     <cfset card_company = results.col4 />
 </cfif>
-<cfset cardYear = year(results.col1b) />
+<cfset cardYear = year(results.col1) />
 
   <cfset card_view_icon_yn = "N">
         <cfset card_delete_msg=""/>
