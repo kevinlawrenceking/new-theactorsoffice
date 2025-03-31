@@ -54,7 +54,7 @@ eventID: #eventid#<br>
 <!--- Clean event description and limit its length 
 <cfset cleanData = REReplace(eventDescription, "[^a-zA-Z0-9,.!? ]", "", "ALL")>
 <cfset eventDescription = Left(cleanData, 5000)>--->
-<cfaborT>
+
 <!--- Include update and delete templates for event --->
 <cfinclude template="/include/qry/update_18_1.cfm" /> 
 <cfinclude template="/include/qry/d_18_2.cfm" />
