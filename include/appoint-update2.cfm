@@ -43,9 +43,9 @@ eventTypeName: #eventTypeName#<br>
 eventDescription: #eventDescription#<br>
 eventLocation: #eventLocation#<br>
 eventStart: #eventStart#<br>
-eventStartTime: #eventStartTime#<br>
+ 
 dow: #dow#<br>
-eventStopTime: #eventStopTime#<br>
+eventStopTime: #new_eventStopTime#<br>
 endRecur: #endRecur#<br>
 eventID: #eventid#<br>
 </cfoutput>
