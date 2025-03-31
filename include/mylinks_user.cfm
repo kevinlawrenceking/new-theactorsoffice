@@ -55,7 +55,7 @@
 
                         <div class="col-md-12">
                             <a href="#mylinks_user.siteurl#" class="text-reset font-14 py-1 px-1 d-inline-block" target="#mylinks_user.sitename#" title="#mylinks_user.sitename#">
-                                <img class="site-icon" id="icon_#mylinks_user.id#" src="#application.retinaIcons14Url#/#mylinks_user.siteicon#" style="width:14px;" alt="#mylinks_user.sitename#" />
+                                <img class="site-icon" id="icon_#mylinks_user.id#" src="#application.retinaIcons14Url#/#mylinks_user.siteicon#" style="width:14px;" />
                                 #mylinks_user.sitename#
                             </a> 
 

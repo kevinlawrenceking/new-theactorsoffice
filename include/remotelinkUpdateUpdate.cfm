@@ -5,7 +5,7 @@
 <!--- Initialize the SiteLinksService --->
 <cfset siteLinksService = createObject("component", "services.SiteLinksService")>
 
-<!--- Update site link details with provided parameters --->
+<!--- Update site link details with provided parameters
 <cfset siteLinksService.updateSiteLinkDetails(
     new_id = new_id, 
     userid = userid, 
@@ -13,7 +13,7 @@
     new_siteurl = new_siteurl, 
     new_iscustom = new_iscustom, 
     deletelink = deletelink
-)>
+)> --->
 
 <!--- Prepare corrected URL --->
 <cfif left(new_siteurl, 8) neq "https://" and left(new_siteurl, 7) neq "http://">
