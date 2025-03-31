@@ -11,25 +11,28 @@
 <cfparam name="sel_audcatid" default="%"/>
 
 <script>
-    $(document).ready(function () {
+document.addEventListener("DOMContentLoaded", function () {
+    const modal = document.getElementById("remoteaudadd");
 
-        $("#remoteaudadd").on("show.bs.modal", function (event) {
-            var $modal = $(this);
-            var cacheBuster = new Date().getTime(); 
-            var loadUrl = "/include/remoteaudadd.cfm?userid=<cfoutput>#userid#</cfoutput>&isdirect=0&_=" + cacheBuster;
+    modal.addEventListener("show.bs.modal", function (event) {
+        const modalBody = modal.querySelector(".modal-body");
+        const cacheBuster = new Date().getTime();
+        const loadUrl = "/include/remoteaudadd.cfm?userid=#userid#&isdirect=0&_=" + cacheBuster;
 
-            $modal.find(".modal-body").html("<p>Loading...</p>");
+        modalBody.innerHTML = "<p>Loading...</p>";
 
-           $modal.find(".modal-body").load(loadUrl, function (response, status, xhr) {
-                if (status === "error") {
-                     $modal.find(".modal-body").html("<p>Error loading content. Please try again.</p>");
-                } else {
-                 
-                    $modal.find(".modal-body").focus();
-                }
+        fetch(loadUrl)
+            .then((res) => res.text())
+            .then((html) => {
+                modalBody.innerHTML = html;
+                modalBody.focus();
+            })
+            .catch(() => {
+                modalBody.innerHTML = "<p>Error loading content. Please try again.</p>";
             });
-        });
     });
+});
+
 </script>
 
 <div id="remoteaudadd" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" >
