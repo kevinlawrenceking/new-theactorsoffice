@@ -247,6 +247,7 @@
 <cfelse>
     <cfset card_company = results.col4 />
 </cfif>
+<cfset cardYear = year(results.col1b) />
 
   <cfset card_view_icon_yn = "N">
         <cfset card_delete_msg=""/>
@@ -319,7 +320,7 @@
   <Cfset card_delete=""/>
  
   <Cfset card_icon=results.aud_cat_icon/>
-  <cfif col6 eq "Booked" and results.isbooked eq "1">
+  <cfif results.isbooked eq "1">
 
     <Cfset card_top_ribbon="Booked"/>
     <Cfelse>
