@@ -10,18 +10,27 @@
 <cfparam name="isexport" default="N"/>
 <cfparam name="sel_audcatid" default="%"/>
 
+<script>
+    $(document).ready(function () {
 
+        $("#remoteaudadd").on("show.bs.modal", function (event) {
+            var $modal = $(this);
+            var cacheBuster = new Date().getTime(); 
+            var loadUrl = "/include/remoteaudadd.cfm?userid=<cfoutput>#userid#</cfoutput>&isdirect=0&_=" + cacheBuster;
 
-   <script>
-        $(document).ready(function() {
-            $("#remoteaudadd").on("show.bs.modal", function(event) {
-                
-                $(this).find(".modal-body").load("/include/remoteaudadd.cfm?userid=<cfoutput>#userid#</cfoutput>&isdirect=0");
+            $modal.find(".modal-body").html("<p>Loading...</p>");
+
+           $modal.find(".modal-body").load(loadUrl, function (response, status, xhr) {
+                if (status === "error") {
+                     $modal.find(".modal-body").html("<p>Error loading content. Please try again.</p>");
+                } else {
+                 
+                    $modal.find(".modal-body").focus();
+                }
             });
         });
-    </script>
-
-
+    });
+</script>
 
 <div id="remoteaudadd" class="modal fade" tabindex="-1" aria-labelledby="standard-modalLabel" >
 
@@ -238,7 +247,6 @@
 <cfelse>
     <cfset card_company = results.col4 />
 </cfif>
-<cfset cardYear = year(results.col1) />
 
   <cfset card_view_icon_yn = "N">
         <cfset card_delete_msg=""/>
@@ -311,7 +319,7 @@
   <Cfset card_delete=""/>
  
   <Cfset card_icon=results.aud_cat_icon/>
-  <cfif results.isbooked eq "1">
+  <cfif col6 eq "Booked" and results.isbooked eq "1">
 
     <Cfset card_top_ribbon="Booked"/>
     <Cfelse>
@@ -486,5 +494,4 @@
         </div>
         <!--- end col --->
     </div>
-
 
