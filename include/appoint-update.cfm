@@ -96,8 +96,9 @@
                                 </div>
                             </div>
                             <div class="form-group col-md-6">
-                                <label for="eventStart">#dateformat(eventdetails.eventstart,'YYYY-MM-DD')#"Start Date</label>
-                                <input class="form-control" id="eventStart" autocomplete="off" value="#dateformat(eventdetails.eventstart,'YYYY-MM-DD')#" name="eventStart" type="date" />
+                                <label for="eventStart">"Start Date</label> 
+
+                                <input class="form-control" id="eventStart" autocomplete="off" value="#dateformat(eventdetails.eventstart,'yyyy-MM-dd')#" name="eventStart" type="date" />
                                 <div class="invalid-feedback">
                                     Please choose a Start Date.
                                 </div>
