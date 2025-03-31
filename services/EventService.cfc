@@ -29,6 +29,13 @@
             WHERE e.eventtitle <> p.projname;
         </cfquery>
 
+        <cfquery>
+            UPDATE audprojects
+            SET projDate = DATE(audprojectdate)
+            WHERE projDate IS NULL
+            AND audprojectdate IS NOT NULL;
+        </cfquery>
+
         <!--- 3. Soft delete events with NULL start date --->
         <cfquery>
             UPDATE events_tbl
