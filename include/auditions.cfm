@@ -14,7 +14,7 @@
 
    <script>
         $(document).ready(function() {
-            $("##remoteaudadd").on("show.bs.modal", function(event) {
+            $("#remoteaudadd").on("show.bs.modal", function(event) {
                 
                 $(this).find(".modal-body").load("/include/remoteaudadd.cfm?userid=<cfoutput>#userid#</cfoutput>&isdirect=0");
             });
