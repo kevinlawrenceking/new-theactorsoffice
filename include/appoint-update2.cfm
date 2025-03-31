@@ -38,17 +38,17 @@
     </cfoutput>
 
 </cfif>
-
-    eventTypeName#
-    eventDescription#
-    eventLocation#
-    eventStart
-    eventStartTime = eventStartTime,
-    dow = dow,
-    eventStopTime = new_eventStopTime,
-    endRecur = endRecur,
-    eventid = eventid
-
+<cfoutput>
+eventTypeName: #eventTypeName#<br>
+eventDescription: #eventDescription#<br>
+eventLocation: #eventLocation#<br>
+eventStart: #eventStart#<br>
+eventStartTime: #eventStartTime#<br>
+dow: #dow#<br>
+eventStopTime: #eventStopTime#<br>
+endRecur: #endRecur#<br>
+eventID: #eventid#<br>
+</cfoutput>
 
 
 <!--- Clean event description and limit its length 
