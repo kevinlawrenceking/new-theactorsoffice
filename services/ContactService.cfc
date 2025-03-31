@@ -1114,7 +1114,7 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
         SELECT 
             contactitems.valueText 
         FROM 
-            new_development.contactitems 
+            contactitems 
         WHERE 
             contactitems.valueCategory = 'Tag'  
             AND contactitems.valueText <> 'My Team'
@@ -1205,7 +1205,7 @@ WHERE contactid = <cfqueryparam value="#arguments.contactid#" cfsqltype="cf_sql_
         SELECT 
             contactitems.valueText 
         FROM 
-            new_development.contactitems 
+           contactitems 
         WHERE 
             contactitems.valueCategory = 'Tag'  
             AND contactitems.valueText <> 'My Team'

@@ -61,7 +61,7 @@
           (
 select contactitems.contactid 
 FROM 
-            new_development.contactitems 
+            contactitems 
             inner  join contactdetails d on d.contactid = contactitems.contactid 
         WHERE 
             contactitems.valueCategory = 'Tag'  
