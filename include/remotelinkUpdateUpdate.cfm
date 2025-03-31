@@ -33,9 +33,9 @@
 <cfset siteLinksService.updateSiteLink(
     new_id = new_id,
     new_siteurl = corrected_new_siteurl,
-    new_sitename = (new_iscustom eq "1" ? new_sitename : ""), 
-    deletelink = (deletelink eq "1"),
-    ver = (ver neq "" ? ver : "")
+    new_sitename = new_sitename, 
+    deletelink = deletelink,
+    ver = ver
 )>
 
 <!--- Redirect to the target page --->
