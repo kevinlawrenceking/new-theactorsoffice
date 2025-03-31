@@ -28,7 +28,7 @@
     corrected_new_site_url = #corrected_new_siteurl# <BR>
     new_iscustom = #new_iscustom#<BR>
     deletelink = #deletelink#<BR>
-    </cfoutput><cfabort>
+    </cfoutput> 
 <!--- Call the update function from SiteLinksService --->
 <cfset siteLinksService.updateSiteLink(
     new_id = new_id,
