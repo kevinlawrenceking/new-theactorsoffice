@@ -58,7 +58,7 @@
 
 <!--- Process new contact if new_contactid is 0 and cdco is not empty --->
 <cfif #new_contactid# is "0" and #cdco# is not "">
-    <cfinclude template="/include/qry/insContactDetails" />
+    <cfinclude template="/include/qry/insContactDetails.cfm" />
     <cfset new_contactid = contactid />
     <cfinclude template="/include/qry/insert_28_8.cfm" />
     <cfinclude template="/include/qry/insert_28_3.cfm" />
