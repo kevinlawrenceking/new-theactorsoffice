@@ -13,17 +13,12 @@
 
   <Cfset application.dbug = "Y" />
 
-  <cfif host eq "app" or host eq "uat">
-    <cfset application.dsn="abo"/>
-    <cfset application.information_schema="actorsbusinessoffice"/>
-    <cfset application.suffix=IIF(host eq "app", "_1.5", "")/>
-    <cfset application.rev=current_ver/>
-  <cfelse>
+
     <cfset application.dsn="abod"/>
     <cfset application.information_schema="new_development"/>
     <cfset application.suffix=""/>
     <cfset application.rev=1/>
-  </cfif>
+ 
 
   <cfscript>
     this.mappings["/app"] = expandPath(".");
