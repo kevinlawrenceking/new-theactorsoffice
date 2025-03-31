@@ -247,7 +247,7 @@
 <cfelse>
     <cfset card_company = results.col4 />
 </cfif>
-<cfset cardYear = year(results.col1b) />
+<cfset cardYear = year(results.projdate) />
 
   <cfset card_view_icon_yn = "N">
         <cfset card_delete_msg=""/>
