@@ -553,15 +553,7 @@ WHERE
     AND n.notstartdate IS NOT NULL 
     AND DATE(n.notstartdate) <= <cfqueryparam value="#DateFormat(Now(),'yyyy-mm-dd')#" cfsqltype="CF_SQL_DATE"> 
     AND n.notstatus = <cfqueryparam value="Pending" cfsqltype="CF_SQL_VARCHAR">
-    AND n.notID = (
-        -- Select the smallest notID per contactID
-        SELECT MIN(n2.notID) 
-        FROM funotifications n2
-        INNER JOIN fusystemusers f2 ON f2.suID = n2.suID
-        INNER JOIN actionusers au2 ON n2.actionID = au2.actionID
-        WHERE f2.contactID = f.contactID 
-          AND au2.userid = au.userid
-    )
+    
 ORDER BY 
     n.notstartdate;
     </cfquery>
