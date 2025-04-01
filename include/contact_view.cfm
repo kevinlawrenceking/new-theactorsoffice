@@ -71,7 +71,7 @@
                     </p>
 
                     <cfif #details.contactmeetingdate# is not "">
-                        <cfset meetingdate="#Details.contactmeetingdate)#" />
+                        <cfset meetingdate="#Details.contactmeetingdate#" />
                         <p class="mt-1 mb-0 text-muted font-14">
                             <cfoutput>
                                 <strong>Initial Meeting:</strong>
