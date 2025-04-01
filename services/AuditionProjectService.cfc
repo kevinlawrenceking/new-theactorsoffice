@@ -1421,7 +1421,7 @@ ORDER BY p.projdate DESC
         ) VALUES (
             <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_projName#" maxlength="500">,
             <cfqueryparam cfsqltype="CF_SQL_LONGVARCHAR" value="#arguments.new_projDescription#">,
-            <cfqueryparam cfsqltype="CF_SQL_DATETIME" value="#arguments.new_eventStart#">,
+            <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.new_eventStart#">,
             <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.new_eventStart#">
             <cfif structKeyExists(arguments, "new_userid") AND arguments.new_userid NEQ 0>, <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_userid#"></cfif>
             <cfif structKeyExists(arguments, "new_audSubCatID") AND arguments.new_audSubCatID NEQ 0>, <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audSubCatID#"></cfif>
