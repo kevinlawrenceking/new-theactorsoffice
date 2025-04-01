@@ -47,7 +47,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td>#currentStartDate(timestamp, "mm/dd/yyyy")# #timeFormat(timestamp, "hh:mm:ss tt")#</td>
+                        <td>#Dateformat(timestamp, "mm/dd/yyyy")# #timeFormat(timestamp, "hh:mm:ss tt")#</td>
                     </tr>
                 </cfoutput>
             </tbody>
