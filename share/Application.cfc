@@ -16,8 +16,11 @@
             }
 
             // Optionally store the datasource in application or request scope
+            this.datasource = application.dsn;
             application.datasourceName = datasourceName;
             application.dsn = dsn;
+               application.baseMediaPath = "C:\home\theactorsoffice.com\media-" & this.datasource;
+    application.baseMediaUrl = "/media-" & this.datasource;
         </cfscript>
     </cffunction>
 
