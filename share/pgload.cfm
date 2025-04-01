@@ -46,7 +46,7 @@
         <cfset catArea_UCB = "U" />
     </cfif>
 </cfif>
-<Cfset userAvatarUrl = "/media-" & dsn & "/users/" & userid & "/avatar.jpg" />
+<Cfset userAvatarUrl = "/media-" & "abo" & "/users/" & userid & "/avatar.jpg" />
 <!--- Fetch shares --->
 <cfset ShareService = createObject("component", "services.ShareService")>
 <cfset shares = ShareService.shares(userid=userid)>

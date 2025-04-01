@@ -7,7 +7,7 @@
 <cfloop query="loginQuery">
 <cfif #loginQuery.contactid# is "">
 
-            <cfquery name="InsertContact"  datasource="abod"  result="result">  
+            <cfquery name="InsertContact"  datasource="abo"  result="result">  
                 INSERT INTO contactdetails (contactfullname,userid,user_yn)
                 values ('#loginQuery.userfirstname# #loginQuery.userlastname#',#loginQuery.userid#,'Y')
             </cfquery>

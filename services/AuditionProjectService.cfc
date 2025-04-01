@@ -1401,11 +1401,14 @@ ORDER BY p.projdate DESC
     <cfargument name="new_isDeleted" type="string" required="false">
     <cfargument name="isdirect" type="string" required="false">
     <cfargument name="new_contactid" type="numeric" required="false">
+    <cfargument name="new_eventStart" type="string" required="true">
 
-<cfquery result="result">
+    <cfquery result="result">
         INSERT INTO audprojects (
             projName,
-            projDescription
+            projDescription,
+            audprojectdate,
+            projdate
             <cfif structKeyExists(arguments, "new_userid") AND arguments.new_userid NEQ 0>, userid</cfif>
             <cfif structKeyExists(arguments, "new_audSubCatID") AND arguments.new_audSubCatID NEQ 0>, audSubCatID</cfif>
             <cfif structKeyExists(arguments, "new_unionID") AND arguments.new_unionID NEQ 0>, unionID</cfif>
@@ -1417,7 +1420,9 @@ ORDER BY p.projdate DESC
             <cfif structKeyExists(arguments, "new_contactid") AND arguments.new_contactid NEQ 0>, contactid</cfif>
         ) VALUES (
             <cfqueryparam cfsqltype="CF_SQL_VARCHAR" value="#arguments.new_projName#" maxlength="500">,
-            <cfqueryparam cfsqltype="CF_SQL_LONGVARCHAR" value="#arguments.new_projDescription#">
+            <cfqueryparam cfsqltype="CF_SQL_LONGVARCHAR" value="#arguments.new_projDescription#">,
+            <cfqueryparam cfsqltype="CF_SQL_DATETIME" value="#arguments.new_eventStart#">,
+            <cfqueryparam cfsqltype="CF_SQL_DATE" value="#arguments.new_eventStart#">
             <cfif structKeyExists(arguments, "new_userid") AND arguments.new_userid NEQ 0>, <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_userid#"></cfif>
             <cfif structKeyExists(arguments, "new_audSubCatID") AND arguments.new_audSubCatID NEQ 0>, <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_audSubCatID#"></cfif>
             <cfif structKeyExists(arguments, "new_unionID") AND arguments.new_unionID NEQ 0>, <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_unionID#"></cfif>
@@ -1428,12 +1433,12 @@ ORDER BY p.projdate DESC
             <cfif structKeyExists(arguments, "isdirect")>, <cfqueryparam cfsqltype="CF_SQL_BIT" value="#arguments.isdirect#"></cfif>
             <cfif structKeyExists(arguments, "new_contactid") AND arguments.new_contactid NEQ 0>, <cfqueryparam cfsqltype="CF_SQL_INTEGER" value="#arguments.new_contactid#"></cfif>
         )
-     
-</cfquery>
+    </cfquery>
 
-<!--- Return the generated key --->
+    <!--- Return the generated key --->
     <cfreturn result.generatedKey>
 </cffunction>
+
 
 <cffunction output="false" name="DETaudprojects_24716" access="public" returntype="query">
     <cfargument name="audprojectID" type="numeric" required="true">
