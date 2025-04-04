@@ -80,6 +80,20 @@
             WHERE d.isdeleted = 0
               AND d.dateadded IS NULL;
         </cfquery>
+   <cfquery>
+        UPDATE audprojects pr
+JOIN (
+    SELECT 
+        pr.audprojectid,
+        MAX(ad.eventStart) AS actual_projdate
+    FROM audprojects pr
+    INNER JOIN audroles r ON pr.audprojectID = r.audprojectID
+    INNER JOIN events ad ON r.audroleid = ad.audroleid
+    GROUP BY pr.audprojectid
+) x ON pr.audprojectid = x.audprojectid
+SET pr.projdate = x.actual_projdate
+WHERE pr.projdate <> x.actual_projdate OR pr.projdate IS NULL;
+    </cfquery>
 
     </cftransaction>
 </cffunction>
