@@ -35,7 +35,7 @@ WHERE userid = <Cfqueryparam value="#userid#" cfsqltype="CF_SQL_INTEGER" />
 and col1 like '%#bylike#%'
     </cfif>
 
-<cfif #uploadid# is not "0">HERE!<Cfabort>
+<cfif #uploadid# is not "0">
     and contactid in (SELECT contactid FROM contactsimport WHERE uploadid = #uploadid#)
 
 </cfif>

@@ -247,12 +247,14 @@
 <cfelse>
     <cfset card_company = results.col4 />
 </cfif>
+<cfset cardYear = year(results.col1) />
 
- 
+  <cfset card_view_icon_yn = "N">
         <cfset card_delete_msg=""/>
         <cfset card_delete=""/>
         <cfset card_details="/app/audition/?audprojectid=" & results.recid/>
         <cfset card_email=""/>
+        <cfset card_name = ""/>
         <Cfset card_footer_text=""/>
         <cfset card_footer_type=""/>
         <cfset card_footer_yn="N"/>
@@ -270,6 +272,8 @@
         <cfset card_top_ribbon="Yes"/>
         <cfset ribbon_icon=""/>
         <cfset card_reminder=""/>
+        <cfset card_remove = ""/>
+        <cfset card_remove_msg = ""/>
         <cfset card_image_type = "calendar"/>
         <cfset card_image_yn = "Y"/>
         <cfset card_badge_yn = "N" />
@@ -316,7 +320,7 @@
   <Cfset card_delete=""/>
  
   <Cfset card_icon=results.aud_cat_icon/>
-  <cfif col6 eq "Booked" and results.isbooked eq "1">
+  <cfif results.isbooked eq "1">
 
     <Cfset card_top_ribbon="Booked"/>
     <Cfelse>
@@ -491,4 +495,5 @@
         </div>
         <!--- end col --->
     </div>
+
 

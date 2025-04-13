@@ -1,3 +1,18 @@
+<cfapplication name="TAO" sessionmanagement="true">
+
+<cfset currentURL = cgi.server_name />
+<cfset host = ListFirst(currentURL, ".") />
+
+<!--- Determine the datasource and schema based on the host --->
+<cfif host is "app">
+    <cfset dsn = "abo" />
+    <cfset suffix = "_1.5" />
+    <cfset information_schema = "actorsbusinessoffice" />
+<cfelse>
+    <cfset dsn = "abod" />
+    <cfset suffix = "" />
+    <cfset information_schema = "new_development" />
+</cfif>
 
 
 <cfparam name="pwrong" default="" />
@@ -19,7 +34,7 @@
     <cfset instruct = "An email has been sent to you with instructions on how to reset your password." />
     <cfset header = "Email Sent" />
     
-    <cfquery result="result" name="find" >
+    <cfquery result="result" name="find" datasource="#dsn#" >
     Select * from taousers where useremail = '#email#'
     </cfquery>
     
@@ -27,7 +42,7 @@
     
         <cfset recover = CreateUUID()/>
     
-        <cfquery result="result" name="update" datasource="abod">
+        <cfquery result="result" name="update" datasource="#dsn#">
         update taousers set recover = <cfqueryparam value="#recover#" cfsqltype="cf_sql_varchar" />
         where useremail = '#email#'
         </cfquery> 
@@ -35,7 +50,7 @@
         <cfmail from="support@theactorsoffice.com" to="#find.useremail#"  bcc="kevinking7135@gmail.com" subject="The Actor's Office - Password Recovery" type="HTML">
         <HTML>
        <head><title>The Actor's Office</title></head>
-       <body>
+      <body class="loading" style="background-color: white; font-family: 'Source Sans Pro', sans-serif;">
            
            <style type="text/css">
                body { font-size: 14px; }
@@ -95,7 +110,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-md-8 col-lg-6 col-xl-5">
-                      "   <div class="card mb-3" style="background-color:white;bgcolor:white;">
+                         <div class="card mb-3" style="background-color:white;bgcolor:white;">
 
                             <div class="card-body p-4">
                                 
