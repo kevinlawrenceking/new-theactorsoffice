@@ -1,5 +1,7 @@
 <script>
 $(function() {
+    let itemSelected = false;
+
     $("#autocomplete").autocomplete({
         source: function(request, response) {
             $.ajax({
@@ -18,11 +20,13 @@ $(function() {
                             category: item.data.category
                         };
                     }));
+                    itemSelected = false; // Reset on new input
                 }
             });
         },
         minLength: 2,
         select: function(event, ui) {
+            itemSelected = true;
 
             $("#selectedId").val(ui.item.id);
             $("#category").val(ui.item.category);
@@ -37,9 +41,26 @@ $(function() {
             });
         }
     });
-});
 
+    // Validate input on blur or form submit
+    $("#autocomplete").on("blur", function() {
+        if (!itemSelected) {
+            $(this).val('');
+            $("#selectedId").val('');
+            $("#category").val('');
+        }
+    });
+
+    $("#submitform").on("submit", function(e) {
+        if (!itemSelected) {
+            e.preventDefault();
+            $("#autocomplete").val('');
+            alert("Please select a valid option from the list.");
+        }
+    });
+});
 </script>
+
 
 <script>
 $(function() {
