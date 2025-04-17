@@ -65,7 +65,7 @@
                 <!--- Start Page Title --->
                 <div class="row">
                   <cfif #pgid# is "17599999">
-                    <cfinclude template="/include/core_title_175.cfm"/>
+                    <cfinclude template="/include/core_title.cfm"/>
                   <CFELSE>
                     <cfinclude template="/include/core_title.cfm"/>
                   </cfif>
