@@ -17,15 +17,15 @@
         <div class="float-left">
  <!--- Filter checkboxes --->
 <label>
-  <input type="checkbox" class="status-filter" value="completed" checked>
+  <input type="checkbox" class="status-filter" value="completed" >
   Completed
 </label>
 <label>
-  <input type="checkbox" class="status-filter" value="skipped" checked>
+  <input type="checkbox" class="status-filter" value="skipped" >
   Skipped
 </label>
 <label>
-  <input type="checkbox" class="status-filter" value="upcoming" >
+  <input type="checkbox" class="status-filter" value="upcoming" checked>
   Upcoming
 </label>
 <label>

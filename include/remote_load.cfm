@@ -9,7 +9,11 @@
     
     <cfset dsn = "abo" />
     <cfset rev = current_ver />
-    <cfset suffix = IIF(host eq "app", "_1.5", "") />
+<cfif host eq "app">
+  <cfset application.suffix = "_1.5" />
+<cfelse>
+  <cfset application.suffix = "" />
+</cfif>
     <cfset information_schema = "actorsbusinessoffice" />
     
 <cfelse>

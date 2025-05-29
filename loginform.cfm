@@ -146,7 +146,7 @@
                             </form>
 
                             <div class="text-center mt-3">
-                                <a href="auth-recoverpw.cfm" class="text-white-50">Forgot your password?</a>
+                                <a href="auth-recoverpw.cfm"   >Forgot your password?</a>
                             </div>
                         </div> <!--- end card-body --->
                     </div> <!--- end card --->

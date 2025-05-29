@@ -1,9 +1,20 @@
 <!--- This ColdFusion page handles the display of page titles and actions based on the page ID (pgid) --->
 <cfparam name="ctaction" default="view">
 
+<cfset b1_name = appName />
+<cfset b1_link = home />
+<cfset b2_name = compName />
+<cfset b2_link = "/app/" & compDir />
+
+<cfset b3_name = pgHeading />
+ 
+
+
 <div class="col-12">
     <div class="page-title-box">
         <div class="page-title-right">
+
+<!--- OLD
             <ol class="breadcrumb m-0">
                 <li class="breadcrumb-item">
                     <a href="<cfoutput>#home#</cfoutput>">
@@ -19,6 +30,32 @@
                     <cfoutput>#pgName#</cfoutput>
                 </li>
             </ol>
+
+--->
+
+
+            <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item">
+                    <a href="<cfoutput>#b1_link#</cfoutput>">
+                        <cfoutput>#b1_name#</cfoutput>
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                     <a href="<cfoutput>#b2_link#</cfoutput>">
+                        <cfoutput>#b2_name#</cfoutput>
+                    </a>
+                </li>
+                <li class="breadcrumb-item active">
+                    <cfoutput>#b3_name#</cfoutput>
+                </li>
+            </ol>
+
+
+
+
+
+
+
         </div>
 
         <h4 class="page-title">
