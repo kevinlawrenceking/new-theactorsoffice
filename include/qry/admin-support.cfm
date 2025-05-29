@@ -1,4 +1,4 @@
-<cfparam name="select_userid" default="%"/>
+<cfparam name="select_userid" default="#COOKIE.USERID#"/>
 <cfparam name="select_ticketstatus" default="%"/>
 <cfparam name="select_tickettype" default="%"/>
 <cfparam name="select_ticketpriority" default="%"/>
