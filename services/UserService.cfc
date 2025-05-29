@@ -695,7 +695,6 @@
 <cffunction output="false" name="getUserById" access="public" returntype="struct">
     <cfargument name="userId" type="numeric" required="true">
     
-    <!--- Initialize a struct to hold user data --->
     <cfset var user = {}>
 
     <cfquery name="qUserDetails">
@@ -710,8 +709,7 @@
             pr.BaseProductLabel,
             r.regionname AS regionName,
             c.countryname AS countryName
-        FROM
-            taousers u
+        FROM taousers u
         LEFT JOIN dateformats df ON u.dateformatid = df.id
         LEFT JOIN timezones t ON u.tzid = t.tzid
         LEFT JOIN thrivecart tc ON u.customerid = tc.id  
@@ -722,22 +720,16 @@
         WHERE u.userid = <cfqueryparam value="#arguments.userId#" cfsqltype="cf_sql_integer">
     </cfquery>
 
-    <cfif qUserDetails.recordCount EQ 1>
-       <cfloop list="#qUserDetails.columnList#" index="col">
-    <!--- Check if the field is NULL and assign a default value --->
-    <cfif isNull(qUserDetails[col])>
-        <cfset user[col] = ""> <!--- Default empty string for NULL values --->
-    <cfelse>
-        <cfset user[col] = qUserDetails[col]>
-    </cfif>
-</cfloop>
-
-        <!--- Additional Computed Fields --->
-        <cfset user.calendarName = REPLACE(REPLACE(user.recordName, " ", ""), "-", "")>
+    <cfif qUserDetails.recordCount>
+        <cfloop array="#qUserDetails.getRow(1)#" index="col">
+            <cfset user[col] = iif(isNull(qUserDetails[col]), "", qUserDetails[col])>
+        </cfloop>
+        <cfset user.calendarName = REReplace(user.recordName, "[\s\-]", "", "all")>
     </cfif>
 
     <cfreturn user>
 </cffunction>
+
 
 
 </cfcomponent>
